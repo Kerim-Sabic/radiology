@@ -1,0 +1,2737 @@
+{
+ "schemaVersion": 1,
+ "packId": "starter",
+ "version": "1.0.0",
+ "title": "Starter: chest CT with RT contours, chest radiograph, prostate MRI zones",
+ "description": "Small committed pack so the app works from a clean clone: one thoracic radiotherapy-planning CT with RTSTRUCT organ-at-risk contours (lungs, heart, esophagus, spinal cord), one portable chest radiograph (CR, MONOCHROME1 rendering fixture) with the same patient's CT localizer, and one axial T2-weighted prostate MRI with manual zonal segmentation (DICOM SEG). Three different patients from three TCIA collections; no cross-collection links.",
+ "generatedAt": "2026-10-27T16:34:44Z",
+ "generator": "scripts/data/build_pack.py (python 3.12.10, pydicom 3.0.1, highdicom 0.27.0, numpy 2.2.6)",
+ "sources": [
+  {
+   "id": "tcia:COVID-19-AR",
+   "name": "Chest Imaging with Clinical and Genomic Correlates Representing a Rural COVID-19 Positive Population (COVID-19-AR)",
+   "url": "https://doi.org/10.7937/tcia.2020.py71-5978",
+   "doi": "10.7937/tcia.2020.py71-5978",
+   "license": "Creative Commons Attribution 4.0 International License",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "citation": "Desai, S., Baghal, A., Wongsurawat, T., Al-Shukri, S., Gates, K., Farmer, P., Rutherford, M., Blake, G. D., Nolan, T., Powell, T., Sexton, K., Bennett, W., & Prior, F. (2020). Chest Imaging with Clinical and Genomic Correlates Representing a Rural COVID-19 Positive Population (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.2020.PY71-5978",
+   "accessNote": "Retrieved anonymously from the TCIA NBIA REST API v1 (getSeries/getImage) at services.cancerimagingarchive.net/nbia-api/services/v1; license as reported by the API (LicenseName)."
+  },
+  {
+   "id": "tcia:LCTSC",
+   "name": "Lung CT Segmentation Challenge 2017 (LCTSC)",
+   "url": "https://doi.org/10.7937/K9/TCIA.2017.3r3fvz08",
+   "doi": "10.7937/K9/TCIA.2017.3r3fvz08",
+   "license": "Creative Commons Attribution 3.0 Unported License",
+   "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+   "citation": "Yang, J., Sharp, G., Veeraraghavan, H., Van Elmpt, W., Dekker, A., Lustberg, T., & Gooding, M. (2017). Data from Lung CT Segmentation Challenge 2017 (LCTSC) (Version 3) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/K9/TCIA.2017.3R3FVZ08",
+   "accessNote": "Retrieved anonymously from the TCIA NBIA REST API v1 (getSeries/getImage) at services.cancerimagingarchive.net/nbia-api/services/v1; license as reported by the API (LicenseName)."
+  },
+  {
+   "id": "tcia:PROSTATEx",
+   "name": "SPIE-AAPM PROSTATEx Challenge Data (PROSTATEx)",
+   "url": "https://doi.org/10.7937/K9TCIA.2017.MURS5CL",
+   "doi": "10.7937/K9TCIA.2017.MURS5CL",
+   "license": "Creative Commons Attribution 3.0 Unported License",
+   "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+   "citation": "Litjens, G., Debats, O., Barentsz, J., Karssemeijer, N., & Huisman, H. (2017). SPIE-AAPM PROSTATEx Challenge Data (Version 2) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/K9TCIA.2017.MURS5CL",
+   "accessNote": "Retrieved anonymously from the TCIA NBIA REST API v1 (getSeries/getImage) at services.cancerimagingarchive.net/nbia-api/services/v1; license as reported by the API (LicenseName)."
+  },
+  {
+   "id": "tcia:PROSTATEx-Zone-Segmentations",
+   "name": "PROSTATEx Zone Segmentations (PROSTATEx-Seg-Zones; DICOM SEG analysis result within NBIA collection PROSTATEx)",
+   "url": "https://doi.org/10.7937/TCIA.NBB4-4655",
+   "doi": "10.7937/TCIA.NBB4-4655",
+   "license": "Creative Commons Attribution 3.0 Unported License",
+   "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+   "citation": "Meyer, A., Schindele, D., von Reibnitz, D., Rak, M., Schostak, M., & Hansen, C. (2020). PROSTATEx Zone Segmentations (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.NBB4-4655",
+   "accessNote": "SEG series retrieved anonymously from the TCIA NBIA REST API v1 (collection PROSTATEx, ThirdPartyAnalysis=yes, CollectionURI doi.org/10.7937/tcia.nbb4-4655); license as reported by the API (LicenseName)."
+  }
+ ],
+ "subjects": [
+  {
+   "key": "tcia:LCTSC:LCTSC-Train-S1-012",
+   "sourceId": "tcia:LCTSC",
+   "sourceSubjectId": "LCTSC-Train-S1-012",
+   "linkageEvidence": "TCIA PatientID LCTSC-Train-S1-012 within collection LCTSC (source subject mapping); every series retrieved via getSeries?Collection=LCTSC&PatientID=LCTSC-Train-S1-012 and PatientID re-checked in each DICOM header.",
+   "holdoutGroup": "tcia:LCTSC:LCTSC-Train-S1-012",
+   "sex": "M",
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.856906139437027948311307972341"
+   ]
+  },
+  {
+   "key": "tcia:COVID-19-AR:COVID-19-AR-16406503",
+   "sourceId": "tcia:COVID-19-AR",
+   "sourceSubjectId": "COVID-19-AR-16406503",
+   "linkageEvidence": "TCIA PatientID COVID-19-AR-16406503 within collection COVID-19-AR (source subject mapping); every series retrieved via getSeries?Collection=COVID-19-AR&PatientID=COVID-19-AR-16406503 and PatientID re-checked in each DICOM header.",
+   "holdoutGroup": "tcia:COVID-19-AR:COVID-19-AR-16406503",
+   "sex": "M",
+   "ageAtFirstStudy": "056Y",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2752219814091402100315433912652",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1484827635781103925261573539342"
+   ]
+  },
+  {
+   "key": "tcia:PROSTATEx:ProstateX-0004",
+   "sourceId": "tcia:PROSTATEx",
+   "sourceSubjectId": "ProstateX-0004",
+   "linkageEvidence": "TCIA PatientID ProstateX-0004 within collection PROSTATEx (source subject mapping); every series retrieved via getSeries?Collection=PROSTATEx&PatientID=ProstateX-0004 and PatientID re-checked in each DICOM header.",
+   "holdoutGroup": "tcia:PROSTATEx:ProstateX-0004",
+   "sex": "M",
+   "ageAtFirstStudy": "068Y",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7311.5101.170561193612723093192571245493"
+   ]
+  }
+ ],
+ "studies": [
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.856906139437027948311307972341",
+   "subjectKey": "tcia:LCTSC:LCTSC-Train-S1-012",
+   "description": "RT^RCCT_THORAX_8F_High (Adult)",
+   "modalities": [
+    "CT"
+   ],
+   "date": "2004-01-18",
+   "dateShifted": "yes",
+   "relativeDays": 0,
+   "timingNote": "DICOM DeidentificationMethodCodeSequence includes 113107 'Retain Longitudinal Temporal Information Modified Dates Option': dates were shifted during de-identification with intervals preserved. Day 0 relative to this subject's earliest study in this pack; absolute dates are not real calendar dates.",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415"
+   ]
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2752219814091402100315433912652",
+   "subjectKey": "tcia:COVID-19-AR:COVID-19-AR-16406503",
+   "description": "XR CHEST AP PORTABLE",
+   "modalities": [
+    "CR"
+   ],
+   "date": "2012-01-04",
+   "dateShifted": "yes",
+   "relativeDays": 0,
+   "timingNote": "DICOM DeidentificationMethodCodeSequence includes 113107 'Retain Longitudinal Temporal Information Modified Dates Option': dates were shifted during de-identification with intervals preserved. Day 0 relative to this subject's earliest study in this pack; absolute dates are not real calendar dates.",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842"
+   ]
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1484827635781103925261573539342",
+   "subjectKey": "tcia:COVID-19-AR:COVID-19-AR-16406503",
+   "description": "CT PE CHEST",
+   "modalities": [
+    "CT"
+   ],
+   "date": "2012-01-05",
+   "dateShifted": "yes",
+   "relativeDays": 1,
+   "timingNote": "DICOM DeidentificationMethodCodeSequence includes 113107 'Retain Longitudinal Temporal Information Modified Dates Option': dates were shifted during de-identification with intervals preserved. Day 1 relative to this subject's earliest study in this pack; absolute dates are not real calendar dates.",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1891326720085238222508091238377"
+   ]
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.170561193612723093192571245493",
+   "subjectKey": "tcia:PROSTATEx:ProstateX-0004",
+   "description": "MR prostaat kanker detectie WDS_mc MCAPRODETW",
+   "modalities": [
+    "MR"
+   ],
+   "date": "2011-10-18",
+   "dateShifted": "yes",
+   "relativeDays": 0,
+   "timingNote": "DICOM DeidentificationMethodCodeSequence includes 113107 'Retain Longitudinal Temporal Information Modified Dates Option': dates were shifted during de-identification with intervals preserved. Day 0 relative to this subject's earliest study in this pack; absolute dates are not real calendar dates.",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680"
+   ]
+  }
+ ],
+ "series": [
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+   "studyUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.856906139437027948311307972341",
+   "subjectKey": "tcia:LCTSC:LCTSC-Train-S1-012",
+   "modality": "CT",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.2",
+   "frameOfReferenceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.270460727455222868025867516415",
+   "number": 0,
+   "description": "CT:P2B1 rcct  3.0  B30f  50% Ex",
+   "bodyPart": "LUNG",
+   "role": "diagnostic",
+   "roleNote": "Primary CT series (CT:P2B1 rcct  3.0  B30f  50% Ex). Thoracic radiotherapy planning CT from LCTSC (the collection describes average-4DCT or free-breathing planning CTs depending on institution); not a contrast-enhanced diagnostic chest CT.",
+   "acquisition": {
+    "SeriesDescription": "CT:P2B1 rcct  3.0  B30f  50% Ex",
+    "StudyDescription": "RT^RCCT_THORAX_8F_High (Adult)",
+    "ImageType": "ORIGINAL\\PRIMARY\\AXIAL\\CT_SOM5 SPI",
+    "Manufacturer": "SIEMENS",
+    "ManufacturerModelName": "Sensation Open",
+    "BodyPartExamined": "LUNG",
+    "PatientPosition": "HFS",
+    "KVP": "120",
+    "XRayTubeCurrent": "100",
+    "Exposure": "500",
+    "SliceThickness": "3",
+    "ConvolutionKernel": "B30f",
+    "ReconstructionDiameter": "500",
+    "GantryDetectorTilt": "0",
+    "DistanceSourceToDetector": "1040",
+    "DistanceSourceToPatient": "570",
+    "AcquisitionNumber": "2"
+   },
+   "geometry": {
+    "rows": 512,
+    "columns": 512,
+    "pixelSpacing": [
+     0.9765625,
+     0.9765625
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": [
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "sliceSpacing": 3.0,
+    "sliceSpacingUniform": true,
+    "volumeEligible": true,
+    "volumeIssues": [],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 12,
+    "pixelRepresentation": 0,
+    "rescale": {
+     "slope": 1.0,
+     "intercept": -1024.0,
+     "type": null
+    },
+    "hu": true
+   },
+   "windowPresets": [
+    {
+     "label": "Soft tissue",
+     "center": 40,
+     "width": 400
+    },
+    {
+     "label": "Lung",
+     "center": -600,
+     "width": 1500
+    },
+    {
+     "label": "Mediastinum",
+     "center": 50,
+     "width": 350
+    },
+    {
+     "label": "Bone",
+     "center": 400,
+     "width": 1800
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 131}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.142156937800240537506142700609",
+     "file": "dicom/ct-5d36abbb61/9d6b43ed464ec44b.dcm",
+     "bytes": 163284,
+     "sha256": "9d6b43ed464ec44b0888726fc474f5298a321e5c3ef719d7d8f95f645bdc40ce",
+     "frames": 1,
+     "instanceNumber": 131,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -631.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.135849607980896045073399156674",
+     "file": "dicom/ct-5d36abbb61/f62e07fc99e3b1c7.dcm",
+     "bytes": 163698,
+     "sha256": "f62e07fc99e3b1c7edcbcc73483e808d8f5cf773365b9a24dc81c42bbb268ac5",
+     "frames": 1,
+     "instanceNumber": 130,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -628.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.229029137790341609286150595352",
+     "file": "dicom/ct-5d36abbb61/3626cce1fbeb9ba1.dcm",
+     "bytes": 163758,
+     "sha256": "3626cce1fbeb9ba10b821cd19effe63db11c65a2361476bede83f29588560d40",
+     "frames": 1,
+     "instanceNumber": 129,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -625.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.335185075396396707884353261348",
+     "file": "dicom/ct-5d36abbb61/5f9d09abbe670813.dcm",
+     "bytes": 164558,
+     "sha256": "5f9d09abbe670813adbc552bc4e79929833ffb07b6fe3bdbd4a59e06031e89d0",
+     "frames": 1,
+     "instanceNumber": 128,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -622.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.316566782465219490692355697752",
+     "file": "dicom/ct-5d36abbb61/2a8f5a9579ccd5f7.dcm",
+     "bytes": 164696,
+     "sha256": "2a8f5a9579ccd5f7e5e1552410302f91746d213e5ef96d9db9a2c073787f1579",
+     "frames": 1,
+     "instanceNumber": 127,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -619.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.104647842452675734709764633980",
+     "file": "dicom/ct-5d36abbb61/c2e6ef6684a21656.dcm",
+     "bytes": 162536,
+     "sha256": "c2e6ef6684a21656236ebc73de1636dc72d92b8bc3705033bad386eee94da535",
+     "frames": 1,
+     "instanceNumber": 126,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -616.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.199368587424712855791959495525",
+     "file": "dicom/ct-5d36abbb61/88054965ffe3b20a.dcm",
+     "bytes": 165928,
+     "sha256": "88054965ffe3b20a2801c7c9fef02755260659f2e665df7ee4048627ec77e6f5",
+     "frames": 1,
+     "instanceNumber": 125,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -613.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.190973392276133642401503971402",
+     "file": "dicom/ct-5d36abbb61/17a07ddd3a5760d3.dcm",
+     "bytes": 166448,
+     "sha256": "17a07ddd3a5760d396bed66abb1393067dedaf16fc4938bfa1b45bc01867b2fc",
+     "frames": 1,
+     "instanceNumber": 124,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -610.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.916237277724445928883676095854",
+     "file": "dicom/ct-5d36abbb61/baf626d9279eb873.dcm",
+     "bytes": 166480,
+     "sha256": "baf626d9279eb8730eca13b43b4737e32f04fe16df83d60e7c7e5fccd8c976d3",
+     "frames": 1,
+     "instanceNumber": 123,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -607.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.385513225747949120145541033607",
+     "file": "dicom/ct-5d36abbb61/2e6f170da33dba68.dcm",
+     "bytes": 167494,
+     "sha256": "2e6f170da33dba6850c7914a79d8cadb4cd1e0cec4a67142e28ed81d4e8aaff4",
+     "frames": 1,
+     "instanceNumber": 122,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -604.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.326893519891990087426067819634",
+     "file": "dicom/ct-5d36abbb61/736d38d156518f78.dcm",
+     "bytes": 168192,
+     "sha256": "736d38d156518f78390cdb93bc8acbc80bdf6bc2777c0ace231fca9f45d4f842",
+     "frames": 1,
+     "instanceNumber": 121,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -601.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.162543373735402569497122468633",
+     "file": "dicom/ct-5d36abbb61/6672eb68aaff5757.dcm",
+     "bytes": 167984,
+     "sha256": "6672eb68aaff57574f4e7ce4b06958059a2831b8ac8b3deacccd2ad3086fb2f4",
+     "frames": 1,
+     "instanceNumber": 120,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -598.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.228218199831416091573327857274",
+     "file": "dicom/ct-5d36abbb61/d080756facaa3d45.dcm",
+     "bytes": 170130,
+     "sha256": "d080756facaa3d45220715ed9f2c642789075085d153779b4e04578872fe621f",
+     "frames": 1,
+     "instanceNumber": 119,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -595.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.141355144633029117751891345350",
+     "file": "dicom/ct-5d36abbb61/2b718c19b2ec1f8b.dcm",
+     "bytes": 169522,
+     "sha256": "2b718c19b2ec1f8be3014bc06cee5862bd0fa4fef3edfb3e1eee85719c656ce4",
+     "frames": 1,
+     "instanceNumber": 118,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -592.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.305372520881526736573245003488",
+     "file": "dicom/ct-5d36abbb61/492fbef453ac06fe.dcm",
+     "bytes": 168450,
+     "sha256": "492fbef453ac06feb2f0e02affc0c09e25cc721ed0613a96e6a1d903d9001d74",
+     "frames": 1,
+     "instanceNumber": 117,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -589.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.231711682079512631118189664756",
+     "file": "dicom/ct-5d36abbb61/c179676ba52eed6a.dcm",
+     "bytes": 168482,
+     "sha256": "c179676ba52eed6a587af612379d6c4c9995ce096b96c28821af88388709b93c",
+     "frames": 1,
+     "instanceNumber": 116,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -586.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.167774234751892208152062722314",
+     "file": "dicom/ct-5d36abbb61/27f6b4c46b724695.dcm",
+     "bytes": 168304,
+     "sha256": "27f6b4c46b7246953d2fe4b913da8044a3105f2c2f91eab9e8412534a21f1ca2",
+     "frames": 1,
+     "instanceNumber": 115,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -583.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.306036222890074288408406330095",
+     "file": "dicom/ct-5d36abbb61/be0089c956044665.dcm",
+     "bytes": 167792,
+     "sha256": "be0089c956044665a25e689cedbfeeb069dca1a62c21dc3d2a1cbcffe00def9a",
+     "frames": 1,
+     "instanceNumber": 114,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -580.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.118890658557760336595179738734",
+     "file": "dicom/ct-5d36abbb61/1e71ae71878ba6cd.dcm",
+     "bytes": 167438,
+     "sha256": "1e71ae71878ba6cd8e1521d352680bb4f46ad6f4233b5367fd31bca4c30ad06d",
+     "frames": 1,
+     "instanceNumber": 113,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -577.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.250786050648936693821985709556",
+     "file": "dicom/ct-5d36abbb61/5b6c8381a2c06703.dcm",
+     "bytes": 167732,
+     "sha256": "5b6c8381a2c067037eef6ba9a0ecd570f23ff0633382bd18ed9fbdb4c907af92",
+     "frames": 1,
+     "instanceNumber": 112,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -574.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.242684882769282288423170375418",
+     "file": "dicom/ct-5d36abbb61/66d0db7588400231.dcm",
+     "bytes": 167488,
+     "sha256": "66d0db758840023130c1b8fc0ca7c0678937fe5de226ce759025c3d54a2ae897",
+     "frames": 1,
+     "instanceNumber": 111,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -571.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.222603001784767320320207688402",
+     "file": "dicom/ct-5d36abbb61/306a9c0ab8ebe0cc.dcm",
+     "bytes": 168120,
+     "sha256": "306a9c0ab8ebe0cc33375b54176fb3c983575a35c179c23fe53f6c698a645306",
+     "frames": 1,
+     "instanceNumber": 110,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -568.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.202061598421762332482741613030",
+     "file": "dicom/ct-5d36abbb61/545b22cbf5c43599.dcm",
+     "bytes": 167454,
+     "sha256": "545b22cbf5c43599ba7f5f8e68b667244468f990fcc642ef2a464d9fefa34352",
+     "frames": 1,
+     "instanceNumber": 109,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -565.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.291368601097882993348790880908",
+     "file": "dicom/ct-5d36abbb61/83491d43f111751c.dcm",
+     "bytes": 167116,
+     "sha256": "83491d43f111751c2166ec56b671f40cfe26e3226e340becb8e366fb574dc7e8",
+     "frames": 1,
+     "instanceNumber": 108,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -562.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.122596412807219672821391159212",
+     "file": "dicom/ct-5d36abbb61/351f0a128ecd508a.dcm",
+     "bytes": 167050,
+     "sha256": "351f0a128ecd508a15f23e86e797b0dbaad88343fbe246fc550f0f10a2c80857",
+     "frames": 1,
+     "instanceNumber": 107,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -559.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.236058274937703157570691260347",
+     "file": "dicom/ct-5d36abbb61/e28ba6a5eb6b87d2.dcm",
+     "bytes": 167446,
+     "sha256": "e28ba6a5eb6b87d28088bab03b6e604e98445657061fd2ffa534ebef8d0de9cd",
+     "frames": 1,
+     "instanceNumber": 106,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -556.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.251100025126546973104782551365",
+     "file": "dicom/ct-5d36abbb61/7e73b5319fc7bee5.dcm",
+     "bytes": 167824,
+     "sha256": "7e73b5319fc7bee5be0a5742ead43d35f1f94aaf67a4566e8d5e721ce428124e",
+     "frames": 1,
+     "instanceNumber": 105,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -553.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.331515113066825524404538947200",
+     "file": "dicom/ct-5d36abbb61/61efd8cf4af7447d.dcm",
+     "bytes": 163882,
+     "sha256": "61efd8cf4af7447dc5bf522927b926208cb362c4485101eb86b790f7b8ea9c0f",
+     "frames": 1,
+     "instanceNumber": 104,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -550.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.101970836367303799440489855635",
+     "file": "dicom/ct-5d36abbb61/b3bed88b2673b552.dcm",
+     "bytes": 166260,
+     "sha256": "b3bed88b2673b552014e2582d56b24a428711cb9b6a67c4742e7d59cf4bd37cb",
+     "frames": 1,
+     "instanceNumber": 103,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -547.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.302962223324070876317711948783",
+     "file": "dicom/ct-5d36abbb61/7e72872085ac01a7.dcm",
+     "bytes": 164736,
+     "sha256": "7e72872085ac01a7286ea4525627347f76c64c29ca1d86821f4c82916d28ce81",
+     "frames": 1,
+     "instanceNumber": 102,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -544.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.185920685411060148531405115782",
+     "file": "dicom/ct-5d36abbb61/e25e8d1bfee385b3.dcm",
+     "bytes": 163400,
+     "sha256": "e25e8d1bfee385b3ad134b78ed2c7f356b26e6a4fbd202cfe83ed0c9d02fb720",
+     "frames": 1,
+     "instanceNumber": 101,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -541.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.296923591636178268688422241176",
+     "file": "dicom/ct-5d36abbb61/fb207c13b7ba6360.dcm",
+     "bytes": 161852,
+     "sha256": "fb207c13b7ba636014a7793a1eead67059781d795b6e668fb0cf0aa0dd2d0d22",
+     "frames": 1,
+     "instanceNumber": 100,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -538.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.120425021260842208882749844109",
+     "file": "dicom/ct-5d36abbb61/e70ee3e31b2927de.dcm",
+     "bytes": 159068,
+     "sha256": "e70ee3e31b2927de0615e9847225e284c53e1baada077ba2395166c61d3aec5b",
+     "frames": 1,
+     "instanceNumber": 99,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -535.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.868207862756148324260260736641",
+     "file": "dicom/ct-5d36abbb61/ce58b7d4b072aa16.dcm",
+     "bytes": 156196,
+     "sha256": "ce58b7d4b072aa16a88c9ea04ac59757a9b1652bc52dfadbb0c6ba550d81d34e",
+     "frames": 1,
+     "instanceNumber": 98,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -532.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.284939915078174740391384244617",
+     "file": "dicom/ct-5d36abbb61/754387905b4a9f91.dcm",
+     "bytes": 159076,
+     "sha256": "754387905b4a9f91b2fefcb9203b93a131d709e8b979d6c34acd1c4de6cb9f8c",
+     "frames": 1,
+     "instanceNumber": 97,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -529.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152299963568410409002706896225",
+     "file": "dicom/ct-5d36abbb61/ce83e62e654ae03a.dcm",
+     "bytes": 159024,
+     "sha256": "ce83e62e654ae03a9183fe870187d15cdd68db85ca3189ef539e0d892a4da304",
+     "frames": 1,
+     "instanceNumber": 96,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -526.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.739412465720914444113546324814",
+     "file": "dicom/ct-5d36abbb61/9d7cd3ef160a76da.dcm",
+     "bytes": 156992,
+     "sha256": "9d7cd3ef160a76dac6226a01be89127a8f509737674521f364803943cccb4a87",
+     "frames": 1,
+     "instanceNumber": 95,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -523.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.244315604865474360031282886853",
+     "file": "dicom/ct-5d36abbb61/955279049bdb7e63.dcm",
+     "bytes": 154530,
+     "sha256": "955279049bdb7e63762372a96197bec55bad2d816c4d7be81782a58b2517288b",
+     "frames": 1,
+     "instanceNumber": 94,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -520.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.206846299252128992985894523547",
+     "file": "dicom/ct-5d36abbb61/13db94581d33eb43.dcm",
+     "bytes": 152256,
+     "sha256": "13db94581d33eb43b720c1b2b095de36b79fd1d24d01b1d37b21ede275060571",
+     "frames": 1,
+     "instanceNumber": 93,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -517.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.273796512829542291022196026882",
+     "file": "dicom/ct-5d36abbb61/4c629c6181e53d75.dcm",
+     "bytes": 150138,
+     "sha256": "4c629c6181e53d75125ac90a167f0840e005c56e65d9d1fb03cf1afd7c017060",
+     "frames": 1,
+     "instanceNumber": 92,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -514.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.210947714364150140119002011804",
+     "file": "dicom/ct-5d36abbb61/ea22c17afdd711e8.dcm",
+     "bytes": 150370,
+     "sha256": "ea22c17afdd711e8fcd47ad5c25ea0b305c8fc57cf96784498f378a750e38d6e",
+     "frames": 1,
+     "instanceNumber": 91,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -511.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.314778659036874286863326554295",
+     "file": "dicom/ct-5d36abbb61/825b4a7ea1a44ec4.dcm",
+     "bytes": 148894,
+     "sha256": "825b4a7ea1a44ec4a00beb686365cb20e0e030c863c4a09fb160f4355bd8e04b",
+     "frames": 1,
+     "instanceNumber": 90,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -508.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.128578545624892427414272129560",
+     "file": "dicom/ct-5d36abbb61/7e90a9a2d0977752.dcm",
+     "bytes": 150944,
+     "sha256": "7e90a9a2d0977752374ca0634ee0addcd7157946787d2399c5c81c20c0f17340",
+     "frames": 1,
+     "instanceNumber": 89,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -505.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.269754294752183069817351330772",
+     "file": "dicom/ct-5d36abbb61/61e92411d3a20ae4.dcm",
+     "bytes": 151064,
+     "sha256": "61e92411d3a20ae4356a7b5fe0ca4ee739b81b146e9c8d51111606f0e68155b8",
+     "frames": 1,
+     "instanceNumber": 88,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -502.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.149100189047014121385742233734",
+     "file": "dicom/ct-5d36abbb61/7d90c65fb837d697.dcm",
+     "bytes": 153602,
+     "sha256": "7d90c65fb837d6970fcf5bb0339e21d09eba2b36aa4ba06dd4cca9a4080f1da2",
+     "frames": 1,
+     "instanceNumber": 87,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -499.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.716484336690624212435434188561",
+     "file": "dicom/ct-5d36abbb61/2a74862e867e1c82.dcm",
+     "bytes": 152286,
+     "sha256": "2a74862e867e1c82474870e8786cf273b934653c87f052cc4726b83dab8aeff9",
+     "frames": 1,
+     "instanceNumber": 86,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -496.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.159725381496454752558872732828",
+     "file": "dicom/ct-5d36abbb61/17d82052cd56af80.dcm",
+     "bytes": 152120,
+     "sha256": "17d82052cd56af807cdde3227e3f5d858cfecb1388cb0b925da8d002e9798bab",
+     "frames": 1,
+     "instanceNumber": 85,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -493.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.711522656211773583053653708294",
+     "file": "dicom/ct-5d36abbb61/d4912eeed8994b98.dcm",
+     "bytes": 149480,
+     "sha256": "d4912eeed8994b98e937fd53c3ee72469777a45d88639144a3faeda5ef8a0253",
+     "frames": 1,
+     "instanceNumber": 84,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -490.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.310089652876083774889207800537",
+     "file": "dicom/ct-5d36abbb61/ff9264370f54851a.dcm",
+     "bytes": 152136,
+     "sha256": "ff9264370f54851a79d74eed0aaf64caf0f48a10057754e55a21ebe9485218bb",
+     "frames": 1,
+     "instanceNumber": 83,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -487.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.131714116800385674855723183338",
+     "file": "dicom/ct-5d36abbb61/470185d6aa068748.dcm",
+     "bytes": 152830,
+     "sha256": "470185d6aa06874876c5257b17cbcee7539849097d33d5f7191631ce222eb0cd",
+     "frames": 1,
+     "instanceNumber": 82,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -484.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.254277936055407764174809193401",
+     "file": "dicom/ct-5d36abbb61/ea48f796c92766fe.dcm",
+     "bytes": 152572,
+     "sha256": "ea48f796c92766fe2128c8f95cc9cc95f29fde87ed1843e32af6a43bdc1005e2",
+     "frames": 1,
+     "instanceNumber": 81,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -481.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.309226174184428946493906742193",
+     "file": "dicom/ct-5d36abbb61/0328c9ed1bdb3766.dcm",
+     "bytes": 151784,
+     "sha256": "0328c9ed1bdb3766436fbd27ce32d3902a9603e2ec02efd234314d44dad94734",
+     "frames": 1,
+     "instanceNumber": 80,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -478.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.192773892086670350833388214415",
+     "file": "dicom/ct-5d36abbb61/2aee2831c1db9f74.dcm",
+     "bytes": 151618,
+     "sha256": "2aee2831c1db9f74651dc810550c22174298ddcde8ae1976343ab828b9977da3",
+     "frames": 1,
+     "instanceNumber": 79,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -475.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.327583300692406550462676171391",
+     "file": "dicom/ct-5d36abbb61/2150670488fa8f23.dcm",
+     "bytes": 151270,
+     "sha256": "2150670488fa8f23be35e2c0a683b3de76ce758294c41716135f800c282b0924",
+     "frames": 1,
+     "instanceNumber": 78,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -472.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.134635325273590021043420289710",
+     "file": "dicom/ct-5d36abbb61/721a8871be51a10f.dcm",
+     "bytes": 147748,
+     "sha256": "721a8871be51a10f852e89b7321e4868cf15ab3efb769ba1e385b7022f4249b1",
+     "frames": 1,
+     "instanceNumber": 77,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -469.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.167133099921243340279777191063",
+     "file": "dicom/ct-5d36abbb61/11626d848a2828f5.dcm",
+     "bytes": 152510,
+     "sha256": "11626d848a2828f560edd7f7b3f6a4f24ce219d00e36ca8b386ff0d12c296225",
+     "frames": 1,
+     "instanceNumber": 76,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -466.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.689603439942006280231218900455",
+     "file": "dicom/ct-5d36abbb61/c7f80502220bd914.dcm",
+     "bytes": 152800,
+     "sha256": "c7f80502220bd914cfd153399b9e03f72c966a57ce7611cc2c23a2354ee7d43e",
+     "frames": 1,
+     "instanceNumber": 75,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -463.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.261851370007701626512824659094",
+     "file": "dicom/ct-5d36abbb61/ea20f06c04fdce88.dcm",
+     "bytes": 152732,
+     "sha256": "ea20f06c04fdce888a516790b47cffa93250c4813a5ace1d678e61e30dc81745",
+     "frames": 1,
+     "instanceNumber": 74,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -460.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.172163950942091086849579243539",
+     "file": "dicom/ct-5d36abbb61/e84a486dc3c08a54.dcm",
+     "bytes": 152260,
+     "sha256": "e84a486dc3c08a5478a958cdc3514acd7c8ce1be41e0d4ad421a2fea3f9e6bfb",
+     "frames": 1,
+     "instanceNumber": 73,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -457.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.265840564807455625889942776399",
+     "file": "dicom/ct-5d36abbb61/f553b7b85e4341bf.dcm",
+     "bytes": 152484,
+     "sha256": "f553b7b85e4341bfde687442c38f045d31fe3b4d231092c3b9d73d4f2a9ecb04",
+     "frames": 1,
+     "instanceNumber": 72,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -454.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.298006432286412433492305852180",
+     "file": "dicom/ct-5d36abbb61/5bd717ac312fcb2b.dcm",
+     "bytes": 152224,
+     "sha256": "5bd717ac312fcb2bd8c4f69438cfb4e16c6e01d75ccf236b0c9155153953513b",
+     "frames": 1,
+     "instanceNumber": 71,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -451.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.925569953920022062699953429867",
+     "file": "dicom/ct-5d36abbb61/2197f5486c07c118.dcm",
+     "bytes": 148576,
+     "sha256": "2197f5486c07c118b1a2b6f47c756080671c8d8759d3db026ded3b66945a9998",
+     "frames": 1,
+     "instanceNumber": 70,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -448.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.435204282421286178237815264984",
+     "file": "dicom/ct-5d36abbb61/95253d3e4b708cd2.dcm",
+     "bytes": 154710,
+     "sha256": "95253d3e4b708cd2ba257611d8deb7d3b5a923083f4ade7b72c066ceb566ed15",
+     "frames": 1,
+     "instanceNumber": 69,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -445.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.249232857728945491104049464189",
+     "file": "dicom/ct-5d36abbb61/68288e8d0ed411d2.dcm",
+     "bytes": 154236,
+     "sha256": "68288e8d0ed411d2c8ec27f356864149edbe9716396c9e74e710b4e20312308f",
+     "frames": 1,
+     "instanceNumber": 68,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -442.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.291790571658713765094486494160",
+     "file": "dicom/ct-5d36abbb61/20920b2495adb116.dcm",
+     "bytes": 153598,
+     "sha256": "20920b2495adb1168fcaf1f94347664dc58b7a3594b3d4e5ab3d696122903b78",
+     "frames": 1,
+     "instanceNumber": 67,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -439.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.157713183638936630409680664004",
+     "file": "dicom/ct-5d36abbb61/6c62ec8ae4b9b5ea.dcm",
+     "bytes": 153336,
+     "sha256": "6c62ec8ae4b9b5ea9ee8968bed24a0626cb505b14ed57d5c731df6f2d55e6897",
+     "frames": 1,
+     "instanceNumber": 66,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -436.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.310034894820488811335337518182",
+     "file": "dicom/ct-5d36abbb61/043546edcadfcd68.dcm",
+     "bytes": 153796,
+     "sha256": "043546edcadfcd689ac0617cfd811dc5cec705a1c7534021d0638e3c343556fd",
+     "frames": 1,
+     "instanceNumber": 65,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -433.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.221732917729811098025190080094",
+     "file": "dicom/ct-5d36abbb61/1233b8d50dafccb5.dcm",
+     "bytes": 153446,
+     "sha256": "1233b8d50dafccb5797e3f01939b413cb9c49e5059c222514809b1c372a39cf2",
+     "frames": 1,
+     "instanceNumber": 64,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -430.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.334679011815314523997143736668",
+     "file": "dicom/ct-5d36abbb61/05ef11108480e7c9.dcm",
+     "bytes": 148924,
+     "sha256": "05ef11108480e7c988e2f9e5737d6fc74c35cc75f223e45497a186e90b68f0bb",
+     "frames": 1,
+     "instanceNumber": 63,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -427.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.330843405898183816276847575359",
+     "file": "dicom/ct-5d36abbb61/4e5a92f84c8e2b8b.dcm",
+     "bytes": 153102,
+     "sha256": "4e5a92f84c8e2b8bcfe3593087cd4fd4dda2bf547e8724778f6a348253d0b91d",
+     "frames": 1,
+     "instanceNumber": 62,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -424.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.970403997241482626724640190212",
+     "file": "dicom/ct-5d36abbb61/f0f2c0263f73ed98.dcm",
+     "bytes": 152800,
+     "sha256": "f0f2c0263f73ed9843d4a117d69fcae721eda043cdf425c6c6189a8fcb687c47",
+     "frames": 1,
+     "instanceNumber": 61,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -421.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.228584489053996558082401627123",
+     "file": "dicom/ct-5d36abbb61/8ae47a8db17022c1.dcm",
+     "bytes": 152622,
+     "sha256": "8ae47a8db17022c1974e9aebbad7acbb769f926860f0d5ce899f4e609d67f187",
+     "frames": 1,
+     "instanceNumber": 60,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -418.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.208411566659178638730041945720",
+     "file": "dicom/ct-5d36abbb61/de42f48946223158.dcm",
+     "bytes": 152864,
+     "sha256": "de42f489462231583a6d32819de656637ab369d01a9d430301f73b680f0085e4",
+     "frames": 1,
+     "instanceNumber": 59,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -415.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.759196153260770167610928399857",
+     "file": "dicom/ct-5d36abbb61/1c4c16aedb4a640f.dcm",
+     "bytes": 152884,
+     "sha256": "1c4c16aedb4a640f6ee7ddc5d8fdfc7733d9e8e6cc69f4c29b80e10d14703e8b",
+     "frames": 1,
+     "instanceNumber": 58,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -412.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.135051337759973606466252363260",
+     "file": "dicom/ct-5d36abbb61/9cfaea709d760957.dcm",
+     "bytes": 149888,
+     "sha256": "9cfaea709d760957d067f3f677f811b6b82bfd2131f4371c935dec259636cc26",
+     "frames": 1,
+     "instanceNumber": 57,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -409.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.124591838809372106119636748592",
+     "file": "dicom/ct-5d36abbb61/4ecbf04c7a22a6d5.dcm",
+     "bytes": 152368,
+     "sha256": "4ecbf04c7a22a6d56aa2eba4dace10cf50ed4b1f5d1baaa1ef02a497f672fdab",
+     "frames": 1,
+     "instanceNumber": 56,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -406.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.129426916616322870740677964032",
+     "file": "dicom/ct-5d36abbb61/e1638c772c91cb81.dcm",
+     "bytes": 153312,
+     "sha256": "e1638c772c91cb8103c430fedae2e1ac53cf67205531bcb4166de5fcfbe8001c",
+     "frames": 1,
+     "instanceNumber": 55,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -403.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.324005224443092049885828121109",
+     "file": "dicom/ct-5d36abbb61/66cd92e7aae9d17d.dcm",
+     "bytes": 152804,
+     "sha256": "66cd92e7aae9d17d6fb37fc677200cdeaec3271db18f5824d3a7e59c9d6803c9",
+     "frames": 1,
+     "instanceNumber": 54,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -400.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.339984157035409463396581369493",
+     "file": "dicom/ct-5d36abbb61/00d27c5f6c842713.dcm",
+     "bytes": 152710,
+     "sha256": "00d27c5f6c842713062b86a3961b7122fbb77b5d97aa482dfb7ec1d1ce5b0ff2",
+     "frames": 1,
+     "instanceNumber": 53,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -397.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.249255827555557583476973198875",
+     "file": "dicom/ct-5d36abbb61/f771d20e1223391c.dcm",
+     "bytes": 152338,
+     "sha256": "f771d20e1223391c491a8f683f4f65dc39d78f5f4da9f772d6390b35ab222867",
+     "frames": 1,
+     "instanceNumber": 52,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -394.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.274747165362028662597176877665",
+     "file": "dicom/ct-5d36abbb61/e3447b3e9bb2623b.dcm",
+     "bytes": 152042,
+     "sha256": "e3447b3e9bb2623ba77311ee380bc66a96cecf4ae364b7a9847c2ee033a35c64",
+     "frames": 1,
+     "instanceNumber": 51,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -391.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.175337292402861963342355219800",
+     "file": "dicom/ct-5d36abbb61/d3f10dcff5314e16.dcm",
+     "bytes": 149538,
+     "sha256": "d3f10dcff5314e16b1523f5aaca917405e9bfc362c7828534d599db3ee7dc43e",
+     "frames": 1,
+     "instanceNumber": 50,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -388.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.112738187567233058678514293018",
+     "file": "dicom/ct-5d36abbb61/610cc2b7ac82a198.dcm",
+     "bytes": 154754,
+     "sha256": "610cc2b7ac82a1983ed949496eea8c6f5bc6a95fbc2da0a9b933a8695be2fd6f",
+     "frames": 1,
+     "instanceNumber": 49,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -385.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.784837244868824862646735453843",
+     "file": "dicom/ct-5d36abbb61/c1cc9a0bd374096a.dcm",
+     "bytes": 155086,
+     "sha256": "c1cc9a0bd374096a8ad4d80317f1f9b3e7191418a9224b8832017259ecf995b8",
+     "frames": 1,
+     "instanceNumber": 48,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -382.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.206567037896398676212791542788",
+     "file": "dicom/ct-5d36abbb61/ec5e9f3df52b7a4a.dcm",
+     "bytes": 154792,
+     "sha256": "ec5e9f3df52b7a4a69627a85c0b11e613513eb3fa131f71bcf4cea1bd8579a9e",
+     "frames": 1,
+     "instanceNumber": 47,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -379.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.316922932477504664555118755622",
+     "file": "dicom/ct-5d36abbb61/1b2d8a318f3b83a1.dcm",
+     "bytes": 154698,
+     "sha256": "1b2d8a318f3b83a1997785b2a7b33348a08f9f23a7d627d397581da2a2569967",
+     "frames": 1,
+     "instanceNumber": 46,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -376.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.327483500778996557444264028691",
+     "file": "dicom/ct-5d36abbb61/2a2d8f5ebf465ef4.dcm",
+     "bytes": 153676,
+     "sha256": "2a2d8f5ebf465ef48e95d9d836d12b739a0b6ff7bd11f61da31ea7ec8390f8d4",
+     "frames": 1,
+     "instanceNumber": 45,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -373.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.169220693800304855054509040373",
+     "file": "dicom/ct-5d36abbb61/89bf6d15e43f387f.dcm",
+     "bytes": 152054,
+     "sha256": "89bf6d15e43f387faf475c0ecfb9ccaf0b802e4ee54d3036b54c46577bd827ba",
+     "frames": 1,
+     "instanceNumber": 44,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -370.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.197312897502651771144153174891",
+     "file": "dicom/ct-5d36abbb61/090e294c1f7b58c2.dcm",
+     "bytes": 154060,
+     "sha256": "090e294c1f7b58c206f71a2f22762d4a81c270996757479a6945f9c79d90c7e7",
+     "frames": 1,
+     "instanceNumber": 43,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -367.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.233740530384184283362004939808",
+     "file": "dicom/ct-5d36abbb61/f79c3813e6ada6fa.dcm",
+     "bytes": 154130,
+     "sha256": "f79c3813e6ada6fa75703b8930c2aaac2dd0bc5ebee30a4e0066f089500f92c6",
+     "frames": 1,
+     "instanceNumber": 42,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -364.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.452419636936796939570238478992",
+     "file": "dicom/ct-5d36abbb61/aae7687653ebf07d.dcm",
+     "bytes": 154432,
+     "sha256": "aae7687653ebf07d9e44d90dc7d7cfe6b616f98fbb99ca01135842fb532407e1",
+     "frames": 1,
+     "instanceNumber": 41,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -361.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.274334890020482314178636478682",
+     "file": "dicom/ct-5d36abbb61/fdb7f50dd51ff21f.dcm",
+     "bytes": 154492,
+     "sha256": "fdb7f50dd51ff21fd29ebd7d881522c8cd9f5aa27afe820ca7c8c1f7b0021ecc",
+     "frames": 1,
+     "instanceNumber": 40,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -358.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.164254188711336475957222334751",
+     "file": "dicom/ct-5d36abbb61/cf935509213b6b1c.dcm",
+     "bytes": 154952,
+     "sha256": "cf935509213b6b1c051aaa570e07a97f2edf3a448472c4f41721d0826f1f7fc1",
+     "frames": 1,
+     "instanceNumber": 39,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -355.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.872276784553192856703043977481",
+     "file": "dicom/ct-5d36abbb61/2b496c2dee694675.dcm",
+     "bytes": 151524,
+     "sha256": "2b496c2dee69467546fc1218492832697cd082733a563634b37fb97ac0c4487b",
+     "frames": 1,
+     "instanceNumber": 38,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -352.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.765040730863630281978319607186",
+     "file": "dicom/ct-5d36abbb61/ea5a2e224addd9e2.dcm",
+     "bytes": 156230,
+     "sha256": "ea5a2e224addd9e276cd1f49fead828a7fb2a5f32d582791abae82ad477233e8",
+     "frames": 1,
+     "instanceNumber": 37,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -349.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.218079182023647016655288936959",
+     "file": "dicom/ct-5d36abbb61/ff5545e5171e371f.dcm",
+     "bytes": 157448,
+     "sha256": "ff5545e5171e371f94044f072ac999243d7ff4f75145228c1eb525c587a56109",
+     "frames": 1,
+     "instanceNumber": 36,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -346.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.548744585324982643816067653183",
+     "file": "dicom/ct-5d36abbb61/56231ca5905d0a0e.dcm",
+     "bytes": 157850,
+     "sha256": "56231ca5905d0a0e83ae745f602ec8d9b0f48de64b80d5d8b1a0837c135b22f9",
+     "frames": 1,
+     "instanceNumber": 35,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -343.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.243878820875327765323205895062",
+     "file": "dicom/ct-5d36abbb61/23c8a911cc441669.dcm",
+     "bytes": 158544,
+     "sha256": "23c8a911cc44166962c68040214d74265cee0996b79f16fbd8bc557bb8322794",
+     "frames": 1,
+     "instanceNumber": 34,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -340.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.205184235475390727685232625421",
+     "file": "dicom/ct-5d36abbb61/b7bf2d62f9e69e37.dcm",
+     "bytes": 159424,
+     "sha256": "b7bf2d62f9e69e37d14d910fe92e42661c09d1fa491ebe8dd6b3f8304601833e",
+     "frames": 1,
+     "instanceNumber": 33,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -337.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.247425023667943389067671536492",
+     "file": "dicom/ct-5d36abbb61/fdf1132dae7683a9.dcm",
+     "bytes": 160376,
+     "sha256": "fdf1132dae7683a945775463b92c009f98c8f568a4550ccda9638b431266ba5b",
+     "frames": 1,
+     "instanceNumber": 32,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -334.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.147791720204530943764167822088",
+     "file": "dicom/ct-5d36abbb61/66ccc129169eaa8b.dcm",
+     "bytes": 161018,
+     "sha256": "66ccc129169eaa8bbdec0a5ca31b1f07054da9f6b67b085d4a3ee5607871d5d0",
+     "frames": 1,
+     "instanceNumber": 31,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -331.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.189246339737646832837817038040",
+     "file": "dicom/ct-5d36abbb61/fa0f1447df3a006a.dcm",
+     "bytes": 164524,
+     "sha256": "fa0f1447df3a006a78ff73ff6ff46f76c645404f4caddd36d3dbd524a9ff8a5e",
+     "frames": 1,
+     "instanceNumber": 30,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -328.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.149911710431786767467660145191",
+     "file": "dicom/ct-5d36abbb61/f4c97f31f3bbaf04.dcm",
+     "bytes": 167618,
+     "sha256": "f4c97f31f3bbaf044af15266e38309f90d7bf2233cda02eeb32ff53f1b2fbdfb",
+     "frames": 1,
+     "instanceNumber": 29,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -325.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.130307912507854700793686763621",
+     "file": "dicom/ct-5d36abbb61/7750fd7ad4450c40.dcm",
+     "bytes": 168314,
+     "sha256": "7750fd7ad4450c40679553d1b494d37f32acea327bc63d29888f3b118c1bd84c",
+     "frames": 1,
+     "instanceNumber": 28,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -322.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.253307220200842317211785525104",
+     "file": "dicom/ct-5d36abbb61/283e9fbb2a67fc66.dcm",
+     "bytes": 168750,
+     "sha256": "283e9fbb2a67fc66f56f62fec38d6618aad853bc5ecf90bc693ba6466dd5935e",
+     "frames": 1,
+     "instanceNumber": 27,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -319.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.205557591670406733125167363577",
+     "file": "dicom/ct-5d36abbb61/facff83cff693666.dcm",
+     "bytes": 168888,
+     "sha256": "facff83cff6936664f4a0a0a757ebd89408c801016a7a775c92e7a463f4036fa",
+     "frames": 1,
+     "instanceNumber": 26,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -316.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.271946356349605365749280522258",
+     "file": "dicom/ct-5d36abbb61/7c55ac98609d6d6b.dcm",
+     "bytes": 169954,
+     "sha256": "7c55ac98609d6d6b869c2682402d1d4af50fe30620e403476dae1c4433f72fa5",
+     "frames": 1,
+     "instanceNumber": 25,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -313.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.437442221371904602936698985328",
+     "file": "dicom/ct-5d36abbb61/0da65d2197d38774.dcm",
+     "bytes": 171712,
+     "sha256": "0da65d2197d38774aaae03ae0f6c222d9c133eef9f55972aaa5362396cfb4cf0",
+     "frames": 1,
+     "instanceNumber": 24,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -310.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.156530632081275060183418372539",
+     "file": "dicom/ct-5d36abbb61/af9bab0d1efc5e09.dcm",
+     "bytes": 171866,
+     "sha256": "af9bab0d1efc5e09a03b56e0395a30fd909b65199b30c0e290f16e1e3e765384",
+     "frames": 1,
+     "instanceNumber": 23,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -307.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.475138214029928688101109762129",
+     "file": "dicom/ct-5d36abbb61/5078814f745b8e35.dcm",
+     "bytes": 171924,
+     "sha256": "5078814f745b8e35c353184edeb14de8057fa634de256a34459604f086d1ef54",
+     "frames": 1,
+     "instanceNumber": 22,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -304.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.298158994091281391936535104382",
+     "file": "dicom/ct-5d36abbb61/324501856a1fbf53.dcm",
+     "bytes": 171680,
+     "sha256": "324501856a1fbf5320a320c9bf7fa4a4743a21509d1d9089ade88235cc924378",
+     "frames": 1,
+     "instanceNumber": 21,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -301.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.845898467725377140256746369804",
+     "file": "dicom/ct-5d36abbb61/32ee32f5d6195f44.dcm",
+     "bytes": 169962,
+     "sha256": "32ee32f5d6195f4488cf8a27034db4f42357588cf3819fd760f7c5ad7c921d95",
+     "frames": 1,
+     "instanceNumber": 20,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -298.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.340149846761732410558694214725",
+     "file": "dicom/ct-5d36abbb61/1ffb524fb565a4d6.dcm",
+     "bytes": 163990,
+     "sha256": "1ffb524fb565a4d666fda759a3d6e93c9b34f3dc79f8d19d7a290f422088d0e5",
+     "frames": 1,
+     "instanceNumber": 19,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -295.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.331305401068094453035608625284",
+     "file": "dicom/ct-5d36abbb61/cc25ee14e2993b02.dcm",
+     "bytes": 166778,
+     "sha256": "cc25ee14e2993b02c7e19b6056a6681bc78c754dea6bddf885e0af6e96a5aed5",
+     "frames": 1,
+     "instanceNumber": 18,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -292.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.381789216799534364907113422521",
+     "file": "dicom/ct-5d36abbb61/9eb6ee9f406dd430.dcm",
+     "bytes": 166374,
+     "sha256": "9eb6ee9f406dd430e75eef618ce971a52069cd7a7ade0241bb6e61d766ca7a07",
+     "frames": 1,
+     "instanceNumber": 17,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -289.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.225090795894311131726243315269",
+     "file": "dicom/ct-5d36abbb61/d9d222ac3d14ed8f.dcm",
+     "bytes": 164076,
+     "sha256": "d9d222ac3d14ed8ffdab0db237dc1479506f169f51596dadb5a108965b2c2e36",
+     "frames": 1,
+     "instanceNumber": 16,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -286.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.130390915915511795983197656990",
+     "file": "dicom/ct-5d36abbb61/395c551c8fccab39.dcm",
+     "bytes": 161172,
+     "sha256": "395c551c8fccab39b96b4e65fea9548b57950baca1c6b8fffdf81afd34701dda",
+     "frames": 1,
+     "instanceNumber": 15,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -283.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.135161903306112307676468020030",
+     "file": "dicom/ct-5d36abbb61/68e2624bb6d22306.dcm",
+     "bytes": 158788,
+     "sha256": "68e2624bb6d2230659587a25d955bce030378eb305b356da54fd61aa03da53ff",
+     "frames": 1,
+     "instanceNumber": 14,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -280.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.509773192000120715952268072747",
+     "file": "dicom/ct-5d36abbb61/fcf34198a3b239e3.dcm",
+     "bytes": 154632,
+     "sha256": "fcf34198a3b239e3ed239d46d133d2740492a9dd5d740b5b65246e3dc3a89822",
+     "frames": 1,
+     "instanceNumber": 13,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -277.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.138561734511568519082165426325",
+     "file": "dicom/ct-5d36abbb61/bbd2247e399716fd.dcm",
+     "bytes": 155974,
+     "sha256": "bbd2247e399716fd748198b03952a016192d925131e123eed0dc704d81890057",
+     "frames": 1,
+     "instanceNumber": 12,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -274.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.154459232145498490055363771867",
+     "file": "dicom/ct-5d36abbb61/87ac71ed764ee658.dcm",
+     "bytes": 153800,
+     "sha256": "87ac71ed764ee658414d34bdfc46cf2740d20449fd6cb1e8254c87a391b0f043",
+     "frames": 1,
+     "instanceNumber": 11,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -271.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.335456621120647047874373707146",
+     "file": "dicom/ct-5d36abbb61/6c91e4058ac52b35.dcm",
+     "bytes": 152618,
+     "sha256": "6c91e4058ac52b3545fea996b48fcf9047e66c65d6a4dbb3235236aa39d50251",
+     "frames": 1,
+     "instanceNumber": 10,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -268.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.308728426680901869524688178325",
+     "file": "dicom/ct-5d36abbb61/df185228d954fc5e.dcm",
+     "bytes": 152536,
+     "sha256": "df185228d954fc5eab04b451d33f67947e7393545616c2b24c5e9110d99be021",
+     "frames": 1,
+     "instanceNumber": 9,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -265.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.127281915841772175173150589555",
+     "file": "dicom/ct-5d36abbb61/b76917f62692057e.dcm",
+     "bytes": 150550,
+     "sha256": "b76917f62692057e6054cd978189878c0a673c0edf899c06f670db351ce7ad35",
+     "frames": 1,
+     "instanceNumber": 8,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -262.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.205729776675203901877268545293",
+     "file": "dicom/ct-5d36abbb61/078ba367b264715a.dcm",
+     "bytes": 147390,
+     "sha256": "078ba367b264715a7d43b422f3c0553a5df7cc35b076b709b188ba1f4c2712cd",
+     "frames": 1,
+     "instanceNumber": 7,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -259.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.336626585081411375422748879015",
+     "file": "dicom/ct-5d36abbb61/26a83ddcb9fda417.dcm",
+     "bytes": 139804,
+     "sha256": "26a83ddcb9fda417190ff6864337c3abfa7213bb758ee067a6a42834f3f0300e",
+     "frames": 1,
+     "instanceNumber": 6,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -256.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.197342000024583502424333338293",
+     "file": "dicom/ct-5d36abbb61/57d26758b8731f86.dcm",
+     "bytes": 141536,
+     "sha256": "57d26758b8731f8612da25db53f3e984283c6e0af48fd4468c277d897b802bc8",
+     "frames": 1,
+     "instanceNumber": 5,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -253.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.127333502186477785041336131508",
+     "file": "dicom/ct-5d36abbb61/1a35f9c73e705a73.dcm",
+     "bytes": 142830,
+     "sha256": "1a35f9c73e705a7300f67681a8834180d8bc8a41ecca5b8a3829d57c83415016",
+     "frames": 1,
+     "instanceNumber": 4,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -250.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.216981623043942167248048635823",
+     "file": "dicom/ct-5d36abbb61/aff1a8f72e5860b1.dcm",
+     "bytes": 144580,
+     "sha256": "aff1a8f72e5860b1415e5d96dc6e61595d1d2916e18a1e63eb2cb32938644a23",
+     "frames": 1,
+     "instanceNumber": 3,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -247.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.187059334051403572204877774280",
+     "file": "dicom/ct-5d36abbb61/46f5db1bbeb9c1f0.dcm",
+     "bytes": 146086,
+     "sha256": "46f5db1bbeb9c1f03dd8f14abd5dee5de9b18f0c9bdfd4b1cd49cf3814c828f8",
+     "frames": 1,
+     "instanceNumber": 2,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -244.5
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.766285215403442916868302193785",
+     "file": "dicom/ct-5d36abbb61/3347506ae4af3888.dcm",
+     "bytes": 150804,
+     "sha256": "3347506ae4af3888bdcbfd87a36cec7c6d5e65aee0f82f5109e07c3caf4a5b62",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": [
+      -249.5117,
+      -460.5117,
+      -241.5
+     ]
+    }
+   ],
+   "bytes": 20695486,
+   "thumbnail": "thumbs/ct-5d36abbb61.png"
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842",
+   "studyUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2752219814091402100315433912652",
+   "subjectKey": "tcia:COVID-19-AR:COVID-19-AR-16406503",
+   "modality": "CR",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.1",
+   "frameOfReferenceUid": null,
+   "number": 1002,
+   "description": "",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Diagnostic frontal chest radiograph (CR, study 'XR CHEST AP PORTABLE'; ViewPosition empty in the header, AP per study description; burned-in 'Portable UPRIGHT' and side marker).",
+   "acquisition": {
+    "StudyDescription": "XR CHEST AP PORTABLE",
+    "ImageType": "DERIVED\\PRIMARY\\POST_PROCESSED\\RT\\\\\\\\\\100000",
+    "Manufacturer": "FUJIFILM Corporation",
+    "BodyPartExamined": "CHEST",
+    "LossyImageCompression": "00",
+    "AcquisitionNumber": "003"
+   },
+   "geometry": {
+    "rows": 1760,
+    "columns": 2140,
+    "pixelSpacing": [
+     0.2,
+     0.2
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME1",
+    "bitsStored": 10,
+    "pixelRepresentation": 0,
+    "rescale": {
+     "slope": 1.0,
+     "intercept": 0.0,
+     "type": "US"
+    },
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File preset",
+     "center": 511.0,
+     "width": 1023.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2"
+    ],
+    "reencodedFrom": null,
+    "lossless": true,
+    "note": "Kept byte-for-byte as distributed by TCIA (Implicit VR Little Endian)."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1460886844210935213402098141786",
+     "file": "dicom/cr-e62044dc29/d097b2fbaa68dcaa.dcm",
+     "bytes": 7535558,
+     "sha256": "d097b2fbaa68dcaaba7c9a035a9020a4e50711064d25ab9cc29908a969c70304",
+     "frames": 1,
+     "instanceNumber": 1002,
+     "ipp": null
+    }
+   ],
+   "bytes": 7535558,
+   "thumbnail": "thumbs/cr-e62044dc29.png",
+   "displayNote": "MONOCHROME1: the lowest stored value is displayed WHITE. Kept in its original transfer syntax as a rendering fixture; the viewer must honour PhotometricInterpretation. PatientOrientation is absent from the header: no orientation letters can be derived from the file. Spacing is PixelSpacing [0.2, 0.2] mm without PixelSpacingCalibrationType: distances are at the detector plane (not corrected for magnification) and must not be presented as calibrated patient measurements."
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1891326720085238222508091238377",
+   "studyUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1484827635781103925261573539342",
+   "subjectKey": "tcia:COVID-19-AR:COVID-19-AR-16406503",
+   "modality": "CT",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.2",
+   "frameOfReferenceUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1495809108372405197967531497107",
+   "number": 2,
+   "description": "locator",
+   "bodyPart": null,
+   "role": "scout",
+   "roleNote": "SeriesDescription 'locator' matches the scout/localizer pattern; not a diagnostic series.",
+   "acquisition": {
+    "SeriesDescription": "locator",
+    "ProtocolName": "PE/Thorax",
+    "StudyDescription": "CT PE CHEST",
+    "ImageType": "ORIGINAL\\PRIMARY\\AXIAL",
+    "Manufacturer": "Philips",
+    "ManufacturerModelName": "Brilliance 64",
+    "PatientPosition": "FFS",
+    "ScanOptions": "AXIAL",
+    "KVP": "120",
+    "XRayTubeCurrent": "107",
+    "Exposure": "30",
+    "SliceThickness": "10",
+    "SpacingBetweenSlices": "10.0",
+    "ConvolutionKernel": "B",
+    "ReconstructionDiameter": "250",
+    "GantryDetectorTilt": "0"
+   },
+   "geometry": {
+    "rows": 512,
+    "columns": 512,
+    "pixelSpacing": [
+     0.48828125,
+     0.48828125
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": false,
+    "iop": [
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 12,
+    "pixelRepresentation": 0,
+    "rescale": {
+     "slope": 1.0,
+     "intercept": -1024.0,
+     "type": null
+    },
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File preset",
+     "center": 40.0,
+     "width": 450.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2"
+    ],
+    "reencodedFrom": null,
+    "lossless": true,
+    "note": "Kept byte-for-byte as distributed by TCIA (Implicit VR Little Endian)."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2951522399117530612000721374499",
+     "file": "dicom/ct-3974dd6ac7/651edcbdced04e17.dcm",
+     "bytes": 527850,
+     "sha256": "651edcbdced04e1769eac77b07e6607743cf4760c890132595cc2d7464025c64",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": [
+      -127.0,
+      5.0,
+      -106.8
+     ]
+    }
+   ],
+   "bytes": 527850,
+   "thumbnail": "thumbs/ct-3974dd6ac7.png",
+   "displayNote": "PatientOrientation is absent from the header: no orientation letters can be derived from the file."
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680",
+   "studyUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.170561193612723093192571245493",
+   "subjectKey": "tcia:PROSTATEx:ProstateX-0004",
+   "modality": "MR",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.4",
+   "frameOfReferenceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.283465068568757436662041653252",
+   "number": 5,
+   "description": "t2_tse_tra",
+   "bodyPart": "PROSTATE",
+   "role": "diagnostic",
+   "roleNote": "Primary MR series (t2_tse_tra).",
+   "acquisition": {
+    "SeriesDescription": "t2_tse_tra",
+    "ProtocolName": "t2_tse_tra",
+    "StudyDescription": "MR prostaat kanker detectie WDS_mc MCAPRODETW",
+    "ImageType": "ORIGINAL\\PRIMARY\\M\\NORM\\DIS2D",
+    "Manufacturer": "SIEMENS",
+    "ManufacturerModelName": "Skyra",
+    "BodyPartExamined": "PROSTATE",
+    "PatientPosition": "FFS",
+    "ScanningSequence": "SE",
+    "SequenceVariant": "SK\\SP\\OSP",
+    "MRAcquisitionType": "2D",
+    "SequenceName": "*tse2d1_25",
+    "EchoTime": "104",
+    "RepetitionTime": "6840",
+    "FlipAngle": "160",
+    "EchoTrainLength": "25",
+    "MagneticFieldStrength": "3",
+    "SliceThickness": "4.5",
+    "SpacingBetweenSlices": "4.5",
+    "AcquisitionNumber": "1"
+   },
+   "geometry": {
+    "rows": 384,
+    "columns": 384,
+    "pixelSpacing": [
+     0.5,
+     0.5
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": [
+     1.0,
+     -0.0,
+     0.0,
+     0.0,
+     0.970296,
+     -0.241922
+    ],
+    "sliceSpacing": 4.5,
+    "sliceSpacingUniform": true,
+    "volumeEligible": true,
+    "volumeIssues": [],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 12,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Algo1",
+     "center": 549.0,
+     "width": 1120.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.90"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG 2000 Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 19}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.140661212185680998225449002613",
+     "file": "dicom/mr-cd822c0551/84d3e40d5b0ca452.dcm",
+     "bytes": 126582,
+     "sha256": "84d3e40d5b0ca452f21325e09f99e8b6b5281bb7df7dbe7a55285bf345fa2b57",
+     "frames": 1,
+     "instanceNumber": 19,
+     "ipp": [
+      -117.9133,
+      -85.1499,
+      12.84
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.105945183098328980140457962163",
+     "file": "dicom/mr-cd822c0551/8e8db30ad4c64100.dcm",
+     "bytes": 126602,
+     "sha256": "8e8db30ad4c6410004edb62fe75d1993fed497ee6c2ebe9652fd099d3d98c532",
+     "frames": 1,
+     "instanceNumber": 18,
+     "ipp": [
+      -117.9133,
+      -84.0613,
+      17.2063
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.664195306896695168613670196431",
+     "file": "dicom/mr-cd822c0551/9aeaeaaaf2451c8c.dcm",
+     "bytes": 126714,
+     "sha256": "9aeaeaaaf2451c8cc741efd754ff42376a01e62158244cd7150ddc6139e45ab9",
+     "frames": 1,
+     "instanceNumber": 17,
+     "ipp": [
+      -117.9133,
+      -82.9726,
+      21.5727
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.218124599011631014704397343647",
+     "file": "dicom/mr-cd822c0551/4371bca5b0438ae7.dcm",
+     "bytes": 127782,
+     "sha256": "4371bca5b0438ae73573e4e2f4180c3557905df5953d776863adb9299aefa944",
+     "frames": 1,
+     "instanceNumber": 16,
+     "ipp": [
+      -117.9133,
+      -81.884,
+      25.939
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.110450510099441729742477232668",
+     "file": "dicom/mr-cd822c0551/db8c25739b7cf1ce.dcm",
+     "bytes": 128416,
+     "sha256": "db8c25739b7cf1ce9010df1dd5b41f74658fba1f5a789c1363461740163e6fcb",
+     "frames": 1,
+     "instanceNumber": 15,
+     "ipp": [
+      -117.9133,
+      -80.7953,
+      30.3053
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.284661221440591841105464105673",
+     "file": "dicom/mr-cd822c0551/122385979aae7a2c.dcm",
+     "bytes": 128698,
+     "sha256": "122385979aae7a2ce56ac4764ef686f6db365e12109f57ff1e7804a16c24b9ae",
+     "frames": 1,
+     "instanceNumber": 14,
+     "ipp": [
+      -117.9133,
+      -79.7067,
+      34.6716
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.316752744858742170533958373200",
+     "file": "dicom/mr-cd822c0551/0601cbb450ab8c63.dcm",
+     "bytes": 129034,
+     "sha256": "0601cbb450ab8c635de38f511dc1a04bb11611add3fd64950571efbe4a08bd09",
+     "frames": 1,
+     "instanceNumber": 13,
+     "ipp": [
+      -117.9133,
+      -78.618,
+      39.038
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.959920807490464182077487985581",
+     "file": "dicom/mr-cd822c0551/b3b1eb2872994e0d.dcm",
+     "bytes": 128898,
+     "sha256": "b3b1eb2872994e0d1a60b3a7825bf4aa6e1196871ba8022267c91231ec5b1101",
+     "frames": 1,
+     "instanceNumber": 12,
+     "ipp": [
+      -117.9133,
+      -77.5294,
+      43.4043
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.300323178736669071620524914721",
+     "file": "dicom/mr-cd822c0551/4ffa7e18a8dee8f7.dcm",
+     "bytes": 129002,
+     "sha256": "4ffa7e18a8dee8f7faa86fd0316c17a06731397fbc2192e81c0ef747cc60578a",
+     "frames": 1,
+     "instanceNumber": 11,
+     "ipp": [
+      -117.9133,
+      -76.4407,
+      47.7706
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.105076858500192732229022944010",
+     "file": "dicom/mr-cd822c0551/d30db0006975068a.dcm",
+     "bytes": 129044,
+     "sha256": "d30db0006975068a6e6b61a1aa62873d7b06496e6743906f6fbb4dd580627beb",
+     "frames": 1,
+     "instanceNumber": 10,
+     "ipp": [
+      -117.9133,
+      -75.3521,
+      52.137
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.323118489137350682744971172265",
+     "file": "dicom/mr-cd822c0551/119d7b11774c435c.dcm",
+     "bytes": 128722,
+     "sha256": "119d7b11774c435cb543ed1c217c720a64a9fbd35cbbc1b06c0292432494439f",
+     "frames": 1,
+     "instanceNumber": 9,
+     "ipp": [
+      -117.9133,
+      -74.2634,
+      56.5033
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.682311503992658593314604303257",
+     "file": "dicom/mr-cd822c0551/90fbac54e5bbaaeb.dcm",
+     "bytes": 129544,
+     "sha256": "90fbac54e5bbaaeb8b8f4da82fa289431a6f32e1102e15729d70a45440e276e2",
+     "frames": 1,
+     "instanceNumber": 8,
+     "ipp": [
+      -117.9133,
+      -73.1748,
+      60.8696
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.261549691085116343248768885489",
+     "file": "dicom/mr-cd822c0551/7de61c05dfcc1d34.dcm",
+     "bytes": 130162,
+     "sha256": "7de61c05dfcc1d34112d7b8fe1b28ab5d47d97feb3c39c79e383da7cd22ec2f7",
+     "frames": 1,
+     "instanceNumber": 7,
+     "ipp": [
+      -117.9133,
+      -72.0861,
+      65.236
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.182502842545423455942100471531",
+     "file": "dicom/mr-cd822c0551/b232e247095af5a7.dcm",
+     "bytes": 130310,
+     "sha256": "b232e247095af5a71d51f1830c94589dd664e5447644e5132452c5d1a8590ddb",
+     "frames": 1,
+     "instanceNumber": 6,
+     "ipp": [
+      -117.9133,
+      -70.9975,
+      69.6023
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.191833352947275589281182810323",
+     "file": "dicom/mr-cd822c0551/6dfa5055a8f24ffe.dcm",
+     "bytes": 130552,
+     "sha256": "6dfa5055a8f24ffe1524b0428faf55aa7eee76b31a02514a12206cd5dc22d7ff",
+     "frames": 1,
+     "instanceNumber": 5,
+     "ipp": [
+      -117.9133,
+      -69.9088,
+      73.9686
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.223541403251139307210053647239",
+     "file": "dicom/mr-cd822c0551/2a6400048d249cfa.dcm",
+     "bytes": 130252,
+     "sha256": "2a6400048d249cfa61e64557b05f4f5c191ab9ecf40bca86a308ff96317a258a",
+     "frames": 1,
+     "instanceNumber": 4,
+     "ipp": [
+      -117.9133,
+      -68.8202,
+      78.335
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.837880298903019380035267659540",
+     "file": "dicom/mr-cd822c0551/dde3cf4e91ddbca8.dcm",
+     "bytes": 130282,
+     "sha256": "dde3cf4e91ddbca8769fd21f213fc09e4321dc79d7f407fbd7c62e217e1c93fd",
+     "frames": 1,
+     "instanceNumber": 3,
+     "ipp": [
+      -117.9133,
+      -67.7315,
+      82.7013
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.140871946839917246139835104278",
+     "file": "dicom/mr-cd822c0551/8127f66420899594.dcm",
+     "bytes": 130046,
+     "sha256": "8127f6642089959440dda5d7e515936aab9c4e5e67b3cebb88d311d98ab177c3",
+     "frames": 1,
+     "instanceNumber": 2,
+     "ipp": [
+      -117.9133,
+      -66.6429,
+      87.0676
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.659858965621597900583204514290",
+     "file": "dicom/mr-cd822c0551/9c033b37338865c8.dcm",
+     "bytes": 129550,
+     "sha256": "9c033b37338865c81f87ae8bed207224f4308362be017509226ec0a1c6622621",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": [
+      -117.9133,
+      -65.5542,
+      91.4339
+     ]
+    }
+   ],
+   "bytes": 2450192,
+   "thumbnail": "thumbs/mr-cd822c0551.png"
+  }
+ ],
+ "spatialLinks": [
+  {
+   "id": "link-cr-e62044dc29-ct-3974dd6ac7",
+   "kind": "independent",
+   "seriesA": "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842",
+   "seriesB": "1.3.6.1.4.1.14519.5.2.1.9999.103.1891326720085238222508091238377",
+   "evidence": "Same patient: TCIA PatientID COVID-19-AR-16406503 within collection COVID-19-AR (source subject mapping). Not in a shared frame of reference (CR FrameOfReferenceUID: none; CT FrameOfReferenceUID: 1.3.6.1.4.1.14519.5.2.1.9999.103.1495809108372405197967531497107); no registration is provided or implied.",
+   "transform": null
+  }
+ ],
+ "referenceTargets": [
+  {
+   "id": "lctsc-train-s1-012_esophagus",
+   "label": "Esophagus (RT contour)",
+   "classId": "anatomy:esophagus",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/lctsc-train-s1-012_esophagus.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:LCTSC (Lung CT Segmentation Challenge 2017 (LCTSC), doi:10.7937/K9/TCIA.2017.3r3fvz08)",
+    "method": "DICOM RTSTRUCT ROIContourSequence (CLOSED_PLANAR) -> contour_set in patient_lps_mm. Plane matching: 62 contour(s) by ContourImageSequence ReferencedSOPInstanceUID. Point-to-plane residual max 0.0000 mm over 62 contour(s) (tolerance 0.5 mm).",
+    "note": "ROI 'Esophagus' (ROINumber 1); RTROIInterpretedType 'ORGAN'; StructureSetLabel 'RTstruct'; RTSTRUCT SOPInstanceUID 1.3.6.1.4.1.14519.5.2.1.7014.4598.341336227717513187174447696766; Manufacturer 'MIM Software Inc.'. Contours reference image series 'CT:P2B1 rcct  3.0  B30f  50% Ex' (CT, SeriesInstanceUID 1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415) only. Coordinates rounded to 0.001 mm."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:esophagus",
+    "anatomy:heart",
+    "anatomy:lung_left",
+    "anatomy:lung_right",
+    "anatomy:spinal_cord"
+   ],
+   "unassessedNote": "Only the structures delineated in this RT structure set are referenced (Esophagus, Heart, Left lung, Right lung, Spinal cord); all other anatomy and any pathology are unassessed.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Radiotherapy organ-at-risk contours used clinically for treatment planning and reviewed/edited for consistency with the RTOG 1106 contouring atlas (LCTSC collection description). They are RT planning definitions, not necessarily anatomical teaching boundaries: the cranio-caudal start/stop levels and in-plane conventions (e.g. what is included with the heart, esophagus or cord) follow the RT atlas."
+  },
+  {
+   "id": "lctsc-train-s1-012_heart",
+   "label": "Heart (RT contour)",
+   "classId": "anatomy:heart",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/lctsc-train-s1-012_heart.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:LCTSC (Lung CT Segmentation Challenge 2017 (LCTSC), doi:10.7937/K9/TCIA.2017.3r3fvz08)",
+    "method": "DICOM RTSTRUCT ROIContourSequence (CLOSED_PLANAR) -> contour_set in patient_lps_mm. Plane matching: 34 contour(s) by ContourImageSequence ReferencedSOPInstanceUID. Point-to-plane residual max 0.0000 mm over 34 contour(s) (tolerance 0.5 mm).",
+    "note": "ROI 'Heart' (ROINumber 2); RTROIInterpretedType 'ORGAN'; StructureSetLabel 'RTstruct'; RTSTRUCT SOPInstanceUID 1.3.6.1.4.1.14519.5.2.1.7014.4598.341336227717513187174447696766; Manufacturer 'MIM Software Inc.'. Contours reference image series 'CT:P2B1 rcct  3.0  B30f  50% Ex' (CT, SeriesInstanceUID 1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415) only. Coordinates rounded to 0.001 mm."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:esophagus",
+    "anatomy:heart",
+    "anatomy:lung_left",
+    "anatomy:lung_right",
+    "anatomy:spinal_cord"
+   ],
+   "unassessedNote": "Only the structures delineated in this RT structure set are referenced (Esophagus, Heart, Left lung, Right lung, Spinal cord); all other anatomy and any pathology are unassessed.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Radiotherapy organ-at-risk contours used clinically for treatment planning and reviewed/edited for consistency with the RTOG 1106 contouring atlas (LCTSC collection description). They are RT planning definitions, not necessarily anatomical teaching boundaries: the cranio-caudal start/stop levels and in-plane conventions (e.g. what is included with the heart, esophagus or cord) follow the RT atlas."
+  },
+  {
+   "id": "lctsc-train-s1-012_left-lung",
+   "label": "Left lung (RT contour)",
+   "classId": "anatomy:lung_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/lctsc-train-s1-012_left-lung.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:LCTSC (Lung CT Segmentation Challenge 2017 (LCTSC), doi:10.7937/K9/TCIA.2017.3r3fvz08)",
+    "method": "DICOM RTSTRUCT ROIContourSequence (CLOSED_PLANAR) -> contour_set in patient_lps_mm. Plane matching: 90 contour(s) by ContourImageSequence ReferencedSOPInstanceUID. Point-to-plane residual max 0.0000 mm over 90 contour(s) (tolerance 0.5 mm).",
+    "note": "ROI 'Lung_L' (ROINumber 3); RTROIInterpretedType 'ORGAN'; StructureSetLabel 'RTstruct'; RTSTRUCT SOPInstanceUID 1.3.6.1.4.1.14519.5.2.1.7014.4598.341336227717513187174447696766; Manufacturer 'MIM Software Inc.'. Contours reference image series 'CT:P2B1 rcct  3.0  B30f  50% Ex' (CT, SeriesInstanceUID 1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415) only. Coordinates rounded to 0.001 mm."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:esophagus",
+    "anatomy:heart",
+    "anatomy:lung_left",
+    "anatomy:lung_right",
+    "anatomy:spinal_cord"
+   ],
+   "unassessedNote": "Only the structures delineated in this RT structure set are referenced (Esophagus, Heart, Left lung, Right lung, Spinal cord); all other anatomy and any pathology are unassessed.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Radiotherapy organ-at-risk contours used clinically for treatment planning and reviewed/edited for consistency with the RTOG 1106 contouring atlas (LCTSC collection description). They are RT planning definitions, not necessarily anatomical teaching boundaries: the cranio-caudal start/stop levels and in-plane conventions (e.g. what is included with the heart, esophagus or cord) follow the RT atlas."
+  },
+  {
+   "id": "lctsc-train-s1-012_right-lung",
+   "label": "Right lung (RT contour)",
+   "classId": "anatomy:lung_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/lctsc-train-s1-012_right-lung.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:LCTSC (Lung CT Segmentation Challenge 2017 (LCTSC), doi:10.7937/K9/TCIA.2017.3r3fvz08)",
+    "method": "DICOM RTSTRUCT ROIContourSequence (CLOSED_PLANAR) -> contour_set in patient_lps_mm. Plane matching: 94 contour(s) by ContourImageSequence ReferencedSOPInstanceUID. Point-to-plane residual max 0.0000 mm over 94 contour(s) (tolerance 0.5 mm).",
+    "note": "ROI 'Lung_R' (ROINumber 4); RTROIInterpretedType 'ORGAN'; StructureSetLabel 'RTstruct'; RTSTRUCT SOPInstanceUID 1.3.6.1.4.1.14519.5.2.1.7014.4598.341336227717513187174447696766; Manufacturer 'MIM Software Inc.'. Contours reference image series 'CT:P2B1 rcct  3.0  B30f  50% Ex' (CT, SeriesInstanceUID 1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415) only. Coordinates rounded to 0.001 mm."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:esophagus",
+    "anatomy:heart",
+    "anatomy:lung_left",
+    "anatomy:lung_right",
+    "anatomy:spinal_cord"
+   ],
+   "unassessedNote": "Only the structures delineated in this RT structure set are referenced (Esophagus, Heart, Left lung, Right lung, Spinal cord); all other anatomy and any pathology are unassessed.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Radiotherapy organ-at-risk contours used clinically for treatment planning and reviewed/edited for consistency with the RTOG 1106 contouring atlas (LCTSC collection description). They are RT planning definitions, not necessarily anatomical teaching boundaries: the cranio-caudal start/stop levels and in-plane conventions (e.g. what is included with the heart, esophagus or cord) follow the RT atlas."
+  },
+  {
+   "id": "lctsc-train-s1-012_spinal-cord",
+   "label": "Spinal cord (RT contour)",
+   "classId": "anatomy:spinal_cord",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/lctsc-train-s1-012_spinal-cord.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:LCTSC (Lung CT Segmentation Challenge 2017 (LCTSC), doi:10.7937/K9/TCIA.2017.3r3fvz08)",
+    "method": "DICOM RTSTRUCT ROIContourSequence (CLOSED_PLANAR) -> contour_set in patient_lps_mm. Plane matching: 106 contour(s) by ContourImageSequence ReferencedSOPInstanceUID. Point-to-plane residual max 0.0000 mm over 106 contour(s) (tolerance 0.5 mm).",
+    "note": "ROI 'SpinalCord' (ROINumber 5); RTROIInterpretedType 'ORGAN'; StructureSetLabel 'RTstruct'; RTSTRUCT SOPInstanceUID 1.3.6.1.4.1.14519.5.2.1.7014.4598.341336227717513187174447696766; Manufacturer 'MIM Software Inc.'. Contours reference image series 'CT:P2B1 rcct  3.0  B30f  50% Ex' (CT, SeriesInstanceUID 1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415) only. Coordinates rounded to 0.001 mm."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:esophagus",
+    "anatomy:heart",
+    "anatomy:lung_left",
+    "anatomy:lung_right",
+    "anatomy:spinal_cord"
+   ],
+   "unassessedNote": "Only the structures delineated in this RT structure set are referenced (Esophagus, Heart, Left lung, Right lung, Spinal cord); all other anatomy and any pathology are unassessed.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Radiotherapy organ-at-risk contours used clinically for treatment planning and reviewed/edited for consistency with the RTOG 1106 contouring atlas (LCTSC collection description). They are RT planning definitions, not necessarily anatomical teaching boundaries: the cranio-caudal start/stop levels and in-plane conventions (e.g. what is included with the heart, esophagus or cord) follow the RT atlas."
+  },
+  {
+   "id": "prostatex-0004_prostate-peripheral-zone",
+   "label": "Prostate peripheral zone (zone SEG)",
+   "classId": "anatomy:prostate_peripheral_zone",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/prostatex-0004_prostate-peripheral-zone.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:PROSTATEx-Zone-Segmentations (PROSTATEx Zone Segmentations (PROSTATEx-Seg-Zones; DICOM SEG analysis result within NBIA collection PROSTATEx), doi:10.7937/TCIA.NBB4-4655)",
+    "method": "DICOM SEG (BINARY) read with highdicom; reference series via ReferencedSeriesSequence; frames mapped to source SOP via DerivationImageSequence/SourceImageSequence (14 frame(s)); 0 unmatched, 5 empty frame(s). Masks traced with skimage.measure.find_contours(level 0.5, sub-pixel) and simplified with approximate_polygon(0.25 px); (row, col) converted to image_px [col, row] with (0,0) = centre of first pixel. SEG grid identical to the source image grid. Max SEG-frame to source-slice distance 0.0000 mm. Even-odd holes: 2.",
+    "note": "Segment 1 'Peripheral zone of prostate'; SegmentedPropertyType 'Peripheral zone of prostate' (SCT 279706003); category 'Anatomical Structure'; SegmentAlgorithmType MANUAL; SEG SOPInstanceUID 1.2.276.0.7230010.3.1.4.1070885483.15960.1599120307.702; ContentCreatorName 'Reader1'. No pixel overlap with other segments of this SEG."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:prostate_anterior_fibromuscular_stroma",
+    "anatomy:prostate_peripheral_zone",
+    "anatomy:prostate_transition_zone",
+    "anatomy:prostatic_urethra"
+   ],
+   "unassessedNote": "Only the segments in this DICOM SEG are referenced (Prostate peripheral zone, Prostate transition zone, Prostatic urethra, Anterior fibromuscular stroma); all other anatomy and findings are unassessed.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Manual zonal segmentation from the 'PROSTATEx Zone Segmentations' analysis result (Meyer et al. 2020), drawn on this axial T2-weighted series by one annotator (SEG ContentCreatorName 'Reader1'). Zonal boundaries on T2 MRI involve interpretation; treat these outlines as one expert-derived reference, not absolute truth."
+  },
+  {
+   "id": "prostatex-0004_prostate-transition-zone",
+   "label": "Prostate transition zone (zone SEG)",
+   "classId": "anatomy:prostate_transition_zone",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/prostatex-0004_prostate-transition-zone.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:PROSTATEx-Zone-Segmentations (PROSTATEx Zone Segmentations (PROSTATEx-Seg-Zones; DICOM SEG analysis result within NBIA collection PROSTATEx), doi:10.7937/TCIA.NBB4-4655)",
+    "method": "DICOM SEG (BINARY) read with highdicom; reference series via ReferencedSeriesSequence; frames mapped to source SOP via DerivationImageSequence/SourceImageSequence (15 frame(s)); 0 unmatched, 4 empty frame(s). Masks traced with skimage.measure.find_contours(level 0.5, sub-pixel) and simplified with approximate_polygon(0.25 px); (row, col) converted to image_px [col, row] with (0,0) = centre of first pixel. SEG grid identical to the source image grid. Max SEG-frame to source-slice distance 0.0000 mm.",
+    "note": "Segment 2 'Transition zone of prostate'; SegmentedPropertyType 'Transition zone of prostate' (SCT 399384005); category 'Anatomical Structure'; SegmentAlgorithmType MANUAL; SEG SOPInstanceUID 1.2.276.0.7230010.3.1.4.1070885483.15960.1599120307.702; ContentCreatorName 'Reader1'. No pixel overlap with other segments of this SEG."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:prostate_anterior_fibromuscular_stroma",
+    "anatomy:prostate_peripheral_zone",
+    "anatomy:prostate_transition_zone",
+    "anatomy:prostatic_urethra"
+   ],
+   "unassessedNote": "Only the segments in this DICOM SEG are referenced (Prostate peripheral zone, Prostate transition zone, Prostatic urethra, Anterior fibromuscular stroma); all other anatomy and findings are unassessed.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Manual zonal segmentation from the 'PROSTATEx Zone Segmentations' analysis result (Meyer et al. 2020), drawn on this axial T2-weighted series by one annotator (SEG ContentCreatorName 'Reader1'). Zonal boundaries on T2 MRI involve interpretation; treat these outlines as one expert-derived reference, not absolute truth."
+  },
+  {
+   "id": "prostatex-0004_prostatic-urethra",
+   "label": "Prostatic urethra (zone SEG)",
+   "classId": "anatomy:prostatic_urethra",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/prostatex-0004_prostatic-urethra.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:PROSTATEx-Zone-Segmentations (PROSTATEx Zone Segmentations (PROSTATEx-Seg-Zones; DICOM SEG analysis result within NBIA collection PROSTATEx), doi:10.7937/TCIA.NBB4-4655)",
+    "method": "DICOM SEG (BINARY) read with highdicom; reference series via ReferencedSeriesSequence; frames mapped to source SOP via DerivationImageSequence/SourceImageSequence (7 frame(s)); 0 unmatched, 12 empty frame(s). Masks traced with skimage.measure.find_contours(level 0.5, sub-pixel) and simplified with approximate_polygon(0.25 px); (row, col) converted to image_px [col, row] with (0,0) = centre of first pixel. SEG grid identical to the source image grid. Max SEG-frame to source-slice distance 0.0000 mm.",
+    "note": "Segment 3 'Prostatic Urethra'; SegmentedPropertyType 'Prostatic Urethra' (SCT 71553001); category 'Anatomical Structure'; SegmentAlgorithmType MANUAL; SEG SOPInstanceUID 1.2.276.0.7230010.3.1.4.1070885483.15960.1599120307.702; ContentCreatorName 'Reader1'. No pixel overlap with other segments of this SEG."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:prostate_anterior_fibromuscular_stroma",
+    "anatomy:prostate_peripheral_zone",
+    "anatomy:prostate_transition_zone",
+    "anatomy:prostatic_urethra"
+   ],
+   "unassessedNote": "Only the segments in this DICOM SEG are referenced (Prostate peripheral zone, Prostate transition zone, Prostatic urethra, Anterior fibromuscular stroma); all other anatomy and findings are unassessed.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Manual zonal segmentation from the 'PROSTATEx Zone Segmentations' analysis result (Meyer et al. 2020), drawn on this axial T2-weighted series by one annotator (SEG ContentCreatorName 'Reader1'). Zonal boundaries on T2 MRI involve interpretation; treat these outlines as one expert-derived reference, not absolute truth."
+  },
+  {
+   "id": "prostatex-0004_anterior-fibromuscular-stroma",
+   "label": "Anterior fibromuscular stroma (zone SEG)",
+   "classId": "anatomy:prostate_anterior_fibromuscular_stroma",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/prostatex-0004_anterior-fibromuscular-stroma.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:PROSTATEx-Zone-Segmentations (PROSTATEx Zone Segmentations (PROSTATEx-Seg-Zones; DICOM SEG analysis result within NBIA collection PROSTATEx), doi:10.7937/TCIA.NBB4-4655)",
+    "method": "DICOM SEG (BINARY) read with highdicom; reference series via ReferencedSeriesSequence; frames mapped to source SOP via DerivationImageSequence/SourceImageSequence (7 frame(s)); 0 unmatched, 12 empty frame(s). Masks traced with skimage.measure.find_contours(level 0.5, sub-pixel) and simplified with approximate_polygon(0.25 px); (row, col) converted to image_px [col, row] with (0,0) = centre of first pixel. SEG grid identical to the source image grid. Max SEG-frame to source-slice distance 0.0000 mm.",
+    "note": "Segment 4 'Anterior fibromuscular stroma of prostate'; SegmentedPropertyType 'Anterior fibromuscular stroma of prostate' (SCT 717025007); category 'Anatomical Structure'; SegmentAlgorithmType MANUAL; SEG SOPInstanceUID 1.2.276.0.7230010.3.1.4.1070885483.15960.1599120307.702; ContentCreatorName 'Reader1'. No pixel overlap with other segments of this SEG."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:prostate_anterior_fibromuscular_stroma",
+    "anatomy:prostate_peripheral_zone",
+    "anatomy:prostate_transition_zone",
+    "anatomy:prostatic_urethra"
+   ],
+   "unassessedNote": "Only the segments in this DICOM SEG are referenced (Prostate peripheral zone, Prostate transition zone, Prostatic urethra, Anterior fibromuscular stroma); all other anatomy and findings are unassessed.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Manual zonal segmentation from the 'PROSTATEx Zone Segmentations' analysis result (Meyer et al. 2020), drawn on this axial T2-weighted series by one annotator (SEG ContentCreatorName 'Reader1'). Zonal boundaries on T2 MRI involve interpretation; treat these outlines as one expert-derived reference, not absolute truth."
+  }
+ ]
+}

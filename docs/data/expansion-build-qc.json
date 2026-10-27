@@ -1,0 +1,1734 @@
+{
+ "packId": "expansion",
+ "generatedAt": "2026-10-27T17:00:08Z",
+ "packBytesExcludingLessons": 275790659,
+ "budgetBytes": 450000000,
+ "series": [
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.135073567254051847508429239493",
+   "short": "ct-acb8cb25bd",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 134,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 134
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 16813792,
+   "rawBytes": 70685874
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.186463975978084836948875020803",
+   "short": "ct-d9b78a8076",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 142,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 142
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 19268882,
+   "rawBytes": 74914666
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.311892226032003765556361265740",
+   "short": "ct-ae52d2147c",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 163,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 163
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 3.099999997857594e-05,
+   "bytes": 18034772,
+   "rawBytes": 85808542
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.648202329529129061444241329585",
+   "short": "ct-fac21c91d9",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 133,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 133
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 16363518,
+   "rawBytes": 70112346
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.254732746200956375214300973281",
+   "short": "cr-848efae58e",
+   "modality": "CR",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 7100468,
+   "rawBytes": 17516906
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.102962801900681595502684962582",
+   "short": "ct-80c29b9852",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 118,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 118
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 19001188,
+   "rawBytes": 62089790
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.310395752124284049604069960014",
+   "short": "ct-39a554ffb8",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 109,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 109
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 21899740,
+   "rawBytes": 57367602
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.382981348891573094702726085023",
+   "short": "dx-f80546d240",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 4109038,
+   "rawBytes": 7022300
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.257383535269991165447822992959",
+   "short": "ct-3ee81b22a7",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 133,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 133
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 7.000000010748408e-06,
+   "bytes": 21773314,
+   "rawBytes": 70018588
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.113204308168622795344443518239",
+   "short": "dx-df8d434ee9",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 2,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 2
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 6563204,
+   "rawBytes": 14044492
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.437807925747595776338911279802",
+   "short": "ct-6987d6bc5b",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 62,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 62
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 11155392,
+   "rawBytes": 32714548
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.300721406905031139938595258278",
+   "short": "ct-8ae5c1dfaf",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 75,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 75
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 12426396,
+   "rawBytes": 39596192
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.55389529677260335463675303341584456700",
+   "short": "ct-c37d8d9ebb",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 221,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 221
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 31433630,
+   "rawBytes": 116332958
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.80966168417945654246464894130387503224",
+   "short": "ct-0fbd9d0203",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 350,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 350
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 45795644,
+   "rawBytes": 184210934
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.290349993995566951774801380128244498802",
+   "short": "mr-adffb5675a",
+   "modality": "MR",
+   "role": "diagnostic",
+   "instances": 28,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 28
+   },
+   "maxStackShearDeg": 0.006,
+   "maxSpacingDeviation": 0.00020974793451067342,
+   "bytes": 2563284,
+   "rawBytes": 7545190
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.15444523821480682537415256577099706878",
+   "short": "mr-cba348e054",
+   "modality": "MR",
+   "role": "diagnostic",
+   "instances": 28,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 28
+   },
+   "maxStackShearDeg": 0.001,
+   "maxSpacingDeviation": 0.0007055784456611036,
+   "bytes": 2467492,
+   "rawBytes": 7545354
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.161253737387210810825356732460934972557",
+   "short": "mr-2efe965929",
+   "modality": "MR",
+   "role": "diagnostic",
+   "instances": 192,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 192
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0002999999999957481,
+   "bytes": 6366098,
+   "rawBytes": 22438808
+  }
+ ],
+ "annotations": [
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.7014.4598.225487254421009518910640462335",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.7014.4598.135073567254051847508429239493",
+   "rois": [
+    {
+     "roi": "Esophagus",
+     "targetId": "lctsc-train-s1-008_esophagus",
+     "contours": 73,
+     "planes": 73,
+     "matchedBySop": 73,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "lctsc-train-s1-008_heart",
+     "contours": 32,
+     "planes": 32,
+     "matchedBySop": 32,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "lctsc-train-s1-008_left-lung",
+     "contours": 95,
+     "planes": 76,
+     "matchedBySop": 95,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "lctsc-train-s1-008_right-lung",
+     "contours": 90,
+     "planes": 77,
+     "matchedBySop": 90,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "SpinalCord",
+     "targetId": "lctsc-train-s1-008_spinal-cord",
+     "contours": 100,
+     "planes": 100,
+     "matchedBySop": 100,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.225487254421009518910640462335",
+   "subject": "tcia:LCTSC:LCTSC-Train-S1-008"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.7014.4598.210738228109775887268813718669",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.7014.4598.186463975978084836948875020803",
+   "rois": [
+    {
+     "roi": "Esophagus",
+     "targetId": "lctsc-test-s2-202_esophagus",
+     "contours": 88,
+     "planes": 88,
+     "matchedBySop": 88,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "lctsc-test-s2-202_heart",
+     "contours": 37,
+     "planes": 37,
+     "matchedBySop": 37,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "lctsc-test-s2-202_left-lung",
+     "contours": 106,
+     "planes": 100,
+     "matchedBySop": 106,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "lctsc-test-s2-202_right-lung",
+     "contours": 107,
+     "planes": 100,
+     "matchedBySop": 107,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "SpinalCord",
+     "targetId": "lctsc-test-s2-202_spinal-cord",
+     "contours": 137,
+     "planes": 137,
+     "matchedBySop": 137,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.210738228109775887268813718669",
+   "subject": "tcia:LCTSC:LCTSC-Test-S2-202"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.7014.4598.636699321251224048380323888108",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.7014.4598.311892226032003765556361265740",
+   "rois": [
+    {
+     "roi": "Heart",
+     "targetId": "lctsc-train-s3-007_heart",
+     "contours": 38,
+     "planes": 37,
+     "matchedBySop": 38,
+     "matchedByZ": 0,
+     "maxResidualMm": 3.100000000699765e-05,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Esophagus",
+     "targetId": "lctsc-train-s3-007_esophagus",
+     "contours": 78,
+     "planes": 77,
+     "matchedBySop": 78,
+     "matchedByZ": 0,
+     "maxResidualMm": 3.100000000699765e-05,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "SpinalCord",
+     "targetId": "lctsc-train-s3-007_spinal-cord",
+     "contours": 123,
+     "planes": 123,
+     "matchedBySop": 123,
+     "matchedByZ": 0,
+     "maxResidualMm": 3.100000000699765e-05,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "lctsc-train-s3-007_left-lung",
+     "contours": 81,
+     "planes": 75,
+     "matchedBySop": 81,
+     "matchedByZ": 0,
+     "maxResidualMm": 3.100000000699765e-05,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "lctsc-train-s3-007_right-lung",
+     "contours": 75,
+     "planes": 72,
+     "matchedBySop": 75,
+     "matchedByZ": 0,
+     "maxResidualMm": 3.100000000699765e-05,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.636699321251224048380323888108",
+   "subject": "tcia:LCTSC:LCTSC-Train-S3-007"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.7014.4598.612840042523497321192282140334",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.7014.4598.648202329529129061444241329585",
+   "rois": [
+    {
+     "roi": "Esophagus",
+     "targetId": "lctsc-train-s3-011_esophagus",
+     "contours": 73,
+     "planes": 73,
+     "matchedBySop": 73,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "lctsc-train-s3-011_heart",
+     "contours": 27,
+     "planes": 27,
+     "matchedBySop": 27,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "SpinalCord",
+     "targetId": "lctsc-train-s3-011_spinal-cord",
+     "contours": 124,
+     "planes": 124,
+     "matchedBySop": 124,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "lctsc-train-s3-011_left-lung",
+     "contours": 74,
+     "planes": 74,
+     "matchedBySop": 74,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "lctsc-train-s3-011_right-lung",
+     "contours": 76,
+     "planes": 73,
+     "matchedBySop": 76,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.612840042523497321192282140334",
+   "subject": "tcia:LCTSC:LCTSC-Train-S3-011"
+  },
+  {
+   "xml": "tcia-lidc-xml/186/027.xml",
+   "readingSessions": 4,
+   "readerIds": [
+    "anon",
+    "anon",
+    "anon",
+    "anon"
+   ],
+   "outlinedAnnotations": 9,
+   "clusters": 3,
+   "targets": 2,
+   "excludedSingleReader": [
+    {
+     "readers": 1,
+     "annotations": 1,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -59.4,
+      -31.0,
+      1547.2
+     ],
+     "maxInPlaneExtentMm": [
+      4.3
+     ],
+     "malignancy": [
+      1
+     ]
+    }
+   ],
+   "smallNoduleMarks": 2,
+   "nonNodules": 8,
+   "roiSopNotInSeries": 0,
+   "linkTolMm": 3.3000000000000003,
+   "linksBlockedSameReader": 0,
+   "nodules": [
+    {
+     "targetId": "lidc-idri-0134_nodule-1",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      60.7,
+      87.2,
+      1513.7
+     ],
+     "maxInPlaneExtentMm": [
+      9.4,
+      9.6,
+      10.9,
+      9.3
+     ],
+     "malignancy": [
+      5,
+      3,
+      3,
+      2
+     ],
+     "planes": 11
+    },
+    {
+     "targetId": "lidc-idri-0134_nodule-2",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      72.0,
+      112.5,
+      1522.1
+     ],
+     "maxInPlaneExtentMm": [
+      13.2,
+      11.6,
+      13.4,
+      11.1
+     ],
+     "malignancy": [
+      5,
+      3,
+      3,
+      3
+     ],
+     "planes": 18
+    }
+   ],
+   "kind": "lidc_xml",
+   "subject": "tcia:LIDC-IDRI:LIDC-IDRI-0134"
+  },
+  {
+   "xml": "tcia-lidc-xml/186/168.xml",
+   "readingSessions": 4,
+   "readerIds": [
+    "anon",
+    "anon",
+    "anon",
+    "anon"
+   ],
+   "outlinedAnnotations": 11,
+   "clusters": 3,
+   "targets": 3,
+   "excludedSingleReader": [],
+   "smallNoduleMarks": 13,
+   "nonNodules": 6,
+   "roiSopNotInSeries": 0,
+   "linkTolMm": 2.75,
+   "linksBlockedSameReader": 0,
+   "nodules": [
+    {
+     "targetId": "lidc-idri-0208_nodule-1",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -43.1,
+      -70.4,
+      -149.7
+     ],
+     "maxInPlaneExtentMm": [
+      14.0,
+      9.7,
+      9.7,
+      9.9
+     ],
+     "malignancy": [
+      4,
+      3,
+      4,
+      3
+     ],
+     "planes": 12
+    },
+    {
+     "targetId": "lidc-idri-0208_nodule-2",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -111.5,
+      -21.5,
+      -70.1
+     ],
+     "maxInPlaneExtentMm": [
+      6.9,
+      5.5,
+      6.5,
+      6.1
+     ],
+     "malignancy": [
+      2,
+      3,
+      3,
+      3
+     ],
+     "planes": 12
+    },
+    {
+     "targetId": "lidc-idri-0208_nodule-3",
+     "readers": 3,
+     "annotations": 3,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -93.5,
+      11.2,
+      -126.3
+     ],
+     "maxInPlaneExtentMm": [
+      6.5,
+      5.5,
+      5.1
+     ],
+     "malignancy": [
+      3,
+      3,
+      3
+     ],
+     "planes": 6
+    }
+   ],
+   "kind": "lidc_xml",
+   "subject": "tcia:LIDC-IDRI:LIDC-IDRI-0208"
+  },
+  {
+   "xml": "tcia-lidc-xml/185/287.xml",
+   "readingSessions": 4,
+   "readerIds": [
+    "1506784942",
+    "-800430572",
+    "-2091264776",
+    "297156752"
+   ],
+   "outlinedAnnotations": 18,
+   "clusters": 6,
+   "targets": 4,
+   "excludedSingleReader": [
+    {
+     "readers": 1,
+     "annotations": 1,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      57.0,
+      -1.7,
+      -69.6
+     ],
+     "maxInPlaneExtentMm": [
+      9.1
+     ],
+     "malignancy": [
+      3
+     ]
+    },
+    {
+     "readers": 1,
+     "annotations": 1,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -22.4,
+      11.4,
+      -48.6
+     ],
+     "maxInPlaneExtentMm": [
+      7.2
+     ],
+     "malignancy": [
+      2
+     ]
+    }
+   ],
+   "smallNoduleMarks": 30,
+   "nonNodules": 10,
+   "roiSopNotInSeries": 0,
+   "linkTolMm": 2.75,
+   "linksBlockedSameReader": 2,
+   "nodules": [
+    {
+     "targetId": "lidc-idri-0111_nodule-1",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -11.6,
+      69.2,
+      -178.0
+     ],
+     "maxInPlaneExtentMm": [
+      7.8,
+      6.0,
+      7.2,
+      5.5
+     ],
+     "malignancy": [
+      3,
+      3,
+      3,
+      2
+     ],
+     "planes": 8
+    },
+    {
+     "targetId": "lidc-idri-0111_nodule-2",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -14.1,
+      54.2,
+      -168.5
+     ],
+     "maxInPlaneExtentMm": [
+      24.5,
+      21.1,
+      23.1,
+      26.4
+     ],
+     "malignancy": [
+      5,
+      5,
+      3,
+      4
+     ],
+     "planes": 29
+    },
+    {
+     "targetId": "lidc-idri-0111_nodule-3",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -46.9,
+      55.1,
+      -132.6
+     ],
+     "maxInPlaneExtentMm": [
+      19.7,
+      19.7,
+      19.7,
+      21.1
+     ],
+     "malignancy": [
+      5,
+      5,
+      5,
+      4
+     ],
+     "planes": 22
+    },
+    {
+     "targetId": "lidc-idri-0111_nodule-4",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -43.5,
+      80.7,
+      -116.2
+     ],
+     "maxInPlaneExtentMm": [
+      10.4,
+      11.1,
+      10.7,
+      11.4
+     ],
+     "malignancy": [
+      4,
+      3,
+      3,
+      2
+     ],
+     "planes": 13
+    }
+   ],
+   "kind": "lidc_xml",
+   "subject": "tcia:LIDC-IDRI:LIDC-IDRI-0111"
+  },
+  {
+   "segSop": "1.2.276.0.7230010.3.1.4.0.74852.1588583930.852915",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.6919.4624.437807925747595776338911279802",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {},
+   "contentCreator": "",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "Kidney",
+     "targetId": "kits-00045_kidneys",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 34,
+     "framesTotal": 62,
+     "emptyFrames": 28,
+     "byRef": 34,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 26,
+     "outlineVertexCentroidLps": [
+      -8.9,
+      42.3,
+      1338.5
+     ]
+    },
+    {
+     "segment": 2,
+     "label": "Mass",
+     "targetId": "kits-00045_renal-tumour-mass-left-side",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 17,
+     "framesTotal": 62,
+     "emptyFrames": 45,
+     "byRef": 17,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      59.3,
+      14.6,
+      1338.8
+     ]
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.2.276.0.7230010.3.1.3.0.74852.1588583930.852914",
+   "subject": "tcia:C4KC-KiTS:KiTS-00045"
+  },
+  {
+   "segSop": "1.2.276.0.7230010.3.1.4.0.76590.1588587483.993225",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.6919.4624.300721406905031139938595258278",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {},
+   "contentCreator": "",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "Kidney",
+     "targetId": "kits-00204_kidneys",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 44,
+     "framesTotal": 75,
+     "emptyFrames": 31,
+     "byRef": 44,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 77,
+     "outlineVertexCentroidLps": [
+      14.9,
+      -143.4,
+      97.4
+     ]
+    },
+    {
+     "segment": 2,
+     "label": "Mass",
+     "targetId": "kits-00204_renal-tumour-mass-right-side",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 16,
+     "framesTotal": 75,
+     "emptyFrames": 59,
+     "byRef": 16,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -93.3,
+      -121.0,
+      106.5
+     ]
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.2.276.0.7230010.3.1.3.0.76590.1588587483.993224",
+   "subject": "tcia:C4KC-KiTS:KiTS-00204"
+  },
+  {
+   "segSop": "1.3.6.1.4.1.14519.5.2.1.267817760914576984499789160953643232954",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.55389529677260335463675303341584456700",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {},
+   "contentCreator": "",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "T3 vertebra",
+     "targetId": "spine-13800_t3-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 21,
+     "framesTotal": 22,
+     "emptyFrames": 1,
+     "byRef": 21,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 21,
+     "holes": 4,
+     "outlineVertexCentroidLps": [
+      -7.0,
+      -160.7,
+      194.3
+     ]
+    },
+    {
+     "segment": 2,
+     "label": "T4 vertebra",
+     "targetId": "spine-13800_t4-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 14,
+     "framesTotal": 14,
+     "emptyFrames": 0,
+     "byRef": 14,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 14,
+     "holes": 5,
+     "outlineVertexCentroidLps": [
+      -15.0,
+      -151.7,
+      168.6
+     ]
+    },
+    {
+     "segment": 3,
+     "label": "T5 vertebra",
+     "targetId": "spine-13800_t5-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 17,
+     "framesTotal": 17,
+     "emptyFrames": 0,
+     "byRef": 17,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 17,
+     "holes": 5,
+     "outlineVertexCentroidLps": [
+      -19.3,
+      -143.8,
+      144.9
+     ]
+    },
+    {
+     "segment": 4,
+     "label": "T6 vertebra",
+     "targetId": "spine-13800_t6-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 21,
+     "framesTotal": 21,
+     "emptyFrames": 0,
+     "byRef": 21,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 21,
+     "holes": 3,
+     "outlineVertexCentroidLps": [
+      -20.7,
+      -139.1,
+      120.9
+     ]
+    },
+    {
+     "segment": 5,
+     "label": "T7 vertebra",
+     "targetId": "spine-13800_t7-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 21,
+     "framesTotal": 21,
+     "emptyFrames": 0,
+     "byRef": 21,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 21,
+     "holes": 3,
+     "outlineVertexCentroidLps": [
+      -20.9,
+      -136.6,
+      93.7
+     ]
+    },
+    {
+     "segment": 6,
+     "label": "T8 vertebra",
+     "targetId": "spine-13800_t8-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 21,
+     "framesTotal": 21,
+     "emptyFrames": 0,
+     "byRef": 21,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 21,
+     "holes": 5,
+     "outlineVertexCentroidLps": [
+      -21.1,
+      -139.2,
+      67.5
+     ]
+    },
+    {
+     "segment": 7,
+     "label": "T9 vertebra",
+     "targetId": "spine-13800_t9-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 21,
+     "framesTotal": 21,
+     "emptyFrames": 0,
+     "byRef": 21,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 21,
+     "holes": 6,
+     "outlineVertexCentroidLps": [
+      -21.0,
+      -142.5,
+      39.1
+     ]
+    },
+    {
+     "segment": 8,
+     "label": "T10 vertebra",
+     "targetId": "spine-13800_t10-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 17,
+     "framesTotal": 17,
+     "emptyFrames": 0,
+     "byRef": 17,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 17,
+     "holes": 7,
+     "outlineVertexCentroidLps": [
+      -21.3,
+      -147.7,
+      10.8
+     ]
+    },
+    {
+     "segment": 9,
+     "label": "T11 vertebra",
+     "targetId": "spine-13800_t11-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 21,
+     "framesTotal": 21,
+     "emptyFrames": 0,
+     "byRef": 21,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 21,
+     "holes": 7,
+     "outlineVertexCentroidLps": [
+      -19.7,
+      -156.1,
+      -19.9
+     ]
+    },
+    {
+     "segment": 10,
+     "label": "T12 vertebra",
+     "targetId": "spine-13800_t12-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 24,
+     "framesTotal": 24,
+     "emptyFrames": 0,
+     "byRef": 24,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 24,
+     "holes": 1,
+     "outlineVertexCentroidLps": [
+      -17.1,
+      -170.3,
+      -47.9
+     ]
+    },
+    {
+     "segment": 11,
+     "label": "L1 vertebra",
+     "targetId": "spine-13800_l1-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 22,
+     "framesTotal": 22,
+     "emptyFrames": 0,
+     "byRef": 22,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 22,
+     "holes": 1,
+     "outlineVertexCentroidLps": [
+      -12.8,
+      -185.1,
+      -76.6
+     ]
+    },
+    {
+     "segment": 12,
+     "label": "L2 vertebra",
+     "targetId": "spine-13800_l2-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 21,
+     "framesTotal": 21,
+     "emptyFrames": 0,
+     "byRef": 21,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 21,
+     "holes": 3,
+     "outlineVertexCentroidLps": [
+      -10.1,
+      -199.4,
+      -106.5
+     ]
+    },
+    {
+     "segment": 13,
+     "label": "L3 vertebra",
+     "targetId": "spine-13800_l3-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 19,
+     "framesTotal": 19,
+     "emptyFrames": 0,
+     "byRef": 19,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 19,
+     "holes": 5,
+     "outlineVertexCentroidLps": [
+      -8.4,
+      -209.2,
+      -137.7
+     ]
+    },
+    {
+     "segment": 14,
+     "label": "L4 vertebra",
+     "targetId": "spine-13800_l4-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 20,
+     "framesTotal": 20,
+     "emptyFrames": 0,
+     "byRef": 20,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 20,
+     "holes": 9,
+     "outlineVertexCentroidLps": [
+      -6.8,
+      -207.2,
+      -171.0
+     ]
+    },
+    {
+     "segment": 15,
+     "label": "L5 vertebra",
+     "targetId": "spine-13800_l5-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 22,
+     "framesTotal": 22,
+     "emptyFrames": 0,
+     "byRef": 22,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 22,
+     "holes": 6,
+     "outlineVertexCentroidLps": [
+      -6.6,
+      -192.4,
+      -195.2
+     ]
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.247355136588935496236140824690001425033",
+   "subject": "tcia:Spine-Mets-CT-SEG:13800"
+  },
+  {
+   "segSop": "1.3.6.1.4.1.14519.5.2.1.209531581786434411826060166008521482459",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.80966168417945654246464894130387503224",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {},
+   "contentCreator": "",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "T1 vertebra",
+     "targetId": "spine-14078_t1-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 17,
+     "framesTotal": 17,
+     "emptyFrames": 0,
+     "byRef": 17,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 17,
+     "holes": 26,
+     "outlineVertexCentroidLps": [
+      1.5,
+      80.1,
+      365.5
+     ]
+    },
+    {
+     "segment": 2,
+     "label": "T2 vertebra",
+     "targetId": "spine-14078_t2-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 17,
+     "framesTotal": 17,
+     "emptyFrames": 0,
+     "byRef": 17,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 17,
+     "holes": 48,
+     "outlineVertexCentroidLps": [
+      -3.6,
+      95.5,
+      343.1
+     ]
+    },
+    {
+     "segment": 3,
+     "label": "T3 vertebra",
+     "targetId": "spine-14078_t3-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 27,
+     "framesTotal": 27,
+     "emptyFrames": 0,
+     "byRef": 27,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 27,
+     "holes": 41,
+     "outlineVertexCentroidLps": [
+      -4.9,
+      101.9,
+      321.7
+     ]
+    },
+    {
+     "segment": 4,
+     "label": "T4 vertebra",
+     "targetId": "spine-14078_t4-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 20,
+     "framesTotal": 20,
+     "emptyFrames": 0,
+     "byRef": 20,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 20,
+     "holes": 47,
+     "outlineVertexCentroidLps": [
+      -4.9,
+      110.5,
+      294.0
+     ]
+    },
+    {
+     "segment": 5,
+     "label": "T5 vertebra",
+     "targetId": "spine-14078_t5-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 20,
+     "framesTotal": 20,
+     "emptyFrames": 0,
+     "byRef": 20,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 20,
+     "holes": 50,
+     "outlineVertexCentroidLps": [
+      -3.5,
+      116.1,
+      268.0
+     ]
+    },
+    {
+     "segment": 6,
+     "label": "T6 vertebra",
+     "targetId": "spine-14078_t6-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 25,
+     "framesTotal": 25,
+     "emptyFrames": 0,
+     "byRef": 25,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 25,
+     "holes": 42,
+     "outlineVertexCentroidLps": [
+      -2.9,
+      123.7,
+      240.9
+     ]
+    },
+    {
+     "segment": 7,
+     "label": "T7 vertebra",
+     "targetId": "spine-14078_t7-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 28,
+     "framesTotal": 28,
+     "emptyFrames": 0,
+     "byRef": 28,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 28,
+     "holes": 55,
+     "outlineVertexCentroidLps": [
+      -2.8,
+      124.8,
+      215.3
+     ]
+    },
+    {
+     "segment": 8,
+     "label": "T8 vertebra",
+     "targetId": "spine-14078_t8-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 26,
+     "framesTotal": 26,
+     "emptyFrames": 0,
+     "byRef": 26,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 26,
+     "holes": 93,
+     "outlineVertexCentroidLps": [
+      -2.9,
+      119.9,
+      187.0
+     ]
+    },
+    {
+     "segment": 9,
+     "label": "T9 vertebra",
+     "targetId": "spine-14078_t9-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 23,
+     "framesTotal": 23,
+     "emptyFrames": 0,
+     "byRef": 23,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 23,
+     "holes": 96,
+     "outlineVertexCentroidLps": [
+      -1.7,
+      118.1,
+      159.2
+     ]
+    },
+    {
+     "segment": 10,
+     "label": "T10 vertebra",
+     "targetId": "spine-14078_t10-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 24,
+     "framesTotal": 24,
+     "emptyFrames": 0,
+     "byRef": 24,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 24,
+     "holes": 135,
+     "outlineVertexCentroidLps": [
+      -2.4,
+      110.9,
+      133.3
+     ]
+    },
+    {
+     "segment": 11,
+     "label": "T11 vertebra",
+     "targetId": "spine-14078_t11-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 22,
+     "framesTotal": 22,
+     "emptyFrames": 0,
+     "byRef": 22,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 22,
+     "holes": 214,
+     "outlineVertexCentroidLps": [
+      -2.5,
+      105.7,
+      100.5
+     ]
+    },
+    {
+     "segment": 12,
+     "label": "T12 vertebra",
+     "targetId": "spine-14078_t12-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 24,
+     "framesTotal": 24,
+     "emptyFrames": 0,
+     "byRef": 24,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 24,
+     "holes": 264,
+     "outlineVertexCentroidLps": [
+      -3.8,
+      101.3,
+      67.0
+     ]
+    },
+    {
+     "segment": 13,
+     "label": "L1 vertebra",
+     "targetId": "spine-14078_l1-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 25,
+     "framesTotal": 25,
+     "emptyFrames": 0,
+     "byRef": 25,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 25,
+     "holes": 241,
+     "outlineVertexCentroidLps": [
+      -2.4,
+      94.5,
+      30.6
+     ]
+    },
+    {
+     "segment": 14,
+     "label": "L2 vertebra",
+     "targetId": "spine-14078_l2-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 26,
+     "framesTotal": 27,
+     "emptyFrames": 1,
+     "byRef": 26,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 26,
+     "holes": 258,
+     "outlineVertexCentroidLps": [
+      -5.1,
+      88.6,
+      -8.3
+     ]
+    },
+    {
+     "segment": 15,
+     "label": "L3 vertebra",
+     "targetId": "spine-14078_l3-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 23,
+     "framesTotal": 23,
+     "emptyFrames": 0,
+     "byRef": 23,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 23,
+     "holes": 252,
+     "outlineVertexCentroidLps": [
+      -5.3,
+      82.8,
+      -45.2
+     ]
+    },
+    {
+     "segment": 16,
+     "label": "L4 vertebra",
+     "targetId": "spine-14078_l4-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 23,
+     "framesTotal": 23,
+     "emptyFrames": 0,
+     "byRef": 23,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 23,
+     "holes": 219,
+     "outlineVertexCentroidLps": [
+      -9.3,
+      81.1,
+      -81.9
+     ]
+    },
+    {
+     "segment": 17,
+     "label": "L5 vertebra",
+     "targetId": "spine-14078_l5-vertebra",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 25,
+     "framesTotal": 25,
+     "emptyFrames": 0,
+     "byRef": 25,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 25,
+     "holes": 236,
+     "outlineVertexCentroidLps": [
+      -11.3,
+      82.6,
+      -116.2
+     ]
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.291238502765847178106106935066518261120",
+   "subject": "tcia:Spine-Mets-CT-SEG:14078"
+  },
+  {
+   "segSop": "1.3.6.1.4.1.14519.5.2.1.17823352006085964469555652608656523255",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.161253737387210810825356732460934972557",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {},
+   "contentCreator": "",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "Glioma",
+     "targetId": "remind-014_glioma-tumour",
+     "algorithmType": "MANUAL",
+     "planes": 40,
+     "framesTotal": 56,
+     "emptyFrames": 0,
+     "byRef": 0,
+     "byPos": 40,
+     "unmatched": 0,
+     "notNearest": 16,
+     "maxFrameToSliceMm": 0.4872536000000025,
+     "resampledFrames": 40,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -17.1,
+      -8.7,
+      22.6
+     ]
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.203381020942023419019742822344877871670",
+   "subject": "tcia:ReMIND:ReMIND-014"
+  }
+ ]
+}

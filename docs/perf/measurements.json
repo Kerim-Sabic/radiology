@@ -1,0 +1,46 @@
+{
+  "measuredAt": "2026-10-27T18:33:33.510Z",
+  "host": "vite preview (localhost)",
+  "note": "Local server: excludes real network latency/bandwidth.",
+  "shellInteractiveMs": 782,
+  "shellNav": {
+    "domContentLoadedMs": 75,
+    "loadMs": 75,
+    "firstContentfulPaintMs": 284
+  },
+  "shellBytes": {
+    "js": 476476,
+    "wasm": 0,
+    "dicom": 0,
+    "json": 5321524,
+    "other": 17912
+  },
+  "ctFirstImageMs": 1588,
+  "ctAllSlicesFetchedMs": 3628,
+  "ctSeries": {
+    "done": 131,
+    "failed": 0,
+    "total": 131,
+    "bytes": 20695486,
+    "elapsedMs": 2622.5
+  },
+  "cachedScroll": {
+    "slices": 60,
+    "medianMs": 44.3,
+    "p95Ms": 81.6,
+    "maxMs": 93.7
+  },
+  "mprReadyMs": 1011,
+  "jsHeapMB": {
+    "used": 202.2,
+    "total": 289.9
+  },
+  "radiographFirstImageMs": 1918,
+  "totalBytes": {
+    "js": 13292781,
+    "wasm": 581752,
+    "dicom": 28231044,
+    "json": 18010925,
+    "other": 1097927
+  }
+}

@@ -1,0 +1,2752 @@
+{
+ "packId": "more-ct-xr",
+ "generatedAt": "2026-10-27T18:09:16Z",
+ "packBytesExcludingLessons": 545392689,
+ "budgetBytes": 650000000,
+ "series": [
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.165887626043176567821473531340173059640",
+   "short": "ct-5ca1805576",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 182,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 182
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 24425488,
+   "rawBytes": 95871582
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.90324066027377379024082315509232979404",
+   "short": "ct-04f5e53d56",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 210,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 210
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 29976220,
+   "rawBytes": 110622758
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.314313624302794915779534222535660920067",
+   "short": "ct-d0b2745223",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 218,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 218
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 1.000088900582341e-12,
+   "bytes": 35634388,
+   "rawBytes": 114845886
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.324403936596612444539010926326866818291",
+   "short": "ct-6c55955d47",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 255,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 255
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 1.000088900582341e-11,
+   "bytes": 44286570,
+   "rawBytes": 134346410
+  },
+  {
+   "uid": "1.2.826.0.1.3680043.10.474.419639.230512674622477364943191211641",
+   "short": "dx-3117bc91ec",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "kept: source already losslessly compressed": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 6716034,
+   "rawBytes": 6716034
+  },
+  {
+   "uid": "1.2.826.0.1.3680043.10.474.3020593458097871959694957577346629955",
+   "short": "cr-9cab84bc54",
+   "modality": "CR",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "kept: source already losslessly compressed": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 7211616,
+   "rawBytes": 7211616
+  },
+  {
+   "uid": "1.2.826.0.1.3680043.10.474.9841104254264699083239129715871847932",
+   "short": "cr-80d42eb81d",
+   "modality": "CR",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "kept: source already losslessly compressed": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 3354790,
+   "rawBytes": 3354790
+  },
+  {
+   "uid": "1.2.826.0.1.3680043.10.474.2882206563070051157730311026231748417",
+   "short": "cr-f53ad09c19",
+   "modality": "CR",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "kept: source already losslessly compressed": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 7364910,
+   "rawBytes": 7364910
+  },
+  {
+   "uid": "1.2.826.0.1.3680043.10.474.419639.894800582410504473167660698385",
+   "short": "dx-7fb864f660",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "kept: source already losslessly compressed": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 6294022,
+   "rawBytes": 6294022
+  },
+  {
+   "uid": "1.2.826.0.1.3680043.10.474.419639.848391758779097642315941156268",
+   "short": "cr-8623e3cd66",
+   "modality": "CR",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "kept: source already losslessly compressed": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 6531754,
+   "rawBytes": 6531754
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.4548960503691844005755507194780",
+   "short": "dx-85eed985e2",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 5727386,
+   "rawBytes": 12514892
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2156893184788557360959718358671",
+   "short": "ct-89bb6284a7",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 103,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 103
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 1.529999999938525e-05,
+   "bytes": 13566170,
+   "rawBytes": 54369162
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.3326767908347531161409393290488",
+   "short": "dx-15cfc40bd8",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 6282682,
+   "rawBytes": 13266198
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.3125812321537614785025843239681",
+   "short": "ct-1c872ea344",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 115,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 115
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 1.5300000001161607e-05,
+   "bytes": 17578588,
+   "rawBytes": 60703464
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.3255180473901584361380444495405",
+   "short": "dx-1b8b3591d3",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 8282796,
+   "rawBytes": 13266102
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2827783204472120182975902604808",
+   "short": "ct-ff54e1ef73",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 162,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 162
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 4.0000000467443897e-07,
+   "bytes": 23742064,
+   "rawBytes": 85524462
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2418377321546892125079674838557",
+   "short": "dx-4aede1715f",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 6415898,
+   "rawBytes": 13266246
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2571588625672387018784880321510",
+   "short": "ct-405bd0371a",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 187,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 187
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 5.684341886080802e-14,
+   "bytes": 27126674,
+   "rawBytes": 98718598
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.257840703452266097926250569223",
+   "short": "ct-f842ec7680",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 119,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 119
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 17814864,
+   "rawBytes": 62669010
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.465712338305822672735695513309",
+   "short": "dx-e60eac1ba3",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 2,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 2
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 8384538,
+   "rawBytes": 16358356
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.219618492426142913407827034169",
+   "short": "ct-cb75c132a5",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 117,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 117
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 22397828,
+   "rawBytes": 61617578
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.281382817714201615159877953485",
+   "short": "dx-ba372a5c26",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 2,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 2
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 8954436,
+   "rawBytes": 16358326
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.882070241245008756731854510592",
+   "short": "ct-612964a62f",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 127,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 127
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 3.000000006636583e-06,
+   "bytes": 22042872,
+   "rawBytes": 66861594
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.465203542815096670421396392391",
+   "short": "dx-54affd520e",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 2,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 2
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 6330414,
+   "rawBytes": 14044452
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.225154811831720426832024114593",
+   "short": "ct-7f64979639",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 143,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 143
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 31951568,
+   "rawBytes": 75307772
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.240282537530757534746798814586",
+   "short": "dx-c958aa13b7",
+   "modality": "DX",
+   "role": "diagnostic",
+   "instances": 2,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "mixed matrix size within series",
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 2
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 8571224,
+   "rawBytes": 15201614
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.335375068555840597820636886710",
+   "short": "ct-c375775881",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 148,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 148
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 20464720,
+   "rawBytes": 78068324
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.713431881590243788049142773123",
+   "short": "ct-c9f476e7ea",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 168,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 168
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 25008024,
+   "rawBytes": 88933118
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.513033543073296044615683479554",
+   "short": "ct-0407702024",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 103,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 103
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 11533102,
+   "rawBytes": 54297692
+  }
+ ],
+ "annotations": [
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.89027061530950266618468474957575820041",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.165887626043176567821473531340173059640",
+   "rois": [
+    {
+     "roi": "UteroCervix",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Bones",
+     "targetId": "pediatric-ct-seg-40fefef6_bones-all",
+     "contours": 1377,
+     "planes": 182,
+     "matchedBySop": 1377,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.002500000000001279,
+     "failures": [],
+     "skipped": {},
+     "holes": 28
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "pediatric-ct-seg-40fefef6_right-lung",
+     "contours": 230,
+     "planes": 59,
+     "matchedBySop": 230,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 127
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "pediatric-ct-seg-40fefef6_left-lung",
+     "contours": 179,
+     "planes": 62,
+     "matchedBySop": 179,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 101
+    },
+    {
+     "roi": "Skin",
+     "targetId": "pediatric-ct-seg-40fefef6_skin-body-outline",
+     "contours": 340,
+     "planes": 182,
+     "matchedBySop": 340,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.002500000000001279,
+     "failures": [],
+     "skipped": {},
+     "holes": 146
+    },
+    {
+     "roi": "Thymus",
+     "targetId": "pediatric-ct-seg-40fefef6_thymus",
+     "contours": 22,
+     "planes": 21,
+     "matchedBySop": 22,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Stomach",
+     "targetId": "pediatric-ct-seg-40fefef6_stomach",
+     "contours": 25,
+     "planes": 22,
+     "matchedBySop": 25,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Spleen",
+     "targetId": "pediatric-ct-seg-40fefef6_spleen",
+     "contours": 24,
+     "planes": 24,
+     "matchedBySop": 24,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Spinal Canal",
+     "targetId": "pediatric-ct-seg-40fefef6_spinal-canal",
+     "contours": 106,
+     "planes": 106,
+     "matchedBySop": 106,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.002500000000001279,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Small Intestine",
+     "targetId": "pediatric-ct-seg-40fefef6_small-intestine",
+     "contours": 74,
+     "planes": 70,
+     "matchedBySop": 74,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 2
+    },
+    {
+     "roi": "Rectum",
+     "targetId": "pediatric-ct-seg-40fefef6_rectum",
+     "contours": 23,
+     "planes": 23,
+     "matchedBySop": 23,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Prostate",
+     "targetId": "pediatric-ct-seg-40fefef6_prostate",
+     "contours": 4,
+     "planes": 4,
+     "matchedBySop": 4,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Pancreas",
+     "targetId": "pediatric-ct-seg-40fefef6_pancreas",
+     "contours": 28,
+     "planes": 24,
+     "matchedBySop": 28,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Liver",
+     "targetId": "pediatric-ct-seg-40fefef6_liver",
+     "contours": 56,
+     "planes": 52,
+     "matchedBySop": 56,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Large Intestine",
+     "targetId": "pediatric-ct-seg-40fefef6_large-intestine",
+     "contours": 160,
+     "planes": 96,
+     "matchedBySop": 160,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Kidney Right",
+     "targetId": "pediatric-ct-seg-40fefef6_right-kidney",
+     "contours": 39,
+     "planes": 39,
+     "matchedBySop": 39,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Kidney Left",
+     "targetId": "pediatric-ct-seg-40fefef6_left-kidney",
+     "contours": 38,
+     "planes": 38,
+     "matchedBySop": 38,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "pediatric-ct-seg-40fefef6_heart",
+     "contours": 26,
+     "planes": 26,
+     "matchedBySop": 26,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Gonads",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Gall Bladder",
+     "targetId": "pediatric-ct-seg-40fefef6_gallbladder",
+     "contours": 24,
+     "planes": 24,
+     "matchedBySop": 24,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Femoral Head Rig",
+     "targetId": "pediatric-ct-seg-40fefef6_right-femoral-head",
+     "contours": 24,
+     "planes": 24,
+     "matchedBySop": 24,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Femoral Head Lef",
+     "targetId": "pediatric-ct-seg-40fefef6_left-femoral-head",
+     "contours": 20,
+     "planes": 20,
+     "matchedBySop": 20,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Esophagus",
+     "targetId": "pediatric-ct-seg-40fefef6_esophagus",
+     "contours": 74,
+     "planes": 74,
+     "matchedBySop": 74,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.002500000000001279,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Duodenum",
+     "targetId": "pediatric-ct-seg-40fefef6_duodenum",
+     "contours": 31,
+     "planes": 27,
+     "matchedBySop": 31,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Breast Right",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Breast Left",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Bladder",
+     "targetId": "pediatric-ct-seg-40fefef6_urinary-bladder",
+     "contours": 22,
+     "planes": 21,
+     "matchedBySop": 22,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Adrenal Right",
+     "targetId": "pediatric-ct-seg-40fefef6_right-adrenal-gland",
+     "contours": 5,
+     "planes": 5,
+     "matchedBySop": 5,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Adrenal Left",
+     "targetId": "pediatric-ct-seg-40fefef6_left-adrenal-gland",
+     "contours": 9,
+     "planes": 9,
+     "matchedBySop": 9,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "emptyRois": [
+    "Breast Left",
+    "Breast Right",
+    "Gonads",
+    "UteroCervix"
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.250753981799958219655632332877695403476",
+   "subject": "tcia:Pediatric-CT-SEG:Pediatric-CT-SEG-40FEFEF6"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.1.28993879046573539079008356686085187724",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.90324066027377379024082315509232979404",
+   "rois": [
+    {
+     "roi": "Lung_R",
+     "targetId": "pediatric-ct-seg-9d907991_right-lung",
+     "contours": 78,
+     "planes": 63,
+     "matchedBySop": 78,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 3
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "pediatric-ct-seg-9d907991_left-lung",
+     "contours": 90,
+     "planes": 68,
+     "matchedBySop": 90,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 14
+    },
+    {
+     "roi": "UteroCervix",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Thymus",
+     "targetId": "pediatric-ct-seg-9d907991_thymus",
+     "contours": 20,
+     "planes": 20,
+     "matchedBySop": 20,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Stomach",
+     "targetId": "pediatric-ct-seg-9d907991_stomach",
+     "contours": 38,
+     "planes": 38,
+     "matchedBySop": 38,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Spleen",
+     "targetId": "pediatric-ct-seg-9d907991_spleen",
+     "contours": 26,
+     "planes": 26,
+     "matchedBySop": 26,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Spinal Canal",
+     "targetId": "pediatric-ct-seg-9d907991_spinal-canal",
+     "contours": 127,
+     "planes": 127,
+     "matchedBySop": 127,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.002500000000001279,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Small Intestine",
+     "targetId": "pediatric-ct-seg-9d907991_small-intestine",
+     "contours": 73,
+     "planes": 71,
+     "matchedBySop": 73,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 1
+    },
+    {
+     "roi": "Rectum",
+     "targetId": "pediatric-ct-seg-9d907991_rectum",
+     "contours": 31,
+     "planes": 31,
+     "matchedBySop": 31,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Prostate",
+     "targetId": "pediatric-ct-seg-9d907991_prostate",
+     "contours": 12,
+     "planes": 12,
+     "matchedBySop": 12,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Pancreas",
+     "targetId": "pediatric-ct-seg-9d907991_pancreas",
+     "contours": 23,
+     "planes": 22,
+     "matchedBySop": 23,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Liver",
+     "targetId": "pediatric-ct-seg-9d907991_liver",
+     "contours": 68,
+     "planes": 60,
+     "matchedBySop": 68,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Large Intestine",
+     "targetId": "pediatric-ct-seg-9d907991_large-intestine",
+     "contours": 162,
+     "planes": 103,
+     "matchedBySop": 162,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Kidney Right",
+     "targetId": "pediatric-ct-seg-9d907991_right-kidney",
+     "contours": 39,
+     "planes": 39,
+     "matchedBySop": 39,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Kidney Left",
+     "targetId": "pediatric-ct-seg-9d907991_left-kidney",
+     "contours": 44,
+     "planes": 44,
+     "matchedBySop": 44,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "pediatric-ct-seg-9d907991_heart",
+     "contours": 35,
+     "planes": 35,
+     "matchedBySop": 35,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Gonads",
+     "targetId": "pediatric-ct-seg-9d907991_gonads",
+     "contours": 3,
+     "planes": 3,
+     "matchedBySop": 3,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Gall Bladder",
+     "targetId": "pediatric-ct-seg-9d907991_gallbladder",
+     "contours": 17,
+     "planes": 17,
+     "matchedBySop": 17,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Femoral Head Rig",
+     "targetId": "pediatric-ct-seg-9d907991_right-femoral-head",
+     "contours": 34,
+     "planes": 33,
+     "matchedBySop": 34,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Femoral Head Lef",
+     "targetId": "pediatric-ct-seg-9d907991_left-femoral-head",
+     "contours": 31,
+     "planes": 30,
+     "matchedBySop": 31,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Esophagus",
+     "targetId": "pediatric-ct-seg-9d907991_esophagus",
+     "contours": 79,
+     "planes": 79,
+     "matchedBySop": 79,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.002500000000001279,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Duodenum",
+     "targetId": "pediatric-ct-seg-9d907991_duodenum",
+     "contours": 29,
+     "planes": 29,
+     "matchedBySop": 29,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Breast Right",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Breast Left",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Bladder",
+     "targetId": "pediatric-ct-seg-9d907991_urinary-bladder",
+     "contours": 23,
+     "planes": 23,
+     "matchedBySop": 23,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Adrenal Right",
+     "targetId": "pediatric-ct-seg-9d907991_right-adrenal-gland",
+     "contours": 11,
+     "planes": 7,
+     "matchedBySop": 11,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 4
+    },
+    {
+     "roi": "Adrenal Left",
+     "targetId": "pediatric-ct-seg-9d907991_left-adrenal-gland",
+     "contours": 8,
+     "planes": 8,
+     "matchedBySop": 8,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0024999999999977263,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Skin",
+     "targetId": "pediatric-ct-seg-9d907991_skin-body-outline",
+     "contours": 393,
+     "planes": 210,
+     "matchedBySop": 393,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.002500000000001279,
+     "failures": [],
+     "skipped": {},
+     "holes": 137
+    },
+    {
+     "roi": "Bones",
+     "targetId": "pediatric-ct-seg-9d907991_bones-all",
+     "contours": 1905,
+     "planes": 210,
+     "matchedBySop": 1905,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.002500000000001279,
+     "failures": [],
+     "skipped": {},
+     "holes": 37
+    }
+   ],
+   "emptyRois": [
+    "Breast Left",
+    "Breast Right",
+    "UteroCervix"
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.1.12037108024929356866579236770937556330",
+   "subject": "tcia:Pediatric-CT-SEG:Pediatric-CT-SEG-9D907991"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.188553294361688863358160646271556144732",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.314313624302794915779534222535660920067",
+   "rois": [
+    {
+     "roi": "Adrenal Left",
+     "targetId": "pediatric-ct-seg-397_left-adrenal-gland",
+     "contours": 14,
+     "planes": 14,
+     "matchedBySop": 14,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Adrenal Right",
+     "targetId": "pediatric-ct-seg-397_right-adrenal-gland",
+     "contours": 16,
+     "planes": 12,
+     "matchedBySop": 16,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 4
+    },
+    {
+     "roi": "Bladder",
+     "targetId": "pediatric-ct-seg-397_urinary-bladder",
+     "contours": 24,
+     "planes": 24,
+     "matchedBySop": 24,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Breast Left",
+     "targetId": "pediatric-ct-seg-397_left-breast",
+     "contours": 6,
+     "planes": 6,
+     "matchedBySop": 6,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Breast Right",
+     "targetId": "pediatric-ct-seg-397_right-breast",
+     "contours": 10,
+     "planes": 10,
+     "matchedBySop": 10,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Duodenum",
+     "targetId": "pediatric-ct-seg-397_duodenum",
+     "contours": 48,
+     "planes": 44,
+     "matchedBySop": 48,
+     "matchedByZ": 0,
+     "maxResidualMm": 9.999778782798785e-13,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Esophagus",
+     "targetId": "pediatric-ct-seg-397_esophagus",
+     "contours": 31,
+     "planes": 31,
+     "matchedBySop": 31,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Femoral Head Lef",
+     "targetId": "pediatric-ct-seg-397_left-femoral-head",
+     "contours": 42,
+     "planes": 40,
+     "matchedBySop": 42,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Femoral Head Rig",
+     "targetId": "pediatric-ct-seg-397_right-femoral-head",
+     "contours": 41,
+     "planes": 38,
+     "matchedBySop": 41,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Gall Bladder",
+     "targetId": "pediatric-ct-seg-397_gallbladder",
+     "contours": 28,
+     "planes": 28,
+     "matchedBySop": 28,
+     "matchedByZ": 0,
+     "maxResidualMm": 9.999778782798785e-13,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Gonads",
+     "targetId": "pediatric-ct-seg-397_gonads",
+     "contours": 29,
+     "planes": 16,
+     "matchedBySop": 29,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "pediatric-ct-seg-397_heart",
+     "contours": 24,
+     "planes": 24,
+     "matchedBySop": 24,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Kidney Left",
+     "targetId": "pediatric-ct-seg-397_left-kidney",
+     "contours": 56,
+     "planes": 56,
+     "matchedBySop": 56,
+     "matchedByZ": 0,
+     "maxResidualMm": 9.999778782798785e-13,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Kidney Right",
+     "targetId": "pediatric-ct-seg-397_right-kidney",
+     "contours": 55,
+     "planes": 55,
+     "matchedBySop": 55,
+     "matchedByZ": 0,
+     "maxResidualMm": 9.999778782798785e-13,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Large Intestine",
+     "targetId": "pediatric-ct-seg-397_large-intestine",
+     "contours": 306,
+     "planes": 148,
+     "matchedBySop": 306,
+     "matchedByZ": 0,
+     "maxResidualMm": 9.999778782798785e-13,
+     "failures": [],
+     "skipped": {},
+     "holes": 32
+    },
+    {
+     "roi": "Liver",
+     "targetId": "pediatric-ct-seg-397_liver",
+     "contours": 84,
+     "planes": 80,
+     "matchedBySop": 84,
+     "matchedByZ": 0,
+     "maxResidualMm": 9.999778782798785e-13,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Pancreas",
+     "targetId": "pediatric-ct-seg-397_pancreas",
+     "contours": 45,
+     "planes": 37,
+     "matchedBySop": 45,
+     "matchedByZ": 0,
+     "maxResidualMm": 9.999778782798785e-13,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Prostate",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Rectum",
+     "targetId": "pediatric-ct-seg-397_rectum",
+     "contours": 33,
+     "planes": 33,
+     "matchedBySop": 33,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Small Intestine",
+     "targetId": "pediatric-ct-seg-397_small-intestine",
+     "contours": 159,
+     "planes": 95,
+     "matchedBySop": 159,
+     "matchedByZ": 0,
+     "maxResidualMm": 9.999778782798785e-13,
+     "failures": [],
+     "skipped": {},
+     "holes": 23
+    },
+    {
+     "roi": "Spinal Canal",
+     "targetId": "pediatric-ct-seg-397_spinal-canal",
+     "contours": 87,
+     "planes": 87,
+     "matchedBySop": 87,
+     "matchedByZ": 0,
+     "maxResidualMm": 9.999778782798785e-13,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Spleen",
+     "targetId": "pediatric-ct-seg-397_spleen",
+     "contours": 46,
+     "planes": 46,
+     "matchedBySop": 46,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Stomach",
+     "targetId": "pediatric-ct-seg-397_stomach",
+     "contours": 39,
+     "planes": 39,
+     "matchedBySop": 39,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Thymus",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "UteroCervix",
+     "targetId": "pediatric-ct-seg-397_uterus-and-cervix",
+     "contours": 40,
+     "planes": 40,
+     "matchedBySop": 40,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "pediatric-ct-seg-397_left-lung",
+     "contours": 388,
+     "planes": 38,
+     "matchedBySop": 388,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 338
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "pediatric-ct-seg-397_right-lung",
+     "contours": 526,
+     "planes": 39,
+     "matchedBySop": 526,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 483
+    },
+    {
+     "roi": "Skin",
+     "targetId": "pediatric-ct-seg-397_skin-body-outline",
+     "contours": 397,
+     "planes": 218,
+     "matchedBySop": 397,
+     "matchedByZ": 0,
+     "maxResidualMm": 9.999778782798785e-13,
+     "failures": [],
+     "skipped": {},
+     "holes": 111
+    },
+    {
+     "roi": "Bones",
+     "targetId": "pediatric-ct-seg-397_bones-all",
+     "contours": 1268,
+     "planes": 218,
+     "matchedBySop": 1268,
+     "matchedByZ": 0,
+     "maxResidualMm": 9.999778782798785e-13,
+     "failures": [],
+     "skipped": {},
+     "holes": 63
+    }
+   ],
+   "emptyRois": [
+    "Prostate",
+    "Thymus"
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.22368238767280808957472286984801032272",
+   "subject": "tcia:Pediatric-CT-SEG:Pediatric-CT-SEG-397"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.228957087838488416587860744093762966394",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.324403936596612444539010926326866818291",
+   "rois": [
+    {
+     "roi": "UteroCervix",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Thymus",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Stomach",
+     "targetId": "pediatric-ct-seg-3555a98f_stomach",
+     "contours": 35,
+     "planes": 33,
+     "matchedBySop": 35,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Spleen",
+     "targetId": "pediatric-ct-seg-3555a98f_spleen",
+     "contours": 41,
+     "planes": 41,
+     "matchedBySop": 41,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Spinal Canal",
+     "targetId": "pediatric-ct-seg-3555a98f_spinal-canal",
+     "contours": 101,
+     "planes": 101,
+     "matchedBySop": 101,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Small Intestine",
+     "targetId": "pediatric-ct-seg-3555a98f_small-intestine",
+     "contours": 168,
+     "planes": 127,
+     "matchedBySop": 168,
+     "matchedByZ": 0,
+     "maxResidualMm": 1.000088900582341e-11,
+     "failures": [],
+     "skipped": {},
+     "holes": 1
+    },
+    {
+     "roi": "Rectum",
+     "targetId": "pediatric-ct-seg-3555a98f_rectum",
+     "contours": 48,
+     "planes": 48,
+     "matchedBySop": 48,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Prostate",
+     "targetId": "pediatric-ct-seg-3555a98f_prostate",
+     "contours": 11,
+     "planes": 11,
+     "matchedBySop": 11,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Pancreas",
+     "targetId": "pediatric-ct-seg-3555a98f_pancreas",
+     "contours": 42,
+     "planes": 39,
+     "matchedBySop": 42,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Liver",
+     "targetId": "pediatric-ct-seg-3555a98f_liver",
+     "contours": 81,
+     "planes": 78,
+     "matchedBySop": 81,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Large Intestine",
+     "targetId": "pediatric-ct-seg-3555a98f_large-intestine",
+     "contours": 307,
+     "planes": 129,
+     "matchedBySop": 307,
+     "matchedByZ": 0,
+     "maxResidualMm": 1.000088900582341e-11,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Kidney Right",
+     "targetId": "pediatric-ct-seg-3555a98f_right-kidney",
+     "contours": 54,
+     "planes": 54,
+     "matchedBySop": 54,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Kidney Left",
+     "targetId": "pediatric-ct-seg-3555a98f_left-kidney",
+     "contours": 59,
+     "planes": 59,
+     "matchedBySop": 59,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "pediatric-ct-seg-3555a98f_heart",
+     "contours": 33,
+     "planes": 33,
+     "matchedBySop": 33,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Gonads",
+     "targetId": "pediatric-ct-seg-3555a98f_gonads",
+     "contours": 52,
+     "planes": 25,
+     "matchedBySop": 52,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 25
+    },
+    {
+     "roi": "Gall Bladder",
+     "targetId": "pediatric-ct-seg-3555a98f_gallbladder",
+     "contours": 33,
+     "planes": 33,
+     "matchedBySop": 33,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Femoral Head Rig",
+     "targetId": "pediatric-ct-seg-3555a98f_right-femoral-head",
+     "contours": 42,
+     "planes": 38,
+     "matchedBySop": 42,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Femoral Head Lef",
+     "targetId": "pediatric-ct-seg-3555a98f_left-femoral-head",
+     "contours": 41,
+     "planes": 37,
+     "matchedBySop": 41,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Esophagus",
+     "targetId": "pediatric-ct-seg-3555a98f_esophagus",
+     "contours": 38,
+     "planes": 38,
+     "matchedBySop": 38,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Duodenum",
+     "targetId": "pediatric-ct-seg-3555a98f_duodenum",
+     "contours": 43,
+     "planes": 42,
+     "matchedBySop": 43,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Breast Right",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Breast Left",
+     "targetId": null,
+     "contours": 0,
+     "planes": 0,
+     "matchedBySop": 0,
+     "matchedByZ": 0,
+     "maxResidualMm": null,
+     "failures": [],
+     "skipped": {},
+     "holes": 0,
+     "empty": true
+    },
+    {
+     "roi": "Bladder",
+     "targetId": "pediatric-ct-seg-3555a98f_urinary-bladder",
+     "contours": 48,
+     "planes": 48,
+     "matchedBySop": 48,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Adrenal Right",
+     "targetId": "pediatric-ct-seg-3555a98f_right-adrenal-gland",
+     "contours": 7,
+     "planes": 7,
+     "matchedBySop": 7,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Adrenal Left",
+     "targetId": "pediatric-ct-seg-3555a98f_left-adrenal-gland",
+     "contours": 12,
+     "planes": 10,
+     "matchedBySop": 12,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 2
+    },
+    {
+     "roi": "Skin",
+     "targetId": "pediatric-ct-seg-3555a98f_skin-body-outline",
+     "contours": 491,
+     "planes": 255,
+     "matchedBySop": 491,
+     "matchedByZ": 0,
+     "maxResidualMm": 1.000088900582341e-11,
+     "failures": [],
+     "skipped": {},
+     "holes": 136
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "pediatric-ct-seg-3555a98f_right-lung",
+     "contours": 350,
+     "planes": 51,
+     "matchedBySop": 350,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 294
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "pediatric-ct-seg-3555a98f_left-lung",
+     "contours": 308,
+     "planes": 46,
+     "matchedBySop": 308,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 260
+    },
+    {
+     "roi": "Bones",
+     "targetId": "pediatric-ct-seg-3555a98f_bones-all",
+     "contours": 1675,
+     "planes": 255,
+     "matchedBySop": 1675,
+     "matchedByZ": 0,
+     "maxResidualMm": 1.000088900582341e-11,
+     "failures": [],
+     "skipped": {},
+     "holes": 138
+    }
+   ],
+   "emptyRois": [
+    "Breast Left",
+    "Breast Right",
+    "Thymus",
+    "UteroCervix"
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.290118486927242249313179961591249772078",
+   "subject": "tcia:Pediatric-CT-SEG:Pediatric-CT-SEG-3555A98F"
+  },
+  {
+   "study": "1.2.826.0.1.3680043.10.474.419639.295799588151979571297582319164",
+   "annotations": 6,
+   "localizedAnnotations": 0,
+   "groups": {
+    "Tiger": [
+     "Moderate Opacities (3-4 lung zones)",
+     "Typical Appearance"
+    ],
+    "Dragon": [
+     "Moderate Opacities (3-4 lung zones)",
+     "Typical Appearance"
+    ],
+    "Bear": [
+     "Moderate Opacities (3-4 lung zones)",
+     "Typical Appearance"
+    ]
+   },
+   "sops": 1,
+   "referencedSeries": "1.2.826.0.1.3680043.10.474.419639.230512674622477364943191211641",
+   "kind": "ricord_labels",
+   "subject": "tcia:MIDRC-RICORD-1C:MIDRC-RICORD-1C-419639-000214"
+  },
+  {
+   "study": "1.2.826.0.1.3680043.10.474.7651286610632850833518327106715736422",
+   "annotations": 6,
+   "localizedAnnotations": 0,
+   "groups": {
+    "Tiger": [
+     "Moderate Opacities (3-4 lung zones)",
+     "Typical Appearance"
+    ],
+    "Dragon": [
+     "Moderate Opacities (3-4 lung zones)",
+     "Typical Appearance"
+    ],
+    "Bear": [
+     "Typical Appearance",
+     "Moderate Opacities (3-4 lung zones)"
+    ]
+   },
+   "sops": 1,
+   "referencedSeries": "1.2.826.0.1.3680043.10.474.3020593458097871959694957577346629955",
+   "kind": "ricord_labels",
+   "subject": "tcia:MIDRC-RICORD-1C:MIDRC-RICORD-1C-SITE2-000212"
+  },
+  {
+   "study": "1.2.826.0.1.3680043.10.474.2273473778410388461585430808655880939",
+   "annotations": 3,
+   "localizedAnnotations": 0,
+   "groups": {
+    "Dragon": [
+     "Negative for Pneumonia"
+    ],
+    "Tiger": [
+     "Negative for Pneumonia"
+    ],
+    "Bear": [
+     "Negative for Pneumonia"
+    ]
+   },
+   "sops": 1,
+   "referencedSeries": "1.2.826.0.1.3680043.10.474.9841104254264699083239129715871847932",
+   "kind": "ricord_labels",
+   "subject": "tcia:MIDRC-RICORD-1C:MIDRC-RICORD-1C-SITE2-000202"
+  },
+  {
+   "study": "1.2.826.0.1.3680043.10.474.2456889762885810975532649259136856889",
+   "annotations": 6,
+   "localizedAnnotations": 0,
+   "groups": {
+    "Dragon": [
+     "Moderate Opacities (3-4 lung zones)",
+     "Indeterminate Appearance"
+    ],
+    "Tiger": [
+     "Moderate Opacities (3-4 lung zones)",
+     "Indeterminate Appearance"
+    ],
+    "Bear": [
+     "Moderate Opacities (3-4 lung zones)",
+     "Indeterminate Appearance"
+    ]
+   },
+   "sops": 1,
+   "referencedSeries": "1.2.826.0.1.3680043.10.474.2882206563070051157730311026231748417",
+   "kind": "ricord_labels",
+   "subject": "tcia:MIDRC-RICORD-1C:MIDRC-RICORD-1C-SITE2-000267"
+  },
+  {
+   "study": "1.2.826.0.1.3680043.10.474.419639.233028434826179089862595915270",
+   "annotations": 6,
+   "localizedAnnotations": 0,
+   "groups": {
+    "Dragon": [
+     "Mild Opacities  (1-2 lung zones)",
+     "Atypical Appearance"
+    ],
+    "Tiger": [
+     "Mild Opacities  (1-2 lung zones)",
+     "Atypical Appearance"
+    ],
+    "Bear": [
+     "Mild Opacities  (1-2 lung zones)",
+     "Atypical Appearance"
+    ]
+   },
+   "sops": 1,
+   "referencedSeries": "1.2.826.0.1.3680043.10.474.419639.894800582410504473167660698385",
+   "kind": "ricord_labels",
+   "subject": "tcia:MIDRC-RICORD-1C:MIDRC-RICORD-1C-419639-001571"
+  },
+  {
+   "study": "1.2.826.0.1.3680043.10.474.419639.253091310805227003422232774702",
+   "annotations": 6,
+   "localizedAnnotations": 0,
+   "groups": {
+    "Tiger": [
+     "Mild Opacities  (1-2 lung zones)",
+     "Indeterminate Appearance"
+    ],
+    "Dragon": [
+     "Mild Opacities  (1-2 lung zones)",
+     "Indeterminate Appearance"
+    ],
+    "Bear": [
+     "Indeterminate Appearance",
+     "Mild Opacities  (1-2 lung zones)"
+    ]
+   },
+   "sops": 1,
+   "referencedSeries": "1.2.826.0.1.3680043.10.474.419639.848391758779097642315941156268",
+   "kind": "ricord_labels",
+   "subject": "tcia:MIDRC-RICORD-1C:MIDRC-RICORD-1C-419639-001735"
+  },
+  {
+   "xml": "tcia-lidc-xml/187/012.xml",
+   "readingSessions": 4,
+   "readerIds": [
+    "anon",
+    "anon",
+    "anon",
+    "anon"
+   ],
+   "outlinedAnnotations": 7,
+   "clusters": 2,
+   "targets": 2,
+   "excludedSingleReader": [],
+   "smallNoduleMarks": 7,
+   "nonNodules": 15,
+   "roiSopNotInSeries": 0,
+   "linkTolMm": 2.75,
+   "linksBlockedSameReader": 0,
+   "nodules": [
+    {
+     "targetId": "lidc-idri-0282_nodule-1",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -92.3,
+      49.3,
+      -180.0
+     ],
+     "maxInPlaneExtentMm": [
+      9.2,
+      8.5,
+      7.9,
+      8.2
+     ],
+     "malignancy": [
+      2,
+      3,
+      3,
+      3
+     ],
+     "planes": 12
+    },
+    {
+     "targetId": "lidc-idri-0282_nodule-2",
+     "readers": 3,
+     "annotations": 3,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      102.3,
+      60.3,
+      -151.4
+     ],
+     "maxInPlaneExtentMm": [
+      7.3,
+      6.9,
+      6.0
+     ],
+     "malignancy": [
+      3,
+      2,
+      3
+     ],
+     "planes": 6
+    }
+   ],
+   "kind": "lidc_xml",
+   "subject": "tcia:LIDC-IDRI:LIDC-IDRI-0282"
+  },
+  {
+   "xml": "tcia-lidc-xml/187/026.xml",
+   "readingSessions": 4,
+   "readerIds": [
+    "anon",
+    "anon",
+    "anon",
+    "anon"
+   ],
+   "outlinedAnnotations": 7,
+   "clusters": 3,
+   "targets": 2,
+   "excludedSingleReader": [
+    {
+     "readers": 1,
+     "annotations": 1,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      89.9,
+      0.3,
+      -129.0
+     ],
+     "maxInPlaneExtentMm": [
+      4.8
+     ],
+     "malignancy": [
+      2
+     ]
+    }
+   ],
+   "smallNoduleMarks": 8,
+   "nonNodules": 9,
+   "roiSopNotInSeries": 0,
+   "linkTolMm": 2.75,
+   "linksBlockedSameReader": 0,
+   "nodules": [
+    {
+     "targetId": "lidc-idri-0289_nodule-1",
+     "readers": 3,
+     "annotations": 3,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      52.7,
+      51.2,
+      -206.5
+     ],
+     "maxInPlaneExtentMm": [
+      8.0,
+      9.2,
+      7.4
+     ],
+     "malignancy": [
+      2,
+      2,
+      3
+     ],
+     "planes": 3
+    },
+    {
+     "targetId": "lidc-idri-0289_nodule-2",
+     "readers": 3,
+     "annotations": 3,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -102.2,
+      -96.7,
+      -138.6
+     ],
+     "maxInPlaneExtentMm": [
+      37.3,
+      32.3,
+      35.4
+     ],
+     "malignancy": [
+      2,
+      2,
+      5
+     ],
+     "planes": 27
+    }
+   ],
+   "kind": "lidc_xml",
+   "subject": "tcia:LIDC-IDRI:LIDC-IDRI-0289"
+  },
+  {
+   "xml": "tcia-lidc-xml/185/102.xml",
+   "readingSessions": 4,
+   "readerIds": [
+    "-607389856",
+    "273861841",
+    "-1051178910",
+    "-1804503053"
+   ],
+   "outlinedAnnotations": 14,
+   "clusters": 4,
+   "targets": 4,
+   "excludedSingleReader": [],
+   "smallNoduleMarks": 5,
+   "nonNodules": 2,
+   "roiSopNotInSeries": 0,
+   "linkTolMm": 2.75,
+   "linksBlockedSameReader": 0,
+   "nodules": [
+    {
+     "targetId": "lidc-idri-0018_nodule-1",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      132.7,
+      16.7,
+      -130.1
+     ],
+     "maxInPlaneExtentMm": [
+      12.5,
+      11.0,
+      10.8,
+      12.0
+     ],
+     "malignancy": [
+      4,
+      4,
+      3,
+      1
+     ],
+     "planes": 18
+    },
+    {
+     "targetId": "lidc-idri-0018_nodule-2",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      83.3,
+      35.7,
+      -47.8
+     ],
+     "maxInPlaneExtentMm": [
+      22.3,
+      20.8,
+      21.1,
+      23.1
+     ],
+     "malignancy": [
+      5,
+      5,
+      5,
+      3
+     ],
+     "planes": 24
+    },
+    {
+     "targetId": "lidc-idri-0018_nodule-3",
+     "readers": 3,
+     "annotations": 3,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -98.8,
+      26.0,
+      -170.4
+     ],
+     "maxInPlaneExtentMm": [
+      6.3,
+      5.5,
+      5.7
+     ],
+     "malignancy": [
+      2,
+      3,
+      2
+     ],
+     "planes": 7
+    },
+    {
+     "targetId": "lidc-idri-0018_nodule-4",
+     "readers": 3,
+     "annotations": 3,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      92.9,
+      -19.0,
+      -120.1
+     ],
+     "maxInPlaneExtentMm": [
+      9.2,
+      6.8,
+      8.3
+     ],
+     "malignancy": [
+      3,
+      3,
+      2
+     ],
+     "planes": 6
+    }
+   ],
+   "kind": "lidc_xml",
+   "subject": "tcia:LIDC-IDRI:LIDC-IDRI-0018"
+  },
+  {
+   "xml": "tcia-lidc-xml/186/056.xml",
+   "readingSessions": 4,
+   "readerIds": [
+    "anon",
+    "anon",
+    "anon",
+    "anon"
+   ],
+   "outlinedAnnotations": 16,
+   "clusters": 8,
+   "targets": 3,
+   "excludedSingleReader": [
+    {
+     "readers": 1,
+     "annotations": 1,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -47.8,
+      109.3,
+      -256.8
+     ],
+     "maxInPlaneExtentMm": [
+      8.5
+     ],
+     "malignancy": [
+      2
+     ]
+    },
+    {
+     "readers": 1,
+     "annotations": 1,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -88.8,
+      111.3,
+      -200.8
+     ],
+     "maxInPlaneExtentMm": [
+      5.9
+     ],
+     "malignancy": [
+      3
+     ]
+    },
+    {
+     "readers": 1,
+     "annotations": 1,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      82.3,
+      115.4,
+      -171.8
+     ],
+     "maxInPlaneExtentMm": [
+      4.2
+     ],
+     "malignancy": [
+      2
+     ]
+    },
+    {
+     "readers": 1,
+     "annotations": 1,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      85.5,
+      24.3,
+      -151.8
+     ],
+     "maxInPlaneExtentMm": [
+      5.5
+     ],
+     "malignancy": [
+      2
+     ]
+    },
+    {
+     "readers": 1,
+     "annotations": 1,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      -31.3,
+      88.8,
+      -137.7
+     ],
+     "maxInPlaneExtentMm": [
+      6.4
+     ],
+     "malignancy": [
+      2
+     ]
+    }
+   ],
+   "smallNoduleMarks": 58,
+   "nonNodules": 18,
+   "roiSopNotInSeries": 0,
+   "linkTolMm": 2.75,
+   "linksBlockedSameReader": 0,
+   "nodules": [
+    {
+     "targetId": "lidc-idri-0149_nodule-1",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      101.9,
+      -58.5,
+      -205.3
+     ],
+     "maxInPlaneExtentMm": [
+      7.4,
+      6.4,
+      6.3,
+      6.7
+     ],
+     "malignancy": [
+      2,
+      3,
+      2,
+      3
+     ],
+     "planes": 9
+    },
+    {
+     "targetId": "lidc-idri-0149_nodule-2",
+     "readers": 4,
+     "annotations": 4,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      75.6,
+      111.3,
+      -181.9
+     ],
+     "maxInPlaneExtentMm": [
+      6.7,
+      7.2,
+      6.7,
+      7.2
+     ],
+     "malignancy": [
+      1,
+      2,
+      3,
+      3
+     ],
+     "planes": 12
+    },
+    {
+     "targetId": "lidc-idri-0149_nodule-3",
+     "readers": 3,
+     "annotations": 3,
+     "sameReaderDuplicates": 0,
+     "centroidLps": [
+      48.8,
+      118.2,
+      -249.6
+     ],
+     "maxInPlaneExtentMm": [
+      11.1,
+      10.5,
+      10.2
+     ],
+     "malignancy": [
+      1,
+      3,
+      3
+     ],
+     "planes": 8
+    }
+   ],
+   "kind": "lidc_xml",
+   "subject": "tcia:LIDC-IDRI:LIDC-IDRI-0149"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.7014.4598.284338872489987689312964017709",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.7014.4598.335375068555840597820636886710",
+   "rois": [
+    {
+     "roi": "SpinalCord",
+     "targetId": "lctsc-train-s1-007_spinal-cord",
+     "contours": 122,
+     "planes": 122,
+     "matchedBySop": 122,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "lctsc-train-s1-007_right-lung",
+     "contours": 80,
+     "planes": 72,
+     "matchedBySop": 80,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "lctsc-train-s1-007_left-lung",
+     "contours": 75,
+     "planes": 68,
+     "matchedBySop": 75,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "lctsc-train-s1-007_heart",
+     "contours": 34,
+     "planes": 34,
+     "matchedBySop": 34,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Esophagus",
+     "targetId": "lctsc-train-s1-007_esophagus",
+     "contours": 77,
+     "planes": 77,
+     "matchedBySop": 77,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "emptyRois": [],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.284338872489987689312964017709",
+   "subject": "tcia:LCTSC:LCTSC-Train-S1-007"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.7014.4598.159560212330342118667332627743",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.7014.4598.713431881590243788049142773123",
+   "rois": [
+    {
+     "roi": "Esophagus",
+     "targetId": "lctsc-train-s2-004_esophagus",
+     "contours": 104,
+     "planes": 104,
+     "matchedBySop": 104,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "lctsc-train-s2-004_heart",
+     "contours": 38,
+     "planes": 38,
+     "matchedBySop": 38,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "lctsc-train-s2-004_left-lung",
+     "contours": 111,
+     "planes": 104,
+     "matchedBySop": 111,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "lctsc-train-s2-004_right-lung",
+     "contours": 109,
+     "planes": 100,
+     "matchedBySop": 109,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "SpinalCord",
+     "targetId": "lctsc-train-s2-004_spinal-cord",
+     "contours": 150,
+     "planes": 150,
+     "matchedBySop": 150,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "emptyRois": [],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.159560212330342118667332627743",
+   "subject": "tcia:LCTSC:LCTSC-Train-S2-004"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.7014.4598.950535477875915240336278596996",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.7014.4598.513033543073296044615683479554",
+   "rois": [
+    {
+     "roi": "Esophagus",
+     "targetId": "lctsc-test-s3-202_esophagus",
+     "contours": 73,
+     "planes": 73,
+     "matchedBySop": 73,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "lctsc-test-s3-202_heart",
+     "contours": 27,
+     "planes": 27,
+     "matchedBySop": 27,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "SpinalCord",
+     "targetId": "lctsc-test-s3-202_spinal-cord",
+     "contours": 103,
+     "planes": 103,
+     "matchedBySop": 103,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "lctsc-test-s3-202_left-lung",
+     "contours": 80,
+     "planes": 77,
+     "matchedBySop": 80,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "lctsc-test-s3-202_right-lung",
+     "contours": 75,
+     "planes": 74,
+     "matchedBySop": 75,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "emptyRois": [],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.950535477875915240336278596996",
+   "subject": "tcia:LCTSC:LCTSC-Test-S3-202"
+  }
+ ]
+}

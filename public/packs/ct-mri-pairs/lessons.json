@@ -1,0 +1,893 @@
+{
+ "schemaVersion": 1,
+ "packId": "ct-mri-pairs",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "ctmri-sts-033",
+   "packId": "ct-mri-pairs",
+   "neutralTitle": "Patient N · MRI + CT of an extremity",
+   "learnTitle": "Soft-tissue mass on MRI (T1, T2 fat-suppressed) and CT, same patient (STS_033)",
+   "subjectKey": "tcia:Soft-tissue-Sarcoma:STS_033",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.304028740834660448708300801827",
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.374101138583106903679226367573"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.311541396855223962525824591318",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": "Adult enrolled in a soft-tissue sarcoma imaging research collection (source description).",
+   "contextSource": "TCIA Soft-tissue-Sarcoma collection description",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch20-o02",
+    "ch20-o03"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 261,
+     "printed": "241",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.8",
+     "sectionId": null
+    },
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.5",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Radiotherapy contours from the source: gross tumour (mass) and a larger volume including surrounding oedema, provided separately on T1, T2 fat-suppressed and CT. MRI and CT were acquired the same day; the CT is the CT component of a PET/CT, not a dedicated diagnostic CT. The series are NOT registered — each panel has independent controls. Contours are radiotherapy target definitions, not a histological boundary.",
+   "learnNotes": "T1 shows anatomy and fat (bright); the fluid-sensitive sequence (T2 fat-suppressed or STIR) makes oedema and most tumours bright while fat goes dark. Compare the same level across sequences with the two-up layout, then find the mass on CT, where soft-tissue contrast is much lower."
+  },
+  {
+   "id": "ctmri-sts-042",
+   "packId": "ct-mri-pairs",
+   "neutralTitle": "Patient O · MRI + CT of an extremity",
+   "learnTitle": "Soft-tissue mass on MRI (T1, STIR (inversion recovery)) and CT, same patient (STS_042)",
+   "subjectKey": "tcia:Soft-tissue-Sarcoma:STS_042",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.144141336423635557665765813657",
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.929223508054714369989268962522"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.330977326656436942557941426811",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": "Adult enrolled in a soft-tissue sarcoma imaging research collection (source description).",
+   "contextSource": "TCIA Soft-tissue-Sarcoma collection description",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch20-o02",
+    "ch20-o03"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 261,
+     "printed": "241",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.8",
+     "sectionId": null
+    },
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.5",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Radiotherapy contours from the source: gross tumour (mass) and a larger volume including surrounding oedema, provided separately on T1, STIR (inversion recovery) and CT. MRI and CT were acquired 18 days apart; the CT is the CT component of a PET/CT, not a dedicated diagnostic CT. The series are NOT registered — each panel has independent controls. Contours are radiotherapy target definitions, not a histological boundary.",
+   "learnNotes": "T1 shows anatomy and fat (bright); the fluid-sensitive sequence (T2 fat-suppressed or STIR) makes oedema and most tumours bright while fat goes dark. Compare the same level across sequences with the two-up layout, then find the mass on CT, where soft-tissue contrast is much lower."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "ctmri-sts-033:find-t1",
+   "caseId": "ctmri-sts-033",
+   "type": "locate_finding",
+   "title": "Find the mass on T1",
+   "prompt": "Scroll through the T1 series and mark the centre of the soft-tissue mass.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.311541396855223962525824591318"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.311541396855223962525824591318",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "sts-033_t1-gtv-mass",
+     "name": "Mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 3.8,
+    "inPlaneToleranceMm": 4
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare muscles compartment by compartment; look for one that is enlarged or has an abnormal internal signal."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "sts-033_t1-gtv-mass"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "On T1 a soft-tissue mass is often similar to or slightly different from muscle; its outline and mass effect give it away. T1 is also where fat (bright) is identified.",
+   "bookAnchors": [
+    {
+     "physical": 259,
+     "printed": "239",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ctmri-sts-033:fluid-seq",
+   "caseId": "ctmri-sts-033",
+   "type": "compare_appearances",
+   "title": "Which sequence shows oedema best?",
+   "prompt": "Compare the T1 series with the second MRI series in two-up layout. On which series is the abnormal tissue around the mass most conspicuous, and why?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.311541396855223962525824591318",
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.338923641901222312865482201539"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.338923641901222312865482201539",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "fluid",
+      "text": "The T2 fat-suppressed series — fluid and oedema are bright and fat is suppressed",
+      "correct": true,
+      "why": "Fluid-sensitive sequences with fat suppression make water-rich tissue stand out against dark fat."
+     },
+     {
+      "id": "t1",
+      "text": "The T1 series — oedema is brightest on T1",
+      "correct": false,
+      "why": "Oedema is low to intermediate on T1; T1 is best for fat and anatomy."
+     },
+     {
+      "id": "same",
+      "text": "They look the same",
+      "correct": false,
+      "why": "Look at subcutaneous fat: bright on T1, dark on the fat-suppressed series — they are clearly different weightings."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check subcutaneous fat first: bright or dark on each series?"
+    }
+   ],
+   "explanation": "Fat suppression removes the bright fat signal so that water-containing tissue (oedema, many tumours, fluid) is conspicuous. Echo/repetition times are missing from these headers, so weighting is judged from tissue appearance here.",
+   "bookAnchors": [
+    {
+     "physical": 261,
+     "printed": "241",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.8",
+     "sectionId": null
+    },
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.7",
+     "sectionId": null
+    },
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o02",
+    "ch20-o03"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "cross_modality"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ctmri-sts-033:oedema",
+   "caseId": "ctmri-sts-033",
+   "type": "locate_finding",
+   "title": "Mark the surrounding oedema",
+   "prompt": "On the T2 fat-suppressed series, mark the oedema around the mass (not the mass itself) with a named arrow 'Oedema', and the mass with 'Mass'.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.338923641901222312865482201539"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.338923641901222312865482201539",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "sts-033_t2fs-gtv-mass",
+     "name": "Mass",
+     "required": true
+    },
+    {
+     "targetId": "sts-033_t2fs-gtv-edema",
+     "name": "Oedema",
+     "acceptedNames": [
+      "Edema",
+      "Oedema",
+      "Peritumoral edema"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.8,
+    "inPlaneToleranceMm": 3,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Oedema is the feathery bright signal spreading along fascial planes beyond the mass edge."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The source 'oedema' contour includes the mass, so an arrow inside the mass also lands inside it — that is why this task is self-reviewed rather than auto-scored: compare your arrows with both outlines yourself.",
+   "bookAnchors": [
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.5",
+     "sectionId": null
+    },
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o03"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ctmri-sts-033:find-ct",
+   "caseId": "ctmri-sts-033",
+   "type": "correlate_modalities",
+   "title": "Find the same mass on CT",
+   "prompt": "Now find the same mass on the CT (acquired the same day, not registered to the MRI) and mark its centre.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.284196742910356500446890046376",
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.311541396855223962525824591318"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.284196742910356500446890046376",
+    "slice": "middle",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "sts-033_ct-gtv-mass",
+     "name": "Mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.9,
+    "inPlaneToleranceMm": 5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use bony landmarks you saw on MRI (which bone, which compartment) to find the same level on CT; the slice numbers do not correspond."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "sts-033_ct-gtv-mass"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "CT shows soft-tissue masses with less contrast than MRI; mass effect and fat-plane effacement help. The two studies are independent acquisitions, so navigation relies on anatomy, not on synchronised slices.",
+   "bookAnchors": [
+    {
+     "physical": 261,
+     "printed": "241",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.8",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o02"
+   ],
+   "skillDimensions": [
+    "cross_modality",
+    "finding_localization"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ctmri-sts-033:oral",
+   "caseId": "ctmri-sts-033",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a haematoma or a benign soft-tissue tumour such as a lipoma is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.311541396855223962525824591318",
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.338923641901222312865482201539",
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.284196742910356500446890046376"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.311541396855223962525824591318",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (imaging cannot give the histological grade)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a haematoma or a benign soft-tissue tumour such as a lipoma) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 261,
+     "printed": "241",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.8",
+     "sectionId": null
+    },
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o02",
+    "ch20-o03"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ctmri-sts-042:find-t1",
+   "caseId": "ctmri-sts-042",
+   "type": "locate_finding",
+   "title": "Find the mass on T1",
+   "prompt": "Scroll through the T1 series and mark the centre of the soft-tissue mass.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.330977326656436942557941426811"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.330977326656436942557941426811",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "sts-042_t1-gtv-mass",
+     "name": "Mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 4.3,
+    "inPlaneToleranceMm": 4
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare muscles compartment by compartment; look for one that is enlarged or has an abnormal internal signal."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "sts-042_t1-gtv-mass"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "On T1 a soft-tissue mass is often similar to or slightly different from muscle; its outline and mass effect give it away. T1 is also where fat (bright) is identified.",
+   "bookAnchors": [
+    {
+     "physical": 259,
+     "printed": "239",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ctmri-sts-042:fluid-seq",
+   "caseId": "ctmri-sts-042",
+   "type": "compare_appearances",
+   "title": "Which sequence shows oedema best?",
+   "prompt": "Compare the T1 series with the second MRI series in two-up layout. On which series is the abnormal tissue around the mass most conspicuous, and why?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.330977326656436942557941426811",
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.977718656954972409264072864973"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.977718656954972409264072864973",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "fluid",
+      "text": "The STIR (inversion recovery) series — fluid and oedema are bright and fat is suppressed",
+      "correct": true,
+      "why": "Fluid-sensitive sequences with fat suppression make water-rich tissue stand out against dark fat."
+     },
+     {
+      "id": "t1",
+      "text": "The T1 series — oedema is brightest on T1",
+      "correct": false,
+      "why": "Oedema is low to intermediate on T1; T1 is best for fat and anatomy."
+     },
+     {
+      "id": "same",
+      "text": "They look the same",
+      "correct": false,
+      "why": "Look at subcutaneous fat: bright on T1, dark on the fat-suppressed series — they are clearly different weightings."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check subcutaneous fat first: bright or dark on each series?"
+    }
+   ],
+   "explanation": "Fat suppression removes the bright fat signal so that water-containing tissue (oedema, many tumours, fluid) is conspicuous. Echo/repetition times are missing from these headers, so weighting is judged from tissue appearance here.",
+   "bookAnchors": [
+    {
+     "physical": 261,
+     "printed": "241",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.8",
+     "sectionId": null
+    },
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.7",
+     "sectionId": null
+    },
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o02",
+    "ch20-o03"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "cross_modality"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ctmri-sts-042:oedema",
+   "caseId": "ctmri-sts-042",
+   "type": "locate_finding",
+   "title": "Mark the surrounding oedema",
+   "prompt": "On the STIR (inversion recovery) series, mark the oedema around the mass (not the mass itself) with a named arrow 'Oedema', and the mass with 'Mass'.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.977718656954972409264072864973"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.977718656954972409264072864973",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "sts-042_stir-gtv-mass",
+     "name": "Mass",
+     "required": true
+    },
+    {
+     "targetId": "sts-042_stir-gtv-edema",
+     "name": "Oedema",
+     "acceptedNames": [
+      "Edema",
+      "Oedema",
+      "Peritumoral edema"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 4.3,
+    "inPlaneToleranceMm": 3,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Oedema is the feathery bright signal spreading along fascial planes beyond the mass edge."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The source 'oedema' contour includes the mass, so an arrow inside the mass also lands inside it — that is why this task is self-reviewed rather than auto-scored: compare your arrows with both outlines yourself.",
+   "bookAnchors": [
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.5",
+     "sectionId": null
+    },
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o03"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ctmri-sts-042:find-ct",
+   "caseId": "ctmri-sts-042",
+   "type": "correlate_modalities",
+   "title": "Find the same mass on CT",
+   "prompt": "Now find the same mass on the CT (acquired 18 days apart, not registered to the MRI) and mark its centre.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.794918299994114817879846530899",
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.330977326656436942557941426811"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.794918299994114817879846530899",
+    "slice": "middle",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "sts-042_ct-gtv-mass",
+     "name": "Mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.9,
+    "inPlaneToleranceMm": 5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use bony landmarks you saw on MRI (which bone, which compartment) to find the same level on CT; the slice numbers do not correspond."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "sts-042_ct-gtv-mass"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "CT shows soft-tissue masses with less contrast than MRI; mass effect and fat-plane effacement help. The two studies are independent acquisitions, so navigation relies on anatomy, not on synchronised slices.",
+   "bookAnchors": [
+    {
+     "physical": 261,
+     "printed": "241",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.8",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o02"
+   ],
+   "skillDimensions": [
+    "cross_modality",
+    "finding_localization"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ctmri-sts-042:oral",
+   "caseId": "ctmri-sts-042",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a haematoma or a benign soft-tissue tumour such as a lipoma is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.330977326656436942557941426811",
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.977718656954972409264072864973",
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.794918299994114817879846530899"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.330977326656436942557941426811",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (imaging cannot give the histological grade)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a haematoma or a benign soft-tissue tumour such as a lipoma) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 261,
+     "printed": "241",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.8",
+     "sectionId": null
+    },
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o02",
+    "ch20-o03"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

@@ -1,0 +1,223 @@
+{
+ "packId": "starter",
+ "generatedAt": "2026-10-27T16:34:44Z",
+ "packBytesExcludingLessons": 33548143,
+ "budgetBytes": 80000000,
+ "series": [
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+   "short": "ct-5d36abbb61",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 131,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 131
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 20695486,
+   "rawBytes": 69100992
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842",
+   "short": "cr-e62044dc29",
+   "modality": "CR",
+   "role": "diagnostic",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "original": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 7535558,
+   "rawBytes": 7535558
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1891326720085238222508091238377",
+   "short": "ct-3974dd6ac7",
+   "modality": "CT",
+   "role": "scout",
+   "instances": 1,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "original": 1
+   },
+   "maxStackShearDeg": null,
+   "maxSpacingDeviation": null,
+   "bytes": 527850,
+   "rawBytes": 527850
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680",
+   "short": "mr-cd822c0551",
+   "modality": "MR",
+   "role": "diagnostic",
+   "instances": 19,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 19
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 2.081407079579378e-06,
+   "bytes": 2450192,
+   "rawBytes": 5679226
+  }
+ ],
+ "annotations": [
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.7014.4598.341336227717513187174447696766",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+   "rois": [
+    {
+     "roi": "Esophagus",
+     "targetId": "lctsc-train-s1-012_esophagus",
+     "contours": 62,
+     "planes": 62,
+     "matchedBySop": 62,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "lctsc-train-s1-012_heart",
+     "contours": 34,
+     "planes": 34,
+     "matchedBySop": 34,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "lctsc-train-s1-012_left-lung",
+     "contours": 90,
+     "planes": 75,
+     "matchedBySop": 90,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "lctsc-train-s1-012_right-lung",
+     "contours": 94,
+     "planes": 78,
+     "matchedBySop": 94,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "SpinalCord",
+     "targetId": "lctsc-train-s1-012_spinal-cord",
+     "contours": 106,
+     "planes": 106,
+     "matchedBySop": 106,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.341336227717513187174447696766",
+   "subject": "tcia:LCTSC:LCTSC-Train-S1-012"
+  },
+  {
+   "segSop": "1.2.276.0.7230010.3.1.4.1070885483.15960.1599120307.702",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {},
+   "contentCreator": "Reader1",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "Peripheral zone of prostate",
+     "targetId": "prostatex-0004_prostate-peripheral-zone",
+     "algorithmType": "MANUAL",
+     "planes": 14,
+     "framesTotal": 19,
+     "emptyFrames": 5,
+     "byRef": 14,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 3.867398472721364e-05,
+     "resampledFrames": 0,
+     "holes": 2
+    },
+    {
+     "segment": 2,
+     "label": "Transition zone of prostate",
+     "targetId": "prostatex-0004_prostate-transition-zone",
+     "algorithmType": "MANUAL",
+     "planes": 15,
+     "framesTotal": 19,
+     "emptyFrames": 4,
+     "byRef": 15,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 4.712154936430279e-05,
+     "resampledFrames": 0,
+     "holes": 0
+    },
+    {
+     "segment": 3,
+     "label": "Prostatic Urethra",
+     "targetId": "prostatex-0004_prostatic-urethra",
+     "algorithmType": "MANUAL",
+     "planes": 7,
+     "framesTotal": 19,
+     "emptyFrames": 12,
+     "byRef": 7,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 1.380297292634997e-05,
+     "resampledFrames": 0,
+     "holes": 0
+    },
+    {
+     "segment": 4,
+     "label": "Anterior fibromuscular stroma of prostate",
+     "targetId": "prostatex-0004_anterior-fibromuscular-stroma",
+     "algorithmType": "MANUAL",
+     "planes": 7,
+     "framesTotal": 19,
+     "emptyFrames": 12,
+     "byRef": 7,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 3.201794253135096e-05,
+     "resampledFrames": 0,
+     "holes": 0
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.2.276.0.7230010.3.1.3.1070885483.15960.1599120307.701",
+   "subject": "tcia:PROSTATEx:ProstateX-0004"
+  }
+ ]
+}

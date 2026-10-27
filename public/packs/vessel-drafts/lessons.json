@@ -1,0 +1,1578 @@
+{
+ "schemaVersion": 1,
+ "packId": "vessel-drafts",
+ "version": "1.0.0",
+ "cases": [],
+ "tasks": [
+  {
+   "id": "body-covid-19-ar-16406498:five-vessel",
+   "caseId": "body-covid-19-ar-16406498",
+   "type": "navigate_level",
+   "title": "Find and name the five great vessels",
+   "prompt": "Start at the top of the scan. Navigate to the superior mediastinum just above the aortic arch, then place a named arrow in each of: right brachiocephalic vein, left brachiocephalic vein, brachiocephalic artery, left common carotid artery, left subclavian artery.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-ar-16406498-brachiocephalic-vein-right",
+     "name": "Right brachiocephalic vein",
+     "acceptedNames": [
+      "Right brachiocephalic vein",
+      "R brachiocephalic vein",
+      "Right innominate vein"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16406498-brachiocephalic-vein-left",
+     "name": "Left brachiocephalic vein",
+     "acceptedNames": [
+      "Left brachiocephalic vein",
+      "L brachiocephalic vein",
+      "Left innominate vein"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16406498-brachiocephalic-trunk",
+     "name": "Brachiocephalic artery",
+     "acceptedNames": [
+      "Brachiocephalic artery",
+      "Brachiocephalic trunk",
+      "Innominate artery"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16406498-common-carotid-artery-left",
+     "name": "Left common carotid artery",
+     "acceptedNames": [
+      "Left common carotid artery",
+      "Left carotid",
+      "L common carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16406498-subclavian-artery-left",
+     "name": "Left subclavian artery",
+     "acceptedNames": [
+      "Left subclavian artery",
+      "L subclavian"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": "vd-ar-16406498-level-five-vessel",
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Orientation: work in a mediastinal window, axial plane. The level you need is in the superior mediastinum, a little above the top of the aortic arch."
+    },
+    {
+     "level": 2,
+     "text": "Relationships: the two brachiocephalic veins are the most anterior vessels (the left one crosses in front of the arteries); behind them the three arch branches line up from patient right to left — brachiocephalic artery, left common carotid, left subclavian."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted slice interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-ar-16406498-level-five-vessel"
+     }
+    },
+    {
+     "level": 4,
+     "text": "Showing the draft vessel outlines.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "vd-ar-16406498-brachiocephalic-vein-right",
+       "vd-ar-16406498-brachiocephalic-vein-left",
+       "vd-ar-16406498-brachiocephalic-trunk",
+       "vd-ar-16406498-common-carotid-artery-left",
+       "vd-ar-16406498-subclavian-artery-left"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference, explanation and book figure.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "At the five-vessel level the two brachiocephalic veins lie anteriorly and the three branches of the aortic arch lie behind them, right to left: brachiocephalic artery, left common carotid artery, left subclavian artery. The accepted level is a slice interval (here from vessel masks (AI draft by Horalix): all five present as separate cross-sections and above the arch), not one exact slice — patients differ. Level, vessel identity, side and position are graded separately; two arrows in one vessel count once. These outlines are unreviewed AI proposals: compare carefully, and record your own review in Author before trusting them as a key.",
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.5",
+     "sectionId": null
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-covid-19-ar-16406498:five-vessel-level",
+   "caseId": "body-covid-19-ar-16406498",
+   "type": "navigate_level",
+   "title": "Navigate to the five-vessel level",
+   "prompt": "Scroll from the top of the scan and stop on a slice at the five-vessel level. Then submit — your current slice is checked. Say which landmarks you used.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-ar-16406498-level-five-vessel",
+     "name": "Five-vessel level",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "slice_interval",
+    "toleranceMm": 1.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the top of the aortic arch first, then go a little superior."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-ar-16406498-level-five-vessel"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The feedback tells you how many millimetres superior or inferior you were. The accepted interval comes from the vessel masks (AI draft by Horalix) and is therefore a draft until you review it.",
+   "rubric": [
+    {
+     "id": "landmarks",
+     "text": "Named landmarks used: top of the aortic arch below, brachiocephalic veins anteriorly, three arch branches behind them",
+     "weight": "essential",
+     "category": "location"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "navigation_windowing",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-covid-19-ar-16406498:aortic-arch-level",
+   "caseId": "body-covid-19-ar-16406498",
+   "type": "navigate_level",
+   "title": "Navigate to the aortic arch level",
+   "prompt": "Find the level where the aortic arch crosses from anterior-right to posterior-left, stop there and submit.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-ar-16406498-level-aortic-arch",
+     "name": "Aortic arch level",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "slice_interval",
+    "toleranceMm": 1.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "The arch is the curved tube connecting the ascending aorta (anterior) to the descending aorta (left of the spine)."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-ar-16406498-level-aortic-arch"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Just below the five-vessel level, the arch appears as one continuous curved vessel across the mediastinum. (Draft interval — AI draft by Horalix.)",
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "navigation_windowing",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434363:five-vessel",
+   "caseId": "chest-pairs-covid-19-ar-16434363",
+   "type": "navigate_level",
+   "title": "Find and name the five great vessels",
+   "prompt": "Start at the top of the scan. Navigate to the superior mediastinum just above the aortic arch, then place a named arrow in each of: right brachiocephalic vein, left brachiocephalic vein, brachiocephalic artery, left common carotid artery, left subclavian artery.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-ar-16434363-brachiocephalic-vein-right",
+     "name": "Right brachiocephalic vein",
+     "acceptedNames": [
+      "Right brachiocephalic vein",
+      "R brachiocephalic vein",
+      "Right innominate vein"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16434363-brachiocephalic-vein-left",
+     "name": "Left brachiocephalic vein",
+     "acceptedNames": [
+      "Left brachiocephalic vein",
+      "L brachiocephalic vein",
+      "Left innominate vein"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16434363-brachiocephalic-trunk",
+     "name": "Brachiocephalic artery",
+     "acceptedNames": [
+      "Brachiocephalic artery",
+      "Brachiocephalic trunk",
+      "Innominate artery"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16434363-common-carotid-artery-left",
+     "name": "Left common carotid artery",
+     "acceptedNames": [
+      "Left common carotid artery",
+      "Left carotid",
+      "L common carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16434363-subclavian-artery-left",
+     "name": "Left subclavian artery",
+     "acceptedNames": [
+      "Left subclavian artery",
+      "L subclavian"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": "vd-ar-16434363-level-five-vessel",
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Orientation: work in a mediastinal window, axial plane. The level you need is in the superior mediastinum, a little above the top of the aortic arch."
+    },
+    {
+     "level": 2,
+     "text": "Relationships: the two brachiocephalic veins are the most anterior vessels (the left one crosses in front of the arteries); behind them the three arch branches line up from patient right to left — brachiocephalic artery, left common carotid, left subclavian."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted slice interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-ar-16434363-level-five-vessel"
+     }
+    },
+    {
+     "level": 4,
+     "text": "Showing the draft vessel outlines.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "vd-ar-16434363-brachiocephalic-vein-right",
+       "vd-ar-16434363-brachiocephalic-vein-left",
+       "vd-ar-16434363-brachiocephalic-trunk",
+       "vd-ar-16434363-common-carotid-artery-left",
+       "vd-ar-16434363-subclavian-artery-left"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference, explanation and book figure.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "At the five-vessel level the two brachiocephalic veins lie anteriorly and the three branches of the aortic arch lie behind them, right to left: brachiocephalic artery, left common carotid artery, left subclavian artery. The accepted level is a slice interval (here from vessel masks (AI draft by Horalix): all five present as separate cross-sections and above the arch), not one exact slice — patients differ. Level, vessel identity, side and position are graded separately; two arrows in one vessel count once. These outlines are unreviewed AI proposals: compare carefully, and record your own review in Author before trusting them as a key.",
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.5",
+     "sectionId": null
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434363:five-vessel-level",
+   "caseId": "chest-pairs-covid-19-ar-16434363",
+   "type": "navigate_level",
+   "title": "Navigate to the five-vessel level",
+   "prompt": "Scroll from the top of the scan and stop on a slice at the five-vessel level. Then submit — your current slice is checked. Say which landmarks you used.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-ar-16434363-level-five-vessel",
+     "name": "Five-vessel level",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "slice_interval",
+    "toleranceMm": 1.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the top of the aortic arch first, then go a little superior."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-ar-16434363-level-five-vessel"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The feedback tells you how many millimetres superior or inferior you were. The accepted interval comes from the vessel masks (AI draft by Horalix) and is therefore a draft until you review it.",
+   "rubric": [
+    {
+     "id": "landmarks",
+     "text": "Named landmarks used: top of the aortic arch below, brachiocephalic veins anteriorly, three arch branches behind them",
+     "weight": "essential",
+     "category": "location"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "navigation_windowing",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434363:aortic-arch-level",
+   "caseId": "chest-pairs-covid-19-ar-16434363",
+   "type": "navigate_level",
+   "title": "Navigate to the aortic arch level",
+   "prompt": "Find the level where the aortic arch crosses from anterior-right to posterior-left, stop there and submit.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-ar-16434363-level-aortic-arch",
+     "name": "Aortic arch level",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "slice_interval",
+    "toleranceMm": 1.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "The arch is the curved tube connecting the ascending aorta (anterior) to the descending aorta (left of the spine)."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-ar-16434363-level-aortic-arch"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Just below the five-vessel level, the arch appears as one continuous curved vessel across the mediastinum. (Draft interval — AI draft by Horalix.)",
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "navigation_windowing",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434411:five-vessel",
+   "caseId": "chest-pairs-covid-19-ar-16434411",
+   "type": "navigate_level",
+   "title": "Find and name the five great vessels",
+   "prompt": "Start at the top of the scan. Navigate to the superior mediastinum just above the aortic arch, then place a named arrow in each of: right brachiocephalic vein, left brachiocephalic vein, brachiocephalic artery, left common carotid artery, left subclavian artery.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-ar-16434411-brachiocephalic-vein-right",
+     "name": "Right brachiocephalic vein",
+     "acceptedNames": [
+      "Right brachiocephalic vein",
+      "R brachiocephalic vein",
+      "Right innominate vein"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16434411-brachiocephalic-vein-left",
+     "name": "Left brachiocephalic vein",
+     "acceptedNames": [
+      "Left brachiocephalic vein",
+      "L brachiocephalic vein",
+      "Left innominate vein"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16434411-brachiocephalic-trunk",
+     "name": "Brachiocephalic artery",
+     "acceptedNames": [
+      "Brachiocephalic artery",
+      "Brachiocephalic trunk",
+      "Innominate artery"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16434411-common-carotid-artery-left",
+     "name": "Left common carotid artery",
+     "acceptedNames": [
+      "Left common carotid artery",
+      "Left carotid",
+      "L common carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-ar-16434411-subclavian-artery-left",
+     "name": "Left subclavian artery",
+     "acceptedNames": [
+      "Left subclavian artery",
+      "L subclavian"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": "vd-ar-16434411-level-five-vessel",
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Orientation: work in a mediastinal window, axial plane. The level you need is in the superior mediastinum, a little above the top of the aortic arch."
+    },
+    {
+     "level": 2,
+     "text": "Relationships: the two brachiocephalic veins are the most anterior vessels (the left one crosses in front of the arteries); behind them the three arch branches line up from patient right to left — brachiocephalic artery, left common carotid, left subclavian."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted slice interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-ar-16434411-level-five-vessel"
+     }
+    },
+    {
+     "level": 4,
+     "text": "Showing the draft vessel outlines.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "vd-ar-16434411-brachiocephalic-vein-right",
+       "vd-ar-16434411-brachiocephalic-vein-left",
+       "vd-ar-16434411-brachiocephalic-trunk",
+       "vd-ar-16434411-common-carotid-artery-left",
+       "vd-ar-16434411-subclavian-artery-left"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference, explanation and book figure.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "At the five-vessel level the two brachiocephalic veins lie anteriorly and the three branches of the aortic arch lie behind them, right to left: brachiocephalic artery, left common carotid artery, left subclavian artery. The accepted level is a slice interval (here from vessel masks (AI draft by Horalix): all five present as separate cross-sections and above the arch), not one exact slice — patients differ. Level, vessel identity, side and position are graded separately; two arrows in one vessel count once. These outlines are unreviewed AI proposals: compare carefully, and record your own review in Author before trusting them as a key.",
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.5",
+     "sectionId": null
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434411:five-vessel-level",
+   "caseId": "chest-pairs-covid-19-ar-16434411",
+   "type": "navigate_level",
+   "title": "Navigate to the five-vessel level",
+   "prompt": "Scroll from the top of the scan and stop on a slice at the five-vessel level. Then submit — your current slice is checked. Say which landmarks you used.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-ar-16434411-level-five-vessel",
+     "name": "Five-vessel level",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "slice_interval",
+    "toleranceMm": 1.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the top of the aortic arch first, then go a little superior."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-ar-16434411-level-five-vessel"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The feedback tells you how many millimetres superior or inferior you were. The accepted interval comes from the vessel masks (AI draft by Horalix) and is therefore a draft until you review it.",
+   "rubric": [
+    {
+     "id": "landmarks",
+     "text": "Named landmarks used: top of the aortic arch below, brachiocephalic veins anteriorly, three arch branches behind them",
+     "weight": "essential",
+     "category": "location"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "navigation_windowing",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434411:aortic-arch-level",
+   "caseId": "chest-pairs-covid-19-ar-16434411",
+   "type": "navigate_level",
+   "title": "Navigate to the aortic arch level",
+   "prompt": "Find the level where the aortic arch crosses from anterior-right to posterior-left, stop there and submit.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-ar-16434411-level-aortic-arch",
+     "name": "Aortic arch level",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "slice_interval",
+    "toleranceMm": 1.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "The arch is the curved tube connecting the ascending aorta (anterior) to the descending aorta (left of the spine)."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-ar-16434411-level-aortic-arch"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Just below the five-vessel level, the arch appears as one continuous curved vessel across the mediastinum. (Draft interval — AI draft by Horalix.)",
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "navigation_windowing",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0053:five-vessel",
+   "caseId": "chest-pairs-lidc-idri-0053",
+   "type": "navigate_level",
+   "title": "Find and name the five great vessels",
+   "prompt": "Start at the top of the scan. Navigate to the superior mediastinum just above the aortic arch, then place a named arrow in each of: right brachiocephalic vein, left brachiocephalic vein, brachiocephalic artery, left common carotid artery, left subclavian artery.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-lidc-0053-brachiocephalic-vein-right",
+     "name": "Right brachiocephalic vein",
+     "acceptedNames": [
+      "Right brachiocephalic vein",
+      "R brachiocephalic vein",
+      "Right innominate vein"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-lidc-0053-brachiocephalic-vein-left",
+     "name": "Left brachiocephalic vein",
+     "acceptedNames": [
+      "Left brachiocephalic vein",
+      "L brachiocephalic vein",
+      "Left innominate vein"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-lidc-0053-brachiocephalic-trunk",
+     "name": "Brachiocephalic artery",
+     "acceptedNames": [
+      "Brachiocephalic artery",
+      "Brachiocephalic trunk",
+      "Innominate artery"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-lidc-0053-common-carotid-artery-left",
+     "name": "Left common carotid artery",
+     "acceptedNames": [
+      "Left common carotid artery",
+      "Left carotid",
+      "L common carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-lidc-0053-subclavian-artery-left",
+     "name": "Left subclavian artery",
+     "acceptedNames": [
+      "Left subclavian artery",
+      "L subclavian"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": "vd-lidc-0053-level-five-vessel",
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Orientation: work in a mediastinal window, axial plane. The level you need is in the superior mediastinum, a little above the top of the aortic arch."
+    },
+    {
+     "level": 2,
+     "text": "Relationships: the two brachiocephalic veins are the most anterior vessels (the left one crosses in front of the arteries); behind them the three arch branches line up from patient right to left — brachiocephalic artery, left common carotid, left subclavian."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted slice interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-lidc-0053-level-five-vessel"
+     }
+    },
+    {
+     "level": 4,
+     "text": "Showing the draft vessel outlines.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "vd-lidc-0053-brachiocephalic-vein-right",
+       "vd-lidc-0053-brachiocephalic-vein-left",
+       "vd-lidc-0053-brachiocephalic-trunk",
+       "vd-lidc-0053-common-carotid-artery-left",
+       "vd-lidc-0053-subclavian-artery-left"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference, explanation and book figure.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "At the five-vessel level the two brachiocephalic veins lie anteriorly and the three branches of the aortic arch lie behind them, right to left: brachiocephalic artery, left common carotid artery, left subclavian artery. The accepted level is a slice interval (here from vessel masks (AI draft by Horalix): all five present as separate cross-sections and above the arch), not one exact slice — patients differ. Level, vessel identity, side and position are graded separately; two arrows in one vessel count once. These outlines are unreviewed AI proposals: compare carefully, and record your own review in Author before trusting them as a key.",
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.5",
+     "sectionId": null
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0053:five-vessel-level",
+   "caseId": "chest-pairs-lidc-idri-0053",
+   "type": "navigate_level",
+   "title": "Navigate to the five-vessel level",
+   "prompt": "Scroll from the top of the scan and stop on a slice at the five-vessel level. Then submit — your current slice is checked. Say which landmarks you used.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-lidc-0053-level-five-vessel",
+     "name": "Five-vessel level",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "slice_interval",
+    "toleranceMm": 1.25
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the top of the aortic arch first, then go a little superior."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-lidc-0053-level-five-vessel"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The feedback tells you how many millimetres superior or inferior you were. The accepted interval comes from the vessel masks (AI draft by Horalix) and is therefore a draft until you review it.",
+   "rubric": [
+    {
+     "id": "landmarks",
+     "text": "Named landmarks used: top of the aortic arch below, brachiocephalic veins anteriorly, three arch branches behind them",
+     "weight": "essential",
+     "category": "location"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "navigation_windowing",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0053:aortic-arch-level",
+   "caseId": "chest-pairs-lidc-idri-0053",
+   "type": "navigate_level",
+   "title": "Navigate to the aortic arch level",
+   "prompt": "Find the level where the aortic arch crosses from anterior-right to posterior-left, stop there and submit.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-lidc-0053-level-aortic-arch",
+     "name": "Aortic arch level",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "slice_interval",
+    "toleranceMm": 1.25
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "The arch is the curved tube connecting the ascending aorta (anterior) to the descending aorta (left of the spine)."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-lidc-0053-level-aortic-arch"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Just below the five-vessel level, the arch appears as one continuous curved vessel across the mediastinum. (Draft interval — AI draft by Horalix.)",
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "navigation_windowing",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0217:five-vessel",
+   "caseId": "chest-pairs-lidc-idri-0217",
+   "type": "navigate_level",
+   "title": "Find and name the five great vessels",
+   "prompt": "Start at the top of the scan. Navigate to the superior mediastinum just above the aortic arch, then place a named arrow in each of: right brachiocephalic vein, left brachiocephalic vein, brachiocephalic artery, left common carotid artery, left subclavian artery.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-lidc-0217-brachiocephalic-vein-right",
+     "name": "Right brachiocephalic vein",
+     "acceptedNames": [
+      "Right brachiocephalic vein",
+      "R brachiocephalic vein",
+      "Right innominate vein"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-lidc-0217-brachiocephalic-vein-left",
+     "name": "Left brachiocephalic vein",
+     "acceptedNames": [
+      "Left brachiocephalic vein",
+      "L brachiocephalic vein",
+      "Left innominate vein"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-lidc-0217-brachiocephalic-trunk",
+     "name": "Brachiocephalic artery",
+     "acceptedNames": [
+      "Brachiocephalic artery",
+      "Brachiocephalic trunk",
+      "Innominate artery"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-lidc-0217-common-carotid-artery-left",
+     "name": "Left common carotid artery",
+     "acceptedNames": [
+      "Left common carotid artery",
+      "Left carotid",
+      "L common carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "vd-lidc-0217-subclavian-artery-left",
+     "name": "Left subclavian artery",
+     "acceptedNames": [
+      "Left subclavian artery",
+      "L subclavian"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": "vd-lidc-0217-level-five-vessel",
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Orientation: work in a mediastinal window, axial plane. The level you need is in the superior mediastinum, a little above the top of the aortic arch."
+    },
+    {
+     "level": 2,
+     "text": "Relationships: the two brachiocephalic veins are the most anterior vessels (the left one crosses in front of the arteries); behind them the three arch branches line up from patient right to left — brachiocephalic artery, left common carotid, left subclavian."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted slice interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-lidc-0217-level-five-vessel"
+     }
+    },
+    {
+     "level": 4,
+     "text": "Showing the draft vessel outlines.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "vd-lidc-0217-brachiocephalic-vein-right",
+       "vd-lidc-0217-brachiocephalic-vein-left",
+       "vd-lidc-0217-brachiocephalic-trunk",
+       "vd-lidc-0217-common-carotid-artery-left",
+       "vd-lidc-0217-subclavian-artery-left"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference, explanation and book figure.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "At the five-vessel level the two brachiocephalic veins lie anteriorly and the three branches of the aortic arch lie behind them, right to left: brachiocephalic artery, left common carotid artery, left subclavian artery. The accepted level is a slice interval (here from vessel masks (AI draft by Horalix): all five present as separate cross-sections and above the arch), not one exact slice — patients differ. Level, vessel identity, side and position are graded separately; two arrows in one vessel count once. These outlines are unreviewed AI proposals: compare carefully, and record your own review in Author before trusting them as a key.",
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.5",
+     "sectionId": null
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0217:five-vessel-level",
+   "caseId": "chest-pairs-lidc-idri-0217",
+   "type": "navigate_level",
+   "title": "Navigate to the five-vessel level",
+   "prompt": "Scroll from the top of the scan and stop on a slice at the five-vessel level. Then submit — your current slice is checked. Say which landmarks you used.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-lidc-0217-level-five-vessel",
+     "name": "Five-vessel level",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "slice_interval",
+    "toleranceMm": 1.25
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the top of the aortic arch first, then go a little superior."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-lidc-0217-level-five-vessel"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The feedback tells you how many millimetres superior or inferior you were. The accepted interval comes from the vessel masks (AI draft by Horalix) and is therefore a draft until you review it.",
+   "rubric": [
+    {
+     "id": "landmarks",
+     "text": "Named landmarks used: top of the aortic arch below, brachiocephalic veins anteriorly, three arch branches behind them",
+     "weight": "essential",
+     "category": "location"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "navigation_windowing",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0217:aortic-arch-level",
+   "caseId": "chest-pairs-lidc-idri-0217",
+   "type": "navigate_level",
+   "title": "Navigate to the aortic arch level",
+   "prompt": "Find the level where the aortic arch crosses from anterior-right to posterior-left, stop there and submit.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "vd-lidc-0217-level-aortic-arch",
+     "name": "Aortic arch level",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "slice_interval",
+    "toleranceMm": 1.25
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "The arch is the curved tube connecting the ascending aorta (anterior) to the descending aorta (left of the spine)."
+    },
+    {
+     "level": 3,
+     "text": "Jumping into the accepted interval.",
+     "action": {
+      "type": "jumpSliceInterval",
+      "targetId": "vd-lidc-0217-level-aortic-arch"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Just below the five-vessel level, the arch appears as one continuous curved vessel across the mediastinum. (Draft interval — AI draft by Horalix.)",
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "skillDimensions": [
+    "navigation_windowing",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

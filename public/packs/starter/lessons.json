@@ -1,0 +1,1216 @@
+{
+ "schemaVersion": 1,
+ "packId": "starter",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "starter-ct-chest-01",
+   "packId": "starter",
+   "neutralTitle": "Patient A · CT chest",
+   "learnTitle": "Chest CT anatomy with source organ contours",
+   "subjectKey": "tcia:LCTSC:LCTSC-Train-S1-012",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.856906139437027948311307972341"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the chest: viewing convention"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Lung vs mediastinal windows"
+    },
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal cardiac CT anatomy levels"
+    }
+   ],
+   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC) for heart, both lungs, esophagus and spinal cord. Only these structures are referenced; nothing else in the study has been reviewed, so the study is not labelled normal or abnormal.",
+   "learnNotes": "Axial CT is displayed as if you stand at the patient's feet looking up: the patient's right is on your left, anterior is at the top. Check the side letters at the image edges before naming any left/right structure.\n\nWindow first, then search: the lung window (about W1500/L−600) shows vessels, fissures and airways; the mediastinal window (about W350/L50) shows the heart, great vessels, esophagus and nodes.\n\nThe yellow outlines are radiotherapy planning contours drawn by the dataset's experts. They follow radiotherapy definitions — for example the heart contour can include the pericardium, and the spinal cord contour may follow the canal — so they are excellent for locating structures but are not always the exact anatomical boundary you would trace for a report."
+  },
+  {
+   "id": "starter-cxr-01",
+   "packId": "starter",
+   "neutralTitle": "Patient B · Chest radiograph + CT localizer",
+   "learnTitle": "Portable AP chest radiograph vs CT scout (same patient)",
+   "subjectKey": "tcia:COVID-19-AR:COVID-19-AR-16406503",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2752219814091402100315433912652",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1484827635781103925261573539342"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch02-o01",
+    "ch02-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "The normal frontal chest radiograph"
+    },
+    {
+     "physical": 36,
+     "printed": "21",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "AP vs PA: heart magnification"
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Evaluating the heart on chest radiographs"
+    }
+   ],
+   "referenceSummary": "No finding-level reference exists for this radiograph. Tasks are about technique and a systematic search, checked against a source-linked checklist (self-review). The patient is from the COVID-19-AR research collection; that cohort label is not a finding on this image.",
+   "learnNotes": "This patient has a portable AP chest radiograph and, one day later (dates shifted, interval preserved), a CT whose localizer ('scout') image is included here. A scout is a low-dose projection the CT scanner uses to plan slices — it is not a diagnostic chest radiograph and should not be read as one.\n\nThe radiograph is stored as MONOCHROME1 (higher pixel values display darker); the viewer handles that so bone still appears white. No side marker is recorded in the file header, so the viewer shows 'orientation not recorded' rather than guessing."
+  },
+  {
+   "id": "starter-mr-prostate-01",
+   "packId": "starter",
+   "neutralTitle": "Patient C · MRI pelvis (axial)",
+   "learnTitle": "T2-weighted prostate MRI with zonal segmentation",
+   "subjectKey": "tcia:PROSTATEx:ProstateX-0004",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7311.5101.170561193612723093192571245493"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680",
+   "region": [
+    "pelvis"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch20-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 258,
+     "printed": "238",
+     "chapterId": "ch20",
+     "figureId": null,
+     "sectionId": null,
+     "note": "How to identify a T1- or T2-weighted image"
+    },
+    {
+     "physical": 259,
+     "printed": "239",
+     "chapterId": "ch20",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Water: dark on T1, bright on T2"
+    }
+   ],
+   "referenceSummary": "Source manual zonal segmentation (PROSTATEx-Seg-Zones): peripheral zone, transition zone, prostatic urethra and anterior fibromuscular stroma. No lesion annotation is used here.",
+   "learnNotes": "MR intensities are relative signal, not Hounsfield units — there are no fixed windows; adjust brightness/contrast by eye.\n\nThis axial T2-weighted series (TR 6840 ms, TE 104 ms at 3 T) shows fluid bright, e.g. urine in the bladder. Prostate zonal anatomy is beyond the book's scope; the book is linked for how to recognise T1 versus T2 weighting."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "starter-ct-chest-01:orientation",
+   "caseId": "starter-ct-chest-01",
+   "type": "compare_appearances",
+   "title": "Which side is the patient's left on axial CT?",
+   "prompt": "Scroll through the study and look at the side letters. On these axial images, where is the patient's LEFT side displayed?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "right",
+      "text": "On the right side of the screen",
+      "correct": true,
+      "why": "Radiological convention: images are viewed from the feet, so the patient's left appears on your right (the edge letter 'L')."
+     },
+     {
+      "id": "left",
+      "text": "On the left side of the screen",
+      "correct": false,
+      "why": "That would be viewing from the head; standard axial display is from the feet."
+     },
+     {
+      "id": "varies",
+      "text": "It varies from slice to slice",
+      "correct": false,
+      "why": "Within one axial series the orientation is fixed by the acquisition geometry."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the edge letters: L, R, A and P are derived from the image orientation stored in the DICOM file."
+    },
+    {
+     "level": 2,
+     "text": "Where does the heart's apex point? It normally points to the patient's left."
+    }
+   ],
+   "explanation": "Axial CT and MRI are displayed as if looking up from the patient's feet: patient right on the viewer's left, anterior at the top. The edge letters here come from ImageOrientationPatient, not from the picture. The heart apex pointing toward the 'L' edge is a quick sanity check (unless the patient has situs anomalies).",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the chest: viewing convention"
+    }
+   ],
+   "objectiveIds": [
+    "ch01-o03",
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-ct-chest-01:window",
+   "caseId": "starter-ct-chest-01",
+   "type": "choose_window",
+   "title": "Choose the window for lung parenchyma",
+   "prompt": "Try the window presets (Window menu or keys 1–4). Which preset lets you see pulmonary vessels and fissures inside the lungs?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+    "slice": "middle",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "lung",
+      "text": "Lung (W1500 / L−600)",
+      "correct": true,
+      "why": "A wide window centred near air density spreads the very low lung attenuations across the grey scale, so vessels and fissures become visible."
+     },
+     {
+      "id": "soft",
+      "text": "Soft tissue (W400 / L40)",
+      "correct": false,
+      "why": "Everything below about −160 HU is black, so the lungs look uniformly dark."
+     },
+     {
+      "id": "bone",
+      "text": "Bone (W1800 / L400)",
+      "correct": false,
+      "why": "Centred far above lung density; useful for cortex and trabeculae, not parenchyma."
+     },
+     {
+      "id": "media",
+      "text": "Mediastinum (W350 / L50)",
+      "correct": false,
+      "why": "Narrow and centred on soft tissue — good for the heart and vessels, not the lung."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Air is about −1000 HU and lung parenchyma is close to it. Which preset is centred near that?"
+    }
+   ],
+   "explanation": "The window decides which CT numbers are spread across the grey scale. Lung parenchyma lives near −900 to −500 HU; only a low-centred wide window separates it. Always review a chest CT in at least lung and mediastinal windows.",
+   "bookAnchors": [
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Lung vs mediastinal windows"
+    },
+    {
+     "physical": 18,
+     "printed": "3",
+     "chapterId": "ch01",
+     "figureId": null,
+     "sectionId": null,
+     "note": "CT numbers and the display window"
+    }
+   ],
+   "objectiveIds": [
+    "ch01-o02"
+   ],
+   "skillDimensions": [
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-ct-chest-01:heart",
+   "caseId": "starter-ct-chest-01",
+   "type": "find_structure",
+   "title": "Find the heart",
+   "prompt": "Navigate to a level where the heart is visible and place one point inside it.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s1-012_heart",
+     "name": "Heart",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.6,
+    "inPlaneToleranceMm": 3
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "The heart lies in the lower half of the chest, between the lungs, resting on the diaphragm. Start at the top and scroll downward."
+    },
+    {
+     "level": 2,
+     "text": "Below the level of the main pulmonary artery the chambers appear: a large soft-tissue structure anterior to the esophagus and descending aorta, bulging toward the patient's left."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice where the reference contour of the heart exists.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s1-012_heart"
+     }
+    },
+    {
+     "level": 4,
+     "text": "Showing the heart outline.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "lctsc-train-s1-012_heart"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "On axial CT the heart occupies the anterior middle mediastinum at the low cardiac levels, extending toward the patient's left. The reference is the dataset's radiotherapy heart contour; a mark anywhere inside it (or within 3 mm of its edge on a contoured slice) counts.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "High and low cardiac levels"
+    },
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal cardiac CT anatomy levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06",
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-ct-chest-01:lungs-sides",
+   "caseId": "starter-ct-chest-01",
+   "type": "find_structure",
+   "title": "Right lung versus left lung",
+   "prompt": "Use the Arrow tool (A). Place one arrow in the patient's RIGHT lung and one in the LEFT lung, naming each arrow.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+    "slice": "middle",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s1-012_right-lung",
+     "name": "Right lung",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s1-012_left-lung",
+     "name": "Left lung",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.6,
+    "inPlaneToleranceMm": 2,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Read the edge letters first: the 'L' edge marks the patient's left."
+    },
+    {
+     "level": 2,
+     "text": "The heart apex points to the patient's left; the lung on that side is the left lung."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "With standard axial display the patient's right lung is on the viewer's left. Feedback grades side separately: a correctly placed point with the wrong side name is reported as a laterality error, not as a localisation error.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the chest: viewing convention"
+    }
+   ],
+   "objectiveIds": [
+    "ch01-o03",
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "orientation",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-ct-chest-01:esophagus",
+   "caseId": "starter-ct-chest-01",
+   "type": "find_structure",
+   "title": "Find the esophagus",
+   "prompt": "Find the esophagus on any axial slice of the chest and mark its centre.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s1-012_esophagus",
+     "name": "Esophagus",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.6,
+    "inPlaneToleranceMm": 2.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "It is a posterior mediastinal tube running from the neck to the abdomen, close to the spine."
+    },
+    {
+     "level": 2,
+     "text": "Look just anterior to the vertebral body and, in the lower chest, right of / anterior to the descending aorta. A small air bubble in its lumen is common."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the esophagus contour.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s1-012_esophagus"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The esophagus is a small, often collapsed soft-tissue tube with or without an air bubble, lying in front of the spine and beside the descending aorta. Its small size is why the tolerance here is only 2.5 mm.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the chest: viewing convention"
+    },
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal cardiac CT anatomy levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-ct-chest-01:cord",
+   "caseId": "starter-ct-chest-01",
+   "type": "find_structure",
+   "title": "Find the spinal cord",
+   "prompt": "Mark the spinal cord (the contents of the spinal canal, not the vertebral body).",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s1-012_spinal-cord",
+     "name": "Spinal cord",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.6,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the vertebral body, then look behind it for the ring of bone that forms the canal."
+    },
+    {
+     "level": 2,
+     "text": "Switch to the soft-tissue window: the canal contents are soft-tissue density surrounded by bone."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The cord sits within the spinal canal, enclosed by the vertebral body anteriorly and the posterior elements. CT does not separate cord from CSF well; the radiotherapy contour marks the canal contents used as the cord organ-at-risk.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the chest: viewing convention"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-ct-chest-01:five-structures",
+   "caseId": "starter-ct-chest-01",
+   "type": "find_structure",
+   "title": "Name five structures",
+   "prompt": "With named arrows, mark: heart, esophagus, spinal cord, right lung and left lung. You may use different slices.",
+   "modes": [
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.152363408275842067001197241415",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s1-012_heart",
+     "name": "Heart",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s1-012_esophagus",
+     "name": "Esophagus",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s1-012_spinal-cord",
+     "name": "Spinal cord",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s1-012_right-lung",
+     "name": "Right lung",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s1-012_left-lung",
+     "name": "Left lung",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.6,
+    "inPlaneToleranceMm": 2.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Work systematically: mediastinal window for heart, esophagus and cord; lung window for the lungs."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Each structure is matched one-to-one; two arrows in one structure count once, and a correctly placed but wrongly named arrow is reported separately from a misplaced one.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the chest: viewing convention"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Lung vs mediastinal windows"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "orientation",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-cxr-01:scout-vs-cxr",
+   "caseId": "starter-cxr-01",
+   "type": "compare_appearances",
+   "title": "Diagnostic radiograph or CT scout?",
+   "prompt": "This patient has two frontal projection images (use the two-up layout or the series list). Which one is the diagnostic chest radiograph you would report?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1891326720085238222508091238377"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "cr",
+      "text": "The CR image from the study 'XR CHEST AP PORTABLE'",
+      "correct": true,
+      "why": "It is a radiographic acquisition (modality CR) with full detector resolution — the diagnostic chest X-ray."
+     },
+     {
+      "id": "scout",
+      "text": "The 'locator' image from the CT study",
+      "correct": false,
+      "why": "This is the CT localizer (scout): a low-dose planning projection with modality CT. It is useful for orientation but is not a diagnostic radiograph."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the modality and series description shown in each viewport's corner."
+    },
+    {
+     "level": 2,
+     "text": "Which image was acquired by the CT scanner to plan its slices?"
+    }
+   ],
+   "explanation": "CT scouts (localizer/topogram/scanogram) are acquired by the CT gantry for slice planning, at low dose and lower quality. They can show gross findings but are not a substitute for a chest radiograph. The app never counts a scout as an X-ray in same-patient comparisons.",
+   "bookAnchors": [
+    {
+     "physical": 16,
+     "printed": "2",
+     "chapterId": "ch01",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Conventional radiography and the five basic densities"
+    }
+   ],
+   "objectiveIds": [
+    "ch01-o07"
+   ],
+   "skillDimensions": [
+    "orientation",
+    "cross_modality"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-cxr-01:systematic",
+   "caseId": "starter-cxr-01",
+   "type": "describe_finding",
+   "title": "Systematic review of a portable AP chest radiograph",
+   "prompt": "Review this chest radiograph systematically and write what you see. Mark anything you consider abnormal. There may or may not be an abnormality.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Technique first: projection (AP vs PA), patient position, inspiration and rotation."
+    },
+    {
+     "level": 2,
+     "text": "Then a fixed order: lines/tubes, lungs (apex to base, both sides), pleura and angles, heart and mediastinum, diaphragm, bones and soft tissues."
+    }
+   ],
+   "explanation": "There is no expert finding reference for this image, so judge your description against the checklist. An AP portable projection magnifies the heart, so heart size is not reliably assessed on it.",
+   "rubric": [
+    {
+     "id": "tech",
+     "text": "Identified the projection as AP (portable) and commented on its limitations",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "lines",
+     "text": "Checked for lines, tubes and devices",
+     "weight": "supportive",
+     "category": "finding"
+    },
+    {
+     "id": "lungs",
+     "text": "Compared both lungs from apex to base",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pleura",
+     "text": "Assessed pleura and costophrenic angles",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "heart",
+     "text": "Commented on heart and mediastinum, noting that AP magnifies the heart",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "bones",
+     "text": "Reviewed bones, diaphragm and soft tissues",
+     "weight": "supportive",
+     "category": "finding"
+    },
+    {
+     "id": "impr",
+     "text": "Gave a concise impression, or stated what cannot be assessed",
+     "weight": "essential",
+     "category": "impression"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "The normal frontal chest radiograph"
+    },
+    {
+     "physical": 36,
+     "printed": "21",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "AP vs PA: heart magnification"
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Evaluating the heart on chest radiographs"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o01",
+    "ch02-o02"
+   ],
+   "skillDimensions": [
+    "reporting",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-cxr-01:borders",
+   "caseId": "starter-cxr-01",
+   "type": "find_structure",
+   "title": "Trace the cardiomediastinal borders",
+   "prompt": "Place named arrows on each segment of the right and left cardiomediastinal borders (e.g. SVC, right atrium, aortic knob, main pulmonary artery, left ventricle) and say whether any segment looks abnormal.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Right border, top to bottom: SVC, then right atrium. Left border: aortic knob, main pulmonary artery, then left ventricle."
+    }
+   ],
+   "explanation": "No anatomical reference outlines exist for this radiograph, so compare your arrows with the book's figure of the normal contours and self-review.",
+   "rubric": [
+    {
+     "id": "right",
+     "text": "Right border: SVC and right atrium identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "left",
+     "text": "Left border: aortic knob, main pulmonary artery and left ventricle identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "abn",
+     "text": "Commented on whether any segment bulges or is effaced",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.2",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s03"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o02"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-cxr-01:ctr",
+   "caseId": "starter-cxr-01",
+   "type": "describe_finding",
+   "title": "Measure the cardiothoracic ratio",
+   "prompt": "Use the Length tool (L) to measure the widest heart diameter and the widest inner thoracic diameter, then state the ratio and whether this projection allows a judgement of heart size.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.5847232257506267689400011317842",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the heart from its rightmost to leftmost point; the thorax at its widest inner rib margins, usually at the domes of the diaphragm."
+    }
+   ],
+   "explanation": "The ratio is a heuristic for PA films; on AP films the heart is magnified, so an apparently large ratio is not reliable. Detector-plane pixel spacing is not patient-calibrated, but a ratio cancels that scale.",
+   "rubric": [
+    {
+     "id": "meas",
+     "text": "Both widths measured at the right places",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "ratio",
+     "text": "Ratio stated",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "proj",
+     "text": "Projection caveat stated (AP: magnified)",
+     "weight": "essential",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.1",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-mr-prostate-01:weighting",
+   "caseId": "starter-mr-prostate-01",
+   "type": "compare_appearances",
+   "title": "T1 or T2?",
+   "prompt": "Look at the image and the acquisition data in the viewport corner. Is this series T1-weighted or T2-weighted?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "t2",
+      "text": "T2-weighted",
+      "correct": true,
+      "why": "Long TR (6840 ms) and long TE (104 ms), and fluid such as urine is bright."
+     },
+     {
+      "id": "t1",
+      "text": "T1-weighted",
+      "correct": false,
+      "why": "T1 weighting uses short TR and short TE and shows simple fluid dark."
+     },
+     {
+      "id": "ct",
+      "text": "It cannot be told without contrast",
+      "correct": false,
+      "why": "Weighting is a property of TR/TE and tissue appearance; contrast is not needed."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find something that is almost pure water (the bladder) — bright or dark?"
+    },
+    {
+     "level": 2,
+     "text": "Read TR and TE in the top-right corner of the viewport."
+    }
+   ],
+   "explanation": "Water is dark on T1-weighted and bright on T2-weighted images. Here urine is bright and the parameters are long TR / long TE, so the series is T2-weighted. Always confirm weighting from both appearance and parameters.",
+   "bookAnchors": [
+    {
+     "physical": 258,
+     "printed": "238",
+     "chapterId": "ch20",
+     "figureId": null,
+     "sectionId": null,
+     "note": "How to identify a T1- or T2-weighted image"
+    },
+    {
+     "physical": 259,
+     "printed": "239",
+     "chapterId": "ch20",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Water: dark on T1, bright on T2"
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o01"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "starter-mr-prostate-01:pz-tz",
+   "caseId": "starter-mr-prostate-01",
+   "type": "find_structure",
+   "title": "Peripheral zone versus transition zone",
+   "prompt": "Mark the peripheral zone and the transition zone of the prostate with named arrows (any slice).",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7311.5101.206828891270520544417996275680",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "prostatex-0004_prostate-peripheral-zone",
+     "name": "Peripheral zone",
+     "required": true
+    },
+    {
+     "targetId": "prostatex-0004_prostate-transition-zone",
+     "name": "Transition zone",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 2.3,
+    "inPlaneToleranceMm": 1.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the prostate below the bladder, in front of the rectum."
+    },
+    {
+     "level": 2,
+     "text": "On T2 the peripheral zone is the brighter crescent posteriorly and laterally; the transition zone is the more heterogeneous central/anterior region around the urethra."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "On T2-weighted MRI the normal peripheral zone is relatively high signal and wraps posterolaterally; the transition zone surrounds the proximal urethra and is often nodular from benign hyperplasia. (Zonal anatomy is general knowledge beyond the book; it is used here to practise reading MR signal.)",
+   "bookAnchors": [
+    {
+     "physical": 258,
+     "printed": "238",
+     "chapterId": "ch20",
+     "figureId": null,
+     "sectionId": null,
+     "note": "How to identify a T1- or T2-weighted image"
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o01"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

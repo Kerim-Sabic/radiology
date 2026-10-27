@@ -1,0 +1,3602 @@
+{
+ "schemaVersion": 1,
+ "packId": "expansion",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "exp-lctsc-train-s1-008",
+   "packId": "expansion",
+   "neutralTitle": "Patient S · CT chest",
+   "learnTitle": "Chest CT anatomy with source organ contours (LCTSC-Train-S1-008)",
+   "subjectKey": "tcia:LCTSC:LCTSC-Train-S1-008",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.136053868820564844992632412237"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.135073567254051847508429239493",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC): heart, both lungs, esophagus, spinal cord only.",
+   "learnNotes": "Another unseen patient: repeat the anatomy skills without hints first. Contours follow radiotherapy definitions."
+  },
+  {
+   "id": "exp-lctsc-test-s2-202",
+   "packId": "expansion",
+   "neutralTitle": "Patient T · CT chest",
+   "learnTitle": "Chest CT anatomy with source organ contours (LCTSC-Test-S2-202)",
+   "subjectKey": "tcia:LCTSC:LCTSC-Test-S2-202",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.225420722952260716557532766670"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.186463975978084836948875020803",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC): heart, both lungs, esophagus, spinal cord only.",
+   "learnNotes": "Another unseen patient: repeat the anatomy skills without hints first. Contours follow radiotherapy definitions."
+  },
+  {
+   "id": "exp-lctsc-train-s3-007",
+   "packId": "expansion",
+   "neutralTitle": "Patient U · CT chest",
+   "learnTitle": "Chest CT anatomy with source organ contours (LCTSC-Train-S3-007)",
+   "subjectKey": "tcia:LCTSC:LCTSC-Train-S3-007",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.267360218506079083578856286215"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.311892226032003765556361265740",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC): heart, both lungs, esophagus, spinal cord only.",
+   "learnNotes": "Another unseen patient: repeat the anatomy skills without hints first. Contours follow radiotherapy definitions."
+  },
+  {
+   "id": "exp-lctsc-train-s3-011",
+   "packId": "expansion",
+   "neutralTitle": "Patient V · CT chest",
+   "learnTitle": "Chest CT anatomy with source organ contours (LCTSC-Train-S3-011)",
+   "subjectKey": "tcia:LCTSC:LCTSC-Train-S3-011",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.198134155676495916758630917442"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.648202329529129061444241329585",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC): heart, both lungs, esophagus, spinal cord only.",
+   "learnNotes": "Another unseen patient: repeat the anatomy skills without hints first. Contours follow radiotherapy definitions."
+  },
+  {
+   "id": "exp-lidc-idri-0134",
+   "packId": "expansion",
+   "neutralTitle": "Patient W · Chest radiograph + CT chest",
+   "learnTitle": "Lung nodules on CT (LIDC-IDRI-0134)",
+   "subjectKey": "tcia:LIDC-IDRI:LIDC-IDRI-0134",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.247723996265395287215323138369",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.593684538737645231443136404239"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.102962801900681595502684962582",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "referenceSummary": "2 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers. Only reader-marked nodules are referenced; unmatched marks are unscored. Radiograph/CT interval unknown (placeholder dates).",
+   "learnNotes": "Search both lungs apex to base in a lung window; confirm candidates are round on MPR rather than branching vessels."
+  },
+  {
+   "id": "exp-lidc-idri-0208",
+   "packId": "expansion",
+   "neutralTitle": "Patient X · Chest radiograph + CT chest",
+   "learnTitle": "Lung nodules on CT (LIDC-IDRI-0208)",
+   "subjectKey": "tcia:LIDC-IDRI:LIDC-IDRI-0208",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.159596875781736451820677432740",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.175479355783475822130237651110"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.310395752124284049604069960014",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "referenceSummary": "3 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers. Only reader-marked nodules are referenced; unmatched marks are unscored. Radiograph/CT interval unknown (placeholder dates).",
+   "learnNotes": "Search both lungs apex to base in a lung window; confirm candidates are round on MPR rather than branching vessels."
+  },
+  {
+   "id": "exp-lidc-idri-0111",
+   "packId": "expansion",
+   "neutralTitle": "Patient Y · Chest radiograph + CT chest",
+   "learnTitle": "Lung nodules on CT (LIDC-IDRI-0111)",
+   "subjectKey": "tcia:LIDC-IDRI:LIDC-IDRI-0111",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.192573383190752595141204566766",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.361004729625204263297457202086"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.257383535269991165447822992959",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "referenceSummary": "4 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers. Only reader-marked nodules are referenced; unmatched marks are unscored. Radiograph/CT interval unknown (placeholder dates).",
+   "learnNotes": "Search both lungs apex to base in a lung window; confirm candidates are round on MPR rather than branching vessels."
+  },
+  {
+   "id": "exp-kits-00045",
+   "packId": "expansion",
+   "neutralTitle": "Patient Z · CT abdomen (contrast)",
+   "learnTitle": "Arterial-phase CT with kidney and renal tumour segmentation (KiTS-00045)",
+   "subjectKey": "tcia:C4KC-KiTS:KiTS-00045",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.240129819735181264230032006307"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.437807925747595776338911279802",
+   "region": [
+    "abdomen"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch17-o10",
+    "ch13-o05"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 216,
+     "printed": "196",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.31",
+     "sectionId": null
+    },
+    {
+     "physical": 217,
+     "printed": "197",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.32",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "C4KC-KiTS manual kidney and tumour segmentation on the arterial phase; nothing else referenced.",
+   "learnNotes": "Follow each kidney through its whole length; compare the two sides at each level."
+  },
+  {
+   "id": "exp-kits-00204",
+   "packId": "expansion",
+   "neutralTitle": "Patient BA · CT abdomen (contrast)",
+   "learnTitle": "Arterial-phase CT with kidney and renal tumour segmentation (KiTS-00204)",
+   "subjectKey": "tcia:C4KC-KiTS:KiTS-00204",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.682393460886734484605515240567"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.300721406905031139938595258278",
+   "region": [
+    "abdomen"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch17-o10",
+    "ch13-o05"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 216,
+     "printed": "196",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.31",
+     "sectionId": null
+    },
+    {
+     "physical": 217,
+     "printed": "197",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.32",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "C4KC-KiTS manual kidney and tumour segmentation on the arterial phase; nothing else referenced.",
+   "learnNotes": "Follow each kidney through its whole length; compare the two sides at each level."
+  },
+  {
+   "id": "exp-spine-13800",
+   "packId": "expansion",
+   "neutralTitle": "Patient BB · CT torso (bone window)",
+   "learnTitle": "Counting vertebral levels on CT (13800)",
+   "subjectKey": "tcia:Spine-Mets-CT-SEG:13800",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.141265557749994688235436797481295066966"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.55389529677260335463675303341584456700",
+   "region": [
+    "spine"
+   ],
+   "clinicalContext": "Adult in a spinal metastasis CT segmentation collection (source description).",
+   "contextSource": "TCIA Spine-Mets-CT-SEG",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Source manual vertebral body segmentations (15 levels). Lesions are not referenced here.",
+   "learnNotes": "Count from the last rib-bearing vertebra (usually T12) and check on the sagittal MPR."
+  },
+  {
+   "id": "exp-spine-14078",
+   "packId": "expansion",
+   "neutralTitle": "Patient BC · CT torso (bone window)",
+   "learnTitle": "Counting vertebral levels on CT (14078)",
+   "subjectKey": "tcia:Spine-Mets-CT-SEG:14078",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.55669349235822937330459090217769350111"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.80966168417945654246464894130387503224",
+   "region": [
+    "spine"
+   ],
+   "clinicalContext": "Adult in a spinal metastasis CT segmentation collection (source description).",
+   "contextSource": "TCIA Spine-Mets-CT-SEG",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Source manual vertebral body segmentations (17 levels). Lesions are not referenced here.",
+   "learnNotes": "Count from the last rib-bearing vertebra (usually T12) and check on the sagittal MPR."
+  },
+  {
+   "id": "exp-remind-014",
+   "packId": "expansion",
+   "neutralTitle": "Patient BD · MRI brain",
+   "learnTitle": "Brain tumour on MRI (ReMIND-014)",
+   "subjectKey": "tcia:ReMIND:ReMIND-014",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.210305812955133009966014745855182273606"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.161253737387210810825356732460934972557",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o11",
+    "ch26-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 362,
+     "printed": "342",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.28",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.29",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Source manual tumour segmentation (ReMIND). Defaced images; placeholder dates.",
+   "learnNotes": "Compare hemispheres level by level on every sequence; FLAIR for oedema, post-contrast T1 for enhancement."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "exp-lctsc-train-s1-008:five-structures",
+   "caseId": "exp-lctsc-train-s1-008",
+   "type": "find_structure",
+   "title": "Name five structures",
+   "prompt": "With named arrows, mark: heart, esophagus, spinal cord, right lung and left lung (any slices).",
+   "modes": [
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.135073567254051847508429239493"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.135073567254051847508429239493",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s1-008_heart",
+     "name": "Heart",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s1-008_esophagus",
+     "name": "Esophagus",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s1-008_spinal-cord",
+     "name": "Spinal cord",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s1-008_right-lung",
+     "name": "Right lung",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s1-008_left-lung",
+     "name": "Left lung",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Mediastinal window for heart, esophagus and cord; lung window for the lungs."
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "One-to-one matching; identity and side are graded separately from position.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "High and low cardiac levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07",
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lctsc-train-s1-008:heart",
+   "caseId": "exp-lctsc-train-s1-008",
+   "type": "find_structure",
+   "title": "Find the heart",
+   "prompt": "Navigate to the heart and place one point inside it.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.135073567254051847508429239493"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.135073567254051847508429239493",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s1-008_heart",
+     "name": "Heart",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 3.0
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s1-008_heart"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, a different patient.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "High and low cardiac levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06",
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lctsc-train-s1-008:esophagus",
+   "caseId": "exp-lctsc-train-s1-008",
+   "type": "find_structure",
+   "title": "Find the esophagus",
+   "prompt": "Mark the centre of the esophagus on any axial slice.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.135073567254051847508429239493"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.135073567254051847508429239493",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s1-008_esophagus",
+     "name": "Esophagus",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s1-008_esophagus"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, a different patient.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lctsc-test-s2-202:five-structures",
+   "caseId": "exp-lctsc-test-s2-202",
+   "type": "find_structure",
+   "title": "Name five structures",
+   "prompt": "With named arrows, mark: heart, esophagus, spinal cord, right lung and left lung (any slices).",
+   "modes": [
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.186463975978084836948875020803"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.186463975978084836948875020803",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-test-s2-202_heart",
+     "name": "Heart",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-test-s2-202_esophagus",
+     "name": "Esophagus",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-test-s2-202_spinal-cord",
+     "name": "Spinal cord",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-test-s2-202_right-lung",
+     "name": "Right lung",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-test-s2-202_left-lung",
+     "name": "Left lung",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 2.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Mediastinal window for heart, esophagus and cord; lung window for the lungs."
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "One-to-one matching; identity and side are graded separately from position.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "High and low cardiac levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07",
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lctsc-test-s2-202:heart",
+   "caseId": "exp-lctsc-test-s2-202",
+   "type": "find_structure",
+   "title": "Find the heart",
+   "prompt": "Navigate to the heart and place one point inside it.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.186463975978084836948875020803"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.186463975978084836948875020803",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-test-s2-202_heart",
+     "name": "Heart",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 3.0
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-test-s2-202_heart"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, a different patient.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "High and low cardiac levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06",
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lctsc-test-s2-202:esophagus",
+   "caseId": "exp-lctsc-test-s2-202",
+   "type": "find_structure",
+   "title": "Find the esophagus",
+   "prompt": "Mark the centre of the esophagus on any axial slice.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.186463975978084836948875020803"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.186463975978084836948875020803",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-test-s2-202_esophagus",
+     "name": "Esophagus",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 2.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-test-s2-202_esophagus"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, a different patient.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lctsc-train-s3-007:five-structures",
+   "caseId": "exp-lctsc-train-s3-007",
+   "type": "find_structure",
+   "title": "Name five structures",
+   "prompt": "With named arrows, mark: heart, esophagus, spinal cord, right lung and left lung (any slices).",
+   "modes": [
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.311892226032003765556361265740"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.311892226032003765556361265740",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s3-007_heart",
+     "name": "Heart",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s3-007_esophagus",
+     "name": "Esophagus",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s3-007_spinal-cord",
+     "name": "Spinal cord",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s3-007_right-lung",
+     "name": "Right lung",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s3-007_left-lung",
+     "name": "Left lung",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Mediastinal window for heart, esophagus and cord; lung window for the lungs."
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "One-to-one matching; identity and side are graded separately from position.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "High and low cardiac levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07",
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lctsc-train-s3-007:heart",
+   "caseId": "exp-lctsc-train-s3-007",
+   "type": "find_structure",
+   "title": "Find the heart",
+   "prompt": "Navigate to the heart and place one point inside it.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.311892226032003765556361265740"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.311892226032003765556361265740",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s3-007_heart",
+     "name": "Heart",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 3.0
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s3-007_heart"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, a different patient.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "High and low cardiac levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06",
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lctsc-train-s3-007:esophagus",
+   "caseId": "exp-lctsc-train-s3-007",
+   "type": "find_structure",
+   "title": "Find the esophagus",
+   "prompt": "Mark the centre of the esophagus on any axial slice.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.311892226032003765556361265740"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.311892226032003765556361265740",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s3-007_esophagus",
+     "name": "Esophagus",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s3-007_esophagus"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, a different patient.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lctsc-train-s3-011:five-structures",
+   "caseId": "exp-lctsc-train-s3-011",
+   "type": "find_structure",
+   "title": "Name five structures",
+   "prompt": "With named arrows, mark: heart, esophagus, spinal cord, right lung and left lung (any slices).",
+   "modes": [
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.648202329529129061444241329585"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.648202329529129061444241329585",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s3-011_heart",
+     "name": "Heart",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s3-011_esophagus",
+     "name": "Esophagus",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s3-011_spinal-cord",
+     "name": "Spinal cord",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s3-011_right-lung",
+     "name": "Right lung",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s3-011_left-lung",
+     "name": "Left lung",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Mediastinal window for heart, esophagus and cord; lung window for the lungs."
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "One-to-one matching; identity and side are graded separately from position.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "High and low cardiac levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07",
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lctsc-train-s3-011:heart",
+   "caseId": "exp-lctsc-train-s3-011",
+   "type": "find_structure",
+   "title": "Find the heart",
+   "prompt": "Navigate to the heart and place one point inside it.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.648202329529129061444241329585"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.648202329529129061444241329585",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s3-011_heart",
+     "name": "Heart",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 3.0
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s3-011_heart"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, a different patient.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "High and low cardiac levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06",
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lctsc-train-s3-011:esophagus",
+   "caseId": "exp-lctsc-train-s3-011",
+   "type": "find_structure",
+   "title": "Find the esophagus",
+   "prompt": "Mark the centre of the esophagus on any axial slice.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.648202329529129061444241329585"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.648202329529129061444241329585",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s3-011_esophagus",
+     "name": "Esophagus",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s3-011_esophagus"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, a different patient.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0134:search",
+   "caseId": "exp-lidc-idri-0134",
+   "type": "whole_study",
+   "title": "Search the CT for lung nodules",
+   "prompt": "Search both lungs and mark every lung nodule you find (point or box). The number is not disclosed. If you find none, say so.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.102962801900681595502684962582"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.102962801900681595502684962582",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lidc-idri-0134_nodule-1",
+     "name": "Nodule 1",
+     "required": true
+    },
+    {
+     "targetId": "lidc-idri-0134_nodule-2",
+     "name": "Nodule 2",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": null,
+    "slabToleranceMm": 2.0,
+    "inPlaneToleranceMm": 3.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Lung window; scroll each lung separately."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with one referenced nodule.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lidc-idri-0134_nodule-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Detection is matched one-to-one against reader outlines; keep searching after the first nodule.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0134:oral",
+   "caseId": "exp-lidc-idri-0134",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a pulmonary vessel seen end-on or a granuloma is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.102962801900681595502684962582",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.254732746200956375214300973281"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.102962801900681595502684962582",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (growth over time cannot be judged from one study)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a pulmonary vessel seen end-on or a granuloma) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0134:technique",
+   "caseId": "exp-lidc-idri-0134",
+   "type": "describe_finding",
+   "title": "Judge the technical quality",
+   "prompt": "Before reading the lungs, assess this frontal radiograph's technique: projection, inspiration (count posterior ribs), rotation (spinous processes vs clavicle heads) and penetration.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.254732746200956375214300973281"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.254732746200956375214300973281",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "A good inspiration shows about 9–10 posterior ribs above the diaphragm; rotation shifts the spinous processes away from the midpoint between the clavicle heads."
+    }
+   ],
+   "explanation": "Technique changes appearances: poor inspiration crowds the bases and widens the heart; rotation distorts the mediastinum; AP projection magnifies the heart.",
+   "rubric": [
+    {
+     "id": "proj",
+     "text": "Projection stated (PA or as recorded)",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "insp",
+     "text": "Inspiration judged by counting posterior ribs",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "rot",
+     "text": "Rotation judged with spinous processes and clavicle heads",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pen",
+     "text": "Penetration judged (spine visible through the heart?)",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 27,
+     "printed": "12",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.2",
+     "sectionId": null
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": "ch02-s01"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o01"
+   ],
+   "skillDimensions": [
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0134:borders",
+   "caseId": "exp-lidc-idri-0134",
+   "type": "find_structure",
+   "title": "Trace the cardiomediastinal borders",
+   "prompt": "Place named arrows on each segment of the right and left cardiomediastinal borders (e.g. SVC, right atrium, aortic knob, main pulmonary artery, left ventricle) and say whether any segment looks abnormal.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.254732746200956375214300973281"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.254732746200956375214300973281",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Right border, top to bottom: SVC, then right atrium. Left border: aortic knob, main pulmonary artery, then left ventricle."
+    }
+   ],
+   "explanation": "No anatomical reference outlines exist for this radiograph, so compare your arrows with the book's figure of the normal contours and self-review.",
+   "rubric": [
+    {
+     "id": "right",
+     "text": "Right border: SVC and right atrium identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "left",
+     "text": "Left border: aortic knob, main pulmonary artery and left ventricle identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "abn",
+     "text": "Commented on whether any segment bulges or is effaced",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.2",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s03"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o02"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0134:ctr",
+   "caseId": "exp-lidc-idri-0134",
+   "type": "describe_finding",
+   "title": "Measure the cardiothoracic ratio",
+   "prompt": "Use the Length tool (L) to measure the widest heart diameter and the widest inner thoracic diameter, then state the ratio and whether this projection allows a judgement of heart size.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.254732746200956375214300973281"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.254732746200956375214300973281",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the heart from its rightmost to leftmost point; the thorax at its widest inner rib margins, usually at the domes of the diaphragm."
+    }
+   ],
+   "explanation": "The ratio is a heuristic for PA films; on AP films the heart is magnified, so an apparently large ratio is not reliable. Detector-plane pixel spacing is not patient-calibrated, but a ratio cancels that scale.",
+   "rubric": [
+    {
+     "id": "meas",
+     "text": "Both widths measured at the right places",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "ratio",
+     "text": "Ratio stated",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "proj",
+     "text": "Projection caveat stated (PA: usable)",
+     "weight": "essential",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.1",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0208:search",
+   "caseId": "exp-lidc-idri-0208",
+   "type": "whole_study",
+   "title": "Search the CT for lung nodules",
+   "prompt": "Search both lungs and mark every lung nodule you find (point or box). The number is not disclosed. If you find none, say so.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.310395752124284049604069960014"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.310395752124284049604069960014",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lidc-idri-0208_nodule-1",
+     "name": "Nodule 1",
+     "required": true
+    },
+    {
+     "targetId": "lidc-idri-0208_nodule-2",
+     "name": "Nodule 2",
+     "required": true
+    },
+    {
+     "targetId": "lidc-idri-0208_nodule-3",
+     "name": "Nodule 3",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": null,
+    "slabToleranceMm": 2.0,
+    "inPlaneToleranceMm": 3.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Lung window; scroll each lung separately."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with one referenced nodule.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lidc-idri-0208_nodule-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Detection is matched one-to-one against reader outlines; keep searching after the first nodule.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0208:oral",
+   "caseId": "exp-lidc-idri-0208",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a pulmonary vessel seen end-on or a granuloma is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.310395752124284049604069960014",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.382981348891573094702726085023"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.310395752124284049604069960014",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (growth over time cannot be judged from one study)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a pulmonary vessel seen end-on or a granuloma) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0208:technique",
+   "caseId": "exp-lidc-idri-0208",
+   "type": "describe_finding",
+   "title": "Judge the technical quality",
+   "prompt": "Before reading the lungs, assess this frontal radiograph's technique: projection, inspiration (count posterior ribs), rotation (spinous processes vs clavicle heads) and penetration.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.382981348891573094702726085023"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.382981348891573094702726085023",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "A good inspiration shows about 9–10 posterior ribs above the diaphragm; rotation shifts the spinous processes away from the midpoint between the clavicle heads."
+    }
+   ],
+   "explanation": "Technique changes appearances: poor inspiration crowds the bases and widens the heart; rotation distorts the mediastinum; AP projection magnifies the heart.",
+   "rubric": [
+    {
+     "id": "proj",
+     "text": "Projection stated (PA or as recorded)",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "insp",
+     "text": "Inspiration judged by counting posterior ribs",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "rot",
+     "text": "Rotation judged with spinous processes and clavicle heads",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pen",
+     "text": "Penetration judged (spine visible through the heart?)",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 27,
+     "printed": "12",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.2",
+     "sectionId": null
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": "ch02-s01"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o01"
+   ],
+   "skillDimensions": [
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0208:borders",
+   "caseId": "exp-lidc-idri-0208",
+   "type": "find_structure",
+   "title": "Trace the cardiomediastinal borders",
+   "prompt": "Place named arrows on each segment of the right and left cardiomediastinal borders (e.g. SVC, right atrium, aortic knob, main pulmonary artery, left ventricle) and say whether any segment looks abnormal.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.382981348891573094702726085023"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.382981348891573094702726085023",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Right border, top to bottom: SVC, then right atrium. Left border: aortic knob, main pulmonary artery, then left ventricle."
+    }
+   ],
+   "explanation": "No anatomical reference outlines exist for this radiograph, so compare your arrows with the book's figure of the normal contours and self-review.",
+   "rubric": [
+    {
+     "id": "right",
+     "text": "Right border: SVC and right atrium identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "left",
+     "text": "Left border: aortic knob, main pulmonary artery and left ventricle identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "abn",
+     "text": "Commented on whether any segment bulges or is effaced",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.2",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s03"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o02"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0208:ctr",
+   "caseId": "exp-lidc-idri-0208",
+   "type": "describe_finding",
+   "title": "Measure the cardiothoracic ratio",
+   "prompt": "Use the Length tool (L) to measure the widest heart diameter and the widest inner thoracic diameter, then state the ratio and whether this projection allows a judgement of heart size.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.382981348891573094702726085023"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.382981348891573094702726085023",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the heart from its rightmost to leftmost point; the thorax at its widest inner rib margins, usually at the domes of the diaphragm."
+    }
+   ],
+   "explanation": "The ratio is a heuristic for PA films; on AP films the heart is magnified, so an apparently large ratio is not reliable. Detector-plane pixel spacing is not patient-calibrated, but a ratio cancels that scale.",
+   "rubric": [
+    {
+     "id": "meas",
+     "text": "Both widths measured at the right places",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "ratio",
+     "text": "Ratio stated",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "proj",
+     "text": "Projection caveat stated (PA: usable)",
+     "weight": "essential",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.1",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0111:search",
+   "caseId": "exp-lidc-idri-0111",
+   "type": "whole_study",
+   "title": "Search the CT for lung nodules",
+   "prompt": "Search both lungs and mark every lung nodule you find (point or box). The number is not disclosed. If you find none, say so.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.257383535269991165447822992959"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.257383535269991165447822992959",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lidc-idri-0111_nodule-1",
+     "name": "Nodule 1",
+     "required": true
+    },
+    {
+     "targetId": "lidc-idri-0111_nodule-2",
+     "name": "Nodule 2",
+     "required": true
+    },
+    {
+     "targetId": "lidc-idri-0111_nodule-3",
+     "name": "Nodule 3",
+     "required": true
+    },
+    {
+     "targetId": "lidc-idri-0111_nodule-4",
+     "name": "Nodule 4",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": null,
+    "slabToleranceMm": 2.0,
+    "inPlaneToleranceMm": 3.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Lung window; scroll each lung separately."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with one referenced nodule.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lidc-idri-0111_nodule-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Detection is matched one-to-one against reader outlines; keep searching after the first nodule.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0111:oral",
+   "caseId": "exp-lidc-idri-0111",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a pulmonary vessel seen end-on or a granuloma is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.257383535269991165447822992959",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.113204308168622795344443518239"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.257383535269991165447822992959",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (growth over time cannot be judged from one study)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a pulmonary vessel seen end-on or a granuloma) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0111:technique",
+   "caseId": "exp-lidc-idri-0111",
+   "type": "describe_finding",
+   "title": "Judge the technical quality",
+   "prompt": "Before reading the lungs, assess this frontal radiograph's technique: projection, inspiration (count posterior ribs), rotation (spinous processes vs clavicle heads) and penetration.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.113204308168622795344443518239"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.113204308168622795344443518239",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "A good inspiration shows about 9–10 posterior ribs above the diaphragm; rotation shifts the spinous processes away from the midpoint between the clavicle heads."
+    }
+   ],
+   "explanation": "Technique changes appearances: poor inspiration crowds the bases and widens the heart; rotation distorts the mediastinum; AP projection magnifies the heart.",
+   "rubric": [
+    {
+     "id": "proj",
+     "text": "Projection stated (PA or as recorded)",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "insp",
+     "text": "Inspiration judged by counting posterior ribs",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "rot",
+     "text": "Rotation judged with spinous processes and clavicle heads",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pen",
+     "text": "Penetration judged (spine visible through the heart?)",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 27,
+     "printed": "12",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.2",
+     "sectionId": null
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": "ch02-s01"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o01"
+   ],
+   "skillDimensions": [
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0111:borders",
+   "caseId": "exp-lidc-idri-0111",
+   "type": "find_structure",
+   "title": "Trace the cardiomediastinal borders",
+   "prompt": "Place named arrows on each segment of the right and left cardiomediastinal borders (e.g. SVC, right atrium, aortic knob, main pulmonary artery, left ventricle) and say whether any segment looks abnormal.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.113204308168622795344443518239"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.113204308168622795344443518239",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Right border, top to bottom: SVC, then right atrium. Left border: aortic knob, main pulmonary artery, then left ventricle."
+    }
+   ],
+   "explanation": "No anatomical reference outlines exist for this radiograph, so compare your arrows with the book's figure of the normal contours and self-review.",
+   "rubric": [
+    {
+     "id": "right",
+     "text": "Right border: SVC and right atrium identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "left",
+     "text": "Left border: aortic knob, main pulmonary artery and left ventricle identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "abn",
+     "text": "Commented on whether any segment bulges or is effaced",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.2",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s03"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o02"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-lidc-idri-0111:ctr",
+   "caseId": "exp-lidc-idri-0111",
+   "type": "describe_finding",
+   "title": "Measure the cardiothoracic ratio",
+   "prompt": "Use the Length tool (L) to measure the widest heart diameter and the widest inner thoracic diameter, then state the ratio and whether this projection allows a judgement of heart size.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.113204308168622795344443518239"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.113204308168622795344443518239",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the heart from its rightmost to leftmost point; the thorax at its widest inner rib margins, usually at the domes of the diaphragm."
+    }
+   ],
+   "explanation": "The ratio is a heuristic for PA films; on AP films the heart is magnified, so an apparently large ratio is not reliable. Detector-plane pixel spacing is not patient-calibrated, but a ratio cancels that scale.",
+   "rubric": [
+    {
+     "id": "meas",
+     "text": "Both widths measured at the right places",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "ratio",
+     "text": "Ratio stated",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "proj",
+     "text": "Projection caveat stated (PA: usable)",
+     "weight": "essential",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.1",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-kits-00045:mass",
+   "caseId": "exp-kits-00045",
+   "type": "locate_finding",
+   "title": "Find the renal mass",
+   "prompt": "Examine both kidneys through their full length and mark any focal abnormality, or state that you find none. Name the side.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.437807925747595776338911279802"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.437807925747595776338911279802",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "kits-00045_renal-tumour-mass-left-side",
+     "name": "Renal mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare left and right kidneys at each level."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "kits-00045_renal-tumour-mass-left-side"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A different patient with the same skill: contour bulge and abnormal enhancement relative to the cortex.",
+   "bookAnchors": [
+    {
+     "physical": 216,
+     "printed": "196",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.31",
+     "sectionId": null
+    },
+    {
+     "physical": 217,
+     "printed": "197",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.32",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch17-o10"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-kits-00045:oral",
+   "caseId": "exp-kits-00045",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a complex renal cyst is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.437807925747595776338911279802"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.437807925747595776338911279802",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (histology needs tissue; one phase limits characterisation)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a complex renal cyst) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 216,
+     "printed": "196",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.31",
+     "sectionId": null
+    },
+    {
+     "physical": 217,
+     "printed": "197",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.32",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch17-o10"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-kits-00204:mass",
+   "caseId": "exp-kits-00204",
+   "type": "locate_finding",
+   "title": "Find the renal mass",
+   "prompt": "Examine both kidneys through their full length and mark any focal abnormality, or state that you find none. Name the side.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.300721406905031139938595258278"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.300721406905031139938595258278",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "kits-00204_renal-tumour-mass-right-side",
+     "name": "Renal mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare left and right kidneys at each level."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "kits-00204_renal-tumour-mass-right-side"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A different patient with the same skill: contour bulge and abnormal enhancement relative to the cortex.",
+   "bookAnchors": [
+    {
+     "physical": 216,
+     "printed": "196",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.31",
+     "sectionId": null
+    },
+    {
+     "physical": 217,
+     "printed": "197",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.32",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch17-o10"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-kits-00204:oral",
+   "caseId": "exp-kits-00204",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a complex renal cyst is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.300721406905031139938595258278"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.300721406905031139938595258278",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (histology needs tissue; one phase limits characterisation)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a complex renal cyst) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 216,
+     "printed": "196",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.31",
+     "sectionId": null
+    },
+    {
+     "physical": 217,
+     "printed": "197",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.32",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch17-o10"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-spine-13800:l1",
+   "caseId": "exp-spine-13800",
+   "type": "navigate_level",
+   "title": "Find the L1 vertebral body",
+   "prompt": "Mark the L1 vertebral body. Say which landmark you counted from.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.55389529677260335463675303341584456700"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.55389529677260335463675303341584456700",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "spine-13800_l1-vertebra",
+     "name": "L1",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the sagittal MPR."
+    },
+    {
+     "level": 2,
+     "text": "Find the lowest rib-bearing vertebra."
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A mark in a neighbouring vertebra is reported as that level, so you see how many levels off you were.",
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-spine-13800:l4",
+   "caseId": "exp-spine-13800",
+   "type": "navigate_level",
+   "title": "Find the L4 vertebral body",
+   "prompt": "Mark the L4 vertebral body. Say which landmark you counted from.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.55389529677260335463675303341584456700"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.55389529677260335463675303341584456700",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "spine-13800_l4-vertebra",
+     "name": "L4",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the sagittal MPR."
+    },
+    {
+     "level": 2,
+     "text": "Find the lowest rib-bearing vertebra."
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A mark in a neighbouring vertebra is reported as that level, so you see how many levels off you were.",
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-spine-13800:t12",
+   "caseId": "exp-spine-13800",
+   "type": "navigate_level",
+   "title": "Find the T12 vertebral body",
+   "prompt": "Mark the T12 vertebral body. Say which landmark you counted from.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.55389529677260335463675303341584456700"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.55389529677260335463675303341584456700",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "spine-13800_t12-vertebra",
+     "name": "T12",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the sagittal MPR."
+    },
+    {
+     "level": 2,
+     "text": "Find the lowest rib-bearing vertebra."
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A mark in a neighbouring vertebra is reported as that level, so you see how many levels off you were.",
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-spine-14078:l1",
+   "caseId": "exp-spine-14078",
+   "type": "navigate_level",
+   "title": "Find the L1 vertebral body",
+   "prompt": "Mark the L1 vertebral body. Say which landmark you counted from.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.80966168417945654246464894130387503224"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.80966168417945654246464894130387503224",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "spine-14078_l1-vertebra",
+     "name": "L1",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the sagittal MPR."
+    },
+    {
+     "level": 2,
+     "text": "Find the lowest rib-bearing vertebra."
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A mark in a neighbouring vertebra is reported as that level, so you see how many levels off you were.",
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-spine-14078:l4",
+   "caseId": "exp-spine-14078",
+   "type": "navigate_level",
+   "title": "Find the L4 vertebral body",
+   "prompt": "Mark the L4 vertebral body. Say which landmark you counted from.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.80966168417945654246464894130387503224"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.80966168417945654246464894130387503224",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "spine-14078_l4-vertebra",
+     "name": "L4",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the sagittal MPR."
+    },
+    {
+     "level": 2,
+     "text": "Find the lowest rib-bearing vertebra."
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A mark in a neighbouring vertebra is reported as that level, so you see how many levels off you were.",
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-spine-14078:t12",
+   "caseId": "exp-spine-14078",
+   "type": "navigate_level",
+   "title": "Find the T12 vertebral body",
+   "prompt": "Mark the T12 vertebral body. Say which landmark you counted from.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.80966168417945654246464894130387503224"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.80966168417945654246464894130387503224",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "spine-14078_t12-vertebra",
+     "name": "T12",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the sagittal MPR."
+    },
+    {
+     "level": 2,
+     "text": "Find the lowest rib-bearing vertebra."
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A mark in a neighbouring vertebra is reported as that level, so you see how many levels off you were.",
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-remind-014:find",
+   "caseId": "exp-remind-014",
+   "type": "locate_finding",
+   "title": "Find the abnormality",
+   "prompt": "Search the brain and mark the centre of any abnormality, or state that there is none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.161253737387210810825356732460934972557"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.161253737387210810825356732460934972557",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "remind-014_glioma-tumour",
+     "name": "Tumour",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": null,
+    "slabToleranceMm": 1.0,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look for asymmetry and mass effect."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "remind-014_glioma-tumour"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Mass effect, abnormal signal and enhancement locate the lesion; the reference is the source's manual segmentation.",
+   "bookAnchors": [
+    {
+     "physical": 362,
+     "printed": "342",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.28",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.29",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o11"
+   ],
+   "skillDimensions": [
+    "finding_localization"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "exp-remind-014:oral",
+   "caseId": "exp-remind-014",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a solitary metastasis or an abscess is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.290349993995566951774801380128244498802",
+    "1.3.6.1.4.1.14519.5.2.1.15444523821480682537415256577099706878",
+    "1.3.6.1.4.1.14519.5.2.1.161253737387210810825356732460934972557"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.161253737387210810825356732460934972557",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (MRI suggests but does not prove tumour type or grade)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a solitary metastasis or an abscess) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 362,
+     "printed": "342",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.28",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.29",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o11"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

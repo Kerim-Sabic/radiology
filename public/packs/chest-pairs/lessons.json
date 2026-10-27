@@ -1,0 +1,3116 @@
+{
+ "schemaVersion": 1,
+ "packId": "chest-pairs",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "chest-pairs-lidc-idri-0078",
+   "packId": "chest-pairs",
+   "neutralTitle": "Patient D · Chest radiograph + CT chest",
+   "learnTitle": "Lung nodules on CT with the same patient's radiograph (LIDC-IDRI-0078)",
+   "subjectKey": "tcia:LIDC-IDRI:LIDC-IDRI-0078",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.339170810277323131167631068432",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.240871421370718560464695801207"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.303494235102183795724852353824",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "referenceSummary": "3 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers (each reader's outline kept separately). LIDC references cover reader-marked nodules only — other findings and nodules <3 mm are not referenced, so unmatched marks are not counted as false positives. Reader malignancy ratings are subjective suspicion scores, not diagnoses. The radiograph has no localized reference; the CT annotations do not map onto it automatically. Study dates are de-identified placeholders, so the interval between radiograph and CT is unknown.",
+   "learnNotes": "Search both lungs from apex to base in a lung window and keep going after the first finding. Nodules are round and do not branch; vessels branch and can be followed from slice to slice. Use the MPR layout to check that a 'nodule' is spherical rather than a vessel seen end-on.\n\nThe outlines come from up to four LIDC readers and often disagree at the edges — compare them rather than treating one as exact truth. Then look at the same patient's radiograph: decide whether the CT nodules are visible there at all."
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0217",
+   "packId": "chest-pairs",
+   "neutralTitle": "Patient E · Chest radiograph + CT chest",
+   "learnTitle": "Lung nodules on CT with the same patient's radiograph (LIDC-IDRI-0217)",
+   "subjectKey": "tcia:LIDC-IDRI:LIDC-IDRI-0217",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.370700630609225608130630902041",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.952895223673099365306128936483"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "referenceSummary": "3 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers (each reader's outline kept separately). LIDC references cover reader-marked nodules only — other findings and nodules <3 mm are not referenced, so unmatched marks are not counted as false positives. Reader malignancy ratings are subjective suspicion scores, not diagnoses. The radiograph has no localized reference; the CT annotations do not map onto it automatically. Study dates are de-identified placeholders, so the interval between radiograph and CT is unknown.",
+   "learnNotes": "Search both lungs from apex to base in a lung window and keep going after the first finding. Nodules are round and do not branch; vessels branch and can be followed from slice to slice. Use the MPR layout to check that a 'nodule' is spherical rather than a vessel seen end-on.\n\nThe outlines come from up to four LIDC readers and often disagree at the edges — compare them rather than treating one as exact truth. Then look at the same patient's radiograph: decide whether the CT nodules are visible there at all."
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0053",
+   "packId": "chest-pairs",
+   "neutralTitle": "Patient F · Chest radiograph + CT chest",
+   "learnTitle": "Lung nodules on CT with the same patient's radiograph (LIDC-IDRI-0053)",
+   "subjectKey": "tcia:LIDC-IDRI:LIDC-IDRI-0053",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.233265558039230075858412321938",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.106096979628204829434516880964"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "referenceSummary": "2 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers (each reader's outline kept separately). LIDC references cover reader-marked nodules only — other findings and nodules <3 mm are not referenced, so unmatched marks are not counted as false positives. Reader malignancy ratings are subjective suspicion scores, not diagnoses. The radiograph has no localized reference; the CT annotations do not map onto it automatically. Study dates are de-identified placeholders, so the interval between radiograph and CT is unknown.",
+   "learnNotes": "Search both lungs from apex to base in a lung window and keep going after the first finding. Nodules are round and do not branch; vessels branch and can be followed from slice to slice. Use the MPR layout to check that a 'nodule' is spherical rather than a vessel seen end-on.\n\nThe outlines come from up to four LIDC readers and often disagree at the edges — compare them rather than treating one as exact truth. Then look at the same patient's radiograph: decide whether the CT nodules are visible there at all."
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434363",
+   "packId": "chest-pairs",
+   "neutralTitle": "Patient G · Chest radiograph + CT chest",
+   "learnTitle": "Same-patient chest radiograph and CT (XR CHEST AP PORTABLE / CT PE CHEST)",
+   "subjectKey": "tcia:COVID-19-AR:COVID-19-AR-16434363",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2288860861338356209670987023017",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2610745072409642570836204045135"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult from a research cohort of patients with positive COVID-19 testing (source collection description). The cohort label is not a finding on these images.",
+   "contextSource": "TCIA COVID-19-AR collection description",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch04-o01",
+    "ch04-o03",
+    "ch08-o05",
+    "ch02-o01",
+    "ch02-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 49,
+     "printed": "34",
+     "chapterId": "ch04",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Characteristics of airspace disease"
+    },
+    {
+     "physical": 88,
+     "printed": "73",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.9",
+     "sectionId": null,
+     "note": "COVID-19 pneumonia"
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "The normal frontal chest radiograph"
+    }
+   ],
+   "referenceSummary": "No finding-level reference is available for these studies — tasks are self-reviewed against source-linked checklists. Radiograph and CT were obtained the same day (de-identified dates, intervals preserved).",
+   "learnNotes": "Read the radiograph first, then the CT (the same day). Describe what is actually there: an image from this cohort may be normal. On the radiograph, describe opacities by side, zone, pattern (airspace vs interstitial) and distribution; on CT, separate ground-glass from consolidation and peripheral from central. Then decide what the CT adds."
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16406502",
+   "packId": "chest-pairs",
+   "neutralTitle": "Patient H · Chest radiograph + CT chest",
+   "learnTitle": "Same-patient chest radiograph and CT (XR CHEST PA AND LATERAL / CT CHEST WO CONTRAST)",
+   "subjectKey": "tcia:COVID-19-AR:COVID-19-AR-16406502",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1349442088412800953671053599968",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.3126151151950897758817173839042"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult from a research cohort of patients with positive COVID-19 testing (source collection description). The cohort label is not a finding on these images.",
+   "contextSource": "TCIA COVID-19-AR collection description",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch04-o01",
+    "ch04-o03",
+    "ch08-o05",
+    "ch02-o01",
+    "ch02-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 49,
+     "printed": "34",
+     "chapterId": "ch04",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Characteristics of airspace disease"
+    },
+    {
+     "physical": 88,
+     "printed": "73",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.9",
+     "sectionId": null,
+     "note": "COVID-19 pneumonia"
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "The normal frontal chest radiograph"
+    }
+   ],
+   "referenceSummary": "No finding-level reference is available for these studies — tasks are self-reviewed against source-linked checklists. Radiograph and CT were obtained 3 day(s) apart (de-identified dates, intervals preserved).",
+   "learnNotes": "Read the radiograph first, then the CT (3 day(s) apart). Describe what is actually there: an image from this cohort may be normal. On the radiograph, describe opacities by side, zone, pattern (airspace vs interstitial) and distribution; on CT, separate ground-glass from consolidation and peripheral from central. Then decide what the CT adds."
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434411",
+   "packId": "chest-pairs",
+   "neutralTitle": "Patient I · Chest radiograph + CT chest",
+   "learnTitle": "Same-patient chest radiograph and CT (XR CHEST AP PORTABLE / CT PE CHEST)",
+   "subjectKey": "tcia:COVID-19-AR:COVID-19-AR-16434411",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1609381041793626134855838750553",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1753044623609747183172496582089"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult from a research cohort of patients with positive COVID-19 testing (source collection description). The cohort label is not a finding on these images.",
+   "contextSource": "TCIA COVID-19-AR collection description",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch04-o01",
+    "ch04-o03",
+    "ch08-o05",
+    "ch02-o01",
+    "ch02-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 49,
+     "printed": "34",
+     "chapterId": "ch04",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Characteristics of airspace disease"
+    },
+    {
+     "physical": 88,
+     "printed": "73",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.9",
+     "sectionId": null,
+     "note": "COVID-19 pneumonia"
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "The normal frontal chest radiograph"
+    }
+   ],
+   "referenceSummary": "No finding-level reference is available for these studies — tasks are self-reviewed against source-linked checklists. Radiograph and CT were obtained the same day (de-identified dates, intervals preserved).",
+   "learnNotes": "Read the radiograph first, then the CT (the same day). Describe what is actually there: an image from this cohort may be normal. On the radiograph, describe opacities by side, zone, pattern (airspace vs interstitial) and distribution; on CT, separate ground-glass from consolidation and peripheral from central. Then decide what the CT adds."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "chest-pairs-lidc-idri-0078:search",
+   "caseId": "chest-pairs-lidc-idri-0078",
+   "type": "whole_study",
+   "title": "Search the CT for lung nodules",
+   "prompt": "Search both lungs on the CT and mark every lung nodule you find (point or box). The number of nodules is not disclosed. If you find none, say so.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.303494235102183795724852353824"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.303494235102183795724852353824",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lidc-idri-0078_nodule-1",
+     "name": "Nodule 1",
+     "required": true
+    },
+    {
+     "targetId": "lidc-idri-0078_nodule-2",
+     "name": "Nodule 2",
+     "required": true
+    },
+    {
+     "targetId": "lidc-idri-0078_nodule-3",
+     "name": "Nodule 3",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": null,
+    "slabToleranceMm": 2.0,
+    "inPlaneToleranceMm": 3.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the lung window and scroll slowly through each lung separately, apex to base."
+    },
+    {
+     "level": 2,
+     "text": "A nodule appears and disappears over a few slices without connecting to a branching vessel. Compare left and right at each level."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice that contains one of the referenced nodules.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lidc-idri-0078_nodule-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference outlines.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Every referenced nodule is matched one-to-one to your marks; a mark inside any reader's outline (or within 3 mm of it on a slice within 2 mm) counts as detection. Missed nodules are listed. Marks elsewhere are 'unscored' because LIDC only references reader-marked nodules ≥3 mm — they are not proof of a false positive.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0078:describe",
+   "caseId": "chest-pairs-lidc-idri-0078",
+   "type": "describe_finding",
+   "title": "Describe the nodules",
+   "prompt": "Describe each nodule you found: location, size, margin and density, then give a brief impression.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.303494235102183795724852353824"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.303494235102183795724852353824",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the longest axis with the Length tool (L) on the slice where the nodule is largest."
+    }
+   ],
+   "explanation": "The book's approach: margins, calcification pattern and growth over time are the most useful features; a single CT cannot settle benign versus malignant. LIDC reader ratings for these nodules are shown in the Case tab after submission as suspicion scores, not diagnoses.",
+   "rubric": [
+    {
+     "id": "loc",
+     "text": "Gave the lobe or zone and the side of each nodule",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "size",
+     "text": "Estimated size (longest diameter) — use the length tool on the CT",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "margin",
+     "text": "Described the margin (smooth, lobulated or spiculated)",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "density",
+     "text": "Described density (solid, part-solid, ground-glass) and any calcification or fat",
+     "weight": "supportive",
+     "category": "pattern"
+    },
+    {
+     "id": "count",
+     "text": "Kept searching after the first nodule and reported every nodule found",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "mgmt",
+     "text": "Recognised that benign vs malignant cannot be decided from one CT alone (prior imaging/growth matter)",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "reporting",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0078:xr-correlate",
+   "caseId": "chest-pairs-lidc-idri-0078",
+   "type": "correlate_modalities",
+   "title": "Can you see the CT nodules on the radiograph?",
+   "prompt": "Open the radiograph first (two-up layout helps). Mark where you think a nodule projects, or note that none is visible. Then compare with the CT.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.461746091282302068924103463997",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.303494235102183795724852353824"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.461746091282302068924103463997",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look through the heart, the hila and below the diaphragm domes — common hiding places on a frontal film."
+    },
+    {
+     "level": 2,
+     "text": "On CT, note each nodule's lobe and how far it is from the chest wall; then estimate where it would project on the frontal view."
+    }
+   ],
+   "explanation": "A radiograph is a projection: one CT voxel has no unique radiograph pixel, so the app does not auto-map CT annotations onto the X-ray. Small or overlapped nodules are often invisible on radiographs — finding that out on a real pair is the point of this exercise. The interval between these two studies is unknown.",
+   "rubric": [
+    {
+     "id": "search",
+     "text": "Searched the radiograph systematically before looking at the CT",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "decision",
+     "text": "Committed to visible / not visible for each CT nodule",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "why",
+     "text": "Explained why a nodule might not be seen (size, overlap with heart/hila/diaphragm/bone)",
+     "weight": "supportive",
+     "category": "limitation"
+    },
+    {
+     "id": "interval",
+     "text": "Did not assume the two studies were taken on the same day",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "The normal frontal chest radiograph"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "cross_modality",
+    "finding_localization"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0078:oral",
+   "caseId": "chest-pairs-lidc-idri-0078",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a pulmonary vessel seen end-on or a granuloma is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.303494235102183795724852353824",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.461746091282302068924103463997"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.303494235102183795724852353824",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (growth over time cannot be judged from one study)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a pulmonary vessel seen end-on or a granuloma) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0217:search",
+   "caseId": "chest-pairs-lidc-idri-0217",
+   "type": "whole_study",
+   "title": "Search the CT for lung nodules",
+   "prompt": "Search both lungs on the CT and mark every lung nodule you find (point or box). The number of nodules is not disclosed. If you find none, say so.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lidc-idri-0217_nodule-1",
+     "name": "Nodule 1",
+     "required": true
+    },
+    {
+     "targetId": "lidc-idri-0217_nodule-2",
+     "name": "Nodule 2",
+     "required": true
+    },
+    {
+     "targetId": "lidc-idri-0217_nodule-3",
+     "name": "Nodule 3",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": null,
+    "slabToleranceMm": 2.0,
+    "inPlaneToleranceMm": 3.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the lung window and scroll slowly through each lung separately, apex to base."
+    },
+    {
+     "level": 2,
+     "text": "A nodule appears and disappears over a few slices without connecting to a branching vessel. Compare left and right at each level."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice that contains one of the referenced nodules.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lidc-idri-0217_nodule-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference outlines.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Every referenced nodule is matched one-to-one to your marks; a mark inside any reader's outline (or within 3 mm of it on a slice within 2 mm) counts as detection. Missed nodules are listed. Marks elsewhere are 'unscored' because LIDC only references reader-marked nodules ≥3 mm — they are not proof of a false positive.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0217:describe",
+   "caseId": "chest-pairs-lidc-idri-0217",
+   "type": "describe_finding",
+   "title": "Describe the nodules",
+   "prompt": "Describe each nodule you found: location, size, margin and density, then give a brief impression.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the longest axis with the Length tool (L) on the slice where the nodule is largest."
+    }
+   ],
+   "explanation": "The book's approach: margins, calcification pattern and growth over time are the most useful features; a single CT cannot settle benign versus malignant. LIDC reader ratings for these nodules are shown in the Case tab after submission as suspicion scores, not diagnoses.",
+   "rubric": [
+    {
+     "id": "loc",
+     "text": "Gave the lobe or zone and the side of each nodule",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "size",
+     "text": "Estimated size (longest diameter) — use the length tool on the CT",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "margin",
+     "text": "Described the margin (smooth, lobulated or spiculated)",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "density",
+     "text": "Described density (solid, part-solid, ground-glass) and any calcification or fat",
+     "weight": "supportive",
+     "category": "pattern"
+    },
+    {
+     "id": "count",
+     "text": "Kept searching after the first nodule and reported every nodule found",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "mgmt",
+     "text": "Recognised that benign vs malignant cannot be decided from one CT alone (prior imaging/growth matter)",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "reporting",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0217:xr-correlate",
+   "caseId": "chest-pairs-lidc-idri-0217",
+   "type": "correlate_modalities",
+   "title": "Can you see the CT nodules on the radiograph?",
+   "prompt": "Open the radiograph first (two-up layout helps). Mark where you think a nodule projects, or note that none is visible. Then compare with the CT.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.176338567774624792192771594127",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.176338567774624792192771594127",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look through the heart, the hila and below the diaphragm domes — common hiding places on a frontal film."
+    },
+    {
+     "level": 2,
+     "text": "On CT, note each nodule's lobe and how far it is from the chest wall; then estimate where it would project on the frontal view."
+    }
+   ],
+   "explanation": "A radiograph is a projection: one CT voxel has no unique radiograph pixel, so the app does not auto-map CT annotations onto the X-ray. Small or overlapped nodules are often invisible on radiographs — finding that out on a real pair is the point of this exercise. The interval between these two studies is unknown.",
+   "rubric": [
+    {
+     "id": "search",
+     "text": "Searched the radiograph systematically before looking at the CT",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "decision",
+     "text": "Committed to visible / not visible for each CT nodule",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "why",
+     "text": "Explained why a nodule might not be seen (size, overlap with heart/hila/diaphragm/bone)",
+     "weight": "supportive",
+     "category": "limitation"
+    },
+    {
+     "id": "interval",
+     "text": "Did not assume the two studies were taken on the same day",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "The normal frontal chest radiograph"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "cross_modality",
+    "finding_localization"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0217:oral",
+   "caseId": "chest-pairs-lidc-idri-0217",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a pulmonary vessel seen end-on or a granuloma is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.176338567774624792192771594127"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (growth over time cannot be judged from one study)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a pulmonary vessel seen end-on or a granuloma) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0053:search",
+   "caseId": "chest-pairs-lidc-idri-0053",
+   "type": "whole_study",
+   "title": "Search the CT for lung nodules",
+   "prompt": "Search both lungs on the CT and mark every lung nodule you find (point or box). The number of nodules is not disclosed. If you find none, say so.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lidc-idri-0053_nodule-1",
+     "name": "Nodule 1",
+     "required": true
+    },
+    {
+     "targetId": "lidc-idri-0053_nodule-2",
+     "name": "Nodule 2",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": null,
+    "slabToleranceMm": 2.0,
+    "inPlaneToleranceMm": 3.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the lung window and scroll slowly through each lung separately, apex to base."
+    },
+    {
+     "level": 2,
+     "text": "A nodule appears and disappears over a few slices without connecting to a branching vessel. Compare left and right at each level."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice that contains one of the referenced nodules.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lidc-idri-0053_nodule-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference outlines.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Every referenced nodule is matched one-to-one to your marks; a mark inside any reader's outline (or within 3 mm of it on a slice within 2 mm) counts as detection. Missed nodules are listed. Marks elsewhere are 'unscored' because LIDC only references reader-marked nodules ≥3 mm — they are not proof of a false positive.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 33,
+     "printed": "18",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal CT anatomy of the lungs; lung windows"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0053:describe",
+   "caseId": "chest-pairs-lidc-idri-0053",
+   "type": "describe_finding",
+   "title": "Describe the nodules",
+   "prompt": "Describe each nodule you found: location, size, margin and density, then give a brief impression.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the longest axis with the Length tool (L) on the slice where the nodule is largest."
+    }
+   ],
+   "explanation": "The book's approach: margins, calcification pattern and growth over time are the most useful features; a single CT cannot settle benign versus malignant. LIDC reader ratings for these nodules are shown in the Case tab after submission as suspicion scores, not diagnoses.",
+   "rubric": [
+    {
+     "id": "loc",
+     "text": "Gave the lobe or zone and the side of each nodule",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "size",
+     "text": "Estimated size (longest diameter) — use the length tool on the CT",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "margin",
+     "text": "Described the margin (smooth, lobulated or spiculated)",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "density",
+     "text": "Described density (solid, part-solid, ground-glass) and any calcification or fat",
+     "weight": "supportive",
+     "category": "pattern"
+    },
+    {
+     "id": "count",
+     "text": "Kept searching after the first nodule and reported every nodule found",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "mgmt",
+     "text": "Recognised that benign vs malignant cannot be decided from one CT alone (prior imaging/growth matter)",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "reporting",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0053:xr-correlate",
+   "caseId": "chest-pairs-lidc-idri-0053",
+   "type": "correlate_modalities",
+   "title": "Can you see the CT nodules on the radiograph?",
+   "prompt": "Open the radiograph first (two-up layout helps). Mark where you think a nodule projects, or note that none is visible. Then compare with the CT.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.644726997798389867750012734671",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.644726997798389867750012734671",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look through the heart, the hila and below the diaphragm domes — common hiding places on a frontal film."
+    },
+    {
+     "level": 2,
+     "text": "On CT, note each nodule's lobe and how far it is from the chest wall; then estimate where it would project on the frontal view."
+    }
+   ],
+   "explanation": "A radiograph is a projection: one CT voxel has no unique radiograph pixel, so the app does not auto-map CT annotations onto the X-ray. Small or overlapped nodules are often invisible on radiographs — finding that out on a real pair is the point of this exercise. The interval between these two studies is unknown.",
+   "rubric": [
+    {
+     "id": "search",
+     "text": "Searched the radiograph systematically before looking at the CT",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "decision",
+     "text": "Committed to visible / not visible for each CT nodule",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "why",
+     "text": "Explained why a nodule might not be seen (size, overlap with heart/hila/diaphragm/bone)",
+     "weight": "supportive",
+     "category": "limitation"
+    },
+    {
+     "id": "interval",
+     "text": "Did not assume the two studies were taken on the same day",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "The normal frontal chest radiograph"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "cross_modality",
+    "finding_localization"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0053:oral",
+   "caseId": "chest-pairs-lidc-idri-0053",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a pulmonary vessel seen end-on or a granuloma is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.644726997798389867750012734671"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (growth over time cannot be judged from one study)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a pulmonary vessel seen end-on or a granuloma) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Signs of a benign versus malignant nodule"
+    },
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Solitary nodule/mass in the lung"
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434363:correlate",
+   "caseId": "chest-pairs-covid-19-ar-16434363",
+   "type": "correlate_modalities",
+   "title": "Radiograph first, then CT",
+   "prompt": "Read the frontal radiograph and describe the lungs. Then read the CT (the same day) and say what it confirms, adds or contradicts.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Technique first: AP portable or PA? Heart size is not reliable on AP films."
+    },
+    {
+     "level": 2,
+     "text": "For each opacity: side, zone (upper/mid/lower), central vs peripheral, airspace vs interstitial."
+    }
+   ],
+   "explanation": "There is no expert finding reference here; compare your description with the checklist and the linked book pages. Bilateral, peripheral, lower-zone opacities are typical of COVID-19 pneumonia in the book, but this image must be judged on what it shows.",
+   "rubric": [
+    {
+     "id": "tech",
+     "text": "Stated projection/technique and its limits",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "lungs",
+     "text": "Described both lungs by zone, including whether they are clear",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pattern",
+     "text": "Named the pattern (airspace vs interstitial) and distribution for any opacity",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "ct",
+     "text": "On CT, separated ground-glass from consolidation and described distribution",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "adds",
+     "text": "Said what the CT adds that the radiograph could not show",
+     "weight": "supportive",
+     "category": "finding"
+    },
+    {
+     "id": "impr",
+     "text": "Gave a concise impression with a short differential where appropriate",
+     "weight": "essential",
+     "category": "impression"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 49,
+     "printed": "34",
+     "chapterId": "ch04",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Characteristics of airspace disease"
+    },
+    {
+     "physical": 88,
+     "printed": "73",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.9",
+     "sectionId": null,
+     "note": "COVID-19 pneumonia"
+    },
+    {
+     "physical": 36,
+     "printed": "21",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "AP vs PA heart magnification"
+    }
+   ],
+   "objectiveIds": [
+    "ch04-o01",
+    "ch04-o03",
+    "ch08-o05"
+   ],
+   "skillDimensions": [
+    "cross_modality",
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434363:scout",
+   "caseId": "chest-pairs-covid-19-ar-16434363",
+   "type": "compare_appearances",
+   "title": "Diagnostic radiograph or CT scout?",
+   "prompt": "Two frontal projection images exist for this patient. Which one is the diagnostic chest radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1236101208319372218942852361857"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1236101208319372218942852361857",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "xr",
+      "text": "The DX image (study 'XR CHEST AP PORTABLE')",
+      "correct": true,
+      "why": "Modality DX: a radiographic acquisition — the diagnostic X-ray."
+     },
+     {
+      "id": "scout",
+      "text": "The 'locator' image (study 'CT PE CHEST')",
+      "correct": false,
+      "why": "Modality CT: the CT scanner's low-dose localizer used to plan slices. Not a diagnostic radiograph."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Read the modality and description in the viewport corners."
+    }
+   ],
+   "explanation": "A CT scout is a planning projection acquired by the CT gantry. It must not be reported as, or paired as, a chest radiograph.",
+   "bookAnchors": [
+    {
+     "physical": 16,
+     "printed": "2",
+     "chapterId": "ch01",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Imaging modalities"
+    }
+   ],
+   "objectiveIds": [
+    "ch01-o07"
+   ],
+   "skillDimensions": [
+    "orientation",
+    "cross_modality"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16406502:correlate",
+   "caseId": "chest-pairs-covid-19-ar-16406502",
+   "type": "correlate_modalities",
+   "title": "Radiograph first, then CT",
+   "prompt": "Read the frontal radiograph and describe the lungs. Then read the CT (3 day(s) apart) and say what it confirms, adds or contradicts.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.3247091443582319833651607421612",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1297241675001104881524183740029"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Technique first: AP portable or PA? Heart size is not reliable on AP films."
+    },
+    {
+     "level": 2,
+     "text": "For each opacity: side, zone (upper/mid/lower), central vs peripheral, airspace vs interstitial."
+    }
+   ],
+   "explanation": "There is no expert finding reference here; compare your description with the checklist and the linked book pages. Bilateral, peripheral, lower-zone opacities are typical of COVID-19 pneumonia in the book, but this image must be judged on what it shows.",
+   "rubric": [
+    {
+     "id": "tech",
+     "text": "Stated projection/technique and its limits",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "lungs",
+     "text": "Described both lungs by zone, including whether they are clear",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pattern",
+     "text": "Named the pattern (airspace vs interstitial) and distribution for any opacity",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "ct",
+     "text": "On CT, separated ground-glass from consolidation and described distribution",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "adds",
+     "text": "Said what the CT adds that the radiograph could not show",
+     "weight": "supportive",
+     "category": "finding"
+    },
+    {
+     "id": "impr",
+     "text": "Gave a concise impression with a short differential where appropriate",
+     "weight": "essential",
+     "category": "impression"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 49,
+     "printed": "34",
+     "chapterId": "ch04",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Characteristics of airspace disease"
+    },
+    {
+     "physical": 88,
+     "printed": "73",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.9",
+     "sectionId": null,
+     "note": "COVID-19 pneumonia"
+    },
+    {
+     "physical": 36,
+     "printed": "21",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "AP vs PA heart magnification"
+    }
+   ],
+   "objectiveIds": [
+    "ch04-o01",
+    "ch04-o03",
+    "ch08-o05"
+   ],
+   "skillDimensions": [
+    "cross_modality",
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16406502:lateral",
+   "caseId": "chest-pairs-covid-19-ar-16406502",
+   "type": "compare_appearances",
+   "title": "Read the lateral view",
+   "prompt": "Open the lateral radiograph. Check the retrosternal clear space, the hila, the fissures, the thoracic spine and the posterior costophrenic sulci, then describe them.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1297241675001104881524183740029",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1297241675001104881524183740029",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "The spine should get darker (more lucent) from top to bottom; if it doesn't, look for something projecting over the lower spine."
+    }
+   ],
+   "explanation": "The book's five key areas on the lateral view are a reliable checklist. Use the frontal view beside it to localize anything you find.",
+   "rubric": [
+    {
+     "id": "rs",
+     "text": "Retrosternal clear space assessed",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "hila",
+     "text": "Hilar region assessed",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "fiss",
+     "text": "Fissures identified or noted as not visible",
+     "weight": "supportive",
+     "category": "finding"
+    },
+    {
+     "id": "spine",
+     "text": "Thoracic spine lucency gradient assessed",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "sulci",
+     "text": "Posterior costophrenic sulci assessed",
+     "weight": "essential",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 29,
+     "printed": "14",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.5",
+     "sectionId": null,
+     "note": "The normal lateral chest radiograph"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o04"
+   ],
+   "skillDimensions": [
+    "orientation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434411:correlate",
+   "caseId": "chest-pairs-covid-19-ar-16434411",
+   "type": "correlate_modalities",
+   "title": "Radiograph first, then CT",
+   "prompt": "Read the frontal radiograph and describe the lungs. Then read the CT (the same day) and say what it confirms, adds or contradicts.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Technique first: AP portable or PA? Heart size is not reliable on AP films."
+    },
+    {
+     "level": 2,
+     "text": "For each opacity: side, zone (upper/mid/lower), central vs peripheral, airspace vs interstitial."
+    }
+   ],
+   "explanation": "There is no expert finding reference here; compare your description with the checklist and the linked book pages. Bilateral, peripheral, lower-zone opacities are typical of COVID-19 pneumonia in the book, but this image must be judged on what it shows.",
+   "rubric": [
+    {
+     "id": "tech",
+     "text": "Stated projection/technique and its limits",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "lungs",
+     "text": "Described both lungs by zone, including whether they are clear",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pattern",
+     "text": "Named the pattern (airspace vs interstitial) and distribution for any opacity",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "ct",
+     "text": "On CT, separated ground-glass from consolidation and described distribution",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "adds",
+     "text": "Said what the CT adds that the radiograph could not show",
+     "weight": "supportive",
+     "category": "finding"
+    },
+    {
+     "id": "impr",
+     "text": "Gave a concise impression with a short differential where appropriate",
+     "weight": "essential",
+     "category": "impression"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 49,
+     "printed": "34",
+     "chapterId": "ch04",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Characteristics of airspace disease"
+    },
+    {
+     "physical": 88,
+     "printed": "73",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.9",
+     "sectionId": null,
+     "note": "COVID-19 pneumonia"
+    },
+    {
+     "physical": 36,
+     "printed": "21",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "AP vs PA heart magnification"
+    }
+   ],
+   "objectiveIds": [
+    "ch04-o01",
+    "ch04-o03",
+    "ch08-o05"
+   ],
+   "skillDimensions": [
+    "cross_modality",
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434411:scout",
+   "caseId": "chest-pairs-covid-19-ar-16434411",
+   "type": "compare_appearances",
+   "title": "Diagnostic radiograph or CT scout?",
+   "prompt": "Two frontal projection images exist for this patient. Which one is the diagnostic chest radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772",
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2802505308029346417182455899783"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2802505308029346417182455899783",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "xr",
+      "text": "The DX image (study 'XR CHEST AP PORTABLE')",
+      "correct": true,
+      "why": "Modality DX: a radiographic acquisition — the diagnostic X-ray."
+     },
+     {
+      "id": "scout",
+      "text": "The 'locator' image (study 'CT PE CHEST')",
+      "correct": false,
+      "why": "Modality CT: the CT scanner's low-dose localizer used to plan slices. Not a diagnostic radiograph."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Read the modality and description in the viewport corners."
+    }
+   ],
+   "explanation": "A CT scout is a planning projection acquired by the CT gantry. It must not be reported as, or paired as, a chest radiograph.",
+   "bookAnchors": [
+    {
+     "physical": 16,
+     "printed": "2",
+     "chapterId": "ch01",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Imaging modalities"
+    }
+   ],
+   "objectiveIds": [
+    "ch01-o07"
+   ],
+   "skillDimensions": [
+    "orientation",
+    "cross_modality"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0078:technique",
+   "caseId": "chest-pairs-lidc-idri-0078",
+   "type": "describe_finding",
+   "title": "Judge the technical quality",
+   "prompt": "Before reading the lungs, assess this frontal radiograph's technique: projection, inspiration (count posterior ribs), rotation (spinous processes vs clavicle heads) and penetration.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.461746091282302068924103463997"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.461746091282302068924103463997",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "A good inspiration shows about 9–10 posterior ribs above the diaphragm; rotation shifts the spinous processes away from the midpoint between the clavicle heads."
+    }
+   ],
+   "explanation": "Technique changes appearances: poor inspiration crowds the bases and widens the heart; rotation distorts the mediastinum; AP projection magnifies the heart.",
+   "rubric": [
+    {
+     "id": "proj",
+     "text": "Projection stated (PA or as recorded)",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "insp",
+     "text": "Inspiration judged by counting posterior ribs",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "rot",
+     "text": "Rotation judged with spinous processes and clavicle heads",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pen",
+     "text": "Penetration judged (spine visible through the heart?)",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 27,
+     "printed": "12",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.2",
+     "sectionId": null
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": "ch02-s01"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o01"
+   ],
+   "skillDimensions": [
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0078:borders",
+   "caseId": "chest-pairs-lidc-idri-0078",
+   "type": "find_structure",
+   "title": "Trace the cardiomediastinal borders",
+   "prompt": "Place named arrows on each segment of the right and left cardiomediastinal borders (e.g. SVC, right atrium, aortic knob, main pulmonary artery, left ventricle) and say whether any segment looks abnormal.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.461746091282302068924103463997"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.461746091282302068924103463997",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Right border, top to bottom: SVC, then right atrium. Left border: aortic knob, main pulmonary artery, then left ventricle."
+    }
+   ],
+   "explanation": "No anatomical reference outlines exist for this radiograph, so compare your arrows with the book's figure of the normal contours and self-review.",
+   "rubric": [
+    {
+     "id": "right",
+     "text": "Right border: SVC and right atrium identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "left",
+     "text": "Left border: aortic knob, main pulmonary artery and left ventricle identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "abn",
+     "text": "Commented on whether any segment bulges or is effaced",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.2",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s03"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o02"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0078:ctr",
+   "caseId": "chest-pairs-lidc-idri-0078",
+   "type": "describe_finding",
+   "title": "Measure the cardiothoracic ratio",
+   "prompt": "Use the Length tool (L) to measure the widest heart diameter and the widest inner thoracic diameter, then state the ratio and whether this projection allows a judgement of heart size.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.461746091282302068924103463997"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.461746091282302068924103463997",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the heart from its rightmost to leftmost point; the thorax at its widest inner rib margins, usually at the domes of the diaphragm."
+    }
+   ],
+   "explanation": "The ratio is a heuristic for PA films; on AP films the heart is magnified, so an apparently large ratio is not reliable. Detector-plane pixel spacing is not patient-calibrated, but a ratio cancels that scale.",
+   "rubric": [
+    {
+     "id": "meas",
+     "text": "Both widths measured at the right places",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "ratio",
+     "text": "Ratio stated",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "proj",
+     "text": "Projection caveat stated (PA: usable)",
+     "weight": "essential",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.1",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0053:technique",
+   "caseId": "chest-pairs-lidc-idri-0053",
+   "type": "describe_finding",
+   "title": "Judge the technical quality",
+   "prompt": "Before reading the lungs, assess this frontal radiograph's technique: projection, inspiration (count posterior ribs), rotation (spinous processes vs clavicle heads) and penetration.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.644726997798389867750012734671"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.644726997798389867750012734671",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "A good inspiration shows about 9–10 posterior ribs above the diaphragm; rotation shifts the spinous processes away from the midpoint between the clavicle heads."
+    }
+   ],
+   "explanation": "Technique changes appearances: poor inspiration crowds the bases and widens the heart; rotation distorts the mediastinum; AP projection magnifies the heart.",
+   "rubric": [
+    {
+     "id": "proj",
+     "text": "Projection stated (PA or as recorded)",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "insp",
+     "text": "Inspiration judged by counting posterior ribs",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "rot",
+     "text": "Rotation judged with spinous processes and clavicle heads",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pen",
+     "text": "Penetration judged (spine visible through the heart?)",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 27,
+     "printed": "12",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.2",
+     "sectionId": null
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": "ch02-s01"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o01"
+   ],
+   "skillDimensions": [
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0053:borders",
+   "caseId": "chest-pairs-lidc-idri-0053",
+   "type": "find_structure",
+   "title": "Trace the cardiomediastinal borders",
+   "prompt": "Place named arrows on each segment of the right and left cardiomediastinal borders (e.g. SVC, right atrium, aortic knob, main pulmonary artery, left ventricle) and say whether any segment looks abnormal.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.644726997798389867750012734671"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.644726997798389867750012734671",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Right border, top to bottom: SVC, then right atrium. Left border: aortic knob, main pulmonary artery, then left ventricle."
+    }
+   ],
+   "explanation": "No anatomical reference outlines exist for this radiograph, so compare your arrows with the book's figure of the normal contours and self-review.",
+   "rubric": [
+    {
+     "id": "right",
+     "text": "Right border: SVC and right atrium identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "left",
+     "text": "Left border: aortic knob, main pulmonary artery and left ventricle identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "abn",
+     "text": "Commented on whether any segment bulges or is effaced",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.2",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s03"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o02"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-lidc-idri-0053:ctr",
+   "caseId": "chest-pairs-lidc-idri-0053",
+   "type": "describe_finding",
+   "title": "Measure the cardiothoracic ratio",
+   "prompt": "Use the Length tool (L) to measure the widest heart diameter and the widest inner thoracic diameter, then state the ratio and whether this projection allows a judgement of heart size.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6279.6001.644726997798389867750012734671"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.644726997798389867750012734671",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the heart from its rightmost to leftmost point; the thorax at its widest inner rib margins, usually at the domes of the diaphragm."
+    }
+   ],
+   "explanation": "The ratio is a heuristic for PA films; on AP films the heart is magnified, so an apparently large ratio is not reliable. Detector-plane pixel spacing is not patient-calibrated, but a ratio cancels that scale.",
+   "rubric": [
+    {
+     "id": "meas",
+     "text": "Both widths measured at the right places",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "ratio",
+     "text": "Ratio stated",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "proj",
+     "text": "Projection caveat stated (PA: usable)",
+     "weight": "essential",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.1",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434363:technique",
+   "caseId": "chest-pairs-covid-19-ar-16434363",
+   "type": "describe_finding",
+   "title": "Judge the technical quality",
+   "prompt": "Before reading the lungs, assess this frontal radiograph's technique: projection, inspiration (count posterior ribs), rotation (spinous processes vs clavicle heads) and penetration.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "A good inspiration shows about 9–10 posterior ribs above the diaphragm; rotation shifts the spinous processes away from the midpoint between the clavicle heads."
+    }
+   ],
+   "explanation": "Technique changes appearances: poor inspiration crowds the bases and widens the heart; rotation distorts the mediastinum; AP projection magnifies the heart.",
+   "rubric": [
+    {
+     "id": "proj",
+     "text": "Projection stated (AP — heart size not reliable)",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "insp",
+     "text": "Inspiration judged by counting posterior ribs",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "rot",
+     "text": "Rotation judged with spinous processes and clavicle heads",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pen",
+     "text": "Penetration judged (spine visible through the heart?)",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 27,
+     "printed": "12",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.2",
+     "sectionId": null
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": "ch02-s01"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o01"
+   ],
+   "skillDimensions": [
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434363:borders",
+   "caseId": "chest-pairs-covid-19-ar-16434363",
+   "type": "find_structure",
+   "title": "Trace the cardiomediastinal borders",
+   "prompt": "Place named arrows on each segment of the right and left cardiomediastinal borders (e.g. SVC, right atrium, aortic knob, main pulmonary artery, left ventricle) and say whether any segment looks abnormal.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Right border, top to bottom: SVC, then right atrium. Left border: aortic knob, main pulmonary artery, then left ventricle."
+    }
+   ],
+   "explanation": "No anatomical reference outlines exist for this radiograph, so compare your arrows with the book's figure of the normal contours and self-review.",
+   "rubric": [
+    {
+     "id": "right",
+     "text": "Right border: SVC and right atrium identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "left",
+     "text": "Left border: aortic knob, main pulmonary artery and left ventricle identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "abn",
+     "text": "Commented on whether any segment bulges or is effaced",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.2",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s03"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o02"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434363:ctr",
+   "caseId": "chest-pairs-covid-19-ar-16434363",
+   "type": "describe_finding",
+   "title": "Measure the cardiothoracic ratio",
+   "prompt": "Use the Length tool (L) to measure the widest heart diameter and the widest inner thoracic diameter, then state the ratio and whether this projection allows a judgement of heart size.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the heart from its rightmost to leftmost point; the thorax at its widest inner rib margins, usually at the domes of the diaphragm."
+    }
+   ],
+   "explanation": "The ratio is a heuristic for PA films; on AP films the heart is magnified, so an apparently large ratio is not reliable. Detector-plane pixel spacing is not patient-calibrated, but a ratio cancels that scale.",
+   "rubric": [
+    {
+     "id": "meas",
+     "text": "Both widths measured at the right places",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "ratio",
+     "text": "Ratio stated",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "proj",
+     "text": "Projection caveat stated (AP: magnified)",
+     "weight": "essential",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.1",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16406502:technique",
+   "caseId": "chest-pairs-covid-19-ar-16406502",
+   "type": "describe_finding",
+   "title": "Judge the technical quality",
+   "prompt": "Before reading the lungs, assess this frontal radiograph's technique: projection, inspiration (count posterior ribs), rotation (spinous processes vs clavicle heads) and penetration.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "A good inspiration shows about 9–10 posterior ribs above the diaphragm; rotation shifts the spinous processes away from the midpoint between the clavicle heads."
+    }
+   ],
+   "explanation": "Technique changes appearances: poor inspiration crowds the bases and widens the heart; rotation distorts the mediastinum; AP projection magnifies the heart.",
+   "rubric": [
+    {
+     "id": "proj",
+     "text": "Projection stated (PA or as recorded)",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "insp",
+     "text": "Inspiration judged by counting posterior ribs",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "rot",
+     "text": "Rotation judged with spinous processes and clavicle heads",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pen",
+     "text": "Penetration judged (spine visible through the heart?)",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 27,
+     "printed": "12",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.2",
+     "sectionId": null
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": "ch02-s01"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o01"
+   ],
+   "skillDimensions": [
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16406502:borders",
+   "caseId": "chest-pairs-covid-19-ar-16406502",
+   "type": "find_structure",
+   "title": "Trace the cardiomediastinal borders",
+   "prompt": "Place named arrows on each segment of the right and left cardiomediastinal borders (e.g. SVC, right atrium, aortic knob, main pulmonary artery, left ventricle) and say whether any segment looks abnormal.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Right border, top to bottom: SVC, then right atrium. Left border: aortic knob, main pulmonary artery, then left ventricle."
+    }
+   ],
+   "explanation": "No anatomical reference outlines exist for this radiograph, so compare your arrows with the book's figure of the normal contours and self-review.",
+   "rubric": [
+    {
+     "id": "right",
+     "text": "Right border: SVC and right atrium identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "left",
+     "text": "Left border: aortic knob, main pulmonary artery and left ventricle identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "abn",
+     "text": "Commented on whether any segment bulges or is effaced",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.2",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s03"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o02"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16406502:ctr",
+   "caseId": "chest-pairs-covid-19-ar-16406502",
+   "type": "describe_finding",
+   "title": "Measure the cardiothoracic ratio",
+   "prompt": "Use the Length tool (L) to measure the widest heart diameter and the widest inner thoracic diameter, then state the ratio and whether this projection allows a judgement of heart size.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the heart from its rightmost to leftmost point; the thorax at its widest inner rib margins, usually at the domes of the diaphragm."
+    }
+   ],
+   "explanation": "The ratio is a heuristic for PA films; on AP films the heart is magnified, so an apparently large ratio is not reliable. Detector-plane pixel spacing is not patient-calibrated, but a ratio cancels that scale.",
+   "rubric": [
+    {
+     "id": "meas",
+     "text": "Both widths measured at the right places",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "ratio",
+     "text": "Ratio stated",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "proj",
+     "text": "Projection caveat stated (PA: usable)",
+     "weight": "essential",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.1",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434411:technique",
+   "caseId": "chest-pairs-covid-19-ar-16434411",
+   "type": "describe_finding",
+   "title": "Judge the technical quality",
+   "prompt": "Before reading the lungs, assess this frontal radiograph's technique: projection, inspiration (count posterior ribs), rotation (spinous processes vs clavicle heads) and penetration.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "A good inspiration shows about 9–10 posterior ribs above the diaphragm; rotation shifts the spinous processes away from the midpoint between the clavicle heads."
+    }
+   ],
+   "explanation": "Technique changes appearances: poor inspiration crowds the bases and widens the heart; rotation distorts the mediastinum; AP projection magnifies the heart.",
+   "rubric": [
+    {
+     "id": "proj",
+     "text": "Projection stated (AP — heart size not reliable)",
+     "weight": "essential",
+     "category": "limitation"
+    },
+    {
+     "id": "insp",
+     "text": "Inspiration judged by counting posterior ribs",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "rot",
+     "text": "Rotation judged with spinous processes and clavicle heads",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "pen",
+     "text": "Penetration judged (spine visible through the heart?)",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 27,
+     "printed": "12",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.2",
+     "sectionId": null
+    },
+    {
+     "physical": 26,
+     "printed": "11",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": "ch02-s01"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o01"
+   ],
+   "skillDimensions": [
+    "orientation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434411:borders",
+   "caseId": "chest-pairs-covid-19-ar-16434411",
+   "type": "find_structure",
+   "title": "Trace the cardiomediastinal borders",
+   "prompt": "Place named arrows on each segment of the right and left cardiomediastinal borders (e.g. SVC, right atrium, aortic knob, main pulmonary artery, left ventricle) and say whether any segment looks abnormal.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Right border, top to bottom: SVC, then right atrium. Left border: aortic knob, main pulmonary artery, then left ventricle."
+    }
+   ],
+   "explanation": "No anatomical reference outlines exist for this radiograph, so compare your arrows with the book's figure of the normal contours and self-review.",
+   "rubric": [
+    {
+     "id": "right",
+     "text": "Right border: SVC and right atrium identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "left",
+     "text": "Left border: aortic knob, main pulmonary artery and left ventricle identified",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "abn",
+     "text": "Commented on whether any segment bulges or is effaced",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.2",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s03"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o02"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434411:ctr",
+   "caseId": "chest-pairs-covid-19-ar-16434411",
+   "type": "describe_finding",
+   "title": "Measure the cardiothoracic ratio",
+   "prompt": "Use the Length tool (L) to measure the widest heart diameter and the widest inner thoracic diameter, then state the ratio and whether this projection allows a judgement of heart size.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the heart from its rightmost to leftmost point; the thorax at its widest inner rib margins, usually at the domes of the diaphragm."
+    }
+   ],
+   "explanation": "The ratio is a heuristic for PA films; on AP films the heart is magnified, so an apparently large ratio is not reliable. Detector-plane pixel spacing is not patient-calibrated, but a ratio cancels that scale.",
+   "rubric": [
+    {
+     "id": "meas",
+     "text": "Both widths measured at the right places",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "ratio",
+     "text": "Ratio stated",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "proj",
+     "text": "Projection caveat stated (AP: magnified)",
+     "weight": "essential",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.1",
+     "sectionId": null
+    },
+    {
+     "physical": 37,
+     "printed": "22",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

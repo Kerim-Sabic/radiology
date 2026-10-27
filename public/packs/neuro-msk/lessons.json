@@ -1,0 +1,820 @@
+{
+ "schemaVersion": 1,
+ "packId": "neuro-msk",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "neuro-remind-025",
+   "packId": "neuro-msk",
+   "neutralTitle": "Patient P · MRI brain",
+   "learnTitle": "Brain tumour on post-contrast T1, FLAIR and T2 (ReMIND-025)",
+   "subjectKey": "tcia:ReMIND:ReMIND-025",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.294904841591104719673433576501552668364"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.299725476978733854420576928981108584002",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o02",
+    "ch26-o11",
+    "ch20-o05",
+    "ch20-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 344,
+     "printed": "324",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.3",
+     "sectionId": null
+    },
+    {
+     "physical": 362,
+     "printed": "342",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.28",
+     "sectionId": null
+    },
+    {
+     "physical": 263,
+     "printed": "243",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.11",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Source manual tumour segmentation on the post-contrast T1 (ReMIND). Ventricle and cerebrum labels are automated source labels — shown for exploration only, never used for scoring. Images are defaced and dates are placeholders.",
+   "learnNotes": "Read each sequence for its job: FLAIR shows oedema and non-enhancing tumour bright with dark CSF; post-contrast T1 shows where the blood–brain barrier is disrupted; T2 shows CSF bright. Compare all three at the same level (two-up or four-up)."
+  },
+  {
+   "id": "msk-spine-13843",
+   "packId": "neuro-msk",
+   "neutralTitle": "Patient Q · CT torso (bone window)",
+   "learnTitle": "Counting vertebral levels on CT (T1–L5 labels)",
+   "subjectKey": "tcia:Spine-Mets-CT-SEG:13843",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.298138167721442899055280853832160857126"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.73144014036171940906328222458533629808",
+   "region": [
+    "spine"
+   ],
+   "clinicalContext": "Adult in a spinal metastasis CT segmentation collection (source description).",
+   "contextSource": "TCIA Spine-Mets-CT-SEG",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Source manual vertebral body segmentations T1–L5. Lesions are not referenced in this pack, so the tasks are about level identification only.",
+   "learnNotes": "Count from a fixed landmark and say which you used: ribs articulate with T1–T12; the last rib-bearing vertebra is usually T12 and L1 is the first without ribs. The sagittal MPR shows the whole column at once; check your count on axial images."
+  },
+  {
+   "id": "breast-cbis-p00001",
+   "packId": "neuro-msk",
+   "neutralTitle": "Patient R · Mammogram (single view)",
+   "learnTitle": "Mass on a left CC mammogram (CBIS-DDSM)",
+   "subjectKey": "tcia:CBIS-DDSM:Mass-Training_P_00001_LEFT_CC",
+   "studyUids": [
+    "1.3.6.1.4.1.9590.100.1.2.422112722213189649807611434612228974994"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.9590.100.1.2.342386194811267636608694132590482924515",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "exploratory",
+   "objectiveIds": [
+    "ch29-o03",
+    "ch29-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.10",
+     "sectionId": null
+    },
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Table 29.4",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "A digitised film mammogram (secondary capture, no pixel spacing — distances are not calibrated). The mass ROI comes from the CBIS-DDSM curation and is treated as an exploratory reference (self-review), not an authoritative key.",
+   "learnNotes": "Describe a mass by shape, margin and density relative to the surrounding tissue. One view is not enough to localise a mass in 3D; a real work-up needs the MLO view."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "neuro-remind-025:find",
+   "caseId": "neuro-remind-025",
+   "type": "locate_finding",
+   "title": "Find the abnormality on post-contrast T1",
+   "prompt": "Scroll through the post-contrast T1 volume (MPR helps) and mark the centre of any abnormality, or state that there is none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.299725476978733854420576928981108584002"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.299725476978733854420576928981108584002",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "remind-025_glioma-tumour",
+     "name": "Tumour",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": null,
+    "slabToleranceMm": 1.0,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the two hemispheres at every level; look for asymmetry, mass effect or abnormal signal."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "remind-025_glioma-tumour"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A brain tumour is recognised by abnormal signal, mass effect (sulcal effacement, ventricular compression, midline shift) and, for many high-grade tumours, enhancement. The reference is the source's manual tumour segmentation.",
+   "bookAnchors": [
+    {
+     "physical": 362,
+     "printed": "342",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.28",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.29",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o11"
+   ],
+   "skillDimensions": [
+    "finding_localization"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "neuro-remind-025:flair",
+   "caseId": "neuro-remind-025",
+   "type": "compare_appearances",
+   "title": "Which series is FLAIR?",
+   "prompt": "Compare the T2 and FLAIR series. On which one is CSF in the ventricles dark while oedema stays bright?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.43676948194325034494932111105296244463",
+    "1.3.6.1.4.1.14519.5.2.1.212628717877686876463812341121381064350"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.43676948194325034494932111105296244463",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "flair",
+      "text": "The FLAIR series",
+      "correct": true,
+      "why": "FLAIR nulls free water, so CSF is dark but oedema and most lesions remain bright."
+     },
+     {
+      "id": "t2",
+      "text": "The T2 series",
+      "correct": false,
+      "why": "On T2, CSF is bright — which can hide lesions next to ventricles and sulci."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look at the lateral ventricles on each series."
+    }
+   ],
+   "explanation": "FLAIR is a T2-weighted inversion-recovery sequence that suppresses CSF signal, making periventricular and cortical oedema easier to see.",
+   "bookAnchors": [
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.5",
+     "sectionId": null
+    },
+    {
+     "physical": 260,
+     "printed": "240",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o03",
+    "ch26-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "neuro-remind-025:describe",
+   "caseId": "neuro-remind-025",
+   "type": "describe_finding",
+   "title": "Describe the lesion across sequences",
+   "prompt": "Describe the lesion: location (lobe, side), size, signal on FLAIR/T2, enhancement, and mass effect. Give a short differential.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.299725476978733854420576928981108584002",
+    "1.3.6.1.4.1.14519.5.2.1.212628717877686876463812341121381064350",
+    "1.3.6.1.4.1.14519.5.2.1.43676948194325034494932111105296244463"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.299725476978733854420576928981108584002",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the four-up layout to see post-contrast T1, FLAIR and T2 at once."
+    }
+   ],
+   "explanation": "The source provides a tumour segmentation, not a histology label for this view, so the description is self-reviewed against the checklist and the book's brain tumour section.",
+   "rubric": [
+    {
+     "id": "loc",
+     "text": "Lobe, side and intra- vs extra-axial location",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "sig",
+     "text": "Signal on FLAIR/T2 and the extent of surrounding oedema",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "enh",
+     "text": "Enhancement pattern (none, solid, ring)",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "mass",
+     "text": "Mass effect: sulcal effacement, ventricular compression, midline shift",
+     "weight": "essential",
+     "category": "associated_sign"
+    },
+    {
+     "id": "ddx",
+     "text": "Differential that fits the image features (e.g. primary glioma vs metastasis)",
+     "weight": "supportive",
+     "category": "differential"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 362,
+     "printed": "342",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.28",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.29",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o11"
+   ],
+   "skillDimensions": [
+    "reporting",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "neuro-remind-025:oral",
+   "caseId": "neuro-remind-025",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a solitary metastasis or an abscess is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.299725476978733854420576928981108584002",
+    "1.3.6.1.4.1.14519.5.2.1.212628717877686876463812341121381064350",
+    "1.3.6.1.4.1.14519.5.2.1.43676948194325034494932111105296244463"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.299725476978733854420576928981108584002",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (MRI suggests but does not prove tumour type or grade)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a solitary metastasis or an abscess) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 362,
+     "printed": "342",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.28",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.29",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o11"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "msk-spine-13843:l1",
+   "caseId": "msk-spine-13843",
+   "type": "navigate_level",
+   "title": "Find the L1 vertebral body",
+   "prompt": "Mark the L1 vertebral body. Use the sagittal MPR to count, and note which landmark you counted from.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.73144014036171940906328222458533629808"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.73144014036171940906328222458533629808",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "spine-13843_l1-vertebra",
+     "name": "L1",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Open MPR (axial / coronal / sagittal) and work in the sagittal view."
+    },
+    {
+     "level": 2,
+     "text": "Find the lowest vertebra with a rib attached; that is usually T12."
+    },
+    {
+     "level": 4,
+     "text": "Showing the reference outline.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "spine-13843_l1-vertebra"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Level errors are common; a mark in the neighbouring vertebra is reported as 'lies in the reference for T12/L2…' so you see by how many levels you were off. Transitional anatomy can change the count — always state your landmark.",
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "msk-spine-13843:t12",
+   "caseId": "msk-spine-13843",
+   "type": "navigate_level",
+   "title": "Find the T12 vertebral body",
+   "prompt": "Mark the T12 vertebral body. Use the sagittal MPR to count, and note which landmark you counted from.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.73144014036171940906328222458533629808"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.73144014036171940906328222458533629808",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "spine-13843_t12-vertebra",
+     "name": "T12",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Open MPR (axial / coronal / sagittal) and work in the sagittal view."
+    },
+    {
+     "level": 2,
+     "text": "Find the lowest vertebra with a rib attached; that is usually T12."
+    },
+    {
+     "level": 4,
+     "text": "Showing the reference outline.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "spine-13843_t12-vertebra"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Level errors are common; a mark in the neighbouring vertebra is reported as 'lies in the reference for T12/L2…' so you see by how many levels you were off. Transitional anatomy can change the count — always state your landmark.",
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "msk-spine-13843:l3",
+   "caseId": "msk-spine-13843",
+   "type": "navigate_level",
+   "title": "Find the L3 vertebral body",
+   "prompt": "Mark the L3 vertebral body. Use the sagittal MPR to count, and note which landmark you counted from.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.73144014036171940906328222458533629808"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.73144014036171940906328222458533629808",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "spine-13843_l3-vertebra",
+     "name": "L3",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Open MPR (axial / coronal / sagittal) and work in the sagittal view."
+    },
+    {
+     "level": 2,
+     "text": "Find the lowest vertebra with a rib attached; that is usually T12."
+    },
+    {
+     "level": 4,
+     "text": "Showing the reference outline.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "spine-13843_l3-vertebra"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Level errors are common; a mark in the neighbouring vertebra is reported as 'lies in the reference for T12/L2…' so you see by how many levels you were off. Transitional anatomy can change the count — always state your landmark.",
+   "bookAnchors": [
+    {
+     "physical": 290,
+     "printed": "270",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.1",
+     "sectionId": null
+    },
+    {
+     "physical": 291,
+     "printed": "271",
+     "chapterId": "ch22",
+     "figureId": "Fig 22.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch22-o01"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "breast-cbis-p00001:mass",
+   "caseId": "breast-cbis-p00001",
+   "type": "locate_finding",
+   "title": "Find and describe the mass",
+   "prompt": "Search this mammogram, box any mass you find, and describe its shape, margin and density.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.9590.100.1.2.342386194811267636608694132590482924515"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.9590.100.1.2.342386194811267636608694132590482924515",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "cbis-p00001-left-cc_mass-1",
+     "name": "Mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare regions of glandular tissue; a mass has convex borders and is seen as a discrete density."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Mass descriptors (shape, margin, density) carry most of the diagnostic weight in the book's approach. This ROI is a curated research annotation used here for comparison only; the image has no calibrated spacing, so tolerances are in pixels.",
+   "rubric": [
+    {
+     "id": "shape",
+     "text": "Shape (round, oval, irregular)",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "margin",
+     "text": "Margin (circumscribed, obscured, indistinct, spiculated)",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "density",
+     "text": "Density relative to glandular tissue",
+     "weight": "supportive",
+     "category": "pattern"
+    },
+    {
+     "id": "views",
+     "text": "Noted that a second view is needed to localise it",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.10",
+     "sectionId": null
+    },
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Table 29.4",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o03",
+    "ch29-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "reporting"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

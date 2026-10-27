@@ -1,0 +1,304 @@
+{
+ "packId": "ct-mri-pairs",
+ "generatedAt": "2026-10-27T16:35:39Z",
+ "packBytesExcludingLessons": 62694867,
+ "budgetBytes": 200000000,
+ "series": [
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.284196742910356500446890046376",
+   "short": "ct-ed33c468bb",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 91,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 91
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 1.1368683772161603e-13,
+   "bytes": 13019150,
+   "rawBytes": 47928200
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.311541396855223962525824591318",
+   "short": "mr-2125cfae2b",
+   "modality": "MR",
+   "role": "diagnostic",
+   "instances": 42,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 42
+   },
+   "maxStackShearDeg": 0.007,
+   "maxSpacingDeviation": 9.999998952991973e-05,
+   "bytes": 3776406,
+   "rawBytes": 22113320
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.338923641901222312865482201539",
+   "short": "mr-1a0d178a47",
+   "modality": "MR",
+   "role": "diagnostic",
+   "instances": 42,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 42
+   },
+   "maxStackShearDeg": 0.007,
+   "maxSpacingDeviation": 9.999998952991973e-05,
+   "bytes": 3022322,
+   "rawBytes": 22113566
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.977718656954972409264072864973",
+   "short": "mr-a0e30c17d8",
+   "modality": "MR",
+   "role": "diagnostic",
+   "instances": 32,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 32
+   },
+   "maxStackShearDeg": 0.001,
+   "maxSpacingDeviation": 0.0005928650252400303,
+   "bytes": 4982846,
+   "rawBytes": 16849370
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.330977326656436942557941426811",
+   "short": "mr-468a006434",
+   "modality": "MR",
+   "role": "diagnostic",
+   "instances": 32,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 32
+   },
+   "maxStackShearDeg": 0.001,
+   "maxSpacingDeviation": 0.0005928650252400303,
+   "bytes": 5700792,
+   "rawBytes": 16849114
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.794918299994114817879846530899",
+   "short": "ct-4241a31472",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 223,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 223
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 1.1368683772161603e-13,
+   "bytes": 27691874,
+   "rawBytes": 117449434
+  }
+ ],
+ "annotations": [
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.5168.1900.210896290533169999684765686571",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.5168.1900.311541396855223962525824591318",
+   "rois": [
+    {
+     "roi": "GTV_Mass",
+     "targetId": "sts-033_t1-gtv-mass",
+     "contours": 15,
+     "planes": 15,
+     "matchedBySop": 15,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0005755859396260768,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "GTV_Edema",
+     "targetId": "sts-033_t1-gtv-edema",
+     "contours": 32,
+     "planes": 32,
+     "matchedBySop": 32,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.000579335939237423,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.210896290533169999684765686571",
+   "subject": "tcia:Soft-tissue-Sarcoma:STS_033"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.5168.1900.583473563448505141016907753857",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.5168.1900.338923641901222312865482201539",
+   "rois": [
+    {
+     "roi": "GTV_Mass",
+     "targetId": "sts-033_t2fs-gtv-mass",
+     "contours": 15,
+     "planes": 15,
+     "matchedBySop": 15,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0005755859396260768,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "GTV_Edema",
+     "targetId": "sts-033_t2fs-gtv-edema",
+     "contours": 32,
+     "planes": 32,
+     "matchedBySop": 32,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.000579335939237423,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.583473563448505141016907753857",
+   "subject": "tcia:Soft-tissue-Sarcoma:STS_033"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.5168.1900.198795311453205176430244426662",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.5168.1900.284196742910356500446890046376",
+   "rois": [
+    {
+     "roi": "GTV_Mass",
+     "targetId": "sts-033_ct-gtv-mass",
+     "contours": 34,
+     "planes": 33,
+     "matchedBySop": 34,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "GTV_Edema",
+     "targetId": "sts-033_ct-gtv-edema",
+     "contours": 61,
+     "planes": 58,
+     "matchedBySop": 61,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.198795311453205176430244426662",
+   "subject": "tcia:Soft-tissue-Sarcoma:STS_033"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.5168.1900.176755018132301362355035684116",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.5168.1900.330977326656436942557941426811",
+   "rois": [
+    {
+     "roi": "GTV_Mass",
+     "targetId": "sts-042_t1-gtv-mass",
+     "contours": 7,
+     "planes": 7,
+     "matchedBySop": 7,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0005866545546396658,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "GTV_Edema",
+     "targetId": "sts-042_t1-gtv-edema",
+     "contours": 8,
+     "planes": 8,
+     "matchedBySop": 8,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0005866545546396658,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.176755018132301362355035684116",
+   "subject": "tcia:Soft-tissue-Sarcoma:STS_042"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.5168.1900.754591460614493668543082911041",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.5168.1900.977718656954972409264072864973",
+   "rois": [
+    {
+     "roi": "GTV_Mass",
+     "targetId": "sts-042_stir-gtv-mass",
+     "contours": 7,
+     "planes": 7,
+     "matchedBySop": 7,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0005866545546396658,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "GTV_Edema",
+     "targetId": "sts-042_stir-gtv-edema",
+     "contours": 8,
+     "planes": 8,
+     "matchedBySop": 8,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0005866545546396658,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.754591460614493668543082911041",
+   "subject": "tcia:Soft-tissue-Sarcoma:STS_042"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.5168.1900.868758259480018883081228329592",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.5168.1900.794918299994114817879846530899",
+   "rois": [
+    {
+     "roi": "GTV_Mass",
+     "targetId": "sts-042_ct-gtv-mass",
+     "contours": 18,
+     "planes": 17,
+     "matchedBySop": 18,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "GTV_Edema",
+     "targetId": "sts-042_ct-gtv-edema",
+     "contours": 19,
+     "planes": 19,
+     "matchedBySop": 19,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.868758259480018883081228329592",
+   "subject": "tcia:Soft-tissue-Sarcoma:STS_042"
+  }
+ ]
+}

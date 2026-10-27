@@ -1,0 +1,1185 @@
+{
+ "schemaVersion": 1,
+ "packId": "body",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "body-lctsc-train-s2-003",
+   "packId": "body",
+   "neutralTitle": "Patient J · CT chest",
+   "learnTitle": "Chest CT anatomy with source organ contours (LCTSC-Train-S2-003)",
+   "subjectKey": "tcia:LCTSC:LCTSC-Train-S2-003",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.196761816459686710497287530585"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.317364588283152286043395670052",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    },
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal cardiac CT anatomy levels"
+    }
+   ],
+   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC) for heart, both lungs, esophagus and spinal cord only. Nothing else has been reviewed. This series is an average-intensity projection of a 4D (respiratory-phase) CT — a radiotherapy planning reconstruction.",
+   "learnNotes": "A different patient from the starter CT: repeat the same anatomy skills here without the hints you used before. Contours are radiotherapy definitions, not exact anatomical boundaries. This series is an average-intensity projection of a 4D (respiratory-phase) CT — a radiotherapy planning reconstruction."
+  },
+  {
+   "id": "body-lctsc-train-s3-006",
+   "packId": "body",
+   "neutralTitle": "Patient K · CT chest",
+   "learnTitle": "Chest CT anatomy with source organ contours (LCTSC-Train-S3-006)",
+   "subjectKey": "tcia:LCTSC:LCTSC-Train-S3-006",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.717173103479775250091375811376"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.183244025075173036843023067503",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    },
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Normal cardiac CT anatomy levels"
+    }
+   ],
+   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC) for heart, both lungs, esophagus and spinal cord only. Nothing else has been reviewed.",
+   "learnNotes": "A different patient from the starter CT: repeat the same anatomy skills here without the hints you used before. Contours are radiotherapy definitions, not exact anatomical boundaries."
+  },
+  {
+   "id": "body-covid-19-ar-16406498",
+   "packId": "body",
+   "neutralTitle": "Patient L · CT chest",
+   "learnTitle": "Contrast-enhanced chest CT",
+   "subjectKey": "tcia:COVID-19-AR:COVID-19-AR-16406498",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1448456432615096451208000394020"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult from a research cohort of patients with positive COVID-19 testing (source collection description).",
+   "contextSource": "TCIA COVID-19-AR collection description",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch03-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 40,
+     "printed": "25",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.5",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "No source anatomical or finding reference. Use it for orientation, windowing and vessel identification with self-review.",
+   "learnNotes": "IV contrast (recorded in ContrastBolusAgent) makes the great vessels bright on a mediastinal window, which is what the book's CT levels show. Scroll from the thoracic inlet down through the aortic arch to the heart."
+  },
+  {
+   "id": "body-kits-00015",
+   "packId": "body",
+   "neutralTitle": "Patient M · CT abdomen (contrast)",
+   "learnTitle": "Arterial-phase CT with kidney and renal tumour segmentation",
+   "subjectKey": "tcia:C4KC-KiTS:KiTS-00015",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.124512735676788539202308549188"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351",
+   "region": [
+    "abdomen"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch13-o05",
+    "ch17-o10",
+    "ch13-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 166,
+     "printed": "146",
+     "chapterId": "ch13",
+     "figureId": "Fig 13.6",
+     "sectionId": null
+    },
+    {
+     "physical": 216,
+     "printed": "196",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.31",
+     "sectionId": null
+    },
+    {
+     "physical": 217,
+     "printed": "197",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.32",
+     "sectionId": null
+    },
+    {
+     "physical": 166,
+     "printed": "146",
+     "chapterId": "ch13",
+     "figureId": "Fig 13.7",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "C4KC-KiTS manual segmentation of the kidneys and of a renal tumour on this arterial-phase series. Other organs and findings are not referenced. The cohort consists of patients who underwent nephrectomy for renal tumours, but the segmentation label is the reference here, not a diagnosis for every structure.",
+   "learnNotes": "In the arterial (corticomedullary) phase the renal cortex enhances strongly while the medulla is still darker. A mass is recognised by a contour bulge and by enhancement that differs from normal parenchyma. Use coronal MPR to see the kidney's full length."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "body-lctsc-train-s2-003:heart",
+   "caseId": "body-lctsc-train-s2-003",
+   "type": "find_structure",
+   "title": "Find the heart",
+   "prompt": "Navigate to the heart and place one point inside it.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.317364588283152286043395670052"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.317364588283152286043395670052",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s2-003_heart",
+     "name": "Heart",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 3.0
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Orient first (edge letters), then choose the mediastinal window."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference contour.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s2-003_heart"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, different patient: the anatomy keeps its relationships even when body habitus, scan range and reconstruction differ.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "High and low cardiac levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06",
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-lctsc-train-s2-003:esophagus",
+   "caseId": "body-lctsc-train-s2-003",
+   "type": "find_structure",
+   "title": "Find the esophagus",
+   "prompt": "Find the esophagus on any axial slice and mark its centre.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.317364588283152286043395670052"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.317364588283152286043395670052",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s2-003_esophagus",
+     "name": "Esophagus",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 2.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Orient first (edge letters), then choose the mediastinal window."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference contour.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s2-003_esophagus"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, different patient: the anatomy keeps its relationships even when body habitus, scan range and reconstruction differ.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-lctsc-train-s2-003:cord",
+   "caseId": "body-lctsc-train-s2-003",
+   "type": "find_structure",
+   "title": "Find the spinal cord",
+   "prompt": "Mark the spinal cord (canal contents, not the vertebral body).",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.317364588283152286043395670052"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.317364588283152286043395670052",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s2-003_spinal-cord",
+     "name": "Spinal cord",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 2.0
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Orient first (edge letters), then choose the mediastinal window."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference contour.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s2-003_spinal-cord"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, different patient: the anatomy keeps its relationships even when body habitus, scan range and reconstruction differ.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-lctsc-train-s2-003:lungs-sides",
+   "caseId": "body-lctsc-train-s2-003",
+   "type": "find_structure",
+   "title": "Right lung versus left lung",
+   "prompt": "Place a named arrow in the patient's RIGHT lung and one in the LEFT lung.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.317364588283152286043395670052"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.317364588283152286043395670052",
+    "slice": "middle",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s2-003_right-lung",
+     "name": "Right lung",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s2-003_left-lung",
+     "name": "Left lung",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.45,
+    "inPlaneToleranceMm": 2,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Read the edge letters: 'L' marks the patient's left."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Laterality is graded separately from position, so a correctly placed but mis-named arrow shows up as a side error.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "objectiveIds": [
+    "ch01-o03",
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "orientation",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-lctsc-train-s3-006:heart",
+   "caseId": "body-lctsc-train-s3-006",
+   "type": "find_structure",
+   "title": "Find the heart",
+   "prompt": "Navigate to the heart and place one point inside it.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.183244025075173036843023067503"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.183244025075173036843023067503",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s3-006_heart",
+     "name": "Heart",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 3.0
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Orient first (edge letters), then choose the mediastinal window."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference contour.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s3-006_heart"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, different patient: the anatomy keeps its relationships even when body habitus, scan range and reconstruction differ.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": null,
+     "note": "High and low cardiac levels"
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06",
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-lctsc-train-s3-006:esophagus",
+   "caseId": "body-lctsc-train-s3-006",
+   "type": "find_structure",
+   "title": "Find the esophagus",
+   "prompt": "Find the esophagus on any axial slice and mark its centre.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.183244025075173036843023067503"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.183244025075173036843023067503",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s3-006_esophagus",
+     "name": "Esophagus",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2.5
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Orient first (edge letters), then choose the mediastinal window."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference contour.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s3-006_esophagus"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, different patient: the anatomy keeps its relationships even when body habitus, scan range and reconstruction differ.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-lctsc-train-s3-006:cord",
+   "caseId": "body-lctsc-train-s3-006",
+   "type": "find_structure",
+   "title": "Find the spinal cord",
+   "prompt": "Mark the spinal cord (canal contents, not the vertebral body).",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.183244025075173036843023067503"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.183244025075173036843023067503",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s3-006_spinal-cord",
+     "name": "Spinal cord",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2.0
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Orient first (edge letters), then choose the mediastinal window."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference contour.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lctsc-train-s3-006_spinal-cord"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Same structure, different patient: the anatomy keeps its relationships even when body habitus, scan range and reconstruction differ.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-lctsc-train-s3-006:lungs-sides",
+   "caseId": "body-lctsc-train-s3-006",
+   "type": "find_structure",
+   "title": "Right lung versus left lung",
+   "prompt": "Place a named arrow in the patient's RIGHT lung and one in the LEFT lung.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.7014.4598.183244025075173036843023067503"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.183244025075173036843023067503",
+    "slice": "middle",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lctsc-train-s3-006_right-lung",
+     "name": "Right lung",
+     "required": true
+    },
+    {
+     "targetId": "lctsc-train-s3-006_left-lung",
+     "name": "Left lung",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 2,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Read the edge letters: 'L' marks the patient's left."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Laterality is graded separately from position, so a correctly placed but mis-named arrow shows up as a side error.",
+   "bookAnchors": [
+    {
+     "physical": 32,
+     "printed": "17",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": null,
+     "note": "Viewing convention for chest CT"
+    }
+   ],
+   "objectiveIds": [
+    "ch01-o03",
+    "ch02-o07"
+   ],
+   "skillDimensions": [
+    "orientation",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-covid-19-ar-16406498:contrast",
+   "caseId": "body-covid-19-ar-16406498",
+   "type": "choose_window",
+   "title": "Was IV contrast given?",
+   "prompt": "Look at the aorta and pulmonary arteries in a mediastinal window. Was intravenous contrast given?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+    "slice": "middle",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "yes",
+      "text": "Yes — the vessels are brighter than muscle",
+      "correct": true,
+      "why": "Enhancing vessels are much denser than blood on a non-contrast scan; the DICOM header also records a contrast agent."
+     },
+     {
+      "id": "no",
+      "text": "No — blood and muscle look similar",
+      "correct": false,
+      "why": "That describes a non-contrast scan. Measure the aorta with the pixel readout: enhanced blood is well above ~50 HU."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Hover the aorta and read the HU value in the bottom-left corner; compare it with the chest wall muscle."
+    }
+   ],
+   "explanation": "Unenhanced blood measures roughly 30–50 HU; with IV contrast the arteries and veins become markedly brighter, depending on timing. Knowing the phase is the first step before calling a vessel abnormal.",
+   "bookAnchors": [
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": null,
+     "sectionId": "ch03-s07"
+    },
+    {
+     "physical": 18,
+     "printed": "3",
+     "chapterId": "ch01",
+     "figureId": null,
+     "sectionId": null,
+     "note": "CT numbers"
+    }
+   ],
+   "objectiveIds": [
+    "ch01-o02"
+   ],
+   "skillDimensions": [
+    "navigation_windowing",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-kits-00015:phase",
+   "caseId": "body-kits-00015",
+   "type": "choose_window",
+   "title": "Which contrast phase?",
+   "prompt": "Look at the aorta and the kidneys. Which contrast phase best describes this series?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351",
+    "slice": "middle",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "arterial",
+      "text": "Arterial / corticomedullary",
+      "correct": true,
+      "why": "Very bright aorta and a cortex brighter than the medulla — corticomedullary differentiation."
+     },
+     {
+      "id": "portal",
+      "text": "Portal venous",
+      "correct": false,
+      "why": "In the portal venous phase the kidneys enhance more uniformly (nephrographic) and the portal vein is bright."
+     },
+     {
+      "id": "delayed",
+      "text": "Delayed / excretory",
+      "correct": false,
+      "why": "Contrast would be in the collecting systems and ureters."
+     },
+     {
+      "id": "none",
+      "text": "Unenhanced",
+      "correct": false,
+      "why": "Vessels would be no brighter than muscle."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the renal cortex and medulla: is there a two-tone appearance?"
+    }
+   ],
+   "explanation": "Recognising the phase tells you what 'normal' enhancement should look like before you call a lesion. This series is labelled arterial by the source.",
+   "bookAnchors": [
+    {
+     "physical": 166,
+     "printed": "146",
+     "chapterId": "ch13",
+     "figureId": "Fig 13.7",
+     "sectionId": null
+    },
+    {
+     "physical": 160,
+     "printed": "140",
+     "chapterId": "ch13",
+     "figureId": null,
+     "sectionId": "ch13-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch13-o01"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-kits-00015:kidneys",
+   "caseId": "body-kits-00015",
+   "type": "find_structure",
+   "title": "Find the kidneys",
+   "prompt": "Mark the right kidney and the left kidney with named arrows.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "kits-00015_kidneys",
+     "name": "Kidney",
+     "acceptedNames": [
+      "Right kidney",
+      "Left kidney",
+      "Kidney"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 3
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "The kidneys are retroperitoneal, either side of the spine, around L1–L2."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The source segmentation labels both kidneys as one class, so this task checks localisation; side is checked by your own reading of the edge letters.",
+   "bookAnchors": [
+    {
+     "physical": 166,
+     "printed": "146",
+     "chapterId": "ch13",
+     "figureId": "Fig 13.6",
+     "sectionId": null
+    },
+    {
+     "physical": 167,
+     "printed": "147",
+     "chapterId": "ch13",
+     "figureId": "Fig 13.9",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch13-o05"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-kits-00015:mass",
+   "caseId": "body-kits-00015",
+   "type": "locate_finding",
+   "title": "Find the renal mass",
+   "prompt": "Examine both kidneys through their full length. Mark any focal abnormality you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "kits-00015_renal-tumour-mass",
+     "name": "Renal mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.7,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow each kidney's outline slice by slice; look for a bulge or a region whose enhancement differs from the cortex."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "kits-00015_renal-tumour-mass"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A solid renal mass typically distorts the renal contour and enhances differently from the cortex; simple cysts are water density and do not enhance. A box drawn around the mass is also scored for overlap (≥30%) so you can see how well you outlined it.",
+   "rubric": [
+    {
+     "id": "side",
+     "text": "Side and pole (upper/inter/lower) of the mass",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "size",
+     "text": "Size in centimetres",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "enh",
+     "text": "Enhancement compared with normal cortex; solid vs cystic",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "ext",
+     "text": "Checked renal vein, IVC, nodes and the other kidney",
+     "weight": "supportive",
+     "category": "associated_sign"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 216,
+     "printed": "196",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.31",
+     "sectionId": null
+    },
+    {
+     "physical": 217,
+     "printed": "197",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.32",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch17-o10"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "body-kits-00015:oral",
+   "caseId": "body-kits-00015",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a complex renal cyst is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (histology needs tissue; one arterial phase limits characterisation)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a complex renal cyst) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 216,
+     "printed": "196",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.31",
+     "sectionId": null
+    },
+    {
+     "physical": 217,
+     "printed": "197",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.32",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch17-o10"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

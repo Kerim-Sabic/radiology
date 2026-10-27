@@ -1,0 +1,123 @@
+# Curriculum coverage — Learning Radiology, 5th edition
+
+_Generated 2026-10-27 from `public/content/curriculum.v1.json` and the installed lessons. A unit is never "mastered" from text or quizzes; this map shows where real-scan practice exists and where it does not._
+
+Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SHA-256 `0f711fa48c1872ce…`.
+
+| unit | title | printed pp. (PDF) | objectives | with real-scan tasks | patients | source-scored tasks | uncovered: open data / credentialed / book-only |
+|---|---|---|---|---|---|---|---|
+| Ch 1 | Recognizing Anything: Past, Present, and Future | 1–10 (15–25) | 7 | 3 | 7 | 3 | 1 / 1 / 2 |
+| Ch 2 | Recognizing Normal Pulmonary Anatomy | 11–21 (26–36) | 7 | 4 | 33 | 31 | 2 / 1 / 0 |
+| Ch 3 | Recognizing Normal Cardiac Anatomy | 22–33 (37–48) | 8 | 4 | 29 | 14 | 3 / 0 / 1 |
+| Ch 4 | Recognizing Airspace Versus Interstitial Lung Disease | 34–44 (49–59) | 7 | 2 | 7 | 0 | 1 / 4 / 0 |
+| Ch 5 | Recognizing the Causes of an Opacified Hemithorax | 45–49 (60–64) | 6 | 0 | 0 | 0 | 1 / 3 / 2 |
+| Ch 6 | Recognizing Atelectasis | 50–58 (65–73) | 7 | 0 | 0 | 0 | 1 / 5 / 1 |
+| Ch 7 | Recognizing a Pleural Effusion | 59–68 (74–83) | 7 | 0 | 0 | 0 | 1 / 2 / 4 |
+| Ch 8 | Recognizing Pneumonia | 69–78 (84–93) | 7 | 2 | 13 | 0 | 2 / 2 / 1 |
+| Ch 9 | Recognizing the Correct Placement of Lines and Tubes and Their Potential Complications: Critical Care Radiology | 79–91 (94–111) | 7 | 0 | 0 | 0 | 0 / 7 / 0 |
+| Ch 10 | Recognizing Other Diseases of the Chest | 92–110 (112–130) | 10 | 1 | 10 | 10 | 6 / 1 / 2 |
+| Ch 11 | Recognizing Adult Heart Disease | 111–127 (131–147) | 8 | 0 | 0 | 0 | 1 / 4 / 3 |
+| Ch 12 | Recognizing the Normal Abdomen and Pelvis: Conventional Radiographs | 128–139 (148–159) | 6 | 0 | 0 | 0 | 0 / 0 / 6 |
+| Ch 13 | Recognizing the Normal Abdomen and Pelvis: Computed Tomography | 140–148 (160–168) | 6 | 5 | 9 | 21 | 1 / 0 / 0 |
+| Ch 14 | Recognizing Bowel Obstruction and Ileus | 149–160 (169–180) | 7 | 0 | 0 | 0 | 0 / 0 / 7 |
+| Ch 15 | Recognizing Extraluminal Air in the Abdomen | 161–170 (181–190) | 7 | 0 | 0 | 0 | 0 / 0 / 7 |
+| Ch 16 | Recognizing Abnormal Calcifications and Their Causes | 171–178 (191–198) | 6 | 0 | 0 | 0 | 0 / 0 / 6 |
+| Ch 17 | Recognizing Gastrointestinal, Hepatobiliary, and Urinary Tract Abnormalities | 179–200 (199–220) | 11 | 1 | 3 | 3 | 5 / 0 / 5 |
+| Ch 18 | Ultrasonography: Understanding the Principles and Its Uses in Abdominal and Pelvic Imaging | 201–222 (221–242) | 10 | 0 | 0 | 0 | 0 / 0 / 10 |
+| Ch 19 | Vascular, Pediatric, and Point-of-Care Ultrasound | 223–235 (243–255) | 8 | 0 | 0 | 0 | 0 / 0 / 8 |
+| Ch 20 | Magnetic Resonance Imaging: Understanding the Principles and Recognizing the Basics | 236–246 (256–266) | 6 | 3 | 4 | 5 | 2 / 0 / 1 |
+| Ch 21 | Recognizing Nontraumatic Abnormalities of the Appendicular Skeleton and Arthritis | 247–269 (267–289) | 10 | 0 | 0 | 0 | 0 / 0 / 10 |
+| Ch 22 | Recognizing Nontraumatic Abnormalities of the Spine | 270–282 (290–302) | 8 | 1 | 3 | 9 | 4 / 3 / 0 |
+| Ch 23 | Recognizing Trauma to the Bony Skeleton | 283–300 (303–320) | 10 | 0 | 0 | 0 | 1 / 1 / 8 |
+| Ch 24 | Recognizing the Imaging Findings of Trauma to the Chest | 301–313 (321–333) | 8 | 0 | 0 | 0 | 0 / 3 / 5 |
+| Ch 25 | Recognizing the Imaging Findings of Trauma to the Abdomen and Pelvis | 314–320 (334–340) | 6 | 0 | 0 | 0 | 0 / 4 / 2 |
+| Ch 26 | Recognizing Some Common Causes of Intracranial Pathology | 321–346 (341–366) | 12 | 2 | 2 | 2 | 0 / 7 / 3 |
+| Ch 27 | Recognizing Pediatric Diseases | 347–361 (367–381) | 9 | 1 | 2 | 2 | 0 / 4 / 4 |
+| Ch 28 | Using Image-Guided Interventions in Diagnosis and Treatment (Interventional Radiology) | 362–381 (382–401) | 9 | 0 | 0 | 0 | 0 / 1 / 8 |
+| Ch 29 | Recognizing the Findings in Breast Imaging | 382–399 (402–419) | 9 | 2 | 1 | 0 | 5 / 0 / 2 |
+| App A | Nuclear Medicine: Understanding the Principles and Recognizing the Basics | e1–e20 (420–439) | 9 | 0 | 0 | 0 | 0 / 0 / 9 |
+| App B | The ABCs of Heart Disease | e21–e34 (440–453) | 7 | 0 | 0 | 0 | 5 / 1 / 1 |
+| App C | Radiation Dose and Safety | e35–e38 (454–457) | 3 | 0 | 0 | 0 | 0 / 0 / 3 |
+| App D | Key Terminology and Glossaries | e39–e44 (458–463) | 3 | 0 | 0 | 0 | 2 / 0 / 1 |
+| App E | Early History and Public Exuberance of the Discovery of X-rays | e45–e49 (464–468) | 2 | 0 | 0 | 0 | 0 / 0 / 2 |
+| App F | Diagnostic Radiology Signs | e50–e100 (469–519) | 16 | 0 | 0 | 0 | 3 / 2 / 11 |
+| App G | Artificial Intelligence and Radiology | e101–e110 (520–529) | 3 | 0 | 0 | 0 | 1 / 2 / 0 |
+| App H | What to Order When | e111–e112 (530–531) | 2 | 0 | 0 | 0 | 0 / 0 / 2 |
+
+**Totals:** 274 objectives; 31 have at least one real-scan task (11%).
+
+## Objectives with real-scan practice
+
+### Chapter 1 — Recognizing Anything: Past, Present, and Future
+
+- **ch01-o02** (p. 3 / PDF 18, Fig 1.4): One CT slice displayed in lung, soft-tissue and bone windows, and the Hounsfield values of air, fat, water and bone. — 2 task(s) on 2 patient(s)
+- **ch01-o03** (p. 4 / PDF 19, Fig 1.6): Axial, coronal and sagittal planes and the 3D-rendered view of the same anatomy. — 4 task(s) on 3 patient(s)
+- **ch01-o07** (p. 2 / PDF 16): Unlabelled images from radiography, CT, ultrasound, MRI, fluoroscopy and nuclear medicine. — 3 task(s) on 3 patient(s)
+
+### Chapter 2 — Recognizing Normal Pulmonary Anatomy
+
+- **ch02-o01** (p. 12 / PDF 27, Fig 2.2): Technical factors on a frontal chest radiograph: depth of inspiration, rotation, penetration and AP magnification. — 23 task(s) on 23 patient(s)
+- **ch02-o02** (p. 11 / PDF 26, Fig 2.1): Normal landmarks on a frontal chest radiograph: trachea, carina, hila, heart borders, hemidiaphragms and costophrenic angles. — 1 task(s) on 1 patient(s)
+- **ch02-o04** (p. 14 / PDF 29, Fig 2.5): The key regions on a lateral chest radiograph: retrosternal space, hila, fissures, spine and posterior sulci. — 1 task(s) on 1 patient(s)
+- **ch02-o07** (p. 17 / PDF 32, Fig 2.13): Normal chest CT anatomy: trachea, carina, main and lobar bronchi, bronchus intermedius and accompanying arteries. — 32 task(s) on 10 patient(s)
+
+### Chapter 3 — Recognizing Normal Cardiac Anatomy
+
+- **ch03-o01** (p. 22 / PDF 37, Fig 3.1): Heart width relative to thoracic width on a PA chest radiograph. — 17 task(s) on 17 patient(s)
+- **ch03-o02** (p. 23 / PDF 38, Fig 3.2): The bumps of the right and left cardiomediastinal borders on a frontal film. — 17 task(s) on 17 patient(s)
+- **ch03-o04** (p. 24 / PDF 39): The great vessels at the thoracic inlet and the aortic arch on contrast chest CT. — 15 task(s) on 5 patient(s)
+- **ch03-o06** (p. 27 / PDF 42, Fig 3.9): The four cardiac chambers on axial chest CT at the high and low cardiac levels. — 14 task(s) on 10 patient(s)
+
+### Chapter 4 — Recognizing Airspace Versus Interstitial Lung Disease
+
+- **ch04-o01** (p. 34 / PDF 49, Box 4.1): Airspace disease: fluffy, confluent opacity with air bronchograms and segmental or lobar spread. — 7 task(s) on 7 patient(s)
+- **ch04-o03** (p. 35 / PDF 50, Fig 4.1): Distribution clues: bilateral perihilar airspace disease, single-lobe consolidation and dependent basal opacities. — 7 task(s) on 7 patient(s)
+
+### Chapter 8 — Recognizing Pneumonia
+
+- **ch08-o02** (p. 71 / PDF 86, Fig 8.3): Lobar, segmental (bronchopneumonia) and interstitial pneumonia patterns. — 6 task(s) on 6 patient(s)
+- **ch08-o05** (p. 73 / PDF 88, Fig 8.9): COVID-19 pneumonia: bilateral, peripheral, lower-zone ground-glass and consolidation. — 18 task(s) on 13 patient(s)
+
+### Chapter 10 — Recognizing Other Diseases of the Chest
+
+- **ch10-o04** (p. 98 / PDF 118, Fig 10.11): A solitary pulmonary nodule and its margins, calcification pattern and growth. — 26 task(s) on 10 patient(s)
+
+### Chapter 13 — Recognizing the Normal Abdomen and Pelvis: Computed Tomography
+
+- **ch13-o01** (p. 146 / PDF 166, Fig 13.7): Contrast phases on abdominal CT: arterial, portal venous and delayed. — 5 task(s) on 5 patient(s)
+- **ch13-o03** (p. 144 / PDF 164, Fig 13.1): Liver anatomy and segments on CT. — 16 task(s) on 4 patient(s)
+- **ch13-o04** (p. 145 / PDF 165, Fig 13.5): Spleen and pancreas on CT. — 20 task(s) on 4 patient(s)
+- **ch13-o05** (p. 146 / PDF 166, Fig 13.6): Kidneys and bladder on CT. — 1 task(s) on 1 patient(s)
+- **ch13-o06** (p. 147 / PDF 167, Fig 13.8): Normal small and large bowel on CT. — 20 task(s) on 4 patient(s)
+
+### Chapter 17 — Recognizing Gastrointestinal, Hepatobiliary, and Urinary Tract Abnormalities
+
+- **ch17-o10** (p. 196 / PDF 216, Fig 17.31): Renal cysts, renal cell carcinoma and bladder tumours. — 6 task(s) on 3 patient(s)
+
+### Chapter 20 — Magnetic Resonance Imaging: Understanding the Principles and Recognizing the Basics
+
+- **ch20-o01** (p. 239 / PDF 259, Fig 20.3): T1-weighted versus T2-weighted images. — 4 task(s) on 3 patient(s)
+- **ch20-o02** (p. 241 / PDF 261, Fig 20.8): Fat on MRI and the effect of fat suppression. — 6 task(s) on 2 patient(s)
+- **ch20-o03** (p. 240 / PDF 260, Fig 20.5): Edema as bright signal on T2 and FLAIR. — 7 task(s) on 3 patient(s)
+
+### Chapter 22 — Recognizing Nontraumatic Abnormalities of the Spine
+
+- **ch22-o01** (p. 270 / PDF 290, Fig 22.1): Normal spine anatomy on radiographs and CT, including the oblique 'Scottie dog'. — 9 task(s) on 3 patient(s)
+
+### Chapter 26 — Recognizing Some Common Causes of Intracranial Pathology
+
+- **ch26-o02** (p. 324 / PDF 344, Fig 26.3): Normal brain MRI on T1 and T2. — 1 task(s) on 1 patient(s)
+- **ch26-o11** (p. 342 / PDF 362, Fig 26.28): Brain tumours: glioblastoma, metastases, meningioma and vestibular schwannoma. — 5 task(s) on 2 patient(s)
+
+### Chapter 27 — Recognizing Pediatric Diseases
+
+- **ch27-o06** (p. 355 / PDF 375, Fig 27.18): The normal infant chest and thymus. — 2 task(s) on 2 patient(s)
+
+### Chapter 29 — Recognizing the Findings in Breast Imaging
+
+- **ch29-o01** (p. 385 / PDF 405, Fig 29.6): Standard mammographic views and tomosynthesis. — 1 task(s) on 1 patient(s)
+- **ch29-o03** (p. 388 / PDF 408, Fig 29.10): Masses on mammography: shape, margin and density. — 1 task(s) on 1 patient(s)
+
+## Known gaps
+
+Objectives without installed real-scan tasks remain in the Course view with their book anchors. Their `scanNeed.feasibility` says whether open TCIA data could fill them (`open_tcia`), whether credentialed datasets are needed (`credentialed`: e.g. RSNA intracranial haemorrhage, VinDr-CXR, PediCXR, RSNA lumbar spine), or whether they are book-only for this app (ultrasound, fluoroscopy, nuclear medicine, history).

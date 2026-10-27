@@ -1,0 +1,1672 @@
+{
+ "schemaVersion": 1,
+ "packId": "vessel-drafts",
+ "version": "0.1.0",
+ "title": "Vessel drafts: AI-proposed great-vessel outlines and levels (unreviewed)",
+ "description": "UNREVIEWED AI DRAFTS. TotalSegmentator proposals for the five great vessels of the superior mediastinum (both brachiocephalic veins, brachiocephalic trunk, left common carotid, left subclavian) plus context structures, and AI-derived five-vessel / aortic-arch slice intervals, on contrast-enhanced chest CTs of the body and chest-pairs pack(s). Contains no images: every target references series and SOP Instance UIDs of those packs. Nothing here has been checked by a radiologist.",
+ "generatedAt": "2026-10-27T16:54:24Z",
+ "generator": "scripts/vessels/write_pack.py; TotalSegmentator 2.18.0 (task total, nnU-Net 2.8.1, torch 2.14.1+cpu, full-resolution, device cpu)",
+ "sources": [
+  {
+   "id": "totalsegmentator",
+   "name": "TotalSegmentator 2.18.0 (task 'total', nnU-Net 2.8.1)",
+   "url": "https://github.com/wasserth/TotalSegmentator",
+   "doi": "10.1148/ryai.230024",
+   "license": "Apache License 2.0 (TotalSegmentator code); the 'total' task is an open task (no licence key required); weights downloaded by TotalSegmentator from its GitHub release v2.0.0-weights",
+   "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0",
+   "citation": "Wasserthal J, Breit HC, Meyer MT, Pradella M, Hinck D, Sauter AW, Heye T, Boll DT, Cyriac J, Yang S, Bach M, Segeroth M. TotalSegmentator: Robust Segmentation of 104 Anatomic Structures in CT Images. Radiology: Artificial Intelligence 2023;5(5):e230024. https://doi.org/10.1148/ryai.230024",
+   "accessNote": "Run offline on CPU from an isolated Python venv (PyPI install); usage statistics disabled (send_usage_stats=false). Outputs are machine proposals, not ground truth."
+  },
+  {
+   "id": "tcia:COVID-19-AR",
+   "name": "Chest Imaging with Clinical and Genomic Correlates Representing a Rural COVID-19 Positive Population (COVID-19-AR)",
+   "url": "https://doi.org/10.7937/tcia.2020.py71-5978",
+   "doi": "10.7937/tcia.2020.py71-5978",
+   "license": "Creative Commons Attribution 4.0 International License",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "citation": "Desai, S., Baghal, A., Wongsurawat, T., Al-Shukri, S., Gates, K., Farmer, P., Rutherford, M., Blake, G. D., Nolan, T., Powell, T., Sexton, K., Bennett, W., & Prior, F. (2020). Chest Imaging with Clinical and Genomic Correlates Representing a Rural COVID-19 Positive Population (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.2020.PY71-5978",
+   "accessNote": "Retrieved anonymously from the TCIA NBIA REST API v1 (getSeries/getImage) at services.cancerimagingarchive.net/nbia-api/services/v1; license as reported by the API (LicenseName)."
+  },
+  {
+   "id": "tcia:LIDC-IDRI",
+   "name": "Lung Image Database Consortium and Image Database Resource Initiative (LIDC-IDRI)",
+   "url": "https://doi.org/10.7937/K9/TCIA.2015.LO9QL9SX",
+   "doi": "10.7937/K9/TCIA.2015.LO9QL9SX",
+   "license": "Creative Commons Attribution 3.0 Unported License",
+   "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+   "citation": "Armato III, S. G., McLennan, G., Bidaut, L., McNitt-Gray, M. F., Meyer, C. R., Reeves, A. P., Zhao, B., Aberle, D. R., Henschke, C. I., Hoffman, E. A., Kazerooni, E. A., MacMahon, H., Van Beek, E. J. R., Yankelevitz, D., Biancardi, A. M., Bland, P. H., Brown, M. S., Engelmann, R. M., Laderach, G. E., … Clarke, L. P. (2015). Data From LIDC-IDRI (Version 4) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/K9/TCIA.2015.LO9QL9SX",
+   "accessNote": "Images retrieved anonymously from the TCIA NBIA REST API v1; reader annotations from the official LIDC-XML-only.zip linked on the TCIA LIDC-IDRI collection page (https://www.cancerimagingarchive.net/wp-content/uploads/LIDC-XML-only.zip). License as reported by the API (LicenseName)."
+  }
+ ],
+ "subjects": [],
+ "studies": [],
+ "series": [],
+ "spatialLinks": [],
+ "referenceTargets": [
+  {
+   "id": "vd-ar-16434363-brachiocephalic-vein-left",
+   "label": "Left brachiocephalic vein",
+   "classId": "anatomy:brachiocephalic_vein_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434363-brachiocephalic-vein-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_vein_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-brachiocephalic-vein-right",
+   "label": "Right brachiocephalic vein",
+   "classId": "anatomy:brachiocephalic_vein_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434363-brachiocephalic-vein-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_vein_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-brachiocephalic-trunk",
+   "label": "Brachiocephalic (innominate) artery",
+   "classId": "anatomy:brachiocephalic_trunk",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434363-brachiocephalic-trunk.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_trunk"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-common-carotid-artery-left",
+   "label": "Left common carotid artery",
+   "classId": "anatomy:common_carotid_artery_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434363-common-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:common_carotid_artery_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-common-carotid-artery-right",
+   "label": "Right common carotid artery",
+   "classId": "anatomy:common_carotid_artery_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434363-common-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:common_carotid_artery_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-subclavian-artery-left",
+   "label": "Left subclavian artery",
+   "classId": "anatomy:subclavian_artery_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434363-subclavian-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:subclavian_artery_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-subclavian-artery-right",
+   "label": "Right subclavian artery",
+   "classId": "anatomy:subclavian_artery_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434363-subclavian-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:subclavian_artery_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-aorta",
+   "label": "Aorta",
+   "classId": "anatomy:aorta",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434363-aorta.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:aorta"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-superior-vena-cava",
+   "label": "Superior vena cava",
+   "classId": "anatomy:superior_vena_cava",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434363-superior-vena-cava.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:superior_vena_cava"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-trachea",
+   "label": "Trachea",
+   "classId": "anatomy:trachea",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434363-trachea.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:trachea"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-esophagus",
+   "label": "Oesophagus",
+   "classId": "anatomy:esophagus",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434363-esophagus.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:esophagus"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-level-five-vessel",
+   "label": "Five-vessel level",
+   "classId": "level:five_vessel",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "slice_interval",
+   "geometryFile": "targets/vd-ar-16434363-level-five-vessel.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "level:five_vessel"
+   ],
+   "unassessedNote": "Only the axial level is proposed; individual vessel outlines are separate targets. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434363-level-aortic-arch",
+   "label": "Aortic arch level",
+   "classId": "level:aortic_arch",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+   "geometryType": "slice_interval",
+   "geometryFile": "targets/vd-ar-16434363-level-aortic-arch.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "level:aortic_arch"
+   ],
+   "unassessedNote": "Only the axial level is proposed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-brachiocephalic-vein-left",
+   "label": "Left brachiocephalic vein",
+   "classId": "anatomy:brachiocephalic_vein_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434411-brachiocephalic-vein-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_vein_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-brachiocephalic-vein-right",
+   "label": "Right brachiocephalic vein",
+   "classId": "anatomy:brachiocephalic_vein_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434411-brachiocephalic-vein-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_vein_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-brachiocephalic-trunk",
+   "label": "Brachiocephalic (innominate) artery",
+   "classId": "anatomy:brachiocephalic_trunk",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434411-brachiocephalic-trunk.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_trunk"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-common-carotid-artery-left",
+   "label": "Left common carotid artery",
+   "classId": "anatomy:common_carotid_artery_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434411-common-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:common_carotid_artery_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-common-carotid-artery-right",
+   "label": "Right common carotid artery",
+   "classId": "anatomy:common_carotid_artery_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434411-common-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:common_carotid_artery_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-subclavian-artery-left",
+   "label": "Left subclavian artery",
+   "classId": "anatomy:subclavian_artery_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434411-subclavian-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:subclavian_artery_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-subclavian-artery-right",
+   "label": "Right subclavian artery",
+   "classId": "anatomy:subclavian_artery_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434411-subclavian-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:subclavian_artery_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-aorta",
+   "label": "Aorta",
+   "classId": "anatomy:aorta",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434411-aorta.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:aorta"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-superior-vena-cava",
+   "label": "Superior vena cava",
+   "classId": "anatomy:superior_vena_cava",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434411-superior-vena-cava.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:superior_vena_cava"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-trachea",
+   "label": "Trachea",
+   "classId": "anatomy:trachea",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434411-trachea.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:trachea"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-esophagus",
+   "label": "Oesophagus",
+   "classId": "anatomy:esophagus",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16434411-esophagus.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:esophagus"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-level-five-vessel",
+   "label": "Five-vessel level",
+   "classId": "level:five_vessel",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "slice_interval",
+   "geometryFile": "targets/vd-ar-16434411-level-five-vessel.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "level:five_vessel"
+   ],
+   "unassessedNote": "Only the axial level is proposed; individual vessel outlines are separate targets. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16434411-level-aortic-arch",
+   "label": "Aortic arch level",
+   "classId": "level:aortic_arch",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+   "geometryType": "slice_interval",
+   "geometryFile": "targets/vd-ar-16434411-level-aortic-arch.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "level:aortic_arch"
+   ],
+   "unassessedNote": "Only the axial level is proposed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-brachiocephalic-vein-left",
+   "label": "Left brachiocephalic vein",
+   "classId": "anatomy:brachiocephalic_vein_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0217-brachiocephalic-vein-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_vein_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-brachiocephalic-vein-right",
+   "label": "Right brachiocephalic vein",
+   "classId": "anatomy:brachiocephalic_vein_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0217-brachiocephalic-vein-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_vein_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-brachiocephalic-trunk",
+   "label": "Brachiocephalic (innominate) artery",
+   "classId": "anatomy:brachiocephalic_trunk",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0217-brachiocephalic-trunk.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_trunk"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-common-carotid-artery-left",
+   "label": "Left common carotid artery",
+   "classId": "anatomy:common_carotid_artery_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0217-common-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:common_carotid_artery_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-common-carotid-artery-right",
+   "label": "Right common carotid artery",
+   "classId": "anatomy:common_carotid_artery_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0217-common-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:common_carotid_artery_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-subclavian-artery-left",
+   "label": "Left subclavian artery",
+   "classId": "anatomy:subclavian_artery_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0217-subclavian-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:subclavian_artery_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-subclavian-artery-right",
+   "label": "Right subclavian artery",
+   "classId": "anatomy:subclavian_artery_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0217-subclavian-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:subclavian_artery_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-aorta",
+   "label": "Aorta",
+   "classId": "anatomy:aorta",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0217-aorta.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:aorta"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-superior-vena-cava",
+   "label": "Superior vena cava",
+   "classId": "anatomy:superior_vena_cava",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0217-superior-vena-cava.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:superior_vena_cava"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-trachea",
+   "label": "Trachea",
+   "classId": "anatomy:trachea",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0217-trachea.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:trachea"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-esophagus",
+   "label": "Oesophagus",
+   "classId": "anatomy:esophagus",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0217-esophagus.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:esophagus"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-level-five-vessel",
+   "label": "Five-vessel level",
+   "classId": "level:five_vessel",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "slice_interval",
+   "geometryFile": "targets/vd-lidc-0217-level-five-vessel.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "level:five_vessel"
+   ],
+   "unassessedNote": "Only the axial level is proposed; individual vessel outlines are separate targets. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0217-level-aortic-arch",
+   "label": "Aortic arch level",
+   "classId": "level:aortic_arch",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
+   "geometryType": "slice_interval",
+   "geometryFile": "targets/vd-lidc-0217-level-aortic-arch.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "level:aortic_arch"
+   ],
+   "unassessedNote": "Only the axial level is proposed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-brachiocephalic-vein-left",
+   "label": "Left brachiocephalic vein",
+   "classId": "anatomy:brachiocephalic_vein_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0053-brachiocephalic-vein-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_vein_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-brachiocephalic-vein-right",
+   "label": "Right brachiocephalic vein",
+   "classId": "anatomy:brachiocephalic_vein_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0053-brachiocephalic-vein-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_vein_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-brachiocephalic-trunk",
+   "label": "Brachiocephalic (innominate) artery",
+   "classId": "anatomy:brachiocephalic_trunk",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0053-brachiocephalic-trunk.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_trunk"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-common-carotid-artery-left",
+   "label": "Left common carotid artery",
+   "classId": "anatomy:common_carotid_artery_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0053-common-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:common_carotid_artery_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-common-carotid-artery-right",
+   "label": "Right common carotid artery",
+   "classId": "anatomy:common_carotid_artery_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0053-common-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:common_carotid_artery_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-subclavian-artery-left",
+   "label": "Left subclavian artery",
+   "classId": "anatomy:subclavian_artery_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0053-subclavian-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:subclavian_artery_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-subclavian-artery-right",
+   "label": "Right subclavian artery",
+   "classId": "anatomy:subclavian_artery_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0053-subclavian-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:subclavian_artery_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-aorta",
+   "label": "Aorta",
+   "classId": "anatomy:aorta",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0053-aorta.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:aorta"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-superior-vena-cava",
+   "label": "Superior vena cava",
+   "classId": "anatomy:superior_vena_cava",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0053-superior-vena-cava.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:superior_vena_cava"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-trachea",
+   "label": "Trachea",
+   "classId": "anatomy:trachea",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0053-trachea.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:trachea"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-esophagus",
+   "label": "Oesophagus",
+   "classId": "anatomy:esophagus",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-lidc-0053-esophagus.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:esophagus"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-level-five-vessel",
+   "label": "Five-vessel level",
+   "classId": "level:five_vessel",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "slice_interval",
+   "geometryFile": "targets/vd-lidc-0053-level-five-vessel.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "level:five_vessel"
+   ],
+   "unassessedNote": "Only the axial level is proposed; individual vessel outlines are separate targets. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-lidc-0053-level-aortic-arch",
+   "label": "Aortic arch level",
+   "classId": "level:aortic_arch",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
+   "geometryType": "slice_interval",
+   "geometryFile": "targets/vd-lidc-0053-level-aortic-arch.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "level:aortic_arch"
+   ],
+   "unassessedNote": "Only the axial level is proposed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-brachiocephalic-vein-left",
+   "label": "Left brachiocephalic vein",
+   "classId": "anatomy:brachiocephalic_vein_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16406498-brachiocephalic-vein-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_vein_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-brachiocephalic-vein-right",
+   "label": "Right brachiocephalic vein",
+   "classId": "anatomy:brachiocephalic_vein_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16406498-brachiocephalic-vein-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_vein_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-brachiocephalic-trunk",
+   "label": "Brachiocephalic (innominate) artery",
+   "classId": "anatomy:brachiocephalic_trunk",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16406498-brachiocephalic-trunk.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:brachiocephalic_trunk"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-common-carotid-artery-left",
+   "label": "Left common carotid artery",
+   "classId": "anatomy:common_carotid_artery_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16406498-common-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:common_carotid_artery_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-common-carotid-artery-right",
+   "label": "Right common carotid artery",
+   "classId": "anatomy:common_carotid_artery_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16406498-common-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:common_carotid_artery_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-subclavian-artery-left",
+   "label": "Left subclavian artery",
+   "classId": "anatomy:subclavian_artery_left",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16406498-subclavian-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:subclavian_artery_left"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-subclavian-artery-right",
+   "label": "Right subclavian artery",
+   "classId": "anatomy:subclavian_artery_right",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16406498-subclavian-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:subclavian_artery_right"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-aorta",
+   "label": "Aorta",
+   "classId": "anatomy:aorta",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16406498-aorta.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:aorta"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-superior-vena-cava",
+   "label": "Superior vena cava",
+   "classId": "anatomy:superior_vena_cava",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16406498-superior-vena-cava.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:superior_vena_cava"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-trachea",
+   "label": "Trachea",
+   "classId": "anatomy:trachea",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16406498-trachea.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:trachea"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-esophagus",
+   "label": "Oesophagus",
+   "classId": "anatomy:esophagus",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/vd-ar-16406498-esophagus.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:esophagus"
+   ],
+   "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; all other anatomy and any findings on this series are unassessed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-level-five-vessel",
+   "label": "Five-vessel level",
+   "classId": "level:five_vessel",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "slice_interval",
+   "geometryFile": "targets/vd-ar-16406498-level-five-vessel.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "level:five_vessel"
+   ],
+   "unassessedNote": "Only the axial level is proposed; individual vessel outlines are separate targets. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "vd-ar-16406498-level-aortic-arch",
+   "label": "Aortic arch level",
+   "classId": "level:aortic_arch",
+   "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "geometryType": "slice_interval",
+   "geometryFile": "targets/vd-ar-16406498-level-aortic-arch.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI draft by Horalix — automatic segmentation, not reviewed by a radiologist",
+    "note": "unreviewed AI proposal"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "level:aortic_arch"
+   ],
+   "unassessedNote": "Only the axial level is proposed. Not reviewed by a human.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  }
+ ]
+}

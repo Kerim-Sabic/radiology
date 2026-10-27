@@ -1,0 +1,256 @@
+{
+ "packId": "body",
+ "generatedAt": "2026-10-27T16:36:04Z",
+ "packBytesExcludingLessons": 87125840,
+ "budgetBytes": 200000000,
+ "series": [
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351",
+   "short": "ct-db85e27f7e",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 75,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 75
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 21769556,
+   "rawBytes": 39561246
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+   "short": "ct-676e685584",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 118,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 118
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 3.0500000001154604e-05,
+   "bytes": 19398944,
+   "rawBytes": 62288578
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.317364588283152286043395670052",
+   "short": "ct-e2c64f283c",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 144,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 144
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 23500486,
+   "rawBytes": 76209698
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.183244025075173036843023067503",
+   "short": "ct-0574db25e3",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 148,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 148
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 16951734,
+   "rawBytes": 78019184
+  }
+ ],
+ "annotations": [
+  {
+   "segSop": "1.2.276.0.7230010.3.1.4.0.74550.1588583451.436646",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {},
+   "contentCreator": "",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "Kidney",
+     "targetId": "kits-00015_kidneys",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 58,
+     "framesTotal": 75,
+     "emptyFrames": 17,
+     "byRef": 58,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 33
+    },
+    {
+     "segment": 2,
+     "label": "Mass",
+     "targetId": "kits-00015_renal-tumour-mass",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 12,
+     "framesTotal": 75,
+     "emptyFrames": 63,
+     "byRef": 12,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.2.276.0.7230010.3.1.3.0.74550.1588583451.436645",
+   "subject": "tcia:C4KC-KiTS:KiTS-00015"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.7014.4598.347826870536688031026391560944",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.7014.4598.317364588283152286043395670052",
+   "rois": [
+    {
+     "roi": "Esophagus",
+     "targetId": "lctsc-train-s2-003_esophagus",
+     "contours": 98,
+     "planes": 98,
+     "matchedBySop": 98,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "lctsc-train-s2-003_heart",
+     "contours": 36,
+     "planes": 36,
+     "matchedBySop": 36,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "lctsc-train-s2-003_left-lung",
+     "contours": 120,
+     "planes": 110,
+     "matchedBySop": 120,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "lctsc-train-s2-003_right-lung",
+     "contours": 118,
+     "planes": 110,
+     "matchedBySop": 118,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "SpinalCord",
+     "targetId": "lctsc-train-s2-003_spinal-cord",
+     "contours": 142,
+     "planes": 142,
+     "matchedBySop": 142,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.347826870536688031026391560944",
+   "subject": "tcia:LCTSC:LCTSC-Train-S2-003"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.7014.4598.266618123270952868149347702219",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.7014.4598.183244025075173036843023067503",
+   "rois": [
+    {
+     "roi": "Esophagus",
+     "targetId": "lctsc-train-s3-006_esophagus",
+     "contours": 66,
+     "planes": 66,
+     "matchedBySop": 66,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Heart",
+     "targetId": "lctsc-train-s3-006_heart",
+     "contours": 34,
+     "planes": 34,
+     "matchedBySop": 34,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "SpinalCord",
+     "targetId": "lctsc-train-s3-006_spinal-cord",
+     "contours": 88,
+     "planes": 88,
+     "matchedBySop": 88,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_L",
+     "targetId": "lctsc-train-s3-006_left-lung",
+     "contours": 87,
+     "planes": 77,
+     "matchedBySop": 87,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Lung_R",
+     "targetId": "lctsc-train-s3-006_right-lung",
+     "contours": 83,
+     "planes": 71,
+     "matchedBySop": 83,
+     "matchedByZ": 0,
+     "maxResidualMm": 0.0,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.7014.4598.266618123270952868149347702219",
+   "subject": "tcia:LCTSC:LCTSC-Train-S3-006"
+  }
+ ]
+}

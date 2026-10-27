@@ -1,0 +1,15 @@
+# Python 3.12 environment used to build the learning packs (scripts/data/*).
+# Versions are the ones the committed packs were built and validated with.
+pydicom==3.0.1
+numpy==2.2.6
+highdicom==0.27.0
+scikit-image==0.26.0
+pillow==11.3.0
+requests==2.32.4
+# lossless codecs (encode + decode)
+pyjpegls==1.5.1            # JPEG-LS lossless encoder/decoder (CharLS), installed for this pipeline
+pylibjpeg==2.0.1
+pylibjpeg-openjpeg==2.5.0  # JPEG 2000 lossless encoder/decoder
+pylibjpeg-libjpeg==2.3.0
+python-gdcm==3.2.2         # independent second decoder for the round-trip check
+# optional: node >= 22.6 with the repo's node_modules/zod lets validate_pack.py run scripts/data/zod_check.mjs

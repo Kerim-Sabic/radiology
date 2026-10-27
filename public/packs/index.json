@@ -1,0 +1,86 @@
+{
+ "schemaVersion": 1,
+ "packs": [
+  {
+   "id": "starter",
+   "title": "Starter: chest CT with RT contours, chest radiograph, prostate MRI zones",
+   "manifest": "starter/pack.json",
+   "lessons": "starter/lessons.json",
+   "bytes": 33585252,
+   "distribution": "repo",
+   "note": "3 subjects, 4 studies, 4 series, 152 instances, 9 reference targets; DICOM 31.2 MB. Committed to the repository."
+  },
+  {
+   "id": "chest-pairs",
+   "title": "Chest pairs: same-patient radiograph and CT",
+   "manifest": "chest-pairs/pack.json",
+   "lessons": "chest-pairs/lessons.json",
+   "bytes": 211731020,
+   "distribution": "fetch_script",
+   "note": "6 subjects, 12 studies, 16 series, 807 instances, 8 reference targets; DICOM 210.7 MB. Not committed: run `python scripts/data/packs.py all chest-pairs` to download from TCIA and rebuild."
+  },
+  {
+   "id": "ct-mri-pairs",
+   "title": "CT-MRI pairs: extremity soft-tissue sarcoma",
+   "manifest": "ct-mri-pairs/pack.json",
+   "lessons": "ct-mri-pairs/lessons.json",
+   "bytes": 62721740,
+   "distribution": "fetch_script",
+   "note": "2 subjects, 4 studies, 6 series, 462 instances, 12 reference targets; DICOM 58.2 MB. Not committed: run `python scripts/data/packs.py all ct-mri-pairs` to download from TCIA and rebuild."
+  },
+  {
+   "id": "body",
+   "title": "Body: kidney tumour CT, contrast chest CT, more thoracic RT cases",
+   "manifest": "body/pack.json",
+   "lessons": "body/lessons.json",
+   "bytes": 87158420,
+   "distribution": "fetch_script",
+   "note": "4 subjects, 4 studies, 4 series, 485 instances, 12 reference targets; DICOM 81.6 MB. Not committed: run `python scripts/data/packs.py all body` to download from TCIA and rebuild."
+  },
+  {
+   "id": "neuro-msk",
+   "title": "Neuro and MSK: brain MRI sequences, spine levels, mammogram mass",
+   "manifest": "neuro-msk/pack.json",
+   "lessons": "neuro-msk/lessons.json",
+   "bytes": 57490495,
+   "distribution": "fetch_script",
+   "note": "3 subjects, 3 studies, 5 series, 523 instances, 21 reference targets; DICOM 53.3 MB. Not committed: run `python scripts/data/packs.py all neuro-msk` to download from TCIA and rebuild."
+  },
+  {
+   "id": "expansion",
+   "title": "Expansion: more distinct patients for unseen-patient practice",
+   "manifest": "expansion/pack.json",
+   "lessons": "expansion/lessons.json",
+   "bytes": 275886912,
+   "distribution": "fetch_script",
+   "note": "12 subjects, 15 studies, 17 series, 1892 instances, 66 reference targets; DICOM 263.1 MB. Not committed: run `python scripts/data/packs.py all expansion` to download from TCIA and rebuild."
+  },
+  {
+   "id": "vessel-drafts",
+   "title": "Vessel drafts: AI-proposed great vessels (unreviewed)",
+   "manifest": "vessel-drafts/pack.json",
+   "lessons": null,
+   "bytes": 1182766,
+   "distribution": "repo",
+   "note": "UNREVIEWED AI drafts (TotalSegmentator 2.18.0) on 5 contrast chest CT series: 55 vessel/structure contour sets + 10 slice-interval levels. No images; requires the body and chest-pairs packs."
+  },
+  {
+   "id": "anatomy-atlas",
+   "title": "Anatomy atlas: AI-proposed whole-anatomy labels (unreviewed)",
+   "manifest": "anatomy-atlas/pack.json",
+   "lessons": null,
+   "bytes": 2283553,
+   "distribution": "repo",
+   "note": "In progress: TotalSegmentator labels on CT and a chest X-ray anatomy model on radiographs; unreviewed AI drafts, Learn-mode anatomy layer only."
+  },
+  {
+   "id": "more-ct-xr",
+   "title": "More CT and X-ray: pediatric organ atlas, RICORD radiographs, more chest pairs",
+   "manifest": "more-ct-xr/pack.json",
+   "lessons": null,
+   "bytes": 512342709,
+   "distribution": "fetch_script",
+   "note": "21 subjects, 29 studies, 29 series, 2375 instances, 143 reference targets; DICOM 464.0 MB. Not committed: run `python scripts/data/packs.py all more-ct-xr` to download from TCIA and rebuild."
+  }
+ ]
+}

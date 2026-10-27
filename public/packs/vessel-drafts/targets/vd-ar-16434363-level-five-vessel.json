@@ -1,0 +1,26 @@
+{
+ "geometryType": "slice_interval",
+ "space": "patient_lps_mm",
+ "normal": [
+  0.0,
+  0.0,
+  1.0
+ ],
+ "range": [
+  -139.300018,
+  -112.300018
+ ],
+ "sopInstanceUids": [
+  "1.3.6.1.4.1.14519.5.2.1.9999.103.1320052217048238929714401169355",
+  "1.3.6.1.4.1.14519.5.2.1.9999.103.3392354670504842039463791792491",
+  "1.3.6.1.4.1.14519.5.2.1.9999.103.1059877968496351695283655291857",
+  "1.3.6.1.4.1.14519.5.2.1.9999.103.3280388721202985195684930545775",
+  "1.3.6.1.4.1.14519.5.2.1.9999.103.9349487339419908305460954726649",
+  "1.3.6.1.4.1.14519.5.2.1.9999.103.2511422081222841823764385325032",
+  "1.3.6.1.4.1.14519.5.2.1.9999.103.2887737609282931745509176577185",
+  "1.3.6.1.4.1.14519.5.2.1.9999.103.1020401852229257688076194299901",
+  "1.3.6.1.4.1.14519.5.2.1.9999.103.1219053631360845357066799305052",
+  "1.3.6.1.4.1.14519.5.2.1.9999.103.1564555033108267960675478240330"
+ ],
+ "derivation": "AI-derived draft (unreviewed). Rule: contiguous original axial slices lying ABOVE the superior-most slice carrying any TotalSegmentator aorta mask (arch top: instance 1.3.6.1.4.1.14519.5.2.1.9999.103.2611273703670103201835536603639, IPP.n = -142.30 mm) on which all five structures - right and left brachiocephalic veins, brachiocephalic trunk, left common carotid artery, left subclavian artery - are each present (>= 10 mm2 of mask) as distinct labelled cross-sections; the run nearest the arch is used. Range = [min, max] of IPP . normal over these slices (normal = IOP row x column cosines). Wall contact without a visible gap between labels on: {'73': ['brachiocephalic_vein_left~brachiocephalic_vein_right'], '74': ['brachiocephalic_vein_left~brachiocephalic_vein_right']}. Source: TotalSegmentator 2.18.0, task total; QC: laterality checks passed for the five structures."
+}
