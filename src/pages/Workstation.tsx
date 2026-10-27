@@ -324,12 +324,34 @@ export default function Workstation() {
     };
   }, [anatomyVisible, catalog, kase, caseSeries]);
   const anatomyIds = useMemo(() => new Set(anatomyTargets.map((t) => t.ref.id)), [anatomyTargets]);
+  // Structures the anatomy layer already names, per series. Named parts (aortic arch, sigmoid colon, left ventricle)
+  // also stand for their whole, so a machine-drawn whole outline from another pack is not drawn over them.
+  const anatomyKeys = useMemo(() => {
+    const keys = new Set<string>();
+    for (const t of anatomyTargets) {
+      const k = canonicalAnatomyKey(t.ref.classId);
+      keys.add(`${t.ref.seriesUid}|${k}`);
+      const whole = /^aorta_/.test(k) ? 'aorta' : /^colon_/.test(k) ? 'colon' : /^heart_(atrium|ventricle)_/.test(k) ? 'heart' : null;
+      if (whole) keys.add(`${t.ref.seriesUid}|${whole}*`);
+    }
+    return keys;
+  }, [anatomyTargets]);
+  const namedByAnatomy = useCallback(
+    (t: LoadedTarget) => {
+      const k = `${t.ref.seriesUid}|${canonicalAnatomyKey(t.ref.classId)}`;
+      return anatomyKeys.has(k) || (t.ref.provenance === 'ai_draft' && anatomyKeys.has(`${k}*`));
+    },
+    [anatomyKeys],
+  );
   const visibleTargets = useMemo(() => {
     // When the anatomy layer is on it draws anatomical structures itself; avoid drawing them twice.
-    const all = [...targets.values()].filter((t) => !(anatomyVisible && anatomyIds.has(t.ref.id) && !taskTargetIds.has(t.ref.id)));
+    // Other tasks' references for a structure the anatomy layer already names (e.g. a vessel task's SVC) are not drawn again.
+    const all = [...targets.values()].filter((t) => !(anatomyVisible && !taskTargetIds.has(t.ref.id) && (anatomyIds.has(t.ref.id) || namedByAnatomy(t))));
     if (refAllowed && refToggle) return mode === 'learn' || mode === 'review' ? all.filter((t) => taskTargetIds.has(t.ref.id) || t.ref.geometryType !== 'slice_interval') : all.filter((t) => taskTargetIds.has(t.ref.id));
     return all.filter((t) => highlight.has(t.ref.id));
-  }, [targets, refAllowed, refToggle, mode, taskTargetIds, highlight, anatomyVisible, anatomyIds]);
+  }, [targets, refAllowed, refToggle, mode, taskTargetIds, highlight, anatomyVisible, anatomyIds, namedByAnatomy]);
+  // Reference names are written only where the anatomy layer does not already name the same structure.
+  const refLabelIds = useMemo(() => (anatomyVisible ? new Set(visibleTargets.filter((t) => !namedByAnatomy(t)).map((t) => t.ref.id)) : null), [anatomyVisible, visibleTargets, namedByAnatomy]);
 
   const badges = useMemo<MarkBadge[]>(() => {
     if (!grade) return [];
@@ -1123,6 +1145,7 @@ export default function Workstation() {
                   opacity: refOpacity,
                   highlightIds: highlight,
                   showLabels: refAllowed,
+                  labelIds: refLabelIds,
                   badges,
                   anatomy: anatomyFor(pd),
                 }}

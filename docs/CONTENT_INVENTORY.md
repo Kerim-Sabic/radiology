@@ -12,7 +12,7 @@ _Generated 2026-10-27 by `scripts/report/content-report.mjs` from the installed 
 | Studies | 71 |
 | Series (all packs) | 81 |
 | DICOM instances | 6696 |
-| Reference targets | 562 |
+| Reference targets | 4063 |
 
 ### Tasks by scoring basis
 
@@ -41,7 +41,7 @@ _Generated 2026-10-27 by `scripts/report/content-report.mjs` from the installed 
 
 | provenance | targets |
 |---|---|
-| ai_draft | 291 |
+| ai_draft | 3792 |
 | source_automated | 3 |
 | source_manual | 268 |
 
@@ -56,7 +56,7 @@ _Generated 2026-10-27 by `scripts/report/content-report.mjs` from the installed 
 | neuro-msk | fetch_script | yes | 3 | 5 | 523 | 54.8 MB | 3 | 8 |
 | expansion | fetch_script | yes | 12 | 17 | 1892 | 263.1 MB | 12 | 39 |
 | vessel-drafts | repo | yes | 0 | 0 | 0 | 1.1 MB | 0 | 15 |
-| anatomy-atlas | repo | yes | 0 | 0 | 0 | 2.2 MB | 0 | 0 |
+| anatomy-atlas | repo | yes | 0 | 0 | 0 | 59.9 MB | 0 | 0 |
 | more-ct-xr | fetch_script | yes | 21 | 29 | 2375 | 488.6 MB | 21 | 89 |
 
 ## Patients and cases

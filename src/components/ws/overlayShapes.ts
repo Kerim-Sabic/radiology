@@ -117,7 +117,7 @@ export function shapesForPanel(engine: ViewerEngine, panelId: string, targets: L
 export function categoryFor(ref: { category?: string; classId: string }): string {
   const c = ref.classId.toLowerCase();
   if (/lung|trachea|bronch/.test(c)) return 'airway';
-  if (/heart|atrial_appendage|atrium|ventricle|myocardium/.test(c)) return 'vessel';
+  if (/^anatomy:heart|atrial_appendage/.test(c)) return 'vessel';
   return ref.category ?? categoryOf(ref.classId);
 }
 

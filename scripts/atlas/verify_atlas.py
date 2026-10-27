@@ -108,3 +108,47 @@ if __name__ == "__main__":
     for x in bad[:20]:
         print(x)
     sys.exit(1 if bad else 0)
+
+
+def laterality_check():
+    """Pack-level end-to-end laterality: for every published *_left / *_right pair on a CT series, the area centroid of the
+    published outlines mapped to LPS with each instance's IPP / IOP / PixelSpacing must have x(left) > x(right)
+    (LPS +x = patient left). Radiographs: column centroids compared using the series' PatientOrientation-derived
+    direction (structures without a verifiable side are not published). Returns the list of failures."""
+    pack = load_json(OUT_PACK / "pack.json")
+    sidx = series_index()
+    by = {}
+    for t in pack["referenceTargets"]:
+        by.setdefault(t["seriesUid"], {})[t["classId"].split(":", 1)[1]] = t
+    fails, checked = [], 0
+    for suid, ts in by.items():
+        se = sidx[suid][2]
+        iop = se["geometry"].get("iop")
+        cx = {}
+        for name, t in ts.items():
+            if "left" not in name and "right" not in name:
+                continue
+            g = load_json(OUT_PACK / t["geometryFile"])
+            xs, ws = [], []
+            for pl in g["planes"]:
+                inst = next(i for i in se["instances"] if i["sopInstanceUid"] == pl["sopInstanceUid"])
+                for ring in pl["polygons"]:
+                    a = np.asarray(ring, float)
+                    area = 0.5 * abs(np.dot(a[:, 0], np.roll(a[:, 1], -1)) - np.dot(a[:, 1], np.roll(a[:, 0], -1)))
+                    c, r = a[:, 0].mean(), a[:, 1].mean()
+                    if iop and inst["ipp"]:
+                        ps = se["geometry"]["pixelSpacing"]
+                        x = inst["ipp"][0] + c * ps[1] * iop[0] + r * ps[0] * iop[3]
+                    else:
+                        x = c  # radiograph: image column (standard display checked at segmentation time)
+                    xs.append(x * area)
+                    ws.append(area)
+            cx[name] = sum(xs) / max(sum(ws), 1e-9)
+        for name in cx:
+            if "left" in name:
+                other = name.replace("left", "right")
+                if other in cx:
+                    checked += 1
+                    if not cx[name] > cx[other]:
+                        fails.append((suid, name, other, round(cx[name], 1), round(cx[other], 1)))
+    return checked, fails

@@ -1,46 +1,46 @@
 {
-  "measuredAt": "2026-10-27T18:33:33.510Z",
+  "measuredAt": "2026-10-27T23:39:02.699Z",
   "host": "vite preview (localhost)",
   "note": "Local server: excludes real network latency/bandwidth.",
-  "shellInteractiveMs": 782,
+  "shellInteractiveMs": 316,
   "shellNav": {
-    "domContentLoadedMs": 75,
-    "loadMs": 75,
-    "firstContentfulPaintMs": 284
+    "domContentLoadedMs": 48,
+    "loadMs": 48,
+    "firstContentfulPaintMs": 120
   },
   "shellBytes": {
-    "js": 476476,
+    "js": 527391,
     "wasm": 0,
     "dicom": 0,
-    "json": 5321524,
-    "other": 17912
+    "json": 8582662,
+    "other": 19007
   },
-  "ctFirstImageMs": 1588,
-  "ctAllSlicesFetchedMs": 3628,
+  "ctFirstImageMs": 827,
+  "ctAllSlicesFetchedMs": 1372,
   "ctSeries": {
     "done": 131,
     "failed": 0,
     "total": 131,
     "bytes": 20695486,
-    "elapsedMs": 2622.5
+    "elapsedMs": 772
   },
   "cachedScroll": {
     "slices": 60,
-    "medianMs": 44.3,
-    "p95Ms": 81.6,
-    "maxMs": 93.7
+    "medianMs": 16.4,
+    "p95Ms": 20.1,
+    "maxMs": 32.1
   },
-  "mprReadyMs": 1011,
+  "mprReadyMs": 347,
   "jsHeapMB": {
-    "used": 202.2,
-    "total": 289.9
+    "used": 124.9,
+    "total": 202.2
   },
-  "radiographFirstImageMs": 1918,
+  "radiographFirstImageMs": 870,
   "totalBytes": {
-    "js": 13292781,
+    "js": 13960890,
     "wasm": 581752,
     "dicom": 28231044,
-    "json": 18010925,
-    "other": 1097927
+    "json": 27797840,
+    "other": 1134702
   }
 }

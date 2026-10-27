@@ -13,3 +13,4 @@ coverage/
 # Never commit the copyrighted textbook or text extracted from it.
 *.pdf
 public/book/
+__pycache__/

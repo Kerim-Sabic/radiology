@@ -344,14 +344,14 @@ export class Catalog {
     // Expert labels win: hide an AI outline when an expert one exists for the same structure on the same series.
     const isAi = (p: string) => p === 'ai_draft' || p === 'source_automated';
     const expertKeys = new Set(candidates.filter((t) => !isAi(t.provenance)).map((t) => `${t.seriesUid}|${t.classId}`));
-    // Named parts replace the whole: a series with "Aortic arch" etc. does not also draw one "Aorta" outline over them.
-    const partsOn = new Set(
-      candidates.map((t) => /^anatomy:(aorta|colon)_/.exec(t.classId)).flatMap((m, i) => (m ? [`${candidates[i].seriesUid}|${m[1]}`] : [])),
-    );
-    const wholeOf = (c: string) => (c === 'anatomy:aorta' ? 'aorta' : c === 'anatomy:colon' || c === 'anatomy:large_intestine' ? 'colon' : null);
+    // Named parts replace a machine-drawn whole: a series with "Aortic arch" etc. does not also draw one AI "Aorta" over them.
+    // An expert whole outline is never hidden.
+    const partOf = (c: string) => /^anatomy:(aorta|colon)_/.exec(c)?.[1] ?? (/^anatomy:heart_(atrium|ventricle)_/.test(c) ? 'heart' : null);
+    const wholeOf = (c: string) => (c === 'anatomy:aorta' ? 'aorta' : c === 'anatomy:colon' || c === 'anatomy:large_intestine' ? 'colon' : c === 'anatomy:heart' ? 'heart' : null);
+    const partsOn = new Set(candidates.flatMap((t) => (partOf(t.classId) ? [`${t.seriesUid}|${partOf(t.classId)}`] : [])));
     return candidates
       .filter((t) => !(isAi(t.provenance) && expertKeys.has(`${t.seriesUid}|${t.classId}`)))
-      .filter((t) => !partsOn.has(`${t.seriesUid}|${wholeOf(t.classId)}`))
+      .filter((t) => !(isAi(t.provenance) && partsOn.has(`${t.seriesUid}|${wholeOf(t.classId)}`)))
       .map((t) => t.id);
   }
 

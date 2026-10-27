@@ -181,12 +181,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 575,
+                  "duration": 530,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T20:27:17.239Z",
+                  "startTime": "2026-10-27T23:38:26.043Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -215,12 +215,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 813,
+                  "duration": 720,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T20:27:17.962Z",
+                  "startTime": "2026-10-27T23:38:26.687Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -249,12 +249,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3622,
+                  "duration": 3529,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T20:28:02.922Z",
+                  "startTime": "2026-10-27T23:39:08.677Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -283,12 +283,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3192,
+                  "duration": 3233,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T20:28:06.999Z",
+                  "startTime": "2026-10-27T23:39:12.606Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -325,12 +325,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1343,
+                  "duration": 1171,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T20:27:18.794Z",
+                  "startTime": "2026-10-27T23:38:27.423Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -359,12 +359,12 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 1223,
+                  "duration": 1105,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T20:27:20.144Z",
+                  "startTime": "2026-10-27T23:38:28.600Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -393,12 +393,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 3963,
+                  "duration": 3907,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T20:28:10.210Z",
+                  "startTime": "2026-10-27T23:39:15.854Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -427,12 +427,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4093,
+                  "duration": 3875,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T20:28:14.179Z",
+                  "startTime": "2026-10-27T23:39:19.768Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -457,7 +457,7 @@
         {
           "title": "A. real imaging",
           "file": "learning-flow.spec.ts",
-          "line": 69,
+          "line": 72,
           "column": 6,
           "specs": [
             {
@@ -476,12 +476,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 910,
+                      "duration": 874,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:21.388Z",
+                      "startTime": "2026-10-27T23:38:29.722Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -491,7 +491,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-b64fb6a012a6ba973c24",
               "file": "learning-flow.spec.ts",
-              "line": 70,
+              "line": 73,
               "column": 3
             },
             {
@@ -510,12 +510,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1507,
+                      "duration": 1353,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:22.304Z",
+                      "startTime": "2026-10-27T23:38:30.602Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -525,7 +525,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-19639241b48cd68b8e70",
               "file": "learning-flow.spec.ts",
-              "line": 90,
+              "line": 93,
               "column": 3
             },
             {
@@ -544,12 +544,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 922,
+                      "duration": 884,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:23.818Z",
+                      "startTime": "2026-10-27T23:38:31.962Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -559,7 +559,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-3594a04d76911093c041",
               "file": "learning-flow.spec.ts",
-              "line": 111,
+              "line": 114,
               "column": 3
             },
             {
@@ -578,12 +578,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 878,
+                      "duration": 788,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:24.746Z",
+                      "startTime": "2026-10-27T23:38:32.852Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -593,7 +593,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-11870e4e85099ad5e37f",
               "file": "learning-flow.spec.ts",
-              "line": 126,
+              "line": 129,
               "column": 3
             },
             {
@@ -612,12 +612,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 886,
+                      "duration": 864,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:25.631Z",
+                      "startTime": "2026-10-27T23:38:33.646Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -627,7 +627,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-73727b2abeb0dc0eaad9",
               "file": "learning-flow.spec.ts",
-              "line": 138,
+              "line": 141,
               "column": 3
             },
             {
@@ -646,12 +646,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4215,
+                      "duration": 4199,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:28:18.299Z",
+                      "startTime": "2026-10-27T23:39:23.665Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -661,7 +661,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-a11f64cb5c259212a1f0",
               "file": "learning-flow.spec.ts",
-              "line": 70,
+              "line": 73,
               "column": 3
             },
             {
@@ -680,12 +680,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5061,
+                      "duration": 5071,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:28:22.521Z",
+                      "startTime": "2026-10-27T23:39:27.870Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -695,7 +695,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-bfb93f9ed193a618d5e4",
               "file": "learning-flow.spec.ts",
-              "line": 90,
+              "line": 93,
               "column": 3
             },
             {
@@ -714,12 +714,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4118,
+                      "duration": 4241,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:28:27.589Z",
+                      "startTime": "2026-10-27T23:39:32.948Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -729,7 +729,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-b762b114ccc68f22070b",
               "file": "learning-flow.spec.ts",
-              "line": 111,
+              "line": 114,
               "column": 3
             },
             {
@@ -748,12 +748,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3870,
+                      "duration": 3839,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:28:31.714Z",
+                      "startTime": "2026-10-27T23:39:37.196Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -763,7 +763,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-1beeb751ff8bedee3688",
               "file": "learning-flow.spec.ts",
-              "line": 126,
+              "line": 129,
               "column": 3
             },
             {
@@ -782,12 +782,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4111,
+                      "duration": 4172,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:28:35.590Z",
+                      "startTime": "2026-10-27T23:39:41.041Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -797,7 +797,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-b91b18dbb0b30c6e6e8f",
               "file": "learning-flow.spec.ts",
-              "line": 138,
+              "line": 141,
               "column": 3
             }
           ]
@@ -805,7 +805,7 @@
         {
           "title": "B. spatial learning",
           "file": "learning-flow.spec.ts",
-          "line": 152,
+          "line": 155,
           "column": 6,
           "specs": [
             {
@@ -824,12 +824,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2144,
+                      "duration": 2179,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:26.524Z",
+                      "startTime": "2026-10-27T23:38:34.516Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -839,7 +839,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-4ebc51d10da003a45caf",
               "file": "learning-flow.spec.ts",
-              "line": 153,
+              "line": 156,
               "column": 3
             },
             {
@@ -858,12 +858,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1888,
+                      "duration": 1899,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:28.675Z",
+                      "startTime": "2026-10-27T23:38:36.700Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -873,7 +873,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-7efd3ad3cc6a8b6faf68",
               "file": "learning-flow.spec.ts",
-              "line": 171,
+              "line": 174,
               "column": 3
             },
             {
@@ -892,12 +892,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2192,
+                      "duration": 2207,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:30.569Z",
+                      "startTime": "2026-10-27T23:38:38.605Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -907,7 +907,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-59c316d6580d80fcebf2",
               "file": "learning-flow.spec.ts",
-              "line": 183,
+              "line": 186,
               "column": 3
             },
             {
@@ -926,12 +926,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1880,
+                      "duration": 1906,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:32.769Z",
+                      "startTime": "2026-10-27T23:38:40.819Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -941,7 +941,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-fb08baf90fb23b4926a2",
               "file": "learning-flow.spec.ts",
-              "line": 208,
+              "line": 211,
               "column": 3
             },
             {
@@ -960,12 +960,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1564,
+                      "duration": 1490,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:34.656Z",
+                      "startTime": "2026-10-27T23:38:42.733Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -975,7 +975,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-bb4c4827c574f3667572",
               "file": "learning-flow.spec.ts",
-              "line": 222,
+              "line": 225,
               "column": 3
             },
             {
@@ -994,12 +994,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 6266,
+                      "duration": 6540,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:28:39.708Z",
+                      "startTime": "2026-10-27T23:39:45.220Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1009,7 +1009,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-54d345e3b95836d4717d",
               "file": "learning-flow.spec.ts",
-              "line": 153,
+              "line": 156,
               "column": 3
             },
             {
@@ -1028,12 +1028,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5317,
+                      "duration": 5583,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:28:45.983Z",
+                      "startTime": "2026-10-27T23:39:51.767Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1043,7 +1043,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-d69074d4078798a542b4",
               "file": "learning-flow.spec.ts",
-              "line": 171,
+              "line": 174,
               "column": 3
             },
             {
@@ -1062,12 +1062,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5752,
+                      "duration": 5742,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:28:51.306Z",
+                      "startTime": "2026-10-27T23:39:57.357Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1077,7 +1077,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-edc88d98d06f8dca5e24",
               "file": "learning-flow.spec.ts",
-              "line": 183,
+              "line": 186,
               "column": 3
             },
             {
@@ -1096,12 +1096,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5372,
+                      "duration": 5632,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:28:57.066Z",
+                      "startTime": "2026-10-27T23:40:03.107Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1111,7 +1111,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-35239449aed60cbbf5ae",
               "file": "learning-flow.spec.ts",
-              "line": 208,
+              "line": 211,
               "column": 3
             },
             {
@@ -1130,12 +1130,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5332,
+                      "duration": 5178,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:29:02.444Z",
+                      "startTime": "2026-10-27T23:40:08.747Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1145,7 +1145,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-e1c8d602c500b8d29b7f",
               "file": "learning-flow.spec.ts",
-              "line": 222,
+              "line": 225,
               "column": 3
             }
           ]
@@ -1153,7 +1153,7 @@
         {
           "title": "C. multimodality",
           "file": "learning-flow.spec.ts",
-          "line": 237,
+          "line": 240,
           "column": 6,
           "specs": [
             {
@@ -1172,12 +1172,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1693,
+                      "duration": 1651,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:36.226Z",
+                      "startTime": "2026-10-27T23:38:44.230Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1187,7 +1187,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-de632dfe5fcbad7124b8",
               "file": "learning-flow.spec.ts",
-              "line": 238,
+              "line": 241,
               "column": 3
             },
             {
@@ -1206,12 +1206,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1068,
+                      "duration": 1031,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:37.926Z",
+                      "startTime": "2026-10-27T23:38:45.888Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1221,7 +1221,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-9e656593a3a38fd22aab",
               "file": "learning-flow.spec.ts",
-              "line": 251,
+              "line": 254,
               "column": 3
             },
             {
@@ -1240,12 +1240,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5456,
+                      "duration": 5323,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:29:07.783Z",
+                      "startTime": "2026-10-27T23:40:13.931Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1255,7 +1255,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-a8ecfb5e42e90cd2cfdd",
               "file": "learning-flow.spec.ts",
-              "line": 238,
+              "line": 241,
               "column": 3
             },
             {
@@ -1274,12 +1274,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4484,
+                      "duration": 4243,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:29:13.246Z",
+                      "startTime": "2026-10-27T23:40:19.260Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1289,7 +1289,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-7c68217fb5b140454e59",
               "file": "learning-flow.spec.ts",
-              "line": 251,
+              "line": 254,
               "column": 3
             }
           ]
@@ -1297,7 +1297,7 @@
         {
           "title": "D. assess leakage, deep links",
           "file": "learning-flow.spec.ts",
-          "line": 261,
+          "line": 264,
           "column": 6,
           "specs": [
             {
@@ -1316,12 +1316,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1236,
+                      "duration": 1150,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:39.002Z",
+                      "startTime": "2026-10-27T23:38:46.927Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1331,7 +1331,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-183e971fb8570e9a7f96",
               "file": "learning-flow.spec.ts",
-              "line": 262,
+              "line": 265,
               "column": 3
             },
             {
@@ -1350,12 +1350,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1133,
+                      "duration": 1170,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:40.245Z",
+                      "startTime": "2026-10-27T23:38:48.084Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1365,7 +1365,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-332dff7f37c352e3c540",
               "file": "learning-flow.spec.ts",
-              "line": 272,
+              "line": 275,
               "column": 3
             },
             {
@@ -1384,12 +1384,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 715,
+                      "duration": 789,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:41.384Z",
+                      "startTime": "2026-10-27T23:38:49.260Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1399,7 +1399,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-93520055698b46b2af56",
               "file": "learning-flow.spec.ts",
-              "line": 282,
+              "line": 285,
               "column": 3
             },
             {
@@ -1418,12 +1418,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2753,
+                      "duration": 2792,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:42.104Z",
+                      "startTime": "2026-10-27T23:38:50.055Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1433,7 +1433,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-2a81925bc6ee6918036d",
               "file": "learning-flow.spec.ts",
-              "line": 288,
+              "line": 291,
               "column": 3
             },
             {
@@ -1452,12 +1452,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1616,
+                      "duration": 1692,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:44.863Z",
+                      "startTime": "2026-10-27T23:38:52.853Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1467,7 +1467,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-732bdc64a1e71a8496ba",
               "file": "learning-flow.spec.ts",
-              "line": 309,
+              "line": 312,
               "column": 3
             },
             {
@@ -1486,12 +1486,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4933,
+                      "duration": 4735,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:29:17.737Z",
+                      "startTime": "2026-10-27T23:40:23.510Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1501,7 +1501,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-d195253d7928396e84e6",
               "file": "learning-flow.spec.ts",
-              "line": 262,
+              "line": 265,
               "column": 3
             },
             {
@@ -1520,12 +1520,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 3863,
+                      "duration": 3849,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:29:22.678Z",
+                      "startTime": "2026-10-27T23:40:28.252Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1535,7 +1535,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-7dba1cafebf82b557bf4",
               "file": "learning-flow.spec.ts",
-              "line": 272,
+              "line": 275,
               "column": 3
             },
             {
@@ -1554,12 +1554,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4375,
+                      "duration": 3770,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:29:26.547Z",
+                      "startTime": "2026-10-27T23:40:32.107Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1569,7 +1569,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-7d48a1227ee4645b72e4",
               "file": "learning-flow.spec.ts",
-              "line": 282,
+              "line": 285,
               "column": 3
             },
             {
@@ -1588,12 +1588,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 7536,
+                      "duration": 7641,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:29:30.928Z",
+                      "startTime": "2026-10-27T23:40:35.886Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1603,7 +1603,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-9c37f3d38b3df036e87c",
               "file": "learning-flow.spec.ts",
-              "line": 288,
+              "line": 291,
               "column": 3
             },
             {
@@ -1622,12 +1622,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 4856,
+                      "duration": 4888,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:29:38.470Z",
+                      "startTime": "2026-10-27T23:40:43.534Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1637,7 +1637,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-bb0e16405850c02c91f8",
               "file": "learning-flow.spec.ts",
-              "line": 309,
+              "line": 312,
               "column": 3
             }
           ]
@@ -1645,7 +1645,7 @@
         {
           "title": "E. study tools",
           "file": "learning-flow.spec.ts",
-          "line": 326,
+          "line": 329,
           "column": 6,
           "specs": [
             {
@@ -1664,12 +1664,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5707,
+                      "duration": 3998,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:46.485Z",
+                      "startTime": "2026-10-27T23:38:54.550Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1679,7 +1679,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-8a61061479f2b27644bb",
               "file": "learning-flow.spec.ts",
-              "line": 327,
+              "line": 330,
               "column": 3
             },
             {
@@ -1698,12 +1698,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 1869,
+                      "duration": 1824,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:52.199Z",
+                      "startTime": "2026-10-27T23:38:58.553Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1713,7 +1713,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-c8e2ad267f70ae1d6f66",
               "file": "learning-flow.spec.ts",
-              "line": 363,
+              "line": 366,
               "column": 3
             },
             {
@@ -1732,12 +1732,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 2196,
+                      "duration": 2306,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:27:54.074Z",
+                      "startTime": "2026-10-27T23:39:00.383Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1747,7 +1747,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-57bab6fc21cf7af0b1e3",
               "file": "learning-flow.spec.ts",
-              "line": 375,
+              "line": 378,
               "column": 3
             },
             {
@@ -1766,12 +1766,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 6604,
+                      "duration": 4558,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:29:43.336Z",
+                      "startTime": "2026-10-27T23:40:48.431Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1781,7 +1781,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-803718ea1427df90fa3c",
               "file": "learning-flow.spec.ts",
-              "line": 327,
+              "line": 330,
               "column": 3
             },
             {
@@ -1800,12 +1800,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5861,
+                      "duration": 5231,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:29:49.949Z",
+                      "startTime": "2026-10-27T23:40:52.996Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1815,7 +1815,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-82a7469de37b1f07b9c7",
               "file": "learning-flow.spec.ts",
-              "line": 363,
+              "line": 366,
               "column": 3
             },
             {
@@ -1834,12 +1834,12 @@
                       "workerIndex": 1,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 6139,
+                      "duration": 5774,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-10-27T20:29:55.819Z",
+                      "startTime": "2026-10-27T23:40:58.236Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -1849,7 +1849,7 @@
               ],
               "id": "db41df85f0d7fe0a9438-01513501afe2ff9345cf",
               "file": "learning-flow.spec.ts",
-              "line": 375,
+              "line": 378,
               "column": 3
             }
           ]
@@ -1878,16 +1878,16 @@
                   "workerIndex": 0,
                   "parallelIndex": 0,
                   "status": "passed",
-                  "duration": 4269,
+                  "duration": 4158,
                   "errors": [],
                   "stdout": [
                     {
-                      "text": "{\n  \"measuredAt\": \"2026-10-27T20:27:56.280Z\",\n  \"host\": \"vite preview (localhost)\",\n  \"note\": \"Local server: excludes real network latency/bandwidth.\",\n  \"shellInteractiveMs\": 312,\n  \"shellNav\": {\n    \"domContentLoadedMs\": 48,\n    \"loadMs\": 48,\n    \"firstContentfulPaintMs\": 120\n  },\n  \"shellBytes\": {\n    \"js\": 522320,\n    \"wasm\": 0,\n    \"dicom\": 0,\n    \"json\": 8138781,\n    \"other\": 19007\n  },\n  \"ctFirstImageMs\": 827,\n  \"ctAllSlicesFetchedMs\": 1434,\n  \"ctSeries\": {\n    \"done\": 131,\n    \"failed\": 0,\n    \"total\": 131,\n    \"bytes\": 20695486,\n    \"elapsedMs\": 816.1999999284744\n  },\n  \"cachedScroll\": {\n    \"slices\": 60,\n    \"medianMs\": 17.2,\n    \"p95Ms\": 22.3,\n    \"maxMs\": 34.5\n  },\n  \"mprReadyMs\": 349,\n  \"jsHeapMB\": {\n    \"used\": 124.9,\n    \"total\": 189.8\n  },\n  \"radiographFirstImageMs\": 909,\n  \"totalBytes\": {\n    \"js\": 13414487,\n    \"wasm\": 581752,\n    \"dicom\": 28231044,\n    \"json\": 26466197,\n    \"other\": 1099022\n  }\n}\n"
+                      "text": "{\n  \"measuredAt\": \"2026-10-27T23:39:02.699Z\",\n  \"host\": \"vite preview (localhost)\",\n  \"note\": \"Local server: excludes real network latency/bandwidth.\",\n  \"shellInteractiveMs\": 316,\n  \"shellNav\": {\n    \"domContentLoadedMs\": 48,\n    \"loadMs\": 48,\n    \"firstContentfulPaintMs\": 120\n  },\n  \"shellBytes\": {\n    \"js\": 527391,\n    \"wasm\": 0,\n    \"dicom\": 0,\n    \"json\": 8582662,\n    \"other\": 19007\n  },\n  \"ctFirstImageMs\": 827,\n  \"ctAllSlicesFetchedMs\": 1372,\n  \"ctSeries\": {\n    \"done\": 131,\n    \"failed\": 0,\n    \"total\": 131,\n    \"bytes\": 20695486,\n    \"elapsedMs\": 772\n  },\n  \"cachedScroll\": {\n    \"slices\": 60,\n    \"medianMs\": 16.4,\n    \"p95Ms\": 20.1,\n    \"maxMs\": 32.1\n  },\n  \"mprReadyMs\": 347,\n  \"jsHeapMB\": {\n    \"used\": 124.9,\n    \"total\": 202.2\n  },\n  \"radiographFirstImageMs\": 870,\n  \"totalBytes\": {\n    \"js\": 13960890,\n    \"wasm\": 581752,\n    \"dicom\": 28231044,\n    \"json\": 27797840,\n    \"other\": 1134702\n  }\n}\n"
                     }
                   ],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T20:27:56.283Z",
+                  "startTime": "2026-10-27T23:39:02.702Z",
                   "annotations": [],
                   "attachments": []
                 }
@@ -1926,12 +1926,12 @@
                   "workerIndex": 1,
                   "parallelIndex": 0,
                   "status": "skipped",
-                  "duration": 219,
+                  "duration": 170,
                   "errors": [],
                   "stdout": [],
                   "stderr": [],
                   "retry": 0,
-                  "startTime": "2026-10-27T20:30:01.974Z",
+                  "startTime": "2026-10-27T23:41:04.022Z",
                   "annotations": [
                     {
                       "type": "skip",
@@ -1959,8 +1959,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-10-27T20:27:14.529Z",
-    "duration": 170263.869,
+    "startTime": "2026-10-27T23:38:24.504Z",
+    "duration": 162238.45899999997,
     "expected": 49,
     "skipped": 1,
     "unexpected": 0,

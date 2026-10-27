@@ -240,3 +240,115 @@ def colon_parts(colon_raw, geo, midline_x, hips=None, sacrum=None):
             parts[nme] = m
     info["segmentsLabelled"] = sorted(parts)
     return parts, info
+
+
+def _skeleton_graph(mask, geo, iso_mm):
+    """Skeleton of a boolean mask on an ~iso_mm grid -> (node LPS coords (n,3), CSR graph with mm edge weights,
+    node voxel coords on the original grid (n,3)). Returns None if the skeleton is too small."""
+    from skimage.morphology import skeletonize
+    bb = ndi.find_objects(mask.astype(np.uint8))[0]
+    crop = mask[bb]
+    factor = [s / iso_mm for s in geo.spacing]
+    small = ndi.zoom(crop.astype(np.uint8), factor, order=0) > 0
+    sk = skeletonize(small)
+    pts = np.argwhere(sk)
+    if len(pts) < 10:
+        return None
+    index = -np.ones(sk.shape, np.int64)
+    index[tuple(pts.T)] = np.arange(len(pts))
+    rows, cols, w = [], [], []
+    for d in np.argwhere(FULL3) - 1:
+        if not d.any():
+            continue
+        q = pts + d
+        ok = np.all((q >= 0) & (q < sk.shape), axis=1)
+        nb = index[tuple(q[ok].T)]
+        good = nb >= 0
+        rows.append(np.nonzero(ok)[0][good])
+        cols.append(nb[good])
+        w.append(np.full(good.sum(), float(np.linalg.norm(d * iso_mm))))
+    G = coo_matrix((np.concatenate(w), (np.concatenate(rows), np.concatenate(cols))), shape=(len(pts), len(pts))).tocsr()
+    orig = pts / np.array(factor) + np.array([s.start for s in bb])
+    x, y, z = geo.lps(orig[:, 0], orig[:, 1], orig[:, 2])
+    return np.column_stack([x, y, z]), G, orig
+
+
+def _path(pred, a, b):
+    out = [b]
+    while out[-1] != a:
+        p = pred[out[-1]]
+        if p < 0:
+            return None
+        out.append(p)
+    return out[::-1]
+
+
+def pa_parts(central, geo, pediatric=False):
+    """Split the mediastinal pulmonary arteries (lung-artery mask outside the lung lobes = up to the hila) into the
+    pulmonary trunk and the right / left pulmonary arteries.
+
+    Skeleton on a 1.5 mm grid; the most ANTERIOR skeleton end is the root (pulmonary valve / outflow), the most
+    right (smallest LPS x) and most left (largest x) skeleton points are the hilar ends. The shortest paths
+    root->right end and root->left end share the trunk; the last shared node is the bifurcation. Every voxel takes the
+    label of its nearest labelled path node (trunk / right / left). Checks: one skeleton component carrying >= 80 % of
+    the skeleton, trunk path >= 10 mm (6 mm in children), each branch >= 10 mm (6 mm), bifurcation above the root, right
+    end right of the bifurcation and left end left of it. Any failure -> no parts."""
+    info = {}
+    lab, n = ndi.label(central, structure=FULL3)
+    if n == 0:
+        return {}, {"reason": "no mediastinal pulmonary artery"}
+    sizes = np.bincount(lab.ravel())[1:]
+    main = lab == (int(np.argmax(sizes)) + 1)
+    info["largestComponentFraction"] = round(float(sizes.max() / sizes.sum()), 3)
+    g = _skeleton_graph(main, geo, 1.5)
+    if g is None:
+        return {}, {**info, "reason": "skeleton too small"}
+    P, G, orig = g
+    ncc, cc = connected_components(G, directed=False)
+    big = np.argmax(np.bincount(cc))
+    nodes = np.nonzero(cc == big)[0]
+    info["skeletonMainFraction"] = round(len(nodes) / len(P), 3)
+    if len(nodes) < 0.8 * len(P):
+        return {}, {**info, "reason": "skeleton fragmented"}
+    deg = np.asarray((G[nodes][:, nodes] > 0).sum(axis=1)).ravel()
+    ends = nodes[deg == 1] if np.any(deg == 1) else nodes
+    root = int(ends[np.argmin(P[ends, 1])])               # most anterior end (LPS y grows posteriorly)
+    r_end = int(nodes[np.argmin(P[nodes, 0])])             # most right (LPS x grows to the patient's left)
+    l_end = int(nodes[np.argmax(P[nodes, 0])])
+    dist, pred = dijkstra(G, indices=root, return_predecessors=True)
+    pr, pl_ = _path(pred, root, r_end), _path(pred, root, l_end)
+    if pr is None or pl_ is None:
+        return {}, {**info, "reason": "hilar ends not connected to the root"}
+    k = 0
+    while k < min(len(pr), len(pl_)) and pr[k] == pl_[k]:
+        k += 1
+    bif = pr[k - 1]
+    trunk_nodes, right_nodes, left_nodes = pr[:k], pr[k - 1:], pl_[k - 1:]
+    min_len = 6.0 if pediatric else 10.0
+    seglen = lambda ns: float(sum(np.linalg.norm(P[ns[i + 1]] - P[ns[i]]) for i in range(len(ns) - 1)))
+    lt, lr, ll = seglen(trunk_nodes), seglen(right_nodes), seglen(left_nodes)
+    info.update(trunkLengthMm=round(lt, 1), rightLengthMm=round(lr, 1), leftLengthMm=round(ll, 1),
+                bifurcationLps=[round(float(v), 1) for v in P[bif]], rootLps=[round(float(v), 1) for v in P[root]])
+    if lt < min_len or lr < min_len or ll < min_len:
+        return {}, {**info, "reason": f"trunk or branch shorter than {min_len:g} mm"}
+    if not P[bif, 2] > P[root, 2]:
+        return {}, {**info, "reason": "bifurcation not above the root"}
+    if not (P[r_end, 0] < P[bif, 0] < P[l_end, 0]):
+        return {}, {**info, "reason": "hilar ends not on either side of the bifurcation"}
+    from scipy.spatial import cKDTree
+    lab_nodes = np.concatenate([trunk_nodes, right_nodes[1:], left_nodes[1:]])
+    lab_codes = np.concatenate([np.full(len(trunk_nodes), 1), np.full(len(right_nodes) - 1, 2), np.full(len(left_nodes) - 1, 3)])
+    tree = cKDTree(P[lab_nodes])
+    vi = np.argwhere(main)
+    vx, vy, vz = geo.lps(vi[:, 0], vi[:, 1], vi[:, 2])
+    _, nn = tree.query(np.column_stack([vx, vy, vz]))
+    codes = lab_codes[nn]
+    parts = {}
+    for code, name in ((1, "pulmonary_trunk"), (2, "pulmonary_artery_right"), (3, "pulmonary_artery_left")):
+        sel = vi[codes == code]
+        if len(sel):
+            m = np.zeros(main.shape, bool)
+            m[tuple(sel.T)] = True
+            parts[name] = m
+    info["parts"] = sorted(parts)
+    return parts, info

@@ -43,13 +43,22 @@ import subparts
 from common import (CT_DP_TOL_PX, MIN_RING_AREA_PX2, RAS_TO_LPS, WORK, category, dicom_pixel_to_lps, dump_json,
                     dump_json_compact, laterality_pairs, load_json, ring_area, slice_normal)
 
-RULES_VERSION = 4
+RULES_VERSION = 11
+CHAMBERS = {44: "heart_myocardium", 45: "heart_atrium_left", 46: "heart_ventricle_left", 47: "heart_atrium_right",
+            48: "heart_ventricle_right"}
+CHAMBER_VOLUME_ML = {"heart_atrium_right": (20, 250), "heart_atrium_left": (20, 250), "heart_ventricle_right": (40, 350),
+                     "heart_ventricle_left": (40, 350), "heart_myocardium": (60, 400)}  # adult; children: lower bound / 5
+LOBE_ARTERY = {"lung_upper_lobe_right": "pulmonary_arteries_right_upper_lobe", "lung_middle_lobe_right": "pulmonary_arteries_right_middle_lobe",
+               "lung_lower_lobe_right": "pulmonary_arteries_right_lower_lobe", "lung_upper_lobe_left": "pulmonary_arteries_left_upper_lobe",
+               "lung_lower_lobe_left": "pulmonary_arteries_left_lower_lobe"}
+PA_DP_TOL_PX = 0.5  # finer outlines for the pulmonary trunk / arteries
 MIN_VOLUME_ML = 0.3
 LAT_MIN_AREA_MM2 = 5.0
 CROSS = np.array([[0, 1, 0], [1, 1, 1], [0, 1, 0]], bool)
 FULL2 = np.ones((3, 3), bool)
 FULL3 = np.ones((3, 3, 3), bool)
-SYMMETRIC_ONLY_3D = {("spleen", "liver"), ("stomach", "liver"), ("aorta", "inferior_vena_cava")}
+SYMMETRIC_ONLY_3D = {("spleen", "liver"), ("stomach", "liver"), ("aorta", "inferior_vena_cava"),
+                     ("heart_atrium_left", "heart_atrium_right"), ("heart_ventricle_left", "heart_ventricle_right")}
 NO_CONTRAST_WORDS = ("W/O", "WITHOUT", "NONE", "NON-CONTRAST", "NO CONTRAST")
 LUNG_LOBES = ("lung_upper_lobe_left", "lung_lower_lobe_left", "lung_upper_lobe_right", "lung_middle_lobe_right", "lung_lower_lobe_right")
 
@@ -78,12 +87,51 @@ class Geo:
         return float(self.z.min())
 
 
+def carina_cut(trachea, geo):
+    """The trachea ends at the carina, but the whole-body "trachea" class runs on into the first centimetres of both main
+    bronchi. Cut it at the highest slice where its outline is two airways (each >= 15 mm2, centres >= 10 mm apart, one
+    on either side of the trachea's centre on the slice above): that slice and every slice below it is returned as the
+    sub-carinal part, which is never published as trachea."""
+    px_mm2 = float(geo.ps[0]) * float(geo.ps[1])
+    prev_x = None
+    for k in sorted(np.unique(np.nonzero(trachea)[2]), key=lambda k: -geo.slice_z(k)):  # head first
+        lab, n = ndi.label(trachea[:, :, k], structure=FULL2)
+        comps = []
+        for c in range(1, n + 1):
+            ij = np.argwhere(lab == c)
+            if len(ij) * px_mm2 >= 15.0:
+                x, y, _ = geo.lps(ij[:, 0], ij[:, 1], np.full(len(ij), k))
+                comps.append((len(ij), float(x.mean()), float(y.mean())))
+        comps.sort(key=lambda c: -c[0])
+        if len(comps) >= 2 and prev_x is not None:
+            (_, x1, y1), (_, x2, y2) = comps[:2]
+            if np.hypot(x1 - x2, y1 - y2) >= 10.0 and (x1 - prev_x) * (x2 - prev_x) < 0:
+                z_cut = geo.slice_z(k)
+                below = trachea & (geo.z <= z_cut + 1e-3)[None, None, :]
+                kept = trachea & ~below
+                # above the carina the trachea is one tube: a separate airway beside it on a slice (e.g. where an
+                # upper-lobe bronchus starts) is not trachea and is left unlabelled
+                stray = np.zeros_like(trachea)
+                for kk in np.unique(np.nonzero(kept)[2]):
+                    lab2, n2 = ndi.label(kept[:, :, kk], structure=FULL2)
+                    if n2 > 1:
+                        big = 1 + int(np.argmax(np.bincount(lab2.ravel())[1:]))
+                        stray[:, :, kk] = (lab2 > 0) & (lab2 != big)
+                return kept & ~stray, below, {"carinaSliceK": int(k), "firstSubCarinalZ": round(z_cut, 2),
+                                              "subCarinalSlices": int(len(np.unique(np.nonzero(below)[2]))),
+                                              "strayVoxelsAboveCarina": int(stray.sum())}
+        if len(comps) == 1:
+            ij = np.argwhere(trachea[:, :, k])
+            prev_x = float(geo.lps(ij[:, 0], ij[:, 1], np.full(len(ij), k))[0].mean())
+    return trachea, np.zeros_like(trachea), {"carinaSliceK": None, "note": "no two-airway slice below a single trachea"}
+
+
 def ts_class_map(task="total"):
     from totalsegmentator.map_to_binary import class_map
     return class_map[task]
 
 
-def trace(mask2d):
+def trace(mask2d, tol=None):
     padded = np.pad(mask2d.astype(np.float32), 1)
     cs = measure.find_contours(padded, 0.5, fully_connected="low")
     if not cs:
@@ -91,14 +139,14 @@ def trace(mask2d):
     c = max(cs, key=len) - 1.0
     if not np.allclose(c[0], c[-1]):
         c = np.vstack([c, c[:1]])
-    s = measure.approximate_polygon(c, tolerance=CT_DP_TOL_PX)
+    s = measure.approximate_polygon(c, tolerance=CT_DP_TOL_PX if tol is None else tol)
     if len(s) < 4:
         return None
     ring = [[float(p[1]), float(p[0])] for p in s]
     return ring if ring_area(ring) >= MIN_RING_AREA_PX2 else None
 
 
-def slice_polys(m2, col0, row0, min_px):
+def slice_polys(m2, col0, row0, min_px, tol=None):
     """4-connected components >= min_px (10 mm2) -> outer rings + holes (>= min_px) in full-image [col,row]."""
     lab, n = ndi.label(m2, structure=CROSS)
     polys, holes, kept = [], [], np.zeros_like(m2)
@@ -115,14 +163,14 @@ def slice_polys(m2, col0, row0, min_px):
         hl, nh = ndi.label(filled & ~comp, structure=FULL2)
         hsz = np.bincount(hl.ravel())
         comp = comp | np.isin(hl, [h for h in range(1, nh + 1) if hsz[h] < min_px])  # holes < 10 mm2 filled
-        ring = trace(filled)
+        ring = trace(filled, tol)
         if ring is None:
             continue
         kept[sl] |= comp
         polys.append([[x + col0 + sl[1].start, y + row0 + sl[0].start] for x, y in ring])
         for hi in range(1, nh + 1):
             if hsz[hi] >= min_px:
-                r = trace(hl == hi)
+                r = trace(hl == hi, tol)
                 if r is not None:
                     holes.append([[x + col0 + sl[1].start, y + row0 + sl[0].start] for x, y in r])
     return polys, holes, kept
@@ -145,13 +193,15 @@ class Case:
         self.geo = Geo(self.slices, self.iop, self.ps, self.info["sliceStepMm"])
         self.rng = np.random.default_rng(1)
 
-    def measure(self, name, crop, bb, kind, A_seg, want_full=False):
+    def measure(self, name, crop, bb, kind, A_seg, want_full=False, tol=None, keep_all=False):
         """Rule 0/1 + contours + statistics for one structure given its (cropped) raw mask."""
         lab, n = ndi.label(crop, structure=FULL3)
         sizes = np.bincount(lab.ravel())[1:] * self.vox_ml
         total_ml = float(sizes.sum())
         order = list(np.argsort(-sizes))
-        if name == "costal_cartilages":
+        if keep_all:  # connectivity already enforced by the caller (intrapulmonary arterial trees)
+            keep = order
+        elif name == "costal_cartilages":
             keep = [i for i in order if sizes[i] >= Q.COSTAL_MIN_ML] or order[:1]
         else:
             maxk = Q.MULTIPART.get(name, 1)
@@ -178,7 +228,7 @@ class Case:
             if not m2.any():
                 continue
             k = kk + k0
-            polys, holes, kept = slice_polys(m2, i0, j0, self.min_px)
+            polys, holes, kept = slice_polys(m2, i0, j0, self.min_px, tol)
             if not polys:
                 continue
             rows, cols = np.nonzero(kept)
@@ -238,12 +288,21 @@ def process(case: str) -> dict:
     cmap = ts_class_map()
     idx_of = {v: k for k, v in cmap.items()}
     st, geoms, per_slice_all, fulls = {}, {}, {}, {}
-    keep_full = {"aorta", "colon", "vertebrae_T12", "hip_left", "hip_right", "sacrum", "vertebrae_S1", *LUNG_LOBES}
+    keep_full = {"aorta", "colon", "vertebrae_T12", "hip_left", "hip_right", "sacrum", "vertebrae_S1", "superior_vena_cava",
+                 "inferior_vena_cava", "esophagus", "atrial_appendage_left", *LUNG_LOBES}
+    # the trachea ends at the carina; its sub-carinal part is offered to the main bronchi below (never kept as trachea)
+    sub_carinal = None
+    if "trachea" in idx_of and (seg == idx_of["trachea"]).any():
+        tr = seg == idx_of["trachea"]
+        kept, sub_carinal, out["carina"] = carina_cut(tr, cs.geo)
+        seg[tr & ~kept] = 0
     objs = ndi.find_objects(seg)
     for idx, name in cmap.items():
         if idx > len(objs) or objs[idx - 1] is None:
             continue
         bb = objs[idx - 1]
+        if name == "heart":
+            continue  # measured after the pulmonary trunk / ascending aorta / SVC have been subtracted (see below)
         rec, geom, ps_, full = cs.measure(name, seg[bb] == idx, bb, "total", A_seg, want_full=name in keep_full)
         st[name], per_slice_all[name] = rec, ps_
         if geom:
@@ -260,18 +319,38 @@ def process(case: str) -> dict:
         if img.shape == cs.ct.shape and np.allclose(img.affine, cs.A_ct, atol=1e-3):
             lv = np.asanyarray(img.dataobj)
             lvm = {v: k for k, v in ts_class_map("lung_vessels").items()}
-            extra = {"pulmonary_artery": lv == lvm["lung_arteries"]}
+            extra = {}
             lobes = np.isin(seg, [idx_of[n] for n in LUNG_LOBES])
             trachea = seg == idx_of["trachea"]
             outside = (lv == lvm["lung_airways"]) & ~ndi.binary_dilation(trachea, iterations=1) & ~lobes
+            if sub_carinal is not None:
+                outside |= sub_carinal & ~lobes
             lab, n = ndi.label(outside, structure=FULL3)
-            if n >= 2 and trachea.any():
+            if n >= 1 and trachea.any():
+                # main bronchi = airway pieces outside the trachea and the lungs that START at the carina (top within
+                # 15 mm of the lowest tracheal slice) and lie below it; the largest such piece on each side of the carina
+                tk = np.unique(np.nonzero(trachea)[2])
+                tz = np.array([cs.geo.slice_z(k) for k in tk])
+                k_car = tk[np.argmin(tz)]
+                z_car = float(tz.min())
+                low = np.argwhere(trachea[:, :, k_car])
+                x_car = float(cs.geo.lps(low[:, 0], low[:, 1], np.full(len(low), k_car))[0].mean())
                 sizes = np.bincount(lab.ravel())[1:]
-                tx = cs.geo.lps(*np.argwhere(trachea).T)[0].mean()
-                for comp in np.argsort(-sizes)[:2] + 1:
+                best = {}
+                for comp in np.argsort(-sizes) + 1:
                     m = lab == comp
-                    cx = cs.geo.lps(*np.argwhere(m).T)[0].mean()
-                    extra["main_bronchus_left" if cx > tx else "main_bronchus_right"] = m
+                    vox = np.argwhere(m)
+                    x, y, z = cs.geo.lps(vox[:, 0], vox[:, 1], vox[:, 2])
+                    if z.max() > z_car + 15.0 or z.mean() >= z_car:
+                        continue
+                    if 0.1 < float(np.mean(x > x_car)) < 0.9:
+                        continue  # a piece reaching across the carina: its side is not certain, so it is not published
+                    side = "main_bronchus_left" if x.mean() > x_car else "main_bronchus_right"
+                    if side not in best:
+                        best[side] = m
+                    if len(best) == 2:
+                        break
+                extra.update(best)
             for name, m in extra.items():
                 if m.any():
                     bb = ndi.find_objects(m.astype(np.uint8))[0]
@@ -280,6 +359,54 @@ def process(case: str) -> dict:
                     if geom:
                         geoms[name] = geom
                     out["extrasDerived"].append(name)
+            # pulmonary arteries: mediastinal part only (outside the lung lobes = up to the hila), split at the bifurcation
+            central = (lv == lvm["lung_arteries"]) & ~lobes
+            fulls["_central_pa"] = central  # subtracted from the heart even if the split into parts fails
+            ped = "Pediatric" in cs.info.get("subjectKey", "")
+            parts, info = subparts.pa_parts(central, cs.geo, pediatric=ped)
+            out.setdefault("subpartsPA", info)
+            # intrapulmonary arteries (the source labels arteries and veins as separate classes): every arterial voxel
+            # inside a lobe is assigned to that lobe; only branches connected to the mediastinal pulmonary arteries
+            # (1-voxel gaps bridged) are kept
+            art = lv == lvm["lung_arteries"]
+            intra = art & lobes
+            info["intrapulmonaryArteriesMl"] = round(float(intra.sum()) * cs.vox_ml, 1)
+            if central.any() and intra.any():
+                both = central | intra
+                bridged = ndi.binary_dilation(both, structure=FULL3)
+                lab_b, nb = ndi.label(bridged, structure=FULL3)
+                hit = np.unique(lab_b[central & (lab_b > 0)])
+                conn = np.isin(lab_b, hit) & intra
+                info["intrapulmonaryConnectedFraction"] = round(float(conn.sum() / max(intra.sum(), 1)), 3)
+                info["intrapulmonaryInterlobar"] = "not separated (no reliable landmark for the interlobar segments)"
+                for lobe_name, art_name in LOBE_ARTERY.items():
+                    g = conn & (seg == idx_of[lobe_name])
+                    if not g.any():
+                        continue
+                    bb = ndi.find_objects(g.astype(np.uint8))[0]
+                    rec, geom, ps_, _ = cs.measure(art_name, g[bb], bb, "derived:pulmonary_artery", A_seg,
+                                                   tol=PA_DP_TOL_PX, keep_all=True)
+                    raw_lobe = seg == idx_of[lobe_name]
+                    rec["insideLobeFraction"] = round(float((g & raw_lobe).sum() / g.sum()), 3)
+                    rec["connectedToCentral"] = True
+                    st[art_name], per_slice_all[art_name] = rec, ps_
+                    if geom:
+                        geoms[art_name] = geom
+                    out["extrasDerived"].append(art_name)
+            for name, m in parts.items():
+                bb = ndi.find_objects(m.astype(np.uint8))[0]
+                rec, geom, ps_, full = cs.measure(name, m[bb], bb, "derived:pulmonary_artery", A_seg,
+                                                  want_full=name == "pulmonary_trunk", tol=PA_DP_TOL_PX)
+                st[name], per_slice_all[name] = rec, ps_
+                if geom:
+                    geoms[name] = geom
+                if full is not None:
+                    fulls[name] = full
+                out["extrasDerived"].append(name)
+        else:
+            out["subpartsPA"] = {"reason": "lung-vessel segmentation not on the CT grid"}
+    else:
+        out["subpartsPA"] = {"reason": "lung-vessel segmentation not run (no chest field of view)"}
 
     ok = lambda n: n in st and st[n]["status"] == "ok"
 
@@ -295,10 +422,137 @@ def process(case: str) -> dict:
         parts_info["aorta"] = info
         for name, m in parts.items():
             bb = ndi.find_objects(m.astype(np.uint8))[0]
-            rec, geom, ps_, _ = cs.measure(name, m[bb], bb, "derived:aorta", A_seg)
+            rec, geom, ps_, full = cs.measure(name, m[bb], bb, "derived:aorta", A_seg,
+                                              want_full=name in ("aorta_ascending", "aorta_descending_thoracic"))
             st[name], per_slice_all[name] = rec, ps_
             if geom:
                 geoms[name] = geom
+            if full is not None:
+                fulls[name] = full
+    # ---- heart minus (pulmonary trunk + ascending aorta + SVC, each dilated by one voxel)
+    if "heart" in idx_of and np.any(seg == idx_of["heart"]):
+        heart = seg == idx_of["heart"]
+        # the "heart" class of the segmentation also covers the pulmonary trunk and the proximal right / left pulmonary
+        # arteries; subtract the whole mediastinal pulmonary-artery mask, the ascending aorta and the SVC
+        names = [n for n in ("aorta_ascending", "superior_vena_cava") if n in fulls and ok(n)]
+        sub = [fulls[n] for n in names]
+        if "_central_pa" in fulls and fulls["_central_pa"].any():
+            sub.append(fulls["_central_pa"])
+            names.insert(0, "mediastinal pulmonary arteries (trunk + right + left)")
+        removed = 0
+        hinfo = {"subtracted": names}
+        if sub:
+            vessels = ndi.binary_dilation(np.logical_or.reduce(sub), structure=FULL3)
+            removed = int((heart & vessels).sum())
+            heart = heart & ~vessels
+        hinfo["voxelsRemoved"] = removed
+        hinfo["mlRemoved"] = round(removed * cs.vox_ml, 1)
+        if heart.any():
+            bb = ndi.find_objects(heart.astype(np.uint8))[0]
+            rec, geom, ps_, _ = cs.measure("heart", heart[bb], bb, "total", A_seg)
+            st["heart"], per_slice_all["heart"] = rec, ps_
+            if geom:
+                geoms["heart"] = geom
+            top = float(max(cs.geo.slice_z(k) for k in np.unique(np.nonzero(heart)[2])))
+            valves = {}
+            for n_, key in (("pulmonary_trunk", "pulmonaryValveZ"), ("aorta_ascending", "aorticValveZ")):
+                if n_ in fulls and ok(n_):
+                    valves[key] = float(min(cs.geo.slice_z(k) for k in np.unique(np.nonzero(fulls[n_])[2])))
+            hinfo.update(topZ=top, **valves)
+            if valves:
+                hinfo["topAboveHighestValveMm"] = round(top - max(valves.values()), 1)
+        out["heartSubtraction"] = hinfo
+    # ---- heart chambers (licence-free chamber model; contrast studies with an opacified blood pool only)
+    chamber_checks = {}
+    pch = d / "seg_chambers.nii.gz"
+    out["chambers"] = {"published": [], "reason": "chamber model not run (non-contrast study or no heart)"}
+    if pch.exists() and "heart" in idx_of:
+        cimg = nib.load(str(pch))
+        if cimg.shape != cs.ct.shape or not np.allclose(cimg.affine, cs.A_ct, atol=1e-3):
+            out["chambers"]["reason"] = "chamber segmentation not on the CT grid"
+        else:
+            chm = np.asanyarray(cimg.dataobj)
+            raw = {name: chm == lab_ for lab_, name in CHAMBERS.items()}
+            med = {n: (float(np.median(cs.ct[m])) if m.any() else None) for n, m in raw.items()}
+            agent = (cs.info.get("contrastBolusAgent") or "").upper()
+            contrast_hdr = bool(agent) and not any(w in agent for w in NO_CONTRAST_WORDS)
+            contrast_meas = st.get("aorta", {}).get("medianHU") is not None and st["aorta"]["medianHU"] >= 150
+            vent = [med[n] for n in ("heart_ventricle_left", "heart_ventricle_right") if med[n] is not None]
+            gate = bool((contrast_hdr or contrast_meas) and len(vent) == 2 and min(vent) >= 150 and med["heart_myocardium"] is not None
+                        and min(vent) >= med["heart_myocardium"] + 50)
+            out["chambers"] = {"published": [], "medianHU": {k: v for k, v in med.items()}, "opacifiedBloodPool": gate}
+            if not gate:
+                out["chambers"]["reason"] = ("blood pool not opacified: ventricles' median HU must be >= 150 and >= myocardium + 50 "
+                                             f"(LV {med['heart_ventricle_left']}, RV {med['heart_ventricle_right']}, myocardium {med['heart_myocardium']})")
+            else:
+                heart_raw_dil = ndi.binary_dilation(seg == idx_of["heart"], structure=FULL3, iterations=2)
+                chf = {}
+                for name, m in raw.items():
+                    if not m.any():
+                        continue
+                    bb = ndi.find_objects(m.astype(np.uint8))[0]
+                    rec, geom, ps_, full = cs.measure(name, m[bb], bb, "chamber model", A_seg, want_full=True)
+                    st[name], per_slice_all[name] = rec, ps_
+                    if geom:
+                        geoms[name] = geom
+                    chf[name] = full
+                ped = "Pediatric" in cs.info.get("subjectKey", "")
+                cen = {n: st[n]["centroid"] for n in chf if st[n].get("centroid")}
+                yof = lambda n: cen[n][1]
+                xof = lambda n: cen[n][0]
+
+                def mean_y_in_slices(mask_full, ref_full):
+                    ks = np.unique(np.nonzero(ref_full)[2])
+                    sub = mask_full[:, :, ks]
+                    if not sub.any():
+                        return None
+                    ii, jj, kk = np.nonzero(sub)
+                    return float(cs.geo.lps(ii, jj, ks[kk])[1].mean())
+
+                def touch(a, b, it=2):
+                    return bool((ndi.binary_dilation(a, structure=FULL3, iterations=it) & b).any())
+
+                for n, m in chf.items():
+                    ch = []
+                    lo, hi = CHAMBER_VOLUME_ML[n]
+                    if ped:
+                        lo = lo / 5.0
+                    v = st[n]["volumeMl"]
+                    ch.append(("plausible volume", lo <= v <= hi, f"{v:.0f} ml in [{lo:g}, {hi:g}]"))
+                    inside = float((m & heart_raw_dil).sum() / max(m.sum(), 1))
+                    ch.append(("inside / touching the whole-heart mask", inside >= 0.9, f"{100 * inside:.0f} % inside"))
+                    others = [o for o in chf if o != n]
+                    ov = max((float((m & chf[o]).sum() / max(m.sum(), 1)) for o in others), default=0.0)
+                    ch.append(("overlap with other chambers <= 5 %", ov <= 0.05, f"{100 * ov:.1f} %"))
+                    four = [o for o in ("heart_atrium_right", "heart_atrium_left", "heart_ventricle_right", "heart_ventricle_left") if o in cen]
+                    if n == "heart_ventricle_right":
+                        ch.append(("most anterior chamber", len(four) == 4 and all(yof(n) < yof(o) for o in four if o != n), ""))
+                    if n == "heart_atrium_left":
+                        ch.append(("most posterior chamber", len(four) == 4 and all(yof(n) > yof(o) for o in four if o != n), ""))
+                        for ref in ("esophagus", "aorta_descending_thoracic"):
+                            if ref in fulls and ok(ref):
+                                ry = mean_y_in_slices(fulls[ref], m)
+                                ch.append((f"anterior to the {ref.replace('_', ' ')}", ry is not None and yof(n) < ry, ""))
+                        if "atrial_appendage_left" in fulls and ok("atrial_appendage_left"):
+                            ch.append(("left atrial appendage connects", touch(fulls["atrial_appendage_left"], m), ""))
+                    if n == "heart_atrium_right":
+                        ch.append(("right of the left atrium", "heart_atrium_left" in cen and xof(n) < xof("heart_atrium_left"), ""))
+                        veins = [fulls[v_] for v_ in ("superior_vena_cava", "inferior_vena_cava") if v_ in fulls and ok(v_)]
+                        ch.append(("receives the SVC / IVC", bool(veins) and any(touch(m, v_) for v_ in veins), ""))
+                    if n == "heart_ventricle_left":
+                        ch.append(("left of the right ventricle and right atrium",
+                                   all(o in cen and xof(n) > xof(o) for o in ("heart_ventricle_right", "heart_atrium_right")), ""))
+                    if n in ("heart_ventricle_left", "heart_myocardium") and "heart_ventricle_left" in chf and "heart_myocardium" in chf:
+                        lv = chf["heart_ventricle_left"]
+                        surf = lv & ~ndi.binary_erosion(lv, structure=FULL3)
+                        near = ndi.binary_dilation(chf["heart_myocardium"], structure=FULL3, iterations=2)
+                        frac = float((surf & near).sum() / max(surf.sum(), 1))
+                        ch.append(("myocardium wraps the left ventricle", frac >= 0.5, f"{100 * frac:.0f} % of the LV surface"))
+                    chamber_checks[n] = [{"check": a, "pass": bool(b), "detail": c} for a, b, c in ch]
+                    st[n]["chamberChecks"] = chamber_checks[n]
+                    failed = [a for a, b, c in ch if not b]
+                    if failed and st[n]["status"] == "ok":
+                        st[n]["status"], st[n]["rule"] = "dropped: heart-chamber QC (" + "; ".join(failed) + ")", 6
     # midline per slice from the spinal cord, else vertebrae (also used by rule 4)
     mid = {}
     sc = per_slice_all.get("spinal_cord", {}) if ok("spinal_cord") else {}
@@ -380,6 +634,13 @@ def process(case: str) -> dict:
             st[name]["midlineCheck"] = {"slices": None, "wrong": 0 if good else 1, "pass": bool(good)}
             if not good:
                 st[name]["status"], st[name]["rule"] = "dropped: centroid on the wrong side of the midline", 4
+    # accuracy rule (owner, 27 Oct): a left/right structure whose side could not be verified by any check is not published
+    for name in [n for n in st if ok(n)]:
+        if Q.side_of(name) is None:
+            continue
+        verified = any(c_["pass"] for c_ in st[name].get("lateralityChecks", [])) or st[name].get("midlineCheck", {}).get("pass")
+        if not verified:
+            st[name]["status"], st[name]["rule"] = "dropped: side could not be verified (no left/right partner and no midline check)", 4
     vz = [(n, st[n]["centroidZ"]) for n in Q.VERTEBRA_ORDER if ok(n)]
     keep_v = Q.longest_decreasing(vz)
     for n_, z in vz:
@@ -398,6 +659,27 @@ def process(case: str) -> dict:
                 checks.append((("aorta_arch",), c("aorta_arch")[2] > c(other)[2], f"arch above {other}"))
     if ok("aorta_abdominal") and ok("aorta_descending_thoracic"):
         checks.append((("aorta_abdominal",), c("aorta_abdominal")[2] < c("aorta_descending_thoracic")[2], "abdominal below thoracic"))
+    if ok("pulmonary_trunk") and ok("aorta_ascending"):
+        t, a = c("pulmonary_trunk"), c("aorta_ascending")
+        checks.append((("pulmonary_trunk",), t[0] > a[0] and t[1] <= a[1] + 10.0, "trunk anterior-left of the ascending aorta"))
+    if ok("pulmonary_trunk") and ok("aorta_arch"):
+        checks.append((("pulmonary_trunk",), c("pulmonary_trunk")[2] < c("aorta_arch")[2], "trunk below the aortic arch"))
+    if ok("pulmonary_artery_right"):
+        r_ = c("pulmonary_artery_right")
+        if ok("aorta_ascending"):
+            checks.append((("pulmonary_artery_right",), r_[1] > c("aorta_ascending")[1], "right PA posterior to the ascending aorta"))
+        if ok("superior_vena_cava"):
+            checks.append((("pulmonary_artery_right",), r_[1] > c("superior_vena_cava")[1], "right PA posterior to the SVC"))
+        if ok("pulmonary_trunk"):
+            checks.append((("pulmonary_artery_right",), r_[0] < c("pulmonary_trunk")[0], "right PA to the right of the trunk"))
+    if ok("pulmonary_artery_left"):
+        l_ = c("pulmonary_artery_left")
+        if ok("pulmonary_trunk"):
+            checks.append((("pulmonary_artery_left",), l_[0] > c("pulmonary_trunk")[0], "left PA to the left of the trunk"))
+        if ok("main_bronchus_left"):
+            # the left PA arches OVER the left main bronchus: its highest slice lies above the bronchus' centre
+            top = max(cs.geo.slice_z(k) for k in st["pulmonary_artery_left"]["kRange"])
+            checks.append((("pulmonary_artery_left",), top > c("main_bronchus_left")[2], "left PA arching above the left main bronchus"))
     if ok("colon_ascending") and ok("colon_descending"):
         checks.append((("colon_ascending", "colon_descending"), c("colon_ascending")[0] < c("colon_descending")[0], "ascending colon right of descending"))
     for names, good, why in checks:
@@ -405,6 +687,14 @@ def process(case: str) -> dict:
             st[n_].setdefault("orderChecks", []).append({"check": why, "pass": bool(good)})
             if not good and ok(n_):
                 st[n_]["status"], st[n_]["rule"] = f"dropped: anatomical order ({why})", 4
+    # parts derived from one split stand or fall together: one failed order check -> the split is not trusted
+    for group in (("aorta_ascending", "aorta_arch", "aorta_descending_thoracic", "aorta_abdominal"),
+                  ("pulmonary_trunk", "pulmonary_artery_right", "pulmonary_artery_left"),
+                  ("colon_ascending", "colon_transverse", "colon_descending", "colon_sigmoid", "rectum")):
+        if any(n_ in st and st[n_].get("rule") == 4 and "anatomical order" in st[n_]["status"] for n_ in group):
+            for n_ in group:
+                if ok(n_):
+                    st[n_]["status"], st[n_]["rule"] = "dropped: another part of the same split failed an anatomical-order check", 4
 
     cdir = d / "contours"
     if cdir.exists():
@@ -415,6 +705,9 @@ def process(case: str) -> dict:
             dump_json_compact(geoms[name], cdir / f"{name}.json")
             rec["bytes"] = (cdir / f"{name}.json").stat().st_size
     resid = [r["alignmentMaxResidualMm"] for r in st.values()]
+    if out.get("chambers", {}).get("opacifiedBloodPool"):
+        out["chambers"]["published"] = sorted(n for n in CHAMBERS.values() if ok(n))
+        out["chambers"]["dropped"] = {n: st[n]["status"] for n in CHAMBERS.values() if n in st and not ok(n)}
     out.update({"structures": st, "laterality": lat, "alignmentMaxResidualMm": max(resid) if resid else None,
                 "seconds": round(time.time() - t0, 1)})
     dump_json(out, d / "structures.json")
@@ -430,7 +723,7 @@ def up_to_date(d):
             return False
     except Exception:
         return False
-    newest = max(p.stat().st_mtime for p in [d / "seg_total.nii.gz", d / "seg_lungvessels.nii.gz"] if p.exists())
+    newest = max(p.stat().st_mtime for p in [d / "seg_total.nii.gz", d / "seg_lungvessels.nii.gz", d / "seg_chambers.nii.gz"] if p.exists())
     return s.stat().st_mtime > newest
 
 

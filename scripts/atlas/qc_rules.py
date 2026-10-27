@@ -6,7 +6,8 @@ Rule 1 fragments : 3D 26-connected components per class; keep only the largest, 
                    components >= 0.5 ml are kept (documented exception). Per slice, rings (components / holes)
                    < 10 mm2 are dropped (CT); < 0.2 % of the image area (CXR). No morphological smoothing.
 Rule 2 density   : median HU of the published voxels on the original CT, by class group (density_rule):
-                   bone >= 150 (humerus / femur >= 100: fatty marrow cavity); air (lung lobes, trachea) <= -300; soft tissue / organ / muscle in [-50, 250];
+                   ribs / vertebrae / sternum / sacrum >= 100 and humerus / femur >= 100 (owner decision), other bones >= 150;
+                   SVC, brachiocephalic veins and pulmonary trunk / arteries [-50, 3000] in contrast studies; air (lung lobes, trachea) <= -300; soft tissue / organ / muscle in [-50, 250];
                    vessels, kidneys, heart in [-50, 250] without contrast, [-50, 450] in contrast studies.
 Rule 3 coverage  : a structure whose mask reaches the first/last slice (boundary slice area >= 10 % of its largest
                    slice) or the in-plane image edge is "partially imaged"; it is dropped if its volume is < 20 % of the
@@ -35,10 +36,16 @@ CXR_MIN_AREA_FRACTION = 0.001
 
 BONE = re.compile(r"^(vertebrae_|rib_|sacrum$|sternum$|humerus_|scapula_|clavicula_|femur_|hip_|skull$)")
 LONG_BONE = re.compile(r"^(humerus_|femur_)")
+# owner decision 2026-10-27: ribs, vertebrae, sternum and sacrum use 100 HU (older non-contrast patients keep them)
+LOW_BONE = re.compile(r"^(vertebrae_|rib_|sternum$|sacrum$)")
+# veins carrying undiluted contrast and the pulmonary arteries of CT angiograms may be very dense
+INTRAPULMONARY_ARTERY = re.compile(r"^pulmonary_arteries_(left|right)_(upper|middle|lower)_lobe$")
+DENSE_CONTRAST = re.compile(r"^(superior_vena_cava|brachiocephalic_vein_(left|right)|pulmonary_trunk|pulmonary_artery_(left|right)|"
+                            r"heart_atrium_(left|right)|heart_ventricle_(left|right))$")
 AIR = re.compile(r"^(lung_(upper|middle|lower)_lobe_|trachea$|main_bronchus_)")
-SOFT = re.compile(r"^(liver|spleen|pancreas|gallbladder|adrenal_gland_.*|thyroid_gland|prostate|brain|spinal_cord|"
+SOFT = re.compile(r"^(liver|spleen|pancreas|gallbladder|adrenal_gland_.*|thyroid_gland|prostate|brain|spinal_cord|heart_myocardium|"
                   r"gluteus_.*|autochthon_.*|iliopsoas_.*|kidney_cyst_.*)$")
-ENHANCING = re.compile(r"^(kidney_left|kidney_right|heart|atrial_appendage_left|aorta|aorta_\w+|pulmonary_artery|pulmonary_vein|brachiocephalic_trunk|"
+ENHANCING = re.compile(r"^(kidney_left|kidney_right|heart|atrial_appendage_left|aorta|aorta_\w+|pulmonary_vein|brachiocephalic_trunk|"
                        r"subclavian_artery_.*|common_carotid_artery_.*|brachiocephalic_vein_.*|superior_vena_cava|"
                        r"inferior_vena_cava|portal_vein_and_splenic_vein|iliac_artery_.*|iliac_vena_.*)$")
 
@@ -48,10 +55,19 @@ def density_rule(name: str, median_hu: float, contrast: bool):
     if LONG_BONE.match(name):
         # long bones contain a fatty marrow cavity: median of the whole bone is lower than for ribs / vertebrae
         return "long bone", median_hu >= 100, ">= 100"
+    if LOW_BONE.match(name):
+        return "bone (rib / vertebra / sternum / sacrum)", median_hu >= 100, ">= 100"
     if BONE.match(name):
         return "bone", median_hu >= 150, ">= 150"
     if AIR.match(name):
         return "air", median_hu <= -300, "<= -300"
+    if INTRAPULMONARY_ARTERY.match(name):
+        # small vessels inside aerated lung: partial volume with air lowers the median, hence -300
+        hi = 3000 if contrast else 250
+        return ("intrapulmonary artery" + (" (contrast)" if contrast else "")), -300 <= median_hu <= hi, f"[-300, {hi}]"
+    if DENSE_CONTRAST.match(name):
+        hi = 3000 if contrast else 250
+        return ("vein / pulmonary artery" + (" (contrast)" if contrast else "")), -50 <= median_hu <= hi, f"[-50, {hi}]"
     if ENHANCING.match(name):
         hi = 450 if contrast else 250
         return ("vessel/kidney/heart" + (" (contrast)" if contrast else "")), -50 <= median_hu <= hi, f"[-50, {hi}]"
@@ -62,7 +78,8 @@ def density_rule(name: str, median_hu: float, contrast: bool):
 
 MIDLINE_LATERAL = re.compile(r"^(kidney_(left|right)|adrenal_gland_(left|right)|lung_(upper|middle|lower)_lobe_(left|right)|"
                              r"clavicula_(left|right)|scapula_(left|right)|humerus_(left|right)|femur_(left|right)|hip_(left|right)|"
-                             r"gluteus_\w+_(left|right)|iliopsoas_(left|right)|autochthon_(left|right))$")
+                             r"gluteus_\w+_(left|right)|iliopsoas_(left|right)|autochthon_(left|right)|"
+                             r"pulmonary_arteries_(left|right)_(upper|middle|lower)_lobe|atrial_appendage_left|kidney_cyst_(left|right))$")
 RIB = re.compile(r"^rib_(left|right)_\d+$")
 VERTEBRA_ORDER = ([f"vertebrae_C{i}" for i in range(1, 8)] + [f"vertebrae_T{i}" for i in range(1, 13)] +
                   [f"vertebrae_L{i}" for i in range(1, 6)] + ["vertebrae_S1"])
@@ -108,7 +125,15 @@ LABELS = {
     "atrial_appendage_left": "Left atrial appendage", "spinal_cord": "Spinal cord", "brain": "Brain", "skull": "Skull",
     "sternum": "Sternum", "costal_cartilages": "Costal cartilages",
     "aorta_ascending": "Ascending aorta", "aorta_arch": "Aortic arch", "aorta_descending_thoracic": "Descending thoracic aorta",
-    "aorta_abdominal": "Abdominal aorta", "colon_ascending": "Caecum and ascending colon", "colon_transverse": "Transverse colon",
+    "aorta_abdominal": "Abdominal aorta", "pulmonary_trunk": "Pulmonary trunk (main pulmonary artery)",
+    "pulmonary_artery_right": "Right pulmonary artery", "pulmonary_artery_left": "Left pulmonary artery",
+    "heart_atrium_right": "Right atrium", "heart_atrium_left": "Left atrium", "heart_ventricle_right": "Right ventricle",
+    "heart_ventricle_left": "Left ventricle", "heart_myocardium": "Left ventricular myocardium",
+    "pulmonary_arteries_right_upper_lobe": "Right upper lobe arteries (lobar and segmental)",
+    "pulmonary_arteries_right_middle_lobe": "Right middle lobe arteries (lobar and segmental)",
+    "pulmonary_arteries_right_lower_lobe": "Right lower lobe arteries (lobar and segmental)",
+    "pulmonary_arteries_left_upper_lobe": "Left upper lobe arteries, incl. lingula (lobar and segmental)",
+    "pulmonary_arteries_left_lower_lobe": "Left lower lobe arteries (lobar and segmental)", "colon_ascending": "Cecum and ascending colon", "colon_transverse": "Transverse colon",
     "colon_descending": "Descending colon", "colon_sigmoid": "Sigmoid colon", "rectum": "Rectum",
     # radiograph classes
     "lung_left": "Left lung", "lung_right": "Right lung", "hilum_left": "Left hilum", "hilum_right": "Right hilum",

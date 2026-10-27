@@ -22,13 +22,13 @@ from common import (CT_DP_TOL_PX, DP_TOL_PX, OUT_PACK, PACKS_DIR, REPORT_MD, WOR
                     source_manifests)
 
 PACK_ID = "anatomy-atlas"
-VERSION = "0.2.0"
+VERSION = "0.3.0"
 REVIEW = {"status": "unreviewed", "reviewer": None, "at": None, "note": None}
 SOURCE = "Horalix"
 METHOD = "AI draft by Horalix \u2014 automatic segmentation, not reviewed by a radiologist"
-LIMIT_BYTES = 60_000_000
+LIMIT_BYTES = 80_000_000  # owner: up to 80 MB is fine for the repo
 RULE_NAMES = {0: "mapping/alignment", 1: "fragments / too small", 2: "density (HU)", 3: "coverage / volume",
-              4: "laterality / anatomical order", 5: "CXR area / thorax box / side"}
+              4: "laterality / anatomical order / side verification", 5: "CXR area / thorax box / side", 6: "heart-chamber QC"}
 TRUNC_DROP_FRACTION = 0.20
 VOLUME_MAX_FACTOR = 4.0
 NO_VOLUME_CHECK = ("kidney_cyst_",)
@@ -36,6 +36,23 @@ NO_VOLUME_CHECK = ("kidney_cyst_",)
 
 def is_pediatric(subject_key: str) -> bool:
     return "Pediatric" in subject_key
+
+
+# The right main bronchus drops at most ~2.5 cm before the upper-lobe bronchus leaves it (less in children); an outline
+# reaching further below the carina also covers the bronchus intermedius and is named for both.
+RIGHT_MAIN_BRONCHUS_MAX_DROP_MM = {"adult": 25.0, "child": 15.0}
+
+
+def structure_label(name: str, r: dict, c: dict) -> str:
+    label = Q.clean_label(name)
+    car = (c["st"].get("carina") or {}).get("firstSubCarinalZ")
+    if name == "main_bronchus_right" and car is not None and r.get("kRange"):
+        z = {s["k"]: s["ipp"][2] for s in load_json(WORK / c["case"] / "slices.json")}
+        drop = car - min(z[k] for k in range(r["kRange"][0], r["kRange"][1] + 1) if k in z)
+        r["belowCarinaMm"] = round(drop, 1)
+        if drop > RIGHT_MAIN_BRONCHUS_MAX_DROP_MM["child" if is_pediatric(c["subjectKey"]) else "adult"]:
+            label = "Right main bronchus and bronchus intermedius"
+    return label
 
 
 def check_geometry(g, se):
@@ -70,7 +87,10 @@ def ct_note(name, r):
     if r.get("vertebralOrder"):
         parts.append("vertebral order ok")
     for oc in r.get("orderChecks") or []:
-        parts.append(oc["check"])
+        txt = oc["check"]
+        for raw in ("aorta_descending_thoracic", "aorta_ascending", "aorta_arch", "aorta_abdominal"):
+            txt = txt.replace(raw, Q.clean_label(raw).lower())
+        parts.append(txt + " ok")
     parts.append("partially imaged (cut at the scan edge)" if r.get("partial") else "complete in the field of view")
     if r.get("volumeRef"):
         parts.append(f"{r['volumeMl']:.0f} ml vs typical {r['volumeRef']:.0f} ml")
@@ -80,7 +100,7 @@ def ct_note(name, r):
 def cxr_note(name, s, info):
     side = info["qc"]["sideFromHeader"]
     lr = ("left/right checked against PatientOrientation " + "\\".join(info["patientOrientation"]) if side
-          else "side not verifiable from header (no PatientOrientation); heart-left-of-spine check passed")
+          else "midline structure; heart-left-of-spine check passed")
     return (f"Unreviewed AI proposal. QC passed: largest region kept; area {100 * s['areaFraction']:.1f}% of the image; "
             f"inside the thorax box; {lr}; outline matches the model output (Dice {s['diceVsUpsampledMask']:.3f}).")
 
@@ -137,8 +157,10 @@ def main(argv):
                 r["volumeRef"] = ref
                 if tr and r["volumeMl"] < TRUNC_DROP_FRACTION * ref:
                     r["status"], r["rule"] = f"dropped: cut off at the scan edge and only {r['volumeMl']:.1f} ml (< 20 % of typical {ref:.0f} ml)", 3
-                elif not tr and n_ref[n] >= 3 and (r["volumeMl"] < TRUNC_DROP_FRACTION * ref or r["volumeMl"] > VOLUME_MAX_FACTOR * ref):
-                    r["status"], r["rule"] = f"dropped: implausible volume {r['volumeMl']:.1f} ml (typical {ref:.0f} ml)", 3
+                elif not tr and n_ref[n] >= 3 and r["volumeMl"] < TRUNC_DROP_FRACTION * ref:
+                    # only implausibly SMALL complete structures are dropped (fragment-like mislabels); large ones are
+                    # kept because enlargement is often real pathology (e.g. splenomegaly, distended gallbladder)
+                    r["status"], r["rule"] = f"dropped: implausibly small {r['volumeMl']:.1f} ml (typical {ref:.0f} ml)", 3
 
     for c in ct_cases:
         c["written"] = 0
@@ -158,7 +180,7 @@ def main(argv):
                 continue
             shutil.copyfile(d / "contours" / f"{name}.json", tdir / f"{tid}.json")
             refs.append({
-                "id": tid, "label": Q.clean_label(name) + (" (partially imaged)" if r["partial"] else ""),
+                "id": tid, "label": structure_label(name, r, c) + (" (partially imaged)" if r["partial"] else ""),
                 "classId": f"anatomy:{name}", "seriesUid": c["seriesUid"], "geometryType": "contour_set",
                 "geometryFile": f"targets/{tid}.json", "provenance": "ai_draft",
                 "provenanceDetail": {"source": SOURCE, "method": METHOD, "note": ct_note(name, r)},
@@ -183,6 +205,9 @@ def main(argv):
             continue
         se = sidx[c["seriesUid"]][2]
         for name, s in info["structures"].items():
+            if s["status"] == "ok" and not info["qc"]["sideFromHeader"] and ("_left" in name or "_right" in name):
+                # accuracy rule (27 Oct): the side of a left/right structure must be verifiable from the header
+                s["status"], s["rule"] = "dropped: side not verifiable (no PatientOrientation in the DICOM header)", 5
             if s["status"] != "ok":
                 continue
             tid = f"at-{c['case']}-{slug(name)}"
@@ -225,9 +250,12 @@ def main(argv):
     with open(OUT_PACK / "pack.json", "w", encoding="utf-8", newline="\n") as f:
         json.dump(manifest, f, separators=(",", ":"), ensure_ascii=False)
     total = sum(p.stat().st_size for p in [OUT_PACK / "pack.json", *tdir.glob("*.json")])
-    from verify_atlas import verify
+    from verify_atlas import laterality_check, verify
     ver = verify()
     bad = [v for v in ver if not v["ok"]]
+    lat_n, lat_fail = laterality_check()
+    dump_json({"pairsChecked": lat_n, "failures": lat_fail}, WORK / "laterality_check.json")
+    bad += [{"laterality": f} for f in lat_fail]
     n_ct = sum(1 for c in ct_cases if c.get("written"))
     n_x = sum(1 for c in cxr_cases if c.get("written"))
     entry = {"id": PACK_ID, "title": "Anatomy atlas (AI draft by Horalix)", "manifest": f"{PACK_ID}/pack.json",
@@ -282,11 +310,15 @@ def write_report(manifest, ct_cases, cxr_cases, xmeta, total, ver, problems, use
       f"{sum(1 for c in cxr_cases if c.get('written'))} frontal chest radiographs (packs: {', '.join(used_packs)}).")
     w(f"- By category: " + ", ".join(f"{k} {v}" for k, v in sorted(cats.items())) + ".")
     w(f"- Size **{total / 1e6:.1f} MB** (pack.json {(OUT_PACK / 'pack.json').stat().st_size / 1e6:.2f} MB + targets), "
-      f"{'below' if total < LIMIT_BYTES else 'ABOVE'} the 60 MB repo budget. Douglas-Peucker {CT_DP_TOL_PX:g} px on CT (raised from "
-      f"0.5 px to stay under the budget; borders move at most 1 pixel) and {DP_TOL_PX:g} px on radiographs; minified JSON.")
+      f"{'below' if total < LIMIT_BYTES else 'ABOVE'} the 80 MB repo budget. Douglas-Peucker {CT_DP_TOL_PX:g} px on CT (borders move "
+      f"at most 1 pixel), 0.5 px for the pulmonary trunk / arteries and {DP_TOL_PX:g} px on radiographs; minified JSON.")
     w("- Structures dropped by QC rule: " + ", ".join(f"{m} rule {k} ({RULE_NAMES[k]}): {v}" for (m, k), v in sorted(rules.items())) + ".")
     nv = sum(1 for v in ver if v["ok"])
     w(f"- End-to-end verification against the DICOM files (`verify_atlas.py`): {nv}/{len(ver)} targets pass; geometry problems {len(problems)}.")
+    lc = load_json(WORK / "laterality_check.json") if (WORK / "laterality_check.json").exists() else None
+    if lc:
+        w(f"- Pack-level laterality (published outlines → LPS, every left/right pair on the same series): {lc['pairsChecked']} pairs, "
+          f"{len(lc['failures'])} on the wrong side.")
     w("")
     w("## Tools (kept out of the pack by owner decision)")
     w("")
@@ -294,9 +326,18 @@ def write_report(manifest, ct_cases, cxr_cases, xmeta, total, ver, problems, use
       f"full-resolution models, nnU-Net {rep['nnunetv2_version']}, torch {rep['torch_version']} on CPU; licence of each task checked "
       "with the tool's own `--list-tasks` / `registry.requires_license` (only licence-free tasks used). Code Apache-2.0; weights from "
       "the TotalSegmentator GitHub releases. Citation: Wasserthal J et al., Radiol Artif Intell 2023;5(5):e230024.")
-    w("- Open task `lung_vessels` (airways, lung arteries/veins) was timed on one CT: 478 s on CPU while two other "
-      "segmentations ran (about 4–5 min alone). Running it on all ~40 CTs was judged not reasonable on CPU, so it was kept "
-      "only for that CT (`ar-16434411`: main bronchi and pulmonary arteries); `liver_segments` (open) was skipped for the same reason.")
+    lv_runs = [c for c in ct_cases if (WORK / c["case"] / "ts_report_lungvessels.json").exists()]
+    w(f"- Open task `lung_vessels` (Dataset117: airways, lung arteries, lung veins; licence-free per `registry.requires_license`) "
+      f"run on {len(lv_runs)} CTs with heart and lungs in the field of view (CPU, about 5 min per CT, the task crops to the lungs "
+      "itself). It provides the left / right main bronchi and the mediastinal pulmonary arteries that are split into trunk / right / "
+      "left (below). `liver_segments` (open) was not run.")
+    carinas = [c for c in ct_cases if "st" in c and (c["st"].get("carina") or {}).get("carinaSliceK") is not None]
+    w(f"- Carina rule (rules v11): the whole-body trachea class runs on into the first centimetres of both main bronchi. On "
+      f"{len(carinas)} CTs the trachea is cut at the highest slice where its outline is two airways (each ≥ 15 mm², centres ≥ 10 mm "
+      "apart, one either side of the trachea's centre on the slice above); that slice and everything below it is never "
+      "published as trachea but offered to the main bronchi (airway outside the lobes, assigned by side of the carina; a piece "
+      "reaching across the carina is not published). The right outline is named \"Right main bronchus and bronchus "
+      "intermedius\" when it reaches more than 25 mm (children 15 mm) below the carina.")
     w(f"- Radiographs: torchxrayvision {xmeta['torchxrayvision']} `baseline_models.chestx_det.PSPNet` (ChestX-Det, 14 structures), "
       "weights from the torchxrayvision GitHub release v1, torch CPU. Library Apache-2.0; the ChestX-Det training-data licence was "
       "not verified for commercial use — check before any commercial distribution.")
@@ -311,19 +352,22 @@ def write_report(manifest, ct_cases, cxr_cases, xmeta, total, ver, problems, use
       "pulmonary veins ≤ 4; extra parts ≥ 5 % of the volume); costal cartilages keep every part ≥ 0.5 ml (≈20 separate "
       "cartilages by anatomy); CT rings/holes < 10 mm² dropped; < 0.3 ml or < 2 slices → dropped. CXR: largest region "
       "(diaphragm ≤ 2), rings < 0.2 % and structures < 0.1 % of the image dropped.")
-    w("- Rule 2 density (median HU): ribs/vertebrae/flat bones ≥ 150, humerus/femur ≥ 100 (fatty marrow cavity — deliberate "
-      "class-specific deviation from the 150 HU example), lung lobes/trachea/main bronchi ≤ −300, soft-tissue organs and "
-      "muscles −50…250, vessels/kidneys/heart −50…250 (−50…450 in contrast studies). Hollow organs with gas or "
-      "faeces (stomach, bowel, colon parts, bladder, oesophagus) and costal cartilage are not density-checked. Note: veins "
-      "carrying undiluted contrast (often > 600 HU) are dropped by this rule.")
+    w("- Rule 2 density (median HU), owner decisions of 27 Oct: ribs / vertebrae / sternum / sacrum ≥ 100, humerus / femur ≥ 100 "
+      "(fatty marrow), scapula / clavicle / hip bone / skull ≥ 150; lung lobes / trachea / main bronchi ≤ −300; soft-tissue organs "
+      "and muscles −50…250; SVC, brachiocephalic veins and pulmonary trunk / arteries −50…3000 in contrast studies (undiluted "
+      "contrast), −50…250 otherwise; other vessels / kidneys / heart −50…250 (−50…450 with contrast). Hollow organs with gas or "
+      "faeces and costal cartilage are not density-checked.")
     w(f"- Rule 3 coverage: a structure reaching the first/last slice (≥ 10 % of its largest slice area there) or the image edge is "
       f"labelled \"(partially imaged)\"; it is dropped if < 20 % of the typical volume (median of complete adult instances in this "
-      f"dataset). Complete structures with ≥ 3 reference instances are dropped if < 20 % or > {VOLUME_MAX_FACTOR:g}× typical. "
+      f"dataset). Complete structures with ≥ 3 reference instances are dropped if < 20 % of typical (no upper limit: enlargement "
+      f"is often real pathology). "
       "Paediatric CTs are not compared with adult volumes.")
-    w("- Rule 4 order: every left/right pair per shared slice and by 3D centroid; ribs per slice on the correct side of the "
-      "midline (spinal cord, else vertebrae); lateral organs/bones/muscles by 3D centroid; vertebrae C1→S1 strictly "
-      "craniocaudal (outliers dropped); aortic parts (ascending anterior + right of descending, arch above both, abdominal below "
-      "thoracic) and colon parts (ascending right of descending).")
+    w("- Rule 4 order: every left/right pair per shared slice and by 3D centroid (LPS +x = patient left); ribs per slice on the "
+      "correct side of the midline (spinal cord, else vertebrae); lateral organs/bones/muscles by 3D centroid; vertebrae C1→S1 "
+      "strictly craniocaudal (outliers dropped); aortic parts (ascending anterior + right of descending, arch above both, abdominal "
+      "below thoracic); pulmonary parts (trunk left of and not posterior to the ascending aorta and below the arch; right PA "
+      "posterior to the ascending aorta and the SVC and right of the trunk; left PA left of the trunk and above the left main "
+      "bronchus); colon parts (ascending right of descending); visual checks of rendered parts.")
     w("- Rule 5 (CXR): structure centroid inside the lung bounding box expanded by 25 %; left/right pairs and heart-left-of-spine "
       "checked; when PatientOrientation is absent the note says the side is not verifiable from the header.")
     w("")
@@ -348,6 +392,117 @@ def write_report(manifest, ct_cases, cxr_cases, xmeta, total, ver, problems, use
           f"{', '.join(Q.clean_label(n) for n in cp) or '— ' + str(cinfo.get('reason', 'no colon'))} | "
           f"{visual.get(c['case'], {}).get('result', 'not rendered')} |")
     w("")
+    w("## Pulmonary trunk and arteries")
+    w("")
+    w("Source: the licence-free lung-vessel segmentation (lung arteries) restricted to voxels OUTSIDE the lung lobes, i.e. the "
+      "mediastinal pulmonary arteries up to the hila; the intrapulmonary branching tree is not published (no clean part labels). "
+      "Split: 3D skeleton on a 1.5 mm grid; the most anterior skeleton end is the root (pulmonary valve / outflow), the most right "
+      "and most left points are the hilar ends; the shortest paths root→right and root→left share the trunk, the last shared node "
+      "is the bifurcation; every voxel takes the label of its nearest path node. Requirements: ≥ 80 % of the skeleton in one piece, "
+      "trunk and branches ≥ 10 mm (6 mm in children), bifurcation above the root, hilar ends either side of it. Then the usual QC "
+      "(single component, density, laterality, order checks above). Outlines use a 0.5 px simplification.")
+    w("")
+    w("| case | trunk | right PA | left PA | reason if missing | heart voxels removed (ml) | heart top above highest valve (mm) | visual check |")
+    w("|---|---|---|---|---|---|---|---|")
+    pa_vis = load_json(WORK / "pa_visual_check.json") if (WORK / "pa_visual_check.json").exists() else {}
+    for c in ct_cases:
+        st = c.get("st")
+        if not st:
+            continue
+        S = st["structures"]
+        mark = lambda n: ("yes" if S.get(n, {}).get("status") == "ok" else ("dropped: " + S[n]["status"].replace("dropped: ", "") if n in S else "—"))
+        info = st.get("subpartsPA", {})
+        h = st.get("heartSubtraction", {})
+        w(f"| `{c['case']}` | {mark('pulmonary_trunk')} | {mark('pulmonary_artery_right')} | {mark('pulmonary_artery_left')} | "
+          f"{info.get('reason', '')} | {h.get('voxelsRemoved', '—')} ({h.get('mlRemoved', '—')}) | {h.get('topAboveHighestValveMm', '—')} | "
+          f"{pa_vis.get(c['case'], 'not rendered')} |")
+    w("")
+    w("Heart: for every AI heart the mediastinal pulmonary arteries (trunk + right + left, i.e. everything the lung-artery mask "
+      "labels outside the lungs — the heart class also covered the proximal right and left pulmonary arteries), the ascending "
+      "aorta and the SVC, each dilated by one voxel, are subtracted before tracing, so no point of those vessels is also \"Heart\". "
+      "\"Heart top above highest valve\" = highest heart slice minus the lowest slice of the pulmonary trunk / ascending aorta "
+      "(valve level); the remaining few centimetres are left atrium / appendage roof beside the trunk.")
+    w("")
+    ov_path = WORK / "expert_heart_overlap.json"
+    if ov_path.exists():
+        w("Expert heart contours (never modified) vs the new AI pulmonary parts — area of each AI part lying inside the expert heart "
+          "outline on the same slices (the smaller AI outline wins on hover):")
+        w("")
+        w("| case | expert target | trunk inside expert heart | right PA inside | left PA inside |")
+        w("|---|---|---|---|---|")
+        fmt = lambda v: "—" if not v else f"{100 * v['fractionInside']:.0f} % ({v['insideExpertHeartMm2']} of {v['areaMm2']} mm²)"
+        for r in load_json(ov_path):
+            w(f"| `{r['case']}` | `{r['expertTarget']}` | {fmt(r['parts'].get('pulmonary_trunk'))} | "
+              f"{fmt(r['parts'].get('pulmonary_artery_right'))} | {fmt(r['parts'].get('pulmonary_artery_left'))} |")
+        w("")
+    prev_path = WORK / "prev_status_v4.json"
+    if prev_path.exists():
+        prev = load_json(prev_path)
+        restored = {}
+        for c in ct_cases:
+            st = c.get("st")
+            if not st:
+                continue
+            for n, r in st["structures"].items():
+                pr = prev.get(c["case"], {}).get(n)
+                if pr and pr.get("rule") == 2 and r["status"] == "ok":
+                    key = ("rib" if n.startswith("rib_") else "vertebra" if n.startswith("vertebrae_") else
+                           "vein" if n in ("superior_vena_cava", "brachiocephalic_vein_left", "brachiocephalic_vein_right") else
+                           "sternum / sacrum" if n in ("sternum", "sacrum") else "other")
+                    restored.setdefault(key, []).append(f"{c['case']}: {Q.clean_label(n)}")
+        w("Restored by the 27 Oct density decisions (dropped by rule 2 in the previous build, published now): " +
+          "; ".join(f"{k} {len(v)}" for k, v in sorted(restored.items())) + ".")
+        w("")
+    vv = load_json(WORK / "vein_visual_check.json") if (WORK / "vein_visual_check.json").exists() else {}
+    if vv:
+        w("Visual check of restored dense-contrast veins (axial slice, wide window): " +
+          "; ".join(f"`{k}`: {v}" for k, v in vv.items()) + ".")
+        w("")
+    w("Intrapulmonary arteries: the lung-vessel task labels arteries and veins as separate classes, so arterial voxels inside the "
+      "lungs are assigned to the lobe they lie in (lobe masks of the whole-body segmentation) and published per lobe as "
+      "\"... lobe arteries (lobar and segmental)\" — only branches connected to the mediastinal pulmonary arteries (1-voxel gaps "
+      "bridged), 0.5 px outlines, rings < 10 mm² dropped (smaller sub-segmental branches are not shown). QC: 100 % inside the lobe by "
+      "construction, left/right pair and midline side, median HU −300…3000 (contrast) / −300…250 (partial volume with aerated "
+      "lung). The interlobar arteries are NOT separated (no reliable landmark); individual segmental arteries are not named.")
+    w("")
+    w("## Heart chambers")
+    w("")
+    w("Model: MONAI model-zoo bundle `wholeBody_ct_segmentation` v0.1.9 (SegResNet, 1.5 mm weights `model.pt`), licence "
+      "Apache-2.0 (bundle LICENSE) — trained on the TotalSegmentator dataset, Zenodo record 6802614, CC-BY-4.0 (checked via the "
+      "Zenodo API on 27 Oct 2026); both allow commercial use with attribution. Inference on CPU inside the whole-heart box + 30 mm "
+      "(10–25 s per CT), preprocessing exactly as the bundle's `inference.json`, result resampled nearest-neighbour onto the CT grid. "
+      "Published only when the study is contrast-enhanced AND both ventricles have median ≥ 150 HU and ≥ myocardium + 50 HU. "
+      "Per-chamber QC (all must pass): one main component; ≥ 90 % inside the whole-heart mask (+2 voxels); volume (adult RA/LA "
+      "20–250 ml, RV/LV 40–350 ml, LV myocardium 60–400 ml; children: lower bound ÷ 5); no overlap > 5 % with another chamber; "
+      "RV most anterior; LA most posterior and anterior to the oesophagus and descending aorta, connected to the left atrial "
+      "appendage; RA right of the LA and touching the SVC/IVC; LV left of the RV and RA; myocardium covering ≥ 50 % of the LV "
+      "surface; density (blood pool −50…3000 HU, myocardium −50…250 HU).")
+    w("")
+    w("| case | contrast study | opacified blood pool (LV / RV / myocardium median HU) | published | dropped (reason) | visual check |")
+    w("|---|---|---|---|---|---|")
+    ch_vis = load_json(WORK / "chamber_visual_check.json") if (WORK / "chamber_visual_check.json").exists() else {}
+    for c in ct_cases:
+        st = c.get("st")
+        if not st:
+            continue
+        ch = st.get("chambers", {})
+        med = ch.get("medianHU") or {}
+        mh = f"{med.get('heart_ventricle_left')} / {med.get('heart_ventricle_right')} / {med.get('heart_myocardium')}" if med else "—"
+        pub = [Q.clean_label(n) for n in ch.get("published", []) if st["structures"].get(n, {}).get("status") == "ok"]
+        dropped = {Q.clean_label(n): r["status"].replace("dropped: ", "") for n, r in st["structures"].items()
+                   if n.startswith("heart_") and n != "heart" and r["status"] != "ok"}
+        w(f"| `{c['case']}` | {st.get('contrast', {}).get('contrastStudy')} | {'yes' if ch.get('opacifiedBloodPool') else 'no'} ({mh}) | "
+          f"{', '.join(pub) or '— ' + str(ch.get('reason', ''))[:160]} | {'; '.join(f'{k}: {v}' for k, v in dropped.items()) or '—'} | "
+          f"{ch_vis.get(c['case'], 'not rendered')} |")
+    w("")
+    pc = WORK / "point_check.json"
+    if pc.exists():
+        w("Point-in-polygon check on Patient I (COVID-19-AR-16434411) — what the viewer's hover reports:")
+        w("")
+        for r in load_json(pc):
+            w(f"- SOP …{r['sop'][-6:]}: point {r.get('point')} falls in {r.get('pointFallsIn')} → hover shows "
+              f"**{r.get('hoverWouldShow')}**. Structures on this slice: {', '.join(r['structuresOnSlice'])}.")
+        w("")
     w("## Per study")
     w("")
     w("| case | pack | patient id | modality | written | by category | dropped by QC (rule: structures) |")

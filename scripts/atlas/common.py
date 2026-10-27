@@ -157,9 +157,9 @@ def human_label(name: str) -> str:
 
 
 BONE_RE = re.compile(r"^(vertebrae_|rib_|sacrum$|sternum$|costal_cartilages$|humerus_|scapula_|clavicula_|femur_|hip_|skull$|spine$)")
-VESSEL = {"aorta", "aorta_ascending", "aorta_arch", "aorta_descending_thoracic", "aorta_abdominal", "pulmonary_artery", "pulmonary_vein", "brachiocephalic_trunk", "superior_vena_cava", "inferior_vena_cava",
+VESSEL = {"heart_atrium_right", "heart_atrium_left", "heart_ventricle_right", "heart_ventricle_left", "heart_myocardium", "aorta", "aorta_ascending", "aorta_arch", "aorta_descending_thoracic", "aorta_abdominal", "pulmonary_artery", "pulmonary_trunk", "pulmonary_artery_left", "pulmonary_artery_right", "pulmonary_vein", "brachiocephalic_trunk", "superior_vena_cava", "inferior_vena_cava",
           "portal_vein_and_splenic_vein"}
-VESSEL_RE = re.compile(r"^(subclavian_artery_|common_carotid_artery_|brachiocephalic_vein_|iliac_artery_|iliac_vena_)")
+VESSEL_RE = re.compile(r"^(pulmonary_arteries_|subclavian_artery_|common_carotid_artery_|brachiocephalic_vein_|iliac_artery_|iliac_vena_)")
 MUSCLE_RE = re.compile(r"^(gluteus_|autochthon_|iliopsoas_|diaphragm$)")
 GLAND = {"thyroid_gland", "adrenal_gland_left", "adrenal_gland_right", "prostate"}
 AIRWAY = {"trachea", "main_bronchus_left", "main_bronchus_right"}

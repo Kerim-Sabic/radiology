@@ -43,6 +43,8 @@ describe('anatomy keys and groups', () => {
     expect(categoryFor({ classId: 'anatomy:atrial_appendage_left', category: 'organ' })).toBe('vessel');
     expect(categoryFor({ classId: 'anatomy:liver', category: 'organ' })).toBe('organ');
     expect(categoryFor({ classId: 'anatomy:rib_left_5' })).toBe('bone');
+    expect(categoryFor({ classId: 'anatomy:heart_ventricle_left', category: 'organ' })).toBe('vessel');
+    expect(categoryFor({ classId: 'anatomy:brain_ventricles', category: 'organ' })).toBe('organ');
   });
 
   it('book checklist patterns match the keys the packs produce', () => {

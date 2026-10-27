@@ -68,7 +68,7 @@ LABELS = {
     "aorta": "Aorta",
     "superior_vena_cava": "Superior vena cava",
     "trachea": "Trachea",
-    "esophagus": "Oesophagus",
+    "esophagus": "Esophagus",
 }
 
 # Laterality pairs checked slice-by-slice: (structure expected on patient LEFT, structure expected on patient RIGHT).

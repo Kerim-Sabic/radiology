@@ -28,11 +28,14 @@ async function goSlice(page: Page, idx: number, panel = 'p0') {
 async function clickWorld(page: Page, world: number[], panel = 'p0') {
   const before = await page.evaluate(() => (window as any).__rvm.collectMarks().length);
   for (let attempt = 0; attempt < 2; attempt++) {
+    // The viewport element can be briefly re-mounted while overlays load (seen in Firefox under load): wait for it.
+    await page.locator(`[data-panel="${panel}"] .vp-el`).waitFor();
     await page.evaluate(
       ({ world, panel }) => {
         const e = (window as any).__rvm;
         const c = e.worldToCanvas(panel, world);
-        const el = document.querySelector(`[data-panel="${panel}"] .vp-el`)!;
+        const el = document.querySelector(`[data-panel="${panel}"] .vp-el`);
+        if (!el) return;
         const r = el.getBoundingClientRect();
         const o = { bubbles: true, cancelable: true, clientX: r.left + c[0], clientY: r.top + c[1], button: 0, view: window };
         el.dispatchEvent(new MouseEvent('mousemove', { ...o, buttons: 0 }));

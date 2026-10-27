@@ -60,18 +60,18 @@
    "title": "Vessel drafts: AI-proposed great vessels (unreviewed)",
    "manifest": "vessel-drafts/pack.json",
    "lessons": null,
-   "bytes": 1182766,
+   "bytes": 1116359,
    "distribution": "repo",
-   "note": "UNREVIEWED AI drafts (TotalSegmentator 2.18.0) on 5 contrast chest CT series: 55 vessel/structure contour sets + 10 slice-interval levels. No images; requires the body and chest-pairs packs."
+   "note": "AI draft by Horalix (unreviewed) on 5 contrast chest CT series: 55 vessel/structure contour sets + 10 slice-interval levels. No images; requires the body and chest-pairs packs."
   },
   {
    "id": "anatomy-atlas",
-   "title": "Anatomy atlas: AI-proposed whole-anatomy labels (unreviewed)",
+   "title": "Anatomy atlas (AI draft by Horalix)",
    "manifest": "anatomy-atlas/pack.json",
    "lessons": null,
-   "bytes": 2283553,
+   "bytes": 62816816,
    "distribution": "repo",
-   "note": "In progress: TotalSegmentator labels on CT and a chest X-ray anatomy model on radiographs; unreviewed AI drafts, Learn-mode anatomy layer only."
+   "note": "AI draft by Horalix (unreviewed) anatomy layer: 3727 structure outlines on 40 CT series and 24 frontal chest radiographs, automatic QC applied. No images; requires body, chest-pairs, ct-mri-pairs, expansion, more-ct-xr, neuro-msk, starter."
   },
   {
    "id": "more-ct-xr",

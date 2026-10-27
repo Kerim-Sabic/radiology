@@ -35,7 +35,7 @@ const N: Array<[RegExp, StructureNote]> = [
   [
     /^trachea$/,
     {
-      look: 'Air-filled tube, black on every window, in the midline just in front of the oesophagus. The cartilage rings may calcify with age.',
+      look: 'Air-filled tube, black on every window, in the midline just in front of the esophagus. The cartilage rings may calcify with age.',
       near: 'Divides at the carina (about T4–T5, the level of the sternal angle) into the right and left main bronchi.',
       pitfall: 'A slight bend to the right at the aortic arch is normal; real displacement suggests volume loss or a mass.',
       unit: 'ch02',
@@ -45,6 +45,26 @@ const N: Array<[RegExp, StructureNote]> = [
         near: 'Should sit midway between the medial ends of the clavicles.',
         pitfall: 'Rotation of the patient makes a normal trachea look shifted — check the clavicle heads first.',
       },
+    },
+  ],
+  [
+    /^main_bronchus_right$/,
+    {
+      look: 'Right main bronchus: short (about 2–2.5 cm in adults), wide and steep. It gives off the right upper lobe bronchus and continues as the bronchus intermedius down to the middle and lower lobe bronchi.',
+      near: 'The azygos vein arches over it into the SVC; the right pulmonary artery runs in front of it.',
+      pitfall: 'Because it is straighter than the left, inhaled foreign bodies and aspiration go right more often.',
+      unit: 'ch02',
+      window: 'Lung',
+    },
+  ],
+  [
+    /^main_bronchus_left$/,
+    {
+      look: 'Left main bronchus: longer (about 4–5 cm) and more horizontal, running under the aortic arch to the left hilum.',
+      near: 'The left pulmonary artery arches over it — which is why the left hilum sits higher than the right on a chest X-ray. The descending aorta and esophagus lie behind it.',
+      pitfall: 'A large left atrium pushes it upwards and widens the angle under the carina.',
+      unit: 'ch02',
+      window: 'Lung',
     },
   ],
   [
@@ -115,7 +135,7 @@ const N: Array<[RegExp, StructureNote]> = [
   [
     /^mediastinum$/,
     {
-      look: 'The central soft-tissue shadow between the lungs: heart, great vessels, trachea and oesophagus.',
+      look: 'The central soft-tissue shadow between the lungs: heart, great vessels, trachea and esophagus.',
       near: 'Its right border is formed by the SVC and right atrium; the left by the aortic knob, pulmonary trunk and left ventricle.',
       pitfall: 'AP and supine films make the mediastinum look wider; judge its width on an upright PA film.',
       unit: 'ch02',
@@ -126,7 +146,7 @@ const N: Array<[RegExp, StructureNote]> = [
     /^diaphragm$/,
     {
       look: 'Thin dome-shaped muscle separating chest from abdomen; the right dome is usually a little higher (the liver lies beneath).',
-      near: 'The aorta passes behind it at about T12, the oesophagus through it at about T10.',
+      near: 'The aorta passes behind it at about T12, the esophagus through it at about T10.',
       pitfall: 'On an upright film, air under the diaphragm is free gas until proved otherwise — do not confuse it with the stomach bubble on the left.',
       unit: 'ch02',
       window: 'Soft tissue',
@@ -151,7 +171,7 @@ const N: Array<[RegExp, StructureNote]> = [
     /^heart$/,
     {
       look: 'Soft-tissue density; after contrast the chambers are bright and the heart muscle greyer.',
-      near: 'The right ventricle is the most anterior chamber, behind the sternum; the left atrium is the most posterior, in front of the oesophagus.',
+      near: 'The right ventricle is the most anterior chamber, behind the sternum; the left atrium is the most posterior, in front of the esophagus.',
       pitfall: 'Fat around the heart is normal; fluid density around it suggests a pericardial effusion.',
       unit: 'ch03',
       window: 'Soft tissue',
@@ -168,6 +188,76 @@ const N: Array<[RegExp, StructureNote]> = [
       look: 'Small ear-shaped pouch of the atrium; the left one lies beside the pulmonary trunk.',
       near: 'Opens into the body of the atrium.',
       pitfall: 'The commonest place for clot in atrial fibrillation — but on early-phase CT slow flow can look like a filling defect.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^heart_atrium_right$/,
+    {
+      look: 'Right atrium: forms the right border of the heart; after contrast it often shows swirling mixed bright and dark blood from the SVC and IVC.',
+      near: 'Receives the SVC from above and the IVC from below; lies to the right of the left atrium and in front of and to the right of it.',
+      pitfall: 'Mixing of contrast-filled and unopacified blood here is normal and must not be called a clot.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^heart_ventricle_right$/,
+    {
+      look: 'Right ventricle: the most anterior chamber, lying directly behind the sternum, with a thinner wall than the left ventricle.',
+      near: 'Its outflow tract leads up into the pulmonary trunk; the interventricular septum separates it from the left ventricle.',
+      pitfall: 'A right ventricle larger than the left (RV:LV over 1 on an axial image) is a sign of right heart strain, e.g. from a large pulmonary embolus.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^heart_atrium_left$/,
+    {
+      look: 'Left atrium: the most posterior chamber, a smooth-walled box at the back of the heart.',
+      near: 'The four pulmonary veins enter it; the esophagus and descending aorta lie right behind it; its appendage reaches forward on the left.',
+      pitfall: 'An enlarged left atrium pushes the esophagus backwards and splays the carina — signs you can also see on a chest X-ray.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^heart_ventricle_left$/,
+    {
+      look: 'Left ventricle: the chamber on the left of the heart, wrapped in the thickest muscle wall; it forms the left heart border.',
+      near: 'The mitral valve opens into it from the left atrium; it pumps into the aortic root in the middle of the heart.',
+      pitfall: 'The wall looks thicker when the heart is caught in systole; judge thickness on more than one image.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^heart_myocardium$/,
+    {
+      look: 'Left ventricular myocardium: the ring of muscle around the left ventricular cavity, greyer than the bright blood after contrast.',
+      near: 'Includes the interventricular septum on its right side.',
+      pitfall: 'A thin, dark segment of wall that does not enhance can be an old infarct; fat in the wall is also seen after infarction.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^pulmonary_arteries_/,
+    {
+      look: 'Lobar and segmental pulmonary arteries: the branches inside each lobe, running beside the bronchi and dividing with them.',
+      near: 'Each artery has a bronchus of the same size next to it; the veins run separately, between the segments.',
+      pitfall: 'On a pulmonary-arterial-phase CT, emboli in these branches are dark filling defects — check every lobe, not just the central arteries.',
+      unit: 'ch03',
+      window: 'Lung',
+    },
+  ],
+  [
+    /^pulmonary_artery_interlobar/,
+    {
+      look: 'Interlobar pulmonary artery: the descending part of the right or left pulmonary artery after the upper-lobe branches leave it.',
+      near: 'On the right it runs down beside the bronchus intermedius; on the left behind the left main bronchus.',
+      pitfall: 'On a frontal X-ray an enlarged right interlobar artery (wider than about 16 mm) suggests pulmonary hypertension.',
       unit: 'ch03',
       window: 'Soft tissue',
     },
@@ -210,8 +300,8 @@ const N: Array<[RegExp, StructureNote]> = [
     /^aorta_descending_thoracic$/,
     {
       look: 'Round vessel to the left of the spine.',
-      near: 'Behind the left main bronchus and the left atrium, beside the oesophagus; leaves the chest through the aortic hiatus at about T12.',
-      pitfall: 'Mural thrombus and calcification are common; a crescent of high density in the wall on non-contrast CT suggests intramural haematoma.',
+      near: 'Behind the left main bronchus and the left atrium, beside the esophagus; leaves the chest through the aortic hiatus at about T12.',
+      pitfall: 'Mural thrombus and calcification are common; a crescent of high density in the wall on non-contrast CT suggests intramural hematoma.',
       unit: 'ch03',
       window: 'Soft tissue',
     },
@@ -311,7 +401,7 @@ const N: Array<[RegExp, StructureNote]> = [
     {
       look: 'Arches over the top of the lung behind the clavicle.',
       near: 'The right arises from the brachiocephalic trunk; the left is the last branch of the arch.',
-      pitfall: 'An aberrant right subclavian artery arising last from the arch and passing behind the oesophagus is the commonest arch variant.',
+      pitfall: 'An aberrant right subclavian artery arising last from the arch and passing behind the esophagus is the commonest arch variant.',
       unit: 'ch03',
       window: 'Soft tissue',
     },
@@ -352,7 +442,7 @@ const N: Array<[RegExp, StructureNote]> = [
     {
       look: 'Muscular tube that may hold a little air or fluid, behind the trachea and then behind the left atrium.',
       near: 'Passes through the diaphragm at about T10, left of the midline, to join the stomach.',
-      pitfall: 'A collapsed oesophagus can look like a lymph node — scroll up and down: a tube continues, a node does not.',
+      pitfall: 'A collapsed esophagus can look like a lymph node — scroll up and down: a tube continues, a node does not.',
       unit: 'ch13',
       window: 'Soft tissue',
     },
@@ -472,7 +562,7 @@ const N: Array<[RegExp, StructureNote]> = [
     /^small_bowel$/,
     {
       look: 'Jejunum (left upper abdomen, feathery folds) and ileum (right lower abdomen, smoother), hanging on the mesentery.',
-      near: 'The ileum joins the caecum at the ileocaecal valve in the right lower abdomen.',
+      near: 'The ileum joins the cecum at the ileocecal valve in the right lower abdomen.',
       pitfall: 'Small bowel wider than about 2.5–3 cm suggests obstruction — look for the point where dilated bowel becomes collapsed.',
       unit: 'ch13',
       window: 'Soft tissue',
@@ -481,19 +571,19 @@ const N: Array<[RegExp, StructureNote]> = [
   [
     /^colon$/,
     {
-      look: 'Large bowel framing the abdomen, holding gas and mottled stool: caecum, ascending, transverse, descending and sigmoid colon, then rectum.',
+      look: 'Large bowel framing the abdomen, holding gas and mottled stool: cecum, ascending, transverse, descending and sigmoid colon, then rectum.',
       near: 'The ascending and descending colon are fixed to the back wall; the transverse and sigmoid colon hang on mesenteries and move.',
-      pitfall: 'Colon over about 6 cm wide (caecum over about 9 cm) is dilated.',
+      pitfall: 'Colon over about 6 cm wide (cecum over about 9 cm) is dilated.',
       unit: 'ch13',
       window: 'Soft tissue',
     },
   ],
   [
-    /^colon_ascending$|^caecum$|^cecum$/,
+    /^colon_ascending$|^c(a)?ecum$/,
     {
-      look: 'Caecum and ascending colon: the right-sided colon, from the right iliac fossa up to the hepatic flexure under the liver.',
-      near: 'The terminal ileum and the appendix join the caecum low in the right abdomen.',
-      pitfall: 'In right lower abdominal pain, find the appendix from the caecum below the ileocaecal valve.',
+      look: 'Cecum and ascending colon: the right-sided colon, from the right iliac fossa up to the hepatic flexure under the liver.',
+      near: 'The terminal ileum and the appendix join the cecum low in the right abdomen.',
+      pitfall: 'In right lower abdominal pain, find the appendix from the cecum below the ileocecal valve.',
       unit: 'ch13',
       window: 'Soft tissue',
     },
@@ -624,7 +714,7 @@ const N: Array<[RegExp, StructureNote]> = [
     {
       look: 'Psoas runs beside the lumbar spine and joins iliacus to form iliopsoas, which crosses in front of the hip.',
       near: 'The kidneys lie in front of and lateral to the psoas; the ureters run down over it.',
-      pitfall: 'Asymmetry or fluid in the psoas suggests a haematoma or abscess.',
+      pitfall: 'Asymmetry or fluid in the psoas suggests a hematoma or abscess.',
       unit: 'ch13',
       window: 'Soft tissue',
     },
@@ -879,8 +969,10 @@ const N: Array<[RegExp, StructureNote]> = [
 
 /** Teaching note for a label's class id (or canonical key); `family` picks the X-ray wording. */
 export function noteFor(classIdOrKey: string, family?: string): StructureNote | null {
-  const base = structureBase(classIdOrKey);
-  const hit = N.find(([re]) => re.test(base));
+  // Side-specific notes first (e.g. right vs left atrium), then the note for the structure family.
+  const key = canonicalAnatomyKey(classIdOrKey);
+  const base = structureBase(key);
+  const hit = N.find(([re]) => re.test(key)) ?? N.find(([re]) => re.test(base));
   if (!hit) return null;
   const n = hit[1];
   return family === 'XR' && n.xr ? { ...n, look: n.xr.look, near: n.xr.near ?? n.near, pitfall: n.xr.pitfall ?? n.pitfall } : n;

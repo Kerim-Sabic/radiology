@@ -46,6 +46,8 @@ export interface PanelOverlayProps {
   opacity: number;
   highlightIds: Set<string>;
   showLabels: boolean;
+  /** When set, only these reference targets get a written name (others are named by the anatomy layer). */
+  labelIds?: Set<string> | null;
   badges: MarkBadge[];
 }
 
@@ -298,12 +300,12 @@ export function ViewportPanel(p: Props) {
             return <polygon key={i} points={sh.pts.map((q) => q.join(',')).join(' ')} style={style} />;
           })}
           {p.overlay.showLabels &&
-            [...new Map(shapes.filter((x) => x.kind === 'poly').map((x) => [x.targetId, x])).values()].map((sh) => {
+            [...new Map(shapes.filter((x) => x.kind === 'poly' && (!p.overlay.labelIds || p.overlay.labelIds.has(x.targetId))).map((x) => [x.targetId, x])).values()].map((sh) => {
               const cx = sh.pts.reduce((a, q) => a + q[0], 0) / sh.pts.length;
               const cy = sh.pts.reduce((a, q) => a + q[1], 0) / sh.pts.length;
               return (
                 <text key={`l-${sh.targetId}`} x={cx} y={cy} fill="#ffd166" fontSize={11} textAnchor="middle" style={{ paintOrder: 'stroke', stroke: '#000', strokeWidth: 3, opacity: p.overlay.opacity }}>
-                  {sh.label}
+                  {cleanName(sh.label)}
                 </text>
               );
             })}

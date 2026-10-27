@@ -178,6 +178,12 @@ describe('aorta and colon parts replace the whole outline', () => {
     add('li', 'anatomy:large_intestine', 'B');
     expect(c.anatomyTargetsForSeries(['A']).sort()).toEqual(['c2', 'p1']);
     expect(c.anatomyTargetsForSeries(['B']).sort()).toEqual(['li', 'w2']);
+    // Chambers replace an AI heart, but an expert outline is never hidden by machine-drawn parts.
+    add('h1', 'anatomy:heart', 'C');
+    add('ra', 'anatomy:heart_atrium_right', 'C');
+    c.targets.set('ex', { id: 'ex', classId: 'anatomy:large_intestine', seriesUid: 'C', label: 'ex', geometryType: 'contour_set', provenance: 'source_manual', layer: 'atlas' } as ReferenceTarget);
+    add('cs', 'anatomy:colon_sigmoid', 'C');
+    expect(c.anatomyTargetsForSeries(['C']).sort()).toEqual(['cs', 'ex', 'ra']);
   });
 });
 
@@ -190,11 +196,61 @@ for (const d of readdirSync(PACKS, { withFileTypes: true })) {
   for (const t of JSON.parse(readFileSync(f, 'utf-8')).referenceTargets as Array<{ classId: string }>) if (t.classId.startsWith('anatomy:')) classIds.add(t.classId);
 }
 
+describe('installed atlas outlines respect the anatomy', () => {
+  type Ring = Array<[number, number]>;
+  type Plane = { sopInstanceUid: string; polygons: Ring[]; holes?: Ring[] };
+  type AtlasTarget = { classId: string; seriesUid: string; geometryFile: string };
+  const dir = join(PACKS, 'anatomy-atlas');
+  const atlas = JSON.parse(readFileSync(join(dir, 'pack.json'), 'utf-8')).referenceTargets as AtlasTarget[];
+  const planes = (t: AtlasTarget) => (JSON.parse(readFileSync(join(dir, t.geometryFile), 'utf-8')) as { planes: Plane[] }).planes;
+  const inside = (p: [number, number], rings: Ring[]) =>
+    rings.reduce((n, r) => {
+      let c = false;
+      for (let i = 0, j = r.length - 1; i < r.length; j = i++)
+        if (r[i][1] > p[1] !== r[j][1] > p[1] && p[0] < ((r[j][0] - r[i][0]) * (p[1] - r[i][1])) / (r[j][1] - r[i][1]) + r[i][0]) c = !c;
+      return n + (c ? 1 : 0);
+    }, 0) % 2 === 1;
+
+  it('the trachea is one tube on every slice: it ends at the carina, below which the airway is a main bronchus', () => {
+    const split = atlas.filter((t) => t.classId === 'anatomy:trachea').flatMap((t) => planes(t).filter((pl) => pl.polygons.length > 1).map((pl) => `${t.geometryFile} @ ${pl.sopInstanceUid}`));
+    expect(split).toEqual([]);
+  });
+
+  it('no pulmonary trunk or artery outline lies inside a machine-drawn heart outline', () => {
+    const hearts = new Map<string, Map<string, Ring[]>>();
+    for (const t of atlas.filter((x) => x.classId === 'anatomy:heart'))
+      hearts.set(t.seriesUid, new Map(planes(t).map((pl) => [pl.sopInstanceUid, [...pl.polygons, ...(pl.holes ?? [])]])));
+    let checked = 0;
+    const bad: string[] = [];
+    for (const t of atlas.filter((x) => /^anatomy:pulmonary_(trunk|arter)/.test(x.classId))) {
+      const heart = hearts.get(t.seriesUid);
+      for (const pl of planes(t))
+        for (const r of pl.polygons) {
+          const c: [number, number] = [r.reduce((s, q) => s + q[0], 0) / r.length, r.reduce((s, q) => s + q[1], 0) / r.length];
+          checked++;
+          const rings = heart?.get(pl.sopInstanceUid);
+          if (rings && inside(c, rings)) bad.push(`${t.classId} @ ${pl.sopInstanceUid}`);
+        }
+    }
+    expect(checked).toBeGreaterThan(1000);
+    expect(bad).toEqual([]);
+  });
+});
+
 describe('teaching notes and search patterns cover the real labels', () => {
   it('every labelled structure has a note (look, neighbours, chapter, window)', () => {
     const missing = [...classIds].filter((c) => !noteFor(c));
     expect(missing, `no note for: ${missing.join(', ')}`).toEqual([]);
     expect(noteFor('anatomy:heart', 'XR')?.look).toMatch(/border/);
+    // Side-specific notes: each chamber gets its own anatomy, not a shared "heart chamber" note.
+    expect(noteFor('anatomy:heart_atrium_left')?.look).toMatch(/most posterior/);
+    expect(noteFor('anatomy:heart_ventricle_right')?.look).toMatch(/most anterior/);
+    expect(noteFor('anatomy:heart_atrium_right')?.near).toMatch(/SVC/);
+    expect(noteFor('anatomy:pulmonary_trunk')?.look).toMatch(/main pulmonary artery/);
+    expect(noteFor('anatomy:pulmonary_artery_left')?.look).toMatch(/left main bronchus/);
+    expect(noteFor('anatomy:pulmonary_arteries_right_lower_lobe')?.look).toMatch(/Lobar and segmental/);
+    expect(noteFor('anatomy:main_bronchus_right')?.look).toMatch(/bronchus intermedius/);
+    expect(noteFor('anatomy:main_bronchus_left')?.near).toMatch(/left pulmonary artery arches over it/);
   });
   it('every search-pattern step with labels to show matches at least one installed structure', () => {
     const keys = [...classIds].map(canonicalAnatomyKey);

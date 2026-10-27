@@ -23,6 +23,13 @@ PACK_ID = "vessel-drafts"
 VERSION = "0.1.0"
 REVIEW = {"status": "unreviewed", "reviewer": None, "at": None, "note": None}
 NOTE = "unreviewed AI proposal"
+# Owner decision (2026-10-27): user-visible pack fields carry the Horalix brand only; tool and model names stay in this
+# script and in docs/data/vessel-drafts-report.md.
+BRAND_SOURCE = "Horalix"
+BRAND_METHOD = "AI draft by Horalix \u2014 automatic segmentation, not reviewed by a radiologist"
+HORALIX_SOURCE = {"id": "horalix", "name": "Horalix", "url": "docs/data/vessel-drafts-report.md", "doi": None,
+                  "license": "AI-generated drafts for this app; the segmentation tools and their licences are listed in docs/data/vessel-drafts-report.md",
+                  "citation": BRAND_METHOD, "accessNote": "Unreviewed AI drafts."}
 
 
 def ts_source(report: dict) -> dict:
@@ -139,7 +146,7 @@ def main(argv):
                 "geometryType": "contour_set",
                 "geometryFile": f"targets/{tid}.json",
                 "provenance": "ai_draft",
-                "provenanceDetail": {"source": model, "method": method, "note": NOTE},
+                "provenanceDetail": {"source": BRAND_SOURCE, "method": BRAND_METHOD, "note": NOTE},
                 "completeness": "target_only",
                 "assessedClasses": [f"anatomy:{cls}"],
                 "unassessedNote": "Machine proposal for this one structure only, on the slices where the model found it; "
@@ -156,14 +163,14 @@ def main(argv):
             contacts = {k: v for k, v in fv["contacts"].items() if int(k) in fv["chosenRun"]}
             derivation = (
                 "AI-derived draft (unreviewed). Rule: contiguous original axial slices lying ABOVE the superior-most slice "
-                f"carrying any TotalSegmentator aorta mask (arch top: instance {at['sop']}, IPP.n = {at['proj']:.2f} mm) on which "
+                f"carrying any AI aorta mask (arch top: instance {at['sop']}, IPP.n = {at['proj']:.2f} mm) on which "
                 "all five structures - right and left brachiocephalic veins, brachiocephalic trunk, left common carotid artery, "
                 f"left subclavian artery - are each present (>= {MIN_AREA_MM2:.0f} mm2 of mask) as distinct labelled "
                 "cross-sections; the run nearest the arch is used. Range = [min, max] of IPP . normal over these slices "
                 "(normal = IOP row x column cosines). "
                 + (f"Wall contact without a visible gap between labels on: {contacts}. " if contacts else "")
                 + (f"Other qualifying runs (slice indices): {fv['runs'][1:]}. " if len(fv["runs"]) > 1 else "")
-                + f"Source: {model}; QC: laterality checks passed for the five structures."
+                + "AI draft by Horalix; QC: laterality checks passed for the five structures."
             )
             g = {"geometryType": "slice_interval", "space": "patient_lps_mm", "normal": n, "range": fv["range"],
                  "sopInstanceUids": fv["sopInstanceUids"], "derivation": derivation}
@@ -176,9 +183,7 @@ def main(argv):
                 "geometryType": "slice_interval",
                 "geometryFile": f"targets/{tid}.json",
                 "provenance": "ai_draft",
-                "provenanceDetail": {"source": f"{model} (derived from the AI masks)",
-                                     "method": "Slice-interval rule applied to the TotalSegmentator masks mapped onto the original slices; see derivation in the geometry file. " + method_common,
-                                     "note": NOTE},
+                "provenanceDetail": {"source": BRAND_SOURCE, "method": BRAND_METHOD, "note": NOTE},
                 "completeness": "target_only",
                 "assessedClasses": ["level:five_vessel"],
                 "unassessedNote": "Only the axial level is proposed; individual vessel outlines are separate targets. Not reviewed by a human.",
@@ -190,11 +195,11 @@ def main(argv):
             tid = f"vd-{case}-level-aortic-arch"
             derivation = (
                 "AI-derived draft (unreviewed). Rule: starting at the most superior slice with >= "
-                f"{MIN_AREA_MM2:.0f} mm2 of TotalSegmentator aorta mask and moving caudally, the contiguous original axial slices on which "
+                f"{MIN_AREA_MM2:.0f} mm2 of AI aorta mask and moving caudally, the contiguous original axial slices on which "
                 "the aorta is a single cross-section (one component), ending before the first slice where it splits into ascending "
                 f"and descending parts (here two components of {arch['split']['componentAreasMm2']} mm2 at slice index {arch['split']['k']}). "
                 "Accepted because at least one slice spans the tracheal centroid in x (arch crossing the midline) and the run is "
-                f"{arch['lengthMm']} mm long (<= 45 mm). Range = [min, max] of IPP . normal. Source: {model}."
+                f"{arch['lengthMm']} mm long (<= 45 mm). Range = [min, max] of IPP . normal. AI draft by Horalix."
             )
             g = {"geometryType": "slice_interval", "space": "patient_lps_mm", "normal": n, "range": arch["range"],
                  "sopInstanceUids": arch["sopInstanceUids"], "derivation": derivation}
@@ -207,9 +212,7 @@ def main(argv):
                 "geometryType": "slice_interval",
                 "geometryFile": f"targets/{tid}.json",
                 "provenance": "ai_draft",
-                "provenanceDetail": {"source": f"{model} (derived from the AI masks)",
-                                     "method": "Slice-interval rule applied to the TotalSegmentator aorta mask mapped onto the original slices; see derivation in the geometry file. " + method_common,
-                                     "note": NOTE},
+                "provenanceDetail": {"source": BRAND_SOURCE, "method": BRAND_METHOD, "note": NOTE},
                 "completeness": "target_only",
                 "assessedClasses": ["level:aortic_arch"],
                 "unassessedNote": "Only the axial level is proposed. Not reviewed by a human.",
@@ -230,17 +233,15 @@ def main(argv):
         "version": VERSION,
         "title": "Vessel drafts: AI-proposed great-vessel outlines and levels (unreviewed)",
         "description": (
-            "UNREVIEWED AI DRAFTS. TotalSegmentator proposals for the five great vessels of the superior mediastinum "
+            "UNREVIEWED AI DRAFTS by Horalix for the five great vessels of the superior mediastinum "
             "(both brachiocephalic veins, brachiocephalic trunk, left common carotid, left subclavian) plus context "
             "structures, and AI-derived five-vessel / aortic-arch slice intervals, on contrast-enhanced chest CTs of the "
             f"{' and '.join(used_packs)} pack(s). Contains no images: every target references series and SOP Instance UIDs "
             "of those packs. "
             "Nothing here has been checked by a radiologist."),
         "generatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "generator": (f"scripts/vessels/write_pack.py; TotalSegmentator {ts_report['totalsegmentator_version']} "
-                      f"(task {ts_report['task']}, nnU-Net {ts_report['nnunetv2_version']}, torch {ts_report['torch_version']}, "
-                      f"{'fast' if ts_report['fast'] else 'full-resolution'}, device {ts_report['device']})"),
-        "sources": [ts_source(ts_report)] + tcia_sources,
+        "generator": "scripts/vessels/write_pack.py",
+        "sources": [HORALIX_SOURCE] + tcia_sources,
         "subjects": [],
         "studies": [],
         "series": [],
@@ -267,7 +268,7 @@ def index_entry(manifest, pack_bytes, used_packs):
     series = {t["seriesUid"] for t in manifest["referenceTargets"]}
     return {"id": PACK_ID, "title": "Vessel drafts: AI-proposed great vessels (unreviewed)", "manifest": f"{PACK_ID}/pack.json",
             "lessons": None, "bytes": pack_bytes, "distribution": "repo",
-            "note": (f"UNREVIEWED AI drafts (TotalSegmentator) on {len(series)} contrast chest CT series: {n_c} vessel/structure "
+            "note": (f"AI draft by Horalix (unreviewed) on {len(series)} contrast chest CT series: {n_c} vessel/structure "
                      f"contour sets + {n_l} slice-interval levels. No images; requires the {' and '.join(used_packs)} pack(s).")}
 
 
