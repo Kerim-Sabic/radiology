@@ -29,7 +29,11 @@ export interface AnatomyLayerProps {
   highlightId: string | null;
   /** When set, ONLY this structure is drawn (filled, named) — chosen from the structure list. */
   isolateId: string | null;
+  /** When set, only these structures are drawn and named (a search-pattern step, e.g. "Great vessels"). */
+  isolateSet?: Set<string> | null;
   isolateLabel?: string;
+  /** Drill mode: draw outlines but never show their names (no labels, hover or banner). */
+  quiz?: boolean;
   onIsolateStep?: (dir: 1 | -1) => void;
   onIsolateGoTo?: () => void;
   onIsolateClear?: () => void;
@@ -60,6 +64,8 @@ interface Props {
   onPickSeries?: (uid: string) => void;
   relationNote?: string | null;
   assessMasked?: boolean;
+  /** A plain click (not a drag) on the image, in canvas pixels. */
+  onImageClick?: (canvas: Vec2) => void;
 }
 
 const TONE: Record<MarkBadge['tone'], string> = { ok: '#4fd18b', bad: '#ff6b6b', warn: '#f2c14e', neutral: '#aab3bf' };
@@ -71,6 +77,7 @@ export function ViewportPanel(p: Props) {
   useSyncExternalStore(engine.subscribe, engine.getVersion);
   const [probe, setProbe] = useState<{ value: number; unit: string } | null>(null);
   const [size, setSize] = useState<[number, number]>([0, 0]);
+  const downAt = useRef<[number, number, number] | null>(null);
 
   useEffect(() => {
     if (!el.current) return;
@@ -112,11 +119,17 @@ export function ViewportPanel(p: Props) {
   }, [engine, panelId, p.overlay.anatomy, p.seriesIndex, st?.index, st?.currentImageId, st?.zoom, st?.ready, engine.getVersion(), size[0], size[1]]);
   const [hover, setHover] = useState<{ id: string; label: string; x: number; y: number; tag: string } | null>(null);
   const isolateId = p.overlay.anatomy?.isolateId ?? null;
-  const drawnAnatomy = useMemo(() => (isolateId ? anatomyShapes.filter((sh) => sh.targetId === isolateId) : anatomyShapes), [anatomyShapes, isolateId]);
+  const isolateSet = p.overlay.anatomy?.isolateSet ?? null;
+  const quiz = !!p.overlay.anatomy?.quiz;
+  const isolating = !!isolateId || !!isolateSet;
+  const drawnAnatomy = useMemo(
+    () => (isolateSet ? anatomyShapes.filter((sh) => isolateSet.has(sh.targetId)) : isolateId ? anatomyShapes.filter((sh) => sh.targetId === isolateId) : anatomyShapes),
+    [anatomyShapes, isolateId, isolateSet],
+  );
   const labels = useMemo(() => {
     const a = p.overlay.anatomy;
-    if (!a?.on || !drawnAnatomy.length) return { placed: [], hidden: 0 };
-    if (!isolateId && !a.showNames) return { placed: [], hidden: 0 };
+    if (!a?.on || !drawnAnatomy.length || a.quiz) return { placed: [], hidden: 0 };
+    if (!isolating && !a.showNames) return { placed: [], hidden: 0 };
     const byTarget = new Map<string, { text: string; color: string; polys: Array<Array<[number, number]>> }>();
     for (const sh of drawnAnatomy) {
       if (sh.kind !== 'poly' || sh.pts.length < 3) continue;
@@ -125,10 +138,10 @@ export function ViewportPanel(p: Props) {
       byTarget.set(sh.targetId, e);
     }
     const items = [...byTarget.entries()]
-      .filter(([, v]) => isolateId || v.polys.some((pl) => polygonArea(pl) > 40))
+      .filter(([, v]) => isolating || v.polys.some((pl) => polygonArea(pl) > 40))
       .map(([id, v]) => ({ id, ...v, priority: id === hover?.id ? 2 : 0 }));
-    return layoutLabels(items, size[0], size[1], { preferOutside: !!isolateId });
-  }, [drawnAnatomy, p.overlay.anatomy, isolateId, size, hover?.id]);
+    return layoutLabels(items, size[0], size[1], { preferOutside: isolating });
+  }, [drawnAnatomy, p.overlay.anatomy, isolating, size, hover?.id]);
 
   const badgePts = useMemo(() => {
     if (!st?.ready) return [];
@@ -153,7 +166,7 @@ export function ViewportPanel(p: Props) {
     const r = el.current.getBoundingClientRect();
     const c: [number, number] = [e.clientX - r.left, e.clientY - r.top];
     setProbe(engine.probeValue(panelId, c));
-    if (anatomyShapes.length) {
+    if (anatomyShapes.length && !quiz) {
       // Name the most specific (smallest) structure under the cursor.
       let best: Shape | null = null;
       let bestArea = Infinity;
@@ -182,6 +195,16 @@ export function ViewportPanel(p: Props) {
         ref={el}
         className="vp-el"
         onMouseMove={onMove}
+        onMouseDown={(e) => {
+          downAt.current = e.button === 0 ? [e.clientX, e.clientY, Date.now()] : null;
+        }}
+        onMouseUp={(e) => {
+          const d = downAt.current;
+          downAt.current = null;
+          if (!d || !p.onImageClick || !el.current || Math.hypot(e.clientX - d[0], e.clientY - d[1]) > 5 || Date.now() - d[2] > 600) return;
+          const r = el.current.getBoundingClientRect();
+          p.onImageClick([e.clientX - r.left, e.clientY - r.top]);
+        }}
         onMouseLeave={() => {
           setProbe(null);
           setHover(null);
@@ -196,13 +219,13 @@ export function ViewportPanel(p: Props) {
           {drawnAnatomy.map((sh, i) => {
             const ai = isAutomatic(sh.provenance);
             const color = CATEGORY_COLORS[sh.category] ?? CATEGORY_COLORS.other;
-            const strong = !!isolateId || p.overlay.anatomy!.highlightId === sh.targetId || hover?.id === sh.targetId;
+            const strong = isolating || p.overlay.anatomy!.highlightId === sh.targetId || hover?.id === sh.targetId;
             const style = {
               stroke: color,
-              strokeWidth: isolateId ? 2.2 : strong ? 2 : 1,
-              fill: isolateId ? `${color}38` : strong ? `${color}26` : 'none',
+              strokeWidth: isolating ? 2.2 : strong ? 2 : 1,
+              fill: isolating ? `${color}38` : strong ? `${color}26` : 'none',
               opacity: strong ? 1 : 0.7,
-              strokeDasharray: ai ? (isolateId ? '6 3' : '4 2') : undefined,
+              strokeDasharray: ai ? (isolating ? '6 3' : '4 2') : undefined,
               strokeLinejoin: 'round' as const,
             };
             if (sh.kind === 'seg') return <line key={i} x1={sh.pts[0][0]} y1={sh.pts[0][1]} x2={sh.pts[1][0]} y2={sh.pts[1][1]} style={style} />;
@@ -229,32 +252,36 @@ export function ViewportPanel(p: Props) {
           })}
         </svg>
       ) : null}
-      {isolateId && p.overlay.anatomy?.on ? (
+      {isolating && !quiz && p.overlay.anatomy?.on ? (
         <div className="vp-isolate" role="status">
-          <button className="btn sm ghost" onClick={() => p.overlay.anatomy?.onIsolateStep?.(-1)} aria-label="Previous structure">
-            ‹
-          </button>
+          {isolateId ? (
+            <button className="btn sm ghost" onClick={() => p.overlay.anatomy?.onIsolateStep?.(-1)} aria-label="Previous structure">
+              ‹
+            </button>
+          ) : null}
           <span>
             <b>{cleanName(p.overlay.anatomy.isolateLabel ?? '')}</b>
             {!drawnAnatomy.length ? <span className="faint"> · not on this slice</span> : null}
           </span>
-          {!drawnAnatomy.length ? (
+          {!drawnAnatomy.length && p.overlay.anatomy.onIsolateGoTo ? (
             <button className="btn sm" onClick={() => p.overlay.anatomy?.onIsolateGoTo?.()}>
               Go to it
             </button>
           ) : null}
-          <button className="btn sm ghost" onClick={() => p.overlay.anatomy?.onIsolateStep?.(1)} aria-label="Next structure">
-            ›
-          </button>
+          {isolateId ? (
+            <button className="btn sm ghost" onClick={() => p.overlay.anatomy?.onIsolateStep?.(1)} aria-label="Next structure">
+              ›
+            </button>
+          ) : null}
           <button className="btn sm" onClick={() => p.overlay.anatomy?.onIsolateClear?.()}>
             Show all
           </button>
         </div>
       ) : null}
-      {!isolateId && p.overlay.anatomy?.on && p.overlay.anatomy.showNames && labels.hidden > 0 ? (
+      {!isolating && p.overlay.anatomy?.on && p.overlay.anatomy.showNames && labels.hidden > 0 ? (
         <div className="vp-hidden-labels">{labels.hidden} more names on hover — zoom in to fit them</div>
       ) : null}
-      {hover && !isolateId ? (
+      {hover && !isolating && !quiz ? (
         <div className="vp-hover" style={{ left: Math.min(hover.x + 14, size[0] - 180), top: hover.y + 12 }}>
           {cleanName(hover.label)}
           <span className="faint"> · {hover.tag}</span>

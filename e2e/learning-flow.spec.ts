@@ -322,3 +322,64 @@ test.describe('D. assess leakage, deep links', () => {
     await expect.poll(async () => page.evaluate(() => (window as any).__rvm.panelState('p0')?.index ?? 0)).toBeGreaterThan(0);
   });
 });
+
+test.describe('E. study tools', () => {
+  test('anatomy drill: pointing inside the structure is graded correct and explained', async ({ page }) => {
+    await page.goto('/drill?key=esophagus');
+    await page.getByRole('button', { name: /Start \(8 questions\)/ }).click();
+    let checked = false;
+    for (let i = 0; i < 8 && !checked; i++) {
+      await expect(page.locator('.drill-side h2')).toBeVisible({ timeout: 20000 });
+      await expect.poll(async () => page.evaluate(() => (window as any).__rvmDrill?.state), { timeout: 20000 }).toBe('asking');
+      await expect(page.locator('.drill .vp-status')).toHaveCount(0, { timeout: 30000 });
+      const target = await page.evaluate(() => {
+        const d = (window as any).__rvmDrill;
+        if (d.kind !== 'locate' && d.kind !== 'find') return null;
+        const polys = d.answerPolys() as number[][][];
+        if (!polys.length) return null;
+        const p = polys.sort((a, b) => b.length - a.length)[0];
+        return [p.reduce((s, q) => s + q[0], 0) / p.length, p.reduce((s, q) => s + q[1], 0) / p.length];
+      });
+      if (target) {
+        const box = (await page.locator('.drill .vp-el').boundingBox())!;
+        await page.mouse.click(box.x + target[0], box.y + target[1]);
+        await expect(page.locator('.drill-side .notice.ok')).toContainText('Correct');
+        await expect(page.locator('.drill-side')).toContainText('Looks like:');
+        checked = true;
+      } else {
+        const choice = page.locator('.drill-choice').first();
+        if (await choice.count()) await choice.click();
+        else {
+          const box = (await page.locator('.drill .vp-el').boundingBox())!;
+          await page.mouse.click(box.x + 8, box.y + 8);
+        }
+        await expect(page.locator('.drill-side .notice')).toBeVisible();
+        await page.keyboard.press('Enter');
+      }
+    }
+    expect(checked).toBe(true);
+  });
+
+  test('search-pattern coach shows a step’s structures together in the right window', async ({ page }) => {
+    await page.goto('/read/starter-ct-chest-01?mode=learn');
+    await waitPanel(page);
+    await page.getByRole('tab', { name: 'Coach' }).click();
+    const step = page.locator('.coach-step', { hasText: 'Great vessels' });
+    await step.getByRole('button', { name: /Show me/ }).click();
+    await expect(page.locator('.vp-isolate')).toContainText('Great vessels', { timeout: 15000 });
+    await expect.poll(async () => page.locator('[data-panel="p0"] .vp-svg text').count(), { timeout: 15000 }).toBeGreaterThan(2);
+    await step.getByRole('checkbox').check();
+    await expect(page.locator('.coach-step.done')).toHaveCount(1);
+  });
+
+  test('compare with another patient keeps both scans at the same anatomical level', async ({ page }) => {
+    await page.goto('/read/starter-ct-chest-01?mode=learn');
+    await waitPanel(page);
+    await page.getByRole('button', { name: 'Compare with another patient at the same level' }).click();
+    await waitPanel(page, 'p1');
+    await expect(page.locator('.rel-banner')).toContainText(/Different patient .* level-matched by \d+ labelled structures/, { timeout: 20000 });
+    const before = await page.evaluate(() => (window as any).__rvm.panelState('p1').index);
+    await page.evaluate(() => (window as any).__rvm.scroll('p0', 25));
+    await expect.poll(async () => page.evaluate(() => (window as any).__rvm.panelState('p1').index), { timeout: 10000 }).not.toBe(before);
+  });
+});

@@ -271,6 +271,12 @@ function Feedback(p: Props) {
           <small className="muted">{g.authorityNote}</small>
         </div>
       </div>
+      {(g.outcome === 'incorrect' || g.outcome === 'partial' || sr.verdict === 'incorrect') && (s.confidence ?? 0) >= 4 ? (
+        <div className="notice bad">
+          <b>You were sure, but this was not right.</b> Confident mistakes are the ones that cause real misses, so this goes to the top of your reviews and comes back on a
+          different patient. Before moving on, look at the reference and say what you would check next time.
+        </div>
+      ) : null}
       {Object.entries(g.components).length ? (
         <div className="stack" style={{ gap: 2 }}>
           {Object.entries(g.components).map(([k, v]) => (

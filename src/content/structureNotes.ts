@@ -227,11 +227,21 @@ const N: Array<[RegExp, StructureNote]> = [
     },
   ],
   [
-    /^pulmonary_artery$|^pulmonary_trunk$/,
+    /^pulmonary_trunk$/,
     {
-      look: 'The pulmonary trunk leaves the right ventricle in front of the ascending aorta and divides under the arch into right and left pulmonary arteries.',
-      near: 'The right pulmonary artery passes behind the ascending aorta and SVC; the left arches over the left main bronchus.',
-      pitfall: 'A trunk wider than the ascending aorta (or over about 3 cm) suggests pulmonary hypertension. Dark filling defects on CT pulmonary angiography are emboli.',
+      look: 'The main pulmonary artery: leaves the right ventricle in front of and to the left of the ascending aorta, runs up and backwards, and divides under the aortic arch.',
+      near: 'It divides just below the level of the carina; the ascending aorta lies to its right. This is the book’s “main pulmonary artery level”.',
+      pitfall: 'A trunk wider than the ascending aorta at the same level (or over about 3 cm) suggests pulmonary hypertension. A clot straddling the bifurcation is a saddle embolus.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^pulmonary_artery$/,
+    {
+      look: 'Right pulmonary artery: long and horizontal, passing behind the ascending aorta and SVC to the right hilum. Left pulmonary artery: short, arching over the left main bronchus to the left hilum.',
+      near: 'The right one runs in front of the right main bronchus; the left one sits above the left main bronchus — which is why the left hilum is higher on a chest X-ray.',
+      pitfall: 'On CT pulmonary angiography, emboli are dark filling defects inside these bright arteries; follow each branch out into the lobes.',
       unit: 'ch03',
       window: 'Soft tissue',
     },

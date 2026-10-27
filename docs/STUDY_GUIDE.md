@@ -26,6 +26,18 @@ In **Learn** mode (and after you submit in Practice/Assess) press the layers but
 ## Anatomy atlas
 **Atlas** (top bar) lists every labelled structure on every patient. Search “rib 5”, “L1” or “adrenal”, open a structure and pick a patient: the scan opens in Learn mode with that structure shown alone. *Most completely labelled studies* lists the best whole-anatomy studies (the children's CTs have every organ outlined by experts). The **book anatomy checklist** shows, chapter by chapter, which structures the book expects you to recognise are available on a real scan — and which are still gaps.
 
+## Anatomy drills
+**Drills** (top bar) asks quick questions on real scans: *Point to it* (click the structure), *Find its level* (the scan starts elsewhere — scroll to it, then click), *Name the outline* (the wrong options are its other-side twin and its neighbours on that slice) and *Best window*. After each answer the structure is outlined with its note. Missed structures come back a few questions later on a different patient; ones you know come back after 1, 3, 7, 16 and 35 days. Pick a region (chest CT, abdomen & pelvis CT, heart & vessels, bones, chest X-ray, MRI), or press *Review due*. Every structure in the Anatomy tab and the Atlas has *Drill it on other patients*.
+
+## Search-pattern coach
+The **Coach** tab gives a fixed reading order for the study (chest X-ray, chest CT, abdomen & pelvis CT, brain). Tick each area as you check it. *Show me* outlines all the structures of a step together (e.g. *Great vessels*: ascending aorta, arch and branches, pulmonary arteries, SVC) at the level where most of them appear, and sets the right window. Reading in the same order every time is the cure for stopping after the first finding.
+
+## Compare with another patient
+The **two-people button** in the toolbar opens a different patient beside your scan and keeps both at the **same anatomical level** while you scroll: every structure labelled on both scans is used as a landmark, so differences in height and table position do not matter. The banner says how many landmarks matched and the vertebral level (e.g. ≈ T6). Patients without annotated findings are offered first; ⏭ shows the next one. Isolate a structure (or a coach step) and it is shown on both patients.
+
+## Confidence check
+Rate your confidence before submitting. An answer rated 4–5 that turns out wrong is marked **sure but wrong**: it goes to the top of your review plan, and Progress → *Confidence check* shows how often “sure” is actually right.
+
 ## Import the book
 On your own computer the book is already installed for local use (`python scripts/book/install_book.py --pdf <file>` copies it to the git-ignored `public/book/`). On another device: Settings → Book → Import PDF. The file is checked against the verified 5th-edition SHA-256 (`0f711fa4…`). Page anchors use a page-by-page map (inserted e-pages such as 2.e1 and 79.e1–e5 are handled). Search builds a local index the first time (text stays in your browser).
 

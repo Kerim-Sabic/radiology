@@ -80,10 +80,16 @@ export function errorCounts(attempts: Attempt[]) {
   return counts;
 }
 
+/** Confidence 4–5 of 5 on an answer graded wrong (self-review "incorrect" counts too). */
+export function isSureButWrong(a: Attempt): boolean {
+  const wrong = (a.grade && a.grade.outcome !== 'correct' && a.grade.outcome !== 'not_attempted' && a.grade.outcome !== 'self_review') || a.selfReview?.verdict === 'incorrect';
+  return !!wrong && a.confidence !== null && a.confidence >= 4;
+}
+
 /** Mistakes and uncertain answers that have not yet been redone correctly on another patient. */
 export function mistakeNotebook(attempts: Attempt[], catalog: Catalog | null) {
   const list = attempts.filter(submitted).sort((a, b) => (a.submittedAt! < b.submittedAt! ? 1 : -1));
-  const out: Array<{ attempt: Attempt; task: Task | undefined; resolved: boolean; reason: string }> = [];
+  const out: Array<{ attempt: Attempt; task: Task | undefined; resolved: boolean; reason: string; sureButWrong: boolean }> = [];
   for (const a of list) {
     const wrong = a.grade && a.grade.outcome !== 'correct' && a.grade.outcome !== 'not_attempted';
     const flagged = wrong || a.uncertain || a.revealed || (a.confidence !== null && a.confidence <= 2);
@@ -99,9 +105,11 @@ export function mistakeNotebook(attempts: Attempt[], catalog: Catalog | null) {
         (b.objectiveIds.some((o) => a.objectiveIds.includes(o)) || b.taskId.split(':')[0] === a.taskId.split(':')[0]),
     );
     const reason = a.revealed ? 'Answer revealed' : wrong ? (a.grade!.errors.length ? a.grade!.errors.join(', ').replace(/_/g, ' ') : 'Not correct') : a.uncertain ? 'Marked uncertain' : 'Low confidence';
-    out.push({ attempt: a, task, resolved, reason });
+    const sureButWrong = isSureButWrong(a);
+    out.push({ attempt: a, task, resolved, reason: sureButWrong ? `Sure but wrong — ${reason}` : reason, sureButWrong });
   }
-  return out;
+  // Confident mistakes first: they are the misconceptions that cause real-world misses.
+  return out.sort((x, y) => Number(y.sureButWrong) - Number(x.sureButWrong));
 }
 
 const DAY = 86400e3;
@@ -137,7 +145,8 @@ export function todayPlan(attempts: Attempt[], catalog: Catalog | null, minutes:
   // 1) due reviews → a sibling task on a different patient if available
   for (const m of mistakeNotebook(attempts, catalog).filter((x) => !x.resolved)) {
     const prior = (byTask.get(m.attempt.taskId) ?? []).length;
-    const due = Date.parse(m.attempt.submittedAt!) + INTERVALS[Math.min(prior - 1, INTERVALS.length - 1)] * DAY * 0.5;
+    // A confident mistake is due at once; other misses wait for their review interval.
+    const due = m.sureButWrong ? 0 : Date.parse(m.attempt.submittedAt!) + INTERVALS[Math.min(prior - 1, INTERVALS.length - 1)] * DAY * 0.5;
     if (due > now) continue;
     const sibling = tasks.find(
       (t) =>
@@ -145,7 +154,7 @@ export function todayPlan(attempts: Attempt[], catalog: Catalog | null, minutes:
         t.skillDimensions.some((d) => m.attempt.skillDimensions.includes(d)) &&
         (t.objectiveIds.some((o) => m.attempt.objectiveIds.includes(o)) || t.type === m.task?.type),
     );
-    if (sibling) push(sibling, `Retry “${m.task?.title ?? 'a missed skill'}” on a different patient`, 'review');
+    if (sibling) push(sibling, `${m.sureButWrong ? 'You were sure but wrong: retry' : 'Retry'} “${m.task?.title ?? 'a missed skill'}” on a different patient`, 'review');
     else if (m.task) push(m.task, 'Review a missed task (no other patient available yet)', 'review');
   }
   // 2) weakest dimension

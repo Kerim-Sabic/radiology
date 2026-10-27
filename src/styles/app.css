@@ -1153,3 +1153,81 @@ button.chip[aria-pressed='true'] {
   background: var(--panel-2, rgba(255, 255, 255, 0.03));
   border-radius: 6px;
 }
+
+/* ---------- anatomy drills ---------- */
+.drill {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
+  height: 100%;
+  min-height: 0;
+  background: var(--bg);
+}
+.drill-view {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  background: var(--canvas);
+}
+.drill-side {
+  padding: 16px;
+  gap: 12px;
+  border-left: 1px solid var(--line);
+  background: var(--panel);
+  overflow-y: auto;
+  min-height: 0;
+}
+.drill-choice {
+  justify-content: flex-start;
+  text-align: left;
+  min-height: 38px;
+}
+.drill-choice svg {
+  margin-left: auto;
+}
+.drill-choice.ok {
+  border-color: #4fd18b;
+  color: #9af0c0;
+}
+.drill-choice.bad {
+  border-color: #ff6b6b;
+  color: #ffb3b3;
+}
+@media (max-width: 860px) {
+  .drill {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(300px, 58vh) auto;
+    overflow-y: auto;
+  }
+  .drill-side {
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* ---------- structure note ---------- */
+.struct-note {
+  font-size: 12.5px;
+  gap: 4px;
+  padding: 8px 10px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel-2, rgba(255, 255, 255, 0.03));
+}
+
+/* ---------- search-pattern coach ---------- */
+.coach-step {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 6px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+.coach-step.done > div > b {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.coach-step ul {
+  margin: 4px 0 6px;
+  padding-left: 16px;
+  font-size: 12.5px;
+}

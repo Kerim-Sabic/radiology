@@ -50,16 +50,23 @@ describe.each([...packs.entries()])('pack %s', (id, pack) => {
     for (const s of pack.series) if (/locator|scout|topogram/i.test(s.description)) expect(s.role).toBe('scout');
   });
   it('has valid target geometry files that reference real SOP instances', () => {
+    const sopsOf = new Map<string, Set<string>>();
+    const problems: string[] = [];
     for (const t of pack.referenceTargets) {
       const series = allSeries.get(t.seriesUid);
-      expect(series, `${t.id} series`).toBeTruthy();
+      if (!series) {
+        problems.push(`${t.id}: series not installed`);
+        continue;
+      }
       const g = TargetGeometry.parse(read(join(PACKS, id, t.geometryFile)));
-      const sops = new Set(series!.instances.map((i) => i.sopInstanceUid));
-      const refs = g.geometryType === 'contour_set' ? g.planes.map((p) => p.sopInstanceUid) : g.geometryType === 'box' ? g.boxes.map((b) => b.sopInstanceUid) : g.geometryType === 'point' ? [g.sopInstanceUid] : g.geometryType === 'slice_interval' ? g.sopInstanceUids : g.sopInstanceUids;
-      for (const r of refs) expect(sops.has(r), `${t.id} → ${r}`).toBe(true);
-      if (t.provenance === 'human_reviewed') expect(t.review.status).toBe('reviewed_by_user');
+      if (!sopsOf.has(series.uid)) sopsOf.set(series.uid, new Set(series.instances.map((i) => i.sopInstanceUid)));
+      const sops = sopsOf.get(series.uid)!;
+      const refs = g.geometryType === 'contour_set' ? g.planes.map((p) => p.sopInstanceUid) : g.geometryType === 'box' ? g.boxes.map((b) => b.sopInstanceUid) : g.geometryType === 'point' ? [g.sopInstanceUid] : g.sopInstanceUids;
+      for (const r of refs) if (!sops.has(r)) problems.push(`${t.id} → ${r}`);
+      if (t.provenance === 'human_reviewed' && t.review.status !== 'reviewed_by_user') problems.push(`${t.id}: human_reviewed without a review`);
     }
-  });
+    expect(problems.slice(0, 20)).toEqual([]);
+  }, 60_000);
 });
 
 describe.each([...lessons.entries()])('lessons %s', (_id, file) => {

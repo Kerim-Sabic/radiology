@@ -6,6 +6,7 @@
 import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
 import type { GradeResult, LearnerMark, PositionAtSubmit } from '../grading/types';
 import type { ViewSnapshot } from '../viewer/engine';
+import type { DrillStats } from './drill';
 
 export type Mode = 'learn' | 'practice' | 'assess' | 'review';
 
@@ -200,6 +201,19 @@ export class ProgressRepository {
     this.changed();
   }
 
+  /** Anatomy-drill spaced-repetition state, one record per structure. */
+  async drillStats(): Promise<DrillStats> {
+    return ((await (await this.dbp).get('meta', 'drillStats')) as DrillStats | undefined) ?? {};
+  }
+  async saveDrillStats(stats: DrillStats) {
+    try {
+      await (await this.dbp).put('meta', stats, 'drillStats');
+      this.changed();
+    } catch (e) {
+      wrap(e);
+    }
+  }
+
   async exportAll() {
     const db = await this.dbp;
     return {
@@ -211,6 +225,7 @@ export class ProgressRepository {
       bookmarks: await db.getAll('bookmarks'),
       notes: await db.getAll('notes'),
       reviews: await db.getAll('reviews'),
+      drillStats: ((await db.get('meta', 'drillStats')) as DrillStats | undefined) ?? {},
     };
   }
 
@@ -222,7 +237,10 @@ export class ProgressRepository {
     const db = await this.dbp;
     const counts = { attempts: 0, bookmarks: 0, notes: 0, reviews: 0 };
     try {
-      const tx = db.transaction(['attempts', 'bookmarks', 'notes', 'reviews'], 'readwrite');
+      const tx = db.transaction(['attempts', 'bookmarks', 'notes', 'reviews', 'meta'], 'readwrite');
+      const drill = { ...(((await tx.objectStore('meta').get('drillStats')) as DrillStats | undefined) ?? {}) };
+      for (const st of Object.values((d.drillStats as DrillStats) ?? {})) if (!drill[st.key] || st.lastAt >= drill[st.key].lastAt) drill[st.key] = st;
+      await tx.objectStore('meta').put(drill, 'drillStats');
       for (const a of (d.attempts as Attempt[]) ?? []) {
         const cur = await tx.objectStore('attempts').get(a.id);
         if (!cur || (a.submittedAt ?? '') >= (cur.submittedAt ?? '')) {
@@ -255,8 +273,8 @@ export class ProgressRepository {
 
   async resetAll() {
     const db = await this.dbp;
-    const tx = db.transaction(['attempts', 'bookmarks', 'notes', 'reviews'], 'readwrite');
-    await Promise.all([tx.objectStore('attempts').clear(), tx.objectStore('bookmarks').clear(), tx.objectStore('notes').clear(), tx.objectStore('reviews').clear()]);
+    const tx = db.transaction(['attempts', 'bookmarks', 'notes', 'reviews', 'meta'], 'readwrite');
+    await Promise.all([tx.objectStore('attempts').clear(), tx.objectStore('bookmarks').clear(), tx.objectStore('notes').clear(), tx.objectStore('reviews').clear(), tx.objectStore('meta').delete('drillStats')]);
     await tx.done;
     this.changed();
   }

@@ -24,3 +24,6 @@ export function provenanceMethod(ref: { provenance: string; provenanceDetail: { 
 /** Display name without provenance suffixes (provenance is shown separately). */
 export const cleanLabel = (label: string) =>
   label.replace(/\s*\((?:AI|AI draft|AI-derived draft|AI, unreviewed|[^()]*\bSEG|[^()]*\bcontour)\)\s*$/i, '').trim();
+
+/** Name for questions and lists: no provenance suffix and no "(partially imaged)" note. */
+export const plainName = (label: string) => cleanLabel(label).replace(/\s*\(partially imaged\)$/i, '').trim();

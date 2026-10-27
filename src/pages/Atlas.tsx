@@ -1,10 +1,11 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router';
-import { Check, CircleDashed } from 'lucide-react';
+import { Check, CircleDashed, Target } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { BOOK_ANATOMY, canonicalAnatomyKey, imageFamily } from '../content/bookAnatomy';
 import { CATEGORY_COLORS, categoryFor } from '../components/ws/overlayShapes';
-import { AI_DRAFT_BY, cleanLabel, isAutomatic, provenanceTag } from '../lib/provenance';
+import { AI_DRAFT_BY, isAutomatic, plainName, provenanceTag } from '../lib/provenance';
+import { noteFor } from '../content/structureNotes';
 
 interface Entry {
   caseId: string;
@@ -49,8 +50,8 @@ export default function AtlasPage() {
         const t = catalog.targets.get(id);
         if (!t) continue;
         const key = canonicalAnatomyKey(t.classId);
-        const s = m.get(key) ?? { key, name: cleanLabel(t.label), category: categoryFor(t), entries: [] };
-        if (!isAutomatic(t.provenance) && s.entries.every((e) => isAutomatic(e.provenance))) s.name = cleanLabel(t.label); // expert wording wins
+        const s = m.get(key) ?? { key, name: plainName(t.label), category: categoryFor(t), entries: [] };
+        if (!isAutomatic(t.provenance) && s.entries.every((e) => isAutomatic(e.provenance))) s.name = plainName(t.label); // expert wording wins
         s.entries.push({ caseId: k.id, caseTitle: k.neutralTitle, targetId: id, family: imageFamily(catalog.series.get(t.seriesUid)?.modality ?? ''), provenance: t.provenance });
         m.set(key, s);
       }
@@ -155,6 +156,27 @@ export default function AtlasPage() {
                     </button>
                     {isOpen ? (
                       <div className="stack" style={{ gap: 2, padding: '4px 0 6px 18px' }}>
+                        {(() => {
+                          const n = noteFor(s.key, s.entries.every((e) => e.family === 'XR') ? 'XR' : undefined);
+                          return n ? (
+                            <div className="stack struct-note" style={{ marginBottom: 6 }}>
+                              <span>
+                                <b>Looks like:</b> {n.look}
+                              </span>
+                              <span>
+                                <b>Next to:</b> {n.near}
+                              </span>
+                              {n.pitfall ? (
+                                <span>
+                                  <b>Pitfall:</b> {n.pitfall}
+                                </span>
+                              ) : null}
+                            </div>
+                          ) : null;
+                        })()}
+                        <Link to={`/drill?key=${encodeURIComponent(s.key)}`} className="row" style={{ gap: 6, fontSize: 12.5, marginBottom: 4 }}>
+                          <Target size={13} /> Drill it on {patients} patient{patients === 1 ? '' : 's'}
+                        </Link>
                         {s.entries.map((e) => (
                           <Link key={e.targetId} to={link(e)} className="row" style={{ gap: 6, fontSize: 12.5 }}>
                             <span>{e.caseTitle}</span>

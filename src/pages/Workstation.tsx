@@ -35,6 +35,8 @@ import {
   EyeOff,
   Square as SquareIcon,
   Layers,
+  Users,
+  SkipForward,
 } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { ViewerEngine, type ToolId, type ViewKind } from '../viewer/engine';
@@ -43,10 +45,16 @@ import { ViewportPanel, type MarkBadge } from '../components/ws/ViewportPanel';
 import { TaskPanel } from '../components/ws/TaskPanel';
 import { BookPanel } from '../components/ws/BookPanel';
 import { AnatomyPanel } from '../components/ws/AnatomyPanel';
+import { CoachPanel } from '../components/ws/CoachPanel';
+import type { CoachStep } from '../content/searchPatterns';
+import { canonicalAnatomyKey, imageFamily } from '../content/bookAnatomy';
+import { presetFor } from '../services/drill';
+import { landmarks, levelName, mapZ, matchLevels, type Landmark } from '../services/levelSync';
 import { IconButton, ProvenanceChip, Toast, useToast } from '../components/ui';
 import { gradeTask, measureWithinSlab, probeOfMark, type LoadedTarget } from '../grading/spatialGrader';
 import type { GradeResult, LearnerMark } from '../grading/types';
 import type { BookAnchorRef, Series, Task } from '../schema/content';
+import type { SeriesIndex } from '../grading/seriesIndex';
 import { newSession, rules, hintLadder, type SessionState } from '../services/lessonEngine';
 import { newId, type Attempt, type Mode } from '../services/progressRepository';
 import { anchorLabel as fmtAnchor } from '../services/curriculum';
@@ -125,6 +133,14 @@ export default function Workstation() {
   const [isolateId, setIsolateId] = useState<string | null>(null);
   const [anatomyTargets, setAnatomyTargets] = useState<LoadedTarget[]>([]);
   const [anatomyLoading, setAnatomyLoading] = useState(false);
+  // Search-pattern coach: a group of structures shown together for one step.
+  const [focusSet, setFocusSet] = useState<{ ids: Set<string>; label: string; step: string } | null>(null);
+  const [pendingStep, setPendingStep] = useState<CoachStep | null>(null);
+  // Comparison with a different patient, matched by anatomical level.
+  const [compare, setCompare] = useState<{ rank: number; total: number; caseId: string; seriesUid: string; noFindings: boolean } | null>(null);
+  const [compareTargets, setCompareTargets] = useState<LoadedTarget[]>([]);
+  const [syncPairs, setSyncPairs] = useState<Array<[number, number]>>([]);
+  const [marksA, setMarksA] = useState<Map<string, Landmark>>(new Map());
   const toast = useToast();
 
   // ---------------------------------------------------------------- case & task setup
@@ -182,6 +198,8 @@ export default function Workstation() {
     setAnatomyOn(null);
     setAnatomyHighlight(null);
     setIsolateId(null);
+    setFocusSet(null);
+    setCompare(null);
     setLayout('1');
     setPanels([{ id: 'p0', seriesUid: task.start.seriesUid, kind: 'stack' }]);
     setFocused('p0');
@@ -259,6 +277,7 @@ export default function Workstation() {
       return;
     }
     setLayout(l);
+    setCompare(null);
     // Prefer other diagnostic series; fall back to scouts (clearly labelled) when nothing else exists.
     const others = [...caseSeries.filter((x) => x.uid !== primary && x.role !== 'scout'), ...caseSeries.filter((x) => x.uid !== primary && x.role === 'scout')];
     if (l === '1') setPanels([{ id: 'p0', seriesUid: primary, kind: 'stack' }]);
@@ -600,6 +619,82 @@ export default function Workstation() {
     setTimeout(() => isolateRef.current(t), 150);
   }, [showId, anatomyTargets, panels.length]);
 
+  // ---------------------------------------------------------------- coach + comparison patient
+  const focusedUid = (panels.find((p) => p.id === focused) ?? panels[0])?.seriesUid ?? null;
+  const focusedKeys = useMemo(
+    () => new Set(catalog && focusedUid ? catalog.anatomyTargetsForSeries([focusedUid]).map((id) => canonicalAnatomyKey(catalog.targets.get(id)!.classId)) : []),
+    [catalog, focusedUid],
+  );
+
+  // A coach step asked to show its structures: wait for the anatomy layer, then show them together at the level where most appear.
+  useEffect(() => {
+    if (!pendingStep?.show || anatomyLoading || !anatomyTargets.length || !catalog) return;
+    const step = pendingStep;
+    setPendingStep(null);
+    const ts = anatomyTargets.filter((t) => t.ref.seriesUid === focusedUid && step.show!.test(canonicalAnatomyKey(t.ref.classId)));
+    if (!ts.length) {
+      toast.show('No labelled structures for this step on this series.');
+      return;
+    }
+    setIsolateId(null);
+    setAnatomyHighlight(null);
+    setFocusSet({ ids: new Set(ts.map((t) => t.ref.id)), label: step.title, step: step.id });
+    const count = new Map<string, number>();
+    for (const t of ts) if (t.geom.geometryType === 'contour_set') for (const pl of t.geom.planes) count.set(pl.sopInstanceUid, (count.get(pl.sopInstanceUid) ?? 0) + 1);
+    const sop = levelSop(step, anatomyTargets.filter((t) => t.ref.seriesUid === focusedUid), focusedUid ? catalog.seriesIndex(focusedUid) : undefined) ?? [...count.entries()].sort((a, b) => b[1] - a[1])[0]?.[0];
+    const src = focusedUid ? catalog.seriesSource(focusedUid) : null;
+    const i = sop && src ? src.sopUids.indexOf(sop) : -1;
+    if (i >= 0 && engine.panelState(focused)?.kind === 'stack') engine.setIndex(focused, i);
+  }, [pendingStep, anatomyLoading, anatomyTargets, catalog, focusedUid, focused, engine, toast]);
+
+  // Comparison patient: load its labels and pair landmarks with the primary scan.
+  const primaryUid = panels[0]?.seriesUid ?? null;
+  useEffect(() => {
+    if (!compare || !catalog || !primaryUid) {
+      setCompareTargets([]);
+      setSyncPairs([]);
+      return;
+    }
+    let cancelled = false;
+    Promise.all([catalog.loadTargets(catalog.anatomyTargetsForSeries([primaryUid])), catalog.loadTargets(catalog.anatomyTargetsForSeries([compare.seriesUid]))]).then(([a, b]) => {
+      if (cancelled) return;
+      const la = landmarks([...a.values()], catalog.seriesIndex(primaryUid));
+      const lb = landmarks([...b.values()], catalog.seriesIndex(compare.seriesUid));
+      setMarksA(la);
+      setSyncPairs(matchLevels(la, lb));
+      setCompareTargets([...b.values()]);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [compare, catalog, primaryUid]);
+
+  // Keep the comparison patient at the same anatomical level as the primary scan.
+  const p0Index = engine.panelState('p0')?.index;
+  const p1Ready = engine.panelState('p1')?.ready;
+  const levelZ = useMemo(() => {
+    const img = engine.panelState('p0')?.currentImageId;
+    const sop = img ? engine.imageIdInfo(img)?.sop : null;
+    return sop && primaryUid ? (catalog?.seriesIndex(primaryUid)?.bySop.get(sop)?.plane?.ipp[2] ?? null) : null;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [p0Index, primaryUid, catalog, engine]);
+  useEffect(() => {
+    if (!compare || !syncPairs.length || !p1Ready || levelZ === null || !catalog) return;
+    const zb = mapZ(levelZ, syncPairs);
+    const idxB = catalog.seriesIndex(compare.seriesUid);
+    const srcB = catalog.seriesSource(compare.seriesUid);
+    if (zb === null || !idxB || !srcB) return;
+    let best = -1;
+    let bd = Infinity;
+    for (const inst of idxB.instances) {
+      const z = inst.plane?.ipp[2];
+      if (z === undefined || Math.abs(z - zb) >= bd) continue;
+      bd = Math.abs(z - zb);
+      best = srcB.sopUids.indexOf(inst.sopInstanceUid);
+    }
+    if (best >= 0 && engine.panelState('p1')?.index !== best) engine.setIndex('p1', best);
+  }, [compare, syncPairs, p1Ready, levelZ, catalog, engine]);
+
   const toggleFullscreen = () => {
     const el = document.querySelector('.ws-main') as HTMLElement | null;
     if (!document.fullscreenElement) void el?.requestFullscreen?.();
@@ -642,6 +737,11 @@ export default function Workstation() {
             : { text: 'Draft reference · self-review', tone: 'warn', title: `Unreviewed references (${AI_DRAFT_BY} or dataset auto-labels): comparison only until you review them.` };
   const independentNote = rules.independent(session) ? 'Counts as an independent attempt (no hints or reveal so far).' : 'This attempt is recorded as assisted.';
   const relNote = (p: PanelDef) => {
+    if (compare && p.id === 'p1' && p.seriesUid === compare.seriesUid) {
+      const lvl = levelZ !== null ? levelName(levelZ, marksA) : null;
+      const how = syncPairs.length ? `level-matched by ${syncPairs.length} labelled structures${lvl ? ` · ≈ ${lvl}` : ''}` : 'not level-matched (scroll it yourself)';
+      return `Different patient ${compare.rank + 1}/${compare.total}${compare.noFindings ? ' · no findings annotated' : ' · has annotated findings'} · ${how}`;
+    }
     if (p.id === panels[0]?.id || panels.length < 2) return null;
     const r = catalog.relationship(panels[0].seriesUid, p.seriesUid);
     if (p.seriesUid === panels[0].seriesUid) return p.kind === '3d' ? 'Same volume · 3D rendering' : 'Same volume · shared patient-space crosshair';
@@ -662,12 +762,14 @@ export default function Workstation() {
   };
 
   const focusedSeriesUid = (panels.find((p) => p.id === focused) ?? panels[0])?.seriesUid;
-  const focusedAnatomy = anatomyTargets
+  const allAnatomy = compareTargets.length ? [...anatomyTargets, ...compareTargets] : anatomyTargets;
+  const focusedAnatomy = allAnatomy
     .filter((t) => t.ref.seriesUid === focusedSeriesUid)
     .sort((a, b) => a.ref.label.localeCompare(b.ref.label));
-  const isolateTarget = isolateId ? (anatomyTargets.find((t) => t.ref.id === isolateId) ?? null) : null;
+  const isolateTarget = isolateId ? (allAnatomy.find((t) => t.ref.id === isolateId) ?? null) : null;
   const isolate = (t: LoadedTarget) => {
     setAnatomyOn(true);
+    setFocusSet(null);
     setIsolateId(t.ref.id);
     setAnatomyHighlight(t.ref.id);
     if (!panels.some((p) => p.seriesUid === t.ref.seriesUid)) pickSeries(focused, t.ref.seriesUid);
@@ -685,14 +787,76 @@ export default function Workstation() {
     showNames: anatomyNames,
     hidden: anatomyHidden,
     highlightId: anatomyHighlight,
-    isolateId: anatomyVisible ? isolateId : null,
-    isolateLabel: isolateTarget?.ref.label,
+    isolateId: anatomyVisible && !focusSet ? isolateId : null,
+    isolateSet: anatomyVisible ? (focusSet?.ids ?? null) : null,
+    isolateLabel: focusSet?.label ?? isolateTarget?.ref.label,
     onIsolateStep: stepIsolate,
     onIsolateGoTo: () => isolateTarget && jumpToLoaded(isolateTarget),
     onIsolateClear: () => {
       setIsolateId(null);
+      setFocusSet(null);
       setAnatomyHighlight(null);
     },
+  };
+  // The comparison patient shows the same structures (matched by name) as the primary scan.
+  const keyOf = new Map(allAnatomy.map((t) => [t.ref.id, canonicalAnatomyKey(t.ref.classId)]));
+  const compareByKey = new Map(compareTargets.map((t) => [canonicalAnatomyKey(t.ref.classId), t.ref.id]));
+  const anatomyFor = (pd: PanelDef) => {
+    if (!compare || pd.seriesUid !== compare.seriesUid) return anatomyProps;
+    const asSet = anatomyProps.isolateSet ?? (anatomyProps.isolateId ? new Set([anatomyProps.isolateId]) : null);
+    const mapped = asSet
+      ? new Set([...asSet].map((id) => (compareTargets.some((t) => t.ref.id === id) ? id : compareByKey.get(keyOf.get(id) ?? ''))).filter((x): x is string => !!x))
+      : null;
+    return { ...anatomyProps, targets: compareTargets, isolateId: null, isolateSet: mapped, onIsolateStep: undefined, onIsolateGoTo: undefined };
+  };
+
+  const compareCandidates = () => {
+    const primary = panels[0]?.seriesUid;
+    const sA = primary ? catalog.series.get(primary) : undefined;
+    if (!sA) return [];
+    const fam = imageFamily(sA.modality);
+    const keysOf = (uid: string) => new Set(catalog.anatomyTargetsForSeries([uid]).map((id) => canonicalAnatomyKey(catalog.targets.get(id)!.classId)));
+    const keysA = keysOf(sA.uid);
+    const lateral = (v: unknown) => /^(L|R)L$|LAT/i.test(String(v ?? ''));
+    const withFindings = new Set([...catalog.targets.values()].filter((t) => t.classId.startsWith('finding:')).map((t) => t.seriesUid));
+    const here = catalog.holdoutGroup(kase.id);
+    const out: Array<{ caseId: string; seriesUid: string; noFindings: boolean; score: number }> = [];
+    const seen = new Set<string>();
+    for (const k of catalog.cases.values()) {
+      if (catalog.holdoutGroup(k.id) === here) continue;
+      for (const sB of catalog.seriesForCase(k)) {
+        if (seen.has(sB.uid) || imageFamily(sB.modality) !== fam || sB.role === 'scout' || !catalog.seriesSource(sB.uid)) continue;
+        seen.add(sB.uid);
+        if (fam === 'XR' && lateral(sA.acquisition.ViewPosition) !== lateral(sB.acquisition.ViewPosition)) continue;
+        const common = [...keysOf(sB.uid)].filter((x) => keysA.has(x)).length;
+        if (fam !== 'XR' && common < 3) continue;
+        const noFindings = !withFindings.has(sB.uid);
+        out.push({ caseId: k.id, seriesUid: sB.uid, noFindings, score: common + (noFindings ? 25 : 0) });
+      }
+    }
+    return out.sort((a, b) => b.score - a.score).slice(0, 10);
+  };
+  const startCompare = (rank: number) => {
+    const list = compareCandidates();
+    const primary = panels[0]?.seriesUid;
+    if (!list.length || !primary) {
+      toast.show('No other patient with a comparable scan is installed for this kind of image.');
+      return;
+    }
+    const c = list[rank % list.length];
+    setLayout('2');
+    setPanels([
+      { id: 'p0', seriesUid: primary, kind: 'stack' },
+      { id: 'p1', seriesUid: c.seriesUid, kind: 'stack' },
+    ]);
+    setFocused('p0');
+    setCompare({ rank: rank % list.length, total: list.length, caseId: c.caseId, seriesUid: c.seriesUid, noFindings: c.noFindings });
+  };
+  const coachWindow = (step: CoachStep) => {
+    if (!step.window || focusedSeries?.modality !== 'CT') return;
+    const chest = [...focusedKeys].some((k) => /^lung|^trachea/.test(k));
+    const w = presetFor(focusedSeries.windowPresets, step.window, chest);
+    if (w) engine.setWindow(focused, w.center, w.width);
   };
   const focusedImageId = engine.panelState(focused)?.currentImageId ?? null;
   const focusedSop = focusedImageId ? (engine.imageIdInfo(focusedImageId)?.sop ?? null) : null;
@@ -809,6 +973,19 @@ export default function Workstation() {
         <IconButton label="Four-up" active={layout === '4'} onClick={() => applyLayout('4')}>
           <Grid2x2 size={17} />
         </IconButton>
+        <IconButton
+          label={compare ? 'Stop comparing with another patient' : 'Compare with another patient at the same level'}
+          active={!!compare}
+          disabled={mode === 'assess' && !session.submitted}
+          onClick={() => (compare ? applyLayout('1') : startCompare(0))}
+        >
+          <Users size={17} />
+        </IconButton>
+        {compare && compare.total > 1 ? (
+          <IconButton label="Next comparison patient" onClick={() => startCompare(compare.rank + 1)}>
+            <SkipForward size={17} />
+          </IconButton>
+        ) : null}
         <IconButton label="MPR: axial / coronal / sagittal" active={layout === 'mpr'} onClick={() => applyLayout('mpr')}>
           <Box size={17} />
         </IconButton>
@@ -941,15 +1118,15 @@ export default function Workstation() {
                 onFocus={() => setFocused(pd.id)}
                 overlay={{
                   // While one structure is isolated, nothing else is drawn on the image.
-                  targets: anatomyProps.isolateId ? [] : visibleTargets,
-                  showReference: !anatomyProps.isolateId && visibleTargets.length > 0,
+                  targets: anatomyProps.isolateId || anatomyProps.isolateSet ? [] : visibleTargets,
+                  showReference: !anatomyProps.isolateId && !anatomyProps.isolateSet && visibleTargets.length > 0,
                   opacity: refOpacity,
                   highlightIds: highlight,
                   showLabels: refAllowed,
                   badges,
-                  anatomy: anatomyProps,
+                  anatomy: anatomyFor(pd),
                 }}
-                seriesOptions={layout === 'mpr' || layout === 'mpr3d' ? [] : seriesOptions}
+                seriesOptions={layout === 'mpr' || layout === 'mpr3d' || (compare && pd.id === 'p1') ? [] : seriesOptions}
                 onPickSeries={(u) => pickSeries(pd.id, u)}
                 relationNote={relNote(pd)}
                 assessMasked={assessMasked}
@@ -966,6 +1143,7 @@ export default function Workstation() {
             <Tabs.Trigger value="task">Task</Tabs.Trigger>
             <Tabs.Trigger value="book">Book</Tabs.Trigger>
             <Tabs.Trigger value="anatomy">Anatomy</Tabs.Trigger>
+            <Tabs.Trigger value="coach">Coach</Tabs.Trigger>
             <Tabs.Trigger value="info">Case</Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="task" className="tab-body">
@@ -1035,7 +1213,8 @@ export default function Workstation() {
               presentIds={presentIds}
               showNames={anatomyNames}
               hidden={anatomyHidden}
-              isolateId={isolateId}
+              isolateId={focusSet ? null : isolateId}
+              family={imageFamily(focusedSeries?.modality ?? '')}
               onToggle={(v) => setAnatomyOn(v)}
               onShowNames={setAnatomyNames}
               onToggleCategory={(c) =>
@@ -1049,7 +1228,29 @@ export default function Workstation() {
               onPick={isolate}
               onShowAll={() => {
                 setIsolateId(null);
+                setFocusSet(null);
                 setAnatomyHighlight(null);
+              }}
+            />
+          </Tabs.Content>
+          <Tabs.Content value="coach" className="tab-body">
+            <CoachPanel
+              caseId={kase.id}
+              family={imageFamily(focusedSeries?.modality ?? '')}
+              keys={focusedKeys}
+              canShow={refAllowed}
+              canWindow={!assessMasked}
+              activeStep={focusSet?.step ?? null}
+              onShow={(step) => {
+                setAnatomyOn(true);
+                setPendingStep(step);
+                if (step.window) coachWindow(step);
+              }}
+              onWindow={coachWindow}
+              onBook={(page, unit) => openBook({ physical: page, printed: null, chapterId: unit })}
+              onClear={() => {
+                setFocusSet(null);
+                setIsolateId(null);
               }}
             />
           </Tabs.Content>
@@ -1143,6 +1344,54 @@ export default function Workstation() {
       <Toast message={toast.msg} onDone={toast.clear} />
     </div>
   );
+}
+
+/**
+ * The slice a coach step is about, from its anchor structure (e.g. the aortic arch's largest slice,
+ * or just below the arch for the aortopulmonary window). Null when the anchor is not labelled.
+ */
+function levelSop(step: CoachStep, targets: LoadedTarget[], idx: SeriesIndex | undefined): string | null {
+  for (const L of step.level ?? []) {
+    const anchor = targets.find((t) => L.anchor.test(canonicalAnatomyKey(t.ref.classId)));
+    const sop = anchor ? anchorSop(L, anchor, idx) : null;
+    if (sop) return sop;
+  }
+  return null;
+}
+
+function anchorSop(L: NonNullable<CoachStep['level']>[number], anchor: LoadedTarget, idx: SeriesIndex | undefined): string | null {
+  if (anchor.geom.geometryType !== 'contour_set' || !anchor.geom.planes.length || !idx) return null;
+  const g = anchor.geom;
+  if (L.at === 'largest') {
+    let best: string | null = null;
+    let bestArea = -1;
+    for (const pl of g.planes) {
+      const inst = idx.bySop.get(pl.sopInstanceUid);
+      const a = pl.polygons.reduce((s, poly) => {
+        const pts: Vec2[] = g.space === 'image_px' ? (poly as Vec2[]) : inst?.plane ? (poly as Vec3[]).map((q) => patientToPlaneMm(inst.plane!, q)) : [];
+        return s + (pts.length >= 3 ? polygonArea(pts) : 0);
+      }, 0);
+      if (a > bestArea) {
+        bestArea = a;
+        best = pl.sopInstanceUid;
+      }
+    }
+    return best;
+  }
+  const zs = g.planes.map((pl) => idx.bySop.get(pl.sopInstanceUid)?.plane?.ipp[2]).filter((z): z is number => z !== undefined);
+  if (!zs.length) return null;
+  const top = Math.max(...zs);
+  const bottom = Math.min(...zs);
+  const z = L.at === 'above' ? top + 8 : L.at === 'below' ? bottom - 8 : top - L.at * (top - bottom);
+  let sop: string | null = null;
+  let d = Infinity;
+  for (const inst of idx.instances) {
+    const iz = inst.plane?.ipp[2];
+    if (iz === undefined || Math.abs(iz - z) >= d) continue;
+    d = Math.abs(iz - z);
+    sop = inst.sopInstanceUid;
+  }
+  return sop;
 }
 
 function CaseInfo({

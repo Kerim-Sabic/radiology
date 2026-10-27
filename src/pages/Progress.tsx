@@ -1,8 +1,9 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import { Download, Upload, Trash2 } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { byDimension, errorCounts, mistakeNotebook, statsFor, STATE_LABEL, MILESTONE_RULE } from '../services/learningModel';
+import { summary, type DrillStats } from '../services/drill';
 import { ERROR_LABELS, type ErrorCategory } from '../grading/types';
 import { OutcomeBadge } from '../components/ui';
 
@@ -16,6 +17,14 @@ export default function ProgressPage() {
   const errors = errorCounts(attempts);
   const notebook = mistakeNotebook(attempts, catalog);
   const cross = submitted.filter((a) => a.skillDimensions.includes('cross_modality'));
+  const sure = submitted.filter((a) => a.confidence !== null && a.confidence >= 4);
+  const sureRight = sure.filter((a) => a.grade?.outcome === 'correct' || a.selfReview?.verdict === 'correct').length;
+  const sureWrong = notebook.filter((m) => m.sureButWrong && !m.resolved);
+  const [drill, setDrill] = useState<DrillStats>({});
+  useEffect(() => {
+    progress.drillStats().then(setDrill);
+  }, [progress]);
+  const drillSum = summary(drill);
 
   const doExport = async () => {
     const data = await progress.exportAll();
@@ -134,6 +143,56 @@ export default function ProgressPage() {
           </div>
         )}
         <small className="faint">Misses and false positives are counted separately. False positives only count where the reference covers the whole study.</small>
+      </section>
+
+      <section className="card stack">
+        <h2>Confidence check</h2>
+        {sure.length ? (
+          <p className="muted">
+            When you said you were sure (4–5 of 5), you were right <b>{Math.round((100 * sureRight) / sure.length)}%</b> of the time ({sureRight} of {sure.length}). Aim for
+            confidence that matches accuracy: confident and wrong is the pattern behind real-world misses.
+          </p>
+        ) : (
+          <p className="muted">Rate your confidence before submitting; this shows how often “sure” is actually right.</p>
+        )}
+        {sureWrong.length ? (
+          <div className="row wrap">
+            <span className="chip bad">Sure but wrong · {sureWrong.length} open</span>
+            {sureWrong.slice(0, 6).map((m) => (
+              <Link key={m.attempt.id} className="chip" to={`/read/${m.attempt.caseId}?task=${encodeURIComponent(m.attempt.taskId)}&mode=review`}>
+                {m.task?.title ?? m.attempt.taskId}
+              </Link>
+            ))}
+          </div>
+        ) : null}
+      </section>
+
+      <section className="card stack">
+        <div className="row">
+          <h2>Anatomy drills</h2>
+          <span className="spacer" />
+          <Link className="btn sm" to="/drill">
+            Open drills
+          </Link>
+        </div>
+        {drillSum.practised ? (
+          <>
+            <p className="muted">
+              {drillSum.practised} structures practised · {drillSum.secure} known well · {drillSum.due} due for review now.
+            </p>
+            {drillSum.weakest.length ? (
+              <div className="row wrap">
+                {drillSum.weakest.map((s) => (
+                  <Link key={s.key} className="chip" to={`/drill?key=${encodeURIComponent(s.key)}`}>
+                    {s.name} · {Math.round((100 * s.correct) / s.seen)}%
+                  </Link>
+                ))}
+              </div>
+            ) : null}
+          </>
+        ) : (
+          <p className="muted">No drills yet — point to, find and name structures on real scans.</p>
+        )}
       </section>
 
       <section className="card stack">

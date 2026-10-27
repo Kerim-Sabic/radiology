@@ -1,8 +1,11 @@
 import { useMemo, useState } from 'react';
-import { Eye, Layers } from 'lucide-react';
+import { Link } from 'react-router';
+import { Eye, Layers, Target } from 'lucide-react';
 import type { LoadedTarget } from '../../grading/spatialGrader';
 import { CATEGORY_COLORS, categoryFor } from './overlayShapes';
 import { AI_DRAFT_BY, cleanLabel as clean, isAutomatic, provenanceTag } from '../../lib/provenance';
+import { noteFor } from '../../content/structureNotes';
+import { canonicalAnatomyKey } from '../../content/bookAnatomy';
 
 interface Props {
   allowed: boolean;
@@ -14,6 +17,8 @@ interface Props {
   showNames: boolean;
   hidden: Set<string>;
   isolateId: string | null;
+  /** 'XR' | 'CT' | 'MR' of the focused series, for the right wording of notes. */
+  family?: string;
   onToggle: (on: boolean) => void;
   onShowNames: (v: boolean) => void;
   onToggleCategory: (c: string) => void;
@@ -67,7 +72,8 @@ export function AnatomyPanel(p: Props) {
             <Layers size={13} /> Show all
           </button>
         </div>
-      ) : (
+      ) : null}
+      {isolated ? <StructureNoteCard target={isolated} family={p.family} /> : (
         <div className="row wrap">
           <button className={`btn${p.on ? ' primary' : ''}`} onClick={() => p.onToggle(!p.on)}>
             {p.on ? 'Hide all outlines' : 'Show all outlines'}
@@ -127,6 +133,34 @@ export function AnatomyPanel(p: Props) {
           ))}
         </div>
       ))}
+    </div>
+  );
+}
+
+/** "What am I looking at?" — how it looks, what it touches, one pitfall, and where the book teaches it. */
+export function StructureNoteCard({ target, family }: { target: LoadedTarget; family?: string }) {
+  const key = canonicalAnatomyKey(target.ref.classId);
+  const n = noteFor(key, family);
+  if (!n) return null;
+  return (
+    <div className="stack struct-note">
+      <span>
+        <b>Looks like:</b> {n.look}
+      </span>
+      <span>
+        <b>Next to:</b> {n.near}
+      </span>
+      {n.pitfall ? (
+        <span>
+          <b>Pitfall:</b> {n.pitfall}
+        </span>
+      ) : null}
+      <span className="row wrap" style={{ gap: 10, fontSize: 12 }}>
+        <Link to={`/course/${n.unit}`}>Chapter in the book</Link>
+        <Link to={`/drill?key=${encodeURIComponent(key)}`}>
+          <Target size={12} /> Drill it on other patients
+        </Link>
+      </span>
     </div>
   );
 }

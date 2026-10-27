@@ -12,7 +12,12 @@ Personal, non-commercial study tool. Not a diagnostic device, not certification,
 - **Deterministic grading** (`src/grading`): point-in-contour with slab and in-plane tolerances, labelled one-to-one matching (no duplicate credit), slice-interval level grading, findings detection with IoU feedback, separate errors for navigation, wrong structure, wrong side, imprecise outline, missed finding and overcalling. Unmatched marks are *unscored* unless the reference covers the whole study. AI-draft references can never score authoritatively.
 - **Book**: a full in-app reader of your own copy (contents with sections, case quizzes, take-home points; page navigation; search; per-page objectives, figures, notes and links to real-scan practice), a figure gallery for every chapter, and a verified page map for all 552 PDF pages (inserted e-pages handled), 918 figures, 1,013 sections and 274 objectives (see / show / explain) across 29 chapters + 8 appendices. The PDF is **never** in the public repository: it is installed locally (`scripts/book/install_book.py`, git-ignored) or imported per device (SHA-256 checked).
 - **Anatomy labels** (Learn mode, or after submitting): every outlined structure on the current slice, with collision-free name tags and leader lines, searchable and grouped (organs, airways & lungs, heart & vessels, bones, muscles, glands). Click a structure to see it alone — the viewer jumps to the slice where it is largest and centres it; ‹ › steps through neighbours. Expert source contours are drawn solid; machine labels are dashed and tagged **“AI draft by Horalix”** (quality-checked, not reviewed by a radiologist).
-- **Anatomy atlas** (`/atlas`): every labelled structure across all patients (CT, X-ray, MRI), each one link away from being shown alone on a real scan, plus a book anatomy checklist that lists covered structures and honest gaps.
+- **Anatomy atlas** (`/atlas`): every labelled structure across all patients (CT, X-ray, MRI), each one link away from being shown alone on a real scan, plus a book anatomy checklist that lists covered structures and honest gaps. The aorta is labelled in parts (ascending, arch, descending thoracic, abdominal) and the colon by segment (caecum/ascending, transverse, descending, sigmoid, rectum) where the split passed quality checks.
+- **Structure notes**: every labelled structure has a short note — how it looks, what it sits next to, one common pitfall, the best CT window and the book chapter (`src/content/structureNotes.ts`; a test fails if any installed structure lacks one).
+- **Anatomy drills** (`/drill`): point to a structure, scroll to its level, name an outline (wrong options are its other-side twin and its neighbours on that slice) or pick the window that shows it. Spaced repetition per structure; a miss comes back a few questions later on a different patient, then on a widening schedule.
+- **Search-pattern coach** (Coach tab): a systematic checklist for chest X-ray, chest CT, abdomen/pelvis CT and brain; *Show me* outlines the structures of each step together, at the level where most of them appear, in the right window.
+- **Compare with another patient at the same level**: opens a second patient beside the scan and keeps both at the same anatomical level by pairing every structure labelled on both (vertebrae, organs, vessels), not by millimetres; the same structures are highlighted on both.
+- **Confidence check**: answers rated 4–5/5 and graded wrong are flagged “sure but wrong”, go to the top of the review plan, and Progress shows how often “sure” is actually right.
 - **Content (installed, real)**: 30 patients · 42 studies · 52 series · 4,321 DICOM instances · 131 tasks — see [docs/CONTENT_INVENTORY.md](docs/CONTENT_INVENTORY.md) and [docs/COVERAGE.md](docs/COVERAGE.md).
 
 ## Quick start
@@ -66,9 +71,9 @@ Then import the book: **Settings → Book → Import PDF** (your own copy of the
 
 Data preparation is offline Python (`scripts/data`, `scripts/vessels`, `scripts/book`, `scripts/lessons`); no GPU or server is needed to study.
 
-## Deploying (private)
+## Deploying
 
-See [docs/DEPLOY.md](docs/DEPLOY.md). Short version: Vercel with **Deployment Protection → All Deployments + Vercel Authentication** (available on every plan) protects every URL including the DICOM and JSON files. Vercel Hobby limits CLI uploads to 100 MB, so a Hobby deployment carries the app + starter pack; larger packs need Vercel Pro (1 GB), Netlify, or local use.
+**Netlify:** Add new site → Import from GitHub → this repository; `netlify.toml` has the build settings and every data pack is in the repository. Import the book once per device from the Book page. Details and privacy options: [docs/DEPLOY.md](docs/DEPLOY.md). Private alternative: Vercel with **Deployment Protection → All Deployments + Vercel Authentication** (available on every plan) protects every URL including the DICOM and JSON files. Vercel Hobby limits CLI uploads to 100 MB, so a Hobby deployment carries the app + starter pack; larger packs need Vercel Pro (1 GB), Netlify, or local use.
 
 ## Documentation
 

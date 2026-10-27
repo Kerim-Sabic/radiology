@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router';
 import { Tooltip } from 'radix-ui';
-import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Settings as SettingsIcon, NotebookPen } from 'lucide-react';
+import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Settings as SettingsIcon, NotebookPen, Target } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 
@@ -15,12 +15,14 @@ const GuidePage = lazy(() => import('./pages/Guide'));
 const BookReader = lazy(() => import('./pages/BookReader'));
 const BookFigures = lazy(() => import('./pages/BookFigures'));
 const AtlasPage = lazy(() => import('./pages/Atlas'));
+const DrillPage = lazy(() => import('./pages/Drill'));
 
 function TopNav() {
   const links = [
     { to: '/', label: 'Today', icon: <House size={16} /> },
     { to: '/cases', label: 'Cases', icon: <Library size={16} /> },
     { to: '/atlas', label: 'Atlas', icon: <Bone size={16} /> },
+    { to: '/drill', label: 'Drills', icon: <Target size={16} /> },
     { to: '/course', label: 'Course', icon: <GraduationCap size={16} /> },
     { to: '/book', label: 'Book', icon: <BookOpen size={16} /> },
     { to: '/progress', label: 'Progress', icon: <ChartColumn size={16} /> },
@@ -59,7 +61,7 @@ function Loading() {
 export function App() {
   const loc = useLocation();
   const reading = loc.pathname.startsWith('/read');
-  const fullHeight = reading || /^\/book(\/\d+)?$/.test(loc.pathname);
+  const fullHeight = reading || loc.pathname === '/drill' || /^\/book(\/\d+)?$/.test(loc.pathname);
   return (
     <Tooltip.Provider>
       <div className="shell">
@@ -70,6 +72,7 @@ export function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/cases" element={<LibraryPage />} />
               <Route path="/atlas" element={<AtlasPage />} />
+              <Route path="/drill" element={<DrillPage />} />
               <Route path="/read/:caseId" element={<Workstation />} />
               <Route path="/book" element={<BookReader />} />
               <Route path="/book/figures" element={<BookFigures />} />

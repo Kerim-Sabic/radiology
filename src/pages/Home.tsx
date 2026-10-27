@@ -1,10 +1,17 @@
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { ArrowRight, Bone, BookOpen, Play, Target } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { mistakeNotebook, statsFor, todayPlan, unseenAssessTasks } from '../services/learningModel';
+import { summary, type DrillStats } from '../services/drill';
 
 export function HomePage() {
-  const { catalog, attempts, settings, setSettings, curriculum } = useApp();
+  const { catalog, attempts, settings, setSettings, curriculum, progress } = useApp();
+  const [drill, setDrill] = useState<DrillStats>({});
+  useEffect(() => {
+    progress.drillStats().then(setDrill);
+  }, [progress]);
+  const drillSum = summary(drill);
   const navigate = useNavigate();
   const plan = todayPlan(attempts, catalog, settings.minutesPerDay);
   const first = plan[0];
@@ -160,6 +167,18 @@ export function HomePage() {
           </Link>
         </section>
       ) : null}
+
+      <section className="card row wrap">
+        <Target size={18} />
+        <span>
+          <b>Anatomy drills</b> — point to it, find its level, name the outline, pick the window. Misses come back on a different patient.
+          {drillSum.practised ? ` ${drillSum.due} due now · ${drillSum.secure} known well.` : ''}
+        </span>
+        <span className="spacer" />
+        <Link className="btn sm primary" to="/drill">
+          {drillSum.due ? `Review ${drillSum.due} due` : 'Start drilling'}
+        </Link>
+      </section>
 
       <section className="card row wrap">
         <Bone size={18} />

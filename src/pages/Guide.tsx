@@ -23,6 +23,29 @@ export default function GuidePage() {
         </p>
       </section>
       <section className="card stack">
+        <h2>Study tools</h2>
+        <ul className="stack" style={{ gap: 6, paddingLeft: 18, margin: 0 }}>
+          <li>
+            <b>Drills</b> — point to it, find its level, name the outline, best window. Misses return on a different patient; known structures return after 1, 3, 7, 16 and 35
+            days.
+          </li>
+          <li>
+            <b>Coach</b> tab — a fixed reading order for chest X-ray, chest CT, abdomen/pelvis CT and brain. <i>Show me</i> outlines each step’s structures together in the
+            right window.
+          </li>
+          <li>
+            <b>Compare with another patient</b> (two-people button) — a second patient kept at the same anatomical level as you scroll, matched by structures labelled on
+            both.
+          </li>
+          <li>
+            <b>Structure notes</b> — pick any structure in the Anatomy tab or Atlas: how it looks, what it touches, one pitfall, and the chapter.
+          </li>
+          <li>
+            <b>Confidence check</b> — “sure but wrong” answers go to the top of your reviews.
+          </li>
+        </ul>
+      </section>
+      <section className="card stack">
         <h2>What scores mean</h2>
         <p className="muted">
           Scores come from deterministic geometry against source annotations — never from the AI. If a reference only covers some structures, marks elsewhere are “unscored”, not
