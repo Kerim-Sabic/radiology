@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { accessFor, checkout } from './billing.js';
-import { beginSignIn, cookie, finishSignIn, FLOW_COOKIE, hash, random, session, SESSION_COOKIE } from './auth.js';
+import { beginSignIn, cookie, createSession, finishSignIn, FLOW_COOKIE, hash, random, session, SESSION_COOKIE } from './auth.js';
+import { clerkIdentity } from './clerk.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
 
@@ -25,6 +26,16 @@ export async function handle(request: Request): Promise<Response> {
     if (path === '/api/config' && request.method === 'GET') return json(readiness());
     if (!readiness().auth) return json({ error: 'Sign-in is being configured. Please try again shortly.' }, 503);
     if (request.method === 'POST' && request.headers.get('origin') !== new URL(request.url).origin) return json({ error: 'Invalid request origin' }, 403);
+    if (path === '/api/auth/session' && request.method === 'POST') {
+      const ip = hash(request.headers.get('x-vercel-forwarded-for') || request.headers.get('x-forwarded-for') || 'unknown');
+      if (!await rateLimit(`account-session:${ip}`, 30, 600)) return json({ error: 'Too many sign-in attempts. Try again in a few minutes.' }, 429);
+      try {
+        const profile = await clerkIdentity(request);
+        const response = json({ ok: true });
+        response.headers.append('Set-Cookie', await createSession(profile));
+        return response;
+      } catch { return json({ error: 'We couldn’t verify this sign-in. Please verify your email and try again.' }, 401); }
+    }
     if (path === '/api/auth/email' && request.method === 'GET') {
       const ip = hash(request.headers.get('x-vercel-forwarded-for') || request.headers.get('x-forwarded-for') || 'unknown');
       if (!await rateLimit(`login:${ip}`, 30, 600)) return json({ error: 'Too many sign-in attempts. Try again in a few minutes.' }, 429);

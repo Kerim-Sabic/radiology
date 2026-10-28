@@ -39,9 +39,23 @@ export async function accessFor(userId: string, fresh = false): Promise<Access> 
     const cached = await db().get<Access>(`rvm:access:${userId}`);
     if (cached && (!cached.expiresAt || Date.parse(cached.expiresAt) > Date.now())) return cached;
   }
-  const whopUser = await db().get<string>(`rvm:whop-user:${userId}`);
-  if (!whopUser) return { active: false };
   const client = await whop();
+  let whopUser = await db().get<string>(`rvm:whop-user:${userId}`);
+  if (!whopUser) {
+    const identity = await db().get<{ email: string; emailVerified: boolean; provider?: string }>(`rvm:identity:${userId}`);
+    if (identity?.emailVerified !== true || identity.provider !== 'clerk') return { active: false };
+    // This lookup requires member:email:read. A name/username search match never grants access.
+    const candidates = await client.members.list({ account_id: required('WHOP_ACCOUNT_ID'), query: identity.email, first: 100 });
+    const exact = [];
+    for await (const member of candidates) {
+      if (member.account_id === required('WHOP_ACCOUNT_ID') && member.email?.trim().toLowerCase() === identity.email.trim().toLowerCase() && member.user?.id) exact.push(member.user.id);
+    }
+    const matched = [...new Set(exact)];
+    if (matched.length > 1) throw new Error('Ambiguous payment identity');
+    whopUser = matched[0] || null;
+    if (!whopUser) return { active: false };
+    await db().set(`rvm:whop-user:${userId}`, whopUser);
+  }
   const memberships = await client.memberships.list({ account_id: required('WHOP_ACCOUNT_ID'), user_id: whopUser,
     plan_ids: [required('WHOP_MONTHLY_PLAN_ID'), required('WHOP_LIFETIME_PLAN_ID')], first: 100 });
   let result: Access = { active: false };

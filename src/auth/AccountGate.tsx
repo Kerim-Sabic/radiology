@@ -2,6 +2,7 @@ import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useR
 import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X } from 'lucide-react';
 import './account.css';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
+const InlineAccount = lazy(() => import('./InlineAccount'));
 type Tier = 'monthly' | 'lifetime';
 const planKey = 'rvm:selected-plan';
 function rememberedPlan(): Tier | null { try { const value = sessionStorage.getItem(planKey); return value === 'monthly' || value === 'lifetime' ? value : null; } catch { return null; } }
@@ -34,13 +35,16 @@ export function AccountGate({ children }: { children: ReactNode }) {
 
 function MembershipGate({ children }: { children: ReactNode }) {
   const [account, setAccount] = useState<Account | null>(null);
-  const [ready, setReady] = useState<{ auth: boolean; billing: boolean } | null>(null);
+  const [ready, setReady] = useState<{ auth: boolean; billing: boolean; authProvider?: 'clerk' | 'whop'; clerkPublishableKey?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState('');
   const [checking, setChecking] = useState(false);
   const [returned, setReturned] = useState(() => new URLSearchParams(location.search).has('checkout'));
-  const [authMode, setAuthMode] = useState<'signup' | 'login' | null>(null);
+  const [authMode, setAuthMode] = useState<'signup' | 'login' | null>(() => {
+    const mode = new URLSearchParams(location.search).get('account');
+    return mode === 'signup' ? 'signup' : mode === 'login' || mode === 'verified' ? 'login' : null;
+  });
   const [authWaiting, setAuthWaiting] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<Tier | null>(rememberedPlan);
   const [payment, setPayment] = useState<{ id: string; returnUrl: string; tier: Tier } | null>(null);
@@ -73,6 +77,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       setAccount(data);
       setError('');
       if (data.user) { setAuthMode(null); setAuthWaiting(false); }
+      if (data.user && new URLSearchParams(location.search).has('account')) history.replaceState(null, '', location.pathname);
       if (data.access.active) {
         setReturned(false);
         setPayment(null); setSelectedPlan(null); rememberPlan(null);
@@ -103,7 +108,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
     return () => { mounted.current = false; generation.current++; checkoutGeneration.current++; clearInterval(timer); window.removeEventListener('focus', focus); window.removeEventListener('message', message); };
   }, [load]);
 
-  useEffect(() => { if (authMode && !dialog.current?.open) dialog.current?.showModal(); else if (!authMode) dialog.current?.close(); }, [authMode]);
+  useEffect(() => { if (authMode && !dialog.current?.open) dialog.current?.showModal(); else if (!authMode) dialog.current?.close(); }, [authMode, loading]);
   useEffect(() => {
     if (!authWaiting) return;
     const timer = setInterval(() => void load(), 3000);
@@ -231,11 +236,13 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <button role="tab" aria-selected={authMode === 'login'} onClick={() => setAuthMode('login')}>Sign in</button>
       </div>
       <h2 id="auth-title">{authMode === 'signup' ? 'Your next chapter starts here.' : 'Welcome back.'}</h2>
-      <p>{authMode === 'signup' ? 'Use your email to create an account. No Google account or new password needed.' : 'Sign in with the email you used for your membership.'}</p>
+      <p>{authMode === 'signup' ? 'Create your account with your email, right here. No Google account needed.' : 'Sign in with the email you used for your membership.'}</p>
       {selectedPlan && <div className="selected-plan"><Check size={16} />{selectedPlan === 'monthly' ? 'Monthly · $10 / month' : 'Lifetime · $100 once'}</div>}
-      <button className="email-signin" onClick={startSignIn} disabled={!ready?.auth}><Mail size={18} />{authWaiting ? 'Reopen sign-in window' : 'Continue with email'}<ArrowRight size={18} /></button>
+      {authMode && ready?.authProvider === 'clerk' && ready.clerkPublishableKey ? <Suspense fallback={<p className="auth-waiting" role="status">Loading secure sign-in…</p>}>
+        <InlineAccount publishableKey={ready.clerkPublishableKey} mode={authMode} onModeChange={setAuthMode} onSuccess={load} />
+      </Suspense> : <button className="email-signin" onClick={startSignIn} disabled={!ready?.auth}><Mail size={18} />{authWaiting ? 'Reopen sign-in window' : 'Continue with email'}<ArrowRight size={18} /></button>}
       {authWaiting && <p className="auth-waiting" role="status">Finish verifying your email in the secure window. We’ll continue here automatically.</p>}
-      <p className="auth-privacy"><ShieldCheck size={15} /> Whop securely verifies your email in a separate window. Your payment happens here on radiology.monster.</p>
+      <p className="auth-privacy"><ShieldCheck size={15} />{ready?.authProvider === 'clerk' ? 'Your account is protected by Clerk. Sign-in and payment stay on radiology.monster.' : 'Whop securely verifies your email in a separate window. Your payment happens here on radiology.monster.'}</p>
       {error && <p className="membership-message" role="alert">{error}</p>}
     </dialog>
   </main>;

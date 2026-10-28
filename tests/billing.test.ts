@@ -1,7 +1,8 @@
 import { beforeEach, afterAll, describe, expect, it, vi } from 'vitest';
 import type { Whop } from '@whop/sdk';
 
-const fake = vi.hoisted(() => ({ records: new Map<string, unknown>(), memberships: [] as unknown[], payments: [] as unknown[], checkoutCalls: [] as unknown[], revoke: vi.fn(), exchange: vi.fn(), identity: vi.fn() }));
+const fake = vi.hoisted(() => ({ records: new Map<string, unknown>(), members: [] as unknown[], memberships: [] as unknown[], payments: [] as unknown[], checkoutCalls: [] as unknown[], revoke: vi.fn(), exchange: vi.fn(), identity: vi.fn(), clerkIdentity: vi.fn() }));
+vi.mock('../server/clerk', () => ({ clerkIdentity: fake.clerkIdentity }));
 vi.mock('../server/store', () => {
   const store = {
     get: async (key: string) => fake.records.get(key) ?? null,
@@ -14,6 +15,7 @@ vi.mock('../server/store', () => {
 });
 vi.mock('../server/oauth', () => ({ merchantToken: async () => 'test-token', exchange: fake.exchange, identity: fake.identity, revoke: fake.revoke }));
 vi.mock('@whop/sdk', () => ({ WhopClient: class {
+  members = { list: async () => ({ async *[Symbol.asyncIterator]() { yield* fake.members; } }) };
   memberships = { list: async () => ({ data: fake.memberships, async *[Symbol.asyncIterator]() { yield* fake.memberships; } }) };
   payments = { list: async () => ({ data: fake.payments }) };
   variants = { retrieve: async ({ id }: { id: string }) => ({ id, account: { id: 'biz_test' }, currency: 'usd', plan_type: id === 'plan_monthly' ? 'renewal' : 'one_time', billing_period: id === 'plan_monthly' ? 30 : null, initial_price: id === 'plan_monthly' ? 0 : 100, renewal_price: id === 'plan_monthly' ? 10 : 0, adaptive_pricing_enabled: false }) };
@@ -28,12 +30,33 @@ const future = () => new Date(Date.now() + 86400000).toISOString();
 const member = (changes = {}) => ({ id: 'mem_test', account: { id: 'biz_test' }, plan_id: 'plan_monthly', status: 'active', current_period_end: future(), expires_at: null, manage_url: 'https://whop.com/billing', user_id: 'user_test', product_id: 'prod_test', ...changes }) as Whop.Membership;
 
 beforeEach(() => {
-  fake.records.clear(); fake.memberships = []; fake.payments = []; fake.checkoutCalls = [];
+  fake.records.clear(); fake.members = []; fake.memberships = []; fake.payments = []; fake.checkoutCalls = []; fake.clerkIdentity.mockReset();
   for (const [k, v] of Object.entries({ ADMIN_EMAILS: '', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_LIFETIME_PLAN_ID: 'plan_lifetime', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test' })) vi.stubEnv(k, v);
 });
 afterAll(() => vi.unstubAllEnvs());
 
 describe('paid access policy', () => {
+  it('restores Whop membership only through an exact match to the verified Clerk email', async () => {
+    await createSession({ sub: 'clerk_test', provider: 'clerk', email: 'buyer@example.com', emailVerified: true });
+    const userId = hash('clerk:clerk_test');
+    fake.memberships = [member()]; fake.payments = [{ status: 'paid', substatus: 'succeeded' }];
+    fake.members = [{ account_id: 'biz_test', email: 'someone@example.com', user: { id: 'user_test' } }];
+    expect((await accessFor(userId, true)).active).toBe(false);
+    fake.members = [{ account_id: 'biz_other', email: 'buyer@example.com', user: { id: 'user_test' } }];
+    expect((await accessFor(userId, true)).active).toBe(false);
+    fake.members = [{ account_id: 'biz_test', email: 'BUYER@example.com', user: { id: 'user_test' } }];
+    expect((await accessFor(userId, true)).active).toBe(true);
+    expect(fake.records.get(`rvm:whop-user:${userId}`)).toBe('user_test');
+  });
+  it('does not select a customer when an email lookup is ambiguous', async () => {
+    await createSession({ sub: 'clerk_test', provider: 'clerk', email: 'buyer@example.com', emailVerified: true });
+    fake.members = ['user_one', 'user_two'].map(id => ({ account_id: 'biz_test', email: 'buyer@example.com', user: { id } }));
+    await expect(accessFor(hash('clerk:clerk_test'), true)).rejects.toThrow('Ambiguous');
+  });
+  it('allows a new verified customer to open checkout before a Whop member exists', async () => {
+    await createSession({ sub: 'clerk_new', provider: 'clerk', email: 'new@example.com', emailVerified: true });
+    expect(await checkout(hash('clerk:clerk_new'), 'monthly')).toMatchObject({ id: 'ch_test' });
+  });
   it('permits paid monthly and non-expiring lifetime memberships', () => {
     expect(membershipAccess(member()).active).toBe(true);
     expect(membershipAccess(member({ plan_id: 'plan_lifetime', status: 'completed', current_period_end: null }))).toMatchObject({ active: true, tier: 'lifetime', expiresAt: null });
@@ -92,6 +115,23 @@ describe('paid access policy', () => {
 
 describe('sessions and request boundaries', () => {
   const request = (cookie: string, path = '/api/session', method = 'GET', body?: unknown, origin = 'https://radiology.monster') => new Request(`https://radiology.monster${path}`, { method, headers: { Cookie: cookie.split(';')[0], Origin: origin, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+  it('exchanges a verified Clerk identity for a secure app session and preserves free admin access', async () => {
+    vi.stubEnv('ADMIN_EMAILS', 'admin@example.com');
+    fake.clerkIdentity.mockResolvedValue({ sub: 'clerk_admin', provider: 'clerk', email: 'admin@example.com', emailVerified: true });
+    const result = await handle(request('', '/api/auth/session', 'POST'));
+    expect(result.status).toBe(200);
+    const cookie = result.headers.get('set-cookie')!;
+    expect(cookie).toContain('HttpOnly; Secure; SameSite=Lax');
+    expect(await (await handle(request(cookie))).json()).toMatchObject({ access: { active: true, role: 'admin' } });
+    expect(fake.records.has(`rvm:whop-user:${hash('clerk:clerk_admin')}`)).toBe(false);
+  });
+  it('rejects forged Clerk authentication and cross-origin session creation', async () => {
+    fake.clerkIdentity.mockRejectedValue(new Error('Invalid signature'));
+    const result = await handle(request('', '/api/auth/session', 'POST', { email: 'admin@example.com' }));
+    expect(result.status).toBe(401);
+    expect(result.headers.get('set-cookie')).toBeNull();
+    expect((await handle(request('', '/api/auth/session', 'POST', undefined, 'https://evil.test'))).status).toBe(403);
+  });
   it('rejects unverified identities even for the configured admin', async () => {
     vi.stubEnv('ADMIN_EMAILS', 'kerim.sabic@gmail.com');
     await expect(createSession({ sub: 'user_admin', email: 'kerim.sabic@gmail.com', emailVerified: false })).rejects.toThrow('Verified email required');

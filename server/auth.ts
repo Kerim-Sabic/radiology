@@ -35,16 +35,17 @@ export async function isAdmin(userId: string) {
   const identity = await db().get<{ email: string; emailVerified: boolean }>(`rvm:identity:${userId}`);
   return identity?.emailVerified === true && allowed.includes(identity.email.trim().toLowerCase());
 }
-export async function createSession(profile: { sub: string; email: string; emailVerified: boolean; name?: string }) {
+export async function createSession(profile: { sub: string; email: string; emailVerified: boolean; name?: string; provider?: 'whop' | 'clerk' }) {
   if (profile.emailVerified !== true) throw new Error('Verified email required');
   const token = random();
   const tokenHash = hash(token);
-  const user: Session = { userId: hash(`whop:${profile.sub}`), email: profile.email, name: profile.name || profile.email, tokenHash };
+  const provider = profile.provider || 'whop';
+  const user: Session = { userId: hash(`${provider}:${profile.sub}`), email: profile.email, name: profile.name || profile.email, tokenHash };
   const tx = db().multi();
   tx.set(`rvm:session:${tokenHash}`, user, { ex: SESSION_SECONDS });
   tx.set(`rvm:device:${user.userId}`, tokenHash, { ex: SESSION_SECONDS });
-  tx.set(`rvm:whop-user:${user.userId}`, profile.sub);
-  tx.set(`rvm:identity:${user.userId}`, { email: profile.email, emailVerified: true });
+  if (provider === 'whop') tx.set(`rvm:whop-user:${user.userId}`, profile.sub);
+  tx.set(`rvm:identity:${user.userId}`, { email: profile.email, emailVerified: true, provider });
   await tx.exec();
   return cookie(SESSION_COOKIE, token, SESSION_SECONDS);
 }

@@ -10,7 +10,7 @@ import { required } from '../server/config.js';
 const state = randomBytes(32).toString('base64url'), nonce = randomBytes(32).toString('base64url'), verifier = randomBytes(32).toString('base64url');
 const redirect = 'http://localhost:13338/callback';
 const params = new URLSearchParams({ client_id: required('WHOP_APP_ID'), response_type: 'code', redirect_uri: redirect,
-  scope: 'openid profile email company:basic:read member:basic:read member:manage payment:basic:read plan:basic:read checkout_configuration:create',
+  scope: 'openid profile email company:basic:read member:basic:read member:email:read member:manage payment:basic:read plan:basic:read checkout_configuration:create',
   company_id: required('WHOP_ACCOUNT_ID'), state, nonce,
   code_challenge: createHash('sha256').update(verifier).digest('base64url'), code_challenge_method: 'S256' });
 writeFileSync('../whop-merchant-login-url.txt', `https://api.whop.com/oauth/authorize?${params}`);
