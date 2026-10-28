@@ -23,7 +23,7 @@ export async function identity(tokens: Tokens, nonce: string) {
   if (!response.ok) throw new Error('Unable to verify profile');
   const profile = await response.json();
   if (profile.sub !== payload.sub || typeof profile.email !== 'string' || profile.email_verified !== true) throw new Error('Verified email required');
-  return { sub: profile.sub as string, email: profile.email as string, name: typeof profile.name === 'string' ? profile.name : undefined };
+  return { sub: profile.sub as string, email: profile.email as string, emailVerified: true as const, name: typeof profile.name === 'string' ? profile.name : undefined };
 }
 export async function revoke(tokens: Tokens) {
   if (!tokens.refresh_token) return;

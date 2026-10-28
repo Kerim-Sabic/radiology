@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { accessFor, checkout } from './billing.js';
-import { beginSignIn, cookie, finishSignIn, FLOW_COOKIE, hash, session, SESSION_COOKIE } from './auth.js';
+import { beginSignIn, cookie, finishSignIn, FLOW_COOKIE, hash, random, session, SESSION_COOKIE } from './auth.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
 
@@ -12,6 +12,13 @@ const redirect = (url: string, cookies: string[] = []) => {
   for (const c of cookies) headers.append('Set-Cookie', c);
   return new Response(null, { status: 303, headers });
 };
+function authResult(ok: boolean, cookies: string[]) {
+  const nonce = random(), destination = `${appOrigin()}${ok ? '/' : '/?signin=failed'}`;
+  const headers = new Headers({ 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'private, no-store', 'Referrer-Policy': 'no-referrer',
+    'Content-Security-Policy': `default-src 'none'; script-src 'nonce-${nonce}'; style-src 'unsafe-inline'; base-uri 'none'; frame-ancestors 'none'` });
+  for (const value of cookies) headers.append('Set-Cookie', value);
+  return new Response(`<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>${ok ? 'Signed in' : 'Sign-in interrupted'} · radiology.monster</title></head><body style="font:16px system-ui;background:#0c1016;color:#e7ebf0;padding:40px"><h1>${ok ? 'You’re signed in.' : 'Sign-in wasn’t completed.'}</h1><p>${ok ? 'Returning to your study space…' : 'Close this window and try signing in again.'}</p><a style="color:#8bd4ff" href="${destination}">Return to radiology.monster</a><script nonce="${nonce}">if(window.opener){window.opener.postMessage({type:'rvm-auth',ok:${ok}},${JSON.stringify(appOrigin())});window.close();}else{location.replace(${JSON.stringify(destination)});}</script></body></html>`, { headers });
+}
 export async function handle(request: Request): Promise<Response> {
   const path = new URL(request.url).pathname.replace(/\/$/, '');
   try {
@@ -27,8 +34,8 @@ export async function handle(request: Request): Promise<Response> {
       return redirect(flow.url, [flow.cookie]);
     }
     if (path === '/api/auth/callback' && request.method === 'GET') {
-      try { return redirect(appOrigin(), [await finishSignIn(request), cookie(FLOW_COOKIE, '', 0)]); }
-      catch { return redirect(`${appOrigin()}/?signin=failed`, [cookie(FLOW_COOKIE, '', 0)]); }
+      try { return authResult(true, [await finishSignIn(request), cookie(FLOW_COOKIE, '', 0)]); }
+      catch { return authResult(false, [cookie(FLOW_COOKIE, '', 0)]); }
     }
     const user = await session(request);
     if (path === '/api/logout' && request.method === 'POST') {
@@ -39,14 +46,14 @@ export async function handle(request: Request): Promise<Response> {
     }
     if (!user) return json({ user: null, error: 'Please sign in. Signing in on another device ends your previous session.' }, 401);
     if (path === '/api/session' && request.method === 'GET') {
-      const access = readiness().billing ? await accessFor(user.userId) : { active: false };
+      const access = await accessFor(user.userId);
       return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing });
     }
-    if (!readiness().billing) return json({ error: 'Payments are being configured. Please try again shortly.' }, 503);
     if (path === '/api/access' && request.method === 'GET') {
       const access = await accessFor(user.userId);
       return json(access, access.active ? 200 : 402);
     }
+    if (!readiness().billing) return json({ error: 'Payments are being configured. Please try again shortly.' }, 503);
     if (path === '/api/billing/refresh' && request.method === 'POST') {
       if (!await rateLimit(`refresh:${user.userId}`, 15, 60)) return json({ error: 'Please wait a moment before checking again.' }, 429);
       return json({ access: await accessFor(user.userId, true) });
@@ -58,7 +65,7 @@ export async function handle(request: Request): Promise<Response> {
       const existing = await accessFor(user.userId, true);
       if (existing.active) return json({ error: 'You already have access. Manage your plan from your account.' }, 409);
       if (existing.pendingMembership) return json({ error: 'You have an existing membership. Open billing in Whop to check its payment before purchasing again.' }, 409);
-      return json({ url: await checkout(user.userId, body.data.tier) });
+      return json(await checkout(user.userId, body.data.tier));
     }
     return json({ error: 'Not found' }, 404);
   } catch (error) {

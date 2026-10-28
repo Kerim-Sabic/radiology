@@ -17,7 +17,7 @@ vi.mock('@whop/sdk', () => ({ WhopClient: class {
   memberships = { list: async () => ({ data: fake.memberships, async *[Symbol.asyncIterator]() { yield* fake.memberships; } }) };
   payments = { list: async () => ({ data: fake.payments }) };
   variants = { retrieve: async ({ id }: { id: string }) => ({ id, account: { id: 'biz_test' }, currency: 'usd', plan_type: id === 'plan_monthly' ? 'renewal' : 'one_time', billing_period: id === 'plan_monthly' ? 30 : null, initial_price: id === 'plan_monthly' ? 0 : 100, renewal_price: id === 'plan_monthly' ? 10 : 0, adaptive_pricing_enabled: false }) };
-  checkoutConfigurations = { create: async (body: unknown, options: unknown) => { fake.checkoutCalls.push({ body, options }); return { purchase_url: 'https://whop.com/checkout/ch_test' }; } };
+  checkoutConfigurations = { create: async (body: unknown, options: unknown) => { fake.checkoutCalls.push({ body, options }); return { id: 'ch_test', purchase_url: 'https://whop.com/checkout/ch_test' }; } };
 } }));
 
 import { accessFor, checkout, membershipAccess, paymentGrantsAccess, safeWhopUrl, validatePlan } from '../server/billing';
@@ -29,7 +29,7 @@ const member = (changes = {}) => ({ id: 'mem_test', account: { id: 'biz_test' },
 
 beforeEach(() => {
   fake.records.clear(); fake.memberships = []; fake.payments = []; fake.checkoutCalls = [];
-  for (const [k, v] of Object.entries({ APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_LIFETIME_PLAN_ID: 'plan_lifetime', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test' })) vi.stubEnv(k, v);
+  for (const [k, v] of Object.entries({ ADMIN_EMAILS: '', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_LIFETIME_PLAN_ID: 'plan_lifetime', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test' })) vi.stubEnv(k, v);
 });
 afterAll(() => vi.unstubAllEnvs());
 
@@ -64,6 +64,26 @@ describe('paid access policy', () => {
     fake.memberships = [member()]; fake.payments = [{ status: 'paid', substatus: 'succeeded' }];
     await expect(checkout('u', 'lifetime')).rejects.toThrow('already have access');
   });
+  it('returns a reusable embedded checkout configuration with the approved return origin', async () => {
+    fake.records.set('rvm:whop-user:u', 'user_test');
+    expect(await checkout('u', 'lifetime')).toEqual({ id: 'ch_test', url: 'https://whop.com/checkout/ch_test', returnUrl: 'https://radiology.monster/?checkout=returned' });
+  });
+  it('grants free admin access only to the exact verified email and revokes it when removed', async () => {
+    vi.stubEnv('ADMIN_EMAILS', 'kerim.sabic@gmail.com');
+    const userId = hash('whop:user_admin');
+    fake.records.set(`rvm:identity:${userId}`, { email: 'kerim.sabic@gmail.com', emailVerified: false });
+    expect((await accessFor(userId)).active).toBe(false);
+    fake.records.set(`rvm:identity:${userId}`, { email: 'kerim.sabic@gmail.com.evil.test', emailVerified: true });
+    expect((await accessFor(userId)).active).toBe(false);
+    await createSession({ sub: 'user_admin', email: 'Kerim.Sabic@gmail.com', emailVerified: true });
+    expect(await accessFor(userId)).toEqual({ active: true, role: 'admin', expiresAt: null });
+    await expect(checkout(userId, 'monthly')).rejects.toThrow('already have access');
+    expect(fake.checkoutCalls).toHaveLength(0);
+    vi.stubEnv('WHOP_MONTHLY_PLAN_ID', '');
+    expect((await accessFor(userId)).active).toBe(true);
+    vi.stubEnv('ADMIN_EMAILS', '');
+    expect((await accessFor(userId)).active).toBe(false);
+  });
   it('rejects a changed price and unsafe redirect hosts', () => {
     expect(() => validatePlan({ account: { id: 'biz_test' }, currency: 'usd', plan_type: 'renewal', billing_period: 30, initial_price: 10, renewal_price: 10 } as Whop.Variant, 'monthly')).toThrow();
     for (const url of ['https://whop.com.evil.test/', 'javascript:alert(1)', 'http://whop.com/']) expect(safeWhopUrl(url)).toBeNull();
@@ -72,16 +92,42 @@ describe('paid access policy', () => {
 
 describe('sessions and request boundaries', () => {
   const request = (cookie: string, path = '/api/session', method = 'GET', body?: unknown, origin = 'https://radiology.monster') => new Request(`https://radiology.monster${path}`, { method, headers: { Cookie: cookie.split(';')[0], Origin: origin, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+  it('rejects unverified identities even for the configured admin', async () => {
+    vi.stubEnv('ADMIN_EMAILS', 'kerim.sabic@gmail.com');
+    await expect(createSession({ sub: 'user_admin', email: 'kerim.sabic@gmail.com', emailVerified: false })).rejects.toThrow('Verified email required');
+    expect(fake.records.size).toBe(0);
+  });
+  it('returns admin access from the session and content APIs without creating a payment', async () => {
+    vi.stubEnv('ADMIN_EMAILS', 'kerim.sabic@gmail.com');
+    const token = await createSession({ sub: 'user_admin', email: 'kerim.sabic@gmail.com', emailVerified: true });
+    expect(await (await handle(request(token))).json()).toMatchObject({ access: { active: true, role: 'admin' } });
+    expect((await handle(request(token, '/api/access'))).status).toBe(200);
+    expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'lifetime' }))).status).toBe(409);
+    expect(fake.checkoutCalls).toHaveLength(0);
+  });
+  it('finishes popup sign-in with a secure cookie and an origin-bound notification', async () => {
+    const flow = await beginSignIn(), state = new URL(flow.url).searchParams.get('state')!;
+    fake.exchange.mockResolvedValue({}); fake.identity.mockResolvedValue({ sub: 'user_test', email: 'test@example.com', emailVerified: true }); fake.revoke.mockResolvedValue(undefined);
+    const response = await handle(request(flow.cookie, `/api/auth/callback?state=${state}&code=test`));
+    const html = await response.text();
+    expect(response.status).toBe(200);
+    expect(response.headers.get('set-cookie')).toContain('__Host-rvm-session=');
+    expect(response.headers.get('content-security-policy')).toContain("script-src 'nonce-");
+    expect(html).toContain("type:'rvm-auth',ok:true");
+    expect(html).toContain('"https://radiology.monster"');
+    expect(html).not.toContain('test@example.com');
+    expect(html).not.toContain('__Host-rvm-session=');
+  });
   it('invalidates the previous device but allows the latest session', async () => {
-    const old = await createSession({ sub: 'user_test', email: 'test@example.com' });
-    const latest = await createSession({ sub: 'user_test', email: 'test@example.com' });
+    const old = await createSession({ sub: 'user_test', email: 'test@example.com', emailVerified: true });
+    const latest = await createSession({ sub: 'user_test', email: 'test@example.com', emailVerified: true });
     expect(await session(request(old))).toBeNull();
     expect(await session(request(latest))).toMatchObject({ email: 'test@example.com' });
     expect(latest).toContain('HttpOnly; Secure; SameSite=Lax');
   });
   it('blocks anonymous and forged sessions, cross-origin checkout, and arbitrary prices', async () => {
     expect((await handle(request('__Host-rvm-session=forged'))).status).toBe(401);
-    const token = await createSession({ sub: 'user_test', email: 'test@example.com' });
+    const token = await createSession({ sub: 'user_test', email: 'test@example.com', emailVerified: true });
     expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'monthly' }, 'https://evil.test'))).status).toBe(403);
     expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'monthly', amount: 0 }))).status).toBe(400);
     expect((await handle(request(token, '/api/access'))).status).toBe(402);
@@ -92,7 +138,7 @@ describe('sessions and request boundaries', () => {
     expect(url.searchParams.get('code_challenge_method')).toBe('S256');
     expect(url.searchParams.get('scope')).toBe('openid email profile');
     const callback = new Request(`https://radiology.monster/api/auth/callback?state=${state}&code=test`, { headers: { Cookie: flow.cookie.split(';')[0] } });
-    fake.exchange.mockResolvedValue({}); fake.identity.mockResolvedValue({ sub: 'user_test', email: 'test@example.com' }); fake.revoke.mockResolvedValue(undefined);
+    fake.exchange.mockResolvedValue({}); fake.identity.mockResolvedValue({ sub: 'user_test', email: 'test@example.com', emailVerified: true }); fake.revoke.mockResolvedValue(undefined);
     await finishSignIn(callback);
     expect(fake.records.has(`rvm:oauth:${hash(state)}`)).toBe(false);
     await expect(finishSignIn(callback)).rejects.toThrow('Expired');

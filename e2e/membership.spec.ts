@@ -8,10 +8,41 @@ test('anonymous visitors see prices and email sign-in without loading study cont
   const dataRequests: string[]=[];
   page.on('request', r=> { if(/\/(packs|content)\//.test(r.url())) dataRequests.push(r.url()); });
   await page.goto('/');
-  await expect(page.getByRole('link',{name:'Continue with email'})).toHaveAttribute('href','/api/auth/email');
-  await expect(page.getByRole('button',{name:'Choose monthly'})).toBeDisabled();
+  await expect(page.getByRole('button',{name:'Choose monthly'})).toBeEnabled();
   await expect(page.getByText('$10',{exact:false})).toHaveCount(2);
   expect(dataRequests).toEqual([]);
+  await page.getByRole('button',{name:'Get lifetime access'}).click();
+  await expect(page.getByRole('dialog')).toBeVisible();
+  await expect(page.getByRole('dialog')).toContainText('Lifetime · $100 once');
+  await expect(page.getByRole('button',{name:'Continue with email'})).toBeEnabled();
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+});
+test('sign-in window returns to the selected plan without leaving the site', async ({page, context}) => {
+  let signedIn = false;
+  await page.route('**/api/config',route=>route.fulfill({json:{auth:true,billing:true}}));
+  await page.route('**/api/session',route=>route.fulfill({status:signedIn?200:401,json:signedIn?{user:{name:'Member',email:'member@example.com'},access:{active:false},billingReady:true}:{user:null}}));
+  await context.route('**/api/auth/email',route=> { signedIn=true; return route.fulfill({contentType:'text/html',body:`<script>opener.postMessage({type:'rvm-auth',ok:true},location.origin);window.close();</script>`}); });
+  let tier: unknown;
+  await page.route('**/api/billing/checkout',route=>{tier=route.request().postDataJSON();return route.fulfill({json:{id:'ch_test',returnUrl:'http://localhost:4317/?checkout=returned'}});});
+  await page.route('**/*whop.com/**',route=>route.abort());
+  await page.goto('/');
+  await page.getByRole('button',{name:'Get lifetime access'}).click();
+  await page.getByRole('button',{name:'Continue with email'}).click();
+  await expect(page.getByRole('heading',{name:'Your study space is almost ready.'})).toBeVisible();
+  expect(tier).toEqual({tier:'lifetime'});
+  expect(new URL(page.url()).origin).toBe('http://localhost:4317');
+  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await expect(page.getByText('$100 USD once for lifetime access.',{exact:false})).toBeVisible();
+  await page.getByRole('button',{name:'Change plan'}).click();
+  await expect(page.getByRole('button',{name:'Choose monthly'})).toBeEnabled();
+});
+test('verified admin enters the app without a purchase', async ({page}) => {
+  await account(page,true);
+  await page.route('**/api/session',route=>route.fulfill({json:{user:{name:'Kerim',email:'kerim.sabic@gmail.com'},access:{active:true,role:'admin'},billingReady:true}}));
+  await page.goto('/');
+  await expect(page.getByText('Admin · free access',{exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Choose monthly'})).not.toBeVisible();
 });
 test('signed-in customer selects only the approved monthly tier', async ({page}) => {
   await account(page,true);

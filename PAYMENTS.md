@@ -1,6 +1,8 @@
 # Accounts and payments
 
-Radiology uses Whop email sign-in (OIDC with PKCE), Whop hosted checkout, and Upstash Redis for sessions. Supabase and Google OAuth are not required.
+Radiology uses Whop email sign-in (OIDC with PKCE), Whop Elements embedded checkout, and Upstash Redis for sessions. Supabase and Google OAuth are not required. Card entry happens inside Whop's secure iframe on radiology.monster; payment details never pass through this application's server.
+
+Visitors can choose a plan before signing in. The account dialog opens email verification in a separate window, then continues to the selected plan automatically. A full-page sign-in fallback is used if the browser blocks the window. Callback messages are bound to the app origin and the opened window, contain no credentials, and only trigger a fresh server session check.
 
 ## Offers
 
@@ -20,11 +22,13 @@ The Whop app is a public OAuth client. Register `https://www.radiology.monster/a
 
 ## Access enforcement
 
+`ADMIN_EMAILS` is a server-only comma-separated allowlist. Production includes `kerim.sabic@gmail.com`. A successful OIDC sign-in must provide a verified email matching this list exactly (case insensitive). That identity receives all app features without a payment, with an “Admin · free access” badge. Admin status is checked on every access request and is never cached. An existing user must sign in again after this feature is deployed so the verified identity is recorded. Removing the email revokes the exemption immediately. Client email input, checkout parameters, or a matching display name cannot grant admin access.
+
 An opaque secure HttpOnly cookie identifies a Redis session. A new sign-in replaces the user's active device pointer. Previous devices lose authorization on their next request, and the app checks every 30 seconds and on focus. Already downloaded content cannot be remotely erased.
 
 The server verifies the exact business, product and allowlisted plan, membership status, expiration, and the latest paid charge. Refunded or disputed payments do not unlock access. Results are cached for at most 30 seconds; returning from checkout triggers immediate checks. Webhooks are not required for this implementation. If Whop or Redis cannot verify access, access fails closed.
 
-Checkout return parameters never grant access. Checkout creation validates the live plan price and uses a repeatable idempotency key. Existing active or payment-pending memberships cannot create another checkout from the app. Customers should use the same Whop account for sign-in and checkout.
+Checkout return parameters and browser completion events never grant access. Checkout creation validates the live plan price and uses a repeatable idempotency key. The browser receives only the checkout configuration ID and return URL; Elements renders the payment form with the verified buyer email locked. Existing active or payment-pending memberships cannot create another checkout from the app. Customers should use the same Whop account for sign-in and checkout. A completion event triggers server-side membership/payment verification; bank authentication may require an additional window or redirect.
 
 Vercel routing middleware protects `/packs/*` and `/content/*`, including direct asset requests, before the CDN. Do not deploy this application as an unprotected static site. Published builds omit the textbook and the six noncommercial RICORD subjects; source files remain unchanged.
 

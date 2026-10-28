@@ -1,13 +1,13 @@
 import { WhopClient, type Whop } from '@whop/sdk';
-import { appOrigin, plans, required, type Tier } from './config.js';
+import { appOrigin, plans, readiness, required, type Tier } from './config.js';
 import { db } from './store.js';
-import { hash, random } from './auth.js';
+import { hash, isAdmin, random } from './auth.js';
 import { merchantToken } from './oauth.js';
 
 export async function whop() {
   return new WhopClient({ token: await merchantToken(), apiVersionDate: '2026-10-15-1', timeoutInSeconds: 15, maxRetries: 1 });
 }
-export interface Access { active: boolean; tier?: Tier; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
+export interface Access { active: boolean; role?: 'admin'; tier?: Tier; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
 
 export function membershipAccess(m: Pick<Whop.Membership, 'account' | 'plan_id' | 'status' | 'current_period_end' | 'expires_at' | 'manage_url'>, now = Date.now()): Access {
   if (m.account.id !== required('WHOP_ACCOUNT_ID')) return { active: false };
@@ -31,6 +31,10 @@ export function validatePlan(plan: Whop.Variant, tier: Tier) {
 }
 
 export async function accessFor(userId: string, fresh = false): Promise<Access> {
+  // Only server-recorded, verified identities can match the private admin allowlist.
+  // Admin access is not cached, so removing an allowlist entry takes effect immediately.
+  if (await isAdmin(userId)) return { active: true, role: 'admin', expiresAt: null };
+  if (!readiness().billing) return { active: false };
   if (!fresh) {
     const cached = await db().get<Access>(`rvm:access:${userId}`);
     if (cached && (!cached.expiresAt || Date.parse(cached.expiresAt) > Date.now())) return cached;
@@ -79,7 +83,8 @@ export async function checkout(userId: string, tier: Tier) {
   }, { idempotencyKey: orderId });
   const url = safeWhopUrl(config.purchase_url);
   if (!url) throw new Error('Whop did not return a checkout URL');
-  return url;
+  if (!/^ch_[A-Za-z0-9]+$/.test(config.id)) throw new Error('Whop did not return an embedded checkout configuration');
+  return { id: config.id, url, returnUrl: `${appOrigin()}/?checkout=returned` };
 }
 
 export function paymentGrantsAccess(payment: Pick<Whop.Payment, 'status' | 'substatus'>) {
