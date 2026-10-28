@@ -234,7 +234,7 @@ export class ProgressRepository {
   /** Merge an export; existing records with the same id are replaced only by newer copies. */
   async importAll(data: unknown): Promise<{ attempts: number; bookmarks: number; notes: number; reviews: number }> {
     const d = data as Record<string, unknown>;
-    if (!d || d.format !== EXPORT_FORMAT) throw new StorageError('Not a Radiology Visual Mastery progress export.');
+    if (!d || d.format !== EXPORT_FORMAT) throw new StorageError('Not a radiology.monster progress export.');
     if (typeof d.version !== 'number' || d.version > EXPORT_VERSION) throw new StorageError(`Unsupported export version ${String(d.version)}.`);
     const db = await this.dbp;
     const counts = { attempts: 0, bookmarks: 0, notes: 0, reviews: 0 };

@@ -260,8 +260,8 @@ export default function BookReader() {
                       style={{
                         pointerEvents: 'auto',
                         cursor: 'pointer',
-                        borderColor: selFigure === f.id ? 'var(--accent)' : 'rgba(94,196,255,0.35)',
-                        background: selFigure === f.id ? 'rgba(94,196,255,0.10)' : 'transparent',
+                        borderColor: selFigure === f.id ? 'var(--accent)' : 'rgba(var(--accent-rgb), 0.35)',
+                        background: selFigure === f.id ? 'rgba(var(--accent-rgb), 0.1)' : 'transparent',
                         left: `${f.bbox![0] * 100}%`,
                         top: `${f.bbox![1] * 100}%`,
                         width: `${(f.bbox![2] - f.bbox![0]) * 100}%`,
@@ -287,7 +287,7 @@ export default function BookReader() {
       <aside className="ws-right" style={{ width: 'auto', gridArea: 'auto', minHeight: 0, overflowY: 'auto' }} aria-label="On this page">
         <div className="tab-body stack" style={{ gap: 14 }}>
           {quizQ ? (
-            <div className="card stack" style={{ gap: 8, borderColor: 'rgba(94,196,255,0.5)' }}>
+            <div className="card stack" style={{ gap: 8, borderColor: 'rgba(var(--accent-rgb), 0.5)' }}>
               <b>❓ Chapter case quiz</b>
               <small className="muted">Study the images on this page, write your answer, then open the book's answer page.</small>
               <textarea value={quizAnswer} onChange={(e) => setQuizAnswer(e.target.value)} placeholder="Your answer…" />

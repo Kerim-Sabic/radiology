@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { RotateCcw } from 'lucide-react';
-import type { ViewerEngine, SeriesSource, ViewKind } from '../../viewer/engine';
+import { PLANE_COLORS, type ViewerEngine, type SeriesSource, type ViewKind } from '../../viewer/engine';
+import { Volume3DControls, type ThreeDProps } from './Volume3DControls';
 import type { Series } from '../../schema/content';
 import type { LoadedTarget } from '../../grading/spatialGrader';
 import type { SeriesIndex } from '../../grading/seriesIndex';
@@ -63,6 +64,8 @@ interface Props {
   kind: ViewKind;
   startIndex: number;
   focused: boolean;
+  /** Enlarged in the grid (the others sit in a strip beside it). */
+  big?: boolean;
   onFocus: () => void;
   overlay: PanelOverlayProps;
   seriesOptions: Array<{ uid: string; label: string }>;
@@ -71,6 +74,10 @@ interface Props {
   assessMasked?: boolean;
   /** A plain click (not a drag) on the image, in canvas pixels. */
   onImageClick?: (canvas: Vec2) => void;
+  /** Double-click on the image (the workstation shows that point in every linked view). */
+  onImageDoubleClick?: (canvas: Vec2) => void;
+  /** 3D panel: rendering controls, cut and structure models. */
+  threeD?: ThreeDProps;
 }
 
 const TONE: Record<MarkBadge['tone'], string> = { ok: '#4fd18b', bad: '#ff6b6b', warn: '#f2c14e', neutral: '#aab3bf' };
@@ -83,6 +90,9 @@ export function ViewportPanel(p: Props) {
   const [probe, setProbe] = useState<{ value: number; unit: string } | null>(null);
   const [size, setSize] = useState<[number, number]>([0, 0]);
   const downAt = useRef<[number, number, number] | null>(null);
+  /** Set by the 3D quiz while it waits for a click on a model. */
+  const clickRef = useRef<((c: Vec2) => void) | null>(null);
+  const pickRaf = useRef(0);
 
   useEffect(() => {
     if (!el.current) return;
@@ -171,7 +181,19 @@ export function ViewportPanel(p: Props) {
     const r = el.current.getBoundingClientRect();
     const c: [number, number] = [e.clientX - r.left, e.clientY - r.top];
     setProbe(engine.probeValue(panelId, c));
-    if (anatomyShapes.length && !quiz) {
+    if (p.kind === '3d') {
+      const a3 = engine.anatomy3dState(panelId);
+      if (!a3 || a3.quiz || !a3.structures.some((x) => x.shown)) {
+        if (hover) setHover(null);
+        return;
+      }
+      cancelAnimationFrame(pickRaf.current);
+      pickRaf.current = requestAnimationFrame(() => {
+        const id = engine.anatomy3d(panelId)?.pick(c) ?? null;
+        const hit = id ? a3.structures.find((x) => x.id === id) : null;
+        setHover(hit ? { id: hit.id, label: hit.label, x: c[0], y: c[1], tag: hit.tag } : null);
+      });
+    } else if (anatomyShapes.length && !quiz) {
       // Name the most specific (smallest) structure under the cursor.
       let best: Shape | null = null;
       let bestArea = Infinity;
@@ -187,6 +209,8 @@ export function ViewportPanel(p: Props) {
     } else if (hover) setHover(null);
   };
 
+  const refLines = st?.ready && p.kind !== '3d' ? engine.referenceLines(panelId) : [];
+  const planeColor = p.kind !== 'stack' && p.kind !== '3d' ? PLANE_COLORS[p.kind] : null;
   const s = p.series;
   const acq = s.acquisition;
   const derived = p.kind !== 'stack' && p.kind !== '3d' && !isAcquisitionPlane(s, p.kind);
@@ -195,7 +219,7 @@ export function ViewportPanel(p: Props) {
   const pct = progress ? Math.round(((progress.done + progress.failed) / Math.max(1, progress.total)) * 100) : 0;
 
   return (
-    <div ref={wrap} className={`vpanel${p.focused ? ' focused' : ''}`} onMouseDown={p.onFocus} onFocus={p.onFocus} data-panel={panelId}>
+    <div ref={wrap} className={`vpanel${p.focused ? ' focused' : ''}${p.big ? ' big' : ''}`} onMouseDown={p.onFocus} onFocus={p.onFocus} data-panel={panelId}>
       <div
         ref={el}
         className="vp-el"
@@ -206,9 +230,15 @@ export function ViewportPanel(p: Props) {
         onMouseUp={(e) => {
           const d = downAt.current;
           downAt.current = null;
-          if (!d || !p.onImageClick || !el.current || Math.hypot(e.clientX - d[0], e.clientY - d[1]) > 5 || Date.now() - d[2] > 600) return;
+          const click = p.kind === '3d' ? clickRef.current : p.onImageClick;
+          if (!d || !click || !el.current || Math.hypot(e.clientX - d[0], e.clientY - d[1]) > 5 || Date.now() - d[2] > 600) return;
           const r = el.current.getBoundingClientRect();
-          p.onImageClick([e.clientX - r.left, e.clientY - r.top]);
+          click([e.clientX - r.left, e.clientY - r.top]);
+        }}
+        onDoubleClick={(e) => {
+          if (!p.onImageDoubleClick || !el.current || p.kind === '3d') return;
+          const r = el.current.getBoundingClientRect();
+          p.onImageDoubleClick([e.clientX - r.left, e.clientY - r.top]);
         }}
         onMouseLeave={() => {
           setProbe(null);
@@ -293,6 +323,13 @@ export function ViewportPanel(p: Props) {
           <span className="faint"> · {hover.tag}</span>
         </div>
       ) : null}
+      {refLines.length ? (
+        <svg className="vp-svg" aria-hidden>
+          {refLines.map((l, i) => (
+            <line key={i} x1={l.a[0]} y1={l.a[1]} x2={l.b[0]} y2={l.b[1]} stroke={l.color} strokeWidth={1.25} opacity={0.85} />
+          ))}
+        </svg>
+      ) : null}
       {shapes.length || badgePts.length ? (
         <svg className="vp-svg" aria-hidden>
           {shapes.map((sh, i) => {
@@ -328,6 +365,8 @@ export function ViewportPanel(p: Props) {
         <div className="vp-corner tl">
           <div>
             <b>{s.modality}</b> {p.kind === 'stack' ? '' : `· ${p.kind.toUpperCase()}`}
+            {planeColor ? <span className="plane-dot" style={{ background: planeColor }} title="Colour of this plane's line in the other views" /> : null}
+            {st?.obliqueDeg ? <span className="vp-tag info" style={{ marginLeft: 6 }}>oblique {st.obliqueDeg}°</span> : null}
           </div>
           <div>{s.description || 'Series'}</div>
           {acq.SequenceName || acq.ScanningSequence ? <div className="faint">{[acq.ScanningSequence, acq.SequenceVariant, acq.SequenceName].filter(Boolean).join(' / ')}</div> : null}
@@ -335,7 +374,7 @@ export function ViewportPanel(p: Props) {
           {s.role === 'vendor_reformat' ? <span className="vp-tag info">Vendor reformat/MIP series</span> : null}
           {derived ? <span className="vp-tag info">Reformatted from {s.description ? 'the acquired series' : 'source slices'} (MPR)</span> : null}
         </div>
-        <div className="vp-corner tr">
+        <div className="vp-corner tr" hidden={p.kind === '3d' && !!p.threeD}>
           {st?.kind !== '3d' ? (
             <div>
               {p.kind === 'stack' ? 'Im' : 'Slice'} {(st?.index ?? 0) + 1}/{st?.count ?? s.instances.length}
@@ -344,6 +383,11 @@ export function ViewportPanel(p: Props) {
           {st?.window ? (
             <div>
               W {Math.round(st.window.width)} · L {Math.round(st.window.center)}
+            </div>
+          ) : null}
+          {st?.slab ? (
+            <div className="vp-tag info">
+              {st.slab.blend === 'mip' ? 'MIP' : st.slab.blend === 'minip' ? 'MinIP' : 'Average'} {st.slab.mm} mm slab
             </div>
           ) : null}
           {s.geometry.sliceSpacing && p.kind !== '3d' ? <div className="faint">{s.geometry.sliceSpacing.toFixed(1)} mm spacing</div> : null}
@@ -391,6 +435,9 @@ export function ViewportPanel(p: Props) {
             aria-label="Slice"
           />
         </div>
+      ) : null}
+      {p.kind === '3d' && st?.ready && p.threeD ? (
+        <Volume3DControls engine={engine} panelId={panelId} seriesUid={s.uid} modality={s.modality} threeD={p.threeD} clickRef={clickRef} />
       ) : null}
       {p.seriesOptions.length > 1 && p.onPickSeries ? (
         <div className="vp-picker">

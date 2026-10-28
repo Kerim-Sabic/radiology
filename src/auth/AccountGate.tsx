@@ -109,7 +109,7 @@ export function AccountGate({ children }: { children: ReactNode }) {
   if (account?.access.active) return <AccountContext.Provider value={{ account, logout }}>{children}</AccountContext.Provider>;
   if (loading) return <div className="membership-loading" role="status"><ScanLine size={30} /><p>Opening your study space…</p></div>;
   return <main className="membership-page">
-    <header className="membership-header"><a className="membership-brand" href="/"><ScanLine size={25} /> Radiology Visual Mastery</a><span>Built for deliberate practice</span></header>
+    <header className="membership-header"><a className="membership-brand" href="/"><ScanLine size={25} /> radiology.monster</a><span>Built for deliberate practice</span></header>
     <div className="membership-layout">
       <section className="membership-intro">
         <span className="membership-eyebrow">YOUR RADIOLOGY STUDY SPACE</span>

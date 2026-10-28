@@ -41,6 +41,18 @@ export default function GuidePage() {
             <b>Structure notes</b> — pick any structure in the Anatomy tab or Atlas: how it looks, what it touches, one pitfall, and the chapter.
           </li>
           <li>
+            <b>Conditions</b> (top bar) — type a condition (pneumothorax, nodule, COVID-19…) to see every installed case that shows it, where it is, and the book pages that
+            teach it.
+          </li>
+          <li>
+            <b>Linked views</b> (chain button, K) — scrolling one view moves the others of the same patient; coloured lines show where each view cuts the others; double-click a
+            point to show it in every view. <b>Planes</b> sets a thick slab (MIP, MinIP, average, any thickness) and tilts the MPR planes to any angle for oblique structures.
+          </li>
+          <li>
+            <b>3D</b> (Layout → MPR + 3D) — <i>Cut</i> keeps only part of the body, or cuts at the slice you are reading and follows it as you scroll; <i>Structures</i> shows
+            only what you pick (heart, arteries, veins, airways, bones…) as coloured models, names what is under the cursor, and <i>Quiz me</i> asks you to name or find them.
+          </li>
+          <li>
             <b>Confidence check</b> — “sure but wrong” answers go to the top of your reviews.
           </li>
         </ul>

@@ -38,7 +38,9 @@ export function LibraryPage() {
     <div className="page-inner stack" style={{ gap: 16 }}>
       <div className="row wrap">
         <h1>Cases</h1>
-        <span className="faint">Titles stay neutral so a case never tells you its diagnosis.</span>
+        <span className="faint">
+          Titles stay neutral so a case never tells you its diagnosis. Looking for one? <Link to="/conditions">Search by condition</Link>.
+        </span>
         <span className="spacer" />
         <select value={region} onChange={(e) => setRegion(e.target.value)} aria-label="Region">
           <option value="all">All regions</option>

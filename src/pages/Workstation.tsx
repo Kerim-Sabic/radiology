@@ -37,9 +37,15 @@ import {
   Layers,
   Users,
   SkipForward,
+  Link2,
+  Link2Off,
+  Maximize2,
+  Minimize2,
 } from 'lucide-react';
+import '../styles/viewer3d.css';
 import { useApp } from '../app/AppContext';
 import { ViewerEngine, type ToolId, type ViewKind } from '../viewer/engine';
+import { PlanesControl } from '../components/ws/MprControls';
 
 const MARK_TOOLS = new Set<ToolId>(['point', 'arrow', 'box', 'outline', 'eraser']);
 import { arrowLabelHook } from '../viewer/csInit';
@@ -50,7 +56,9 @@ import { AnatomyPanel } from '../components/ws/AnatomyPanel';
 import { CoachPanel } from '../components/ws/CoachPanel';
 import type { CoachStep } from '../content/searchPatterns';
 import { canonicalAnatomyKey, imageFamily } from '../content/bookAnatomy';
-import { presetFor } from '../services/drill';
+import { presetFor, recordAnswer, type DrillCandidate } from '../services/drill';
+import { structureBase } from '../content/structureNotes';
+import { categoryFor } from '../components/ws/overlayShapes';
 import { landmarks, levelName, mapZ, matchLevels, type Landmark } from '../services/levelSync';
 import { IconButton, ProvenanceChip, Toast, useToast } from '../components/ui';
 import { gradeTask, measureWithinSlab, probeOfMark, type LoadedTarget } from '../grading/spatialGrader';
@@ -62,7 +70,7 @@ import { newId, type Attempt, type Mode } from '../services/progressRepository';
 import { anchorLabel as fmtAnchor } from '../services/curriculum';
 import type { ViewSnapshot } from '../viewer/engine';
 import { imageToPatient, patientToPlaneMm, polygonArea, polygonCentroid, type Vec2, type Vec3 } from '../lib/geometry';
-import { AI_DRAFT_BY, cleanLabel, isAiDraft } from '../lib/provenance';
+import { AI_DRAFT_BY, cleanLabel, isAiDraft, plainName } from '../lib/provenance';
 
 const centroid3 = (poly: Vec3[]): Vec3 => [
   poly.reduce((a, q) => a + q[0], 0) / poly.length,
@@ -108,6 +116,8 @@ export default function Workstation() {
   const task: Task | null = availableTasks.find((t) => t.id === sp.get('task')) ?? availableTasks[0] ?? tasks.find((t) => t.id === sp.get('task')) ?? null;
 
   const [layout, setLayout] = useState<Layout>('1');
+  /** One view enlarged with the others in a strip beside it (they stay live and linked). */
+  const [bigPanel, setBigPanel] = useState<string | null>(null);
   const [panels, setPanels] = useState<PanelDef[]>([]);
   const [focused, setFocused] = useState('p0');
   const [leftOpen, setLeftOpen] = useState(() => window.innerWidth > 860);
@@ -211,6 +221,7 @@ export default function Workstation() {
     setFocusSet(null);
     setCompare(null);
     setLayout('1');
+    setBigPanel(null);
     setPanels([{ id: 'p0', seriesUid: task.start.seriesUid, kind: 'stack' }]);
     setFocused('p0');
     setTab('task');
@@ -287,6 +298,7 @@ export default function Workstation() {
       return;
     }
     setLayout(l);
+    setBigPanel(null);
     setCompare(null);
     // Prefer other diagnostic series; fall back to scouts (clearly labelled) when nothing else exists.
     const others = [...caseSeries.filter((x) => x.uid !== primary && x.role !== 'scout'), ...caseSeries.filter((x) => x.uid !== primary && x.role === 'scout')];
@@ -315,8 +327,10 @@ export default function Workstation() {
   const taskTargetIds = useMemo(() => new Set(task?.targets.map((t) => t.targetId) ?? []), [task]);
   const refAllowed = !!session && rules.referenceVisible(session);
   const anatomyVisible = refAllowed && (anatomyOn ?? (mode === 'learn' || mode === 'review'));
+  // The 3D structure models need the outlines even when the 2D labels are switched off.
+  const anatomyNeeded = anatomyVisible || (refAllowed && layout === 'mpr3d');
   useEffect(() => {
-    if (!anatomyVisible || !catalog || !kase) return;
+    if (!anatomyNeeded || !catalog || !kase) return;
     const ids = catalog.anatomyTargetsForSeries(caseSeries.map((x) => x.uid));
     if (!ids.length) {
       setAnatomyTargets([]);
@@ -332,7 +346,7 @@ export default function Workstation() {
     return () => {
       cancelled = true;
     };
-  }, [anatomyVisible, catalog, kase, caseSeries]);
+  }, [anatomyNeeded, catalog, kase, caseSeries]);
   const anatomyIds = useMemo(() => new Set(anatomyTargets.map((t) => t.ref.id)), [anatomyTargets]);
   // Structures the anatomy layer already names, per series. Named parts (aortic arch, sigmoid colon, left ventricle)
   // also stand for their whole, so a machine-drawn whole outline from another pack is not drawn over them.
@@ -575,6 +589,27 @@ export default function Workstation() {
     setRightOpen(true);
   };
 
+  // 3D quiz answers count towards the structure's spaced-repetition drill box (saved one after another).
+  const drillChain = useRef<Promise<unknown>>(Promise.resolve());
+  const onAnswer3d = (t: LoadedTarget, correct: boolean) => {
+    if (!kase || !catalog) return;
+    const key = canonicalAnatomyKey(t.ref.classId);
+    const cand: DrillCandidate = {
+      caseId: kase.id,
+      targetId: t.ref.id,
+      seriesUid: t.ref.seriesUid,
+      key,
+      base: structureBase(key),
+      name: plainName(t.ref.label),
+      family: imageFamily(catalog.series.get(t.ref.seriesUid)?.modality ?? ''),
+      provenance: t.ref.provenance,
+      category: categoryFor(t.ref),
+    };
+    drillChain.current = drillChain.current
+      .then(async () => progress.saveDrillStats(recordAnswer(await progress.drillStats(), cand, correct)))
+      .catch((e) => toast.show(String(e?.message ?? e)));
+  };
+
   const addBookmark = async () => {
     const snap = engine.snapshot(focused);
     if (!snap || !kase) return;
@@ -587,7 +622,7 @@ export default function Workstation() {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       const tgt = e.target as HTMLElement;
-      if (tgt.closest('input, textarea, select, [contenteditable]') || labelReq) return;
+      if (tgt?.closest?.('input, textarea, select, [contenteditable]') || labelReq) return;
       const k = e.key;
       const tools: Record<string, ToolId> = { w: 'windowLevel', p: 'pan', z: 'zoom', s: 'scroll', m: 'point', a: 'arrow', b: 'box', o: 'outline', l: 'length', g: 'angle', e: 'eraser', x: 'crosshairs' };
       if ((e.ctrlKey || e.metaKey) && k.toLowerCase() === 'z') {
@@ -627,6 +662,7 @@ export default function Workstation() {
         if (MARK_TOOLS.has(tool) && session && !rules.canEditMarks(session)) return;
         engine.setTool(tool);
       }
+      else if (k === 'k') engine.setLinked(!engine.isLinked);
       else if (k === 'r') engine.reset(focused);
       else if (k === 'i') engine.invert(focused);
       else if (k === 'f') toggleFullscreen();
@@ -654,11 +690,21 @@ export default function Workstation() {
   useEffect(() => {
     if (!showId || shownRef.current === showId || !panels.length) return;
     const t = anatomyTargets.find((x) => x.ref.id === showId);
-    if (!t) return;
+    if (t) {
+      shownRef.current = showId;
+      setTab('anatomy');
+      setTimeout(() => isolateRef.current(t), 150);
+      return;
+    }
+    // A finding (from the condition search): open its series at the finding, with its outline highlighted.
+    const f = targets.get(showId);
+    if (!f || !f.ref.classId.startsWith('finding:')) return; // anatomy waits for the anatomy layer (shown alone there)
     shownRef.current = showId;
-    setTab('anatomy');
-    setTimeout(() => isolateRef.current(t), 150);
-  }, [showId, anatomyTargets, panels.length]);
+    if (!panels.some((p) => p.seriesUid === f.ref.seriesUid)) pickSeries(panels[0].id, f.ref.seriesUid);
+    setHighlight(new Set([showId]));
+    setTimeout(() => jumpWhenReady(f), 150);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showId, anatomyTargets, targets, panels.length]);
 
   // ---------------------------------------------------------------- coach + comparison patient
   const focusedUid = (panels.find((p) => p.id === focused) ?? panels[0])?.seriesUid ?? null;
@@ -756,6 +802,8 @@ export default function Workstation() {
   }
 
   const tool = engine.getTool();
+  const big = bigPanel && panels.some((x) => x.id === bigPanel) ? bigPanel : null;
+  const focusedKind = panels.find((x) => x.id === focused)?.kind ?? null;
   const focusedPanel = panels.find((p) => p.id === focused) ?? panels[0];
   const focusedSeries = focusedPanel ? catalog.series.get(focusedPanel.seriesUid) : undefined;
   const assessMasked = mode === 'assess' && !session.submitted;
@@ -885,6 +933,7 @@ export default function Workstation() {
     }
     const c = list[rank % list.length];
     setLayout('2');
+    setBigPanel(null);
     setPanels([
       { id: 'p0', seriesUid: primary, kind: 'stack' },
       { id: 'p1', seriesUid: c.seriesUid, kind: 'stack' },
@@ -1004,15 +1053,23 @@ export default function Workstation() {
           <RotateCcw size={17} />
         </IconButton>
         <span className="sep" />
-        <IconButton label="Single view" active={layout === '1'} onClick={() => applyLayout('1')}>
-          <SquareIcon size={17} />
-        </IconButton>
-        <IconButton label="Two-up comparison (same patient)" active={layout === '2'} onClick={() => applyLayout('2')}>
-          <Columns2 size={17} />
-        </IconButton>
-        <IconButton label="Four-up" active={layout === '4'} onClick={() => applyLayout('4')}>
-          <Grid2x2 size={17} />
-        </IconButton>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+            <button className="btn sm" aria-label="Layout" title="Layout">
+              {LAYOUTS.find(([l]) => l === layout)?.[2]} <ChevronDown size={12} />
+            </button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content className="popover" sideOffset={6}>
+              {LAYOUTS.map(([l, label, icon]) => (
+                <DropdownMenu.Item key={l} className="menu-item" onSelect={() => applyLayout(l)}>
+                  {icon} {label}
+                  {layout === l ? <span style={{ marginLeft: 'auto', paddingLeft: 10 }}>✓</span> : null}
+                </DropdownMenu.Item>
+              ))}
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
         <IconButton
           label={compare ? 'Stop comparing with another patient' : 'Compare with another patient at the same level'}
           active={!!compare}
@@ -1026,15 +1083,27 @@ export default function Workstation() {
             <SkipForward size={17} />
           </IconButton>
         ) : null}
-        <IconButton label="MPR: axial / coronal / sagittal" active={layout === 'mpr'} onClick={() => applyLayout('mpr')}>
-          <Box size={17} />
-        </IconButton>
-        <IconButton label="MPR + 3D" active={layout === 'mpr3d'} onClick={() => applyLayout('mpr3d')}>
-          <Rotate3d size={17} />
-        </IconButton>
         {layout === 'mpr' || layout === 'mpr3d' ? (
-          <IconButton label="Crosshairs (linked planes)" shortcut="X" active={tool === 'crosshairs'} onClick={() => engine.setTool('crosshairs')}>
+          <IconButton label="Crosshairs: click or drag to move all planes" shortcut="X" active={tool === 'crosshairs'} onClick={() => engine.setTool('crosshairs')}>
             <Crosshair size={17} />
+          </IconButton>
+        ) : null}
+        {panels.length > 1 ? (
+          <IconButton
+            label={engine.isLinked ? 'Views linked: scrolling one moves the others, lines show where each view cuts; double-click a point to show it everywhere. Click to unlink.' : 'Views unlinked. Click to link them.'}
+            shortcut="K"
+            active={engine.isLinked}
+            onClick={() => engine.setLinked(!engine.isLinked)}
+          >
+            {engine.isLinked ? <Link2 size={17} /> : <Link2Off size={17} />}
+          </IconButton>
+        ) : null}
+        {panels.some((x) => x.kind === 'axial' || x.kind === 'coronal' || x.kind === 'sagittal') ? (
+          <PlanesControl engine={engine} focused={focused} kind={focusedKind === 'axial' || focusedKind === 'coronal' || focusedKind === 'sagittal' ? focusedKind : null} />
+        ) : null}
+        {panels.length > 1 ? (
+          <IconButton label={big ? 'Back to the grid' : 'Enlarge the selected view (the others stay live beside it)'} active={!!big} onClick={() => setBigPanel(big ? null : focused)}>
+            {big ? <Minimize2 size={17} /> : <Maximize2 size={17} />}
           </IconButton>
         ) : null}
         <span className="spacer" />
@@ -1139,7 +1208,10 @@ export default function Workstation() {
 
       {/* ------------------------------------------------ viewports */}
       <section className="ws-main" aria-label="Image viewports">
-        <div className={`vgrid ${layout === '1' ? 'l1' : layout === '2' ? 'l2' : layout === 'mpr' ? 'l3mpr' : 'l4'}`}>
+        <div
+          className={`vgrid ${layout === '1' ? 'l1' : layout === '2' ? 'l2' : layout === 'mpr' ? 'l3mpr' : layout === 'mpr3d' ? 'l4 mpr3d' : 'l4'}${big ? ' big' : ''}`}
+          style={big ? { gridTemplateRows: `repeat(${panels.length - 1}, 1fr)` } : undefined}
+        >
           {panels.map((pd) => {
             const src = catalog.seriesSource(pd.seriesUid);
             const s = catalog.series.get(pd.seriesUid);
@@ -1155,7 +1227,13 @@ export default function Workstation() {
                 kind={pd.kind}
                 startIndex={startIndexFor(pd.seriesUid, task)}
                 focused={focused === pd.id}
+                big={big === pd.id}
                 onFocus={() => setFocused(pd.id)}
+                onImageDoubleClick={(c) => {
+                  // Marking tools keep double-click for themselves.
+                  if (tool === 'windowLevel' || tool === 'pan' || tool === 'zoom' || tool === 'scroll' || tool === 'crosshairs') engine.linkJump(pd.id, c);
+                }}
+                threeD={pd.kind === '3d' ? { allowed: refAllowed, loading: anatomyLoading, targets: anatomyTargets, onAnswer: onAnswer3d } : undefined}
                 overlay={{
                   // While one structure is isolated, nothing else is drawn on the image.
                   targets: anatomyProps.isolateId || anatomyProps.isolateSet ? [] : visibleTargets,
@@ -1360,7 +1438,9 @@ export default function Workstation() {
                   ['L G E', 'Length, Angle, Eraser'],
                   ['1–6', 'Window presets for this series'],
                   ['I  R  F', 'Invert, Reset, Full screen'],
-                  ['X', 'Crosshairs (MPR)'],
+                  ['X', 'Crosshairs: click to move all MPR planes'],
+                  ['K', 'Link / unlink views (scroll together, reference lines)'],
+                  ['Double-click', 'Show that point in every linked view'],
                   ['Ctrl+Z / Ctrl+Y', 'Undo / redo'],
                   ['H', 'Next hint (Practice)'],
                   ['Ctrl+Enter', 'Submit'],
@@ -1548,3 +1628,11 @@ function CaseInfo({
     </div>
   );
 }
+
+const LAYOUTS: Array<[Layout, string, React.ReactNode]> = [
+  ['1', 'Single view', <SquareIcon key="1" size={16} />],
+  ['2', 'Two-up comparison (same patient)', <Columns2 key="2" size={16} />],
+  ['4', 'Four-up', <Grid2x2 key="4" size={16} />],
+  ['mpr', 'MPR: axial / coronal / sagittal', <Box key="m" size={16} />],
+  ['mpr3d', 'MPR + 3D', <Rotate3d key="3" size={16} />],
+];

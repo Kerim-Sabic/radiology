@@ -1,19 +1,25 @@
-/* Radiology Visual Mastery — calm reading-room design system.
-   Near-black image canvas, graphite chrome, one accent. Correctness never relies on colour alone. */
+/* radiology.monster — calm reading-room design system.
+   Near-black image canvas, slate chrome, Monster Blue accent (Accent Purple only in brand gradients).
+   Correctness never relies on colour alone. */
 :root {
-  --bg: #0b0d10;
+  --bg: #020617;
   --canvas: #000;
-  --panel: #12151a;
-  --panel-2: #181c22;
-  --panel-3: #1f242c;
-  --line: #2a313b;
-  --line-strong: #3a4350;
-  --text: #e7ebf0;
-  --text-2: #aab3bf;
-  --text-3: #7d8794;
-  --accent: #5ec4ff;
-  --accent-ink: #04121c;
-  --accent-soft: rgba(94, 196, 255, 0.14);
+  --panel: #0a1122;
+  --panel-2: #0f172a;
+  --panel-3: #172136;
+  --line: #1e2a40;
+  --line-strong: #2f3d57;
+  --text: #f8fafc;
+  --text-2: #a7b3c5;
+  --text-3: #7f8ba0;
+  /* Text-safe tint of Monster Blue (≥ 5.8:1 on every panel); the true brand colours fill surfaces. */
+  --accent: #6e9bf7;
+  --accent-rgb: 110, 155, 247;
+  --accent-ink: #ffffff;
+  --accent-soft: rgba(var(--accent-rgb), 0.14);
+  --brand: #2563eb; /* Monster Blue */
+  --brand-2: #7c3aed; /* Accent Purple */
+  --brand-grad: linear-gradient(135deg, #2563eb 0%, #4f46e5 55%, #7c3aed 100%);
   --ok: #4fd18b;
   --warn: #f2c14e;
   --bad: #ff6b6b;
@@ -21,7 +27,8 @@
   --mine: #5ec4ff; /* learner marks */
   --radius: 8px;
   --radius-sm: 6px;
-  --font: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', var(--font);
   --mono: ui-monospace, 'SFMono-Regular', 'Cascadia Mono', Consolas, monospace;
   --toolbar-h: 48px;
   --focus: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
@@ -60,7 +67,8 @@ h2,
 h3,
 h4 {
   margin: 0;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-weight: 650;
   letter-spacing: -0.01em;
 }
 h1 {
@@ -129,8 +137,8 @@ small,
   cursor: not-allowed;
 }
 .btn.primary {
-  background: var(--accent);
-  border-color: var(--accent);
+  background: var(--brand-grad);
+  border-color: transparent;
   color: var(--accent-ink);
   font-weight: 600;
 }
@@ -177,7 +185,7 @@ small,
 .icon-btn[aria-pressed='true'],
 .icon-btn.active {
   background: var(--accent-soft);
-  border-color: rgba(94, 196, 255, 0.5);
+  border-color: rgba(var(--accent-rgb), 0.5);
   color: var(--accent);
 }
 .icon-btn:disabled {
@@ -227,7 +235,7 @@ label {
   white-space: nowrap;
 }
 .chip.accent {
-  border-color: rgba(94, 196, 255, 0.45);
+  border-color: rgba(var(--accent-rgb), 0.45);
   color: var(--accent);
   background: var(--accent-soft);
 }
@@ -330,17 +338,23 @@ button.chip[aria-pressed='true'] {
 .brand {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
+  font-family: var(--font-display);
+  font-size: 15.5px;
   font-weight: 650;
+  letter-spacing: -0.015em;
   color: var(--text);
   margin-right: 12px;
   text-decoration: none !important;
 }
 .brand-mark {
-  width: 22px;
+  display: block;
+  width: 21px;
   height: 22px;
-  border-radius: 6px;
-  background: radial-gradient(circle at 35% 35%, #9fe0ff 0, var(--accent) 45%, #0b5d87 100%);
+  flex: none;
+}
+.brand-tld {
+  color: var(--accent);
 }
 .navlink {
   display: inline-flex;
@@ -541,7 +555,7 @@ button.chip[aria-pressed='true'] {
   background: var(--panel-2);
 }
 .series-item[aria-current='true'] {
-  border-color: rgba(94, 196, 255, 0.5);
+  border-color: rgba(var(--accent-rgb), 0.5);
   background: var(--accent-soft);
 }
 .series-thumb {
@@ -595,7 +609,7 @@ button.chip[aria-pressed='true'] {
   outline: 1px solid transparent;
 }
 .vpanel.focused {
-  outline: 1px solid rgba(94, 196, 255, 0.55);
+  outline: 1px solid rgba(var(--accent-rgb), 0.55);
   outline-offset: -1px;
 }
 .vpanel .vp-el {
@@ -673,7 +687,7 @@ button.chip[aria-pressed='true'] {
   color: var(--warn);
 }
 .vp-tag.info {
-  border-color: rgba(94, 196, 255, 0.6);
+  border-color: rgba(var(--accent-rgb), 0.6);
   color: var(--accent);
 }
 .vp-svg {
@@ -828,7 +842,7 @@ button.chip[aria-pressed='true'] {
   border-color: rgba(255, 107, 107, 0.5);
 }
 .outcome.self_review {
-  border-color: rgba(94, 196, 255, 0.5);
+  border-color: rgba(var(--accent-rgb), 0.5);
 }
 .status-icon {
   flex: none;
@@ -854,7 +868,7 @@ button.chip[aria-pressed='true'] {
 .book-highlight {
   position: absolute;
   border: 2px solid var(--accent);
-  background: rgba(94, 196, 255, 0.08);
+  background: rgba(var(--accent-rgb), 0.08);
   pointer-events: none;
 }
 .note-card {
@@ -866,7 +880,7 @@ button.chip[aria-pressed='true'] {
 }
 .note-card.me {
   background: var(--accent-soft);
-  border-color: rgba(94, 196, 255, 0.35);
+  border-color: rgba(var(--accent-rgb), 0.35);
 }
 
 /* dialogs / popovers */
