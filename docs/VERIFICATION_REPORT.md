@@ -87,9 +87,9 @@ Coronal renders of the airway labels were inspected on 6 CTs: adults, a child, c
 | check | result |
 |---|---|
 | `npm run typecheck` (app and tests) | pass |
-| `npm test` — unit tests (see below) | **209 / 209 pass** |
-| `npm run build` | pass (shell 529 KB JS; the 4.3 MB imaging engine and the PDF reader are lazy-loaded; the book PDF is left out unless `KEEP_BOOK_IN_BUILD=1`) |
-| Playwright e2e on the production build (`vite preview`), Chromium + Firefox | **55 pass, 0 fail, 0 flaky**; 1 skipped (the speed measurement runs in Chromium only) |
+| `npm test` — unit tests (see below) | **230 / 230 pass** |
+| `npm run build` | pass (shell 529 KB JS; the 4.3 MB imaging engine and the PDF reader are lazy-loaded; the book PDF is never in a build) |
+| Playwright e2e on the production build (`vite preview`), Chromium + Firefox, as a signed-in member (account API mocked; the gate itself has its own tests) | **61 pass, 0 fail**; 5 skipped: the speed measurement runs in Chromium only, and the 4 book-reader tests need the owner's PDF, which no build contains (they pass 4/4 with it copied into `dist/book`) |
 | Anatomy pack contract check (zod) and DICOM re-read | 3,650 / 3,650 targets pass |
 
 On the first full run one Firefox test failed. The test's click helper looked for the viewer element while it was being re-mounted, and threw instead of retrying. The helper now waits for the element. That test then passed 5 of 5 times on its own, and the whole suite passed again.
@@ -155,7 +155,7 @@ Two independent reviews ran on 28 October: one checked every outline anatomicall
   - On phones the top bar widened the whole page and zoomed it out. Tables and chips ran off the screen.
   - The Author page drew all 3,986 outlines at once; it now has search, paging and a viewer link for every outline.
   - Today's plan filled a new student's day with one patient; it now spreads across patients.
-- **Book safety.** A production build no longer contains the owner's book PDF unless `KEEP_BOOK_IN_BUILD=1` is set. An uploaded `dist/` folder can therefore never publish it by accident.
+- **Book safety.** A build never contains the owner's book PDF (since the paid edition, not even with the old `KEEP_BOOK_IN_BUILD=1`). An uploaded `dist/` folder can therefore never publish it.
 
 **Checks that passed in the audit:**
 - 1,599 cranio-caudal relations and 45 front/back and left/right relations, with 0 real failures.

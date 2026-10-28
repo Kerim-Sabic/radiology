@@ -1,12 +1,13 @@
 /**
  * Book reader on the production build. Requires the owner's PDF installed locally
- * (python scripts/book/install_book.py --pdf <file>) and a build made with KEEP_BOOK_IN_BUILD=1; skipped otherwise.
+ * (python scripts/book/install_book.py --pdf <file>) served from dist/book; builds never ship the book, so these are skipped
+ * unless the PDF is copied into dist/book by hand for a local run.
  */
 import { existsSync } from 'node:fs';
-import { expect, test } from '@playwright/test';
+import { expect, test } from './member';
 
-// The build leaves the PDF out unless KEEP_BOOK_IN_BUILD=1 (see vite.config.ts).
-test.skip(!existsSync('dist/book/learning-radiology-5e.pdf'), 'book PDF not in this build (install it, then build with KEEP_BOOK_IN_BUILD=1)');
+// Every build removes dist/book (see vite.config.ts).
+test.skip(!existsSync('dist/book/learning-radiology-5e.pdf'), 'book PDF not in this build (builds never ship it; copy it to dist/book for a local run)');
 
 test('opens Fig 3.5 at PDF 40 / printed 25 with objectives and linked real-scan practice', async ({ page }) => {
   await page.goto('/book/40');

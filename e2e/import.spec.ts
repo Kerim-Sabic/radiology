@@ -4,7 +4,7 @@
  */
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
-import { expect, test } from '@playwright/test';
+import { expect, test } from './member';
 
 const MR_DIR = join('public', 'packs', 'starter', 'dicom', readdirSync(join('public', 'packs', 'starter', 'dicom')).find((d) => d.startsWith('mr-'))!);
 const files = readdirSync(MR_DIR).map((f) => ({ name: f, buffer: readFileSync(join(MR_DIR, f)) }));

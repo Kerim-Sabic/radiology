@@ -4,7 +4,7 @@
  * Run: npx playwright test e2e/perf.spec.ts --project=chromium
  */
 import { mkdirSync, writeFileSync } from 'node:fs';
-import { test } from '@playwright/test';
+import { test } from './member';
 
 const results: Record<string, unknown> = { measuredAt: new Date().toISOString(), host: 'vite preview (localhost)', note: 'Local server: excludes real network latency/bandwidth.' };
 

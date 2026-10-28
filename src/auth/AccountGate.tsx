@@ -21,7 +21,18 @@ export function AccountMenu() {
   </span>;
 }
 
+/**
+ * `npm run dev` on your own computer opens the study space without an account (there is no account service
+ * locally). Production builds set import.meta.env.DEV to false, so this branch is not in any deployed app.
+ * Set VITE_REQUIRE_SIGN_IN=1 to try the membership flow locally.
+ */
+const LOCAL_DEV_OPEN = import.meta.env.DEV && import.meta.env.VITE_REQUIRE_SIGN_IN !== '1';
+
 export function AccountGate({ children }: { children: ReactNode }) {
+  return LOCAL_DEV_OPEN ? <>{children}</> : <MembershipGate>{children}</MembershipGate>;
+}
+
+function MembershipGate({ children }: { children: ReactNode }) {
   const [account, setAccount] = useState<Account | null>(null);
   const [ready, setReady] = useState<{ auth: boolean; billing: boolean } | null>(null);
   const [loading, setLoading] = useState(true);

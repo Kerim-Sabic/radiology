@@ -18,4 +18,16 @@ describe('paid-build content', () => {
     expect(pack.subjects.filter(s => excluded.has(s.key))).toHaveLength(6);
     expect(result.pack.sources.some(s => /NonCommercial/i.test(s.license))).toBe(false);
   });
+
+  it('keeps tasks a lesson file adds to permitted cases in other packs, and drops those on excluded cases', () => {
+    const pack = PackManifest.parse(JSON.parse(readFileSync('public/packs/vessel-drafts/pack.json', 'utf8')));
+    const lessons = LessonFile.parse(JSON.parse(readFileSync('public/packs/vessel-drafts/lessons.json', 'utf8')));
+    expect(lessons.cases).toHaveLength(0); // every task here belongs to a case defined in another pack
+    const kept = filterCommercial(pack, lessons, new Set(), new Set());
+    expect(kept.lessons?.tasks).toHaveLength(lessons.tasks.length);
+    const one = lessons.tasks[0].caseId;
+    const dropped = filterCommercial(pack, lessons, new Set(), new Set([one]));
+    expect(dropped.lessons?.tasks.some(t => t.caseId === one)).toBe(false);
+    expect(dropped.lessons?.tasks.length).toBe(lessons.tasks.filter(t => t.caseId !== one).length);
+  });
 });

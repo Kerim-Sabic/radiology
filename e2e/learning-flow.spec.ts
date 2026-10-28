@@ -2,7 +2,7 @@
  * Acceptance tests on the production build with the real starter pack (LCTSC CT + RTSTRUCT,
  * COVID-19-AR CR (MONOCHROME1) + CT scout, PROSTATEx T2 MRI + SEG zones).
  */
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test, type Page } from './member';
 
 const CT_TASK = (task: string, mode = 'practice') => `/read/starter-ct-chest-01?task=starter-ct-chest-01%3A${task}&mode=${mode}`;
 
@@ -441,14 +441,44 @@ test.describe('E. study tools', () => {
       await expect(page.locator('.drill-side h2')).toBeVisible({ timeout: 20000 });
       await expect.poll(async () => page.evaluate(() => (window as any).__rvmDrill?.state), { timeout: 20000 }).toBe('asking');
       await expect(page.locator('.drill .vp-status')).toHaveCount(0, { timeout: 30000 });
-      const target = await page.evaluate(() => {
+      const pick = () => page.evaluate(() => {
         const d = (window as any).__rvmDrill;
         if (d.kind !== 'locate' && d.kind !== 'find') return null;
         const polys = d.answerPolys() as number[][][];
         if (!polys.length) return null;
-        const p = polys.sort((a, b) => b.length - a.length)[0];
-        return [p.reduce((s, q) => s + q[0], 0) / p.length, p.reduce((s, q) => s + q[1], 0) / p.length];
+        // A point surely inside the structure: the middle of the widest even-odd span on a scan line through it
+        // (a vertex average can fall outside a curved outline or inside a hole such as the esophageal lumen).
+        const ys = polys.flat().map((q) => q[1]);
+        const [y0, y1] = [Math.min(...ys), Math.max(...ys)];
+        let best: [number, number] | null = null;
+        let width = 0;
+        for (let k = 1; k < 20; k++) {
+          const y = y0 + ((y1 - y0) * k) / 20;
+          const xs: number[] = [];
+          for (const r of polys)
+            for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+              const [ax, ay] = r[j];
+              const [bx, by] = r[i];
+              if (ay > y !== by > y) xs.push(ax + ((y - ay) * (bx - ax)) / (by - ay));
+            }
+          xs.sort((a, b) => a - b);
+          for (let i = 0; i + 1 < xs.length; i += 2)
+            if (xs[i + 1] - xs[i] > width) {
+              width = xs[i + 1] - xs[i];
+              best = [(xs[i] + xs[i + 1]) / 2, y];
+            }
+        }
+        return best;
       });
+      // Click only once the view has settled (the target stays put for 150 ms).
+      let target = await pick();
+      for (let k = 0; target && k < 12; k++) {
+        await page.waitForTimeout(150);
+        const again = await pick();
+        const still = !!again && Math.hypot(again[0] - target[0], again[1] - target[1]) < 1;
+        target = again;
+        if (still) break;
+      }
       if (target) {
         const box = (await page.locator('.drill .vp-el').boundingBox())!;
         await page.mouse.click(box.x + target[0], box.y + target[1]);
