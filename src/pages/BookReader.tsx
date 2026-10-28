@@ -18,6 +18,7 @@ export default function BookReader() {
   const [error, setError] = useState<string | null>(null);
   const [dims, setDims] = useState<{ width: number; height: number } | null>(null);
   const [rendering, setRendering] = useState(true);
+  const [contentsOpen, setContentsOpen] = useState(false);
   useSyncExternalStore(bookStatus.subscribe, bookStatus.get);
   const openProg = bookOpenProgress();
   const [selFigure, setSelFigure] = useState<string | null>(null);
@@ -34,7 +35,10 @@ export default function BookReader() {
 
   const total = curriculum?.pageMap?.document.physicalPageCount ?? 552;
   const page = Math.max(1, Math.min(total, Number(param) || Number(localStorage.getItem(LAST_PAGE_KEY)) || 15));
-  const go = (p: number) => navigate(`/book/${Math.max(1, Math.min(total, p))}`);
+  const go = (p: number) => {
+    setContentsOpen(false);
+    navigate(`/book/${Math.max(1, Math.min(total, p))}`);
+  };
 
   useEffect(() => {
     hasBook().then(setAvailable);
@@ -131,14 +135,17 @@ export default function BookReader() {
       <nav className="ws-left" style={{ width: 'auto', gridArea: 'auto', minHeight: 0 }} aria-label="Book contents">
         <div className="side-section">
           <div className="row">
-            <h3 style={{ margin: 0 }}>Contents</h3>
+            <h3 className="book-contents-title" style={{ margin: 0 }}>Contents</h3>
+            <button className="btn sm book-contents-toggle" aria-expanded={contentsOpen} aria-controls="book-contents-list" onClick={() => setContentsOpen(open => !open)}>
+              <BookOpen size={14} /> {contentsOpen ? 'Close contents' : 'Contents'}
+            </button>
             <span className="spacer" />
             <Link to="/book/figures" className="btn sm">
               <Images size={13} /> Figures
             </Link>
           </div>
         </div>
-        <div style={{ overflowY: 'auto', padding: 8 }}>
+        <div id="book-contents-list" className={contentsOpen ? 'book-contents-list open' : 'book-contents-list'} style={{ overflowY: 'auto', padding: 8 }}>
           {(curriculum?.file?.units ?? []).map((u) => {
             const open = unit?.id === u.id;
             const pct = Math.round(readingProgress.fraction(u.physicalRange) * 100);

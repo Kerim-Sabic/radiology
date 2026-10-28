@@ -1148,10 +1148,26 @@ button.chip[aria-pressed='true'] {
 .anat-item.here {
   font-weight: 600;
 }
+.book-contents-toggle {
+  display: none;
+}
 @media (max-width: 860px) {
   .book-layout {
     grid-template-columns: 1fr !important;
+    grid-auto-rows: max-content;
+    align-content: start;
     overflow-y: auto;
+  }
+  .book-layout > section {
+    min-height: 70dvh;
+    max-height: 80dvh;
+  }
+  .book-contents-title,
+  .book-contents-list:not(.open) {
+    display: none;
+  }
+  .book-contents-toggle {
+    display: inline-flex;
   }
   .book-layout > nav {
     position: static !important;
