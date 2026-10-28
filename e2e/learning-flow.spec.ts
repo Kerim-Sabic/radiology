@@ -534,8 +534,9 @@ test.describe('E. study tools', () => {
     await page.keyboard.press('Space');
     await expect.poll(async () => page.evaluate(() => (window as any).__rvm.panelState('p0').index), { timeout: 15000 }).toBeGreaterThan(2);
     await page.keyboard.press('Space');
+    await page.waitForTimeout(300); // a frame that was already loading may still land
     const stopped = await page.evaluate(() => (window as any).__rvm.panelState('p0').index);
-    await page.waitForTimeout(600);
+    await page.waitForTimeout(800);
     expect(await page.evaluate(() => (window as any).__rvm.panelState('p0').index)).toBe(stopped);
     expect(await page.evaluate(() => (window as any).__rvm.isPlaying('p0'))).toBe(false);
   });

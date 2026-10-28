@@ -1,0 +1,455 @@
+{
+ "schemaVersion": 1,
+ "packId": "stroke-mri",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "stroke-isles-0015",
+   "packId": "stroke-mri",
+   "neutralTitle": "MRI brain, diffusion · ISLES 2022 case 15",
+   "learnTitle": "Ischemic stroke on diffusion MRI (expert-approved lesion mask)",
+   "subjectKey": "zenodo:ISLES-2022:sub-strokecase0015",
+   "studyUids": [
+    "2.25.72637281225876529265937471838360430641"
+   ],
+   "primarySeriesUid": "2.25.239437525237529092347726194397820967431",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult with an ischemic stroke.",
+   "contextSource": "Dataset description (ISLES 2022: MRI of acute to subacute ischemic stroke).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o08"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 354,
+     "printed": "334",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.17",
+     "sectionId": null
+    },
+    {
+     "physical": 355,
+     "printed": "335",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.18",
+     "sectionId": null
+    },
+    {
+     "physical": 356,
+     "printed": "336",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.19",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The ischemic lesion was outlined with a model's help, corrected by trained annotators and a neuroradiologist in training, and approved by an attending neuroradiologist (ISLES 2022). The images are skull-stripped and resliced to 2 mm by the dataset authors; time since onset is not given.",
+   "learnNotes": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences."
+  },
+  {
+   "id": "stroke-isles-0057",
+   "packId": "stroke-mri",
+   "neutralTitle": "MRI brain, diffusion · ISLES 2022 case 57",
+   "learnTitle": "Ischemic stroke on diffusion MRI (expert-approved lesion mask)",
+   "subjectKey": "zenodo:ISLES-2022:sub-strokecase0057",
+   "studyUids": [
+    "2.25.28788141014030312363813623058879280977"
+   ],
+   "primarySeriesUid": "2.25.248617527921345161024491962078846860215",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult with an ischemic stroke.",
+   "contextSource": "Dataset description (ISLES 2022: MRI of acute to subacute ischemic stroke).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o08"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 354,
+     "printed": "334",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.17",
+     "sectionId": null
+    },
+    {
+     "physical": 355,
+     "printed": "335",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.18",
+     "sectionId": null
+    },
+    {
+     "physical": 356,
+     "printed": "336",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.19",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The ischemic lesion was outlined with a model's help, corrected by trained annotators and a neuroradiologist in training, and approved by an attending neuroradiologist (ISLES 2022). The images are skull-stripped and resliced to 2 mm by the dataset authors; time since onset is not given.",
+   "learnNotes": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "stroke-isles-0015:locate",
+   "caseId": "stroke-isles-0015",
+   "type": "locate_finding",
+   "title": "Find the restricted diffusion",
+   "prompt": "Read the diffusion-weighted images from the skull base to the vertex. Mark the abnormal area (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.239437525237529092347726194397820967431",
+    "2.25.83663316414524895532920414915602653218"
+   ],
+   "start": {
+    "seriesUid": "2.25.239437525237529092347726194397820967431",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "isles-strokecase0015_dwi_ischemic-stroke",
+     "name": "Ischemic lesion",
+     "required": true
+    },
+    {
+     "targetId": "isles-strokecase0015_adc_ischemic-stroke",
+     "name": "Ischemic lesion (ADC)",
+     "required": false
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 2,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look for a bright area on DWI that keeps to an arterial territory, and compare the two hemispheres."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "isles-strokecase0015_dwi_ischemic-stroke"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
+   "bookAnchors": [
+    {
+     "physical": 354,
+     "printed": "334",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.17",
+     "sectionId": null
+    },
+    {
+     "physical": 355,
+     "printed": "335",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.18",
+     "sectionId": null
+    },
+    {
+     "physical": 356,
+     "printed": "336",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.19",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o08"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "stroke-isles-0015:adc",
+   "caseId": "stroke-isles-0015",
+   "type": "differential",
+   "title": "Is it true restriction?",
+   "prompt": "Find the bright lesion on DWI, then look at the same place on the ADC map. How does it look on ADC?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.239437525237529092347726194397820967431",
+    "2.25.83663316414524895532920414915602653218"
+   ],
+   "start": {
+    "seriesUid": "2.25.83663316414524895532920414915602653218",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "dark",
+      "text": "Dark (low ADC): true restricted diffusion",
+      "correct": true,
+      "why": "Water motion is restricted in the swollen cells of an acute infarct, so the ADC is low and the map is dark."
+     },
+     {
+      "id": "bright",
+      "text": "Bright (high ADC)",
+      "correct": false,
+      "why": "A bright ADC means water moves more freely (e.g. CSF or old tissue loss), the opposite of restriction."
+     },
+     {
+      "id": "same",
+      "text": "The same as normal brain",
+      "correct": false,
+      "why": "Then the DWI brightness would be T2 shine-through rather than restriction."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the linked views: double-click the lesion on DWI and the ADC view goes to the same place."
+    }
+   ],
+   "explanation": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
+   "bookAnchors": [
+    {
+     "physical": 354,
+     "printed": "334",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.17",
+     "sectionId": null
+    },
+    {
+     "physical": 355,
+     "printed": "335",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.18",
+     "sectionId": null
+    },
+    {
+     "physical": 356,
+     "printed": "336",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.19",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o08"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "stroke-isles-0057:locate",
+   "caseId": "stroke-isles-0057",
+   "type": "locate_finding",
+   "title": "Find the restricted diffusion",
+   "prompt": "Read the diffusion-weighted images from the skull base to the vertex. Mark the abnormal area (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.248617527921345161024491962078846860215",
+    "2.25.122916081549638436974146957396503112034"
+   ],
+   "start": {
+    "seriesUid": "2.25.248617527921345161024491962078846860215",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "isles-strokecase0057_dwi_ischemic-stroke",
+     "name": "Ischemic lesion",
+     "required": true
+    },
+    {
+     "targetId": "isles-strokecase0057_adc_ischemic-stroke",
+     "name": "Ischemic lesion (ADC)",
+     "required": false
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 2,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look for a bright area on DWI that keeps to an arterial territory, and compare the two hemispheres."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "isles-strokecase0057_dwi_ischemic-stroke"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
+   "bookAnchors": [
+    {
+     "physical": 354,
+     "printed": "334",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.17",
+     "sectionId": null
+    },
+    {
+     "physical": 355,
+     "printed": "335",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.18",
+     "sectionId": null
+    },
+    {
+     "physical": 356,
+     "printed": "336",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.19",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o08"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "stroke-isles-0057:adc",
+   "caseId": "stroke-isles-0057",
+   "type": "differential",
+   "title": "Is it true restriction?",
+   "prompt": "Find the bright lesion on DWI, then look at the same place on the ADC map. How does it look on ADC?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.248617527921345161024491962078846860215",
+    "2.25.122916081549638436974146957396503112034"
+   ],
+   "start": {
+    "seriesUid": "2.25.122916081549638436974146957396503112034",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "dark",
+      "text": "Dark (low ADC): true restricted diffusion",
+      "correct": true,
+      "why": "Water motion is restricted in the swollen cells of an acute infarct, so the ADC is low and the map is dark."
+     },
+     {
+      "id": "bright",
+      "text": "Bright (high ADC)",
+      "correct": false,
+      "why": "A bright ADC means water moves more freely (e.g. CSF or old tissue loss), the opposite of restriction."
+     },
+     {
+      "id": "same",
+      "text": "The same as normal brain",
+      "correct": false,
+      "why": "Then the DWI brightness would be T2 shine-through rather than restriction."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use the linked views: double-click the lesion on DWI and the ADC view goes to the same place."
+    }
+   ],
+   "explanation": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
+   "bookAnchors": [
+    {
+     "physical": 354,
+     "printed": "334",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.17",
+     "sectionId": null
+    },
+    {
+     "physical": 355,
+     "printed": "335",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.18",
+     "sectionId": null
+    },
+    {
+     "physical": 356,
+     "printed": "336",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.19",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o08"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

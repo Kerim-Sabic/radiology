@@ -1,0 +1,62 @@
+{
+ "packId": "stroke-mri",
+ "generatedAt": "2026-10-28T17:37:55Z",
+ "packBytesExcludingLessons": 1639857,
+ "budgetBytes": 20000000,
+ "series": [
+  {
+   "uid": "2.25.239437525237529092347726194397820967431",
+   "short": "mr-283c24b97b",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 318650
+  },
+  {
+   "uid": "2.25.83663316414524895532920414915602653218",
+   "short": "mr-f1aefab14a",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 369774
+  },
+  {
+   "uid": "2.25.248617527921345161024491962078846860215",
+   "short": "mr-e64a4063a6",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 325160
+  },
+  {
+   "uid": "2.25.122916081549638436974146957396503112034",
+   "short": "mr-004b5e1762",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 381014
+  }
+ ],
+ "targets": [
+  "isles-strokecase0015_dwi_ischemic-stroke",
+  "isles-strokecase0015_adc_ischemic-stroke",
+  "isles-strokecase0057_dwi_ischemic-stroke",
+  "isles-strokecase0057_adc_ischemic-stroke"
+ ]
+}

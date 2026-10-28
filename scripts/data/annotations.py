@@ -799,3 +799,74 @@ def convert_ricord_labels(zip_path: Path, zip_meta: dict, geoms: dict[str, "Seri
     qc = {"study": study_uid, "annotations": len(anns), "localizedAnnotations": len(localized),
           "groups": {g: [i[0] for i in v] for g, v in by_group.items()}, "sops": len(sops), "referencedSeries": series_uid}
     return targets, geos, qc
+
+
+# ---------------------------------------------------------------- PASCAL VOC boxes (Lung-PET-CT-Dx)
+
+VOC_HISTOLOGY = {"A": "adenocarcinoma", "B": "small cell carcinoma", "E": "large cell carcinoma", "G": "squamous cell carcinoma"}
+
+
+def convert_voc_boxes(zip_path: Path, zip_meta: dict, geoms: dict[str, "SeriesGeom"], series_uid: str, folder: str, ctx: dict):
+    """Lung-PET-CT-Dx annotation export -> one box target for the tumor of one patient on one CT series.
+
+    The archive holds one PASCAL VOC XML per annotated image, named <SOPInstanceUID>.xml, under Annotation/<folder>/.
+    Only images of `series_uid` are used (the same tumor is often boxed on other reconstructions too). The object name is the
+    histology letter of the patient (A/B/E/G); VOC xmin..ymax are pixel-corner coordinates, stored as image_px with the
+    pixel-centre convention (-0.5 px), like the NIH boxes."""
+    g = geoms[series_uid]
+    want = set(g.sops)
+    boxes, letters, outside, sizes = [], set(), 0, set()
+    with zipfile.ZipFile(zip_path) as zf:
+        names = [n for n in zf.namelist() if n.startswith(f"Annotation/{folder}/") and n.endswith(".xml")]
+        for n in names:
+            sop = n.rsplit("/", 1)[-1][:-4]
+            if sop not in want:
+                outside += 1
+                continue
+            root = ET.fromstring(zf.read(n))
+            sizes.add((int(root.findtext("size/width")), int(root.findtext("size/height"))))
+            for ob in root.findall("object"):
+                letters.add(ob.findtext("name").strip())
+                bb = ob.find("bndbox")
+                x0, y0, x1, y1 = (float(bb.findtext(k)) for k in ("xmin", "ymin", "xmax", "ymax"))
+                if not (0 <= x0 < x1 <= g.cols and 0 <= y0 < y1 <= g.rows):
+                    raise RuntimeError(f"box outside image on {sop}: {(x0, y0, x1, y1)}")
+                boxes.append({"sopInstanceUid": sop, "frame": 1, "box": [round(x0 - 0.5, 2), round(y0 - 0.5, 2), round(x1 - 0.5, 2), round(y1 - 0.5, 2)]})
+    if not boxes:
+        raise RuntimeError(f"no boxes of {folder} on series {series_uid}")
+    if sizes != {(g.cols, g.rows)}:
+        raise RuntimeError(f"VOC image size {sizes} does not match the series ({g.cols}x{g.rows})")
+    if letters != {folder[0]}:
+        raise RuntimeError(f"histology letters {letters} do not match the patient folder {folder}")
+    boxes.sort(key=lambda b: g.index[b["sopInstanceUid"]])
+    histology = VOC_HISTOLOGY[folder[0]]
+    tid = f"{ctx['subjectSlug']}_lung-cancer"
+    idx = sorted({g.index[b["sopInstanceUid"]] for b in boxes})
+    target = {
+        "id": tid,
+        "label": f"Lung cancer, {histology} (radiologists' box)",
+        "classId": "finding:lung_cancer",
+        "seriesUid": series_uid,
+        "geometryType": "box",
+        "geometryFile": f"targets/{tid}.json",
+        "provenance": "source_manual",
+        "provenanceDetail": {
+            "source": ctx["sourceLabel"] + f" - {zip_path.name} (sha256 {zip_meta['sha256'][:16]}...)",
+            "method": ("Bounding boxes drawn in LabelImg by one of five academic thoracic radiologists and verified by the other four "
+                       "(collection description); one PASCAL VOC XML per image named by its SOP Instance UID. Converted from pixel-corner "
+                       "[xmin, ymin, xmax, ymax] to image_px with the pixel-centre convention (-0.5 px)."),
+            "note": (f"{len(boxes)} boxes on {len(idx)} images of this series (display positions {idx[0] + 1}-{idx[-1] + 1} of {len(g.sops)}); "
+                     f"{outside} more boxes of this patient are on other reconstructions and are not used. Histology letter '{folder[0]}' "
+                     f"= {histology} (patient ID prefix, collection description)."),
+        },
+        "completeness": "target_only",
+        "assessedClasses": ["finding:lung_cancer"],
+        "unassessedNote": ("Only the primary tumor is boxed. Lymph nodes, metastases and other findings are not referenced; the box is a "
+                           "rectangle around the tumor, not its outline."),
+        "review": dict(REVIEW),
+        "teachingNote": ctx.get("teachingNote", ""),
+    }
+    geo = {"geometryType": "box", "space": "image_px", "boxes": boxes}
+    qc = {"folder": folder, "boxes": len(boxes), "images": len(idx), "otherSeriesBoxes": outside, "histology": histology,
+          "contiguous": idx == list(range(idx[0], idx[-1] + 1))}
+    return [target], [geo], qc

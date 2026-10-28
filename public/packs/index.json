@@ -69,9 +69,9 @@
    "title": "Anatomy atlas (AI draft by Horalix)",
    "manifest": "anatomy-atlas/pack.json",
    "lessons": null,
-   "bytes": 61935061,
+   "bytes": 77183453,
    "distribution": "repo",
-   "note": "AI draft by Horalix (unreviewed) anatomy layer: 3650 structure outlines on 40 CT series and 24 frontal chest radiographs, automatic QC applied. No images; requires body, chest-pairs, ct-mri-pairs, expansion, more-ct-xr, neuro-msk, starter."
+   "note": "AI draft by Horalix (unreviewed) anatomy layer: 4409 structure outlines on 51 CT series and 24 frontal chest radiographs, automatic QC applied. No images; requires body, chest-pairs, ct-findings, ct-mri-pairs, ct-tumors, expansion, more-ct-xr, neuro-msk, pe-cta, starter."
   },
   {
    "id": "more-ct-xr",
@@ -117,6 +117,24 @@
    "bytes": 9477686,
    "distribution": "repo",
    "note": "5 subjects, 5 studies, 5 series, 5 instances, 5 reference targets; DICOM 9.3 MB. Committed to the repository; rebuild with scripts/data/external.py + build_external.py."
+  },
+  {
+   "id": "stroke-mri",
+   "title": "Stroke MRI: ischemic lesions on DWI and ADC with expert-approved masks",
+   "manifest": "stroke-mri/pack.json",
+   "lessons": "stroke-mri/lessons.json",
+   "bytes": 1655091,
+   "distribution": "repo",
+   "note": "2 subjects, 2 studies, 4 series, 290 instances, 4 reference targets; DICOM 1.4 MB. Committed to the repository; rebuild with scripts/data/external.py + build_external.py."
+  },
+  {
+   "id": "ct-tumors",
+   "title": "Tumors on CT and MRI: lung cancer, hepatocellular carcinoma, vestibular schwannoma",
+   "manifest": "ct-tumors/pack.json",
+   "lessons": "ct-tumors/lessons.json",
+   "bytes": 113173396,
+   "distribution": "repo",
+   "note": "7 subjects, 7 studies, 8 series, 583 instances, 12 reference targets; DICOM 111.0 MB. Committed to the repository; rebuild from the source with `python scripts/data/packs.py all ct-tumors`."
   }
  ]
 }

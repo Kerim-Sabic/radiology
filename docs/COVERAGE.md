@@ -15,14 +15,14 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 | Ch 7 | Recognizing a Pleural Effusion | 59–68 (74–83) | 7 | 2 | 4 | 4 | 1 / 0 / 4 |
 | Ch 8 | Recognizing Pneumonia | 69–78 (84–93) | 7 | 3 | 16 | 3 | 1 / 2 / 1 |
 | Ch 9 | Recognizing the Correct Placement of Lines and Tubes and Their Potential Complications: Critical Care Radiology | 79–91 (94–111) | 7 | 0 | 0 | 0 | 0 / 7 / 0 |
-| Ch 10 | Recognizing Other Diseases of the Chest | 92–110 (112–130) | 10 | 4 | 20 | 20 | 4 / 0 / 2 |
+| Ch 10 | Recognizing Other Diseases of the Chest | 92–110 (112–130) | 10 | 4 | 24 | 24 | 4 / 0 / 2 |
 | Ch 11 | Recognizing Adult Heart Disease | 111–127 (131–147) | 8 | 2 | 3 | 3 | 0 / 3 / 3 |
 | Ch 12 | Recognizing the Normal Abdomen and Pelvis: Conventional Radiographs | 128–139 (148–159) | 6 | 0 | 0 | 0 | 0 / 0 / 6 |
 | Ch 13 | Recognizing the Normal Abdomen and Pelvis: Computed Tomography | 140–148 (160–168) | 6 | 5 | 10 | 22 | 1 / 0 / 0 |
 | Ch 14 | Recognizing Bowel Obstruction and Ileus | 149–160 (169–180) | 7 | 0 | 0 | 0 | 0 / 0 / 7 |
 | Ch 15 | Recognizing Extraluminal Air in the Abdomen | 161–170 (181–190) | 7 | 0 | 0 | 0 | 0 / 0 / 7 |
 | Ch 16 | Recognizing Abnormal Calcifications and Their Causes | 171–178 (191–198) | 6 | 0 | 0 | 0 | 0 / 0 / 6 |
-| Ch 17 | Recognizing Gastrointestinal, Hepatobiliary, and Urinary Tract Abnormalities | 179–200 (199–220) | 11 | 2 | 4 | 4 | 4 / 0 / 5 |
+| Ch 17 | Recognizing Gastrointestinal, Hepatobiliary, and Urinary Tract Abnormalities | 179–200 (199–220) | 11 | 2 | 6 | 6 | 4 / 0 / 5 |
 | Ch 18 | Ultrasonography: Understanding the Principles and Its Uses in Abdominal and Pelvic Imaging | 201–222 (221–242) | 10 | 0 | 0 | 0 | 0 / 0 / 10 |
 | Ch 19 | Vascular, Pediatric, and Point-of-Care Ultrasound | 223–235 (243–255) | 8 | 0 | 0 | 0 | 0 / 0 / 8 |
 | Ch 20 | Magnetic Resonance Imaging: Understanding the Principles and Recognizing the Basics | 236–246 (256–266) | 6 | 3 | 4 | 5 | 2 / 0 / 1 |
@@ -31,7 +31,7 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 | Ch 23 | Recognizing Trauma to the Bony Skeleton | 283–300 (303–320) | 10 | 2 | 5 | 5 | 1 / 1 / 6 |
 | Ch 24 | Recognizing the Imaging Findings of Trauma to the Chest | 301–313 (321–333) | 8 | 2 | 4 | 4 | 0 / 1 / 5 |
 | Ch 25 | Recognizing the Imaging Findings of Trauma to the Abdomen and Pelvis | 314–320 (334–340) | 6 | 0 | 0 | 0 | 0 / 4 / 2 |
-| Ch 26 | Recognizing Some Common Causes of Intracranial Pathology | 321–346 (341–366) | 12 | 2 | 2 | 2 | 0 / 7 / 3 |
+| Ch 26 | Recognizing Some Common Causes of Intracranial Pathology | 321–346 (341–366) | 12 | 3 | 5 | 5 | 0 / 7 / 2 |
 | Ch 27 | Recognizing Pediatric Diseases | 347–361 (367–381) | 9 | 1 | 2 | 2 | 0 / 4 / 4 |
 | Ch 28 | Using Image-Guided Interventions in Diagnosis and Treatment (Interventional Radiology) | 362–381 (382–401) | 9 | 0 | 0 | 0 | 0 / 1 / 8 |
 | Ch 29 | Recognizing the Findings in Breast Imaging | 382–399 (402–419) | 9 | 2 | 1 | 0 | 5 / 0 / 2 |
@@ -44,7 +44,7 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 | App G | Artificial Intelligence and Radiology | e101–e110 (520–529) | 3 | 0 | 0 | 0 | 1 / 2 / 0 |
 | App H | What to Order When | e111–e112 (530–531) | 2 | 0 | 0 | 0 | 0 / 0 / 2 |
 
-**Totals:** 274 objectives; 46 have at least one real-scan task (17%).
+**Totals:** 274 objectives; 47 have at least one real-scan task (17%).
 
 ## Objectives with real-scan practice
 
@@ -93,7 +93,7 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 
 - **ch10-o03** (p. 96 / PDF 116, Fig 10.8): Middle mediastinal adenopathy and posterior mediastinal neurogenic tumours. — 2 task(s) on 2 patient(s)
 - **ch10-o04** (p. 98 / PDF 118, Fig 10.11): A solitary pulmonary nodule and its margins, calcification pattern and growth. — 32 task(s) on 13 patient(s)
-- **ch10-o05** (p. 100 / PDF 120, Fig 10.13): Lung cancer presenting as a mass, cavity, airway obstruction, hilar adenopathy or apical tumour. — 6 task(s) on 3 patient(s)
+- **ch10-o05** (p. 100 / PDF 120, Fig 10.13): Lung cancer presenting as a mass, cavity, airway obstruction, hilar adenopathy or apical tumour. — 14 task(s) on 7 patient(s)
 - **ch10-o07** (p. 104 / PDF 124, Fig 10.20): Pulmonary embolism: a peripheral wedge-shaped opacity on radiograph and filling defects on CT angiography. — 4 task(s) on 2 patient(s)
 
 ### Chapter 11 — Recognizing Adult Heart Disease
@@ -111,7 +111,7 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 
 ### Chapter 17 — Recognizing Gastrointestinal, Hepatobiliary, and Urinary Tract Abnormalities
 
-- **ch17-o08** (p. 191 / PDF 211, Fig 17.20): Focal liver lesions: metastases, hepatocellular carcinoma, hemangioma and cysts. — 1 task(s) on 1 patient(s)
+- **ch17-o08** (p. 191 / PDF 211, Fig 17.20): Focal liver lesions: metastases, hepatocellular carcinoma, hemangioma and cysts. — 5 task(s) on 3 patient(s)
 - **ch17-o10** (p. 196 / PDF 216, Fig 17.31): Renal cysts, renal cell carcinoma and bladder tumours. — 6 task(s) on 3 patient(s)
 
 ### Chapter 20 — Magnetic Resonance Imaging: Understanding the Principles and Recognizing the Basics
@@ -137,7 +137,8 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 ### Chapter 26 — Recognizing Some Common Causes of Intracranial Pathology
 
 - **ch26-o02** (p. 324 / PDF 344, Fig 26.3): Normal brain MRI on T1 and T2. — 1 task(s) on 1 patient(s)
-- **ch26-o11** (p. 342 / PDF 362, Fig 26.28): Brain tumours: glioblastoma, metastases, meningioma and vestibular schwannoma. — 5 task(s) on 2 patient(s)
+- **ch26-o08** (p. 334 / PDF 354, Fig 26.17): Ischaemic stroke on CT and diffusion MRI, including lacunar infarcts. — 4 task(s) on 2 patient(s)
+- **ch26-o11** (p. 342 / PDF 362, Fig 26.28): Brain tumours: glioblastoma, metastases, meningioma and vestibular schwannoma. — 7 task(s) on 3 patient(s)
 
 ### Chapter 27 — Recognizing Pediatric Diseases
 

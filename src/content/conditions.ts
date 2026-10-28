@@ -317,7 +317,10 @@ export const CONDITIONS: Condition[] = [
       { physical: 123, chapterId: 'ch10', heading: 'Bronchogenic Carcinoma Presenting with Bronchial Obstruction' },
     ],
     related: ['lung_nodule', 'atelectasis', 'lung_metastases'],
-    evidence: [{ kind: 'finding', classIds: ['finding:lung_mass'], note: 'Lung mass boxed by a radiologist on a chest radiograph (NIH ChestX-ray14; the side is not recorded in the file); the diagnosis behind the mass is not given' }],
+    evidence: [
+      { kind: 'finding', classIds: ['finding:lung_cancer'], note: 'Biopsy-proven lung cancer boxed on chest CT by thoracic radiologists (Lung-PET-CT-Dx, TCIA); the cell type is in the label' },
+      { kind: 'finding', classIds: ['finding:lung_mass'], note: 'Lung mass boxed by a radiologist on a chest radiograph (NIH ChestX-ray14; the side is not recorded in the file); the diagnosis behind the mass is not given' },
+    ],
   },
   {
     id: 'lung_metastases',
@@ -785,6 +788,21 @@ export const CONDITIONS: Condition[] = [
     evidence: [{ kind: 'finding', classIds: ['finding:liver_metastasis'], note: 'Metastases outlined on the CT before liver surgery (Colorectal-Liver-Metastases, TCIA)' }],
   },
   {
+    id: 'hepatocellular_carcinoma',
+    name: 'Hepatocellular carcinoma (hepatoma)',
+    synonyms: ['hcc', 'hepatoma', 'liver cancer', 'primary liver cancer', 'hepatocellular cancer', 'liver tumor'],
+    region: 'abdomen',
+    modalities: ['CT', 'MR', 'US'],
+    signs: [
+      'Usually in a cirrhotic liver.',
+      'Typical on multiphase CT or MRI: brighter than the liver in the arterial phase, darker on later phases (washout).',
+      'Large tumors are heterogeneous and can grow into the portal or hepatic veins.',
+    ],
+    book: [{ physical: 214, chapterId: 'ch17', heading: 'Hepatocellular Carcinoma (Hepatoma)' }],
+    related: ['cirrhosis', 'liver_metastases'],
+    evidence: [{ kind: 'finding', classIds: ['finding:hepatocellular_carcinoma'], note: 'Tumor segmented semi-automatically and clinically curated on the baseline CT before chemoembolization (HCC-TACE-Seg, TCIA)' }],
+  },
+  {
     id: 'renal_mass',
     name: 'Renal mass (kidney tumor)',
     synonyms: ['renal tumour', 'renal tumor', 'kidney tumour', 'kidney tumor', 'kidney mass', 'kidney cancer', 'renal cell carcinoma', 'rcc', 'hypernephroma'],
@@ -1051,6 +1069,7 @@ export const CONDITIONS: Condition[] = [
       { physical: 354, chapterId: 'ch26', heading: 'Ischemic Stroke' },
     ],
     related: ['intracerebral_hemorrhage'],
+    evidence: [{ kind: 'finding', classIds: ['finding:ischemic_stroke'], note: 'Ischemic lesion on diffusion MRI (DWI and ADC), mask approved by an attending neuroradiologist (ISLES 2022)' }],
   },
   {
     id: 'brain_tumor',
@@ -1079,6 +1098,21 @@ export const CONDITIONS: Condition[] = [
     signs: ['Often several enhancing lesions at the gray-white junction, with more edema than their size suggests.'],
     book: [{ physical: 362, chapterId: 'ch26', heading: 'Metastases' }],
     related: ['brain_tumor'],
+  },
+  {
+    id: 'vestibular_schwannoma',
+    name: 'Vestibular schwannoma (acoustic neuroma)',
+    synonyms: ['acoustic neuroma', 'acoustic schwannoma', 'vestibular schwannoma', 'cerebellopontine angle mass', 'cpa mass', 'cpa tumor'],
+    region: 'neuro',
+    modalities: ['MR', 'CT'],
+    signs: [
+      'An extra-axial mass at the cerebellopontine angle, separated from the brainstem and cerebellum by CSF.',
+      'It extends into the internal auditory canal and enhances strongly on contrast T1.',
+      'On high-resolution T2 it is a dark filling defect in the bright CSF.',
+    ],
+    book: [{ physical: 363, chapterId: 'ch26', heading: 'Vestibular Schwannoma (Acoustic Neuroma)' }],
+    related: ['brain_tumor', 'brain_metastases'],
+    evidence: [{ kind: 'finding', classIds: ['finding:vestibular_schwannoma'], note: 'Tumor contoured manually by the treating neurosurgeon and physicist on contrast T1 and high-resolution T2 MRI (Vestibular-Schwannoma-SEG, TCIA)' }],
   },
   {
     id: 'hydrocephalus',

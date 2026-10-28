@@ -23,7 +23,7 @@ VENV_TS = Path(os.environ.get("RADIOLOGY_TS_VENV", DATA_ROOT / "venv-ts"))
 TOTALSEG_HOME = Path(os.environ.get("TOTALSEG_HOME_DIR", DATA_ROOT / "totalseg-home"))
 
 # Image packs scanned (in this order). more-ct-xr is picked up automatically once it is built.
-SOURCE_PACKS = ["starter", "chest-pairs", "body", "expansion", "ct-mri-pairs", "neuro-msk", "more-ct-xr"]
+SOURCE_PACKS = ["starter", "chest-pairs", "body", "expansion", "ct-mri-pairs", "neuro-msk", "more-ct-xr", "pe-cta", "ct-findings", "ct-tumors"]
 
 # Geometry simplification / filtering (shared by CT and CXR)
 DP_TOL_PX = 0.5          # Douglas-Peucker tolerance (skimage.measure.approximate_polygon), image pixels (radiographs)

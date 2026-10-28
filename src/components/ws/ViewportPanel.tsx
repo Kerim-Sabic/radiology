@@ -342,7 +342,13 @@ export function ViewportPanel(p: Props) {
             return <polygon key={i} points={sh.pts.map((q) => q.join(',')).join(' ')} style={style} />;
           })}
           {p.overlay.showLabels &&
-            [...new Map(shapes.filter((x) => x.kind === 'poly' && (!p.overlay.labelIds || p.overlay.labelIds.has(x.targetId))).map((x) => [x.targetId, x])).values()].map((sh) => {
+            // One name per target, on its largest piece on this image (not on a small fragment elsewhere).
+            [
+              ...shapes
+                .filter((x) => x.kind === 'poly' && (!p.overlay.labelIds || p.overlay.labelIds.has(x.targetId)))
+                .reduce((m, x) => (!m.has(x.targetId) || shapeArea(x) > shapeArea(m.get(x.targetId)!) ? m.set(x.targetId, x) : m), new Map<string, Shape>())
+                .values(),
+            ].map((sh) => {
               // Centred on the outline, but kept inside the panel (a finding at the image edge keeps a readable name).
               const half = (cleanName(sh.label).length * 6.1) / 2 + 4;
               const cx = Math.min(Math.max(sh.pts.reduce((a, q) => a + q[0], 0) / sh.pts.length, half), Math.max(half, size[0] - half));

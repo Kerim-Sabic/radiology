@@ -38,8 +38,11 @@ def log(*a):
 
 
 def uid_for(*parts: str) -> str:
-    """Deterministic 2.25 UID from the source identifiers (rebuilds give the same UIDs)."""
-    return generate_uid(prefix=None, entropy_srcs=["radiology-study-packs", *parts])
+    """Deterministic 2.25 UID from the source identifiers (rebuilds give the same UIDs). pydicom's generate_uid(prefix=None)
+    ignores entropy_srcs and returns a random UUID, so the UID is derived from a SHA-256 of the identifiers instead."""
+    import hashlib
+    h = hashlib.sha256("".join(["radiology-study-packs", *parts]).encode()).hexdigest()
+    return f"2.25.{int(h[:32], 16)}"
 
 
 def to_item(ds: Dataset, name: str) -> Item:
@@ -385,6 +388,202 @@ def build_frac() -> tuple[list, list, list, dict]:
     return results, targets, geoms, {}
 
 
+# ====================================================================== ISLES 2022 (stroke MRI, NIfTI -> DICOM)
+ISLES_SOURCE = {
+    "id": "zenodo:ISLES-2022",
+    "name": "ISLES 2022: a multi-center magnetic resonance imaging stroke lesion segmentation dataset",
+    "url": "https://doi.org/10.5281/zenodo.7153326",
+    "doi": "10.5281/zenodo.7153326",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "citation": ("Hernandez Petzsche MR, de la Rosa E, Hanning U, et al. ISLES 2022: A multi-center magnetic resonance imaging stroke "
+                 "lesion segmentation dataset. Sci Data. 2022;9:762. doi:10.1038/s41597-022-01875-5. Data: Zenodo "
+                 "doi:10.5281/zenodo.7153326"),
+    "accessNote": ("ISLES-2022.zip (Zenodo record 7153326, open access, licence cc-by-4.0 per the Zenodo API) read member by member "
+                   "over HTTP Range (CRC-32 checked); DWI, ADC, lesion mask and JSON sidecars of the selected cases only."),
+}
+MR_SOP_CLASS = "1.2.840.10008.5.1.4.1.1.4"  # MR Image Storage
+ISLES_WHY = {
+    "sub-strokecase0057": "Large ischemic lesion (about 59 ml in the mask, one dominant component).",
+    "sub-strokecase0015": "Moderate ischemic lesion (about 13 ml in the mask, one dominant component).",
+}
+
+
+def _isles_grid(img):
+    """Pixel grid in DICOM convention from a NIfTI affine: columns run to the patient's left and rows run posterior when the
+    voxel axes allow it (flip i/j otherwise); returns flips, row/column direction cosines (LPS), spacings and an IPP function."""
+    lps = np.diag([-1.0, -1.0, 1.0, 1.0]) @ img.affine
+    ui, uj, uk = lps[:3, 0], lps[:3, 1], lps[:3, 2]
+    ni, nj, nk = img.shape[:3]
+    fi, fj = ui[0] < 0, uj[1] < 0
+    rowdir = (-ui if fi else ui) / np.linalg.norm(ui)  # direction of increasing column
+    coldir = (-uj if fj else uj) / np.linalg.norm(uj)  # direction of increasing row
+    i0, j0 = (ni - 1 if fi else 0), (nj - 1 if fj else 0)
+
+    def ipp(k):
+        return (lps @ np.array([i0, j0, k, 1.0]))[:3]
+
+    return fi, fj, rowdir, coldir, (float(np.linalg.norm(uj)), float(np.linalg.norm(ui))), float(np.linalg.norm(uk)), ipp
+
+
+def _isles_slice(a3, k, fi, fj):
+    m = a3[:, :, k]
+    if fi:
+        m = m[::-1, :]
+    if fj:
+        m = m[:, ::-1]
+    return np.ascontiguousarray(m.T)  # rows = j, columns = i
+
+
+def isles_series(case: dict, kind: str, img, data: np.ndarray, sidecar: dict, frame_uid: str) -> list[Item]:
+    fi, fj, rowdir, coldir, ps, step, ipp = _isles_grid(img)
+    study, series = uid_for("isles", case["case"], "study"), uid_for("isles", case["case"], kind, "series")
+    if kind == "dwi":
+        px = np.round(np.clip(data, 0, None)).astype(np.uint16)
+        bval = sidecar.get("DiffusionBValue")
+        desc = f"DWI trace, b={int(bval)} (ISLES 2022, converted from NIfTI)" if bval else "DWI trace (ISLES 2022, converted from NIfTI)"
+        wc, ww = float(np.percentile(px[px > 0], 99.5)) / 2, float(np.percentile(px[px > 0], 99.5))
+        deriv = "DWI trace as distributed (float), clipped at 0 and rounded to integer signal values; arbitrary units."
+    else:
+        px = np.round(np.clip(data, 0, None) * 1e6).astype(np.uint16)
+        desc = "ADC map, 10^-6 mm2/s (ISLES 2022, converted from NIfTI)"
+        wc, ww = 1000.0, 2000.0
+        deriv = "ADC as distributed in mm2/s (float), clipped at 0 and stored in units of 10^-6 mm2/s (integer)."
+    items = []
+    for k in range(data.shape[2]):
+        a = _isles_slice(px, k, fi, fj)
+        meta = FileMetaDataset()
+        meta.MediaStorageSOPClassUID = MR_SOP_CLASS
+        meta.MediaStorageSOPInstanceUID = uid_for("isles", case["case"], kind, str(k))
+        meta.TransferSyntaxUID = ExplicitVRLittleEndian
+        ds = Dataset()
+        ds.file_meta = meta
+        ds.SpecificCharacterSet = "ISO_IR 100"
+        ds.SOPClassUID = MR_SOP_CLASS
+        ds.SOPInstanceUID = meta.MediaStorageSOPInstanceUID
+        ds.StudyInstanceUID, ds.SeriesInstanceUID, ds.FrameOfReferenceUID = study, series, frame_uid
+        ds.PositionReferenceIndicator = ""
+        ds.Modality = "MR"
+        ds.ImageType = ["DERIVED", "SECONDARY", "DIFFUSION" if kind == "dwi" else "ADC"]
+        ds.PatientID = f"ISLES22-{case['case'].split('-')[1]}"
+        ds.PatientName = ""
+        if sidecar.get("PatientSex"):
+            ds.PatientSex = sidecar["PatientSex"]
+        if sidecar.get("PatientAge"):
+            ds.PatientAge = sidecar["PatientAge"]
+        ds.StudyID = case["case"][-12:]
+        ds.StudyDescription = "MRI brain, stroke (ISLES 2022)"
+        ds.SeriesDescription = desc
+        ds.SeriesNumber = 1 if kind == "dwi" else 2
+        ds.InstanceNumber = k + 1
+        ds.BodyPartExamined = "BRAIN"
+        for kw in ("Manufacturer", "ManufacturerModelName", "MagneticFieldStrength", "RepetitionTime", "EchoTime", "ScanningSequence",
+                   "SequenceVariant", "MRAcquisitionType"):
+            v = sidecar.get(kw)
+            if v not in (None, ""):
+                setattr(ds, kw, round(v, 3) if isinstance(v, float) else v)
+        if "ScanningSequence" not in ds:
+            ds.ScanningSequence = "EP"
+        if "SequenceVariant" not in ds:
+            ds.SequenceVariant = "NONE"
+        ds.ScanOptions = ""
+        if "MRAcquisitionType" not in ds:
+            ds.MRAcquisitionType = "2D"
+        ds.SliceThickness = round(step, 3)
+        ds.SpacingBetweenSlices = round(step, 3)
+        ds.ImagePositionPatient = [round(float(v), 4) for v in ipp(k)]
+        ds.ImageOrientationPatient = [round(float(v), 6) for v in (*rowdir, *coldir)]
+        ds.PixelSpacing = [round(ps[0], 6), round(ps[1], 6)]
+        ds.DerivationDescription = (f"{case['files'][kind]['member']} (sha256 {case['files'][kind]['sha256'][:16]}...) converted to DICOM: "
+                                    f"{deriv} Geometry from the NIfTI affine (RAS -> LPS); voxel axes flipped only so that columns run "
+                                    "to the patient's left and rows run posterior. Skull-stripped and resliced by the dataset authors.")
+        ds.SamplesPerPixel = 1
+        ds.PhotometricInterpretation = "MONOCHROME2"
+        ds.Rows, ds.Columns = a.shape
+        ds.BitsAllocated = 16
+        ds.BitsStored = 16
+        ds.HighBit = 15
+        ds.PixelRepresentation = 0
+        ds.WindowCenter = round(wc, 1)
+        ds.WindowWidth = round(max(ww, 1.0), 1)
+        ds.PixelData = a.tobytes()
+        items.append(to_item(ds, f"{kind}-{k:03d}.dcm"))
+    return items
+
+
+def build_isles() -> tuple[list, list, list, dict]:
+    import nibabel as nib
+    sel = json.loads((RAW / "ISLES-2022" / "selection.json").read_text(encoding="utf-8"))
+    results, targets, geoms = [], [], []
+    for case in sel:
+        if case["case"] not in ISLES_WHY:
+            continue
+        imgs = {k: nib.load(RAW / case["files"][k]["file"]) for k in ("dwi", "adc", "msk")}
+        shapes = {k: v.shape[:3] for k, v in imgs.items()}
+        assert len(set(shapes.values())) == 1, shapes
+        assert all(np.allclose(imgs["dwi"].affine, v.affine, atol=1e-4) for v in imgs.values()), "DWI/ADC/mask on different grids"
+        mask = np.asarray(imgs["msk"].dataobj) > 0
+        side = json.loads((RAW / case["files"]["dwi_json"]["file"]).read_text(encoding="utf-8"))
+        frame_uid = uid_for("isles", case["case"], "frame")
+        skey = f"zenodo:ISLES-2022:{case['case']}"
+        fi, fj, *_ = _isles_grid(imgs["dwi"])
+        for kind in ("dwi", "adc"):
+            items = isles_series(case, kind, imgs[kind], np.asarray(imgs[kind].dataobj, dtype=np.float64), side, frame_uid)
+            sr = build_series(items, {"region": "head", "role": "diagnostic",
+                                      "roleNote": ("Diffusion-weighted MRI" if kind == "dwi" else "Apparent diffusion coefficient map") +
+                                                  " of an ischemic stroke (ISLES 2022), converted from NIfTI to DICOM."}, skey)
+            encode_and_place(sr, "jpegls")
+            sr.record["thumbnail"] = f"thumbs/{sr.short}.png"
+            sr.thumb = thumbnail_png(sr.sorted_items, sr.record)
+            sr.record["displayNote"] = ("Converted from the dataset's NIfTI (skull-stripped, resliced to 2 mm by the dataset authors): the "
+                                        "orientation comes from the NIfTI affine. " + ("Signal in arbitrary units." if kind == "dwi" else
+                                        "ADC in 10^-6 mm2/s (normal brain is roughly 700-900; acute infarcts are lower)."))
+            results.append((sr, skey, {}))
+            sop_by_k = {int(it.name.split("-")[1][:3]): str(it.ds.SOPInstanceUID) for it in items}
+            planes = []
+            for k in range(mask.shape[2]):
+                m = _isles_slice(mask, k, fi, fj)
+                if not m.any():
+                    continue
+                rings = _mask_to_rings(m)
+                if not rings:
+                    continue
+                hole = split_holes(rings) if len(rings) > 1 else [False]
+                pl = {"sopInstanceUid": sop_by_k[k], "frame": 1,
+                      "polygons": [[[round(float(c), 2) + 0.0, round(float(r), 2) + 0.0] for c, r in ring] for ring, h in zip(rings, hole) if not h]}
+                hs = [[[round(float(c), 2) + 0.0, round(float(r), 2) + 0.0] for c, r in ring] for ring, h in zip(rings, hole) if h]
+                if hs:
+                    pl["holes"] = hs
+                if pl["polygons"]:
+                    planes.append(pl)
+            order = {str(it.ds.SOPInstanceUID): i for i, it in enumerate(sr.sorted_items)}
+            planes.sort(key=lambda p: order[p["sopInstanceUid"]])
+            tid = f"isles-{case['case'].split('-')[1]}_{kind}_ischemic-stroke"
+            vol = float(mask.sum() * np.prod(imgs["msk"].header.get_zooms()[:3]) / 1000)
+            targets.append({
+                "id": tid, "label": "Ischemic stroke lesion (ISLES 2022 expert-approved mask)", "classId": "finding:ischemic_stroke",
+                "seriesUid": sr.uid, "geometryType": "contour_set", "geometryFile": f"targets/{tid}.json", "provenance": "source_manual",
+                "provenanceDetail": {
+                    "source": f"zenodo:ISLES-2022 ({case['files']['msk']['member']}, sha256 {case['files']['msk']['sha256'][:16]}...)",
+                    "method": ("Hybrid human-algorithm annotation (Hernandez Petzsche et al. 2022): a DWI-trained U-Net pre-segmentation corrected "
+                               "by trained annotators (DWI, ADC and FLAIR reviewed), revised by a neuroradiologist in training and approved by "
+                               "an attending neuroradiologist with more than 10 years of stroke imaging experience. The mask is on the DWI/ADC grid; "
+                               "traced per slice with skimage find_contours (0.5) into image_px [col, row]."),
+                    "note": f"{len(planes)} slices with lesion; mask volume {vol:.1f} ml.",
+                },
+                "completeness": "target_only",
+                "assessedClasses": ["finding:ischemic_stroke"],
+                "unassessedNote": ("Only the ischemic lesion is referenced; the vessel occlusion, older lesions and other findings are not "
+                                   "outlined. The dataset does not give the time since onset or the affected arterial territory."),
+                "review": dict(REVIEW),
+                "teachingNote": ISLES_WHY[case["case"]] + (" Restricted diffusion: dark on the ADC map, bright on DWI." if kind == "adc"
+                                                           else " Restricted diffusion: bright on DWI; check that it is dark on the ADC map."),
+            })
+            geoms.append({"geometryType": "contour_set", "space": "image_px", "planes": planes})
+            log(f"[stroke-mri] {case['case']} {kind}: {len(items)} images, {len(planes)} slices with lesion")
+    return results, targets, geoms, {}
+
+
 # ====================================================================== shared
 PACKS = {
     "cxr-findings": {
@@ -401,6 +600,13 @@ PACKS = {
                         "saddle embolus and a large right pulmonary artery embolus. Headers had placeholder UIDs and dates, repaired "
                         "before packing; pixel data are unchanged."),
         "source": FUMPE_SOURCE, "builder": build_fumpe, "budget": 200_000_000,
+    },
+    "stroke-mri": {
+        "title": "Stroke MRI: ischemic lesions on DWI and ADC with expert-approved masks",
+        "description": ("Two brain MRIs of ischemic stroke from ISLES 2022 (diffusion-weighted images and ADC maps), each with the lesion mask "
+                        "approved by an attending neuroradiologist. Converted from the dataset's NIfTI (skull-stripped, 2 mm) to DICOM with "
+                        "the geometry taken from the NIfTI affine; DWI and ADC share one frame of reference."),
+        "source": ISLES_SOURCE, "builder": build_isles, "budget": 20_000_000,
     },
     "fx-radiographs": {
         "title": "Fracture radiographs: wrist, ankle, shoulder, knee and hip with expert outlines",
@@ -438,7 +644,8 @@ def build(pack_id: str) -> dict:
                                 "one study per subject in this pack."),
             "holdoutGroup": (info.get("holdout") if isinstance(info, dict) and info.get("holdout") else skey), "sex": (str(ds.PatientSex) if ds.get("PatientSex") else None),
             "ageAtFirstStudy": (str(ds.PatientAge) if ds.get("PatientAge") else None), "studyUids": []})
-        sub["studyUids"].append(st["uid"])
+        if st["uid"] not in sub["studyUids"]:  # one entry per study, even when it holds several series (DWI + ADC)
+            sub["studyUids"].append(st["uid"])
         for rel, data in sr.outputs:
             p = out / rel
             p.parent.mkdir(parents=True, exist_ok=True)

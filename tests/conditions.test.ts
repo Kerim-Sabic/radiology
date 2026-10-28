@@ -265,6 +265,29 @@ describe.skipIf(!real)('results from the installed cases', () => {
     }
   });
 
+  it('finds the lung cancer CTs, boxed on a run of consecutive images', async () => {
+    const hits = await run('lung_cancer');
+    const ct = hits.filter((h) => h.family === 'CT');
+    if (!ct.length) return; // pack not installed in this checkout
+    expect(new Set(ct.map((h) => h.caseId)).size).toBe(4);
+    for (const h of ct) {
+      expect(h.items.some((i) => /^images \d+–\d+ of \d+$/.test(i.where ?? ''))).toBe(true);
+      expect(h.link).toMatch(/&show=lung-dx-/);
+    }
+  });
+
+  it('finds the new tumors and the stroke lesions on their own series', async () => {
+    for (const [id, family, n] of [['hepatocellular_carcinoma', 'CT', 2], ['vestibular_schwannoma', 'MRI', 1], ['ischemic_stroke', 'MRI', 2]] as const) {
+      const hits = await run(id);
+      if (!hits.length) continue; // pack not installed in this checkout
+      expect(new Set(hits.map((h) => h.caseId)).size).toBe(n);
+      for (const h of hits) {
+        expect(h.family).toBe(family);
+        expect(h.strength).toBe('outlined');
+      }
+    }
+  });
+
   it('finds every outlined lung nodule with the images it is on', async () => {
     const hits = await run('lung_nodule');
     const nodules = [...real!.view.targets.values()].filter((t) => t.classId === 'finding:lung_nodule' && [...real!.view.cases.values()].some((k) => real!.view.seriesForCase(k).some((s) => s.uid === t.seriesUid)));

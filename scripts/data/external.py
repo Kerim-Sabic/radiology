@@ -249,8 +249,39 @@ def frac_fetch(names: list[str]) -> None:
     (meta / "selection.json").write_text(json.dumps(chosen, indent=1), encoding="utf-8")
 
 
+# ------------------------------------------------------------------ ISLES 2022 (stroke MRI)
+ISLES_DIR = RAW / "ISLES-2022"
+ISLES_ZIP = "https://zenodo.org/records/7153326/files/ISLES-2022.zip?download=1"  # Zenodo record 7153326, CC BY 4.0, open access
+
+
+def isles_fetch(cases: list[str]) -> None:
+    """DWI (b=1000), ADC, the lesion mask (all on one 2 mm grid) and the JSON sidecars of the given cases, read member by member."""
+    zf = open_remote(ISLES_ZIP)
+    chosen = []
+    for c in cases:
+        sub = f"sub-strokecase{int(c):04d}"
+        out = ISLES_DIR / sub
+        out.mkdir(parents=True, exist_ok=True)
+        files = {}
+        for kind, member in (("dwi", f"ISLES-2022/{sub}/ses-0001/dwi/{sub}_ses-0001_dwi.nii.gz"),
+                             ("dwi_json", f"ISLES-2022/{sub}/ses-0001/dwi/{sub}_ses-0001_dwi.json"),
+                             ("adc", f"ISLES-2022/{sub}/ses-0001/dwi/{sub}_ses-0001_adc.nii.gz"),
+                             ("adc_json", f"ISLES-2022/{sub}/ses-0001/dwi/{sub}_ses-0001_adc.json"),
+                             ("msk", f"ISLES-2022/derivatives/{sub}/ses-0001/{sub}_ses-0001_msk.nii.gz")):
+            dst = out / member.rsplit("/", 1)[-1]
+            if not dst.exists():
+                dst.write_bytes(zf.read(member))  # CRC-32 checked by zipfile
+            files[kind] = {"file": str(dst.relative_to(RAW)), "member": member, "sha256": sha256(dst)}
+        chosen.append({"case": sub, "files": files})
+        print(sub, "ok")
+    (ISLES_DIR / "selection.json").write_text(json.dumps(chosen, indent=1), encoding="utf-8")
+
+
 if __name__ == "__main__":
     what = sys.argv[1] if len(sys.argv) > 1 else ""
+    if what == "isles":
+        isles_fetch(sys.argv[2:])
+        raise SystemExit(0)
     if what == "nih":
         nih_fetch()
     elif what == "fracatlas":

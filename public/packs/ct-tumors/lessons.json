@@ -1,0 +1,1594 @@
+{
+ "schemaVersion": 1,
+ "packId": "ct-tumors",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "lung-dx-a0010",
+   "packId": "ct-tumors",
+   "neutralTitle": "CT chest · Lung-PET-CT-Dx A0010",
+   "learnTitle": "Lung cancer (adenocarcinoma) on chest CT (radiologists' box)",
+   "subjectKey": "tcia:Lung-PET-CT-Dx:Lung_Dx-A0010",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.162822447891783446883121725859"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.403049190755802208938880190492",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult with a lung cancer later confirmed by biopsy.",
+   "contextSource": "Collection description (Lung-PET-CT-Dx: patients with biopsy-confirmed lung cancer; histology from the patient ID).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (9 boxes on 9 images of this series (display positions 34-42 of 51)). Histology: adenocarcinoma. Nodes, metastases and other findings are not marked.",
+   "learnNotes": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does."
+  },
+  {
+   "id": "lung-dx-g0007",
+   "packId": "ct-tumors",
+   "neutralTitle": "CT chest · Lung-PET-CT-Dx G0007",
+   "learnTitle": "Lung cancer (squamous cell carcinoma) on chest CT (radiologists' box)",
+   "subjectKey": "tcia:Lung-PET-CT-Dx:Lung_Dx-G0007",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.203739988449203490735627922834"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.145451801845197580046565969690",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult with a lung cancer later confirmed by biopsy.",
+   "contextSource": "Collection description (Lung-PET-CT-Dx: patients with biopsy-confirmed lung cancer; histology from the patient ID).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (14 boxes on 14 images of this series (display positions 27-40 of 50)). Histology: squamous cell carcinoma. Nodes, metastases and other findings are not marked.",
+   "learnNotes": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does."
+  },
+  {
+   "id": "lung-dx-b0022",
+   "packId": "ct-tumors",
+   "neutralTitle": "CT chest · Lung-PET-CT-Dx B0022",
+   "learnTitle": "Lung cancer (small cell carcinoma) on chest CT (radiologists' box)",
+   "subjectKey": "tcia:Lung-PET-CT-Dx:Lung_Dx-B0022",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.239153714403732921348002742733"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.291909631563703110056831793985",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult with a lung cancer later confirmed by biopsy.",
+   "contextSource": "Collection description (Lung-PET-CT-Dx: patients with biopsy-confirmed lung cancer; histology from the patient ID).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (19 boxes on 19 images of this series (display positions 7-25 of 55)). Histology: small cell carcinoma. Nodes, metastases and other findings are not marked.",
+   "learnNotes": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does."
+  },
+  {
+   "id": "lung-dx-e0004",
+   "packId": "ct-tumors",
+   "neutralTitle": "CT chest · Lung-PET-CT-Dx E0004",
+   "learnTitle": "Lung cancer (large cell carcinoma) on chest CT (radiologists' box)",
+   "subjectKey": "tcia:Lung-PET-CT-Dx:Lung_Dx-E0004",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.258295316472487186003552393112"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.417155163482218017552132873482",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult with a lung cancer later confirmed by biopsy.",
+   "contextSource": "Collection description (Lung-PET-CT-Dx: patients with biopsy-confirmed lung cancer; histology from the patient ID).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (13 boxes on 13 images of this series (display positions 30-42 of 55)). Histology: large cell carcinoma. Nodes, metastases and other findings are not marked.",
+   "learnNotes": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does."
+  },
+  {
+   "id": "hcc-010",
+   "packId": "ct-tumors",
+   "neutralTitle": "CT abdomen, liver protocol · HCC-TACE-Seg 010",
+   "learnTitle": "Hepatocellular carcinoma on contrast CT (tumor and liver segmented)",
+   "subjectKey": "tcia:HCC-TACE-Seg:HCC_010",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.1706.8374.130372144080497480617579261733"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.1706.8374.144967540901815428834541637279",
+   "region": [
+    "abdomen"
+   ],
+   "clinicalContext": "Adult with confirmed hepatocellular carcinoma, before transarterial chemoembolization.",
+   "contextSource": "Collection description (HCC-TACE-Seg: confirmed HCC, baseline CT before the first TACE).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch17-o08"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 211,
+     "printed": "191",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.20",
+     "sectionId": null
+    },
+    {
+     "physical": 214,
+     "printed": "194",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.25",
+     "sectionId": null
+    },
+    {
+     "physical": 215,
+     "printed": "195",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.27",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The tumor, the liver and the abdominal aorta were segmented semi-automatically and clinically curated (HCC-TACE-Seg). Only the contrast phase the segmentation was drawn on is installed, so the washout on later phases cannot be shown here.",
+   "learnNotes": "Hepatocellular carcinoma usually arises in a cirrhotic liver. On multiphase CT its typical behavior is arterial-phase hyperenhancement (brighter than the liver) with washout on later phases (darker than the liver), often with an enhancing capsule. Large tumors are heterogeneous and may invade the portal or hepatic veins. Compare every phase; a metastasis is usually darker than the liver on the portal venous phase, and a hemangioma fills in from the periphery."
+  },
+  {
+   "id": "hcc-003",
+   "packId": "ct-tumors",
+   "neutralTitle": "CT abdomen, liver protocol · HCC-TACE-Seg 003",
+   "learnTitle": "Hepatocellular carcinoma on contrast CT (tumor and liver segmented)",
+   "subjectKey": "tcia:HCC-TACE-Seg:HCC_003",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.1706.8374.128750515241701445125322964595"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.1706.8374.281650679207816520863173918688",
+   "region": [
+    "abdomen"
+   ],
+   "clinicalContext": "Adult with confirmed hepatocellular carcinoma, before transarterial chemoembolization.",
+   "contextSource": "Collection description (HCC-TACE-Seg: confirmed HCC, baseline CT before the first TACE).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch17-o08"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 211,
+     "printed": "191",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.20",
+     "sectionId": null
+    },
+    {
+     "physical": 214,
+     "printed": "194",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.25",
+     "sectionId": null
+    },
+    {
+     "physical": 215,
+     "printed": "195",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.27",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The tumor, the liver and the abdominal aorta were segmented semi-automatically and clinically curated (HCC-TACE-Seg). Only the contrast phase the segmentation was drawn on is installed, so the washout on later phases cannot be shown here.",
+   "learnNotes": "Hepatocellular carcinoma usually arises in a cirrhotic liver. On multiphase CT its typical behavior is arterial-phase hyperenhancement (brighter than the liver) with washout on later phases (darker than the liver), often with an enhancing capsule. Large tumors are heterogeneous and may invade the portal or hepatic veins. Compare every phase; a metastasis is usually darker than the liver on the portal venous phase, and a hemangioma fills in from the periphery."
+  },
+  {
+   "id": "vs-seg-001",
+   "packId": "ct-tumors",
+   "neutralTitle": "MRI brain, posterior fossa · VS-SEG 001",
+   "learnTitle": "Vestibular schwannoma on contrast T1 and high-resolution T2 (manual contour)",
+   "subjectKey": "tcia:Vestibular-Schwannoma-SEG:VS-SEG-001",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.267424821384663813780850856506829388886"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.149357697745643823053302398129943470751",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult treated with Gamma Knife radiosurgery for a vestibular schwannoma.",
+   "contextSource": "Collection description (Vestibular-Schwannoma-SEG: patients treated with Gamma Knife radiosurgery).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o11"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 362,
+     "printed": "342",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.28",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.29",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.30",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The tumor was contoured manually on every axial slice by the treating neurosurgeon and physicist, on both sequences (Gamma Knife planning). The cochlea and planning structures are not shown.",
+   "learnNotes": "A vestibular schwannoma (acoustic neuroma) arises from the vestibular nerve in the internal auditory canal and grows into the cerebellopontine angle. It is extra-axial: CSF clefts and vessels separate it from the brainstem and cerebellum. On contrast T1 it enhances strongly, often like an ice-cream cone with the cone in the internal auditory canal; on high-resolution T2 it is a dark filling defect in the bright CSF. The main alternative at the cerebellopontine angle is a meningioma, which is broad-based on the dura, may have a dural tail and rarely enters the canal."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "lung-dx-a0010:locate",
+   "caseId": "lung-dx-a0010",
+   "type": "locate_finding",
+   "title": "Find the lung tumor",
+   "prompt": "Read both lungs and the hila on a lung window, slice by slice. Mark the main abnormality (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.403049190755802208938880190492"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.403049190755802208938880190492",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lung-dx-a0010_lung-cancer",
+     "name": "Lung tumor",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 5,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the two lungs zone by zone, and look hard at the hila and next to the spine and the heart."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lung-dx-a0010_lung-cancer"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does. The reference is the radiologists' box, a rectangle around the tumor on each slice; a mark inside it within one slice counts.",
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "lung-dx-a0010:oral",
+   "caseId": "lung-dx-a0010",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why pneumonia or a collapsed segment is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.403049190755802208938880190492"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.403049190755802208938880190492",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (the cell type needs a biopsy)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (pneumonia or a collapsed segment) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "lung-dx-g0007:locate",
+   "caseId": "lung-dx-g0007",
+   "type": "locate_finding",
+   "title": "Find the lung tumor",
+   "prompt": "Read both lungs and the hila on a lung window, slice by slice. Mark the main abnormality (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.145451801845197580046565969690"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.145451801845197580046565969690",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lung-dx-g0007_lung-cancer",
+     "name": "Lung tumor",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 5,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the two lungs zone by zone, and look hard at the hila and next to the spine and the heart."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lung-dx-g0007_lung-cancer"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does. The reference is the radiologists' box, a rectangle around the tumor on each slice; a mark inside it within one slice counts.",
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "lung-dx-g0007:oral",
+   "caseId": "lung-dx-g0007",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why pneumonia or a collapsed segment is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.145451801845197580046565969690"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.145451801845197580046565969690",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (the cell type needs a biopsy)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (pneumonia or a collapsed segment) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "lung-dx-b0022:locate",
+   "caseId": "lung-dx-b0022",
+   "type": "locate_finding",
+   "title": "Find the lung tumor",
+   "prompt": "Read both lungs and the hila on a lung window, slice by slice. Mark the main abnormality (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.291909631563703110056831793985"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.291909631563703110056831793985",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lung-dx-b0022_lung-cancer",
+     "name": "Lung tumor",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 5,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the two lungs zone by zone, and look hard at the hila and next to the spine and the heart."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lung-dx-b0022_lung-cancer"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does. The reference is the radiologists' box, a rectangle around the tumor on each slice; a mark inside it within one slice counts.",
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "lung-dx-b0022:oral",
+   "caseId": "lung-dx-b0022",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why pneumonia or a collapsed segment is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.291909631563703110056831793985"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.291909631563703110056831793985",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (the cell type needs a biopsy)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (pneumonia or a collapsed segment) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "lung-dx-e0004:locate",
+   "caseId": "lung-dx-e0004",
+   "type": "locate_finding",
+   "title": "Find the lung tumor",
+   "prompt": "Read both lungs and the hila on a lung window, slice by slice. Mark the main abnormality (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.417155163482218017552132873482"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.417155163482218017552132873482",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "lung-dx-e0004_lung-cancer",
+     "name": "Lung tumor",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 5,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the two lungs zone by zone, and look hard at the hila and next to the spine and the heart."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lung-dx-e0004_lung-cancer"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does. The reference is the radiologists' box, a rectangle around the tumor on each slice; a mark inside it within one slice counts.",
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "lung-dx-e0004:oral",
+   "caseId": "lung-dx-e0004",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why pneumonia or a collapsed segment is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6655.2359.417155163482218017552132873482"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.417155163482218017552132873482",
+    "slice": "first",
+    "windowPreset": "Lung"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (the cell type needs a biopsy)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (pneumonia or a collapsed segment) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "hcc-010:locate",
+   "caseId": "hcc-010",
+   "type": "locate_finding",
+   "title": "Find the liver tumor",
+   "prompt": "Read the liver slice by slice on a soft-tissue window. Mark the tumor (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.1706.8374.144967540901815428834541637279"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.1706.8374.144967540901815428834541637279",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "hcc-010_hepatocellular-carcinoma",
+     "name": "Hepatocellular carcinoma",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the texture and brightness of each part of the liver; the tumor enhances differently from the liver around it."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "hcc-010_hepatocellular-carcinoma"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Hepatocellular carcinoma usually arises in a cirrhotic liver. On multiphase CT its typical behavior is arterial-phase hyperenhancement (brighter than the liver) with washout on later phases (darker than the liver), often with an enhancing capsule. Large tumors are heterogeneous and may invade the portal or hepatic veins. Compare every phase; a metastasis is usually darker than the liver on the portal venous phase, and a hemangioma fills in from the periphery.",
+   "bookAnchors": [
+    {
+     "physical": 211,
+     "printed": "191",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.20",
+     "sectionId": null
+    },
+    {
+     "physical": 214,
+     "printed": "194",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.25",
+     "sectionId": null
+    },
+    {
+     "physical": 215,
+     "printed": "195",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.27",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch17-o08"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "hcc-010:oral",
+   "caseId": "hcc-010",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a liver metastasis is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.1706.8374.144967540901815428834541637279"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.1706.8374.144967540901815428834541637279",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (washout needs the later phases, which are not installed)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a liver metastasis) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 211,
+     "printed": "191",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.20",
+     "sectionId": null
+    },
+    {
+     "physical": 214,
+     "printed": "194",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.25",
+     "sectionId": null
+    },
+    {
+     "physical": 215,
+     "printed": "195",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.27",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch17-o08"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "hcc-003:locate",
+   "caseId": "hcc-003",
+   "type": "locate_finding",
+   "title": "Find the liver tumor",
+   "prompt": "Read the liver slice by slice on a soft-tissue window. Mark the tumor (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.1706.8374.281650679207816520863173918688"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.1706.8374.281650679207816520863173918688",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "hcc-003_hepatocellular-carcinoma",
+     "name": "Hepatocellular carcinoma",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the texture and brightness of each part of the liver; the tumor enhances differently from the liver around it."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "hcc-003_hepatocellular-carcinoma"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Hepatocellular carcinoma usually arises in a cirrhotic liver. On multiphase CT its typical behavior is arterial-phase hyperenhancement (brighter than the liver) with washout on later phases (darker than the liver), often with an enhancing capsule. Large tumors are heterogeneous and may invade the portal or hepatic veins. Compare every phase; a metastasis is usually darker than the liver on the portal venous phase, and a hemangioma fills in from the periphery.",
+   "bookAnchors": [
+    {
+     "physical": 211,
+     "printed": "191",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.20",
+     "sectionId": null
+    },
+    {
+     "physical": 214,
+     "printed": "194",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.25",
+     "sectionId": null
+    },
+    {
+     "physical": 215,
+     "printed": "195",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.27",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch17-o08"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "hcc-003:oral",
+   "caseId": "hcc-003",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a liver metastasis is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.1706.8374.281650679207816520863173918688"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.1706.8374.281650679207816520863173918688",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (washout needs the later phases, which are not installed)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a liver metastasis) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 211,
+     "printed": "191",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.20",
+     "sectionId": null
+    },
+    {
+     "physical": 214,
+     "printed": "194",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.25",
+     "sectionId": null
+    },
+    {
+     "physical": 215,
+     "printed": "195",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.27",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch17-o08"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "vs-seg-001:locate",
+   "caseId": "vs-seg-001",
+   "type": "locate_finding",
+   "title": "Find the posterior fossa mass",
+   "prompt": "Read the posterior fossa on the contrast T1 series: brainstem, cerebellum and both cerebellopontine angles. Mark any mass (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.149357697745643823053302398129943470751",
+    "1.3.6.1.4.1.14519.5.2.1.97824612055862366318560427964793890998"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.149357697745643823053302398129943470751",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "vs-seg-001_cet1-vestibular-schwannoma",
+     "name": "Vestibular schwannoma",
+     "required": true
+    },
+    {
+     "targetId": "vs-seg-001_hrt2-vestibular-schwannoma",
+     "name": "Vestibular schwannoma (T2)",
+     "required": false
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the two cerebellopontine angles, just behind the petrous bones, and follow each internal auditory canal."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "vs-seg-001_cet1-vestibular-schwannoma"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A vestibular schwannoma (acoustic neuroma) arises from the vestibular nerve in the internal auditory canal and grows into the cerebellopontine angle. It is extra-axial: CSF clefts and vessels separate it from the brainstem and cerebellum. On contrast T1 it enhances strongly, often like an ice-cream cone with the cone in the internal auditory canal; on high-resolution T2 it is a dark filling defect in the bright CSF. The main alternative at the cerebellopontine angle is a meningioma, which is broad-based on the dura, may have a dural tail and rarely enters the canal.",
+   "bookAnchors": [
+    {
+     "physical": 362,
+     "printed": "342",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.28",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.29",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.30",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o11"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "vs-seg-001:axial",
+   "caseId": "vs-seg-001",
+   "type": "differential",
+   "title": "Inside or outside the brain?",
+   "prompt": "Is this mass intra-axial (within the brain) or extra-axial (outside the brain, in the cerebellopontine angle)?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.149357697745643823053302398129943470751",
+    "1.3.6.1.4.1.14519.5.2.1.97824612055862366318560427964793890998"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.97824612055862366318560427964793890998",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "extra",
+      "text": "Extra-axial",
+      "correct": true,
+      "why": "It sits in the cerebellopontine angle cistern, separated from the brainstem and cerebellum by CSF, and extends into the internal auditory canal."
+     },
+     {
+      "id": "intra",
+      "text": "Intra-axial",
+      "correct": false,
+      "why": "An intra-axial mass would be surrounded by brain tissue and expand it from within; here CSF separates the mass from the brain."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "On the T2 series look for bright CSF between the mass and the brainstem or cerebellum."
+    }
+   ],
+   "explanation": "Extra-axial masses displace the brain and are separated from it by CSF clefts and vessels; the commonest at the cerebellopontine angle are vestibular schwannoma and meningioma.",
+   "bookAnchors": [
+    {
+     "physical": 362,
+     "printed": "342",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.28",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.29",
+     "sectionId": null
+    },
+    {
+     "physical": 363,
+     "printed": "343",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.30",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o11"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

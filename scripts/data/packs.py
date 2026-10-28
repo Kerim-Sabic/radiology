@@ -82,7 +82,7 @@ def cmd_fetch(pack_id: str) -> None:
             if se["kind"] == "lidc_xml":
                 fetch_lidc_xml()
                 continue
-            if se["kind"] == "ricord_labels":
+            if se["kind"] in ("ricord_labels", "voc_boxes"):
                 fetch_csv(coll, se["file"]["name"], se["file"]["url"])
                 continue
             if se["kind"] == "cbis_mask":

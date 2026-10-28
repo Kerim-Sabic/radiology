@@ -20,7 +20,7 @@ import pydicom
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import tcia  # noqa: E402
-from annotations import (SeriesGeom, convert_cbis_mask, convert_lidc, convert_ricord_labels,  # noqa: E402
+from annotations import (SeriesGeom, convert_cbis_mask, convert_lidc, convert_ricord_labels, convert_voc_boxes,  # noqa: E402
                          convert_rtstruct, convert_seg)
 from common import (DOCS_DIR, PACKS_DIR, SELECTION, dicom_date, dump_json, load_json,  # noqa: E402
                     slug)
@@ -107,7 +107,7 @@ def build(pack_id: str) -> dict:
                 zp, meta = raw_zip(coll, se.get("maskPatientId", pid), se["uid"])
                 license_rows[se.get("sourceId", subj["sourceId"])].append(meta.get("seriesRow"))
                 continue
-            if se["kind"] in ("lidc_xml", "ricord_labels"):
+            if se["kind"] in ("lidc_xml", "ricord_labels", "voc_boxes"):
                 annotations.append((subj, se))
                 continue
             zp, meta = raw_zip(coll, pid, se["uid"])
@@ -187,6 +187,10 @@ def build(pack_id: str) -> dict:
             t, g, q = convert_cbis_mask(mask_items, geoms, se["imageSeriesUid"], row[0], {"file": se["csv"]["file"], **cmeta},
                                         se["uid"], ctx)
             q["kind"] = "cbis_mask"
+        elif se["kind"] == "voc_boxes":
+            zp_ = tcia.RAW_ROOT / src["collection"] / "_metadata" / se["file"]["name"]
+            t, g, q = convert_voc_boxes(zp_, load_json(zp_.with_suffix(".json")), geoms, se["seriesUid"], se["folder"], ctx)
+            q["kind"] = "voc_boxes"
         elif se["kind"] == "lidc_xml":
             xp = lidc_xml_path()
             xmeta = load_json(xp.with_suffix(".json"))
@@ -207,7 +211,8 @@ def build(pack_id: str) -> dict:
                 pairs = [(a, b) for a, b in zip(t, g) if a["classId"] in keep]
                 t, g = [p[0] for p in pairs], [p[1] for p in pairs]
         for a, b in zip(t, g):
-            if not (b.get("planes") if b["geometryType"] == "contour_set" else (b.get("sopInstanceUids") and b.get("labels"))):
+            if not (b.get("planes") if b["geometryType"] == "contour_set" else b.get("boxes") if b["geometryType"] == "box"
+                    else (b.get("sopInstanceUids") and b.get("labels"))):
                 log(f"  WARNING: target {a['id']} has no planes; dropped")
                 q.setdefault("droppedEmpty", []).append(a["id"])
                 continue

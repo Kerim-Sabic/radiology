@@ -154,6 +154,136 @@ pulmonary embolism ch10-o07, liver metastases ch17-o08, mediastinal adenopathy c
   - **Patient identity:** whether the three IMG00023xx images come from one person is unknown, hence the shared holdout group.
 - **Outlines:** none was reviewed by a radiologist for this app. They are the source datasets' expert annotations, and are shown as such.
 
+## Round 2 (28 October 2026, evening): tumors and stroke
+
+The app is now sold (membership), so round 2 uses only data whose licence allows commercial use with attribution (all CC BY 4.0
+here); the build's commercial filter (`scripts/build/commercialContent.ts`) keeps every subject below. Nothing needed a login or an
+agreement. Two packs: `ct-tumors` (TCIA, through `packs.py` / `build_pack.py`) and `stroke-mri` (`external.py isles` +
+`build_external.py`). Both pass `validate_pack.py` (0 errors, 0 warnings), the zod contract and the unit tests; lessons by
+`scripts/lessons/conditions.py` (`tumor_lessons`, `stroke_lessons`).
+
+| pack | what | patients | finding classIds | size |
+|---|---|---|---|---|
+| `ct-tumors` | lung cancer CT with radiologists' boxes; HCC CT with curated SEG; vestibular schwannoma MRI with manual RT contour | 7 | `finding:lung_cancer` (4), `finding:hepatocellular_carcinoma` (2), `finding:vestibular_schwannoma` (1, two sequences) | 113.1 MB |
+| `stroke-mri` | ISLES 2022 DWI + ADC with expert-approved lesion masks (NIfTI converted to DICOM) | 2 | `finding:ischemic_stroke` | 1.6 MB |
+
+Lessons: 9 cases, 18 tasks (locate tasks scored against the reference, oral-exam self-review, an intra-/extra-axial choice for the
+schwannoma and a DWI/ADC restriction choice for stroke). Book anchors only through curriculum objectives with verified anchors:
+lung cancer ch10-o05, HCC ch17-o08 (HCC section p. 194 / PDF 214), vestibular schwannoma ch26-o11 (p. 343 / PDF 363), stroke
+ch26-o08 (pp. 334–336 / PDF 354–356). The condition search gains *Hepatocellular carcinoma* and *Vestibular schwannoma* and finds
+the new cases under *Lung cancer* and *Ischemic stroke*.
+
+### Lung-PET-CT-Dx (`ct-tumors`, lung cancer)
+- **Licence:** CC BY 4.0 (images, annotation XML and clinical data, per the collection page and the NBIA API).
+  doi:10.7937/TCIA.2020.NNC2-0461 (Li et al. 2020).
+- **Annotations:** PASCAL VOC boxes drawn in LabelImg by one of five academic thoracic radiologists and verified by the other four
+  (collection description). `Lung-PET-CT-Dx-Annotations-XML-Files-rev12222020.zip` (sha256 74578564508a2c52…) from
+  cancerimagingarchive.net; one XML per image, named by its SOP Instance UID. New annotation kind `voc_boxes`
+  (`annotations.convert_voc_boxes`): pixel-corner boxes → image_px with the pixel-centre convention (−0.5 px); the XML image size
+  must equal the series matrix and the box label must equal the patient's histology letter, or the build stops.
+- **Histology:** from the first letter of the patient ID (A adenocarcinoma, B small cell, E large cell, G squamous), per the
+  collection description. One patient per histology.
+- **Series choice:** each patient's tumor is boxed on several reconstructions; the CT series with the most boxes that fits the budget
+  was taken, and only boxes on that series are used (the others are counted in the target note). On every chosen series the boxed
+  images are consecutive.
+
+| patient | histology | CT series | boxes / images | raw zip sha256 |
+|---|---|---|---|---|
+| Lung_Dx-A0010 | adenocarcinoma | 5mm, 51 images | 9 (3 more on other series) | d63340320fdff3f6… |
+| Lung_Dx-G0007 | squamous cell carcinoma | 5mm, 50 images | 14 (11 more) | 696bec9a6e66e56f… |
+| Lung_Dx-B0022 | small cell carcinoma | ThoraxRoutine 5.0 B70f, 55 images | 19 (10 more) | ff21cf07730a511e… |
+| Lung_Dx-E0004 | large cell carcinoma | ThoraxRoutine 5.0 B70f, 55 images | 13 (6 more) | 20714fcc6a538950… |
+
+### HCC-TACE-Seg (`ct-tumors`, hepatocellular carcinoma)
+- **Licence:** CC BY 4.0. doi:10.7937/TCIA.5FNA-0924 (Moawad et al. 2021). 105 patients with confirmed HCC; baseline CT 1–12 weeks
+  before the first TACE.
+- **Segmentation:** "Semiautomatic segmentation of liver, tumor, and blood vessels created using AMIRA was manually clinically
+  curated" (collection page); the SEG records SegmentAlgorithmType SEMIAUTOMATIC → `source_manual` as for KiTS.
+- **One phase only:** the image series holds three contrast phases; the SEG references one of them, and only those instances are kept
+  (`sops` in the selection; 77 of 172 and 95 of 190 images), which gives a regular volume.
+- **Kept:** Mass (shown as *Hepatocellular carcinoma*), Liver, Abdominal aorta. **Left out:** the *Portal vein* segment (description
+  "vessels"): on this phase it outlines scattered intrahepatic branches that could not be confirmed as portal venous.
+
+| patient | series (kept / original images) | SEG sha256 | image zip sha256 |
+|---|---|---|---|
+| HCC_010 | Recon 2: LIVER 3 PHASE (AP), 77 / 172 | e34386587108cdc3… | 27d8bd865b390d6c… |
+| HCC_003 | Recon 2: LIVER 3 PHASE (AP), 95 / 190 | 6edf30fd2b1cca53… | 5fc392a7c814f7ca… |
+
+### Vestibular-Schwannoma-SEG (`ct-tumors`, acoustic neuroma)
+- **Licence:** CC BY 4.0. doi:10.7937/TCIA.9YTJ-5Q73 (Shapey et al. 2021).
+- **Contours:** "manually segmented in consensus by the treating neurosurgeon and physicist using both the ceT1 and hrT2 images"
+  (Gamma Knife planning, every axial slice). ROI *TV* (target volume = tumor) is used; *Cochlea*, *Vol2016* and *\*Skull* are not.
+- **VS-SEG-001:** contrast T1 MPRAGE (120 images, zip sha256 ebb25babd157544b…, RTSTRUCT 4c57f7569e46e7ff…) and high-resolution
+  T2 CISS (80 images, zip 75a4d9063a9d4b1f…, RTSTRUCT 956328392d4b3f1f…). The side is not stated in any label; the viewer's
+  orientation letters show it.
+
+### ISLES 2022 (`stroke-mri`, ischemic stroke)
+- **Licence:** CC BY 4.0, Zenodo record 7153326 (open access; licence `cc-by-4.0` from the Zenodo API). Hernandez Petzsche et al.,
+  Sci Data 2022;9:762.
+- **Masks:** a DWI-trained U-Net pre-segmentation, corrected by trained annotators (DWI, ADC and FLAIR reviewed), revised by a
+  neuroradiologist in training and approved by one of three attending neuroradiologists with more than 10 years of stroke imaging
+  experience (paper). The mask is on the DWI/ADC grid.
+- **Files** (`ISLES-2022.zip` read member by member over HTTP Range, CRC-32 checked):
+
+| case | DWI sha256 | ADC sha256 | mask sha256 | lesion | DWI b-value (sidecar) |
+|---|---|---|---|---|---|
+| sub-strokecase0057 | 24c6b14602202355… | b7671737c425e3e1… | 1671fe47287c6fcb… | 59 ml, 40 slices | 800 |
+| sub-strokecase0015 | eb03b126533c423d… | 282329bb4ab5adf0… | 854c546651870615… | 13 ml, 19 slices | 1000 |
+
+- **Conversion** (`build_external.build_isles`): the images are the dataset's skull-stripped NIfTI on a 2 mm grid. Each slice
+  becomes an MR Image Storage instance; IOP, IPP and pixel spacing come from the NIfTI affine (RAS → LPS); the voxel axes are
+  flipped only so that columns run to the patient's left and rows run posterior. DWI is stored as rounded signal (arbitrary units),
+  ADC in 10⁻⁶ mm²/s; negative interpolation values are clipped to 0. DWI and ADC share one study and frame of reference, so the
+  viewer links them. Case 0055 was downloaded as a spare and not used.
+- **Selection:** cases with one dominant lesion of moderate to large size among the first 60 masks; reviewed with the outline drawn
+  on DWI and ADC (bright on DWI, dark on ADC, outline on the lesion).
+
+### Fix in `build_external.uid_for`
+`pydicom.generate_uid(prefix=None, entropy_srcs=…)` ignores `entropy_srcs` and returns a random UUID UID, so the "deterministic"
+UIDs of round 1 were random per call (a rebuild would change them; in `stroke-mri` the DWI and ADC series first landed in two
+different studies). `uid_for` now hashes its inputs (SHA-256 → 2.25 UID). The round-1 packs were not rebuilt and keep their stored
+UIDs; rebuilding them now would give new, stable UIDs (and the anatomy layer of `pe-cta` would then need rebuilding too).
+
+### Gap table after round 2
+
+| book condition (chapter) | after round 1 | after round 2 |
+|---|---|---|
+| Bronchogenic carcinoma (ch10) | 3 PA radiographs, box ("mass") | + 4 chest CTs, radiologists' boxes, histology known |
+| Hepatocellular carcinoma (ch17) | none | 2 CTs, curated SEG of the tumor |
+| Vestibular schwannoma (ch26) | none | 1 MRI (contrast T1 + T2), manual contour |
+| Ischemic stroke (ch26) | none | 2 MRIs (DWI + ADC), expert-approved mask |
+| Pancreatic adenocarcinoma (ch17) | none | **none**: MSD Task07 (CC BY-SA 4.0) is one 11 GB tar without random access; Pancreatic-CT-CBCT-SEG contours only normal organs |
+| Colon cancer (ch14/16) | none | **none**: MSD Task10 is a 5.8 GB tar; no TCIA alternative with located tumors found |
+| Lymphoma / abdominal nodes (ch17) | mediastinal nodes (LNQ) | unchanged: CT Lymph Nodes abdominal series are 400+ images (> 200 MB each) |
+| Meningioma (ch26) | none | **none**: Meningioma-SEG-CLASS returns no series through the anonymous NBIA API |
+| Brain metastases (ch26) | none | **none**: Brain-TR-GammaKnife and Pretreat-MetsToBrain-Masks return no series anonymously |
+| Intracranial hemorrhage, hemorrhagic stroke (ch26) | none | **none**: no public, located, commercially licensed set (CQ500 EULA; PhysioNet CT-ICH agreement; RSNA Kaggle rules; BHSD derives from RSNA data) |
+| Hemothorax, free air, bowel obstruction, stones, aortic aneurysm/dissection | none | **none**: no open, located dataset with a commercial licence found |
+
+### Anatomy outlines on the new CTs (round 2)
+The anatomy layer ("AI draft by Horalix", `anatomy-atlas`) now also covers the CTs of `pe-cta`, `ct-findings` and `ct-tumors`
+(11 more series: 51 CT series in all). Same pipeline and QC rules (`RULES_VERSION` 12): carina cut, spine numbering, contested
+pixels, partial-imaging labels, laterality and anatomical order, density and typical-volume rules. Result: 4,409 outlines (was
+3,650; 762 new), 77.2 MB (below the 80 MB repo budget), 0 verification failures against the DICOM, 1,186 left/right pairs with 0 on
+the wrong side.
+- **QC drops on the new CTs** (examples): fluid-dense right middle and lower lobes and a contrast-filled IVC on FUMPE PAT021 (density
+  rule); doubtful lumbar numbering from L3 down on CRLM-CT-1140 (spine rule); lung-density lobe arteries on several scans.
+- **Visual checks** (recorded in the work folder's `*_visual_check.json`): pulmonary-artery split, aortic parts and heart chambers
+  rendered and inspected on every new chest CT. On two non-contrast lung-cancer CTs the tumor sits against the hilum: Lung_Dx-G0007's
+  right pulmonary artery (it ran behind the bronchus into the tumor region) and right upper lobe arteries, and Lung_Dx-E0004's left
+  pulmonary artery and left lobe arteries (border against the mass not verifiable without contrast) are not shown.
+- **Effect on the 40 earlier CTs:** the typical volumes used by the size rule are recomputed over all CTs, so three borderline
+  outlines no longer pass (LIDC-0208 rib 12 left and right, cut off at the scan edge and now under 20 % of the typical size;
+  Spine-Mets 13843 right brachiocephalic vein, 1.3 ml vs typical 7 ml). Nothing else on the earlier CTs changed.
+- **Not added:** the NIH radiographs carry no orientation tag, so every left/right structure would be dropped by the radiograph side
+  rule; they keep the expert boxes only.
+
+### Also skipped in round 2
+- **QIN LUNG CT** (CC BY 3.0): its SEGs are the outputs of three segmentation challenge algorithms ("alg01–03"), not expert outlines.
+- **NSCLC Radiogenomics** (CC BY 3.0): the collection page does not say who made the tumor segmentations, and the DICOM SEGs code the
+  segment as "Heart" (SegmentedPropertyType), so the label cannot be trusted without each case being checked by a radiologist.
+- **Adrenal-ACC-Ki67-Seg** (CC BY 4.0, SEG of adrenocortical carcinoma): not a book section; left for later.
+
 ## Rebuild
 ```
 python scripts/data/external.py nih
@@ -161,6 +291,8 @@ python scripts/data/external.py fumpe PAT005 PAT021
 python scripts/data/external.py fracatlas IMG0000019.jpg IMG0000151.jpg IMG0002302.jpg IMG0002308.jpg IMG0002337.jpg
 python scripts/data/build_external.py cxr-findings && python scripts/data/build_external.py pe-cta && python scripts/data/build_external.py fx-radiographs
 python scripts/data/packs.py fetch ct-findings && python scripts/data/packs.py build ct-findings
+python scripts/data/packs.py fetch ct-tumors && python scripts/data/packs.py build ct-tumors
+python scripts/data/external.py isles 15 57 && python scripts/data/build_external.py stroke-mri
 python scripts/lessons/conditions.py
 ```
 Raw downloads go to `RADIOLOGY_RAW_DIR` (default `C:/Users/kerim/radiology-data/raw`). The NIH selection is the curated list

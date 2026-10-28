@@ -1,0 +1,486 @@
+{
+ "packId": "ct-tumors",
+ "generatedAt": "2026-10-28T17:26:05Z",
+ "packBytesExcludingLessons": 113120576,
+ "budgetBytes": 200000000,
+ "series": [
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.1706.8374.144967540901815428834541637279",
+   "short": "ct-7e9d58b8f1",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 77,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 77
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 13381546,
+   "rawBytes": 40570046
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.1706.8374.281650679207816520863173918688",
+   "short": "ct-4d8318ca48",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 95,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 95
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 16307954,
+   "rawBytes": 50053976
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.149357697745643823053302398129943470751",
+   "short": "mr-30b76d426d",
+   "modality": "MR",
+   "role": "diagnostic",
+   "instances": 120,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 120
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 3.9968028886505635e-14,
+   "bytes": 23804124,
+   "rawBytes": 63359688
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.97824612055862366318560427964793890998",
+   "short": "mr-1fdfe6b8e1",
+   "modality": "MR",
+   "role": "diagnostic",
+   "instances": 80,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 80
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 4.9960036108132044e-14,
+   "bytes": 10805526,
+   "rawBytes": 23892212
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.403049190755802208938880190492",
+   "short": "ct-c39cf95eef",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 51,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 51
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 10128576,
+   "rawBytes": 26954926
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.145451801845197580046565969690",
+   "short": "ct-a8dc76e0b4",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 50,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 50
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 8379250,
+   "rawBytes": 26367400
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.291909631563703110056831793985",
+   "short": "ct-57df731787",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 55,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 55
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 14096710,
+   "rawBytes": 29002270
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.6655.2359.417155163482218017552132873482",
+   "short": "ct-2f91862465",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 55,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 55
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 14057614,
+   "rawBytes": 29002930
+  }
+ ],
+ "annotations": [
+  {
+   "segSop": "1.2.276.0.7230010.3.1.4.8323329.881.1600928660.824190",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.1706.8374.144967540901815428834541637279",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {},
+   "contentCreator": "",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "Liver",
+     "targetId": "hcc-010_liver",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 71,
+     "framesTotal": 77,
+     "emptyFrames": 6,
+     "byRef": 71,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 900,
+     "outlineVertexCentroidLps": [
+      -87.5,
+      -15.6,
+      -132.5
+     ]
+    },
+    {
+     "segment": 2,
+     "label": "Mass",
+     "targetId": "hcc-010_hepatocellular-carcinoma",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 23,
+     "framesTotal": 77,
+     "emptyFrames": 54,
+     "byRef": 23,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -98.6,
+      18.4,
+      -156.1
+     ]
+    },
+    {
+     "segment": 3,
+     "label": "Portal vein",
+     "targetId": "hcc-010_portal-vein",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 67,
+     "framesTotal": 77,
+     "emptyFrames": 10,
+     "byRef": 67,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 1,
+     "outlineVertexCentroidLps": [
+      -94.1,
+      -7.0,
+      -134.8
+     ]
+    },
+    {
+     "segment": 4,
+     "label": "Abdominal aorta",
+     "targetId": "hcc-010_abdominal-aorta",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 7,
+     "framesTotal": 77,
+     "emptyFrames": 70,
+     "byRef": 7,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -14.4,
+      30.0,
+      -117.6
+     ]
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.2.276.0.7230010.3.1.3.8323329.881.1600928660.824189",
+   "subject": "tcia:HCC-TACE-Seg:HCC_010"
+  },
+  {
+   "segSop": "1.3.6.1.4.1.14519.5.2.1.1706.8374.873401812761532929158160555505",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.1706.8374.281650679207816520863173918688",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {},
+   "contentCreator": "",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "Liver",
+     "targetId": "hcc-003_liver",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 89,
+     "framesTotal": 95,
+     "emptyFrames": 6,
+     "byRef": 89,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 89,
+     "holes": 465,
+     "outlineVertexCentroidLps": [
+      -61.4,
+      -24.5,
+      -140.4
+     ]
+    },
+    {
+     "segment": 2,
+     "label": "Mass",
+     "targetId": "hcc-003_hepatocellular-carcinoma",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 82,
+     "framesTotal": 95,
+     "emptyFrames": 13,
+     "byRef": 82,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 82,
+     "holes": 25,
+     "outlineVertexCentroidLps": [
+      -101.2,
+      3.2,
+      -152.8
+     ]
+    },
+    {
+     "segment": 3,
+     "label": "Portal vein",
+     "targetId": "hcc-003_portal-vein",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 69,
+     "framesTotal": 95,
+     "emptyFrames": 26,
+     "byRef": 69,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 69,
+     "holes": 25,
+     "outlineVertexCentroidLps": [
+      -38.0,
+      -26.1,
+      -133.0
+     ]
+    },
+    {
+     "segment": 4,
+     "label": "Abdominal aorta",
+     "targetId": "hcc-003_abdominal-aorta",
+     "algorithmType": "SEMIAUTOMATIC",
+     "planes": 7,
+     "framesTotal": 95,
+     "emptyFrames": 88,
+     "byRef": 7,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 7,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -13.7,
+      27.2,
+      -152.9
+     ]
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.1706.8374.106355502486885782622426045632",
+   "subject": "tcia:HCC-TACE-Seg:HCC_003"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.203807277632786906872126388386950980359",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.149357697745643823053302398129943470751",
+   "rois": [
+    {
+     "roi": "TV",
+     "targetId": "vs-seg-001_cet1-vestibular-schwannoma",
+     "contours": 14,
+     "planes": 14,
+     "matchedBySop": 14,
+     "matchedByZ": 0,
+     "maxResidualMm": 2.532999587856466e-09,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Cochlea",
+     "targetId": "vs-seg-001_cet1-cochlea",
+     "contours": 4,
+     "planes": 4,
+     "matchedBySop": 4,
+     "matchedByZ": 0,
+     "maxResidualMm": 2.532999587856466e-09,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Vol2016",
+     "targetId": "vs-seg-001_cet1-vol2016",
+     "contours": 10,
+     "planes": 10,
+     "matchedBySop": 10,
+     "matchedByZ": 0,
+     "maxResidualMm": 2.532999587856466e-09,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "*Skull",
+     "targetId": "vs-seg-001_cet1-skull",
+     "contours": 106,
+     "planes": 106,
+     "matchedBySop": 106,
+     "matchedByZ": 0,
+     "maxResidualMm": 2.5330031405701448e-09,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "emptyRois": [],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.75164064738538288645257513911612519591",
+   "subject": "tcia:Vestibular-Schwannoma-SEG:VS-SEG-001"
+  },
+  {
+   "rtstructSop": "1.3.6.1.4.1.14519.5.2.1.48872789534527162082063333893609102409",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.97824612055862366318560427964793890998",
+   "rois": [
+    {
+     "roi": "TV",
+     "targetId": "vs-seg-001_hrt2-vestibular-schwannoma",
+     "contours": 13,
+     "planes": 13,
+     "matchedBySop": 13,
+     "matchedByZ": 0,
+     "maxResidualMm": 5.127006375005294e-09,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Cochlea",
+     "targetId": "vs-seg-001_hrt2-cochlea",
+     "contours": 5,
+     "planes": 5,
+     "matchedBySop": 5,
+     "matchedByZ": 0,
+     "maxResidualMm": 5.127006375005294e-09,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    },
+    {
+     "roi": "Vol2016",
+     "targetId": "vs-seg-001_hrt2-vol2016",
+     "contours": 12,
+     "planes": 11,
+     "matchedBySop": 12,
+     "matchedByZ": 0,
+     "maxResidualMm": 5.127006375005294e-09,
+     "failures": [],
+     "skipped": {},
+     "holes": 2
+    },
+    {
+     "roi": "*Skull",
+     "targetId": "vs-seg-001_hrt2-skull",
+     "contours": 79,
+     "planes": 79,
+     "matchedBySop": 79,
+     "matchedByZ": 0,
+     "maxResidualMm": 5.127006375005294e-09,
+     "failures": [],
+     "skipped": {},
+     "holes": 0
+    }
+   ],
+   "emptyRois": [],
+   "kind": "rtstruct",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.100364245183930759730290495595573094436",
+   "subject": "tcia:Vestibular-Schwannoma-SEG:VS-SEG-001"
+  },
+  {
+   "folder": "A0010",
+   "boxes": 9,
+   "images": 9,
+   "otherSeriesBoxes": 3,
+   "histology": "adenocarcinoma",
+   "contiguous": true,
+   "kind": "voc_boxes",
+   "subject": "tcia:Lung-PET-CT-Dx:Lung_Dx-A0010"
+  },
+  {
+   "folder": "G0007",
+   "boxes": 14,
+   "images": 14,
+   "otherSeriesBoxes": 11,
+   "histology": "squamous cell carcinoma",
+   "contiguous": true,
+   "kind": "voc_boxes",
+   "subject": "tcia:Lung-PET-CT-Dx:Lung_Dx-G0007"
+  },
+  {
+   "folder": "B0022",
+   "boxes": 19,
+   "images": 19,
+   "otherSeriesBoxes": 10,
+   "histology": "small cell carcinoma",
+   "contiguous": true,
+   "kind": "voc_boxes",
+   "subject": "tcia:Lung-PET-CT-Dx:Lung_Dx-B0022"
+  },
+  {
+   "folder": "E0004",
+   "boxes": 13,
+   "images": 13,
+   "otherSeriesBoxes": 6,
+   "histology": "large cell carcinoma",
+   "contiguous": true,
+   "kind": "voc_boxes",
+   "subject": "tcia:Lung-PET-CT-Dx:Lung_Dx-E0004"
+  }
+ ]
+}

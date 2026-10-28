@@ -1,4 +1,5 @@
-"""Lessons for the condition packs: cxr-findings (NIH radiographs), pe-cta (FUMPE) and ct-findings (TCIA).
+"""Lessons for the condition packs: cxr-findings (NIH radiographs), pe-cta (FUMPE), ct-findings and ct-tumors (TCIA),
+fx-radiographs (FracAtlas) and stroke-mri (ISLES 2022).
 
   python scripts/lessons/conditions.py
 
@@ -349,8 +350,225 @@ def fx_lessons() -> None:
     write_lessons(pack, "1.0.0", cases, tasks)
 
 
+# ------------------------------------------------------------------ tumors on CT and MRI (TCIA, round 2)
+LUNG_CA_NOTES = ("Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated "
+                 "margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from "
+                 "nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the "
+                 "mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and "
+                 "vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does.")
+HCC_NOTES = ("Hepatocellular carcinoma usually arises in a cirrhotic liver. On multiphase CT its typical behavior is arterial-phase "
+             "hyperenhancement (brighter than the liver) with washout on later phases (darker than the liver), often with an enhancing "
+             "capsule. Large tumors are heterogeneous and may invade the portal or hepatic veins. Compare every phase; a metastasis is "
+             "usually darker than the liver on the portal venous phase, and a hemangioma fills in from the periphery.")
+VS_NOTES = ("A vestibular schwannoma (acoustic neuroma) arises from the vestibular nerve in the internal auditory canal and grows into "
+            "the cerebellopontine angle. It is extra-axial: CSF clefts and vessels separate it from the brainstem and cerebellum. On "
+            "contrast T1 it enhances strongly, often like an ice-cream cone with the cone in the internal auditory canal; on "
+            "high-resolution T2 it is a dark filling defect in the bright CSF. The main alternative at the cerebellopontine angle is a "
+            "meningioma, which is broad-based on the dura, may have a dural tail and rarely enters the canal.")
+STROKE_NOTES = ("In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. "
+                "Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map "
+                "confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not "
+                "restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and "
+                "look for hemorrhage on the other sequences.")
+
+
+def tumor_lessons() -> None:
+    pack = Pack("ct-tumors")
+    cases, tasks = [], []
+    # lung cancer, one patient per histology
+    hist_name = {"A": "adenocarcinoma", "B": "small cell carcinoma", "E": "large cell carcinoma", "G": "squamous cell carcinoma"}
+    anc = anchors("ch10-o05")
+    for folder in ("A0010", "G0007", "B0022", "E0004"):
+        subj = pack.subject(f"Lung_Dx-{folder}")
+        se = next(s for s in pack.manifest["series"] if s["subjectKey"] == subj["key"])
+        t = pack.target(f"lung-dx-{folder.lower()}_lung-cancer")
+        cid = f"lung-dx-{folder.lower()}"
+        hist = hist_name[folder[0]]
+        cases.append({
+            "id": cid, "packId": pack.id, "neutralTitle": f"CT chest · Lung-PET-CT-Dx {folder}",
+            "learnTitle": f"Lung cancer ({hist}) on chest CT (radiologists' box)",
+            "subjectKey": subj["key"], "studyUids": subj["studyUids"], "primarySeriesUid": se["uid"], "region": ["chest"],
+            "clinicalContext": "Adult with a lung cancer later confirmed by biopsy.",
+            "contextSource": "Collection description (Lung-PET-CT-Dx: patients with biopsy-confirmed lung cancer; histology from the patient ID).",
+            "difficulty": "typical", "objectiveIds": ["ch10-o05"], "bookAnchors": anc,
+            "referenceSummary": (f"The tumor is boxed on every slice where the dataset's thoracic radiologists marked it ({t['provenanceDetail']['note'].split(';')[0]}). "
+                                 f"Histology: {hist}. Nodes, metastases and other findings are not marked."),
+            "learnNotes": LUNG_CA_NOTES,
+        })
+        tasks.append({
+            "id": f"{cid}:locate", "caseId": cid, "type": "locate_finding", "title": "Find the lung tumor",
+            "prompt": "Read both lungs and the hila on a lung window, slice by slice. Mark the main abnormality (point or box), or state that you find none.",
+            "modes": ["learn", "practice", "assess"], "seriesUids": [se["uid"]],
+            "start": {"seriesUid": se["uid"], "slice": "first", "windowPreset": "Lung"},
+            "targets": [{"targetId": t["id"], "name": "Lung tumor", "required": True}],
+            "grading": {"kind": "findings", "matchRule": "center_in_target", "iouThreshold": 0.3, "slabToleranceMm": 2.5,
+                        "inPlaneToleranceMm": 5, "allowNoFinding": True},
+            "scoring": "authoritative",
+            "hints": [hint(1, "Compare the two lungs zone by zone, and look hard at the hila and next to the spine and the heart."),
+                      hint(3, "Jumping to a slice with the reference.", {"type": "jumpToTarget", "targetId": t["id"]}),
+                      hint(5, "Reveal the reference answer.", {"type": "reveal"})],
+            "explanation": LUNG_CA_NOTES + " The reference is the radiologists' box, a rectangle around the tumor on each slice; a mark inside it within one slice counts.",
+            "bookAnchors": anc, "objectiveIds": ["ch10-o05"], "skillDimensions": ["finding_localization", "interpretation"],
+            "allowUncertain": True,
+        })
+        tasks.append(oral_exam_task(cid, [se["uid"]], se["uid"], "the cell type needs a biopsy",
+                                    "pneumonia or a collapsed segment", anc, ["ch10-o05"], window="Lung"))
+    # hepatocellular carcinoma
+    anc = anchors("ch17-o08")
+    for pid in ("HCC_010", "HCC_003"):
+        subj = pack.subject(pid)
+        se = next(s for s in pack.manifest["series"] if s["subjectKey"] == subj["key"])
+        slug_ = pid.lower().replace("_", "-")
+        t = pack.target(f"{slug_}_hepatocellular-carcinoma")
+        cid = f"hcc-{slug_.split('-')[1]}"
+        cases.append({
+            "id": cid, "packId": pack.id, "neutralTitle": f"CT abdomen, liver protocol · HCC-TACE-Seg {pid.split('_')[1]}",
+            "learnTitle": "Hepatocellular carcinoma on contrast CT (tumor and liver segmented)",
+            "subjectKey": subj["key"], "studyUids": subj["studyUids"], "primarySeriesUid": se["uid"], "region": ["abdomen"],
+            "clinicalContext": "Adult with confirmed hepatocellular carcinoma, before transarterial chemoembolization.",
+            "contextSource": "Collection description (HCC-TACE-Seg: confirmed HCC, baseline CT before the first TACE).",
+            "difficulty": "typical", "objectiveIds": ["ch17-o08"], "bookAnchors": anc,
+            "referenceSummary": ("The tumor, the liver and the abdominal aorta were segmented semi-automatically and clinically curated "
+                                 "(HCC-TACE-Seg). Only the contrast phase the segmentation was drawn on is installed, so the washout on "
+                                 "later phases cannot be shown here."),
+            "learnNotes": HCC_NOTES,
+        })
+        tasks.append({
+            "id": f"{cid}:locate", "caseId": cid, "type": "locate_finding", "title": "Find the liver tumor",
+            "prompt": "Read the liver slice by slice on a soft-tissue window. Mark the tumor (point or box), or state that you find none.",
+            "modes": ["learn", "practice", "assess"], "seriesUids": [se["uid"]],
+            "start": {"seriesUid": se["uid"], "slice": "first", "windowPreset": "Soft tissue"},
+            "targets": [{"targetId": t["id"], "name": "Hepatocellular carcinoma", "required": True}],
+            "grading": {"kind": "findings", "matchRule": "center_in_target", "iouThreshold": 0.3, "slabToleranceMm": 2.5,
+                        "inPlaneToleranceMm": 3, "allowNoFinding": True},
+            "scoring": "authoritative",
+            "hints": [hint(1, "Compare the texture and brightness of each part of the liver; the tumor enhances differently from the liver around it."),
+                      hint(3, "Jumping to a slice with the reference.", {"type": "jumpToTarget", "targetId": t["id"]}),
+                      hint(5, "Reveal the reference answer.", {"type": "reveal"})],
+            "explanation": HCC_NOTES,
+            "bookAnchors": anc, "objectiveIds": ["ch17-o08"], "skillDimensions": ["finding_localization", "interpretation"],
+            "allowUncertain": True,
+        })
+        tasks.append(oral_exam_task(cid, [se["uid"]], se["uid"], "washout needs the later phases, which are not installed",
+                                    "a liver metastasis", anc, ["ch17-o08"], window="Soft tissue"))
+    # vestibular schwannoma
+    anc = anchors("ch26-o11")
+    subj = pack.subject("VS-SEG-001")
+    t1 = next(s for s in pack.manifest["series"] if s["subjectKey"] == subj["key"] and "t1" in s["description"].lower())
+    t2 = next(s for s in pack.manifest["series"] if s["subjectKey"] == subj["key"] and "t2" in s["description"].lower())
+    tt1, tt2 = pack.target("vs-seg-001_cet1-vestibular-schwannoma"), pack.target("vs-seg-001_hrt2-vestibular-schwannoma")
+    cid = "vs-seg-001"
+    cases.append({
+        "id": cid, "packId": pack.id, "neutralTitle": "MRI brain, posterior fossa · VS-SEG 001",
+        "learnTitle": "Vestibular schwannoma on contrast T1 and high-resolution T2 (manual contour)",
+        "subjectKey": subj["key"], "studyUids": subj["studyUids"], "primarySeriesUid": t1["uid"], "region": ["head"],
+        "clinicalContext": "Adult treated with Gamma Knife radiosurgery for a vestibular schwannoma.",
+        "contextSource": "Collection description (Vestibular-Schwannoma-SEG: patients treated with Gamma Knife radiosurgery).",
+        "difficulty": "typical", "objectiveIds": ["ch26-o11"], "bookAnchors": anc,
+        "referenceSummary": ("The tumor was contoured manually on every axial slice by the treating neurosurgeon and physicist, on both "
+                             "sequences (Gamma Knife planning). The cochlea and planning structures are not shown."),
+        "learnNotes": VS_NOTES,
+    })
+    tasks.append({
+        "id": f"{cid}:locate", "caseId": cid, "type": "locate_finding", "title": "Find the posterior fossa mass",
+        "prompt": "Read the posterior fossa on the contrast T1 series: brainstem, cerebellum and both cerebellopontine angles. Mark any mass (point or box), or state that you find none.",
+        "modes": ["learn", "practice", "assess"], "seriesUids": [t1["uid"], t2["uid"]],
+        "start": {"seriesUid": t1["uid"], "slice": "middle", "windowPreset": None},
+        "targets": [{"targetId": tt1["id"], "name": "Vestibular schwannoma", "required": True},
+                    {"targetId": tt2["id"], "name": "Vestibular schwannoma (T2)", "required": False}],
+        "grading": {"kind": "findings", "matchRule": "center_in_target", "iouThreshold": 0.3, "slabToleranceMm": 1.5,
+                    "inPlaneToleranceMm": 2, "allowNoFinding": True},
+        "scoring": "authoritative",
+        "hints": [hint(1, "Compare the two cerebellopontine angles, just behind the petrous bones, and follow each internal auditory canal."),
+                  hint(3, "Jumping to a slice with the reference.", {"type": "jumpToTarget", "targetId": tt1["id"]}),
+                  hint(5, "Reveal the reference answer.", {"type": "reveal"})],
+        "explanation": VS_NOTES,
+        "bookAnchors": anc, "objectiveIds": ["ch26-o11"], "skillDimensions": ["finding_localization", "interpretation"],
+        "allowUncertain": True,
+    })
+    tasks.append({
+        "id": f"{cid}:axial", "caseId": cid, "type": "differential", "title": "Inside or outside the brain?",
+        "prompt": "Is this mass intra-axial (within the brain) or extra-axial (outside the brain, in the cerebellopontine angle)?",
+        "modes": ["learn", "practice"], "seriesUids": [t1["uid"], t2["uid"]],
+        "start": {"seriesUid": t2["uid"], "slice": "middle", "windowPreset": None}, "targets": [],
+        "grading": {"kind": "choice", "multiple": False, "options": [
+            {"id": "extra", "text": "Extra-axial", "correct": True,
+             "why": "It sits in the cerebellopontine angle cistern, separated from the brainstem and cerebellum by CSF, and extends into the internal auditory canal."},
+            {"id": "intra", "text": "Intra-axial", "correct": False,
+             "why": "An intra-axial mass would be surrounded by brain tissue and expand it from within; here CSF separates the mass from the brain."}]},
+        "scoring": "authoritative",
+        "hints": [hint(1, "On the T2 series look for bright CSF between the mass and the brainstem or cerebellum.")],
+        "explanation": "Extra-axial masses displace the brain and are separated from it by CSF clefts and vessels; the commonest at the cerebellopontine angle are vestibular schwannoma and meningioma.",
+        "bookAnchors": anc, "objectiveIds": ["ch26-o11"], "skillDimensions": ["interpretation"], "allowUncertain": True,
+    })
+    write_lessons(pack, "1.0.0", cases, tasks)
+
+
+def stroke_lessons() -> None:
+    pack = Pack("stroke-mri")
+    cases, tasks = [], []
+    anc = anchors("ch26-o08")
+    for subj in pack.manifest["subjects"]:
+        sers = [s for s in pack.manifest["series"] if s["subjectKey"] == subj["key"]]
+        dwi = next(s for s in sers if s["description"].startswith("DWI"))
+        adc = next(s for s in sers if s["description"].startswith("ADC"))
+        tdwi = next(t for t in pack.manifest["referenceTargets"] if t["seriesUid"] == dwi["uid"])
+        tadc = next(t for t in pack.manifest["referenceTargets"] if t["seriesUid"] == adc["uid"])
+        num = subj["sourceSubjectId"].split("strokecase")[1]
+        cid = f"stroke-isles-{num}"
+        cases.append({
+            "id": cid, "packId": pack.id, "neutralTitle": f"MRI brain, diffusion · ISLES 2022 case {int(num)}",
+            "learnTitle": "Ischemic stroke on diffusion MRI (expert-approved lesion mask)",
+            "subjectKey": subj["key"], "studyUids": subj["studyUids"], "primarySeriesUid": dwi["uid"], "region": ["head"],
+            "clinicalContext": "Adult with an ischemic stroke.",
+            "contextSource": "Dataset description (ISLES 2022: MRI of acute to subacute ischemic stroke).",
+            "difficulty": "typical", "objectiveIds": ["ch26-o08"], "bookAnchors": anc,
+            "referenceSummary": ("The ischemic lesion was outlined with a model's help, corrected by trained annotators and a neuroradiologist "
+                                 "in training, and approved by an attending neuroradiologist (ISLES 2022). The images are skull-stripped and "
+                                 "resliced to 2 mm by the dataset authors; time since onset is not given."),
+            "learnNotes": STROKE_NOTES,
+        })
+        tasks.append({
+            "id": f"{cid}:locate", "caseId": cid, "type": "locate_finding", "title": "Find the restricted diffusion",
+            "prompt": "Read the diffusion-weighted images from the skull base to the vertex. Mark the abnormal area (point or box), or state that you find none.",
+            "modes": ["learn", "practice", "assess"], "seriesUids": [dwi["uid"], adc["uid"]],
+            "start": {"seriesUid": dwi["uid"], "slice": "middle", "windowPreset": None},
+            "targets": [{"targetId": tdwi["id"], "name": "Ischemic lesion", "required": True},
+                        {"targetId": tadc["id"], "name": "Ischemic lesion (ADC)", "required": False}],
+            "grading": {"kind": "findings", "matchRule": "center_in_target", "iouThreshold": 0.3, "slabToleranceMm": 2,
+                        "inPlaneToleranceMm": 3, "allowNoFinding": True},
+            "scoring": "authoritative",
+            "hints": [hint(1, "Look for a bright area on DWI that keeps to an arterial territory, and compare the two hemispheres."),
+                      hint(3, "Jumping to a slice with the reference.", {"type": "jumpToTarget", "targetId": tdwi["id"]}),
+                      hint(5, "Reveal the reference answer.", {"type": "reveal"})],
+            "explanation": STROKE_NOTES,
+            "bookAnchors": anc, "objectiveIds": ["ch26-o08"], "skillDimensions": ["finding_localization", "interpretation"],
+            "allowUncertain": True,
+        })
+        tasks.append({
+            "id": f"{cid}:adc", "caseId": cid, "type": "differential", "title": "Is it true restriction?",
+            "prompt": "Find the bright lesion on DWI, then look at the same place on the ADC map. How does it look on ADC?",
+            "modes": ["learn", "practice"], "seriesUids": [dwi["uid"], adc["uid"]],
+            "start": {"seriesUid": adc["uid"], "slice": "middle", "windowPreset": None}, "targets": [],
+            "grading": {"kind": "choice", "multiple": False, "options": [
+                {"id": "dark", "text": "Dark (low ADC): true restricted diffusion", "correct": True,
+                 "why": "Water motion is restricted in the swollen cells of an acute infarct, so the ADC is low and the map is dark."},
+                {"id": "bright", "text": "Bright (high ADC)", "correct": False,
+                 "why": "A bright ADC means water moves more freely (e.g. CSF or old tissue loss), the opposite of restriction."},
+                {"id": "same", "text": "The same as normal brain", "correct": False,
+                 "why": "Then the DWI brightness would be T2 shine-through rather than restriction."}]},
+            "scoring": "authoritative",
+            "hints": [hint(1, "Use the linked views: double-click the lesion on DWI and the ADC view goes to the same place.")],
+            "explanation": STROKE_NOTES,
+            "bookAnchors": anc, "objectiveIds": ["ch26-o08"], "skillDimensions": ["interpretation"], "allowUncertain": True,
+        })
+    write_lessons(pack, "1.0.0", cases, tasks)
+
+
 if __name__ == "__main__":
     cxr_lessons()
     pe_lessons()
     ct_lessons()
     fx_lessons()
+    tumor_lessons()
+    stroke_lessons()

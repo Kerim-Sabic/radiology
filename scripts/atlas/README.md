@@ -1,7 +1,7 @@
 # Anatomy atlas pipeline (→ `public/packs/anatomy-atlas`)
 
 Whole-anatomy outlines for the Learn-mode anatomy layer on every CT series and every frontal chest radiograph of the
-image packs (`starter`, `chest-pairs`, `body`, `expansion`, `ct-mri-pairs`, `neuro-msk`, `more-ct-xr`).
+image packs (`starter`, `chest-pairs`, `body`, `expansion`, `ct-mri-pairs`, `neuro-msk`, `more-ct-xr`, `pe-cta`, `ct-findings`, `ct-tumors`).
 
 **Every target is an unreviewed AI draft**: `provenance: "ai_draft"`, `review.status: "unreviewed"`,
 `completeness: "target_only"`, `layer: "atlas"`, a `category` (bone | organ | vessel | airway | muscle | gland | other)

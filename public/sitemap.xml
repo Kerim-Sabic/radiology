@@ -87,6 +87,7 @@
   <url><loc>https://radiology.monster/conditions?c=pancreatitis</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=cirrhosis</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=liver_metastases</loc><priority>0.7</priority></url>
+  <url><loc>https://radiology.monster/conditions?c=hepatocellular_carcinoma</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=renal_mass</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=kidney_stones</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=hydronephrosis</loc><priority>0.7</priority></url>
@@ -107,6 +108,7 @@
   <url><loc>https://radiology.monster/conditions?c=ischemic_stroke</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=brain_tumor</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=brain_metastases</loc><priority>0.7</priority></url>
+  <url><loc>https://radiology.monster/conditions?c=vestibular_schwannoma</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=hydrocephalus</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=multiple_sclerosis</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=skull_fracture</loc><priority>0.7</priority></url>

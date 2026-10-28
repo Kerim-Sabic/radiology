@@ -6,22 +6,22 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 
 | | count |
 |---|---|
-| Distinct patients with usable cases | **84** |
-| Teaching cases | 84 |
-| Image-based tasks | **278** |
-| Studies | 104 |
-| Series (all packs) | 114 |
-| DICOM instances | 7304 |
-| Reference targets | 4023 |
+| Distinct patients with usable cases | **93** |
+| Teaching cases | 93 |
+| Image-based tasks | **296** |
+| Studies | 113 |
+| Series (all packs) | 126 |
+| DICOM instances | 8177 |
+| Reference targets | 4798 |
 
 ### Tasks by scoring basis
 
 | basis | tasks |
 |---|---|
-| auto-checked choice | 48 |
-| self-review (checklist) | 98 |
+| auto-checked choice | 51 |
+| self-review (checklist) | 104 |
 | spatial · AI draft by Horalix / dataset auto-label reference (self-review until user review) | 15 |
-| spatial · source manual reference | 117 |
+| spatial · source manual reference | 126 |
 
 ### Tasks by type
 
@@ -31,9 +31,9 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 | compare appearances | 9 |
 | correlate modalities | 12 |
 | describe finding | 55 |
-| differential | 41 |
+| differential | 50 |
 | find structure | 79 |
-| locate finding | 41 |
+| locate finding | 50 |
 | navigate level | 24 |
 | whole study | 10 |
 
@@ -41,9 +41,9 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 
 | provenance | targets |
 |---|---|
-| ai_draft | 3715 |
+| ai_draft | 4474 |
 | source_automated | 3 |
-| source_manual | 305 |
+| source_manual | 321 |
 
 ## Packs
 
@@ -56,12 +56,14 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 | neuro-msk | repo | yes | 3 | 5 | 523 | 54.8 MB | 3 | 8 |
 | expansion | repo | yes | 12 | 17 | 1892 | 263.1 MB | 12 | 39 |
 | vessel-drafts | repo | yes | 0 | 0 | 0 | 1.1 MB | 0 | 15 |
-| anatomy-atlas | repo | yes | 0 | 0 | 0 | 59.1 MB | 0 | 0 |
+| anatomy-atlas | repo | yes | 0 | 0 | 0 | 73.6 MB | 0 | 0 |
 | more-ct-xr | repo | yes | 21 | 29 | 2375 | 488.6 MB | 21 | 89 |
 | cxr-findings | repo | yes | 23 | 23 | 23 | 9.2 MB | 23 | 45 |
 | pe-cta | repo | yes | 2 | 2 | 434 | 74.9 MB | 2 | 4 |
 | ct-findings | repo | yes | 3 | 3 | 146 | 24.2 MB | 3 | 4 |
 | fx-radiographs | repo | yes | 5 | 5 | 5 | 9.0 MB | 5 | 5 |
+| stroke-mri | repo | yes | 2 | 4 | 290 | 1.6 MB | 2 | 4 |
+| ct-tumors | repo | yes | 7 | 8 | 583 | 107.9 MB | 7 | 14 |
 
 ## Patients and cases
 
@@ -151,6 +153,15 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 | `fx-img0002302` | Radiograph, shoulder and proximal humerus · FracAtlas IMG0002302 | `figshare:FracAtlas:IMG0002302` | DX | 1 |
 | `fx-img0002308` | Radiograph, knee and proximal tibia · FracAtlas IMG0002308 | `figshare:FracAtlas:IMG0002308` | DX | 1 |
 | `fx-img0002337` | Radiograph, hip and proximal femur · FracAtlas IMG0002337 | `figshare:FracAtlas:IMG0002337` | DX | 1 |
+| `stroke-isles-0015` | MRI brain, diffusion · ISLES 2022 case 15 | `zenodo:ISLES-2022:sub-strokecase0015` | MR | 2 |
+| `stroke-isles-0057` | MRI brain, diffusion · ISLES 2022 case 57 | `zenodo:ISLES-2022:sub-strokecase0057` | MR | 2 |
+| `lung-dx-a0010` | CT chest · Lung-PET-CT-Dx A0010 | `tcia:Lung-PET-CT-Dx:Lung_Dx-A0010` | CT | 2 |
+| `lung-dx-g0007` | CT chest · Lung-PET-CT-Dx G0007 | `tcia:Lung-PET-CT-Dx:Lung_Dx-G0007` | CT | 2 |
+| `lung-dx-b0022` | CT chest · Lung-PET-CT-Dx B0022 | `tcia:Lung-PET-CT-Dx:Lung_Dx-B0022` | CT | 2 |
+| `lung-dx-e0004` | CT chest · Lung-PET-CT-Dx E0004 | `tcia:Lung-PET-CT-Dx:Lung_Dx-E0004` | CT | 2 |
+| `hcc-010` | CT abdomen, liver protocol · HCC-TACE-Seg 010 | `tcia:HCC-TACE-Seg:HCC_010` | CT | 2 |
+| `hcc-003` | CT abdomen, liver protocol · HCC-TACE-Seg 003 | `tcia:HCC-TACE-Seg:HCC_003` | CT | 2 |
+| `vs-seg-001` | MRI brain, posterior fossa · VS-SEG 001 | `tcia:Vestibular-Schwannoma-SEG:VS-SEG-001` | MR | 2 |
 
 ## Same-patient multimodality comparisons
 
@@ -181,10 +192,10 @@ Only series from one source subject are combined; links are `independent` unless
 
 ## Transfer syntaxes present
 
-- `1.2.840.10008.1.2.4.80`: 99 series
+- `1.2.840.10008.1.2.4.80`: 111 series
 - `1.2.840.10008.1.2`: 5 series
 - `1.2.840.10008.1.2.4.90`: 3 series
 - `1.2.840.10008.1.2.5`: 1 series
 - `1.2.840.10008.1.2.4.70`: 6 series
 
-MONOCHROME1 series: 1. Volume (MPR) eligible series: 57. Scouts/localizers: 3.
+MONOCHROME1 series: 1. Volume (MPR) eligible series: 69. Scouts/localizers: 3.
