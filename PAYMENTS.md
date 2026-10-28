@@ -16,7 +16,7 @@ Merchant authorization uses `WHOP_OAUTH_ENABLED=1` and a secret `TOKEN_ENCRYPTIO
 
 To reconnect the merchant, pull environment values securely into `.env.local`, set `WHOP_OWNER_USER_ID` to the business owner, and run `npx tsx --env-file=.env.local scripts/setup-whop-merchant.ts`. Open the URL written to `../whop-merchant-login-url.txt` and authorize the owner account. The callback uses `http://localhost:13338/callback`. Success must say “Radiology payments connected.”
 
-The Whop app is a public OAuth client. Register `https://radiology.monster/api/auth/callback` and the local merchant callback. Customer sign-in requests only identity scopes. Merchant OAuth requests membership/payment reads and checkout creation for the configured business.
+The Whop app is a public OAuth client. Register `https://www.radiology.monster/api/auth/callback` and the local merchant callback. Customer sign-in requests only identity scopes. Merchant OAuth requests membership/payment reads and checkout creation for the configured business.
 
 ## Access enforcement
 
