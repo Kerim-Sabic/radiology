@@ -26,9 +26,19 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "same-origin"
+
+# The site is public; its data files (DICOM, manifests, lessons) are fetched by pages but are not pages themselves.
+[[headers]]
+  for = "/packs/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/content/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
 
 [[headers]]
   for = "/assets/*"

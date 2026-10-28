@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router';
 import { Tooltip } from 'radix-ui';
 import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Settings as SettingsIcon, NotebookPen, Stethoscope, Target } from 'lucide-react';
@@ -62,8 +62,29 @@ function Loading() {
   );
 }
 
+const SITE_TITLE = 'radiology.monster — Real cases. Deeper understanding.';
+/** Page titles for browser tabs and search results (pages with their own subject, e.g. a condition, refine it). */
+const PAGE_TITLES: Array<[RegExp, string]> = [
+  [/^\/cases/, 'Cases'],
+  [/^\/atlas/, 'Anatomy atlas'],
+  [/^\/drill/, 'Anatomy drills'],
+  [/^\/course/, 'Course'],
+  [/^\/book/, 'Book'],
+  [/^\/progress/, 'Progress'],
+  [/^\/import/, 'Import'],
+  [/^\/author/, 'Author'],
+  [/^\/settings/, 'Settings'],
+  [/^\/guide/, 'Guide'],
+  [/^\/read\//, 'Reading'],
+];
+
 export function App() {
   const loc = useLocation();
+  useEffect(() => {
+    if (loc.pathname.startsWith('/conditions')) return; // titled by the condition shown
+    const t = PAGE_TITLES.find(([re]) => re.test(loc.pathname))?.[1];
+    document.title = t ? `${t} · radiology.monster` : SITE_TITLE;
+  }, [loc.pathname]);
   const reading = loc.pathname.startsWith('/read');
   const fullHeight = reading || loc.pathname === '/drill' || /^\/book(\/\d+)?$/.test(loc.pathname);
   return (
