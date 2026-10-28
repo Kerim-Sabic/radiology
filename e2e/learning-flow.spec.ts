@@ -494,6 +494,39 @@ test.describe('E. study tools', () => {
     await expect(page.locator('.drill-side').getByRole('link', { name: 'More cases and the book pages' })).toHaveAttribute('href', /\/conditions\?c=/);
   });
 
+  test('on-call shift: unknown cases in Assess mode with a clock, next case, and a scored report', async ({ page }) => {
+    // Answer whatever the case asks in the quickest honest way (first option, or "not assessable").
+    const answer = async () => {
+      await waitPanel(page);
+      const options = page.getByRole('group', { name: 'Answer options' }).locator('input');
+      if (await options.count()) await options.first().check();
+      else if (await page.getByRole('button', { name: 'Not visible / not assessable' }).count()) await page.getByRole('button', { name: 'Not visible / not assessable' }).click();
+      else if (await page.getByRole('button', { name: 'No abnormality found' }).count()) await page.getByRole('button', { name: 'No abnormality found' }).click();
+      await page.getByRole('button', { name: 'Submit', exact: true }).click();
+    };
+    await page.goto('/oncall');
+    await page.getByRole('button', { name: '5', exact: true }).click();
+    await page.getByRole('button', { name: '2 min' }).click();
+    await page.getByRole('button', { name: /^Start the shift/ }).click();
+    await expect(page).toHaveURL(/mode=assess&shift=/);
+    await expect(page.getByText('On call · 1/5')).toBeVisible();
+    await expect(page.locator('.mode-switch')).toBeHidden(); // no switching to Learn mid-case
+    await expect(page.locator('.ws-bar .chip', { hasText: /^\s*\d:\d\d$/ })).toBeVisible(); // the case clock
+    await answer();
+    await page.getByRole('button', { name: 'Next case →' }).click();
+    await expect(page.getByText('On call · 2/5')).toBeVisible();
+    await answer();
+    await expect(page.getByRole('button', { name: 'Next case →' })).toBeVisible();
+    await page.goto('/oncall');
+    await expect(page.getByText(/2 of 5 cases read/)).toBeVisible();
+    await page.getByRole('button', { name: 'End the shift now' }).click();
+    const report = page.getByRole('region', { name: 'Shift report' });
+    await expect(report.locator('tbody tr')).toHaveCount(5);
+    await expect(report.getByText('Not read')).toHaveCount(3);
+    await expect(report.getByRole('link', { name: /Review|Judge it/ })).toHaveCount(2);
+    await expect(page.getByRole('heading', { name: 'Previous shifts' })).toBeVisible();
+  });
+
   test('cine: Space plays the slices and stops them', async ({ page }) => {
     await page.goto(CT_TASK('heart', 'learn'));
     await waitPanel(page);

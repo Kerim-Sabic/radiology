@@ -26,8 +26,12 @@ export default function GuidePage() {
         <h2>Study tools</h2>
         <ul className="stack" style={{ gap: 6, paddingLeft: 18, margin: 0 }}>
           <li>
-            <b>Drills</b> — point to it, find its level, name the outline, best window. Misses return on a different patient; known structures return after 1, 3, 7, 16 and 35
-            days.
+            <b>Drills</b> — point to a structure or a finding (pneumothorax, effusion, nodule, embolus, fracture…), find its level, name the outline, best window. Misses
+            return on a different patient; known ones return after 1, 3, 7, 16 and 35 days.
+          </li>
+          <li>
+            <b>On call</b> — a shift of unknown cases (5–20, one per patient, ones you have not read first) in Assess mode with a clock per case, then a scored report with
+            every case to review.
           </li>
           <li>
             <b>Coach</b> tab — a fixed reading order for chest X-ray, chest CT, abdomen/pelvis CT and brain. <i>Show me</i> outlines each step’s structures together in the

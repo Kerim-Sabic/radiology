@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { ArrowRight, Bone, BookOpen, Play, Target } from 'lucide-react';
+import { ArrowRight, Bone, BookOpen, Play, Siren, Target } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { mistakeNotebook, statsFor, todayPlan, unseenAssessTasks } from '../services/learningModel';
 import { summary, type DrillStats } from '../services/drill';
@@ -45,6 +45,9 @@ export function HomePage() {
                 <Target size={17} /> Assess on an unseen patient
               </button>
             ) : null}
+            <button className="btn lg" onClick={() => navigate('/oncall')}>
+              <Siren size={17} /> On-call shift
+            </button>
           </div>
           {first ? <small className="faint">Next up: {first.why}.</small> : null}
         </div>

@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router';
 import { Tooltip } from 'radix-ui';
-import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Settings as SettingsIcon, NotebookPen, Stethoscope, Target } from 'lucide-react';
+import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Settings as SettingsIcon, NotebookPen, Siren, Stethoscope, Target } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 import { AccountMenu } from './auth/AccountGate';
@@ -18,6 +18,7 @@ const BookFigures = lazy(() => import('./pages/BookFigures'));
 const AtlasPage = lazy(() => import('./pages/Atlas'));
 const DrillPage = lazy(() => import('./pages/Drill'));
 const ConditionsPage = lazy(() => import('./pages/Conditions'));
+const OnCallPage = lazy(() => import('./pages/OnCall'));
 
 function TopNav() {
   const links = [
@@ -26,6 +27,7 @@ function TopNav() {
     { to: '/conditions', label: 'Conditions', icon: <Stethoscope size={16} /> },
     { to: '/atlas', label: 'Atlas', icon: <Bone size={16} /> },
     { to: '/drill', label: 'Drills', icon: <Target size={16} /> },
+    { to: '/oncall', label: 'On call', icon: <Siren size={16} /> },
     { to: '/course', label: 'Course', icon: <GraduationCap size={16} /> },
     { to: '/book', label: 'Book', icon: <BookOpen size={16} /> },
     { to: '/progress', label: 'Progress', icon: <ChartColumn size={16} /> },
@@ -70,6 +72,7 @@ const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/cases/, 'Cases'],
   [/^\/atlas/, 'Anatomy atlas'],
   [/^\/drill/, 'Drills'],
+  [/^\/oncall/, 'On call'],
   [/^\/course/, 'Course'],
   [/^\/book/, 'Book'],
   [/^\/progress/, 'Progress'],
@@ -101,6 +104,7 @@ export function App() {
               <Route path="/conditions" element={<ConditionsPage />} />
               <Route path="/atlas" element={<AtlasPage />} />
               <Route path="/drill" element={<DrillPage />} />
+              <Route path="/oncall" element={<OnCallPage />} />
               <Route path="/read/:caseId" element={<Workstation />} />
               <Route path="/book" element={<BookReader />} />
               <Route path="/book/figures" element={<BookFigures />} />

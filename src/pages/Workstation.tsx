@@ -48,6 +48,7 @@ import '../styles/viewer3d.css';
 import { useApp } from '../app/AppContext';
 import { ViewerEngine, type ToolId, type ViewKind } from '../viewer/engine';
 import { PlanesControl } from '../components/ws/MprControls';
+import { secondsLeft, shiftUrl, type OncallShift, type ShiftItem } from '../services/oncall';
 
 const MARK_TOOLS = new Set<ToolId>(['point', 'arrow', 'box', 'outline', 'eraser']);
 import { arrowLabelHook } from '../viewer/csInit';
@@ -250,6 +251,54 @@ export default function Workstation() {
     const preset = s?.windowPresets.find((w) => w.label === task.start.windowPreset);
     if (preset) engine.setWindow('p0', preset.center, preset.width);
   }, [p0Ready, task, catalog, engine]);
+
+  // ---------------------------------------------------------------- on-call shift
+  const shiftId = sp.get('shift');
+  const [shift, setShift] = useState<OncallShift | null>(null);
+  useEffect(() => {
+    if (!shiftId) {
+      setShift(null);
+      return;
+    }
+    let cancelled = false;
+    progress.oncallShift().then((s) => {
+      if (!cancelled) setShift(s && s.id === shiftId && !s.finishedAt ? s : null);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [shiftId, progress]);
+  const shiftIndex = shift && task ? shift.items.findIndex((it) => it.caseId === caseId && it.taskId === task.id) : -1;
+  const shiftItem = shift && shiftIndex >= 0 && mode === 'assess' ? shift.items[shiftIndex] : null;
+  const updateShiftItem = (patch: Partial<ShiftItem>) => {
+    if (!shift || shiftIndex < 0) return;
+    const next = { ...shift, items: shift.items.map((it, i) => (i === shiftIndex ? { ...it, ...patch } : it)) };
+    setShift(next);
+    void progress.saveOncallShift(next);
+  };
+  // The case clock starts when the case is first opened and keeps running across reloads.
+  useEffect(() => {
+    if (!shift || !shiftItem) return;
+    if (!shiftItem.startedAt) updateShiftItem({ startedAt: new Date().toISOString() });
+    else if (!shiftItem.submittedAt) setTimeLeft(secondsLeft(shift, shiftItem));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shift?.id, shiftIndex, shiftItem?.startedAt]);
+  // Record the answer in the shift (with whether it ran over time).
+  useEffect(() => {
+    if (!shift || !shiftItem || !session?.submitted || shiftItem.submittedAt) return;
+    const at = new Date().toISOString();
+    updateShiftItem({ submittedAt: at, attemptId, overTime: (secondsLeft(shift, { ...shiftItem, submittedAt: at }) ?? 1) < 0 });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [session?.submitted, shiftItem?.submittedAt]);
+  const nextInShift = shift ? shift.items.findIndex((it, i) => i !== shiftIndex && !it.submittedAt) : -1;
+  const goNextInShift = async () => {
+    if (!shift) return;
+    if (nextInShift >= 0) navigate(shiftUrl(shift, nextInShift));
+    else {
+      await progress.finishOncallShift(shift);
+      navigate('/oncall');
+    }
+  };
 
   // Assess timer (optional; never forces submission).
   useEffect(() => {
@@ -978,7 +1027,17 @@ export default function Workstation() {
           <strong>{title}</strong>
           <span>{study0?.description ?? ''}</span>
         </div>
-        <div className="mode-switch" role="group" aria-label="Mode">
+        {shiftItem ? (
+          <span className="chip accent" title="On-call shift: unknown cases, no hints until you submit">
+            On call · {shiftIndex + 1}/{shift!.items.length}
+          </span>
+        ) : null}
+        {shiftItem && session.submitted ? (
+          <button className="btn sm primary" onClick={goNextInShift}>
+            {nextInShift >= 0 ? 'Next case →' : 'End shift: see the report'}
+          </button>
+        ) : null}
+        <div className="mode-switch" role="group" aria-label="Mode" style={shiftItem && !session.submitted ? { display: 'none' } : undefined}>
           {MODES.map(([m, label]) => (
             <button key={m} aria-pressed={mode === m} onClick={() => setSp({ task: task.id, mode: m })}>
               {label}
@@ -1124,8 +1183,8 @@ export default function Workstation() {
         ) : null}
         <span className="spacer" />
         {timeLeft !== null && !session.submitted ? (
-          <span className="chip warn" aria-live="off">
-            <Timer size={12} /> {Math.floor(Math.max(0, timeLeft) / 60)}:{String(Math.max(0, timeLeft) % 60).padStart(2, '0')}
+          <span className={`chip ${timeLeft <= 0 ? 'bad' : 'warn'}`} aria-live="off">
+            <Timer size={12} /> {timeLeft <= 0 ? 'over time' : `${Math.floor(timeLeft / 60)}:${String(timeLeft % 60).padStart(2, '0')}`}
           </span>
         ) : null}
         {refAllowed ? (

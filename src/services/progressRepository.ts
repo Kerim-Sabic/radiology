@@ -7,6 +7,7 @@ import { openDB, type DBSchema, type IDBPDatabase } from 'idb';
 import type { GradeResult, LearnerMark, PositionAtSubmit } from '../grading/types';
 import type { ViewSnapshot } from '../viewer/engine';
 import type { DrillStats } from './drill';
+import type { OncallShift } from './oncall';
 import { readingProgress } from '../book/readingProgress';
 
 export type Mode = 'learn' | 'practice' | 'assess' | 'review';
@@ -206,6 +207,35 @@ export class ProgressRepository {
   async drillStats(): Promise<DrillStats> {
     return ((await (await this.dbp).get('meta', 'drillStats')) as DrillStats | undefined) ?? {};
   }
+  /** The on-call shift in progress (or the last one, once finished). */
+  async oncallShift(): Promise<OncallShift | null> {
+    return ((await (await this.dbp).get('meta', 'oncallShift')) as OncallShift | undefined) ?? null;
+  }
+  async saveOncallShift(shift: OncallShift) {
+    try {
+      await (await this.dbp).put('meta', shift, 'oncallShift');
+      this.changed();
+    } catch (e) {
+      wrap(e);
+    }
+  }
+  /** Finished shifts, newest first (the last 30). */
+  async oncallHistory(): Promise<OncallShift[]> {
+    return ((await (await this.dbp).get('meta', 'oncallHistory')) as OncallShift[] | undefined) ?? [];
+  }
+  async finishOncallShift(shift: OncallShift) {
+    const done = { ...shift, finishedAt: shift.finishedAt ?? new Date().toISOString() };
+    try {
+      const db = await this.dbp;
+      const history = (((await db.get('meta', 'oncallHistory')) as OncallShift[] | undefined) ?? []).filter((s) => s.id !== done.id);
+      await db.put('meta', [done, ...history].slice(0, 30), 'oncallHistory');
+      await db.put('meta', done, 'oncallShift');
+      this.changed();
+    } catch (e) {
+      wrap(e);
+    }
+    return done;
+  }
   async saveDrillStats(stats: DrillStats) {
     try {
       await (await this.dbp).put('meta', stats, 'drillStats');
@@ -277,7 +307,7 @@ export class ProgressRepository {
   async resetAll() {
     const db = await this.dbp;
     const tx = db.transaction(['attempts', 'bookmarks', 'notes', 'reviews', 'meta'], 'readwrite');
-    await Promise.all([tx.objectStore('attempts').clear(), tx.objectStore('bookmarks').clear(), tx.objectStore('notes').clear(), tx.objectStore('reviews').clear(), tx.objectStore('meta').delete('drillStats')]);
+    await Promise.all([tx.objectStore('attempts').clear(), tx.objectStore('bookmarks').clear(), tx.objectStore('notes').clear(), tx.objectStore('reviews').clear(), tx.objectStore('meta').delete('drillStats'), tx.objectStore('meta').delete('oncallShift'), tx.objectStore('meta').delete('oncallHistory')]);
     await tx.done;
     readingProgress.clear();
     this.changed();

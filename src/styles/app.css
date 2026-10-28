@@ -1294,3 +1294,9 @@ button.chip[aria-pressed='true'] {
   padding-left: 16px;
   font-size: 12.5px;
 }
+
+/* On-call shift report */
+.oncall-score {
+  font: 700 28px/1 var(--font-display, var(--font));
+  color: var(--accent);
+}
