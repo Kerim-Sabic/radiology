@@ -1,7 +1,7 @@
 import { WhopClient, type Whop } from '@whop/sdk';
 import { appOrigin, plans, required, type Tier } from './config.js';
 import { db } from './store.js';
-import { random } from './auth.js';
+import { hash, random } from './auth.js';
 import { merchantToken } from './oauth.js';
 
 export async function whop() {
@@ -68,7 +68,7 @@ export async function checkout(userId: string, tier: Tier) {
   const planId = required(plans[tier].env);
   const client = await whop();
   validatePlan(await client.variants.retrieve({ id: planId }), tier);
-  const key = `rvm:checkout:${userId}:${tier}`;
+  const key = `rvm:checkout:${userId}:${planId}:${hash(appOrigin())}`;
   // Keep the same idempotency key across retries, including ambiguous network failures.
   await db().set(key, random(), { nx: true, ex: 86400 });
   const orderId = (await db().get<string>(key))!;
