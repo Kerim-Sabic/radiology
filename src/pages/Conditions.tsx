@@ -34,6 +34,9 @@ export default function ConditionsPage() {
   const picked = pickedId ? (CONDITION_BY_ID.get(pickedId) ?? null) : null;
   const shown = picked ?? matches[0]?.condition ?? null;
   const via = !picked && matches[0] ? matches[0].via : null;
+  useEffect(() => {
+    document.title = shown ? `${shown.name}: imaging, cases and book pages · radiology.monster` : 'Conditions: find any condition in real cases · radiology.monster';
+  }, [shown]);
 
   const setQuery = (text: string) => setSp(text ? { q: text } : {}, { replace: true });
   const open = (c: Condition) => setSp({ q: c.name, c: c.id });

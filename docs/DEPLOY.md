@@ -3,7 +3,7 @@
 The app is a static SPA (`dist/`) with no server functions. Large DICOM is served as static files, never proxied through a function.
 
 ## What the configs do
-- `vercel.json` / `netlify.toml`: build `npm run build` → `dist`; SPA deep links rewrite to `index.html`, while missing files under `/packs` and `/content` return a real 404 (Vercel: excluded from the rewrite; Netlify: explicit 404 rules before the SPA fallback); long immutable caching for hashed assets and content-addressed DICOM (`/packs/*/dicom/*`, served as `application/dicom`); `no-cache` for manifests/lessons; `application/wasm` for codecs; `X-Robots-Tag: noindex`.
+- `vercel.json` / `netlify.toml`: build `npm run build` → `dist`; SPA deep links rewrite to `index.html`, while missing files under `/packs` and `/content` return a real 404 (Vercel: excluded from the rewrite; Netlify: explicit 404 rules before the SPA fallback); long immutable caching for hashed assets and content-addressed DICOM (`/packs/*/dicom/*`, served as `application/dicom`); `no-cache` for manifests/lessons; `application/wasm` for codecs; `X-Robots-Tag: noindex` only on the data files (`/packs`, `/content`), which pages fetch but which are not pages.
 - No cross-origin isolation headers: Cornerstone 5 does not need SharedArrayBuffer in this configuration (verified by the e2e suite in Chromium and Firefox without them).
 - The app checks one file per pack at start-up; packs whose images are not on the host are listed in Settings → Data packs and their cases are hidden (no dead studies).
 
@@ -44,7 +44,11 @@ The app is a static SPA (`dist/`) with no server functions. Large DICOM is serve
    ```
    Do not add it before `radiology.monster` resolves, or the site becomes unreachable.
 
-The `noindex` meta tag and `X-Robots-Tag` header stay on: search engines will not list the site until you remove both.
+The site is public and indexable. Search engines get:
+- `public/robots.txt` (personal pages and the book reader left out) and `public/sitemap.xml`: the main pages, every course chapter and every condition page.
+- A page title per route, and per condition (e.g. "Pneumothorax: imaging, cases and book pages").
+
+After adding a condition or a chapter, run `node scripts/sitemap.mjs`; `tests/sitemap.test.ts` fails until you do. Once the domain is live, add it in Google Search Console and submit `https://radiology.monster/sitemap.xml`.
 
 ## Without protected hosting
 Run locally (`npm run build && npm run preview`) or use the hosted app with only the starter pack and import your own studies on each device (Import page — files never leave the browser). A public, unlisted URL is **not** private.

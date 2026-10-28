@@ -1,0 +1,11 @@
+# radiology.monster is public. Personal pages (your progress, imports, settings, authoring) and the
+# book reader (the book itself is not on this site) are left out; data files are fetched by pages but
+# marked noindex in the response headers.
+User-agent: *
+Disallow: /progress
+Disallow: /import
+Disallow: /settings
+Disallow: /author
+Disallow: /book
+
+Sitemap: https://radiology.monster/sitemap.xml
