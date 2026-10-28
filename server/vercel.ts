@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { handle } from '../server/handler.js';
+import { handle } from './handler.js';
 
 export const config = { api: { bodyParser: false } };
 
