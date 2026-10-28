@@ -4,6 +4,7 @@ import { Tooltip } from 'radix-ui';
 import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Settings as SettingsIcon, NotebookPen, Target } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
+import { AccountMenu } from './auth/AccountGate';
 
 const Workstation = lazy(() => import('./pages/Workstation'));
 const CoursePage = lazy(() => import('./pages/Course'));
@@ -43,6 +44,7 @@ function TopNav() {
         </NavLink>
       ))}
       <span className="spacer" />
+      <AccountMenu />
       <NavLink to="/guide" className={({ isActive }) => `navlink${isActive ? ' active' : ''}`}>
         <span>Guide</span>
       </NavLink>

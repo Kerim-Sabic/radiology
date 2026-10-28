@@ -4,13 +4,14 @@ import { BrowserRouter } from 'react-router';
 import { App } from './App';
 import { AppProvider } from './app/AppContext';
 import './styles/app.css';
+import { AccountGate } from './auth/AccountGate';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-      <AppProvider>
+      <AccountGate><AppProvider>
         <App />
-      </AppProvider>
+      </AppProvider></AccountGate>
     </BrowserRouter>
   </StrictMode>,
 );
