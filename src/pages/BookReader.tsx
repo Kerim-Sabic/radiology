@@ -47,7 +47,7 @@ export default function BookReader() {
   useEffect(() => {
     if (!available || !canvas.current || !box.current) return;
     setError(null);
-    const width = Math.min(box.current.clientWidth - 2, 920) * zoom;
+    const width = Math.min(box.current.clientWidth - 32, 920) * zoom;
     setRendering(true);
     const job = renderPage(page, canvas.current, width);
     job.done
@@ -242,7 +242,7 @@ export default function BookReader() {
             ))}
           </div>
         ) : null}
-        <div ref={box} style={{ padding: 16, display: 'flex', justifyContent: 'center' }}>
+        <div ref={box} style={{ padding: 16, display: 'flex', justifyContent: 'safe center' }}>
           {rendering && !dims ? (
             <div className="vp-status" style={{ position: 'static', minHeight: 300 }} role="status">
               <div>Opening your book…</div>
@@ -252,7 +252,7 @@ export default function BookReader() {
               <small>{openProg ? `${(openProg.loaded / 1048576).toFixed(1)} MB read` : 'Starting PDF engine'}</small>
             </div>
           ) : null}
-          <div className="book-canvas-wrap" style={{ width: dims ? dims.width : undefined, display: rendering && !dims ? 'none' : undefined }}>
+          <div className="book-canvas-wrap" style={{ flex: 'none', width: dims ? dims.width : undefined, display: rendering && !dims ? 'none' : undefined }}>
             <canvas ref={canvas} aria-label={`Book page ${printed ?? page}`} aria-busy={rendering} />
             {dims
               ? figuresHere

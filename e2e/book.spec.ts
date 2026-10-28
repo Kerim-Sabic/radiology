@@ -54,6 +54,11 @@ test('member book renders on a phone without requiring a PDF import', async ({ p
   await expect(page.locator('#book-contents-list')).toBeVisible();
   await page.getByRole('button', { name: 'Close contents', exact: true }).click();
   await expect(page.locator('#book-contents-list')).not.toBeVisible();
+  const canvas = page.locator('canvas[aria-label^="Book page"]');
+  const originalWidth = (await canvas.boundingBox())!.width;
+  await page.getByRole('button', { name: 'Zoom in', exact: true }).click();
+  await expect.poll(async () => (await canvas.boundingBox())!.width).toBeGreaterThan(originalWidth * 1.1);
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
 test('inserted electronic pages keep later anchors correct', async ({ page }) => {
