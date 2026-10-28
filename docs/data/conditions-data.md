@@ -284,6 +284,158 @@ the wrong side.
   segment as "Heart" (SegmentedPropertyType), so the label cannot be trusted without each case being checked by a radiologist.
 - **Adrenal-ACC-Ki67-Seg** (CC BY 4.0, SEG of adrenocortical carcinoma): not a book section; left for later.
 
+## Round 3 (28 October 2026, night): ultrasound, mammography, children's fractures, knee osteoarthritis
+
+Same rules as round 2: only licences that allow commercial use with attribution (CC BY 4.0, CC BY 3.0 here), nothing behind a
+login, an agreement or competition rules, no terms accepted. Fetch with `external.py breast-us | hc18 | cbis | grazpedwri | knee`,
+build with `build_external.py us-cases | mammo-cbis | peds-msk` (one pack may now credit several sources: `PACKS[...]["sources"]`,
+each subject keeps its own `sourceId`), lessons by `scripts/lessons/conditions.py` (`us_lessons`, `mammo_lessons`,
+`peds_msk_lessons`). All three packs pass `validate_pack.py` (0 errors, 0 warnings) and the zod contract (manifest, targets,
+lessons, index). Every image was looked at with its reference drawn before it was kept.
+
+| pack | what | patients | reference classIds | size |
+|---|---|---|---|---|
+| `us-cases` | breast ultrasound (Breast-Lesions-USG) and fetal head (HC18), US Image Storage with true pixel size | 9 | `finding:breast_mass` (4: 2 invasive carcinoma NST, 2 fibroadenoma, all biopsy-proven), `finding:breast_cyst` (2, follow-up), `anatomy:fetal_head` (3) | 1.6 MB |
+| `mammo-cbis` | screen-film mammograms (CBIS-DDSM), CC + MLO of each breast, one woman with all four views | 5 | `finding:breast_mass` (3 women, 8 views), `finding:breast_calcifications` (2 women, 4 views) | 32.9 MB |
+| `peds-msk` | children's wrist radiographs, frontal + lateral (GRAZPEDWRI-DX); knee crops with Kellgren-Lawrence grades | 7 | `finding:physeal_fracture` (2 children, 4 views), `finding:incomplete_fracture` (2 children, 4 views), `label:knee_kl_grade` (3 knees × 2 experts) | 7.9 MB |
+
+Lessons: 21 cases, 43 tasks. Ultrasound: find the lesion (true 3 mm tolerance), cyst or solid, describe the echoes (the
+radiologist's BI-RADS echo pattern and posterior features); fetal head: find it, and measure the head circumference (range choice,
+answer from the sonographer's ellipse). Mammography: find the finding on every view, and the mass margin. Children: find the
+fracture on both views, and its type. Knee: choose the Kellgren-Lawrence grade (image-level grade only: **not located**, said in
+the case and the task).
+
+### Breast-Lesions-USG (`us-cases`, breast ultrasound)
+- **Licence:** CC BY 4.0 (TCIA collection page). doi:10.7937/9wkk-q141; Pawłowska et al., Sci Data 2024;11:148. 256 scans from 256
+  patients, so one case is one patient.
+- **Outlines:** "each tumor was identified in the image via a freehand annotation and labeled according to BIRADS features" by "a
+  radiologist experienced in breast ultrasound examination" (collection page). Diagnosis and verification (biopsy or follow-up)
+  from the clinical XLSX. Pixel size from the XLSX ("pixel size of the image in centimeters", data dictionary) → `PixelSpacing`
+  in mm plus a `SequenceOfUltrasoundRegions` region with the same physical delta (cm), so distances are calibrated.
+- **Images:** the dataset's cropped B-mode PNGs, MONOCHROME2, shown at the full 8-bit range. case007 is grey with a slight colour
+  tint (no colour-flow data) and is stored as luma (ITU-R BT.601), said in its `DerivationDescription`; case013's transparent
+  border pixels are black. No orientation tag and no visible probe marker (the images are cropped).
+- **Files:** `BrEaST-Lesions_USG-images_and_masks-Dec-15-2023.zip` (sha256 c32e49cdfa54042e…), clinical XLSX (89a8874496a6f1f9…).
+
+| case | diagnosis (verification) | BI-RADS | pixel size (cm) | image sha256 | mask sha256 |
+|---|---|---|---|---|---|
+| 007 | invasive carcinoma NST (biopsy) | 5 | 0.0078125 | 375586b2a04ef1c7… | 7e037815da3521ce… |
+| 013 | invasive carcinoma NST (biopsy) | 5 | 0.0078125 | 3efa460235db48ec… | 234396c265587f5b… |
+| 068 | fibroadenoma (biopsy) | 3 | 0.006944444 | 37a160bb994d35c3… | a890318a4f7e749d… |
+| 025 | fibroadenoma (biopsy) | 4a | 0.006462036 | 51729dbda0183136… | d6922056ec57a46b… |
+| 048 | simple cyst (follow-up) | 2 | 0.00726979 | 12bb6d2127ed3b34… | 0cc68a0be1b8057a… |
+| 237 | simple cyst (follow-up) | 2 | 0.006462036 | cbd7aa61b2363f4c… | d723cb21bca6c605… |
+
+### HC18 (`us-cases`, fetal head)
+- **Licence:** CC BY 4.0 (Zenodo record 1327317). van den Heuvel et al., PLoS One 2018;13:e0200412.
+- **Reference:** the head circumference "was made by a trained sonographer" as an ellipse (challenge page); the training annotation
+  PNG draws the ellipse outline, which is filled and traced. Pixel size and HC from `training_set_pixel_size_and_HC.csv`
+  (1c08fa81c374c5f9…). The dataset gives no mother or pregnancy identifiers, so the three images share one hold-out group.
+  Gestational age is not given.
+
+| image | pixel size (mm) | HC (mm) | image sha256 | annotation sha256 |
+|---|---|---|---|---|
+| 113_HC | 0.0971 | 87.3 | 3ee13ebb4000f741… | 70fb5018a0866613… |
+| 365_HC | 0.1453 | 174.8 | 1d931e85c173aaad… | 135901854c1e145f… |
+| 687_HC | 0.1430 | 249.5 | 302b1607f4fa0b87… | 4782421b0ee27e34… |
+
+### CBIS-DDSM (`mammo-cbis`)
+- **Licence:** CC BY 3.0 (TCIA collection page). doi:10.7937/K9/TCIA.2016.7O02S9CY; Lee et al., Sci Data 2017;4:170177. Full
+  mammograms and ROI mask series from the anonymous NBIA API; case description CSVs from the collection page.
+- **Outlines:** masses were re-segmented in CBIS-DDSM, initialised from the original DDSM contours; calcifications keep the original
+  DDSM region ("only for masses and not calcifications", collection page). Shape, margin, calcification type and distribution,
+  BI-RADS assessment and pathology are copied from the CSV, nothing added.
+- **Images:** 16-bit digitised film (MONOCHROME2, checked), downsampled 2 × 2 by averaging (ROI masks the same, ≥ 50 %); no pixel
+  spacing (uncalibrated). Secondary Capture with `Modality` MG, `ImageLaterality` and `Laterality` (from the CSV side),
+  `ViewPosition` CC/MLO (from the CSV view) and `PatientOrientation` LCC `A\R`, RCC `P\L`, LMLO `A\F`, RMLO `P\F`; the build
+  asserts that the chest wall is on the expected image edge, and every film marker was read by eye. All views of one woman share
+  one study; series numbers RCC 1, RMLO 2, LCC 3, LMLO 4. `series.acquisition` carries `ImageLaterality`, `Laterality`,
+  `ViewPosition` and `PatientOrientation`.
+- **Rejected after looking at the films:** P_00063 (CC marker reads "R CC EXT", not a standard CC), P_00480 (mirrored LCC marker),
+  P_00674 (the outlined calcification is one small dot, not teachable at web resolution).
+
+| patient | side | finding (CSV) | BI-RADS (CC / MLO) | pathology | full zip sha256 (CC / MLO) | ROI zip sha256 (CC / MLO) |
+|---|---|---|---|---|---|---|
+| P_00021 | left | mass, oval, circumscribed | 3 / 3 | benign | ed5ef049e83e6396… / 10f3fc865e50cf93… | 1b0467c5e587c7cd… / 357fb05e21168053… |
+| P_00021 | right | mass, oval, circumscribed | 3 / 3 | benign | 8f6ddb871d9b6eab… / 7e51afed65e1151e… | 269c738c7367537a… / 2232da6b3eecec61… |
+| P_00039 | right | mass, irregular, spiculated | 5 / 5 | malignant | 99afc0db5a6761e4… / 99372b781b085f3f… | 8bcb2d33deb48f5b… / fafbb05a471988f5… |
+| P_00051 | left | mass, irregular, spiculated | 5 / 5 | malignant | 47ff9e6551aadfa1… / a7d526dc13244a49… | 78aa7b0cfc02a2a0… / f3b5c60e4bcb9592… |
+| P_00307 | left | calcifications, pleomorphic, clustered | 5 / 4 | malignant | 89f0f0d04fc06dde… / 72a3792fcd65562a… | ba4580ad7b9b28cb… / 60d5a8cc37cd5fdc… |
+| P_00425 | right | calcifications, coarse-pleomorphic, clustered | 2 / 2 | benign | dc1c94aae70ac799… / 720f63c7d5ab011a… | 039ef63145dcdcc9… / c1c7225b7312444a… |
+
+### GRAZPEDWRI-DX (`peds-msk`, children's wrist fractures)
+- **Licence:** CC BY 4.0 (figshare 14825193 v2). Nagy et al., Sci Data 2022;9:222: "All studies and their annotations were reviewed
+  by experienced pediatric radiologists at least twice".
+- **Reference:** the `fracture` rectangle of the Supervisely annotation (`folder_structure.zip`, eac47bc5dfc01c14…), pixel corners
+  → pixel centres (−0.5 px). Age, sex, side, projection and AO/OTA pediatric code from `dataset.csv` (55a53cbe9673e5f2…); the
+  annotation's `side_*` tag must agree. The fracture type in the label is read from the code: 23r-E/2.1 = Salter-Harris II of the
+  distal radius, 23r-M/2.1 = incomplete metaphyseal fracture (torus/buckle or greenstick; the code does not separate them).
+- **Images:** the dataset's 16-bit PNGs, read member by member from `images_partN.zip` (HTTP Range, CRC-32 checked).
+  `ImagerPixelSpacing` 0.144 mm (detector plane, uncalibrated), `ImageLaterality` from the CSV, `ViewPosition` AP only where the
+  annotation is tagged `projection_ap` (the lateral view has no DICOM view code here). Frontal and lateral of the first study of
+  each child share one study.
+
+| child | sex, age | side | AO/OTA | frontal sha256 | lateral sha256 |
+|---|---|---|---|---|---|
+| 3390 | F, 13.9 | L | 23r-E/2.1 (SH II) | c3f26daf4fab4e35… | 5e3272c1059c8c8f… |
+| 3853 | M, 14.4 | L | 23r-E/2.1 (SH II) | 1fe8afeaf269f61a… | e0900285258ac9b2… |
+| 0030 | F, 8.2 | L | 23r-M/2.1 (incomplete) | 49fc40781a67c456… | 7123bee956ac47eb… |
+| 0071 | F, 9.6 | R | 23r-M/2.1 (incomplete) | 06006bc2d80f7690… | b0a72ce868583309… |
+
+### Digital Knee X-ray Images (`peds-msk`, knee osteoarthritis grades)
+- **Licence:** CC BY 4.0 (Mendeley Data t9ndx37v5h v1, `data_licence` from the public API). Gornale & Patravali 2020.
+- **Reference:** each of two medical experts sorted every image into a Kellgren-Lawrence grade folder (`MedicalExpert-I.rar`
+  ae315cd0527259cb…, `MedicalExpert-II.rar` 813585e02f5c3ad2…). Images are matched across the two archives by pixel hash
+  (`match.json`: 1,579 in both, 1,569 with the same grade); only images both experts graded the same are used. Two `image_label`
+  targets per image (`label:knee_kl_grade`), one per expert, so the condition search shows them as reader labels agreed by both.
+- **Images:** 300 × 162 px 8-bit crops of the joint as distributed (grey RGB → one channel); no pixel spacing, side or view in the
+  source. The three knees share one hold-out group (no patient identifiers).
+
+| image | grade (both experts) | pixel hash |
+|---|---|---|
+| NormalG0 (10).png | 0 | 196c52391d8a… |
+| MildG2 (102).png | 2 | 0b79036fc768… |
+| SevereG4 (101).png | 4 | bbbd048a1720… |
+
+### Conditions and book pages (round 3)
+New conditions: *Breast cyst*, *Breast calcifications*, *Salter-Harris fracture*, *Torus or greenstick fracture*, *Pregnancy
+ultrasound*. *Breast mass* now also finds the ultrasound masses and the new mammograms; *Fracture* also finds the children's
+fractures; *Osteoarthritis* lists the knees graded 2 or more by both experts (reader labels, not outlined). Every book anchor is a
+heading on that page in the section index, and the text was checked in the book: echogenicity and posterior enhancement/shadowing
+(PDF 222), pregnancy and fetal growth (237–238), greenstick and torus fractures (303), Salter-Harris types and prognosis
+(375–376; 309 points there), mass descriptors (408), calcifications (410), breast ultrasound cyst criteria and fibroadenoma (411),
+cyst aspiration (413). The book does not mention the Kellgren-Lawrence scale; it is in our own signs only.
+
+### Gap table after round 3
+
+| book chapter | modality | cases before (with a located finding) | after |
+|---|---|---|---|
+| ch18 Ultrasound: abdomen and pelvis | US | 0 | 9 (6 breast lesions outlined; 3 fetal heads with the sonographer's ellipse) |
+| ch19 Vascular, pediatric, point-of-care US | US | 0 | **0**: no open, commercial, located set found (see below) |
+| ch21 Arthritis | XR | 0 | 3 knees, expert grade only (not located) |
+| ch23 Skeletal trauma | XR | 5 (5) | 9 (9): + 4 children's wrists, both views |
+| ch27 Pediatrics | XR | 0 | 2 (2): Salter-Harris II, both views |
+| ch29 Breast imaging | MG | 1 (1) | 6 (6): 5 women, CC + MLO, one with all four views |
+| ch29 Breast imaging | US | 0 | 6 (6) |
+
+Curriculum objectives with a case: 58 → 64 of 274 (new: ch18-o01, ch21-o07, ch21-o08, ch27-o07, ch29-o05, ch29-o06).
+
+### Skipped in round 3 and why
+- **BUSI** (breast ultrasound): no licence on the dataset itself. **Pediatric pneumonia radiographs** (Kermany/Zhang, CC BY 4.0):
+  image-level labels only, with known label noise; not located.
+- **Abdominal plain films** (free air, obstruction, stones), **hemothorax**, **neonatal head and hip ultrasound, intussusception,
+  pyloric stenosis, DVT, FAST**: no open dataset with a commercial licence and a located reference was found (free-air sets found
+  were CT and CC BY-NC-SA).
+- **Kaggle-hosted copies** of any set (competition rules or unclear licences) were not used.
+
+### Not verified
+- No radiologist reviewed these outlines for this app; they are the datasets' annotations, shown as such.
+- The CBIS-DDSM calcification outlines are coarse DDSM regions around the group. At 2 × 2 downsampling P_00307's calcifications are
+  faint on the MLO.
+- `PatientOrientation` on the mammograms is derived from the chest-wall side and the film marker (the source has none); hanging was
+  checked in the viewer on P_00021 (right breast on the left, CC above MLO, chest walls to the middle, letters A/P, R/L, H/F as
+  expected). For a woman with one breast installed (e.g. P_00425) the mammography layout shows that breast's CC and MLO side by side.
+
 ## Rebuild
 ```
 python scripts/data/external.py nih
@@ -293,6 +445,9 @@ python scripts/data/build_external.py cxr-findings && python scripts/data/build_
 python scripts/data/packs.py fetch ct-findings && python scripts/data/packs.py build ct-findings
 python scripts/data/packs.py fetch ct-tumors && python scripts/data/packs.py build ct-tumors
 python scripts/data/external.py isles 15 57 && python scripts/data/build_external.py stroke-mri
+python scripts/data/external.py breast-us && python scripts/data/external.py hc18 && python scripts/data/build_external.py us-cases
+python scripts/data/external.py cbis && python scripts/data/build_external.py mammo-cbis
+python scripts/data/external.py grazpedwri && python scripts/data/external.py knee && python scripts/data/build_external.py peds-msk
 python scripts/lessons/conditions.py
 ```
 Raw downloads go to `RADIOLOGY_RAW_DIR` (default `C:/Users/kerim/radiology-data/raw`). The NIH selection is the curated list

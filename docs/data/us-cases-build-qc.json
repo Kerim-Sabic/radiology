@@ -1,0 +1,154 @@
+{
+ "packId": "us-cases",
+ "generatedAt": "2026-10-28T20:09:23Z",
+ "packBytesExcludingLessons": 1548523,
+ "budgetBytes": 15000000,
+ "series": [
+  {
+   "uid": "2.25.61410500102035205296947820755541293555",
+   "short": "us-b3db34fb8d",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 123430
+  },
+  {
+   "uid": "2.25.322229983401190937844013699972665234089",
+   "short": "us-9875ff29a5",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 158918
+  },
+  {
+   "uid": "2.25.5099005223099203271461404601584346773",
+   "short": "us-491e69eb68",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 114554
+  },
+  {
+   "uid": "2.25.265279139273503533626359779614804940670",
+   "short": "us-de0b6d1f4a",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 188998
+  },
+  {
+   "uid": "2.25.199482723280374804899424395027091565407",
+   "short": "us-e86eddcbba",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 143490
+  },
+  {
+   "uid": "2.25.109471832196196890867933682632890539805",
+   "short": "us-e43bf244da",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 156854
+  },
+  {
+   "uid": "2.25.267674145241850849673738239821484841498",
+   "short": "us-2c14c6b3fa",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 105858
+  },
+  {
+   "uid": "2.25.164179764852270088473111237229798770008",
+   "short": "us-b291288b9f",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 93520
+  },
+  {
+   "uid": "2.25.147590378258926794173016782108978164875",
+   "short": "us-ad8f0730e0",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 118762
+  }
+ ],
+ "targets": [
+  "breast-usg-case007_mass",
+  "breast-usg-case013_mass",
+  "breast-usg-case068_mass",
+  "breast-usg-case025_mass",
+  "breast-usg-case048_cyst",
+  "breast-usg-case237_cyst",
+  "hc18-113-hc_fetal-head",
+  "hc18-365-hc_fetal-head",
+  "hc18-687-hc_fetal-head"
+ ]
+}

@@ -1,0 +1,2979 @@
+{
+ "schemaVersion": 1,
+ "packId": "us-cases",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "us-breast-case007",
+   "packId": "us-cases",
+   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 7",
+   "learnTitle": "Invasive carcinoma on breast ultrasound (proven by biopsy; radiologist outline)",
+   "subjectKey": "tcia:Breast-Lesions-USG:case007",
+   "studyUids": [
+    "2.25.39388717315103940975878476149205644987"
+   ],
+   "primarySeriesUid": "2.25.61410500102035205296947820755541293555",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": "Patient aged 52 years.",
+   "contextSource": "Patient age from the dataset's clinical data.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape irregular, margin not circumscribed - spiculated&indistinct, echo pattern hypoechoic, posterior features shadowing, BI-RADS 5. Diagnosis proven by biopsy. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
+   "learnNotes": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis."
+  },
+  {
+   "id": "us-breast-case013",
+   "packId": "us-cases",
+   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 13",
+   "learnTitle": "Invasive carcinoma on breast ultrasound (proven by biopsy; radiologist outline)",
+   "subjectKey": "tcia:Breast-Lesions-USG:case013",
+   "studyUids": [
+    "2.25.174857582894023114616768522842062677280"
+   ],
+   "primarySeriesUid": "2.25.322229983401190937844013699972665234089",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": "Patient aged 53 years.",
+   "contextSource": "Patient age from the dataset's clinical data.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape irregular, margin not circumscribed - spiculated&angular&indistinct, echo pattern hypoechoic, posterior features shadowing, BI-RADS 5. Diagnosis proven by biopsy. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
+   "learnNotes": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis."
+  },
+  {
+   "id": "us-breast-case068",
+   "packId": "us-cases",
+   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 68",
+   "learnTitle": "Fibroadenoma on breast ultrasound (proven by biopsy; radiologist outline)",
+   "subjectKey": "tcia:Breast-Lesions-USG:case068",
+   "studyUids": [
+    "2.25.322552184049466543725482303829720472394"
+   ],
+   "primarySeriesUid": "2.25.5099005223099203271461404601584346773",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": "Patient aged 35 years.",
+   "contextSource": "Patient age from the dataset's clinical data.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape oval, margin circumscribed, echo pattern hypoechoic, posterior features no, BI-RADS 3. Diagnosis proven by biopsy. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
+   "learnNotes": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis."
+  },
+  {
+   "id": "us-breast-case025",
+   "packId": "us-cases",
+   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 25",
+   "learnTitle": "Fibroadenoma on breast ultrasound (proven by biopsy; radiologist outline)",
+   "subjectKey": "tcia:Breast-Lesions-USG:case025",
+   "studyUids": [
+    "2.25.205043167387871848924440709363274841678"
+   ],
+   "primarySeriesUid": "2.25.265279139273503533626359779614804940670",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": "Patient aged 38 years.",
+   "contextSource": "Patient age from the dataset's clinical data.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape oval, margin circumscribed, echo pattern heterogeneous, posterior features enhancement, BI-RADS 4a. Diagnosis proven by biopsy. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
+   "learnNotes": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis."
+  },
+  {
+   "id": "us-breast-case048",
+   "packId": "us-cases",
+   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 48",
+   "learnTitle": "Simple cyst on breast ultrasound (confirmed on follow-up; radiologist outline)",
+   "subjectKey": "tcia:Breast-Lesions-USG:case048",
+   "studyUids": [
+    "2.25.42810529792650646289276832505306414305"
+   ],
+   "primarySeriesUid": "2.25.199482723280374804899424395027091565407",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape round, margin circumscribed, echo pattern anechoic, posterior features enhancement, BI-RADS 2. Diagnosis confirmed on follow-up. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
+   "learnNotes": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis."
+  },
+  {
+   "id": "us-breast-case237",
+   "packId": "us-cases",
+   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 237",
+   "learnTitle": "Simple cyst on breast ultrasound (confirmed on follow-up; radiologist outline)",
+   "subjectKey": "tcia:Breast-Lesions-USG:case237",
+   "studyUids": [
+    "2.25.226932540645912085784779325250751769073"
+   ],
+   "primarySeriesUid": "2.25.109471832196196890867933682632890539805",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": "Patient aged 21 years.",
+   "contextSource": "Patient age from the dataset's clinical data.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape oval, margin circumscribed, echo pattern anechoic, posterior features enhancement, BI-RADS 2. Diagnosis confirmed on follow-up. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
+   "learnNotes": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis."
+  },
+  {
+   "id": "us-fetal-head-113",
+   "packId": "us-cases",
+   "neutralTitle": "Obstetric ultrasound · HC18 image 113",
+   "learnTitle": "Fetal head on the standard plane for head circumference (sonographer's ellipse)",
+   "subjectKey": "zenodo:HC18:113_HC",
+   "studyUids": [
+    "2.25.191968758926246642128669419276357620950"
+   ],
+   "primarySeriesUid": "2.25.267674145241850849673738239821484841498",
+   "region": [
+    "pelvis"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch18-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    },
+    {
+     "physical": 237,
+     "printed": "217",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s29"
+    },
+    {
+     "physical": 238,
+     "printed": "218",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s31"
+    }
+   ],
+   "referenceSummary": "The ellipse on the outer skull was placed by a trained sonographer (HC18); the head circumference it gives is 87.3 mm. The image carries its true pixel size. Gestational age is not given by the dataset.",
+   "learnNotes": "Fetal growth is followed with standard measurements on standard planes. The head is measured on an axial plane through the thalami and the cavum septi pellucidi, with the skull outline symmetric and smooth. Bone reflects most of the sound, so the skull is a bright (echogenic) oval; the brain inside is darker. Head circumference is the perimeter of an ellipse placed on the outer edge of the skull: approximately pi x (BPD + OFD) / 2, where BPD (biparietal diameter) and OFD (occipitofrontal diameter) are the short and long axes. Measurements on an ultrasound image are only true distances when the image carries its pixel size, as these images do."
+  },
+  {
+   "id": "us-fetal-head-365",
+   "packId": "us-cases",
+   "neutralTitle": "Obstetric ultrasound · HC18 image 365",
+   "learnTitle": "Fetal head on the standard plane for head circumference (sonographer's ellipse)",
+   "subjectKey": "zenodo:HC18:365_HC",
+   "studyUids": [
+    "2.25.242878377719270348328848910609654646207"
+   ],
+   "primarySeriesUid": "2.25.164179764852270088473111237229798770008",
+   "region": [
+    "pelvis"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch18-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    },
+    {
+     "physical": 237,
+     "printed": "217",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s29"
+    },
+    {
+     "physical": 238,
+     "printed": "218",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s31"
+    }
+   ],
+   "referenceSummary": "The ellipse on the outer skull was placed by a trained sonographer (HC18); the head circumference it gives is 174.8 mm. The image carries its true pixel size. Gestational age is not given by the dataset.",
+   "learnNotes": "Fetal growth is followed with standard measurements on standard planes. The head is measured on an axial plane through the thalami and the cavum septi pellucidi, with the skull outline symmetric and smooth. Bone reflects most of the sound, so the skull is a bright (echogenic) oval; the brain inside is darker. Head circumference is the perimeter of an ellipse placed on the outer edge of the skull: approximately pi x (BPD + OFD) / 2, where BPD (biparietal diameter) and OFD (occipitofrontal diameter) are the short and long axes. Measurements on an ultrasound image are only true distances when the image carries its pixel size, as these images do."
+  },
+  {
+   "id": "us-fetal-head-687",
+   "packId": "us-cases",
+   "neutralTitle": "Obstetric ultrasound · HC18 image 687",
+   "learnTitle": "Fetal head on the standard plane for head circumference (sonographer's ellipse)",
+   "subjectKey": "zenodo:HC18:687_HC",
+   "studyUids": [
+    "2.25.106324977587175736985598029658017036278"
+   ],
+   "primarySeriesUid": "2.25.147590378258926794173016782108978164875",
+   "region": [
+    "pelvis"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch18-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    },
+    {
+     "physical": 237,
+     "printed": "217",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s29"
+    },
+    {
+     "physical": 238,
+     "printed": "218",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s31"
+    }
+   ],
+   "referenceSummary": "The ellipse on the outer skull was placed by a trained sonographer (HC18); the head circumference it gives is 249.5 mm. The image carries its true pixel size. Gestational age is not given by the dataset.",
+   "learnNotes": "Fetal growth is followed with standard measurements on standard planes. The head is measured on an axial plane through the thalami and the cavum septi pellucidi, with the skull outline symmetric and smooth. Bone reflects most of the sound, so the skull is a bright (echogenic) oval; the brain inside is darker. Head circumference is the perimeter of an ellipse placed on the outer edge of the skull: approximately pi x (BPD + OFD) / 2, where BPD (biparietal diameter) and OFD (occipitofrontal diameter) are the short and long axes. Measurements on an ultrasound image are only true distances when the image carries its pixel size, as these images do."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "us-breast-case007:locate",
+   "caseId": "us-breast-case007",
+   "type": "locate_finding",
+   "title": "Find the lesion",
+   "prompt": "Look through this breast ultrasound image. Mark the lesion (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.61410500102035205296947820755541293555"
+   ],
+   "start": {
+    "seriesUid": "2.25.61410500102035205296947820755541293555",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "breast-usg-case007_mass",
+     "name": "Breast lesion",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Skin is at the top of the image; look below the skin and fat for a focal area that differs from the surrounding tissue."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis. The image carries its pixel size, so the tolerance is a true 3 mm.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case007:cyst",
+   "caseId": "us-breast-case007",
+   "type": "differential",
+   "title": "Cyst or solid?",
+   "prompt": "Look at the lesion's echoes, walls and the tissue behind it. Is it a simple cyst or a solid mass?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.61410500102035205296947820755541293555"
+   ],
+   "start": {
+    "seriesUid": "2.25.61410500102035205296947820755541293555",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "cyst",
+      "text": "Simple cyst",
+      "correct": false,
+      "why": "A simple cyst is anechoic, circumscribed with a thin back wall, and shows posterior acoustic enhancement."
+     },
+     {
+      "id": "solid",
+      "text": "Solid mass",
+      "correct": true,
+      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the inside of the lesion with the black of fluid, and look at the tissue just deep to it."
+    }
+   ],
+   "explanation": "The radiologist recorded the echo pattern as hypoechoic and posterior features as shadowing; this lesion is a invasive carcinoma (proven by biopsy). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case007:echo",
+   "caseId": "us-breast-case007",
+   "type": "describe_finding",
+   "title": "Describe the echoes",
+   "prompt": "Describe the lesion in ultrasound terms: choose its echo pattern and what happens to the sound behind it (two answers).",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.61410500102035205296947820755541293555"
+   ],
+   "start": {
+    "seriesUid": "2.25.61410500102035205296947820755541293555",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": true,
+    "options": [
+     {
+      "id": "anechoic",
+      "text": "Anechoic (no internal echoes)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hypoechoic",
+      "text": "Hypoechoic (darker than fat)",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "heterogeneous",
+      "text": "Heterogeneous echo pattern",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hyperechoic",
+      "text": "Hyperechoic (brighter than fat)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "enh",
+      "text": "Posterior acoustic enhancement",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "shad",
+      "text": "Posterior acoustic shadowing",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "nopost",
+      "text": "No posterior features",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Echo pattern is judged against the subcutaneous fat; posterior features are judged in the tissue directly deep to the lesion."
+    }
+   ],
+   "explanation": "The radiologist described this lesion as hypoechoic with posterior features: shadowing. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01",
+    "ch29-o06"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case013:locate",
+   "caseId": "us-breast-case013",
+   "type": "locate_finding",
+   "title": "Find the lesion",
+   "prompt": "Look through this breast ultrasound image. Mark the lesion (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.322229983401190937844013699972665234089"
+   ],
+   "start": {
+    "seriesUid": "2.25.322229983401190937844013699972665234089",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "breast-usg-case013_mass",
+     "name": "Breast lesion",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Skin is at the top of the image; look below the skin and fat for a focal area that differs from the surrounding tissue."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis. The image carries its pixel size, so the tolerance is a true 3 mm.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case013:cyst",
+   "caseId": "us-breast-case013",
+   "type": "differential",
+   "title": "Cyst or solid?",
+   "prompt": "Look at the lesion's echoes, walls and the tissue behind it. Is it a simple cyst or a solid mass?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.322229983401190937844013699972665234089"
+   ],
+   "start": {
+    "seriesUid": "2.25.322229983401190937844013699972665234089",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "cyst",
+      "text": "Simple cyst",
+      "correct": false,
+      "why": "A simple cyst is anechoic, circumscribed with a thin back wall, and shows posterior acoustic enhancement."
+     },
+     {
+      "id": "solid",
+      "text": "Solid mass",
+      "correct": true,
+      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the inside of the lesion with the black of fluid, and look at the tissue just deep to it."
+    }
+   ],
+   "explanation": "The radiologist recorded the echo pattern as hypoechoic and posterior features as shadowing; this lesion is a invasive carcinoma (proven by biopsy). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case013:echo",
+   "caseId": "us-breast-case013",
+   "type": "describe_finding",
+   "title": "Describe the echoes",
+   "prompt": "Describe the lesion in ultrasound terms: choose its echo pattern and what happens to the sound behind it (two answers).",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.322229983401190937844013699972665234089"
+   ],
+   "start": {
+    "seriesUid": "2.25.322229983401190937844013699972665234089",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": true,
+    "options": [
+     {
+      "id": "anechoic",
+      "text": "Anechoic (no internal echoes)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hypoechoic",
+      "text": "Hypoechoic (darker than fat)",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "heterogeneous",
+      "text": "Heterogeneous echo pattern",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hyperechoic",
+      "text": "Hyperechoic (brighter than fat)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "enh",
+      "text": "Posterior acoustic enhancement",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "shad",
+      "text": "Posterior acoustic shadowing",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "nopost",
+      "text": "No posterior features",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Echo pattern is judged against the subcutaneous fat; posterior features are judged in the tissue directly deep to the lesion."
+    }
+   ],
+   "explanation": "The radiologist described this lesion as hypoechoic with posterior features: shadowing. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01",
+    "ch29-o06"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case068:locate",
+   "caseId": "us-breast-case068",
+   "type": "locate_finding",
+   "title": "Find the lesion",
+   "prompt": "Look through this breast ultrasound image. Mark the lesion (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.5099005223099203271461404601584346773"
+   ],
+   "start": {
+    "seriesUid": "2.25.5099005223099203271461404601584346773",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "breast-usg-case068_mass",
+     "name": "Breast lesion",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Skin is at the top of the image; look below the skin and fat for a focal area that differs from the surrounding tissue."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis. The image carries its pixel size, so the tolerance is a true 3 mm.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case068:cyst",
+   "caseId": "us-breast-case068",
+   "type": "differential",
+   "title": "Cyst or solid?",
+   "prompt": "Look at the lesion's echoes, walls and the tissue behind it. Is it a simple cyst or a solid mass?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.5099005223099203271461404601584346773"
+   ],
+   "start": {
+    "seriesUid": "2.25.5099005223099203271461404601584346773",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "cyst",
+      "text": "Simple cyst",
+      "correct": false,
+      "why": "A simple cyst is anechoic, circumscribed with a thin back wall, and shows posterior acoustic enhancement."
+     },
+     {
+      "id": "solid",
+      "text": "Solid mass",
+      "correct": true,
+      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the inside of the lesion with the black of fluid, and look at the tissue just deep to it."
+    }
+   ],
+   "explanation": "The radiologist recorded the echo pattern as hypoechoic and posterior features as no; this lesion is a fibroadenoma (proven by biopsy). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case068:echo",
+   "caseId": "us-breast-case068",
+   "type": "describe_finding",
+   "title": "Describe the echoes",
+   "prompt": "Describe the lesion in ultrasound terms: choose its echo pattern and what happens to the sound behind it (two answers).",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.5099005223099203271461404601584346773"
+   ],
+   "start": {
+    "seriesUid": "2.25.5099005223099203271461404601584346773",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": true,
+    "options": [
+     {
+      "id": "anechoic",
+      "text": "Anechoic (no internal echoes)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hypoechoic",
+      "text": "Hypoechoic (darker than fat)",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "heterogeneous",
+      "text": "Heterogeneous echo pattern",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hyperechoic",
+      "text": "Hyperechoic (brighter than fat)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "enh",
+      "text": "Posterior acoustic enhancement",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "shad",
+      "text": "Posterior acoustic shadowing",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "nopost",
+      "text": "No posterior features",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Echo pattern is judged against the subcutaneous fat; posterior features are judged in the tissue directly deep to the lesion."
+    }
+   ],
+   "explanation": "The radiologist described this lesion as hypoechoic with posterior features: no. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01",
+    "ch29-o06"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case025:locate",
+   "caseId": "us-breast-case025",
+   "type": "locate_finding",
+   "title": "Find the lesion",
+   "prompt": "Look through this breast ultrasound image. Mark the lesion (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.265279139273503533626359779614804940670"
+   ],
+   "start": {
+    "seriesUid": "2.25.265279139273503533626359779614804940670",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "breast-usg-case025_mass",
+     "name": "Breast lesion",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Skin is at the top of the image; look below the skin and fat for a focal area that differs from the surrounding tissue."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis. The image carries its pixel size, so the tolerance is a true 3 mm.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case025:cyst",
+   "caseId": "us-breast-case025",
+   "type": "differential",
+   "title": "Cyst or solid?",
+   "prompt": "Look at the lesion's echoes, walls and the tissue behind it. Is it a simple cyst or a solid mass?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.265279139273503533626359779614804940670"
+   ],
+   "start": {
+    "seriesUid": "2.25.265279139273503533626359779614804940670",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "cyst",
+      "text": "Simple cyst",
+      "correct": false,
+      "why": "A simple cyst is anechoic, circumscribed with a thin back wall, and shows posterior acoustic enhancement."
+     },
+     {
+      "id": "solid",
+      "text": "Solid mass",
+      "correct": true,
+      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the inside of the lesion with the black of fluid, and look at the tissue just deep to it."
+    }
+   ],
+   "explanation": "The radiologist recorded the echo pattern as heterogeneous and posterior features as enhancement; this lesion is a fibroadenoma (proven by biopsy). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case025:echo",
+   "caseId": "us-breast-case025",
+   "type": "describe_finding",
+   "title": "Describe the echoes",
+   "prompt": "Describe the lesion in ultrasound terms: choose its echo pattern and what happens to the sound behind it (two answers).",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.265279139273503533626359779614804940670"
+   ],
+   "start": {
+    "seriesUid": "2.25.265279139273503533626359779614804940670",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": true,
+    "options": [
+     {
+      "id": "anechoic",
+      "text": "Anechoic (no internal echoes)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hypoechoic",
+      "text": "Hypoechoic (darker than fat)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "heterogeneous",
+      "text": "Heterogeneous echo pattern",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hyperechoic",
+      "text": "Hyperechoic (brighter than fat)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "enh",
+      "text": "Posterior acoustic enhancement",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "shad",
+      "text": "Posterior acoustic shadowing",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "nopost",
+      "text": "No posterior features",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Echo pattern is judged against the subcutaneous fat; posterior features are judged in the tissue directly deep to the lesion."
+    }
+   ],
+   "explanation": "The radiologist described this lesion as heterogeneous with posterior features: enhancement. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01",
+    "ch29-o06"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case048:locate",
+   "caseId": "us-breast-case048",
+   "type": "locate_finding",
+   "title": "Find the lesion",
+   "prompt": "Look through this breast ultrasound image. Mark the lesion (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.199482723280374804899424395027091565407"
+   ],
+   "start": {
+    "seriesUid": "2.25.199482723280374804899424395027091565407",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "breast-usg-case048_cyst",
+     "name": "Breast lesion",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Skin is at the top of the image; look below the skin and fat for a focal area that differs from the surrounding tissue."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis. The image carries its pixel size, so the tolerance is a true 3 mm.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case048:cyst",
+   "caseId": "us-breast-case048",
+   "type": "differential",
+   "title": "Cyst or solid?",
+   "prompt": "Look at the lesion's echoes, walls and the tissue behind it. Is it a simple cyst or a solid mass?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.199482723280374804899424395027091565407"
+   ],
+   "start": {
+    "seriesUid": "2.25.199482723280374804899424395027091565407",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "cyst",
+      "text": "Simple cyst",
+      "correct": true,
+      "why": "A simple cyst is anechoic, circumscribed with a thin back wall, and shows posterior acoustic enhancement."
+     },
+     {
+      "id": "solid",
+      "text": "Solid mass",
+      "correct": false,
+      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the inside of the lesion with the black of fluid, and look at the tissue just deep to it."
+    }
+   ],
+   "explanation": "The radiologist recorded the echo pattern as anechoic and posterior features as enhancement; this lesion is a simple cyst (confirmed on follow-up). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case048:echo",
+   "caseId": "us-breast-case048",
+   "type": "describe_finding",
+   "title": "Describe the echoes",
+   "prompt": "Describe the lesion in ultrasound terms: choose its echo pattern and what happens to the sound behind it (two answers).",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.199482723280374804899424395027091565407"
+   ],
+   "start": {
+    "seriesUid": "2.25.199482723280374804899424395027091565407",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": true,
+    "options": [
+     {
+      "id": "anechoic",
+      "text": "Anechoic (no internal echoes)",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hypoechoic",
+      "text": "Hypoechoic (darker than fat)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "heterogeneous",
+      "text": "Heterogeneous echo pattern",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hyperechoic",
+      "text": "Hyperechoic (brighter than fat)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "enh",
+      "text": "Posterior acoustic enhancement",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "shad",
+      "text": "Posterior acoustic shadowing",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "nopost",
+      "text": "No posterior features",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Echo pattern is judged against the subcutaneous fat; posterior features are judged in the tissue directly deep to the lesion."
+    }
+   ],
+   "explanation": "The radiologist described this lesion as anechoic with posterior features: enhancement. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01",
+    "ch29-o06"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case237:locate",
+   "caseId": "us-breast-case237",
+   "type": "locate_finding",
+   "title": "Find the lesion",
+   "prompt": "Look through this breast ultrasound image. Mark the lesion (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.109471832196196890867933682632890539805"
+   ],
+   "start": {
+    "seriesUid": "2.25.109471832196196890867933682632890539805",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "breast-usg-case237_cyst",
+     "name": "Breast lesion",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Skin is at the top of the image; look below the skin and fat for a focal area that differs from the surrounding tissue."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis. The image carries its pixel size, so the tolerance is a true 3 mm.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case237:cyst",
+   "caseId": "us-breast-case237",
+   "type": "differential",
+   "title": "Cyst or solid?",
+   "prompt": "Look at the lesion's echoes, walls and the tissue behind it. Is it a simple cyst or a solid mass?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.109471832196196890867933682632890539805"
+   ],
+   "start": {
+    "seriesUid": "2.25.109471832196196890867933682632890539805",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "cyst",
+      "text": "Simple cyst",
+      "correct": true,
+      "why": "A simple cyst is anechoic, circumscribed with a thin back wall, and shows posterior acoustic enhancement."
+     },
+     {
+      "id": "solid",
+      "text": "Solid mass",
+      "correct": false,
+      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the inside of the lesion with the black of fluid, and look at the tissue just deep to it."
+    }
+   ],
+   "explanation": "The radiologist recorded the echo pattern as anechoic and posterior features as enhancement; this lesion is a simple cyst (confirmed on follow-up). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o06",
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-breast-case237:echo",
+   "caseId": "us-breast-case237",
+   "type": "describe_finding",
+   "title": "Describe the echoes",
+   "prompt": "Describe the lesion in ultrasound terms: choose its echo pattern and what happens to the sound behind it (two answers).",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.109471832196196890867933682632890539805"
+   ],
+   "start": {
+    "seriesUid": "2.25.109471832196196890867933682632890539805",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": true,
+    "options": [
+     {
+      "id": "anechoic",
+      "text": "Anechoic (no internal echoes)",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hypoechoic",
+      "text": "Hypoechoic (darker than fat)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "heterogeneous",
+      "text": "Heterogeneous echo pattern",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "hyperechoic",
+      "text": "Hyperechoic (brighter than fat)",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "enh",
+      "text": "Posterior acoustic enhancement",
+      "correct": true,
+      "why": "The radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "shad",
+      "text": "Posterior acoustic shadowing",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     },
+     {
+      "id": "nopost",
+      "text": "No posterior features",
+      "correct": false,
+      "why": "Not the radiologist's descriptor for this lesion."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Echo pattern is judged against the subcutaneous fat; posterior features are judged in the tissue directly deep to the lesion."
+    }
+   ],
+   "explanation": "The radiologist described this lesion as anechoic with posterior features: enhancement. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.17",
+     "sectionId": null
+    },
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.18",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01",
+    "ch29-o06"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-fetal-head-113:head",
+   "caseId": "us-fetal-head-113",
+   "type": "find_structure",
+   "title": "Find the fetal head",
+   "prompt": "Mark the fetal head (inside the skull outline).",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.267674145241850849673738239821484841498"
+   ],
+   "start": {
+    "seriesUid": "2.25.267674145241850849673738239821484841498",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "hc18-113-hc_fetal-head",
+     "name": "Fetal head",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Bone reflects most of the sound: look for a bright, smooth oval ring."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Fetal growth is followed with standard measurements on standard planes. The head is measured on an axial plane through the thalami and the cavum septi pellucidi, with the skull outline symmetric and smooth. Bone reflects most of the sound, so the skull is a bright (echogenic) oval; the brain inside is darker. Head circumference is the perimeter of an ellipse placed on the outer edge of the skull: approximately pi x (BPD + OFD) / 2, where BPD (biparietal diameter) and OFD (occipitofrontal diameter) are the short and long axes. Measurements on an ultrasound image are only true distances when the image carries its pixel size, as these images do.",
+   "bookAnchors": [
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    },
+    {
+     "physical": 237,
+     "printed": "217",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s29"
+    },
+    {
+     "physical": 238,
+     "printed": "218",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s31"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-fetal-head-113:hc",
+   "caseId": "us-fetal-head-113",
+   "type": "describe_finding",
+   "title": "Measure the head circumference",
+   "prompt": "Measure the biparietal diameter (short axis, outer to outer edge of the skull) and the occipitofrontal diameter (long axis) with the length tool. Head circumference is about pi x (BPD + OFD) / 2. Which range is it in?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.267674145241850849673738239821484841498"
+   ],
+   "start": {
+    "seriesUid": "2.25.267674145241850849673738239821484841498",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "b0",
+      "text": "Under 100 mm",
+      "correct": true,
+      "why": "The sonographer's ellipse gives 87 mm."
+     },
+     {
+      "id": "b1",
+      "text": "100 to 200 mm",
+      "correct": false,
+      "why": "Not the range of the sonographer's measurement."
+     },
+     {
+      "id": "b2",
+      "text": "200 to 300 mm",
+      "correct": false,
+      "why": "Not the range of the sonographer's measurement."
+     },
+     {
+      "id": "b3",
+      "text": "Over 300 mm",
+      "correct": false,
+      "why": "Not the range of the sonographer's measurement."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure on the outer edge of the bright skull, not the inner edge; the image's pixel size makes the ruler read true millimetres."
+    }
+   ],
+   "explanation": "The sonographer's head circumference on this image is 87.3 mm. Fetal growth is followed with standard measurements on standard planes. The head is measured on an axial plane through the thalami and the cavum septi pellucidi, with the skull outline symmetric and smooth. Bone reflects most of the sound, so the skull is a bright (echogenic) oval; the brain inside is darker. Head circumference is the perimeter of an ellipse placed on the outer edge of the skull: approximately pi x (BPD + OFD) / 2, where BPD (biparietal diameter) and OFD (occipitofrontal diameter) are the short and long axes. Measurements on an ultrasound image are only true distances when the image carries its pixel size, as these images do.",
+   "bookAnchors": [
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    },
+    {
+     "physical": 237,
+     "printed": "217",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s29"
+    },
+    {
+     "physical": 238,
+     "printed": "218",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s31"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-fetal-head-365:head",
+   "caseId": "us-fetal-head-365",
+   "type": "find_structure",
+   "title": "Find the fetal head",
+   "prompt": "Mark the fetal head (inside the skull outline).",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.164179764852270088473111237229798770008"
+   ],
+   "start": {
+    "seriesUid": "2.25.164179764852270088473111237229798770008",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "hc18-365-hc_fetal-head",
+     "name": "Fetal head",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Bone reflects most of the sound: look for a bright, smooth oval ring."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Fetal growth is followed with standard measurements on standard planes. The head is measured on an axial plane through the thalami and the cavum septi pellucidi, with the skull outline symmetric and smooth. Bone reflects most of the sound, so the skull is a bright (echogenic) oval; the brain inside is darker. Head circumference is the perimeter of an ellipse placed on the outer edge of the skull: approximately pi x (BPD + OFD) / 2, where BPD (biparietal diameter) and OFD (occipitofrontal diameter) are the short and long axes. Measurements on an ultrasound image are only true distances when the image carries its pixel size, as these images do.",
+   "bookAnchors": [
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    },
+    {
+     "physical": 237,
+     "printed": "217",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s29"
+    },
+    {
+     "physical": 238,
+     "printed": "218",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s31"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-fetal-head-365:hc",
+   "caseId": "us-fetal-head-365",
+   "type": "describe_finding",
+   "title": "Measure the head circumference",
+   "prompt": "Measure the biparietal diameter (short axis, outer to outer edge of the skull) and the occipitofrontal diameter (long axis) with the length tool. Head circumference is about pi x (BPD + OFD) / 2. Which range is it in?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.164179764852270088473111237229798770008"
+   ],
+   "start": {
+    "seriesUid": "2.25.164179764852270088473111237229798770008",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "b0",
+      "text": "Under 100 mm",
+      "correct": false,
+      "why": "Not the range of the sonographer's measurement."
+     },
+     {
+      "id": "b1",
+      "text": "100 to 200 mm",
+      "correct": true,
+      "why": "The sonographer's ellipse gives 175 mm."
+     },
+     {
+      "id": "b2",
+      "text": "200 to 300 mm",
+      "correct": false,
+      "why": "Not the range of the sonographer's measurement."
+     },
+     {
+      "id": "b3",
+      "text": "Over 300 mm",
+      "correct": false,
+      "why": "Not the range of the sonographer's measurement."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure on the outer edge of the bright skull, not the inner edge; the image's pixel size makes the ruler read true millimetres."
+    }
+   ],
+   "explanation": "The sonographer's head circumference on this image is 174.8 mm. Fetal growth is followed with standard measurements on standard planes. The head is measured on an axial plane through the thalami and the cavum septi pellucidi, with the skull outline symmetric and smooth. Bone reflects most of the sound, so the skull is a bright (echogenic) oval; the brain inside is darker. Head circumference is the perimeter of an ellipse placed on the outer edge of the skull: approximately pi x (BPD + OFD) / 2, where BPD (biparietal diameter) and OFD (occipitofrontal diameter) are the short and long axes. Measurements on an ultrasound image are only true distances when the image carries its pixel size, as these images do.",
+   "bookAnchors": [
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    },
+    {
+     "physical": 237,
+     "printed": "217",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s29"
+    },
+    {
+     "physical": 238,
+     "printed": "218",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s31"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-fetal-head-687:head",
+   "caseId": "us-fetal-head-687",
+   "type": "find_structure",
+   "title": "Find the fetal head",
+   "prompt": "Mark the fetal head (inside the skull outline).",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.147590378258926794173016782108978164875"
+   ],
+   "start": {
+    "seriesUid": "2.25.147590378258926794173016782108978164875",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "hc18-687-hc_fetal-head",
+     "name": "Fetal head",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Bone reflects most of the sound: look for a bright, smooth oval ring."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Fetal growth is followed with standard measurements on standard planes. The head is measured on an axial plane through the thalami and the cavum septi pellucidi, with the skull outline symmetric and smooth. Bone reflects most of the sound, so the skull is a bright (echogenic) oval; the brain inside is darker. Head circumference is the perimeter of an ellipse placed on the outer edge of the skull: approximately pi x (BPD + OFD) / 2, where BPD (biparietal diameter) and OFD (occipitofrontal diameter) are the short and long axes. Measurements on an ultrasound image are only true distances when the image carries its pixel size, as these images do.",
+   "bookAnchors": [
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    },
+    {
+     "physical": 237,
+     "printed": "217",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s29"
+    },
+    {
+     "physical": 238,
+     "printed": "218",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s31"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "us-fetal-head-687:hc",
+   "caseId": "us-fetal-head-687",
+   "type": "describe_finding",
+   "title": "Measure the head circumference",
+   "prompt": "Measure the biparietal diameter (short axis, outer to outer edge of the skull) and the occipitofrontal diameter (long axis) with the length tool. Head circumference is about pi x (BPD + OFD) / 2. Which range is it in?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.147590378258926794173016782108978164875"
+   ],
+   "start": {
+    "seriesUid": "2.25.147590378258926794173016782108978164875",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "b0",
+      "text": "Under 100 mm",
+      "correct": false,
+      "why": "Not the range of the sonographer's measurement."
+     },
+     {
+      "id": "b1",
+      "text": "100 to 200 mm",
+      "correct": false,
+      "why": "Not the range of the sonographer's measurement."
+     },
+     {
+      "id": "b2",
+      "text": "200 to 300 mm",
+      "correct": true,
+      "why": "The sonographer's ellipse gives 250 mm."
+     },
+     {
+      "id": "b3",
+      "text": "Over 300 mm",
+      "correct": false,
+      "why": "Not the range of the sonographer's measurement."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure on the outer edge of the bright skull, not the inner edge; the image's pixel size makes the ruler read true millimetres."
+    }
+   ],
+   "explanation": "The sonographer's head circumference on this image is 249.5 mm. Fetal growth is followed with standard measurements on standard planes. The head is measured on an axial plane through the thalami and the cavum septi pellucidi, with the skull outline symmetric and smooth. Bone reflects most of the sound, so the skull is a bright (echogenic) oval; the brain inside is darker. Head circumference is the perimeter of an ellipse placed on the outer edge of the skull: approximately pi x (BPD + OFD) / 2, where BPD (biparietal diameter) and OFD (occipitofrontal diameter) are the short and long axes. Measurements on an ultrasound image are only true distances when the image carries its pixel size, as these images do.",
+   "bookAnchors": [
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Fig 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": "Table 18.1",
+     "sectionId": null
+    },
+    {
+     "physical": 222,
+     "printed": "202",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s02"
+    },
+    {
+     "physical": 237,
+     "printed": "217",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s29"
+    },
+    {
+     "physical": 238,
+     "printed": "218",
+     "chapterId": "ch18",
+     "figureId": null,
+     "sectionId": "ch18-s31"
+    }
+   ],
+   "objectiveIds": [
+    "ch18-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

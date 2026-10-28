@@ -1,0 +1,1171 @@
+{
+ "schemaVersion": 1,
+ "packId": "us-cases",
+ "version": "1.0.0",
+ "title": "Ultrasound: breast lesions and the fetal head",
+ "description": "Nine ultrasound images with true pixel size. Six breast ultrasound images from Breast-Lesions-USG, each lesion outlined by a radiologist experienced in breast ultrasound: two biopsy-proven invasive carcinomas, two biopsy-proven fibroadenomas and two simple cysts confirmed on follow-up. Three fetal head images on the standard plane from HC18 with the sonographer's head-circumference ellipse. Images are the datasets' cropped 8-bit PNGs; no orientation tag.",
+ "generatedAt": "2026-10-28T20:09:23Z",
+ "generator": "scripts/data/build_external.py (python 3.12.10, pydicom 3.0.1, highdicom 0.27.0, numpy 2.2.6)",
+ "sources": [
+  {
+   "id": "tcia:Breast-Lesions-USG",
+   "name": "Breast-Lesions-USG (BrEaST): a curated breast ultrasound dataset with benign, malignant and normal cases",
+   "url": "https://doi.org/10.7937/9wkk-q141",
+   "doi": "10.7937/9wkk-q141",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "citation": "Pawłowska A, Ćwierz-Pieńkowska A, Domalik A, et al. Curated benchmark dataset for ultrasound based breast lesion analysis. Sci Data. 2024;11:148. doi:10.1038/s41597-024-02984-z. Data: The Cancer Imaging Archive, doi:10.7937/9wkk-q141",
+   "accessNote": "Images-and-masks ZIP and clinical XLSX downloaded anonymously from the TCIA collection page (Dec-15-2023 release)."
+  },
+  {
+   "id": "zenodo:HC18",
+   "name": "HC18: automated measurement of fetal head circumference using 2D ultrasound images",
+   "url": "https://doi.org/10.5281/zenodo.1327317",
+   "doi": "10.5281/zenodo.1327317",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "citation": "van den Heuvel TLA, de Bruijn D, de Korte CL, van Ginneken B. Automated measurement of fetal head circumference using 2D ultrasound images. PLoS One. 2018;13(8):e0200412. doi:10.1371/journal.pone.0200412. Data: Zenodo doi:10.5281/zenodo.1327317 (v2)",
+   "accessNote": "training_set.zip read member by member (HTTP Range, CRC-32 checked) and training_set_pixel_size_and_HC.csv from Zenodo; open access."
+  }
+ ],
+ "subjects": [
+  {
+   "key": "tcia:Breast-Lesions-USG:case007",
+   "sourceId": "tcia:Breast-Lesions-USG",
+   "sourceSubjectId": "case007",
+   "linkageEvidence": "Case case007 of Breast-Lesions-USG, which has one scan per patient (256 scans, 256 patients).",
+   "holdoutGroup": "tcia:Breast-Lesions-USG:case007",
+   "sex": null,
+   "ageAtFirstStudy": "052Y",
+   "studyUids": [
+    "2.25.39388717315103940975878476149205644987"
+   ]
+  },
+  {
+   "key": "tcia:Breast-Lesions-USG:case013",
+   "sourceId": "tcia:Breast-Lesions-USG",
+   "sourceSubjectId": "case013",
+   "linkageEvidence": "Case case013 of Breast-Lesions-USG, which has one scan per patient (256 scans, 256 patients).",
+   "holdoutGroup": "tcia:Breast-Lesions-USG:case013",
+   "sex": null,
+   "ageAtFirstStudy": "053Y",
+   "studyUids": [
+    "2.25.174857582894023114616768522842062677280"
+   ]
+  },
+  {
+   "key": "tcia:Breast-Lesions-USG:case068",
+   "sourceId": "tcia:Breast-Lesions-USG",
+   "sourceSubjectId": "case068",
+   "linkageEvidence": "Case case068 of Breast-Lesions-USG, which has one scan per patient (256 scans, 256 patients).",
+   "holdoutGroup": "tcia:Breast-Lesions-USG:case068",
+   "sex": null,
+   "ageAtFirstStudy": "035Y",
+   "studyUids": [
+    "2.25.322552184049466543725482303829720472394"
+   ]
+  },
+  {
+   "key": "tcia:Breast-Lesions-USG:case025",
+   "sourceId": "tcia:Breast-Lesions-USG",
+   "sourceSubjectId": "case025",
+   "linkageEvidence": "Case case025 of Breast-Lesions-USG, which has one scan per patient (256 scans, 256 patients).",
+   "holdoutGroup": "tcia:Breast-Lesions-USG:case025",
+   "sex": null,
+   "ageAtFirstStudy": "038Y",
+   "studyUids": [
+    "2.25.205043167387871848924440709363274841678"
+   ]
+  },
+  {
+   "key": "tcia:Breast-Lesions-USG:case048",
+   "sourceId": "tcia:Breast-Lesions-USG",
+   "sourceSubjectId": "case048",
+   "linkageEvidence": "Case case048 of Breast-Lesions-USG, which has one scan per patient (256 scans, 256 patients).",
+   "holdoutGroup": "tcia:Breast-Lesions-USG:case048",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.42810529792650646289276832505306414305"
+   ]
+  },
+  {
+   "key": "tcia:Breast-Lesions-USG:case237",
+   "sourceId": "tcia:Breast-Lesions-USG",
+   "sourceSubjectId": "case237",
+   "linkageEvidence": "Case case237 of Breast-Lesions-USG, which has one scan per patient (256 scans, 256 patients).",
+   "holdoutGroup": "tcia:Breast-Lesions-USG:case237",
+   "sex": null,
+   "ageAtFirstStudy": "021Y",
+   "studyUids": [
+    "2.25.226932540645912085784779325250751769073"
+   ]
+  },
+  {
+   "key": "zenodo:HC18:113_HC",
+   "sourceId": "zenodo:HC18",
+   "sourceSubjectId": "113_HC",
+   "linkageEvidence": "HC18 image 113_HC; the dataset gives no patient identifiers, so images may come from the same pregnancy: all HC18 images here share one hold-out group.",
+   "holdoutGroup": "zenodo:HC18:training-set",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.191968758926246642128669419276357620950"
+   ]
+  },
+  {
+   "key": "zenodo:HC18:365_HC",
+   "sourceId": "zenodo:HC18",
+   "sourceSubjectId": "365_HC",
+   "linkageEvidence": "HC18 image 365_HC; the dataset gives no patient identifiers, so images may come from the same pregnancy: all HC18 images here share one hold-out group.",
+   "holdoutGroup": "zenodo:HC18:training-set",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.242878377719270348328848910609654646207"
+   ]
+  },
+  {
+   "key": "zenodo:HC18:687_HC",
+   "sourceId": "zenodo:HC18",
+   "sourceSubjectId": "687_HC",
+   "linkageEvidence": "HC18 image 687_HC; the dataset gives no patient identifiers, so images may come from the same pregnancy: all HC18 images here share one hold-out group.",
+   "holdoutGroup": "zenodo:HC18:training-set",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.106324977587175736985598029658017036278"
+   ]
+  }
+ ],
+ "studies": [
+  {
+   "uid": "2.25.39388717315103940975878476149205644987",
+   "subjectKey": "tcia:Breast-Lesions-USG:case007",
+   "description": "Breast ultrasound",
+   "modalities": [
+    "US"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.61410500102035205296947820755541293555"
+   ]
+  },
+  {
+   "uid": "2.25.174857582894023114616768522842062677280",
+   "subjectKey": "tcia:Breast-Lesions-USG:case013",
+   "description": "Breast ultrasound",
+   "modalities": [
+    "US"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.322229983401190937844013699972665234089"
+   ]
+  },
+  {
+   "uid": "2.25.322552184049466543725482303829720472394",
+   "subjectKey": "tcia:Breast-Lesions-USG:case068",
+   "description": "Breast ultrasound",
+   "modalities": [
+    "US"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.5099005223099203271461404601584346773"
+   ]
+  },
+  {
+   "uid": "2.25.205043167387871848924440709363274841678",
+   "subjectKey": "tcia:Breast-Lesions-USG:case025",
+   "description": "Breast ultrasound",
+   "modalities": [
+    "US"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.265279139273503533626359779614804940670"
+   ]
+  },
+  {
+   "uid": "2.25.42810529792650646289276832505306414305",
+   "subjectKey": "tcia:Breast-Lesions-USG:case048",
+   "description": "Breast ultrasound",
+   "modalities": [
+    "US"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.199482723280374804899424395027091565407"
+   ]
+  },
+  {
+   "uid": "2.25.226932540645912085784779325250751769073",
+   "subjectKey": "tcia:Breast-Lesions-USG:case237",
+   "description": "Breast ultrasound",
+   "modalities": [
+    "US"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.109471832196196890867933682632890539805"
+   ]
+  },
+  {
+   "uid": "2.25.191968758926246642128669419276357620950",
+   "subjectKey": "zenodo:HC18:113_HC",
+   "description": "Obstetric ultrasound",
+   "modalities": [
+    "US"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.267674145241850849673738239821484841498"
+   ]
+  },
+  {
+   "uid": "2.25.242878377719270348328848910609654646207",
+   "subjectKey": "zenodo:HC18:365_HC",
+   "description": "Obstetric ultrasound",
+   "modalities": [
+    "US"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.164179764852270088473111237229798770008"
+   ]
+  },
+  {
+   "uid": "2.25.106324977587175736985598029658017036278",
+   "subjectKey": "zenodo:HC18:687_HC",
+   "description": "Obstetric ultrasound",
+   "modalities": [
+    "US"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.147590378258926794173016782108978164875"
+   ]
+  }
+ ],
+ "series": [
+  {
+   "uid": "2.25.61410500102035205296947820755541293555",
+   "studyUid": "2.25.39388717315103940975878476149205644987",
+   "subjectKey": "tcia:Breast-Lesions-USG:case007",
+   "modality": "US",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.6.1",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Breast ultrasound, B-mode",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Breast ultrasound image (Breast-Lesions-USG PNG) wrapped as DICOM.",
+   "acquisition": {
+    "SeriesDescription": "Breast ultrasound, B-mode",
+    "StudyDescription": "Breast ultrasound",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST"
+   },
+   "geometry": {
+    "rows": 537,
+    "columns": 485,
+    "pixelSpacing": [
+     0.078125,
+     0.078125
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "only 1 slice(s)",
+     "no ImageOrientationPatient"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.166663813009702959302273805225774545885",
+     "file": "dicom/us-b3db34fb8d/f0abe811416ddc3b.dcm",
+     "bytes": 123430,
+     "sha256": "f0abe811416ddc3be6f91173c5de9f4a452ab73b71cee6342524f93d35925e03",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 123430,
+   "thumbnail": "thumbs/us-b3db34fb8d.png",
+   "displayNote": "Cropped B-mode image from Breast-Lesions-USG with the pixel size given by the dataset (true distances in mm); no orientation tag, so no orientation letters are shown."
+  },
+  {
+   "uid": "2.25.322229983401190937844013699972665234089",
+   "studyUid": "2.25.174857582894023114616768522842062677280",
+   "subjectKey": "tcia:Breast-Lesions-USG:case013",
+   "modality": "US",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.6.1",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Breast ultrasound, B-mode",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Breast ultrasound image (Breast-Lesions-USG PNG) wrapped as DICOM.",
+   "acquisition": {
+    "SeriesDescription": "Breast ultrasound, B-mode",
+    "StudyDescription": "Breast ultrasound",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST"
+   },
+   "geometry": {
+    "rows": 538,
+    "columns": 831,
+    "pixelSpacing": [
+     0.078125,
+     0.078125
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "only 1 slice(s)",
+     "no ImageOrientationPatient"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.230567665394349743215507924522037482911",
+     "file": "dicom/us-9875ff29a5/1dedae2eb8f1d382.dcm",
+     "bytes": 158918,
+     "sha256": "1dedae2eb8f1d3826ca3d57f0803a458f9e1ea28278b1df0e1e03fa61ebf79e9",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 158918,
+   "thumbnail": "thumbs/us-9875ff29a5.png",
+   "displayNote": "Cropped B-mode image from Breast-Lesions-USG with the pixel size given by the dataset (true distances in mm); no orientation tag, so no orientation letters are shown."
+  },
+  {
+   "uid": "2.25.5099005223099203271461404601584346773",
+   "studyUid": "2.25.322552184049466543725482303829720472394",
+   "subjectKey": "tcia:Breast-Lesions-USG:case068",
+   "modality": "US",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.6.1",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Breast ultrasound, B-mode",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Breast ultrasound image (Breast-Lesions-USG PNG) wrapped as DICOM.",
+   "acquisition": {
+    "SeriesDescription": "Breast ultrasound, B-mode",
+    "StudyDescription": "Breast ultrasound",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST"
+   },
+   "geometry": {
+    "rows": 532,
+    "columns": 545,
+    "pixelSpacing": [
+     0.06944444,
+     0.06944444
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "only 1 slice(s)",
+     "no ImageOrientationPatient"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.67276599483196183813836075185871805869",
+     "file": "dicom/us-491e69eb68/b8a4bc2d15991d08.dcm",
+     "bytes": 114554,
+     "sha256": "b8a4bc2d15991d0820979b435c0221d8a02a1ab03cc2f9ada4302f64561cabe2",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 114554,
+   "thumbnail": "thumbs/us-491e69eb68.png",
+   "displayNote": "Cropped B-mode image from Breast-Lesions-USG with the pixel size given by the dataset (true distances in mm); no orientation tag, so no orientation letters are shown."
+  },
+  {
+   "uid": "2.25.265279139273503533626359779614804940670",
+   "studyUid": "2.25.205043167387871848924440709363274841678",
+   "subjectKey": "tcia:Breast-Lesions-USG:case025",
+   "modality": "US",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.6.1",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Breast ultrasound, B-mode",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Breast ultrasound image (Breast-Lesions-USG PNG) wrapped as DICOM.",
+   "acquisition": {
+    "SeriesDescription": "Breast ultrasound, B-mode",
+    "StudyDescription": "Breast ultrasound",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST"
+   },
+   "geometry": {
+    "rows": 609,
+    "columns": 761,
+    "pixelSpacing": [
+     0.06462036,
+     0.06462036
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "only 1 slice(s)",
+     "no ImageOrientationPatient"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.263511735726823641907525671200912033552",
+     "file": "dicom/us-de0b6d1f4a/e0f9505c89cd95bb.dcm",
+     "bytes": 188998,
+     "sha256": "e0f9505c89cd95bb38f0bd2e5ace244496c36d97a238fe9356a3dd3be1cd8e58",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 188998,
+   "thumbnail": "thumbs/us-de0b6d1f4a.png",
+   "displayNote": "Cropped B-mode image from Breast-Lesions-USG with the pixel size given by the dataset (true distances in mm); no orientation tag, so no orientation letters are shown."
+  },
+  {
+   "uid": "2.25.199482723280374804899424395027091565407",
+   "studyUid": "2.25.42810529792650646289276832505306414305",
+   "subjectKey": "tcia:Breast-Lesions-USG:case048",
+   "modality": "US",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.6.1",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Breast ultrasound, B-mode",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Breast ultrasound image (Breast-Lesions-USG PNG) wrapped as DICOM.",
+   "acquisition": {
+    "SeriesDescription": "Breast ultrasound, B-mode",
+    "StudyDescription": "Breast ultrasound",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST"
+   },
+   "geometry": {
+    "rows": 580,
+    "columns": 711,
+    "pixelSpacing": [
+     0.0726979,
+     0.0726979
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "only 1 slice(s)",
+     "no ImageOrientationPatient"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.190089924447416774276961829618617506226",
+     "file": "dicom/us-e86eddcbba/05e202501b9d927f.dcm",
+     "bytes": 143490,
+     "sha256": "05e202501b9d927f78aabbe93dc4eec9b46541a04acc0daf7b61ed9eae034825",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 143490,
+   "thumbnail": "thumbs/us-e86eddcbba.png",
+   "displayNote": "Cropped B-mode image from Breast-Lesions-USG with the pixel size given by the dataset (true distances in mm); no orientation tag, so no orientation letters are shown."
+  },
+  {
+   "uid": "2.25.109471832196196890867933682632890539805",
+   "studyUid": "2.25.226932540645912085784779325250751769073",
+   "subjectKey": "tcia:Breast-Lesions-USG:case237",
+   "modality": "US",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.6.1",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Breast ultrasound, B-mode",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Breast ultrasound image (Breast-Lesions-USG PNG) wrapped as DICOM.",
+   "acquisition": {
+    "SeriesDescription": "Breast ultrasound, B-mode",
+    "StudyDescription": "Breast ultrasound",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST"
+   },
+   "geometry": {
+    "rows": 609,
+    "columns": 761,
+    "pixelSpacing": [
+     0.06462036,
+     0.06462036
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "only 1 slice(s)",
+     "no ImageOrientationPatient"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.306178840021461643289595415498835984774",
+     "file": "dicom/us-e43bf244da/0e015422e0bbd4df.dcm",
+     "bytes": 156854,
+     "sha256": "0e015422e0bbd4df1be32691678a68ad983089522f0491d2d47a72369eca6c61",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 156854,
+   "thumbnail": "thumbs/us-e43bf244da.png",
+   "displayNote": "Cropped B-mode image from Breast-Lesions-USG with the pixel size given by the dataset (true distances in mm); no orientation tag, so no orientation letters are shown."
+  },
+  {
+   "uid": "2.25.267674145241850849673738239821484841498",
+   "studyUid": "2.25.191968758926246642128669419276357620950",
+   "subjectKey": "zenodo:HC18:113_HC",
+   "modality": "US",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.6.1",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Fetal head, standard plane for head circumference",
+   "bodyPart": null,
+   "role": "diagnostic",
+   "roleNote": "Obstetric ultrasound image (HC18 PNG) wrapped as DICOM.",
+   "acquisition": {
+    "SeriesDescription": "Fetal head, standard plane for head circumference",
+    "StudyDescription": "Obstetric ultrasound",
+    "ImageType": "DERIVED\\SECONDARY"
+   },
+   "geometry": {
+    "rows": 540,
+    "columns": 800,
+    "pixelSpacing": [
+     0.0971043,
+     0.0971043
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "only 1 slice(s)",
+     "no ImageOrientationPatient"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.101648679976251841737459819720086774423",
+     "file": "dicom/us-2c14c6b3fa/75cf3bc30f908e45.dcm",
+     "bytes": 105858,
+     "sha256": "75cf3bc30f908e450a0879fe05553a697234b74e14b55a32b2887e1e27a24faa",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 105858,
+   "thumbnail": "thumbs/us-2c14c6b3fa.png",
+   "displayNote": "Fetal head on the standard plane, from the HC18 dataset with the pixel size it gives (true distances in mm). The black box at a corner hides the scanner's text in the source."
+  },
+  {
+   "uid": "2.25.164179764852270088473111237229798770008",
+   "studyUid": "2.25.242878377719270348328848910609654646207",
+   "subjectKey": "zenodo:HC18:365_HC",
+   "modality": "US",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.6.1",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Fetal head, standard plane for head circumference",
+   "bodyPart": null,
+   "role": "diagnostic",
+   "roleNote": "Obstetric ultrasound image (HC18 PNG) wrapped as DICOM.",
+   "acquisition": {
+    "SeriesDescription": "Fetal head, standard plane for head circumference",
+    "StudyDescription": "Obstetric ultrasound",
+    "ImageType": "DERIVED\\SECONDARY"
+   },
+   "geometry": {
+    "rows": 540,
+    "columns": 800,
+    "pixelSpacing": [
+     0.1453357,
+     0.1453357
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "only 1 slice(s)",
+     "no ImageOrientationPatient"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.124976462591927733809270039773180059123",
+     "file": "dicom/us-b291288b9f/3f16a665798e8011.dcm",
+     "bytes": 93520,
+     "sha256": "3f16a665798e80119f7aba1b2f91cdd776c4e9de9f467d12270ac6feb483e986",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 93520,
+   "thumbnail": "thumbs/us-b291288b9f.png",
+   "displayNote": "Fetal head on the standard plane, from the HC18 dataset with the pixel size it gives (true distances in mm). The black box at a corner hides the scanner's text in the source."
+  },
+  {
+   "uid": "2.25.147590378258926794173016782108978164875",
+   "studyUid": "2.25.106324977587175736985598029658017036278",
+   "subjectKey": "zenodo:HC18:687_HC",
+   "modality": "US",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.6.1",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Fetal head, standard plane for head circumference",
+   "bodyPart": null,
+   "role": "diagnostic",
+   "roleNote": "Obstetric ultrasound image (HC18 PNG) wrapped as DICOM.",
+   "acquisition": {
+    "SeriesDescription": "Fetal head, standard plane for head circumference",
+    "StudyDescription": "Obstetric ultrasound",
+    "ImageType": "DERIVED\\SECONDARY"
+   },
+   "geometry": {
+    "rows": 540,
+    "columns": 800,
+    "pixelSpacing": [
+     0.1430235,
+     0.1430235
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "only 1 slice(s)",
+     "no ImageOrientationPatient"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.94686951158759299114599552612941566162",
+     "file": "dicom/us-ad8f0730e0/e883aa2eaaef1b4e.dcm",
+     "bytes": 118762,
+     "sha256": "e883aa2eaaef1b4efe16a3c7605f32116858093812800f75dc6a665c4a7ee982",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 118762,
+   "thumbnail": "thumbs/us-ad8f0730e0.png",
+   "displayNote": "Fetal head on the standard plane, from the HC18 dataset with the pixel size it gives (true distances in mm). The black box at a corner hides the scanner's text in the source."
+  }
+ ],
+ "spatialLinks": [],
+ "referenceTargets": [
+  {
+   "id": "breast-usg-case007_mass",
+   "label": "Breast mass: invasive carcinoma of no special type, biopsy-proven (radiologist outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.61410500102035205296947820755541293555",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/breast-usg-case007_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:Breast-Lesions-USG (images_and_masks, clinical XLSX)",
+    "method": "Freehand outline of the lesion by a radiologist experienced in breast ultrasound, who also gave the BI-RADS descriptors (TCIA collection description; Pawłowska et al. 2024); case007_tumor.png traced into image_px [col, row].",
+    "note": "BI-RADS 5; shape irregular; margin not circumscribed - spiculated&indistinct; echogenicity hypoechoic; posterior features shadowing; confirmed by biopsy; diagnosis: Invasive carcinoma of no special type (NST)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only the lesion is outlined; skin, glandular tissue and other lesions are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Invasive carcinoma of no special type (NST) (confirmed by biopsy): irregular, margin not circumscribed - spiculated&indistinct, posterior features shadowing."
+  },
+  {
+   "id": "breast-usg-case013_mass",
+   "label": "Breast mass: invasive carcinoma of no special type, biopsy-proven (radiologist outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.322229983401190937844013699972665234089",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/breast-usg-case013_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:Breast-Lesions-USG (images_and_masks, clinical XLSX)",
+    "method": "Freehand outline of the lesion by a radiologist experienced in breast ultrasound, who also gave the BI-RADS descriptors (TCIA collection description; Pawłowska et al. 2024); case013_tumor.png traced into image_px [col, row].",
+    "note": "BI-RADS 5; shape irregular; margin not circumscribed - spiculated&angular&indistinct; echogenicity hypoechoic; posterior features shadowing; confirmed by biopsy; diagnosis: Invasive carcinoma of no special type (NST)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only the lesion is outlined; skin, glandular tissue and other lesions are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Invasive carcinoma of no special type (NST) (confirmed by biopsy): irregular, margin not circumscribed - spiculated&angular&indistinct, posterior features shadowing."
+  },
+  {
+   "id": "breast-usg-case068_mass",
+   "label": "Breast mass: fibroadenoma, biopsy-proven (radiologist outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.5099005223099203271461404601584346773",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/breast-usg-case068_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:Breast-Lesions-USG (images_and_masks, clinical XLSX)",
+    "method": "Freehand outline of the lesion by a radiologist experienced in breast ultrasound, who also gave the BI-RADS descriptors (TCIA collection description; Pawłowska et al. 2024); case068_tumor.png traced into image_px [col, row].",
+    "note": "BI-RADS 3; shape oval; margin circumscribed; echogenicity hypoechoic; posterior features no; confirmed by biopsy; diagnosis: Fibroadenoma."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only the lesion is outlined; skin, glandular tissue and other lesions are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Fibroadenoma (confirmed by biopsy): oval, margin circumscribed, posterior features no."
+  },
+  {
+   "id": "breast-usg-case025_mass",
+   "label": "Breast mass: fibroadenoma, biopsy-proven (radiologist outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.265279139273503533626359779614804940670",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/breast-usg-case025_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:Breast-Lesions-USG (images_and_masks, clinical XLSX)",
+    "method": "Freehand outline of the lesion by a radiologist experienced in breast ultrasound, who also gave the BI-RADS descriptors (TCIA collection description; Pawłowska et al. 2024); case025_tumor.png traced into image_px [col, row].",
+    "note": "BI-RADS 4a; shape oval; margin circumscribed; echogenicity heterogeneous; posterior features enhancement; confirmed by biopsy; diagnosis: Fibroadenoma."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only the lesion is outlined; skin, glandular tissue and other lesions are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Fibroadenoma (confirmed by biopsy): oval, margin circumscribed, posterior features enhancement."
+  },
+  {
+   "id": "breast-usg-case048_cyst",
+   "label": "Breast cyst: simple cyst (radiologist outline)",
+   "classId": "finding:breast_cyst",
+   "seriesUid": "2.25.199482723280374804899424395027091565407",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/breast-usg-case048_cyst.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:Breast-Lesions-USG (images_and_masks, clinical XLSX)",
+    "method": "Freehand outline of the lesion by a radiologist experienced in breast ultrasound, who also gave the BI-RADS descriptors (TCIA collection description; Pawłowska et al. 2024); case048_tumor.png traced into image_px [col, row].",
+    "note": "BI-RADS 2; shape round; margin circumscribed; echogenicity anechoic; posterior features enhancement; confirmed by follow-up care; diagnosis: not applicable."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_cyst"
+   ],
+   "unassessedNote": "Only the lesion is outlined; skin, glandular tissue and other lesions are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Simple cyst on follow-up: anechoic, circumscribed, with posterior acoustic enhancement."
+  },
+  {
+   "id": "breast-usg-case237_cyst",
+   "label": "Breast cyst: simple cyst (radiologist outline)",
+   "classId": "finding:breast_cyst",
+   "seriesUid": "2.25.109471832196196890867933682632890539805",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/breast-usg-case237_cyst.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:Breast-Lesions-USG (images_and_masks, clinical XLSX)",
+    "method": "Freehand outline of the lesion by a radiologist experienced in breast ultrasound, who also gave the BI-RADS descriptors (TCIA collection description; Pawłowska et al. 2024); case237_tumor.png traced into image_px [col, row].",
+    "note": "BI-RADS 2; shape oval; margin circumscribed; echogenicity anechoic; posterior features enhancement; confirmed by follow-up care; diagnosis: not applicable."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_cyst"
+   ],
+   "unassessedNote": "Only the lesion is outlined; skin, glandular tissue and other lesions are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Simple cyst on follow-up: anechoic, circumscribed, with posterior acoustic enhancement."
+  },
+  {
+   "id": "hc18-113-hc_fetal-head",
+   "label": "Fetal head (sonographer's ellipse)",
+   "classId": "anatomy:fetal_head",
+   "seriesUid": "2.25.267674145241850849673738239821484841498",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/hc18-113-hc_fetal-head.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "zenodo:HC18 (training_set, *_Annotation.png)",
+    "method": "Head circumference annotated as an ellipse by a trained sonographer (van den Heuvel et al. 2018; HC18 challenge page); the annotation image draws the ellipse outline, filled and traced into image_px [col, row].",
+    "note": "Head circumference measured by the sonographer: 87.3 mm (pixel size 0.0971 mm)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:fetal_head"
+   ],
+   "unassessedNote": "Only the fetal head outline is referenced; the rest of the fetus, placenta and amniotic fluid are not.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The sonographer's ellipse around the outer skull; the head circumference on this image is 87 mm."
+  },
+  {
+   "id": "hc18-365-hc_fetal-head",
+   "label": "Fetal head (sonographer's ellipse)",
+   "classId": "anatomy:fetal_head",
+   "seriesUid": "2.25.164179764852270088473111237229798770008",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/hc18-365-hc_fetal-head.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "zenodo:HC18 (training_set, *_Annotation.png)",
+    "method": "Head circumference annotated as an ellipse by a trained sonographer (van den Heuvel et al. 2018; HC18 challenge page); the annotation image draws the ellipse outline, filled and traced into image_px [col, row].",
+    "note": "Head circumference measured by the sonographer: 174.8 mm (pixel size 0.1453 mm)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:fetal_head"
+   ],
+   "unassessedNote": "Only the fetal head outline is referenced; the rest of the fetus, placenta and amniotic fluid are not.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The sonographer's ellipse around the outer skull; the head circumference on this image is 175 mm."
+  },
+  {
+   "id": "hc18-687-hc_fetal-head",
+   "label": "Fetal head (sonographer's ellipse)",
+   "classId": "anatomy:fetal_head",
+   "seriesUid": "2.25.147590378258926794173016782108978164875",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/hc18-687-hc_fetal-head.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "zenodo:HC18 (training_set, *_Annotation.png)",
+    "method": "Head circumference annotated as an ellipse by a trained sonographer (van den Heuvel et al. 2018; HC18 challenge page); the annotation image draws the ellipse outline, filled and traced into image_px [col, row].",
+    "note": "Head circumference measured by the sonographer: 249.5 mm (pixel size 0.1430 mm)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:fetal_head"
+   ],
+   "unassessedNote": "Only the fetal head outline is referenced; the rest of the fetus, placenta and amniotic fluid are not.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The sonographer's ellipse around the outer skull; the head circumference on this image is 250 mm."
+  }
+ ]
+}

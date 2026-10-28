@@ -42,6 +42,7 @@ export const SHIFT_REGIONS: ShiftRegion[] = [
   { id: 'abdomen', label: 'Abdomen & pelvis', test: (r) => r.includes('abdomen') || r.includes('pelvis') },
   { id: 'head', label: 'Brain & head', test: (r) => r.includes('head') },
   { id: 'msk', label: 'Bones, spine & soft tissue', test: (r) => r.includes('extremity') || r.includes('spine') },
+  { id: 'breast', label: 'Breast', test: (r) => r.includes('breast') },
 ];
 
 /** The on-call task of a case: its broadest reading task that can be assessed, or null when it has none. */

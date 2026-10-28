@@ -91,6 +91,17 @@ describe('matching', () => {
     expect(top('consolidation')).toBe('airspace_disease');
   });
 
+  it('finds the breast, pregnancy and childhood fracture entries', () => {
+    expect(top('breast cyst')).toBe('breast_cyst');
+    expect(top('microcalcifications')).toBe('breast_calcifications');
+    expect(top('fibroadenoma')).toBe('breast_mass');
+    expect(top('buckle fracture')).toBe('torus_greenstick_fracture');
+    expect(top('greenstick')).toBe('torus_greenstick_fracture');
+    expect(top('growth plate fracture')).toBe('salter_harris_fracture');
+    expect(top('Salter Harris')).toBe('salter_harris_fracture');
+    expect(top('head circumference')).toBe('pregnancy_ultrasound');
+  });
+
   it('matches word beginnings as you type', () => {
     expect(ids('pneumo')).toEqual(expect.arrayContaining(['pneumothorax', 'pneumonia', 'pneumomediastinum', 'pneumoperitoneum']));
     expect(ids('hemo').includes('hemothorax')).toBe(true);
@@ -316,6 +327,57 @@ describe.skipIf(!real)('results from the installed cases', () => {
     if (!hits.length) return;
     expect(new Set(hits.map((h) => h.family))).toEqual(new Set(['MRI', 'CT']));
     for (const h of hits) expect(h.items.map((i) => i.label)).toContain('Tumor');
+  });
+
+  it('shows breast cysts on ultrasound and calcifications on both mammographic views', async () => {
+    const cysts = await run('breast_cyst');
+    if (!cysts.length) return; // round-3 packs not installed in this checkout
+    expect(new Set(cysts.map((h) => h.caseId)).size).toBe(2);
+    for (const h of cysts) expect([h.family, h.strength, h.items[0].where]).toEqual(['Ultrasound', 'outlined', 'outlined on the image']);
+    const calcs = await run('breast_calcifications');
+    expect(new Set(calcs.map((h) => h.caseId)).size).toBe(2);
+    expect(calcs).toHaveLength(4); // a CC and an MLO for each woman
+    for (const h of calcs) expect([h.family, h.strength]).toEqual(['Mammography', 'outlined']);
+    const masses = await run('breast_mass');
+    expect(new Set(masses.map((h) => h.family))).toEqual(new Set(['Mammography', 'Ultrasound']));
+    expect(masses.some((h) => /invasive carcinoma/.test(h.items[0].label))).toBe(true);
+  });
+
+  it("finds the children's wrist fractures on both views, by type", async () => {
+    const sh = await run('salter_harris_fracture');
+    if (!sh.length) return;
+    const torus = await run('torus_greenstick_fracture');
+    for (const hits of [sh, torus]) {
+      expect(new Set(hits.map((h) => h.caseId)).size).toBe(2);
+      expect(hits).toHaveLength(4); // frontal and lateral of each child
+      for (const h of hits) {
+        expect(h.family).toBe('X-ray');
+        expect(h.items.every((i) => i.where === 'boxed on the image')).toBe(true);
+        expect(h.link).toMatch(/&show=grazpedwri-/);
+      }
+    }
+    expect(sh.every((h) => /Salter-Harris type II/.test(h.items[0].label))).toBe(true);
+    const all = await run('fracture');
+    for (const h of [...sh, ...torus]) expect(all.some((x) => x.seriesUid === h.seriesUid)).toBe(true);
+  });
+
+  it('lists knee osteoarthritis only where both experts gave Kellgren-Lawrence 2 or more', async () => {
+    const hits = await run('osteoarthritis');
+    if (!hits.length) return;
+    expect(hits).toHaveLength(2);
+    for (const h of hits) {
+      expect(h.strength).toBe('labelled');
+      expect(h.items[0].label).toMatch(/^All 2 reader groups: Kellgren-Lawrence grade [24] /);
+    }
+    const graded = [...real!.view.targets.values()].filter((t) => t.classId === 'label:knee_kl_grade');
+    expect(graded).toHaveLength(6); // three knees, two experts each; the grade 0 knee is not listed
+  });
+
+  it('shows the fetal heads with the sonographer ellipse', async () => {
+    const hits = await run('pregnancy_ultrasound');
+    if (!hits.length) return;
+    expect(new Set(hits.map((h) => h.caseId)).size).toBe(3);
+    for (const h of hits) expect([h.family, h.strength]).toEqual(['Ultrasound', 'outlined']);
   });
 
   it('never repeats a series or lists a patient twice for the same evidence', async () => {

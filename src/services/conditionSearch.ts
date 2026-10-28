@@ -139,10 +139,10 @@ export function searchConditions(query: string, list: Condition[] = CONDITIONS, 
 
 // ------------------------------------------------------------------ cases
 
-export type Family = 'CT' | 'X-ray' | 'MRI' | 'Mammography' | 'Other';
-export const FAMILY_ORDER: Family[] = ['CT', 'X-ray', 'MRI', 'Mammography', 'Other'];
+export type Family = 'CT' | 'X-ray' | 'MRI' | 'Mammography' | 'Ultrasound' | 'Other';
+export const FAMILY_ORDER: Family[] = ['CT', 'X-ray', 'MRI', 'Mammography', 'Ultrasound', 'Other'];
 export const familyOf = (modality: string): Family =>
-  modality === 'CT' ? 'CT' : modality === 'CR' || modality === 'DX' ? 'X-ray' : modality === 'MR' ? 'MRI' : modality === 'MG' ? 'Mammography' : 'Other';
+  modality === 'CT' ? 'CT' : modality === 'CR' || modality === 'DX' ? 'X-ray' : modality === 'MR' ? 'MRI' : modality === 'MG' ? 'Mammography' : modality === 'US' ? 'Ultrasound' : 'Other';
 
 export type Strength = 'outlined' | 'labelled' | 'collection';
 export const STRENGTH_LABEL: Record<Strength, string> = {

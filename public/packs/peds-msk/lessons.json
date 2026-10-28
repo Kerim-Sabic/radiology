@@ -1,0 +1,1581 @@
+{
+ "schemaVersion": 1,
+ "packId": "peds-msk",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "peds-wrist-3390",
+   "packId": "peds-msk",
+   "neutralTitle": "Wrist radiographs, child · GRAZPEDWRI-DX 3390",
+   "learnTitle": "Salter-Harris II fracture of the distal radius (radiologist box)",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:3390",
+   "studyUids": [
+    "2.25.323494611633012776045926050140293320678"
+   ],
+   "primarySeriesUid": "2.25.131252323307702332861401724275775041848",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": "Girl, 13 years, left wrist injury.",
+   "contextSource": "Age, sex and side from the dataset (GRAZPEDWRI-DX dataset.csv); trauma from the dataset description.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch27-o07",
+    "ch23-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.20",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.21",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.22",
+     "sectionId": null
+    },
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-E/2.1). Nothing else is referenced.",
+   "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
+  },
+  {
+   "id": "peds-wrist-3853",
+   "packId": "peds-msk",
+   "neutralTitle": "Wrist radiographs, child · GRAZPEDWRI-DX 3853",
+   "learnTitle": "Salter-Harris II fracture of the distal radius (radiologist box)",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:3853",
+   "studyUids": [
+    "2.25.263374017995051613063001584651783048186"
+   ],
+   "primarySeriesUid": "2.25.75970707244602159585765127868445711681",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": "Boy, 14 years, left wrist injury.",
+   "contextSource": "Age, sex and side from the dataset (GRAZPEDWRI-DX dataset.csv); trauma from the dataset description.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch27-o07",
+    "ch23-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.20",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.21",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.22",
+     "sectionId": null
+    },
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-E/2.1). Nothing else is referenced.",
+   "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
+  },
+  {
+   "id": "peds-wrist-0030",
+   "packId": "peds-msk",
+   "neutralTitle": "Wrist radiographs, child · GRAZPEDWRI-DX 0030",
+   "learnTitle": "Incomplete (torus/buckle or greenstick) fracture of the distal radius (radiologist box)",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:30",
+   "studyUids": [
+    "2.25.91499879044390690122489861715195123092"
+   ],
+   "primarySeriesUid": "2.25.165690208264812005622346382815811786996",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": "Girl, 8 years, left wrist injury.",
+   "contextSource": "Age, sex and side from the dataset (GRAZPEDWRI-DX dataset.csv); trauma from the dataset description.",
+   "difficulty": "subtle",
+   "objectiveIds": [
+    "ch23-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/2.1). Nothing else is referenced.",
+   "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
+  },
+  {
+   "id": "peds-wrist-0071",
+   "packId": "peds-msk",
+   "neutralTitle": "Wrist radiographs, child · GRAZPEDWRI-DX 0071",
+   "learnTitle": "Incomplete (torus/buckle or greenstick) fracture of the distal radius (radiologist box)",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:71",
+   "studyUids": [
+    "2.25.206422384073239599659458834161882202067"
+   ],
+   "primarySeriesUid": "2.25.301342693215840190279350085349493934855",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": "Girl, 9 years, right wrist injury.",
+   "contextSource": "Age, sex and side from the dataset (GRAZPEDWRI-DX dataset.csv); trauma from the dataset description.",
+   "difficulty": "subtle",
+   "objectiveIds": [
+    "ch23-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/2.1). Nothing else is referenced.",
+   "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
+  },
+  {
+   "id": "knee-kl-196c5239",
+   "packId": "peds-msk",
+   "neutralTitle": "Knee radiograph · Digital Knee X-ray 196c5239",
+   "learnTitle": "Knee: Kellgren-Lawrence grade 0 (graded by two experts; not outlined)",
+   "subjectKey": "mendeley:Digital-Knee-X-ray:196c52391d8a",
+   "studyUids": [
+    "2.25.44228478534329737628013126258028978545"
+   ],
+   "primarySeriesUid": "2.25.113656270361869031618116899628266046514",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch21-o08",
+    "ch21-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.27",
+     "sectionId": null
+    },
+    {
+     "physical": 281,
+     "printed": "261",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.29",
+     "sectionId": null
+    },
+    {
+     "physical": 282,
+     "printed": "262",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.31",
+     "sectionId": null
+    },
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.26",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.25",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": null,
+     "sectionId": "ch21-s19"
+    }
+   ],
+   "referenceSummary": "Two medical experts each graded this image Kellgren-Lawrence 0 (Digital Knee X-ray Images). The grade is for the whole image: no osteophyte, narrowing or sclerosis is marked. Small crop of the joint as distributed; no pixel spacing, side or view in the source.",
+   "learnNotes": "Osteoarthritis narrows the joint space unevenly (in the knee usually the medial compartment, which bears most weight) and makes bone: subchondral sclerosis and osteophytes at the joint margins, sometimes with subchondral cysts. The Kellgren-Lawrence scale grades it on a radiograph: 0 none; 1 doubtful narrowing and possible small osteophytes; 2 definite osteophytes with possible narrowing; 3 moderate multiple osteophytes, definite narrowing, some sclerosis; 4 large osteophytes, marked narrowing, severe sclerosis and deformed bone ends. Grade 2 or more is usually taken as definite osteoarthritis."
+  },
+  {
+   "id": "knee-kl-0b79036f",
+   "packId": "peds-msk",
+   "neutralTitle": "Knee radiograph · Digital Knee X-ray 0b79036f",
+   "learnTitle": "Knee: Kellgren-Lawrence grade 2 (graded by two experts; not outlined)",
+   "subjectKey": "mendeley:Digital-Knee-X-ray:0b79036fc768",
+   "studyUids": [
+    "2.25.213898037703635610460173007920244248152"
+   ],
+   "primarySeriesUid": "2.25.120665048671934614750104593795211171925",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch21-o08",
+    "ch21-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.27",
+     "sectionId": null
+    },
+    {
+     "physical": 281,
+     "printed": "261",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.29",
+     "sectionId": null
+    },
+    {
+     "physical": 282,
+     "printed": "262",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.31",
+     "sectionId": null
+    },
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.26",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.25",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": null,
+     "sectionId": "ch21-s19"
+    }
+   ],
+   "referenceSummary": "Two medical experts each graded this image Kellgren-Lawrence 2 (Digital Knee X-ray Images). The grade is for the whole image: no osteophyte, narrowing or sclerosis is marked. Small crop of the joint as distributed; no pixel spacing, side or view in the source.",
+   "learnNotes": "Osteoarthritis narrows the joint space unevenly (in the knee usually the medial compartment, which bears most weight) and makes bone: subchondral sclerosis and osteophytes at the joint margins, sometimes with subchondral cysts. The Kellgren-Lawrence scale grades it on a radiograph: 0 none; 1 doubtful narrowing and possible small osteophytes; 2 definite osteophytes with possible narrowing; 3 moderate multiple osteophytes, definite narrowing, some sclerosis; 4 large osteophytes, marked narrowing, severe sclerosis and deformed bone ends. Grade 2 or more is usually taken as definite osteoarthritis."
+  },
+  {
+   "id": "knee-kl-bbbd048a",
+   "packId": "peds-msk",
+   "neutralTitle": "Knee radiograph · Digital Knee X-ray bbbd048a",
+   "learnTitle": "Knee: Kellgren-Lawrence grade 4 (graded by two experts; not outlined)",
+   "subjectKey": "mendeley:Digital-Knee-X-ray:bbbd048a1720",
+   "studyUids": [
+    "2.25.264018425635976379943814620514920682366"
+   ],
+   "primarySeriesUid": "2.25.91688141304062841773483353182516529667",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch21-o08",
+    "ch21-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.27",
+     "sectionId": null
+    },
+    {
+     "physical": 281,
+     "printed": "261",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.29",
+     "sectionId": null
+    },
+    {
+     "physical": 282,
+     "printed": "262",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.31",
+     "sectionId": null
+    },
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.26",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.25",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": null,
+     "sectionId": "ch21-s19"
+    }
+   ],
+   "referenceSummary": "Two medical experts each graded this image Kellgren-Lawrence 4 (Digital Knee X-ray Images). The grade is for the whole image: no osteophyte, narrowing or sclerosis is marked. Small crop of the joint as distributed; no pixel spacing, side or view in the source.",
+   "learnNotes": "Osteoarthritis narrows the joint space unevenly (in the knee usually the medial compartment, which bears most weight) and makes bone: subchondral sclerosis and osteophytes at the joint margins, sometimes with subchondral cysts. The Kellgren-Lawrence scale grades it on a radiograph: 0 none; 1 doubtful narrowing and possible small osteophytes; 2 definite osteophytes with possible narrowing; 3 moderate multiple osteophytes, definite narrowing, some sclerosis; 4 large osteophytes, marked narrowing, severe sclerosis and deformed bone ends. Grade 2 or more is usually taken as definite osteoarthritis."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "peds-wrist-3390:locate",
+   "caseId": "peds-wrist-3390",
+   "type": "locate_finding",
+   "title": "Find the fracture on both views",
+   "prompt": "Trace the cortex of the radius and ulna and look at the growth plates on both views. Mark any fracture you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.131252323307702332861401724275775041848",
+    "2.25.179583918053828529724560295007567694373"
+   ],
+   "start": {
+    "seriesUid": "2.25.131252323307702332861401724275775041848",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "grazpedwri-3390-frontal_fracture",
+     "name": "Fracture",
+     "required": true
+    },
+    {
+     "targetId": "grazpedwri-3390-lateral_fracture",
+     "name": "Fracture",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 8,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow both cortices of the distal radius on each view: look for a bulge, a kink, a step or a widened growth plate."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views. Pixel spacing here is measured at the detector, so distances are slightly magnified.",
+   "bookAnchors": [
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.20",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.21",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.22",
+     "sectionId": null
+    },
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch27-o07",
+    "ch23-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "peds-wrist-3390:type",
+   "caseId": "peds-wrist-3390",
+   "type": "differential",
+   "title": "What kind of fracture?",
+   "prompt": "Look at where the fracture is in relation to the growth plate, and whether one or both cortices are broken. Which describes it best?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.131252323307702332861401724275775041848",
+    "2.25.179583918053828529724560295007567694373"
+   ],
+   "start": {
+    "seriesUid": "2.25.131252323307702332861401724275775041848",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "sh1",
+      "text": "Salter-Harris I: through the growth plate only",
+      "correct": false,
+      "why": "Type I separates the epiphysis along the plate with no metaphyseal or epiphyseal fragment; it may only widen the plate."
+     },
+     {
+      "id": "sh2",
+      "text": "Salter-Harris II: along the growth plate and out through the metaphysis",
+      "correct": true,
+      "why": "Type II leaves a corner fragment of metaphysis attached to the displaced epiphysis."
+     },
+     {
+      "id": "incomplete",
+      "text": "Incomplete metaphyseal fracture: torus (buckle) or greenstick",
+      "correct": false,
+      "why": "A bulge or kink of the cortex, or a break of one cortex only, in the metaphysis, with the growth plate spared."
+     },
+     {
+      "id": "complete",
+      "text": "Complete metaphyseal fracture through both cortices",
+      "correct": false,
+      "why": "A complete fracture crosses the whole bone, with a line through both cortices."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the growth plate first, then decide whether the fracture line reaches it."
+    }
+   ],
+   "explanation": "The dataset codes this fracture as AO/OTA E/2: a Salter-Harris II fracture. Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views.",
+   "bookAnchors": [
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.20",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.21",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.22",
+     "sectionId": null
+    },
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch27-o07",
+    "ch23-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "peds-wrist-3853:locate",
+   "caseId": "peds-wrist-3853",
+   "type": "locate_finding",
+   "title": "Find the fracture on both views",
+   "prompt": "Trace the cortex of the radius and ulna and look at the growth plates on both views. Mark any fracture you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.75970707244602159585765127868445711681",
+    "2.25.155257140882899863996753187232018236451"
+   ],
+   "start": {
+    "seriesUid": "2.25.75970707244602159585765127868445711681",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "grazpedwri-3853-frontal_fracture",
+     "name": "Fracture",
+     "required": true
+    },
+    {
+     "targetId": "grazpedwri-3853-lateral_fracture",
+     "name": "Fracture",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 8,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow both cortices of the distal radius on each view: look for a bulge, a kink, a step or a widened growth plate."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views. Pixel spacing here is measured at the detector, so distances are slightly magnified.",
+   "bookAnchors": [
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.20",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.21",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.22",
+     "sectionId": null
+    },
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch27-o07",
+    "ch23-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "peds-wrist-3853:type",
+   "caseId": "peds-wrist-3853",
+   "type": "differential",
+   "title": "What kind of fracture?",
+   "prompt": "Look at where the fracture is in relation to the growth plate, and whether one or both cortices are broken. Which describes it best?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.75970707244602159585765127868445711681",
+    "2.25.155257140882899863996753187232018236451"
+   ],
+   "start": {
+    "seriesUid": "2.25.75970707244602159585765127868445711681",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "sh1",
+      "text": "Salter-Harris I: through the growth plate only",
+      "correct": false,
+      "why": "Type I separates the epiphysis along the plate with no metaphyseal or epiphyseal fragment; it may only widen the plate."
+     },
+     {
+      "id": "sh2",
+      "text": "Salter-Harris II: along the growth plate and out through the metaphysis",
+      "correct": true,
+      "why": "Type II leaves a corner fragment of metaphysis attached to the displaced epiphysis."
+     },
+     {
+      "id": "incomplete",
+      "text": "Incomplete metaphyseal fracture: torus (buckle) or greenstick",
+      "correct": false,
+      "why": "A bulge or kink of the cortex, or a break of one cortex only, in the metaphysis, with the growth plate spared."
+     },
+     {
+      "id": "complete",
+      "text": "Complete metaphyseal fracture through both cortices",
+      "correct": false,
+      "why": "A complete fracture crosses the whole bone, with a line through both cortices."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the growth plate first, then decide whether the fracture line reaches it."
+    }
+   ],
+   "explanation": "The dataset codes this fracture as AO/OTA E/2: a Salter-Harris II fracture. Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views.",
+   "bookAnchors": [
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.20",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.21",
+     "sectionId": null
+    },
+    {
+     "physical": 376,
+     "printed": "356",
+     "chapterId": "ch27",
+     "figureId": "Fig 27.22",
+     "sectionId": null
+    },
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch27-o07",
+    "ch23-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "peds-wrist-0030:locate",
+   "caseId": "peds-wrist-0030",
+   "type": "locate_finding",
+   "title": "Find the fracture on both views",
+   "prompt": "Trace the cortex of the radius and ulna and look at the growth plates on both views. Mark any fracture you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.165690208264812005622346382815811786996",
+    "2.25.104476752406967693384201075606596786094"
+   ],
+   "start": {
+    "seriesUid": "2.25.165690208264812005622346382815811786996",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "grazpedwri-0030-frontal_fracture",
+     "name": "Fracture",
+     "required": true
+    },
+    {
+     "targetId": "grazpedwri-0030-lateral_fracture",
+     "name": "Fracture",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 8,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow both cortices of the distal radius on each view: look for a bulge, a kink, a step or a widened growth plate."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views. Pixel spacing here is measured at the detector, so distances are slightly magnified.",
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch23-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "peds-wrist-0030:type",
+   "caseId": "peds-wrist-0030",
+   "type": "differential",
+   "title": "What kind of fracture?",
+   "prompt": "Look at where the fracture is in relation to the growth plate, and whether one or both cortices are broken. Which describes it best?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.165690208264812005622346382815811786996",
+    "2.25.104476752406967693384201075606596786094"
+   ],
+   "start": {
+    "seriesUid": "2.25.165690208264812005622346382815811786996",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "sh1",
+      "text": "Salter-Harris I: through the growth plate only",
+      "correct": false,
+      "why": "Type I separates the epiphysis along the plate with no metaphyseal or epiphyseal fragment; it may only widen the plate."
+     },
+     {
+      "id": "sh2",
+      "text": "Salter-Harris II: along the growth plate and out through the metaphysis",
+      "correct": false,
+      "why": "Type II leaves a corner fragment of metaphysis attached to the displaced epiphysis."
+     },
+     {
+      "id": "incomplete",
+      "text": "Incomplete metaphyseal fracture: torus (buckle) or greenstick",
+      "correct": true,
+      "why": "A bulge or kink of the cortex, or a break of one cortex only, in the metaphysis, with the growth plate spared."
+     },
+     {
+      "id": "complete",
+      "text": "Complete metaphyseal fracture through both cortices",
+      "correct": false,
+      "why": "A complete fracture crosses the whole bone, with a line through both cortices."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the growth plate first, then decide whether the fracture line reaches it."
+    }
+   ],
+   "explanation": "The dataset codes this fracture as AO/OTA M/2: an incomplete metaphyseal fracture (torus/buckle or greenstick; the code does not separate them). Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views.",
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch23-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "peds-wrist-0071:locate",
+   "caseId": "peds-wrist-0071",
+   "type": "locate_finding",
+   "title": "Find the fracture on both views",
+   "prompt": "Trace the cortex of the radius and ulna and look at the growth plates on both views. Mark any fracture you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.301342693215840190279350085349493934855",
+    "2.25.127753371212835821756443984645613361229"
+   ],
+   "start": {
+    "seriesUid": "2.25.301342693215840190279350085349493934855",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "grazpedwri-0071-frontal_fracture",
+     "name": "Fracture",
+     "required": true
+    },
+    {
+     "targetId": "grazpedwri-0071-lateral_fracture",
+     "name": "Fracture",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 8,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow both cortices of the distal radius on each view: look for a bulge, a kink, a step or a widened growth plate."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views. Pixel spacing here is measured at the detector, so distances are slightly magnified.",
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch23-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "peds-wrist-0071:type",
+   "caseId": "peds-wrist-0071",
+   "type": "differential",
+   "title": "What kind of fracture?",
+   "prompt": "Look at where the fracture is in relation to the growth plate, and whether one or both cortices are broken. Which describes it best?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.301342693215840190279350085349493934855",
+    "2.25.127753371212835821756443984645613361229"
+   ],
+   "start": {
+    "seriesUid": "2.25.301342693215840190279350085349493934855",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "sh1",
+      "text": "Salter-Harris I: through the growth plate only",
+      "correct": false,
+      "why": "Type I separates the epiphysis along the plate with no metaphyseal or epiphyseal fragment; it may only widen the plate."
+     },
+     {
+      "id": "sh2",
+      "text": "Salter-Harris II: along the growth plate and out through the metaphysis",
+      "correct": false,
+      "why": "Type II leaves a corner fragment of metaphysis attached to the displaced epiphysis."
+     },
+     {
+      "id": "incomplete",
+      "text": "Incomplete metaphyseal fracture: torus (buckle) or greenstick",
+      "correct": true,
+      "why": "A bulge or kink of the cortex, or a break of one cortex only, in the metaphysis, with the growth plate spared."
+     },
+     {
+      "id": "complete",
+      "text": "Complete metaphyseal fracture through both cortices",
+      "correct": false,
+      "why": "A complete fracture crosses the whole bone, with a line through both cortices."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the growth plate first, then decide whether the fracture line reaches it."
+    }
+   ],
+   "explanation": "The dataset codes this fracture as AO/OTA M/2: an incomplete metaphyseal fracture (torus/buckle or greenstick; the code does not separate them). Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views.",
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch23-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "knee-kl-196c5239:grade",
+   "caseId": "knee-kl-196c5239",
+   "type": "differential",
+   "title": "Grade the osteoarthritis",
+   "prompt": "Look at the joint space, the joint margins and the bone under the cartilage. Which Kellgren-Lawrence grade fits best?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.113656270361869031618116899628266046514"
+   ],
+   "start": {
+    "seriesUid": "2.25.113656270361869031618116899628266046514",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "kl0",
+      "text": "Grade 0: no features of osteoarthritis",
+      "correct": true,
+      "why": "Normal joint space and margins."
+     },
+     {
+      "id": "kl1",
+      "text": "Grade 1: doubtful",
+      "correct": false,
+      "why": "Doubtful narrowing, possible tiny osteophytes."
+     },
+     {
+      "id": "kl2",
+      "text": "Grade 2: mild",
+      "correct": false,
+      "why": "Definite osteophytes, joint space possibly narrowed."
+     },
+     {
+      "id": "kl3",
+      "text": "Grade 3: moderate",
+      "correct": false,
+      "why": "Multiple osteophytes, definite narrowing, some sclerosis."
+     },
+     {
+      "id": "kl4",
+      "text": "Grade 4: severe",
+      "correct": false,
+      "why": "Large osteophytes, marked narrowing, severe sclerosis, deformed bone ends."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the medial and lateral joint spaces, then look at the tibial spines and the joint margins for osteophytes."
+    }
+   ],
+   "explanation": "Both experts graded this image 0. The grade is image-level: the dataset does not mark where the osteophytes or narrowing are. Osteoarthritis narrows the joint space unevenly (in the knee usually the medial compartment, which bears most weight) and makes bone: subchondral sclerosis and osteophytes at the joint margins, sometimes with subchondral cysts. The Kellgren-Lawrence scale grades it on a radiograph: 0 none; 1 doubtful narrowing and possible small osteophytes; 2 definite osteophytes with possible narrowing; 3 moderate multiple osteophytes, definite narrowing, some sclerosis; 4 large osteophytes, marked narrowing, severe sclerosis and deformed bone ends. Grade 2 or more is usually taken as definite osteoarthritis.",
+   "bookAnchors": [
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.27",
+     "sectionId": null
+    },
+    {
+     "physical": 281,
+     "printed": "261",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.29",
+     "sectionId": null
+    },
+    {
+     "physical": 282,
+     "printed": "262",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.31",
+     "sectionId": null
+    },
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.26",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.25",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": null,
+     "sectionId": "ch21-s19"
+    }
+   ],
+   "objectiveIds": [
+    "ch21-o08",
+    "ch21-o07"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "knee-kl-0b79036f:grade",
+   "caseId": "knee-kl-0b79036f",
+   "type": "differential",
+   "title": "Grade the osteoarthritis",
+   "prompt": "Look at the joint space, the joint margins and the bone under the cartilage. Which Kellgren-Lawrence grade fits best?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.120665048671934614750104593795211171925"
+   ],
+   "start": {
+    "seriesUid": "2.25.120665048671934614750104593795211171925",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "kl0",
+      "text": "Grade 0: no features of osteoarthritis",
+      "correct": false,
+      "why": "Normal joint space and margins."
+     },
+     {
+      "id": "kl1",
+      "text": "Grade 1: doubtful",
+      "correct": false,
+      "why": "Doubtful narrowing, possible tiny osteophytes."
+     },
+     {
+      "id": "kl2",
+      "text": "Grade 2: mild",
+      "correct": true,
+      "why": "Definite osteophytes, joint space possibly narrowed."
+     },
+     {
+      "id": "kl3",
+      "text": "Grade 3: moderate",
+      "correct": false,
+      "why": "Multiple osteophytes, definite narrowing, some sclerosis."
+     },
+     {
+      "id": "kl4",
+      "text": "Grade 4: severe",
+      "correct": false,
+      "why": "Large osteophytes, marked narrowing, severe sclerosis, deformed bone ends."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the medial and lateral joint spaces, then look at the tibial spines and the joint margins for osteophytes."
+    }
+   ],
+   "explanation": "Both experts graded this image 2. The grade is image-level: the dataset does not mark where the osteophytes or narrowing are. Osteoarthritis narrows the joint space unevenly (in the knee usually the medial compartment, which bears most weight) and makes bone: subchondral sclerosis and osteophytes at the joint margins, sometimes with subchondral cysts. The Kellgren-Lawrence scale grades it on a radiograph: 0 none; 1 doubtful narrowing and possible small osteophytes; 2 definite osteophytes with possible narrowing; 3 moderate multiple osteophytes, definite narrowing, some sclerosis; 4 large osteophytes, marked narrowing, severe sclerosis and deformed bone ends. Grade 2 or more is usually taken as definite osteoarthritis.",
+   "bookAnchors": [
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.27",
+     "sectionId": null
+    },
+    {
+     "physical": 281,
+     "printed": "261",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.29",
+     "sectionId": null
+    },
+    {
+     "physical": 282,
+     "printed": "262",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.31",
+     "sectionId": null
+    },
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.26",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.25",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": null,
+     "sectionId": "ch21-s19"
+    }
+   ],
+   "objectiveIds": [
+    "ch21-o08",
+    "ch21-o07"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "knee-kl-bbbd048a:grade",
+   "caseId": "knee-kl-bbbd048a",
+   "type": "differential",
+   "title": "Grade the osteoarthritis",
+   "prompt": "Look at the joint space, the joint margins and the bone under the cartilage. Which Kellgren-Lawrence grade fits best?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.91688141304062841773483353182516529667"
+   ],
+   "start": {
+    "seriesUid": "2.25.91688141304062841773483353182516529667",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "kl0",
+      "text": "Grade 0: no features of osteoarthritis",
+      "correct": false,
+      "why": "Normal joint space and margins."
+     },
+     {
+      "id": "kl1",
+      "text": "Grade 1: doubtful",
+      "correct": false,
+      "why": "Doubtful narrowing, possible tiny osteophytes."
+     },
+     {
+      "id": "kl2",
+      "text": "Grade 2: mild",
+      "correct": false,
+      "why": "Definite osteophytes, joint space possibly narrowed."
+     },
+     {
+      "id": "kl3",
+      "text": "Grade 3: moderate",
+      "correct": false,
+      "why": "Multiple osteophytes, definite narrowing, some sclerosis."
+     },
+     {
+      "id": "kl4",
+      "text": "Grade 4: severe",
+      "correct": true,
+      "why": "Large osteophytes, marked narrowing, severe sclerosis, deformed bone ends."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the medial and lateral joint spaces, then look at the tibial spines and the joint margins for osteophytes."
+    }
+   ],
+   "explanation": "Both experts graded this image 4. The grade is image-level: the dataset does not mark where the osteophytes or narrowing are. Osteoarthritis narrows the joint space unevenly (in the knee usually the medial compartment, which bears most weight) and makes bone: subchondral sclerosis and osteophytes at the joint margins, sometimes with subchondral cysts. The Kellgren-Lawrence scale grades it on a radiograph: 0 none; 1 doubtful narrowing and possible small osteophytes; 2 definite osteophytes with possible narrowing; 3 moderate multiple osteophytes, definite narrowing, some sclerosis; 4 large osteophytes, marked narrowing, severe sclerosis and deformed bone ends. Grade 2 or more is usually taken as definite osteoarthritis.",
+   "bookAnchors": [
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.27",
+     "sectionId": null
+    },
+    {
+     "physical": 281,
+     "printed": "261",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.29",
+     "sectionId": null
+    },
+    {
+     "physical": 282,
+     "printed": "262",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.31",
+     "sectionId": null
+    },
+    {
+     "physical": 280,
+     "printed": "260",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.26",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": "Fig 21.25",
+     "sectionId": null
+    },
+    {
+     "physical": 279,
+     "printed": "259",
+     "chapterId": "ch21",
+     "figureId": null,
+     "sectionId": "ch21-s19"
+    }
+   ],
+   "objectiveIds": [
+    "ch21-o08",
+    "ch21-o07"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

@@ -144,6 +144,33 @@
    "bytes": 71974,
    "distribution": "repo",
    "note": "24 practice tasks on installed cases; no images. Rebuild with scripts/lessons/book_practice.py."
+  },
+  {
+   "id": "us-cases",
+   "title": "Ultrasound: breast lesions and the fetal head",
+   "manifest": "us-cases/pack.json",
+   "lessons": "us-cases/lessons.json",
+   "bytes": 1646695,
+   "distribution": "repo",
+   "note": "9 subjects, 9 studies, 9 series, 9 instances, 9 reference targets; DICOM 1.2 MB. Committed to the repository; rebuild with scripts/data/external.py + build_external.py."
+  },
+  {
+   "id": "mammo-cbis",
+   "title": "Mammography: masses and calcifications on CC and MLO views",
+   "manifest": "mammo-cbis/pack.json",
+   "lessons": "mammo-cbis/lessons.json",
+   "bytes": 32930507,
+   "distribution": "repo",
+   "note": "5 subjects, 5 studies, 12 series, 12 instances, 12 reference targets; DICOM 32.6 MB. Committed to the repository; rebuild with scripts/data/external.py + build_external.py."
+  },
+  {
+   "id": "peds-msk",
+   "title": "Children's wrist fractures and knee osteoarthritis grades",
+   "manifest": "peds-msk/pack.json",
+   "lessons": "peds-msk/lessons.json",
+   "bytes": 7883927,
+   "distribution": "repo",
+   "note": "7 subjects, 7 studies, 11 series, 11 instances, 14 reference targets; DICOM 7.6 MB. Committed to the repository; rebuild with scripts/data/external.py + build_external.py."
   }
  ]
 }

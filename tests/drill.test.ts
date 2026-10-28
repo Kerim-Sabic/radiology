@@ -365,3 +365,12 @@ describe('finding drills', () => {
     expect(findingName('finding:some_new_thing')).toBe('Some new thing');
   });
 });
+
+describe('finding drills: the most specific explanation', () => {
+  it('explains a growth-plate fracture with Salter-Harris, not the general fracture entry', () => {
+    const c = conditionForFinding('finding:physeal_fracture');
+    expect(c?.name).toMatch(/Salter-Harris/);
+    expect(findingName('finding:physeal_fracture')).toMatch(/Salter-Harris/);
+    expect(conditionForFinding('finding:fracture')?.id).toBe('fracture');
+  });
+});

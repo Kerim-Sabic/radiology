@@ -965,6 +965,17 @@ const N: Array<[RegExp, StructureNote]> = [
       window: 'Soft tissue',
     },
   ],
+  // ------------------------------------------------------------- obstetric ultrasound
+  [
+    /^fetal_head$/,
+    {
+      look: 'On ultrasound the fetal skull is a bright (echogenic) smooth oval, because bone reflects most of the sound; the brain inside is darker.',
+      near: 'Head circumference is measured on an axial plane through the thalami and the cavum septi pellucidi, with an ellipse on the outer edge of the skull.',
+      pitfall: 'An oblique plane or an ellipse on the inner edge of the skull gives a wrong head circumference.',
+      unit: 'ch18',
+      window: 'Soft tissue',
+    },
+  ],
 ];
 
 /** Teaching note for a label's class id (or canonical key); `family` picks the X-ray wording. */

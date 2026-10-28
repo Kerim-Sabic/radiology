@@ -2,6 +2,7 @@
 
   python scripts/data/build_external.py cxr-findings   # NIH ChestX-ray14 radiographs with radiologist boxes
   python scripts/data/build_external.py pe-cta         # FUMPE CT pulmonary angiograms with radiologist PE masks
+  python scripts/data/build_external.py us-cases | mammo-cbis | peds-msk   # round 3: ultrasound, mammography, children/knee
 
 Same contract and helpers as build_pack.py (inventory.build_series / encode_and_place, annotations._mask_to_rings);
 the difference is the source: PNG images are wrapped as DICOM Secondary Capture, FUMPE DICOM headers with
@@ -584,6 +585,427 @@ def build_isles() -> tuple[list, list, list, dict]:
     return results, targets, geoms, {}
 
 
+
+# ====================================================================== round 3: ultrasound, mammography, pediatric and MSK
+US_SOP_CLASS = "1.2.840.10008.5.1.4.1.1.6.1"  # Ultrasound Image Storage
+
+
+def _gray(a: np.ndarray, name: str, tint_ok: bool = False) -> np.ndarray:
+    """RGB(A) PNGs whose colour channels are identical become one grey channel (alpha ignored: transparent pixels are black).
+    A tinted grey-scale image (a scanner colour map, no colour-flow data) becomes luma (ITU-R BT.601) only with tint_ok."""
+    if a.ndim == 3:
+        if not (np.array_equal(a[..., 0], a[..., 1]) and np.array_equal(a[..., 0], a[..., 2])):
+            assert tint_ok, f"{name}: colour image"
+            return np.ascontiguousarray(np.clip(np.round(a[..., :3].astype(np.float64) @ [0.299, 0.587, 0.114]), 0, 255).astype(np.uint8))
+        a = a[..., 0]
+    return np.ascontiguousarray(a)
+
+
+def _window(a: np.ndarray) -> tuple[float, float]:
+    """Default display window from the image histogram (1st to 99.5th percentile of the non-background pixels)."""
+    v = a[a > a.min()] if (a > a.min()).any() else a
+    lo, hi = np.percentile(v, [1, 99.5])
+    return round(float(lo + hi) / 2, 1), round(float(max(1.0, hi - lo)), 1)
+
+
+def wrap_2d(a: np.ndarray, *, tag: str, stem: str, study_key: str, modality: str, sop_class: str, patient_id: str,
+            study_desc: str, series_desc: str, series_number: int, attrs: dict) -> Dataset:
+    meta = FileMetaDataset()
+    meta.MediaStorageSOPClassUID = sop_class
+    meta.MediaStorageSOPInstanceUID = uid_for(tag, stem, "sop")
+    meta.TransferSyntaxUID = ExplicitVRLittleEndian
+    ds = Dataset()
+    ds.file_meta = meta
+    ds.SpecificCharacterSet = "ISO_IR 100"
+    ds.SOPClassUID = sop_class
+    ds.SOPInstanceUID = meta.MediaStorageSOPInstanceUID
+    ds.StudyInstanceUID = uid_for(tag, study_key, "study")
+    ds.SeriesInstanceUID = uid_for(tag, stem, "series")
+    ds.Modality = modality
+    if sop_class == SC_SOP_CLASS:
+        ds.ConversionType = "WSD"
+    ds.ImageType = ["DERIVED", "SECONDARY"]
+    ds.PatientID = patient_id
+    ds.PatientName = ""
+    ds.StudyID = study_key[:16]
+    ds.StudyDescription = study_desc
+    ds.SeriesDescription = series_desc
+    ds.SeriesNumber = series_number
+    ds.InstanceNumber = 1
+    for k, v in attrs.items():
+        setattr(ds, k, v)
+    ds.SamplesPerPixel = 1
+    ds.PhotometricInterpretation = "MONOCHROME2"
+    ds.Rows, ds.Columns = a.shape
+    bits = 8 if a.dtype == np.uint8 else 16
+    ds.BitsAllocated = bits
+    ds.BitsStored = bits
+    ds.HighBit = bits - 1
+    ds.PixelRepresentation = 0
+    if bits == 8:  # 8-bit PNGs are already display images (ultrasound, knee crops): show them as distributed
+        ds.WindowCenter, ds.WindowWidth = 127.5, 256
+        ds.WindowCenterWidthExplanation = "Full 8-bit range (the image is already display-processed)"
+    else:
+        ds.WindowCenter, ds.WindowWidth = _window(a)
+        ds.WindowCenterWidthExplanation = "Default window from the image histogram"
+    ds.PixelData = a.tobytes()
+    return ds
+
+
+def _us_regions(rows: int, cols: int, mm: float) -> list:
+    """One 2D tissue region over the whole image with its physical pixel size (DICOM wants cm), so distances are true mm."""
+    r = Dataset()
+    r.RegionSpatialFormat = 1
+    r.RegionDataType = 1
+    r.RegionFlags = 0
+    r.RegionLocationMinX0, r.RegionLocationMinY0 = 0, 0
+    r.RegionLocationMaxX1, r.RegionLocationMaxY1 = cols - 1, rows - 1
+    r.PhysicalUnitsXDirection, r.PhysicalUnitsYDirection = 3, 3
+    r.PhysicalDeltaX, r.PhysicalDeltaY = mm / 10.0, mm / 10.0
+    return [r]
+
+
+def _rings_px(mask: np.ndarray) -> dict:
+    rings = _mask_to_rings(mask)
+    hole = split_holes(rings) if len(rings) > 1 else [False] * len(rings)
+    out = {"polygons": [[[round(float(c), 2) + 0.0, round(float(r), 2) + 0.0] for c, r in ring] for ring, h in zip(rings, hole) if not h]}
+    hs = [[[round(float(c), 2) + 0.0, round(float(r), 2) + 0.0] for c, r in ring] for ring, h in zip(rings, hole) if h]
+    if hs:
+        out["holes"] = hs
+    return out
+
+
+def _contour_target(tid: str, label: str, cid: str, sr, sop: str, mask: np.ndarray, detail: dict, teaching: str, unassessed: str):
+    pl = {"sopInstanceUid": sop, "frame": 1, **_rings_px(mask)}
+    assert pl["polygons"], tid
+    t = {"id": tid, "label": label, "classId": cid, "seriesUid": sr.uid, "geometryType": "contour_set",
+         "geometryFile": f"targets/{tid}.json", "provenance": "source_manual", "provenanceDetail": detail,
+         "completeness": "target_only", "assessedClasses": [cid], "unassessedNote": unassessed, "review": dict(REVIEW),
+         "teachingNote": teaching}
+    return t, {"geometryType": "contour_set", "space": "image_px", "planes": [pl]}
+
+
+def _place(sr, note: str):
+    encode_and_place(sr, "jpegls")
+    sr.record["thumbnail"] = f"thumbs/{sr.short}.png"
+    sr.thumb = thumbnail_png(sr.sorted_items, sr.record)
+    sr.record["displayNote"] = note
+    return sr
+
+
+# ---------------------------------------------------------------------- Breast-Lesions-USG
+BREAST_SOURCE = {
+    "id": "tcia:Breast-Lesions-USG",
+    "name": "Breast-Lesions-USG (BrEaST): a curated breast ultrasound dataset with benign, malignant and normal cases",
+    "url": "https://doi.org/10.7937/9wkk-q141",
+    "doi": "10.7937/9wkk-q141",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "citation": ("Pawłowska A, Ćwierz-Pieńkowska A, Domalik A, et al. Curated benchmark dataset for ultrasound based breast lesion "
+                 "analysis. Sci Data. 2024;11:148. doi:10.1038/s41597-024-02984-z. Data: The Cancer Imaging Archive, "
+                 "doi:10.7937/9wkk-q141"),
+    "accessNote": "Images-and-masks ZIP and clinical XLSX downloaded anonymously from the TCIA collection page (Dec-15-2023 release).",
+}
+HC18_SOURCE = {
+    "id": "zenodo:HC18",
+    "name": "HC18: automated measurement of fetal head circumference using 2D ultrasound images",
+    "url": "https://doi.org/10.5281/zenodo.1327317",
+    "doi": "10.5281/zenodo.1327317",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "citation": ("van den Heuvel TLA, de Bruijn D, de Korte CL, van Ginneken B. Automated measurement of fetal head circumference using "
+                 "2D ultrasound images. PLoS One. 2018;13(8):e0200412. doi:10.1371/journal.pone.0200412. Data: Zenodo "
+                 "doi:10.5281/zenodo.1327317 (v2)"),
+    "accessNote": "training_set.zip read member by member (HTTP Range, CRC-32 checked) and training_set_pixel_size_and_HC.csv from Zenodo; open access.",
+}
+
+
+def build_us() -> tuple[list, list, list, dict]:
+    from PIL import Image
+    from scipy import ndimage
+    results, targets, geoms = [], [], []
+    sel = json.loads((RAW / "BrEaST" / "selection.json").read_text(encoding="utf-8"))
+    for c in sel["cases"]:
+        r = c["row"]
+        stem = f"case{int(c['case']):03d}"
+        rgba = np.asarray(Image.open(RAW / c["files"]["image"]["file"]))
+        tinted = rgba.ndim == 3 and not (np.array_equal(rgba[..., 0], rgba[..., 1]) and np.array_equal(rgba[..., 0], rgba[..., 2]))
+        a = _gray(rgba, stem, tint_ok=True).astype(np.uint8)
+        m = _gray(np.asarray(Image.open(RAW / c["files"]["tumor"]["file"])), stem + "_tumor") > 127
+        assert m.shape == a.shape, stem
+        mm = float(r["Pixel_size"]) * 10.0  # the XLSX data dictionary: "pixel size of the image in centimeters"
+        ds = wrap_2d(a, tag="breast-usg", stem=stem, study_key=stem, modality="US", sop_class=US_SOP_CLASS,
+                     patient_id=f"BrEaST-{stem}", study_desc="Breast ultrasound", series_desc="Breast ultrasound, B-mode",
+                     series_number=1, attrs={"PixelSpacing": [round(mm, 8), round(mm, 8)], "BodyPartExamined": "BREAST",
+                                             "SequenceOfUltrasoundRegions": _us_regions(*a.shape, mm),
+                                             **({"PatientAge": f"{int(r['Age']):03d}Y"} if str(r["Age"]).isdigit() else {}),
+                                             "DerivationDescription": (f"{r['Image_filename']} from Breast-Lesions-USG (cropped B-mode PNG as "
+                                                                       "distributed); wrapped as DICOM with the pixel size from the clinical XLSX."
+                                                                       + (" The PNG is grey-scale with a slight colour tint (no colour-flow "
+                                                                          "data); stored as luma (ITU-R BT.601)." if tinted else ""))})
+        skey = f"tcia:Breast-Lesions-USG:{stem}"
+        sr = _place(build_series([to_item(ds, stem + ".png")], {"region": "breast", "role": "diagnostic",
+                                                                "roleNote": "Breast ultrasound image (Breast-Lesions-USG PNG) wrapped as DICOM."}, skey),
+                    ("Cropped B-mode image from Breast-Lesions-USG with the pixel size given by the dataset (true distances in mm); "
+                               "no orientation tag, so no orientation letters are shown."))
+        cyst = r["Interpretation"] == "Simple cyst"
+        if cyst:
+            cid, lab = "finding:breast_cyst", "Breast cyst: simple cyst (radiologist outline)"
+        else:
+            dx = "invasive carcinoma of no special type" if r["Diagnosis"].startswith("Invasive carcinoma") else r["Diagnosis"].lower()
+            cid, lab = "finding:breast_mass", f"Breast mass: {dx}, biopsy-proven (radiologist outline)"
+        tid = f"breast-usg-{stem}_{'cyst' if cyst else 'mass'}"
+        t, g = _contour_target(
+            tid, lab, cid, sr, str(ds.SOPInstanceUID), m,
+            {"source": "tcia:Breast-Lesions-USG (images_and_masks, clinical XLSX)",
+             "method": ("Freehand outline of the lesion by a radiologist experienced in breast ultrasound, who also gave the BI-RADS "
+                        f"descriptors (TCIA collection description; Pawłowska et al. 2024); {r['Mask_tumor_filename']} traced into image_px [col, row]."),
+             "note": (f"BI-RADS {r['BIRADS']}; shape {r['Shape']}; margin {r['Margin']}; echogenicity {r['Echogenicity']}; posterior "
+                      f"features {r['Posterior_features']}; {r['Verification']}; diagnosis: {r['Diagnosis']}.")},
+            ("Simple cyst on follow-up: anechoic, circumscribed" + (", with posterior acoustic enhancement." if r["Posterior_features"] == "enhancement" else ".")
+             if cyst else f"{r['Diagnosis']} ({r['Verification']}): {r['Shape']}, margin {r['Margin']}, posterior features {r['Posterior_features']}."),
+            "Only the lesion is outlined; skin, glandular tissue and other lesions are not referenced.")
+        targets.append(t)
+        geoms.append(g)
+        results.append((sr, skey, {"sourceId": BREAST_SOURCE["id"], "row": r,
+                                   "linkage": f"Case {stem} of Breast-Lesions-USG, which has one scan per patient (256 scans, 256 patients)."}))
+    # HC18: all three images share one hold-out group (the dataset gives no mother/pregnancy identifiers).
+    for c in json.loads((RAW / "HC18" / "selection.json").read_text(encoding="utf-8")):
+        stem = c["image"].rsplit(".", 1)[0]
+        a = _gray(np.asarray(Image.open(RAW / c["files"]["image"]["file"])), stem).astype(np.uint8)
+        line = _gray(np.asarray(Image.open(RAW / c["files"]["annotation"]["file"])), stem + "_ann") > 127
+        head = ndimage.binary_fill_holes(line)
+        assert head.sum() > line.sum() * 5, f"{stem}: ellipse did not close"
+        mm = c["pixelSizeMm"]
+        ds = wrap_2d(a, tag="hc18", stem=stem, study_key=stem, modality="US", sop_class=US_SOP_CLASS, patient_id=f"HC18-{stem}",
+                     study_desc="Obstetric ultrasound", series_desc="Fetal head, standard plane for head circumference", series_number=1,
+                     attrs={"PixelSpacing": [round(mm, 7), round(mm, 7)], "SequenceOfUltrasoundRegions": _us_regions(*a.shape, mm),
+                            "DerivationDescription": f"{c['image']} from the HC18 training set (800x540 PNG); wrapped as DICOM with the stated pixel size."})
+        skey = f"zenodo:HC18:{stem}"
+        sr = _place(build_series([to_item(ds, c["image"])], {"region": "pelvis", "role": "diagnostic",
+                                                             "roleNote": "Obstetric ultrasound image (HC18 PNG) wrapped as DICOM."}, skey),
+                    ("Fetal head on the standard plane, from the HC18 dataset with the pixel size it gives (true distances in mm). "
+                               "The black box at a corner hides the scanner's text in the source."))
+        tid = f"hc18-{stem.lower().replace('_', '-')}_fetal-head"
+        t, g = _contour_target(
+            tid, "Fetal head (sonographer's ellipse)", "anatomy:fetal_head", sr, str(ds.SOPInstanceUID), head,
+            {"source": "zenodo:HC18 (training_set, *_Annotation.png)",
+             "method": ("Head circumference annotated as an ellipse by a trained sonographer (van den Heuvel et al. 2018; HC18 challenge "
+                        "page); the annotation image draws the ellipse outline, filled and traced into image_px [col, row]."),
+             "note": f"Head circumference measured by the sonographer: {c['hcMm']:.1f} mm (pixel size {mm:.4f} mm)."},
+            f"The sonographer's ellipse around the outer skull; the head circumference on this image is {c['hcMm']:.0f} mm.",
+            "Only the fetal head outline is referenced; the rest of the fetus, placenta and amniotic fluid are not.")
+        targets.append(t)
+        geoms.append(g)
+        results.append((sr, skey, {"sourceId": HC18_SOURCE["id"], "holdout": "zenodo:HC18:training-set", "hcMm": c["hcMm"],
+                                   "linkage": (f"HC18 image {stem}; the dataset gives no patient identifiers, so images may come from the same "
+                                               "pregnancy: all HC18 images here share one hold-out group.")}))
+    return results, targets, geoms, {}
+
+
+# ---------------------------------------------------------------------- CBIS-DDSM mammography
+CBIS_SOURCE = {
+    "id": "tcia:CBIS-DDSM",
+    "name": "CBIS-DDSM: Curated Breast Imaging Subset of DDSM",
+    "url": "https://doi.org/10.7937/K9/TCIA.2016.7O02S9CY",
+    "doi": "10.7937/K9/TCIA.2016.7O02S9CY",
+    "license": "Creative Commons Attribution 3.0 Unported License",
+    "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+    "citation": ("Sawyer Lee R, Gimenez F, Hoogi A, Rubin D. Curated Breast Imaging Subset of DDSM [Data set]. The Cancer Imaging Archive. "
+                 "2016. doi:10.7937/K9/TCIA.2016.7O02S9CY. Lee RS, Gimenez F, Hoogi A, Miyake KK, Gorovoy M, Rubin DL. A curated "
+                 "mammography data set for use in computer-aided detection and diagnosis research. Sci Data. 2017;4:170177."),
+    "accessNote": "Full mammograms and ROI mask series retrieved anonymously from the TCIA NBIA REST API v1 (getImage); case description CSVs from the collection page.",
+}
+# DICOM PatientOrientation for each view as hung (chest wall towards the middle, film marker on the axillary side at the top):
+# checked per film from the pixels (chest-wall side) and the burned-in film marker.
+MG_ORIENT = {("LEFT", "CC"): ["A", "R"], ("RIGHT", "CC"): ["P", "L"], ("LEFT", "MLO"): ["A", "F"], ("RIGHT", "MLO"): ["P", "F"]}
+
+
+def _half(a: np.ndarray) -> np.ndarray:
+    h, w = (a.shape[0] // 2) * 2, (a.shape[1] // 2) * 2
+    return a[:h, :w].reshape(h // 2, 2, w // 2, 2).mean(axis=(1, 3))
+
+
+def build_mammo() -> tuple[list, list, list, dict]:
+    import zipfile
+    results, targets, geoms = [], [], []
+    sel = json.loads((RAW / "CBIS-DDSM" / "selection.json").read_text(encoding="utf-8"))
+    for r in sel:
+        side, view, pid = r["left or right breast"], r["image view"], r["patient_id"]
+        zf = zipfile.ZipFile(RAW / r["fullZip"])
+        src = pydicom.dcmread(io.BytesIO(zf.read([n for n in zf.namelist() if n.endswith(".dcm")][0])))
+        assert src.PhotometricInterpretation == "MONOCHROME2" and int(src.PixelRepresentation) == 0, (pid, side, view)
+        zr = zipfile.ZipFile(RAW / r["roiZip"])
+        masks = [pydicom.dcmread(io.BytesIO(zr.read(n))) for n in zr.namelist() if n.endswith(".dcm")]
+        roi = [m for m in masks if m.Rows == src.Rows and m.Columns == src.Columns]
+        assert len(roi) == 1, (pid, side, view)
+        full = src.pixel_array
+        # chest wall where the tissue touches the image edge: must match the side's standard hanging
+        h, w = full.shape
+        band, thr = slice(int(h * 0.3), int(h * 0.7)), np.percentile(full, 60)
+        chest_left = (full[band, : int(w * 0.03)] > thr).mean() > (full[band, -int(w * 0.03):] > thr).mean()
+        assert chest_left == (side == "LEFT"), (pid, side, view, "unexpected chest-wall side")
+        a = np.round(_half(full.astype(np.float64))).astype(np.uint16)
+        m = _half(roi[0].pixel_array > 0) >= 0.5
+        stem = f"{pid}_{side}_{view}"
+        calc = r["csv"].startswith("calc")
+        ds = wrap_2d(a, tag="cbis-ddsm", stem=stem, study_key=pid, modality="MG", sop_class=SC_SOP_CLASS, patient_id=f"CBIS-DDSM-{pid}",
+                     study_desc="Mammography (CBIS-DDSM)", series_desc=f"{'Left' if side == 'LEFT' else 'Right'} {view}",
+                     series_number={"RIGHT": 1, "LEFT": 3}[side] + (0 if view == "CC" else 1),
+                     attrs={"ImageLaterality": side[0], "Laterality": side[0], "ViewPosition": view, "PatientOrientation": MG_ORIENT[(side, view)],
+                            "BodyPartExamined": "BREAST",
+                            "DerivationDescription": ("CBIS-DDSM full mammogram (digitised film, 16-bit), downsampled 2x2 by averaging for the web; "
+                                                      "ImageLaterality, ViewPosition and PatientOrientation set from the case description and the film.")})
+        skey = f"tcia:CBIS-DDSM:{pid}"
+        sr = _place(build_series([to_item(ds, stem + ".dcm")], {"region": "breast", "role": "diagnostic",
+                                                                "roleNote": f"Screening-film mammogram, {side.lower()} {view} view (CBIS-DDSM)."}, skey),
+                    ("Digitised screen-film mammogram from CBIS-DDSM, downsampled 2x2 for the web. No pixel spacing in the source "
+                               "(distances are not measurable). The burned-in film marker shows the side and view."))
+        if calc:
+            cid = "finding:breast_calcifications"
+            lab = f"Breast calcifications: {r['calc type'].lower().replace('_', ' ')}, {str(r['calc distribution']).lower().replace('nan', 'distribution not given')} ({r['pathology'].replace('_', ' ').lower()}; DDSM region outline)"
+            method = "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced."
+        else:
+            cid = "finding:breast_mass"
+            lab = f"Breast mass: {r['mass shape'].lower().replace('_', ' ')}, {r['mass margins'].lower().replace('_', ' ')} margin ({r['pathology'].replace('_', ' ').lower()}; outline)"
+            method = "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced."
+        tid = f"cbis-{pid.lower().replace('_', '')}-{side.lower()}-{view.lower()}_{'calc' if calc else 'mass'}"
+        t, g = _contour_target(
+            tid, lab, cid, sr, str(ds.SOPInstanceUID), m,
+            {"source": f"tcia:CBIS-DDSM ({r['csv']}.csv, ROI mask series)", "method": method,
+             "note": (f"{pid} {side} {view}: BI-RADS assessment {r['assessment']}, pathology {r['pathology']}, subtlety {r['subtlety']}, "
+                      f"breast density {r.get('breast_density') or r.get('breast density')}.")},
+            ("Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+             if calc else "The mass outline; describe its shape, margin and density, and find it on both views."),
+            "Only this finding is outlined; the rest of the breast and the other breast are not referenced.")
+        targets.append(t)
+        geoms.append(g)
+        results.append((sr, skey, {"sourceId": CBIS_SOURCE["id"], "row": r,
+                                   "linkage": f"CBIS-DDSM patient {pid}; all views of this woman are one study in this pack."}))
+    return results, targets, geoms, {}
+
+
+# ---------------------------------------------------------------------- GRAZPEDWRI-DX pediatric wrists + knee osteoarthritis grades
+GRAZ_SOURCE = {
+    "id": "figshare:GRAZPEDWRI-DX",
+    "name": "GRAZPEDWRI-DX: a pediatric wrist trauma X-ray dataset",
+    "url": "https://doi.org/10.6084/m9.figshare.14825193.v2",
+    "doi": "10.6084/m9.figshare.14825193.v2",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "citation": ("Nagy E, Janisch M, Hržić F, Sorantin E, Tschauner S. A pediatric wrist trauma X-ray dataset (GRAZPEDWRI-DX) for machine "
+                 "learning. Sci Data. 2022;9:222. doi:10.1038/s41597-022-01328-z. Data: figshare doi:10.6084/m9.figshare.14825193.v2"),
+    "accessNote": "dataset.csv and folder_structure.zip (annotations) from figshare; the selected 16-bit PNGs read member by member (HTTP Range, CRC-32 checked) from images_partN.zip. No login.",
+}
+KNEE_SOURCE = {
+    "id": "mendeley:Digital-Knee-X-ray",
+    "name": "Digital Knee X-ray Images (Kellgren-Lawrence grades by two medical experts)",
+    "url": "https://doi.org/10.17632/t9ndx37v5h.1",
+    "doi": "10.17632/t9ndx37v5h.1",
+    "license": "CC BY 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+    "citation": "Gornale S, Patravali P. Digital Knee X-ray Images. Mendeley Data, V1, 2020. doi:10.17632/t9ndx37v5h.1",
+    "accessNote": "MedicalExpert-I.rar and MedicalExpert-II.rar downloaded from Mendeley Data; images matched between the two experts by pixel hash.",
+}
+GRAZ_PATIENTS = {  # patient: (AO PCCF code, teaching type), chosen by eye with the radiologist's box drawn on both views
+    "3390": ("23r-E/2.1", "physeal"), "3853": ("23r-E/2.1", "physeal"), "0030": ("23r-M/2.1", "incomplete"), "0071": ("23r-M/2.1", "incomplete"),
+}
+KNEE_PICKS = {"0Normal": "NormalG0 (10).png", "2Mild": "MildG2 (102).png", "4Severe": "SevereG4 (101).png"}
+KL_TEXT = {"0Normal": "Kellgren-Lawrence grade 0 (normal)", "1Doubtful": "Kellgren-Lawrence grade 1 (doubtful)", "2Mild": "Kellgren-Lawrence grade 2 (mild)",
+           "3Moderate": "Kellgren-Lawrence grade 3 (moderate)", "4Severe": "Kellgren-Lawrence grade 4 (severe)"}
+
+
+def build_peds_msk() -> tuple[list, list, list, dict]:
+    import csv as _csv
+    import zipfile
+    from PIL import Image
+    results, targets, geoms = [], [], []
+    meta = RAW / "GRAZPEDWRI-DX" / "_meta"
+    rows = {r["filestem"]: r for r in _csv.DictReader(open(meta / "dataset.csv", encoding="utf-8-sig"))}
+    ann = zipfile.ZipFile(meta / "folder_structure.zip")
+    for c in json.loads((RAW / "GRAZPEDWRI-DX" / "selection.json").read_text(encoding="utf-8")):
+        stem = c["stem"]
+        pid, r = stem[:4], rows[stem]
+        ao, kind = GRAZ_PATIENTS[pid]
+        assert r["ao_classification"] == ao and r["fracture_visible"] == "1" and r["initial_exam"] == "1", stem
+        a = np.asarray(Image.open(RAW / c["file"]))
+        assert a.ndim == 2 and a.dtype == np.uint16, stem
+        a = np.ascontiguousarray(a)
+        lat = "frontal" if r["projection"] == "1" else "lateral"
+        a_json = json.loads(ann.read(f"supervisely/wrist/ann/{stem}.json"))
+        tags = {t if isinstance(t, str) else t["name"] for t in a_json["tags"]}
+        assert f"side_{'left' if r['laterality'] == 'L' else 'right'}" in tags, stem
+        ds = wrap_2d(a, tag="grazpedwri", stem=stem, study_key=f"{pid}-{r['study_number']}", modality="DX", sop_class=SC_SOP_CLASS,
+                     patient_id=f"GRAZPEDWRI-{int(pid):04d}", study_desc="Wrist radiographs (child)",
+                     series_desc=f"{'Left' if r['laterality'] == 'L' else 'Right'} wrist, {lat}", series_number=1 if lat == "frontal" else 2,
+                     attrs={"ImagerPixelSpacing": [float(r["pixel_spacing"]), float(r["pixel_spacing"])], "ImageLaterality": r["laterality"],
+                            "BodyPartExamined": "WRIST", "PatientSex": r["gender"], "PatientAge": f"{int(float(r['age'])):03d}Y",
+                            **({"ViewPosition": "AP"} if "projection_ap" in tags else {}),  # only the AP tag maps to a DICOM view
+                            "DerivationDescription": (f"{stem}.png from GRAZPEDWRI-DX (16-bit PNG made by the dataset authors from the "
+                                                      "DICOM); pixel spacing from dataset.csv (detector plane).")})
+        skey = f"figshare:GRAZPEDWRI-DX:{int(pid)}"
+        sr = _place(build_series([to_item(ds, stem + ".png")], {"region": "extremity", "role": "diagnostic",
+                                                                "roleNote": f"Pediatric wrist radiograph, {lat} view (GRAZPEDWRI-DX)."}, skey),
+                    ("Pediatric wrist radiograph from GRAZPEDWRI-DX (16-bit). Pixel spacing is at the detector, not corrected for "
+                                  "magnification; no orientation tag, so read the side from the burned-in marker."))
+        boxes = [o for o in a_json["objects"] if o["classTitle"] == "fracture"]
+        assert len(boxes) == 1, stem
+        (x0, y0), (x1, y1) = boxes[0]["points"]["exterior"]
+        cid = "finding:physeal_fracture" if kind == "physeal" else "finding:incomplete_fracture"
+        lab = ("Fracture: distal radius, Salter-Harris type II (radiologist box)" if kind == "physeal"
+               else "Fracture: distal radius, incomplete (torus/buckle or greenstick; radiologist box)")
+        tid = f"grazpedwri-{stem[:4]}-{lat}_fracture"
+        targets.append({
+            "id": tid, "label": lab, "classId": cid, "seriesUid": sr.uid, "geometryType": "box", "geometryFile": f"targets/{tid}.json",
+            "provenance": "source_manual",
+            "provenanceDetail": {"source": "figshare:GRAZPEDWRI-DX (folder_structure.zip, supervisely annotations; dataset.csv)",
+                                 "method": ("Fracture box from the dataset's annotations, which pediatric radiologists reviewed at least twice "
+                                            "(Nagy et al. 2022); converted from pixel-corner to pixel-centre coordinates (-0.5 px). The fracture "
+                                            "type in the label is read from the AO/OTA pediatric code in dataset.csv (E/2 = Salter-Harris II; "
+                                            "M/2 = incomplete, torus/buckle or greenstick)."),
+                                 "note": f"AO/OTA pediatric code {ao} (dataset.csv); age {r['age']} y, {r['gender']}, side {r['laterality']}."},
+            "completeness": "target_only", "assessedClasses": [cid],
+            "unassessedNote": "Only the fracture is boxed; the ulna, carpal bones and soft tissues are not referenced.", "review": dict(REVIEW),
+            "teachingNote": ("Salter-Harris II: the fracture runs along the growth plate and out through the metaphysis (AO PCCF E/2)."
+                             if kind == "physeal" else "Incomplete metaphyseal fracture (AO PCCF M/2: torus/buckle or greenstick): look for a bulge, kink or break of one cortex."),
+        })
+        geoms.append({"geometryType": "box", "space": "image_px",
+                      "boxes": [{"sopInstanceUid": str(ds.SOPInstanceUID), "frame": 1, "box": [x0 - 0.5, y0 - 0.5, x1 - 0.5, y1 - 0.5]}]})
+        results.append((sr, skey, {"sourceId": GRAZ_SOURCE["id"], "ao": ao, "kind": kind,
+                                   "linkage": f"GRAZPEDWRI-DX patient_id {int(pid)}, study {r['study_number']} (dataset.csv); frontal and lateral views of one study."}))
+    # Knee: image-level grades of the two experts (they agree on every image used); no location, so no outline.
+    match = json.loads((RAW / "Knee-KL-Gornale" / "match.json").read_text(encoding="utf-8"))
+    for grade, fname in KNEE_PICKS.items():
+        h, v = next((h, v) for h, v in match.items() if v["gI"] == grade and v["I"].replace(chr(92), "/").endswith(f"{grade}/{fname}"))
+        assert v["gII"] == grade
+        a = _gray(np.asarray(Image.open(RAW / "Knee-KL-Gornale" / v["I"])), fname).astype(np.uint8)
+        stem = f"knee-{grade.lower()}-{h[:8]}"
+        ds = wrap_2d(a, tag="knee-kl", stem=stem, study_key=stem, modality="DX", sop_class=SC_SOP_CLASS, patient_id=f"KneeKL-{h[:8]}",
+                     study_desc="Knee radiograph", series_desc="Knee joint (cropped)", series_number=1,
+                     attrs={"BodyPartExamined": "KNEE", "DerivationDescription": f"{fname} from Digital Knee X-ray Images (8-bit, {a.shape[1]}x{a.shape[0]} crop of the joint as distributed)."})
+        skey = f"mendeley:Digital-Knee-X-ray:{h[:12]}"
+        sr = _place(build_series([to_item(ds, stem + ".png")], {"region": "extremity", "role": "diagnostic",
+                                                                "roleNote": "Knee radiograph cropped to the joint (Digital Knee X-ray Images)."}, skey),
+                    (f"Small crop of the knee joint ({a.shape[1]}x{a.shape[0]} px) as distributed; no pixel spacing, no side or "
+                                  "orientation in the source."))
+        for expert in ("I", "II"):
+            tid = f"knee-kl-{h[:8]}_expert-{expert.lower()}"
+            targets.append({
+                "id": tid, "label": f"Osteoarthritis grade, medical expert {expert}", "classId": "label:knee_kl_grade", "seriesUid": sr.uid,
+                "geometryType": "image_label", "geometryFile": f"targets/{tid}.json", "provenance": "source_manual",
+                "provenanceDetail": {"source": f"mendeley:Digital-Knee-X-ray (MedicalExpert-{expert}.rar)",
+                                     "method": "Kellgren-Lawrence grade given to the whole image by the expert (folder name); no location.",
+                                     "note": f"Both experts graded this image {KL_TEXT[grade]}."},
+                "completeness": "target_only", "assessedClasses": ["label:knee_kl_grade"],
+                "unassessedNote": "An image-level grade only: no part of the image is marked.", "review": dict(REVIEW),
+            })
+            geoms.append({"geometryType": "image_label", "sopInstanceUids": [str(ds.SOPInstanceUID)], "labels": [KL_TEXT[grade]]})
+        results.append((sr, skey, {"sourceId": KNEE_SOURCE["id"], "holdout": "mendeley:Digital-Knee-X-ray", "grade": grade,
+                                   "linkage": (f"Knee image {fname} (image hash {h[:12]}); the dataset gives no patient identifiers, so images "
+                                               "may come from the same person: all knee images here share one hold-out group.")}))
+    return results, targets, geoms, {}
+
+
 # ====================================================================== shared
 PACKS = {
     "cxr-findings": {
@@ -615,6 +1037,31 @@ PACKS = {
                         "proximal femur. Full-resolution 8-bit JPEGs as distributed; no pixel spacing or orientation tag in the source."),
         "source": FRAC_SOURCE, "builder": build_frac, "budget": 40_000_000,
     },
+    "us-cases": {
+        "title": "Ultrasound: breast lesions and the fetal head",
+        "description": ("Nine ultrasound images with true pixel size. Six breast ultrasound images from Breast-Lesions-USG, each lesion "
+                        "outlined by a radiologist experienced in breast ultrasound: two biopsy-proven invasive carcinomas, two "
+                        "biopsy-proven fibroadenomas and two simple cysts confirmed on follow-up. Three fetal head images on the standard "
+                        "plane from HC18 with the sonographer's head-circumference ellipse. Images are the datasets' cropped 8-bit PNGs; no "
+                        "orientation tag."),
+        "sources": [BREAST_SOURCE, HC18_SOURCE], "builder": build_us, "budget": 15_000_000,
+    },
+    "mammo-cbis": {
+        "title": "Mammography: masses and calcifications on CC and MLO views",
+        "description": ("Twelve screen-film mammograms (CBIS-DDSM, digitised film) from five women: both views (CC and MLO) of six breasts, "
+                        "one woman with all four views. Masses (benign and malignant, the mass outline) and calcifications (malignant "
+                        "and benign, the region outline) with BI-RADS assessment and pathology as the dataset gives them. Downsampled "
+                        "2x2 for the web; no pixel spacing. ImageLaterality, ViewPosition and PatientOrientation are set for hanging."),
+        "sources": [CBIS_SOURCE], "builder": build_mammo, "budget": 80_000_000,
+    },
+    "peds-msk": {
+        "title": "Children's wrist fractures and knee osteoarthritis grades",
+        "description": ("Eight wrist radiographs (frontal and lateral) of four children from GRAZPEDWRI-DX with the fracture boxed: two "
+                        "Salter-Harris II fractures of the distal radius and two incomplete (torus/buckle or greenstick) distal radius "
+                        "fractures, as coded in the dataset. Three knee radiographs (small crops of the joint) from Digital Knee X-ray "
+                        "Images with the Kellgren-Lawrence grade both experts gave (0, 2 and 4); grade only, no location."),
+        "sources": [GRAZ_SOURCE, KNEE_SOURCE], "builder": build_peds_msk, "budget": 30_000_000,
+    },
 }
 
 
@@ -637,11 +1084,13 @@ def build(pack_id: str) -> dict:
         if sr.record["modality"] not in st["modalities"]:
             st["modalities"].append(sr.record["modality"])
         st["seriesUids"].append(sr.uid)
-        src_id = cfg["source"]["id"]
+        sources = cfg.get("sources") or [cfg["source"]]
+        src = next(x for x in sources if x["id"] == info.get("sourceId")) if isinstance(info, dict) and info.get("sourceId") else sources[0]
         sub = subjects.setdefault(skey, {
-            "key": skey, "sourceId": src_id, "sourceSubjectId": skey.split(":", 2)[2],
-            "linkageEvidence": (f"Source patient identifier {skey.split(':', 2)[2]} within {cfg['source']['name']}; "
-                                "one study per subject in this pack."),
+            "key": skey, "sourceId": src["id"], "sourceSubjectId": skey.split(":", 2)[2],
+            "linkageEvidence": ((info.get("linkage") if isinstance(info, dict) else None)
+                                or (f"Source patient identifier {skey.split(':', 2)[2]} within {src['name']}; "
+                                    "one study per subject in this pack.")),
             "holdoutGroup": (info.get("holdout") if isinstance(info, dict) and info.get("holdout") else skey), "sex": (str(ds.PatientSex) if ds.get("PatientSex") else None),
             "ageAtFirstStudy": (str(ds.PatientAge) if ds.get("PatientAge") else None), "studyUids": []})
         if st["uid"] not in sub["studyUids"]:  # one entry per study, even when it holds several series (DWI + ADC)
@@ -660,7 +1109,7 @@ def build(pack_id: str) -> dict:
         "generatedAt": t0.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "generator": (f"scripts/data/build_external.py (python {sys.version.split()[0]}, pydicom {pydicom.__version__}, "
                       f"highdicom {highdicom.__version__}, numpy {np.__version__})"),
-        "sources": [cfg["source"]], "subjects": list(subjects.values()), "studies": list(studies.values()),
+        "sources": cfg.get("sources") or [cfg["source"]], "subjects": list(subjects.values()), "studies": list(studies.values()),
         "series": [sr.record for sr, _, _ in results], "spatialLinks": [], "referenceTargets": targets,
     }
     dump_json(manifest, out / "pack.json")
@@ -676,12 +1125,12 @@ def build(pack_id: str) -> dict:
     return manifest
 
 
-def index() -> None:
-    """Upsert this script's packs into public/packs/index.json (packs.py index keeps entries it does not own)."""
+def index(only: list[str] | None = None) -> None:
+    """Upsert this script's packs (or just `only`) into public/packs/index.json; entries it does not own are kept as read."""
     from common import load_json
     idx_path = PACKS_DIR / "index.json"
     data = load_json(idx_path)
-    for pid in PACKS:
+    for pid in only or PACKS:
         man = PACKS_DIR / pid / "pack.json"
         if not man.exists():
             continue
@@ -705,6 +1154,6 @@ if __name__ == "__main__":
         index()
     elif len(sys.argv) == 2 and sys.argv[1] in PACKS:
         build(sys.argv[1])
-        index()
+        index([sys.argv[1]])
     else:
         raise SystemExit(__doc__)

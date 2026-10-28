@@ -29,15 +29,15 @@ Offline Python pipelines prepare everything the app serves:
 
 | | count |
 |---|---|
-| Distinct patients with usable cases | **84** |
-| Studies / series / DICOM instances | 104 / 114 / 7,304 |
-| Image-based tasks | **278** |
-| — spatially scored vs source manual annotation | 117 |
-| — auto-checked choice on a real image | 48 |
-| — self-review against a source-linked checklist | 98 |
+| Distinct patients with usable cases | **114** |
+| Studies / series / DICOM instances | 134 / 158 / 8,209 |
+| Image-based tasks | **363** |
+| — spatially scored vs source manual annotation | 144 |
+| — auto-checked choice on a real image | 84 |
+| — self-review against a source-linked checklist | 120 |
 | — spatial vs unreviewed AI-draft reference (self-review until you review it) | 15 |
-| Reference targets | 4,023 (305 source manual, 3 source automated, 3,715 AI draft by Horalix) |
-| Curriculum | 37 units (29 chapters + 8 appendices), 274 objectives; 46 objectives (17%) have at least one real-scan task |
+| Reference targets | 4,833 (356 source manual, 3 source automated, 4,474 AI draft by Horalix) |
+| Curriculum | 37 units (29 chapters + 8 appendices), 274 objectives; 64 objectives (23%) have at least one real-scan task |
 
 **Same-patient comparisons (all `independent`, none registered):**
 - Radiograph ↔ diagnostic CT: 17 patients (COVID-19-AR and LIDC-IDRI).
@@ -87,9 +87,9 @@ Coronal renders of the airway labels were inspected on 6 CTs: adults, a child, c
 | check | result |
 |---|---|
 | `npm run typecheck` (app and tests) | pass |
-| `npm test` — unit tests (see below) | **235 / 235 pass** |
+| `npm test` — unit tests (see below) | **334 / 334 pass** |
 | `npm run build` | pass (shell 529 KB JS; the 4.3 MB imaging engine and the PDF reader are lazy-loaded; the book PDF is never in a build) |
-| Playwright e2e on the production build (`vite preview`), Chromium + Firefox, as a signed-in member (account API mocked; the gate itself has its own tests) | **65 pass, 0 fail**; 5 skipped: the speed measurement runs in Chromium only, and the 4 book-reader tests need the owner's PDF, which no build contains (they pass 4/4 with it copied into `dist/book`) |
+| Playwright e2e on the production build (`vite preview`), Chromium + Firefox, as a signed-in member (account API mocked; the gate itself has its own tests) | **79 pass, 0 fail**; 7 skipped: the speed measurement runs in Chromium only, and the book-reader tests need the owner's PDF, which no build contains (they pass with it copied into `dist/book`) |
 | Anatomy pack contract check (zod) and DICOM re-read | 3,650 / 3,650 targets pass |
 
 On the first full run one Firefox test failed. The test's click helper looked for the viewer element while it was being re-mounted, and threw instead of retrying. The helper now waits for the element. That test then passed 5 of 5 times on its own, and the whole suite passed again.
@@ -213,6 +213,20 @@ Two independent reviews ran on 28 October: one checked every outline anatomicall
 - The NIH labels come from report text and can be wrong; only the radiologist's box is scored.
 - FracAtlas has no patient IDs; three images that may be one person share one hold-out group.
 - No case shows a hemothorax yet. The only public located sets need a login, a signed agreement, or forbid public display, so they were not used. The same goes for intracranial hemorrhage, stroke, COPD/ILD, bowel conditions and aortic disease.
+
+## 3d. Ultrasound, mammography, children and joints; per-modality viewing (28 October, night)
+
+**New cases (all CC BY 3.0/4.0; every image looked at with its label drawn; sources, citations and hashes in `docs/data/conditions-data.md`):**
+- Breast ultrasound: 6 women — 2 invasive carcinomas and 2 fibroadenomas (biopsy-proven), 2 simple cysts (confirmed on follow-up) — each outlined by a radiologist (Breast-Lesions-USG). Stored with true pixel spacing and an ultrasound region record.
+- Fetal head ultrasound: 3 heads with the sonographer's head-circumference ellipse (HC18).
+- Mammography: 5 women, CC and MLO of every breast (one with all four views), masses and calcification groups with their outlines and the stated pathology (CBIS-DDSM).
+- Children: 4 wrist fractures on frontal and lateral films — 2 Salter-Harris II, 2 torus/greenstick (GRAZPEDWRI-DX).
+- Knees: 3 knees graded Kellgren–Lawrence 0, 2 and 4 by two experts who agreed (graded, not located).
+- 24 new practice tasks tied to book objectives on installed cases (book-practice). Objectives with a real-scan task: 46 → 64 of 274.
+
+**Viewing by modality (all checked in the browser):** MRI sequence guide on every MR view (T1, T1+C, T2, FLAIR, STIR, PD, DWI, ADC, T2*), linked to the book's T1/T2 page; mammography hanging (CC above MLO, right breast on the left, chest walls back to back — the four-view case hangs with the posterior edge of each film toward the middle and the burned-in film markers agree with the tags); a 3× magnifier for radiographs, mammograms and ultrasound; ultrasound readouts say "echo level (not calibrated)" and never invent an orientation.
+
+**Not available under a licence the paid site can use, with the finding located:** abdominal plain films, neonatal and vascular ultrasound, FAST, hemothorax, intracranial hemorrhage.
 
 ## 4. Measured performance (`docs/perf/measurements.json`)
 

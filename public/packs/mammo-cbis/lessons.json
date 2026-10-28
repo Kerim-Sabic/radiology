@@ -1,0 +1,1155 @@
+{
+ "schemaVersion": 1,
+ "packId": "mammo-cbis",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "mg-cbis-p00021",
+   "packId": "mammo-cbis",
+   "neutralTitle": "Mammogram, both breasts, CC and MLO · CBIS-DDSM P_00021",
+   "learnTitle": "Mass on CC and MLO mammograms (benign at pathology; mass outline)",
+   "subjectKey": "tcia:CBIS-DDSM:P_00021",
+   "studyUids": [
+    "2.25.309539425087975497702642986248125444378"
+   ],
+   "primarySeriesUid": "2.25.7874263547277609057652042395327567324",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch29-o03",
+    "ch29-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.10",
+     "sectionId": null
+    },
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Table 29.4",
+     "sectionId": null
+    },
+    {
+     "physical": 409,
+     "printed": "389",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.11",
+     "sectionId": null
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Mass outlined on every view (oval, circumscribed margin (benign; outline)); BI-RADS assessment and pathology as given in the CBIS-DDSM case description. Mass outlines were refined in CBIS-DDSM from the original DDSM contours. Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable.",
+   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
+  },
+  {
+   "id": "mg-cbis-p00039",
+   "packId": "mammo-cbis",
+   "neutralTitle": "Mammogram, right breast, CC and MLO · CBIS-DDSM P_00039",
+   "learnTitle": "Mass on CC and MLO mammograms (malignant at pathology; mass outline)",
+   "subjectKey": "tcia:CBIS-DDSM:P_00039",
+   "studyUids": [
+    "2.25.183840859607545224920292625153210576600"
+   ],
+   "primarySeriesUid": "2.25.26039677031171589434063185288473253852",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch29-o03",
+    "ch29-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.10",
+     "sectionId": null
+    },
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Table 29.4",
+     "sectionId": null
+    },
+    {
+     "physical": 409,
+     "printed": "389",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.11",
+     "sectionId": null
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Mass outlined on every view (irregular, spiculated margin (malignant; outline)); BI-RADS assessment and pathology as given in the CBIS-DDSM case description. Mass outlines were refined in CBIS-DDSM from the original DDSM contours. Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable.",
+   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
+  },
+  {
+   "id": "mg-cbis-p00051",
+   "packId": "mammo-cbis",
+   "neutralTitle": "Mammogram, left breast, CC and MLO · CBIS-DDSM P_00051",
+   "learnTitle": "Mass on CC and MLO mammograms (malignant at pathology; mass outline)",
+   "subjectKey": "tcia:CBIS-DDSM:P_00051",
+   "studyUids": [
+    "2.25.74317700285158014964099942142858096033"
+   ],
+   "primarySeriesUid": "2.25.109922632782261818006541572162437737795",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch29-o03",
+    "ch29-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.10",
+     "sectionId": null
+    },
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Table 29.4",
+     "sectionId": null
+    },
+    {
+     "physical": 409,
+     "printed": "389",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.11",
+     "sectionId": null
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Mass outlined on every view (irregular, spiculated margin (malignant; outline)); BI-RADS assessment and pathology as given in the CBIS-DDSM case description. Mass outlines were refined in CBIS-DDSM from the original DDSM contours. Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable.",
+   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
+  },
+  {
+   "id": "mg-cbis-p00307",
+   "packId": "mammo-cbis",
+   "neutralTitle": "Mammogram, left breast, CC and MLO · CBIS-DDSM P_00307",
+   "learnTitle": "Calcifications on CC and MLO mammograms (malignant at pathology; DDSM region outline)",
+   "subjectKey": "tcia:CBIS-DDSM:P_00307",
+   "studyUids": [
+    "2.25.153979521194258539668318169225502893396"
+   ],
+   "primarySeriesUid": "2.25.148930757921380211413893638652454699749",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch29-o05",
+    "ch29-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.16",
+     "sectionId": null
+    },
+    {
+     "physical": 410,
+     "printed": "390",
+     "chapterId": "ch29",
+     "figureId": null,
+     "sectionId": "ch29-s14"
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Calcifications outlined on every view (pleomorphic, clustered (malignant; DDSM region outline)); BI-RADS assessment and pathology as given in the CBIS-DDSM case description. Calcification outlines are the original DDSM regions, drawn around the group, not around each particle. Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable.",
+   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
+  },
+  {
+   "id": "mg-cbis-p00425",
+   "packId": "mammo-cbis",
+   "neutralTitle": "Mammogram, right breast, CC and MLO · CBIS-DDSM P_00425",
+   "learnTitle": "Calcifications on CC and MLO mammograms (benign at pathology; DDSM region outline)",
+   "subjectKey": "tcia:CBIS-DDSM:P_00425",
+   "studyUids": [
+    "2.25.191243280400066920158282646978931093627"
+   ],
+   "primarySeriesUid": "2.25.262364235954802957752486284094049440003",
+   "region": [
+    "breast"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch29-o05",
+    "ch29-o01"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.16",
+     "sectionId": null
+    },
+    {
+     "physical": 410,
+     "printed": "390",
+     "chapterId": "ch29",
+     "figureId": null,
+     "sectionId": "ch29-s14"
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Calcifications outlined on every view (coarse-pleomorphic, clustered (benign; DDSM region outline)); BI-RADS assessment and pathology as given in the CBIS-DDSM case description. Calcification outlines are the original DDSM regions, drawn around the group, not around each particle. Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable.",
+   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "mg-cbis-p00021:locate",
+   "caseId": "mg-cbis-p00021",
+   "type": "locate_finding",
+   "title": "Find the mass on both views",
+   "prompt": "Read every view, comparing the two breasts. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.7874263547277609057652042395327567324",
+    "2.25.176846587095493236499436158988997099585",
+    "2.25.83018865058690022906083999185655115593",
+    "2.25.259837580357804532334355042291259809928"
+   ],
+   "start": {
+    "seriesUid": "2.25.7874263547277609057652042395327567324",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "cbis-p00021-right-cc_mass",
+     "name": "Breast mass",
+     "required": true
+    },
+    {
+     "targetId": "cbis-p00021-right-mlo_mass",
+     "name": "Breast mass",
+     "required": true
+    },
+    {
+     "targetId": "cbis-p00021-left-cc_mass",
+     "name": "Breast mass",
+     "required": true
+    },
+    {
+     "targetId": "cbis-p00021-left-mlo_mass",
+     "name": "Breast mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 30,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Hang the CC views and the MLO views mirror-image and compare left with right, quadrant by quadrant."
+    },
+    {
+     "level": 2,
+     "text": "Found it on one view? On the other view it lies at about the same distance from the nipple."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.10",
+     "sectionId": null
+    },
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Table 29.4",
+     "sectionId": null
+    },
+    {
+     "physical": 409,
+     "printed": "389",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.11",
+     "sectionId": null
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o03",
+    "ch29-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mg-cbis-p00021:margin",
+   "caseId": "mg-cbis-p00021",
+   "type": "describe_finding",
+   "title": "Describe the mass margin",
+   "prompt": "Zoom in on the mass on both views. How would you describe its margin?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.7874263547277609057652042395327567324",
+    "2.25.176846587095493236499436158988997099585",
+    "2.25.83018865058690022906083999185655115593",
+    "2.25.259837580357804532334355042291259809928"
+   ],
+   "start": {
+    "seriesUid": "2.25.7874263547277609057652042395327567324",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "circumscribed",
+      "text": "Circumscribed",
+      "correct": true,
+      "why": "Sharp, well-defined edge over most of the outline: favors a benign lesion."
+     },
+     {
+      "id": "obscured",
+      "text": "Obscured",
+      "correct": false,
+      "why": "Edge hidden by overlapping normal tissue."
+     },
+     {
+      "id": "microlobulated",
+      "text": "Microlobulated",
+      "correct": false,
+      "why": "Small undulations of the edge."
+     },
+     {
+      "id": "indistinct",
+      "text": "Indistinct",
+      "correct": false,
+      "why": "Poorly defined edge, suggesting infiltration."
+     },
+     {
+      "id": "spiculated",
+      "text": "Spiculated",
+      "correct": false,
+      "why": "Lines radiating from the edge: the most suspicious margin."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow the edge of the mass all the way round; spicules are thin lines that radiate out from it."
+    }
+   ],
+   "explanation": "The case description gives shape oval and margin circumscribed; pathology benign (BI-RADS assessment and pathology from CBIS-DDSM). A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental).",
+   "bookAnchors": [
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.10",
+     "sectionId": null
+    },
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Table 29.4",
+     "sectionId": null
+    },
+    {
+     "physical": 409,
+     "printed": "389",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.11",
+     "sectionId": null
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o03"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mg-cbis-p00039:locate",
+   "caseId": "mg-cbis-p00039",
+   "type": "locate_finding",
+   "title": "Find the mass on both views",
+   "prompt": "Read every view, comparing the two breasts. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.26039677031171589434063185288473253852",
+    "2.25.338133669202587532660812944128212027881"
+   ],
+   "start": {
+    "seriesUid": "2.25.26039677031171589434063185288473253852",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "cbis-p00039-right-cc_mass",
+     "name": "Breast mass",
+     "required": true
+    },
+    {
+     "targetId": "cbis-p00039-right-mlo_mass",
+     "name": "Breast mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 30,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Hang the CC views and the MLO views mirror-image and compare left with right, quadrant by quadrant."
+    },
+    {
+     "level": 2,
+     "text": "Found it on one view? On the other view it lies at about the same distance from the nipple."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.10",
+     "sectionId": null
+    },
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Table 29.4",
+     "sectionId": null
+    },
+    {
+     "physical": 409,
+     "printed": "389",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.11",
+     "sectionId": null
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o03",
+    "ch29-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mg-cbis-p00039:margin",
+   "caseId": "mg-cbis-p00039",
+   "type": "describe_finding",
+   "title": "Describe the mass margin",
+   "prompt": "Zoom in on the mass on both views. How would you describe its margin?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.26039677031171589434063185288473253852",
+    "2.25.338133669202587532660812944128212027881"
+   ],
+   "start": {
+    "seriesUid": "2.25.26039677031171589434063185288473253852",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "circumscribed",
+      "text": "Circumscribed",
+      "correct": false,
+      "why": "Sharp, well-defined edge over most of the outline: favors a benign lesion."
+     },
+     {
+      "id": "obscured",
+      "text": "Obscured",
+      "correct": false,
+      "why": "Edge hidden by overlapping normal tissue."
+     },
+     {
+      "id": "microlobulated",
+      "text": "Microlobulated",
+      "correct": false,
+      "why": "Small undulations of the edge."
+     },
+     {
+      "id": "indistinct",
+      "text": "Indistinct",
+      "correct": false,
+      "why": "Poorly defined edge, suggesting infiltration."
+     },
+     {
+      "id": "spiculated",
+      "text": "Spiculated",
+      "correct": true,
+      "why": "Lines radiating from the edge: the most suspicious margin."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow the edge of the mass all the way round; spicules are thin lines that radiate out from it."
+    }
+   ],
+   "explanation": "The case description gives shape irregular and margin spiculated; pathology malignant (BI-RADS assessment and pathology from CBIS-DDSM). A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental).",
+   "bookAnchors": [
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.10",
+     "sectionId": null
+    },
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Table 29.4",
+     "sectionId": null
+    },
+    {
+     "physical": 409,
+     "printed": "389",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.11",
+     "sectionId": null
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o03"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mg-cbis-p00051:locate",
+   "caseId": "mg-cbis-p00051",
+   "type": "locate_finding",
+   "title": "Find the mass on both views",
+   "prompt": "Read every view, comparing the two breasts. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.109922632782261818006541572162437737795",
+    "2.25.111533314676854162575924683688825389188"
+   ],
+   "start": {
+    "seriesUid": "2.25.109922632782261818006541572162437737795",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "cbis-p00051-left-cc_mass",
+     "name": "Breast mass",
+     "required": true
+    },
+    {
+     "targetId": "cbis-p00051-left-mlo_mass",
+     "name": "Breast mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 30,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Hang the CC views and the MLO views mirror-image and compare left with right, quadrant by quadrant."
+    },
+    {
+     "level": 2,
+     "text": "Found it on one view? On the other view it lies at about the same distance from the nipple."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.10",
+     "sectionId": null
+    },
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Table 29.4",
+     "sectionId": null
+    },
+    {
+     "physical": 409,
+     "printed": "389",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.11",
+     "sectionId": null
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o03",
+    "ch29-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mg-cbis-p00051:margin",
+   "caseId": "mg-cbis-p00051",
+   "type": "describe_finding",
+   "title": "Describe the mass margin",
+   "prompt": "Zoom in on the mass on both views. How would you describe its margin?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.109922632782261818006541572162437737795",
+    "2.25.111533314676854162575924683688825389188"
+   ],
+   "start": {
+    "seriesUid": "2.25.109922632782261818006541572162437737795",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "circumscribed",
+      "text": "Circumscribed",
+      "correct": false,
+      "why": "Sharp, well-defined edge over most of the outline: favors a benign lesion."
+     },
+     {
+      "id": "obscured",
+      "text": "Obscured",
+      "correct": false,
+      "why": "Edge hidden by overlapping normal tissue."
+     },
+     {
+      "id": "microlobulated",
+      "text": "Microlobulated",
+      "correct": false,
+      "why": "Small undulations of the edge."
+     },
+     {
+      "id": "indistinct",
+      "text": "Indistinct",
+      "correct": false,
+      "why": "Poorly defined edge, suggesting infiltration."
+     },
+     {
+      "id": "spiculated",
+      "text": "Spiculated",
+      "correct": true,
+      "why": "Lines radiating from the edge: the most suspicious margin."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow the edge of the mass all the way round; spicules are thin lines that radiate out from it."
+    }
+   ],
+   "explanation": "The case description gives shape irregular and margin spiculated; pathology malignant (BI-RADS assessment and pathology from CBIS-DDSM). A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental).",
+   "bookAnchors": [
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.10",
+     "sectionId": null
+    },
+    {
+     "physical": 408,
+     "printed": "388",
+     "chapterId": "ch29",
+     "figureId": "Table 29.4",
+     "sectionId": null
+    },
+    {
+     "physical": 409,
+     "printed": "389",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.11",
+     "sectionId": null
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o03"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mg-cbis-p00307:locate",
+   "caseId": "mg-cbis-p00307",
+   "type": "locate_finding",
+   "title": "Find the calcifications on both views",
+   "prompt": "Read every view, comparing the two breasts. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.148930757921380211413893638652454699749",
+    "2.25.138302550502447569036056851255228362589"
+   ],
+   "start": {
+    "seriesUid": "2.25.148930757921380211413893638652454699749",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "cbis-p00307-left-cc_calc",
+     "name": "Breast calcifications",
+     "required": true
+    },
+    {
+     "targetId": "cbis-p00307-left-mlo_calc",
+     "name": "Breast calcifications",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 30,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Hang the CC views and the MLO views mirror-image and compare left with right, quadrant by quadrant."
+    },
+    {
+     "level": 2,
+     "text": "Found it on one view? On the other view it lies at about the same distance from the nipple."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.16",
+     "sectionId": null
+    },
+    {
+     "physical": 410,
+     "printed": "390",
+     "chapterId": "ch29",
+     "figureId": null,
+     "sectionId": "ch29-s14"
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o05",
+    "ch29-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mg-cbis-p00425:locate",
+   "caseId": "mg-cbis-p00425",
+   "type": "locate_finding",
+   "title": "Find the calcifications on both views",
+   "prompt": "Read every view, comparing the two breasts. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.262364235954802957752486284094049440003",
+    "2.25.329259033582912762071911358218949981094"
+   ],
+   "start": {
+    "seriesUid": "2.25.262364235954802957752486284094049440003",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "cbis-p00425-right-cc_calc",
+     "name": "Breast calcifications",
+     "required": true
+    },
+    {
+     "targetId": "cbis-p00425-right-mlo_calc",
+     "name": "Breast calcifications",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 30,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Hang the CC views and the MLO views mirror-image and compare left with right, quadrant by quadrant."
+    },
+    {
+     "level": 2,
+     "text": "Found it on one view? On the other view it lies at about the same distance from the nipple."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 411,
+     "printed": "391",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.16",
+     "sectionId": null
+    },
+    {
+     "physical": 410,
+     "printed": "390",
+     "chapterId": "ch29",
+     "figureId": null,
+     "sectionId": "ch29-s14"
+    },
+    {
+     "physical": 405,
+     "printed": "385",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.6",
+     "sectionId": null
+    },
+    {
+     "physical": 403,
+     "printed": "383",
+     "chapterId": "ch29",
+     "figureId": "Fig 29.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch29-o05",
+    "ch29-o01"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

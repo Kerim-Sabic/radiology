@@ -92,6 +92,7 @@
   <url><loc>https://radiology.monster/conditions?c=kidney_stones</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=hydronephrosis</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=hiatal_hernia</loc><priority>0.7</priority></url>
+  <url><loc>https://radiology.monster/conditions?c=pregnancy_ultrasound</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=fracture</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=compression_fracture</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=bone_metastases</loc><priority>0.7</priority></url>
@@ -113,6 +114,10 @@
   <url><loc>https://radiology.monster/conditions?c=multiple_sclerosis</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=skull_fracture</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=breast_mass</loc><priority>0.7</priority></url>
+  <url><loc>https://radiology.monster/conditions?c=breast_cyst</loc><priority>0.7</priority></url>
+  <url><loc>https://radiology.monster/conditions?c=breast_calcifications</loc><priority>0.7</priority></url>
+  <url><loc>https://radiology.monster/conditions?c=salter_harris_fracture</loc><priority>0.7</priority></url>
+  <url><loc>https://radiology.monster/conditions?c=torus_greenstick_fracture</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=intussusception</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=pyloric_stenosis</loc><priority>0.7</priority></url>
   <url><loc>https://radiology.monster/conditions?c=croup_epiglottitis</loc><priority>0.7</priority></url>

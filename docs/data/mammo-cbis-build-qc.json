@@ -1,0 +1,190 @@
+{
+ "packId": "mammo-cbis",
+ "generatedAt": "2026-10-28T20:00:33Z",
+ "packBytesExcludingLessons": 32889288,
+ "budgetBytes": 80000000,
+ "series": [
+  {
+   "uid": "2.25.83018865058690022906083999185655115593",
+   "short": "mg-d209d55ffc",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 2140130
+  },
+  {
+   "uid": "2.25.259837580357804532334355042291259809928",
+   "short": "mg-2e218acffe",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 2402662
+  },
+  {
+   "uid": "2.25.7874263547277609057652042395327567324",
+   "short": "mg-80d61ffc52",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 2161554
+  },
+  {
+   "uid": "2.25.176846587095493236499436158988997099585",
+   "short": "mg-c16a6e10e4",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 2316868
+  },
+  {
+   "uid": "2.25.26039677031171589434063185288473253852",
+   "short": "mg-49e38bde94",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 2726620
+  },
+  {
+   "uid": "2.25.338133669202587532660812944128212027881",
+   "short": "mg-3411e68c77",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 3157480
+  },
+  {
+   "uid": "2.25.109922632782261818006541572162437737795",
+   "short": "mg-8a4b68d5a9",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 1595816
+  },
+  {
+   "uid": "2.25.111533314676854162575924683688825389188",
+   "short": "mg-532a407241",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 2387324
+  },
+  {
+   "uid": "2.25.148930757921380211413893638652454699749",
+   "short": "mg-475970c80d",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 3102352
+  },
+  {
+   "uid": "2.25.138302550502447569036056851255228362589",
+   "short": "mg-c4d790e1fa",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 3650696
+  },
+  {
+   "uid": "2.25.262364235954802957752486284094049440003",
+   "short": "mg-a9ddf786b9",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 3304562
+  },
+  {
+   "uid": "2.25.329259033582912762071911358218949981094",
+   "short": "mg-32bc7c20ac",
+   "modality": "MG",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 3664690
+  }
+ ],
+ "targets": [
+  "cbis-p00021-left-cc_mass",
+  "cbis-p00021-left-mlo_mass",
+  "cbis-p00021-right-cc_mass",
+  "cbis-p00021-right-mlo_mass",
+  "cbis-p00039-right-cc_mass",
+  "cbis-p00039-right-mlo_mass",
+  "cbis-p00051-left-cc_mass",
+  "cbis-p00051-left-mlo_mass",
+  "cbis-p00307-left-cc_calc",
+  "cbis-p00307-left-mlo_calc",
+  "cbis-p00425-right-cc_calc",
+  "cbis-p00425-right-mlo_calc"
+ ]
+}

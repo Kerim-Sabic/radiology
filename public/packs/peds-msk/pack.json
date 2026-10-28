@@ -1,0 +1,1386 @@
+{
+ "schemaVersion": 1,
+ "packId": "peds-msk",
+ "version": "1.0.0",
+ "title": "Children's wrist fractures and knee osteoarthritis grades",
+ "description": "Eight wrist radiographs (frontal and lateral) of four children from GRAZPEDWRI-DX with the fracture boxed: two Salter-Harris II fractures of the distal radius and two incomplete (torus/buckle or greenstick) distal radius fractures, as coded in the dataset. Three knee radiographs (small crops of the joint) from Digital Knee X-ray Images with the Kellgren-Lawrence grade both experts gave (0, 2 and 4); grade only, no location.",
+ "generatedAt": "2026-10-28T20:09:26Z",
+ "generator": "scripts/data/build_external.py (python 3.12.10, pydicom 3.0.1, highdicom 0.27.0, numpy 2.2.6)",
+ "sources": [
+  {
+   "id": "figshare:GRAZPEDWRI-DX",
+   "name": "GRAZPEDWRI-DX: a pediatric wrist trauma X-ray dataset",
+   "url": "https://doi.org/10.6084/m9.figshare.14825193.v2",
+   "doi": "10.6084/m9.figshare.14825193.v2",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "citation": "Nagy E, Janisch M, Hržić F, Sorantin E, Tschauner S. A pediatric wrist trauma X-ray dataset (GRAZPEDWRI-DX) for machine learning. Sci Data. 2022;9:222. doi:10.1038/s41597-022-01328-z. Data: figshare doi:10.6084/m9.figshare.14825193.v2",
+   "accessNote": "dataset.csv and folder_structure.zip (annotations) from figshare; the selected 16-bit PNGs read member by member (HTTP Range, CRC-32 checked) from images_partN.zip. No login."
+  },
+  {
+   "id": "mendeley:Digital-Knee-X-ray",
+   "name": "Digital Knee X-ray Images (Kellgren-Lawrence grades by two medical experts)",
+   "url": "https://doi.org/10.17632/t9ndx37v5h.1",
+   "doi": "10.17632/t9ndx37v5h.1",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "citation": "Gornale S, Patravali P. Digital Knee X-ray Images. Mendeley Data, V1, 2020. doi:10.17632/t9ndx37v5h.1",
+   "accessNote": "MedicalExpert-I.rar and MedicalExpert-II.rar downloaded from Mendeley Data; images matched between the two experts by pixel hash."
+  }
+ ],
+ "subjects": [
+  {
+   "key": "figshare:GRAZPEDWRI-DX:3390",
+   "sourceId": "figshare:GRAZPEDWRI-DX",
+   "sourceSubjectId": "3390",
+   "linkageEvidence": "GRAZPEDWRI-DX patient_id 3390, study 1 (dataset.csv); frontal and lateral views of one study.",
+   "holdoutGroup": "figshare:GRAZPEDWRI-DX:3390",
+   "sex": "F",
+   "ageAtFirstStudy": "013Y",
+   "studyUids": [
+    "2.25.323494611633012776045926050140293320678"
+   ]
+  },
+  {
+   "key": "figshare:GRAZPEDWRI-DX:3853",
+   "sourceId": "figshare:GRAZPEDWRI-DX",
+   "sourceSubjectId": "3853",
+   "linkageEvidence": "GRAZPEDWRI-DX patient_id 3853, study 1 (dataset.csv); frontal and lateral views of one study.",
+   "holdoutGroup": "figshare:GRAZPEDWRI-DX:3853",
+   "sex": "M",
+   "ageAtFirstStudy": "014Y",
+   "studyUids": [
+    "2.25.263374017995051613063001584651783048186"
+   ]
+  },
+  {
+   "key": "figshare:GRAZPEDWRI-DX:30",
+   "sourceId": "figshare:GRAZPEDWRI-DX",
+   "sourceSubjectId": "30",
+   "linkageEvidence": "GRAZPEDWRI-DX patient_id 30, study 1 (dataset.csv); frontal and lateral views of one study.",
+   "holdoutGroup": "figshare:GRAZPEDWRI-DX:30",
+   "sex": "F",
+   "ageAtFirstStudy": "008Y",
+   "studyUids": [
+    "2.25.91499879044390690122489861715195123092"
+   ]
+  },
+  {
+   "key": "figshare:GRAZPEDWRI-DX:71",
+   "sourceId": "figshare:GRAZPEDWRI-DX",
+   "sourceSubjectId": "71",
+   "linkageEvidence": "GRAZPEDWRI-DX patient_id 71, study 1 (dataset.csv); frontal and lateral views of one study.",
+   "holdoutGroup": "figshare:GRAZPEDWRI-DX:71",
+   "sex": "F",
+   "ageAtFirstStudy": "009Y",
+   "studyUids": [
+    "2.25.206422384073239599659458834161882202067"
+   ]
+  },
+  {
+   "key": "mendeley:Digital-Knee-X-ray:196c52391d8a",
+   "sourceId": "mendeley:Digital-Knee-X-ray",
+   "sourceSubjectId": "196c52391d8a",
+   "linkageEvidence": "Knee image NormalG0 (10).png (image hash 196c52391d8a); the dataset gives no patient identifiers, so images may come from the same person: all knee images here share one hold-out group.",
+   "holdoutGroup": "mendeley:Digital-Knee-X-ray",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.44228478534329737628013126258028978545"
+   ]
+  },
+  {
+   "key": "mendeley:Digital-Knee-X-ray:0b79036fc768",
+   "sourceId": "mendeley:Digital-Knee-X-ray",
+   "sourceSubjectId": "0b79036fc768",
+   "linkageEvidence": "Knee image MildG2 (102).png (image hash 0b79036fc768); the dataset gives no patient identifiers, so images may come from the same person: all knee images here share one hold-out group.",
+   "holdoutGroup": "mendeley:Digital-Knee-X-ray",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.213898037703635610460173007920244248152"
+   ]
+  },
+  {
+   "key": "mendeley:Digital-Knee-X-ray:bbbd048a1720",
+   "sourceId": "mendeley:Digital-Knee-X-ray",
+   "sourceSubjectId": "bbbd048a1720",
+   "linkageEvidence": "Knee image SevereG4 (101).png (image hash bbbd048a1720); the dataset gives no patient identifiers, so images may come from the same person: all knee images here share one hold-out group.",
+   "holdoutGroup": "mendeley:Digital-Knee-X-ray",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.264018425635976379943814620514920682366"
+   ]
+  }
+ ],
+ "studies": [
+  {
+   "uid": "2.25.323494611633012776045926050140293320678",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:3390",
+   "description": "Wrist radiographs (child)",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.131252323307702332861401724275775041848",
+    "2.25.179583918053828529724560295007567694373"
+   ]
+  },
+  {
+   "uid": "2.25.263374017995051613063001584651783048186",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:3853",
+   "description": "Wrist radiographs (child)",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.75970707244602159585765127868445711681",
+    "2.25.155257140882899863996753187232018236451"
+   ]
+  },
+  {
+   "uid": "2.25.91499879044390690122489861715195123092",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:30",
+   "description": "Wrist radiographs (child)",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.165690208264812005622346382815811786996",
+    "2.25.104476752406967693384201075606596786094"
+   ]
+  },
+  {
+   "uid": "2.25.206422384073239599659458834161882202067",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:71",
+   "description": "Wrist radiographs (child)",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.301342693215840190279350085349493934855",
+    "2.25.127753371212835821756443984645613361229"
+   ]
+  },
+  {
+   "uid": "2.25.44228478534329737628013126258028978545",
+   "subjectKey": "mendeley:Digital-Knee-X-ray:196c52391d8a",
+   "description": "Knee radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.113656270361869031618116899628266046514"
+   ]
+  },
+  {
+   "uid": "2.25.213898037703635610460173007920244248152",
+   "subjectKey": "mendeley:Digital-Knee-X-ray:0b79036fc768",
+   "description": "Knee radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.120665048671934614750104593795211171925"
+   ]
+  },
+  {
+   "uid": "2.25.264018425635976379943814620514920682366",
+   "subjectKey": "mendeley:Digital-Knee-X-ray:bbbd048a1720",
+   "description": "Knee radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.91688141304062841773483353182516529667"
+   ]
+  }
+ ],
+ "series": [
+  {
+   "uid": "2.25.131252323307702332861401724275775041848",
+   "studyUid": "2.25.323494611633012776045926050140293320678",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:3390",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Left wrist, frontal",
+   "bodyPart": "WRIST",
+   "role": "diagnostic",
+   "roleNote": "Pediatric wrist radiograph, frontal view (GRAZPEDWRI-DX).",
+   "acquisition": {
+    "SeriesDescription": "Left wrist, frontal",
+    "StudyDescription": "Wrist radiographs (child)",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "WRIST",
+    "ViewPosition": "AP",
+    "ImageLaterality": "L"
+   },
+   "geometry": {
+    "rows": 1280,
+    "columns": 639,
+    "pixelSpacing": [
+     0.144,
+     0.144
+    ],
+    "pixelSpacingSource": "ImagerPixelSpacing",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 32226.5,
+     "width": 51039.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.89544717573396383871960707735064063746",
+     "file": "dicom/dx-acccbbf8ed/9de0ca7a49308059.dcm",
+     "bytes": 1189094,
+     "sha256": "9de0ca7a49308059c79ac87a8d0e5e93f76b482229e9504067f4028745429933",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1189094,
+   "thumbnail": "thumbs/dx-acccbbf8ed.png",
+   "displayNote": "Pediatric wrist radiograph from GRAZPEDWRI-DX (16-bit). Pixel spacing is at the detector, not corrected for magnification; no orientation tag, so read the side from the burned-in marker."
+  },
+  {
+   "uid": "2.25.179583918053828529724560295007567694373",
+   "studyUid": "2.25.323494611633012776045926050140293320678",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:3390",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 2,
+   "description": "Left wrist, lateral",
+   "bodyPart": "WRIST",
+   "role": "diagnostic",
+   "roleNote": "Pediatric wrist radiograph, lateral view (GRAZPEDWRI-DX).",
+   "acquisition": {
+    "SeriesDescription": "Left wrist, lateral",
+    "StudyDescription": "Wrist radiographs (child)",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "WRIST",
+    "ImageLaterality": "L"
+   },
+   "geometry": {
+    "rows": 1252,
+    "columns": 778,
+    "pixelSpacing": [
+     0.144,
+     0.144
+    ],
+    "pixelSpacingSource": "ImagerPixelSpacing",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 28460.5,
+     "width": 49601.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.213430399099233081787559304657259708807",
+     "file": "dicom/dx-b7dc3092ca/7e853dec5b9efcb4.dcm",
+     "bytes": 1278926,
+     "sha256": "7e853dec5b9efcb4c4801fb7bca15ab310eda8392d8b8f8dc3694b06351be49b",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1278926,
+   "thumbnail": "thumbs/dx-b7dc3092ca.png",
+   "displayNote": "Pediatric wrist radiograph from GRAZPEDWRI-DX (16-bit). Pixel spacing is at the detector, not corrected for magnification; no orientation tag, so read the side from the burned-in marker."
+  },
+  {
+   "uid": "2.25.75970707244602159585765127868445711681",
+   "studyUid": "2.25.263374017995051613063001584651783048186",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:3853",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Left wrist, frontal",
+   "bodyPart": "WRIST",
+   "role": "diagnostic",
+   "roleNote": "Pediatric wrist radiograph, frontal view (GRAZPEDWRI-DX).",
+   "acquisition": {
+    "SeriesDescription": "Left wrist, frontal",
+    "StudyDescription": "Wrist radiographs (child)",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "WRIST",
+    "ViewPosition": "AP",
+    "ImageLaterality": "L"
+   },
+   "geometry": {
+    "rows": 1312,
+    "columns": 830,
+    "pixelSpacing": [
+     0.144,
+     0.144
+    ],
+    "pixelSpacingSource": "ImagerPixelSpacing",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 30739.5,
+     "width": 47373.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.52516280443450184055809794181041864943",
+     "file": "dicom/dx-4549fa8e30/aad80c70fb73d1a7.dcm",
+     "bytes": 1113016,
+     "sha256": "aad80c70fb73d1a7e209d3e318bb80ad9a818f3b3800d0a5cc2f5f89a8ef1273",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1113016,
+   "thumbnail": "thumbs/dx-4549fa8e30.png",
+   "displayNote": "Pediatric wrist radiograph from GRAZPEDWRI-DX (16-bit). Pixel spacing is at the detector, not corrected for magnification; no orientation tag, so read the side from the burned-in marker."
+  },
+  {
+   "uid": "2.25.155257140882899863996753187232018236451",
+   "studyUid": "2.25.263374017995051613063001584651783048186",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:3853",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 2,
+   "description": "Left wrist, lateral",
+   "bodyPart": "WRIST",
+   "role": "diagnostic",
+   "roleNote": "Pediatric wrist radiograph, lateral view (GRAZPEDWRI-DX).",
+   "acquisition": {
+    "SeriesDescription": "Left wrist, lateral",
+    "StudyDescription": "Wrist radiographs (child)",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "WRIST",
+    "ImageLaterality": "L"
+   },
+   "geometry": {
+    "rows": 1506,
+    "columns": 766,
+    "pixelSpacing": [
+     0.144,
+     0.144
+    ],
+    "pixelSpacingSource": "ImagerPixelSpacing",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 29818.5,
+     "width": 55163.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.238831610623831401048095589085800129841",
+     "file": "dicom/dx-251b5489ab/28ad3ef55afe348a.dcm",
+     "bytes": 1085890,
+     "sha256": "28ad3ef55afe348a87ed3ec4a7d88309d92933ec38b731f546d5e257956ed9b3",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1085890,
+   "thumbnail": "thumbs/dx-251b5489ab.png",
+   "displayNote": "Pediatric wrist radiograph from GRAZPEDWRI-DX (16-bit). Pixel spacing is at the detector, not corrected for magnification; no orientation tag, so read the side from the burned-in marker."
+  },
+  {
+   "uid": "2.25.165690208264812005622346382815811786996",
+   "studyUid": "2.25.91499879044390690122489861715195123092",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:30",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Left wrist, frontal",
+   "bodyPart": "WRIST",
+   "role": "diagnostic",
+   "roleNote": "Pediatric wrist radiograph, frontal view (GRAZPEDWRI-DX).",
+   "acquisition": {
+    "SeriesDescription": "Left wrist, frontal",
+    "StudyDescription": "Wrist radiographs (child)",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "WRIST",
+    "ViewPosition": "AP",
+    "ImageLaterality": "L"
+   },
+   "geometry": {
+    "rows": 1012,
+    "columns": 586,
+    "pixelSpacing": [
+     0.144,
+     0.144
+    ],
+    "pixelSpacingSource": "ImagerPixelSpacing",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 29927.0,
+     "width": 54572.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.93241098199217889392657101185248328154",
+     "file": "dicom/dx-efc3ed24b2/7d91f54952c44ddf.dcm",
+     "bytes": 771496,
+     "sha256": "7d91f54952c44ddf4c98187fdfc92bfae81a7070d09839bcf6ec83d5d0ab549e",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 771496,
+   "thumbnail": "thumbs/dx-efc3ed24b2.png",
+   "displayNote": "Pediatric wrist radiograph from GRAZPEDWRI-DX (16-bit). Pixel spacing is at the detector, not corrected for magnification; no orientation tag, so read the side from the burned-in marker."
+  },
+  {
+   "uid": "2.25.104476752406967693384201075606596786094",
+   "studyUid": "2.25.91499879044390690122489861715195123092",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:30",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 2,
+   "description": "Left wrist, lateral",
+   "bodyPart": "WRIST",
+   "role": "diagnostic",
+   "roleNote": "Pediatric wrist radiograph, lateral view (GRAZPEDWRI-DX).",
+   "acquisition": {
+    "SeriesDescription": "Left wrist, lateral",
+    "StudyDescription": "Wrist radiographs (child)",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "WRIST",
+    "ImageLaterality": "L"
+   },
+   "geometry": {
+    "rows": 802,
+    "columns": 534,
+    "pixelSpacing": [
+     0.144,
+     0.144
+    ],
+    "pixelSpacingSource": "ImagerPixelSpacing",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 34202.0,
+     "width": 50616.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.287305193594520475525975258983726477838",
+     "file": "dicom/dx-db2326e79c/8af67fa3366afe6e.dcm",
+     "bytes": 567316,
+     "sha256": "8af67fa3366afe6ecd62817c33c78e714a3f2b7445e171588e632045e728a4a9",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 567316,
+   "thumbnail": "thumbs/dx-db2326e79c.png",
+   "displayNote": "Pediatric wrist radiograph from GRAZPEDWRI-DX (16-bit). Pixel spacing is at the detector, not corrected for magnification; no orientation tag, so read the side from the burned-in marker."
+  },
+  {
+   "uid": "2.25.301342693215840190279350085349493934855",
+   "studyUid": "2.25.206422384073239599659458834161882202067",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:71",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Right wrist, frontal",
+   "bodyPart": "WRIST",
+   "role": "diagnostic",
+   "roleNote": "Pediatric wrist radiograph, frontal view (GRAZPEDWRI-DX).",
+   "acquisition": {
+    "SeriesDescription": "Right wrist, frontal",
+    "StudyDescription": "Wrist radiographs (child)",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "WRIST",
+    "ViewPosition": "AP",
+    "ImageLaterality": "R"
+   },
+   "geometry": {
+    "rows": 1008,
+    "columns": 690,
+    "pixelSpacing": [
+     0.144,
+     0.144
+    ],
+    "pixelSpacingSource": "ImagerPixelSpacing",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 28086.5,
+     "width": 42057.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.253984417572323489759128525961689764346",
+     "file": "dicom/dx-924c9efe58/b1eefd4c4df59887.dcm",
+     "bytes": 866542,
+     "sha256": "b1eefd4c4df5988792da0712c42d9163acfac02f1990587fd3175a71eec47bcd",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 866542,
+   "thumbnail": "thumbs/dx-924c9efe58.png",
+   "displayNote": "Pediatric wrist radiograph from GRAZPEDWRI-DX (16-bit). Pixel spacing is at the detector, not corrected for magnification; no orientation tag, so read the side from the burned-in marker."
+  },
+  {
+   "uid": "2.25.127753371212835821756443984645613361229",
+   "studyUid": "2.25.206422384073239599659458834161882202067",
+   "subjectKey": "figshare:GRAZPEDWRI-DX:71",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 2,
+   "description": "Right wrist, lateral",
+   "bodyPart": "WRIST",
+   "role": "diagnostic",
+   "roleNote": "Pediatric wrist radiograph, lateral view (GRAZPEDWRI-DX).",
+   "acquisition": {
+    "SeriesDescription": "Right wrist, lateral",
+    "StudyDescription": "Wrist radiographs (child)",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "WRIST",
+    "ImageLaterality": "R"
+   },
+   "geometry": {
+    "rows": 1026,
+    "columns": 631,
+    "pixelSpacing": [
+     0.144,
+     0.144
+    ],
+    "pixelSpacingSource": "ImagerPixelSpacing",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 26742.0,
+     "width": 43306.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.183926620180987841578931341813614507781",
+     "file": "dicom/dx-91b1e3caf2/77c5a61ed9e6197e.dcm",
+     "bytes": 661204,
+     "sha256": "77c5a61ed9e6197e2193348946ab3ec98b204f0f0e969006854ac612b62ed9c0",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 661204,
+   "thumbnail": "thumbs/dx-91b1e3caf2.png",
+   "displayNote": "Pediatric wrist radiograph from GRAZPEDWRI-DX (16-bit). Pixel spacing is at the detector, not corrected for magnification; no orientation tag, so read the side from the burned-in marker."
+  },
+  {
+   "uid": "2.25.113656270361869031618116899628266046514",
+   "studyUid": "2.25.44228478534329737628013126258028978545",
+   "subjectKey": "mendeley:Digital-Knee-X-ray:196c52391d8a",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Knee joint (cropped)",
+   "bodyPart": "KNEE",
+   "role": "diagnostic",
+   "roleNote": "Knee radiograph cropped to the joint (Digital Knee X-ray Images).",
+   "acquisition": {
+    "SeriesDescription": "Knee joint (cropped)",
+    "StudyDescription": "Knee radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "KNEE"
+   },
+   "geometry": {
+    "rows": 162,
+    "columns": 300,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.180389835260649192460227008493228432753",
+     "file": "dicom/dx-8832983161/c4f4f8d28b42e97c.dcm",
+     "bytes": 20218,
+     "sha256": "c4f4f8d28b42e97c4f49dd8e17243ad0ee0091b45e76e1b12f20aa9bb27552eb",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 20218,
+   "thumbnail": "thumbs/dx-8832983161.png",
+   "displayNote": "Small crop of the knee joint (300x162 px) as distributed; no pixel spacing, no side or orientation in the source."
+  },
+  {
+   "uid": "2.25.120665048671934614750104593795211171925",
+   "studyUid": "2.25.213898037703635610460173007920244248152",
+   "subjectKey": "mendeley:Digital-Knee-X-ray:0b79036fc768",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Knee joint (cropped)",
+   "bodyPart": "KNEE",
+   "role": "diagnostic",
+   "roleNote": "Knee radiograph cropped to the joint (Digital Knee X-ray Images).",
+   "acquisition": {
+    "SeriesDescription": "Knee joint (cropped)",
+    "StudyDescription": "Knee radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "KNEE"
+   },
+   "geometry": {
+    "rows": 162,
+    "columns": 300,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.193169746331755919305816219503628276241",
+     "file": "dicom/dx-6b95a88779/523fbe14ef5c313a.dcm",
+     "bytes": 19448,
+     "sha256": "523fbe14ef5c313a9273f0e78cd68f45f816668b57a34be7ee60b38a5113295c",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 19448,
+   "thumbnail": "thumbs/dx-6b95a88779.png",
+   "displayNote": "Small crop of the knee joint (300x162 px) as distributed; no pixel spacing, no side or orientation in the source."
+  },
+  {
+   "uid": "2.25.91688141304062841773483353182516529667",
+   "studyUid": "2.25.264018425635976379943814620514920682366",
+   "subjectKey": "mendeley:Digital-Knee-X-ray:bbbd048a1720",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Knee joint (cropped)",
+   "bodyPart": "KNEE",
+   "role": "diagnostic",
+   "roleNote": "Knee radiograph cropped to the joint (Digital Knee X-ray Images).",
+   "acquisition": {
+    "SeriesDescription": "Knee joint (cropped)",
+    "StudyDescription": "Knee radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "KNEE"
+   },
+   "geometry": {
+    "rows": 162,
+    "columns": 300,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the image is already display-processed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.24490639652863203591203780683319328840",
+     "file": "dicom/dx-57149dd1f9/c7b979b62158c322.dcm",
+     "bytes": 20350,
+     "sha256": "c7b979b62158c32292a8959c8e0ade8ce33a93d12d99a8e23e0c59110d4f8e24",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 20350,
+   "thumbnail": "thumbs/dx-57149dd1f9.png",
+   "displayNote": "Small crop of the knee joint (300x162 px) as distributed; no pixel spacing, no side or orientation in the source."
+  }
+ ],
+ "spatialLinks": [],
+ "referenceTargets": [
+  {
+   "id": "grazpedwri-3390-frontal_fracture",
+   "label": "Fracture: distal radius, Salter-Harris type II (radiologist box)",
+   "classId": "finding:physeal_fracture",
+   "seriesUid": "2.25.131252323307702332861401724275775041848",
+   "geometryType": "box",
+   "geometryFile": "targets/grazpedwri-3390-frontal_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:GRAZPEDWRI-DX (folder_structure.zip, supervisely annotations; dataset.csv)",
+    "method": "Fracture box from the dataset's annotations, which pediatric radiologists reviewed at least twice (Nagy et al. 2022); converted from pixel-corner to pixel-centre coordinates (-0.5 px). The fracture type in the label is read from the AO/OTA pediatric code in dataset.csv (E/2 = Salter-Harris II; M/2 = incomplete, torus/buckle or greenstick).",
+    "note": "AO/OTA pediatric code 23r-E/2.1 (dataset.csv); age 13.9 y, F, side L."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:physeal_fracture"
+   ],
+   "unassessedNote": "Only the fracture is boxed; the ulna, carpal bones and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Salter-Harris II: the fracture runs along the growth plate and out through the metaphysis (AO PCCF E/2)."
+  },
+  {
+   "id": "grazpedwri-3390-lateral_fracture",
+   "label": "Fracture: distal radius, Salter-Harris type II (radiologist box)",
+   "classId": "finding:physeal_fracture",
+   "seriesUid": "2.25.179583918053828529724560295007567694373",
+   "geometryType": "box",
+   "geometryFile": "targets/grazpedwri-3390-lateral_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:GRAZPEDWRI-DX (folder_structure.zip, supervisely annotations; dataset.csv)",
+    "method": "Fracture box from the dataset's annotations, which pediatric radiologists reviewed at least twice (Nagy et al. 2022); converted from pixel-corner to pixel-centre coordinates (-0.5 px). The fracture type in the label is read from the AO/OTA pediatric code in dataset.csv (E/2 = Salter-Harris II; M/2 = incomplete, torus/buckle or greenstick).",
+    "note": "AO/OTA pediatric code 23r-E/2.1 (dataset.csv); age 13.9 y, F, side L."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:physeal_fracture"
+   ],
+   "unassessedNote": "Only the fracture is boxed; the ulna, carpal bones and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Salter-Harris II: the fracture runs along the growth plate and out through the metaphysis (AO PCCF E/2)."
+  },
+  {
+   "id": "grazpedwri-3853-frontal_fracture",
+   "label": "Fracture: distal radius, Salter-Harris type II (radiologist box)",
+   "classId": "finding:physeal_fracture",
+   "seriesUid": "2.25.75970707244602159585765127868445711681",
+   "geometryType": "box",
+   "geometryFile": "targets/grazpedwri-3853-frontal_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:GRAZPEDWRI-DX (folder_structure.zip, supervisely annotations; dataset.csv)",
+    "method": "Fracture box from the dataset's annotations, which pediatric radiologists reviewed at least twice (Nagy et al. 2022); converted from pixel-corner to pixel-centre coordinates (-0.5 px). The fracture type in the label is read from the AO/OTA pediatric code in dataset.csv (E/2 = Salter-Harris II; M/2 = incomplete, torus/buckle or greenstick).",
+    "note": "AO/OTA pediatric code 23r-E/2.1 (dataset.csv); age 14.4 y, M, side L."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:physeal_fracture"
+   ],
+   "unassessedNote": "Only the fracture is boxed; the ulna, carpal bones and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Salter-Harris II: the fracture runs along the growth plate and out through the metaphysis (AO PCCF E/2)."
+  },
+  {
+   "id": "grazpedwri-3853-lateral_fracture",
+   "label": "Fracture: distal radius, Salter-Harris type II (radiologist box)",
+   "classId": "finding:physeal_fracture",
+   "seriesUid": "2.25.155257140882899863996753187232018236451",
+   "geometryType": "box",
+   "geometryFile": "targets/grazpedwri-3853-lateral_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:GRAZPEDWRI-DX (folder_structure.zip, supervisely annotations; dataset.csv)",
+    "method": "Fracture box from the dataset's annotations, which pediatric radiologists reviewed at least twice (Nagy et al. 2022); converted from pixel-corner to pixel-centre coordinates (-0.5 px). The fracture type in the label is read from the AO/OTA pediatric code in dataset.csv (E/2 = Salter-Harris II; M/2 = incomplete, torus/buckle or greenstick).",
+    "note": "AO/OTA pediatric code 23r-E/2.1 (dataset.csv); age 14.4 y, M, side L."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:physeal_fracture"
+   ],
+   "unassessedNote": "Only the fracture is boxed; the ulna, carpal bones and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Salter-Harris II: the fracture runs along the growth plate and out through the metaphysis (AO PCCF E/2)."
+  },
+  {
+   "id": "grazpedwri-0030-frontal_fracture",
+   "label": "Fracture: distal radius, incomplete (torus/buckle or greenstick; radiologist box)",
+   "classId": "finding:incomplete_fracture",
+   "seriesUid": "2.25.165690208264812005622346382815811786996",
+   "geometryType": "box",
+   "geometryFile": "targets/grazpedwri-0030-frontal_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:GRAZPEDWRI-DX (folder_structure.zip, supervisely annotations; dataset.csv)",
+    "method": "Fracture box from the dataset's annotations, which pediatric radiologists reviewed at least twice (Nagy et al. 2022); converted from pixel-corner to pixel-centre coordinates (-0.5 px). The fracture type in the label is read from the AO/OTA pediatric code in dataset.csv (E/2 = Salter-Harris II; M/2 = incomplete, torus/buckle or greenstick).",
+    "note": "AO/OTA pediatric code 23r-M/2.1 (dataset.csv); age 8.2 y, F, side L."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:incomplete_fracture"
+   ],
+   "unassessedNote": "Only the fracture is boxed; the ulna, carpal bones and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Incomplete metaphyseal fracture (AO PCCF M/2: torus/buckle or greenstick): look for a bulge, kink or break of one cortex."
+  },
+  {
+   "id": "grazpedwri-0030-lateral_fracture",
+   "label": "Fracture: distal radius, incomplete (torus/buckle or greenstick; radiologist box)",
+   "classId": "finding:incomplete_fracture",
+   "seriesUid": "2.25.104476752406967693384201075606596786094",
+   "geometryType": "box",
+   "geometryFile": "targets/grazpedwri-0030-lateral_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:GRAZPEDWRI-DX (folder_structure.zip, supervisely annotations; dataset.csv)",
+    "method": "Fracture box from the dataset's annotations, which pediatric radiologists reviewed at least twice (Nagy et al. 2022); converted from pixel-corner to pixel-centre coordinates (-0.5 px). The fracture type in the label is read from the AO/OTA pediatric code in dataset.csv (E/2 = Salter-Harris II; M/2 = incomplete, torus/buckle or greenstick).",
+    "note": "AO/OTA pediatric code 23r-M/2.1 (dataset.csv); age 8.2 y, F, side L."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:incomplete_fracture"
+   ],
+   "unassessedNote": "Only the fracture is boxed; the ulna, carpal bones and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Incomplete metaphyseal fracture (AO PCCF M/2: torus/buckle or greenstick): look for a bulge, kink or break of one cortex."
+  },
+  {
+   "id": "grazpedwri-0071-frontal_fracture",
+   "label": "Fracture: distal radius, incomplete (torus/buckle or greenstick; radiologist box)",
+   "classId": "finding:incomplete_fracture",
+   "seriesUid": "2.25.301342693215840190279350085349493934855",
+   "geometryType": "box",
+   "geometryFile": "targets/grazpedwri-0071-frontal_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:GRAZPEDWRI-DX (folder_structure.zip, supervisely annotations; dataset.csv)",
+    "method": "Fracture box from the dataset's annotations, which pediatric radiologists reviewed at least twice (Nagy et al. 2022); converted from pixel-corner to pixel-centre coordinates (-0.5 px). The fracture type in the label is read from the AO/OTA pediatric code in dataset.csv (E/2 = Salter-Harris II; M/2 = incomplete, torus/buckle or greenstick).",
+    "note": "AO/OTA pediatric code 23r-M/2.1 (dataset.csv); age 9.6 y, F, side R."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:incomplete_fracture"
+   ],
+   "unassessedNote": "Only the fracture is boxed; the ulna, carpal bones and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Incomplete metaphyseal fracture (AO PCCF M/2: torus/buckle or greenstick): look for a bulge, kink or break of one cortex."
+  },
+  {
+   "id": "grazpedwri-0071-lateral_fracture",
+   "label": "Fracture: distal radius, incomplete (torus/buckle or greenstick; radiologist box)",
+   "classId": "finding:incomplete_fracture",
+   "seriesUid": "2.25.127753371212835821756443984645613361229",
+   "geometryType": "box",
+   "geometryFile": "targets/grazpedwri-0071-lateral_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:GRAZPEDWRI-DX (folder_structure.zip, supervisely annotations; dataset.csv)",
+    "method": "Fracture box from the dataset's annotations, which pediatric radiologists reviewed at least twice (Nagy et al. 2022); converted from pixel-corner to pixel-centre coordinates (-0.5 px). The fracture type in the label is read from the AO/OTA pediatric code in dataset.csv (E/2 = Salter-Harris II; M/2 = incomplete, torus/buckle or greenstick).",
+    "note": "AO/OTA pediatric code 23r-M/2.1 (dataset.csv); age 9.6 y, F, side R."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:incomplete_fracture"
+   ],
+   "unassessedNote": "Only the fracture is boxed; the ulna, carpal bones and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Incomplete metaphyseal fracture (AO PCCF M/2: torus/buckle or greenstick): look for a bulge, kink or break of one cortex."
+  },
+  {
+   "id": "knee-kl-196c5239_expert-i",
+   "label": "Osteoarthritis grade, medical expert I",
+   "classId": "label:knee_kl_grade",
+   "seriesUid": "2.25.113656270361869031618116899628266046514",
+   "geometryType": "image_label",
+   "geometryFile": "targets/knee-kl-196c5239_expert-i.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "mendeley:Digital-Knee-X-ray (MedicalExpert-I.rar)",
+    "method": "Kellgren-Lawrence grade given to the whole image by the expert (folder name); no location.",
+    "note": "Both experts graded this image Kellgren-Lawrence grade 0 (normal)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "label:knee_kl_grade"
+   ],
+   "unassessedNote": "An image-level grade only: no part of the image is marked.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "knee-kl-196c5239_expert-ii",
+   "label": "Osteoarthritis grade, medical expert II",
+   "classId": "label:knee_kl_grade",
+   "seriesUid": "2.25.113656270361869031618116899628266046514",
+   "geometryType": "image_label",
+   "geometryFile": "targets/knee-kl-196c5239_expert-ii.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "mendeley:Digital-Knee-X-ray (MedicalExpert-II.rar)",
+    "method": "Kellgren-Lawrence grade given to the whole image by the expert (folder name); no location.",
+    "note": "Both experts graded this image Kellgren-Lawrence grade 0 (normal)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "label:knee_kl_grade"
+   ],
+   "unassessedNote": "An image-level grade only: no part of the image is marked.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "knee-kl-0b79036f_expert-i",
+   "label": "Osteoarthritis grade, medical expert I",
+   "classId": "label:knee_kl_grade",
+   "seriesUid": "2.25.120665048671934614750104593795211171925",
+   "geometryType": "image_label",
+   "geometryFile": "targets/knee-kl-0b79036f_expert-i.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "mendeley:Digital-Knee-X-ray (MedicalExpert-I.rar)",
+    "method": "Kellgren-Lawrence grade given to the whole image by the expert (folder name); no location.",
+    "note": "Both experts graded this image Kellgren-Lawrence grade 2 (mild)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "label:knee_kl_grade"
+   ],
+   "unassessedNote": "An image-level grade only: no part of the image is marked.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "knee-kl-0b79036f_expert-ii",
+   "label": "Osteoarthritis grade, medical expert II",
+   "classId": "label:knee_kl_grade",
+   "seriesUid": "2.25.120665048671934614750104593795211171925",
+   "geometryType": "image_label",
+   "geometryFile": "targets/knee-kl-0b79036f_expert-ii.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "mendeley:Digital-Knee-X-ray (MedicalExpert-II.rar)",
+    "method": "Kellgren-Lawrence grade given to the whole image by the expert (folder name); no location.",
+    "note": "Both experts graded this image Kellgren-Lawrence grade 2 (mild)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "label:knee_kl_grade"
+   ],
+   "unassessedNote": "An image-level grade only: no part of the image is marked.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "knee-kl-bbbd048a_expert-i",
+   "label": "Osteoarthritis grade, medical expert I",
+   "classId": "label:knee_kl_grade",
+   "seriesUid": "2.25.91688141304062841773483353182516529667",
+   "geometryType": "image_label",
+   "geometryFile": "targets/knee-kl-bbbd048a_expert-i.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "mendeley:Digital-Knee-X-ray (MedicalExpert-I.rar)",
+    "method": "Kellgren-Lawrence grade given to the whole image by the expert (folder name); no location.",
+    "note": "Both experts graded this image Kellgren-Lawrence grade 4 (severe)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "label:knee_kl_grade"
+   ],
+   "unassessedNote": "An image-level grade only: no part of the image is marked.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  },
+  {
+   "id": "knee-kl-bbbd048a_expert-ii",
+   "label": "Osteoarthritis grade, medical expert II",
+   "classId": "label:knee_kl_grade",
+   "seriesUid": "2.25.91688141304062841773483353182516529667",
+   "geometryType": "image_label",
+   "geometryFile": "targets/knee-kl-bbbd048a_expert-ii.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "mendeley:Digital-Knee-X-ray (MedicalExpert-II.rar)",
+    "method": "Kellgren-Lawrence grade given to the whole image by the expert (folder name); no location.",
+    "note": "Both experts graded this image Kellgren-Lawrence grade 4 (severe)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "label:knee_kl_grade"
+   ],
+   "unassessedNote": "An image-level grade only: no part of the image is marked.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   }
+  }
+ ]
+}

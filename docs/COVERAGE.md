@@ -23,18 +23,18 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 | Ch 15 | Recognizing Extraluminal Air in the Abdomen | 161–170 (181–190) | 7 | 0 | 0 | 0 | 0 / 0 / 7 |
 | Ch 16 | Recognizing Abnormal Calcifications and Their Causes | 171–178 (191–198) | 6 | 0 | 0 | 0 | 0 / 0 / 6 |
 | Ch 17 | Recognizing Gastrointestinal, Hepatobiliary, and Urinary Tract Abnormalities | 179–200 (199–220) | 11 | 2 | 6 | 6 | 4 / 0 / 5 |
-| Ch 18 | Ultrasonography: Understanding the Principles and Its Uses in Abdominal and Pelvic Imaging | 201–222 (221–242) | 10 | 0 | 0 | 0 | 0 / 0 / 10 |
+| Ch 18 | Ultrasonography: Understanding the Principles and Its Uses in Abdominal and Pelvic Imaging | 201–222 (221–242) | 10 | 1 | 9 | 9 | 0 / 0 / 9 |
 | Ch 19 | Vascular, Pediatric, and Point-of-Care Ultrasound | 223–235 (243–255) | 8 | 0 | 0 | 0 | 0 / 0 / 8 |
 | Ch 20 | Magnetic Resonance Imaging: Understanding the Principles and Recognizing the Basics | 236–246 (256–266) | 6 | 5 | 5 | 5 | 0 / 0 / 1 |
-| Ch 21 | Recognizing Nontraumatic Abnormalities of the Appendicular Skeleton and Arthritis | 247–269 (267–289) | 10 | 0 | 0 | 0 | 0 / 0 / 10 |
+| Ch 21 | Recognizing Nontraumatic Abnormalities of the Appendicular Skeleton and Arthritis | 247–269 (267–289) | 10 | 2 | 3 | 0 | 0 / 0 / 8 |
 | Ch 22 | Recognizing Nontraumatic Abnormalities of the Spine | 270–282 (290–302) | 8 | 1 | 3 | 9 | 4 / 3 / 0 |
-| Ch 23 | Recognizing Trauma to the Bony Skeleton | 283–300 (303–320) | 10 | 2 | 5 | 5 | 1 / 1 / 6 |
+| Ch 23 | Recognizing Trauma to the Bony Skeleton | 283–300 (303–320) | 10 | 2 | 9 | 9 | 1 / 1 / 6 |
 | Ch 24 | Recognizing the Imaging Findings of Trauma to the Chest | 301–313 (321–333) | 8 | 2 | 4 | 4 | 0 / 1 / 5 |
 | Ch 25 | Recognizing the Imaging Findings of Trauma to the Abdomen and Pelvis | 314–320 (334–340) | 6 | 0 | 0 | 0 | 0 / 4 / 2 |
 | Ch 26 | Recognizing Some Common Causes of Intracranial Pathology | 321–346 (341–366) | 12 | 3 | 5 | 5 | 0 / 7 / 2 |
-| Ch 27 | Recognizing Pediatric Diseases | 347–361 (367–381) | 9 | 1 | 2 | 2 | 0 / 4 / 4 |
+| Ch 27 | Recognizing Pediatric Diseases | 347–361 (367–381) | 9 | 2 | 4 | 4 | 0 / 4 / 3 |
 | Ch 28 | Using Image-Guided Interventions in Diagnosis and Treatment (Interventional Radiology) | 362–381 (382–401) | 9 | 0 | 0 | 0 | 0 / 1 / 8 |
-| Ch 29 | Recognizing the Findings in Breast Imaging | 382–399 (402–419) | 9 | 2 | 1 | 0 | 5 / 0 / 2 |
+| Ch 29 | Recognizing the Findings in Breast Imaging | 382–399 (402–419) | 9 | 4 | 12 | 11 | 4 / 0 / 1 |
 | App A | Nuclear Medicine: Understanding the Principles and Recognizing the Basics | e1–e20 (420–439) | 9 | 0 | 0 | 0 | 0 / 0 / 9 |
 | App B | The ABCs of Heart Disease | e21–e34 (440–453) | 7 | 2 | 6 | 0 | 3 / 1 / 1 |
 | App C | Radiation Dose and Safety | e35–e38 (454–457) | 3 | 0 | 0 | 0 | 0 / 0 / 3 |
@@ -44,7 +44,7 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 | App G | Artificial Intelligence and Radiology | e101–e110 (520–529) | 3 | 0 | 0 | 0 | 1 / 2 / 0 |
 | App H | What to Order When | e111–e112 (530–531) | 2 | 0 | 0 | 0 | 0 / 0 / 2 |
 
-**Totals:** 274 objectives; 58 have at least one real-scan task (21%).
+**Totals:** 274 objectives; 64 have at least one real-scan task (23%).
 
 ## Objectives with real-scan practice
 
@@ -122,6 +122,10 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 - **ch17-o08** (p. 191 / PDF 211, Fig 17.20): Focal liver lesions: metastases, hepatocellular carcinoma, hemangioma and cysts. — 5 task(s) on 3 patient(s)
 - **ch17-o10** (p. 196 / PDF 216, Fig 17.31): Renal cysts, renal cell carcinoma and bladder tumours. — 6 task(s) on 3 patient(s)
 
+### Chapter 18 — Ultrasonography: Understanding the Principles and Its Uses in Abdominal and Pelvic Imaging
+
+- **ch18-o01** (p. 202 / PDF 222, Fig 18.1): Echogenicity terms in practice: anechoic, hypoechoic, hyperechoic, shadowing and enhancement. — 24 task(s) on 9 patient(s)
+
 ### Chapter 20 — Magnetic Resonance Imaging: Understanding the Principles and Recognizing the Basics
 
 - **ch20-o01** (p. 239 / PDF 259, Fig 20.3): T1-weighted versus T2-weighted images. — 4 task(s) on 3 patient(s)
@@ -130,13 +134,18 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 - **ch20-o04** (p. 242 / PDF 262, Table 20.1): Substances that are bright on T1: blood products, melanin, fat and gadolinium. — 2 task(s) on 2 patient(s)
 - **ch20-o05** (p. 243 / PDF 263, Fig 20.11): Gadolinium enhancement. — 1 task(s) on 1 patient(s)
 
+### Chapter 21 — Recognizing Nontraumatic Abnormalities of the Appendicular Skeleton and Arthritis
+
+- **ch21-o07** (p. 260 / PDF 280, Fig 21.26): The three arthritis groups: hypertrophic, erosive and infectious. — 3 task(s) on 3 patient(s)
+- **ch21-o08** (p. 260 / PDF 280, Fig 21.27): Osteoarthritis, including erosive osteoarthritis of the hands. — 3 task(s) on 3 patient(s)
+
 ### Chapter 22 — Recognizing Nontraumatic Abnormalities of the Spine
 
 - **ch22-o01** (p. 270 / PDF 290, Fig 22.1): Normal spine anatomy on radiographs and CT, including the oblique 'Scottie dog'. — 9 task(s) on 3 patient(s)
 
 ### Chapter 23 — Recognizing Trauma to the Bony Skeleton
 
-- **ch23-o01** (p. 283 / PDF 303, Fig 23.1): Acute fractures and their mimics: greenstick and torus fractures, nutrient canals and growth plates. — 5 task(s) on 5 patient(s)
+- **ch23-o01** (p. 283 / PDF 303, Fig 23.1): Acute fractures and their mimics: greenstick and torus fractures, nutrient canals and growth plates. — 13 task(s) on 9 patient(s)
 - **ch23-o03** (p. 287 / PDF 307, Fig 23.7): Fracture description: fragments, line direction, displacement, angulation, rotation and open versus closed. — 5 task(s) on 5 patient(s)
 
 ### Chapter 24 — Recognizing the Imaging Findings of Trauma to the Chest
@@ -153,11 +162,14 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 ### Chapter 27 — Recognizing Pediatric Diseases
 
 - **ch27-o06** (p. 355 / PDF 375, Fig 27.18): The normal infant chest and thymus. — 2 task(s) on 2 patient(s)
+- **ch27-o07** (p. 356 / PDF 376, Fig 27.20): Growth plate injuries and slipped capital femoral epiphysis. — 4 task(s) on 2 patient(s)
 
 ### Chapter 29 — Recognizing the Findings in Breast Imaging
 
-- **ch29-o01** (p. 385 / PDF 405, Fig 29.6): Standard mammographic views and tomosynthesis. — 1 task(s) on 1 patient(s)
-- **ch29-o03** (p. 388 / PDF 408, Fig 29.10): Masses on mammography: shape, margin and density. — 1 task(s) on 1 patient(s)
+- **ch29-o01** (p. 385 / PDF 405, Fig 29.6): Standard mammographic views and tomosynthesis. — 6 task(s) on 6 patient(s)
+- **ch29-o03** (p. 388 / PDF 408, Fig 29.10): Masses on mammography: shape, margin and density. — 7 task(s) on 4 patient(s)
+- **ch29-o05** (p. 391 / PDF 411, Fig 29.16): Breast calcifications. — 2 task(s) on 2 patient(s)
+- **ch29-o06** (p. 391 / PDF 411, Fig 29.17): Breast ultrasound of cysts and solid masses. — 18 task(s) on 6 patient(s)
 
 ### Appendix B — The ABCs of Heart Disease
 

@@ -2,6 +2,7 @@
 
   python scripts/data/external.py nih      # NIH ChestX-ray14: images that carry a radiologist bounding box
   python scripts/data/external.py fumpe    # FUMPE: CT pulmonary angiograms with radiologist PE masks
+  python scripts/data/external.py breast-us | hc18 | cbis | grazpedwri | knee   # round 3: ultrasound, mammography, pediatric, knee
 
 Every download gets a JSON sidecar (source URL, licence, sha256, selection reason). Nothing here is
 written into the repository; build_external.py turns the raw files into packs.
@@ -277,8 +278,210 @@ def isles_fetch(cases: list[str]) -> None:
     (ISLES_DIR / "selection.json").write_text(json.dumps(chosen, indent=1), encoding="utf-8")
 
 
+
+# ------------------------------------------------------------------ Breast-Lesions-USG (TCIA, PNG + masks, CC BY 4.0)
+BREAST_DIR = RAW / "BrEaST"
+BREAST_ZIP = "https://www.cancerimagingarchive.net/wp-content/uploads/BrEaST-Lesions_USG-images_and_masks-Dec-15-2023.zip"
+BREAST_XLSX = "https://www.cancerimagingarchive.net/wp-content/uploads/BrEaST-Lesions-USG-clinical-data-Dec-15-2023.xlsx"
+# Chosen by eye with the radiologist's mask drawn (all verified by biopsy or follow-up per the source):
+# 7, 13 invasive carcinoma NST (irregular, spiculated/angular, shadowing, BI-RADS 5); 68, 25 fibroadenoma (oval, circumscribed);
+# 48, 237 simple cyst (anechoic, posterior enhancement in 48). Each case is a different patient (one scan per patient in BrEaST).
+BREAST_CASES = [7, 13, 68, 25, 48, 237]
+
+
+def breast_fetch() -> None:
+    import zipfile
+    import pandas as pd
+    BREAST_DIR.mkdir(parents=True, exist_ok=True)
+    for url, name in ((BREAST_ZIP, "images_and_masks.zip"), (BREAST_XLSX, "clinical.xlsx")):
+        p = BREAST_DIR / name
+        if not p.exists():
+            r = requests.get(url, timeout=600)
+            r.raise_for_status()
+            p.write_bytes(r.content)
+    d = pd.read_excel(BREAST_DIR / "clinical.xlsx")
+    z = zipfile.ZipFile(BREAST_DIR / "images_and_masks.zip")
+    out = BREAST_DIR / "images"
+    out.mkdir(exist_ok=True)
+    chosen = []
+    for cid in BREAST_CASES:
+        row = {k: (None if (isinstance(v, float) and v != v) else (v.item() if hasattr(v, "item") else v)) for k, v in d[d.CaseID == cid].iloc[0].to_dict().items()}
+        files = {}
+        for kind, fname in (("image", row["Image_filename"]), ("tumor", row["Mask_tumor_filename"])):
+            dst = out / fname
+            if not dst.exists():
+                dst.write_bytes(z.read(f"BrEaST-Lesions_USG-images_and_masks/{fname}"))  # CRC-32 checked by zipfile
+            files[kind] = {"file": str(dst.relative_to(RAW)), "sha256": sha256(dst)}
+        chosen.append({"case": cid, "row": row, "files": files})
+        print(cid, row["Diagnosis"], row["BIRADS"])
+    (BREAST_DIR / "selection.json").write_text(json.dumps({"zip": BREAST_ZIP, "zipSha256": sha256(BREAST_DIR / "images_and_masks.zip"),
+                                                            "xlsx": BREAST_XLSX, "cases": chosen}, indent=1, default=str), encoding="utf-8")
+
+
+# ------------------------------------------------------------------ HC18 fetal head circumference (Zenodo 1327317, CC BY 4.0)
+HC18_DIR = RAW / "HC18"
+HC18_ZIP = "https://zenodo.org/records/1327317/files/training_set.zip?download=1"
+HC18_CSV = "https://zenodo.org/records/1327317/files/training_set_pixel_size_and_HC.csv?download=1"
+# Three heads across gestation, chosen by eye with the sonographer's ellipse drawn (it follows the outer skull).
+HC18_IMAGES = ["113_HC.png", "365_HC.png", "687_HC.png"]
+
+
+def hc18_fetch() -> None:
+    HC18_DIR.mkdir(parents=True, exist_ok=True)
+    csv_path = HC18_DIR / "training_set_pixel_size_and_HC.csv"
+    if not csv_path.exists():
+        r = requests.get(HC18_CSV, timeout=120)
+        r.raise_for_status()
+        csv_path.write_bytes(r.content)
+    meta = {r["filename"]: r for r in csv.DictReader(open(csv_path, newline=""))}
+    zf = open_remote(HC18_ZIP)
+    out = HC18_DIR / "images"
+    out.mkdir(exist_ok=True)
+    chosen = []
+    for f in HC18_IMAGES:
+        files = {}
+        for kind, name in (("image", f), ("annotation", f.replace(".png", "_Annotation.png"))):
+            dst = out / name
+            if not dst.exists():
+                dst.write_bytes(zf.read(f"training_set/{name}"))  # CRC-32 checked by zipfile
+            files[kind] = {"file": str(dst.relative_to(RAW)), "sha256": sha256(dst)}
+        chosen.append({"image": f, "pixelSizeMm": float(meta[f]["pixel size(mm)"]), "hcMm": float(meta[f]["head circumference (mm)"]), "files": files})
+        print(f, meta[f]["pixel size(mm)"], meta[f]["head circumference (mm)"])
+    (HC18_DIR / "selection.json").write_text(json.dumps(chosen, indent=1), encoding="utf-8")
+
+
+# ------------------------------------------------------------------ CBIS-DDSM (TCIA NBIA, CC BY 3.0)
+CBIS_DIR = RAW / "CBIS-DDSM"
+CBIS_CSV = "https://www.cancerimagingarchive.net/wp-content/uploads/{}.csv"
+# (csv, patient, breast): both views (CC and MLO) of each breast, one abnormality per view, chosen from the description
+# CSVs for obvious, typical examples and then checked by eye with the ROI drawn. P_00021 has both breasts (a full 4-view set).
+CBIS_BREASTS = [
+    ("mass_case_description_train_set", "P_00021", "LEFT"), ("mass_case_description_train_set", "P_00021", "RIGHT"),
+    ("mass_case_description_train_set", "P_00039", "RIGHT"), ("mass_case_description_train_set", "P_00051", "LEFT"),
+    ("calc_case_description_train_set", "P_00307", "LEFT"), ("calc_case_description_train_set", "P_00425", "RIGHT"),
+]
+# Rejected after looking at the films: P_00063 (its CC film marker reads "R CC EXT", not a standard CC view), P_00480
+# (the LCC film marker is mirrored/reversed, so the image orientation cannot be trusted) and P_00674 (the outlined
+# calcification is a single small dot, too small to teach from at web resolution).
+
+
+def cbis_rows() -> list[dict]:
+    out = []
+    for csv_name, pid, side in CBIS_BREASTS:
+        rows = [r for r in csv.DictReader(open(CBIS_DIR / "_meta" / f"{csv_name}.csv", newline=""))
+                if r["patient_id"] == pid and r["left or right breast"] == side]
+        assert sorted(r["image view"] for r in rows) == ["CC", "MLO"], (pid, side, [r["image view"] for r in rows])
+        out += [{**r, "csv": csv_name} for r in rows]
+    return out
+
+
+def cbis_fetch() -> None:
+    import tcia
+    meta = CBIS_DIR / "_meta"
+    meta.mkdir(parents=True, exist_ok=True)
+    for name in ("mass_case_description_train_set", "calc_case_description_train_set"):
+        if not (meta / f"{name}.csv").exists():
+            r = requests.get(CBIS_CSV.format(name), timeout=120)
+            r.raise_for_status()
+            (meta / f"{name}.csv").write_bytes(r.content)
+    chosen = []
+    for r in cbis_rows():
+        full_pid, full_series = r["image file path"].split("/")[0], r["image file path"].split("/")[2]
+        roi_pid, roi_series = r["ROI mask file path"].split("/")[0], r["ROI mask file path"].strip().split("/")[2]
+        zf = tcia.download_series("CBIS-DDSM", full_pid, full_series)
+        zr = tcia.download_series("CBIS-DDSM", roi_pid, roi_series)
+        chosen.append({**r, "fullZip": str(zf.relative_to(RAW)), "roiZip": str(zr.relative_to(RAW))})
+        print(r["patient_id"], r["left or right breast"], r["image view"], r.get("pathology"))
+    (CBIS_DIR / "selection.json").write_text(json.dumps(chosen, indent=1), encoding="utf-8")
+
+
+# ------------------------------------------------------------------ GRAZPEDWRI-DX (figshare, CC BY 4.0)
+GRAZ_DIR = RAW / "GRAZPEDWRI-DX"
+GRAZ_ARTICLE = 14825193
+# Both views (frontal 1, lateral 2) of the first study of four children, chosen from dataset.csv (one fracture box, AO
+# PCCF 23r-E/2.1 = Salter-Harris II or 23r-M/2.1 = incomplete metaphyseal) and then checked by eye with the box drawn.
+GRAZ_STEMS = [
+    "3390_0758877097_01_WRI-L1_F013", "3390_0758877130_01_WRI-L2_F013", "3853_1028283544_01_WRI-L1_M014", "3853_1028283630_01_WRI-L2_M014",
+    "0030_0853281724_01_WRI-L1_F008", "0030_0853281744_01_WRI-L2_F008", "0071_0678614107_01_WRI-R1_F009", "0071_0678614151_01_WRI-R2_F009",
+]
+
+
+def graz_fetch() -> None:
+    meta = GRAZ_DIR / "_meta"
+    meta.mkdir(parents=True, exist_ok=True)
+    d, files = figshare_files(GRAZ_ARTICLE)
+    (meta / "article.json").write_text(json.dumps(d, indent=1), encoding="utf-8")
+    by_name = {f["name"]: f for f in files}
+    for name in ("dataset.csv", "folder_structure.zip"):  # folder_structure.zip holds the annotations
+        f = by_name[name]
+        if not (meta / name).exists() or (meta / name).stat().st_size != f["size"]:
+            r = requests.get(f["download_url"], timeout=600)
+            r.raise_for_status()
+            (meta / name).write_bytes(r.content)
+        assert hashlib.md5((meta / name).read_bytes()).hexdigest() == f["computed_md5"], name
+    idx_path = meta / "zip_index.json"  # image stem -> (images_partN.zip URL, member); central directories only
+    if not idx_path.exists():
+        idx = {}
+        for name in sorted(n for n in by_name if n.startswith("images_part")):
+            url = by_name[name]["download_url"]
+            for m in open_remote(url).namelist():
+                if m.endswith(".png"):
+                    idx[m.rsplit("/", 1)[-1][:-4]] = [url, m]
+        idx_path.write_text(json.dumps(idx), encoding="utf-8")
+    idx = json.loads(idx_path.read_text(encoding="utf-8"))
+    out = GRAZ_DIR / "images"
+    out.mkdir(exist_ok=True)
+    chosen = []
+    for stem in GRAZ_STEMS:
+        url, member = idx[stem]
+        dst = out / f"{stem}.png"
+        if not dst.exists():
+            dst.write_bytes(open_remote(url).read(member))  # CRC-32 checked by zipfile
+        chosen.append({"stem": stem, "file": str(dst.relative_to(RAW)), "sha256": sha256(dst), "zipUrl": url, "member": member})
+        print(stem, dst.stat().st_size)
+    (GRAZ_DIR / "selection.json").write_text(json.dumps(chosen, indent=1), encoding="utf-8")
+
+
+# ------------------------------------------------------------------ Digital Knee X-ray Images (Mendeley Data, CC BY 4.0)
+KNEE_DIR = RAW / "Knee-KL-Gornale"
+KNEE_API = "https://data.mendeley.com/public-api/datasets/t9ndx37v5h"
+
+
+def knee_fetch() -> None:
+    """Both experts' archives; match.json pairs the same image across them by pixel hash with each expert's grade folder."""
+    import numpy as np
+    from PIL import Image
+    KNEE_DIR.mkdir(parents=True, exist_ok=True)
+    d = requests.get(KNEE_API, timeout=60).json()
+    assert d["data_licence"]["short_name"] == "CC BY 4.0", d["data_licence"]
+    for f in d["files"]:
+        rar = KNEE_DIR / f["filename"]
+        if not rar.exists() or sha256(rar) != f["content_details"]["sha256_hash"]:
+            with requests.get(f["content_details"]["download_url"], stream=True, timeout=600) as r:
+                r.raise_for_status()
+                with open(rar, "wb") as fh:
+                    for chunk in r.iter_content(1 << 20):
+                        fh.write(chunk)
+        assert sha256(rar) == f["content_details"]["sha256_hash"], rar
+        if not (KNEE_DIR / rar.stem).exists():
+            subprocess.run([BSDTAR, "-xf", str(rar), "-C", str(KNEE_DIR)], check=True)
+    seen: dict[str, dict] = {}
+    for expert in ("I", "II"):
+        for p in sorted((KNEE_DIR / f"MedicalExpert-{expert}").glob("*/*.png")):
+            a = np.asarray(Image.open(p))
+            h = hashlib.sha256(a.tobytes() + str(a.shape).encode()).hexdigest()
+            e = seen.setdefault(h, {"shape": list(a.shape)})
+            e[expert], e[f"g{expert}"] = str(p.relative_to(KNEE_DIR)), p.parent.name
+    match = {h: e for h, e in seen.items() if "I" in e and "II" in e}
+    (KNEE_DIR / "match.json").write_text(json.dumps(match), encoding="utf-8")
+    print(len(match), "images in both archives;", sum(e["gI"] == e["gII"] for e in match.values()), "with the same grade")
+
+
 if __name__ == "__main__":
     what = sys.argv[1] if len(sys.argv) > 1 else ""
+    if what in ("breast-us", "hc18", "cbis", "grazpedwri", "knee"):
+        {"breast-us": breast_fetch, "hc18": hc18_fetch, "cbis": cbis_fetch, "grazpedwri": graz_fetch, "knee": knee_fetch}[what]()
+        raise SystemExit(0)
     if what == "isles":
         isles_fetch(sys.argv[2:])
         raise SystemExit(0)

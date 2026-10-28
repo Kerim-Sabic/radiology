@@ -6,22 +6,22 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 
 | | count |
 |---|---|
-| Distinct patients with usable cases | **93** |
-| Teaching cases | 93 |
-| Image-based tasks | **320** |
-| Studies | 113 |
-| Series (all packs) | 126 |
-| DICOM instances | 8177 |
-| Reference targets | 4798 |
+| Distinct patients with usable cases | **114** |
+| Teaching cases | 114 |
+| Image-based tasks | **363** |
+| Studies | 134 |
+| Series (all packs) | 158 |
+| DICOM instances | 8209 |
+| Reference targets | 4833 |
 
 ### Tasks by scoring basis
 
 | basis | tasks |
 |---|---|
-| auto-checked choice | 59 |
+| auto-checked choice | 84 |
 | self-review (checklist) | 120 |
 | spatial · AI draft by Horalix / dataset auto-label reference (self-review until user review) | 15 |
-| spatial · source manual reference | 126 |
+| spatial · source manual reference | 144 |
 
 ### Tasks by type
 
@@ -30,10 +30,10 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 | choose window | 7 |
 | compare appearances | 12 |
 | correlate modalities | 12 |
-| describe finding | 62 |
-| differential | 50 |
-| find structure | 87 |
-| locate finding | 50 |
+| describe finding | 74 |
+| differential | 63 |
+| find structure | 90 |
+| locate finding | 65 |
 | navigate level | 27 |
 | whole study | 13 |
 
@@ -43,7 +43,7 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 |---|---|
 | ai_draft | 4474 |
 | source_automated | 3 |
-| source_manual | 321 |
+| source_manual | 356 |
 
 ## Packs
 
@@ -65,6 +65,9 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 | stroke-mri | repo | yes | 2 | 4 | 290 | 1.6 MB | 2 | 4 |
 | ct-tumors | repo | yes | 7 | 8 | 583 | 107.9 MB | 7 | 14 |
 | book-practice | repo | yes | 0 | 0 | 0 | 0.1 MB | 0 | 24 |
+| us-cases | repo | yes | 9 | 9 | 9 | 1.6 MB | 9 | 24 |
+| mammo-cbis | repo | yes | 5 | 12 | 12 | 31.4 MB | 5 | 8 |
+| peds-msk | repo | yes | 7 | 11 | 11 | 7.5 MB | 7 | 11 |
 
 ## Patients and cases
 
@@ -163,6 +166,27 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 | `hcc-010` | CT abdomen, liver protocol · HCC-TACE-Seg 010 | `tcia:HCC-TACE-Seg:HCC_010` | CT | 2 |
 | `hcc-003` | CT abdomen, liver protocol · HCC-TACE-Seg 003 | `tcia:HCC-TACE-Seg:HCC_003` | CT | 2 |
 | `vs-seg-001` | MRI brain, posterior fossa · VS-SEG 001 | `tcia:Vestibular-Schwannoma-SEG:VS-SEG-001` | MR | 3 |
+| `us-breast-case007` | Breast ultrasound · Breast-Lesions-USG case 7 | `tcia:Breast-Lesions-USG:case007` | US | 3 |
+| `us-breast-case013` | Breast ultrasound · Breast-Lesions-USG case 13 | `tcia:Breast-Lesions-USG:case013` | US | 3 |
+| `us-breast-case068` | Breast ultrasound · Breast-Lesions-USG case 68 | `tcia:Breast-Lesions-USG:case068` | US | 3 |
+| `us-breast-case025` | Breast ultrasound · Breast-Lesions-USG case 25 | `tcia:Breast-Lesions-USG:case025` | US | 3 |
+| `us-breast-case048` | Breast ultrasound · Breast-Lesions-USG case 48 | `tcia:Breast-Lesions-USG:case048` | US | 3 |
+| `us-breast-case237` | Breast ultrasound · Breast-Lesions-USG case 237 | `tcia:Breast-Lesions-USG:case237` | US | 3 |
+| `us-fetal-head-113` | Obstetric ultrasound · HC18 image 113 | `zenodo:HC18:113_HC` | US | 2 |
+| `us-fetal-head-365` | Obstetric ultrasound · HC18 image 365 | `zenodo:HC18:365_HC` | US | 2 |
+| `us-fetal-head-687` | Obstetric ultrasound · HC18 image 687 | `zenodo:HC18:687_HC` | US | 2 |
+| `mg-cbis-p00021` | Mammogram, both breasts, CC and MLO · CBIS-DDSM P_00021 | `tcia:CBIS-DDSM:P_00021` | MG | 2 |
+| `mg-cbis-p00039` | Mammogram, right breast, CC and MLO · CBIS-DDSM P_00039 | `tcia:CBIS-DDSM:P_00039` | MG | 2 |
+| `mg-cbis-p00051` | Mammogram, left breast, CC and MLO · CBIS-DDSM P_00051 | `tcia:CBIS-DDSM:P_00051` | MG | 2 |
+| `mg-cbis-p00307` | Mammogram, left breast, CC and MLO · CBIS-DDSM P_00307 | `tcia:CBIS-DDSM:P_00307` | MG | 1 |
+| `mg-cbis-p00425` | Mammogram, right breast, CC and MLO · CBIS-DDSM P_00425 | `tcia:CBIS-DDSM:P_00425` | MG | 1 |
+| `peds-wrist-3390` | Wrist radiographs, child · GRAZPEDWRI-DX 3390 | `figshare:GRAZPEDWRI-DX:3390` | DX | 2 |
+| `peds-wrist-3853` | Wrist radiographs, child · GRAZPEDWRI-DX 3853 | `figshare:GRAZPEDWRI-DX:3853` | DX | 2 |
+| `peds-wrist-0030` | Wrist radiographs, child · GRAZPEDWRI-DX 0030 | `figshare:GRAZPEDWRI-DX:30` | DX | 2 |
+| `peds-wrist-0071` | Wrist radiographs, child · GRAZPEDWRI-DX 0071 | `figshare:GRAZPEDWRI-DX:71` | DX | 2 |
+| `knee-kl-196c5239` | Knee radiograph · Digital Knee X-ray 196c5239 | `mendeley:Digital-Knee-X-ray:196c52391d8a` | DX | 1 |
+| `knee-kl-0b79036f` | Knee radiograph · Digital Knee X-ray 0b79036f | `mendeley:Digital-Knee-X-ray:0b79036fc768` | DX | 1 |
+| `knee-kl-bbbd048a` | Knee radiograph · Digital Knee X-ray bbbd048a | `mendeley:Digital-Knee-X-ray:bbbd048a1720` | DX | 1 |
 
 ## Same-patient multimodality comparisons
 
@@ -193,7 +217,7 @@ Only series from one source subject are combined; links are `independent` unless
 
 ## Transfer syntaxes present
 
-- `1.2.840.10008.1.2.4.80`: 111 series
+- `1.2.840.10008.1.2.4.80`: 143 series
 - `1.2.840.10008.1.2`: 5 series
 - `1.2.840.10008.1.2.4.90`: 3 series
 - `1.2.840.10008.1.2.5`: 1 series

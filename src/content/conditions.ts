@@ -858,6 +858,24 @@ export const CONDITIONS: Condition[] = [
     book: [{ physical: 200, chapterId: 'ch17', heading: 'Hiatal Hernia and Gastroesophageal Reflux (GERD)' }],
     related: [],
   },
+  {
+    id: 'pregnancy_ultrasound',
+    name: 'Pregnancy ultrasound',
+    synonyms: ['obstetric ultrasound', 'fetal ultrasound', 'prenatal ultrasound', 'fetal head', 'head circumference', 'fetal biometry'],
+    region: 'abdomen',
+    modalities: ['US'],
+    signs: [
+      'Early pregnancy: ultrasound looks for a gestational sac and then a yolk sac inside the uterus.',
+      'Later, fetal growth is followed with standard measurements on standard planes, such as the head circumference on an axial plane through the thalami.',
+      'Bone reflects most of the sound, so the fetal skull is a bright oval; measurements are true distances only on images that carry their pixel size.',
+    ],
+    book: [
+      { physical: 237, chapterId: 'ch18', heading: 'Pregnancy' },
+      { physical: 238, chapterId: 'ch18', heading: 'Fetal Abnormalities', note: 'Ultrasound to follow fetal growth and development' },
+    ],
+    related: [],
+    evidence: [{ kind: 'finding', classIds: ['anatomy:fetal_head'], note: "Fetal head with the sonographer's head-circumference ellipse (HC18)" }],
+  },
   // ------------------------------------------------------------------ bones, joints, spine
   {
     id: 'fracture',
@@ -875,8 +893,15 @@ export const CONDITIONS: Condition[] = [
       { physical: 305, chapterId: 'ch23', heading: 'Describing Fractures' },
       { physical: 314, chapterId: 'ch23', heading: 'Indirect Signs of a Possible Fracture' },
     ],
-    related: ['rib_fracture', 'compression_fracture', 'skull_fracture'],
-    evidence: [{ kind: 'finding', classIds: ['finding:fracture'], note: 'Fracture outlined by experts on the radiograph (FracAtlas)' }],
+    related: ['rib_fracture', 'compression_fracture', 'skull_fracture', 'salter_harris_fracture', 'torus_greenstick_fracture'],
+    evidence: [
+      { kind: 'finding', classIds: ['finding:fracture'], note: 'Fracture outlined by experts on the radiograph (FracAtlas)' },
+      {
+        kind: 'finding',
+        classIds: ['finding:physeal_fracture', 'finding:incomplete_fracture'],
+        note: "Children's distal radius fractures boxed on both wrist views; the type comes from the dataset's fracture code (GRAZPEDWRI-DX)",
+      },
+    ],
   },
   {
     id: 'compression_fracture',
@@ -924,12 +949,23 @@ export const CONDITIONS: Condition[] = [
     synonyms: ['degenerative joint disease', 'djd', 'oa', 'degenerative arthritis'],
     region: 'msk',
     modalities: ['XR'],
-    signs: ['Uneven joint-space narrowing, subchondral sclerosis, osteophytes and subchondral cysts.'],
+    signs: [
+      'Uneven joint-space narrowing, subchondral sclerosis, osteophytes and subchondral cysts.',
+      'In the knee the medial compartment, which bears the most weight, usually narrows first.',
+      'Knee radiographs are often graded on the Kellgren-Lawrence scale (0–4); grade 2 or more, with definite osteophytes, is usually called osteoarthritis.',
+    ],
     book: [
       { physical: 279, chapterId: 'ch21', heading: 'Classification of Arthritis' },
       { physical: 280, chapterId: 'ch21', heading: 'Primary Osteoarthritis' },
     ],
     related: ['rheumatoid_arthritis'],
+    evidence: [
+      {
+        kind: 'reader_labels',
+        labels: /Kellgren-Lawrence grade [2-4]\b/,
+        note: 'Knee radiograph graded Kellgren-Lawrence 2 or higher by both medical experts (Digital Knee X-ray Images); the grade is for the whole image, nothing is outlined',
+      },
+    ],
   },
   {
     id: 'rheumatoid_arthritis',
@@ -1156,18 +1192,112 @@ export const CONDITIONS: Condition[] = [
   {
     id: 'breast_mass',
     name: 'Breast mass',
-    synonyms: ['breast cancer', 'breast lump', 'breast carcinoma', 'breast tumour', 'breast tumor', 'mammogram mass'],
+    synonyms: ['breast cancer', 'breast lump', 'breast carcinoma', 'breast tumour', 'breast tumor', 'mammogram mass', 'fibroadenoma', 'breast fibroadenoma'],
     region: 'breast',
     modalities: ['MG', 'US', 'MR'],
     signs: [
       'Describe its shape, margin and density; spiculated or irregular margins are suspicious.',
-      'Ultrasound tells a simple cyst from a solid mass.',
+      'A real mass is seen on two views (CC and MLO), at about the same distance from the nipple.',
+      'Ultrasound tells a simple cyst from a solid mass. A solid mass that is oval, circumscribed and parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, angular or spiculated hypoechoic mass with shadowing behind it is suspicious.',
+      'Imaging shows how suspicious a mass is; the biopsy gives the diagnosis.',
     ],
-    book: [{ physical: 408, chapterId: 'ch29', heading: 'Masses' }],
-    related: [],
-    evidence: [{ kind: 'finding', classIds: ['finding:breast_mass'], note: 'Mass outline from the CBIS-DDSM curation (exploratory; pathology not given here)' }],
+    book: [
+      { physical: 408, chapterId: 'ch29', heading: 'Masses' },
+      { physical: 411, chapterId: 'ch29', heading: 'Ultrasound', note: 'Breast ultrasound: cystic versus solid masses, and fibroadenomas' },
+    ],
+    related: ['breast_cyst', 'breast_calcifications'],
+    evidence: [
+      {
+        kind: 'finding',
+        classIds: ['finding:breast_mass'],
+        note: 'Mass outlined on mammograms (CBIS-DDSM; pathology in the label where the dataset gives it) or by a radiologist on breast ultrasound (Breast-Lesions-USG; biopsy-proven)',
+      },
+    ],
+  },
+  {
+    id: 'breast_cyst',
+    name: 'Breast cyst',
+    synonyms: ['simple breast cyst', 'simple cyst of the breast', 'breast cysts', 'cyst in the breast'],
+    region: 'breast',
+    modalities: ['US', 'MG'],
+    signs: [
+      'Ultrasound: anechoic (no internal echoes), circumscribed with a thin sharp back wall, and brighter tissue behind it (posterior acoustic enhancement).',
+      'A cyst that does not meet all of these criteria is not called simple; it may be aspirated or sampled.',
+      'On a mammogram a cyst is only a mass, often oval and circumscribed; ultrasound tells it from a solid mass.',
+    ],
+    book: [
+      { physical: 411, chapterId: 'ch29', heading: 'Ultrasound', note: 'The ultrasound criteria for a benign (simple) cyst' },
+      { physical: 413, chapterId: 'ch29', heading: 'Cyst Aspiration', note: 'Cysts that do not meet the strict criteria' },
+      { physical: 222, chapterId: 'ch18', heading: 'Echogenicity', note: 'Anechoic, and posterior acoustic enhancement' },
+    ],
+    related: ['breast_mass'],
+    evidence: [{ kind: 'finding', classIds: ['finding:breast_cyst'], note: 'Simple cyst outlined by a radiologist on breast ultrasound and confirmed on follow-up (Breast-Lesions-USG)' }],
+  },
+  {
+    id: 'breast_calcifications',
+    name: 'Breast calcifications',
+    synonyms: ['microcalcifications', 'breast microcalcifications', 'mammographic calcifications', 'calcifications in the breast', 'breast calcification'],
+    region: 'breast',
+    modalities: ['MG'],
+    signs: [
+      'Described by form: round, coarse, rod-like and vascular calcifications are typically benign; fine pleomorphic and fine linear ones are suspicious.',
+      'And by distribution: diffuse, regional, grouped (clustered), linear or segmental; a linear or segmental pattern follows a duct and is more worrying.',
+      'Magnified views show their form best; the outline of a group is not the outline of each particle.',
+    ],
+    book: [{ physical: 410, chapterId: 'ch29', heading: 'Calcifications' }],
+    related: ['breast_mass'],
+    evidence: [
+      {
+        kind: 'finding',
+        classIds: ['finding:breast_calcifications'],
+        note: 'Group of calcifications outlined as a region on both mammographic views (CBIS-DDSM); pathology (benign or malignant) is in the label',
+      },
+    ],
   },
   // ------------------------------------------------------------------ children
+  {
+    id: 'salter_harris_fracture',
+    name: 'Salter-Harris fracture',
+    synonyms: ['growth plate fracture', 'physeal fracture', 'growth plate injury', 'epiphyseal plate fracture', 'salter harris'],
+    region: 'pediatric',
+    modalities: ['XR'],
+    signs: [
+      "A fracture through a child's growth plate (physis), which gives way before the ligaments do.",
+      'Type II, the commonest, runs along the plate and out through the metaphysis, leaving a corner fragment of metaphysis.',
+      'Type I may only widen or slip the plate; a view of the other side helps.',
+      'Types I and II usually heal well; types III to V reach the joint or crush the plate and risk early fusion and growth disturbance.',
+    ],
+    book: [
+      { physical: 375, chapterId: 'ch27', heading: 'Salter-Harris Fractures-Growth Plate Fractures' },
+      { physical: 309, chapterId: 'ch23', heading: 'Salter-Harris Fractures: Growth Plate Fractures in Children', note: 'Points to the pediatric chapter' },
+    ],
+    related: ['fracture', 'torus_greenstick_fracture'],
+    evidence: [
+      { kind: 'finding', classIds: ['finding:physeal_fracture'], note: "Salter-Harris II fractures of the distal radius boxed on both wrist views; the type comes from the dataset's fracture code (GRAZPEDWRI-DX)" },
+    ],
+  },
+  {
+    id: 'torus_greenstick_fracture',
+    name: 'Torus or greenstick fracture',
+    synonyms: ['torus fracture', 'buckle fracture', 'greenstick fracture', 'incomplete fracture'],
+    region: 'pediatric',
+    modalities: ['XR'],
+    signs: [
+      "Incomplete fractures of children's softer bones: the cortex buckles or breaks on one side only.",
+      'Torus (buckle): a small bulge or kink of the cortex where the bone was compressed, typically in the distal radial metaphysis.',
+      'Greenstick: one cortex breaks while the other bends.',
+      'Read both views; the bulge may show on only one of them.',
+    ],
+    book: [{ physical: 303, chapterId: 'ch23', heading: 'Recognizing an Acute Fracture', note: 'Greenstick and torus (buckle) fractures as incomplete fractures in children' }],
+    related: ['fracture', 'salter_harris_fracture'],
+    evidence: [
+      {
+        kind: 'finding',
+        classIds: ['finding:incomplete_fracture'],
+        note: "Incomplete distal radius fractures boxed on both wrist views; the dataset's code covers torus (buckle) and greenstick together (GRAZPEDWRI-DX)",
+      },
+    ],
+  },
   {
     id: 'intussusception',
     name: 'Intussusception',

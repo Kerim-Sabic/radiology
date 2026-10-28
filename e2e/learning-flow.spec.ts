@@ -548,6 +548,30 @@ test.describe('E. study tools', () => {
     expect(mode).toBe('Active');
   });
 
+  test('mammography: CC above MLO, right breast on the left, chest walls back to back (book ch. 29)', async ({ page }) => {
+    await page.goto('/read/mg-cbis-p00021?mode=learn');
+    await waitPanel(page);
+    await chooseLayout(page, 'Mammography: CC and MLO, back to back');
+    for (const p of ['p0', 'p1', 'p2', 'p3']) await waitPanel(page, p);
+    const tags = await page.evaluate(() => ['p0', 'p1', 'p2', 'p3'].map((id) => document.querySelector(`[data-panel="${id}"] .vp-corner.tl .vp-tag`)?.textContent?.trim()));
+    expect(tags).toEqual(['Right CC', 'Left CC', 'Right MLO', 'Left MLO']);
+    // The chest wall (posterior) faces the middle: right edge for the right breast, left edge for the left breast.
+    await expect
+      .poll(async () => page.evaluate(() => ['p0', 'p1', 'p2', 'p3'].map((id) => { const e = (window as any).__rvm.panelState(id).edges; return [e?.left, e?.right]; })))
+      .toEqual([['A', 'P'], ['P', 'A'], ['A', 'P'], ['P', 'A']]);
+  });
+
+  test('ultrasound: echo level, not a calibrated value, and no invented orientation', async ({ page }) => {
+    await page.goto('/read/us-breast-case007?mode=learn');
+    await waitPanel(page);
+    await expect(page.locator('[data-panel="p0"]').getByText('Ultrasound: no patient orientation in the file')).toBeVisible();
+    const probe = await page.evaluate(() => {
+      const r = document.querySelector('[data-panel="p0"] .vp-el')!.getBoundingClientRect();
+      return (window as any).__rvm.probeValue('p0', [r.width / 2, r.height / 2]);
+    });
+    expect(probe.unit).toBe('echo level (not calibrated)');
+  });
+
   test('cine: Space plays the slices and stops them', async ({ page }) => {
     await page.goto(CT_TASK('heart', 'learn'));
     await waitPanel(page);

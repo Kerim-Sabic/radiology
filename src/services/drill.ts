@@ -128,6 +128,10 @@ const FINDING_NAMES: Record<string, string> = {
   'finding:gtv_mass': 'Soft-tissue tumor',
   'finding:breast_mass': 'Breast mass',
   'finding:fracture': 'Fracture',
+  'finding:physeal_fracture': 'Fracture through the growth plate (Salter-Harris)',
+  'finding:incomplete_fracture': 'Torus or greenstick fracture',
+  'finding:breast_cyst': 'Breast cyst',
+  'finding:breast_calcifications': 'Breast calcifications',
 };
 /** Plain name of a finding class ("finding:pleural_effusion" → "Pleural effusion"). */
 export function findingName(classId: string): string {
@@ -138,7 +142,10 @@ export function findingName(classId: string): string {
 }
 /** The condition (signs, book pages) a finding class belongs to, for the explanation after an answer. */
 export function conditionForFinding(classId: string): Condition | null {
-  return CONDITIONS.find((c) => c.evidence?.some((e) => e.kind === 'finding' && e.classIds.includes(classId))) ?? null;
+  // The most specific condition wins: one whose evidence names fewer finding classes.
+  const breadth = (c: Condition) => new Set(c.evidence?.flatMap((e) => (e.kind === 'finding' ? e.classIds : [])) ?? []).size;
+  const matches = CONDITIONS.filter((c) => c.evidence?.some((e) => e.kind === 'finding' && e.classIds.includes(classId)));
+  return matches.sort((a, b) => breadth(a) - breadth(b))[0] ?? null;
 }
 
 const DAY = 86400e3;
