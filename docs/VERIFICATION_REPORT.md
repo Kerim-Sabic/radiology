@@ -87,9 +87,9 @@ Coronal renders of the airway labels were inspected on 6 CTs: adults, a child, c
 | check | result |
 |---|---|
 | `npm run typecheck` (app and tests) | pass |
-| `npm test` — unit tests (see below) | **230 / 230 pass** |
+| `npm test` — unit tests (see below) | **235 / 235 pass** |
 | `npm run build` | pass (shell 529 KB JS; the 4.3 MB imaging engine and the PDF reader are lazy-loaded; the book PDF is never in a build) |
-| Playwright e2e on the production build (`vite preview`), Chromium + Firefox, as a signed-in member (account API mocked; the gate itself has its own tests) | **61 pass, 0 fail**; 5 skipped: the speed measurement runs in Chromium only, and the 4 book-reader tests need the owner's PDF, which no build contains (they pass 4/4 with it copied into `dist/book`) |
+| Playwright e2e on the production build (`vite preview`), Chromium + Firefox, as a signed-in member (account API mocked; the gate itself has its own tests) | **65 pass, 0 fail**; 5 skipped: the speed measurement runs in Chromium only, and the 4 book-reader tests need the owner's PDF, which no build contains (they pass 4/4 with it copied into `dist/book`) |
 | Anatomy pack contract check (zod) and DICOM re-read | 3,650 / 3,650 targets pass |
 
 On the first full run one Firefox test failed. The test's click helper looked for the viewer element while it was being re-mounted, and threw instead of retrying. The helper now waits for the element. That test then passed 5 of 5 times on its own, and the whole suite passed again.
