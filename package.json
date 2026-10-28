@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Personal radiology learning workstation: real DICOM practice, spatial feedback, same-patient comparison and Learning Radiology (5th ed.) curriculum anchors.",
   "engines": {
-    "node": ">=24.15.0"
+    "node": "24.x"
   },
   "scripts": {
     "dev": "vite",

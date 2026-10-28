@@ -20,7 +20,8 @@
     "allowImportingTsExtensions": false,
     "useDefineForClassFields": true,
     "types": [
-      "vite/client"
+      "vite/client",
+      "node"
     ],
     "noEmit": true
   },
