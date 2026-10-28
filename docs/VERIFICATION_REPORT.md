@@ -87,9 +87,9 @@ Coronal renders of the airway labels were inspected on 6 CTs: adults, a child, c
 | check | result |
 |---|---|
 | `npm run typecheck` (app and tests) | pass |
-| `npm test` — unit tests (see below) | **142 / 142 pass** |
+| `npm test` — unit tests (see below) | **169 / 169 pass** |
 | `npm run build` | pass (shell 529 KB JS; the 4.3 MB imaging engine and the PDF reader are lazy-loaded; the book PDF is left out unless `KEEP_BOOK_IN_BUILD=1`) |
-| Playwright e2e on the production build (`vite preview`), Chromium + Firefox | **51 pass, 0 fail, 0 flaky**; 1 skipped (the speed measurement runs in Chromium only) |
+| Playwright e2e on the production build (`vite preview`), Chromium + Firefox | **55 pass, 0 fail, 0 flaky**; 1 skipped (the speed measurement runs in Chromium only) |
 | Anatomy pack contract check (zod) and DICOM re-read | 3,650 / 3,650 targets pass |
 
 On the first full run one Firefox test failed. The test's click helper looked for the viewer element while it was being re-mounted, and threw instead of retrying. The helper now waits for the element. That test then passed 5 of 5 times on its own, and the whole suite passed again.
@@ -104,6 +104,8 @@ The unit tests cover:
 - **Notes and patterns:** every installed structure has a note; every coach step matches installed labels.
 - **The installed atlas itself:** the trachea is one tube on every slice, and no pulmonary artery lies inside a machine-drawn heart.
 - **Validation:** every installed pack, lesson and book anchor is validated.
+- **3D models:** grouping and teaching colours; outline → voxel mask with holes left open and outlines clipped to the grid; the smoothing margin that keeps every surface closed; picking the first structure along the ray, the smallest where structures overlap, and looking through what the cut removed.
+- **Condition search:** synonyms, British spellings, abbreviations and small typos match; "thorax" never matches "hemothorax"; results built from the installed packs.
 
 The e2e suite covers:
 - **Loading:** real CT/MR/CR in JPEG-LS, JPEG 2000 and Implicit VR; the MONOCHROME1 radiograph; head-to-feet order with hash-named files.
@@ -116,6 +118,8 @@ The e2e suite covers:
   - a drill answered correctly, with its note;
   - the coach's *Great vessels* step;
   - comparison with another patient, level-matched, with the second panel following the first.
+- **Linked views and planes:** a double-click in the axial view puts the point on the coronal and sagittal planes (< 0.5 mm); the crosshair lines are on without choosing a tool; a 10 mm MIP slab; a 15° tilt shown as oblique on both other planes; straighten.
+- **3D:** "take off the front half" adds one cut plane keeping the back; heart and great vessels isolated with the CT hidden; hover names only structures that are shown; the 3D quiz answered correctly.
 
 ## 3a. Audit of 28 October and what it fixed
 
@@ -159,6 +163,31 @@ Two independent reviews ran on 28 October: one checked every outline anatomicall
 - Density inside all 3,473 CT outlines in range for their name.
 - Every label matching its structure, with 0 British spellings.
 - 21 of 21 radiographs with heart, lungs and clavicles in place.
+
+## 3b. Update of 28 October (afternoon): linked views, planes, 3D, conditions, new name
+
+**Added and checked in the browser on a contrast chest CT (COVID-19-AR, 105 slices):**
+- **Linked views.** Scrolling one view moves the parallel views of the same patient, both ways and during fast scrolling. Coloured reference lines show where each view cuts the others; in MPR the crosshair lines are always on. A double-click shows a point in every view: the coronal and sagittal planes moved through the clicked point and an axial stack jumped to the matching slice. Views of different patients are never linked; they keep the separate level matching.
+- **Planes.** Slab MIP / MinIP / average from 1 to 60 mm, labelled in each view. Tilting from the axial view turned the coronal and sagittal planes by the set angle around the crosshair centre; the views show "oblique N°" and the side letters follow the tilt. *Straighten all planes* restores them.
+- **3D.**
+  - Opens facing the patient (front view) instead of looking along the scanner axis.
+  - Rendering presets and six standard views.
+  - **Cut:** a box with two planes per axis, or a cut at the slice being read that follows that view, including a tilted plane. It is put back after every rotation, because the 3D viewport otherwise turns the first two clipping planes into a thin slab.
+- **3D structure models.** Built on demand from the outlines: mask on the volume grid, binomial blur, marching cubes, smoothing.
+  - Building the 28 heart and great-vessel models took 4.4 s.
+  - Picking under the cursor takes 2–3 ms.
+  - From the front, the centre of the heart picks the right ventricle, the most anterior chamber, as it should.
+  - Colours follow the atlas convention: systemic arteries red, systemic veins blue, pulmonary arteries blue-violet, pulmonary veins rose, right heart blue, left heart red.
+  - The models follow the reference rules: Learn mode, Review, or after submitting.
+  - 3D quiz answers count towards the structure's drill box.
+- **Conditions search.** It lists every installed case showing a condition, with the images it is on and a link that opens the viewer at the finding: a lung nodule link opened image 61 of 119, inside the outlined 60–62. It also gives the book pages and signs. It says plainly when no installed case shows a condition: pneumothorax and hemothorax currently have none.
+- **Name and look.** radiology.monster logo, favicon, app icons, sharing image, colours and self-hosted fonts. Stored progress keys are unchanged, so nobody loses progress.
+- **Layout.** The six layout buttons are one *Layout* menu. The toolbar wraps on wide screens instead of hiding buttons off the edge. On a phone, MPR + 3D shows the axial and 3D views, with no sideways scroll.
+
+**Limits of this update:**
+- The 3D models come from AI draft outlines that no radiologist has checked. With 3 mm slices or thicker they look stepped.
+- The cut uses at most two planes per axis: the WebGL volume renderer takes six.
+- 3D needs WebGL, and was checked in Chromium and Firefox only.
 
 ## 4. Measured performance (`docs/perf/measurements.json`)
 

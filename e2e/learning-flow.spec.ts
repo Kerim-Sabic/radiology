@@ -10,6 +10,12 @@ async function waitPanel(page: Page, panel = 'p0') {
   await page.waitForFunction((p) => (window as any).__rvm?.panelState(p)?.ready === true, panel, { timeout: 60_000 });
 }
 
+/** Pick a layout from the toolbar's Layout menu. */
+async function chooseLayout(page: Page, name: string) {
+  await page.getByRole('button', { name: 'Layout' }).click();
+  await page.getByRole('menuitem', { name }).click();
+}
+
 /** Go to a display slice and wait until it is the rendered image. */
 async function goSlice(page: Page, idx: number, panel = 'p0') {
   await page.evaluate(({ idx, panel }) => (window as any).__rvm.setIndex(panel, idx), { idx, panel });
@@ -241,7 +247,7 @@ test.describe('C. multimodality', () => {
   test('MPR builds axial/coronal/sagittal from one volume with correct side letters', async ({ page }) => {
     await page.goto(CT_TASK('heart'));
     await waitPanel(page);
-    await page.getByRole('button', { name: 'MPR: axial / coronal / sagittal' }).click();
+    await chooseLayout(page, 'MPR: axial / coronal / sagittal');
     for (const p of ['p0', 'p1', 'p2']) await waitPanel(page, p);
     const edges = await page.evaluate(() => ['p0', 'p1', 'p2'].map((p) => (window as any).__rvm.panelState(p).edges));
     expect(edges[0]).toEqual({ left: 'R', right: 'L', top: 'A', bottom: 'P' });
@@ -251,10 +257,89 @@ test.describe('C. multimodality', () => {
     expect(volumes).toBeLessThanOrEqual(1);
   });
 
+  test('linked MPR: double-click shows the point in every plane, planes tilt to any angle, slab thickens', async ({ page }) => {
+    await page.goto(CT_TASK('heart'));
+    await waitPanel(page);
+    await chooseLayout(page, 'MPR: axial / coronal / sagittal');
+    for (const p of ['p0', 'p1', 'p2']) await waitPanel(page, p);
+    const off = await page.evaluate(() => {
+      const e = (window as any).__rvm;
+      const el = document.querySelector('[data-panel="p0"] .vp-el')!;
+      const b = el.getBoundingClientRect();
+      const c = [b.width * 0.35, b.height * 0.4];
+      const w = e.canvasToWorld('p0', c);
+      el.dispatchEvent(new MouseEvent('dblclick', { bubbles: true, clientX: b.left + c[0], clientY: b.top + c[1] }));
+      // Distance of the clicked point from the coronal and sagittal planes after the jump.
+      return ['p1', 'p2'].map((id) => {
+        const k = e.viewport(id).getCamera();
+        const n = k.viewPlaneNormal;
+        return Math.abs((w[0] - k.focalPoint[0]) * n[0] + (w[1] - k.focalPoint[1]) * n[1] + (w[2] - k.focalPoint[2]) * n[2]);
+      });
+    });
+    for (const d of off) expect(d).toBeLessThan(0.5);
+    // Linked: the crosshair lines are on in every plane without picking a tool.
+    expect(await page.evaluate(() => (window as any).__cs.cst.ToolGroupManager.getToolGroup('tg-mpr').getToolOptions('Crosshairs').mode)).toBe('Passive');
+
+    await page.getByRole('button', { name: 'Slab and angle of the MPR planes' }).click();
+    await page.getByRole('button', { name: 'MIP', exact: true }).click();
+    await expect(page.locator('[data-panel="p1"]').getByText('MIP 10 mm slab')).toBeVisible();
+    await page.getByRole('button', { name: '+15°' }).click(); // tilts the planes around the axial axis (p0 is selected)
+    await expect(page.locator('[data-panel="p1"]').getByText('oblique 15°')).toBeVisible();
+    await expect(page.locator('[data-panel="p2"]').getByText('oblique 15°')).toBeVisible();
+    await page.getByRole('button', { name: 'Straighten all planes' }).click();
+    await expect(page.locator('[data-panel="p1"]').getByText(/oblique/)).toHaveCount(0);
+    await page.getByRole('button', { name: 'Thin', exact: true }).click();
+    await expect(page.locator('[data-panel="p1"]').getByText(/mm slab/)).toHaveCount(0);
+  });
+
+  test('3D: cut away the front, isolate the heart and great vessels, name what is under the cursor, quiz', async ({ page }) => {
+    await page.goto(CT_TASK('heart', 'learn'));
+    await waitPanel(page);
+    test.skip(!(await page.evaluate(() => (window as any).__rvm.gpu)), 'no WebGL in this browser');
+    await chooseLayout(page, 'MPR + 3D');
+    for (const p of ['p0', 'p1', 'p2', 'p3']) await waitPanel(page, p);
+    const p3 = page.locator('[data-panel="p3"]');
+    await p3.getByRole('button', { name: 'Cut' }).click();
+    await p3.getByRole('button', { name: 'Take off the front half' }).click();
+    const planes = await page.evaluate(() =>
+      (window as any).__rvm.viewport('p3').getActors()[0].actor.getMapper().getClippingPlanes().map((p: any) => p.getNormal().map((v: number) => Math.round(v))),
+    );
+    expect(planes).toEqual([[0, 1, 0]]); // keeps the back half (+y is posterior)
+    await p3.getByRole('button', { name: 'No cut' }).click();
+    await p3.getByRole('button', { name: /^Structures/ }).click();
+    await p3.getByRole('button', { name: 'Heart & great vessels' }).click();
+    await page.waitForFunction(() => {
+      const s = (window as any).__rvm.anatomy3dState('p3');
+      return s && !s.building && s.structures.some((x: any) => x.shown && x.status === 'ready');
+    }, null, { timeout: 60_000 });
+    const r = await page.evaluate(() => {
+      const e = (window as any).__rvm;
+      const st = e.anatomy3dState('p3');
+      const el = document.querySelector('[data-panel="p3"] .vp-el')!.getBoundingClientRect();
+      const hits = new Set<string>();
+      for (let x = 0.2; x <= 0.8; x += 0.1) for (let y = 0.2; y <= 0.8; y += 0.1) {
+        const id = e.anatomy3d('p3').pick([el.width * x, el.height * y]);
+        if (id) hits.add(st.structures.find((s: any) => s.id === id)?.group);
+      }
+      return { volume: st.showVolume, groups: [...hits], shownGroups: [...new Set(st.structures.filter((s: any) => s.shown).map((s: any) => s.group))] };
+    });
+    expect(r.volume).toBe(false); // isolated: the CT around them is hidden
+    expect(r.groups.length).toBeGreaterThan(0);
+    for (const g of r.groups) expect(r.shownGroups).toContain(g); // only shown structures are ever named
+    await p3.getByRole('button', { name: 'Quiz me' }).click();
+    const lit = await page.evaluate(() => {
+      const s = (window as any).__rvm.anatomy3dState('p3');
+      return s.structures.find((x: any) => x.id === s.highlight)?.label.replace(/\s*\(partially imaged\)$/i, '');
+    });
+    await p3.getByRole('button', { name: lit, exact: true }).click();
+    await expect(p3.getByText('✓ Correct.')).toBeVisible();
+    await p3.getByRole('button', { name: 'Stop' }).click();
+  });
+
   test('same-patient radiograph beside the CT scout: scout is labelled, link is independent', async ({ page }) => {
     await page.goto('/read/starter-cxr-01?task=starter-cxr-01%3Ascout-vs-cxr&mode=practice');
     await waitPanel(page);
-    await page.getByRole('button', { name: 'Two-up comparison (same patient)' }).click();
+    await chooseLayout(page, 'Two-up comparison (same patient)');
     await waitPanel(page, 'p1');
     await expect(page.getByText('CT scout / localizer — not a diagnostic radiograph')).toBeVisible();
     await expect(page.getByText(/Same patient · separate acquisition \(1 days apart\)/)).toBeVisible();

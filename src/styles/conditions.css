@@ -1,0 +1,83 @@
+/* Condition look-up page. */
+.cond-search {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.cond-search input[type='search'] {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  padding: 9px 12px;
+  border-radius: var(--radius);
+}
+.cond-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+}
+.cond-head h2 {
+  font-size: 20px;
+}
+.cond-hit {
+  display: grid;
+  grid-template-columns: 72px 1fr;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+.cond-thumb {
+  width: 72px;
+  height: 72px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: #000 center/cover no-repeat;
+}
+.cond-hit ul,
+.cond-book,
+.cond-signs {
+  margin: 0;
+  padding-left: 18px;
+}
+.cond-hit li,
+.cond-book li,
+.cond-signs li {
+  margin: 2px 0;
+}
+.cond-book li {
+  list-style: none;
+  margin-left: -18px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--line);
+}
+.cond-book li:last-child {
+  border-bottom: 0;
+}
+.cond-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+.cond-region h3 {
+  margin-bottom: 6px;
+}
+@media (max-width: 860px) {
+  .cond-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .cond-hit {
+    grid-template-columns: 56px 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+  .cond-thumb {
+    width: 56px;
+    height: 56px;
+  }
+}

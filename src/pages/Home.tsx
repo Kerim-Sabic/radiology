@@ -30,6 +30,7 @@ export function HomePage() {
     <div className="page-inner stack" style={{ gap: 20 }}>
       <section className="hero">
         <div className="stack" style={{ gap: 8, maxWidth: 560 }}>
+          <span style={{ color: 'var(--accent)', fontSize: 11.5, fontWeight: 600, letterSpacing: '0.18em', textTransform: 'uppercase' }}>Real cases. Deeper understanding.</span>
           <h1>Read real studies. Mark what you see. Get spatial feedback.</h1>
           <p className="muted">
             Practice on genuine CT, MRI and radiographs from different patients. Every scored answer is checked against a source reference on the exact slice — and linked back to the

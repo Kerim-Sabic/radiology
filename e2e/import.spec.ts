@@ -47,6 +47,7 @@ test('a series with a missing slice is refused for MPR (no silent distortion)', 
   await importAndOpen(page, shuffledPayload(9));
   const eligible = await page.evaluate(() => (window as any).__rvm.panel('p0').source.volumeEligible);
   expect(eligible).toBe(false);
-  await page.getByRole('button', { name: 'MPR: axial / coronal / sagittal' }).click();
+  await page.getByRole('button', { name: 'Layout' }).click();
+  await page.getByRole('menuitem', { name: 'MPR: axial / coronal / sagittal' }).click();
   await expect(page.getByText(/MPR unavailable: .*(missing slice|non-uniform)/)).toBeVisible();
 });

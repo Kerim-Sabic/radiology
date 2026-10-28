@@ -1,0 +1,1170 @@
+/**
+ * Conditions you can look up: name, synonyms, where they show, a few imaging signs in our own words,
+ * and where Learning Radiology (5th ed.) covers them. Every book anchor names a heading (or figure)
+ * that the book's section index places on that physical page — tests/conditions.test.ts checks this —
+ * and the text mentions were checked against the book itself. When the book has no section on a
+ * condition, the anchor says so in its note instead of pretending.
+ *
+ * `evidence` says how an installed case can show the condition. Only source data counts: an outline
+ * of the finding, study labels agreed by expert readers, or (weakest, said plainly) a patient taken
+ * from a collection of people with that condition where the lesion itself is not outlined.
+ */
+
+export type Region = 'chest' | 'heart_vessels' | 'abdomen' | 'msk' | 'neuro' | 'breast' | 'pediatric';
+export type Modality = 'XR' | 'CT' | 'MR' | 'US' | 'MG' | 'NM';
+
+export interface BookRef {
+  physical: number;
+  chapterId: string;
+  /** A heading the book's section index places on this page. */
+  heading?: string;
+  /** Or a figure the figure index places on this page. */
+  figureId?: string;
+  /** Why this page, in our words. */
+  note?: string;
+}
+
+export type Evidence =
+  /** The finding is outlined in the source data (reference targets with these classIds). */
+  | { kind: 'finding'; classIds: string[]; note?: string; /** Plain names for source labels, by classId. */ names?: Record<string, string> }
+  /** Study-level labels that every expert reader group agreed on (RICORD chest radiographs). */
+  | { kind: 'reader_labels'; labels: RegExp; note?: string }
+  /** The patient comes from a collection of people with the condition; the lesion is not outlined. */
+  | { kind: 'collection'; subject: RegExp; note: string };
+
+export interface Condition {
+  id: string;
+  name: string;
+  synonyms: string[];
+  region: Region;
+  modalities: Modality[];
+  signs: string[];
+  book: BookRef[];
+  related: string[];
+  evidence?: Evidence[];
+}
+
+export const REGION_LABEL: Record<Region, string> = {
+  chest: 'Chest',
+  heart_vessels: 'Heart & vessels',
+  abdomen: 'Abdomen & pelvis',
+  msk: 'Bones, joints & spine',
+  neuro: 'Brain & head',
+  breast: 'Breast',
+  pediatric: 'Children',
+};
+
+export const MODALITY_LABEL: Record<Modality, string> = { XR: 'X-ray', CT: 'CT', MR: 'MRI', US: 'Ultrasound', MG: 'Mammography', NM: 'Nuclear medicine' };
+
+const RICORD_OPACITIES = /Opacities/i;
+
+export const CONDITIONS: Condition[] = [
+  // ------------------------------------------------------------------ chest
+  {
+    id: 'hemothorax',
+    name: 'Hemothorax',
+    synonyms: ['haemothorax', 'blood in the pleural space', 'traumatic hemothorax', 'hemopneumothorax', 'haemopneumothorax', 'pleural blood'],
+    region: 'chest',
+    modalities: ['XR', 'CT', 'US'],
+    signs: [
+      'On a radiograph it looks like any other pleural effusion: a blunted costophrenic angle and a meniscus; a large one whitens the hemithorax.',
+      'On CT the fluid is denser than simple fluid (fresh blood is often around 35–70 HU) and may layer, densest at the bottom.',
+      'Search for the cause: rib fractures, a pneumothorax (an air-fluid level in the pleural space means hemopneumothorax), chest-wall or aortic injury.',
+      'The book defines it by the fluid: a pleural-fluid hematocrit more than half of the blood hematocrit.',
+    ],
+    book: [
+      { physical: 75, chapterId: 'ch07', heading: 'Types of Pleural Effusions', note: 'Hemothorax as a type of pleural effusion, with its definition' },
+      { physical: 60, chapterId: 'ch05', heading: 'Massive Pleural Effusion', note: 'Trauma as a cause of a large effusion (hemothorax)' },
+      { physical: 80, chapterId: 'ch07', heading: 'Loculated Effusions', note: 'Old hemothorax as a cause of loculated fluid' },
+      { physical: 82, chapterId: 'ch07', heading: 'Hydropneumothorax', note: 'Air and fluid together — an example of hemopneumothorax' },
+      { physical: 321, chapterId: 'ch24', heading: 'Chest Wall Trauma', note: 'Chest trauma; the chapter points to Chapter 7 for hemothorax' },
+      { physical: 144, chapterId: 'ch11', heading: 'Thoracic Aortic Dissection', note: 'A leaking aorta can also produce a hemothorax' },
+    ],
+    related: ['pleural_effusion', 'pneumothorax', 'rib_fracture', 'pulmonary_contusion', 'aortic_trauma'],
+  },
+  {
+    id: 'pneumothorax',
+    name: 'Pneumothorax',
+    synonyms: ['ptx', 'collapsed lung', 'air in the pleural space', 'simple pneumothorax', 'pneumothoraces', 'deep sulcus sign'],
+    region: 'chest',
+    modalities: ['XR', 'CT', 'US'],
+    signs: [
+      'A thin white visceral pleural line with no lung markings beyond it.',
+      'On a supine radiograph air collects anteriorly and inferiorly: a deep, lucent costophrenic sulcus (deep sulcus sign).',
+      'Pitfalls: skin folds and the edge of the scapula can mimic a pleural line — follow the line beyond the chest wall.',
+      'CT shows even small pneumothoraces.',
+    ],
+    book: [
+      { physical: 323, chapterId: 'ch24', heading: 'Pleural Abnormalities: Pneumothorax' },
+      { physical: 324, chapterId: 'ch24', heading: 'Imaging Modalities Used to Diagnose a Pneumothorax' },
+      { physical: 325, chapterId: 'ch24', heading: 'Pitfalls in Diagnosing a Pneumothorax' },
+      { physical: 327, chapterId: 'ch24', heading: 'Pneumothorax: CT of the Chest' },
+      { physical: 252, chapterId: 'ch19', heading: 'Pneumothorax', note: 'Point-of-care ultrasound' },
+    ],
+    related: ['tension_pneumothorax', 'hemothorax', 'pneumomediastinum', 'subcutaneous_emphysema', 'rib_fracture'],
+  },
+  {
+    id: 'tension_pneumothorax',
+    name: 'Tension pneumothorax',
+    synonyms: ['tension ptx'],
+    region: 'chest',
+    modalities: ['XR'],
+    signs: [
+      'The mediastinum is pushed away from the side of the pneumothorax.',
+      'The hemidiaphragm on that side is flattened or inverted.',
+      'It is a clinical emergency: treatment should not wait for imaging.',
+    ],
+    book: [{ physical: 323, chapterId: 'ch24', heading: 'Tension Pneumothorax' }],
+    related: ['pneumothorax'],
+  },
+  {
+    id: 'pleural_effusion',
+    name: 'Pleural effusion',
+    synonyms: ['effusion', 'fluid in the pleural space', 'hydrothorax', 'meniscus sign', 'subpulmonic effusion', 'loculated effusion', 'blunted costophrenic angle'],
+    region: 'chest',
+    modalities: ['XR', 'CT', 'US'],
+    signs: [
+      'About 75 mL blunts the posterior costophrenic sulcus on the lateral view; about 300 mL blunts the lateral angle on the frontal view.',
+      'Meniscus sign: the fluid climbs higher along the chest wall than in the middle.',
+      'A large effusion whitens the hemithorax and pushes the mediastinum away.',
+      'A subpulmonic effusion mimics a raised hemidiaphragm; loculated fluid does not move with position.',
+    ],
+    book: [
+      { physical: 74, chapterId: 'ch07', heading: 'Modalities for Detecting Pleural Effusions' },
+      { physical: 77, chapterId: 'ch07', heading: 'Blunting of the Costophrenic Angles' },
+      { physical: 78, chapterId: 'ch07', heading: 'The Meniscus Sign' },
+      { physical: 76, chapterId: 'ch07', heading: 'Subpulmonic Effusions' },
+      { physical: 80, chapterId: 'ch07', heading: 'Loculated Effusions' },
+      { physical: 252, chapterId: 'ch19', heading: 'Pleural Effusion', note: 'Ultrasound' },
+    ],
+    related: ['hemothorax', 'empyema', 'congestive_heart_failure', 'opacified_hemithorax', 'atelectasis'],
+  },
+  {
+    id: 'empyema',
+    name: 'Empyema',
+    synonyms: ['pleural empyema', 'pyothorax', 'infected pleural fluid', 'pus in the pleural space'],
+    region: 'chest',
+    modalities: ['CT', 'XR', 'US'],
+    signs: [
+      'An exudative pleural effusion that contains pus.',
+      'Often loculated: it does not move freely with position.',
+      'On contrast CT the pleura around it is thickened and enhancing, on both sides of the fluid (split pleura sign).',
+    ],
+    book: [
+      { physical: 75, chapterId: 'ch07', heading: 'Types of Pleural Effusions', note: 'Empyema as an exudate containing pus' },
+      { physical: 80, chapterId: 'ch07', heading: 'Loculated Effusions' },
+      { physical: 511, chapterId: 'appF', heading: 'Split Pleura Sign' },
+    ],
+    related: ['pleural_effusion', 'pneumonia', 'lung_cavity'],
+  },
+  {
+    id: 'opacified_hemithorax',
+    name: 'Opacified hemithorax (white-out)',
+    synonyms: ['white out', 'whiteout', 'white lung', 'opaque hemithorax', 'total opacification'],
+    region: 'chest',
+    modalities: ['XR'],
+    signs: [
+      'Look at where the mediastinum and trachea go.',
+      'Pulled toward the white side: collapse of the whole lung (or a pneumonectomy).',
+      'Pushed away: a large pleural effusion. Not shifted: pneumonia filling the lung.',
+    ],
+    book: [
+      { physical: 60, chapterId: 'ch05', heading: 'Atelectasis of the Entire Lung' },
+      { physical: 60, chapterId: 'ch05', heading: 'Massive Pleural Effusion' },
+      { physical: 62, chapterId: 'ch05', heading: 'Pneumonia of an Entire Lung' },
+      { physical: 63, chapterId: 'ch05', heading: 'Postpneumonectomy' },
+    ],
+    related: ['atelectasis', 'pleural_effusion', 'pneumonia'],
+  },
+  {
+    id: 'pneumonia',
+    name: 'Pneumonia',
+    synonyms: ['lung infection', 'chest infection', 'lobar pneumonia', 'bronchopneumonia', 'segmental pneumonia', 'round pneumonia', 'aspiration pneumonia'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Airspace opacity (consolidation), often with air bronchograms.',
+      'The silhouette sign localizes it: a lost heart or diaphragm border tells you which lobe.',
+      'Patterns: lobar, segmental (bronchopneumonia), interstitial, round and cavitary.',
+      'Clearing takes days to weeks; persistent opacity needs follow-up.',
+    ],
+    book: [
+      { physical: 85, chapterId: 'ch08', heading: 'General Characteristics of Pneumonia' },
+      { physical: 85, chapterId: 'ch08', heading: 'Patterns of Pneumonia' },
+      { physical: 89, chapterId: 'ch08', heading: 'Localizing Pneumonia' },
+      { physical: 90, chapterId: 'ch08', heading: 'How Pneumonia Resolves' },
+    ],
+    related: ['covid19', 'airspace_disease', 'atelectasis', 'lung_cavity', 'empyema'],
+    evidence: [{ kind: 'reader_labels', labels: RICORD_OPACITIES, note: 'Lung opacities graded by expert readers on a radiograph of a patient with a positive COVID-19 test' }],
+  },
+  {
+    id: 'covid19',
+    name: 'COVID-19 pneumonia',
+    synonyms: ['covid', 'covid19', 'covid 19', 'coronavirus', 'sars-cov-2', 'sars cov 2 pneumonia', 'corona'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Typical: bilateral, peripheral, lower-zone opacities — ground glass on CT, hazy or patchy opacities on radiographs.',
+      'Radiographs can be normal, especially early in the illness.',
+      'Lobar consolidation, cavitation or a large effusion make another cause more likely.',
+    ],
+    book: [{ physical: 88, chapterId: 'ch08', heading: 'COVID-19' }],
+    related: ['pneumonia', 'airspace_disease'],
+    evidence: [
+      { kind: 'reader_labels', labels: /Typical Appearance|Indeterminate Appearance|Atypical Appearance/i, note: 'Expert readers classified the radiograph for a COVID-19 pattern' },
+      {
+        kind: 'collection',
+        subject: /^tcia:COVID-19-AR:/,
+        note: 'Positive COVID-19 test (research cohort). No reader labels — the images themselves may be normal.',
+      },
+    ],
+  },
+  {
+    id: 'airspace_disease',
+    name: 'Airspace disease (consolidation)',
+    synonyms: ['consolidation', 'airspace opacity', 'alveolar opacity', 'air bronchogram', 'alveolar disease', 'lung opacity'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Fluffy, confluent opacity with indistinct margins.',
+      'Air bronchograms: air-filled bronchi seen through the opacified lung.',
+      'The silhouette sign when it touches the heart or diaphragm.',
+    ],
+    book: [
+      { physical: 49, chapterId: 'ch04', heading: 'Characteristics of Airspace Disease' },
+      { physical: 51, chapterId: 'ch04', heading: 'Some Causes of Airspace Disease' },
+    ],
+    related: ['pneumonia', 'congestive_heart_failure', 'interstitial_lung_disease', 'covid19'],
+    evidence: [{ kind: 'reader_labels', labels: RICORD_OPACITIES, note: 'Lung opacities graded by expert readers' }],
+  },
+  {
+    id: 'interstitial_lung_disease',
+    name: 'Interstitial lung disease',
+    synonyms: ['ild', 'pulmonary fibrosis', 'reticular pattern', 'reticulonodular', 'interstitial pattern'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'A network of fine lines (reticular), small nodules, or both.',
+      'Usually no air bronchograms; the opacities have sharper edges than airspace disease.',
+      'CT shows the pattern and distribution best.',
+    ],
+    book: [
+      { physical: 52, chapterId: 'ch04', heading: 'Characteristics of Interstitial Lung Disease' },
+      { physical: 53, chapterId: 'ch04', heading: 'Some Causes of Interstitial Lung Disease' },
+    ],
+    related: ['congestive_heart_failure', 'airspace_disease', 'tuberculosis'],
+  },
+  {
+    id: 'atelectasis',
+    name: 'Atelectasis',
+    synonyms: ['lung collapse', 'lobar collapse', 'volume loss', 'collapse', 'subsegmental atelectasis', 'plate-like atelectasis'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Increased opacity with signs of volume loss: displaced fissures, raised hemidiaphragm, shift toward the affected side.',
+      'Obstructive atelectasis behind a blocked bronchus usually has no air bronchograms.',
+      'Subsegmental (plate-like) atelectasis: thin horizontal lines, often at the bases.',
+    ],
+    book: [
+      { physical: 65, chapterId: 'ch06', heading: 'What is Atelectasis?' },
+      { physical: 65, chapterId: 'ch06', heading: 'Types of Atelectasis' },
+      { physical: 68, chapterId: 'ch06', heading: 'Subsegmental Atelectasis' },
+      { physical: 69, chapterId: 'ch06', heading: 'Patterns of Collapse in Lobar Atelectasis' },
+    ],
+    related: ['pneumonia', 'opacified_hemithorax', 'lung_cancer', 'pleural_effusion'],
+  },
+  {
+    id: 'lung_nodule',
+    name: 'Lung nodule',
+    synonyms: ['pulmonary nodule', 'solitary pulmonary nodule', 'spn', 'coin lesion', 'lung nodules', 'pulmonary nodules', 'nodule'],
+    region: 'chest',
+    modalities: ['CT', 'XR'],
+    signs: [
+      'A round opacity under 3 cm; over 3 cm it is usually called a mass.',
+      'Benign hints: central, laminated or popcorn calcification, fat, no growth over time.',
+      'Suspicious: spiculated or irregular margin, growth, larger size.',
+      'CT finds far more nodules than radiographs; many small ones are not visible on a radiograph.',
+    ],
+    book: [
+      { physical: 118, chapterId: 'ch10', heading: 'Solitary Nodule/Mass in the Lung' },
+      { physical: 120, chapterId: 'ch10', heading: 'Signs of a Benign Versus Malignant Solitary Pulmonary Nodule' },
+      { physical: 121, chapterId: 'ch10', heading: 'Benign Causes of Solitary Pulmonary Nodules' },
+      { physical: 123, chapterId: 'ch10', heading: 'Multiple Nodules' },
+    ],
+    related: ['lung_cancer', 'lung_metastases'],
+    evidence: [{ kind: 'finding', classIds: ['finding:lung_nodule'], note: 'Outlined by LIDC-IDRI radiologists (nodules ≥3 mm)' }],
+  },
+  {
+    id: 'lung_cancer',
+    name: 'Lung cancer (bronchogenic carcinoma)',
+    synonyms: ['bronchogenic carcinoma', 'lung carcinoma', 'nsclc', 'lung mass', 'lung tumour', 'lung tumor', 'pulmonary mass'],
+    region: 'chest',
+    modalities: ['CT', 'XR'],
+    signs: [
+      'A nodule or mass, often with a spiculated margin.',
+      'It can show itself as collapse or pneumonia behind a blocked bronchus.',
+      'Look for spread: hilar or mediastinal nodes, effusion, rib destruction.',
+    ],
+    book: [
+      { physical: 121, chapterId: 'ch10', heading: 'Bronchogenic Carcinoma' },
+      { physical: 122, chapterId: 'ch10', heading: 'Bronchogenic Carcinomas Presenting as a Nodule/Mass in the Lung' },
+      { physical: 123, chapterId: 'ch10', heading: 'Bronchogenic Carcinoma Presenting with Bronchial Obstruction' },
+    ],
+    related: ['lung_nodule', 'atelectasis', 'lung_metastases'],
+  },
+  {
+    id: 'lung_metastases',
+    name: 'Lung metastases',
+    synonyms: ['pulmonary metastases', 'cannonball metastases', 'lymphangitic carcinomatosis', 'metastatic lung disease'],
+    region: 'chest',
+    modalities: ['CT', 'XR'],
+    signs: [
+      'Multiple round nodules of different sizes, mostly peripheral and at the bases.',
+      'Lymphangitic spread: thickened interstitial lines, often with nodes and effusion.',
+    ],
+    book: [
+      { physical: 123, chapterId: 'ch10', heading: 'Metastatic Neoplasms in the Lung' },
+      { physical: 124, chapterId: 'ch10', heading: 'Lymphangitic Carcinomatosis (Lymphangitic Spread of Carcinoma)' },
+      { physical: 476, chapterId: 'appF', heading: 'Cannonball Metastases' },
+    ],
+    related: ['lung_nodule', 'lung_cancer'],
+  },
+  {
+    id: 'tuberculosis',
+    name: 'Tuberculosis',
+    synonyms: ['tb', 'miliary tb', 'miliary tuberculosis', 'reactivation tb', 'primary tuberculosis'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Primary TB: consolidation, often with hilar or mediastinal nodes and sometimes an effusion; cavitation is rare.',
+      'Reactivation (postprimary) TB: apical and posterior segments of the upper lobes (and superior segments of the lower lobes), often cavitating.',
+      'Miliary TB: countless tiny nodules throughout both lungs.',
+    ],
+    book: [
+      { physical: 56, chapterId: 'ch04', heading: 'Tuberculosis' },
+      { physical: 57, chapterId: 'ch04', heading: 'Patterns of Distribution of Postprimary Tuberculosis' },
+      { physical: 58, chapterId: 'ch04', heading: 'Miliary Tuberculosis' },
+    ],
+    related: ['lung_cavity', 'pneumonia', 'interstitial_lung_disease'],
+  },
+  {
+    id: 'lung_cavity',
+    name: 'Lung cavity or abscess',
+    synonyms: ['lung abscess', 'cavitation', 'cavitary lesion', 'cavitary pneumonia', 'cavity'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'An air-containing space with a thick, often irregular wall.',
+      'An air-fluid level inside suggests an abscess.',
+      'Causes include infection (including TB) and cancer.',
+    ],
+    book: [
+      { physical: 128, chapterId: 'ch10', heading: 'Cavities' },
+      { physical: 87, chapterId: 'ch08', heading: 'Cavitary Pneumonia' },
+    ],
+    related: ['tuberculosis', 'pneumonia', 'lung_cancer'],
+  },
+  {
+    id: 'copd',
+    name: 'COPD and emphysema',
+    synonyms: ['copd', 'emphysema', 'chronic obstructive pulmonary disease', 'hyperinflation', 'bullae', 'bulla'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Hyperinflated lungs: flattened hemidiaphragms and a larger retrosternal clear space.',
+      'CT shows emphysema as low-attenuation lung without walls.',
+      'Bullae: thin-walled air spaces in the lung.',
+    ],
+    book: [
+      { physical: 125, chapterId: 'ch10', heading: 'Chronic Obstructive Pulmonary Disease' },
+      { physical: 127, chapterId: 'ch10', heading: 'Bullae' },
+    ],
+    related: ['bronchiectasis', 'pneumothorax'],
+  },
+  {
+    id: 'bronchiectasis',
+    name: 'Bronchiectasis',
+    synonyms: ['signet ring sign', 'dilated bronchi'],
+    region: 'chest',
+    modalities: ['CT', 'XR'],
+    signs: [
+      'A bronchus wider than its neighbouring artery on CT (signet ring sign).',
+      'Bronchi that do not taper toward the periphery; parallel "tram-track" lines on radiographs.',
+    ],
+    book: [
+      { physical: 128, chapterId: 'ch10', heading: 'Bronchiectasis' },
+      { physical: 508, chapterId: 'appF', heading: 'Signet Ring Sign (Bronchiectasis)' },
+    ],
+    related: ['copd'],
+  },
+  {
+    id: 'mediastinal_mass',
+    name: 'Mediastinal mass',
+    synonyms: ['anterior mediastinal mass', 'thymoma', 'mediastinal lymphoma', 'teratoma', 'retrosternal goitre', 'neurogenic tumour', 'posterior mediastinal mass'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Place it in a compartment first (anterior, middle or posterior) using the lateral view or CT — each has its own list of causes.',
+      'Anterior: thyroid, thymic masses, teratoma and lymphoma (the book\'s four "T"s).',
+      'Posterior: mostly neurogenic tumors.',
+    ],
+    book: [
+      { physical: 112, chapterId: 'ch10', heading: 'Mediastinal Masses' },
+      { physical: 113, chapterId: 'ch10', heading: 'Anterior Mediastinal Masses' },
+      { physical: 116, chapterId: 'ch10', heading: 'Middle Mediastinal Masses' },
+      { physical: 116, chapterId: 'ch10', heading: 'Posterior Mediastinal Masses' },
+    ],
+    related: ['lung_cancer'],
+  },
+  {
+    id: 'pulmonary_contusion',
+    name: 'Pulmonary contusion',
+    synonyms: ['lung contusion', 'lung bruise', 'pulmonary laceration', 'lung laceration'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Airspace opacity at the site of impact, usually peripheral.',
+      'Appears within about 6 hours of trauma and clears within about 72 hours; opacity that lasts longer suggests another process.',
+      'A laceration is a tear that can fill with air or blood.',
+    ],
+    book: [
+      { physical: 328, chapterId: 'ch24', heading: 'Pulmonary Contusions' },
+      { physical: 328, chapterId: 'ch24', heading: 'Pulmonary Lacerations' },
+    ],
+    related: ['rib_fracture', 'hemothorax', 'pneumothorax'],
+  },
+  {
+    id: 'rib_fracture',
+    name: 'Rib fractures',
+    synonyms: ['broken rib', 'rib fracture', 'flail chest', 'fractured ribs'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Follow each rib\'s cortex looking for a lucent line or a step.',
+      'Search for complications: pneumothorax, hemothorax, contusion.',
+      'Lower rib fractures (10–12) raise concern for liver or spleen injury; a flail chest carries significant mortality.',
+    ],
+    book: [{ physical: 321, chapterId: 'ch24', heading: 'Rib Fractures' }],
+    related: ['pneumothorax', 'hemothorax', 'pulmonary_contusion', 'subcutaneous_emphysema'],
+  },
+  {
+    id: 'pneumomediastinum',
+    name: 'Pneumomediastinum',
+    synonyms: ['mediastinal emphysema', 'mediastinal air', 'continuous diaphragm sign'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Thin lucent streaks outlining the mediastinal structures.',
+      'Continuous diaphragm sign: air lets you see the diaphragm across the midline under the heart.',
+    ],
+    book: [{ physical: 330, chapterId: 'ch24', heading: 'Pneumomediastinum' }],
+    related: ['pneumothorax', 'subcutaneous_emphysema'],
+  },
+  {
+    id: 'subcutaneous_emphysema',
+    name: 'Subcutaneous emphysema',
+    synonyms: ['surgical emphysema', 'soft tissue air', 'subcutaneous air'],
+    region: 'chest',
+    modalities: ['XR', 'CT'],
+    signs: ['Streaky lucencies in the chest-wall soft tissues, outlining muscle bundles.', 'Look for the source: pneumothorax, pneumomediastinum, a chest tube or a wound.'],
+    book: [{ physical: 322, chapterId: 'ch24', heading: 'Subcutaneous Emphysema' }],
+    related: ['pneumothorax', 'pneumomediastinum', 'rib_fracture'],
+  },
+  {
+    id: 'lines_tubes',
+    name: 'Lines and tubes position',
+    synonyms: ['endotracheal tube', 'ett', 'central line', 'central venous catheter', 'cvc', 'picc', 'nasogastric tube', 'ng tube', 'chest tube', 'malpositioned line', 'feeding tube'],
+    region: 'chest',
+    modalities: ['XR'],
+    signs: [
+      'Endotracheal tube: with the head neutral, the tip about 3–5 cm above the carina.',
+      'Central venous catheter: tip in the superior vena cava near its junction with the right atrium.',
+      'Nasogastric tube: tip and side holes about 10 cm into the stomach beyond the esophagogastric junction.',
+      'After any line, look for a pneumothorax.',
+    ],
+    book: [
+      { physical: 94, chapterId: 'ch09', heading: 'Endotracheal Tubes (ETT)' },
+      { physical: 100, chapterId: 'ch09', figureId: 'Fig 9.1', note: 'Where the endotracheal tube tip should sit' },
+      { physical: 101, chapterId: 'ch09', heading: 'Central Venous (Pressure) Catheters (CVC, CVP)' },
+      { physical: 105, chapterId: 'ch09', heading: 'Pleural Drainage Tubes' },
+      { physical: 109, chapterId: 'ch09', heading: 'Nasogastric Tubes (NGT)' },
+    ],
+    related: ['pneumothorax'],
+  },
+  // ------------------------------------------------------------------ heart and vessels
+  {
+    id: 'pulmonary_embolism',
+    name: 'Pulmonary embolism',
+    synonyms: ['pe', 'pulmonary thromboembolism', 'lung clot', 'pulmonary thromboembolic disease', 'hampton hump'],
+    region: 'heart_vessels',
+    modalities: ['CT', 'NM', 'XR'],
+    signs: [
+      'CT pulmonary angiography: a filling defect inside a contrast-filled pulmonary artery.',
+      'The radiograph is often normal; a peripheral wedge-shaped opacity (Hampton hump) suggests an infarct.',
+      'A ventilation/perfusion scan is the alternative when contrast cannot be given.',
+    ],
+    book: [
+      { physical: 124, chapterId: 'ch10', heading: 'Pulmonary Thromboembolic Disease (PE)' },
+      { physical: 427, chapterId: 'appA', heading: 'Pulmonary Ventilation/Perfusion Scans for Pulmonary Embolism' },
+    ],
+    related: ['pleural_effusion'],
+  },
+  {
+    id: 'congestive_heart_failure',
+    name: 'Congestive heart failure and pulmonary edema',
+    synonyms: ['chf', 'heart failure', 'pulmonary edema', 'pulmonary oedema', 'cardiogenic edema', 'fluid overload', 'kerley b lines', 'bat wing', 'batwing'],
+    region: 'heart_vessels',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Interstitial edema: Kerley B lines, peribronchial cuffing, fluid in the fissures.',
+      'Alveolar edema: bilateral perihilar airspace opacities ("bat-wing").',
+      'Often with cardiomegaly and pleural effusions when the cause is cardiac.',
+    ],
+    book: [
+      { physical: 134, chapterId: 'ch11', heading: 'Congestive Heart Failure' },
+      { physical: 134, chapterId: 'ch11', heading: 'Pulmonary Interstitial Edema' },
+      { physical: 136, chapterId: 'ch11', heading: 'Pulmonary Alveolar Edema' },
+      { physical: 137, chapterId: 'ch11', heading: 'Noncardiogenic Pulmonary Edema' },
+    ],
+    related: ['cardiomegaly', 'pleural_effusion', 'airspace_disease'],
+  },
+  {
+    id: 'cardiomegaly',
+    name: 'Cardiomegaly (enlarged cardiac silhouette)',
+    synonyms: ['enlarged heart', 'big heart', 'cardiothoracic ratio', 'ctr', 'enlarged cardiac silhouette'],
+    region: 'heart_vessels',
+    modalities: ['XR'],
+    signs: [
+      'On a good PA radiograph at full inspiration the cardiothoracic ratio is normally under 50%.',
+      'AP and supine films, poor inspiration, a pericardial effusion and pericardial fat can all make the heart look bigger.',
+    ],
+    book: [
+      { physical: 131, chapterId: 'ch11', heading: 'Recognizing an Enlarged Cardiac Silhouette' },
+      { physical: 131, chapterId: 'ch11', heading: 'Extracardiac Causes of Apparent Cardiac Enlargement' },
+      { physical: 133, chapterId: 'ch11', heading: 'Recognizing Cardiomegaly on the Lateral Chest Radiograph' },
+    ],
+    related: ['pericardial_effusion', 'congestive_heart_failure'],
+  },
+  {
+    id: 'pericardial_effusion',
+    name: 'Pericardial effusion',
+    synonyms: ['pericardial fluid', 'water bottle heart', 'oreo cookie sign', 'fat pad sign'],
+    region: 'heart_vessels',
+    modalities: ['US', 'CT', 'XR'],
+    signs: [
+      'An enlarged, rounded ("water-bottle") cardiac silhouette on the radiograph.',
+      'Lateral view: a band of fluid between the pericardial fat layers (Oreo cookie sign).',
+      'Ultrasound shows the fluid around the heart directly.',
+    ],
+    book: [
+      { physical: 131, chapterId: 'ch11', heading: 'Pericardial Effusion' },
+      { physical: 253, chapterId: 'ch19', heading: 'Pericardial Effusion', note: 'Ultrasound' },
+      { physical: 497, chapterId: 'appF', heading: 'Oreo Cookie Sign (Pericardial Fat Pad Sign)' },
+    ],
+    related: ['cardiomegaly'],
+  },
+  {
+    id: 'aortic_dissection',
+    name: 'Aortic dissection',
+    synonyms: ['dissecting aneurysm', 'intimal flap', 'thoracic aortic dissection', 'type a dissection', 'type b dissection'],
+    region: 'heart_vessels',
+    modalities: ['CT', 'MR'],
+    signs: [
+      'CT angiography shows an intimal flap separating the true lumen from the false lumen.',
+      'The radiograph may show a widened mediastinum but can be normal.',
+    ],
+    book: [{ physical: 144, chapterId: 'ch11', heading: 'Thoracic Aortic Dissection' }],
+    related: ['thoracic_aortic_aneurysm', 'aortic_trauma', 'hemothorax'],
+  },
+  {
+    id: 'thoracic_aortic_aneurysm',
+    name: 'Thoracic aortic aneurysm',
+    synonyms: ['aortic aneurysm', 'dilated aorta', 'ascending aortic aneurysm'],
+    region: 'heart_vessels',
+    modalities: ['CT', 'XR'],
+    signs: [
+      'On CT the ascending aorta is usually under 3.5 cm and the descending under 3 cm; persistent enlargement over 4 cm is an aneurysm.',
+      'On a radiograph: a widened mediastinum or a mass that blends with the aorta.',
+    ],
+    book: [
+      { physical: 143, chapterId: 'ch11', heading: 'Aortic Aneurysms' },
+      { physical: 143, chapterId: 'ch11', heading: 'Recognizing a Thoracic Aortic Aneurysm' },
+    ],
+    related: ['aortic_dissection', 'aaa'],
+  },
+  {
+    id: 'aortic_trauma',
+    name: 'Traumatic aortic injury',
+    synonyms: ['aortic transection', 'aortic tear', 'aortic rupture', 'traumatic aortic injury'],
+    region: 'heart_vessels',
+    modalities: ['CT', 'XR'],
+    signs: ['A widened mediastinum and a blurred aortic knob on the radiograph after a high-speed injury.', 'CT angiography confirms or excludes it.'],
+    book: [
+      { physical: 331, chapterId: 'ch24', heading: 'Aortic Trauma' },
+      { physical: 332, chapterId: 'ch24', heading: 'Recognizing Aortic Trauma' },
+    ],
+    related: ['hemothorax', 'aortic_dissection', 'rib_fracture'],
+  },
+  {
+    id: 'aaa',
+    name: 'Abdominal aortic aneurysm',
+    synonyms: ['aaa', 'abdominal aneurysm', 'triple a'],
+    region: 'heart_vessels',
+    modalities: ['US', 'CT'],
+    signs: [
+      'The normal abdominal aorta measures no more than 3 cm (outer wall to outer wall).',
+      'Rupture risk rises with size; ultrasound screens, CT shows rupture and plans repair.',
+    ],
+    book: [
+      { physical: 230, chapterId: 'ch18', heading: 'Abdominal Aortic Aneurysms' },
+      { physical: 396, chapterId: 'ch28', heading: 'Aortic Aneurysm: Endovascular Aneurysm Repair (EVAR)' },
+    ],
+    related: ['thoracic_aortic_aneurysm'],
+  },
+  // ------------------------------------------------------------------ abdomen
+  {
+    id: 'pneumoperitoneum',
+    name: 'Free intraperitoneal air (pneumoperitoneum)',
+    synonyms: ['free air', 'pneumoperitoneum', 'perforation', 'perforated viscus', 'rigler sign', 'air under the diaphragm', 'free gas'],
+    region: 'abdomen',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Air under the diaphragm on an upright chest or abdominal radiograph.',
+      'Supine signs: both sides of the bowel wall visible (Rigler sign), the falciform ligament outlined.',
+      'CT is the most sensitive test.',
+    ],
+    book: [
+      { physical: 181, chapterId: 'ch15', heading: 'Air Beneath the Diaphragm' },
+      { physical: 184, chapterId: 'ch15', heading: 'Visualization of Both Sides of the Bowel Wall' },
+      { physical: 184, chapterId: 'ch15', heading: 'Visualization of the Falciform Ligament' },
+      { physical: 185, chapterId: 'ch15', heading: 'Causes of Free Air' },
+    ],
+    related: ['small_bowel_obstruction', 'diverticulitis', 'appendicitis'],
+  },
+  {
+    id: 'small_bowel_obstruction',
+    name: 'Small-bowel obstruction',
+    synonyms: ['sbo', 'bowel obstruction', 'mechanical obstruction', 'small bowel obstruction'],
+    region: 'abdomen',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'Multiple dilated small-bowel loops (over 2.5 cm) with air-fluid levels before the obstruction.',
+      'Little or no gas in the colon beyond it.',
+      'CT shows the transition point and often the cause.',
+    ],
+    book: [
+      { physical: 169, chapterId: 'ch14', heading: 'Abnormal Gas Patterns' },
+      { physical: 172, chapterId: 'ch14', heading: 'Mechanical Obstruction: Small Bowel' },
+    ],
+    related: ['large_bowel_obstruction', 'ileus', 'pneumoperitoneum'],
+  },
+  {
+    id: 'large_bowel_obstruction',
+    name: 'Large-bowel obstruction',
+    synonyms: ['lbo', 'colonic obstruction', 'large bowel obstruction'],
+    region: 'abdomen',
+    modalities: ['XR', 'CT'],
+    signs: ['Dilated colon up to the obstruction, collapsed bowel beyond it.', 'Common causes are carcinoma and volvulus.'],
+    book: [{ physical: 177, chapterId: 'ch14', heading: 'Mechanical Obstruction: Large Bowel' }],
+    related: ['volvulus', 'small_bowel_obstruction', 'ileus'],
+  },
+  {
+    id: 'volvulus',
+    name: 'Colonic volvulus',
+    synonyms: ['sigmoid volvulus', 'cecal volvulus', 'caecal volvulus', 'coffee bean sign'],
+    region: 'abdomen',
+    modalities: ['XR', 'CT'],
+    signs: ['Sigmoid volvulus: a hugely dilated inverted-U loop rising out of the pelvis (coffee-bean sign).'],
+    book: [
+      { physical: 179, chapterId: 'ch14', heading: 'Volvulus of the Colon' },
+      { physical: 478, chapterId: 'appF', heading: 'Coffee-Bean (Kidney Bean) Sign' },
+    ],
+    related: ['large_bowel_obstruction'],
+  },
+  {
+    id: 'ileus',
+    name: 'Ileus',
+    synonyms: ['adynamic ileus', 'paralytic ileus', 'functional ileus', 'sentinel loop'],
+    region: 'abdomen',
+    modalities: ['XR', 'CT'],
+    signs: ['Generalized: dilated small and large bowel with no transition point.', 'Localized: a "sentinel loop" next to an inflamed organ (e.g. pancreatitis).'],
+    book: [
+      { physical: 170, chapterId: 'ch14', heading: 'Functional Ileus: Localized' },
+      { physical: 171, chapterId: 'ch14', heading: 'Functional Ileus: Generalized' },
+    ],
+    related: ['small_bowel_obstruction', 'large_bowel_obstruction', 'pancreatitis'],
+  },
+  {
+    id: 'appendicitis',
+    name: 'Appendicitis',
+    synonyms: ['acute appendicitis', 'appendicolith', 'inflamed appendix'],
+    region: 'abdomen',
+    modalities: ['CT', 'US'],
+    signs: [
+      'CT: a dilated appendix (over 6 mm) that does not fill with oral contrast, with inflammation of the surrounding fat.',
+      'An appendicolith may be present.',
+      'Ultrasound is preferred in children and in pregnancy.',
+    ],
+    book: [
+      { physical: 207, chapterId: 'ch17', heading: 'Appendicitis' },
+      { physical: 240, chapterId: 'ch18', heading: 'Appendicitis', note: 'Ultrasound' },
+    ],
+    related: ['diverticulitis', 'pneumoperitoneum'],
+  },
+  {
+    id: 'diverticulitis',
+    name: 'Diverticulitis',
+    synonyms: ['diverticulosis', 'diverticular disease', 'sigmoid diverticulitis'],
+    region: 'abdomen',
+    modalities: ['CT'],
+    signs: ['Diverticula with colonic wall thickening and inflamed pericolic fat, usually in the sigmoid.', 'Complications: abscess, perforation, fistula.'],
+    book: [
+      { physical: 204, chapterId: 'ch17', heading: 'Diverticulosis' },
+      { physical: 205, chapterId: 'ch17', heading: 'Diverticulitis' },
+    ],
+    related: ['appendicitis', 'pneumoperitoneum', 'large_bowel_obstruction'],
+  },
+  {
+    id: 'cholecystitis',
+    name: 'Gallstones and acute cholecystitis',
+    synonyms: ['gallstones', 'cholelithiasis', 'cholecystitis', 'gallbladder stones', 'murphy sign'],
+    region: 'abdomen',
+    modalities: ['US', 'CT'],
+    signs: [
+      'Ultrasound: echogenic stones that cast an acoustic shadow and move with position.',
+      'Acute cholecystitis: stones with a thick gallbladder wall, fluid around it and tenderness under the probe (sonographic Murphy sign).',
+    ],
+    book: [{ physical: 224, chapterId: 'ch18', heading: 'Gallstones and Acute Cholecystitis' }],
+    related: ['pancreatitis'],
+  },
+  {
+    id: 'pancreatitis',
+    name: 'Pancreatitis',
+    synonyms: ['acute pancreatitis', 'chronic pancreatitis'],
+    region: 'abdomen',
+    modalities: ['CT', 'US'],
+    signs: ['An enlarged pancreas with inflamed surrounding fat and fluid on CT.', 'Chronic pancreatitis: calcifications in the gland.'],
+    book: [
+      { physical: 209, chapterId: 'ch17', heading: 'Pancreatitis' },
+      { physical: 210, chapterId: 'ch17', heading: 'Chronic Pancreatitis' },
+    ],
+    related: ['cholecystitis', 'ileus'],
+  },
+  {
+    id: 'cirrhosis',
+    name: 'Cirrhosis',
+    synonyms: ['liver cirrhosis', 'cirrhotic liver', 'portal hypertension'],
+    region: 'abdomen',
+    modalities: ['CT', 'US', 'MR'],
+    signs: ['A shrunken, nodular liver: the right lobe gets smaller while the caudate and left lobes grow relative to it.', 'Signs of portal hypertension: splenomegaly, ascites, varices.'],
+    book: [{ physical: 212, chapterId: 'ch17', heading: 'Cirrhosis' }],
+    related: ['liver_metastases'],
+  },
+  {
+    id: 'liver_metastases',
+    name: 'Liver metastases',
+    synonyms: ['hepatic metastases', 'liver mets', 'liver lesions'],
+    region: 'abdomen',
+    modalities: ['CT', 'MR', 'US'],
+    signs: ['Usually multiple lesions of varying size.', 'On portal-venous phase CT most are darker than the surrounding liver.'],
+    book: [
+      { physical: 213, chapterId: 'ch17', heading: 'Space-Occupying Lesions of the Liver' },
+      { physical: 213, chapterId: 'ch17', heading: 'Metastases' },
+    ],
+    related: ['cirrhosis', 'bone_metastases', 'lung_metastases'],
+  },
+  {
+    id: 'renal_mass',
+    name: 'Renal mass (kidney tumor)',
+    synonyms: ['renal tumour', 'renal tumor', 'kidney tumour', 'kidney tumor', 'kidney mass', 'kidney cancer', 'renal cell carcinoma', 'rcc', 'hypernephroma'],
+    region: 'abdomen',
+    modalities: ['CT', 'US', 'MR'],
+    signs: [
+      'A solid, enhancing mass that bulges the kidney contour.',
+      'A simple cyst is water-dense, thin-walled and does not enhance.',
+      'Check the renal vein and inferior vena cava for tumor extension.',
+    ],
+    book: [
+      { physical: 216, chapterId: 'ch17', heading: 'Kidneys: General Considerations' },
+      { physical: 216, chapterId: 'ch17', heading: 'Renal Cysts' },
+      { physical: 217, chapterId: 'ch17', heading: 'Renal Cell Carcinoma (Hypernephroma)' },
+    ],
+    related: ['kidney_stones', 'hydronephrosis'],
+    evidence: [{ kind: 'finding', classIds: ['finding:renal_tumor'], note: 'Outlined by the KiTS team (patients who had surgery for a kidney tumor; this tumor\'s pathology is not given here)' }],
+  },
+  {
+    id: 'kidney_stones',
+    name: 'Kidney and ureteral stones',
+    synonyms: ['kidney stone', 'renal calculi', 'renal calculus', 'urolithiasis', 'nephrolithiasis', 'ureteral stone', 'ureteric stone', 'renal colic'],
+    region: 'abdomen',
+    modalities: ['CT', 'XR', 'US'],
+    signs: [
+      'Unenhanced CT is the study of choice for renal and ureteral stones.',
+      'Radiographs show only about half of renal stones.',
+      'Look upstream for hydronephrosis.',
+    ],
+    book: [
+      { physical: 193, chapterId: 'ch16', heading: 'Lamellar or Laminar Calcification', note: 'Renal calculi and why CT is the study of choice' },
+      { physical: 227, chapterId: 'ch18', heading: 'Hydronephrosis' },
+    ],
+    related: ['hydronephrosis', 'renal_mass'],
+  },
+  {
+    id: 'hydronephrosis',
+    name: 'Hydronephrosis',
+    synonyms: ['dilated renal pelvis', 'obstructive uropathy', 'dilated collecting system'],
+    region: 'abdomen',
+    modalities: ['US', 'CT'],
+    signs: ['Dilated renal pelvis and calyces, filled with fluid (dark on ultrasound).', 'Follow the ureter down to find the level and cause, often a stone.'],
+    book: [{ physical: 227, chapterId: 'ch18', heading: 'Hydronephrosis' }],
+    related: ['kidney_stones'],
+  },
+  {
+    id: 'hiatal_hernia',
+    name: 'Hiatal hernia',
+    synonyms: ['hiatus hernia', 'gerd', 'gastroesophageal reflux'],
+    region: 'abdomen',
+    modalities: ['XR', 'CT'],
+    signs: ['A gas-containing structure, often with an air-fluid level, behind the heart on the chest radiograph.'],
+    book: [{ physical: 200, chapterId: 'ch17', heading: 'Hiatal Hernia and Gastroesophageal Reflux (GERD)' }],
+    related: [],
+  },
+  // ------------------------------------------------------------------ bones, joints, spine
+  {
+    id: 'fracture',
+    name: 'Fracture',
+    synonyms: ['broken bone', 'bone fracture', 'acute fracture', 'fractures'],
+    region: 'msk',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'A break in the cortex with a lucent line (or a dense line where fragments overlap).',
+      'Describe it: which bone and where, number of fragments, direction of the line, displacement, open or closed.',
+      'Indirect signs such as a joint effusion can point to a hidden fracture.',
+    ],
+    book: [
+      { physical: 303, chapterId: 'ch23', heading: 'Recognizing an Acute Fracture' },
+      { physical: 305, chapterId: 'ch23', heading: 'Describing Fractures' },
+      { physical: 314, chapterId: 'ch23', heading: 'Indirect Signs of a Possible Fracture' },
+    ],
+    related: ['rib_fracture', 'compression_fracture', 'skull_fracture'],
+  },
+  {
+    id: 'compression_fracture',
+    name: 'Vertebral compression fracture',
+    synonyms: ['spine fracture', 'wedge fracture', 'osteoporotic fracture', 'burst fracture', 'vertebral fracture'],
+    region: 'msk',
+    modalities: ['XR', 'CT', 'MR'],
+    signs: ['Loss of vertebral body height, often worse anteriorly (wedge).', 'Burst fracture: fragments pushed back into the spinal canal — CT shows it best.'],
+    book: [
+      { physical: 296, chapterId: 'ch22', heading: 'Compression Fractures of the Spine' },
+      { physical: 317, chapterId: 'ch23', heading: 'Burst Fractures' },
+    ],
+    related: ['fracture', 'bone_metastases'],
+  },
+  {
+    id: 'bone_metastases',
+    name: 'Bone metastases',
+    synonyms: ['skeletal metastases', 'bone mets', 'spinal metastases', 'spine metastases', 'osteolytic metastases', 'osteoblastic metastases', 'metastasis', 'metastases', 'metastatic disease'],
+    region: 'msk',
+    modalities: ['XR', 'CT', 'MR', 'NM'],
+    signs: [
+      'Lytic (destroyed bone) or blastic (sclerotic) lesions, usually several, mostly in the spine, pelvis and ribs.',
+      'In the spine, look for a destroyed pedicle on the frontal view.',
+      'MRI and bone scans find them earlier than radiographs.',
+    ],
+    book: [
+      { physical: 270, chapterId: 'ch21', heading: 'Osteoblastic Metastatic Disease' },
+      { physical: 276, chapterId: 'ch21', heading: 'Osteolytic Metastatic Disease' },
+      { physical: 298, chapterId: 'ch22', heading: 'Malignancy Involving the Spine' },
+      { physical: 299, chapterId: 'ch22', heading: 'MRI in Metastatic Spine Disease' },
+      { physical: 423, chapterId: 'appA', heading: 'Metastases to Bone' },
+    ],
+    related: ['compression_fracture', 'lung_metastases', 'liver_metastases'],
+    evidence: [
+      {
+        kind: 'collection',
+        subject: /^tcia:Spine-Mets-CT-SEG:/,
+        note: 'From a CT collection of patients with spinal metastases. The lesions are not outlined here (only the vertebrae are), so finding them is up to you.',
+      },
+    ],
+  },
+  {
+    id: 'osteoarthritis',
+    name: 'Osteoarthritis',
+    synonyms: ['degenerative joint disease', 'djd', 'oa', 'degenerative arthritis'],
+    region: 'msk',
+    modalities: ['XR'],
+    signs: ['Uneven joint-space narrowing, subchondral sclerosis, osteophytes and subchondral cysts.'],
+    book: [
+      { physical: 279, chapterId: 'ch21', heading: 'Classification of Arthritis' },
+      { physical: 280, chapterId: 'ch21', heading: 'Primary Osteoarthritis' },
+    ],
+    related: ['rheumatoid_arthritis'],
+  },
+  {
+    id: 'rheumatoid_arthritis',
+    name: 'Rheumatoid arthritis',
+    synonyms: ['ra', 'erosive arthritis'],
+    region: 'msk',
+    modalities: ['XR'],
+    signs: ['Symmetric joint-space narrowing, bone loss around the joints and marginal erosions — typically the hands and wrists.'],
+    book: [
+      { physical: 284, chapterId: 'ch21', heading: 'Erosive Arthritis' },
+      { physical: 285, chapterId: 'ch21', heading: 'Rheumatoid Arthritis (RA)' },
+    ],
+    related: ['osteoarthritis'],
+  },
+  {
+    id: 'osteomyelitis',
+    name: 'Osteomyelitis',
+    synonyms: ['bone infection', 'diskitis', 'discitis'],
+    region: 'msk',
+    modalities: ['XR', 'MR', 'NM'],
+    signs: ['Radiographs can take up to about 10 days to show the first findings; MRI shows it earlier.', 'Later: bone destruction and periosteal new bone.'],
+    book: [
+      { physical: 278, chapterId: 'ch21', heading: 'Osteomyelitis' },
+      { physical: 299, chapterId: 'ch22', heading: 'Diskitis/Osteomyelitis of the Spine' },
+    ],
+    related: ['bone_metastases'],
+  },
+  {
+    id: 'herniated_disc',
+    name: 'Herniated disc',
+    synonyms: ['disc herniation', 'herniated disk', 'slipped disc', 'disk herniation', 'prolapsed disc'],
+    region: 'msk',
+    modalities: ['MR', 'CT'],
+    signs: ['MRI: disc material beyond the edge of the vertebral body, pressing on the thecal sac or a nerve root.'],
+    book: [{ physical: 293, chapterId: 'ch22', heading: 'Herniated Disks' }],
+    related: ['spinal_stenosis'],
+  },
+  {
+    id: 'spinal_stenosis',
+    name: 'Spinal stenosis',
+    synonyms: ['canal stenosis', 'narrow spinal canal'],
+    region: 'msk',
+    modalities: ['MR', 'CT'],
+    signs: ['A narrowed spinal canal from disc bulging and thickened facets and ligaments, best seen on MRI or CT.'],
+    book: [{ physical: 297, chapterId: 'ch22', heading: 'Spinal Stenosis' }],
+    related: ['herniated_disc'],
+  },
+  {
+    id: 'soft_tissue_sarcoma',
+    name: 'Soft-tissue sarcoma',
+    synonyms: ['sarcoma', 'soft tissue mass', 'soft-tissue tumour', 'soft tissue tumor', 'extremity mass', 'peritumoral edema', 'peritumoral oedema'],
+    region: 'msk',
+    modalities: ['MR', 'CT'],
+    signs: [
+      'Usually a large, deep mass in a limb.',
+      'MRI shows its extent, the edema around it (bright on fluid-sensitive sequences) and its relation to vessels and nerves.',
+      'Compare T1 with T2 or STIR to tell fat, fluid and solid tissue apart.',
+    ],
+    book: [
+      {
+        physical: 258,
+        chapterId: 'ch20',
+        heading: 'How to Identify A T1-Weighted or T2-Weighted Image',
+        note: 'The book has no section on soft-tissue sarcoma; this explains the MRI sequences you read the mass on',
+      },
+    ],
+    related: ['bone_metastases'],
+    evidence: [
+      {
+        kind: 'finding',
+        classIds: ['finding:gtv_mass', 'finding:gtv_edema'],
+        note: 'Outlined by the source radiotherapy team (patients from a soft-tissue sarcoma collection)',
+        names: { 'finding:gtv_mass': 'Tumor', 'finding:gtv_edema': 'Tumor with the surrounding edema' },
+      },
+    ],
+  },
+  // ------------------------------------------------------------------ brain and head
+  {
+    id: 'epidural_hematoma',
+    name: 'Epidural hematoma',
+    synonyms: ['extradural hematoma', 'extradural haematoma', 'edh', 'epidural haematoma'],
+    region: 'neuro',
+    modalities: ['CT'],
+    signs: ['A lens-shaped (biconvex) bright collection against the skull that does not cross suture lines.', 'Often with a skull fracture.'],
+    book: [{ physical: 348, chapterId: 'ch26', heading: 'Epidural Hematoma (Extradural Hematoma)' }],
+    related: ['subdural_hematoma', 'skull_fracture'],
+  },
+  {
+    id: 'subdural_hematoma',
+    name: 'Subdural hematoma',
+    synonyms: ['sdh', 'subdural haematoma', 'subdural bleed'],
+    region: 'neuro',
+    modalities: ['CT', 'MR'],
+    signs: ['A crescent-shaped collection over the brain surface that can cross suture lines.', 'Bright when acute, then gray, then dark as it ages.'],
+    book: [{ physical: 348, chapterId: 'ch26', heading: 'Subdural Hematoma (SDH)' }],
+    related: ['epidural_hematoma', 'subarachnoid_hemorrhage'],
+  },
+  {
+    id: 'subarachnoid_hemorrhage',
+    name: 'Subarachnoid hemorrhage',
+    synonyms: ['sah', 'subarachnoid haemorrhage', 'subarachnoid bleed', 'ruptured aneurysm'],
+    region: 'neuro',
+    modalities: ['CT'],
+    signs: ['Bright blood in the sulci, fissures and basal cisterns on noncontrast CT.', 'Without trauma, the usual cause is a ruptured aneurysm.'],
+    book: [
+      { physical: 347, chapterId: 'ch26', heading: 'Intracranial Hemorrhage' },
+      { physical: 357, chapterId: 'ch26', heading: 'Ruptured Aneurysms' },
+    ],
+    related: ['intracerebral_hemorrhage', 'subdural_hematoma'],
+  },
+  {
+    id: 'intracerebral_hemorrhage',
+    name: 'Intracerebral hemorrhage (hemorrhagic stroke)',
+    synonyms: ['ich', 'brain bleed', 'hemorrhagic stroke', 'haemorrhagic stroke', 'intracerebral haemorrhage', 'intracerebral hematoma'],
+    region: 'neuro',
+    modalities: ['CT', 'MR'],
+    signs: ['A bright collection inside the brain on noncontrast CT.', 'Hypertensive bleeds favour the basal ganglia, thalamus, pons and cerebellum.'],
+    book: [
+      { physical: 349, chapterId: 'ch26', heading: 'Intracerebral Hematoma (Intracerebral Hemorrhage)' },
+      { physical: 356, chapterId: 'ch26', heading: 'Hemorrhagic Stroke' },
+    ],
+    related: ['ischemic_stroke', 'subarachnoid_hemorrhage'],
+  },
+  {
+    id: 'ischemic_stroke',
+    name: 'Ischemic stroke',
+    synonyms: ['stroke', 'cerebral infarct', 'brain infarct', 'cva', 'ischaemic stroke', 'infarction'],
+    region: 'neuro',
+    modalities: ['CT', 'MR'],
+    signs: [
+      'Early CT can be normal; first signs are loss of gray-white differentiation and a dense (clotted) artery.',
+      'MRI diffusion imaging shows the infarct early.',
+      'Later: a low-density area that matches an arterial territory.',
+    ],
+    book: [
+      { physical: 353, chapterId: 'ch26', heading: 'Stroke' },
+      { physical: 354, chapterId: 'ch26', heading: 'Ischemic Stroke' },
+    ],
+    related: ['intracerebral_hemorrhage'],
+  },
+  {
+    id: 'brain_tumor',
+    name: 'Brain tumor (glioma)',
+    synonyms: ['glioma', 'glioblastoma', 'brain tumor', 'brain mass', 'astrocytoma', 'gbm', 'brain cancer'],
+    region: 'neuro',
+    modalities: ['MR', 'CT'],
+    signs: [
+      'A mass with surrounding edema and mass effect.',
+      'High-grade gliomas often enhance irregularly around a dead (necrotic) centre.',
+      'Compare post-contrast T1 with FLAIR/T2: FLAIR shows the tumor and edema beyond the enhancement.',
+    ],
+    book: [
+      { physical: 362, chapterId: 'ch26', heading: 'Brain Tumors' },
+      { physical: 362, chapterId: 'ch26', heading: 'Gliomas of the Brain' },
+    ],
+    related: ['brain_metastases', 'hydrocephalus'],
+    evidence: [{ kind: 'finding', classIds: ['finding:glioma'], note: 'Tumor outlined by the ReMIND team (patients who had glioma surgery; grade not given here)' }],
+  },
+  {
+    id: 'brain_metastases',
+    name: 'Brain metastases',
+    synonyms: ['cerebral metastases', 'brain mets', 'intracranial metastases'],
+    region: 'neuro',
+    modalities: ['MR', 'CT'],
+    signs: ['Often several enhancing lesions at the gray-white junction, with more edema than their size suggests.'],
+    book: [{ physical: 362, chapterId: 'ch26', heading: 'Metastases' }],
+    related: ['brain_tumor'],
+  },
+  {
+    id: 'hydrocephalus',
+    name: 'Hydrocephalus',
+    synonyms: ['enlarged ventricles', 'normal pressure hydrocephalus', 'nph', 'obstructive hydrocephalus'],
+    region: 'neuro',
+    modalities: ['CT', 'MR'],
+    signs: ['Ventricles enlarged out of proportion to the sulci.', 'Obstructive (blocked flow) or communicating; normal-pressure hydrocephalus has its own clinical triad.'],
+    book: [
+      { physical: 358, chapterId: 'ch26', heading: 'Hydrocephalus' },
+      { physical: 359, chapterId: 'ch26', heading: 'Obstructive Hydrocephalus' },
+      { physical: 360, chapterId: 'ch26', heading: 'Normal-Pressure Hydrocephalus (NPH)' },
+    ],
+    related: ['brain_tumor'],
+  },
+  {
+    id: 'multiple_sclerosis',
+    name: 'Multiple sclerosis',
+    synonyms: ['ms', 'demyelination', 'dawson fingers'],
+    region: 'neuro',
+    modalities: ['MR'],
+    signs: ['MRI: oval white-matter lesions with their long axes perpendicular to the ventricles (Dawson fingers).', 'MRI is the study of choice.'],
+    book: [{ physical: 364, chapterId: 'ch26', heading: 'Multiple Sclerosis (MS)' }],
+    related: [],
+  },
+  {
+    id: 'skull_fracture',
+    name: 'Skull fracture',
+    synonyms: ['linear skull fracture', 'depressed skull fracture', 'basilar skull fracture', 'facial fracture'],
+    region: 'neuro',
+    modalities: ['CT', 'XR'],
+    signs: ['A sharp, straight lucent line (linear) or an inward-displaced fragment (depressed).', 'Do not confuse sutures and vascular grooves with fractures.'],
+    book: [
+      { physical: 345, chapterId: 'ch26', heading: 'Skull Fractures' },
+      { physical: 346, chapterId: 'ch26', heading: 'Linear Skull Fractures' },
+      { physical: 346, chapterId: 'ch26', heading: 'Depressed Skull Fractures' },
+    ],
+    related: ['epidural_hematoma', 'fracture'],
+  },
+  // ------------------------------------------------------------------ breast
+  {
+    id: 'breast_mass',
+    name: 'Breast mass',
+    synonyms: ['breast cancer', 'breast lump', 'breast carcinoma', 'breast tumour', 'breast tumor', 'mammogram mass'],
+    region: 'breast',
+    modalities: ['MG', 'US', 'MR'],
+    signs: [
+      'Describe its shape, margin and density; spiculated or irregular margins are suspicious.',
+      'Ultrasound tells a simple cyst from a solid mass.',
+    ],
+    book: [{ physical: 408, chapterId: 'ch29', heading: 'Masses' }],
+    related: [],
+    evidence: [{ kind: 'finding', classIds: ['finding:breast_mass'], note: 'Mass outline from the CBIS-DDSM curation (exploratory; pathology not given here)' }],
+  },
+  // ------------------------------------------------------------------ children
+  {
+    id: 'intussusception',
+    name: 'Intussusception',
+    synonyms: ['target sign', 'doughnut sign', 'bowel telescoping'],
+    region: 'pediatric',
+    modalities: ['US'],
+    signs: ['Ultrasound: a "target" of bowel inside bowel.'],
+    book: [{ physical: 250, chapterId: 'ch19', heading: 'Intussusception' }],
+    related: ['pyloric_stenosis'],
+  },
+  {
+    id: 'pyloric_stenosis',
+    name: 'Hypertrophic pyloric stenosis',
+    synonyms: ['hps', 'pyloric stenosis'],
+    region: 'pediatric',
+    modalities: ['US'],
+    signs: ['Ultrasound is the study of choice: pyloric muscle thicker than 3 mm or a pyloric channel longer than 15 mm is abnormal.'],
+    book: [{ physical: 251, chapterId: 'ch19', heading: 'Hypertrophic Pyloric Stenosis (HPS)' }],
+    related: ['intussusception'],
+  },
+  {
+    id: 'croup_epiglottitis',
+    name: 'Croup and epiglottitis',
+    synonyms: ['croup', 'epiglottitis', 'steeple sign', 'thumb sign', 'laryngotracheobronchitis'],
+    region: 'pediatric',
+    modalities: ['XR'],
+    signs: ['Croup: narrowing of the subglottic trachea on the frontal view (steeple sign).', 'Epiglottitis: a swollen epiglottis on the lateral neck view (thumb sign).'],
+    book: [
+      { physical: 373, chapterId: 'ch27', heading: 'Epiglottitis' },
+      { physical: 373, chapterId: 'ch27', heading: 'Croup (Laryngotracheobronchitis)' },
+    ],
+    related: ['foreign_body'],
+  },
+  {
+    id: 'foreign_body',
+    name: 'Ingested foreign body',
+    synonyms: ['swallowed object', 'swallowed coin', 'coin ingestion', 'foreign body'],
+    region: 'pediatric',
+    modalities: ['XR'],
+    signs: ['Coins, toys and chicken bones usually show on radiographs; fish bones often do not.', 'Most swallowed objects pass on their own.'],
+    book: [{ physical: 373, chapterId: 'ch27', heading: 'Ingested Foreign Bodies' }],
+    related: ['croup_epiglottitis'],
+  },
+];
+
+export const CONDITION_BY_ID = new Map(CONDITIONS.map((c) => [c.id, c]));

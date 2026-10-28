@@ -1,7 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router';
 import { Tooltip } from 'radix-ui';
-import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Settings as SettingsIcon, NotebookPen, Target } from 'lucide-react';
+import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Settings as SettingsIcon, NotebookPen, Stethoscope, Target } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 
@@ -16,11 +16,13 @@ const BookReader = lazy(() => import('./pages/BookReader'));
 const BookFigures = lazy(() => import('./pages/BookFigures'));
 const AtlasPage = lazy(() => import('./pages/Atlas'));
 const DrillPage = lazy(() => import('./pages/Drill'));
+const ConditionsPage = lazy(() => import('./pages/Conditions'));
 
 function TopNav() {
   const links = [
     { to: '/', label: 'Today', icon: <House size={16} /> },
     { to: '/cases', label: 'Cases', icon: <Library size={16} /> },
+    { to: '/conditions', label: 'Conditions', icon: <Stethoscope size={16} /> },
     { to: '/atlas', label: 'Atlas', icon: <Bone size={16} /> },
     { to: '/drill', label: 'Drills', icon: <Target size={16} /> },
     { to: '/course', label: 'Course', icon: <GraduationCap size={16} /> },
@@ -32,9 +34,11 @@ function TopNav() {
   ];
   return (
     <nav className="topnav" aria-label="Main">
-      <NavLink to="/" className="brand">
-        <span className="brand-mark" aria-hidden />
-        <span>Radiology Visual Mastery</span>
+      <NavLink to="/" className="brand" aria-label="radiology.monster home">
+        <img className="brand-mark" src="/logo-mark.svg" alt="" width={21} height={22} />
+        <span>
+          radiology<span className="brand-tld">.monster</span>
+        </span>
       </NavLink>
       {links.map((l) => (
         <NavLink key={l.to} to={l.to} end={l.to === '/'} className={({ isActive }) => `navlink${isActive ? ' active' : ''}`}>
@@ -71,6 +75,7 @@ export function App() {
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/cases" element={<LibraryPage />} />
+              <Route path="/conditions" element={<ConditionsPage />} />
               <Route path="/atlas" element={<AtlasPage />} />
               <Route path="/drill" element={<DrillPage />} />
               <Route path="/read/:caseId" element={<Workstation />} />

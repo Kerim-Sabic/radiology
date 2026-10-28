@@ -244,6 +244,7 @@ export class Catalog {
         patientOrientation: typeof s.acquisition['PatientOrientation'] === 'string' ? String(s.acquisition['PatientOrientation']).split('\\') : null,
         volumeEligible: s.geometry.volumeEligible,
         defaultWindow: preset ? { center: preset.center, width: preset.width } : null,
+        ...linkGeometry(s, s.instances),
       };
     }
     // Display order: axial stacks run head → feet (index 0 = most superior), like a reading workstation.
@@ -268,6 +269,7 @@ export class Catalog {
       patientOrientation: Array.isArray(po) ? po : typeof po === 'string' ? po.split('\\') : null,
       volumeEligible: s.geometry.volumeEligible,
       defaultWindow: preset ? { center: preset.center, width: preset.width } : null,
+      ...linkGeometry(s, instances),
     };
   }
 
@@ -377,4 +379,15 @@ export class Catalog {
     const k = this.cases.get(caseId);
     return k ? (this.subjects.get(k.subjectKey)?.holdoutGroup ?? k.subjectKey) : caseId;
   }
+}
+
+/** Patient-space position of every displayed image (same order as imageIds), used to link views of one patient. */
+function linkGeometry(s: Series, instances: Series['instances']): Pick<SeriesSource, 'frameOfReferenceUid' | 'normal' | 'positions'> {
+  const normal = s.geometry.iop ? sliceNormal(s.geometry.iop) : null;
+  return {
+    frameOfReferenceUid: s.frameOfReferenceUid,
+    normal,
+    // Multi-frame instances carry one position for all frames, so they cannot be linked slice by slice.
+    positions: instances.flatMap((i) => Array.from({ length: i.frames }, () => (i.frames === 1 && i.ipp ? i.ipp : null))),
+  };
 }

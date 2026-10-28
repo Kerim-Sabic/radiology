@@ -3,12 +3,37 @@
  * fetching and resource disposal. React components talk to it through this API and
  * subscribe to its change counter; image arrays and WebGL objects never enter React state.
  */
+import vtkPlane from '@kitware/vtk.js/Common/DataModel/Plane';
 import { cs, cst, initCornerstone, TOOL, MARK_TOOLS, MEASURE_TOOLS, arrowLabelHook } from './csInit';
 import { SeriesFetcher, type FetchProgress } from './seriesFetcher';
-import { csToContract, orientationLetters, edgeLabelsFromPatientOrientation, sub, type Vec2, type Vec3 } from '../lib/geometry';
+import { add, cross, csToContract, dot, normalize, orientationLetters, edgeLabelsFromPatientOrientation, sub, type Vec2, type Vec3 } from '../lib/geometry';
 import type { LearnerMark } from '../grading/types';
+import { Anatomy3D, type Anatomy3DState } from './anatomy3d';
+import type { LoadedTarget } from '../grading/spatialGrader';
 
 export type ViewKind = 'stack' | 'axial' | 'coronal' | 'sagittal' | '3d';
+export type PlaneKind = 'axial' | 'coronal' | 'sagittal';
+/** Colour of each MPR plane: its reference line in the other views and its tag in its own corner. */
+export const PLANE_COLORS: Record<PlaneKind, string> = { axial: '#f87171', coronal: '#4ade80', sagittal: '#c084fc' };
+/** Reference line of a stack view (another series of the same patient) drawn in the linked views. */
+export const STACK_LINE_COLOR = '#38bdf8';
+/** Thick-slab rendering of the MPR views (MIP for vessels and nodules, MinIP for airways). */
+export type SlabMode = { mm: number; blend: 'mip' | 'minip' | 'avg' } | null;
+/** Patient directions: S head, I feet, A front, P back, R patient's right, L patient's left. */
+export type Side = 'S' | 'I' | 'A' | 'P' | 'R' | 'L';
+export const SIDE_VECTOR: Record<Side, Vec3> = { S: [0, 0, 1], I: [0, 0, -1], A: [0, -1, 0], P: [0, 1, 0], R: [-1, 0, 0], L: [1, 0, 0] };
+export interface Cut3D {
+  /** Part of the volume kept, as fractions of its extent: x right → left, y front → back, z feet → head. */
+  box: { x: [number, number]; y: [number, number]; z: [number, number] };
+  /** Cut at the current slice of an MPR view and keep the given side; the cut follows that view as it scrolls. */
+  follow: Partial<Record<PlaneKind, Side>>;
+}
+export const NO_CUT: Cut3D = { box: { x: [0, 1], y: [0, 1], z: [0, 1] }, follow: {} };
+export interface RefLine {
+  a: Vec2;
+  b: Vec2;
+  color: string;
+}
 export type ToolId =
   | 'windowLevel'
   | 'pan'
@@ -58,6 +83,11 @@ export interface SeriesSource {
   patientOrientation: string[] | null; // radiograph PatientOrientation (0020,0020)
   volumeEligible: boolean;
   defaultWindow: { center: number; width: number } | null;
+  /** Views of one frame of reference (same patient, same scan session) can be linked by position. */
+  frameOfReferenceUid?: string | null;
+  /** Slice normal and the position of every image (same order as imageIds; null when unknown). */
+  normal?: Vec3 | null;
+  positions?: Array<Vec3 | null>;
 }
 
 export interface PanelState {
@@ -73,6 +103,10 @@ export interface PanelState {
   error: string | null;
   progress: FetchProgress | null;
   currentImageId: string | null;
+  /** Thick slab shown in this MPR view (null for a thin slice or a stack). */
+  slab: SlabMode;
+  /** How far this MPR view is tilted from its straight plane, in degrees (0 = straight). */
+  obliqueDeg: number;
 }
 
 interface Panel {
@@ -114,6 +148,18 @@ export class ViewerEngine {
   gpu = true;
   /** Marks are tagged with the current task so attempts never mix. */
   markScope = 'free';
+  /** Linked views: reference lines everywhere, and scrolling one view moves the parallel views of the same patient. */
+  private linked = true;
+  /** Panels moved by the link, with the slice they were sent to (their own new-image event must not echo back). */
+  private following = new Map<string, number>();
+  private slab: SlabMode = null;
+  private cuts = new Map<string, Cut3D>();
+  private presets = new Map<string, string>();
+  private anatomy = new Map<string, Anatomy3D>();
+  private spacingCache = new WeakMap<SeriesSource, number>();
+  /** Straight (non-oblique) camera direction of each MPR view, and the tilt applied from each view (degrees). */
+  private baseOrientation = new Map<string, { normal: Vec3; up: Vec3 }>();
+  private tilts = new Map<string, number>();
 
   async init() {
     const { gpu } = await initCornerstone();
@@ -133,7 +179,13 @@ export class ViewerEngine {
             changeTextCallback: (_d: unknown, _e: unknown, done: (t: string) => void) => (arrowLabelHook.request ? arrowLabelHook.request(done) : done('')),
           });
         } else if (n === TOOL.Crosshairs) {
-          g.addTool(n, { getReferenceLineColor: () => 'rgb(94, 196, 255)', mobile: { enabled: false } });
+          g.addTool(n, {
+            getReferenceLineColor: (viewportId: string) => {
+              const k = [...this.panels.values()].find((p) => p.viewportId === viewportId)?.kind;
+              return k && k !== 'stack' && k !== '3d' ? PLANE_COLORS[k] : STACK_LINE_COLOR;
+            },
+            mobile: { enabled: false },
+          });
         } else g.addTool(n);
       }
     }
@@ -208,6 +260,9 @@ export class ViewerEngine {
           element.addEventListener(ev, onNew);
           panel.cleanup.push(() => element.removeEventListener(ev, onNew));
         }
+        const onImage = () => this.followStack(panelId);
+        element.addEventListener(cs.Enums.Events.STACK_NEW_IMAGE, onImage);
+        panel.cleanup.push(() => element.removeEventListener(cs.Enums.Events.STACK_NEW_IMAGE, onImage));
       } else {
         if (!source.volumeEligible) throw new Error('This series is not a valid volume (irregular or mixed geometry). Use the stack view — reformatting it would distort anatomy.');
         fetcher.start(Math.floor(source.imageIds.length / 2));
@@ -229,7 +284,17 @@ export class ViewerEngine {
           await cs.setVolumesForViewports(re, [{ volumeId }], [viewportId]);
           if (stale()) return;
           const vp = re.getViewport(viewportId) as InstanceType<typeof cs.VolumeViewport3D>;
-          vp.setProperties({ preset: source.modality === 'CT' ? 'CT-Bone' : 'MR-Default' });
+          const preset = source.modality === 'CT' ? 'CT-Bone' : 'MR-Default';
+          vp.setProperties({ preset });
+          this.presets.set(panelId, preset);
+          // Start facing the patient (anterior view, head up) rather than looking along the scanner axis.
+          panel.ready = true;
+          this.set3DView(panelId, 'A');
+          // Any camera change re-orients the first two clipping planes into a thin slab; put the cut back.
+          const onCamera = () => this.applyCut(panelId);
+          element.addEventListener(cs.Enums.Events.CAMERA_MODIFIED, onCamera);
+          panel.cleanup.push(() => element.removeEventListener(cs.Enums.Events.CAMERA_MODIFIED, onCamera));
+          this.applyCut(panelId);
           vp.render();
         } else {
           const orientation = { axial: cs.Enums.OrientationAxis.AXIAL, coronal: cs.Enums.OrientationAxis.CORONAL, sagittal: cs.Enums.OrientationAxis.SAGITTAL }[kind];
@@ -239,8 +304,15 @@ export class ViewerEngine {
           if (stale()) return;
           const vp = re.getViewport(viewportId) as unknown as CsViewport;
           vp.resetCamera();
+          const cam0 = vp.getCamera();
+          this.baseOrientation.set(panelId, { normal: [...cam0.viewPlaneNormal] as Vec3, up: [...cam0.viewUp] as Vec3 });
           if (source.defaultWindow) this.setWindow(panelId, source.defaultWindow.center, source.defaultWindow.width, false);
+          this.applySlab(panel);
           vp.render();
+          // A 3D cut that follows this plane moves with it.
+          const onPlane = () => this.refreshFollowingCuts(source.seriesUid);
+          element.addEventListener(cs.Enums.Events.CAMERA_MODIFIED, onPlane);
+          panel.cleanup.push(() => element.removeEventListener(cs.Enums.Events.CAMERA_MODIFIED, onPlane));
         }
         const onChange = () => this.bump();
         for (const ev of [cs.Enums.Events.CAMERA_MODIFIED, cs.Enums.Events.VOI_MODIFIED, cs.Enums.Events.VOLUME_NEW_IMAGE]) {
@@ -261,6 +333,13 @@ export class ViewerEngine {
     const p = this.panels.get(panelId);
     if (!p) return;
     p.cleanup.forEach((c) => c());
+    this.anatomy.get(panelId)?.dispose();
+    this.anatomy.delete(panelId);
+    this.cuts.delete(panelId);
+    this.presets.delete(panelId);
+    this.baseOrientation.delete(panelId);
+    this.tilts.delete(panelId);
+    this.following.delete(panelId);
     for (const g of [STACK_GROUP, MPR_GROUP, VR_GROUP]) cst.ToolGroupManager.getToolGroup(g)?.removeViewports(ENGINE_ID, p.viewportId);
     try {
       this.re?.disableElement(p.viewportId);
@@ -327,9 +406,15 @@ export class ViewerEngine {
     for (const id of [STACK_GROUP, MPR_GROUP]) {
       const g = cst.ToolGroupManager.getToolGroup(id);
       if (!g) continue;
-      for (const n of [TOOL.WindowLevel, TOOL.Pan, TOOL.Zoom, TOOL.Probe, TOOL.Arrow, TOOL.Rectangle, TOOL.Freehand, TOOL.Length, TOOL.Angle, TOOL.Ellipse, TOOL.Eraser, ...(id === MPR_GROUP ? [TOOL.Crosshairs] : [])]) {
+      for (const n of [TOOL.WindowLevel, TOOL.Pan, TOOL.Zoom, TOOL.Probe, TOOL.Arrow, TOOL.Rectangle, TOOL.Freehand, TOOL.Length, TOOL.Angle, TOOL.Ellipse, TOOL.Eraser]) {
         if (MARK_TOOLS.has(n) || MEASURE_TOOLS.has(n)) g.setToolPassive(n);
         else g.setToolDisabled(n);
+      }
+      if (id === MPR_GROUP) {
+        // Linked: the crosshair lines stay visible (and draggable) in every plane; X makes a click move them.
+        const mode = g.getToolOptions(TOOL.Crosshairs)?.mode;
+        if (tool !== 'crosshairs' && this.linked && mode !== cst.Enums.ToolModes.Passive) g.setToolPassive(TOOL.Crosshairs);
+        if (tool !== 'crosshairs' && !this.linked && mode !== cst.Enums.ToolModes.Disabled) g.setToolDisabled(TOOL.Crosshairs);
       }
       const primary = TOOL_MAP[tool];
       const usable = id === MPR_GROUP || tool !== 'crosshairs';
@@ -390,6 +475,8 @@ export class ViewerEngine {
       error: p.error,
       progress: f?.progress ?? null,
       currentImageId: null,
+      slab: p.kind !== 'stack' && p.kind !== '3d' ? this.slab : null,
+      obliqueDeg: 0,
     };
     const vp = this.viewport(panelId);
     if (!vp) return base;
@@ -404,6 +491,11 @@ export class ViewerEngine {
       }
       base.window = this.getWindow(panelId);
       base.zoom = vp.getZoom?.() ?? 1;
+      const b0 = this.baseOrientation.get(panelId);
+      if (b0 && p.kind !== 'stack' && p.kind !== '3d') {
+        const c = Math.min(1, Math.abs(dot(b0.normal, vp.getCamera().viewPlaneNormal as Vec3)));
+        base.obliqueDeg = Math.round((Math.acos(c) * 180) / Math.PI);
+      }
       base.edges = this.edgeLabels(p, vp);
     } catch {
       /* viewport mid-update */
@@ -517,7 +609,360 @@ export class ViewerEngine {
     const vp = this.viewport(panelId);
     if (!vp) return;
     vp.setProperties({ preset });
+    this.presets.set(panelId, preset);
     vp.render();
+    this.bump();
+  }
+  get3DPreset(panelId: string) {
+    return this.presets.get(panelId) ?? null;
+  }
+
+  /** Turn the 3D view to look at the patient from one side (head up; from above or below, front up). */
+  set3DView(panelId: string, side: Side) {
+    const p = this.panels.get(panelId);
+    const vp = this.viewport(panelId);
+    if (!p || !vp || p.kind !== '3d') return;
+    const n = SIDE_VECTOR[side];
+    const up: Vec3 = side === 'S' || side === 'I' ? [0, -1, 0] : [0, 0, 1];
+    const cam = vp.getCamera();
+    const f = cam.focalPoint as Vec3;
+    const d = Math.hypot(...sub(cam.position as Vec3, f)) || 1000;
+    vp.setCamera({ focalPoint: f, position: add(f, [n[0] * d, n[1] * d, n[2] * d]), viewUp: up });
+    vp.resetCamera({ resetPan: true, resetZoom: true, resetToCenter: true });
+    this.applyCut(panelId);
+    vp.render();
+  }
+
+  // ------------------------------------------------------------ 3D cut
+  set3DCut(panelId: string, cut: Cut3D | null) {
+    if (cut) this.cuts.set(panelId, cut);
+    else this.cuts.delete(panelId);
+    this.applyCut(panelId);
+    this.viewport(panelId)?.render();
+    this.bump();
+  }
+  get3DCut(panelId: string): Cut3D {
+    return this.cuts.get(panelId) ?? NO_CUT;
+  }
+  /** Whether a 3D cut can follow this plane (an MPR view of the series is on screen). */
+  hasPlane(seriesUid: string, kind: PlaneKind) {
+    return !!this.planeViewport(seriesUid, kind);
+  }
+  private refreshFollowingCuts(seriesUid: string) {
+    for (const [id, cut] of this.cuts) {
+      const p = this.panels.get(id);
+      if (!p || p.source.seriesUid !== seriesUid || !Object.keys(cut.follow).length) continue;
+      this.applyCut(id);
+      this.viewport(id)?.render();
+    }
+  }
+  /** Re-apply the cut to every actor of a 3D panel (volume and anatomy models). */
+  private applyCut(panelId: string) {
+    const p = this.panels.get(panelId);
+    const vp = this.viewport(panelId);
+    if (!p || p.kind !== '3d' || !vp) return;
+    const planes = this.cutPlanes(p, vp);
+    for (const entry of (vp as unknown as { getActors(): Array<{ actor?: { getMapper?(): unknown } }> }).getActors()) {
+      const mapper = entry.actor?.getMapper?.() as { removeAllClippingPlanes?(): void; addClippingPlane(p: unknown): void } | undefined;
+      if (!mapper?.removeAllClippingPlanes) continue;
+      mapper.removeAllClippingPlanes();
+      for (const pl of planes) mapper.addClippingPlane(vtkPlane.newInstance({ origin: pl.origin, normal: pl.normal }));
+    }
+  }
+  /** At most two planes per patient axis (the WebGL mapper takes six): the box edges, or one plane following a view. */
+  private cutPlanes(p: Panel, vp: CsViewport): Array<{ origin: Vec3; normal: Vec3 }> {
+    const cut = this.cuts.get(p.id);
+    const b = (vp.getImageData()?.imageData as { getBounds?(): number[] } | undefined)?.getBounds?.();
+    if (!cut || !b) return [];
+    const centre: Vec3 = [(b[0] + b[1]) / 2, (b[2] + b[3]) / 2, (b[4] + b[5]) / 2];
+    const out: Array<{ origin: Vec3; normal: Vec3 }> = [];
+    (['x', 'y', 'z'] as const).forEach((key, ax) => {
+      const kind = (['sagittal', 'coronal', 'axial'] as const)[ax];
+      const side = cut.follow[kind];
+      const q = side ? this.planeViewport(p.source.seriesUid, kind) : null;
+      if (side && q) {
+        const cam = q.getCamera();
+        const n = cam.viewPlaneNormal as Vec3;
+        const s = dot(n, SIDE_VECTOR[side]) >= 0 ? 1 : -1;
+        out.push({ origin: cam.focalPoint as Vec3, normal: [n[0] * s, n[1] * s, n[2] * s] });
+        return;
+      }
+      const [lo, hi] = cut.box[key];
+      const min = b[2 * ax];
+      const max = b[2 * ax + 1];
+      for (const [f, dir] of [[lo, 1], [hi, -1]] as const) {
+        if ((dir === 1 && f <= 0.001) || (dir === -1 && f >= 0.999)) continue;
+        const origin: Vec3 = [...centre];
+        origin[ax] = min + f * (max - min);
+        const normal: Vec3 = [0, 0, 0];
+        normal[ax] = dir;
+        out.push({ origin, normal });
+      }
+    });
+    return out;
+  }
+  private planeViewport(seriesUid: string, kind: PlaneKind): CsViewport | null {
+    for (const q of this.panels.values()) if (q.kind === kind && q.ready && q.source.seriesUid === seriesUid) return this.viewport(q.id) ?? null;
+    return null;
+  }
+
+  // ------------------------------------------------------------ 3D anatomy models
+  /** Coloured models of labelled structures in a 3D panel, built from the outlines when first shown. */
+  anatomy3d(panelId: string): Anatomy3D | null {
+    const p = this.panels.get(panelId);
+    const vp = this.viewport(panelId);
+    if (!p || p.kind !== '3d' || !vp) return null;
+    let a = this.anatomy.get(panelId);
+    if (!a) {
+      a = new Anatomy3D(vp as never, p.source, () => {
+        this.applyCut(panelId);
+        vp.render();
+        this.bump();
+      });
+      this.anatomy.set(panelId, a);
+    }
+    return a;
+  }
+  anatomy3dState(panelId: string): Anatomy3DState | null {
+    return this.anatomy.get(panelId)?.state() ?? null;
+  }
+  setAnatomy3dTargets(panelId: string, targets: LoadedTarget[]) {
+    this.anatomy3d(panelId)?.setTargets(targets);
+  }
+
+  // ------------------------------------------------------------ slab (thick MPR)
+  setSlab(mode: SlabMode) {
+    this.slab = mode;
+    for (const p of this.panels.values()) if (p.ready) this.applySlab(p);
+    this.bump();
+  }
+  getSlab() {
+    return this.slab;
+  }
+  private applySlab(p: Panel) {
+    if (p.kind === 'stack' || p.kind === '3d' || !this.re) return;
+    const vp = this.re.getViewport(p.viewportId) as unknown as {
+      setBlendMode(m: number): void;
+      setSlabThickness(mm: number): void;
+      resetSlabThickness(): void;
+      render(): void;
+    };
+    const BM = cs.Enums.BlendModes;
+    const m = this.slab;
+    try {
+      vp.setBlendMode(!m ? BM.COMPOSITE : m.blend === 'mip' ? BM.MAXIMUM_INTENSITY_BLEND : m.blend === 'minip' ? BM.MINIMUM_INTENSITY_BLEND : BM.AVERAGE_INTENSITY_BLEND);
+      if (m) vp.setSlabThickness(m.mm);
+      else vp.resetSlabThickness();
+      vp.render();
+    } catch {
+      /* viewport mid-update */
+    }
+  }
+
+  // ------------------------------------------------------------ oblique planes
+  /**
+   * Tilt the other MPR planes of the patient by `deg` around the axis of this view (through the crosshair
+   * centre) — the same as turning a crosshair line in this view. Used to follow an oblique structure.
+   */
+  tiltFrom(panelId: string, deg: number) {
+    const src = this.panels.get(panelId);
+    const vp = this.viewport(panelId);
+    const fr = src ? this.forOf(src) : null;
+    if (!src || !vp || src.kind === 'stack' || src.kind === '3d' || !fr || !deg) return;
+    const axis = normalize(vp.getCamera().viewPlaneNormal as Vec3);
+    const xh = cst.ToolGroupManager.getToolGroup(MPR_GROUP)?.getToolInstance(TOOL.Crosshairs) as { toolCenter?: number[] } | undefined;
+    const c = (xh?.toolCenter && xh.toolCenter.every(Number.isFinite) ? xh.toolCenter : vp.getCamera().focalPoint) as Vec3;
+    const t = (deg * Math.PI) / 180;
+    const rotV = (v: Vec3): Vec3 => {
+      const k = cross(axis, v);
+      const d = dot(axis, v) * (1 - Math.cos(t));
+      return [0, 1, 2].map((i) => v[i] * Math.cos(t) + k[i] * Math.sin(t) + axis[i] * d) as Vec3;
+    };
+    const rotP = (p: Vec3) => add(c, rotV(sub(p, c)));
+    for (const q of this.panels.values()) {
+      if (q === src || !q.ready || q.kind === 'stack' || q.kind === '3d' || this.forOf(q) !== fr) continue;
+      const qvp = this.viewport(q.id);
+      if (!qvp) continue;
+      const cam = qvp.getCamera();
+      qvp.setCamera({ focalPoint: rotP(cam.focalPoint as Vec3), position: rotP(cam.position as Vec3), viewUp: rotV(cam.viewUp as Vec3) });
+      qvp.render();
+    }
+    this.tilts.set(panelId, (((this.tilts.get(panelId) ?? 0) + deg + 540) % 360) - 180);
+    this.refreshFollowingCuts(src.source.seriesUid);
+    this.bump();
+  }
+  /** Total tilt applied from this view (degrees, −180…180). */
+  tiltOf(panelId: string) {
+    return this.tilts.get(panelId) ?? 0;
+  }
+  /** Turn every MPR plane back to straight axial / coronal / sagittal, still crossing at the same point. */
+  straighten() {
+    const xh = cst.ToolGroupManager.getToolGroup(MPR_GROUP)?.getToolInstance(TOOL.Crosshairs) as { toolCenter?: number[]; setToolCenter?(c: Vec3): void } | undefined;
+    const centre = xh?.toolCenter && xh.toolCenter.every(Number.isFinite) ? ([...xh.toolCenter] as Vec3) : null;
+    for (const q of this.panels.values()) {
+      const b0 = this.baseOrientation.get(q.id);
+      const qvp = this.viewport(q.id);
+      if (!b0 || !qvp) continue;
+      const cam = qvp.getCamera();
+      const f = (centre ?? cam.focalPoint) as Vec3;
+      const d = Math.hypot(...sub(cam.position as Vec3, cam.focalPoint as Vec3)) || 500;
+      qvp.setCamera({ focalPoint: f, position: add(f, [b0.normal[0] * d, b0.normal[1] * d, b0.normal[2] * d]), viewUp: b0.up });
+      qvp.render();
+    }
+    this.tilts.clear();
+    if (centre) xh?.setToolCenter?.(centre);
+    for (const p of this.panels.values()) this.refreshFollowingCuts(p.source.seriesUid);
+    this.bump();
+  }
+
+  // ------------------------------------------------------------ linked views
+  setLinked(on: boolean) {
+    this.linked = on;
+    this.applyTool(this.activeTool);
+    this.re?.render();
+    this.bump();
+  }
+  get isLinked() {
+    return this.linked;
+  }
+  private forOf(p: Panel) {
+    return p.source.hasPatientGeometry ? (p.source.frameOfReferenceUid ?? null) : null;
+  }
+  /** Median distance between neighbouring slices of a series. */
+  private spacing(src: SeriesSource): number {
+    let s = this.spacingCache.get(src);
+    if (s === undefined) {
+      const n = src.normal;
+      const d = n ? (src.positions ?? []).filter((x): x is Vec3 => !!x).map((x) => dot(x, n)).sort((a, b) => a - b) : [];
+      const gaps = d.slice(1).map((v, i) => v - d[i]).filter((g) => g > 1e-3).sort((a, b) => a - b);
+      s = gaps.length ? gaps[Math.floor(gaps.length / 2)] : 0;
+      this.spacingCache.set(src, s);
+    }
+    return s;
+  }
+  /** Stack slice nearest to a patient-space point, or null when the point lies outside that series' coverage. */
+  private nearestSlice(q: Panel, world: Vec3): number | null {
+    const n = q.source.normal;
+    const pos = q.source.positions;
+    if (!n || !pos?.length) return null;
+    const d = dot(world, n);
+    let best = -1;
+    let bestDist = Infinity;
+    pos.forEach((x, i) => {
+      if (!x) return;
+      const dist = Math.abs(dot(x, n) - d);
+      if (dist < bestDist) {
+        bestDist = dist;
+        best = i;
+      }
+    });
+    return best >= 0 && bestDist <= Math.max(this.spacing(q.source), 1) ? best : null;
+  }
+  private syncedAt = new Map<string, number>();
+  /** A stack moved: move the parallel stacks of the same patient to the same position. */
+  private followStack(panelId: string) {
+    const p = this.panels.get(panelId);
+    const vp = this.viewport(panelId);
+    // A view the link itself just moved does not drive the others (no echo).
+    if (!p || !vp || !this.linked || performance.now() - (this.syncedAt.get(panelId) ?? -1e9) < 350) return;
+    const idx = vp.getCurrentImageIdIndex();
+    const pos = p.source.positions?.[idx];
+    const n = p.source.normal;
+    const fr = this.forOf(p);
+    if (!pos || !n || !fr) return;
+    for (const q of this.panels.values()) {
+      if (q === p || !q.ready || q.kind !== 'stack' || this.forOf(q) !== fr || !q.source.normal) continue;
+      if (Math.abs(dot(q.source.normal, n)) < 0.98) continue; // other orientations show a reference line instead
+      const i = this.nearestSlice(q, pos);
+      const qvp = this.viewport(q.id);
+      if (i === null || !qvp || qvp.getCurrentImageIdIndex() === i) continue;
+      this.syncedAt.set(q.id, performance.now());
+      this.setIndex(q.id, i);
+    }
+  }
+  /** Show one point in every view of the same patient: MPR planes cross there, stacks go to the nearest slice. */
+  linkJump(panelId: string, canvas: Vec2): boolean {
+    const src = this.panels.get(panelId);
+    const vp = this.viewport(panelId);
+    const fr = src ? this.forOf(src) : null;
+    if (!src || !vp || src.kind === '3d' || !fr) return false;
+    const world = vp.canvasToWorld(canvas) as Vec3;
+    let moved = false;
+    const mpr = [...this.panels.values()].filter((q) => q.ready && q.kind !== 'stack' && q.kind !== '3d' && this.forOf(q) === fr);
+    const xh = mpr.length >= 2 ? (cst.ToolGroupManager.getToolGroup(MPR_GROUP)?.getToolInstance(TOOL.Crosshairs) as { setToolCenter?(c: Vec3): void } | undefined) : undefined;
+    if (xh?.setToolCenter) {
+      xh.setToolCenter(world);
+      moved = true;
+    }
+    for (const q of this.panels.values()) {
+      if (q.id === panelId || !q.ready || q.kind === '3d' || this.forOf(q) !== fr) continue;
+      if (q.kind === 'stack') {
+        const i = this.nearestSlice(q, world);
+        if (i !== null) {
+          this.syncedAt.set(q.id, performance.now());
+          this.setIndex(q.id, i);
+          moved = true;
+        }
+      } else if (!xh?.setToolCenter) {
+        this.jumpToWorld(q.id, world);
+        moved = true;
+      }
+    }
+    this.refreshFollowingCuts(src.source.seriesUid);
+    return moved;
+  }
+  /** Where the other linked views cut this one (MPR views among themselves use the crosshair lines instead). */
+  referenceLines(panelId: string): RefLine[] {
+    const t = this.panels.get(panelId);
+    const tvp = this.viewport(panelId);
+    const fr = t ? this.forOf(t) : null;
+    if (!this.linked || !t || !tvp || t.kind === '3d' || !fr) return [];
+    const cam = tvp.getCamera();
+    const tn = cam.viewPlaneNormal as Vec3;
+    const tf = cam.focalPoint as Vec3;
+    const out: RefLine[] = [];
+    for (const s of this.panels.values()) {
+      if (s === t || !s.ready || s.kind === '3d' || this.forOf(s) !== fr || (s.kind !== 'stack' && t.kind !== 'stack')) continue;
+      const quad = this.displayedQuad(s);
+      if (!quad) continue;
+      const sn = normalize(cross(sub(quad[1], quad[0]), sub(quad[3], quad[0])));
+      if (Math.abs(dot(sn, tn)) > 0.95) continue; // parallel views follow each other instead
+      const hits: Vec3[] = [];
+      for (let i = 0; i < 4; i++) {
+        const a = quad[i];
+        const b = quad[(i + 1) % 4];
+        const da = dot(sub(a, tf), tn);
+        const db = dot(sub(b, tf), tn);
+        if ((da <= 0 && db > 0) || (da > 0 && db <= 0)) {
+          const k = da / (da - db);
+          hits.push(add(a, [(b[0] - a[0]) * k, (b[1] - a[1]) * k, (b[2] - a[2]) * k]));
+        }
+      }
+      if (hits.length < 2) continue;
+      out.push({ a: tvp.worldToCanvas(hits[0]) as Vec2, b: tvp.worldToCanvas(hits[1]) as Vec2, color: s.kind === 'stack' ? STACK_LINE_COLOR : PLANE_COLORS[s.kind] });
+    }
+    return out;
+  }
+  /** Corners of the image shown in a panel, in patient space. */
+  private displayedQuad(s: Panel): Vec3[] | null {
+    const vp = this.viewport(s.id);
+    if (!vp) return null;
+    if (s.kind === 'stack') {
+      const id = vp.getCurrentImageId?.();
+      const ip = id ? (cs.metaData.get('imagePlaneModule', id) as ImagePlaneMeta | undefined) : undefined;
+      if (!ip?.imagePositionPatient || !ip.rowCosines || !ip.columnCosines || !ip.rows || !ip.columns) return null;
+      const r = ip.rowCosines as Vec3;
+      const c = ip.columnCosines as Vec3;
+      const dx = ip.columnPixelSpacing ?? 1;
+      const dy = ip.rowPixelSpacing ?? 1;
+      const o: Vec3 = [0, 1, 2].map((i) => ip.imagePositionPatient![i] - 0.5 * r[i] * dx - 0.5 * c[i] * dy) as Vec3;
+      const w: Vec3 = [r[0] * dx * ip.columns, r[1] * dx * ip.columns, r[2] * dx * ip.columns];
+      const h: Vec3 = [c[0] * dy * ip.rows, c[1] * dy * ip.rows, c[2] * dy * ip.rows];
+      return [o, add(o, w), add(add(o, w), h), add(o, h)];
+    }
+    const w = vp.canvas.clientWidth;
+    const h = vp.canvas.clientHeight;
+    return ([[0, 0], [w, 0], [w, h], [0, h]] as Vec2[]).map((c) => vp.canvasToWorld(c) as Vec3);
   }
 
   // ------------------------------------------------------------ bookmarks
@@ -758,4 +1203,15 @@ interface CsViewport {
   canvasToWorld(p: number[]): number[];
   worldToCanvas(p: number[]): number[];
   getImageData(): { imageData: unknown; dimensions: number[]; voxelManager: { getAtIJK(i: number, j: number, k: number): unknown } } | undefined;
+}
+
+/** The parts of Cornerstone's imagePlaneModule used to place a stack image in patient space. */
+interface ImagePlaneMeta {
+  imagePositionPatient?: number[];
+  rowCosines?: number[];
+  columnCosines?: number[];
+  rows?: number;
+  columns?: number;
+  rowPixelSpacing?: number;
+  columnPixelSpacing?: number;
 }

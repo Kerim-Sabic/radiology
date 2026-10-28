@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 474 493" role="img" aria-label="radiology.monster">
+  <defs>
+    <linearGradient id="rm-bowl" gradientUnits="userSpaceOnUse" x1="40" y1="0" x2="420" y2="271">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.4" stop-color="#EBEFF5"/>
+      <stop offset="1" stop-color="#A3B6D6"/>
+    </linearGradient>
+    <linearGradient id="rm-stem" gradientUnits="userSpaceOnUse" x1="40" y1="180" x2="120" y2="493">
+      <stop offset="0" stop-color="#47A8FF"/>
+      <stop offset="0.25" stop-color="#2C92FC"/>
+      <stop offset="0.6" stop-color="#0866FA"/>
+      <stop offset="1" stop-color="#0236F2"/>
+    </linearGradient>
+    <linearGradient id="rm-leg" gradientUnits="userSpaceOnUse" x1="215" y1="290" x2="470" y2="485">
+      <stop offset="0" stop-color="#0B4CD4"/>
+      <stop offset="0.3" stop-color="#3A60EC"/>
+      <stop offset="0.62" stop-color="#7A64F5"/>
+      <stop offset="1" stop-color="#C870FC"/>
+    </linearGradient>
+    <clipPath id="rm-stem-clip">
+      <path d="M0 310A130 130 0 0 1 130 180H187.6L468.5 455.3A22 22 0 0 1 453.1 493H18A18 18 0 0 1 0 475Z"/>
+    </clipPath>
+  </defs>
+  <path fill="url(#rm-bowl)" d="M28.4 24A14 14 0 0 1 38.2 0H348A107 135.5 0 0 1 348 271H280.4Z"/>
+  <path fill="url(#rm-stem)" d="M0 310A130 130 0 0 1 130 180H187.6L468.5 455.3A22 22 0 0 1 453.1 493H18A18 18 0 0 1 0 475Z"/>
+  <path fill="url(#rm-leg)" stroke="#FFFFFF" stroke-opacity="0.16" stroke-width="2" clip-path="url(#rm-stem-clip)" d="M190 367A95 95 0 0 1 285 272H520V493H270A80 80 0 0 1 190 413Z"/>
+</svg>

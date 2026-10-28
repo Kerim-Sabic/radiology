@@ -27,6 +27,25 @@ The app is a static SPA (`dist/`) with no server functions. Large DICOM is serve
 2. Privacy: Netlify **Free/Personal** plans have no password protection — use *Private project visibility* (credit-based plans) or upgrade to **Pro** for basic password protection; team-login/SSO is Enterprise. Netlify's docs do not state whether protection covers every static file, so verify signed-out access to a `.dcm` URL yourself.
 3. Updates: every push to `main` redeploys automatically.
 
+## Custom domain radiology.monster
+1. Netlify → the site → **Domain management → Add a domain** → `radiology.monster`. Netlify offers to add `www.radiology.monster` too; accept it. Set `radiology.monster` as the **primary domain** (the `www` name then redirects to it).
+2. DNS, one of:
+   - **Netlify DNS** (simplest): choose *Set up Netlify DNS* and, at the registrar where the domain was bought, replace the nameservers with the four Netlify nameservers it shows.
+   - **Keep DNS at the registrar**: an `A` record for `radiology.monster` (apex, `@`) → `75.2.60.5` (Netlify's load balancer), and a `CNAME` for `www` → `<your-site>.netlify.app`. Remove any other `A`/`AAAA`/parking records for those names.
+3. HTTPS: once DNS resolves (minutes to a few hours), Netlify provisions a Let's Encrypt certificate automatically (**Domain management → HTTPS**); then turn on *Force HTTPS* if it is not already on.
+4. The page metadata (`index.html`: Open Graph image and URL) already points to `https://radiology.monster/`.
+5. Later, once the domain is live, the old address can be redirected with a forced rule at the top of `netlify.toml`:
+   ```toml
+   [[redirects]]
+     from = "https://<your-site>.netlify.app/*"
+     to = "https://radiology.monster/:splat"
+     status = 301
+     force = true
+   ```
+   Do not add it before `radiology.monster` resolves, or the site becomes unreachable.
+
+The `noindex` meta tag and `X-Robots-Tag` header stay on: search engines will not list the site until you remove both.
+
 ## Without protected hosting
 Run locally (`npm run build && npm run preview`) or use the hosted app with only the starter pack and import your own studies on each device (Import page — files never leave the browser). A public, unlisted URL is **not** private.
 

@@ -61,7 +61,8 @@ test('measure shell, first image, full series, scrolling, memory', async ({ page
 
   // MPR build (volume from the already-fetched series).
   const t2 = Date.now();
-  await page.getByRole('button', { name: 'MPR: axial / coronal / sagittal' }).click();
+  await page.getByRole('button', { name: 'Layout' }).click();
+  await page.getByRole('menuitem', { name: 'MPR: axial / coronal / sagittal' }).click();
   await page.waitForFunction(() => ['p0', 'p1', 'p2'].every((p) => (window as any).__rvm.panelState(p)?.ready), null, { timeout: 60_000 });
   results.mprReadyMs = Date.now() - t2;
   results.jsHeapMB = await page.evaluate(() => {

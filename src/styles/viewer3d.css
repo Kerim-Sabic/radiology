@@ -1,0 +1,342 @@
+/* Linked views, enlarged view and the 3D panel controls (cut, structures, quiz). */
+
+/* ---------------------------------------------------------------- enlarged view */
+.vgrid.big {
+  grid-template-columns: minmax(0, 1fr) minmax(160px, 24%);
+}
+.vgrid.big > .vpanel {
+  grid-column: 2;
+}
+.vgrid.big > .vpanel.big {
+  grid-column: 1;
+  grid-row: 1 / -1;
+  order: -1;
+}
+@media (max-width: 860px) {
+  .vgrid.big {
+    grid-template: 1fr / 1fr !important;
+  }
+  .vgrid.big > .vpanel {
+    display: none;
+  }
+  .vgrid.big > .vpanel.big {
+    display: block;
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+
+/* ---------------------------------------------------------------- plane colours */
+.plane-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-left: 6px;
+  vertical-align: 1px;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6);
+  flex: none;
+}
+
+/* ---------------------------------------------------------------- shared small controls */
+.btn.on {
+  border-color: rgba(var(--accent-rgb), 0.7);
+  background: var(--accent-soft);
+  color: var(--text);
+}
+.btn.ok {
+  border-color: var(--ok);
+  color: var(--ok);
+}
+.seg {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 2px;
+}
+.chip-btn {
+  border: 1px solid var(--line-strong);
+  background: var(--panel-2);
+  color: var(--text);
+  border-radius: 999px;
+  padding: 3px 10px;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.chip-btn:hover {
+  border-color: rgba(var(--accent-rgb), 0.7);
+}
+.linklike {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  padding: 2px 0;
+  cursor: pointer;
+}
+.swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex: none;
+}
+
+/* ---------------------------------------------------------------- 3D panel bar */
+.v3d-ui {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  max-width: calc(100% - 12px);
+  max-height: calc(100% - 40px);
+  z-index: 4;
+  pointer-events: none;
+}
+.v3d-ui > * {
+  pointer-events: auto;
+}
+.v3d-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  padding: 4px;
+  border-radius: 10px;
+  background: rgba(2, 6, 23, 0.78);
+  border: 1px solid var(--line);
+  backdrop-filter: blur(6px);
+}
+.v3d-bar select {
+  height: 26px;
+  max-width: 130px;
+  background: var(--panel-2);
+  color: var(--text);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: 12px;
+}
+
+/* ---------------------------------------------------------------- 3D popover panes */
+.v3d-pane {
+  width: min(300px, 100%);
+  min-height: 0;
+  flex: 0 1 auto;
+  overflow: auto;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: rgba(10, 17, 34, 0.96);
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  font-size: 12.5px;
+}
+.v3d-pane p {
+  margin: 0 0 8px;
+  font-size: 12px;
+}
+.v3d-pane-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.v3d-sub {
+  margin: 12px 0 2px;
+  font-size: 12.5px;
+}
+.v3d-follow {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0;
+}
+.v3d-follow .plane-dot {
+  margin-left: 0;
+}
+.v3d-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.v3d-group-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.v3d-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 0 2px 22px;
+  cursor: pointer;
+}
+.v3d-answer {
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line-strong);
+}
+.v3d-answer.ok {
+  border-color: var(--ok);
+  color: var(--ok);
+}
+.v3d-answer.bad {
+  border-color: var(--bad);
+  color: var(--bad);
+}
+
+/* ---------------------------------------------------------------- two-handle range */
+.dual {
+  margin: 8px 0 4px;
+}
+.dual.disabled {
+  opacity: 0.55;
+}
+.dual-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  margin-bottom: 2px;
+}
+.dual-track {
+  position: relative;
+  height: 22px;
+}
+.dual-track::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 9px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--panel-3);
+}
+.dual-fill {
+  position: absolute;
+  top: 9px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--accent);
+}
+.dual-track input[type='range'] {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  margin: 0;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.dual-track input[type='range']::-webkit-slider-runnable-track {
+  background: none;
+}
+.dual-track input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  pointer-events: auto;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  border-radius: 50%;
+  background: #f8fafc;
+  border: 2px solid var(--brand, #2563eb);
+  cursor: grab;
+}
+.dual-track input[type='range']::-moz-range-track {
+  background: none;
+}
+.dual-track input[type='range']::-moz-range-thumb {
+  pointer-events: auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #f8fafc;
+  border: 2px solid var(--brand, #2563eb);
+  cursor: grab;
+}
+.dual-track input[type='range']:focus-visible::-webkit-slider-thumb {
+  box-shadow: var(--focus);
+}
+
+/* ---------------------------------------------------------------- MPR slab and angle popovers */
+.mpr-pop {
+  width: 290px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12.5px;
+}
+.mpr-pop p {
+  margin: 0;
+  font-size: 12px;
+}
+.mpr-range {
+  display: grid;
+  grid-template-columns: 64px 1fr 52px;
+  align-items: center;
+  gap: 8px;
+}
+.mpr-range input {
+  width: 100%;
+}
+.mpr-range b {
+  text-align: right;
+}
+
+.mpr-hr {
+  border: 0;
+  border-top: 1px solid var(--line);
+  margin: 8px 0 4px;
+  width: 100%;
+}
+.mpr-pop b svg {
+  vertical-align: -1px;
+}
+
+/* The workstation bar wraps to a second row on wide screens instead of hiding buttons off the edge. */
+@media (min-width: 861px) {
+  .ws {
+    grid-template-rows: auto 1fr;
+  }
+  .ws-bar {
+    flex-wrap: wrap;
+    min-height: var(--toolbar-h);
+    padding: 4px 8px;
+    row-gap: 2px;
+    overflow: visible;
+  }
+}
+
+/* Narrow 3D panels: icon buttons only, so the bar never covers the panel's own labels. */
+.vpanel {
+  container-type: inline-size;
+}
+@container (max-width: 560px) {
+  .v3d-label {
+    display: none;
+  }
+  .v3d-bar select {
+    max-width: 96px;
+  }
+}
+
+/* Phones: MPR + 3D shows the axial view and the 3D view (the other planes stay live, linked and off-screen). */
+@media (max-width: 860px) {
+  .vgrid.l4.mpr3d > :nth-child(n + 2) {
+    display: none;
+  }
+  .vgrid.l4.mpr3d > :nth-child(4) {
+    display: block;
+  }
+}
