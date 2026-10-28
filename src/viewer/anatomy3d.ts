@@ -95,7 +95,8 @@ export class Anatomy3D {
     this.targetKey = key;
     const byKey = new Map<string, LoadedTarget>();
     for (const t of mine) {
-      const k = canonicalAnatomyKey(t.ref.classId);
+      // Each finding is its own model (three metastases stay three); anatomy is one model per structure.
+      const k = t.ref.classId.startsWith('finding:') ? `${t.ref.classId}#${t.ref.id}` : canonicalAnatomyKey(t.ref.classId);
       const prev = byKey.get(k);
       if (!prev || (!prev.ref.category && t.ref.category)) byKey.set(k, t);
     }

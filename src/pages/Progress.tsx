@@ -170,7 +170,7 @@ export default function ProgressPage() {
 
       <section className="card stack">
         <div className="row">
-          <h2>Anatomy drills</h2>
+          <h2>Drills</h2>
           <span className="spacer" />
           <Link className="btn sm" to="/drill">
             Open drills

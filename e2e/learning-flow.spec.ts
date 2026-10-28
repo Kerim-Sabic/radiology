@@ -10,6 +10,51 @@ async function waitPanel(page: Page, panel = 'p0') {
   await page.waitForFunction((p) => (window as any).__rvm?.panelState(p)?.ready === true, panel, { timeout: 60_000 });
 }
 
+/**
+ * A canvas point surely inside the drill's answer (outline or box): the middle of the widest even-odd span on a scan
+ * line (a vertex average can fall outside a curved outline or inside a hole), taken once the view has settled.
+ * Null when the question is not a pointing question or the answer is not on the shown image.
+ */
+async function drillAnswerPoint(page: Page): Promise<[number, number] | null> {
+  const pick = () =>
+    page.evaluate(() => {
+      const d = (window as any).__rvmDrill;
+      if (d.kind !== 'locate' && d.kind !== 'find') return null;
+      const polys = d.answerPolys() as number[][][];
+      if (!polys.length) return null;
+      const ys = polys.flat().map((q) => q[1]);
+      const [y0, y1] = [Math.min(...ys), Math.max(...ys)];
+      let best: [number, number] | null = null;
+      let width = 0;
+      for (let k = 1; k < 20; k++) {
+        const y = y0 + ((y1 - y0) * k) / 20;
+        const xs: number[] = [];
+        for (const r of polys)
+          for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
+            const [ax, ay] = r[j];
+            const [bx, by] = r[i];
+            if (ay > y !== by > y) xs.push(ax + ((y - ay) * (bx - ax)) / (by - ay));
+          }
+        xs.sort((a, b) => a - b);
+        for (let i = 0; i + 1 < xs.length; i += 2)
+          if (xs[i + 1] - xs[i] > width) {
+            width = xs[i + 1] - xs[i];
+            best = [(xs[i] + xs[i + 1]) / 2, y];
+          }
+      }
+      return best;
+    });
+  let target = await pick();
+  for (let k = 0; k < 12; k++) {
+    await page.waitForTimeout(150);
+    const again = await pick();
+    const still = !!target && !!again && Math.hypot(again[0] - target[0], again[1] - target[1]) < 1;
+    target = again;
+    if (still) break;
+  }
+  return target;
+}
+
 /** Pick a layout from the toolbar's Layout menu. */
 async function chooseLayout(page: Page, name: string) {
   await page.getByRole('button', { name: 'Layout' }).click();
@@ -433,6 +478,35 @@ test.describe('D. assess leakage, deep links', () => {
 });
 
 test.describe('E. study tools', () => {
+  test('finding drill: pointing inside the expert outline or box is graded correct, with the signs to look for', async ({ page }) => {
+    await page.goto('/drill');
+    await page.getByRole('button', { name: /^Findings \(pneumothorax/ }).click();
+    await page.getByRole('checkbox', { name: 'Find its level' }).uncheck(); // every finding question is then "point to it"
+    await page.getByRole('button', { name: /^Start/ }).first().click();
+    await expect.poll(async () => page.evaluate(() => (window as any).__rvmDrill?.state), { timeout: 30000 }).toBe('asking');
+    await expect(page.locator('.drill .vp-status')).toHaveCount(0, { timeout: 30000 });
+    const target = await drillAnswerPoint(page);
+    expect(target).not.toBeNull();
+    const box = (await page.locator('.drill .vp-el').boundingBox())!;
+    await page.mouse.click(box.x + target![0], box.y + target![1]);
+    await expect(page.locator('.drill-side .notice.ok')).toContainText('Correct');
+    await expect(page.locator('.drill-side')).toContainText('what to look for');
+    await expect(page.locator('.drill-side').getByRole('link', { name: 'More cases and the book pages' })).toHaveAttribute('href', /\/conditions\?c=/);
+  });
+
+  test('cine: Space plays the slices and stops them', async ({ page }) => {
+    await page.goto(CT_TASK('heart', 'learn'));
+    await waitPanel(page);
+    await page.locator('[data-panel="p0"] .vp-el').click();
+    await page.keyboard.press('Space');
+    await expect.poll(async () => page.evaluate(() => (window as any).__rvm.panelState('p0').index), { timeout: 15000 }).toBeGreaterThan(2);
+    await page.keyboard.press('Space');
+    const stopped = await page.evaluate(() => (window as any).__rvm.panelState('p0').index);
+    await page.waitForTimeout(600);
+    expect(await page.evaluate(() => (window as any).__rvm.panelState('p0').index)).toBe(stopped);
+    expect(await page.evaluate(() => (window as any).__rvm.isPlaying('p0'))).toBe(false);
+  });
+
   test('anatomy drill: pointing inside the structure is graded correct and explained', async ({ page }) => {
     await page.goto('/drill?key=esophagus');
     await page.getByRole('button', { name: /Start \(8 questions\)/ }).click();
@@ -441,44 +515,7 @@ test.describe('E. study tools', () => {
       await expect(page.locator('.drill-side h2')).toBeVisible({ timeout: 20000 });
       await expect.poll(async () => page.evaluate(() => (window as any).__rvmDrill?.state), { timeout: 20000 }).toBe('asking');
       await expect(page.locator('.drill .vp-status')).toHaveCount(0, { timeout: 30000 });
-      const pick = () => page.evaluate(() => {
-        const d = (window as any).__rvmDrill;
-        if (d.kind !== 'locate' && d.kind !== 'find') return null;
-        const polys = d.answerPolys() as number[][][];
-        if (!polys.length) return null;
-        // A point surely inside the structure: the middle of the widest even-odd span on a scan line through it
-        // (a vertex average can fall outside a curved outline or inside a hole such as the esophageal lumen).
-        const ys = polys.flat().map((q) => q[1]);
-        const [y0, y1] = [Math.min(...ys), Math.max(...ys)];
-        let best: [number, number] | null = null;
-        let width = 0;
-        for (let k = 1; k < 20; k++) {
-          const y = y0 + ((y1 - y0) * k) / 20;
-          const xs: number[] = [];
-          for (const r of polys)
-            for (let i = 0, j = r.length - 1; i < r.length; j = i++) {
-              const [ax, ay] = r[j];
-              const [bx, by] = r[i];
-              if (ay > y !== by > y) xs.push(ax + ((y - ay) * (bx - ax)) / (by - ay));
-            }
-          xs.sort((a, b) => a - b);
-          for (let i = 0; i + 1 < xs.length; i += 2)
-            if (xs[i + 1] - xs[i] > width) {
-              width = xs[i + 1] - xs[i];
-              best = [(xs[i] + xs[i + 1]) / 2, y];
-            }
-        }
-        return best;
-      });
-      // Click only once the view has settled (the target stays put for 150 ms).
-      let target = await pick();
-      for (let k = 0; target && k < 12; k++) {
-        await page.waitForTimeout(150);
-        const again = await pick();
-        const still = !!again && Math.hypot(again[0] - target[0], again[1] - target[1]) < 1;
-        target = again;
-        if (still) break;
-      }
+      const target = await drillAnswerPoint(page);
       if (target) {
         const box = (await page.locator('.drill .vp-el').boundingBox())!;
         await page.mouse.click(box.x + target[0], box.y + target[1]);

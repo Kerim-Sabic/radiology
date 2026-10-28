@@ -69,7 +69,7 @@ const SITE_TITLE = 'radiology.monster — Real cases. Deeper understanding.';
 const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/cases/, 'Cases'],
   [/^\/atlas/, 'Anatomy atlas'],
-  [/^\/drill/, 'Anatomy drills'],
+  [/^\/drill/, 'Drills'],
   [/^\/course/, 'Course'],
   [/^\/book/, 'Book'],
   [/^\/progress/, 'Progress'],

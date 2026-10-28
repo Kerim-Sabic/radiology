@@ -15,6 +15,7 @@ import {
   WINDOW_CHOICES,
   WINDOW_WHY,
   bestWindow,
+  conditionForFinding,
   buildPool,
   distanceToShapes,
   distractors,
@@ -128,19 +129,26 @@ export default function DrillPage() {
     setLoading(true);
     const { cand } = pick;
     let kind = pick.kind;
-    const loaded = await catalog.loadTargets(catalog.anatomyTargetsForSeries([cand.seriesUid]));
-    const all = [...loaded.values()].filter((t) => t.geom.geometryType === 'contour_set');
+    // The anatomy of the scan (to name what was clicked instead) plus, for a finding, its expert outline or box.
+    const loaded = await catalog.loadTargets([...catalog.anatomyTargetsForSeries([cand.seriesUid]), ...(cand.category === 'finding' ? [cand.targetId] : [])]);
+    const all = [...loaded.values()].filter((t) => t.geom.geometryType === 'contour_set' || t.ref.id === cand.targetId);
     const target = loaded.get(cand.targetId);
     const src = catalog.seriesSource(cand.seriesUid);
     const idx = catalog.seriesIndex(cand.seriesUid);
-    if (!target || target.geom.geometryType !== 'contour_set' || !target.geom.planes.length || !src) {
+    const usableGeom = target && ((target.geom.geometryType === 'contour_set' && target.geom.planes.length) || (target.geom.geometryType === 'box' && target.geom.boxes.length));
+    if (!target || !usableGeom || !src) {
       unusable.current.add(cand.targetId);
       setLoading(false);
       return;
     }
-    // Slices that show the structure, with their outline area (mm² for patient-space outlines).
-    const areas = target.geom.planes
-      .map((pl) => {
+    // Slices that show the structure, with their outline area (mm² for patient-space outlines; px² for boxes).
+    const g = target.geom;
+    const areas = (
+      g.geometryType === 'box'
+        ? g.boxes.map((b) => ({ sop: b.sopInstanceUid, i: src.sopUids.indexOf(b.sopInstanceUid), a: Math.abs((b.box[2] - b.box[0]) * (b.box[3] - b.box[1])) }))
+        : g.geometryType !== 'contour_set'
+          ? []
+          : g.planes.map((pl) => {
         const inst = idx?.bySop.get(pl.sopInstanceUid);
         const a = pl.polygons.reduce((s, poly) => {
           const pts: Vec2[] =
@@ -153,7 +161,7 @@ export default function DrillPage() {
         }, 0);
         return { sop: pl.sopInstanceUid, i: src.sopUids.indexOf(pl.sopInstanceUid), a };
       })
-      .filter((x) => x.i >= 0);
+    ).filter((x) => x.i >= 0);
     const max = Math.max(0, ...areas.map((x) => x.a));
     const good = areas.filter((x) => x.a >= max * 0.6);
     const best = good[Math.floor(Math.random() * good.length)] ?? areas[0];
@@ -302,10 +310,10 @@ export default function DrillPage() {
       <div style={{ height: '100%', overflowY: 'auto' }}>
       <div className="page-inner stack" style={{ gap: 18, maxWidth: 980 }}>
         <div className="stack" style={{ gap: 4 }}>
-          <h1>Anatomy drills</h1>
+          <h1>Drills</h1>
           <span className="muted">
-            Quick questions on real scans: point to a structure, scroll to its level, name an outline, or pick the window that shows it. Structures you miss come back
-            later on a different patient; ones you know come back less often.
+            Quick questions on real scans: point to a structure or a finding (pneumothorax, effusion, nodule, embolus, fracture…), scroll to its level, name an outline,
+            or pick the window that shows it. What you miss comes back later on a different patient; what you know comes back less often.
           </span>
         </div>
         {loading ? <div className="notice info">Loading the next scan…</div> : null}
@@ -447,6 +455,7 @@ export default function DrillPage() {
   const s = catalog.series.get(q.cand.seriesUid)!;
   const kase = catalog.cases.get(q.cand.caseId);
   const note = noteFor(q.cand.key, q.cand.family);
+  const condition = q.cand.category === 'finding' ? conditionForFinding(q.cand.key) : null;
   const ai = isAutomatic(q.cand.provenance);
   const answered = q.state === 'answered';
   const showIds = answered ? new Set([q.target.ref.id, ...(q.clickedId ? [q.clickedId] : [])]) : null;
@@ -529,6 +538,19 @@ export default function DrillPage() {
         {answered ? (
           <div className="stack" style={{ gap: 10 }}>
             <div className={`notice ${q.correct ? 'ok' : 'bad'}`}>{q.feedback}</div>
+            {condition ? (
+              <div className="card stack" style={{ gap: 4, fontSize: 13 }}>
+                <b>{q.cand.name}: what to look for</b>
+                <ul style={{ margin: 0, paddingLeft: 18 }}>
+                  {condition.signs.slice(0, 3).map((x) => (
+                    <li key={x}>{x}</li>
+                  ))}
+                </ul>
+                <Link to={`/conditions?c=${condition.id}`} className="faint" style={{ fontSize: 12 }}>
+                  More cases and the book pages
+                </Link>
+              </div>
+            ) : null}
             {note ? (
               <div className="card stack" style={{ gap: 4, fontSize: 13 }}>
                 <b>{q.cand.name}</b>

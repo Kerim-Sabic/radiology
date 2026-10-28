@@ -160,6 +160,8 @@ export class ViewerEngine {
   /** Straight (non-oblique) camera direction of each MPR view, and the tilt applied from each view (degrees). */
   private baseOrientation = new Map<string, { normal: Vec3; up: Vec3 }>();
   private tilts = new Map<string, number>();
+  /** Panels playing as a cine loop. */
+  private playing = new Set<string>();
 
   async init() {
     const { gpu } = await initCornerstone();
@@ -332,6 +334,7 @@ export class ViewerEngine {
   unmount(panelId: string) {
     const p = this.panels.get(panelId);
     if (!p) return;
+    this.stopPlay(panelId);
     p.cleanup.forEach((c) => c());
     this.anatomy.get(panelId)?.dispose();
     this.anatomy.delete(panelId);
@@ -421,8 +424,9 @@ export class ViewerEngine {
       if (usable && primary !== TOOL.StackScroll && primary !== TOOL.TrackballRotate) g.setToolActive(primary, { bindings: [{ mouseButton: MB.Primary }] });
       if (tool === 'scroll') g.setToolActive(TOOL.StackScroll, { bindings: [{ mouseButton: MB.Primary }, { mouseButton: MB.Wheel }] });
       else g.setToolActive(TOOL.StackScroll, { bindings: [{ mouseButton: MB.Wheel }] });
-      if (tool !== 'zoom') g.setToolActive(TOOL.Zoom, { bindings: [{ mouseButton: MB.Secondary }] });
-      if (tool !== 'pan') g.setToolActive(TOOL.Pan, { bindings: [{ mouseButton: MB.Auxiliary }] });
+      // Phones and tablets: one finger uses the active tool, a pinch zooms, three fingers pan.
+      if (tool !== 'zoom') g.setToolActive(TOOL.Zoom, { bindings: [{ mouseButton: MB.Secondary }, { numTouchPoints: 2 }] });
+      if (tool !== 'pan') g.setToolActive(TOOL.Pan, { bindings: [{ mouseButton: MB.Auxiliary }, { numTouchPoints: 3 }] });
       if (tool !== 'windowLevel' && tool !== 'pan' && tool !== 'zoom') {
         // Keep W/L reachable with Shift+drag even while a marking tool is active.
         g.setToolActive(TOOL.WindowLevel, { bindings: [{ mouseButton: MB.Primary, modifierKey: cst.Enums.KeyboardBindings.Shift }] });
@@ -431,8 +435,8 @@ export class ViewerEngine {
     const vr = cst.ToolGroupManager.getToolGroup(VR_GROUP);
     if (vr) {
       vr.setToolActive(TOOL.TrackballRotate, { bindings: [{ mouseButton: cst.Enums.MouseBindings.Primary }] });
-      vr.setToolActive(TOOL.Zoom, { bindings: [{ mouseButton: cst.Enums.MouseBindings.Secondary }, { mouseButton: cst.Enums.MouseBindings.Wheel }] });
-      vr.setToolActive(TOOL.Pan, { bindings: [{ mouseButton: cst.Enums.MouseBindings.Auxiliary }] });
+      vr.setToolActive(TOOL.Zoom, { bindings: [{ mouseButton: cst.Enums.MouseBindings.Secondary }, { mouseButton: cst.Enums.MouseBindings.Wheel }, { numTouchPoints: 2 }] });
+      vr.setToolActive(TOOL.Pan, { bindings: [{ mouseButton: cst.Enums.MouseBindings.Auxiliary }, { numTouchPoints: 3 }] });
     }
   }
 
@@ -813,6 +817,31 @@ export class ViewerEngine {
     if (centre) xh?.setToolCenter?.(centre);
     for (const p of this.panels.values()) this.refreshFollowingCuts(p.source.seriesUid);
     this.bump();
+  }
+
+  // ------------------------------------------------------------ cine
+  /** Play the slices of a stack or MPR view as a loop (linked views follow it), or stop. */
+  togglePlay(panelId: string, framesPerSecond = 12) {
+    const p = this.panels.get(panelId);
+    if (!p || !p.ready || p.kind === '3d') return;
+    if (this.playing.has(panelId)) this.stopPlay(panelId);
+    else {
+      cst.utilities.cine.playClip(p.element, { framesPerSecond, loop: true });
+      this.playing.add(panelId);
+    }
+    this.bump();
+  }
+  isPlaying(panelId: string) {
+    return this.playing.has(panelId);
+  }
+  private stopPlay(panelId: string) {
+    const p = this.panels.get(panelId);
+    if (!this.playing.delete(panelId) || !p) return;
+    try {
+      cst.utilities.cine.stopClip(p.element);
+    } catch {
+      /* viewport already gone */
+    }
   }
 
   // ------------------------------------------------------------ linked views

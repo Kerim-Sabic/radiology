@@ -9,6 +9,7 @@ import { canonicalAnatomyKey, imageFamily } from '../content/bookAnatomy';
 import { noteFor, structureBase, type WindowName } from '../content/structureNotes';
 import { categoryFor } from '../components/ws/overlayShapes';
 import { isAutomatic, plainName } from '../lib/provenance';
+import { CONDITIONS, type Condition } from '../content/conditions';
 import type { Vec2 } from '../lib/geometry';
 
 export type DrillKind = 'locate' | 'find' | 'name' | 'window';
@@ -54,6 +55,7 @@ export interface Region {
 }
 export const REGIONS: Region[] = [
   { id: 'all', label: 'Everything', test: () => true },
+  { id: 'findings', label: 'Findings (pneumothorax, nodules, PE, fractures…)', test: (c) => c.category === 'finding' },
   { id: 'chest_ct', label: 'Chest CT', test: (c) => c.family === 'CT' && CHEST.test(c.base) },
   { id: 'abdomen_ct', label: 'Abdomen & pelvis CT', test: (c) => c.family === 'CT' && ABDOMEN.test(c.base) },
   { id: 'vessels', label: 'Heart & vessels', test: (c) => c.category === 'vessel' },
@@ -86,8 +88,57 @@ export function buildPool(catalog: Catalog): DrillCandidate[] {
         category: categoryFor(t),
       });
     }
+    // Findings marked by the dataset's experts (outline or box): "point to the pneumothorax" on other patients.
+    for (const id of catalog.targetsForSeries(series.map((s) => s.uid))) {
+      if (seen.has(id)) continue;
+      const t = catalog.targets.get(id);
+      if (!t || !t.classId.startsWith('finding:') || SKIP_FINDING.test(t.classId) || (t.geometryType !== 'contour_set' && t.geometryType !== 'box')) continue;
+      seen.add(id);
+      out.push({
+        caseId: k.id,
+        targetId: id,
+        seriesUid: t.seriesUid,
+        key: t.classId,
+        base: t.classId,
+        name: findingName(t.classId),
+        family: imageFamily(catalog.series.get(t.seriesUid)?.modality ?? ''),
+        provenance: t.provenance,
+        category: 'finding',
+      });
+    }
   }
   return out;
+}
+
+// The sarcoma's "tumor + edema" outline overlaps its tumor outline, so only the tumor is asked.
+const SKIP_FINDING = /^finding:gtv_edema$/;
+const FINDING_NAMES: Record<string, string> = {
+  'finding:pneumothorax': 'Pneumothorax',
+  'finding:pleural_effusion': 'Pleural effusion',
+  'finding:atelectasis': 'Atelectasis',
+  'finding:cardiomegaly': 'Enlarged heart (cardiomegaly)',
+  'finding:lung_mass': 'Lung mass',
+  'finding:lung_nodule': 'Lung nodule',
+  'finding:pneumonia': 'Pneumonia',
+  'finding:pulmonary_embolism': 'Pulmonary embolus',
+  'finding:liver_metastasis': 'Liver metastasis',
+  'finding:mediastinal_lymphadenopathy': 'Enlarged mediastinal lymph nodes',
+  'finding:renal_tumor': 'Renal tumor',
+  'finding:glioma': 'Glioma (brain tumor)',
+  'finding:gtv_mass': 'Soft-tissue tumor',
+  'finding:breast_mass': 'Breast mass',
+  'finding:fracture': 'Fracture',
+};
+/** Plain name of a finding class ("finding:pleural_effusion" → "Pleural effusion"). */
+export function findingName(classId: string): string {
+  const n = FINDING_NAMES[classId];
+  if (n) return n;
+  const words = classId.replace(/^finding:/, '').replace(/_/g, ' ');
+  return words[0].toUpperCase() + words.slice(1);
+}
+/** The condition (signs, book pages) a finding class belongs to, for the explanation after an answer. */
+export function conditionForFinding(classId: string): Condition | null {
+  return CONDITIONS.find((c) => c.evidence?.some((e) => e.kind === 'finding' && e.classIds.includes(classId))) ?? null;
 }
 
 const DAY = 86400e3;
@@ -146,6 +197,8 @@ export function priority(s: DrillStat | undefined, now: number): number {
 const NO_WINDOW_QUESTION = /^pulmonary_arter(ies_|y_interlobar)/;
 
 export function kindsFor(c: DrillCandidate, wanted: DrillKind[]): DrillKind[] {
+  // Findings are pointed to (and on CT/MR found by scrolling); naming and windows are anatomy questions.
+  if (c.category === 'finding') return wanted.filter((k) => k === 'locate' || (k === 'find' && (c.family === 'CT' || c.family === 'MR')));
   return wanted.filter((k) => (k === 'find' ? c.family === 'CT' || c.family === 'MR' : k === 'window' ? c.family === 'CT' && !NO_WINDOW_QUESTION.test(c.key) : true));
 }
 

@@ -172,7 +172,7 @@ export function HomePage() {
       <section className="card row wrap">
         <Target size={18} />
         <span>
-          <b>Anatomy drills</b> — point to it, find its level, name the outline, pick the window. Misses come back on a different patient.
+          <b>Drills</b> — point to a structure or a finding, find its level, name the outline, pick the window. Misses come back on a different patient.
           {drillSum.practised ? ` ${drillSum.due} due now · ${drillSum.secure} known well.` : ''}
         </span>
         <span className="spacer" />

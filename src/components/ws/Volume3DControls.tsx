@@ -17,16 +17,19 @@ export interface ThreeDProps {
   onAnswer?: (target: LoadedTarget, correct: boolean) => void;
 }
 
+// Every CT preset here keeps air (−1000 HU) fully transparent; presets that give air even a little opacity
+// (CT-Air, CT-Chest-Vessels) turn the air around the body into a solid box and are left out.
 const CT_PRESETS: Array<[string, string]> = [
   ['CT-Bone', 'Bone'],
   ['CT-Soft-Tissue', 'Soft tissue'],
   ['CT-Muscle', 'Muscle'],
   ['CT-Lung', 'Lungs'],
-  ['CT-Air', 'Airways (air)'],
   ['CT-Chest-Contrast-Enhanced', 'Chest, contrast'],
-  ['CT-Chest-Vessels', 'Chest vessels'],
+  ['CT-Pulmonary-Arteries', 'Pulmonary arteries'],
   ['CT-AAA', 'Aorta and arteries'],
   ['CT-Cardiac', 'Heart'],
+  ['CT-Coronary-Arteries', 'Coronary arteries'],
+  ['CT-Liver-Vasculature', 'Liver vessels'],
   ['CT-MIP', 'MIP (brightest voxel)'],
 ];
 const MR_PRESETS: Array<[string, string]> = [
@@ -57,6 +60,7 @@ const WHOLE_WHEN_PARTS: Array<[RegExp, RegExp]> = [
   [/^lung_right$/, /^lung_\w+_lobe_right$/],
 ];
 const QUICK: Array<[string, Group3D[]]> = [
+  ['Findings', ['findings']],
   ['Heart & great vessels', ['heart', 'arteries', 'veins']],
   ['Arteries', ['arteries']],
   ['Veins', ['veins']],

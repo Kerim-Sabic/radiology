@@ -41,6 +41,8 @@ import {
   Link2Off,
   Maximize2,
   Minimize2,
+  Play,
+  Pause,
 } from 'lucide-react';
 import '../styles/viewer3d.css';
 import { useApp } from '../app/AppContext';
@@ -663,6 +665,10 @@ export default function Workstation() {
         engine.setTool(tool);
       }
       else if (k === 'k') engine.setLinked(!engine.isLinked);
+      else if (k === ' ') {
+        e.preventDefault();
+        engine.togglePlay(focused);
+      }
       else if (k === 'r') engine.reset(focused);
       else if (k === 'i') engine.invert(focused);
       else if (k === 'f') toggleFullscreen();
@@ -788,6 +794,11 @@ export default function Workstation() {
   };
 
   // ---------------------------------------------------------------- render
+  // 3D models: the anatomy layer plus the outlined findings of the case (a PE clot, nodules, metastases).
+  const targets3d = useMemo(
+    () => [...anatomyTargets, ...[...targets.values()].filter((t) => t.ref.classId.startsWith('finding:') && t.geom.geometryType === 'contour_set')],
+    [anatomyTargets, targets],
+  );
   if (!catalog) return <div className="vp-status">Loading case catalogue…</div>;
   if (!kase || !task || !session) {
     return (
@@ -1052,6 +1063,11 @@ export default function Workstation() {
         <IconButton label="Reset view" shortcut="R" onClick={() => engine.reset(focused)}>
           <RotateCcw size={17} />
         </IconButton>
+        {focusedKind !== '3d' ? (
+          <IconButton label={engine.isPlaying(focused) ? 'Stop the cine loop' : 'Play the slices as a cine loop'} shortcut="Space" active={engine.isPlaying(focused)} onClick={() => engine.togglePlay(focused)}>
+            {engine.isPlaying(focused) ? <Pause size={17} /> : <Play size={17} />}
+          </IconButton>
+        ) : null}
         <span className="sep" />
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
@@ -1233,7 +1249,7 @@ export default function Workstation() {
                   // Marking tools keep double-click for themselves.
                   if (tool === 'windowLevel' || tool === 'pan' || tool === 'zoom' || tool === 'scroll' || tool === 'crosshairs') engine.linkJump(pd.id, c);
                 }}
-                threeD={pd.kind === '3d' ? { allowed: refAllowed, loading: anatomyLoading, targets: anatomyTargets, onAnswer: onAnswer3d } : undefined}
+                threeD={pd.kind === '3d' ? { allowed: refAllowed, loading: anatomyLoading, targets: targets3d, onAnswer: onAnswer3d } : undefined}
                 overlay={{
                   // While one structure is isolated, nothing else is drawn on the image.
                   targets: anatomyProps.isolateId || anatomyProps.isolateSet ? [] : visibleTargets,
@@ -1440,6 +1456,8 @@ export default function Workstation() {
                   ['I  R  F', 'Invert, Reset, Full screen'],
                   ['X', 'Crosshairs: click to move all MPR planes'],
                   ['K', 'Link / unlink views (scroll together, reference lines)'],
+                  ['Space', 'Play / stop the slices as a cine loop'],
+                  ['Pinch / 3 fingers', 'Zoom / pan on a touch screen'],
                   ['Double-click', 'Show that point in every linked view'],
                   ['Ctrl+Z / Ctrl+Y', 'Undo / redo'],
                   ['H', 'Next hint (Practice)'],

@@ -5,9 +5,10 @@
  */
 import type { Vec3 } from '../lib/geometry';
 
-export type Group3D = 'heart' | 'arteries' | 'veins' | 'airways' | 'lungs' | 'bones' | 'abdomen' | 'muscles' | 'other';
+export type Group3D = 'findings' | 'heart' | 'arteries' | 'veins' | 'airways' | 'lungs' | 'bones' | 'abdomen' | 'muscles' | 'other';
 
 export const GROUP_LABEL: Record<Group3D, string> = {
+  findings: 'Findings (expert outlines)',
   heart: 'Heart',
   arteries: 'Arteries',
   veins: 'Veins',
@@ -18,10 +19,11 @@ export const GROUP_LABEL: Record<Group3D, string> = {
   muscles: 'Muscles',
   other: 'Other',
 };
-export const GROUP_ORDER: Group3D[] = ['heart', 'arteries', 'veins', 'airways', 'lungs', 'bones', 'abdomen', 'muscles', 'other'];
+export const GROUP_ORDER: Group3D[] = ['findings', 'heart', 'arteries', 'veins', 'airways', 'lungs', 'bones', 'abdomen', 'muscles', 'other'];
 
 /** Group of a canonical anatomy key (see canonicalAnatomyKey). Pulmonary arteries are arteries, pulmonary veins veins. */
 export function groupFor(key: string): Group3D {
+  if (/^finding:/.test(key)) return 'findings';
   if (/^heart|^atrial_appendage/.test(key)) return 'heart';
   if (/^aorta|artery|arteries|^pulmonary_trunk|^brachiocephalic_trunk/.test(key)) return 'arteries';
   if (/vein|vena|^portal/.test(key)) return 'veins';
@@ -39,6 +41,7 @@ export function groupFor(key: string): Group3D {
  */
 export function colorFor(key: string): string {
   const rules: Array<[RegExp, string]> = [
+    [/^finding:/, '#facc15'], // findings stand out in bright yellow against every organ colour
     [/^heart_atrium_right/, '#60a5fa'],
     [/^heart_ventricle_right/, '#818cf8'],
     [/^heart_atrium_left|^atrial_appendage_left/, '#fb7185'],

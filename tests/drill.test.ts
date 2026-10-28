@@ -15,6 +15,10 @@ import {
   summary,
   type DrillCandidate,
   type DrillStats,
+  findingName,
+  conditionForFinding,
+  REGIONS,
+  type DrillKind,
 } from '../src/services/drill';
 import { landmarks, levelName, mapZ, matchLevels, type Landmark } from '../src/services/levelSync';
 import { noteFor, structureBase } from '../src/content/structureNotes';
@@ -327,5 +331,37 @@ describe('teaching notes and search patterns cover the real labels', () => {
     expect(patternsFor('CT', new Set(['lung_left', 'trachea', 'heart']))[0].id).toBe('chest_ct');
     expect(patternsFor('CT', new Set(['liver', 'kidney_left', 'colon_sigmoid']))[0].id).toBe('abdomen_ct');
     expect(patternsFor('DX', new Set()).length).toBe(0);
+  });
+});
+
+describe('finding drills', () => {
+  const finding = (classId: string, family: 'XR' | 'CT' | 'MR'): DrillCandidate => ({
+    caseId: 'c',
+    targetId: 't',
+    seriesUid: 's',
+    key: classId,
+    base: classId,
+    name: findingName(classId),
+    family,
+    provenance: 'source_manual',
+    category: 'finding',
+  });
+
+  it('asks findings as "point to it", and "find its level" only on CT/MR', () => {
+    const all: DrillKind[] = ['locate', 'find', 'name', 'window'];
+    expect(kindsFor(finding('finding:pneumothorax', 'XR'), all)).toEqual(['locate']);
+    expect(kindsFor(finding('finding:pulmonary_embolism', 'CT'), all)).toEqual(['locate', 'find']);
+    expect(REGIONS.find((r) => r.id === 'findings')!.test(finding('finding:fracture', 'XR'))).toBe(true);
+  });
+
+  it('names findings plainly, in American spelling, and links each to a condition with signs', () => {
+    for (const id of ['pneumothorax', 'pleural_effusion', 'atelectasis', 'cardiomegaly', 'lung_mass', 'lung_nodule', 'pneumonia', 'pulmonary_embolism', 'liver_metastasis', 'renal_tumor', 'glioma', 'fracture']) {
+      const classId = `finding:${id}`;
+      expect(findingName(classId)).not.toMatch(/tumour|oedema|haem|_/);
+      const c = conditionForFinding(classId);
+      expect(c, classId).not.toBeNull();
+      expect(c!.signs.length).toBeGreaterThan(0);
+    }
+    expect(findingName('finding:some_new_thing')).toBe('Some new thing');
   });
 });
