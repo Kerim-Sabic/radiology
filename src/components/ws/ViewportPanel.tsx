@@ -11,6 +11,8 @@ import { layoutLabels, leaderEnd } from './labelLayout';
 import type { Vec2, Vec3 } from '../../lib/geometry';
 import { formatBytes } from '../ui';
 import { cleanLabel as cleanName, isAutomatic, provenanceTag } from '../../lib/provenance';
+import { classifySequence, SEQUENCE_BOOK } from '../../content/mriSequences';
+import { mammoView } from '../../content/mammo';
 
 /** SVG path of several closed rings (an outline and its holes), drawn with the even-odd rule. */
 const ringsPath = (rings: Vec2[][]) => rings.map((r) => `M${r.map((q) => q.join(',')).join('L')}Z`).join(' ');
@@ -88,6 +90,7 @@ export function ViewportPanel(p: Props) {
   const { engine, panelId } = p;
   useSyncExternalStore(engine.subscribe, engine.getVersion);
   const [probe, setProbe] = useState<{ value: number; unit: string } | null>(null);
+  const [seqOpen, setSeqOpen] = useState(false);
   const [size, setSize] = useState<[number, number]>([0, 0]);
   const downAt = useRef<[number, number, number] | null>(null);
   /** Set by the 3D quiz while it waits for a click on a model. */
@@ -213,6 +216,9 @@ export function ViewportPanel(p: Props) {
   const planeColor = p.kind !== 'stack' && p.kind !== '3d' ? PLANE_COLORS[p.kind] : null;
   const s = p.series;
   const acq = s.acquisition;
+  // MRI: which sequence this is and what is bright and dark on it (book ch. 20).
+  const seq = s.modality === 'MR' ? classifySequence(s.description, acq) : null;
+  const mg = s.modality === 'MG' ? mammoView(s.description, acq) : null;
   const derived = p.kind !== 'stack' && p.kind !== '3d' && !isAcquisitionPlane(s, p.kind);
   const progress = st?.progress;
   const loading = !st?.ready && !st?.error;
@@ -378,6 +384,11 @@ export function ViewportPanel(p: Props) {
           </div>
           <div>{s.description || 'Series'}</div>
           {acq.SequenceName || acq.ScanningSequence ? <div className="faint">{[acq.ScanningSequence, acq.SequenceVariant, acq.SequenceName].filter(Boolean).join(' / ')}</div> : null}
+          {mg && (mg.side || mg.view) ? (
+            <span className="vp-tag info" title="Breast side and mammographic view">
+              {mg.side === 'R' ? 'Right' : mg.side === 'L' ? 'Left' : ''} {mg.view ?? ''}
+            </span>
+          ) : null}
           {s.role === 'scout' ? <span className="vp-tag warn">CT scout / localizer — not a diagnostic radiograph</span> : null}
           {s.role === 'vendor_reformat' ? <span className="vp-tag info">Vendor reformat/MIP series</span> : null}
           {derived ? <span className="vp-tag info">Reformatted from {s.description ? 'the acquired series' : 'source slices'} (MPR)</span> : null}
@@ -408,6 +419,11 @@ export function ViewportPanel(p: Props) {
           {acq.ViewPosition ? <div className="faint">View {String(acq.ViewPosition)}</div> : null}
         </div>
         <div className="vp-corner bl">
+          {seq ? (
+            <button className="vp-seq" onClick={() => setSeqOpen((v) => !v)} aria-expanded={seqOpen} title="What is bright and dark on this sequence">
+              {seq.id === 'T1C' ? 'T1+C' : seq.id === 'GRE' ? 'T2*' : seq.id} · {seq.short}
+            </button>
+          ) : null}
           {probe ? (
             <div>
               {Number.isInteger(probe.value) ? probe.value : probe.value.toFixed(1)} <span className="faint">{probe.unit}</span>
@@ -423,6 +439,10 @@ export function ViewportPanel(p: Props) {
             <span className="vp-edge t">{st.edges.top}</span>
             <span className="vp-edge b">{st.edges.bottom}</span>
           </>
+        ) : st?.ready && p.kind !== '3d' && s.modality === 'US' ? (
+          <span className="vp-edge t vp-tag info" title="Ultrasound images carry no patient orientation; the probe marker shown on the image (by convention toward the patient's head or right) tells you which way is which.">
+            Orientation: follow the probe marker on the image
+          </span>
         ) : st?.ready && p.kind !== '3d' ? (
           <span className="vp-edge t vp-tag warn">Orientation not recorded in file</span>
         ) : null}
@@ -442,6 +462,21 @@ export function ViewportPanel(p: Props) {
             onChange={(e) => engine.setIndex(panelId, Number(e.target.value))}
             aria-label="Slice"
           />
+        </div>
+      ) : null}
+      {seq && seqOpen ? (
+        <div className="vp-seq-card" role="dialog" aria-label={`${seq.label}: what is bright and dark`}>
+          <b>{seq.label}</b>
+          <div>
+            <b>Bright:</b> {seq.bright}
+          </div>
+          <div>
+            <b>Dark:</b> {seq.dark}
+          </div>
+          <div className="faint">{seq.tip}</div>
+          <a href={`/book/${SEQUENCE_BOOK.physical}`} target="_blank" rel="noreferrer">
+            Book: {SEQUENCE_BOOK.heading} (p. {SEQUENCE_BOOK.printed})
+          </a>
         </div>
       ) : null}
       {p.kind === '3d' && st?.ready && p.threeD ? (

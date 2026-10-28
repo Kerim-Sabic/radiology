@@ -43,11 +43,13 @@ import {
   Minimize2,
   Play,
   Pause,
+  Search as SearchIcon,
 } from 'lucide-react';
 import '../styles/viewer3d.css';
 import { useApp } from '../app/AppContext';
 import { ViewerEngine, type ToolId, type ViewKind } from '../viewer/engine';
 import { PlanesControl } from '../components/ws/MprControls';
+import { hangMammograms, mammoView } from '../content/mammo';
 import { secondsLeft, shiftUrl, type OncallShift, type ShiftItem } from '../services/oncall';
 
 const MARK_TOOLS = new Set<ToolId>(['point', 'arrow', 'box', 'outline', 'eraser']);
@@ -81,7 +83,7 @@ const centroid3 = (poly: Vec3[]): Vec3 => [
   poly.reduce((a, q) => a + q[2], 0) / poly.length,
 ];
 
-type Layout = '1' | '2' | '4' | 'mpr' | 'mpr3d';
+type Layout = '1' | '2' | '4' | 'mpr' | 'mpr3d' | 'mg';
 interface PanelDef {
   id: string;
   seriesUid: string;
@@ -300,6 +302,21 @@ export default function Workstation() {
     }
   };
 
+  // Mammography hanging: turn each view so the chest walls meet in the middle, once its image has loaded.
+  const facedRef = useRef(new Set<string>());
+  useEffect(() => {
+    if (layout !== 'mg') {
+      facedRef.current.clear();
+      return;
+    }
+    for (const pd of panels) {
+      const side = mgFacing.current.get(pd.id);
+      const key = `${pd.id}|${pd.seriesUid}`;
+      if (!side || facedRef.current.has(key) || !engine.panelState(pd.id)?.ready) continue;
+      if (engine.faceChestWall(pd.id, side)) facedRef.current.add(key);
+    }
+  });
+
   // Assess timer (optional; never forces submission).
   useEffect(() => {
     if (timeLeft === null || session?.submitted) return;
@@ -369,8 +386,18 @@ export default function Workstation() {
         { id: 'p2', seriesUid: primary, kind: 'sagittal' },
         { id: 'p3', seriesUid: primary, kind: '3d' },
       ]);
+    if (l === 'mg') {
+      // Book ch. 29 hanging: CC row above the MLO row, right breast on the left, chest walls back to back.
+      const hung = hangMammograms(mgSeries.map((x) => ({ uid: x.uid, view: mammoView(x.description, x.acquisition) })));
+      mgFacing.current = new Map(hung.map((h, i) => [`p${i}`, h.chestWall]));
+      setPanels(hung.slice(0, 4).map((h, i) => ({ id: `p${i}`, seriesUid: h.uid, kind: 'stack' as ViewKind })));
+    } else mgFacing.current = new Map();
     setFocused('p0');
   };
+
+  const mgSeries = caseSeries.filter((x) => x.modality === 'MG');
+  /** Mammography layout: which edge each panel's chest wall must face (applied once its image is loaded). */
+  const mgFacing = useRef(new Map<string, 'left' | 'right' | null>());
 
   const pickSeries = (panelId: string, uid: string) => setPanels((ps) => ps.map((p) => (p.id === panelId ? { ...p, seriesUid: uid, kind: 'stack' } : p)));
 
@@ -675,7 +702,7 @@ export default function Workstation() {
       const tgt = e.target as HTMLElement;
       if (tgt?.closest?.('input, textarea, select, [contenteditable]') || labelReq) return;
       const k = e.key;
-      const tools: Record<string, ToolId> = { w: 'windowLevel', p: 'pan', z: 'zoom', s: 'scroll', m: 'point', a: 'arrow', b: 'box', o: 'outline', l: 'length', g: 'angle', e: 'eraser', x: 'crosshairs' };
+      const tools: Record<string, ToolId> = { w: 'windowLevel', p: 'pan', z: 'zoom', s: 'scroll', m: 'point', a: 'arrow', b: 'box', o: 'outline', l: 'length', g: 'angle', e: 'eraser', x: 'crosshairs', q: 'magnify' };
       if ((e.ctrlKey || e.metaKey) && k.toLowerCase() === 'z') {
         e.preventDefault();
         if (e.shiftKey) engine.redo();
@@ -1057,6 +1084,9 @@ export default function Workstation() {
         <IconButton label="Scroll slices (drag)" shortcut="S" active={tool === 'scroll'} onClick={() => engine.setTool('scroll')}>
           <ScanLine size={17} />
         </IconButton>
+        <IconButton label="Magnifier: hold the mouse button over fine detail (radiographs, mammograms, ultrasound)" shortcut="Q" active={tool === 'magnify'} onClick={() => engine.setTool('magnify')}>
+          <SearchIcon size={17} />
+        </IconButton>
         <span className="sep" />
         <IconButton label="Point mark" shortcut="M" active={tool === 'point'} onClick={() => engine.setTool('point')} disabled={!rules.canEditMarks(session)}>
           <MapPin size={17} />
@@ -1113,7 +1143,13 @@ export default function Workstation() {
               </DropdownMenu.Item>
               {focusedSeries?.modality === 'CT' ? null : (
                 <div className="faint" style={{ fontSize: 11, padding: '4px 8px', maxWidth: 240 }}>
-                  {focusedSeries?.modality === 'MR' ? 'MR signal is arbitrary units — there are no Hounsfield presets.' : 'Radiograph pixel values are not HU.'}
+                  {focusedSeries?.modality === 'MR'
+                    ? 'MR signal is arbitrary units — there are no Hounsfield presets.'
+                    : focusedSeries?.modality === 'US'
+                      ? 'Ultrasound brightness is echogenicity (how strongly tissue reflects sound), not a calibrated value.'
+                      : focusedSeries?.modality === 'MG'
+                        ? 'Mammogram pixel values are not HU; use the magnifier (Q) for calcifications.'
+                        : 'Radiograph pixel values are not HU.'}
                 </div>
               )}
             </DropdownMenu.Content>
@@ -1136,7 +1172,7 @@ export default function Workstation() {
           </DropdownMenu.Trigger>
           <DropdownMenu.Portal>
             <DropdownMenu.Content className="popover" sideOffset={6}>
-              {LAYOUTS.map(([l, label, icon]) => (
+              {LAYOUTS.filter(([l]) => l !== 'mg' || mgSeries.length >= 2).map(([l, label, icon]) => (
                 <DropdownMenu.Item key={l} className="menu-item" onSelect={() => applyLayout(l)}>
                   {icon} {label}
                   {layout === l ? <span style={{ marginLeft: 'auto', paddingLeft: 10 }}>✓</span> : null}
@@ -1284,7 +1320,7 @@ export default function Workstation() {
       {/* ------------------------------------------------ viewports */}
       <section className="ws-main" aria-label="Image viewports">
         <div
-          className={`vgrid ${layout === '1' ? 'l1' : layout === '2' ? 'l2' : layout === 'mpr' ? 'l3mpr' : layout === 'mpr3d' ? 'l4 mpr3d' : 'l4'}${big ? ' big' : ''}`}
+          className={`vgrid ${layout === '1' ? 'l1' : layout === '2' ? 'l2' : layout === 'mpr' ? 'l3mpr' : layout === 'mpr3d' ? 'l4 mpr3d' : layout === 'mg' ? (panels.length > 2 ? 'l4' : 'l2') : 'l4'}${big ? ' big' : ''}`}
           style={big ? { gridTemplateRows: `repeat(${panels.length - 1}, 1fr)` } : undefined}
         >
           {panels.map((pd) => {
@@ -1516,6 +1552,7 @@ export default function Workstation() {
                   ['X', 'Crosshairs: click to move all MPR planes'],
                   ['K', 'Link / unlink views (scroll together, reference lines)'],
                   ['Space', 'Play / stop the slices as a cine loop'],
+                  ['Q', 'Magnifier (hold over fine detail; not in MPR views)'],
                   ['Pinch / 3 fingers', 'Zoom / pan on a touch screen'],
                   ['Double-click', 'Show that point in every linked view'],
                   ['Ctrl+Z / Ctrl+Y', 'Undo / redo'],
@@ -1713,4 +1750,5 @@ const LAYOUTS: Array<[Layout, string, React.ReactNode]> = [
   ['4', 'Four-up', <Grid2x2 key="4" size={16} />],
   ['mpr', 'MPR: axial / coronal / sagittal', <Box key="m" size={16} />],
   ['mpr3d', 'MPR + 3D', <Rotate3d key="3" size={16} />],
+  ['mg', 'Mammography: CC and MLO, back to back', <Columns2 key="g" size={16} />],
 ];

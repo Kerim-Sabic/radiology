@@ -34,6 +34,14 @@ Hovering names the smallest outline under the cursor. Structures are split the w
 ## Search-pattern coach
 The **Coach** tab gives a fixed reading order for the study (chest X-ray, chest CT, abdomen & pelvis CT, brain). Tick each area as you check it. *Show me* outlines all the structures of a step together (e.g. *Great vessels*: ascending aorta, arch and branches, pulmonary arteries, SVC) at the level where most of them appear, and sets the right window. Reading in the same order every time is the cure for stopping after the first finding.
 
+## Looking at each modality
+- **CT:** window presets (1–6), Hounsfield units under the cursor, MPR with thick slabs and oblique planes, 3D with cut and structure models.
+- **MRI:** every MR view names its sequence — T1, T1 after gadolinium, T2, FLAIR, STIR, proton density, DWI, ADC, T2*/susceptibility — with a one-line rule ("fluid bright") and, on click, what is bright and dark and a link to the book's *How to Identify a T1-Weighted or T2-Weighted Image* (p. 238). Sequences it cannot name with confidence are left unnamed.
+- **Mammography:** Layout → *Mammography* hangs the views as the book shows them — CC row above MLO, right breast on the viewer's left, left breast on the right, chest walls back to back (each image is turned automatically from where the breast tissue meets the edge). Each panel says *Right CC*, *Left MLO*…
+- **Radiographs, mammograms and ultrasound:** the magnifier (Q) — hold the mouse button for a 3× loupe over calcifications, fractures, lines and tubes.
+- **Ultrasound:** brightness is echogenicity, not a calibrated value; distances are true millimetres only when the file carries ultrasound calibration; orientation follows the probe marker on the image; clips play with Space.
+- **Touch screens:** pinch to zoom, three fingers to pan.
+
 ## On call
 **On call** (top bar) runs a shift of unknown cases like a night on call: choose 5, 10, 15 or 20 cases, a clock of 2, 4 or 6 minutes per case (or none) and a region. Every case opens in Assess mode — no hints, labels or book until you submit — one case per patient, patients you have not read first. After each answer *Next case →* takes you on; the clock never throws away your work, it only marks a case as over time. At the end (or when you end the shift early) you get a report: score (correct 1, partly right ½), time per case, over-time cases, and a *Review* link for every case. Self-review answers are scored once you judge them in Review. Past shifts are listed for comparison.
 

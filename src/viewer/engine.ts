@@ -48,6 +48,7 @@ export type ToolId =
   | 'ellipse'
   | 'eraser'
   | 'crosshairs'
+  | 'magnify'
   | 'rotate3d';
 
 const TOOL_MAP: Record<ToolId, string> = {
@@ -64,6 +65,7 @@ const TOOL_MAP: Record<ToolId, string> = {
   ellipse: TOOL.Ellipse,
   eraser: TOOL.Eraser,
   crosshairs: TOOL.Crosshairs,
+  magnify: TOOL.Magnify,
   rotate3d: TOOL.TrackballRotate,
 };
 const MARK_TOOL_KIND: Record<string, LearnerMark['tool']> = {
@@ -173,13 +175,16 @@ export class ViewerEngine {
       const names =
         id === VR_GROUP
           ? [TOOL.TrackballRotate, TOOL.Zoom, TOOL.Pan]
-          : [TOOL.WindowLevel, TOOL.Pan, TOOL.Zoom, TOOL.StackScroll, TOOL.Probe, TOOL.Arrow, TOOL.Rectangle, TOOL.Freehand, TOOL.Length, TOOL.Angle, TOOL.Ellipse, TOOL.Eraser, ...(id === MPR_GROUP ? [TOOL.Crosshairs] : [])];
+          : [TOOL.WindowLevel, TOOL.Pan, TOOL.Zoom, TOOL.StackScroll, TOOL.Probe, TOOL.Arrow, TOOL.Rectangle, TOOL.Freehand, TOOL.Length, TOOL.Angle, TOOL.Ellipse, TOOL.Eraser, ...(id === MPR_GROUP ? [TOOL.Crosshairs] : [TOOL.Magnify])];
       for (const n of names) {
         if (n === TOOL.Arrow) {
           g.addTool(n, {
             getTextCallback: (done: (t: string) => void) => (arrowLabelHook.request ? arrowLabelHook.request(done) : done('')),
             changeTextCallback: (_d: unknown, _e: unknown, done: (t: string) => void) => (arrowLabelHook.request ? arrowLabelHook.request(done) : done('')),
           });
+        } else if (n === TOOL.Magnify) {
+          // A loupe for radiographs, mammograms and ultrasound: 3× under the cursor while the button is held.
+          g.addTool(n, { magnifySize: 3, magnifyWidth: 260, magnifyHeight: 260 });
         } else if (n === TOOL.Crosshairs) {
           g.addTool(n, {
             getReferenceLineColor: (viewportId: string) => {
@@ -409,7 +414,7 @@ export class ViewerEngine {
     for (const id of [STACK_GROUP, MPR_GROUP]) {
       const g = cst.ToolGroupManager.getToolGroup(id);
       if (!g) continue;
-      for (const n of [TOOL.WindowLevel, TOOL.Pan, TOOL.Zoom, TOOL.Probe, TOOL.Arrow, TOOL.Rectangle, TOOL.Freehand, TOOL.Length, TOOL.Angle, TOOL.Ellipse, TOOL.Eraser]) {
+      for (const n of [TOOL.WindowLevel, TOOL.Pan, TOOL.Zoom, TOOL.Probe, TOOL.Arrow, TOOL.Rectangle, TOOL.Freehand, TOOL.Length, TOOL.Angle, TOOL.Ellipse, TOOL.Eraser, ...(id === STACK_GROUP ? [TOOL.Magnify] : [])]) {
         if (MARK_TOOLS.has(n) || MEASURE_TOOLS.has(n)) g.setToolPassive(n);
         else g.setToolDisabled(n);
       }
@@ -420,7 +425,8 @@ export class ViewerEngine {
         if (tool !== 'crosshairs' && !this.linked && mode !== cst.Enums.ToolModes.Disabled) g.setToolDisabled(TOOL.Crosshairs);
       }
       const primary = TOOL_MAP[tool];
-      const usable = id === MPR_GROUP || tool !== 'crosshairs';
+      // Crosshairs only exist in MPR; the loupe only on stacks (it magnifies the acquired image).
+      const usable = id === MPR_GROUP ? tool !== 'magnify' : tool !== 'crosshairs';
       if (usable && primary !== TOOL.StackScroll && primary !== TOOL.TrackballRotate) g.setToolActive(primary, { bindings: [{ mouseButton: MB.Primary }] });
       if (tool === 'scroll') g.setToolActive(TOOL.StackScroll, { bindings: [{ mouseButton: MB.Primary }, { mouseButton: MB.Wheel }] });
       else g.setToolActive(TOOL.StackScroll, { bindings: [{ mouseButton: MB.Wheel }] });
@@ -819,6 +825,41 @@ export class ViewerEngine {
     this.bump();
   }
 
+  // ------------------------------------------------------------ mammography hanging
+  /**
+   * Turn a mammogram so its chest wall is on the given edge of the panel (back-to-back hanging). The chest wall is the
+   * edge where breast tissue touches the image border; the other edge is air beyond the skin and nipple.
+   * Returns false while the image is not loaded yet.
+   */
+  faceChestWall(panelId: string, side: 'left' | 'right'): boolean {
+    const p = this.panels.get(panelId);
+    const vp = this.viewport(panelId);
+    if (!p || !vp || p.kind !== 'stack') return false;
+    const id = vp.getCurrentImageId();
+    const img = id ? (cs.cache.getImage(id) as { getPixelData(): ArrayLike<number>; rows: number; columns: number; invert?: boolean; color?: boolean } | undefined) : undefined;
+    if (!img || img.color) return false;
+    const px = img.getPixelData();
+    const w = img.columns;
+    const h = img.rows;
+    const band = Math.max(4, Math.round(w * 0.04));
+    let left = 0;
+    let right = 0;
+    for (let y = Math.round(h * 0.2); y < Math.round(h * 0.8); y += 4)
+      for (let x = 0; x < band; x++) {
+        left += px[y * w + x];
+        right += px[y * w + (w - 1 - x)];
+      }
+    // Tissue is brighter than air on MONOCHROME2; MONOCHROME1 stores it the other way round.
+    const wallOnLeft = img.invert ? left < right : left > right;
+    const cam = vp.getCamera();
+    const flipped = !!cam.flipHorizontal;
+    if (side === 'left' ? wallOnLeft === flipped : wallOnLeft !== flipped) {
+      vp.setCamera({ flipHorizontal: !flipped });
+      vp.render();
+    }
+    return true;
+  }
+
   // ------------------------------------------------------------ cine
   /** Play the slices of a stack or MPR view as a loop (linked views follow it), or stop. */
   togglePlay(panelId: string, framesPerSecond = 12) {
@@ -1104,7 +1145,9 @@ export class ViewerEngine {
       const dims = data.dimensions;
       if (ijk.some((v: number, i: number) => v < 0 || v >= dims[i])) return null;
       const value = data.voxelManager.getAtIJK(ijk[0], ijk[1], ijk[2]) as number;
-      const unit = p.source.modality === 'CT' ? 'HU' : p.source.modality === 'MR' ? 'signal (arbitrary units)' : 'pixel value';
+      if (typeof value !== 'number' || !Number.isFinite(value)) return null; // colour images (Doppler ultrasound)
+      const m = p.source.modality;
+      const unit = m === 'CT' ? 'HU' : m === 'MR' ? 'signal (arbitrary units)' : m === 'US' ? 'echo level (not calibrated)' : 'pixel value';
       return { value, unit };
     } catch {
       return null;

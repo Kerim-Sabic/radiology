@@ -30,6 +30,11 @@ export default function GuidePage() {
             return on a different patient; known ones return after 1, 3, 7, 16 and 35 days.
           </li>
           <li>
+            <b>By modality</b> — <i>MRI</i>: each view names its sequence (T1, T2, FLAIR, DWI, ADC…) and what is bright and dark on it, with the book page.{' '}
+            <i>Mammography</i>: Layout → Mammography hangs CC above MLO, right breast on the left, back to back. <i>Radiographs, mammograms, ultrasound</i>: the
+            magnifier (Q) shows fine detail such as calcifications. <i>Ultrasound</i>: brightness is echogenicity; orientation follows the probe marker.
+          </li>
+          <li>
             <b>On call</b> — a shift of unknown cases (5–20, one per patient, ones you have not read first) in Assess mode with a clock per case, then a scored report with
             every case to review.
           </li>

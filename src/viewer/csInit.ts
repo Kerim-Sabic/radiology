@@ -24,6 +24,7 @@ export const TOOL = {
   Eraser: cst.EraserTool.toolName,
   Crosshairs: cst.CrosshairsTool.toolName,
   TrackballRotate: cst.TrackballRotateTool.toolName,
+  Magnify: cst.MagnifyTool.toolName,
 } as const;
 
 /** Tools whose annotations are learner marks (graded / saved). */
@@ -62,6 +63,7 @@ export function initCornerstone(): Promise<{ gpu: boolean }> {
       cst.EraserTool,
       cst.CrosshairsTool,
       cst.TrackballRotateTool,
+      cst.MagnifyTool,
     ]) {
       cst.addTool(T as never);
     }

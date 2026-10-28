@@ -527,6 +527,27 @@ test.describe('E. study tools', () => {
     await expect(page.getByRole('heading', { name: 'Previous shifts' })).toBeVisible();
   });
 
+  test('MRI: each view says its sequence and what is bright and dark on it, with the book page', async ({ page }) => {
+    await page.goto('/read/stroke-isles-0015?mode=learn');
+    await waitPanel(page);
+    const chip = page.locator('[data-panel="p0"] .vp-seq');
+    await expect(chip).toHaveText(/^DWI · restricted diffusion bright$/);
+    await chip.click();
+    const card = page.getByRole('dialog', { name: /Diffusion-weighted \(DWI\): what is bright and dark/ });
+    await expect(card).toContainText('dark on the ADC map');
+    await expect(card.getByRole('link', { name: /How to Identify a T1-Weighted or T2-Weighted Image/ })).toHaveAttribute('href', '/book/258');
+  });
+
+  test('magnifier: Q gives a loupe on radiographs, and it is not offered in MPR views', async ({ page }) => {
+    await page.goto('/read/starter-cxr-01?task=starter-cxr-01%3Ascout-vs-cxr&mode=practice');
+    await waitPanel(page);
+    await page.locator('[data-panel="p0"] .vp-el').click();
+    await page.keyboard.press('q');
+    expect(await page.evaluate(() => (window as any).__rvm.getTool())).toBe('magnify');
+    const mode = await page.evaluate(() => (window as any).__cs.cst.ToolGroupManager.getToolGroup('tg-stack').getToolOptions('Magnify').mode);
+    expect(mode).toBe('Active');
+  });
+
   test('cine: Space plays the slices and stops them', async ({ page }) => {
     await page.goto(CT_TASK('heart', 'learn'));
     await waitPanel(page);
