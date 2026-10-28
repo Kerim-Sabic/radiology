@@ -135,6 +135,15 @@
    "bytes": 113173396,
    "distribution": "repo",
    "note": "7 subjects, 7 studies, 8 series, 583 instances, 12 reference targets; DICOM 111.0 MB. Committed to the repository; rebuild from the source with `python scripts/data/packs.py all ct-tumors`."
+  },
+  {
+   "id": "book-practice",
+   "title": "Book practice: tasks for Learning Radiology objectives",
+   "manifest": "book-practice/pack.json",
+   "lessons": "book-practice/lessons.json",
+   "bytes": 71974,
+   "distribution": "repo",
+   "note": "24 practice tasks on installed cases; no images. Rebuild with scripts/lessons/book_practice.py."
   }
  ]
 }

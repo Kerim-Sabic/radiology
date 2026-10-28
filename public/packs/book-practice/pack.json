@@ -1,0 +1,15 @@
+{
+ "schemaVersion": 1,
+ "packId": "book-practice",
+ "version": "0.1.0",
+ "title": "Book practice: tasks for Learning Radiology objectives on installed cases",
+ "description": "Practice tasks tied to Learning Radiology (5th ed.) objectives, written on cases of the other packs. Contains no images or targets of its own: every task points at a case, series and reference target of another pack. Anatomy outlines used here are AI drafts by Horalix (self-review until reviewed); findings are the source datasets' expert labels; orientation, sequence and contrast answers come from the image headers.",
+ "generatedAt": "2026-10-28T19:42:55Z",
+ "generator": "scripts/lessons/book_practice.py",
+ "sources": [],
+ "subjects": [],
+ "studies": [],
+ "series": [],
+ "spatialLinks": [],
+ "referenceTargets": []
+}

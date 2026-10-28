@@ -1,0 +1,2384 @@
+{
+ "schemaVersion": 1,
+ "packId": "book-practice",
+ "version": "0.1.0",
+ "cases": [],
+ "tasks": [
+  {
+   "id": "pe-pat005:bp-lobes",
+   "caseId": "pe-pat005",
+   "seriesUids": [
+    "2.25.225694208448586268817010326638561875843"
+   ],
+   "start": {
+    "seriesUid": "2.25.225694208448586268817010326638561875843",
+    "slice": "middle",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "at-pat005-lung-upper-lobe-right",
+     "name": "Right upper lobe",
+     "required": true,
+     "acceptedNames": [
+      "RUL",
+      "Right upper lobe"
+     ]
+    },
+    {
+     "targetId": "at-pat005-lung-middle-lobe-right",
+     "name": "Right middle lobe",
+     "required": true,
+     "acceptedNames": [
+      "RML",
+      "Right middle lobe",
+      "Middle lobe"
+     ]
+    },
+    {
+     "targetId": "at-pat005-lung-lower-lobe-right",
+     "name": "Right lower lobe",
+     "required": true,
+     "acceptedNames": [
+      "RLL",
+      "Right lower lobe"
+     ]
+    },
+    {
+     "targetId": "at-pat005-lung-upper-lobe-left",
+     "name": "Left upper lobe",
+     "required": true,
+     "acceptedNames": [
+      "LUL",
+      "Left upper lobe"
+     ]
+    },
+    {
+     "targetId": "at-pat005-lung-lower-lobe-left",
+     "name": "Left lower lobe",
+     "required": true,
+     "acceptedNames": [
+      "LLL",
+      "Left lower lobe"
+     ]
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "The major (oblique) fissures separate the lower lobes behind from the upper lobes — and on the right the middle lobe — in front."
+    },
+    {
+     "level": 2,
+     "text": "The minor (horizontal) fissure separates the right upper from the right middle lobe. It lies almost in the axial plane, so on axial CT it shows as a vessel-poor zone rather than a line. The left lung has no middle lobe: the lingula belongs to the left upper lobe."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "find_structure",
+   "title": "Name the five lobes and the fissures between them",
+   "prompt": "In the lung window, place a named arrow in each lobe: right upper, right middle, right lower, left upper and left lower lobe. Use the coronal and sagittal views (MPR) to see the fissures that separate them.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 2.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "exploratory_self_review",
+   "explanation": "Fissures define the lobes: the major fissures run obliquely from high posteriorly to low anteriorly, so on low axial slices most of the lung is lower lobe; the minor fissure marks the top of the right middle lobe. Knowing where the fissures normally lie is what later shows volume loss when they move. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "bookAnchors": [
+    {
+     "physical": 31,
+     "printed": "16",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": "ch02-s08"
+    },
+    {
+     "physical": 34,
+     "printed": "19",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.19",
+     "sectionId": null
+    },
+    {
+     "physical": 35,
+     "printed": "20",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.20",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "id": "body-covid-19-ar-16406498:bp-lobes",
+   "caseId": "body-covid-19-ar-16406498",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
+    "slice": "middle",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "at-ar-16406498-lung-upper-lobe-right",
+     "name": "Right upper lobe",
+     "required": true,
+     "acceptedNames": [
+      "RUL",
+      "Right upper lobe"
+     ]
+    },
+    {
+     "targetId": "at-ar-16406498-lung-middle-lobe-right",
+     "name": "Right middle lobe",
+     "required": true,
+     "acceptedNames": [
+      "RML",
+      "Right middle lobe",
+      "Middle lobe"
+     ]
+    },
+    {
+     "targetId": "at-ar-16406498-lung-lower-lobe-right",
+     "name": "Right lower lobe",
+     "required": true,
+     "acceptedNames": [
+      "RLL",
+      "Right lower lobe"
+     ]
+    },
+    {
+     "targetId": "at-ar-16406498-lung-upper-lobe-left",
+     "name": "Left upper lobe",
+     "required": true,
+     "acceptedNames": [
+      "LUL",
+      "Left upper lobe"
+     ]
+    },
+    {
+     "targetId": "at-ar-16406498-lung-lower-lobe-left",
+     "name": "Left lower lobe",
+     "required": true,
+     "acceptedNames": [
+      "LLL",
+      "Left lower lobe"
+     ]
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "The major (oblique) fissures separate the lower lobes behind from the upper lobes — and on the right the middle lobe — in front."
+    },
+    {
+     "level": 2,
+     "text": "The minor (horizontal) fissure separates the right upper from the right middle lobe. It lies almost in the axial plane, so on axial CT it shows as a vessel-poor zone rather than a line. The left lung has no middle lobe: the lingula belongs to the left upper lobe."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "find_structure",
+   "title": "Name the five lobes and the fissures between them",
+   "prompt": "In the lung window, place a named arrow in each lobe: right upper, right middle, right lower, left upper and left lower lobe. Use the coronal and sagittal views (MPR) to see the fissures that separate them.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 2.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "exploratory_self_review",
+   "explanation": "Fissures define the lobes: the major fissures run obliquely from high posteriorly to low anteriorly, so on low axial slices most of the lung is lower lobe; the minor fissure marks the top of the right middle lobe. Knowing where the fissures normally lie is what later shows volume loss when they move. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "bookAnchors": [
+    {
+     "physical": 31,
+     "printed": "16",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": "ch02-s08"
+    },
+    {
+     "physical": 34,
+     "printed": "19",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.19",
+     "sectionId": null
+    },
+    {
+     "physical": 35,
+     "printed": "20",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.20",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16406502:bp-lobes",
+   "caseId": "chest-pairs-covid-19-ar-16406502",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.3247091443582319833651607421612"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.3247091443582319833651607421612",
+    "slice": "middle",
+    "windowPreset": "Lung"
+   },
+   "targets": [
+    {
+     "targetId": "at-ar-16406502-lung-upper-lobe-right",
+     "name": "Right upper lobe",
+     "required": true,
+     "acceptedNames": [
+      "RUL",
+      "Right upper lobe"
+     ]
+    },
+    {
+     "targetId": "at-ar-16406502-lung-middle-lobe-right",
+     "name": "Right middle lobe",
+     "required": true,
+     "acceptedNames": [
+      "RML",
+      "Right middle lobe",
+      "Middle lobe"
+     ]
+    },
+    {
+     "targetId": "at-ar-16406502-lung-lower-lobe-right",
+     "name": "Right lower lobe",
+     "required": true,
+     "acceptedNames": [
+      "RLL",
+      "Right lower lobe"
+     ]
+    },
+    {
+     "targetId": "at-ar-16406502-lung-upper-lobe-left",
+     "name": "Left upper lobe",
+     "required": true,
+     "acceptedNames": [
+      "LUL",
+      "Left upper lobe"
+     ]
+    },
+    {
+     "targetId": "at-ar-16406502-lung-lower-lobe-left",
+     "name": "Left lower lobe",
+     "required": true,
+     "acceptedNames": [
+      "LLL",
+      "Left lower lobe"
+     ]
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "The major (oblique) fissures separate the lower lobes behind from the upper lobes — and on the right the middle lobe — in front."
+    },
+    {
+     "level": 2,
+     "text": "The minor (horizontal) fissure separates the right upper from the right middle lobe. It lies almost in the axial plane, so on axial CT it shows as a vessel-poor zone rather than a line. The left lung has no middle lobe: the lingula belongs to the left upper lobe."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "find_structure",
+   "title": "Name the five lobes and the fissures between them",
+   "prompt": "In the lung window, place a named arrow in each lobe: right upper, right middle, right lower, left upper and left lower lobe. Use the coronal and sagittal views (MPR) to see the fissures that separate them.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 2.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "exploratory_self_review",
+   "explanation": "Fissures define the lobes: the major fissures run obliquely from high posteriorly to low anteriorly, so on low axial slices most of the lung is lower lobe; the minor fissure marks the top of the right middle lobe. Knowing where the fissures normally lie is what later shows volume loss when they move. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "bookAnchors": [
+    {
+     "physical": 31,
+     "printed": "16",
+     "chapterId": "ch02",
+     "figureId": null,
+     "sectionId": "ch02-s08"
+    },
+    {
+     "physical": 34,
+     "printed": "19",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.19",
+     "sectionId": null
+    },
+    {
+     "physical": 35,
+     "printed": "20",
+     "chapterId": "ch02",
+     "figureId": "Fig 2.20",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch02-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "id": "pe-pat021:bp-ap-window",
+   "caseId": "pe-pat021",
+   "seriesUids": [
+    "2.25.208016074378713353746067436351091429943"
+   ],
+   "start": {
+    "seriesUid": "2.25.208016074378713353746067436351091429943",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "at-pat021-aorta-arch",
+     "name": "Aortic arch",
+     "required": true,
+     "acceptedNames": [
+      "Aortic arch",
+      "Arch of the aorta",
+      "Aorta arch"
+     ]
+    },
+    {
+     "targetId": "at-pat021-pulmonary-trunk",
+     "name": "Main pulmonary artery",
+     "required": true,
+     "acceptedNames": [
+      "Main pulmonary artery",
+      "Pulmonary trunk",
+      "MPA"
+     ]
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "The arch is the highest part of the aorta, crossing from front-right to back-left above the heart."
+    },
+    {
+     "level": 2,
+     "text": "The pulmonary trunk leaves the right ventricle in front of and to the left of the ascending aorta and divides into the right and left pulmonary arteries a little below the arch."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "navigate_level",
+   "title": "The aortopulmonary window: aortic arch above, main pulmonary artery below",
+   "prompt": "In the soft-tissue window, place a named arrow on the aortic arch, then scroll down and place one on the main pulmonary artery (pulmonary trunk). The fat between them is the aortopulmonary window.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 2.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "exploratory_self_review",
+   "explanation": "Below the aortic arch and above the pulmonary artery lies the aortopulmonary window, normally filled with fat and a few small nodes. Enlarged nodes there are a common, easily missed finding, so look at this level on every chest CT. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "bookAnchors": [
+    {
+     "physical": 41,
+     "printed": "26",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.7",
+     "sectionId": null
+    },
+    {
+     "physical": 41,
+     "printed": "26",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.8",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o05"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434363:bp-ap-window",
+   "caseId": "chest-pairs-covid-19-ar-16434363",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "at-ar-16434363-aorta-arch",
+     "name": "Aortic arch",
+     "required": true,
+     "acceptedNames": [
+      "Aortic arch",
+      "Arch of the aorta",
+      "Aorta arch"
+     ]
+    },
+    {
+     "targetId": "at-ar-16434363-pulmonary-trunk",
+     "name": "Main pulmonary artery",
+     "required": true,
+     "acceptedNames": [
+      "Main pulmonary artery",
+      "Pulmonary trunk",
+      "MPA"
+     ]
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "The arch is the highest part of the aorta, crossing from front-right to back-left above the heart."
+    },
+    {
+     "level": 2,
+     "text": "The pulmonary trunk leaves the right ventricle in front of and to the left of the ascending aorta and divides into the right and left pulmonary arteries a little below the arch."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "navigate_level",
+   "title": "The aortopulmonary window: aortic arch above, main pulmonary artery below",
+   "prompt": "In the soft-tissue window, place a named arrow on the aortic arch, then scroll down and place one on the main pulmonary artery (pulmonary trunk). The fat between them is the aortopulmonary window.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 2.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "exploratory_self_review",
+   "explanation": "Below the aortic arch and above the pulmonary artery lies the aortopulmonary window, normally filled with fat and a few small nodes. Enlarged nodes there are a common, easily missed finding, so look at this level on every chest CT. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "bookAnchors": [
+    {
+     "physical": 41,
+     "printed": "26",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.7",
+     "sectionId": null
+    },
+    {
+     "physical": 41,
+     "printed": "26",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.8",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o05"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434411:bp-ap-window",
+   "caseId": "chest-pairs-covid-19-ar-16434411",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "at-ar-16434411-aorta-arch",
+     "name": "Aortic arch",
+     "required": true,
+     "acceptedNames": [
+      "Aortic arch",
+      "Arch of the aorta",
+      "Aorta arch"
+     ]
+    },
+    {
+     "targetId": "at-ar-16434411-pulmonary-trunk",
+     "name": "Main pulmonary artery",
+     "required": true,
+     "acceptedNames": [
+      "Main pulmonary artery",
+      "Pulmonary trunk",
+      "MPA"
+     ]
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "The arch is the highest part of the aorta, crossing from front-right to back-left above the heart."
+    },
+    {
+     "level": 2,
+     "text": "The pulmonary trunk leaves the right ventricle in front of and to the left of the ascending aorta and divides into the right and left pulmonary arteries a little below the arch."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "navigate_level",
+   "title": "The aortopulmonary window: aortic arch above, main pulmonary artery below",
+   "prompt": "In the soft-tissue window, place a named arrow on the aortic arch, then scroll down and place one on the main pulmonary artery (pulmonary trunk). The fat between them is the aortopulmonary window.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 2.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "exploratory_self_review",
+   "explanation": "Below the aortic arch and above the pulmonary artery lies the aortopulmonary window, normally filled with fat and a few small nodes. Enlarged nodes there are a common, easily missed finding, so look at this level on every chest CT. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "bookAnchors": [
+    {
+     "physical": 41,
+     "printed": "26",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.7",
+     "sectionId": null
+    },
+    {
+     "physical": 41,
+     "printed": "26",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.8",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o05"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "id": "body-kits-00015:bp-costal-cartilage",
+   "caseId": "body-kits-00015",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.135561535915374715293148075351",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "at-kits-00015-costal-cartilages",
+     "name": "Costal cartilage",
+     "required": true,
+     "acceptedNames": [
+      "Costal cartilage",
+      "Costal cartilages"
+     ]
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow a rib forward: it becomes cartilage before it reaches the sternum. With age the cartilage calcifies, often in streaks along its edges."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "find_structure",
+   "title": "Costal cartilage: a normal calcification",
+   "prompt": "In the bone window, find the costal cartilages — the front ends of the ribs where they meet the sternum — and click one.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 2.5
+   },
+   "scoring": "exploratory_self_review",
+   "explanation": "Calcified costal cartilage is a normal finding that increases with age. Like phleboliths in the pelvic veins, it is a benign calcification you should recognize so that it is not mistaken for disease — phleboliths are small, round and often have a lucent centre, while a stone lies along the course of the ureter or in the kidney or bladder. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "bookAnchors": [
+    {
+     "physical": 155,
+     "printed": "135",
+     "chapterId": "ch12",
+     "figureId": "Fig 12.18",
+     "sectionId": null
+    },
+    {
+     "physical": 155,
+     "printed": "135",
+     "chapterId": "ch12",
+     "figureId": "Fig 12.19",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch12-o05"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ]
+  },
+  {
+   "id": "exp-kits-00045:bp-costal-cartilage",
+   "caseId": "exp-kits-00045",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.437807925747595776338911279802"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.437807925747595776338911279802",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [
+    {
+     "targetId": "at-kits-00045-costal-cartilages",
+     "name": "Costal cartilage",
+     "required": true,
+     "acceptedNames": [
+      "Costal cartilage",
+      "Costal cartilages"
+     ]
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow a rib forward: it becomes cartilage before it reaches the sternum. With age the cartilage calcifies, often in streaks along its edges."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "find_structure",
+   "title": "Costal cartilage: a normal calcification",
+   "prompt": "In the bone window, find the costal cartilages — the front ends of the ribs where they meet the sternum — and click one.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 2.5
+   },
+   "scoring": "exploratory_self_review",
+   "explanation": "Calcified costal cartilage is a normal finding that increases with age. Like phleboliths in the pelvic veins, it is a benign calcification you should recognize so that it is not mistaken for disease — phleboliths are small, round and often have a lucent centre, while a stone lies along the course of the ureter or in the kidney or bladder. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "bookAnchors": [
+    {
+     "physical": 155,
+     "printed": "135",
+     "chapterId": "ch12",
+     "figureId": "Fig 12.18",
+     "sectionId": null
+    },
+    {
+     "physical": 155,
+     "printed": "135",
+     "chapterId": "ch12",
+     "figureId": "Fig 12.19",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch12-o05"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ]
+  },
+  {
+   "id": "more-covid-19-ar-16424076:bp-contours",
+   "caseId": "more-covid-19-ar-16424076",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.3255180473901584361380444495405"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.3255180473901584361380444495405",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "at-ar-16424076-cxr-aorta",
+     "name": "Aortic knob",
+     "required": true,
+     "acceptedNames": [
+      "Aortic knob",
+      "Aorta",
+      "Aortic arch",
+      "Knob"
+     ]
+    },
+    {
+     "targetId": "at-ar-16424076-cxr-heart",
+     "name": "Heart",
+     "required": true,
+     "acceptedNames": [
+      "Heart",
+      "Cardiac silhouette"
+     ]
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "The aortic knob is the rounded bulge at the top of the left border of the mediastinum, a little below the left clavicle."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "find_structure",
+   "title": "Cardiac and aortic contours on the frontal radiograph",
+   "prompt": "Place a named arrow on the aortic knob and one on the heart (the cardiac silhouette). Then trace the borders: on the right the superior vena cava and right atrium; on the left the aortic knob, the main pulmonary artery segment and the left ventricle.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.0,
+    "inPlaneToleranceMm": 3.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "exploratory_self_review",
+   "explanation": "From top to bottom the left border is made by the aortic knob, the main pulmonary artery segment and the left ventricle; the right border by the superior vena cava and the right atrium. A knob that is too large or an ascending aorta bulging to the right beyond the right heart border are clues to hypertension or aortic stenosis. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "bookAnchors": [
+    {
+     "physical": 440,
+     "printed": "e21",
+     "chapterId": "appB",
+     "figureId": "eFig B.1",
+     "sectionId": null
+    },
+    {
+     "physical": 441,
+     "printed": "e22",
+     "chapterId": "appB",
+     "figureId": "eFig B.2",
+     "sectionId": null
+    },
+    {
+     "physical": 442,
+     "printed": "e23",
+     "chapterId": "appB",
+     "figureId": "eFig B.5",
+     "sectionId": null
+    },
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.3",
+     "sectionId": null
+    },
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.4",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "appB-o01",
+    "ch03-o03"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ]
+  },
+  {
+   "id": "more-covid-19-ar-16434369:bp-contours",
+   "caseId": "more-covid-19-ar-16434369",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2418377321546892125079674838557"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2418377321546892125079674838557",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "at-ar-16434369-cxr-aorta",
+     "name": "Aortic knob",
+     "required": true,
+     "acceptedNames": [
+      "Aortic knob",
+      "Aorta",
+      "Aortic arch",
+      "Knob"
+     ]
+    },
+    {
+     "targetId": "at-ar-16434369-cxr-heart",
+     "name": "Heart",
+     "required": true,
+     "acceptedNames": [
+      "Heart",
+      "Cardiac silhouette"
+     ]
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "The aortic knob is the rounded bulge at the top of the left border of the mediastinum, a little below the left clavicle."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "find_structure",
+   "title": "Cardiac and aortic contours on the frontal radiograph",
+   "prompt": "Place a named arrow on the aortic knob and one on the heart (the cardiac silhouette). Then trace the borders: on the right the superior vena cava and right atrium; on the left the aortic knob, the main pulmonary artery segment and the left ventricle.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.0,
+    "inPlaneToleranceMm": 3.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "exploratory_self_review",
+   "explanation": "From top to bottom the left border is made by the aortic knob, the main pulmonary artery segment and the left ventricle; the right border by the superior vena cava and the right atrium. A knob that is too large or an ascending aorta bulging to the right beyond the right heart border are clues to hypertension or aortic stenosis. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "bookAnchors": [
+    {
+     "physical": 440,
+     "printed": "e21",
+     "chapterId": "appB",
+     "figureId": "eFig B.1",
+     "sectionId": null
+    },
+    {
+     "physical": 441,
+     "printed": "e22",
+     "chapterId": "appB",
+     "figureId": "eFig B.2",
+     "sectionId": null
+    },
+    {
+     "physical": 442,
+     "printed": "e23",
+     "chapterId": "appB",
+     "figureId": "eFig B.5",
+     "sectionId": null
+    },
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.3",
+     "sectionId": null
+    },
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.4",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "appB-o01",
+    "ch03-o03"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ]
+  },
+  {
+   "id": "more-covid-19-ar-16445122:bp-contours",
+   "caseId": "more-covid-19-ar-16445122",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.4548960503691844005755507194780"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.4548960503691844005755507194780",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "at-ar-16445122-cxr-aorta",
+     "name": "Aortic knob",
+     "required": true,
+     "acceptedNames": [
+      "Aortic knob",
+      "Aorta",
+      "Aortic arch",
+      "Knob"
+     ]
+    },
+    {
+     "targetId": "at-ar-16445122-cxr-heart",
+     "name": "Heart",
+     "required": true,
+     "acceptedNames": [
+      "Heart",
+      "Cardiac silhouette"
+     ]
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "The aortic knob is the rounded bulge at the top of the left border of the mediastinum, a little below the left clavicle."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "find_structure",
+   "title": "Cardiac and aortic contours on the frontal radiograph",
+   "prompt": "Place a named arrow on the aortic knob and one on the heart (the cardiac silhouette). Then trace the borders: on the right the superior vena cava and right atrium; on the left the aortic knob, the main pulmonary artery segment and the left ventricle.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.0,
+    "inPlaneToleranceMm": 3.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "exploratory_self_review",
+   "explanation": "From top to bottom the left border is made by the aortic knob, the main pulmonary artery segment and the left ventricle; the right border by the superior vena cava and the right atrium. A knob that is too large or an ascending aorta bulging to the right beyond the right heart border are clues to hypertension or aortic stenosis. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "bookAnchors": [
+    {
+     "physical": 440,
+     "printed": "e21",
+     "chapterId": "appB",
+     "figureId": "eFig B.1",
+     "sectionId": null
+    },
+    {
+     "physical": 441,
+     "printed": "e22",
+     "chapterId": "appB",
+     "figureId": "eFig B.2",
+     "sectionId": null
+    },
+    {
+     "physical": 442,
+     "printed": "e23",
+     "chapterId": "appB",
+     "figureId": "eFig B.5",
+     "sectionId": null
+    },
+    {
+     "physical": 38,
+     "printed": "23",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.3",
+     "sectionId": null
+    },
+    {
+     "physical": 39,
+     "printed": "24",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.4",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "appB-o01",
+    "ch03-o03"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ]
+  },
+  {
+   "id": "cxr-00000377-004:bp-abc-heart",
+   "caseId": "cxr-00000377-004",
+   "seriesUids": [
+    "2.25.153207459673314134422184992845760679349"
+   ],
+   "start": {
+    "seriesUid": "2.25.153207459673314134422184992845760679349",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00000377_004_cardiomegaly",
+     "name": "Enlarged cardiac silhouette",
+     "required": true
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the widest heart against the widest inner chest on this PA film; then work through A, B, C, D in that order."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "whole_study",
+   "title": "Apply the ABCs of heart disease",
+   "prompt": "Read the heart on this PA film step by step: heart size first (cardiothoracic ratio), then A, B, C and D as the book teaches. Write what you find at each step, then compare with the checklist.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "rubric": [
+    {
+     "id": "size",
+     "text": "Heart size first: the cardiothoracic ratio on a PA film — over 50% is enlarged. The radiologist marked this cardiac silhouette as enlarged.",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "a",
+     "text": "A — is the left atrium enlarged? Look for a straightened or convex left heart border and a double density on the right heart border.",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "b",
+     "text": "B — is the main pulmonary artery segment big or bulbous? Draw the tangent from the left ventricular apex to the aortic knob and see whether it bulges beyond it.",
+     "weight": "supportive",
+     "category": "pattern"
+    },
+    {
+     "id": "c",
+     "text": "C — is that segment concave (well inside the tangent)? If so, judge the aorta: ascending only, or ascending, knob and descending all prominent.",
+     "weight": "supportive",
+     "category": "pattern"
+    },
+    {
+     "id": "d",
+     "text": "D — is it a dilated, delta-shaped heart (very large, smooth, projecting almost equally to both sides)? Think of cardiomyopathy and pericardial effusion.",
+     "weight": "supportive",
+     "category": "differential"
+    },
+    {
+     "id": "vessels",
+     "text": "Pulmonary vessels where the steps call for it: the right descending pulmonary artery, then flow from apex to base and from hilum to periphery.",
+     "weight": "supportive",
+     "category": "associated_sign"
+    },
+    {
+     "id": "limits",
+     "text": "Only the enlarged heart is labelled in this dataset; the A–D answers are your own reading.",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "explanation": "The book's system asks the questions in a fixed order after judging heart size: A, is the left atrium enlarged; B, is the main pulmonary artery big; C, is it concave; D, is the heart dilated or delta-shaped. Each answer points to a group of causes and tells you whether the pulmonary vessels or the aorta help next. This film's label (from the source dataset) confirms only that the heart is enlarged.",
+   "bookAnchors": [
+    {
+     "physical": 449,
+     "printed": "e30",
+     "chapterId": "appB",
+     "figureId": null,
+     "sectionId": "appB-s16"
+    },
+    {
+     "physical": 453,
+     "printed": "e34",
+     "chapterId": "appB",
+     "figureId": "eFig B.24",
+     "sectionId": null
+    },
+    {
+     "physical": 452,
+     "printed": "e33",
+     "chapterId": "appB",
+     "figureId": "eFig B.23",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "appB-o07"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ]
+  },
+  {
+   "id": "cxr-00000661-000:bp-abc-heart",
+   "caseId": "cxr-00000661-000",
+   "seriesUids": [
+    "2.25.83274867416939635552737997710228042399"
+   ],
+   "start": {
+    "seriesUid": "2.25.83274867416939635552737997710228042399",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00000661_000_cardiomegaly",
+     "name": "Enlarged cardiac silhouette",
+     "required": true
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the widest heart against the widest inner chest on this PA film; then work through A, B, C, D in that order."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "whole_study",
+   "title": "Apply the ABCs of heart disease",
+   "prompt": "Read the heart on this PA film step by step: heart size first (cardiothoracic ratio), then A, B, C and D as the book teaches. Write what you find at each step, then compare with the checklist.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "rubric": [
+    {
+     "id": "size",
+     "text": "Heart size first: the cardiothoracic ratio on a PA film — over 50% is enlarged. The radiologist marked this cardiac silhouette as enlarged.",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "a",
+     "text": "A — is the left atrium enlarged? Look for a straightened or convex left heart border and a double density on the right heart border.",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "b",
+     "text": "B — is the main pulmonary artery segment big or bulbous? Draw the tangent from the left ventricular apex to the aortic knob and see whether it bulges beyond it.",
+     "weight": "supportive",
+     "category": "pattern"
+    },
+    {
+     "id": "c",
+     "text": "C — is that segment concave (well inside the tangent)? If so, judge the aorta: ascending only, or ascending, knob and descending all prominent.",
+     "weight": "supportive",
+     "category": "pattern"
+    },
+    {
+     "id": "d",
+     "text": "D — is it a dilated, delta-shaped heart (very large, smooth, projecting almost equally to both sides)? Think of cardiomyopathy and pericardial effusion.",
+     "weight": "supportive",
+     "category": "differential"
+    },
+    {
+     "id": "vessels",
+     "text": "Pulmonary vessels where the steps call for it: the right descending pulmonary artery, then flow from apex to base and from hilum to periphery.",
+     "weight": "supportive",
+     "category": "associated_sign"
+    },
+    {
+     "id": "limits",
+     "text": "Only the enlarged heart is labelled in this dataset; the A–D answers are your own reading.",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "explanation": "The book's system asks the questions in a fixed order after judging heart size: A, is the left atrium enlarged; B, is the main pulmonary artery big; C, is it concave; D, is the heart dilated or delta-shaped. Each answer points to a group of causes and tells you whether the pulmonary vessels or the aorta help next. This film's label (from the source dataset) confirms only that the heart is enlarged.",
+   "bookAnchors": [
+    {
+     "physical": 449,
+     "printed": "e30",
+     "chapterId": "appB",
+     "figureId": null,
+     "sectionId": "appB-s16"
+    },
+    {
+     "physical": 453,
+     "printed": "e34",
+     "chapterId": "appB",
+     "figureId": "eFig B.24",
+     "sectionId": null
+    },
+    {
+     "physical": 452,
+     "printed": "e33",
+     "chapterId": "appB",
+     "figureId": "eFig B.23",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "appB-o07"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ]
+  },
+  {
+   "id": "cxr-00000845-000:bp-abc-heart",
+   "caseId": "cxr-00000845-000",
+   "seriesUids": [
+    "2.25.113148076060192092093137804964020190043"
+   ],
+   "start": {
+    "seriesUid": "2.25.113148076060192092093137804964020190043",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00000845_000_cardiomegaly",
+     "name": "Enlarged cardiac silhouette",
+     "required": true
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the widest heart against the widest inner chest on this PA film; then work through A, B, C, D in that order."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "whole_study",
+   "title": "Apply the ABCs of heart disease",
+   "prompt": "Read the heart on this PA film step by step: heart size first (cardiothoracic ratio), then A, B, C and D as the book teaches. Write what you find at each step, then compare with the checklist.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "rubric": [
+    {
+     "id": "size",
+     "text": "Heart size first: the cardiothoracic ratio on a PA film — over 50% is enlarged. The radiologist marked this cardiac silhouette as enlarged.",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "a",
+     "text": "A — is the left atrium enlarged? Look for a straightened or convex left heart border and a double density on the right heart border.",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "b",
+     "text": "B — is the main pulmonary artery segment big or bulbous? Draw the tangent from the left ventricular apex to the aortic knob and see whether it bulges beyond it.",
+     "weight": "supportive",
+     "category": "pattern"
+    },
+    {
+     "id": "c",
+     "text": "C — is that segment concave (well inside the tangent)? If so, judge the aorta: ascending only, or ascending, knob and descending all prominent.",
+     "weight": "supportive",
+     "category": "pattern"
+    },
+    {
+     "id": "d",
+     "text": "D — is it a dilated, delta-shaped heart (very large, smooth, projecting almost equally to both sides)? Think of cardiomyopathy and pericardial effusion.",
+     "weight": "supportive",
+     "category": "differential"
+    },
+    {
+     "id": "vessels",
+     "text": "Pulmonary vessels where the steps call for it: the right descending pulmonary artery, then flow from apex to base and from hilum to periphery.",
+     "weight": "supportive",
+     "category": "associated_sign"
+    },
+    {
+     "id": "limits",
+     "text": "Only the enlarged heart is labelled in this dataset; the A–D answers are your own reading.",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "explanation": "The book's system asks the questions in a fixed order after judging heart size: A, is the left atrium enlarged; B, is the main pulmonary artery big; C, is it concave; D, is the heart dilated or delta-shaped. Each answer points to a group of causes and tells you whether the pulmonary vessels or the aorta help next. This film's label (from the source dataset) confirms only that the heart is enlarged.",
+   "bookAnchors": [
+    {
+     "physical": 449,
+     "printed": "e30",
+     "chapterId": "appB",
+     "figureId": null,
+     "sectionId": "appB-s16"
+    },
+    {
+     "physical": 453,
+     "printed": "e34",
+     "chapterId": "appB",
+     "figureId": "eFig B.24",
+     "sectionId": null
+    },
+    {
+     "physical": 452,
+     "printed": "e33",
+     "chapterId": "appB",
+     "figureId": "eFig B.23",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "appB-o07"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ]
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16406502:bp-densities",
+   "caseId": "chest-pairs-covid-19-ar-16406502",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "hints": [
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "describe_finding",
+   "title": "The five radiographic densities",
+   "prompt": "Place an arrow on one example of each density on this chest radiograph — air, fat, soft tissue or fluid, bone or calcium, and metal if any is present — then compare with the checklist.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "rubric": [
+    {
+     "id": "air",
+     "text": "Air (blackest): the trachea and the lungs.",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "fat",
+     "text": "Fat (dark grey): the soft tissues of the chest wall, axillae and shoulders — darker than muscle.",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "soft",
+     "text": "Soft tissue or fluid (light grey): the heart, the diaphragm and the muscles.",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "bone",
+     "text": "Bone or calcium (white): the ribs, clavicles and spine.",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "metal",
+     "text": "Metal (brightest white), if present: ECG leads, wires, clips or jewelry. A film without metal is normal.",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "explanation": "A radiograph can separate only five densities. The denser a material, the more x-rays it absorbs and the whiter it looks; and an edge is visible only where two different densities meet — which is why the heart border disappears when the lung beside it fills with fluid.",
+   "bookAnchors": [
+    {
+     "physical": 16,
+     "printed": "2",
+     "chapterId": "ch01",
+     "figureId": "Fig 1.2",
+     "sectionId": null
+    },
+    {
+     "physical": 16,
+     "printed": "2",
+     "chapterId": "ch01",
+     "figureId": null,
+     "sectionId": "ch01-s05"
+    }
+   ],
+   "objectiveIds": [
+    "ch01-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ]
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434363:bp-densities",
+   "caseId": "chest-pairs-covid-19-ar-16434363",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2996366362109601784727818560816",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "hints": [
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "describe_finding",
+   "title": "The five radiographic densities",
+   "prompt": "Place an arrow on one example of each density on this chest radiograph — air, fat, soft tissue or fluid, bone or calcium, and metal if any is present — then compare with the checklist.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "rubric": [
+    {
+     "id": "air",
+     "text": "Air (blackest): the trachea and the lungs.",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "fat",
+     "text": "Fat (dark grey): the soft tissues of the chest wall, axillae and shoulders — darker than muscle.",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "soft",
+     "text": "Soft tissue or fluid (light grey): the heart, the diaphragm and the muscles.",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "bone",
+     "text": "Bone or calcium (white): the ribs, clavicles and spine.",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "metal",
+     "text": "Metal (brightest white), if present: ECG leads, wires, clips or jewelry. A film without metal is normal.",
+     "weight": "supportive",
+     "category": "finding"
+    }
+   ],
+   "explanation": "A radiograph can separate only five densities. The denser a material, the more x-rays it absorbs and the whiter it looks; and an edge is visible only where two different densities meet — which is why the heart border disappears when the lung beside it fills with fluid.",
+   "bookAnchors": [
+    {
+     "physical": 16,
+     "printed": "2",
+     "chapterId": "ch01",
+     "figureId": "Fig 1.2",
+     "sectionId": null
+    },
+    {
+     "physical": 16,
+     "printed": "2",
+     "chapterId": "ch01",
+     "figureId": null,
+     "sectionId": "ch01-s05"
+    }
+   ],
+   "objectiveIds": [
+    "ch01-o01"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ]
+  },
+  {
+   "id": "exp-kits-00204:bp-orientation-ct",
+   "caseId": "exp-kits-00204",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.6919.4624.300721406905031139938595258278"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6919.4624.300721406905031139938595258278",
+    "slice": "middle",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [],
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the liver: it lies on the patient's right."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "describe_finding",
+   "title": "Which side is the patient's right on axial CT?",
+   "prompt": "On this axial CT, where is the patient's right side?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "top",
+      "text": "At the top of the screen",
+      "correct": false,
+      "why": "The top of an axial image is the front (anterior) of the patient."
+     },
+     {
+      "id": "bottom",
+      "text": "At the bottom of the screen",
+      "correct": false,
+      "why": "The bottom of an axial image is the back (posterior) of the patient."
+     },
+     {
+      "id": "left",
+      "text": "On the left of the screen",
+      "correct": true,
+      "why": "Images are displayed as if you face the patient (axial CT viewed from the feet), so the patient's right is on your left."
+     },
+     {
+      "id": "right",
+      "text": "On the right of the screen",
+      "correct": false,
+      "why": "That would be the patient's left side."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "explanation": "By convention axial CT is viewed from the patient's feet, and frontal radiographs as if you stand facing the patient: in both, the patient's right is on the viewer's left and anterior is at the top of an axial image. The letters at the edges of the viewer come from the image geometry recorded in the file.",
+   "bookAnchors": [
+    {
+     "physical": 458,
+     "printed": "e39",
+     "chapterId": "appD",
+     "figureId": "eFig D.1",
+     "sectionId": null
+    },
+    {
+     "physical": 458,
+     "printed": "e39",
+     "chapterId": "appD",
+     "figureId": null,
+     "sectionId": "appD-s02"
+    }
+   ],
+   "objectiveIds": [
+    "appD-o01"
+   ],
+   "skillDimensions": [
+    "orientation"
+   ]
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16406502:bp-orientation-xr",
+   "caseId": "chest-pairs-covid-19-ar-16406502",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.7387851802783238061375077795803",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "hints": [
+    {
+     "level": 1,
+     "text": "The apex of the heart and the aortic knob are on the patient's left."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "describe_finding",
+   "title": "Which side is the patient's right on a frontal radiograph?",
+   "prompt": "On this frontal chest radiograph, where is the patient's right side?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "top",
+      "text": "At the top",
+      "correct": false,
+      "why": "The top is the patient's head."
+     },
+     {
+      "id": "cannot",
+      "text": "It cannot be told",
+      "correct": false,
+      "why": "The file records the orientation (the edge letters come from it), and the anatomy agrees: the heart apex points to the patient's left."
+     },
+     {
+      "id": "left",
+      "text": "On the left of the screen",
+      "correct": true,
+      "why": "A frontal radiograph is displayed as if you face the patient, so the patient's right is on your left."
+     },
+     {
+      "id": "right",
+      "text": "On the right of the screen",
+      "correct": false,
+      "why": "That is the patient's left — check the side marker and the heart, which points to the patient's left."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "explanation": "Frontal radiographs are displayed as if the viewer faces the patient — whether the beam went PA or AP — so the patient's right is on the viewer's left. Always confirm with the side marker or the recorded orientation, and with the anatomy (heart apex and aortic knob to the left, liver to the right).",
+   "bookAnchors": [
+    {
+     "physical": 458,
+     "printed": "e39",
+     "chapterId": "appD",
+     "figureId": "eFig D.1",
+     "sectionId": null
+    },
+    {
+     "physical": 458,
+     "printed": "e39",
+     "chapterId": "appD",
+     "figureId": null,
+     "sectionId": "appD-s02"
+    }
+   ],
+   "objectiveIds": [
+    "appD-o01"
+   ],
+   "skillDimensions": [
+    "orientation"
+   ]
+  },
+  {
+   "id": "more-covid-19-ar-16445138:bp-words-ct",
+   "caseId": "more-covid-19-ar-16445138",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.3125812321537614785025843239681"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.3125812321537614785025843239681",
+    "slice": "middle",
+    "windowPreset": "Bone"
+   },
+   "targets": [],
+   "hints": [
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "describe_finding",
+   "title": "The CT word for bright",
+   "prompt": "Bone is bright on this CT. Which description uses the right word for CT?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "hyperechoic",
+      "text": "Hyperechoic",
+      "correct": false,
+      "why": "Echogenicity is the ultrasound word."
+     },
+     {
+      "id": "radiolucent",
+      "text": "Radiolucent",
+      "correct": false,
+      "why": "Lucent means dark on a radiograph; bone is the opposite."
+     },
+     {
+      "id": "hyperdense",
+      "text": "Hyperdense (high attenuation)",
+      "correct": true,
+      "why": "CT describes brightness as density or attenuation: bone is hyperdense."
+     },
+     {
+      "id": "hyperintense",
+      "text": "Hyperintense",
+      "correct": false,
+      "why": "Intensity is the MRI word (signal intensity)."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "explanation": "Each modality has its own words because each forms the image differently: radiographs speak of opacity and lucency, CT of density or attenuation (hyperdense, hypodense), MRI of signal intensity (hyperintense, hypointense) and ultrasound of echogenicity (hyperechoic, hypoechoic, anechoic).",
+   "bookAnchors": [
+    {
+     "physical": 459,
+     "printed": "e40",
+     "chapterId": "appD",
+     "figureId": "eTable D.1",
+     "sectionId": null
+    },
+    {
+     "physical": 460,
+     "printed": "e41",
+     "chapterId": "appD",
+     "figureId": "eFig D.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "appD-o02"
+   ],
+   "skillDimensions": [
+    "reporting"
+   ]
+  },
+  {
+   "id": "stroke-isles-0015:bp-words-mr",
+   "caseId": "stroke-isles-0015",
+   "seriesUids": [
+    "2.25.239437525237529092347726194397820967431"
+   ],
+   "start": {
+    "seriesUid": "2.25.239437525237529092347726194397820967431",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "isles-strokecase0015_dwi_ischemic-stroke",
+     "name": "Bright lesion",
+     "required": true
+    }
+   ],
+   "hints": [
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "describe_finding",
+   "title": "The MRI word for bright",
+   "prompt": "Find the bright area on this diffusion-weighted MRI. Which description uses the right word for MRI?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "hyperdense",
+      "text": "Hyperdense",
+      "correct": false,
+      "why": "Density is the CT word."
+     },
+     {
+      "id": "hyperechoic",
+      "text": "Hyperechoic",
+      "correct": false,
+      "why": "Echogenicity is the ultrasound word."
+     },
+     {
+      "id": "radiopaque",
+      "text": "Radiopaque",
+      "correct": false,
+      "why": "Opaque is the radiograph word."
+     },
+     {
+      "id": "hyperintense",
+      "text": "Hyperintense (high signal)",
+      "correct": true,
+      "why": "MRI brightness is signal intensity: the lesion is hyperintense on diffusion-weighted imaging."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "explanation": "MRI describes brightness as signal intensity: bright is hyperintense, dark hypointense. CT uses density (hyperdense), radiographs opacity and lucency, ultrasound echogenicity (hyperechoic). The outlined lesion is the source dataset's expert-approved mask.",
+   "bookAnchors": [
+    {
+     "physical": 459,
+     "printed": "e40",
+     "chapterId": "appD",
+     "figureId": "eTable D.1",
+     "sectionId": null
+    },
+    {
+     "physical": 460,
+     "printed": "e41",
+     "chapterId": "appD",
+     "figureId": "eFig D.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "appD-o02"
+   ],
+   "skillDimensions": [
+    "reporting"
+   ]
+  },
+  {
+   "id": "chest-pairs-covid-19-ar-16434411:bp-words-xr",
+   "caseId": "chest-pairs-covid-19-ar-16434411",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2174474549200723793231473568772",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "hints": [
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "describe_finding",
+   "title": "The radiograph word for white",
+   "prompt": "The ribs and clavicles are white on this radiograph. Which word fits a radiograph?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "lucent",
+      "text": "Radiolucent (a lucency)",
+      "correct": false,
+      "why": "Lucent means dark, like air in the lungs."
+     },
+     {
+      "id": "hyperintense",
+      "text": "Hyperintense",
+      "correct": false,
+      "why": "Intensity is the MRI word."
+     },
+     {
+      "id": "hyperechoic",
+      "text": "Hyperechoic",
+      "correct": false,
+      "why": "Echogenicity is the ultrasound word."
+     },
+     {
+      "id": "opaque",
+      "text": "Radiopaque (an opacity)",
+      "correct": true,
+      "why": "On radiographs white is opaque (an opacity) and black lucent: bone is radiopaque."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "explanation": "Radiographs speak of opacity (white, radiopaque) and lucency (black, radiolucent). CT uses density, MRI signal intensity and ultrasound echogenicity.",
+   "bookAnchors": [
+    {
+     "physical": 459,
+     "printed": "e40",
+     "chapterId": "appD",
+     "figureId": "eTable D.1",
+     "sectionId": null
+    },
+    {
+     "physical": 460,
+     "printed": "e41",
+     "chapterId": "appD",
+     "figureId": "eFig D.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "appD-o02"
+   ],
+   "skillDimensions": [
+    "reporting"
+   ]
+  },
+  {
+   "id": "ctmri-sts-033:bp-t1-fat",
+   "caseId": "ctmri-sts-033",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.311541396855223962525824591318"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.311541396855223962525824591318",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the layer just under the skin with the muscle and with any fluid."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "compare_appearances",
+   "title": "What is bright on T1?",
+   "prompt": "This is a T1-weighted MRI without fat suppression. Which tissue is the brightest?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "fat",
+      "text": "Subcutaneous fat",
+      "correct": true,
+      "why": "Fat has a short T1, so it is bright on T1-weighted images without fat suppression."
+     },
+     {
+      "id": "muscle",
+      "text": "Muscle",
+      "correct": false,
+      "why": "Muscle is intermediate (grey) on T1."
+     },
+     {
+      "id": "fluid",
+      "text": "Fluid (edema or joint fluid)",
+      "correct": false,
+      "why": "Fluid has a long T1 and is dark on T1; it is bright on T2."
+     },
+     {
+      "id": "cortex",
+      "text": "Cortical bone",
+      "correct": false,
+      "why": "Cortical bone has almost no signal and is black on every sequence."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "explanation": "Only a few substances shorten T1 and look bright on T1-weighted images: fat, gadolinium contrast, some blood products (methemoglobin) and melanin. Fluid is dark on T1 and bright on T2 — the quickest way to tell the two sequences apart is to look at fat and fluid.",
+   "bookAnchors": [
+    {
+     "physical": 262,
+     "printed": "242",
+     "chapterId": "ch20",
+     "figureId": "Table 20.1",
+     "sectionId": null
+    },
+    {
+     "physical": 261,
+     "printed": "241",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.9",
+     "sectionId": null
+    },
+    {
+     "physical": 262,
+     "printed": "242",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o04"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ]
+  },
+  {
+   "id": "ctmri-sts-042:bp-t1-fat",
+   "caseId": "ctmri-sts-042",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.5168.1900.330977326656436942557941426811"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.5168.1900.330977326656436942557941426811",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the layer just under the skin with the muscle and with any fluid."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "compare_appearances",
+   "title": "What is bright on T1?",
+   "prompt": "This is a T1-weighted MRI without fat suppression. Which tissue is the brightest?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "fat",
+      "text": "Subcutaneous fat",
+      "correct": true,
+      "why": "Fat has a short T1, so it is bright on T1-weighted images without fat suppression."
+     },
+     {
+      "id": "muscle",
+      "text": "Muscle",
+      "correct": false,
+      "why": "Muscle is intermediate (grey) on T1."
+     },
+     {
+      "id": "fluid",
+      "text": "Fluid (edema or joint fluid)",
+      "correct": false,
+      "why": "Fluid has a long T1 and is dark on T1; it is bright on T2."
+     },
+     {
+      "id": "cortex",
+      "text": "Cortical bone",
+      "correct": false,
+      "why": "Cortical bone has almost no signal and is black on every sequence."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "explanation": "Only a few substances shorten T1 and look bright on T1-weighted images: fat, gadolinium contrast, some blood products (methemoglobin) and melanin. Fluid is dark on T1 and bright on T2 — the quickest way to tell the two sequences apart is to look at fat and fluid.",
+   "bookAnchors": [
+    {
+     "physical": 262,
+     "printed": "242",
+     "chapterId": "ch20",
+     "figureId": "Table 20.1",
+     "sectionId": null
+    },
+    {
+     "physical": 261,
+     "printed": "241",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.9",
+     "sectionId": null
+    },
+    {
+     "physical": 262,
+     "printed": "242",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o04"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ]
+  },
+  {
+   "id": "vs-seg-001:bp-enhancement",
+   "caseId": "vs-seg-001",
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.149357697745643823053302398129943470751"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.149357697745643823053302398129943470751",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "vs-seg-001_cet1-vestibular-schwannoma",
+     "name": "Enhancing mass",
+     "required": true
+    }
+   ],
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the internal auditory canals."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference and the explanation.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "allowUncertain": true,
+   "type": "compare_appearances",
+   "title": "Gadolinium enhancement",
+   "prompt": "This T1-weighted image was taken after gadolinium. How does the mass at the cerebellopontine angle compare with the brain?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "none",
+      "text": "It cannot be seen",
+      "correct": false,
+      "why": "The mass is clearly visible at the outlined level."
+     },
+     {
+      "id": "bright",
+      "text": "Brighter than the brain — it enhances",
+      "correct": true,
+      "why": "The mass takes up gadolinium, which shortens T1: it is bright on the contrast-enhanced T1."
+     },
+     {
+      "id": "dark",
+      "text": "Darker than the brain",
+      "correct": false,
+      "why": "Enhancing tissue is bright, not dark, on post-contrast T1."
+     },
+     {
+      "id": "same",
+      "text": "The same as the brain",
+      "correct": false,
+      "why": "Look again: the mass stands out against the brainstem and cerebellum."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "explanation": "Gadolinium shortens T1, so tissue that takes it up turns bright on post-contrast T1 images. In the brain, enhancement means the blood-brain barrier is absent or broken — as in extra-axial tumors such as this vestibular schwannoma, which enhances strongly. There is no pre-contrast T1 in this study; the outline is the treating team's expert contour.",
+   "bookAnchors": [
+    {
+     "physical": 263,
+     "printed": "243",
+     "chapterId": "ch20",
+     "figureId": "Fig 20.11",
+     "sectionId": null
+    },
+    {
+     "physical": 262,
+     "printed": "242",
+     "chapterId": "ch20",
+     "figureId": null,
+     "sectionId": "ch20-s09"
+    }
+   ],
+   "objectiveIds": [
+    "ch20-o05"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ]
+  }
+ ]
+}
