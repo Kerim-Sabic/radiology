@@ -4,7 +4,7 @@ import { Check, RotateCcw, Target, X } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { ViewerEngine } from '../viewer/engine';
 import { ViewportPanel, type MarkBadge } from '../components/ws/ViewportPanel';
-import { shapesForPanel } from '../components/ws/overlayShapes';
+import { shapeArea, shapeContains, shapeRings, shapesForPanel } from '../components/ws/overlayShapes';
 import type { LoadedTarget } from '../grading/spatialGrader';
 import { patientToPlaneMm, polygonArea, type Vec2, type Vec3 } from '../lib/geometry';
 import { AI_DRAFT_BY, cleanLabel, isAutomatic } from '../lib/provenance';
@@ -19,6 +19,7 @@ import {
   distanceToShapes,
   distractors,
   eligible,
+  inSentence,
   insideShapes,
   isDue,
   kindsFor,
@@ -106,7 +107,8 @@ export default function DrillPage() {
     const opts = { region: onlyKey ? 'all' : setup.region, kinds: setup.kinds, expertOnly: setup.expertOnly, onlyKey, recentBases: history.map((h) => h.cand.base), lastCase: q?.cand.caseId ?? null };
     let pick: { cand: DrillCandidate; kind: DrillKind } | null = null;
     // A missed structure comes back after three other questions, on a different patient when one exists.
-    const r = retry.find((x) => x.after <= done);
+    // In a due-only review, a pending retry is asked as soon as nothing else is due.
+    const r = retry.find((x) => x.after <= done) ?? (setup.dueOnly && !base.length ? retry[0] : undefined);
     if (r) {
       const same = eligible(focusPool, opts).filter((c) => c.key === r.key && kindsFor(c, setup.kinds).length);
       const lastCase = [...history].reverse().find((h) => h.cand.key === r.key)?.cand.caseId;
@@ -116,7 +118,8 @@ export default function DrillPage() {
       setRetry((xs) => xs.filter((x) => x !== r));
     }
     const usable = (list: DrillCandidate[]) => list.filter((c) => !unusable.current.has(c.targetId));
-    pick ??= pickNext(usable(base.length ? base : focusPool), statsRef.current, opts);
+    // A due-only review ends when nothing is due, instead of turning into an ordinary session.
+    pick ??= pickNext(usable(base), statsRef.current, opts);
     if (!pick) {
       setQ(null);
       setRunning(false);
@@ -227,7 +230,8 @@ export default function DrillPage() {
     if (!q || q.state !== 'asking' || (q.kind !== 'locate' && q.kind !== 'find') || !catalog) return;
     const idx = catalog.seriesIndex(q.cand.seriesUid);
     const shapes = shapesForPanel(engine, 'd0', q.all, idx).filter((sh) => sh.kind === 'poly' && sh.pts.length >= 3);
-    const mine = shapes.filter((sh) => sh.targetId === q.target.ref.id).map((sh) => sh.pts);
+    // The structure's outlines and their holes: a click in a hole (e.g. inside the skull) is not on the structure.
+    const mine = shapeRings(shapes.filter((sh) => sh.targetId === q.target.ref.id));
     const inside = mine.length > 0 && insideShapes(canvas, mine);
     // Canvas pixels → mm, so the edge tolerance is the same at every zoom.
     const w0 = engine.canvasToWorld('d0', canvas);
@@ -238,18 +242,18 @@ export default function DrillPage() {
     // What did they click instead? The smallest structure under the point.
     let clicked: { id: string; label: string; a: number } | null = null;
     for (const sh of shapes) {
-      if (sh.targetId === q.target.ref.id || !insideShapes(canvas, [sh.pts])) continue;
-      const a = polygonArea(sh.pts);
+      if (sh.targetId === q.target.ref.id || !shapeContains(sh, canvas)) continue;
+      const a = shapeArea(sh);
       if (!clicked || a < clicked.a) clicked = { id: sh.targetId, label: sh.label, a };
     }
     const st = engine.panelState('d0');
     const onSlice = mine.length > 0;
     let feedback: string;
-    if (inside) feedback = `Correct — that is the ${q.cand.name.toLowerCase()}.`;
-    else if (ok) feedback = `Accepted: on the edge of the ${q.cand.name.toLowerCase()} (${edgeMm.toFixed(1)} mm).`;
+    if (inside) feedback = `Correct — that is the ${inSentence(q.cand.name)}.`;
+    else if (ok) feedback = `Accepted: on the edge of the ${inSentence(q.cand.name)} (${edgeMm.toFixed(1)} mm).`;
     else if (!onSlice)
-      feedback = `The ${q.cand.name.toLowerCase()} is not on this image. It is on images ${q.range[0] + 1}–${q.range[1] + 1}${clicked ? `; you clicked the ${cleanLabel(clicked.label).toLowerCase()}` : ''}.`;
-    else feedback = `Not quite — ${clicked ? `you clicked the ${cleanLabel(clicked.label).toLowerCase()}` : `you were ${edgeMm.toFixed(0)} mm away`}. The ${q.cand.name.toLowerCase()} is outlined now.`;
+      feedback = `The ${inSentence(q.cand.name)} is not on this image. It is on images ${q.range[0] + 1}–${q.range[1] + 1}${clicked ? `; you clicked the ${inSentence(cleanLabel(clicked.label))}` : ''}.`;
+    else feedback = `Not quite — ${clicked ? `you clicked the ${inSentence(cleanLabel(clicked.label))}` : `you were ${edgeMm.toFixed(0)} mm away`}. The ${inSentence(q.cand.name)} is outlined now.`;
     finish(ok, { feedback, clickedId: clicked?.id ?? null, click: { world: w0, imageId: st?.currentImageId ?? null, ok } });
     if (!onSlice && q.bestSop) {
       const src = catalog.seriesSource(q.cand.seriesUid);
@@ -433,6 +437,8 @@ export default function DrillPage() {
   (window as unknown as { __rvmDrill: unknown }).__rvmDrill = {
     kind: q.kind,
     state: q.state,
+    name: q.cand.name,
+    engine,
     answerPolys: () => shapesForPanel(engine, 'd0', [q.target], catalog.seriesIndex(q.cand.seriesUid)).filter((sh) => sh.kind === 'poly').map((sh) => sh.pts),
   };
 
@@ -447,12 +453,12 @@ export default function DrillPage() {
   const badges: MarkBadge[] = q.click ? [{ id: 'click', world: q.click.world, imageId: q.click.imageId, px: null, glyph: q.click.ok ? '✓' : '✗', text: 'you', tone: q.click.ok ? 'ok' : 'bad' }] : [];
   const prompt =
     q.kind === 'locate'
-      ? `Click the ${q.cand.name.toLowerCase()}.`
+      ? `Click the ${inSentence(q.cand.name)}.`
       : q.kind === 'find'
-        ? `Scroll to a slice that shows the ${q.cand.name.toLowerCase()}, then click it.`
+        ? `Scroll to a slice that shows the ${inSentence(q.cand.name)}, then click it.`
         : q.kind === 'name'
           ? 'Which structure is outlined?'
-          : `Which window is best for examining the ${q.cand.name.toLowerCase()}?`;
+          : `Which window is best for examining the ${inSentence(q.cand.name)}?`;
   const score = history.filter((h) => h.correct).length;
 
   return (

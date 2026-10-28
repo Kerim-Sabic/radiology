@@ -324,6 +324,27 @@ test.describe('D. assess leakage, deep links', () => {
     // The viewer moved off the first slice to where the structure is drawn.
     await expect.poll(async () => page.evaluate(() => (window as any).__rvm.panelState('p0')?.index ?? 0)).toBeGreaterThan(0);
   });
+
+  test('a structure shown alone on another series is centred in the view', async ({ page }) => {
+    // Patient I opens on the radiograph; the pulmonary trunk lives on the CT, so the panel switches series first.
+    await page.goto('/read/chest-pairs-covid-19-ar-16434411?mode=learn&show=at-ar-16434411-pulmonary-trunk');
+    await expect(page.locator('.vp-isolate')).toContainText('Pulmonary trunk', { timeout: 20000 });
+    await expect
+      .poll(
+        async () =>
+          page.evaluate(() => {
+            const poly = document.querySelector('[data-panel="p0"] svg.vp-svg polygon');
+            const el = document.querySelector('[data-panel="p0"] .vp-el');
+            if (!poly || !el) return 1;
+            const pts = poly.getAttribute('points')!.trim().split(/\s+/).map((q) => q.split(',').map(Number));
+            const cx = pts.reduce((s, p) => s + p[0], 0) / pts.length;
+            const cy = pts.reduce((s, p) => s + p[1], 0) / pts.length;
+            return Math.max(Math.abs(cx / el.clientWidth - 0.5), Math.abs(cy / el.clientHeight - 0.5));
+          }),
+        { timeout: 20000 },
+      )
+      .toBeLessThan(0.1);
+  });
 });
 
 test.describe('E. study tools', () => {

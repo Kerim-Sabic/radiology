@@ -369,7 +369,7 @@ const N: Array<[RegExp, StructureNote]> = [
   [
     /^brachiocephalic_trunk$/,
     {
-      look: 'The first and largest branch of the aortic arch, in front of and to the right of the trachea.',
+      look: 'The brachiocephalic trunk (the book calls it the innominate artery): the first and largest branch of the aortic arch, in front of and to the right of the trachea.',
       near: 'Divides behind the right sternoclavicular joint into the right subclavian and right common carotid arteries.',
       pitfall: 'Only the right side has a brachiocephalic artery; on the left the carotid and subclavian come straight off the arch.',
       unit: 'ch03',

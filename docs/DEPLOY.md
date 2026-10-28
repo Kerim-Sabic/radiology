@@ -13,7 +13,7 @@ The app is a static SPA (`dist/`) with no server functions. Large DICOM is serve
 | `VITE_PACK_BASE_URL` | build | serve packs from another origin (must send CORS `Access-Control-Allow-Origin` for your app origin, allow `GET, HEAD`, and be access-protected) |
 | `VITE_BOOK_URL` | build | URL of *your* protected copy of the PDF (needs HTTP range requests + CORS). Otherwise import the PDF per device in Settings. |
 
-**Your book in a private build:** `python scripts/book/install_book.py --pdf <file>` puts the PDF at `public/book/learning-radiology-5e.pdf` (git-ignored). A local build then contains `dist/book/…` and the app opens it automatically. Deploy such a build only behind access protection (Vercel *All Deployments* + Vercel Authentication); a Git-based deploy never contains it because it is not in the repository. Note it adds 73 MB to the upload (Vercel Hobby's CLI limit is 100 MB in total).
+**Your book in a private build:** `python scripts/book/install_book.py --pdf <file>` puts the PDF at `public/book/learning-radiology-5e.pdf` (git-ignored). A local build leaves it out unless you build with `KEEP_BOOK_IN_BUILD=1` (then `dist/book/…` is included and the app opens it automatically), so an uploaded `dist/` folder cannot publish the book by accident. Deploy such a build only behind access protection (Vercel *All Deployments* + Vercel Authentication); a Git-based deploy never contains it because it is not in the repository. Note it adds 73 MB to the upload (Vercel Hobby's CLI limit is 100 MB in total).
 
 ## Vercel (recommended for privacy)
 1. Import the GitHub repo in Vercel (framework: Vite).

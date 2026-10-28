@@ -91,7 +91,10 @@ export function mistakeNotebook(attempts: Attempt[], catalog: Catalog | null) {
   const list = attempts.filter(submitted).sort((a, b) => (a.submittedAt! < b.submittedAt! ? 1 : -1));
   const out: Array<{ attempt: Attempt; task: Task | undefined; resolved: boolean; reason: string; sureButWrong: boolean }> = [];
   for (const a of list) {
-    const wrong = a.grade && a.grade.outcome !== 'correct' && a.grade.outcome !== 'not_attempted';
+    // Self-review tasks are judged by the student's own verdict, never by the "self_review" outcome itself.
+    const gradedWrong = a.grade?.outcome === 'incorrect' || a.grade?.outcome === 'partial';
+    const judgedWrong = a.selfReview?.verdict === 'incorrect' || a.selfReview?.verdict === 'partial';
+    const wrong = gradedWrong || judgedWrong;
     const flagged = wrong || a.uncertain || a.revealed || (a.confidence !== null && a.confidence <= 2);
     if (!flagged) continue;
     const task = catalog?.tasks.get(a.taskId);
@@ -104,7 +107,17 @@ export function mistakeNotebook(attempts: Attempt[], catalog: Catalog | null) {
         b.skillDimensions.some((d) => a.skillDimensions.includes(d)) &&
         (b.objectiveIds.some((o) => a.objectiveIds.includes(o)) || b.taskId.split(':')[0] === a.taskId.split(':')[0]),
     );
-    const reason = a.revealed ? 'Answer revealed' : wrong ? (a.grade!.errors.length ? a.grade!.errors.join(', ').replace(/_/g, ' ') : 'Not correct') : a.uncertain ? 'Marked uncertain' : 'Low confidence';
+    const reason = a.revealed
+      ? 'Answer revealed'
+      : gradedWrong
+        ? a.grade!.errors.length
+          ? a.grade!.errors.join(', ').replace(/_/g, ' ')
+          : 'Not correct'
+        : judgedWrong
+          ? `You judged it ${a.selfReview!.verdict === 'partial' ? 'partly right' : 'not right'}`
+          : a.uncertain
+            ? 'Marked uncertain'
+            : 'Low confidence';
     const sureButWrong = isSureButWrong(a);
     out.push({ attempt: a, task, resolved, reason: sureButWrong ? `Sure but wrong — ${reason}` : reason, sureButWrong });
   }
@@ -162,10 +175,17 @@ export function todayPlan(attempts: Attempt[], catalog: Catalog | null, minutes:
     .filter((d) => tasks.some((t) => t.skillDimensions.includes(d.id as never)))
     .sort((a, b) => a.stats.independentCorrect / Math.max(1, a.stats.attempts) - b.stats.independentCorrect / Math.max(1, b.stats.attempts) || a.stats.attempts - b.stats.attempts);
   for (const d of dims.slice(0, 2)) {
-    for (const t of tasks.filter((x) => x.skillDimensions.includes(d.id as never) && !byTask.has(x.id)).slice(0, 2)) push(t, `Strengthen ${d.label.toLowerCase()}`, 'weak');
+    const verb = d.stats.attempts ? 'Strengthen' : 'Begin with';
+    for (const t of tasks.filter((x) => x.skillDimensions.includes(d.id as never) && !byTask.has(x.id)).slice(0, 2)) push(t, `${verb} ${d.label.toLowerCase()}`, 'weak');
   }
-  // 3) unseen patients
-  for (const t of tasks) if (!seenGroups.has(catalog.holdoutGroup(t.caseId)) && !byTask.has(t.id)) push(t, 'New patient', 'new');
+  // 3) unseen patients: one task each, so the plan spreads across different people
+  const planned = new Set(plan.map((p) => catalog.holdoutGroup(p.caseId)));
+  for (const t of tasks) {
+    const g = catalog.holdoutGroup(t.caseId);
+    if (seenGroups.has(g) || planned.has(g) || byTask.has(t.id)) continue;
+    planned.add(g);
+    push(t, 'New patient', 'new');
+  }
   for (const t of tasks) if (!byTask.has(t.id)) push(t, 'Not yet practised', 'new');
   return plan;
 }

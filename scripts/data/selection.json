@@ -813,7 +813,7 @@
        "segClass": {
         "Brain": [
          "anatomy:cerebrum",
-         "Cerebrum ('Brain' segment)"
+         "Cerebrum"
         ]
        },
        "teachingNote": "ReMIND pre-operative segmentation defined on the 3D T1 post-contrast series (frames resampled/cropped by the source and mapped back to the T1 slices through patient coordinates). Algorithm type is as recorded in the SEG: 'Glioma' tumour = MANUAL; ventricles and cerebrum ('Brain') = AUTOMATIC, so the latter are algorithm outputs, not expert anatomical outlines.",

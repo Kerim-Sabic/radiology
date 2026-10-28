@@ -4,12 +4,15 @@ import type { ViewerEngine, SeriesSource, ViewKind } from '../../viewer/engine';
 import type { Series } from '../../schema/content';
 import type { LoadedTarget } from '../../grading/spatialGrader';
 import type { SeriesIndex } from '../../grading/seriesIndex';
-import { shapesForPanel, CATEGORY_COLORS, type Shape } from './overlayShapes';
-import { pointInPolygon, polygonArea } from '../../lib/geometry';
+import { shapesForPanel, shapeArea, shapeContains, CATEGORY_COLORS, type Shape } from './overlayShapes';
+import { polygonArea } from '../../lib/geometry';
 import { layoutLabels, leaderEnd } from './labelLayout';
 import type { Vec2, Vec3 } from '../../lib/geometry';
 import { formatBytes } from '../ui';
 import { cleanLabel as cleanName, isAutomatic, provenanceTag } from '../../lib/provenance';
+
+/** SVG path of several closed rings (an outline and its holes), drawn with the even-odd rule. */
+const ringsPath = (rings: Vec2[][]) => rings.map((r) => `M${r.map((q) => q.join(',')).join('L')}Z`).join(' ');
 
 export interface MarkBadge {
   id: string;
@@ -173,8 +176,8 @@ export function ViewportPanel(p: Props) {
       let best: Shape | null = null;
       let bestArea = Infinity;
       for (const sh of drawnAnatomy) {
-        if (sh.kind !== 'poly' || sh.pts.length < 3 || !pointInPolygon(c, sh.pts)) continue;
-        const a = polygonArea(sh.pts);
+        if (sh.kind !== 'poly' || sh.pts.length < 3 || !shapeContains(sh, c)) continue;
+        const a = shapeArea(sh);
         if (a < bestArea) {
           bestArea = a;
           best = sh;
@@ -232,6 +235,7 @@ export function ViewportPanel(p: Props) {
             };
             if (sh.kind === 'seg') return <line key={i} x1={sh.pts[0][0]} y1={sh.pts[0][1]} x2={sh.pts[1][0]} y2={sh.pts[1][1]} style={style} />;
             if (sh.kind === 'circle') return <circle key={i} cx={sh.pts[0][0]} cy={sh.pts[0][1]} r={5} style={style} />;
+            if (sh.holes?.length) return <path key={i} d={ringsPath([sh.pts, ...sh.holes])} fillRule="evenodd" style={style} />;
             return <polygon key={i} points={sh.pts.map((q) => q.join(',')).join(' ')} style={style} />;
           })}
           {labels.placed.map((l) => {
@@ -297,6 +301,7 @@ export function ViewportPanel(p: Props) {
             const style = { stroke: color, strokeWidth: hl ? 2.2 : 1.4, fill: hl ? 'rgba(255,209,102,0.12)' : 'none', opacity: p.overlay.opacity, strokeDasharray: sh.provenance === 'ai_draft' ? '5 3' : undefined };
             if (sh.kind === 'circle') return <circle key={i} cx={sh.pts[0][0]} cy={sh.pts[0][1]} r={6} style={style} />;
             if (sh.kind === 'seg') return <line key={i} x1={sh.pts[0][0]} y1={sh.pts[0][1]} x2={sh.pts[1][0]} y2={sh.pts[1][1]} style={style} />;
+            if (sh.holes?.length) return <path key={i} d={ringsPath([sh.pts, ...sh.holes])} fillRule="evenodd" style={style} />;
             return <polygon key={i} points={sh.pts.map((q) => q.join(',')).join(' ')} style={style} />;
           })}
           {p.overlay.showLabels &&

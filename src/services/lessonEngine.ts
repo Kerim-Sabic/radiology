@@ -59,4 +59,20 @@ export function hintLadder(task: Task) {
 
 export const needsReport = (t: Task) => t.grading.kind !== 'choice' && (t.type === 'describe_finding' || t.type === 'whole_study' || t.type === 'differential' || !!t.rubric?.length);
 export const needsMarks = (t: Task) => t.grading.kind !== 'choice' && t.grading.kind !== 'slice_interval' && t.grading.kind !== 'self_review';
+
+/** Whether an answer can be submitted now — shared by the Submit button and Ctrl+Enter. */
+export function canSubmit(t: Task, s: SessionState, markCount: number, reportShown: boolean): boolean {
+  return (
+    !s.submitted &&
+    (t.grading.kind === 'slice_interval' ||
+      t.grading.kind === 'self_review' ||
+      (t.grading.kind === 'choice' && s.choice.length > 0) ||
+      markCount > 0 ||
+      s.declaredNoFinding ||
+      s.notAssessable ||
+      (reportShown && !!(s.report.findings.trim() || s.report.impression.trim())))
+  );
+}
+/** The report box is shown for written tasks, and for residents on every task except choices and level navigation. */
+export const reportShown = (t: Task, level: string) => needsReport(t) || (level === 'resident' && t.grading.kind !== 'choice' && t.type !== 'navigate_level');
 export const needsLabels = (t: Task) => t.grading.kind === 'labelled_points' && t.grading.requireLabels;

@@ -2,7 +2,7 @@ import { BookOpen, Check, Eye, Lightbulb, MapPin, ArrowUpRight, Square, PenLine,
 import type { BookAnchorRef, Task, TeachingCase } from '../../schema/content';
 import type { GradeResult, LearnerMark } from '../../grading/types';
 import { ERROR_LABELS } from '../../grading/types';
-import { hintLadder, needsLabels, needsMarks, needsReport, rules, type SessionState } from '../../services/lessonEngine';
+import { canSubmit, hintLadder, needsLabels, needsMarks, reportShown, rules, type SessionState } from '../../services/lessonEngine';
 import type { Level } from '../../app/AppContext';
 import { OutcomeBadge } from '../ui';
 import type { ToolId } from '../../viewer/engine';
@@ -42,16 +42,8 @@ export function TaskPanel(p: Props) {
   const nextHint = hints.find((h) => !opened.has(h.level));
   const names = task.targets.map((t) => t.name);
   const showMarks = needsMarks(task);
-  const showReport = needsReport(task) || (p.level === 'resident' && task.grading.kind !== 'choice' && task.type !== 'navigate_level');
-  const canSubmit =
-    !s.submitted &&
-    (task.grading.kind === 'slice_interval' ||
-      task.grading.kind === 'self_review' ||
-      (task.grading.kind === 'choice' && s.choice.length > 0) ||
-      p.marks.length > 0 ||
-      s.declaredNoFinding ||
-      s.notAssessable ||
-      (showReport && (s.report.findings.trim() || s.report.impression.trim())));
+  const showReport = reportShown(task, p.level);
+  const submittable = canSubmit(task, s, p.marks.length, showReport);
 
   return (
     <div className="stack" style={{ gap: 14 }}>
@@ -242,7 +234,7 @@ export function TaskPanel(p: Props) {
 
       {!s.submitted ? (
         <div className="stack" style={{ gap: 6 }}>
-          <button className="btn primary lg" disabled={!canSubmit} onClick={p.onSubmit}>
+          <button className="btn primary lg" disabled={!submittable} onClick={p.onSubmit}>
             <Check size={16} /> Submit
           </button>
           <small className="faint">{p.independentNote}</small>

@@ -43,7 +43,7 @@ import subparts
 from common import (CT_DP_TOL_PX, MIN_RING_AREA_PX2, RAS_TO_LPS, WORK, category, dicom_pixel_to_lps, dump_json,
                     dump_json_compact, laterality_pairs, load_json, ring_area, slice_normal)
 
-RULES_VERSION = 11
+RULES_VERSION = 12
 CHAMBERS = {44: "heart_myocardium", 45: "heart_atrium_left", 46: "heart_ventricle_left", 47: "heart_atrium_right",
             48: "heart_ventricle_right"}
 CHAMBER_VOLUME_ML = {"heart_atrium_right": (20, 250), "heart_atrium_left": (20, 250), "heart_ventricle_right": (40, 350),
@@ -124,6 +124,80 @@ def carina_cut(trachea, geo):
             ij = np.argwhere(trachea[:, :, k])
             prev_x = float(geo.lps(ij[:, 0], ij[:, 1], np.full(len(ij), k))[0].mean())
     return trachea, np.zeros_like(trachea), {"carinaSliceK": None, "note": "no two-airway slice below a single trachea"}
+
+
+def spine_numbering(st, per_slice_all, geoms, cs, ok):
+    """Vertebral numbering check (audit 28 Oct). Each vertebra C3-L5 is compared with the median of up to two fully imaged
+    levels above and two below. A level that holds two vertebral bodies (volume > 1.6x and slices > 1.3x the reference),
+    an interior level that is only a slab or fragment (volume < 0.45x; not cut by the scan edge), or a level that is only
+    the posterior arch (it never reaches 12 mm in front of the spinal cord; a vertebral body reaches 19-67 mm) means the
+    numbering from there down cannot be trusted: that level, every vertebra below it and, from a thoracic level T(k), ribs
+    k-12 on both sides are not published. Independently, a rib outline that never comes within 75 mm of the spinal cord
+    is a fragment of a rib and is not published."""
+    order = [n for n in Q.VERTEBRA_ORDER if ok(n) and n not in ("vertebrae_C1", "vertebrae_C2", "vertebrae_S1")]
+    pos = {n: Q.VERTEBRA_ORDER.index(n) for n in order}
+    full = [n for n in order if not st[n].get("truncation", {}).get("truncated")]
+    nslices = lambda n: st[n]["kRange"][1] - st[n]["kRange"][0] + 1
+    cord = per_slice_all.get("spinal_cord", {}) if ok("spinal_cord") else {}
+    metrics, first_bad, why = {}, None, None
+    for n in order:
+        near = [m for m in full if m != n and abs(pos[m] - pos[n]) <= 2]
+        above = any(pos[m] == pos[n] - 1 for m in full)
+        below = any(pos[m] == pos[n] + 1 for m in full) or (n == "vertebrae_L5" and (ok("vertebrae_S1") or ok("sacrum")))
+        reasons, mt = [], {}
+        if near:
+            v_ref = float(np.median([st[m]["volumeMl"] for m in near]))
+            s_ref = float(np.median([nslices(m) for m in near]))
+            mt.update(volumeRatio=round(st[n]["volumeMl"] / v_ref, 2), sliceRatio=round(nslices(n) / s_ref, 2))
+            if n in full and mt["volumeRatio"] > 1.6 and mt["sliceRatio"] > 1.3:
+                reasons.append(f"{st[n]['volumeMl']:.0f} ml over {nslices(n)} slices vs {v_ref:.0f} ml / {s_ref:.0f} nearby (two bodies)")
+            if above and below and n in full and mt["volumeRatio"] < 0.45:
+                reasons.append(f"{st[n]['volumeMl']:.0f} ml vs {v_ref:.0f} ml nearby (slab or fragment)")
+        # a level cut by the scan edge may show only its arch: only fully imaged levels are tested
+        ks = [k for k in per_slice_all.get(n, {}) if k in cord] if n in full else []
+        if ks:
+            reach = max(cord[k]["cy"] - per_slice_all[n][k]["ymin"] for k in ks)  # LPS +y is posterior
+            mt["reachInFrontOfCordMm"] = round(reach, 1)
+            if reach < 12.0:
+                reasons.append(f"reaches only {reach:.0f} mm in front of the spinal cord (posterior arch only)")
+        metrics[n] = mt
+        if reasons and first_bad is None:
+            first_bad, why = n, reasons
+    info = {"checked": len(order), "metrics": metrics, "firstDoubtfulLevel": first_bad, "reasons": why, "dropped": []}
+    if first_bad:
+        for n in Q.VERTEBRA_ORDER[Q.VERTEBRA_ORDER.index(first_bad):]:
+            if ok(n):
+                st[n]["status"], st[n]["rule"] = f"dropped: vertebral numbering doubtful from {Q.clean_label(first_bad)} down ({'; '.join(why)})", 4
+                info["dropped"].append(n)
+        if first_bad.startswith("vertebrae_T"):
+            k0 = int(first_bad[len("vertebrae_T"):])
+            for side in ("left", "right"):
+                for r in range(k0, 13):
+                    n = f"rib_{side}_{r}"
+                    if ok(n):
+                        st[n]["status"], st[n]["rule"] = f"dropped: rib numbering doubtful below {Q.clean_label(first_bad)}", 4
+                        info["dropped"].append(n)
+    # ribs that never reach the spine
+    if cord:
+        k_of = {s_["sopInstanceUid"]: s_["k"] for s_ in cs.slices}
+        cks = np.array(sorted(cord))
+        # (a rib cut by the scan edge may legitimately show only its front: those are not tested)
+        for n in [x for x in st if x.startswith("rib_") and ok(x) and x in geoms and not st[x].get("truncation", {}).get("truncated")]:
+            best = np.inf
+            for pl in geoms[n]["planes"]:
+                k = k_of.get(pl["sopInstanceUid"])
+                if k is None:
+                    continue
+                kc = int(cks[np.argmin(np.abs(cks - k))])
+                for ring in pl["polygons"]:
+                    r_ = np.asarray(ring, float)
+                    x, y, _ = cs.geo.lps(r_[:, 0], r_[:, 1], np.full(len(r_), k))
+                    best = min(best, float(np.min(np.hypot(x - cord[kc]["cx"], y - cord[kc]["cy"]))))
+            st[n]["nearestToCordMm"] = None if not np.isfinite(best) else round(best, 1)
+            if best > 75.0:
+                st[n]["status"], st[n]["rule"] = f"dropped: rib outline never reaches the spine ({best:.0f} mm from the cord; fragment)", 4
+                info["dropped"].append(n)
+    return info
 
 
 def ts_class_map(task="total"):
@@ -234,7 +308,7 @@ class Case:
             rows, cols = np.nonzero(kept)
             rows_g, cols_g = rows + j0, cols + i0
             x, y, z = self.geo.lps(cols_g, rows_g, np.full(cols_g.shape, k))
-            per_slice[k] = {"areaMm2": len(rows) * self.px_area, "cx": float(x.mean())}
+            per_slice[k] = {"areaMm2": len(rows) * self.px_area, "cx": float(x.mean()), "cy": float(y.mean()), "ymin": float(y.min())}
             sx, sy, sz, cnt = sx + float(x.sum()), sy + float(y.sum()), sz + float(z.sum()), cnt + len(rows)
             edge_px += int(np.sum((rows_g == 0) | (cols_g == 0) | (rows_g == R - 1) | (cols_g == C - 1)))
             hu_vals.append(ct[cols_g, rows_g, k].astype(np.int16))
@@ -253,8 +327,13 @@ class Case:
             amax = max(v["areaMm2"] for v in per_slice.values())
             first = per_slice.get(0, {}).get("areaMm2", 0.0) / amax
             last = per_slice.get(self.K - 1, {}).get("areaMm2", 0.0) / amax
+            def full_at(edge, nxt):  # still a full cross-section on the scan's first/last slice -> it continues beyond
+                a_, b_ = per_slice.get(edge, {}).get("areaMm2", 0.0), per_slice.get(nxt, {}).get("areaMm2", 0.0)
+                return a_ >= 20.0 and b_ > 0 and a_ >= 0.6 * b_
+            edge_full = bool(full_at(0, 1) or full_at(self.K - 1, self.K - 2))
             rec["truncation"] = {"firstSliceAreaFraction": round(first, 3), "lastSliceAreaFraction": round(last, 3),
-                                 "inPlaneEdgePixels": edge_px, "truncated": bool(first >= 0.10 or last >= 0.10 or edge_px >= 5)}
+                                 "inPlaneEdgePixels": edge_px, "fullCrossSectionAtScanEdge": edge_full,
+                                 "truncated": bool(first >= 0.10 or last >= 0.10 or edge_px >= 5 or edge_full)}
         rec["status"], rec["rule"] = "ok", None
         if rec["alignmentMaxResidualMm"] >= 0.5:
             rec["status"], rec["rule"] = "dropped: alignment residual >= 0.5 mm", 0
@@ -486,6 +565,34 @@ def process(case: str) -> dict:
                                              f"(LV {med['heart_ventricle_left']}, RV {med['heart_ventricle_right']}, myocardium {med['heart_myocardium']})")
             else:
                 heart_raw_dil = ndi.binary_dilation(seg == idx_of["heart"], structure=FULL3, iterations=2)
+                # Pixels that a chamber and a vessel from another model both claim (pulmonary trunk vs right ventricle at
+                # the valve, IVC vs right atrium, appendage vs muscle) are contested: neither label is certain there, so
+                # neither keeps them (owner rule: if not sure, do not mark).
+                any_chamber = np.logical_or.reduce(list(raw.values()))
+                contested = {}
+                for n_ in ("pulmonary_trunk", "inferior_vena_cava", "superior_vena_cava", "atrial_appendage_left", "aorta_ascending"):
+                    if n_ not in fulls or not ok(n_):
+                        continue
+                    ov = fulls[n_] & any_chamber
+                    if not ov.any():
+                        continue
+                    contested[n_] = round(float(ov.sum()) * cs.vox_ml, 2)
+                    for cn in raw:
+                        raw[cn] = raw[cn] & ~ov
+                    rest = fulls[n_] & ~ov
+                    if not rest.any():
+                        st[n_]["status"], st[n_]["rule"] = "dropped: entirely contested with the heart chambers", 6
+                        continue
+                    bb = ndi.find_objects(rest.astype(np.uint8))[0]
+                    src_ = "derived:pulmonary_artery" if n_ == "pulmonary_trunk" else "derived:aorta" if n_.startswith("aorta_") else "total"
+                    rec, geom, ps_, full = cs.measure(n_, rest[bb], bb, src_, A_seg, want_full=True,
+                                                      tol=PA_DP_TOL_PX if n_ == "pulmonary_trunk" else None)
+                    rec["contestedWithChambersMl"] = contested[n_]
+                    st[n_], per_slice_all[n_] = rec, ps_
+                    if geom:
+                        geoms[n_] = geom
+                    fulls[n_] = full
+                out["chambers"]["contestedRemovedMl"] = contested
                 chf = {}
                 for name, m in raw.items():
                     if not m.any():
@@ -647,6 +754,7 @@ def process(case: str) -> dict:
         st[n_]["vertebralOrder"] = {"pass": n_ in keep_v}
         if n_ not in keep_v:
             st[n_]["status"], st[n_]["rule"] = "dropped: vertebral level out of craniocaudal order", 4
+    out["spineNumbering"] = spine_numbering(st, per_slice_all, geoms, cs, ok)
     # aortic parts: ascending anterior + right of descending thoracic; arch above both; abdominal below thoracic
     c = lambda n: st[n]["centroid"]
     checks = []

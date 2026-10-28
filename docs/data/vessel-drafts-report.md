@@ -302,3 +302,7 @@ Laterality (LPS x of slice centroids; left must exceed right on every shared sli
 - Series reconstructed with a sharp lung kernel have noisy mediastinal soft tissue (`lidc-0217`, kernel LUNG), and CT pulmonary angiograms (`CT PE CHEST` studies) enhance systemic arteries only moderately; outlines there are more uncertain.
 - Context structures (aorta, SVC, trachea, oesophagus, right carotid/subclavian) are included as separate targets over their whole segmented extent; they were not part of the five-vessel rule except the aorta (arch top).
 - Nothing was reviewed by a human. Before using any of this for assessment-grade scoring, a reviewer should check each outline and level and set `review` / `provenance` accordingly.
+
+## Post-processing (28 Oct 2026)
+
+`scripts/vessels/postprocess.py` applies the anatomy atlas's accuracy rules to this pack: the trachea outline is cut at the carina on all 5 studies (6–8 slices below it removed; it ran into the main bronchi), outlines cut by the scan edge are labelled "(partially imaged)" (aorta, common carotid arteries, two tracheas, one esophagus), and the brachiocephalic trunk carries the same name as in the atlas, "Brachiocephalic trunk (innominate artery)" (the book calls it the innominate artery).

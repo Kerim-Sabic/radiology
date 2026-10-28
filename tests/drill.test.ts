@@ -6,7 +6,9 @@ import {
   bestWindow,
   distanceToShapes,
   distractors,
+  inSentence,
   insideShapes,
+  kindsFor,
   pickNext,
   presetFor,
   recordAnswer,
@@ -19,6 +21,8 @@ import { noteFor, structureBase } from '../src/content/structureNotes';
 import { SEARCH_PATTERNS, patternsFor } from '../src/content/searchPatterns';
 import { canonicalAnatomyKey } from '../src/content/bookAnatomy';
 import { Catalog } from '../src/services/caseRepository';
+import { mistakeNotebook, todayPlan } from '../src/services/learningModel';
+import { shapeArea, shapeContains, shapeRings, type Shape } from '../src/components/ws/overlayShapes';
 import type { LoadedTarget } from '../src/grading/spatialGrader';
 import type { ReferenceTarget } from '../src/schema/content';
 
@@ -68,6 +72,19 @@ describe('spaced repetition', () => {
     expect(pickNext(pool, {}, { region: 'all', kinds: ['locate'], expertOnly: true, recentBases: [], lastCase: null, rng: fixed })).toBeNull();
     // A radiograph has no slices to find and no CT window to choose.
     expect(pickNext(pool, {}, { region: 'all', kinds: ['find', 'window'], expertOnly: false, recentBases: [], lastCase: null, rng: fixed })).toBeNull();
+  });
+});
+
+describe('drill wording and question choice', () => {
+  it('writes names inside a sentence without breaking abbreviations', () => {
+    expect(inSentence('Stomach')).toBe('stomach');
+    expect(inSentence('Left atrium')).toBe('left atrium');
+    expect(inSentence('T2 vertebra')).toBe('T2 vertebra');
+    expect(inSentence('S1 vertebra')).toBe('S1 vertebra');
+  });
+  it('never asks for one "best window" where the answer depends on contrast', () => {
+    expect(kindsFor(cand('pulmonary_arteries_left_lower_lobe', 'a', { family: 'CT' }), ['window', 'locate'])).toEqual(['locate']);
+    expect(kindsFor(cand('pulmonary_trunk', 'a', { family: 'CT' }), ['window'])).toEqual(['window']);
   });
 });
 
@@ -165,6 +182,49 @@ describe('matching two patients at the same level', () => {
   });
 });
 
+describe("today's plan", () => {
+  it('spreads a new student across different patients instead of filling the day with one', () => {
+    const c = new Catalog();
+    for (const p of ['A', 'B', 'C', 'D'])
+      for (let i = 0; i < 3; i++)
+        c.tasks.set(`${p}${i}`, { id: `${p}${i}`, caseId: p, modes: ['practice'], skillDimensions: ['anatomy'], objectiveIds: [], type: 'find_structure', title: '' } as never);
+    const plan = todayPlan([], c, 30);
+    const newOnes = plan.filter((x) => x.why === 'New patient').map((x) => x.caseId);
+    expect(new Set(newOnes).size).toBe(newOnes.length);
+    expect(new Set(plan.map((x) => x.caseId)).size).toBe(4);
+    expect(plan.find((x) => x.kind === 'weak')?.why).toMatch(/^Begin with /);
+  });
+});
+
+describe('mistake notebook', () => {
+  const attempt = (id: string, extra: Record<string, unknown>) =>
+    ({ id, taskId: 't', caseId: 'c', holdoutGroup: 'g', submittedAt: `2026-10-2${id}T10:00:00Z`, uncertain: false, revealed: false, confidence: 3, independent: true, objectiveIds: [], skillDimensions: ['anatomy'], ...extra }) as never;
+  it('lists a self-review answer only when you judged it wrong, never just for being self-reviewed', () => {
+    const grade = { outcome: 'self_review', errors: [] };
+    const list = mistakeNotebook([attempt('1', { grade, selfReview: { checked: [], verdict: 'correct' } }), attempt('2', { grade, selfReview: { checked: [], verdict: 'incorrect' } })], null);
+    expect(list.map((m) => m.attempt)).toHaveLength(1);
+    expect(list[0].reason).toBe('You judged it not right');
+  });
+});
+
+describe('outlines with holes', () => {
+  const sq = (a: number, b: number): Array<[number, number]> => [
+    [a, a],
+    [b, a],
+    [b, b],
+    [a, b],
+  ];
+  const skull = { targetId: 's', label: 'Skull', kind: 'poly', pts: sq(0, 100), holes: [sq(10, 90)], provenance: 'ai_draft', category: 'bone', layer: 'atlas' } as Shape;
+  it('a point in the hole (the cranial cavity) is not on the structure', () => {
+    expect(shapeContains(skull, [50, 50])).toBe(false);
+    expect(shapeContains(skull, [5, 50])).toBe(true);
+    expect(shapeArea(skull)).toBeCloseTo(100 * 100 - 80 * 80);
+    // The drill grades with every ring, even-odd: inside the hole is a miss, its edge 40 px away.
+    expect(insideShapes([50, 50], shapeRings([skull]))).toBe(false);
+    expect(distanceToShapes([50, 50], shapeRings([skull]))).toBeCloseTo(40);
+  });
+});
+
 describe('aorta and colon parts replace the whole outline', () => {
   it('hides the whole aorta and colon on a series that has their named parts', () => {
     const c = new Catalog();
@@ -214,6 +274,14 @@ describe('installed atlas outlines respect the anatomy', () => {
   it('the trachea is one tube on every slice: it ends at the carina, below which the airway is a main bronchus', () => {
     const split = atlas.filter((t) => t.classId === 'anatomy:trachea').flatMap((t) => planes(t).filter((pl) => pl.polygons.length > 1).map((pl) => `${t.geometryFile} @ ${pl.sopInstanceUid}`));
     expect(split).toEqual([]);
+    // The vessel-draft pack's trachea follows the same rule.
+    const vdDir = join(PACKS, 'vessel-drafts');
+    const vd = (JSON.parse(readFileSync(join(vdDir, 'pack.json'), 'utf-8')).referenceTargets as AtlasTarget[]).filter((t) => t.classId === 'anatomy:trachea');
+    expect(vd.length).toBeGreaterThan(0);
+    for (const t of vd) {
+      const g = JSON.parse(readFileSync(join(vdDir, t.geometryFile), 'utf-8')) as { planes: Plane[] };
+      expect(g.planes.filter((pl) => pl.polygons.length > 1).length, t.geometryFile).toBe(0);
+    }
   });
 
   it('no pulmonary trunk or artery outline lies inside a machine-drawn heart outline', () => {

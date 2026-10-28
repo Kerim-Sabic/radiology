@@ -177,6 +177,8 @@ export class ViewerEngine {
     const panel: Panel = { id: panelId, kind, element, source, viewportId, error: null, ready: false, cleanup: [] };
     this.panels.set(panelId, panel);
     this.bump();
+    // A newer mount of the same panel (series switch, layout change) supersedes this one: stop at the next await.
+    const stale = () => this.panels.get(panelId) !== panel;
     const fetcher = this.fetcherFor(source);
     const re = this.re!;
     try {
@@ -184,13 +186,15 @@ export class ViewerEngine {
         const idx = Math.max(0, Math.min(startIndex, source.imageIds.length - 1));
         fetcher.start(idx);
         const ok = await fetcher.whenReady(idx);
+        if (stale()) return;
         if (!ok) throw new Error(fetcher.errors.get(idx) ?? 'First image failed to load');
-        if (!this.panels.has(panelId)) return;
         await waitForLayout(element);
+        if (stale()) return;
         re.enableElement({ viewportId, element, type: cs.Enums.ViewportType.STACK, defaultOptions: { background: [0, 0, 0] } });
         cst.ToolGroupManager.getToolGroup(STACK_GROUP)!.addViewport(viewportId, ENGINE_ID);
         const vp = re.getViewport(viewportId) as InstanceType<typeof cs.StackViewport>;
         await vp.setStack(source.imageIds, idx);
+        if (stale()) return;
         // The camera computed inside setStack can precede full metadata resolution; fit explicitly.
         vp.resetCamera();
         if (source.defaultWindow) this.setWindow(panelId, source.defaultWindow.center, source.defaultWindow.width, false);
@@ -208,19 +212,22 @@ export class ViewerEngine {
         if (!source.volumeEligible) throw new Error('This series is not a valid volume (irregular or mixed geometry). Use the stack view — reformatting it would distort anatomy.');
         fetcher.start(Math.floor(source.imageIds.length / 2));
         await fetcher.whenAllSettled();
+        if (stale()) return;
         if (fetcher.progress.failed) throw new Error(`${fetcher.progress.failed} slice(s) failed to load; volume views need the complete series.`);
-        if (!this.panels.has(panelId)) return;
         const volumeId = `cornerstoneStreamingImageVolume:${source.seriesUid}`;
         let volume = cs.cache.getVolume(volumeId);
         if (!volume) {
           volume = await cs.volumeLoader.createAndCacheVolume(volumeId, { imageIds: source.imageIds });
           (volume as unknown as { load: () => void }).load();
         }
+        if (stale()) return;
         await waitForLayout(element);
+        if (stale()) return;
         if (kind === '3d') {
           re.enableElement({ viewportId, element, type: cs.Enums.ViewportType.VOLUME_3D, defaultOptions: { background: [0.02, 0.02, 0.03] } });
           cst.ToolGroupManager.getToolGroup(VR_GROUP)!.addViewport(viewportId, ENGINE_ID);
           await cs.setVolumesForViewports(re, [{ volumeId }], [viewportId]);
+          if (stale()) return;
           const vp = re.getViewport(viewportId) as InstanceType<typeof cs.VolumeViewport3D>;
           vp.setProperties({ preset: source.modality === 'CT' ? 'CT-Bone' : 'MR-Default' });
           vp.render();
@@ -229,6 +236,7 @@ export class ViewerEngine {
           re.enableElement({ viewportId, element, type: cs.Enums.ViewportType.ORTHOGRAPHIC, defaultOptions: { orientation, background: [0, 0, 0] } });
           cst.ToolGroupManager.getToolGroup(MPR_GROUP)!.addViewport(viewportId, ENGINE_ID);
           await cs.setVolumesForViewports(re, [{ volumeId }], [viewportId]);
+          if (stale()) return;
           const vp = re.getViewport(viewportId) as unknown as CsViewport;
           vp.resetCamera();
           if (source.defaultWindow) this.setWindow(panelId, source.defaultWindow.center, source.defaultWindow.width, false);
@@ -243,6 +251,7 @@ export class ViewerEngine {
       panel.ready = true;
       this.applyTool(this.activeTool);
     } catch (e) {
+      if (stale()) return;
       panel.error = e instanceof Error ? e.message : String(e);
     }
     this.bump();

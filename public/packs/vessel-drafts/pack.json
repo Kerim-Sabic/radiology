@@ -94,7 +94,7 @@
   },
   {
    "id": "vd-ar-16434363-brachiocephalic-trunk",
-   "label": "Brachiocephalic (innominate) artery",
+   "label": "Brachiocephalic trunk (innominate artery)",
    "classId": "anatomy:brachiocephalic_trunk",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
    "geometryType": "contour_set",
@@ -119,7 +119,7 @@
   },
   {
    "id": "vd-ar-16434363-common-carotid-artery-left",
-   "label": "Left common carotid artery",
+   "label": "Left common carotid artery (partially imaged)",
    "classId": "anatomy:common_carotid_artery_left",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
    "geometryType": "contour_set",
@@ -144,7 +144,7 @@
   },
   {
    "id": "vd-ar-16434363-common-carotid-artery-right",
-   "label": "Right common carotid artery",
+   "label": "Right common carotid artery (partially imaged)",
    "classId": "anatomy:common_carotid_artery_right",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
    "geometryType": "contour_set",
@@ -219,7 +219,7 @@
   },
   {
    "id": "vd-ar-16434363-aorta",
-   "label": "Aorta",
+   "label": "Aorta (partially imaged)",
    "classId": "anatomy:aorta",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
    "geometryType": "contour_set",
@@ -269,7 +269,7 @@
   },
   {
    "id": "vd-ar-16434363-trachea",
-   "label": "Trachea",
+   "label": "Trachea (partially imaged)",
    "classId": "anatomy:trachea",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.2662364088204600381919162376574",
    "geometryType": "contour_set",
@@ -419,7 +419,7 @@
   },
   {
    "id": "vd-ar-16434411-brachiocephalic-trunk",
-   "label": "Brachiocephalic (innominate) artery",
+   "label": "Brachiocephalic trunk (innominate artery)",
    "classId": "anatomy:brachiocephalic_trunk",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
    "geometryType": "contour_set",
@@ -444,7 +444,7 @@
   },
   {
    "id": "vd-ar-16434411-common-carotid-artery-left",
-   "label": "Left common carotid artery",
+   "label": "Left common carotid artery (partially imaged)",
    "classId": "anatomy:common_carotid_artery_left",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
    "geometryType": "contour_set",
@@ -469,7 +469,7 @@
   },
   {
    "id": "vd-ar-16434411-common-carotid-artery-right",
-   "label": "Right common carotid artery",
+   "label": "Right common carotid artery (partially imaged)",
    "classId": "anatomy:common_carotid_artery_right",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
    "geometryType": "contour_set",
@@ -544,7 +544,7 @@
   },
   {
    "id": "vd-ar-16434411-aorta",
-   "label": "Aorta",
+   "label": "Aorta (partially imaged)",
    "classId": "anatomy:aorta",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1228878605404887156257817839736",
    "geometryType": "contour_set",
@@ -744,7 +744,7 @@
   },
   {
    "id": "vd-lidc-0217-brachiocephalic-trunk",
-   "label": "Brachiocephalic (innominate) artery",
+   "label": "Brachiocephalic trunk (innominate artery)",
    "classId": "anatomy:brachiocephalic_trunk",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
    "geometryType": "contour_set",
@@ -769,7 +769,7 @@
   },
   {
    "id": "vd-lidc-0217-common-carotid-artery-left",
-   "label": "Left common carotid artery",
+   "label": "Left common carotid artery (partially imaged)",
    "classId": "anatomy:common_carotid_artery_left",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
    "geometryType": "contour_set",
@@ -794,7 +794,7 @@
   },
   {
    "id": "vd-lidc-0217-common-carotid-artery-right",
-   "label": "Right common carotid artery",
+   "label": "Right common carotid artery (partially imaged)",
    "classId": "anatomy:common_carotid_artery_right",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
    "geometryType": "contour_set",
@@ -869,7 +869,7 @@
   },
   {
    "id": "vd-lidc-0217-aorta",
-   "label": "Aorta",
+   "label": "Aorta (partially imaged)",
    "classId": "anatomy:aorta",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.313283554967554803238484128406",
    "geometryType": "contour_set",
@@ -1069,7 +1069,7 @@
   },
   {
    "id": "vd-lidc-0053-brachiocephalic-trunk",
-   "label": "Brachiocephalic (innominate) artery",
+   "label": "Brachiocephalic trunk (innominate artery)",
    "classId": "anatomy:brachiocephalic_trunk",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
    "geometryType": "contour_set",
@@ -1094,7 +1094,7 @@
   },
   {
    "id": "vd-lidc-0053-common-carotid-artery-left",
-   "label": "Left common carotid artery",
+   "label": "Left common carotid artery (partially imaged)",
    "classId": "anatomy:common_carotid_artery_left",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
    "geometryType": "contour_set",
@@ -1119,7 +1119,7 @@
   },
   {
    "id": "vd-lidc-0053-common-carotid-artery-right",
-   "label": "Right common carotid artery",
+   "label": "Right common carotid artery (partially imaged)",
    "classId": "anatomy:common_carotid_artery_right",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
    "geometryType": "contour_set",
@@ -1194,7 +1194,7 @@
   },
   {
    "id": "vd-lidc-0053-aorta",
-   "label": "Aorta",
+   "label": "Aorta (partially imaged)",
    "classId": "anatomy:aorta",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
    "geometryType": "contour_set",
@@ -1244,7 +1244,7 @@
   },
   {
    "id": "vd-lidc-0053-trachea",
-   "label": "Trachea",
+   "label": "Trachea (partially imaged)",
    "classId": "anatomy:trachea",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
    "geometryType": "contour_set",
@@ -1269,7 +1269,7 @@
   },
   {
    "id": "vd-lidc-0053-esophagus",
-   "label": "Esophagus",
+   "label": "Esophagus (partially imaged)",
    "classId": "anatomy:esophagus",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.6279.6001.300136985030081433029390459071",
    "geometryType": "contour_set",
@@ -1394,7 +1394,7 @@
   },
   {
    "id": "vd-ar-16406498-brachiocephalic-trunk",
-   "label": "Brachiocephalic (innominate) artery",
+   "label": "Brachiocephalic trunk (innominate artery)",
    "classId": "anatomy:brachiocephalic_trunk",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
    "geometryType": "contour_set",
@@ -1419,7 +1419,7 @@
   },
   {
    "id": "vd-ar-16406498-common-carotid-artery-left",
-   "label": "Left common carotid artery",
+   "label": "Left common carotid artery (partially imaged)",
    "classId": "anatomy:common_carotid_artery_left",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
    "geometryType": "contour_set",
@@ -1444,7 +1444,7 @@
   },
   {
    "id": "vd-ar-16406498-common-carotid-artery-right",
-   "label": "Right common carotid artery",
+   "label": "Right common carotid artery (partially imaged)",
    "classId": "anatomy:common_carotid_artery_right",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
    "geometryType": "contour_set",
@@ -1519,7 +1519,7 @@
   },
   {
    "id": "vd-ar-16406498-aorta",
-   "label": "Aorta",
+   "label": "Aorta (partially imaged)",
    "classId": "anatomy:aorta",
    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9999.103.1045268951221473848204516633737",
    "geometryType": "contour_set",

@@ -142,9 +142,15 @@ export function priority(s: DrillStat | undefined, now: number): number {
   return 0.5;
 }
 
+// Structures whose best window depends on the scan (contrast or not), so a single right answer would be misleading.
+const NO_WINDOW_QUESTION = /^pulmonary_arter(ies_|y_interlobar)/;
+
 export function kindsFor(c: DrillCandidate, wanted: DrillKind[]): DrillKind[] {
-  return wanted.filter((k) => (k === 'find' ? c.family === 'CT' || c.family === 'MR' : k === 'window' ? c.family === 'CT' : true));
+  return wanted.filter((k) => (k === 'find' ? c.family === 'CT' || c.family === 'MR' : k === 'window' ? c.family === 'CT' && !NO_WINDOW_QUESTION.test(c.key) : true));
 }
+
+/** A structure name inside a sentence: "the stomach", "the left atrium", but "the T2 vertebra" keeps its capital. */
+export const inSentence = (name: string) => (/^[A-Z][a-z]/.test(name) ? name[0].toLowerCase() + name.slice(1) : name);
 
 export function pickNext(pool: DrillCandidate[], stats: DrillStats, o: PickOptions): { cand: DrillCandidate; kind: DrillKind } | null {
   const now = o.now ?? Date.now();

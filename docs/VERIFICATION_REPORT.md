@@ -36,7 +36,7 @@ Offline Python pipelines prepare everything the app serves:
 | — auto-checked choice on a real image | 26 |
 | — self-review against a source-linked checklist | 96 |
 | — spatial vs unreviewed AI-draft reference (self-review until you review it) | 15 |
-| Reference targets | 4,063 (268 source manual, 3 source automated, 3,792 AI draft by Horalix) |
+| Reference targets | 3,986 (268 source manual, 3 source automated, 3,715 AI draft by Horalix) |
 | Curriculum | 37 units (29 chapters + 8 appendices), 274 objectives; 31 objectives (11%) have at least one real-scan task |
 
 **Same-patient comparisons (all `independent`, none registered):**
@@ -46,17 +46,17 @@ Offline Python pipelines prepare everything the app serves:
 
 ### Anatomy layer ("AI draft by Horalix", `anatomy-atlas`)
 
-The layer has 3,727 outlines on 40 CT series and 24 frontal chest radiographs. Every outline passed automatic quality checks; **anything that failed is not outlined**. All drops are listed per study in `docs/data/anatomy-atlas-report.md`:
+The layer has 3,650 outlines on 40 CT series and 24 frontal chest radiographs. Every outline passed automatic quality checks; **anything that failed is not outlined**. All drops are listed per study in `docs/data/anatomy-atlas-report.md`:
 
 | rule | dropped |
 |---|---|
 | CT fragments / too small | 60 |
 | CT density (HU) | 116 |
-| CT coverage / typical volume | 210 |
-| CT side / anatomical order | 12 |
+| CT coverage / typical volume | 209 |
+| CT side / anatomical order / spine and rib numbering | 87 |
 | CT heart-chamber QC | 1 |
 | Radiograph fragments | 3 |
-| Radiograph area / side (incl. all left/right structures on the 3 radiographs without PatientOrientation) | 24 |
+| Radiograph area / side / fragment (incl. all left/right structures on the 3 radiographs without PatientOrientation) | 27 |
 
 Structures split the way the book teaches them:
 - **Aorta:** ascending, arch, descending thoracic and abdominal; the arch on 26 CTs.
@@ -72,7 +72,7 @@ Structures split the way the book teaches them:
 - **Airway:**
   - The trachea ends at the carina on all 31 chest CTs; this is enforced by a unit test. Before this rule it ran 9–27 mm into the main bronchi on every one of them.
   - Below the carina the airway is the left main bronchus (28 CTs) or the right main bronchus (28 CTs). On 25 CTs the right outline reaches more than 25 mm below the carina (15 mm in children) and is named "Right main bronchus and bronchus intermedius".
-- **Laterality:** 1,007 left/right pairs checked from the published outlines; 0 on the wrong side.
+- **Laterality:** 981 left/right pairs checked from the published outlines; 0 on the wrong side.
 - **Re-reading:** every outline was re-read against its DICOM slice: 0 failures.
 
 **Spot checks in the browser** were done on Patient I (COVID-19-AR-16434411), images 34 and 38 of 105. Every outline on each slice was hovered in turn:
@@ -87,10 +87,10 @@ Coronal renders of the airway labels were inspected on 6 CTs: adults, a child, c
 | check | result |
 |---|---|
 | `npm run typecheck` (app and tests) | pass |
-| `npm test` — unit tests (see below) | **137 / 137 pass** |
-| `npm run build` | pass (shell 527 KB JS; the 4.3 MB imaging engine and the PDF reader are lazy-loaded) |
-| Playwright e2e on the production build (`vite preview`), Chromium + Firefox | **49 pass, 0 fail, 0 flaky**; 1 skipped (the speed measurement runs in Chromium only) |
-| Anatomy pack contract check (zod) and DICOM re-read | 3,727 / 3,727 targets pass |
+| `npm test` — unit tests (see below) | **142 / 142 pass** |
+| `npm run build` | pass (shell 529 KB JS; the 4.3 MB imaging engine and the PDF reader are lazy-loaded; the book PDF is left out unless `KEEP_BOOK_IN_BUILD=1`) |
+| Playwright e2e on the production build (`vite preview`), Chromium + Firefox | **51 pass, 0 fail, 0 flaky**; 1 skipped (the speed measurement runs in Chromium only) |
+| Anatomy pack contract check (zod) and DICOM re-read | 3,650 / 3,650 targets pass |
 
 On the first full run one Firefox test failed. The test's click helper looked for the viewer element while it was being re-mounted, and threw instead of retrying. The helper now waits for the element. That test then passed 5 of 5 times on its own, and the whole suite passed again.
 
@@ -110,11 +110,55 @@ The e2e suite covers:
 - **Viewing:** scroll, presets, zoom and reset; a known distance; MPR with correct letters in all planes.
 - **Marking:** correct, wrong-structure and wrong-side marks, with attempts saved in IndexedDB; marks staying in place through zoom, pan and resize; reveal making an attempt assisted.
 - **Modes and errors:** Assess mode hiding hints and the book; deep-link refresh; a missing asset showing Retry; local import ordered by geometry; a gapped series refused for MPR.
+- **Anatomy layer:** labels shown in Learn and locked in Practice until submitting; an Atlas deep link showing one structure alone; a structure on another series opened alone and centred in the view.
 - **Book anchors:** Fig 3.5 opens at PDF 40 / printed p. 25, and inserted electronic pages keep later anchors correct.
 - **Study tools:**
   - a drill answered correctly, with its note;
   - the coach's *Great vessels* step;
   - comparison with another patient, level-matched, with the second panel following the first.
+
+## 3a. Audit of 28 October and what it fixed
+
+Two independent reviews ran on 28 October: one checked every outline anatomically (order, position, overlap, density, size, labels), the other read the code for bugs. Everything below was confirmed, fixed, and re-checked.
+
+**Outlines (anatomy layer and vessel drafts):**
+- **Vertebra numbering.** On 4 CTs one label covered two vertebral bodies (Spine-Mets 14078: T7 and L3; Spine-Mets 13800: L3), was only a slab of the level above (LIDC-0217: T7) or only an arch (child CT 40FEFEF6: L5). A new rule compares each vertebra with the fully imaged levels around it. A level holding two bodies, an interior slab or fragment, or an arch that never reaches in front of the spinal cord means the numbering below it cannot be trusted. That level, everything below it and the matching ribs are no longer outlined. The rule also caught LCTSC-Test-S3-202 from T9 down; on the other 35 CTs it found nothing.
+- **Rib fragments.** Rib outlines that never come within 75 mm of the spinal cord (fragments, e.g. both "rib 7" outlines on LIDC-0217) are dropped. Ribs cut by the scan edge are exempt.
+- **Contested pixels.** Pixels claimed by both a heart chamber and a vessel from another model are left unmarked: the pulmonary trunk vs the right ventricle at the valve, the IVC vs the right atrium, and the left atrial appendage vs the left-ventricular muscle. The shared area per slice fell from up to 98–100 % to at most 1.8 % (edge rounding).
+- **"(partially imaged)".** An outline that still has a full cross-section on the first or last slice of the scan is now marked as cut off. 0 cut-off outlines lack the label, in both packs.
+- **Vessel drafts.** Their trachea now also ends at the carina; it ran 6–8 slices into the main bronchi. The brachiocephalic trunk has one name in both packs, "Brachiocephalic trunk (innominate artery)", because the book calls it the innominate artery.
+- **Radiographs.** Outlines under 20 % of their typical size are fragments and dropped: one diaphragm, one aortic knob and one left hilum.
+- **Labels.** "Cerebrum ('Brain' segment)" now reads "Cerebrum". The Atlas uses the book's words for colon and small bowel.
+
+**App (all with tests):**
+- A submitted answer could be overwritten by a pending draft autosave within 1.2 s of submitting. Fixed.
+- Ctrl+Enter could submit in Review mode, before any answer, or a second time after the reference was shown. Marking shortcuts worked after submitting. Fixed: the button and the shortcut share one rule.
+- **Holes in outlines.** Hover, drills and drawing ignored them, so a click inside the skull counted as "skull" and the ventricle cavity counted as heart muscle. Holes now belong to their outline: hover names what is inside them, drills grade them as misses, and isolated outlines are drawn with the hole open.
+- **Centring.** "Show alone" centred the view on the image's top-left corner when the structure was on another series (e.g. from the Atlas). It now centres on the structure; a browser test checks this.
+- Self-review answers all went into the mistake notebook. Now only answers you judged wrong do.
+- **Viewer robustness:**
+  - A superseded viewer load could blank the live panel.
+  - Saving progress could stop the comparison patient from loading.
+  - A late result from a previous case could make a task ungradable.
+  - Comparison at the same level did not follow a scan that starts on its first image.
+- **Drills and progress:**
+  - "Review N due" turned into an ordinary drill. It now ends when nothing is due.
+  - Drill feedback lowercased T2/S1.
+  - The drill asked a "best window" question for intrapulmonary arteries, where the answer depends on contrast; it no longer does.
+  - Drill numbers on the Progress page did not refresh after import or reset.
+  - Book reading progress was missing from backups.
+- **Layout and pages:**
+  - On phones the top bar widened the whole page and zoomed it out. Tables and chips ran off the screen.
+  - The Author page drew all 3,986 outlines at once; it now has search, paging and a viewer link for every outline.
+  - Today's plan filled a new student's day with one patient; it now spreads across patients.
+- **Book safety.** A production build no longer contains the owner's book PDF unless `KEEP_BOOK_IN_BUILD=1` is set. An uploaded `dist/` folder can therefore never publish it by accident.
+
+**Checks that passed in the audit:**
+- 1,599 cranio-caudal relations and 45 front/back and left/right relations, with 0 real failures.
+- 539 vertebra neighbour pairs in order.
+- Density inside all 3,473 CT outlines in range for their name.
+- Every label matching its structure, with 0 British spellings.
+- 21 of 21 radiographs with heart, lungs and clavicles in place.
 
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
@@ -122,15 +166,15 @@ These figures are from a production build on a **local** server. Real hosting ad
 
 | Measure | Result |
 |---|---|
-| Shell interactive | 316 ms (first contentful paint 120 ms) |
+| Shell interactive | 302 ms (first contentful paint 116 ms) |
 | First CT image (starter chest CT, 131 slices, 20.7 MB) | 0.83 s |
-| All slices fetched | 1.37 s |
-| Cached scrolling (60 slice changes) | median 16 ms, p95 20 ms |
-| MPR ready from the loaded volume | 0.35 s |
+| All slices fetched | 1.41 s |
+| Cached scrolling (60 slice changes) | median 17 ms, p95 20 ms |
+| MPR ready from the loaded volume | 0.38 s |
 | JS heap after MPR | 125 MB used |
-| Radiograph first image | 0.87 s |
+| Radiograph first image | 0.90 s |
 
-The shell downloads 8.6 MB of JSON manifests, uncompressed (the largest is the anatomy layer's index, 3.5 MB). Hosts such as Netlify compress JSON, typically to under a quarter. Outline geometry is fetched only for the patient being viewed.
+The shell downloads 8.5 MB of JSON manifests, uncompressed (the largest is the anatomy layer's index, 3.5 MB). Hosts such as Netlify compress JSON, typically to under a quarter. Outline geometry is fetched only for the patient being viewed.
 
 ## 5. Not done / not verified (be aware)
 

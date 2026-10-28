@@ -63,7 +63,7 @@ export const BOOK_ANATOMY: ChecklistGroup[] = [
       { name: 'Left atrial appendage', match: /^atrial_appendage_left$/, on: 'CT' },
       { name: 'Superior vena cava', match: /^superior_vena_cava$/, on: 'CT' },
       { name: 'Brachiocephalic veins', match: /^brachiocephalic_vein_/, on: 'CT' },
-      { name: 'Brachiocephalic trunk', match: /^brachiocephalic_trunk$/, on: 'CT' },
+      { name: 'Brachiocephalic trunk (innominate artery)', match: /^brachiocephalic_trunk$/, on: 'CT' },
       { name: 'Common carotid arteries', match: /^common_carotid_artery_/, on: 'CT' },
       { name: 'Subclavian arteries', match: /^subclavian_artery_/, on: 'CT' },
       { name: 'Esophagus', match: /^esophagus$/, on: 'CT' },

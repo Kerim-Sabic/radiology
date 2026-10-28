@@ -40,6 +40,8 @@ import {
 } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { ViewerEngine, type ToolId, type ViewKind } from '../viewer/engine';
+
+const MARK_TOOLS = new Set<ToolId>(['point', 'arrow', 'box', 'outline', 'eraser']);
 import { arrowLabelHook } from '../viewer/csInit';
 import { ViewportPanel, type MarkBadge } from '../components/ws/ViewportPanel';
 import { TaskPanel } from '../components/ws/TaskPanel';
@@ -55,11 +57,11 @@ import { gradeTask, measureWithinSlab, probeOfMark, type LoadedTarget } from '..
 import type { GradeResult, LearnerMark } from '../grading/types';
 import type { BookAnchorRef, Series, Task } from '../schema/content';
 import type { SeriesIndex } from '../grading/seriesIndex';
-import { newSession, rules, hintLadder, type SessionState } from '../services/lessonEngine';
+import { canSubmit, newSession, reportShown, rules, hintLadder, type SessionState } from '../services/lessonEngine';
 import { newId, type Attempt, type Mode } from '../services/progressRepository';
 import { anchorLabel as fmtAnchor } from '../services/curriculum';
 import type { ViewSnapshot } from '../viewer/engine';
-import { patientToPlaneMm, polygonArea, polygonCentroid, type Vec2, type Vec3 } from '../lib/geometry';
+import { imageToPatient, patientToPlaneMm, polygonArea, polygonCentroid, type Vec2, type Vec3 } from '../lib/geometry';
 import { AI_DRAFT_BY, cleanLabel, isAiDraft } from '../lib/provenance';
 
 const centroid3 = (poly: Vec3[]): Vec3 => [
@@ -156,10 +158,12 @@ export default function Workstation() {
 
   useEffect(() => {
     if (!catalog || !kase) return;
+    let cancelled = false;
     // Task-layer targets, plus any atlas-layer (expert) outline a task of this case grades against.
     const taskIds = (catalog.tasksByCase.get(kase.id) ?? []).flatMap((t) => t.targets.map((x) => x.targetId));
     const ids = [...new Set([...catalog.targetsForSeries(caseSeries.map((s) => s.uid)), ...taskIds])];
     catalog.loadTargets(ids).then((m) => {
+      if (cancelled) return; // a later case (or review change) owns the targets now
       // Apply the learner's own review records (never invented): reviewed drafts become human_reviewed.
       for (const r of reviews) {
         const t = m.get(r.targetId);
@@ -168,8 +172,14 @@ export default function Workstation() {
       }
       setTargets(m);
     });
-    engine.releaseUnused(new Set(caseSeries.map((s) => s.uid)));
-  }, [catalog, kase, caseSeries, engine, reviews]);
+    return () => {
+      cancelled = true;
+    };
+  }, [catalog, kase, caseSeries, reviews]);
+  // Free other cases' image data, but keep this case and the comparison patient (a progress save must never abort them).
+  useEffect(() => {
+    engine.releaseUnused(new Set([...caseSeries.map((s) => s.uid), ...(compare ? [compare.seriesUid] : [])]));
+  }, [engine, caseSeries, compare?.seriesUid]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const startIndexFor = useCallback(
     (uid: string, t: Task | null) => {
@@ -261,7 +271,7 @@ export default function Workstation() {
     }, 1200);
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [marks.length, session?.report, session?.choice, session?.hintsOpened.length]);
+  }, [marks.length, session?.report, session?.choice, session?.hintsOpened.length, session?.submitted, attemptId]);
 
   // ---------------------------------------------------------------- layout changes
   const applyLayout = (l: Layout) => {
@@ -406,6 +416,7 @@ export default function Workstation() {
   const submit = async () => {
     if (!session || !task || !catalog) return;
     const frozen = engine.collectMarks();
+    if (!canSubmit(task, session, frozen.length, reportShown(task, settings.level))) return;
     const pp = panels.find((p) => p.id === focused) ?? panels[0];
     const cp = engine.currentPlanePoint(pp.id);
     const seriesMap = new Map(caseSeries.map((s) => [s.uid, catalog.seriesIndex(s.uid)!]));
@@ -514,8 +525,11 @@ export default function Workstation() {
     const src = catalog.seriesSource(t.ref.seriesUid);
     const imageId = sop && src ? src.imageIds[src.sopUids.indexOf(sop)] : null;
     let world: Vec3 | null = centre?.world ?? null;
+    // From the slice geometry in the manifest, so it works before the image itself has loaded
+    // (falling back to the image origin would centre the view on its top-left corner).
+    const plane = sop ? idx.bySop.get(sop)?.plane : undefined;
+    if (!world && centre?.px && plane) world = imageToPatient(plane, centre.px);
     if (!world && centre?.px && imageId) world = engine.imagePxToWorld(imageId, centre.px);
-    if (!world && sop) world = idx.bySop.get(sop)?.plane?.ipp ?? null;
     const st = engine.panelState(pid);
     if (st?.kind === 'stack' && sop) {
       const i = src?.sopUids.indexOf(sop) ?? -1;
@@ -607,7 +621,12 @@ export default function Workstation() {
         engine.scroll(focused, 5);
       } else if (k === 'Home') engine.setIndex(focused, 0);
       else if (k === 'End') engine.setIndex(focused, 100000);
-      else if (tools[k.toLowerCase()]) engine.setTool(tools[k.toLowerCase()]);
+      else if (tools[k.toLowerCase()]) {
+        const tool = tools[k.toLowerCase()];
+        // Marking tools are locked once the answer is submitted (the reference is visible then).
+        if (MARK_TOOLS.has(tool) && session && !rules.canEditMarks(session)) return;
+        engine.setTool(tool);
+      }
       else if (k === 'r') engine.reset(focused);
       else if (k === 'i') engine.invert(focused);
       else if (k === 'f') toggleFullscreen();
@@ -692,14 +711,13 @@ export default function Workstation() {
   }, [compare, catalog, primaryUid]);
 
   // Keep the comparison patient at the same anatomical level as the primary scan.
-  const p0Index = engine.panelState('p0')?.index;
+  // Keyed on the displayed image, not the index: a panel that is still loading also reports index 0.
+  const p0Image = engine.panelState('p0')?.currentImageId;
   const p1Ready = engine.panelState('p1')?.ready;
   const levelZ = useMemo(() => {
-    const img = engine.panelState('p0')?.currentImageId;
-    const sop = img ? engine.imageIdInfo(img)?.sop : null;
+    const sop = p0Image ? engine.imageIdInfo(p0Image)?.sop : null;
     return sop && primaryUid ? (catalog?.seriesIndex(primaryUid)?.bySop.get(sop)?.plane?.ipp[2] ?? null) : null;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [p0Index, primaryUid, catalog, engine]);
+  }, [p0Image, primaryUid, catalog, engine]);
   useEffect(() => {
     if (!compare || !syncPairs.length || !p1Ready || levelZ === null || !catalog) return;
     const zb = mapZ(levelZ, syncPairs);

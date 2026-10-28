@@ -39,6 +39,7 @@ From the repo root, always with the venv interpreter (`PY=C:/Users/kerim/radiolo
 | 3 | `$PY scripts/vessels/masks_to_contours.py [--fast] [case ...]` | masks → per-slice `image_px` contours; NIfTI-affine vs DICOM-geometry alignment check |
 | 4 | `$PY scripts/vessels/derive_levels_qc.py [--fast] [--png] [case ...]` | contrast (aorta HU), laterality, coverage, five-vessel and aortic-arch intervals; `--png` writes overlay PNGs to the scratch folder |
 | 5 | `$PY scripts/vessels/write_pack.py [--fast]` | writes `public/packs/vessel-drafts/pack.json` + `targets/*.json`, runs `verify_targets.py` on them, writes `docs/data/vessel-drafts-report.md`, prints the `index.json` entry |
+| 6 | `python scripts/vessels/postprocess.py` | the atlas's accuracy rules on the published pack (idempotent): trachea cut at the carina, "(partially imaged)" for outlines cut by the scan, one name for the brachiocephalic trunk; then `python scripts/data/brand_ai_drafts.py vessel-drafts` |
 | 6 | `node --experimental-strip-types --no-warnings scripts/data/zod_check.mjs public/packs/vessel-drafts` | zod contract check of the manifest and every target file (helper reused unmodified) |
 
 `verify_targets.py` can also be run on its own (exit code 1 on failure). Scratch outputs live in

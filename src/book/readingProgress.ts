@@ -13,18 +13,33 @@ function load(): Set<number> {
   return cache;
 }
 
+function save(s: Set<number>) {
+  try {
+    localStorage.setItem(KEY, JSON.stringify([...s]));
+  } catch {
+    /* storage unavailable: keep in memory */
+  }
+  listeners.forEach((l) => l());
+}
+
 export const readingProgress = {
   pages: () => load(),
   markRead(physical: number) {
     const s = load();
     if (s.has(physical)) return;
     s.add(physical);
-    try {
-      localStorage.setItem(KEY, JSON.stringify([...s]));
-    } catch {
-      /* storage unavailable: keep in memory */
-    }
-    listeners.forEach((l) => l());
+    save(s);
+  },
+  /** Add pages from a progress backup (pages already read stay read). */
+  merge(pages: unknown) {
+    const s = load();
+    const before = s.size;
+    for (const p of Array.isArray(pages) ? pages : []) if (Number.isInteger(p) && p > 0) s.add(p as number);
+    if (s.size !== before) save(s);
+  },
+  clear() {
+    cache = new Set();
+    save(cache);
   },
   fraction(range: [number, number]): number {
     const s = load();

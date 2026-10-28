@@ -15,6 +15,7 @@ from __future__ import annotations
 import json
 import shutil
 import sys
+from statistics import median
 from datetime import datetime, timezone
 
 import qc_rules as Q
@@ -193,6 +194,14 @@ def main(argv):
     # ---------------- CXR
     cx = load_json(WORK / "cxr" / "cxr_cases.json")
     xmeta, cxr_cases = cx["meta"], []
+    # typical size of each radiograph structure (fraction of the image), to catch fragments (audit 28 Oct)
+    sizes = {}
+    for c in cx["cases"]:
+        if c.get("case") and c.get("accepted") and (WORK / "cxr" / c["case"] / "info.json").exists():
+            for name, s_ in load_json(WORK / "cxr" / c["case"] / "info.json")["structures"].items():
+                if s_["status"] == "ok" and s_.get("areaFraction"):
+                    sizes.setdefault(name, []).append(s_["areaFraction"])
+    typical_cxr = {n: float(median(v)) for n, v in sizes.items() if len(v) >= 5}
     for c in cx["cases"]:
         row = {**c, "written": 0}
         cxr_cases.append(row)
@@ -205,6 +214,8 @@ def main(argv):
             continue
         se = sidx[c["seriesUid"]][2]
         for name, s in info["structures"].items():
+            if s["status"] == "ok" and name in typical_cxr and s.get("areaFraction", 1) < 0.2 * typical_cxr[name]:
+                s["status"], s["rule"] = f"dropped: fragment ({s['areaFraction']:.4f} of the image vs typical {typical_cxr[name]:.4f})", 5
             if s["status"] == "ok" and not info["qc"]["sideFromHeader"] and ("_left" in name or "_right" in name):
                 # accuracy rule (27 Oct): the side of a left/right structure must be verifiable from the header
                 s["status"], s["rule"] = "dropped: side not verifiable (no PatientOrientation in the DICOM header)", 5

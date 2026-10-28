@@ -10,15 +10,37 @@ import { newId } from '../services/progressRepository';
  * separately; originals are never overwritten), attach personal notes. Reviews are exported
  * with your progress backup.
  */
+const PAGE = 100;
+
 export default function AuthorPage() {
   const { catalog, reviews, progress, settings } = useApp();
   const [filter, setFilter] = useState<'all' | 'ai_draft' | 'source_manual' | 'disputed'>('all');
   const [note, setNote] = useState<Record<string, string>>({});
+  const [q, setQ] = useState('');
+  const [limit, setLimit] = useState(PAGE);
   const targets = useMemo(() => (catalog ? [...catalog.targets.values()] : []), [catalog]);
+  // Where to inspect each target: the task that uses it, else (anatomy outlines) a case showing its series, with it shown alone.
+  const inspectLink = useMemo(() => {
+    const m = new Map<string, string>();
+    if (!catalog) return m;
+    const caseBySeries = new Map<string, string>();
+    for (const k of catalog.cases.values()) for (const s of catalog.seriesForCase(k)) if (!caseBySeries.has(s.uid)) caseBySeries.set(s.uid, k.id);
+    for (const task of catalog.tasks.values())
+      for (const x of task.targets) if (!m.has(x.targetId)) m.set(x.targetId, `/read/${encodeURIComponent(task.caseId)}?task=${encodeURIComponent(task.id)}&mode=learn`);
+    for (const t of catalog.targets.values()) {
+      const caseId = caseBySeries.get(t.seriesUid);
+      if (!m.has(t.id) && caseId) m.set(t.id, `/read/${encodeURIComponent(caseId)}?mode=learn&show=${encodeURIComponent(t.id)}`);
+    }
+    return m;
+  }, [catalog]);
   const reviewBy = new Map(reviews.map((r) => [r.targetId, r]));
-  const shown = targets.filter((t) => (filter === 'all' ? true : filter === 'disputed' ? reviewBy.get(t.id)?.status === 'disputed' : t.provenance === filter));
+  const words = q.toLowerCase().split(/\s+/).filter(Boolean);
+  const shown = targets.filter(
+    (t) =>
+      (filter === 'all' ? true : filter === 'disputed' ? reviewBy.get(t.id)?.status === 'disputed' : t.provenance === filter) &&
+      words.every((w) => t.label.toLowerCase().includes(w) || t.id.toLowerCase().includes(w)),
+  );
   if (!catalog) return <div className="page-inner">Loading…</div>;
-  const caseForTarget = (id: string) => [...catalog.tasks.values()].find((t) => t.targets.some((x) => x.targetId === id));
 
   return (
     <div className="page-inner stack" style={{ gap: 16 }}>
@@ -29,11 +51,21 @@ export default function AuthorPage() {
       </p>
       <div className="row wrap">
         {(['all', 'ai_draft', 'source_manual', 'disputed'] as const).map((f) => (
-          <button key={f} className="chip" aria-pressed={filter === f} onClick={() => setFilter(f)}>
+          <button key={f} className="chip" aria-pressed={filter === f} onClick={() => (setFilter(f), setLimit(PAGE))}>
             {f.replace('_', ' ')}
           </button>
         ))}
-        <span className="faint">{shown.length} target(s)</span>
+        <input
+          type="search"
+          placeholder="Search a structure or patient id, e.g. “aorta arch” or “16434411”"
+          value={q}
+          onChange={(e) => (setQ(e.target.value), setLimit(PAGE))}
+          aria-label="Search targets"
+          style={{ minWidth: 320 }}
+        />
+        <span className="faint">
+          {shown.length} target(s){shown.length > limit ? ` · showing ${limit}` : ''}
+        </span>
       </div>
       <div className="card" style={{ overflowX: 'auto' }}>
         <table className="table">
@@ -47,9 +79,9 @@ export default function AuthorPage() {
             </tr>
           </thead>
           <tbody>
-            {shown.map((t) => {
+            {shown.slice(0, limit).map((t) => {
               const r = reviewBy.get(t.id);
-              const task = caseForTarget(t.id);
+              const link = inspectLink.get(t.id);
               return (
                 <tr key={t.id}>
                   <td>
@@ -82,8 +114,8 @@ export default function AuthorPage() {
                     {r?.note ? <div className="faint" style={{ fontSize: 12 }}>{r.note}</div> : null}
                   </td>
                   <td className="stack" style={{ gap: 4, minWidth: 220 }}>
-                    {task ? (
-                      <Link className="btn sm" to={`/read/${task.caseId}?task=${encodeURIComponent(task.id)}&mode=learn`}>
+                    {link ? (
+                      <Link className="btn sm" to={link}>
                         Inspect in viewer
                       </Link>
                     ) : null}
@@ -116,6 +148,11 @@ export default function AuthorPage() {
             })}
           </tbody>
         </table>
+        {shown.length > limit ? (
+          <button className="btn" style={{ margin: 12 }} onClick={() => setLimit(limit + PAGE)}>
+            Show {Math.min(PAGE, shown.length - limit)} more
+          </button>
+        ) : null}
       </div>
     </div>
   );

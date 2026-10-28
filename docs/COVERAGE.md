@@ -1,6 +1,6 @@
 # Curriculum coverage — Learning Radiology, 5th edition
 
-_Generated 2026-10-27 from `public/content/curriculum.v1.json` and the installed lessons. A unit is never "mastered" from text or quizzes; this map shows where real-scan practice exists and where it does not._
+_Generated 2026-10-28 from `public/content/curriculum.v1.json` and the installed lessons. A unit is never "mastered" from text or quizzes; this map shows where real-scan practice exists and where it does not._
 
 Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SHA-256 `0f711fa48c1872ce…`.
 

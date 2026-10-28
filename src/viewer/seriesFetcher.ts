@@ -103,6 +103,9 @@ export class SeriesFetcher {
   abort() {
     this.controller.abort();
     this.queue = [];
+    // Nobody may wait forever on a cancelled series: pending waiters learn that it will not load.
+    for (const i of [...this.waiters.keys()]) this.resolve(i, false);
+    for (const w of this.allWaiters.splice(0)) w();
   }
 
   get aborted() {

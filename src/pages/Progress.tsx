@@ -21,9 +21,10 @@ export default function ProgressPage() {
   const sureRight = sure.filter((a) => a.grade?.outcome === 'correct' || a.selfReview?.verdict === 'correct').length;
   const sureWrong = notebook.filter((m) => m.sureButWrong && !m.resolved);
   const [drill, setDrill] = useState<DrillStats>({});
+  // Re-read after any progress change (import, reset), not only on first render.
   useEffect(() => {
     progress.drillStats().then(setDrill);
-  }, [progress]);
+  }, [progress, attempts]);
   const drillSum = summary(drill);
 
   const doExport = async () => {

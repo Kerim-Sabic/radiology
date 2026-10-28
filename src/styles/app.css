@@ -1052,6 +1052,39 @@ button.chip[aria-pressed='true'] {
     display: none;
   }
 }
+@media (max-width: 600px) {
+  /* Phones: the bar scrolls sideways on its own instead of widening (and zooming out) the whole page. */
+  .topnav {
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    padding: 0 6px;
+    gap: 2px;
+  }
+  .topnav::-webkit-scrollbar {
+    display: none;
+  }
+  .topnav .brand {
+    margin-right: 4px;
+  }
+  .topnav .brand span:not(.brand-mark) {
+    display: none;
+  }
+  .topnav .navlink {
+    flex: none;
+    padding: 0 8px;
+  }
+  /* Wide tables scroll inside their own box; long chips wrap instead of running off the screen. */
+  .page-inner table.table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .page-inner .chip {
+    white-space: normal;
+    max-width: 100%;
+  }
+}
 
 /* anatomy layer */
 .vp-hover {

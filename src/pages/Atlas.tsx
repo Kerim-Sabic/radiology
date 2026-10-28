@@ -31,6 +31,8 @@ const CATEGORY_LABEL: Record<string, string> = {
   other: 'Other',
 };
 const ORDER = ['organ', 'airway', 'vessel', 'bone', 'muscle', 'gland', 'other'];
+// The book's words where source datasets use other names, so the atlas and the checklist read the same.
+const BOOK_NAME: Record<string, string> = { colon: 'Colon (large intestine)', small_bowel: 'Small bowel (small intestine)' };
 const FAMILY_LABEL: Record<string, string> = { XR: 'X-ray', CT: 'CT', MR: 'MRI' };
 
 export default function AtlasPage() {
@@ -52,6 +54,7 @@ export default function AtlasPage() {
         const key = canonicalAnatomyKey(t.classId);
         const s = m.get(key) ?? { key, name: plainName(t.label), category: categoryFor(t), entries: [] };
         if (!isAutomatic(t.provenance) && s.entries.every((e) => isAutomatic(e.provenance))) s.name = plainName(t.label); // expert wording wins
+        if (BOOK_NAME[key]) s.name = BOOK_NAME[key];
         s.entries.push({ caseId: k.id, caseTitle: k.neutralTitle, targetId: id, family: imageFamily(catalog.series.get(t.seriesUid)?.modality ?? ''), provenance: t.provenance });
         m.set(key, s);
       }

@@ -60,7 +60,7 @@ FIVE_VESSELS = [
 LABELS = {
     "brachiocephalic_vein_left": "Left brachiocephalic vein",
     "brachiocephalic_vein_right": "Right brachiocephalic vein",
-    "brachiocephalic_trunk": "Brachiocephalic (innominate) artery",
+    "brachiocephalic_trunk": "Brachiocephalic trunk (innominate artery)",
     "common_carotid_artery_left": "Left common carotid artery",
     "common_carotid_artery_right": "Right common carotid artery",
     "subclavian_artery_left": "Left subclavian artery",

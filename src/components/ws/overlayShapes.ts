@@ -5,7 +5,7 @@
  */
 import type { LoadedTarget } from '../../grading/spatialGrader';
 import type { SeriesIndex } from '../../grading/seriesIndex';
-import { dot, imageToPatient, sub, type Vec2, type Vec3 } from '../../lib/geometry';
+import { dot, imageToPatient, pointInPolygon, polygonArea, sub, type Vec2, type Vec3 } from '../../lib/geometry';
 import type { ViewerEngine } from '../../viewer/engine';
 
 export interface Shape {
@@ -13,9 +13,26 @@ export interface Shape {
   label: string;
   kind: 'poly' | 'seg' | 'circle';
   pts: Vec2[];
+  /** Holes inside this outline on the slice (e.g. the cranial cavity inside the skull): not part of the structure. */
+  holes?: Vec2[][];
   provenance: string;
   category: string;
   layer: string;
+}
+
+/** Is the point on the structure itself (inside the outline and not in one of its holes)? */
+export function shapeContains(sh: Shape, p: Vec2): boolean {
+  return pointInPolygon(p, sh.pts) && !(sh.holes ?? []).some((h) => pointInPolygon(p, h));
+}
+
+/** Area of the structure on this slice: the outline minus its holes. */
+export function shapeArea(sh: Shape): number {
+  return polygonArea(sh.pts) - (sh.holes ?? []).reduce((a, h) => a + polygonArea(h), 0);
+}
+
+/** Every ring of the shapes (outlines and holes), for even-odd hit tests and edge distances. */
+export function shapeRings(shapes: Shape[]): Vec2[][] {
+  return shapes.flatMap((sh) => [sh.pts, ...(sh.holes ?? [])]);
 }
 
 export function shapesForPanel(engine: ViewerEngine, panelId: string, targets: LoadedTarget[], series: SeriesIndex | undefined): Shape[] {
@@ -38,9 +55,14 @@ export function shapesForPanel(engine: ViewerEngine, panelId: string, targets: L
       };
       if (g.geometryType === 'contour_set') {
         for (const plane of g.planes.filter((p) => p.sopInstanceUid === info.sop)) {
+          const ring = (poly: Vec2[] | Vec3[]) => (g.space === 'image_px' ? (poly as Vec2[]).map(pxToCanvas) : (poly as Vec3[]).map(toCanvas)).filter((p): p is Vec2 => !!p);
+          const holes = (plane.holes ?? []).map(ring).filter((h) => h.length >= 3);
           for (const poly of plane.polygons) {
-            const pts = (g.space === 'image_px' ? (poly as Vec2[]).map(pxToCanvas) : (poly as Vec3[]).map(toCanvas)).filter((p): p is Vec2 => !!p);
-            if (pts.length >= 2) out.push({ ...base, kind: 'poly', pts });
+            const pts = ring(poly);
+            if (pts.length < 2) continue;
+            // Each hole belongs to the outline that contains it.
+            const own = pts.length >= 3 ? holes.filter((h) => pointInPolygon(h[0], pts)) : [];
+            out.push(own.length ? { ...base, kind: 'poly', pts, holes: own } : { ...base, kind: 'poly', pts });
           }
         }
       } else if (g.geometryType === 'box') {

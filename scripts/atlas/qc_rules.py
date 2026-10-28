@@ -120,7 +120,7 @@ LABELS = {
     "duodenum": "Duodenum", "colon": "Colon", "urinary_bladder": "Urinary bladder", "prostate": "Prostate",
     "sacrum": "Sacrum", "heart": "Heart", "aorta": "Aorta", "pulmonary_vein": "Pulmonary veins",
     "pulmonary_artery": "Pulmonary arteries", "main_bronchus_left": "Left main bronchus", "main_bronchus_right": "Right main bronchus",
-    "brachiocephalic_trunk": "Brachiocephalic trunk", "superior_vena_cava": "Superior vena cava",
+    "brachiocephalic_trunk": "Brachiocephalic trunk (innominate artery)", "superior_vena_cava": "Superior vena cava",
     "inferior_vena_cava": "Inferior vena cava", "portal_vein_and_splenic_vein": "Portal and splenic veins",
     "atrial_appendage_left": "Left atrial appendage", "spinal_cord": "Spinal cord", "brain": "Brain", "skull": "Skull",
     "sternum": "Sternum", "costal_cartilages": "Costal cartilages",
