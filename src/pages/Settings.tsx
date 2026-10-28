@@ -59,8 +59,7 @@ export default function SettingsPage() {
       <section className="card stack">
         <h2>Book</h2>
         <p className="muted">
-          The app never ships the textbook. Import your own PDF on each device (stored only in this browser), or set <span className="mono">VITE_BOOK_URL</span> to a copy on an
-          access-protected origin.
+          Members can open the fifth-edition textbook directly on the site. You may also import your own PDF; imported copies stay only in this browser.
         </p>
         {haveBook ? (
           <div className="stack" style={{ gap: 4 }}>

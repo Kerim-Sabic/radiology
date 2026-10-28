@@ -64,7 +64,7 @@ export default function BookFigures() {
         <span className="faint">{figs.length} figures</span>
       </div>
       <small className="muted">
-        Rendered from your own copy in this browser. Book figures carry printed arrows and labels — use them to understand a concept, then practise it on real studies
+        Linked to the on-site textbook reader. Book figures carry printed arrows and labels — use them to understand a concept, then practise it on real studies
         (linked from each chapter in the Course map).
       </small>
       {available === false ? <div className="notice">Import your PDF in Settings → Book (or install it locally) to see the figures.</div> : null}

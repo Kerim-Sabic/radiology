@@ -10,7 +10,7 @@ Apple Pay is enabled through Whop Elements for eligible devices/browsers with an
 
 - Monthly: USD 10, billed every 30 days, no trial. Customers cancel future renewals in Whop.
 - Lifetime: USD 100 once, no expiry or recurring charge.
-- Both plans unlock the same application. The textbook is not included. Study progress is stored in the customer's browser.
+- Both plans unlock the same application and the protected on-site textbook reader. Study progress is stored in the customer's browser.
 
 ## Server configuration
 
@@ -32,7 +32,9 @@ The server verifies the exact business, product and allowlisted plan, membership
 
 Checkout return parameters and browser completion events never grant access. Checkout creation validates the live plan price and uses a repeatable idempotency key. The browser receives only the checkout configuration ID and return URL; Elements renders the payment form with the verified buyer email locked. Existing active or payment-pending memberships cannot create another checkout from the app. Existing customers should sign in with the email used for their Whop purchase. A completion event triggers server-side membership/payment verification; bank authentication may require an additional window or redirect.
 
-Vercel routing middleware protects `/packs/*` and `/content/*`, including direct asset requests, before the CDN. Do not deploy this application as an unprotected static site. Published builds omit the textbook and the six noncommercial RICORD subjects; source files remain unchanged.
+Vercel routing middleware protects `/packs/*` and `/content/*`, including direct asset requests, before the CDN. Do not deploy this application as an unprotected static site. Published static builds omit the textbook and the six noncommercial RICORD subjects; source files remain unchanged.
+
+The requested fifth-edition book is stored in the private `radiology-book` Vercel Blob store. `/api/book` checks the active app session and membership (or verified admin access) for every HEAD/range request. `BLOB_READ_WRITE_TOKEN` is server-only and supplied by the connected store. PDF.js retrieves ranges of at most 1 MiB; the endpoint rejects requests over 2 MiB and sends private/no-store headers. Storage URLs and tokens are never sent to the browser. The 73,363,798-byte source matches the existing 552-page chapter/figure map and its SHA-256 in `server/book.ts`.
 
 ## Verification
 

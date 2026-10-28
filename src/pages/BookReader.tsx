@@ -104,8 +104,7 @@ export default function BookReader() {
       <div className="page-inner stack" style={{ maxWidth: 720 }}>
         <h1>Book</h1>
         <div className="notice info">
-          Your copy of <i>Learning Radiology</i> (5th ed.) is not on this device yet. It is never stored in the public repository. Import it once here (kept in this
-          browser), or install it into a private build with <span className="mono">python scripts/book/install_book.py --pdf &lt;file&gt;</span>.
+          The member textbook is temporarily unavailable. Please reload the page to try again. You can also import your own PDF below; that copy stays in this browser.
         </div>
         <label className="btn primary" style={{ alignSelf: 'flex-start' }}>
           <Upload size={14} /> Import PDF
@@ -247,7 +246,7 @@ export default function BookReader() {
             </div>
           ) : null}
           <div className="book-canvas-wrap" style={{ width: dims ? dims.width : undefined, display: rendering && !dims ? 'none' : undefined }}>
-            <canvas ref={canvas} aria-label={`Book page ${printed ?? page}`} />
+            <canvas ref={canvas} aria-label={`Book page ${printed ?? page}`} aria-busy={rendering} />
             {dims
               ? figuresHere
                   .filter((f) => f.bbox)

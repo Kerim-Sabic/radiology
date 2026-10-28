@@ -1,7 +1,6 @@
 /**
- * The user's own copy of the textbook, rendered with PDF.js. The PDF is either imported
- * on this device (kept in this browser's IndexedDB) or fetched from a protected URL set in
- * VITE_BOOK_URL. Nothing from the book is bundled with the app or sent anywhere.
+ * PDF.js reader for the protected member textbook or a PDF imported on this device.
+ * The member PDF is served in authenticated byte ranges; imported copies stay in IndexedDB.
  */
 import { openDB } from 'idb';
 import type { PDFDocumentProxy, RenderTask } from 'pdfjs-dist';
@@ -74,22 +73,27 @@ async function openRanged(lib: typeof import('pdfjs-dist'), url: string) {
   const length = Number(m[1]);
   const head = new Uint8Array(await probe.arrayBuffer());
   const transport = new lib.PDFDataRangeTransport(length, head);
+  const controller = new AbortController();
+  const task = lib.getDocument({ range: transport, disableAutoFetch: true, rangeChunkSize: 1 << 18 });
+  transport.abort = () => controller.abort();
   let loaded = head.byteLength;
   transport.requestDataRange = (begin: number, end: number) => {
-    fetch(url, { headers: { Range: `bytes=${begin}-${end - 1}` } })
-      .then((r) => {
-        if (r.status !== 206) throw new Error(`Range request failed (HTTP ${r.status})`);
-        return r.arrayBuffer();
-      })
-      .then((buf) => {
-        loaded += buf.byteLength;
-        openProgress = { loaded, total: length };
-        notify();
-        transport.onDataRange(begin, new Uint8Array(buf));
-      })
-      .catch(() => transport.abort());
+    void (async () => {
+      const bytes = new Uint8Array(end - begin);
+      for (let start = begin; start < end; start += 1 << 20) {
+        const stop = Math.min(start + (1 << 20), end);
+        const r = await fetch(url, { headers: { Range: `bytes=${start}-${stop - 1}` }, signal: controller.signal });
+        if (r.status !== 206) throw new Error(`Book access interrupted (HTTP ${r.status}). Please sign in again or reload.`);
+        const chunk = new Uint8Array(await r.arrayBuffer());
+        if (chunk.byteLength !== stop - start) throw new Error('Incomplete book download. Please reload.');
+        bytes.set(chunk, start - begin);
+        loaded += chunk.byteLength;
+        openProgress = { loaded, total: length }; notify();
+      }
+      transport.onDataRange(begin, bytes);
+    })().catch(() => { controller.abort(); void task.destroy(); });
   };
-  return lib.getDocument({ range: transport, disableAutoFetch: true, rangeChunkSize: 1 << 18 });
+  return task;
 }
 
 /** Bytes fetched while opening the book (for a real progress indicator). */
@@ -148,7 +152,7 @@ export function openBook(): Promise<PDFDocumentProxy> {
         notify();
       };
       doc = await task.promise;
-      status = { source: 'url', name: url.split('/').pop() ?? url, sha256: null, verified: doc.numPages === 552, pageCount: doc.numPages };
+      status = { source: 'url', name: url.endsWith('/api/book') ? 'Learning Radiology · Fifth Edition' : url.split('/').pop() ?? url, sha256: null, verified: doc.numPages === 552, pageCount: doc.numPages };
       // Note: hash is verified by install_book.py when the copy is installed into a private build.
     }
     notify();
@@ -167,10 +171,15 @@ export function openBook(): Promise<PDFDocumentProxy> {
 let bundledProbe: Promise<string | null> | null = null;
 export function bundledBookUrl(): Promise<string | null> {
   if (!bundledProbe) {
-    const url = `${import.meta.env.BASE_URL}book/learning-radiology-5e.pdf`;
-    bundledProbe = fetch(url, { method: 'HEAD' })
-      .then((r) => (r.ok && (r.headers.get('content-type') ?? '').includes('pdf') ? new URL(url, window.location.href).href : null))
-      .catch(() => null);
+    bundledProbe = (async () => {
+      for (const url of ['/api/book', `${import.meta.env.BASE_URL}book/learning-radiology-5e.pdf`]) {
+        try {
+          const r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+          if (r.ok && (r.headers.get('content-type') ?? '').includes('pdf')) return new URL(url, window.location.href).href;
+        } catch { /* Try a locally installed copy if the member endpoint is unavailable. */ }
+      }
+      return null;
+    })();
   }
   return bundledProbe;
 }

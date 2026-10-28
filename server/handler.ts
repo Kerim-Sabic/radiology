@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { accessFor, checkout } from './billing.js';
 import { beginSignIn, cookie, createSession, finishSignIn, FLOW_COOKIE, hash, random, session, SESSION_COOKIE } from './auth.js';
 import { clerkIdentity } from './clerk.js';
+import { memberBook } from './book.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
 
@@ -56,6 +57,11 @@ export async function handle(request: Request): Promise<Response> {
       return response;
     }
     if (!user) return json({ user: null, error: 'Please sign in. Signing in on another device ends your previous session.' }, 401);
+    if (path === '/api/book') {
+      if (!['GET', 'HEAD'].includes(request.method)) return json({ error: 'Use GET or HEAD' }, 405);
+      if (!(await accessFor(user.userId)).active) return json({ error: 'An active membership is required to read the book.' }, 402);
+      return await memberBook(request);
+    }
     if (path === '/api/session' && request.method === 'GET') {
       const access = await accessFor(user.userId);
       return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing });

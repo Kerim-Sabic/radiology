@@ -53,7 +53,7 @@ export function BookPanel({ curriculum, anchor, onReturnToScan, locked }: Props)
     return (
       <div className="stack">
         <div className="notice info">
-          The textbook is not bundled with the app (it is your copyrighted copy). Import your PDF once on this device — it stays in this browser only.
+          The member textbook is temporarily unavailable. Reload to try again, or import your own PDF on this device.
         </div>
         <label className="btn">
           <Upload size={14} /> Import Learning Radiology PDF

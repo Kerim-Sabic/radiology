@@ -1,0 +1,52 @@
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+const fake = vi.hoisted(() => ({ session: vi.fn(), access: vi.fn(), head: vi.fn(), get: vi.fn() }));
+vi.mock('../server/auth', async original => ({ ...await original<typeof import('../server/auth')>(), session: fake.session }));
+vi.mock('../server/billing', () => ({ accessFor: fake.access, checkout: vi.fn() }));
+vi.mock('@vercel/blob', () => ({ head: fake.head, get: fake.get }));
+import { handle } from '../server/handler';
+import { BOOK_PATH, BOOK_SIZE, bookRange } from '../server/book';
+const request = (method = 'GET', range = 'bytes=0-1023') => new Request('https://www.radiology.monster/api/book', { method, headers: { Range: range } });
+beforeEach(() => {
+  vi.stubEnv('APP_URL', 'https://www.radiology.monster'); vi.stubEnv('WHOP_APP_ID', 'test');
+  vi.stubEnv('KV_REST_API_URL', 'https://example.invalid'); vi.stubEnv('KV_REST_API_TOKEN', 'test'); vi.stubEnv('BLOB_READ_WRITE_TOKEN', 'private-test-token');
+  fake.session.mockResolvedValue({ userId: 'member' }); fake.access.mockResolvedValue({ active: true });
+  fake.head.mockResolvedValue({ size: BOOK_SIZE, contentType: 'application/pdf' });
+  fake.get.mockImplementation(async () => ({ stream: new Response(new Uint8Array(1024)).body, headers: new Headers({ 'content-range': `bytes 0-1023/${BOOK_SIZE}` }) }));
+});
+afterEach(() => { vi.unstubAllEnvs(); vi.resetAllMocks(); });
+describe('protected member textbook', () => {
+  it.each(['GET', 'HEAD'])('rejects anonymous %s before touching storage', async method => {
+    fake.session.mockResolvedValue(null);
+    expect((await handle(request(method))).status).toBe(401);
+    expect(fake.get).not.toHaveBeenCalled(); expect(fake.head).not.toHaveBeenCalled();
+  });
+  it('rejects unpaid or revoked membership', async () => {
+    fake.access.mockResolvedValue({ active: false });
+    expect((await handle(request())).status).toBe(402); expect(fake.get).not.toHaveBeenCalled();
+  });
+  it('provides private metadata for the reader without returning PDF bytes', async () => {
+    const response = await handle(request('HEAD'));
+    expect(response.status).toBe(200); expect(response.headers.get('content-length')).toBe(String(BOOK_SIZE));
+    expect(response.headers.get('content-type')).toBe('application/pdf'); expect(await response.text()).toBe('');
+    expect(fake.head).toHaveBeenCalledWith(BOOK_PATH, { token: 'private-test-token' });
+  });
+  it('returns a bounded range and prevents shared caching or storage-token exposure', async () => {
+    const response = await handle(request());
+    expect(response.status).toBe(206); expect((await response.arrayBuffer()).byteLength).toBe(1024);
+    expect(response.headers.get('content-range')).toBe(`bytes 0-1023/${BOOK_SIZE}`);
+    expect(response.headers.get('cache-control')).toBe('private, no-store');
+    expect(response.headers.get('cdn-cache-control')).toBe('no-store'); expect(response.headers.get('vary')).toBe('Cookie');
+    expect([...response.headers.values()].join(' ')).not.toContain('private-test-token');
+  });
+  it.each(['bytes=0-9999999','bytes=0-1,5-6','bytes=73363798-','bytes=-0','bytes=20-10',''])('rejects invalid or oversized ranges: %s', async range => {
+    expect((await handle(request('GET', range))).status).toBe(416); expect(fake.get).not.toHaveBeenCalled();
+  });
+  it('supports reading the final cross-reference bytes', () => {
+    expect(bookRange('bytes=-1024')).toEqual({ start: BOOK_SIZE - 1024, end: BOOK_SIZE - 1 });
+  });
+  it('fails closed if storage ignores the requested range', async () => {
+    fake.get.mockResolvedValue({ stream: new Response('wrong response').body, headers: new Headers() });
+    const response = await handle(request()); expect(response.status).toBe(503);
+    expect(await response.text()).not.toContain('wrong response');
+  });
+});

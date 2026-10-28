@@ -190,7 +190,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
           <li><Check />Explore real DICOM studies with a full imaging viewer</li>
           <li><Check />Practice anatomy and get spatial feedback</li>
           <li><Check />Follow a structured course and track your progress</li>
-          <li><Check />Study with your own copy of the textbook</li>
+          <li><Check />Read the textbook with linked chapters, figures, and notes</li>
         </ul>
         <div className="membership-note"><ShieldCheck size={22} /><p>Secure payment, right here on radiology.monster.<br />One active device at a time. Switch devices by signing in.</p></div>
       </section>
@@ -221,7 +221,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
         {!account?.user && <p className="existing-account">Already a member? <button className="text-button" disabled={!ready?.auth} onClick={() => setAuthMode('login')}>Sign in</button></p>}
         </>}
         {account?.access.pendingMembership && <p className="membership-message">You already have a membership awaiting payment confirmation or a billing update. {account.access.manageUrl && <a href={account.access.manageUrl} target="_blank" rel="noopener noreferrer">Open billing in Whop</a>} to check it before purchasing again.</p>}
-        {!payment && <p className="membership-fine">Both plans include all app features. Prices in USD; any applicable tax is shown at checkout. The textbook is not included. Study progress stays in this browser; export a backup to move it.</p>}
+        {!payment && <p className="membership-fine">Both plans include all app features and the on-site book reader. Prices in USD; any applicable tax is shown at checkout. Study progress stays in this browser; export a backup to move it.</p>}
         {account?.user && <div className="membership-restore"><button disabled={checking} onClick={() => void refreshPayment()}>{checking ? 'Checking with Whop…' : 'Already paid? Check access'}</button>{!account.billingReady && <p>Payments are being configured. Checkout will open once it’s ready.</p>}</div>}
         {(error || new URLSearchParams(location.search).get('signin') === 'failed') && <p className="membership-message" role="alert">{error || 'Email sign-in was canceled or expired. Please try again.'}</p>}
         {!account && error && <button className="text-button" onClick={() => void load()}>Try again</button>}

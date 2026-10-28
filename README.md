@@ -42,7 +42,7 @@ python scripts/data/packs.py fetch chest-pairs
 
 (`packs.py list` shows all packs; repeat `fetch` for `ct-mri-pairs`, `body`, `neuro-msk`, `expansion`. Downloads go to `%USERPROFILE%\radiology-data\raw`, outside OneDrive, and are verified by SHA-256.)
 
-Then import the book: **Settings → Book → Import PDF** (your own copy of the 5th edition).
+Members on radiology.monster can open **Book** directly. For local development, use **Settings → Book → Import PDF** with your own fifth-edition copy.
 
 ## Commands
 
@@ -88,4 +88,4 @@ Data preparation is offline Python (`scripts/data`, `scripts/vessels`, `scripts/
 
 All images are de-identified research data from The Cancer Imaging Archive, used for personal education under each collection's licence as recorded per source in every `pack.json`: LCTSC, LIDC-IDRI, COVID-19-AR, PROSTATEx (+ zone segmentations), Soft-tissue-Sarcoma, C4KC-KiTS, ReMIND, Spine-Mets-CT-SEG, CBIS-DDSM and Pediatric-CT-SEG (CC BY 3.0/4.0), and **MIDRC-RICORD-1C (CC BY-NC 4.0 — non-commercial use only; remove the six RICORD radiographs from `more-ct-xr` before any commercial use)**. Please cite the DOIs listed in each pack. Outlines tagged “AI draft by Horalix” (the `anatomy-atlas` and `vessel-drafts` packs) are automatic segmentations that no radiologist has reviewed; build details are in `docs/data/`.
 
-The textbook is © its publisher and is not included in this repository.
+The textbook is © its publisher and is not included in this repository. The site owner’s requested member copy is stored separately in private Vercel Blob storage and served by `/api/book` after session and membership checks. The static build still excludes PDF files. See [PAYMENTS.md](PAYMENTS.md) for deployment and access details.
