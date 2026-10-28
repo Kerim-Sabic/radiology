@@ -1,0 +1,6046 @@
+{
+ "schemaVersion": 1,
+ "packId": "cxr-findings",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "cxr-00003400-003",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00003400-003",
+   "learnTitle": "Pneumothorax on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:3400",
+   "studyUids": [
+    "2.25.287816942139467803205422548542058114714"
+   ],
+   "primarySeriesUid": "2.25.162344203214422567434442853609263802601",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated."
+  },
+  {
+   "id": "cxr-00010767-016",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00010767-016",
+   "learnTitle": "Pneumothorax on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:10767",
+   "studyUids": [
+    "2.25.252598568065410983138193554022366320394"
+   ],
+   "primarySeriesUid": "2.25.259054519635315120545519111399003087994",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated."
+  },
+  {
+   "id": "cxr-00011355-011",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00011355-011",
+   "learnTitle": "Pneumothorax on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:11355",
+   "studyUids": [
+    "2.25.160241204039614792306057810828513889537"
+   ],
+   "primarySeriesUid": "2.25.26125964394479646325718625777775665196",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated."
+  },
+  {
+   "id": "cxr-00013209-018",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00013209-018",
+   "learnTitle": "Pneumothorax on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:13209",
+   "studyUids": [
+    "2.25.104313586793990249004969800141624426204"
+   ],
+   "primarySeriesUid": "2.25.64763358811681580405327774705151022817",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated."
+  },
+  {
+   "id": "cxr-00001437-012",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00001437-012",
+   "learnTitle": "Pleural effusion on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:1437",
+   "studyUids": [
+    "2.25.327434314045491696669515313730026667665"
+   ],
+   "primarySeriesUid": "2.25.249876676135355966610483047539390403300",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pleural effusion (NIH ChestX-ray14). The labels mined from this film's report are: Effusion (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "Pleural fluid settles in the lowest part of the pleural space. On an upright PA film the first sign is blunting of the lateral costophrenic angle (the lateral view shows smaller amounts in the posterior sulcus); larger effusions form a meniscus that rises laterally and hide the hemidiaphragm. A large effusion pushes the mediastinum away; if it does not, look for collapse of the lung underneath."
+  },
+  {
+   "id": "cxr-00013337-000",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00013337-000",
+   "learnTitle": "Pleural effusion on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:13337",
+   "studyUids": [
+    "2.25.331835493802756179566066119777701312123"
+   ],
+   "primarySeriesUid": "2.25.150396254641997057949965409467646376703",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pleural effusion (NIH ChestX-ray14). The labels mined from this film's report are: Effusion (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "Pleural fluid settles in the lowest part of the pleural space. On an upright PA film the first sign is blunting of the lateral costophrenic angle (the lateral view shows smaller amounts in the posterior sulcus); larger effusions form a meniscus that rises laterally and hide the hemidiaphragm. A large effusion pushes the mediastinum away; if it does not, look for collapse of the lung underneath."
+  },
+  {
+   "id": "cxr-00023058-004",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00023058-004",
+   "learnTitle": "Pleural effusion on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:23058",
+   "studyUids": [
+    "2.25.87877550273685066097395054631131167938"
+   ],
+   "primarySeriesUid": "2.25.132667421557787319702723659305473610453",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pleural effusion (NIH ChestX-ray14). The labels mined from this film's report are: Effusion (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "Pleural fluid settles in the lowest part of the pleural space. On an upright PA film the first sign is blunting of the lateral costophrenic angle (the lateral view shows smaller amounts in the posterior sulcus); larger effusions form a meniscus that rises laterally and hide the hemidiaphragm. A large effusion pushes the mediastinum away; if it does not, look for collapse of the lung underneath."
+  },
+  {
+   "id": "cxr-00029894-000",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00029894-000",
+   "learnTitle": "Pleural effusion on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:29894",
+   "studyUids": [
+    "2.25.251213719383645472948817156098088745616"
+   ],
+   "primarySeriesUid": "2.25.32594979444301069309728013094989269652",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pleural effusion (NIH ChestX-ray14). The labels mined from this film's report are: Effusion (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "Pleural fluid settles in the lowest part of the pleural space. On an upright PA film the first sign is blunting of the lateral costophrenic angle (the lateral view shows smaller amounts in the posterior sulcus); larger effusions form a meniscus that rises laterally and hide the hemidiaphragm. A large effusion pushes the mediastinum away; if it does not, look for collapse of the lung underneath."
+  },
+  {
+   "id": "cxr-00012299-002",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00012299-002",
+   "learnTitle": "Atelectasis on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:12299",
+   "studyUids": [
+    "2.25.64742713686052620956549792387906623359"
+   ],
+   "primarySeriesUid": "2.25.292836352412596997338610003098511020867",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch06-o01",
+    "ch06-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 65,
+     "printed": "50",
+     "chapterId": "ch06",
+     "figureId": "Box 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Table 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 67,
+     "printed": "52",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.2",
+     "sectionId": null
+    },
+    {
+     "physical": 68,
+     "printed": "53",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.6",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the atelectasis (NIH ChestX-ray14). The labels mined from this film's report are: Atelectasis (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing."
+  },
+  {
+   "id": "cxr-00016267-000",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00016267-000",
+   "learnTitle": "Atelectasis on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:16267",
+   "studyUids": [
+    "2.25.128175512223772582773383163599108333683"
+   ],
+   "primarySeriesUid": "2.25.156746103252885932781593040879107040118",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch06-o01",
+    "ch06-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 65,
+     "printed": "50",
+     "chapterId": "ch06",
+     "figureId": "Box 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Table 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 67,
+     "printed": "52",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.2",
+     "sectionId": null
+    },
+    {
+     "physical": 68,
+     "printed": "53",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.6",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the atelectasis (NIH ChestX-ray14). The labels mined from this film's report are: Atelectasis (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing."
+  },
+  {
+   "id": "cxr-00030674-000",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00030674-000",
+   "learnTitle": "Atelectasis on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:30674",
+   "studyUids": [
+    "2.25.23018730916951499087623606619333367467"
+   ],
+   "primarySeriesUid": "2.25.121712318527214242413644944875349087123",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch06-o01",
+    "ch06-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 65,
+     "printed": "50",
+     "chapterId": "ch06",
+     "figureId": "Box 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Table 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 67,
+     "printed": "52",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.2",
+     "sectionId": null
+    },
+    {
+     "physical": 68,
+     "printed": "53",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.6",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the atelectasis (NIH ChestX-ray14). The labels mined from this film's report are: Atelectasis (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing."
+  },
+  {
+   "id": "cxr-00000377-004",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00000377-004",
+   "learnTitle": "Cardiomegaly on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:377",
+   "studyUids": [
+    "2.25.139602115486355790596511360494894190713"
+   ],
+   "primarySeriesUid": "2.25.153207459673314134422184992845760679349",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch11-o01",
+    "ch11-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": "Box 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": null,
+     "sectionId": "ch11-s03"
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.2",
+     "sectionId": null
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.3",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Table 11.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the cardiomegaly (NIH ChestX-ray14). The labels mined from this film's report are: Cardiomegaly (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "On a PA film with a good inspiration the cardiothoracic ratio is the widest transverse diameter of the heart divided by the widest inner diameter of the chest; more than 0.5 suggests an enlarged cardiac silhouette. AP and poorly inspired films magnify the heart, so judge size on a PA film. A large silhouette can be chamber enlargement or pericardial fluid; the radiograph alone cannot always tell them apart."
+  },
+  {
+   "id": "cxr-00000661-000",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00000661-000",
+   "learnTitle": "Cardiomegaly on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:661",
+   "studyUids": [
+    "2.25.64902411227750610504708696096220046416"
+   ],
+   "primarySeriesUid": "2.25.83274867416939635552737997710228042399",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch11-o01",
+    "ch11-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": "Box 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": null,
+     "sectionId": "ch11-s03"
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.2",
+     "sectionId": null
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.3",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Table 11.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the cardiomegaly (NIH ChestX-ray14). The labels mined from this film's report are: Cardiomegaly (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "On a PA film with a good inspiration the cardiothoracic ratio is the widest transverse diameter of the heart divided by the widest inner diameter of the chest; more than 0.5 suggests an enlarged cardiac silhouette. AP and poorly inspired films magnify the heart, so judge size on a PA film. A large silhouette can be chamber enlargement or pericardial fluid; the radiograph alone cannot always tell them apart."
+  },
+  {
+   "id": "cxr-00000845-000",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00000845-000",
+   "learnTitle": "Cardiomegaly on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:845",
+   "studyUids": [
+    "2.25.268729680781001366746703018136130363803"
+   ],
+   "primarySeriesUid": "2.25.113148076060192092093137804964020190043",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch11-o01",
+    "ch11-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": "Box 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": null,
+     "sectionId": "ch11-s03"
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.2",
+     "sectionId": null
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.3",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Table 11.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the cardiomegaly (NIH ChestX-ray14). The labels mined from this film's report are: Cardiomegaly (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "On a PA film with a good inspiration the cardiothoracic ratio is the widest transverse diameter of the heart divided by the widest inner diameter of the chest; more than 0.5 suggests an enlarged cardiac silhouette. AP and poorly inspired films magnify the heart, so judge size on a PA film. A large silhouette can be chamber enlargement or pericardial fluid; the radiograph alone cannot always tell them apart."
+  },
+  {
+   "id": "cxr-00001075-024",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00001075-024",
+   "learnTitle": "Lung mass on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:1075",
+   "studyUids": [
+    "2.25.238074597940311083333421077465745443715"
+   ],
+   "primarySeriesUid": "2.25.16323125627046451926343108225670860544",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the lung mass (NIH ChestX-ray14). The labels mined from this film's report are: Mass (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "A mass is a lung opacity larger than 3 cm (smaller ones are nodules). Describe its size, margins (smooth, lobulated or spiculated), location and any cavitation, and look for what goes with it: hilar or mediastinal enlargement, an effusion, rib destruction or collapse beyond it. In an adult a lung mass must be explained; the radiograph shows it but does not give the diagnosis."
+  },
+  {
+   "id": "cxr-00011157-001",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00011157-001",
+   "learnTitle": "Lung mass on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:11157",
+   "studyUids": [
+    "2.25.96390092458008267714499042162300425203"
+   ],
+   "primarySeriesUid": "2.25.48766666126521754685024003338287144294",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the lung mass (NIH ChestX-ray14). The labels mined from this film's report are: Mass (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "A mass is a lung opacity larger than 3 cm (smaller ones are nodules). Describe its size, margins (smooth, lobulated or spiculated), location and any cavitation, and look for what goes with it: hilar or mediastinal enlargement, an effusion, rib destruction or collapse beyond it. In an adult a lung mass must be explained; the radiograph shows it but does not give the diagnosis."
+  },
+  {
+   "id": "cxr-00022192-003",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00022192-003",
+   "learnTitle": "Lung mass on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:22192",
+   "studyUids": [
+    "2.25.183495597985117072380015446763463603339"
+   ],
+   "primarySeriesUid": "2.25.113901078422061512622190502315801344824",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the lung mass (NIH ChestX-ray14). The labels mined from this film's report are: Mass (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "A mass is a lung opacity larger than 3 cm (smaller ones are nodules). Describe its size, margins (smooth, lobulated or spiculated), location and any cavitation, and look for what goes with it: hilar or mediastinal enlargement, an effusion, rib destruction or collapse beyond it. In an adult a lung mass must be explained; the radiograph shows it but does not give the diagnosis."
+  },
+  {
+   "id": "cxr-00020274-021",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00020274-021",
+   "learnTitle": "Lung nodule on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:20274",
+   "studyUids": [
+    "2.25.233484219353318232374615857723372113944"
+   ],
+   "primarySeriesUid": "2.25.199375388267783985677991710566335085745",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.11",
+     "sectionId": null
+    },
+    {
+     "physical": 119,
+     "printed": "99",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.12",
+     "sectionId": null
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.14",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the lung nodule (NIH ChestX-ray14). The labels mined from this film's report are: Nodule (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it."
+  },
+  {
+   "id": "cxr-00012374-000",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00012374-000",
+   "learnTitle": "Lung nodule on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:12374",
+   "studyUids": [
+    "2.25.286727573616100447538896649818287297883"
+   ],
+   "primarySeriesUid": "2.25.53166905343298243132258780158772954687",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.11",
+     "sectionId": null
+    },
+    {
+     "physical": 119,
+     "printed": "99",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.12",
+     "sectionId": null
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.14",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the lung nodule (NIH ChestX-ray14). The labels mined from this film's report are: Nodule (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it."
+  },
+  {
+   "id": "cxr-00013673-001",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00013673-001",
+   "learnTitle": "Lung nodule on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:13673",
+   "studyUids": [
+    "2.25.384818053379976113595643172535696689"
+   ],
+   "primarySeriesUid": "2.25.276789449277025666225530129592526450656",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.11",
+     "sectionId": null
+    },
+    {
+     "physical": 119,
+     "printed": "99",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.12",
+     "sectionId": null
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.14",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the lung nodule (NIH ChestX-ray14). The labels mined from this film's report are: Nodule (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it."
+  },
+  {
+   "id": "cxr-00001933-000",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00001933-000",
+   "learnTitle": "Pneumonia on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:1933",
+   "studyUids": [
+    "2.25.123460554486176896022316899278433680367"
+   ],
+   "primarySeriesUid": "2.25.76117809407433285069582359466273289089",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch08-o01",
+    "ch08-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Box 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.2",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.3",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.4",
+     "sectionId": null
+    },
+    {
+     "physical": 87,
+     "printed": "72",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.5",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumonia (NIH ChestX-ray14). The labels mined from this film's report are: Consolidation|Pneumonia (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "Pneumonia fills the air spaces: a fluffy or dense opacity with ill-defined edges, often with air bronchograms, filling a segment or lobe. The silhouette sign localises it: a lost right heart border means right middle lobe, a lost left heart border means lingula, a lost hemidiaphragm means a lower lobe. The film cannot tell pneumonia from other material filling the air spaces (fluid, blood, aspiration); the clinical setting does."
+  },
+  {
+   "id": "cxr-00003894-005",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00003894-005",
+   "learnTitle": "Pneumonia on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:3894",
+   "studyUids": [
+    "2.25.336571858269378472304852341718375491350"
+   ],
+   "primarySeriesUid": "2.25.115462320984540225930052486029285432862",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch08-o01",
+    "ch08-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Box 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.2",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.3",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.4",
+     "sectionId": null
+    },
+    {
+     "physical": 87,
+     "printed": "72",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.5",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumonia (NIH ChestX-ray14). The labels mined from this film's report are: Nodule|Pneumonia (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "Pneumonia fills the air spaces: a fluffy or dense opacity with ill-defined edges, often with air bronchograms, filling a segment or lobe. The silhouette sign localises it: a lost right heart border means right middle lobe, a lost left heart border means lingula, a lost hemidiaphragm means a lower lobe. The film cannot tell pneumonia from other material filling the air spaces (fluid, blood, aspiration); the clinical setting does."
+  },
+  {
+   "id": "cxr-00014294-011",
+   "packId": "cxr-findings",
+   "neutralTitle": "Chest radiograph PA · NIH 00014294-011",
+   "learnTitle": "Pneumonia on a PA chest radiograph (radiologist box)",
+   "subjectKey": "nih:ChestX-ray14:14294",
+   "studyUids": [
+    "2.25.267661580848265842359079398661199855115"
+   ],
+   "primarySeriesUid": "2.25.304307270072566630619033213205732684368",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch08-o01",
+    "ch08-o02"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Box 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.2",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.3",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.4",
+     "sectionId": null
+    },
+    {
+     "physical": 87,
+     "printed": "72",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.5",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumonia (NIH ChestX-ray14). The labels mined from this film's report are: Pneumonia (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "learnNotes": "Pneumonia fills the air spaces: a fluffy or dense opacity with ill-defined edges, often with air bronchograms, filling a segment or lobe. The silhouette sign localises it: a lost right heart border means right middle lobe, a lost left heart border means lingula, a lost hemidiaphragm means a lower lobe. The film cannot tell pneumonia from other material filling the air spaces (fluid, blood, aspiration); the clinical setting does."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "cxr-00003400-003:locate",
+   "caseId": "cxr-00003400-003",
+   "type": "locate_finding",
+   "title": "Find the pneumothorax",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.162344203214422567434442853609263802601"
+   ],
+   "start": {
+    "seriesUid": "2.25.162344203214422567434442853609263802601",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00003400_003_pneumothorax",
+     "name": "Pneumothorax",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow the chest wall from apex to base on both sides; on an upright film air rises to the apex first."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00003400-003:name",
+   "caseId": "cxr-00003400-003",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.162344203214422567434442853609263802601"
+   ],
+   "start": {
+    "seriesUid": "2.25.162344203214422567434442853609263802601",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": true,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a pneumothorax. A thin white visceral pleural line with no lung markings beyond it. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00010767-016:locate",
+   "caseId": "cxr-00010767-016",
+   "type": "locate_finding",
+   "title": "Find the pneumothorax",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.259054519635315120545519111399003087994"
+   ],
+   "start": {
+    "seriesUid": "2.25.259054519635315120545519111399003087994",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00010767_016_pneumothorax",
+     "name": "Pneumothorax",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow the chest wall from apex to base on both sides; on an upright film air rises to the apex first."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00010767-016:name",
+   "caseId": "cxr-00010767-016",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.259054519635315120545519111399003087994"
+   ],
+   "start": {
+    "seriesUid": "2.25.259054519635315120545519111399003087994",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": true,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a pneumothorax. A thin white visceral pleural line with no lung markings beyond it. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00011355-011:locate",
+   "caseId": "cxr-00011355-011",
+   "type": "locate_finding",
+   "title": "Find the pneumothorax",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.26125964394479646325718625777775665196"
+   ],
+   "start": {
+    "seriesUid": "2.25.26125964394479646325718625777775665196",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00011355_011_pneumothorax",
+     "name": "Pneumothorax",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow the chest wall from apex to base on both sides; on an upright film air rises to the apex first."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00011355-011:name",
+   "caseId": "cxr-00011355-011",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.26125964394479646325718625777775665196"
+   ],
+   "start": {
+    "seriesUid": "2.25.26125964394479646325718625777775665196",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": true,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a pneumothorax. A thin white visceral pleural line with no lung markings beyond it. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00013209-018:locate",
+   "caseId": "cxr-00013209-018",
+   "type": "locate_finding",
+   "title": "Find the pneumothorax",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.64763358811681580405327774705151022817"
+   ],
+   "start": {
+    "seriesUid": "2.25.64763358811681580405327774705151022817",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00013209_018_pneumothorax",
+     "name": "Pneumothorax",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow the chest wall from apex to base on both sides; on an upright film air rises to the apex first."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00013209-018:name",
+   "caseId": "cxr-00013209-018",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.64763358811681580405327774705151022817"
+   ],
+   "start": {
+    "seriesUid": "2.25.64763358811681580405327774705151022817",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": true,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a pneumothorax. A thin white visceral pleural line with no lung markings beyond it. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.6",
+     "sectionId": null
+    },
+    {
+     "physical": 324,
+     "printed": "304",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.7",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.12",
+     "sectionId": null
+    },
+    {
+     "physical": 327,
+     "printed": "307",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.13",
+     "sectionId": null
+    },
+    {
+     "physical": 326,
+     "printed": "306",
+     "chapterId": "ch24",
+     "figureId": "Fig 24.11",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch24-o03",
+    "ch24-o04"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00001437-012:locate",
+   "caseId": "cxr-00001437-012",
+   "type": "locate_finding",
+   "title": "Find the pleural effusion",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.249876676135355966610483047539390403300"
+   ],
+   "start": {
+    "seriesUid": "2.25.249876676135355966610483047539390403300",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00001437_012_pleural-effusion",
+     "name": "Pleural effusion",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look at both costophrenic angles and the shape of each hemidiaphragm."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Pleural fluid settles in the lowest part of the pleural space. On an upright PA film the first sign is blunting of the lateral costophrenic angle (the lateral view shows smaller amounts in the posterior sulcus); larger effusions form a meniscus that rises laterally and hide the hemidiaphragm. A large effusion pushes the mediastinum away; if it does not, look for collapse of the lung underneath. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00001437-012:name",
+   "caseId": "cxr-00001437-012",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.249876676135355966610483047539390403300"
+   ],
+   "start": {
+    "seriesUid": "2.25.249876676135355966610483047539390403300",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": true,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a pleural effusion. Blunted costophrenic angle or a meniscus that rises along the lateral chest wall. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00013337-000:locate",
+   "caseId": "cxr-00013337-000",
+   "type": "locate_finding",
+   "title": "Find the pleural effusion",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.150396254641997057949965409467646376703"
+   ],
+   "start": {
+    "seriesUid": "2.25.150396254641997057949965409467646376703",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00013337_000_pleural-effusion",
+     "name": "Pleural effusion",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look at both costophrenic angles and the shape of each hemidiaphragm."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Pleural fluid settles in the lowest part of the pleural space. On an upright PA film the first sign is blunting of the lateral costophrenic angle (the lateral view shows smaller amounts in the posterior sulcus); larger effusions form a meniscus that rises laterally and hide the hemidiaphragm. A large effusion pushes the mediastinum away; if it does not, look for collapse of the lung underneath. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00013337-000:name",
+   "caseId": "cxr-00013337-000",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.150396254641997057949965409467646376703"
+   ],
+   "start": {
+    "seriesUid": "2.25.150396254641997057949965409467646376703",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": true,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a pleural effusion. Blunted costophrenic angle or a meniscus that rises along the lateral chest wall. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00023058-004:locate",
+   "caseId": "cxr-00023058-004",
+   "type": "locate_finding",
+   "title": "Find the pleural effusion",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.132667421557787319702723659305473610453"
+   ],
+   "start": {
+    "seriesUid": "2.25.132667421557787319702723659305473610453",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00023058_004_pleural-effusion",
+     "name": "Pleural effusion",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look at both costophrenic angles and the shape of each hemidiaphragm."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Pleural fluid settles in the lowest part of the pleural space. On an upright PA film the first sign is blunting of the lateral costophrenic angle (the lateral view shows smaller amounts in the posterior sulcus); larger effusions form a meniscus that rises laterally and hide the hemidiaphragm. A large effusion pushes the mediastinum away; if it does not, look for collapse of the lung underneath. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00023058-004:name",
+   "caseId": "cxr-00023058-004",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.132667421557787319702723659305473610453"
+   ],
+   "start": {
+    "seriesUid": "2.25.132667421557787319702723659305473610453",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": true,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a pleural effusion. Blunted costophrenic angle or a meniscus that rises along the lateral chest wall. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00029894-000:locate",
+   "caseId": "cxr-00029894-000",
+   "type": "locate_finding",
+   "title": "Find the pleural effusion",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.32594979444301069309728013094989269652"
+   ],
+   "start": {
+    "seriesUid": "2.25.32594979444301069309728013094989269652",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00029894_000_pleural-effusion",
+     "name": "Pleural effusion",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look at both costophrenic angles and the shape of each hemidiaphragm."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Pleural fluid settles in the lowest part of the pleural space. On an upright PA film the first sign is blunting of the lateral costophrenic angle (the lateral view shows smaller amounts in the posterior sulcus); larger effusions form a meniscus that rises laterally and hide the hemidiaphragm. A large effusion pushes the mediastinum away; if it does not, look for collapse of the lung underneath. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00029894-000:name",
+   "caseId": "cxr-00029894-000",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.32594979444301069309728013094989269652"
+   ],
+   "start": {
+    "seriesUid": "2.25.32594979444301069309728013094989269652",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": true,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a pleural effusion. Blunted costophrenic angle or a meniscus that rises along the lateral chest wall. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.4",
+     "sectionId": null
+    },
+    {
+     "physical": 77,
+     "printed": "62",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.5",
+     "sectionId": null
+    },
+    {
+     "physical": 78,
+     "printed": "63",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.7",
+     "sectionId": null
+    },
+    {
+     "physical": 80,
+     "printed": "65",
+     "chapterId": "ch07",
+     "figureId": "Fig 7.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch07-o01",
+    "ch07-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00012299-002:locate",
+   "caseId": "cxr-00012299-002",
+   "type": "locate_finding",
+   "title": "Find the atelectasis",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.292836352412596997338610003098511020867"
+   ],
+   "start": {
+    "seriesUid": "2.25.292836352412596997338610003098511020867",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00012299_002_atelectasis",
+     "name": "Atelectasis",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look for signs of lost volume: displaced fissures, a raised hemidiaphragm, shift of the mediastinum or a hilum."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 65,
+     "printed": "50",
+     "chapterId": "ch06",
+     "figureId": "Box 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Table 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 67,
+     "printed": "52",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.2",
+     "sectionId": null
+    },
+    {
+     "physical": 68,
+     "printed": "53",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch06-o01",
+    "ch06-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00012299-002:name",
+   "caseId": "cxr-00012299-002",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.292836352412596997338610003098511020867"
+   ],
+   "start": {
+    "seriesUid": "2.25.292836352412596997338610003098511020867",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": true,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a atelectasis. Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift). The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 65,
+     "printed": "50",
+     "chapterId": "ch06",
+     "figureId": "Box 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Table 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 67,
+     "printed": "52",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.2",
+     "sectionId": null
+    },
+    {
+     "physical": 68,
+     "printed": "53",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch06-o01",
+    "ch06-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00016267-000:locate",
+   "caseId": "cxr-00016267-000",
+   "type": "locate_finding",
+   "title": "Find the atelectasis",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.156746103252885932781593040879107040118"
+   ],
+   "start": {
+    "seriesUid": "2.25.156746103252885932781593040879107040118",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00016267_000_atelectasis",
+     "name": "Atelectasis",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look for signs of lost volume: displaced fissures, a raised hemidiaphragm, shift of the mediastinum or a hilum."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 65,
+     "printed": "50",
+     "chapterId": "ch06",
+     "figureId": "Box 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Table 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 67,
+     "printed": "52",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.2",
+     "sectionId": null
+    },
+    {
+     "physical": 68,
+     "printed": "53",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch06-o01",
+    "ch06-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00016267-000:name",
+   "caseId": "cxr-00016267-000",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.156746103252885932781593040879107040118"
+   ],
+   "start": {
+    "seriesUid": "2.25.156746103252885932781593040879107040118",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": true,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a atelectasis. Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift). The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 65,
+     "printed": "50",
+     "chapterId": "ch06",
+     "figureId": "Box 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Table 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 67,
+     "printed": "52",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.2",
+     "sectionId": null
+    },
+    {
+     "physical": 68,
+     "printed": "53",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch06-o01",
+    "ch06-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00030674-000:locate",
+   "caseId": "cxr-00030674-000",
+   "type": "locate_finding",
+   "title": "Find the atelectasis",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.121712318527214242413644944875349087123"
+   ],
+   "start": {
+    "seriesUid": "2.25.121712318527214242413644944875349087123",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00030674_000_atelectasis",
+     "name": "Atelectasis",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look for signs of lost volume: displaced fissures, a raised hemidiaphragm, shift of the mediastinum or a hilum."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 65,
+     "printed": "50",
+     "chapterId": "ch06",
+     "figureId": "Box 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Table 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 67,
+     "printed": "52",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.2",
+     "sectionId": null
+    },
+    {
+     "physical": 68,
+     "printed": "53",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch06-o01",
+    "ch06-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00030674-000:name",
+   "caseId": "cxr-00030674-000",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.121712318527214242413644944875349087123"
+   ],
+   "start": {
+    "seriesUid": "2.25.121712318527214242413644944875349087123",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": true,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a atelectasis. Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift). The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 65,
+     "printed": "50",
+     "chapterId": "ch06",
+     "figureId": "Box 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 66,
+     "printed": "51",
+     "chapterId": "ch06",
+     "figureId": "Table 6.1",
+     "sectionId": null
+    },
+    {
+     "physical": 67,
+     "printed": "52",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.2",
+     "sectionId": null
+    },
+    {
+     "physical": 68,
+     "printed": "53",
+     "chapterId": "ch06",
+     "figureId": "Fig 6.6",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch06-o01",
+    "ch06-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00000377-004:locate",
+   "caseId": "cxr-00000377-004",
+   "type": "locate_finding",
+   "title": "Find the cardiomegaly",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.153207459673314134422184992845760679349"
+   ],
+   "start": {
+    "seriesUid": "2.25.153207459673314134422184992845760679349",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00000377_004_cardiomegaly",
+     "name": "Cardiomegaly",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the widest heart diameter against the widest inner chest diameter."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "On a PA film with a good inspiration the cardiothoracic ratio is the widest transverse diameter of the heart divided by the widest inner diameter of the chest; more than 0.5 suggests an enlarged cardiac silhouette. AP and poorly inspired films magnify the heart, so judge size on a PA film. A large silhouette can be chamber enlargement or pericardial fluid; the radiograph alone cannot always tell them apart. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": "Box 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": null,
+     "sectionId": "ch11-s03"
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.2",
+     "sectionId": null
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.3",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Table 11.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch11-o01",
+    "ch11-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00000377-004:name",
+   "caseId": "cxr-00000377-004",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.153207459673314134422184992845760679349"
+   ],
+   "start": {
+    "seriesUid": "2.25.153207459673314134422184992845760679349",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": true,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a cardiomegaly. Cardiothoracic ratio over 0.5 on a PA film with a good inspiration. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": "Box 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": null,
+     "sectionId": "ch11-s03"
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.2",
+     "sectionId": null
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.3",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Table 11.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch11-o01",
+    "ch11-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00000661-000:locate",
+   "caseId": "cxr-00000661-000",
+   "type": "locate_finding",
+   "title": "Find the cardiomegaly",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.83274867416939635552737997710228042399"
+   ],
+   "start": {
+    "seriesUid": "2.25.83274867416939635552737997710228042399",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00000661_000_cardiomegaly",
+     "name": "Cardiomegaly",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the widest heart diameter against the widest inner chest diameter."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "On a PA film with a good inspiration the cardiothoracic ratio is the widest transverse diameter of the heart divided by the widest inner diameter of the chest; more than 0.5 suggests an enlarged cardiac silhouette. AP and poorly inspired films magnify the heart, so judge size on a PA film. A large silhouette can be chamber enlargement or pericardial fluid; the radiograph alone cannot always tell them apart. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": "Box 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": null,
+     "sectionId": "ch11-s03"
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.2",
+     "sectionId": null
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.3",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Table 11.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch11-o01",
+    "ch11-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00000661-000:name",
+   "caseId": "cxr-00000661-000",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.83274867416939635552737997710228042399"
+   ],
+   "start": {
+    "seriesUid": "2.25.83274867416939635552737997710228042399",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": true,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a cardiomegaly. Cardiothoracic ratio over 0.5 on a PA film with a good inspiration. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": "Box 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": null,
+     "sectionId": "ch11-s03"
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.2",
+     "sectionId": null
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.3",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Table 11.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch11-o01",
+    "ch11-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00000845-000:locate",
+   "caseId": "cxr-00000845-000",
+   "type": "locate_finding",
+   "title": "Find the cardiomegaly",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.113148076060192092093137804964020190043"
+   ],
+   "start": {
+    "seriesUid": "2.25.113148076060192092093137804964020190043",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00000845_000_cardiomegaly",
+     "name": "Cardiomegaly",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the widest heart diameter against the widest inner chest diameter."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "On a PA film with a good inspiration the cardiothoracic ratio is the widest transverse diameter of the heart divided by the widest inner diameter of the chest; more than 0.5 suggests an enlarged cardiac silhouette. AP and poorly inspired films magnify the heart, so judge size on a PA film. A large silhouette can be chamber enlargement or pericardial fluid; the radiograph alone cannot always tell them apart. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": "Box 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": null,
+     "sectionId": "ch11-s03"
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.2",
+     "sectionId": null
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.3",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Table 11.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch11-o01",
+    "ch11-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00000845-000:name",
+   "caseId": "cxr-00000845-000",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.113148076060192092093137804964020190043"
+   ],
+   "start": {
+    "seriesUid": "2.25.113148076060192092093137804964020190043",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": true,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a cardiomegaly. Cardiothoracic ratio over 0.5 on a PA film with a good inspiration. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": "Box 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.1",
+     "sectionId": null
+    },
+    {
+     "physical": 131,
+     "printed": "111",
+     "chapterId": "ch11",
+     "figureId": null,
+     "sectionId": "ch11-s03"
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.2",
+     "sectionId": null
+    },
+    {
+     "physical": 133,
+     "printed": "113",
+     "chapterId": "ch11",
+     "figureId": "Fig 11.3",
+     "sectionId": null
+    },
+    {
+     "physical": 132,
+     "printed": "112",
+     "chapterId": "ch11",
+     "figureId": "Table 11.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch11-o01",
+    "ch11-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00001075-024:locate",
+   "caseId": "cxr-00001075-024",
+   "type": "locate_finding",
+   "title": "Find the lung mass",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.16323125627046451926343108225670860544"
+   ],
+   "start": {
+    "seriesUid": "2.25.16323125627046451926343108225670860544",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00001075_024_lung-mass",
+     "name": "Lung mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the two lungs zone by zone, including the hila and the areas behind the heart."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A mass is a lung opacity larger than 3 cm (smaller ones are nodules). Describe its size, margins (smooth, lobulated or spiculated), location and any cavitation, and look for what goes with it: hilar or mediastinal enlargement, an effusion, rib destruction or collapse beyond it. In an adult a lung mass must be explained; the radiograph shows it but does not give the diagnosis. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00001075-024:name",
+   "caseId": "cxr-00001075-024",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.16323125627046451926343108225670860544"
+   ],
+   "start": {
+    "seriesUid": "2.25.16323125627046451926343108225670860544",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": true,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a lung mass. A discrete opacity larger than 3 cm. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00011157-001:locate",
+   "caseId": "cxr-00011157-001",
+   "type": "locate_finding",
+   "title": "Find the lung mass",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.48766666126521754685024003338287144294"
+   ],
+   "start": {
+    "seriesUid": "2.25.48766666126521754685024003338287144294",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00011157_001_lung-mass",
+     "name": "Lung mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the two lungs zone by zone, including the hila and the areas behind the heart."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A mass is a lung opacity larger than 3 cm (smaller ones are nodules). Describe its size, margins (smooth, lobulated or spiculated), location and any cavitation, and look for what goes with it: hilar or mediastinal enlargement, an effusion, rib destruction or collapse beyond it. In an adult a lung mass must be explained; the radiograph shows it but does not give the diagnosis. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00011157-001:name",
+   "caseId": "cxr-00011157-001",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.48766666126521754685024003338287144294"
+   ],
+   "start": {
+    "seriesUid": "2.25.48766666126521754685024003338287144294",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": true,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a lung mass. A discrete opacity larger than 3 cm. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00022192-003:locate",
+   "caseId": "cxr-00022192-003",
+   "type": "locate_finding",
+   "title": "Find the lung mass",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.113901078422061512622190502315801344824"
+   ],
+   "start": {
+    "seriesUid": "2.25.113901078422061512622190502315801344824",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00022192_003_lung-mass",
+     "name": "Lung mass",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the two lungs zone by zone, including the hila and the areas behind the heart."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A mass is a lung opacity larger than 3 cm (smaller ones are nodules). Describe its size, margins (smooth, lobulated or spiculated), location and any cavitation, and look for what goes with it: hilar or mediastinal enlargement, an effusion, rib destruction or collapse beyond it. In an adult a lung mass must be explained; the radiograph shows it but does not give the diagnosis. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00022192-003:name",
+   "caseId": "cxr-00022192-003",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.113901078422061512622190502315801344824"
+   ],
+   "start": {
+    "seriesUid": "2.25.113901078422061512622190502315801344824",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": true,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a lung mass. A discrete opacity larger than 3 cm. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.13",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.17",
+     "sectionId": null
+    },
+    {
+     "physical": 123,
+     "printed": "103",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.18",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o05"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00020274-021:locate",
+   "caseId": "cxr-00020274-021",
+   "type": "locate_finding",
+   "title": "Find the lung nodule",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.199375388267783985677991710566335085745"
+   ],
+   "start": {
+    "seriesUid": "2.25.199375388267783985677991710566335085745",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00020274_021_lung-nodule",
+     "name": "Lung nodule",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the lungs zone by zone, and look through the heart and below the domes of the diaphragm."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.11",
+     "sectionId": null
+    },
+    {
+     "physical": 119,
+     "printed": "99",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.12",
+     "sectionId": null
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.14",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00020274-021:name",
+   "caseId": "cxr-00020274-021",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.199375388267783985677991710566335085745"
+   ],
+   "start": {
+    "seriesUid": "2.25.199375388267783985677991710566335085745",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": true,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a lung nodule. A round opacity up to 3 cm. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.11",
+     "sectionId": null
+    },
+    {
+     "physical": 119,
+     "printed": "99",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.12",
+     "sectionId": null
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.14",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00012374-000:locate",
+   "caseId": "cxr-00012374-000",
+   "type": "locate_finding",
+   "title": "Find the lung nodule",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.53166905343298243132258780158772954687"
+   ],
+   "start": {
+    "seriesUid": "2.25.53166905343298243132258780158772954687",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00012374_000_lung-nodule",
+     "name": "Lung nodule",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the lungs zone by zone, and look through the heart and below the domes of the diaphragm."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.11",
+     "sectionId": null
+    },
+    {
+     "physical": 119,
+     "printed": "99",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.12",
+     "sectionId": null
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.14",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00012374-000:name",
+   "caseId": "cxr-00012374-000",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.53166905343298243132258780158772954687"
+   ],
+   "start": {
+    "seriesUid": "2.25.53166905343298243132258780158772954687",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": true,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a lung nodule. A round opacity up to 3 cm. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.11",
+     "sectionId": null
+    },
+    {
+     "physical": 119,
+     "printed": "99",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.12",
+     "sectionId": null
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.14",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00013673-001:locate",
+   "caseId": "cxr-00013673-001",
+   "type": "locate_finding",
+   "title": "Find the lung nodule",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.276789449277025666225530129592526450656"
+   ],
+   "start": {
+    "seriesUid": "2.25.276789449277025666225530129592526450656",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00013673_001_lung-nodule",
+     "name": "Lung nodule",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the lungs zone by zone, and look through the heart and below the domes of the diaphragm."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.11",
+     "sectionId": null
+    },
+    {
+     "physical": 119,
+     "printed": "99",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.12",
+     "sectionId": null
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.14",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00013673-001:name",
+   "caseId": "cxr-00013673-001",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.276789449277025666225530129592526450656"
+   ],
+   "start": {
+    "seriesUid": "2.25.276789449277025666225530129592526450656",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": true,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": false,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a lung nodule. A round opacity up to 3 cm. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 118,
+     "printed": "98",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.11",
+     "sectionId": null
+    },
+    {
+     "physical": 119,
+     "printed": "99",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.12",
+     "sectionId": null
+    },
+    {
+     "physical": 120,
+     "printed": "100",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.14",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o04"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00001933-000:locate",
+   "caseId": "cxr-00001933-000",
+   "type": "locate_finding",
+   "title": "Find the pneumonia",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.76117809407433285069582359466273289089"
+   ],
+   "start": {
+    "seriesUid": "2.25.76117809407433285069582359466273289089",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00001933_000_pneumonia",
+     "name": "Pneumonia",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look for a hazy or dense area that hides a border it touches (heart border, hemidiaphragm, aortic knob)."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Pneumonia fills the air spaces: a fluffy or dense opacity with ill-defined edges, often with air bronchograms, filling a segment or lobe. The silhouette sign localises it: a lost right heart border means right middle lobe, a lost left heart border means lingula, a lost hemidiaphragm means a lower lobe. The film cannot tell pneumonia from other material filling the air spaces (fluid, blood, aspiration); the clinical setting does. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Box 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.2",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.3",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.4",
+     "sectionId": null
+    },
+    {
+     "physical": 87,
+     "printed": "72",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch08-o01",
+    "ch08-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00001933-000:name",
+   "caseId": "cxr-00001933-000",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.76117809407433285069582359466273289089"
+   ],
+   "start": {
+    "seriesUid": "2.25.76117809407433285069582359466273289089",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": true,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a pneumonia. Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Box 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.2",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.3",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.4",
+     "sectionId": null
+    },
+    {
+     "physical": 87,
+     "printed": "72",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch08-o01",
+    "ch08-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00003894-005:locate",
+   "caseId": "cxr-00003894-005",
+   "type": "locate_finding",
+   "title": "Find the pneumonia",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.115462320984540225930052486029285432862"
+   ],
+   "start": {
+    "seriesUid": "2.25.115462320984540225930052486029285432862",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00003894_005_pneumonia",
+     "name": "Pneumonia",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look for a hazy or dense area that hides a border it touches (heart border, hemidiaphragm, aortic knob)."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Pneumonia fills the air spaces: a fluffy or dense opacity with ill-defined edges, often with air bronchograms, filling a segment or lobe. The silhouette sign localises it: a lost right heart border means right middle lobe, a lost left heart border means lingula, a lost hemidiaphragm means a lower lobe. The film cannot tell pneumonia from other material filling the air spaces (fluid, blood, aspiration); the clinical setting does. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Box 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.2",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.3",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.4",
+     "sectionId": null
+    },
+    {
+     "physical": 87,
+     "printed": "72",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch08-o01",
+    "ch08-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00014294-011:locate",
+   "caseId": "cxr-00014294-011",
+   "type": "locate_finding",
+   "title": "Find the pneumonia",
+   "prompt": "Read this frontal chest radiograph systematically. Box the main abnormality (or mark it with a point), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.304307270072566630619033213205732684368"
+   ],
+   "start": {
+    "seriesUid": "2.25.304307270072566630619033213205732684368",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "nih-00014294_011_pneumonia",
+     "name": "Pneumonia",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 15,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look for a hazy or dense area that hides a border it touches (heart border, hemidiaphragm, aortic knob)."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Pneumonia fills the air spaces: a fluffy or dense opacity with ill-defined edges, often with air bronchograms, filling a segment or lobe. The silhouette sign localises it: a lost right heart border means right middle lobe, a lost left heart border means lingula, a lost hemidiaphragm means a lower lobe. The film cannot tell pneumonia from other material filling the air spaces (fluid, blood, aspiration); the clinical setting does. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "bookAnchors": [
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Box 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.2",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.3",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.4",
+     "sectionId": null
+    },
+    {
+     "physical": 87,
+     "printed": "72",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch08-o01",
+    "ch08-o02"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "cxr-00014294-011:name",
+   "caseId": "cxr-00014294-011",
+   "type": "differential",
+   "title": "Name the main finding",
+   "prompt": "Which is the main finding on this radiograph?",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.304307270072566630619033213205732684368"
+   ],
+   "start": {
+    "seriesUid": "2.25.304307270072566630619033213205732684368",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "ptx",
+      "text": "Pneumothorax",
+      "correct": false,
+      "why": "A thin white visceral pleural line with no lung markings beyond it."
+     },
+     {
+      "id": "eff",
+      "text": "Pleural effusion",
+      "correct": false,
+      "why": "Blunted costophrenic angle or a meniscus that rises along the lateral chest wall."
+     },
+     {
+      "id": "atel",
+      "text": "Atelectasis",
+      "correct": false,
+      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+     },
+     {
+      "id": "cardio",
+      "text": "Cardiomegaly",
+      "correct": false,
+      "why": "Cardiothoracic ratio over 0.5 on a PA film with a good inspiration."
+     },
+     {
+      "id": "mass",
+      "text": "Lung mass",
+      "correct": false,
+      "why": "A discrete opacity larger than 3 cm."
+     },
+     {
+      "id": "nod",
+      "text": "Lung nodule",
+      "correct": false,
+      "why": "A round opacity up to 3 cm."
+     },
+     {
+      "id": "pna",
+      "text": "Pneumonia",
+      "correct": true,
+      "why": "Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
+    }
+   ],
+   "explanation": "The radiologist boxed a pneumonia. Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "bookAnchors": [
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Box 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.1",
+     "sectionId": null
+    },
+    {
+     "physical": 85,
+     "printed": "70",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.2",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.3",
+     "sectionId": null
+    },
+    {
+     "physical": 86,
+     "printed": "71",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.4",
+     "sectionId": null
+    },
+    {
+     "physical": 87,
+     "printed": "72",
+     "chapterId": "ch08",
+     "figureId": "Fig 8.5",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch08-o01",
+    "ch08-o02"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

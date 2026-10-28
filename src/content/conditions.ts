@@ -102,6 +102,7 @@ export const CONDITIONS: Condition[] = [
       { physical: 252, chapterId: 'ch19', heading: 'Pneumothorax', note: 'Point-of-care ultrasound' },
     ],
     related: ['tension_pneumothorax', 'hemothorax', 'pneumomediastinum', 'subcutaneous_emphysema', 'rib_fracture'],
+    evidence: [{ kind: 'finding', classIds: ['finding:pneumothorax'], note: 'Pneumothorax boxed by a radiologist on a chest radiograph (NIH ChestX-ray14; the side is not recorded in the file)' }],
   },
   {
     id: 'tension_pneumothorax',
@@ -138,6 +139,7 @@ export const CONDITIONS: Condition[] = [
       { physical: 252, chapterId: 'ch19', heading: 'Pleural Effusion', note: 'Ultrasound' },
     ],
     related: ['hemothorax', 'empyema', 'congestive_heart_failure', 'opacified_hemithorax', 'atelectasis'],
+    evidence: [{ kind: 'finding', classIds: ['finding:pleural_effusion'], note: 'Effusion boxed by a radiologist on a chest radiograph (NIH ChestX-ray14; the side is not recorded in the file)' }],
   },
   {
     id: 'empyema',
@@ -195,7 +197,10 @@ export const CONDITIONS: Condition[] = [
       { physical: 90, chapterId: 'ch08', heading: 'How Pneumonia Resolves' },
     ],
     related: ['covid19', 'airspace_disease', 'atelectasis', 'lung_cavity', 'empyema'],
-    evidence: [{ kind: 'reader_labels', labels: RICORD_OPACITIES, note: 'Lung opacities graded by expert readers on a radiograph of a patient with a positive COVID-19 test' }],
+    evidence: [
+      { kind: 'reader_labels', labels: RICORD_OPACITIES, note: 'Lung opacities graded by expert readers on a radiograph of a patient with a positive COVID-19 test' },
+      { kind: 'finding', classIds: ['finding:pneumonia'], note: 'Pneumonia boxed by a radiologist on a chest radiograph (NIH ChestX-ray14; the side is not recorded in the file)' },
+    ],
   },
   {
     id: 'covid19',
@@ -272,6 +277,7 @@ export const CONDITIONS: Condition[] = [
       { physical: 69, chapterId: 'ch06', heading: 'Patterns of Collapse in Lobar Atelectasis' },
     ],
     related: ['pneumonia', 'opacified_hemithorax', 'lung_cancer', 'pleural_effusion'],
+    evidence: [{ kind: 'finding', classIds: ['finding:atelectasis'], note: 'Atelectasis boxed by a radiologist on a chest radiograph (NIH ChestX-ray14; the side is not recorded in the file)' }],
   },
   {
     id: 'lung_nodule',
@@ -292,7 +298,7 @@ export const CONDITIONS: Condition[] = [
       { physical: 123, chapterId: 'ch10', heading: 'Multiple Nodules' },
     ],
     related: ['lung_cancer', 'lung_metastases'],
-    evidence: [{ kind: 'finding', classIds: ['finding:lung_nodule'], note: 'Outlined by LIDC-IDRI radiologists (nodules ≥3 mm)' }],
+    evidence: [{ kind: 'finding', classIds: ['finding:lung_nodule'], note: 'Outlined by LIDC-IDRI radiologists on CT (nodules ≥3 mm), or boxed by a radiologist on a chest radiograph (NIH ChestX-ray14)' }],
   },
   {
     id: 'lung_cancer',
@@ -311,6 +317,7 @@ export const CONDITIONS: Condition[] = [
       { physical: 123, chapterId: 'ch10', heading: 'Bronchogenic Carcinoma Presenting with Bronchial Obstruction' },
     ],
     related: ['lung_nodule', 'atelectasis', 'lung_metastases'],
+    evidence: [{ kind: 'finding', classIds: ['finding:lung_mass'], note: 'Lung mass boxed by a radiologist on a chest radiograph (NIH ChestX-ray14; the side is not recorded in the file); the diagnosis behind the mass is not given' }],
   },
   {
     id: 'lung_metastases',
@@ -415,6 +422,7 @@ export const CONDITIONS: Condition[] = [
       { physical: 116, chapterId: 'ch10', heading: 'Posterior Mediastinal Masses' },
     ],
     related: ['lung_cancer'],
+    evidence: [{ kind: 'finding', classIds: ['finding:mediastinal_lymphadenopathy'], note: 'Enlarged mediastinal lymph nodes, every abnormal node outlined (Mediastinal-Lymph-Node-SEG, TCIA): one cause of a middle mediastinal mass' }],
   },
   {
     id: 'pulmonary_contusion',
@@ -508,6 +516,7 @@ export const CONDITIONS: Condition[] = [
       { physical: 427, chapterId: 'appA', heading: 'Pulmonary Ventilation/Perfusion Scans for Pulmonary Embolism' },
     ],
     related: ['pleural_effusion'],
+    evidence: [{ kind: 'finding', classIds: ['finding:pulmonary_embolism'], note: 'Emboli outlined by radiologists on CT pulmonary angiography (FUMPE)' }],
   },
   {
     id: 'congestive_heart_failure',
@@ -544,6 +553,7 @@ export const CONDITIONS: Condition[] = [
       { physical: 133, chapterId: 'ch11', heading: 'Recognizing Cardiomegaly on the Lateral Chest Radiograph' },
     ],
     related: ['pericardial_effusion', 'congestive_heart_failure'],
+    evidence: [{ kind: 'finding', classIds: ['finding:cardiomegaly'], note: 'Enlarged heart boxed by a radiologist on a chest radiograph (NIH ChestX-ray14; the side is not recorded in the file)' }],
   },
   {
     id: 'pericardial_effusion',
@@ -772,6 +782,7 @@ export const CONDITIONS: Condition[] = [
       { physical: 213, chapterId: 'ch17', heading: 'Metastases' },
     ],
     related: ['cirrhosis', 'bone_metastases', 'lung_metastases'],
+    evidence: [{ kind: 'finding', classIds: ['finding:liver_metastasis'], note: 'Metastases outlined on the CT before liver surgery (Colorectal-Liver-Metastases, TCIA)' }],
   },
   {
     id: 'renal_mass',
@@ -847,6 +858,7 @@ export const CONDITIONS: Condition[] = [
       { physical: 314, chapterId: 'ch23', heading: 'Indirect Signs of a Possible Fracture' },
     ],
     related: ['rib_fracture', 'compression_fracture', 'skull_fracture'],
+    evidence: [{ kind: 'finding', classIds: ['finding:fracture'], note: 'Fracture outlined by experts on the radiograph (FracAtlas)' }],
   },
   {
     id: 'compression_fracture',

@@ -16,8 +16,8 @@
    "manifest": "chest-pairs/pack.json",
    "lessons": "chest-pairs/lessons.json",
    "bytes": 211731020,
-   "distribution": "fetch_script",
-   "note": "6 subjects, 12 studies, 16 series, 807 instances, 8 reference targets; DICOM 210.7 MB. Not committed: run `python scripts/data/packs.py all chest-pairs` to download from TCIA and rebuild."
+   "distribution": "repo",
+   "note": "6 subjects, 12 studies, 16 series, 807 instances, 8 reference targets; DICOM 210.7 MB. Committed to the repository; rebuild from the source with `python scripts/data/packs.py all chest-pairs`."
   },
   {
    "id": "ct-mri-pairs",
@@ -25,8 +25,8 @@
    "manifest": "ct-mri-pairs/pack.json",
    "lessons": "ct-mri-pairs/lessons.json",
    "bytes": 62721740,
-   "distribution": "fetch_script",
-   "note": "2 subjects, 4 studies, 6 series, 462 instances, 12 reference targets; DICOM 58.2 MB. Not committed: run `python scripts/data/packs.py all ct-mri-pairs` to download from TCIA and rebuild."
+   "distribution": "repo",
+   "note": "2 subjects, 4 studies, 6 series, 462 instances, 12 reference targets; DICOM 58.2 MB. Committed to the repository; rebuild from the source with `python scripts/data/packs.py all ct-mri-pairs`."
   },
   {
    "id": "body",
@@ -34,8 +34,8 @@
    "manifest": "body/pack.json",
    "lessons": "body/lessons.json",
    "bytes": 87158420,
-   "distribution": "fetch_script",
-   "note": "4 subjects, 4 studies, 4 series, 485 instances, 12 reference targets; DICOM 81.6 MB. Not committed: run `python scripts/data/packs.py all body` to download from TCIA and rebuild."
+   "distribution": "repo",
+   "note": "4 subjects, 4 studies, 4 series, 485 instances, 12 reference targets; DICOM 81.6 MB. Committed to the repository; rebuild from the source with `python scripts/data/packs.py all body`."
   },
   {
    "id": "neuro-msk",
@@ -43,8 +43,8 @@
    "manifest": "neuro-msk/pack.json",
    "lessons": "neuro-msk/lessons.json",
    "bytes": 57490495,
-   "distribution": "fetch_script",
-   "note": "3 subjects, 3 studies, 5 series, 523 instances, 21 reference targets; DICOM 53.3 MB. Not committed: run `python scripts/data/packs.py all neuro-msk` to download from TCIA and rebuild."
+   "distribution": "repo",
+   "note": "3 subjects, 3 studies, 5 series, 523 instances, 21 reference targets; DICOM 53.3 MB. Committed to the repository; rebuild from the source with `python scripts/data/packs.py all neuro-msk`."
   },
   {
    "id": "expansion",
@@ -52,8 +52,8 @@
    "manifest": "expansion/pack.json",
    "lessons": "expansion/lessons.json",
    "bytes": 275886912,
-   "distribution": "fetch_script",
-   "note": "12 subjects, 15 studies, 17 series, 1892 instances, 66 reference targets; DICOM 263.1 MB. Not committed: run `python scripts/data/packs.py all expansion` to download from TCIA and rebuild."
+   "distribution": "repo",
+   "note": "12 subjects, 15 studies, 17 series, 1892 instances, 66 reference targets; DICOM 263.1 MB. Committed to the repository; rebuild from the source with `python scripts/data/packs.py all expansion`."
   },
   {
    "id": "vessel-drafts",
@@ -79,8 +79,44 @@
    "manifest": "more-ct-xr/pack.json",
    "lessons": null,
    "bytes": 512342709,
-   "distribution": "fetch_script",
-   "note": "21 subjects, 29 studies, 29 series, 2375 instances, 143 reference targets; DICOM 464.0 MB. Not committed: run `python scripts/data/packs.py all more-ct-xr` to download from TCIA and rebuild."
+   "distribution": "repo",
+   "note": "21 subjects, 29 studies, 29 series, 2375 instances, 143 reference targets; DICOM 464.0 MB. Committed to the repository; rebuild from the source with `python scripts/data/packs.py all more-ct-xr`."
+  },
+  {
+   "id": "cxr-findings",
+   "title": "Chest radiograph findings: pneumothorax, effusion, collapse, big heart, mass, nodule, pneumonia",
+   "manifest": "cxr-findings/pack.json",
+   "lessons": "cxr-findings/lessons.json",
+   "bytes": 9698058,
+   "distribution": "repo",
+   "note": "23 subjects, 23 studies, 23 series, 23 instances, 23 reference targets; DICOM 8.8 MB. Committed to the repository; rebuild with scripts/data/external.py + build_external.py."
+  },
+  {
+   "id": "pe-cta",
+   "title": "CT pulmonary angiography: pulmonary embolism with radiologist masks",
+   "manifest": "pe-cta/pack.json",
+   "lessons": "pe-cta/lessons.json",
+   "bytes": 78562117,
+   "distribution": "repo",
+   "note": "2 subjects, 2 studies, 2 series, 434 instances, 2 reference targets; DICOM 78.1 MB. Committed to the repository; rebuild with scripts/data/external.py + build_external.py."
+  },
+  {
+   "id": "ct-findings",
+   "title": "CT findings: liver metastases and enlarged mediastinal lymph nodes",
+   "manifest": "ct-findings/pack.json",
+   "lessons": "ct-findings/lessons.json",
+   "bytes": 25409831,
+   "distribution": "repo",
+   "note": "3 subjects, 3 studies, 3 series, 146 instances, 7 reference targets; DICOM 25.0 MB. Committed to the repository."
+  },
+  {
+   "id": "fx-radiographs",
+   "title": "Fracture radiographs: wrist, ankle, shoulder, knee and hip with expert outlines",
+   "manifest": "fx-radiographs/pack.json",
+   "lessons": "fx-radiographs/lessons.json",
+   "bytes": 9477686,
+   "distribution": "repo",
+   "note": "5 subjects, 5 studies, 5 series, 5 instances, 5 reference targets; DICOM 9.3 MB. Committed to the repository; rebuild with scripts/data/external.py + build_external.py."
   }
  ]
 }

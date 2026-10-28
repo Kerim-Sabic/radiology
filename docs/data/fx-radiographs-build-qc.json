@@ -1,0 +1,85 @@
+{
+ "packId": "fx-radiographs",
+ "generatedAt": "2026-10-28T15:32:13Z",
+ "packBytesExcludingLessons": 9447735,
+ "budgetBytes": 40000000,
+ "series": [
+  {
+   "uid": "2.25.163707180555032980742915029109041760796",
+   "short": "dx-ce68591eb2",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 1752398
+  },
+  {
+   "uid": "2.25.212063392229295072408746075479873735391",
+   "short": "dx-9ae8bb88d4",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 1696108
+  },
+  {
+   "uid": "2.25.119885054870806771507735516824016318077",
+   "short": "dx-4a5d8d27e0",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 2746724
+  },
+  {
+   "uid": "2.25.11562704783470875146150731697017748118",
+   "short": "dx-205a752032",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 1296254
+  },
+  {
+   "uid": "2.25.64761760486751186256016515571201814575",
+   "short": "dx-af34e497ea",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 1830854
+  }
+ ],
+ "targets": [
+  "fracatlas-img0000019_fracture",
+  "fracatlas-img0000151_fracture",
+  "fracatlas-img0002302_fracture",
+  "fracatlas-img0002308_fracture",
+  "fracatlas-img0002337_fracture"
+ ]
+}

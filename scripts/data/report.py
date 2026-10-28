@@ -63,7 +63,7 @@ def main() -> None:
       f"{mb(tot['dicom'])} | {mb(tot['all'])} | 1300 MB overall |")
     w(f"\nAll {len(packs)} packs built by this pipeline pass `validate_pack.py` (files re-read, sha256/bytes, pixel decode, IPP order, target-to-SOP mapping and bounds) and the "
       "app's zod contract (`src/schema/content.ts`, via `scripts/data/zod_check.mjs`). `public/packs/index.json` lists every pack with the real "
-      "on-disk byte total (`starter` = repo; all others = fetch_script). `manifest`/`lessons` paths in index.json are relative to index.json.\n")
+      "on-disk byte total; every pack is committed to the repository (distribution = repo). `manifest`/`lessons` paths in index.json are relative to index.json.\n")
 
     w("## 2. Selection and rationale\n")
     for pid, (m, q) in packs.items():

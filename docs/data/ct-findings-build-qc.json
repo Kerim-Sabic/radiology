@@ -1,0 +1,292 @@
+{
+ "packId": "ct-findings",
+ "generatedAt": "2026-10-28T15:36:13Z",
+ "packBytesExcludingLessons": 25394651,
+ "budgetBytes": 150000000,
+ "series": [
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.9203.8273.570242987820172162772758577346",
+   "short": "ct-2ec235e0b6",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 30,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 30
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 1.500000001897206e-05,
+   "bytes": 4892780,
+   "rawBytes": 15818700
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.273910224912592375430895644657966044381",
+   "short": "ct-cd1bbf85ad",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 59,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 59
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 11408178,
+   "rawBytes": 31096402
+  },
+  {
+   "uid": "1.3.6.1.4.1.14519.5.2.1.142260788480108655336896236659788697995",
+   "short": "ct-71b25c56cb",
+   "modality": "CT",
+   "role": "diagnostic",
+   "instances": 57,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 57
+   },
+   "maxStackShearDeg": 0.0,
+   "maxSpacingDeviation": 0.0,
+   "bytes": 8744970,
+   "rawBytes": 30024664
+  }
+ ],
+ "annotations": [
+  {
+   "segSop": "1.3.6.1.4.1.14519.5.2.1.9203.8273.124029834717787655295045253801",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.9203.8273.570242987820172162772758577346",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {
+    "1-4": 5510,
+    "1-3": 2804,
+    "1-6": 887,
+    "1-2": 87543,
+    "1-5": 3504,
+    "1-7": 13092,
+    "2-4": 1847,
+    "2-3": 445
+   },
+   "contentCreator": "",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "Liver",
+     "targetId": "crlm-ct-1140_liver",
+     "algorithmType": "MANUAL",
+     "planes": 21,
+     "framesTotal": 21,
+     "emptyFrames": 0,
+     "byRef": 21,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 4,
+     "outlineVertexCentroidLps": [
+      -77.5,
+      -17.0,
+      -275.6
+     ]
+    },
+    {
+     "segment": 2,
+     "label": "Liver Remnant",
+     "targetId": "crlm-ct-1140_planned-liver-remnant",
+     "algorithmType": "MANUAL",
+     "planes": 16,
+     "framesTotal": 16,
+     "emptyFrames": 0,
+     "byRef": 16,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -39.0,
+      -61.2,
+      -266.4
+     ]
+    },
+    {
+     "segment": 3,
+     "label": "Hepatic",
+     "targetId": "crlm-ct-1140_hepatic-veins",
+     "algorithmType": "MANUAL",
+     "planes": 15,
+     "framesTotal": 15,
+     "emptyFrames": 0,
+     "byRef": 15,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -67.6,
+      -11.5,
+      -271.9
+     ]
+    },
+    {
+     "segment": 4,
+     "label": "Portal",
+     "targetId": "crlm-ct-1140_portal-vein",
+     "algorithmType": "MANUAL",
+     "planes": 18,
+     "framesTotal": 18,
+     "emptyFrames": 0,
+     "byRef": 18,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -72.2,
+      -18.2,
+      -273.0
+     ]
+    },
+    {
+     "segment": 5,
+     "label": "Tumor_1",
+     "targetId": "crlm-ct-1140_liver-metastasis-1",
+     "algorithmType": "MANUAL",
+     "planes": 5,
+     "framesTotal": 5,
+     "emptyFrames": 0,
+     "byRef": 5,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -102.1,
+      -35.5,
+      -280.2
+     ]
+    },
+    {
+     "segment": 6,
+     "label": "Tumor_2",
+     "targetId": "crlm-ct-1140_liver-metastasis-2",
+     "algorithmType": "MANUAL",
+     "planes": 2,
+     "framesTotal": 2,
+     "emptyFrames": 0,
+     "byRef": 2,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -120.8,
+      -0.1,
+      -327.3
+     ]
+    },
+    {
+     "segment": 7,
+     "label": "Tumor_3",
+     "targetId": "crlm-ct-1140_liver-metastasis-3",
+     "algorithmType": "MANUAL",
+     "planes": 8,
+     "framesTotal": 8,
+     "emptyFrames": 0,
+     "byRef": 8,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -71.9,
+      55.5,
+      -270.7
+     ]
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.9203.8273.247666596121484068332106599142",
+   "subject": "tcia:Colorectal-Liver-Metastases:CRLM-CT-1140"
+  },
+  {
+   "segSop": "1.3.6.1.4.1.14519.5.2.1.3839203849565602615541238673408716161",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.273910224912592375430895644657966044381",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {},
+   "contentCreator": "",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "Mediastinal lymph node",
+     "targetId": "lnq-0230_enlarged-mediastinal-lymph-nodes",
+     "algorithmType": "MANUAL",
+     "planes": 28,
+     "framesTotal": 28,
+     "emptyFrames": 0,
+     "byRef": 28,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      17.0,
+      -195.2,
+      106.9
+     ]
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.179373970458908283296959945479251220074",
+   "subject": "tcia:Mediastinal-Lymph-Node-SEG:case_0230"
+  },
+  {
+   "segSop": "1.3.6.1.4.1.14519.5.2.1.52152500899559151324838367853300482264",
+   "referencedSeries": "1.3.6.1.4.1.14519.5.2.1.142260788480108655336896236659788697995",
+   "segmentationType": "BINARY",
+   "pairwiseOverlapPixels": {},
+   "contentCreator": "",
+   "segments": [
+    {
+     "segment": 1,
+     "label": "Mediastinal lymph node",
+     "targetId": "lnq-0837_enlarged-mediastinal-lymph-nodes",
+     "algorithmType": "MANUAL",
+     "planes": 23,
+     "framesTotal": 23,
+     "emptyFrames": 0,
+     "byRef": 23,
+     "byPos": 0,
+     "unmatched": 0,
+     "notNearest": 0,
+     "maxFrameToSliceMm": 0.0,
+     "resampledFrames": 0,
+     "holes": 0,
+     "outlineVertexCentroidLps": [
+      -7.3,
+      49.4,
+      1794.2
+     ]
+    }
+   ],
+   "kind": "seg",
+   "annotationSeriesUid": "1.3.6.1.4.1.14519.5.2.1.19983468511194992132015619551748354695",
+   "subject": "tcia:Mediastinal-Lymph-Node-SEG:case_0837"
+  }
+ ]
+}

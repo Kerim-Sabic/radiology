@@ -1,0 +1,423 @@
+{
+ "schemaVersion": 1,
+ "packId": "pe-cta",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "pe-pat005",
+   "packId": "pe-cta",
+   "neutralTitle": "CT chest with contrast · FUMPE PAT005",
+   "learnTitle": "Pulmonary embolism on CT pulmonary angiography (radiologists' mask)",
+   "subjectKey": "figshare:FUMPE:PAT005",
+   "studyUids": [
+    "2.25.188070595313388473937610407432780011209"
+   ],
+   "primarySeriesUid": "2.25.225694208448586268817010326638561875843",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 124,
+     "printed": "104",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.20",
+     "sectionId": null
+    },
+    {
+     "physical": 125,
+     "printed": "105",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The emboli were marked by two radiologists (FUMPE). Saddle embolus: the mask spans the main pulmonary artery bifurcation into both pulmonary arteries (checked by overlay). Nothing else is outlined.",
+   "learnNotes": "On CT pulmonary angiography the pulmonary arteries are bright with contrast. An embolus is a filling defect: grey, unenhanced clot inside the white lumen, either with contrast around it or blocking the vessel. A saddle embolus straddles the bifurcation of the main pulmonary artery. Follow every pulmonary artery from the trunk out to the segmental branches on a wide window and in two planes. Then look at the consequences: a right ventricle larger than the left (right heart strain) and peripheral wedge-shaped opacities (infarcts)."
+  },
+  {
+   "id": "pe-pat021",
+   "packId": "pe-cta",
+   "neutralTitle": "CT chest with contrast · FUMPE PAT021",
+   "learnTitle": "Pulmonary embolism on CT pulmonary angiography (radiologists' mask)",
+   "subjectKey": "figshare:FUMPE:PAT021",
+   "studyUids": [
+    "2.25.1547359993828718243321428711369990629"
+   ],
+   "primarySeriesUid": "2.25.208016074378713353746067436351091429943",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o07"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 124,
+     "printed": "104",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.20",
+     "sectionId": null
+    },
+    {
+     "physical": 125,
+     "printed": "105",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The emboli were marked by two radiologists (FUMPE). Large embolus in the right pulmonary artery (checked by overlay); a large right pleural effusion is also visible but not outlined. Nothing else is outlined.",
+   "learnNotes": "On CT pulmonary angiography the pulmonary arteries are bright with contrast. An embolus is a filling defect: grey, unenhanced clot inside the white lumen, either with contrast around it or blocking the vessel. A saddle embolus straddles the bifurcation of the main pulmonary artery. Follow every pulmonary artery from the trunk out to the segmental branches on a wide window and in two planes. Then look at the consequences: a right ventricle larger than the left (right heart strain) and peripheral wedge-shaped opacities (infarcts)."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "pe-pat005:locate",
+   "caseId": "pe-pat005",
+   "type": "locate_finding",
+   "title": "Find the pulmonary embolus",
+   "prompt": "Review the pulmonary arteries from the main trunk to the segmental branches. Mark any filling defect you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.225694208448586268817010326638561875843"
+   ],
+   "start": {
+    "seriesUid": "2.25.225694208448586268817010326638561875843",
+    "slice": "middle",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "fumpe-pat005_pulmonary-embolism",
+     "name": "Pulmonary embolus",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Start at the main pulmonary artery and follow the right and left pulmonary arteries outwards; clot is grey inside the white lumen."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "fumpe-pat005_pulmonary-embolism"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "On CT pulmonary angiography the pulmonary arteries are bright with contrast. An embolus is a filling defect: grey, unenhanced clot inside the white lumen, either with contrast around it or blocking the vessel. A saddle embolus straddles the bifurcation of the main pulmonary artery. Follow every pulmonary artery from the trunk out to the segmental branches on a wide window and in two planes. Then look at the consequences: a right ventricle larger than the left (right heart strain) and peripheral wedge-shaped opacities (infarcts). Any mark inside the radiologists' mask, on a slice within 1.5 mm, counts.",
+   "bookAnchors": [
+    {
+     "physical": 124,
+     "printed": "104",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.20",
+     "sectionId": null
+    },
+    {
+     "physical": 125,
+     "printed": "105",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o07"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "pe-pat005:oral",
+   "caseId": "pe-pat005",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a flow artefact from poorly mixed contrast is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.225694208448586268817010326638561875843"
+   ],
+   "start": {
+    "seriesUid": "2.25.225694208448586268817010326638561875843",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (the clot's age and the heart's response need more than one look)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a flow artefact from poorly mixed contrast) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 124,
+     "printed": "104",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.20",
+     "sectionId": null
+    },
+    {
+     "physical": 125,
+     "printed": "105",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o07"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "pe-pat021:locate",
+   "caseId": "pe-pat021",
+   "type": "locate_finding",
+   "title": "Find the pulmonary embolus",
+   "prompt": "Review the pulmonary arteries from the main trunk to the segmental branches. Mark any filling defect you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.208016074378713353746067436351091429943"
+   ],
+   "start": {
+    "seriesUid": "2.25.208016074378713353746067436351091429943",
+    "slice": "middle",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "fumpe-pat021_pulmonary-embolism",
+     "name": "Pulmonary embolus",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Start at the main pulmonary artery and follow the right and left pulmonary arteries outwards; clot is grey inside the white lumen."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "fumpe-pat021_pulmonary-embolism"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "On CT pulmonary angiography the pulmonary arteries are bright with contrast. An embolus is a filling defect: grey, unenhanced clot inside the white lumen, either with contrast around it or blocking the vessel. A saddle embolus straddles the bifurcation of the main pulmonary artery. Follow every pulmonary artery from the trunk out to the segmental branches on a wide window and in two planes. Then look at the consequences: a right ventricle larger than the left (right heart strain) and peripheral wedge-shaped opacities (infarcts). Any mark inside the radiologists' mask, on a slice within 1.5 mm, counts.",
+   "bookAnchors": [
+    {
+     "physical": 124,
+     "printed": "104",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.20",
+     "sectionId": null
+    },
+    {
+     "physical": 125,
+     "printed": "105",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o07"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "pe-pat021:oral",
+   "caseId": "pe-pat021",
+   "type": "differential",
+   "title": "Oral exam: show it, describe it, defend it",
+   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a flow artefact from poorly mixed contrast is less likely.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.208016074378713353746067436351091429943"
+   ],
+   "start": {
+    "seriesUid": "2.25.208016074378713353746067436351091429943",
+    "slice": "first",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [],
+   "grading": {
+    "kind": "self_review"
+   },
+   "scoring": "exploratory_self_review",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Keep it to four sentences. Examiners reward a clear search pattern and an honest statement of what the images cannot tell you (the clot's age and the heart's response need more than one look)."
+    }
+   ],
+   "explanation": "There is no automatic grader for free-text reasoning. Compare your answer with the checklist and the linked book pages.",
+   "rubric": [
+    {
+     "id": "show",
+     "text": "Showed the finding on the right series and slice",
+     "weight": "essential",
+     "category": "finding"
+    },
+    {
+     "id": "desc",
+     "text": "One-sentence description with location, size and pattern",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "lead",
+     "text": "Leading interpretation supported by named image features",
+     "weight": "essential",
+     "category": "impression"
+    },
+    {
+     "id": "alt",
+     "text": "Closest alternative (a flow artefact from poorly mixed contrast) addressed with opposing evidence",
+     "weight": "essential",
+     "category": "differential"
+    },
+    {
+     "id": "limit",
+     "text": "Stated what needs comparison, other sequences/phases, or clinical information",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 124,
+     "printed": "104",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.20",
+     "sectionId": null
+    },
+    {
+     "physical": 125,
+     "printed": "105",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o07"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

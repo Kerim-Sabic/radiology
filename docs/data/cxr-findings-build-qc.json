@@ -1,0 +1,355 @@
+{
+ "packId": "cxr-findings",
+ "generatedAt": "2026-10-28T15:21:50Z",
+ "packBytesExcludingLessons": 9523568,
+ "budgetBytes": 40000000,
+ "series": [
+  {
+   "uid": "2.25.162344203214422567434442853609263802601",
+   "short": "dx-ef3021541f",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 316940
+  },
+  {
+   "uid": "2.25.259054519635315120545519111399003087994",
+   "short": "dx-8524724c7b",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 377476
+  },
+  {
+   "uid": "2.25.26125964394479646325718625777775665196",
+   "short": "dx-4a1320a481",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 384726
+  },
+  {
+   "uid": "2.25.64763358811681580405327774705151022817",
+   "short": "dx-c66472edc1",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 396354
+  },
+  {
+   "uid": "2.25.249876676135355966610483047539390403300",
+   "short": "dx-396c752237",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 335184
+  },
+  {
+   "uid": "2.25.150396254641997057949965409467646376703",
+   "short": "dx-6356f62568",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 409736
+  },
+  {
+   "uid": "2.25.132667421557787319702723659305473610453",
+   "short": "dx-b9562a3a27",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 356758
+  },
+  {
+   "uid": "2.25.32594979444301069309728013094989269652",
+   "short": "dx-70c8ac10b6",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 361374
+  },
+  {
+   "uid": "2.25.292836352412596997338610003098511020867",
+   "short": "dx-e9d7962cc1",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 421602
+  },
+  {
+   "uid": "2.25.156746103252885932781593040879107040118",
+   "short": "dx-f6ac5fe3e2",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 382090
+  },
+  {
+   "uid": "2.25.121712318527214242413644944875349087123",
+   "short": "dx-517cbce0b9",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 338048
+  },
+  {
+   "uid": "2.25.153207459673314134422184992845760679349",
+   "short": "dx-e97a536ec0",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 315002
+  },
+  {
+   "uid": "2.25.83274867416939635552737997710228042399",
+   "short": "dx-930abc73f3",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 378032
+  },
+  {
+   "uid": "2.25.113148076060192092093137804964020190043",
+   "short": "dx-aff31e9187",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 410244
+  },
+  {
+   "uid": "2.25.16323125627046451926343108225670860544",
+   "short": "dx-23a6d6ebe1",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 435662
+  },
+  {
+   "uid": "2.25.48766666126521754685024003338287144294",
+   "short": "dx-4c208e1311",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 288370
+  },
+  {
+   "uid": "2.25.113901078422061512622190502315801344824",
+   "short": "dx-250904dd54",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 403104
+  },
+  {
+   "uid": "2.25.199375388267783985677991710566335085745",
+   "short": "dx-f0b07c0df3",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 432332
+  },
+  {
+   "uid": "2.25.53166905343298243132258780158772954687",
+   "short": "dx-0ba0b8a330",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 424634
+  },
+  {
+   "uid": "2.25.276789449277025666225530129592526450656",
+   "short": "dx-344d1eb545",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 410456
+  },
+  {
+   "uid": "2.25.76117809407433285069582359466273289089",
+   "short": "dx-23f9f84250",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 389596
+  },
+  {
+   "uid": "2.25.115462320984540225930052486029285432862",
+   "short": "dx-0cc43597fd",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 388070
+  },
+  {
+   "uid": "2.25.304307270072566630619033213205732684368",
+   "short": "dx-27f780c163",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 395584
+  }
+ ],
+ "targets": [
+  "nih-00003400_003_pneumothorax",
+  "nih-00010767_016_pneumothorax",
+  "nih-00011355_011_pneumothorax",
+  "nih-00013209_018_pneumothorax",
+  "nih-00001437_012_pleural-effusion",
+  "nih-00013337_000_pleural-effusion",
+  "nih-00023058_004_pleural-effusion",
+  "nih-00029894_000_pleural-effusion",
+  "nih-00012299_002_atelectasis",
+  "nih-00016267_000_atelectasis",
+  "nih-00030674_000_atelectasis",
+  "nih-00000377_004_cardiomegaly",
+  "nih-00000661_000_cardiomegaly",
+  "nih-00000845_000_cardiomegaly",
+  "nih-00001075_024_lung-mass",
+  "nih-00011157_001_lung-mass",
+  "nih-00022192_003_lung-mass",
+  "nih-00020274_021_lung-nodule",
+  "nih-00012374_000_lung-nodule",
+  "nih-00013673_001_lung-nodule",
+  "nih-00001933_000_pneumonia",
+  "nih-00003894_005_pneumonia",
+  "nih-00014294_011_pneumonia"
+ ]
+}

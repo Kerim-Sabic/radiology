@@ -146,7 +146,7 @@ export const familyOf = (modality: string): Family =>
 
 export type Strength = 'outlined' | 'labelled' | 'collection';
 export const STRENGTH_LABEL: Record<Strength, string> = {
-  outlined: 'Outlined',
+  outlined: 'Marked on the image',
   labelled: 'Reader labels',
   collection: 'Not outlined',
 };
@@ -218,11 +218,12 @@ function linkFor(catalog: CatalogView, caseId: string, seriesUid: string, target
   return task ? `/read/${encodeURIComponent(caseId)}?task=${encodeURIComponent(task.id)}&mode=learn${show}` : `/read/${encodeURIComponent(caseId)}?mode=learn${show}`;
 }
 
-/** "images 41–46 of 133" from the slices an outline is drawn on (display order, as the viewer counts). */
+/** "images 41–46 of 133" from the slices an outline or box is drawn on (display order, as the viewer counts). */
 export function whereText(g: TargetGeometry | null, sopOrder: string[]): string | undefined {
-  if (!g || g.geometryType !== 'contour_set' || !sopOrder.length) return undefined;
-  if (sopOrder.length === 1) return 'outlined on the image';
-  const idx = [...new Set(g.planes.map((p) => sopOrder.indexOf(p.sopInstanceUid)).filter((i) => i >= 0))].sort((a, b) => a - b);
+  const sops = g?.geometryType === 'contour_set' ? g.planes.map((p) => p.sopInstanceUid) : g?.geometryType === 'box' ? g.boxes.map((b) => b.sopInstanceUid) : null;
+  if (!g || !sops || !sopOrder.length) return undefined;
+  if (sopOrder.length === 1) return g.geometryType === 'box' ? 'boxed on the image' : 'outlined on the image';
+  const idx = [...new Set(sops.map((sop) => sopOrder.indexOf(sop)).filter((i) => i >= 0))].sort((a, b) => a - b);
   if (!idx.length) return undefined;
   const a = idx[0] + 1;
   const b = idx[idx.length - 1] + 1;
@@ -251,7 +252,7 @@ async function findingHits(catalog: CatalogView, ev: Extract<Evidence, { kind: '
         where: whereText(await load(t.id).catch(() => null), order),
       })),
     );
-    out.push({ ...baseHit(catalog, k, seriesUid), strength: 'outlined', note: ev.note ?? 'Outlined in the source data', items, link: linkFor(catalog, k.id, seriesUid, sorted.map((t) => t.id)) });
+    out.push({ ...baseHit(catalog, k, seriesUid), strength: 'outlined', note: ev.note ?? 'Marked (outline or box) in the source data', items, link: linkFor(catalog, k.id, seriesUid, sorted.map((t) => t.id)) });
   }
   return out;
 }

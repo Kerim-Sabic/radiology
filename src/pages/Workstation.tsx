@@ -1558,6 +1558,7 @@ function CaseInfo({
             <a href={source.doi ? `https://doi.org/${source.doi.replace(/^https?:\/\/doi\.org\//, '')}` : source.url} target="_blank" rel="noreferrer">
               source
             </a>
+            {source.citation ? <span style={{ display: 'block', marginTop: 2 }}>Cite: {source.citation}</span> : null}
           </small>
         ) : null}
       </div>

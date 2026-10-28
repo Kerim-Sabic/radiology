@@ -1,0 +1,990 @@
+{
+ "schemaVersion": 1,
+ "packId": "fx-radiographs",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "fx-img0000019",
+   "packId": "fx-radiographs",
+   "neutralTitle": "Radiograph, wrist and distal forearm · FracAtlas IMG0000019",
+   "learnTitle": "Fracture: wrist and distal forearm (expert outline)",
+   "subjectKey": "figshare:FracAtlas:IMG0000019",
+   "studyUids": [
+    "2.25.56781401582298686094967569132658277393"
+   ],
+   "primarySeriesUid": "2.25.163707180555032980742915029109041760796",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch23-o01",
+    "ch23-o03"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    },
+    {
+     "physical": 307,
+     "printed": "287",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.7",
+     "sectionId": null
+    },
+    {
+     "physical": 308,
+     "printed": "288",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.8",
+     "sectionId": null
+    },
+    {
+     "physical": 306,
+     "printed": "286",
+     "chapterId": "ch23",
+     "figureId": "Table 23.3",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One fracture outlined by the FracAtlas annotators (two expert radiologists and an orthopedist). Only one view of this injury is installed, and alignment, joint involvement and soft tissues are not referenced.",
+   "learnNotes": "An acute fracture is a break in the cortex: look for a lucent (dark) line, a step or angle in the cortical outline, or a denser band where fragments overlap. Trace the cortex of every bone on the film, including the edges of the image. Then describe it: which bone and where (proximal, shaft, distal, into the joint or not), the direction of the line, the number of fragments, and displacement and angulation of the distal fragment. Nutrient canals, growth plates and overlapping soft-tissue edges mimic fractures; a second view at 90 degrees is standard."
+  },
+  {
+   "id": "fx-img0000151",
+   "packId": "fx-radiographs",
+   "neutralTitle": "Radiograph, ankle · FracAtlas IMG0000151",
+   "learnTitle": "Fracture: ankle (expert outline)",
+   "subjectKey": "figshare:FracAtlas:IMG0000151",
+   "studyUids": [
+    "2.25.187277877932105667397562894889690817806"
+   ],
+   "primarySeriesUid": "2.25.212063392229295072408746075479873735391",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch23-o01",
+    "ch23-o03"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    },
+    {
+     "physical": 307,
+     "printed": "287",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.7",
+     "sectionId": null
+    },
+    {
+     "physical": 308,
+     "printed": "288",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.8",
+     "sectionId": null
+    },
+    {
+     "physical": 306,
+     "printed": "286",
+     "chapterId": "ch23",
+     "figureId": "Table 23.3",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One fracture outlined by the FracAtlas annotators (two expert radiologists and an orthopedist). Only one view of this injury is installed, and alignment, joint involvement and soft tissues are not referenced.",
+   "learnNotes": "An acute fracture is a break in the cortex: look for a lucent (dark) line, a step or angle in the cortical outline, or a denser band where fragments overlap. Trace the cortex of every bone on the film, including the edges of the image. Then describe it: which bone and where (proximal, shaft, distal, into the joint or not), the direction of the line, the number of fragments, and displacement and angulation of the distal fragment. Nutrient canals, growth plates and overlapping soft-tissue edges mimic fractures; a second view at 90 degrees is standard."
+  },
+  {
+   "id": "fx-img0002302",
+   "packId": "fx-radiographs",
+   "neutralTitle": "Radiograph, shoulder and proximal humerus · FracAtlas IMG0002302",
+   "learnTitle": "Fracture: shoulder and proximal humerus (expert outline)",
+   "subjectKey": "figshare:FracAtlas:IMG0002302",
+   "studyUids": [
+    "2.25.108327703941917453825287447636730918339"
+   ],
+   "primarySeriesUid": "2.25.119885054870806771507735516824016318077",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch23-o01",
+    "ch23-o03"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    },
+    {
+     "physical": 307,
+     "printed": "287",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.7",
+     "sectionId": null
+    },
+    {
+     "physical": 308,
+     "printed": "288",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.8",
+     "sectionId": null
+    },
+    {
+     "physical": 306,
+     "printed": "286",
+     "chapterId": "ch23",
+     "figureId": "Table 23.3",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One fracture outlined by the FracAtlas annotators (two expert radiologists and an orthopedist). Only one view of this injury is installed, and alignment, joint involvement and soft tissues are not referenced.",
+   "learnNotes": "An acute fracture is a break in the cortex: look for a lucent (dark) line, a step or angle in the cortical outline, or a denser band where fragments overlap. Trace the cortex of every bone on the film, including the edges of the image. Then describe it: which bone and where (proximal, shaft, distal, into the joint or not), the direction of the line, the number of fragments, and displacement and angulation of the distal fragment. Nutrient canals, growth plates and overlapping soft-tissue edges mimic fractures; a second view at 90 degrees is standard."
+  },
+  {
+   "id": "fx-img0002308",
+   "packId": "fx-radiographs",
+   "neutralTitle": "Radiograph, knee and proximal tibia · FracAtlas IMG0002308",
+   "learnTitle": "Fracture: knee and proximal tibia (expert outline)",
+   "subjectKey": "figshare:FracAtlas:IMG0002308",
+   "studyUids": [
+    "2.25.231299840271496952428786454177504839974"
+   ],
+   "primarySeriesUid": "2.25.11562704783470875146150731697017748118",
+   "region": [
+    "extremity"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch23-o01",
+    "ch23-o03"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    },
+    {
+     "physical": 307,
+     "printed": "287",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.7",
+     "sectionId": null
+    },
+    {
+     "physical": 308,
+     "printed": "288",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.8",
+     "sectionId": null
+    },
+    {
+     "physical": 306,
+     "printed": "286",
+     "chapterId": "ch23",
+     "figureId": "Table 23.3",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One fracture outlined by the FracAtlas annotators (two expert radiologists and an orthopedist). Only one view of this injury is installed, and alignment, joint involvement and soft tissues are not referenced.",
+   "learnNotes": "An acute fracture is a break in the cortex: look for a lucent (dark) line, a step or angle in the cortical outline, or a denser band where fragments overlap. Trace the cortex of every bone on the film, including the edges of the image. Then describe it: which bone and where (proximal, shaft, distal, into the joint or not), the direction of the line, the number of fragments, and displacement and angulation of the distal fragment. Nutrient canals, growth plates and overlapping soft-tissue edges mimic fractures; a second view at 90 degrees is standard."
+  },
+  {
+   "id": "fx-img0002337",
+   "packId": "fx-radiographs",
+   "neutralTitle": "Radiograph, hip and proximal femur · FracAtlas IMG0002337",
+   "learnTitle": "Fracture: hip and proximal femur (expert outline)",
+   "subjectKey": "figshare:FracAtlas:IMG0002337",
+   "studyUids": [
+    "2.25.68703788134532838362375842298274319397"
+   ],
+   "primarySeriesUid": "2.25.64761760486751186256016515571201814575",
+   "region": [
+    "pelvis",
+    "extremity"
+   ],
+   "clinicalContext": null,
+   "contextSource": null,
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch23-o01",
+    "ch23-o03"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    },
+    {
+     "physical": 307,
+     "printed": "287",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.7",
+     "sectionId": null
+    },
+    {
+     "physical": 308,
+     "printed": "288",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.8",
+     "sectionId": null
+    },
+    {
+     "physical": 306,
+     "printed": "286",
+     "chapterId": "ch23",
+     "figureId": "Table 23.3",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "One fracture outlined by the FracAtlas annotators (two expert radiologists and an orthopedist). Only one view of this injury is installed, and alignment, joint involvement and soft tissues are not referenced.",
+   "learnNotes": "An acute fracture is a break in the cortex: look for a lucent (dark) line, a step or angle in the cortical outline, or a denser band where fragments overlap. Trace the cortex of every bone on the film, including the edges of the image. Then describe it: which bone and where (proximal, shaft, distal, into the joint or not), the direction of the line, the number of fragments, and displacement and angulation of the distal fragment. Nutrient canals, growth plates and overlapping soft-tissue edges mimic fractures; a second view at 90 degrees is standard."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "fx-img0000019:locate",
+   "caseId": "fx-img0000019",
+   "type": "locate_finding",
+   "title": "Find the fracture",
+   "prompt": "Trace the cortex of every bone on this radiograph. Mark any fracture you find (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.163707180555032980742915029109041760796"
+   ],
+   "start": {
+    "seriesUid": "2.25.163707180555032980742915029109041760796",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "fracatlas-img0000019_fracture",
+     "name": "Fracture",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 20,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow each cortical line without a break; look hardest where bones are thin or where two bones overlap."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "An acute fracture is a break in the cortex: look for a lucent (dark) line, a step or angle in the cortical outline, or a denser band where fragments overlap. Trace the cortex of every bone on the film, including the edges of the image. Then describe it: which bone and where (proximal, shaft, distal, into the joint or not), the direction of the line, the number of fragments, and displacement and angulation of the distal fragment. Nutrient canals, growth plates and overlapping soft-tissue edges mimic fractures; a second view at 90 degrees is standard. This image has no pixel spacing, so the tolerance is counted in pixels.",
+   "rubric": [
+    {
+     "id": "bone",
+     "text": "Named the bone and the part (proximal, shaft, distal; into the joint or not)",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "line",
+     "text": "Described the fracture line (transverse, oblique, spiral, comminuted)",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "disp",
+     "text": "Described displacement and angulation of the distal fragment",
+     "weight": "supportive",
+     "category": "finding"
+    },
+    {
+     "id": "view",
+     "text": "Asked for a second view at 90 degrees",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    },
+    {
+     "physical": 307,
+     "printed": "287",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.7",
+     "sectionId": null
+    },
+    {
+     "physical": 308,
+     "printed": "288",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.8",
+     "sectionId": null
+    },
+    {
+     "physical": 306,
+     "printed": "286",
+     "chapterId": "ch23",
+     "figureId": "Table 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch23-o01",
+    "ch23-o03"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "fx-img0000151:locate",
+   "caseId": "fx-img0000151",
+   "type": "locate_finding",
+   "title": "Find the fracture",
+   "prompt": "Trace the cortex of every bone on this radiograph. Mark any fracture you find (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.212063392229295072408746075479873735391"
+   ],
+   "start": {
+    "seriesUid": "2.25.212063392229295072408746075479873735391",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "fracatlas-img0000151_fracture",
+     "name": "Fracture",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 20,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow each cortical line without a break; look hardest where bones are thin or where two bones overlap."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "An acute fracture is a break in the cortex: look for a lucent (dark) line, a step or angle in the cortical outline, or a denser band where fragments overlap. Trace the cortex of every bone on the film, including the edges of the image. Then describe it: which bone and where (proximal, shaft, distal, into the joint or not), the direction of the line, the number of fragments, and displacement and angulation of the distal fragment. Nutrient canals, growth plates and overlapping soft-tissue edges mimic fractures; a second view at 90 degrees is standard. This image has no pixel spacing, so the tolerance is counted in pixels.",
+   "rubric": [
+    {
+     "id": "bone",
+     "text": "Named the bone and the part (proximal, shaft, distal; into the joint or not)",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "line",
+     "text": "Described the fracture line (transverse, oblique, spiral, comminuted)",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "disp",
+     "text": "Described displacement and angulation of the distal fragment",
+     "weight": "supportive",
+     "category": "finding"
+    },
+    {
+     "id": "view",
+     "text": "Asked for a second view at 90 degrees",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    },
+    {
+     "physical": 307,
+     "printed": "287",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.7",
+     "sectionId": null
+    },
+    {
+     "physical": 308,
+     "printed": "288",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.8",
+     "sectionId": null
+    },
+    {
+     "physical": 306,
+     "printed": "286",
+     "chapterId": "ch23",
+     "figureId": "Table 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch23-o01",
+    "ch23-o03"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "fx-img0002302:locate",
+   "caseId": "fx-img0002302",
+   "type": "locate_finding",
+   "title": "Find the fracture",
+   "prompt": "Trace the cortex of every bone on this radiograph. Mark any fracture you find (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.119885054870806771507735516824016318077"
+   ],
+   "start": {
+    "seriesUid": "2.25.119885054870806771507735516824016318077",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "fracatlas-img0002302_fracture",
+     "name": "Fracture",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 20,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow each cortical line without a break; look hardest where bones are thin or where two bones overlap."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "An acute fracture is a break in the cortex: look for a lucent (dark) line, a step or angle in the cortical outline, or a denser band where fragments overlap. Trace the cortex of every bone on the film, including the edges of the image. Then describe it: which bone and where (proximal, shaft, distal, into the joint or not), the direction of the line, the number of fragments, and displacement and angulation of the distal fragment. Nutrient canals, growth plates and overlapping soft-tissue edges mimic fractures; a second view at 90 degrees is standard. This image has no pixel spacing, so the tolerance is counted in pixels.",
+   "rubric": [
+    {
+     "id": "bone",
+     "text": "Named the bone and the part (proximal, shaft, distal; into the joint or not)",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "line",
+     "text": "Described the fracture line (transverse, oblique, spiral, comminuted)",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "disp",
+     "text": "Described displacement and angulation of the distal fragment",
+     "weight": "supportive",
+     "category": "finding"
+    },
+    {
+     "id": "view",
+     "text": "Asked for a second view at 90 degrees",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    },
+    {
+     "physical": 307,
+     "printed": "287",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.7",
+     "sectionId": null
+    },
+    {
+     "physical": 308,
+     "printed": "288",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.8",
+     "sectionId": null
+    },
+    {
+     "physical": 306,
+     "printed": "286",
+     "chapterId": "ch23",
+     "figureId": "Table 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch23-o01",
+    "ch23-o03"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "fx-img0002308:locate",
+   "caseId": "fx-img0002308",
+   "type": "locate_finding",
+   "title": "Find the fracture",
+   "prompt": "Trace the cortex of every bone on this radiograph. Mark any fracture you find (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.11562704783470875146150731697017748118"
+   ],
+   "start": {
+    "seriesUid": "2.25.11562704783470875146150731697017748118",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "fracatlas-img0002308_fracture",
+     "name": "Fracture",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 20,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow each cortical line without a break; look hardest where bones are thin or where two bones overlap."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "An acute fracture is a break in the cortex: look for a lucent (dark) line, a step or angle in the cortical outline, or a denser band where fragments overlap. Trace the cortex of every bone on the film, including the edges of the image. Then describe it: which bone and where (proximal, shaft, distal, into the joint or not), the direction of the line, the number of fragments, and displacement and angulation of the distal fragment. Nutrient canals, growth plates and overlapping soft-tissue edges mimic fractures; a second view at 90 degrees is standard. This image has no pixel spacing, so the tolerance is counted in pixels.",
+   "rubric": [
+    {
+     "id": "bone",
+     "text": "Named the bone and the part (proximal, shaft, distal; into the joint or not)",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "line",
+     "text": "Described the fracture line (transverse, oblique, spiral, comminuted)",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "disp",
+     "text": "Described displacement and angulation of the distal fragment",
+     "weight": "supportive",
+     "category": "finding"
+    },
+    {
+     "id": "view",
+     "text": "Asked for a second view at 90 degrees",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    },
+    {
+     "physical": 307,
+     "printed": "287",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.7",
+     "sectionId": null
+    },
+    {
+     "physical": 308,
+     "printed": "288",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.8",
+     "sectionId": null
+    },
+    {
+     "physical": 306,
+     "printed": "286",
+     "chapterId": "ch23",
+     "figureId": "Table 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch23-o01",
+    "ch23-o03"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "fx-img0002337:locate",
+   "caseId": "fx-img0002337",
+   "type": "locate_finding",
+   "title": "Find the fracture",
+   "prompt": "Trace the cortex of every bone on this radiograph. Mark any fracture you find (point, box or outline), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.64761760486751186256016515571201814575"
+   ],
+   "start": {
+    "seriesUid": "2.25.64761760486751186256016515571201814575",
+    "slice": "first",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "fracatlas-img0002337_fracture",
+     "name": "Fracture",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1,
+    "inPlaneToleranceMm": 20,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Follow each cortical line without a break; look hardest where bones are thin or where two bones overlap."
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "An acute fracture is a break in the cortex: look for a lucent (dark) line, a step or angle in the cortical outline, or a denser band where fragments overlap. Trace the cortex of every bone on the film, including the edges of the image. Then describe it: which bone and where (proximal, shaft, distal, into the joint or not), the direction of the line, the number of fragments, and displacement and angulation of the distal fragment. Nutrient canals, growth plates and overlapping soft-tissue edges mimic fractures; a second view at 90 degrees is standard. This image has no pixel spacing, so the tolerance is counted in pixels.",
+   "rubric": [
+    {
+     "id": "bone",
+     "text": "Named the bone and the part (proximal, shaft, distal; into the joint or not)",
+     "weight": "essential",
+     "category": "location"
+    },
+    {
+     "id": "line",
+     "text": "Described the fracture line (transverse, oblique, spiral, comminuted)",
+     "weight": "essential",
+     "category": "pattern"
+    },
+    {
+     "id": "disp",
+     "text": "Described displacement and angulation of the distal fragment",
+     "weight": "supportive",
+     "category": "finding"
+    },
+    {
+     "id": "view",
+     "text": "Asked for a second view at 90 degrees",
+     "weight": "supportive",
+     "category": "limitation"
+    }
+   ],
+   "bookAnchors": [
+    {
+     "physical": 303,
+     "printed": "283",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.1",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.2",
+     "sectionId": null
+    },
+    {
+     "physical": 304,
+     "printed": "284",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.3",
+     "sectionId": null
+    },
+    {
+     "physical": 307,
+     "printed": "287",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.7",
+     "sectionId": null
+    },
+    {
+     "physical": 308,
+     "printed": "288",
+     "chapterId": "ch23",
+     "figureId": "Fig 23.8",
+     "sectionId": null
+    },
+    {
+     "physical": 306,
+     "printed": "286",
+     "chapterId": "ch23",
+     "figureId": "Table 23.3",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch23-o01",
+    "ch23-o03"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "reporting"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

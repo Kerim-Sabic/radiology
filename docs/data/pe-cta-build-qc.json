@@ -1,0 +1,36 @@
+{
+ "packId": "pe-cta",
+ "generatedAt": "2026-10-28T15:21:53Z",
+ "packBytesExcludingLessons": 78548189,
+ "budgetBytes": 200000000,
+ "series": [
+  {
+   "uid": "2.25.225694208448586268817010326638561875843",
+   "short": "ct-a9b86eb0e7",
+   "modality": "CT",
+   "instances": 217,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 217
+   },
+   "bytes": 40449690
+  },
+  {
+   "uid": "2.25.208016074378713353746067436351091429943",
+   "short": "ct-685a0b41a1",
+   "modality": "CT",
+   "instances": 217,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 217
+   },
+   "bytes": 37686714
+  }
+ ],
+ "targets": [
+  "fumpe-pat005_pulmonary-embolism",
+  "fumpe-pat021_pulmonary-embolism"
+ ]
+}

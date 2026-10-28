@@ -6,22 +6,22 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 
 | | count |
 |---|---|
-| Distinct patients with usable cases | **51** |
-| Teaching cases | 51 |
-| Image-based tasks | **220** |
-| Studies | 71 |
-| Series (all packs) | 81 |
-| DICOM instances | 6696 |
-| Reference targets | 3986 |
+| Distinct patients with usable cases | **84** |
+| Teaching cases | 84 |
+| Image-based tasks | **278** |
+| Studies | 104 |
+| Series (all packs) | 114 |
+| DICOM instances | 7304 |
+| Reference targets | 4023 |
 
 ### Tasks by scoring basis
 
 | basis | tasks |
 |---|---|
-| auto-checked choice | 26 |
-| self-review (checklist) | 96 |
+| auto-checked choice | 48 |
+| self-review (checklist) | 98 |
 | spatial · AI draft by Horalix / dataset auto-label reference (self-review until user review) | 15 |
-| spatial · source manual reference | 83 |
+| spatial · source manual reference | 117 |
 
 ### Tasks by type
 
@@ -31,9 +31,9 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 | compare appearances | 9 |
 | correlate modalities | 12 |
 | describe finding | 55 |
-| differential | 17 |
-| find structure | 76 |
-| locate finding | 10 |
+| differential | 41 |
+| find structure | 79 |
+| locate finding | 41 |
 | navigate level | 24 |
 | whole study | 10 |
 
@@ -43,21 +43,25 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 |---|---|
 | ai_draft | 3715 |
 | source_automated | 3 |
-| source_manual | 268 |
+| source_manual | 305 |
 
 ## Packs
 
 | pack | distribution | binaries here | subjects | series | instances | bytes (index) | cases | tasks |
 |---|---|---|---|---|---|---|---|---|
 | starter | repo | yes | 3 | 4 | 152 | 32.0 MB | 3 | 13 |
-| chest-pairs | fetch_script | yes | 6 | 16 | 807 | 201.9 MB | 6 | 33 |
-| ct-mri-pairs | fetch_script | yes | 2 | 6 | 462 | 59.8 MB | 2 | 10 |
-| body | fetch_script | yes | 4 | 4 | 485 | 83.1 MB | 4 | 13 |
-| neuro-msk | fetch_script | yes | 3 | 5 | 523 | 54.8 MB | 3 | 8 |
-| expansion | fetch_script | yes | 12 | 17 | 1892 | 263.1 MB | 12 | 39 |
+| chest-pairs | repo | yes | 6 | 16 | 807 | 201.9 MB | 6 | 33 |
+| ct-mri-pairs | repo | yes | 2 | 6 | 462 | 59.8 MB | 2 | 10 |
+| body | repo | yes | 4 | 4 | 485 | 83.1 MB | 4 | 13 |
+| neuro-msk | repo | yes | 3 | 5 | 523 | 54.8 MB | 3 | 8 |
+| expansion | repo | yes | 12 | 17 | 1892 | 263.1 MB | 12 | 39 |
 | vessel-drafts | repo | yes | 0 | 0 | 0 | 1.1 MB | 0 | 15 |
 | anatomy-atlas | repo | yes | 0 | 0 | 0 | 59.1 MB | 0 | 0 |
-| more-ct-xr | fetch_script | yes | 21 | 29 | 2375 | 488.6 MB | 21 | 89 |
+| more-ct-xr | repo | yes | 21 | 29 | 2375 | 488.6 MB | 21 | 89 |
+| cxr-findings | repo | yes | 23 | 23 | 23 | 9.2 MB | 23 | 45 |
+| pe-cta | repo | yes | 2 | 2 | 434 | 74.9 MB | 2 | 4 |
+| ct-findings | repo | yes | 3 | 3 | 146 | 24.2 MB | 3 | 4 |
+| fx-radiographs | repo | yes | 5 | 5 | 5 | 9.0 MB | 5 | 5 |
 
 ## Patients and cases
 
@@ -114,6 +118,39 @@ _Generated 2026-10-28 by `scripts/report/content-report.mjs` from the installed 
 | `more-lctsc-train-s1-007` | Patient AS · CT chest | `tcia:LCTSC:LCTSC-Train-S1-007` | CT | 2 |
 | `more-lctsc-train-s2-004` | Patient AT · CT chest | `tcia:LCTSC:LCTSC-Train-S2-004` | CT | 2 |
 | `more-lctsc-test-s3-202` | Patient AU · CT chest | `tcia:LCTSC:LCTSC-Test-S3-202` | CT | 2 |
+| `cxr-00003400-003` | Chest radiograph PA · NIH 00003400-003 | `nih:ChestX-ray14:3400` | DX | 2 |
+| `cxr-00010767-016` | Chest radiograph PA · NIH 00010767-016 | `nih:ChestX-ray14:10767` | DX | 2 |
+| `cxr-00011355-011` | Chest radiograph PA · NIH 00011355-011 | `nih:ChestX-ray14:11355` | DX | 2 |
+| `cxr-00013209-018` | Chest radiograph PA · NIH 00013209-018 | `nih:ChestX-ray14:13209` | DX | 2 |
+| `cxr-00001437-012` | Chest radiograph PA · NIH 00001437-012 | `nih:ChestX-ray14:1437` | DX | 2 |
+| `cxr-00013337-000` | Chest radiograph PA · NIH 00013337-000 | `nih:ChestX-ray14:13337` | DX | 2 |
+| `cxr-00023058-004` | Chest radiograph PA · NIH 00023058-004 | `nih:ChestX-ray14:23058` | DX | 2 |
+| `cxr-00029894-000` | Chest radiograph PA · NIH 00029894-000 | `nih:ChestX-ray14:29894` | DX | 2 |
+| `cxr-00012299-002` | Chest radiograph PA · NIH 00012299-002 | `nih:ChestX-ray14:12299` | DX | 2 |
+| `cxr-00016267-000` | Chest radiograph PA · NIH 00016267-000 | `nih:ChestX-ray14:16267` | DX | 2 |
+| `cxr-00030674-000` | Chest radiograph PA · NIH 00030674-000 | `nih:ChestX-ray14:30674` | DX | 2 |
+| `cxr-00000377-004` | Chest radiograph PA · NIH 00000377-004 | `nih:ChestX-ray14:377` | DX | 2 |
+| `cxr-00000661-000` | Chest radiograph PA · NIH 00000661-000 | `nih:ChestX-ray14:661` | DX | 2 |
+| `cxr-00000845-000` | Chest radiograph PA · NIH 00000845-000 | `nih:ChestX-ray14:845` | DX | 2 |
+| `cxr-00001075-024` | Chest radiograph PA · NIH 00001075-024 | `nih:ChestX-ray14:1075` | DX | 2 |
+| `cxr-00011157-001` | Chest radiograph PA · NIH 00011157-001 | `nih:ChestX-ray14:11157` | DX | 2 |
+| `cxr-00022192-003` | Chest radiograph PA · NIH 00022192-003 | `nih:ChestX-ray14:22192` | DX | 2 |
+| `cxr-00020274-021` | Chest radiograph PA · NIH 00020274-021 | `nih:ChestX-ray14:20274` | DX | 2 |
+| `cxr-00012374-000` | Chest radiograph PA · NIH 00012374-000 | `nih:ChestX-ray14:12374` | DX | 2 |
+| `cxr-00013673-001` | Chest radiograph PA · NIH 00013673-001 | `nih:ChestX-ray14:13673` | DX | 2 |
+| `cxr-00001933-000` | Chest radiograph PA · NIH 00001933-000 | `nih:ChestX-ray14:1933` | DX | 2 |
+| `cxr-00003894-005` | Chest radiograph PA · NIH 00003894-005 | `nih:ChestX-ray14:3894` | DX | 1 |
+| `cxr-00014294-011` | Chest radiograph PA · NIH 00014294-011 | `nih:ChestX-ray14:14294` | DX | 2 |
+| `pe-pat005` | CT chest with contrast · FUMPE PAT005 | `figshare:FUMPE:PAT005` | CT | 2 |
+| `pe-pat021` | CT chest with contrast · FUMPE PAT021 | `figshare:FUMPE:PAT021` | CT | 2 |
+| `ct-crlm-1140` | CT chest, abdomen and pelvis (contrast) · CRLM 1140 | `tcia:Colorectal-Liver-Metastases:CRLM-CT-1140` | CT | 2 |
+| `ct-lnq-0230` | CT chest with contrast · LNQ 0230 | `tcia:Mediastinal-Lymph-Node-SEG:case_0230` | CT | 1 |
+| `ct-lnq-0837` | CT chest with contrast · LNQ 0837 | `tcia:Mediastinal-Lymph-Node-SEG:case_0837` | CT | 1 |
+| `fx-img0000019` | Radiograph, wrist and distal forearm · FracAtlas IMG0000019 | `figshare:FracAtlas:IMG0000019` | DX | 1 |
+| `fx-img0000151` | Radiograph, ankle · FracAtlas IMG0000151 | `figshare:FracAtlas:IMG0000151` | DX | 1 |
+| `fx-img0002302` | Radiograph, shoulder and proximal humerus · FracAtlas IMG0002302 | `figshare:FracAtlas:IMG0002302` | DX | 1 |
+| `fx-img0002308` | Radiograph, knee and proximal tibia · FracAtlas IMG0002308 | `figshare:FracAtlas:IMG0002308` | DX | 1 |
+| `fx-img0002337` | Radiograph, hip and proximal femur · FracAtlas IMG0002337 | `figshare:FracAtlas:IMG0002337` | DX | 1 |
 
 ## Same-patient multimodality comparisons
 
@@ -144,10 +181,10 @@ Only series from one source subject are combined; links are `independent` unless
 
 ## Transfer syntaxes present
 
-- `1.2.840.10008.1.2.4.80`: 66 series
+- `1.2.840.10008.1.2.4.80`: 99 series
 - `1.2.840.10008.1.2`: 5 series
 - `1.2.840.10008.1.2.4.90`: 3 series
 - `1.2.840.10008.1.2.5`: 1 series
 - `1.2.840.10008.1.2.4.70`: 6 series
 
-MONOCHROME1 series: 1. Volume (MPR) eligible series: 52. Scouts/localizers: 3.
+MONOCHROME1 series: 1. Volume (MPR) eligible series: 57. Scouts/localizers: 3.

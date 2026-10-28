@@ -1,0 +1,462 @@
+{
+ "schemaVersion": 1,
+ "packId": "ct-findings",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "ct-crlm-1140",
+   "packId": "ct-findings",
+   "neutralTitle": "CT chest, abdomen and pelvis (contrast) · CRLM 1140",
+   "learnTitle": "Liver metastases from colorectal cancer, with liver and vessel segmentations",
+   "subjectKey": "tcia:Colorectal-Liver-Metastases:CRLM-CT-1140",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9203.8273.165888529376874122587514985659"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.9203.8273.570242987820172162772758577346",
+   "region": [
+    "abdomen"
+   ],
+   "clinicalContext": "Before planned liver surgery for colorectal cancer that has spread to the liver.",
+   "contextSource": "Collection description (Colorectal-Liver-Metastases: patients who had resection of colorectal liver metastases).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch17-o08",
+    "ch13-o03"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 211,
+     "printed": "191",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.20",
+     "sectionId": null
+    },
+    {
+     "physical": 214,
+     "printed": "194",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.25",
+     "sectionId": null
+    },
+    {
+     "physical": 215,
+     "printed": "195",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.27",
+     "sectionId": null
+    },
+    {
+     "physical": 164,
+     "printed": "144",
+     "chapterId": "ch13",
+     "figureId": "Fig 13.1",
+     "sectionId": null
+    },
+    {
+     "physical": 164,
+     "printed": "144",
+     "chapterId": "ch13",
+     "figureId": "Fig 13.2",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Radiologists segmented three liver tumours, the liver and the portal vein (Colorectal-Liver-Metastases). The CT has 7.5 mm slices, so small lesions show on only one or two slices. Nothing outside the liver is outlined.",
+   "learnNotes": "Metastases are the commonest malignant liver lesions. On portal venous phase CT, colorectal metastases are usually darker than the enhancing liver, round and often multiple, sometimes with an enhancing rim. Read every slice of the liver, including the dome and the tip of the right lobe; small lesions hide on thick slices. A simple cyst is water density with a sharp wall and no enhancement; a hemangioma enhances from the periphery in nodules."
+  },
+  {
+   "id": "ct-lnq-0230",
+   "packId": "ct-findings",
+   "neutralTitle": "CT chest with contrast · LNQ 0230",
+   "learnTitle": "Enlarged mediastinal lymph nodes (every abnormal node segmented)",
+   "subjectKey": "tcia:Mediastinal-Lymph-Node-SEG:case_0230",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.76208107011852161317231380336653303322"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.273910224912592375430895644657966044381",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Chest CT during treatment for cancer.",
+   "contextSource": "Collection description (Mediastinal-Lymph-Node-SEG).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o03"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 116,
+     "printed": "96",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.8",
+     "sectionId": null
+    },
+    {
+     "physical": 117,
+     "printed": "97",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Expert annotators segmented every mediastinal lymph node they judged abnormal (estimated short axis over 1 cm; 'Fully Annotated' LNQ2023 case). The underlying cancer is not given. Nothing else is outlined.",
+   "learnNotes": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant."
+  },
+  {
+   "id": "ct-lnq-0837",
+   "packId": "ct-findings",
+   "neutralTitle": "CT chest with contrast · LNQ 0837",
+   "learnTitle": "Enlarged mediastinal lymph nodes (every abnormal node segmented)",
+   "subjectKey": "tcia:Mediastinal-Lymph-Node-SEG:case_0837",
+   "studyUids": [
+    "1.3.6.1.4.1.14519.5.2.1.306560482142963738430165119312050789523"
+   ],
+   "primarySeriesUid": "1.3.6.1.4.1.14519.5.2.1.142260788480108655336896236659788697995",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Chest CT during treatment for cancer.",
+   "contextSource": "Collection description (Mediastinal-Lymph-Node-SEG).",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch10-o03"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 116,
+     "printed": "96",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.8",
+     "sectionId": null
+    },
+    {
+     "physical": 117,
+     "printed": "97",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Expert annotators segmented every mediastinal lymph node they judged abnormal (estimated short axis over 1 cm; 'Fully Annotated' LNQ2023 case). The underlying cancer is not given. Nothing else is outlined.",
+   "learnNotes": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "ct-crlm-1140:mets",
+   "caseId": "ct-crlm-1140",
+   "type": "locate_finding",
+   "title": "Find the liver metastases",
+   "prompt": "Read the liver slice by slice from the dome to the tip of the right lobe. Mark every focal lesion you find, or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9203.8273.570242987820172162772758577346"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9203.8273.570242987820172162772758577346",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "crlm-ct-1140_liver-metastasis-1",
+     "name": "Liver metastasis 1",
+     "required": true
+    },
+    {
+     "targetId": "crlm-ct-1140_liver-metastasis-2",
+     "name": "Liver metastasis 2",
+     "required": false
+    },
+    {
+     "targetId": "crlm-ct-1140_liver-metastasis-3",
+     "name": "Liver metastasis 3",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 4,
+    "inPlaneToleranceMm": 3,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Compare the density of every part of the liver with the rest; lesions are darker than the enhancing liver."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the largest lesion.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "crlm-ct-1140_liver-metastasis-3"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "Metastases are the commonest malignant liver lesions. On portal venous phase CT, colorectal metastases are usually darker than the enhancing liver, round and often multiple, sometimes with an enhancing rim. Read every slice of the liver, including the dome and the tip of the right lobe; small lesions hide on thick slices. A simple cyst is water density with a sharp wall and no enhancement; a hemangioma enhances from the periphery in nodules. The smallest lesion is about 1 cm and shows on two slices; finding it is a bonus, not required.",
+   "bookAnchors": [
+    {
+     "physical": 211,
+     "printed": "191",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.20",
+     "sectionId": null
+    },
+    {
+     "physical": 214,
+     "printed": "194",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.25",
+     "sectionId": null
+    },
+    {
+     "physical": 215,
+     "printed": "195",
+     "chapterId": "ch17",
+     "figureId": "Fig 17.27",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch17-o08"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ct-crlm-1140:portal",
+   "caseId": "ct-crlm-1140",
+   "type": "find_structure",
+   "title": "Find the portal vein",
+   "prompt": "Mark the portal vein (or one of its main branches in the liver) with a point.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.9203.8273.570242987820172162772758577346"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.9203.8273.570242987820172162772758577346",
+    "slice": "first",
+    "windowPreset": "Soft tissue"
+   },
+   "targets": [
+    {
+     "targetId": "crlm-ct-1140_portal-vein",
+     "name": "Portal vein",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 4,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "The portal vein enters the liver at the porta hepatis, behind the pancreas neck; it divides into right and left branches."
+    }
+   ],
+   "explanation": "Knowing which vessel a lesion touches matters for surgery: the portal vein and its branches run with the bile ducts through the middle of each liver segment, the hepatic veins run between segments.",
+   "bookAnchors": [
+    {
+     "physical": 164,
+     "printed": "144",
+     "chapterId": "ch13",
+     "figureId": "Fig 13.1",
+     "sectionId": null
+    },
+    {
+     "physical": 164,
+     "printed": "144",
+     "chapterId": "ch13",
+     "figureId": "Fig 13.2",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch13-o03"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ct-lnq-0230:node",
+   "caseId": "ct-lnq-0230",
+   "type": "find_structure",
+   "title": "Find an enlarged mediastinal lymph node",
+   "prompt": "Find an enlarged mediastinal lymph node and mark it with a point. Then measure its short axis with the length tool.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.273910224912592375430895644657966044381"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.273910224912592375430895644657966044381",
+    "slice": "middle",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lnq-0230_enlarged-mediastinal-lymph-nodes",
+     "name": "Enlarged mediastinal lymph node",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look around the trachea, below the carina (subcarinal) and in the aortopulmonary window."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lnq-0230_enlarged-mediastinal-lymph-nodes"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant.",
+   "bookAnchors": [
+    {
+     "physical": 116,
+     "printed": "96",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.8",
+     "sectionId": null
+    },
+    {
+     "physical": 117,
+     "printed": "97",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o03"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "ct-lnq-0837:node",
+   "caseId": "ct-lnq-0837",
+   "type": "find_structure",
+   "title": "Find an enlarged mediastinal lymph node",
+   "prompt": "Find an enlarged mediastinal lymph node and mark it with a point. Then measure its short axis with the length tool.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "1.3.6.1.4.1.14519.5.2.1.142260788480108655336896236659788697995"
+   ],
+   "start": {
+    "seriesUid": "1.3.6.1.4.1.14519.5.2.1.142260788480108655336896236659788697995",
+    "slice": "middle",
+    "windowPreset": "Mediastinum"
+   },
+   "targets": [
+    {
+     "targetId": "lnq-0837_enlarged-mediastinal-lymph-nodes",
+     "name": "Enlarged mediastinal lymph node",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "point_in_target",
+    "slabToleranceMm": 2.5,
+    "inPlaneToleranceMm": 2
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Look around the trachea, below the carina (subcarinal) and in the aortopulmonary window."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "lnq-0837_enlarged-mediastinal-lymph-nodes"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant.",
+   "bookAnchors": [
+    {
+     "physical": 116,
+     "printed": "96",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.8",
+     "sectionId": null
+    },
+    {
+     "physical": 117,
+     "printed": "97",
+     "chapterId": "ch10",
+     "figureId": "Fig 10.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch10-o03"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "anatomy"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

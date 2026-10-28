@@ -210,6 +210,26 @@ def validate(pack_id: str) -> bool:
                         maxoff = max(maxoff, abs(off))
                     if not (-0.5 <= c <= fi["cols"] - 0.5 and -0.5 <= r <= fi["rows"] - 0.5):
                         oob += 1
+        if geo["geometryType"] == "box":
+            for b in geo.get("boxes", []):
+                sop = b["sopInstanceUid"]
+                if sop not in sop_frames:
+                    errors.append(f"target {t['id']}: box SOP {sop} not in series")
+                    continue
+                if b["frame"] > sop_frames[sop]:
+                    errors.append(f"target {t['id']}: frame {b['frame']} > {sop_frames[sop]}")
+                fi = file_info[sop]
+                c0, r0, c1, r1 = b["box"]
+                npts += 2
+                if not (c0 < c1 and r0 < r1):
+                    errors.append(f"target {t['id']}: box corners not ordered {b['box']}")
+                if not all(-0.5 <= c <= fi["cols"] - 0.5 for c in (c0, c1)) or not all(-0.5 <= r <= fi["rows"] - 0.5 for r in (r0, r1)):
+                    errors.append(f"target {t['id']}: box outside image bounds {b['box']}")
+            if not geo.get("boxes"):
+                errors.append(f"target {t['id']}: box target without boxes")
+            target_rows.append({"t": t, "space": geo.get("space"), "planes": len(geo.get("boxes", [])), "points": npts,
+                                "maxOff": 0.0, "readers": [], "bytes": p.stat().st_size})
+            continue
         if geo["geometryType"] == "image_label":
             for sop in geo.get("sopInstanceUids", []):
                 if sop not in sop_frames:

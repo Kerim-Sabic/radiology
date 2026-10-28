@@ -1,0 +1,2859 @@
+{
+ "schemaVersion": 1,
+ "packId": "cxr-findings",
+ "version": "1.0.0",
+ "title": "Chest radiograph findings: pneumothorax, effusion, collapse, big heart, mass, nodule, pneumonia",
+ "description": "23 frontal (PA) chest radiographs of 23 adults from NIH ChestX-ray14, each with the bounding box a board-certified radiologist drew around the finding: pneumothorax (4), pleural effusion (4), atelectasis (3), cardiomegaly (3), mass (3), nodule (3) and pneumonia (3). Chosen by eye from the radiologist-boxed images so that the boxed finding is clearly visible. The images are the dataset's 8-bit 1024 px release: no pixel spacing and no orientation tag.",
+ "generatedAt": "2026-10-28T15:21:50Z",
+ "generator": "scripts/data/build_external.py (python 3.12.10, pydicom 3.0.1, highdicom 0.27.0, numpy 2.2.6)",
+ "sources": [
+  {
+   "id": "nih:ChestX-ray14",
+   "name": "NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center",
+   "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+   "doi": null,
+   "license": "Unrestricted use; link to the original download site, acknowledge the NIH Clinical Center and cite the CVPR 2017 paper (dataset FAQ, Q04)",
+   "licenseUrl": "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+   "citation": "Wang X, Peng Y, Lu L, Lu Z, Bagheri M, Summers RM. ChestX-ray8: Hospital-scale Chest X-ray Database and Benchmarks on Weakly-Supervised Classification and Localization of Common Thorax Diseases. IEEE CVPR 2017:2097-2106. Images courtesy of the NIH Clinical Center.",
+   "accessNote": "Data_Entry_2017_v2020.csv and FAQ from the official NIH Box share; BBox_List_2017.csv (984 radiologist boxes, identical count to the official list) and the selected PNGs read member-by-member (HTTP Range, CRC-32 checked) from the unmodified images_0NN.zip copies on the public Hugging Face mirror alkzar90/NIH-Chest-X-ray-dataset, because the official Box archive links no longer resolve. No login or agreement involved."
+  }
+ ],
+ "subjects": [
+  {
+   "key": "nih:ChestX-ray14:3400",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "3400",
+   "linkageEvidence": "Source patient identifier 3400 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:3400",
+   "sex": "F",
+   "ageAtFirstStudy": "025Y",
+   "studyUids": [
+    "2.25.287816942139467803205422548542058114714"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:10767",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "10767",
+   "linkageEvidence": "Source patient identifier 10767 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:10767",
+   "sex": "M",
+   "ageAtFirstStudy": "057Y",
+   "studyUids": [
+    "2.25.252598568065410983138193554022366320394"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:11355",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "11355",
+   "linkageEvidence": "Source patient identifier 11355 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:11355",
+   "sex": "M",
+   "ageAtFirstStudy": "034Y",
+   "studyUids": [
+    "2.25.160241204039614792306057810828513889537"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:13209",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "13209",
+   "linkageEvidence": "Source patient identifier 13209 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:13209",
+   "sex": "F",
+   "ageAtFirstStudy": "074Y",
+   "studyUids": [
+    "2.25.104313586793990249004969800141624426204"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:1437",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "1437",
+   "linkageEvidence": "Source patient identifier 1437 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:1437",
+   "sex": "F",
+   "ageAtFirstStudy": "030Y",
+   "studyUids": [
+    "2.25.327434314045491696669515313730026667665"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:13337",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "13337",
+   "linkageEvidence": "Source patient identifier 13337 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:13337",
+   "sex": "M",
+   "ageAtFirstStudy": "065Y",
+   "studyUids": [
+    "2.25.331835493802756179566066119777701312123"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:23058",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "23058",
+   "linkageEvidence": "Source patient identifier 23058 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:23058",
+   "sex": "M",
+   "ageAtFirstStudy": "052Y",
+   "studyUids": [
+    "2.25.87877550273685066097395054631131167938"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:29894",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "29894",
+   "linkageEvidence": "Source patient identifier 29894 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:29894",
+   "sex": "F",
+   "ageAtFirstStudy": "055Y",
+   "studyUids": [
+    "2.25.251213719383645472948817156098088745616"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:12299",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "12299",
+   "linkageEvidence": "Source patient identifier 12299 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:12299",
+   "sex": "M",
+   "ageAtFirstStudy": "022Y",
+   "studyUids": [
+    "2.25.64742713686052620956549792387906623359"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:16267",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "16267",
+   "linkageEvidence": "Source patient identifier 16267 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:16267",
+   "sex": "M",
+   "ageAtFirstStudy": "057Y",
+   "studyUids": [
+    "2.25.128175512223772582773383163599108333683"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:30674",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "30674",
+   "linkageEvidence": "Source patient identifier 30674 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:30674",
+   "sex": "M",
+   "ageAtFirstStudy": "079Y",
+   "studyUids": [
+    "2.25.23018730916951499087623606619333367467"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:377",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "377",
+   "linkageEvidence": "Source patient identifier 377 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:377",
+   "sex": "F",
+   "ageAtFirstStudy": "057Y",
+   "studyUids": [
+    "2.25.139602115486355790596511360494894190713"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:661",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "661",
+   "linkageEvidence": "Source patient identifier 661 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:661",
+   "sex": "M",
+   "ageAtFirstStudy": "057Y",
+   "studyUids": [
+    "2.25.64902411227750610504708696096220046416"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:845",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "845",
+   "linkageEvidence": "Source patient identifier 845 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:845",
+   "sex": "F",
+   "ageAtFirstStudy": "065Y",
+   "studyUids": [
+    "2.25.268729680781001366746703018136130363803"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:1075",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "1075",
+   "linkageEvidence": "Source patient identifier 1075 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:1075",
+   "sex": "F",
+   "ageAtFirstStudy": "059Y",
+   "studyUids": [
+    "2.25.238074597940311083333421077465745443715"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:11157",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "11157",
+   "linkageEvidence": "Source patient identifier 11157 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:11157",
+   "sex": "M",
+   "ageAtFirstStudy": "023Y",
+   "studyUids": [
+    "2.25.96390092458008267714499042162300425203"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:22192",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "22192",
+   "linkageEvidence": "Source patient identifier 22192 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:22192",
+   "sex": "M",
+   "ageAtFirstStudy": "073Y",
+   "studyUids": [
+    "2.25.183495597985117072380015446763463603339"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:20274",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "20274",
+   "linkageEvidence": "Source patient identifier 20274 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:20274",
+   "sex": "F",
+   "ageAtFirstStudy": "052Y",
+   "studyUids": [
+    "2.25.233484219353318232374615857723372113944"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:12374",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "12374",
+   "linkageEvidence": "Source patient identifier 12374 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:12374",
+   "sex": "M",
+   "ageAtFirstStudy": "034Y",
+   "studyUids": [
+    "2.25.286727573616100447538896649818287297883"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:13673",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "13673",
+   "linkageEvidence": "Source patient identifier 13673 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:13673",
+   "sex": "M",
+   "ageAtFirstStudy": "046Y",
+   "studyUids": [
+    "2.25.384818053379976113595643172535696689"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:1933",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "1933",
+   "linkageEvidence": "Source patient identifier 1933 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:1933",
+   "sex": "F",
+   "ageAtFirstStudy": "040Y",
+   "studyUids": [
+    "2.25.123460554486176896022316899278433680367"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:3894",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "3894",
+   "linkageEvidence": "Source patient identifier 3894 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:3894",
+   "sex": "M",
+   "ageAtFirstStudy": "079Y",
+   "studyUids": [
+    "2.25.336571858269378472304852341718375491350"
+   ]
+  },
+  {
+   "key": "nih:ChestX-ray14:14294",
+   "sourceId": "nih:ChestX-ray14",
+   "sourceSubjectId": "14294",
+   "linkageEvidence": "Source patient identifier 14294 within NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center; one study per subject in this pack.",
+   "holdoutGroup": "nih:ChestX-ray14:14294",
+   "sex": "M",
+   "ageAtFirstStudy": "037Y",
+   "studyUids": [
+    "2.25.267661580848265842359079398661199855115"
+   ]
+  }
+ ],
+ "studies": [
+  {
+   "uid": "2.25.287816942139467803205422548542058114714",
+   "subjectKey": "nih:ChestX-ray14:3400",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.162344203214422567434442853609263802601"
+   ]
+  },
+  {
+   "uid": "2.25.252598568065410983138193554022366320394",
+   "subjectKey": "nih:ChestX-ray14:10767",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.259054519635315120545519111399003087994"
+   ]
+  },
+  {
+   "uid": "2.25.160241204039614792306057810828513889537",
+   "subjectKey": "nih:ChestX-ray14:11355",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.26125964394479646325718625777775665196"
+   ]
+  },
+  {
+   "uid": "2.25.104313586793990249004969800141624426204",
+   "subjectKey": "nih:ChestX-ray14:13209",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.64763358811681580405327774705151022817"
+   ]
+  },
+  {
+   "uid": "2.25.327434314045491696669515313730026667665",
+   "subjectKey": "nih:ChestX-ray14:1437",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.249876676135355966610483047539390403300"
+   ]
+  },
+  {
+   "uid": "2.25.331835493802756179566066119777701312123",
+   "subjectKey": "nih:ChestX-ray14:13337",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.150396254641997057949965409467646376703"
+   ]
+  },
+  {
+   "uid": "2.25.87877550273685066097395054631131167938",
+   "subjectKey": "nih:ChestX-ray14:23058",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.132667421557787319702723659305473610453"
+   ]
+  },
+  {
+   "uid": "2.25.251213719383645472948817156098088745616",
+   "subjectKey": "nih:ChestX-ray14:29894",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.32594979444301069309728013094989269652"
+   ]
+  },
+  {
+   "uid": "2.25.64742713686052620956549792387906623359",
+   "subjectKey": "nih:ChestX-ray14:12299",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.292836352412596997338610003098511020867"
+   ]
+  },
+  {
+   "uid": "2.25.128175512223772582773383163599108333683",
+   "subjectKey": "nih:ChestX-ray14:16267",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.156746103252885932781593040879107040118"
+   ]
+  },
+  {
+   "uid": "2.25.23018730916951499087623606619333367467",
+   "subjectKey": "nih:ChestX-ray14:30674",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.121712318527214242413644944875349087123"
+   ]
+  },
+  {
+   "uid": "2.25.139602115486355790596511360494894190713",
+   "subjectKey": "nih:ChestX-ray14:377",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.153207459673314134422184992845760679349"
+   ]
+  },
+  {
+   "uid": "2.25.64902411227750610504708696096220046416",
+   "subjectKey": "nih:ChestX-ray14:661",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.83274867416939635552737997710228042399"
+   ]
+  },
+  {
+   "uid": "2.25.268729680781001366746703018136130363803",
+   "subjectKey": "nih:ChestX-ray14:845",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.113148076060192092093137804964020190043"
+   ]
+  },
+  {
+   "uid": "2.25.238074597940311083333421077465745443715",
+   "subjectKey": "nih:ChestX-ray14:1075",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.16323125627046451926343108225670860544"
+   ]
+  },
+  {
+   "uid": "2.25.96390092458008267714499042162300425203",
+   "subjectKey": "nih:ChestX-ray14:11157",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.48766666126521754685024003338287144294"
+   ]
+  },
+  {
+   "uid": "2.25.183495597985117072380015446763463603339",
+   "subjectKey": "nih:ChestX-ray14:22192",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.113901078422061512622190502315801344824"
+   ]
+  },
+  {
+   "uid": "2.25.233484219353318232374615857723372113944",
+   "subjectKey": "nih:ChestX-ray14:20274",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.199375388267783985677991710566335085745"
+   ]
+  },
+  {
+   "uid": "2.25.286727573616100447538896649818287297883",
+   "subjectKey": "nih:ChestX-ray14:12374",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.53166905343298243132258780158772954687"
+   ]
+  },
+  {
+   "uid": "2.25.384818053379976113595643172535696689",
+   "subjectKey": "nih:ChestX-ray14:13673",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.276789449277025666225530129592526450656"
+   ]
+  },
+  {
+   "uid": "2.25.123460554486176896022316899278433680367",
+   "subjectKey": "nih:ChestX-ray14:1933",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.76117809407433285069582359466273289089"
+   ]
+  },
+  {
+   "uid": "2.25.336571858269378472304852341718375491350",
+   "subjectKey": "nih:ChestX-ray14:3894",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.115462320984540225930052486029285432862"
+   ]
+  },
+  {
+   "uid": "2.25.267661580848265842359079398661199855115",
+   "subjectKey": "nih:ChestX-ray14:14294",
+   "description": "Chest radiograph",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.304307270072566630619033213205732684368"
+   ]
+  }
+ ],
+ "series": [
+  {
+   "uid": "2.25.162344203214422567434442853609263802601",
+   "studyUid": "2.25.287816942139467803205422548542058114714",
+   "subjectKey": "nih:ChestX-ray14:3400",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.199402247035887181956675078741186383485",
+     "file": "dicom/dx-ef3021541f/cad91e7f752111de.dcm",
+     "bytes": 316940,
+     "sha256": "cad91e7f752111de8cc02c16ca52f625e5155c0d33357069106efd42b9e6ec63",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 316940,
+   "thumbnail": "thumbs/dx-ef3021541f.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.259054519635315120545519111399003087994",
+   "studyUid": "2.25.252598568065410983138193554022366320394",
+   "subjectKey": "nih:ChestX-ray14:10767",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.83606989980376054368661128915904145955",
+     "file": "dicom/dx-8524724c7b/5b58d2967ac2f18d.dcm",
+     "bytes": 377476,
+     "sha256": "5b58d2967ac2f18d2ef5693f33da1bc8fef2608d29bfa93aa88bb8f5c2c7fcc7",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 377476,
+   "thumbnail": "thumbs/dx-8524724c7b.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.26125964394479646325718625777775665196",
+   "studyUid": "2.25.160241204039614792306057810828513889537",
+   "subjectKey": "nih:ChestX-ray14:11355",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.206289519531900562831089784791654137099",
+     "file": "dicom/dx-4a1320a481/ce1b0a2f7b5a1074.dcm",
+     "bytes": 384726,
+     "sha256": "ce1b0a2f7b5a10741d94fea8fd6f489ff7fae85c8bde29e3899d753f2962fdbb",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 384726,
+   "thumbnail": "thumbs/dx-4a1320a481.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.64763358811681580405327774705151022817",
+   "studyUid": "2.25.104313586793990249004969800141624426204",
+   "subjectKey": "nih:ChestX-ray14:13209",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.173840070990805451420283560348270505081",
+     "file": "dicom/dx-c66472edc1/a5e9ca642e570593.dcm",
+     "bytes": 396354,
+     "sha256": "a5e9ca642e57059319e1ddcfdf535ed419cca75113af53c720d00ead4ea5414f",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 396354,
+   "thumbnail": "thumbs/dx-c66472edc1.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.249876676135355966610483047539390403300",
+   "studyUid": "2.25.327434314045491696669515313730026667665",
+   "subjectKey": "nih:ChestX-ray14:1437",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.23325275399611009393492993121760987334",
+     "file": "dicom/dx-396c752237/5a6ffbe88f3364b8.dcm",
+     "bytes": 335184,
+     "sha256": "5a6ffbe88f3364b8d132856275a27e5947438af85d58d8f4566a598f980baa51",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 335184,
+   "thumbnail": "thumbs/dx-396c752237.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.150396254641997057949965409467646376703",
+   "studyUid": "2.25.331835493802756179566066119777701312123",
+   "subjectKey": "nih:ChestX-ray14:13337",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.36202981831114318732984473986394509331",
+     "file": "dicom/dx-6356f62568/9a0b267fcb2cce03.dcm",
+     "bytes": 409736,
+     "sha256": "9a0b267fcb2cce0313cca8e96ee204529de492aef9b6838b426c271d97a6dc24",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 409736,
+   "thumbnail": "thumbs/dx-6356f62568.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.132667421557787319702723659305473610453",
+   "studyUid": "2.25.87877550273685066097395054631131167938",
+   "subjectKey": "nih:ChestX-ray14:23058",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.204421072944469294454298004353466740018",
+     "file": "dicom/dx-b9562a3a27/e1c7c9a16c324847.dcm",
+     "bytes": 356758,
+     "sha256": "e1c7c9a16c324847c59f261d39a9049421cdbb15c83e8fdea5082b8870331c82",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 356758,
+   "thumbnail": "thumbs/dx-b9562a3a27.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.32594979444301069309728013094989269652",
+   "studyUid": "2.25.251213719383645472948817156098088745616",
+   "subjectKey": "nih:ChestX-ray14:29894",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.214215745105260076944763442511579050978",
+     "file": "dicom/dx-70c8ac10b6/e8d084024a9af2f7.dcm",
+     "bytes": 361374,
+     "sha256": "e8d084024a9af2f714d0e423af08ac98db797a4a79ae219525764218b7f96e22",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 361374,
+   "thumbnail": "thumbs/dx-70c8ac10b6.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.292836352412596997338610003098511020867",
+   "studyUid": "2.25.64742713686052620956549792387906623359",
+   "subjectKey": "nih:ChestX-ray14:12299",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.49951660536525787843824409165918476640",
+     "file": "dicom/dx-e9d7962cc1/54b0956a353f486d.dcm",
+     "bytes": 421602,
+     "sha256": "54b0956a353f486d3fc598feb3e784234b7f6e5e33f4ee5160e5cdb4f030eb93",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 421602,
+   "thumbnail": "thumbs/dx-e9d7962cc1.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.156746103252885932781593040879107040118",
+   "studyUid": "2.25.128175512223772582773383163599108333683",
+   "subjectKey": "nih:ChestX-ray14:16267",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.150101471785118434601245143869139770039",
+     "file": "dicom/dx-f6ac5fe3e2/6247a15c64d25f77.dcm",
+     "bytes": 382090,
+     "sha256": "6247a15c64d25f77e6dfb041b866cfe0be6f375d89d0b59777a6fdd9193e552d",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 382090,
+   "thumbnail": "thumbs/dx-f6ac5fe3e2.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.121712318527214242413644944875349087123",
+   "studyUid": "2.25.23018730916951499087623606619333367467",
+   "subjectKey": "nih:ChestX-ray14:30674",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.42421141261471198910628958503487004133",
+     "file": "dicom/dx-517cbce0b9/ddb529c09b91fe38.dcm",
+     "bytes": 338048,
+     "sha256": "ddb529c09b91fe3889461be6399ace8d4beff8ed72002758fe02318e00ed9bab",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 338048,
+   "thumbnail": "thumbs/dx-517cbce0b9.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.153207459673314134422184992845760679349",
+   "studyUid": "2.25.139602115486355790596511360494894190713",
+   "subjectKey": "nih:ChestX-ray14:377",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.340151574536192194290230452678714490334",
+     "file": "dicom/dx-e97a536ec0/b79de5427ec2b404.dcm",
+     "bytes": 315002,
+     "sha256": "b79de5427ec2b4048d218c78d4bc8aab72cf56e7592beaed16073815c65b02f3",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 315002,
+   "thumbnail": "thumbs/dx-e97a536ec0.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.83274867416939635552737997710228042399",
+   "studyUid": "2.25.64902411227750610504708696096220046416",
+   "subjectKey": "nih:ChestX-ray14:661",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.223914982423029890320166931312142703431",
+     "file": "dicom/dx-930abc73f3/39359b7234d10bb1.dcm",
+     "bytes": 378032,
+     "sha256": "39359b7234d10bb1984dca8a1a4f421d4dc4a7f3d863d6e31b39c5f657f3ddb5",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 378032,
+   "thumbnail": "thumbs/dx-930abc73f3.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.113148076060192092093137804964020190043",
+   "studyUid": "2.25.268729680781001366746703018136130363803",
+   "subjectKey": "nih:ChestX-ray14:845",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.201000565303753039522217660979612577361",
+     "file": "dicom/dx-aff31e9187/137275a221a71e08.dcm",
+     "bytes": 410244,
+     "sha256": "137275a221a71e08bf183c668f86c3a20b51e376f7f3fc927d5216a18ac391d1",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 410244,
+   "thumbnail": "thumbs/dx-aff31e9187.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.16323125627046451926343108225670860544",
+   "studyUid": "2.25.238074597940311083333421077465745443715",
+   "subjectKey": "nih:ChestX-ray14:1075",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.174349894315784558612805351684068890120",
+     "file": "dicom/dx-23a6d6ebe1/c2969c20822cbf8e.dcm",
+     "bytes": 435662,
+     "sha256": "c2969c20822cbf8e4d5bc470f1b53404eb099239ce7a455f8844209f79612826",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 435662,
+   "thumbnail": "thumbs/dx-23a6d6ebe1.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.48766666126521754685024003338287144294",
+   "studyUid": "2.25.96390092458008267714499042162300425203",
+   "subjectKey": "nih:ChestX-ray14:11157",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.166235323012859170604145997449477152548",
+     "file": "dicom/dx-4c208e1311/06a6075cdf353540.dcm",
+     "bytes": 288370,
+     "sha256": "06a6075cdf3535406b32578ca0c131a287f2c71948a97a602baf6473709c8e74",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 288370,
+   "thumbnail": "thumbs/dx-4c208e1311.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.113901078422061512622190502315801344824",
+   "studyUid": "2.25.183495597985117072380015446763463603339",
+   "subjectKey": "nih:ChestX-ray14:22192",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.306138981735424122907236451062898141414",
+     "file": "dicom/dx-250904dd54/148cf7e383b58451.dcm",
+     "bytes": 403104,
+     "sha256": "148cf7e383b58451710b5c58090de6090125fd35f97ea08e6307dc27449d7aee",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 403104,
+   "thumbnail": "thumbs/dx-250904dd54.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.199375388267783985677991710566335085745",
+   "studyUid": "2.25.233484219353318232374615857723372113944",
+   "subjectKey": "nih:ChestX-ray14:20274",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.145487495351895033766707612131921189395",
+     "file": "dicom/dx-f0b07c0df3/31e708fca4c34032.dcm",
+     "bytes": 432332,
+     "sha256": "31e708fca4c340323f99893f9badb0fac979b67a65cd976bdbc9d6c6393c4755",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 432332,
+   "thumbnail": "thumbs/dx-f0b07c0df3.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.53166905343298243132258780158772954687",
+   "studyUid": "2.25.286727573616100447538896649818287297883",
+   "subjectKey": "nih:ChestX-ray14:12374",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.23723647055816688123414852536661022603",
+     "file": "dicom/dx-0ba0b8a330/279540a39b4f6cf4.dcm",
+     "bytes": 424634,
+     "sha256": "279540a39b4f6cf4831d90b73d52a7aaf720cd31472e1fac60d0cd8b7b4d4f9d",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 424634,
+   "thumbnail": "thumbs/dx-0ba0b8a330.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.276789449277025666225530129592526450656",
+   "studyUid": "2.25.384818053379976113595643172535696689",
+   "subjectKey": "nih:ChestX-ray14:13673",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.173423254441671353800971585190193024220",
+     "file": "dicom/dx-344d1eb545/fb1aa5e6e5cc0881.dcm",
+     "bytes": 410456,
+     "sha256": "fb1aa5e6e5cc0881ad1a788ce498262b649fd0af8749b2bf73d022e28f4d2eab",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 410456,
+   "thumbnail": "thumbs/dx-344d1eb545.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.76117809407433285069582359466273289089",
+   "studyUid": "2.25.123460554486176896022316899278433680367",
+   "subjectKey": "nih:ChestX-ray14:1933",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.125795956319516128213495652710866998056",
+     "file": "dicom/dx-23f9f84250/4f6b292b32452de7.dcm",
+     "bytes": 389596,
+     "sha256": "4f6b292b32452de751bccf7f721b220aa9da5ed783cd12f82eacde6700cbcdef",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 389596,
+   "thumbnail": "thumbs/dx-23f9f84250.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.115462320984540225930052486029285432862",
+   "studyUid": "2.25.336571858269378472304852341718375491350",
+   "subjectKey": "nih:ChestX-ray14:3894",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.66880355341393823244182765937707864510",
+     "file": "dicom/dx-0cc43597fd/6b855b1af25941ca.dcm",
+     "bytes": 388070,
+     "sha256": "6b855b1af25941ca930ea2dbd2c1ad9483b8489d783bac60c4f7dc0571bf6d3f",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 388070,
+   "thumbnail": "thumbs/dx-0cc43597fd.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  },
+  {
+   "uid": "2.25.304307270072566630619033213205732684368",
+   "studyUid": "2.25.267661580848265842359079398661199855115",
+   "subjectKey": "nih:ChestX-ray14:14294",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Chest PA (NIH ChestX-ray14, 1024 px)",
+   "bodyPart": "CHEST",
+   "role": "diagnostic",
+   "roleNote": "Frontal chest radiograph (8-bit PNG release of NIH ChestX-ray14) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Chest PA (NIH ChestX-ray14, 1024 px)",
+    "StudyDescription": "Chest radiograph",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "CHEST",
+    "ViewPosition": "PA"
+   },
+   "geometry": {
+    "rows": 1024,
+    "columns": 1024,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the PNG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.28612480275491287239590806346029725039",
+     "file": "dicom/dx-27f780c163/5a2d0db102a8ca5a.dcm",
+     "bytes": 395584,
+     "sha256": "5a2d0db102a8ca5af7733f23b5399f319df7d8d80653380ee356a741c17457d5",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 395584,
+   "thumbnail": "thumbs/dx-27f780c163.png",
+   "displayNote": "Downsampled 8-bit PNG from NIH ChestX-ray14 wrapped as DICOM: no pixel spacing (distances are not measurable) and no PatientOrientation in the source, so no orientation letters are shown. The radiologist's box is the reference; the image-level labels are mined from reports."
+  }
+ ],
+ "spatialLinks": [],
+ "referenceTargets": [
+  {
+   "id": "nih-00003400_003_pneumothorax",
+   "label": "Pneumothorax (NIH radiologist box)",
+   "classId": "finding:pneumothorax",
+   "seriesUid": "2.25.162344203214422567434442853609263802601",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00003400_003_pneumothorax.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Pneumothorax'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00003400_003.png: Pneumothorax [608.14, 57.21, 241.21, 228.69]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pneumothorax"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Pneumothorax.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00010767_016_pneumothorax",
+   "label": "Pneumothorax (NIH radiologist box)",
+   "classId": "finding:pneumothorax",
+   "seriesUid": "2.25.259054519635315120545519111399003087994",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00010767_016_pneumothorax.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Pneumothorax'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00010767_016.png: Pneumothorax [117.76, 177.82, 311.75, 591.64]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pneumothorax"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Pneumothorax.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00011355_011_pneumothorax",
+   "label": "Pneumothorax (NIH radiologist box)",
+   "classId": "finding:pneumothorax",
+   "seriesUid": "2.25.26125964394479646325718625777775665196",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00011355_011_pneumothorax.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Pneumothorax'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00011355_011.png: Pneumothorax [500.62, 52.01, 428.02, 454.03]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pneumothorax"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Pneumothorax.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00013209_018_pneumothorax",
+   "label": "Pneumothorax (NIH radiologist box)",
+   "classId": "finding:pneumothorax",
+   "seriesUid": "2.25.64763358811681580405327774705151022817",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00013209_018_pneumothorax.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Pneumothorax'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00013209_018.png: Pneumothorax [190.58, 123.2, 285.58, 234.38]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pneumothorax"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Pneumothorax.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00001437_012_pleural-effusion",
+   "label": "Pleural effusion (NIH radiologist box)",
+   "classId": "finding:pleural_effusion",
+   "seriesUid": "2.25.249876676135355966610483047539390403300",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00001437_012_pleural-effusion.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Effusion'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00001437_012.png: Effusion [83.44, 138.7, 353.25, 616.57]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pleural_effusion"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Effusion.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00013337_000_pleural-effusion",
+   "label": "Pleural effusion (NIH radiologist box)",
+   "classId": "finding:pleural_effusion",
+   "seriesUid": "2.25.150396254641997057949965409467646376703",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00013337_000_pleural-effusion.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Effusion'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00013337_000.png: Effusion [61.77, 314.24, 277.4, 448.61]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pleural_effusion"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Effusion.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00023058_004_pleural-effusion",
+   "label": "Pleural effusion (NIH radiologist box)",
+   "classId": "finding:pleural_effusion",
+   "seriesUid": "2.25.132667421557787319702723659305473610453",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00023058_004_pleural-effusion.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Effusion'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00023058_004.png: Effusion [38.12, 562.38, 317.44, 202.52]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pleural_effusion"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Effusion.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00029894_000_pleural-effusion",
+   "label": "Pleural effusion (NIH radiologist box)",
+   "classId": "finding:pleural_effusion",
+   "seriesUid": "2.25.32594979444301069309728013094989269652",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00029894_000_pleural-effusion.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Effusion'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00029894_000.png: Effusion [715.17, 508.21, 229.72, 217.8]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pleural_effusion"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Effusion.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00012299_002_atelectasis",
+   "label": "Atelectasis (NIH radiologist box)",
+   "classId": "finding:atelectasis",
+   "seriesUid": "2.25.292836352412596997338610003098511020867",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00012299_002_atelectasis.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Atelectasis'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00012299_002.png: Atelectasis [195.53, 575.91, 658.77, 79.64]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:atelectasis"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Atelectasis.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00016267_000_atelectasis",
+   "label": "Atelectasis (NIH radiologist box)",
+   "classId": "finding:atelectasis",
+   "seriesUid": "2.25.156746103252885932781593040879107040118",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00016267_000_atelectasis.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Atelectasis'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00016267_000.png: Atelectasis [178.44, 599.09, 232.14, 216.95]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:atelectasis"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Atelectasis.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00030674_000_atelectasis",
+   "label": "Atelectasis (NIH radiologist box)",
+   "classId": "finding:atelectasis",
+   "seriesUid": "2.25.121712318527214242413644944875349087123",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00030674_000_atelectasis.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Atelectasis'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00030674_000.png: Atelectasis [632.95, 251.97, 227.8, 210.44]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:atelectasis"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Atelectasis.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00000377_004_cardiomegaly",
+   "label": "Cardiomegaly (enlarged cardiac silhouette) (NIH radiologist box)",
+   "classId": "finding:cardiomegaly",
+   "seriesUid": "2.25.153207459673314134422184992845760679349",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00000377_004_cardiomegaly.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Cardiomegaly'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00000377_004.png: Cardiomegaly [387.8, 419.53, 502.24, 367.73]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:cardiomegaly"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Cardiomegaly.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00000661_000_cardiomegaly",
+   "label": "Cardiomegaly (enlarged cardiac silhouette) (NIH radiologist box)",
+   "classId": "finding:cardiomegaly",
+   "seriesUid": "2.25.83274867416939635552737997710228042399",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00000661_000_cardiomegaly.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Cardiomegaly'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00000661_000.png: Cardiomegaly [298.85, 437.46, 548.88, 428.47]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:cardiomegaly"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Cardiomegaly.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00000845_000_cardiomegaly",
+   "label": "Cardiomegaly (enlarged cardiac silhouette) (NIH radiologist box)",
+   "classId": "finding:cardiomegaly",
+   "seriesUid": "2.25.113148076060192092093137804964020190043",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00000845_000_cardiomegaly.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Cardiomegaly'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00000845_000.png: Cardiomegaly [370.59, 367.34, 454.03, 424.77]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:cardiomegaly"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Cardiomegaly.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00001075_024_lung-mass",
+   "label": "Lung mass (NIH radiologist box)",
+   "classId": "finding:lung_mass",
+   "seriesUid": "2.25.16323125627046451926343108225670860544",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00001075_024_lung-mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Mass'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00001075_024.png: Mass [290.4, 326.16, 153.87, 198.3]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:lung_mass"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Mass.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00011157_001_lung-mass",
+   "label": "Lung mass (NIH radiologist box)",
+   "classId": "finding:lung_mass",
+   "seriesUid": "2.25.48766666126521754685024003338287144294",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00011157_001_lung-mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Mass'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00011157_001.png: Mass [201.55, 491.95, 125.7, 120.28]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:lung_mass"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Mass.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00022192_003_lung-mass",
+   "label": "Lung mass (NIH radiologist box)",
+   "classId": "finding:lung_mass",
+   "seriesUid": "2.25.113901078422061512622190502315801344824",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00022192_003_lung-mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Mass'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00022192_003.png: Mass [175.54, 221.05, 262.23, 303.41]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:lung_mass"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Mass.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00020274_021_lung-nodule",
+   "label": "Lung nodule (NIH radiologist box)",
+   "classId": "finding:lung_nodule",
+   "seriesUid": "2.25.199375388267783985677991710566335085745",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00020274_021_lung-nodule.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Nodule'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00020274_021.png: Nodule [159.29, 437.77, 100.77, 68.27]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:lung_nodule"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Nodule.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00012374_000_lung-nodule",
+   "label": "Lung nodule (NIH radiologist box)",
+   "classId": "finding:lung_nodule",
+   "seriesUid": "2.25.53166905343298243132258780158772954687",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00012374_000_lung-nodule.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Nodule'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00012374_000.png: Nodule [655.58, 256.81, 82.35, 80.19]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:lung_nodule"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Nodule.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00013673_001_lung-nodule",
+   "label": "Lung nodule (NIH radiologist box)",
+   "classId": "finding:lung_nodule",
+   "seriesUid": "2.25.276789449277025666225530129592526450656",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00013673_001_lung-nodule.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Nodule'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00013673_001.png: Nodule [150.62, 435.61, 81.27, 70.43]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:lung_nodule"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Nodule.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00001933_000_pneumonia",
+   "label": "Pneumonia (NIH radiologist box)",
+   "classId": "finding:pneumonia",
+   "seriesUid": "2.25.76117809407433285069582359466273289089",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00001933_000_pneumonia.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Pneumonia'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00001933_000.png: Pneumonia [554.8, 578.64, 175.54, 193.96]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pneumonia"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Consolidation|Pneumonia.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00003894_005_pneumonia",
+   "label": "Pneumonia (NIH radiologist box)",
+   "classId": "finding:pneumonia",
+   "seriesUid": "2.25.115462320984540225930052486029285432862",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00003894_005_pneumonia.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Pneumonia'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00003894_005.png: Pneumonia [581.97, 167.58, 290.13, 439.18]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pneumonia"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Nodule|Pneumonia.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  },
+  {
+   "id": "nih-00014294_011_pneumonia",
+   "label": "Pneumonia (NIH radiologist box)",
+   "classId": "finding:pneumonia",
+   "seriesUid": "2.25.304307270072566630619033213205732684368",
+   "geometryType": "box",
+   "geometryFile": "targets/nih-00014294_011_pneumonia.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "nih:ChestX-ray14 (BBox_List_2017.csv)",
+    "method": "Bounding box hand-drawn by a board-certified radiologist for the ChestX-ray8 localisation benchmark (label 'Pneumonia'); converted from [x, y, w, h] with (0,0) at the image corner to image_px [col0, row0, col1, row1] with (0,0) at the centre of the first pixel (shift of -0.5 px).",
+    "note": "BBox_List_2017.csv row for 00014294_011.png: Pneumonia [700.0, 527.71, 178.79, 162.54]"
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pneumonia"
+   ],
+   "unassessedNote": "Only the boxed finding is referenced. Other findings on this film are not outlined; the report-mined labels for the image are: Pneumonia.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The box marks where the radiologist saw the finding; it is a rectangle around it, not an outline."
+  }
+ ]
+}

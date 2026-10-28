@@ -1,0 +1,645 @@
+{
+ "schemaVersion": 1,
+ "packId": "fx-radiographs",
+ "version": "1.0.0",
+ "title": "Fracture radiographs: wrist, ankle, shoulder, knee and hip with expert outlines",
+ "description": "Five musculoskeletal radiographs from FracAtlas, each with one fracture outlined by the dataset's annotators (two expert radiologists and an orthopedist): distal forearm/wrist, ankle, proximal humerus, proximal tibia and proximal femur. Full-resolution 8-bit JPEGs as distributed; no pixel spacing or orientation tag in the source.",
+ "generatedAt": "2026-10-28T15:32:13Z",
+ "generator": "scripts/data/build_external.py (python 3.12.10, pydicom 3.0.1, highdicom 0.27.0, numpy 2.2.6)",
+ "sources": [
+  {
+   "id": "figshare:FracAtlas",
+   "name": "FracAtlas: musculoskeletal radiographs with fracture annotations",
+   "url": "https://doi.org/10.6084/m9.figshare.22363012.v7",
+   "doi": "10.6084/m9.figshare.22363012.v7",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "citation": "Abedeen I, Rahman MA, Prottyasha FZ, Ahmed T, Chowdhury TM, Shatabda S. FracAtlas: A Dataset for Fracture Classification, Localization and Segmentation of Musculoskeletal Radiographs. Sci Data. 2023;10:521. doi:10.1038/s41597-023-02432-4. Data: figshare doi:10.6084/m9.figshare.22363012.v7",
+   "accessNote": "FracAtlas.zip read member-by-member (HTTP Range, CRC-32 checked) from figshare; COCO_fracture_masks.json and dataset.csv from the same archive. No login."
+  }
+ ],
+ "subjects": [
+  {
+   "key": "figshare:FracAtlas:IMG0000019",
+   "sourceId": "figshare:FracAtlas",
+   "sourceSubjectId": "IMG0000019",
+   "linkageEvidence": "Source patient identifier IMG0000019 within FracAtlas: musculoskeletal radiographs with fracture annotations; one study per subject in this pack.",
+   "holdoutGroup": "figshare:FracAtlas:IMG0000019",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.56781401582298686094967569132658277393"
+   ]
+  },
+  {
+   "key": "figshare:FracAtlas:IMG0000151",
+   "sourceId": "figshare:FracAtlas",
+   "sourceSubjectId": "IMG0000151",
+   "linkageEvidence": "Source patient identifier IMG0000151 within FracAtlas: musculoskeletal radiographs with fracture annotations; one study per subject in this pack.",
+   "holdoutGroup": "figshare:FracAtlas:IMG0000151",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.187277877932105667397562894889690817806"
+   ]
+  },
+  {
+   "key": "figshare:FracAtlas:IMG0002302",
+   "sourceId": "figshare:FracAtlas",
+   "sourceSubjectId": "IMG0002302",
+   "linkageEvidence": "Source patient identifier IMG0002302 within FracAtlas: musculoskeletal radiographs with fracture annotations; one study per subject in this pack.",
+   "holdoutGroup": "figshare:FracAtlas:IMG00023xx",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.108327703941917453825287447636730918339"
+   ]
+  },
+  {
+   "key": "figshare:FracAtlas:IMG0002308",
+   "sourceId": "figshare:FracAtlas",
+   "sourceSubjectId": "IMG0002308",
+   "linkageEvidence": "Source patient identifier IMG0002308 within FracAtlas: musculoskeletal radiographs with fracture annotations; one study per subject in this pack.",
+   "holdoutGroup": "figshare:FracAtlas:IMG00023xx",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.231299840271496952428786454177504839974"
+   ]
+  },
+  {
+   "key": "figshare:FracAtlas:IMG0002337",
+   "sourceId": "figshare:FracAtlas",
+   "sourceSubjectId": "IMG0002337",
+   "linkageEvidence": "Source patient identifier IMG0002337 within FracAtlas: musculoskeletal radiographs with fracture annotations; one study per subject in this pack.",
+   "holdoutGroup": "figshare:FracAtlas:IMG00023xx",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.68703788134532838362375842298274319397"
+   ]
+  }
+ ],
+ "studies": [
+  {
+   "uid": "2.25.56781401582298686094967569132658277393",
+   "subjectKey": "figshare:FracAtlas:IMG0000019",
+   "description": "Radiograph, wrist and distal forearm",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.163707180555032980742915029109041760796"
+   ]
+  },
+  {
+   "uid": "2.25.187277877932105667397562894889690817806",
+   "subjectKey": "figshare:FracAtlas:IMG0000151",
+   "description": "Radiograph, ankle",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.212063392229295072408746075479873735391"
+   ]
+  },
+  {
+   "uid": "2.25.108327703941917453825287447636730918339",
+   "subjectKey": "figshare:FracAtlas:IMG0002302",
+   "description": "Radiograph, shoulder and proximal humerus",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.119885054870806771507735516824016318077"
+   ]
+  },
+  {
+   "uid": "2.25.231299840271496952428786454177504839974",
+   "subjectKey": "figshare:FracAtlas:IMG0002308",
+   "description": "Radiograph, knee and proximal tibia",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.11562704783470875146150731697017748118"
+   ]
+  },
+  {
+   "uid": "2.25.68703788134532838362375842298274319397",
+   "subjectKey": "figshare:FracAtlas:IMG0002337",
+   "description": "Radiograph, hip and proximal femur",
+   "modalities": [
+    "DX"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.64761760486751186256016515571201814575"
+   ]
+  }
+ ],
+ "series": [
+  {
+   "uid": "2.25.163707180555032980742915029109041760796",
+   "studyUid": "2.25.56781401582298686094967569132658277393",
+   "subjectKey": "figshare:FracAtlas:IMG0000019",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Frontal view (FracAtlas IMG0000019)",
+   "bodyPart": "HAND",
+   "role": "diagnostic",
+   "roleNote": "Musculoskeletal radiograph (FracAtlas JPEG) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Frontal view (FracAtlas IMG0000019)",
+    "StudyDescription": "Radiograph, wrist and distal forearm",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "HAND",
+    "LossyImageCompression": "01"
+   },
+   "geometry": {
+    "rows": 2880,
+    "columns": 2304,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the JPEG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": false,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged. Source pixel data was already lossy-compressed (LossyImageCompression=01 or lossy transfer syntax)."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.234927018584348984113519654560529669750",
+     "file": "dicom/dx-ce68591eb2/9f9a6cb48492f7ad.dcm",
+     "bytes": 1752398,
+     "sha256": "9f9a6cb48492f7adf2c2c7a8aab830cc8a9282ebe783611ec6269c93e57f0ce9",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1752398,
+   "thumbnail": "thumbs/dx-ce68591eb2.png",
+   "displayNote": "8-bit JPEG from FracAtlas wrapped as DICOM: no pixel spacing (distances are not measurable) and no orientation tag, so no orientation letters are shown; read the side from the burned-in marker if present."
+  },
+  {
+   "uid": "2.25.212063392229295072408746075479873735391",
+   "studyUid": "2.25.187277877932105667397562894889690817806",
+   "subjectKey": "figshare:FracAtlas:IMG0000151",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Frontal view (FracAtlas IMG0000151)",
+   "bodyPart": "LEG",
+   "role": "diagnostic",
+   "roleNote": "Musculoskeletal radiograph (FracAtlas JPEG) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Frontal view (FracAtlas IMG0000151)",
+    "StudyDescription": "Radiograph, ankle",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "LEG",
+    "LossyImageCompression": "01"
+   },
+   "geometry": {
+    "rows": 2880,
+    "columns": 2304,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the JPEG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": false,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged. Source pixel data was already lossy-compressed (LossyImageCompression=01 or lossy transfer syntax)."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.121140490340388002537965348350217304465",
+     "file": "dicom/dx-9ae8bb88d4/593fa321153a811b.dcm",
+     "bytes": 1696108,
+     "sha256": "593fa321153a811b706ed359124a07d8aa20217cb3a623f016c18d5b0a37729d",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1696108,
+   "thumbnail": "thumbs/dx-9ae8bb88d4.png",
+   "displayNote": "8-bit JPEG from FracAtlas wrapped as DICOM: no pixel spacing (distances are not measurable) and no orientation tag, so no orientation letters are shown; read the side from the burned-in marker if present."
+  },
+  {
+   "uid": "2.25.119885054870806771507735516824016318077",
+   "studyUid": "2.25.108327703941917453825287447636730918339",
+   "subjectKey": "figshare:FracAtlas:IMG0002302",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Frontal view (FracAtlas IMG0002302)",
+   "bodyPart": "SHOULDER",
+   "role": "diagnostic",
+   "roleNote": "Musculoskeletal radiograph (FracAtlas JPEG) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Frontal view (FracAtlas IMG0002302)",
+    "StudyDescription": "Radiograph, shoulder and proximal humerus",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "SHOULDER",
+    "LossyImageCompression": "01"
+   },
+   "geometry": {
+    "rows": 2880,
+    "columns": 2304,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the JPEG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": false,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged. Source pixel data was already lossy-compressed (LossyImageCompression=01 or lossy transfer syntax)."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.295256717025494275604540350861379984594",
+     "file": "dicom/dx-4a5d8d27e0/d7a708758ec2a0d3.dcm",
+     "bytes": 2746724,
+     "sha256": "d7a708758ec2a0d377050bf080fe4bbdaf3af368d18093433d18b855ce172b92",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 2746724,
+   "thumbnail": "thumbs/dx-4a5d8d27e0.png",
+   "displayNote": "8-bit JPEG from FracAtlas wrapped as DICOM: no pixel spacing (distances are not measurable) and no orientation tag, so no orientation letters are shown; read the side from the burned-in marker if present."
+  },
+  {
+   "uid": "2.25.11562704783470875146150731697017748118",
+   "studyUid": "2.25.231299840271496952428786454177504839974",
+   "subjectKey": "figshare:FracAtlas:IMG0002308",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Frontal view (FracAtlas IMG0002308)",
+   "bodyPart": "LEG",
+   "role": "diagnostic",
+   "roleNote": "Musculoskeletal radiograph (FracAtlas JPEG) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Frontal view (FracAtlas IMG0002308)",
+    "StudyDescription": "Radiograph, knee and proximal tibia",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "LEG",
+    "LossyImageCompression": "01"
+   },
+   "geometry": {
+    "rows": 2880,
+    "columns": 2304,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the JPEG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": false,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged. Source pixel data was already lossy-compressed (LossyImageCompression=01 or lossy transfer syntax)."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.36754687717268340056959984317363272261",
+     "file": "dicom/dx-205a752032/9fa0f815184b3633.dcm",
+     "bytes": 1296254,
+     "sha256": "9fa0f815184b3633a2fe74e5fd3733368bff871c35446e209974884b7d384d14",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1296254,
+   "thumbnail": "thumbs/dx-205a752032.png",
+   "displayNote": "8-bit JPEG from FracAtlas wrapped as DICOM: no pixel spacing (distances are not measurable) and no orientation tag, so no orientation letters are shown; read the side from the burned-in marker if present."
+  },
+  {
+   "uid": "2.25.64761760486751186256016515571201814575",
+   "studyUid": "2.25.68703788134532838362375842298274319397",
+   "subjectKey": "figshare:FracAtlas:IMG0002337",
+   "modality": "DX",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Frontal view (FracAtlas IMG0002337)",
+   "bodyPart": "HIP",
+   "role": "diagnostic",
+   "roleNote": "Musculoskeletal radiograph (FracAtlas JPEG) wrapped as DICOM Secondary Capture.",
+   "acquisition": {
+    "SeriesDescription": "Frontal view (FracAtlas IMG0002337)",
+    "StudyDescription": "Radiograph, hip and proximal femur",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "HIP",
+    "LossyImageCompression": "01"
+   },
+   "geometry": {
+    "rows": 2880,
+    "columns": 2304,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 8,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Full 8-bit range (the JPEG is already windowed)",
+     "center": 127.5,
+     "width": 256.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": false,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged. Source pixel data was already lossy-compressed (LossyImageCompression=01 or lossy transfer syntax)."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.56915401147605132277405889184276228125",
+     "file": "dicom/dx-af34e497ea/89470d423e84b357.dcm",
+     "bytes": 1830854,
+     "sha256": "89470d423e84b3578f3083ddd48c088df94bf440aeaa5e52ddcb23e3550d20f2",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1830854,
+   "thumbnail": "thumbs/dx-af34e497ea.png",
+   "displayNote": "8-bit JPEG from FracAtlas wrapped as DICOM: no pixel spacing (distances are not measurable) and no orientation tag, so no orientation letters are shown; read the side from the burned-in marker if present."
+  }
+ ],
+ "spatialLinks": [],
+ "referenceTargets": [
+  {
+   "id": "fracatlas-img0000019_fracture",
+   "label": "Fracture (FracAtlas expert outline)",
+   "classId": "finding:fracture",
+   "seriesUid": "2.25.163707180555032980742915029109041760796",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/fracatlas-img0000019_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:FracAtlas (Annotations/COCO JSON/COCO_fracture_masks.json)",
+    "method": "Fracture polygon drawn manually in makesense.ai with the help of two expert radiologists and an orthopedist (Abedeen et al. 2023); COCO annotation id 0, converted from pixel-corner to pixel-centre coordinates (-0.5 px).",
+    "note": "COCO bbox [1242.3, 929.1, 273.3, 147.3]; dataset.csv: hand, fracture_count 1, no hardware, frontal view."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:fracture"
+   ],
+   "unassessedNote": "Only the fracture is outlined; alignment, joint involvement and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The outline marks the fracture region drawn by the dataset's annotators; it is not a measurement of displacement."
+  },
+  {
+   "id": "fracatlas-img0000151_fracture",
+   "label": "Fracture (FracAtlas expert outline)",
+   "classId": "finding:fracture",
+   "seriesUid": "2.25.212063392229295072408746075479873735391",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/fracatlas-img0000151_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:FracAtlas (Annotations/COCO JSON/COCO_fracture_masks.json)",
+    "method": "Fracture polygon drawn manually in makesense.ai with the help of two expert radiologists and an orthopedist (Abedeen et al. 2023); COCO annotation id 11, converted from pixel-corner to pixel-centre coordinates (-0.5 px).",
+    "note": "COCO bbox [961.9, 1040.8, 104.6, 339.8]; dataset.csv: leg, fracture_count 1, no hardware, frontal view."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:fracture"
+   ],
+   "unassessedNote": "Only the fracture is outlined; alignment, joint involvement and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The outline marks the fracture region drawn by the dataset's annotators; it is not a measurement of displacement."
+  },
+  {
+   "id": "fracatlas-img0002302_fracture",
+   "label": "Fracture (FracAtlas expert outline)",
+   "classId": "finding:fracture",
+   "seriesUid": "2.25.119885054870806771507735516824016318077",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/fracatlas-img0002302_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:FracAtlas (Annotations/COCO JSON/COCO_fracture_masks.json)",
+    "method": "Fracture polygon drawn manually in makesense.ai with the help of two expert radiologists and an orthopedist (Abedeen et al. 2023); COCO annotation id 194, converted from pixel-corner to pixel-centre coordinates (-0.5 px).",
+    "note": "COCO bbox [1469.1, 1055.4, 267.4, 324.2]; dataset.csv: shoulder, fracture_count 1, no hardware, frontal view."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:fracture"
+   ],
+   "unassessedNote": "Only the fracture is outlined; alignment, joint involvement and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The outline marks the fracture region drawn by the dataset's annotators; it is not a measurement of displacement."
+  },
+  {
+   "id": "fracatlas-img0002308_fracture",
+   "label": "Fracture (FracAtlas expert outline)",
+   "classId": "finding:fracture",
+   "seriesUid": "2.25.11562704783470875146150731697017748118",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/fracatlas-img0002308_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:FracAtlas (Annotations/COCO JSON/COCO_fracture_masks.json)",
+    "method": "Fracture polygon drawn manually in makesense.ai with the help of two expert radiologists and an orthopedist (Abedeen et al. 2023); COCO annotation id 200, converted from pixel-corner to pixel-centre coordinates (-0.5 px).",
+    "note": "COCO bbox [1239.6, 1012.9, 239.0, 227.2]; dataset.csv: leg, fracture_count 1, no hardware, frontal view."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:fracture"
+   ],
+   "unassessedNote": "Only the fracture is outlined; alignment, joint involvement and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The outline marks the fracture region drawn by the dataset's annotators; it is not a measurement of displacement."
+  },
+  {
+   "id": "fracatlas-img0002337_fracture",
+   "label": "Fracture (FracAtlas expert outline)",
+   "classId": "finding:fracture",
+   "seriesUid": "2.25.64761760486751186256016515571201814575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/fracatlas-img0002337_fracture.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:FracAtlas (Annotations/COCO JSON/COCO_fracture_masks.json)",
+    "method": "Fracture polygon drawn manually in makesense.ai with the help of two expert radiologists and an orthopedist (Abedeen et al. 2023); COCO annotation id 237, converted from pixel-corner to pixel-centre coordinates (-0.5 px).",
+    "note": "COCO bbox [0, 1046.0, 378.2, 565.6]; dataset.csv: hip, fracture_count 1, no hardware, frontal view."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:fracture"
+   ],
+   "unassessedNote": "Only the fracture is outlined; alignment, joint involvement and soft tissues are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The outline marks the fracture region drawn by the dataset's annotators; it is not a measurement of displacement."
+  }
+ ]
+}

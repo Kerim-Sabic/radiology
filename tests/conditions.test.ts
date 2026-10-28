@@ -251,18 +251,31 @@ describe.skipIf(!real)('results from the installed cases', () => {
 
   it('has no case for hemothorax (none is labelled), and says nothing it cannot back up', async () => {
     expect(await run('hemothorax')).toEqual([]);
-    expect(await run('pneumothorax')).toEqual([]);
+  });
+
+  it('finds the pneumothorax radiographs with the radiologist box and a link to it', async () => {
+    const hits = await run('pneumothorax');
+    if (!hits.length) return; // pack not installed in this checkout
+    expect(new Set(hits.map((h) => h.caseId)).size).toBeGreaterThanOrEqual(4);
+    for (const h of hits) {
+      expect(h.family).toBe('X-ray');
+      expect(h.strength).toBe('outlined');
+      expect(h.items.every((i) => i.where === 'boxed on the image')).toBe(true);
+      expect(h.link).toMatch(/&show=/);
+    }
   });
 
   it('finds every outlined lung nodule with the images it is on', async () => {
     const hits = await run('lung_nodule');
     const nodules = [...real!.view.targets.values()].filter((t) => t.classId === 'finding:lung_nodule' && [...real!.view.cases.values()].some((k) => real!.view.seriesForCase(k).some((s) => s.uid === t.seriesUid)));
     expect(hits.flatMap((h) => h.items).length).toBe(nodules.length);
+    // LIDC CT nodules (outlines) and NIH chest radiograph nodules (radiologist boxes).
+    expect(hits.some((h) => h.family === 'CT')).toBe(true);
     for (const h of hits) {
-      expect(h.family).toBe('CT');
+      expect(['CT', 'X-ray']).toContain(h.family);
       expect(h.strength).toBe('outlined');
       expect(h.link).toMatch(/^\/read\/[^?]+\?task=.+&mode=learn&show=/);
-      for (const it of h.items) expect(it.where).toMatch(/^images? \d+(–\d+)? of \d+$/);
+      if (h.family === 'CT') for (const it of h.items) expect(it.where).toMatch(/^images? \d+(–\d+)? of \d+$/);
     }
   });
 

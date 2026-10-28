@@ -1,0 +1,5980 @@
+{
+ "schemaVersion": 1,
+ "packId": "pe-cta",
+ "version": "1.0.0",
+ "title": "CT pulmonary angiography: pulmonary embolism with radiologist masks",
+ "description": "Two CT pulmonary angiograms (1 mm, contrast) from the FUMPE dataset with the emboli marked by two radiologists: a saddle embolus and a large right pulmonary artery embolus. Headers had placeholder UIDs and dates, repaired before packing; pixel data are unchanged.",
+ "generatedAt": "2026-10-28T15:21:53Z",
+ "generator": "scripts/data/build_external.py (python 3.12.10, pydicom 3.0.1, highdicom 0.27.0, numpy 2.2.6)",
+ "sources": [
+  {
+   "id": "figshare:FUMPE",
+   "name": "FUMPE: Ferdowsi University of Mashhad's PE dataset (CT pulmonary angiography with PE masks)",
+   "url": "https://doi.org/10.6084/m9.figshare.c.4107803.v1",
+   "doi": "10.6084/m9.figshare.c.4107803.v1",
+   "license": "CC BY 4.0",
+   "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+   "citation": "Masoudi M, Pourreza HR, Saadatmand-Tarzjan M, Eftekhari N, Zargar FS, Rad MP. A new dataset of computed-tomography angiography images for computer-aided detection of pulmonary embolism. Sci Data. 2018;5:180180. doi:10.1038/sdata.2018.180. Data: figshare collection doi:10.6084/m9.figshare.c.4107803.v1",
+   "accessNote": "Patient RAR archives and 'Ground Truth.rar' (label-edited/PATnnn.mat) downloaded anonymously from figshare (md5 checked against the figshare API)."
+  }
+ ],
+ "subjects": [
+  {
+   "key": "figshare:FUMPE:PAT005",
+   "sourceId": "figshare:FUMPE",
+   "sourceSubjectId": "PAT005",
+   "linkageEvidence": "Source patient identifier PAT005 within FUMPE: Ferdowsi University of Mashhad's PE dataset (CT pulmonary angiography with PE masks); one study per subject in this pack.",
+   "holdoutGroup": "figshare:FUMPE:PAT005",
+   "sex": "O",
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.188070595313388473937610407432780011209"
+   ]
+  },
+  {
+   "key": "figshare:FUMPE:PAT021",
+   "sourceId": "figshare:FUMPE",
+   "sourceSubjectId": "PAT021",
+   "linkageEvidence": "Source patient identifier PAT021 within FUMPE: Ferdowsi University of Mashhad's PE dataset (CT pulmonary angiography with PE masks); one study per subject in this pack.",
+   "holdoutGroup": "figshare:FUMPE:PAT021",
+   "sex": "M",
+   "ageAtFirstStudy": "080Y",
+   "studyUids": [
+    "2.25.1547359993828718243321428711369990629"
+   ]
+  }
+ ],
+ "studies": [
+  {
+   "uid": "2.25.188070595313388473937610407432780011209",
+   "subjectKey": "figshare:FUMPE:PAT005",
+   "description": "CT pulmonary angiogram (FUMPE)",
+   "modalities": [
+    "CT"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.225694208448586268817010326638561875843"
+   ]
+  },
+  {
+   "uid": "2.25.1547359993828718243321428711369990629",
+   "subjectKey": "figshare:FUMPE:PAT021",
+   "description": "CT pulmonary angiogram (FUMPE)",
+   "modalities": [
+    "CT"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.208016074378713353746067436351091429943"
+   ]
+  }
+ ],
+ "series": [
+  {
+   "uid": "2.25.225694208448586268817010326638561875843",
+   "studyUid": "2.25.188070595313388473937610407432780011209",
+   "subjectKey": "figshare:FUMPE:PAT005",
+   "modality": "CT",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.2",
+   "frameOfReferenceUid": "1.2.156.14702.1.1000.16.3.164.20150819201651750",
+   "number": 5,
+   "description": "CTPA axial 1 mm",
+   "bodyPart": null,
+   "role": "diagnostic",
+   "roleNote": "CT pulmonary angiogram (1 mm axial).",
+   "acquisition": {
+    "SeriesDescription": "CTPA axial 1 mm",
+    "ProtocolName": "PE 1",
+    "StudyDescription": "CT pulmonary angiogram (FUMPE)",
+    "ImageType": "ORIGINAL\\PRIMARY\\AXIAL\\HELICAL",
+    "ManufacturerModelName": "NeuViz 16",
+    "PatientPosition": "HFS",
+    "ScanOptions": "HELICAL",
+    "ContrastBolusAgent": "C+",
+    "KVP": "120",
+    "XRayTubeCurrent": "varies across 217 instances (41 distinct): 175 | 174 | 172 | 171 | 169 | 166 ...",
+    "Exposure": "varies across 217 instances (37 distinct): 130 | 129 | 128 | 127 | 125 | 124 ...",
+    "SliceThickness": "1",
+    "ConvolutionKernel": "SA",
+    "ReconstructionDiameter": "324",
+    "GantryDetectorTilt": "0",
+    "DistanceSourceToDetector": "1040",
+    "DistanceSourceToPatient": "570",
+    "AcquisitionNumber": "4"
+   },
+   "geometry": {
+    "rows": 512,
+    "columns": 512,
+    "pixelSpacing": [
+     0.632813,
+     0.632813
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": [
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "sliceSpacing": 1.0,
+    "sliceSpacingUniform": true,
+    "volumeEligible": true,
+    "volumeIssues": [],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": {
+     "slope": 1.0,
+     "intercept": -1024.0,
+     "type": null
+    },
+    "hu": true
+   },
+   "windowPresets": [
+    {
+     "label": "Soft tissue",
+     "center": 40,
+     "width": 400
+    },
+    {
+     "label": "Lung",
+     "center": -600,
+     "width": 1500
+    },
+    {
+     "label": "Mediastinum",
+     "center": 50,
+     "width": 350
+    },
+    {
+     "label": "Bone",
+     "center": 400,
+     "width": 1800
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 217}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.220940152011005131710920400891839837472",
+     "file": "dicom/ct-a9b86eb0e7/05998afe5db3b81f.dcm",
+     "bytes": 185374,
+     "sha256": "05998afe5db3b81fe70943775125aed5ec707c4631f08510f59b534d08e6ba02",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -873.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.126262177110999451241481857393242009442",
+     "file": "dicom/ct-a9b86eb0e7/c1972e1f78fb9226.dcm",
+     "bytes": 185472,
+     "sha256": "c1972e1f78fb9226f966c5f63123a6b0d62d7606ef37306ba5a669e81510a73e",
+     "frames": 1,
+     "instanceNumber": 2,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -872.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.225675406612181844333333318862961918021",
+     "file": "dicom/ct-a9b86eb0e7/2ef40cb35967d3b4.dcm",
+     "bytes": 185510,
+     "sha256": "2ef40cb35967d3b49a8405734a00d41326137bb6ac925ab2cc04c46189657683",
+     "frames": 1,
+     "instanceNumber": 3,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -871.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.365512019611303231117721310043021655485",
+     "file": "dicom/ct-a9b86eb0e7/aef39a122c1b6ce9.dcm",
+     "bytes": 185270,
+     "sha256": "aef39a122c1b6ce9c6402e54ed3c143579659d78fc4003e7b40d4bf86962092f",
+     "frames": 1,
+     "instanceNumber": 4,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -870.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.238027394611231630541544480003329041836",
+     "file": "dicom/ct-a9b86eb0e7/f3ce440d8c8f5070.dcm",
+     "bytes": 184980,
+     "sha256": "f3ce440d8c8f507070a710847f866493aff3517b9b685cd1e149b4fc7a898f74",
+     "frames": 1,
+     "instanceNumber": 5,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -869.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.175764218013949715820376831182210661102",
+     "file": "dicom/ct-a9b86eb0e7/6b7213ed135e06a0.dcm",
+     "bytes": 184648,
+     "sha256": "6b7213ed135e06a015549f8ccf5cd9631e9fd5a90d7fc80ef192ee52d1582fc6",
+     "frames": 1,
+     "instanceNumber": 6,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -868.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.387080413011554141215103210460198081720",
+     "file": "dicom/ct-a9b86eb0e7/1be3203b8d04533f.dcm",
+     "bytes": 184688,
+     "sha256": "1be3203b8d04533f478856ed204e0b7d7bd529d6823bfa72a2b9b667483d4d7e",
+     "frames": 1,
+     "instanceNumber": 7,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -867.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.333997480611604247505387600761152115911",
+     "file": "dicom/ct-a9b86eb0e7/43ce26e6c281b7a2.dcm",
+     "bytes": 184548,
+     "sha256": "43ce26e6c281b7a222fd83981b8db536717975969f7bd17c5bca6bf11beddd11",
+     "frames": 1,
+     "instanceNumber": 8,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -866.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.298814831713589510636728963892208399383",
+     "file": "dicom/ct-a9b86eb0e7/696be8629861a437.dcm",
+     "bytes": 185018,
+     "sha256": "696be8629861a437920b41050274543c1c4d9c1afe3dce0f7980cc77287cdcd5",
+     "frames": 1,
+     "instanceNumber": 9,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -865.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.308008609811551969402462329620879841169",
+     "file": "dicom/ct-a9b86eb0e7/7fcd93fa8fe50d40.dcm",
+     "bytes": 184926,
+     "sha256": "7fcd93fa8fe50d40efcd12ea5b68337465179095b3367d216e8b785afc7d41a7",
+     "frames": 1,
+     "instanceNumber": 10,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -864.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.165964613712404706809593292091479213137",
+     "file": "dicom/ct-a9b86eb0e7/750287ad393480a5.dcm",
+     "bytes": 184760,
+     "sha256": "750287ad393480a5e9eb87156f7a5c2b17c5f9477de220e94f629372b2fd8e1b",
+     "frames": 1,
+     "instanceNumber": 11,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -863.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.190876039810303133223863504864237204650",
+     "file": "dicom/ct-a9b86eb0e7/60144451ecc12ccc.dcm",
+     "bytes": 185296,
+     "sha256": "60144451ecc12cccd3a4d6812907221180a1c290b97530b0e790f4259e7a95ac",
+     "frames": 1,
+     "instanceNumber": 12,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -862.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.338558505011154878821423090184285236464",
+     "file": "dicom/ct-a9b86eb0e7/f35710059776ed81.dcm",
+     "bytes": 185904,
+     "sha256": "f35710059776ed819c4811240cef9df439291c9efa095d493b2e1661efa9c52c",
+     "frames": 1,
+     "instanceNumber": 13,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -861.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.244747091613453634434786323750985573275",
+     "file": "dicom/ct-a9b86eb0e7/3fed3d646f1547c7.dcm",
+     "bytes": 185814,
+     "sha256": "3fed3d646f1547c7f4fb5edd1e4049000e2e58581c02a2ecfe26a9e923c1b830",
+     "frames": 1,
+     "instanceNumber": 14,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -860.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.263114213211952586032229718203093779797",
+     "file": "dicom/ct-a9b86eb0e7/f312bfc72e2b72f7.dcm",
+     "bytes": 185734,
+     "sha256": "f312bfc72e2b72f7596e8a2487ef41ce7248458bf5a28081e41f8524bf7b1ff7",
+     "frames": 1,
+     "instanceNumber": 15,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -859.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.314708807912783167204027365632400739717",
+     "file": "dicom/ct-a9b86eb0e7/a7814070ef5b63af.dcm",
+     "bytes": 185308,
+     "sha256": "a7814070ef5b63afc37ac2246eb3abc38c1c4665b70d84e01586d30e31574cdb",
+     "frames": 1,
+     "instanceNumber": 16,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -858.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.372769994411654218416140115273124653996",
+     "file": "dicom/ct-a9b86eb0e7/ec04e9017dcaf038.dcm",
+     "bytes": 185154,
+     "sha256": "ec04e9017dcaf0385fe5ebf69e8063b7e3ca67faf48851f76981b8832e38ab3d",
+     "frames": 1,
+     "instanceNumber": 17,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -857.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.75924506711015504428111571432107487909",
+     "file": "dicom/ct-a9b86eb0e7/5ee6a6a83aea14c3.dcm",
+     "bytes": 185414,
+     "sha256": "5ee6a6a83aea14c396d7c16e7ab8d994741b2faf6c04d12fd1ae5716bc413bbc",
+     "frames": 1,
+     "instanceNumber": 18,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -856.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.263520016011595409218981554221000497656",
+     "file": "dicom/ct-a9b86eb0e7/567e1046f5aa3887.dcm",
+     "bytes": 185364,
+     "sha256": "567e1046f5aa3887be1cd2e2d8048bde371d90b6ae53f3d1de232d5231512a98",
+     "frames": 1,
+     "instanceNumber": 19,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -855.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.211316957712365435038373154683967941637",
+     "file": "dicom/ct-a9b86eb0e7/563589caed811eff.dcm",
+     "bytes": 184900,
+     "sha256": "563589caed811effe2f3aee457aa341fa6f6e8857d7f5c334161d956a3d59968",
+     "frames": 1,
+     "instanceNumber": 20,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -854.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.76338576511176235808974698621073359823",
+     "file": "dicom/ct-a9b86eb0e7/f8031e80f4305c86.dcm",
+     "bytes": 184708,
+     "sha256": "f8031e80f4305c863df60571f39c76ae4340b49d2b54c5538d5bf9e0ebafb137",
+     "frames": 1,
+     "instanceNumber": 21,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -853.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.392520710810866335742518736811755215905",
+     "file": "dicom/ct-a9b86eb0e7/bf81ef4f29b78c06.dcm",
+     "bytes": 184326,
+     "sha256": "bf81ef4f29b78c06defa4d524fa46b08239b16229c4921db6f194cdfb39e231a",
+     "frames": 1,
+     "instanceNumber": 22,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -852.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.394023648111696546619077569862447670978",
+     "file": "dicom/ct-a9b86eb0e7/c3a2324f75323ce1.dcm",
+     "bytes": 184228,
+     "sha256": "c3a2324f75323ce1417154548388da3c40ae3506d3336c5239637706042bbbcb",
+     "frames": 1,
+     "instanceNumber": 23,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -851.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.169580177510983377830454642433183765955",
+     "file": "dicom/ct-a9b86eb0e7/aa28b16cef5c4bfd.dcm",
+     "bytes": 184546,
+     "sha256": "aa28b16cef5c4bfd00a17ef0d747e30b55baf24a110dd5c957db15306a124407",
+     "frames": 1,
+     "instanceNumber": 24,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -850.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.31479514813036906707527461742602961353",
+     "file": "dicom/ct-a9b86eb0e7/fb6f1fc5bffa14ba.dcm",
+     "bytes": 184870,
+     "sha256": "fb6f1fc5bffa14bae52b45ba2f51eb27bbc1be036478ba17358ee9c0a40b1c69",
+     "frames": 1,
+     "instanceNumber": 25,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -849.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.381311921212082675612495243693427735263",
+     "file": "dicom/ct-a9b86eb0e7/7d545e9f0ba39e99.dcm",
+     "bytes": 184476,
+     "sha256": "7d545e9f0ba39e994bd906d82868f0582c3b2d42378f709b7f3c445df4a40b5b",
+     "frames": 1,
+     "instanceNumber": 26,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -848.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.362257978013944182739513207101048403571",
+     "file": "dicom/ct-a9b86eb0e7/23591b08b630a42c.dcm",
+     "bytes": 183672,
+     "sha256": "23591b08b630a42cd3c1334b13486e399153c2841985af883e9dcd07f94c1fae",
+     "frames": 1,
+     "instanceNumber": 27,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -847.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.161828559411251538817821328700305687250",
+     "file": "dicom/ct-a9b86eb0e7/d3f2175a1a53359d.dcm",
+     "bytes": 183660,
+     "sha256": "d3f2175a1a53359dd4bd2b1f6e65676206d28f569a0a0d5ec72e05c9b79ae538",
+     "frames": 1,
+     "instanceNumber": 28,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -846.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.289576491610738895401160738623089748684",
+     "file": "dicom/ct-a9b86eb0e7/3fdab30fcfb58b57.dcm",
+     "bytes": 183172,
+     "sha256": "3fdab30fcfb58b5754cc2f20fb16bea61bf9bd1afe7f50c68fc5bc7021b7b265",
+     "frames": 1,
+     "instanceNumber": 29,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -845.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.69445342712934744941372274403276772649",
+     "file": "dicom/ct-a9b86eb0e7/e7b22add15656dc9.dcm",
+     "bytes": 182398,
+     "sha256": "e7b22add15656dc92a5516f3a5647b95277519f89393b7c26e97c811c6cc1bab",
+     "frames": 1,
+     "instanceNumber": 30,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -844.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.186331694711254336027154692442080521217",
+     "file": "dicom/ct-a9b86eb0e7/c3e1af9732745978.dcm",
+     "bytes": 182420,
+     "sha256": "c3e1af9732745978f0c4c930eb39d442e0c12c675cea2e2d0a5260ff076bb93a",
+     "frames": 1,
+     "instanceNumber": 31,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -843.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.362427524311263096241721212554057293917",
+     "file": "dicom/ct-a9b86eb0e7/9e25270b82bf2b65.dcm",
+     "bytes": 181860,
+     "sha256": "9e25270b82bf2b65640ee29c49aa23fc7cd9b224bac6d1d1a192b6d7c51c139f",
+     "frames": 1,
+     "instanceNumber": 32,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -842.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.419587144511772482101896139660622985165",
+     "file": "dicom/ct-a9b86eb0e7/177121c872c7066b.dcm",
+     "bytes": 181652,
+     "sha256": "177121c872c7066b12e7c11d21fe00a1550c8d0d3a808ce6466f11e68c89a33a",
+     "frames": 1,
+     "instanceNumber": 33,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -841.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.303566502112679448630424004152185918153",
+     "file": "dicom/ct-a9b86eb0e7/18a88b840857e428.dcm",
+     "bytes": 181654,
+     "sha256": "18a88b840857e428b30e0022f34a9beff6e8e2d8eedbcaafb5ad6d16c833c919",
+     "frames": 1,
+     "instanceNumber": 34,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -840.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.75625473112733583007275470181136337760",
+     "file": "dicom/ct-a9b86eb0e7/bcdd78847e2f50d0.dcm",
+     "bytes": 181338,
+     "sha256": "bcdd78847e2f50d03337a462f9919c7ad303f3faa51848a1a950b297ca1ec154",
+     "frames": 1,
+     "instanceNumber": 35,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -839.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.160498769912785230634964025911382993564",
+     "file": "dicom/ct-a9b86eb0e7/0fa32cdbc3f89bed.dcm",
+     "bytes": 181492,
+     "sha256": "0fa32cdbc3f89bed27fda1a7e21824e129fa2382ccb97ff1e95960b6e1cb54fd",
+     "frames": 1,
+     "instanceNumber": 36,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -838.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.58071718111703085010908008171852805132",
+     "file": "dicom/ct-a9b86eb0e7/213fbc6c5cf77604.dcm",
+     "bytes": 181860,
+     "sha256": "213fbc6c5cf77604d403ecad42cac2dc17ae8e6ddaf708e68f4690acb1229a78",
+     "frames": 1,
+     "instanceNumber": 37,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -837.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.359890051110795774634997246940647384660",
+     "file": "dicom/ct-a9b86eb0e7/4ab3cf24f5e05631.dcm",
+     "bytes": 181966,
+     "sha256": "4ab3cf24f5e05631bfe70e3e2ca19abb3300a591d82bec9b5e866bb3b61d31cc",
+     "frames": 1,
+     "instanceNumber": 38,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -836.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.102193792511068729302524399682311612669",
+     "file": "dicom/ct-a9b86eb0e7/44b9a9a181d5059d.dcm",
+     "bytes": 181514,
+     "sha256": "44b9a9a181d5059d2016a77c3fe8f10b08e9b3bfffe320c80b5a8d3fb70dac33",
+     "frames": 1,
+     "instanceNumber": 39,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -835.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.3370818912956436302194817671709874641",
+     "file": "dicom/ct-a9b86eb0e7/dd3cc4c38c214581.dcm",
+     "bytes": 181442,
+     "sha256": "dd3cc4c38c214581e817f3cd604102ff818b05fe8d3e2146af230d097f12edcc",
+     "frames": 1,
+     "instanceNumber": 40,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -834.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.382889602412278292006494509383166811813",
+     "file": "dicom/ct-a9b86eb0e7/57c237e3f1e94c95.dcm",
+     "bytes": 180896,
+     "sha256": "57c237e3f1e94c95a9875745d22c47161f86d4c0aec7f6b5752af5bc7ea6bcb6",
+     "frames": 1,
+     "instanceNumber": 41,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -833.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.303410897313265075503763588291031800557",
+     "file": "dicom/ct-a9b86eb0e7/e371190607049858.dcm",
+     "bytes": 181020,
+     "sha256": "e371190607049858bef7db1af8be22932bd69c95271e877ed504674c8ca69be0",
+     "frames": 1,
+     "instanceNumber": 42,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -832.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.70612097212077331036027867170375673855",
+     "file": "dicom/ct-a9b86eb0e7/7470d0d29d7802cb.dcm",
+     "bytes": 181414,
+     "sha256": "7470d0d29d7802cb281aaade6944490b776f8bf4a4ee521973f3a808f1ee91f2",
+     "frames": 1,
+     "instanceNumber": 43,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -831.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.386416621811503136606715639232660994156",
+     "file": "dicom/ct-a9b86eb0e7/913608d712229c23.dcm",
+     "bytes": 181018,
+     "sha256": "913608d712229c233f26f0a4fd3c9e68c6573d6fcba3f20be1caabbe94e34944",
+     "frames": 1,
+     "instanceNumber": 44,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -830.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.218396031813204271517638196912151855629",
+     "file": "dicom/ct-a9b86eb0e7/4528927bac904210.dcm",
+     "bytes": 181452,
+     "sha256": "4528927bac904210223106bc25268e0d8d34dbf5ebe48e9f427a82bf1327ffff",
+     "frames": 1,
+     "instanceNumber": 45,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -829.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.220989403510860331008120047990125860119",
+     "file": "dicom/ct-a9b86eb0e7/bd451427ff278bfd.dcm",
+     "bytes": 181856,
+     "sha256": "bd451427ff278bfd9ace601f87b504ce2de7e3f33b127ecc13956fa8858b7867",
+     "frames": 1,
+     "instanceNumber": 46,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -828.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.214411029011160170419833225434182955721",
+     "file": "dicom/ct-a9b86eb0e7/5ca3e38fde6ccca0.dcm",
+     "bytes": 182002,
+     "sha256": "5ca3e38fde6ccca0f82782a94fa316798b70b367875c705026969b3adea87a5a",
+     "frames": 1,
+     "instanceNumber": 47,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -827.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.218739891512839488407553117582132700275",
+     "file": "dicom/ct-a9b86eb0e7/a7c0abed90e23030.dcm",
+     "bytes": 182662,
+     "sha256": "a7c0abed90e23030f9d18145551c49fa5f1ba12864d4ed0be297b281ae6fb4fb",
+     "frames": 1,
+     "instanceNumber": 48,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -826.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.32318214412174978722974007042537478136",
+     "file": "dicom/ct-a9b86eb0e7/0ba743fe25e5fc25.dcm",
+     "bytes": 183320,
+     "sha256": "0ba743fe25e5fc25fa4b5dd9921f98c5db68d364da36725d7084b562802345ab",
+     "frames": 1,
+     "instanceNumber": 49,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -825.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.172230731811071661510980435574050746436",
+     "file": "dicom/ct-a9b86eb0e7/4d0c1f7dca8fd8e4.dcm",
+     "bytes": 183260,
+     "sha256": "4d0c1f7dca8fd8e4f502d80c27ab82844a7642c8ef13ee29d24f84edab55a71c",
+     "frames": 1,
+     "instanceNumber": 50,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -824.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.292844498412605382305762820381688095022",
+     "file": "dicom/ct-a9b86eb0e7/e9e225c6b23827b9.dcm",
+     "bytes": 183250,
+     "sha256": "e9e225c6b23827b978719bb587d752b19e49832564ca16d74270527e6f79dfaf",
+     "frames": 1,
+     "instanceNumber": 51,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -823.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.361294124511368981725189400441192462003",
+     "file": "dicom/ct-a9b86eb0e7/6bfb90368261bb4e.dcm",
+     "bytes": 183532,
+     "sha256": "6bfb90368261bb4e4d238a1717c81a4ab461341dc31985f7a9cb052bd76f75f9",
+     "frames": 1,
+     "instanceNumber": 52,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -822.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.409106247210686216109313798721106682085",
+     "file": "dicom/ct-a9b86eb0e7/3cacffede1ed86bc.dcm",
+     "bytes": 183828,
+     "sha256": "3cacffede1ed86bcbe75f994d348276d7619bed2987e10f5a900f11ecdea259f",
+     "frames": 1,
+     "instanceNumber": 53,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -821.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.202171244212458311234818720401723277462",
+     "file": "dicom/ct-a9b86eb0e7/4552cc2372dbf05f.dcm",
+     "bytes": 184246,
+     "sha256": "4552cc2372dbf05f0388051c48b55b078892bebd7589c4765595b81a93c3dbaa",
+     "frames": 1,
+     "instanceNumber": 54,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -820.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.294610108512773558531489448283010185638",
+     "file": "dicom/ct-a9b86eb0e7/66d1d817d61c04e0.dcm",
+     "bytes": 184688,
+     "sha256": "66d1d817d61c04e0c57eb91b53138136ee515daa8ba591730728a0bb2b6c28fa",
+     "frames": 1,
+     "instanceNumber": 55,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -819.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.387591704012419537623776664893682218794",
+     "file": "dicom/ct-a9b86eb0e7/967156ba75661768.dcm",
+     "bytes": 184654,
+     "sha256": "967156ba756617688ec9fc99355d04124bb72ffa7ac0f37dcdf13fe0a7092664",
+     "frames": 1,
+     "instanceNumber": 56,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -818.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.321747106212738785742045001342322664269",
+     "file": "dicom/ct-a9b86eb0e7/b1783461c377e4b6.dcm",
+     "bytes": 185110,
+     "sha256": "b1783461c377e4b6e5cd85f00b36384d2630bab2cb4240853c388e9ff2ae03f8",
+     "frames": 1,
+     "instanceNumber": 57,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -817.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.222072794813324185333411475630101360571",
+     "file": "dicom/ct-a9b86eb0e7/bbb544f36f5c4858.dcm",
+     "bytes": 185518,
+     "sha256": "bbb544f36f5c4858cd751d881445396829f17069e8aa236534b67aa0a95ba254",
+     "frames": 1,
+     "instanceNumber": 58,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -816.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.130972719812692576037792710510545723296",
+     "file": "dicom/ct-a9b86eb0e7/e4708a91531e8e83.dcm",
+     "bytes": 185652,
+     "sha256": "e4708a91531e8e83fa87a5732cc5c07a80d9252b5c6312d4110443883e08caca",
+     "frames": 1,
+     "instanceNumber": 59,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -815.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.406659052112680252227425978070029540709",
+     "file": "dicom/ct-a9b86eb0e7/15061a54c7cd584b.dcm",
+     "bytes": 186288,
+     "sha256": "15061a54c7cd584ba1f8cd5e8136d905a3c45e67bdd95a12338473618289d4c3",
+     "frames": 1,
+     "instanceNumber": 60,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -814.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.234267848411869205935015520101578587211",
+     "file": "dicom/ct-a9b86eb0e7/c669ed212a8ca6a3.dcm",
+     "bytes": 186504,
+     "sha256": "c669ed212a8ca6a301af93159c57bb446eefd53c0196ec713988651086a5e21a",
+     "frames": 1,
+     "instanceNumber": 61,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -813.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.169735186911371814640789941021570277876",
+     "file": "dicom/ct-a9b86eb0e7/877d9f6b000a54af.dcm",
+     "bytes": 185934,
+     "sha256": "877d9f6b000a54af25e992c62c856b782f27a10198f355bdb35e0366b72b6c53",
+     "frames": 1,
+     "instanceNumber": 62,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -812.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.197488729610816810737187659863753890200",
+     "file": "dicom/ct-a9b86eb0e7/2085851e05f2f759.dcm",
+     "bytes": 185426,
+     "sha256": "2085851e05f2f75977641d1251640a3dc7f07d9c91b138ecd0aab015142959d2",
+     "frames": 1,
+     "instanceNumber": 63,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -811.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.289774015111322964821697890761545353976",
+     "file": "dicom/ct-a9b86eb0e7/25fe856094dbbb20.dcm",
+     "bytes": 185854,
+     "sha256": "25fe856094dbbb20be9698709ee477ea681e40c6519e4ccdd7ef6de137ccb847",
+     "frames": 1,
+     "instanceNumber": 64,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -810.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.27721136312039285118125121760206500691",
+     "file": "dicom/ct-a9b86eb0e7/fa5f5bb017497207.dcm",
+     "bytes": 185938,
+     "sha256": "fa5f5bb0174972070ca8115662d7e330fa0fd9ab5b5df74f9d0f01ace539b979",
+     "frames": 1,
+     "instanceNumber": 65,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -809.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.221598483711341886115326849293207334241",
+     "file": "dicom/ct-a9b86eb0e7/875d9997559eeea0.dcm",
+     "bytes": 186602,
+     "sha256": "875d9997559eeea0a229dcff17f5ad5e272f906a160b1873f6495a72e7991984",
+     "frames": 1,
+     "instanceNumber": 66,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -808.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.302924508010493257626917697370753662798",
+     "file": "dicom/ct-a9b86eb0e7/438f2f6b694dfe3f.dcm",
+     "bytes": 186934,
+     "sha256": "438f2f6b694dfe3f903ed8a3f1f7e33f550ba492a7d6ab48805660a5ddb8448e",
+     "frames": 1,
+     "instanceNumber": 67,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -807.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.316574846613484253102852192540806251873",
+     "file": "dicom/ct-a9b86eb0e7/9afe24722ecb873b.dcm",
+     "bytes": 186320,
+     "sha256": "9afe24722ecb873b14ec94b352d1c87f93047e0b5522af8dcc8138ebfa1fa768",
+     "frames": 1,
+     "instanceNumber": 68,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -806.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.344223882713864600614443649782528159822",
+     "file": "dicom/ct-a9b86eb0e7/2cbad58cc1b3ca2f.dcm",
+     "bytes": 186228,
+     "sha256": "2cbad58cc1b3ca2f0e12fb54fb0b44fd62cd063c86232187f9393fbee3be57de",
+     "frames": 1,
+     "instanceNumber": 69,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -805.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.77938068111429835514804312323444902994",
+     "file": "dicom/ct-a9b86eb0e7/33171fdc9104f9d1.dcm",
+     "bytes": 186780,
+     "sha256": "33171fdc9104f9d1b7a9c237dc997036b1ce4c4a719c9856e33f98dbe2088918",
+     "frames": 1,
+     "instanceNumber": 70,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -804.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.296920217213553940112700005420380771564",
+     "file": "dicom/ct-a9b86eb0e7/0722ddce52179a92.dcm",
+     "bytes": 186908,
+     "sha256": "0722ddce52179a92ee5eadd948e0a3f8022d640d562b9e0eff49a0bbced1bd3e",
+     "frames": 1,
+     "instanceNumber": 71,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -803.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.237047228411320858537309123900329979872",
+     "file": "dicom/ct-a9b86eb0e7/9f44b84fa75db2dc.dcm",
+     "bytes": 187824,
+     "sha256": "9f44b84fa75db2dc219e4c50a81cc20a9b15dfc7709dabd7ae08f1cbe9ee2b4e",
+     "frames": 1,
+     "instanceNumber": 72,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -802.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.345665634913686836111164443101962496546",
+     "file": "dicom/ct-a9b86eb0e7/79e4c1989cbdec22.dcm",
+     "bytes": 188792,
+     "sha256": "79e4c1989cbdec223721ce99c1bfc588ff516e577ed6a79a7106ae03c45176dc",
+     "frames": 1,
+     "instanceNumber": 73,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -801.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.423009442911176256542885239040775219335",
+     "file": "dicom/ct-a9b86eb0e7/6579e920cdf1fc63.dcm",
+     "bytes": 188462,
+     "sha256": "6579e920cdf1fc638a20489731574c7f64febe1586a0ba966a6d228b4b35972c",
+     "frames": 1,
+     "instanceNumber": 74,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -800.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.387217969011589037331252300121468922511",
+     "file": "dicom/ct-a9b86eb0e7/3a913b03df39f957.dcm",
+     "bytes": 188124,
+     "sha256": "3a913b03df39f95774530d4f870edb420db73b920d64cf7434d3c898399cccda",
+     "frames": 1,
+     "instanceNumber": 75,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -799.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.7585635613700992806324066863389260876",
+     "file": "dicom/ct-a9b86eb0e7/2053fa34498b8971.dcm",
+     "bytes": 187792,
+     "sha256": "2053fa34498b897146193ee36b46180fb50c6848f36094c4a0c56950b2ed9f9c",
+     "frames": 1,
+     "instanceNumber": 76,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -798.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.9230914412588677807510849381388104584",
+     "file": "dicom/ct-a9b86eb0e7/519cb605020102f4.dcm",
+     "bytes": 187750,
+     "sha256": "519cb605020102f46d5cd98bcdb08791e2f1888148240f27a9429de5007ec226",
+     "frames": 1,
+     "instanceNumber": 77,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -797.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.278838722613295087428697030422813014800",
+     "file": "dicom/ct-a9b86eb0e7/483b75c888674bc1.dcm",
+     "bytes": 187736,
+     "sha256": "483b75c888674bc1b7cf38d2229c1dd32d541d963cc7b5bdba30df0f79bfef7d",
+     "frames": 1,
+     "instanceNumber": 78,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -796.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.325194945112817788819094524603329956788",
+     "file": "dicom/ct-a9b86eb0e7/38905762144cc452.dcm",
+     "bytes": 188034,
+     "sha256": "38905762144cc452521be83317302292d2c5b79458c6c57c0ada112d6f9d1042",
+     "frames": 1,
+     "instanceNumber": 79,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -795.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.324749446712996302107878020151264032125",
+     "file": "dicom/ct-a9b86eb0e7/881b81c9c0f6ebd1.dcm",
+     "bytes": 188294,
+     "sha256": "881b81c9c0f6ebd1a2e017827b76d792eb827f3571828fc8178132469162dc39",
+     "frames": 1,
+     "instanceNumber": 80,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -794.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.311277363512882796424043852023999597930",
+     "file": "dicom/ct-a9b86eb0e7/7a672d776d9f3abe.dcm",
+     "bytes": 189200,
+     "sha256": "7a672d776d9f3abec687b14864cb55b679224ea7d1f2275d037903c00c88c6d6",
+     "frames": 1,
+     "instanceNumber": 81,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -793.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.167631515213741437201480756652672542205",
+     "file": "dicom/ct-a9b86eb0e7/6f3d250c7a9f1c27.dcm",
+     "bytes": 189934,
+     "sha256": "6f3d250c7a9f1c27d0a9648e356a2337fc221a768c9c6c0b3cf1bf1e0d153758",
+     "frames": 1,
+     "instanceNumber": 82,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -792.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.343721916312813816231828143811951764588",
+     "file": "dicom/ct-a9b86eb0e7/f98ca4479641f6b7.dcm",
+     "bytes": 190108,
+     "sha256": "f98ca4479641f6b739b99e624d613175aaf6a60c2e495014205be63883ecb35b",
+     "frames": 1,
+     "instanceNumber": 83,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -791.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.90642700710123404405369263770343879804",
+     "file": "dicom/ct-a9b86eb0e7/7f7a310370c9391c.dcm",
+     "bytes": 190392,
+     "sha256": "7f7a310370c9391c9ef202edd5946350513dca2bbff1a04daee44ded891c12d3",
+     "frames": 1,
+     "instanceNumber": 84,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -790.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.202207018712115514534986085530410162847",
+     "file": "dicom/ct-a9b86eb0e7/faedeade7a387371.dcm",
+     "bytes": 190724,
+     "sha256": "faedeade7a3873711e3e03b8f6eb32ddad35a6f192890dbb92729bae6298895a",
+     "frames": 1,
+     "instanceNumber": 85,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -789.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.289834163511540691537651890092833526568",
+     "file": "dicom/ct-a9b86eb0e7/635c80ca0d8df1e5.dcm",
+     "bytes": 190434,
+     "sha256": "635c80ca0d8df1e5564f67c4f7b4f59ba10dd7f7b1e7d5f04406a28ce235f709",
+     "frames": 1,
+     "instanceNumber": 86,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -788.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.210887229413910318801625443040562787253",
+     "file": "dicom/ct-a9b86eb0e7/08a04fd95413e6a7.dcm",
+     "bytes": 189742,
+     "sha256": "08a04fd95413e6a79a84b14395e8a1fa31e6563bd33d3641baae7be64ef07f5c",
+     "frames": 1,
+     "instanceNumber": 87,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -787.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.204164193013140649624281081921411905583",
+     "file": "dicom/ct-a9b86eb0e7/8c53f0221fba1592.dcm",
+     "bytes": 189102,
+     "sha256": "8c53f0221fba1592824f21b08a3310c1c0fa2683925d2395324022624b90252e",
+     "frames": 1,
+     "instanceNumber": 88,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -786.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.52497689112826493040426697153800805812",
+     "file": "dicom/ct-a9b86eb0e7/ff6903ef91a6a764.dcm",
+     "bytes": 188926,
+     "sha256": "ff6903ef91a6a7646d3301234beb465ddd2b67f4ae968e62d092fd0d143cdc21",
+     "frames": 1,
+     "instanceNumber": 89,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -785.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.291347976911824633105981249793880534429",
+     "file": "dicom/ct-a9b86eb0e7/5cf77e2beecc6630.dcm",
+     "bytes": 189254,
+     "sha256": "5cf77e2beecc6630d3e5bc71db55ef203b4c776808e16b7b4234f6424a100686",
+     "frames": 1,
+     "instanceNumber": 90,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -784.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.219004790911554237141176618503901754425",
+     "file": "dicom/ct-a9b86eb0e7/1dc56bc6f504a18b.dcm",
+     "bytes": 189292,
+     "sha256": "1dc56bc6f504a18bd55eb52a1c8871755dd2645099a5229b68dcfb65ac3f111c",
+     "frames": 1,
+     "instanceNumber": 91,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -783.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.175770235212156180808403355332098637886",
+     "file": "dicom/ct-a9b86eb0e7/51ab9f32b0256599.dcm",
+     "bytes": 189140,
+     "sha256": "51ab9f32b0256599b4d77c4408af983361b69d4d5e8eeed5434f160214c5f092",
+     "frames": 1,
+     "instanceNumber": 92,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -782.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.314634130610054090901728516422729917724",
+     "file": "dicom/ct-a9b86eb0e7/c0965a3e4c3df536.dcm",
+     "bytes": 189432,
+     "sha256": "c0965a3e4c3df536a90703353a5b9d534db402174680b56035d9c223c42795fe",
+     "frames": 1,
+     "instanceNumber": 93,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -781.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.148148849612176299614074774173136285571",
+     "file": "dicom/ct-a9b86eb0e7/336448d2de2c1681.dcm",
+     "bytes": 190220,
+     "sha256": "336448d2de2c16812d0c95776d9ffe5572d6e1dc6ab21f26b968f814c4c739c7",
+     "frames": 1,
+     "instanceNumber": 94,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -780.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.50164388012810088527291250151527078627",
+     "file": "dicom/ct-a9b86eb0e7/8ee0625760b3929a.dcm",
+     "bytes": 190630,
+     "sha256": "8ee0625760b3929ae2b558a703f225166de98349270699fdc8cca214ac858b76",
+     "frames": 1,
+     "instanceNumber": 95,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -779.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.183414124510703024039814227780918026580",
+     "file": "dicom/ct-a9b86eb0e7/7adc3593a0284246.dcm",
+     "bytes": 191148,
+     "sha256": "7adc3593a0284246ee03d0cbf7ff8af3e028fa720bdccd60940646d1cf93b285",
+     "frames": 1,
+     "instanceNumber": 96,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -778.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.361966582011308294103468450570910730873",
+     "file": "dicom/ct-a9b86eb0e7/8561896bb555a8f8.dcm",
+     "bytes": 191900,
+     "sha256": "8561896bb555a8f8d6e160187e6ad325c27c6117d44b644b22df651f650f8d61",
+     "frames": 1,
+     "instanceNumber": 97,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -777.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.264677452813428147228297747413548121546",
+     "file": "dicom/ct-a9b86eb0e7/e9e1e2fe97ffd249.dcm",
+     "bytes": 191638,
+     "sha256": "e9e1e2fe97ffd2496059a0b172e49a708a6cc290cc56db38a9ec49c4cdfacfb1",
+     "frames": 1,
+     "instanceNumber": 98,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -776.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.155738576711502697730291378500787961050",
+     "file": "dicom/ct-a9b86eb0e7/f8b6d165d3da6c04.dcm",
+     "bytes": 190700,
+     "sha256": "f8b6d165d3da6c049f9dcad3fd69df90dd9bd297d65d6ed02cf720a5cce77bfb",
+     "frames": 1,
+     "instanceNumber": 99,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -775.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.147588837712828415724730346502654880625",
+     "file": "dicom/ct-a9b86eb0e7/1d9cd276ee0881e8.dcm",
+     "bytes": 190768,
+     "sha256": "1d9cd276ee0881e87f1d0f1ba803e915abf8190b1012fe6dfc05e66ddbe18764",
+     "frames": 1,
+     "instanceNumber": 100,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -774.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.24008615011397750138848175994177530121",
+     "file": "dicom/ct-a9b86eb0e7/a3995f99652f2bd3.dcm",
+     "bytes": 190932,
+     "sha256": "a3995f99652f2bd3e79ee7a35c4e4d040eec01818787852b7df7ccf12157e64b",
+     "frames": 1,
+     "instanceNumber": 101,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -773.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.326598558311303968027375794242092163535",
+     "file": "dicom/ct-a9b86eb0e7/e1e7f723af72d9c3.dcm",
+     "bytes": 190796,
+     "sha256": "e1e7f723af72d9c362afeda0a1897213bd9b3e10bf2f1f5f34c8312bffc59527",
+     "frames": 1,
+     "instanceNumber": 102,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -772.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.209639443112651915839264011701160248093",
+     "file": "dicom/ct-a9b86eb0e7/d173d4066d8a4921.dcm",
+     "bytes": 191052,
+     "sha256": "d173d4066d8a49216f8dfda24304de7db6f252b41825700cfc59d83be700b9fa",
+     "frames": 1,
+     "instanceNumber": 103,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -771.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.78862760611755669034742916412580943838",
+     "file": "dicom/ct-a9b86eb0e7/8cd7ad241e99acef.dcm",
+     "bytes": 190840,
+     "sha256": "8cd7ad241e99acefac38508bac7e6838d4263361e52f342b9d384c997be010f4",
+     "frames": 1,
+     "instanceNumber": 104,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -770.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.259913837812006882934366158393019921808",
+     "file": "dicom/ct-a9b86eb0e7/0bfd5a95e34e38e8.dcm",
+     "bytes": 190854,
+     "sha256": "0bfd5a95e34e38e8f4c68c29c2afec5596e9277759864b73e55307228540b0fe",
+     "frames": 1,
+     "instanceNumber": 105,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -769.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.75386218112150027725158247740121972431",
+     "file": "dicom/ct-a9b86eb0e7/a3fe902d284d231e.dcm",
+     "bytes": 191564,
+     "sha256": "a3fe902d284d231e2618bb03047e7633012f9992f03678b2a942db1d389786be",
+     "frames": 1,
+     "instanceNumber": 106,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -768.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.225164918311966297120523334683463719444",
+     "file": "dicom/ct-a9b86eb0e7/0d0baf65ae4ff072.dcm",
+     "bytes": 192104,
+     "sha256": "0d0baf65ae4ff072b56f61f98407965b8d532d6dee468365534573481d7d77ee",
+     "frames": 1,
+     "instanceNumber": 107,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -767.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.170871786311677779127587454891009345970",
+     "file": "dicom/ct-a9b86eb0e7/89e57ebe1823c53f.dcm",
+     "bytes": 192294,
+     "sha256": "89e57ebe1823c53f60a92ae91c2c51f7f6894f4e52d5b586c5781f15cdcf2c26",
+     "frames": 1,
+     "instanceNumber": 108,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -766.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.152407915112167966032493121800112613147",
+     "file": "dicom/ct-a9b86eb0e7/ec0b25a12291ab55.dcm",
+     "bytes": 192764,
+     "sha256": "ec0b25a12291ab55f69098aa79b534efeed44c64665a0d8f0a5e2b51ce298814",
+     "frames": 1,
+     "instanceNumber": 109,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -765.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.34868396310385645139499224581161610503",
+     "file": "dicom/ct-a9b86eb0e7/aa1ab8992f347605.dcm",
+     "bytes": 192562,
+     "sha256": "aa1ab8992f347605ac98cceb67f881af3e7f865466c8d9a5098b5495ef9bd75c",
+     "frames": 1,
+     "instanceNumber": 110,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -764.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.207488430812934351620194175011975696324",
+     "file": "dicom/ct-a9b86eb0e7/7ab298e763700e4f.dcm",
+     "bytes": 191360,
+     "sha256": "7ab298e763700e4f766fb0f532cbc074c64607f4ce9bea4afcdad447b187c4a9",
+     "frames": 1,
+     "instanceNumber": 111,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -763.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.117206624910265896920713568293749090088",
+     "file": "dicom/ct-a9b86eb0e7/737b70bf2c8380e1.dcm",
+     "bytes": 191214,
+     "sha256": "737b70bf2c8380e1d198c0ca9a03997acccf422bbd9aeb2c43c9b16b1f18a7d4",
+     "frames": 1,
+     "instanceNumber": 112,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -762.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.137230776812030519934972640151625946866",
+     "file": "dicom/ct-a9b86eb0e7/e82bfda55bd8a894.dcm",
+     "bytes": 191036,
+     "sha256": "e82bfda55bd8a8948f4c9c4e0610d0ba2f2a33e37df93174bad1b8fa58ecf3e1",
+     "frames": 1,
+     "instanceNumber": 113,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -761.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.157330796011940050218814399302634982046",
+     "file": "dicom/ct-a9b86eb0e7/dd3cc0426befcfa1.dcm",
+     "bytes": 190690,
+     "sha256": "dd3cc0426befcfa1c23fc185c518b89e79be98eb0aa63ac8573dd0780689c167",
+     "frames": 1,
+     "instanceNumber": 114,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -760.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.33415153711427356124804046433451219038",
+     "file": "dicom/ct-a9b86eb0e7/5c18b6c2076d8fa3.dcm",
+     "bytes": 190672,
+     "sha256": "5c18b6c2076d8fa37e899ee44b0b5e2b93585bbd759ffef0884eb31bdc24540e",
+     "frames": 1,
+     "instanceNumber": 115,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -759.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.9833905411293146017922953240240790443",
+     "file": "dicom/ct-a9b86eb0e7/e5b419330dd38793.dcm",
+     "bytes": 190338,
+     "sha256": "e5b419330dd387930e2584d4012b23c355688570a7e4c48639693a6c70cc62d2",
+     "frames": 1,
+     "instanceNumber": 116,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -758.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.303619123210690091516390301724148994704",
+     "file": "dicom/ct-a9b86eb0e7/62b55af1df013d02.dcm",
+     "bytes": 190330,
+     "sha256": "62b55af1df013d028d4b47e6a06566fdd79bf66bd4f841ff80e4f98f40cdcfa7",
+     "frames": 1,
+     "instanceNumber": 117,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -757.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.341151075311561439010446132613078375259",
+     "file": "dicom/ct-a9b86eb0e7/192ff89c9e97bc14.dcm",
+     "bytes": 190578,
+     "sha256": "192ff89c9e97bc14dd6d2ffee66a48a21aca62a5ece79f3ab8c6509226c2d83a",
+     "frames": 1,
+     "instanceNumber": 118,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -756.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.75646960311278042931207079692257349625",
+     "file": "dicom/ct-a9b86eb0e7/249bc699987280b2.dcm",
+     "bytes": 190178,
+     "sha256": "249bc699987280b288372851666da51f5a406d970831f17510fa229dd559eedc",
+     "frames": 1,
+     "instanceNumber": 119,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -755.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.288854529912191751734404530272748240260",
+     "file": "dicom/ct-a9b86eb0e7/c25f45bcda4b73b2.dcm",
+     "bytes": 190252,
+     "sha256": "c25f45bcda4b73b2b52ddad462ba9700a0d67415a034a955cb5ca35b478dd923",
+     "frames": 1,
+     "instanceNumber": 120,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -754.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.260993996812129976602873890571753777790",
+     "file": "dicom/ct-a9b86eb0e7/878c8ef1e1f40386.dcm",
+     "bytes": 190610,
+     "sha256": "878c8ef1e1f40386f0ff13ae80333497ff21de301aa42c02153a6e91cd82e898",
+     "frames": 1,
+     "instanceNumber": 121,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -753.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.152801590213595463802216923353130844105",
+     "file": "dicom/ct-a9b86eb0e7/6601f94275c1e9d3.dcm",
+     "bytes": 190552,
+     "sha256": "6601f94275c1e9d3698c8af20b66e7c457657d9e2bf635d82f6e00702a15432e",
+     "frames": 1,
+     "instanceNumber": 122,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -752.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.418100142011731987916645938141693728858",
+     "file": "dicom/ct-a9b86eb0e7/cc3ab69a22d47c6a.dcm",
+     "bytes": 189466,
+     "sha256": "cc3ab69a22d47c6aa098051bb6e15e2825b67470b8bd8a03a8fcbca4ca2800ae",
+     "frames": 1,
+     "instanceNumber": 123,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -751.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.410381597012262573006044819811003215440",
+     "file": "dicom/ct-a9b86eb0e7/cdaba5c7b1bf09dd.dcm",
+     "bytes": 189058,
+     "sha256": "cdaba5c7b1bf09dd759df3b4d8e78d87bab916734e70d99f4f85f472874ce509",
+     "frames": 1,
+     "instanceNumber": 124,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -750.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.161654592313010337307679822510102609991",
+     "file": "dicom/ct-a9b86eb0e7/99d1dcbf56869111.dcm",
+     "bytes": 188768,
+     "sha256": "99d1dcbf568691114f85fc8fc129e5e0d7319ac19d094c29a66cc9e59e7e29ff",
+     "frames": 1,
+     "instanceNumber": 125,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -749.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.327865937112463253037092566074245749350",
+     "file": "dicom/ct-a9b86eb0e7/5befbc3f466ddbc1.dcm",
+     "bytes": 188970,
+     "sha256": "5befbc3f466ddbc19620c24ea916ee26c5ded71ee1a04be2edd1fd26ec261231",
+     "frames": 1,
+     "instanceNumber": 126,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -748.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.304777350511088548528038629452869824575",
+     "file": "dicom/ct-a9b86eb0e7/5189baf7f621618d.dcm",
+     "bytes": 189022,
+     "sha256": "5189baf7f621618d56e17bbe41f7a6bf580d65a3932f2bddf4d45e98ad46cccb",
+     "frames": 1,
+     "instanceNumber": 127,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -747.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.246093403911257098337822741932385994667",
+     "file": "dicom/ct-a9b86eb0e7/ec9887f7f9eec687.dcm",
+     "bytes": 188908,
+     "sha256": "ec9887f7f9eec6872c3cebb3c10c1d7c542d0bcd0c0aa3e0f221fad0dfc49ae9",
+     "frames": 1,
+     "instanceNumber": 128,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -746.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.126202695913890043530782485802605580842",
+     "file": "dicom/ct-a9b86eb0e7/d7018aa371ed4b6f.dcm",
+     "bytes": 188476,
+     "sha256": "d7018aa371ed4b6fb5ade66cd52e3d3b16c1b6264bddcdd6d8877dbbf3a05d1a",
+     "frames": 1,
+     "instanceNumber": 129,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -745.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.208334477111175444013855906810229961651",
+     "file": "dicom/ct-a9b86eb0e7/57c1bb9d00b3474a.dcm",
+     "bytes": 188706,
+     "sha256": "57c1bb9d00b3474a687d74ce637d3e67b6ff848d00beed49ba6ba499958e2824",
+     "frames": 1,
+     "instanceNumber": 130,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -744.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.129030372413042066911096193563287463931",
+     "file": "dicom/ct-a9b86eb0e7/ab5697d6c1ff41da.dcm",
+     "bytes": 188126,
+     "sha256": "ab5697d6c1ff41da03dddcab3780c033e944fb335cbdc09eb63b36416fe6126b",
+     "frames": 1,
+     "instanceNumber": 131,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -743.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.179412576010927718608046586162024312325",
+     "file": "dicom/ct-a9b86eb0e7/7dbcef54060626d7.dcm",
+     "bytes": 188390,
+     "sha256": "7dbcef54060626d7ea9d55dd2b81bd349222101b48a562d8ffd9fe096d6d8e08",
+     "frames": 1,
+     "instanceNumber": 132,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -742.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.404929169613772262534779181033715728910",
+     "file": "dicom/ct-a9b86eb0e7/5f11c52bdd2f3d72.dcm",
+     "bytes": 188920,
+     "sha256": "5f11c52bdd2f3d7261bc9fd765e4a2f6a06e34ba45a4c8ee961395b94494db73",
+     "frames": 1,
+     "instanceNumber": 133,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -741.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.220094151111678344908033435210737105985",
+     "file": "dicom/ct-a9b86eb0e7/c6d89b37d3073018.dcm",
+     "bytes": 188936,
+     "sha256": "c6d89b37d30730183d55fc9c8102af3a54ce1239727240941a0466765a93ee09",
+     "frames": 1,
+     "instanceNumber": 134,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -740.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.392742806611986912234722482540783379895",
+     "file": "dicom/ct-a9b86eb0e7/434d9c9405cc92e0.dcm",
+     "bytes": 187896,
+     "sha256": "434d9c9405cc92e01d5db545bc8acacda5ac9cce1b7e7f7969ff2d3375107546",
+     "frames": 1,
+     "instanceNumber": 135,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -739.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.205639089612099840234992859402419378563",
+     "file": "dicom/ct-a9b86eb0e7/c3df69ea6ab2cae5.dcm",
+     "bytes": 187138,
+     "sha256": "c3df69ea6ab2cae5693b9c0b67ef1ece57d3c4fa8ba9986564243beb31ffb6a0",
+     "frames": 1,
+     "instanceNumber": 136,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -738.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.260752420712353838813660018333121102952",
+     "file": "dicom/ct-a9b86eb0e7/5a802dc114118ea1.dcm",
+     "bytes": 186980,
+     "sha256": "5a802dc114118ea12a331bacc77a8d6c64e2192ac53531e8eac5dce16abdd2a1",
+     "frames": 1,
+     "instanceNumber": 137,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -737.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.75348148312969346601472214190131029808",
+     "file": "dicom/ct-a9b86eb0e7/16d01f022ab68577.dcm",
+     "bytes": 186664,
+     "sha256": "16d01f022ab68577d45b10536d9061e3785dab1b272dcb18197250f076d66fe8",
+     "frames": 1,
+     "instanceNumber": 138,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -736.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.184227792213931105838426144251632036866",
+     "file": "dicom/ct-a9b86eb0e7/cd7c966e539564bc.dcm",
+     "bytes": 186970,
+     "sha256": "cd7c966e539564bc8e1491cbee9bb24a1e16db5b69a17008b46804faaac9828a",
+     "frames": 1,
+     "instanceNumber": 139,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -735.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.118615442411155490031998947190863651583",
+     "file": "dicom/ct-a9b86eb0e7/cfb62ff192e32d58.dcm",
+     "bytes": 186930,
+     "sha256": "cfb62ff192e32d5858c22e6e05a7805d8283041e90f3e6410a760aafb554e07c",
+     "frames": 1,
+     "instanceNumber": 140,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -734.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.122431313910188985237348094880096783977",
+     "file": "dicom/ct-a9b86eb0e7/eb0b5b9aa6d27bc1.dcm",
+     "bytes": 186452,
+     "sha256": "eb0b5b9aa6d27bc11fcf5b7475bb0b7cb5ade8eb3bcbf90c7c1b111532eb80a8",
+     "frames": 1,
+     "instanceNumber": 141,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -733.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.264582119011387125820088055424060572903",
+     "file": "dicom/ct-a9b86eb0e7/58433825abbeaea0.dcm",
+     "bytes": 186538,
+     "sha256": "58433825abbeaea0fb22c3cfe17ec07fbb97ced0cd40584070cc9b504ebd8ea8",
+     "frames": 1,
+     "instanceNumber": 142,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -732.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.96913224013798161202705542822155037148",
+     "file": "dicom/ct-a9b86eb0e7/1a647d97aa901d85.dcm",
+     "bytes": 186418,
+     "sha256": "1a647d97aa901d8506e7fd21501291cc195c196eeaad67b5baef819040732057",
+     "frames": 1,
+     "instanceNumber": 143,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -731.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.115014580510183656714721312211269058345",
+     "file": "dicom/ct-a9b86eb0e7/5ae546cc8b72c09f.dcm",
+     "bytes": 186790,
+     "sha256": "5ae546cc8b72c09ff0b4d013b928db26fa0d0fb67834579cab57859cc19ad57f",
+     "frames": 1,
+     "instanceNumber": 144,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -730.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.208680985610371419438615438460166332306",
+     "file": "dicom/ct-a9b86eb0e7/cb73ee15cae17974.dcm",
+     "bytes": 187532,
+     "sha256": "cb73ee15cae17974bb4393ebc806a2a353bffa1b6bb86540e30b6e7a6f0a9f6a",
+     "frames": 1,
+     "instanceNumber": 145,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -729.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.284285128712030062805983525441653937334",
+     "file": "dicom/ct-a9b86eb0e7/072ff11d5ca39786.dcm",
+     "bytes": 188106,
+     "sha256": "072ff11d5ca397868604053cb9fbcba6a13bd4de677ddaaf3d9b9900c53d4887",
+     "frames": 1,
+     "instanceNumber": 146,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -728.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.119765599613586214308732538170779846459",
+     "file": "dicom/ct-a9b86eb0e7/4220326a9ac9aeda.dcm",
+     "bytes": 187410,
+     "sha256": "4220326a9ac9aeda74b1823f9cbf4e5d3ea7af1d4cff64f9205dd7eedd4572a7",
+     "frames": 1,
+     "instanceNumber": 147,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -727.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.164544955812126222115888024453010366315",
+     "file": "dicom/ct-a9b86eb0e7/20c1f163e7128190.dcm",
+     "bytes": 187126,
+     "sha256": "20c1f163e7128190d76bd9f85f714b48ef9bb13d90d6edc0e68d3bba7a854e4c",
+     "frames": 1,
+     "instanceNumber": 148,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -726.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.149621188211692356516450208553061209571",
+     "file": "dicom/ct-a9b86eb0e7/6e271c35cfc2cfea.dcm",
+     "bytes": 186814,
+     "sha256": "6e271c35cfc2cfeaedacae594d6b71376e7d46164c3937132720d75fe81d269e",
+     "frames": 1,
+     "instanceNumber": 149,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -725.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.48500493311550581120841575912052541622",
+     "file": "dicom/ct-a9b86eb0e7/f5317d1424cb7f1c.dcm",
+     "bytes": 186724,
+     "sha256": "f5317d1424cb7f1cac1f11ca0d4026c8a8338f38581db578c74361bf3de6993f",
+     "frames": 1,
+     "instanceNumber": 150,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -724.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.31036407711783497832866745654011973935",
+     "file": "dicom/ct-a9b86eb0e7/3609d8e5c4eafe2b.dcm",
+     "bytes": 186888,
+     "sha256": "3609d8e5c4eafe2b88859c3adeca9b85d39341288dcaf525c6165a19ef55a754",
+     "frames": 1,
+     "instanceNumber": 151,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -723.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.46816855913467092107672413520085865901",
+     "file": "dicom/ct-a9b86eb0e7/3c93e1acad740377.dcm",
+     "bytes": 186718,
+     "sha256": "3c93e1acad740377df79d1de8c6208cdc0d4578b4431832833b75cf66d72da35",
+     "frames": 1,
+     "instanceNumber": 152,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -722.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.93191701112578513808615852931609496928",
+     "file": "dicom/ct-a9b86eb0e7/4c489cd67819032b.dcm",
+     "bytes": 186360,
+     "sha256": "4c489cd67819032b4c4e90ec6096821107a525370563b7c74e0b7ece830af446",
+     "frames": 1,
+     "instanceNumber": 153,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -721.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.371711287411399818000601611710117564601",
+     "file": "dicom/ct-a9b86eb0e7/6120ce8429e32ffb.dcm",
+     "bytes": 185934,
+     "sha256": "6120ce8429e32ffb7ff7eeb9b274309cddaf9a80cf1d096cb32e0b6c7fd2ad6e",
+     "frames": 1,
+     "instanceNumber": 154,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -720.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.24283888912683187735134834201360771494",
+     "file": "dicom/ct-a9b86eb0e7/a51648ebe57b46d6.dcm",
+     "bytes": 184912,
+     "sha256": "a51648ebe57b46d6cbc5a071570bace9a42cb8f4220ccb9520f6324b8fdc269c",
+     "frames": 1,
+     "instanceNumber": 155,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -719.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.119312944112680477434069813013454155598",
+     "file": "dicom/ct-a9b86eb0e7/72d67ba2046959ac.dcm",
+     "bytes": 184606,
+     "sha256": "72d67ba2046959ac4335cf0b5eb1625f885b766f12a6133d8063c4a19f7af2df",
+     "frames": 1,
+     "instanceNumber": 156,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -718.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.246376934512056866326694386052382711991",
+     "file": "dicom/ct-a9b86eb0e7/748213ff7e905ea3.dcm",
+     "bytes": 185092,
+     "sha256": "748213ff7e905ea3ba2b06d3e88fdc3c9a7fe69a0add57ac5e711ed16606b5af",
+     "frames": 1,
+     "instanceNumber": 157,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -717.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.64640581211092069105673921572516154971",
+     "file": "dicom/ct-a9b86eb0e7/942e9e4183e1ce2c.dcm",
+     "bytes": 185250,
+     "sha256": "942e9e4183e1ce2c35159c6d23c6f6ca5c8224bcbf190d3da452764efa54c9ab",
+     "frames": 1,
+     "instanceNumber": 158,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -716.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.254862500411289711236718173494187394042",
+     "file": "dicom/ct-a9b86eb0e7/194fa0150e9e1173.dcm",
+     "bytes": 184894,
+     "sha256": "194fa0150e9e117326914ddf5810512454149d0beb35c167a933000f41a66592",
+     "frames": 1,
+     "instanceNumber": 159,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -715.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.33178154912594013402063896401693659147",
+     "file": "dicom/ct-a9b86eb0e7/99b7664866625832.dcm",
+     "bytes": 184188,
+     "sha256": "99b766486662583238d661309424259ecd60390b6efa12a3c7c7fc53c704046e",
+     "frames": 1,
+     "instanceNumber": 160,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -714.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.77897935612178109613796363923775061979",
+     "file": "dicom/ct-a9b86eb0e7/f1ffc58bd88a2735.dcm",
+     "bytes": 184086,
+     "sha256": "f1ffc58bd88a273536feed2f331cf6ec436e20d4c964d630c39f4ac88ad04a0f",
+     "frames": 1,
+     "instanceNumber": 161,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -713.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.353674081813680005500498968651180288175",
+     "file": "dicom/ct-a9b86eb0e7/43c78d5b2cd73cf5.dcm",
+     "bytes": 184438,
+     "sha256": "43c78d5b2cd73cf5d502e8496c4658458e1a34ddbe90614ada655e8c20c38736",
+     "frames": 1,
+     "instanceNumber": 162,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -712.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.304420926912562950939234950802404349765",
+     "file": "dicom/ct-a9b86eb0e7/ce6b43b56db68c40.dcm",
+     "bytes": 184950,
+     "sha256": "ce6b43b56db68c4027eccac598d6b2ee37a7c28c65b9d87637d9cd8c04d91261",
+     "frames": 1,
+     "instanceNumber": 163,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -711.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.123178154113677206025024669751044636356",
+     "file": "dicom/ct-a9b86eb0e7/b62d39f4156c04e5.dcm",
+     "bytes": 184896,
+     "sha256": "b62d39f4156c04e5bb4c0f572f0fee4992e29016ced3ed4eb54b43173d73140d",
+     "frames": 1,
+     "instanceNumber": 164,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -710.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.136921985111876894307818955744283166592",
+     "file": "dicom/ct-a9b86eb0e7/52233cd8cddc2bf5.dcm",
+     "bytes": 184342,
+     "sha256": "52233cd8cddc2bf5dbfa9e8c1265950464ecbc5800930040e8adfe2e3a975b49",
+     "frames": 1,
+     "instanceNumber": 165,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -709.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.156836145711060127923539498480200417312",
+     "file": "dicom/ct-a9b86eb0e7/d9d62079630b544c.dcm",
+     "bytes": 184090,
+     "sha256": "d9d62079630b544cbf0da032ddd6f6d47971e17e721ee0cfb1f0365417a70ee0",
+     "frames": 1,
+     "instanceNumber": 166,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -708.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.190064043512509609913817153633652627931",
+     "file": "dicom/ct-a9b86eb0e7/6b0ed0ca2b975256.dcm",
+     "bytes": 183896,
+     "sha256": "6b0ed0ca2b97525682b1af5cb56d8249c8e99209e88b718ec856a3199dc1717c",
+     "frames": 1,
+     "instanceNumber": 167,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -707.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.78225231711150284441170456503239939346",
+     "file": "dicom/ct-a9b86eb0e7/714c99a489aa995d.dcm",
+     "bytes": 183392,
+     "sha256": "714c99a489aa995de69ce7dcdc576790417074b18de586769c45ff6b7998f7a3",
+     "frames": 1,
+     "instanceNumber": 168,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -706.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.233882418211862095137318485833683120220",
+     "file": "dicom/ct-a9b86eb0e7/037a62a0c015abf8.dcm",
+     "bytes": 183512,
+     "sha256": "037a62a0c015abf863a2571594d6a726bd9cf351b72205b3d7e37fc92fb3de91",
+     "frames": 1,
+     "instanceNumber": 169,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -705.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.368439972211004211022118662661725431298",
+     "file": "dicom/ct-a9b86eb0e7/e60d7256d9908b18.dcm",
+     "bytes": 183786,
+     "sha256": "e60d7256d9908b18394b5688a57cc45885860ce56f63ceea12d82ce70964cf63",
+     "frames": 1,
+     "instanceNumber": 170,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -704.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.230116378212879298818500443322919855101",
+     "file": "dicom/ct-a9b86eb0e7/bd1585e44499061f.dcm",
+     "bytes": 182736,
+     "sha256": "bd1585e44499061fd995a60a39e0430275e835132a9f46b61b21029596274dbd",
+     "frames": 1,
+     "instanceNumber": 171,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -703.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.426156945211531594925765932982866406757",
+     "file": "dicom/ct-a9b86eb0e7/da56d1b0a2fa86e6.dcm",
+     "bytes": 182044,
+     "sha256": "da56d1b0a2fa86e6546faa8b055972df3ae737bf9cf2d46484062606133b2d97",
+     "frames": 1,
+     "instanceNumber": 172,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -702.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.421507223712624344809497670731829118439",
+     "file": "dicom/ct-a9b86eb0e7/57feb0c68db9d60f.dcm",
+     "bytes": 181856,
+     "sha256": "57feb0c68db9d60f0f9f0b893d8f9f85bf3bf31ad06875d645100e34ec0e73c4",
+     "frames": 1,
+     "instanceNumber": 173,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -701.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.235688964013742428038018346583036497557",
+     "file": "dicom/ct-a9b86eb0e7/c5f66d0eb1ebe44e.dcm",
+     "bytes": 181700,
+     "sha256": "c5f66d0eb1ebe44e1b120312e495f2731a9831bc3abfd123beb936f3d41db7cd",
+     "frames": 1,
+     "instanceNumber": 174,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -700.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.131590592511993488130010976363595813897",
+     "file": "dicom/ct-a9b86eb0e7/4c1222963d901249.dcm",
+     "bytes": 182346,
+     "sha256": "4c1222963d901249f46c5610fe176b773603e1564fe96f33f7b09ad1615b44ca",
+     "frames": 1,
+     "instanceNumber": 175,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -699.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.142355251313996363136404647921097852350",
+     "file": "dicom/ct-a9b86eb0e7/0f20cf08114b0686.dcm",
+     "bytes": 182806,
+     "sha256": "0f20cf08114b06866fe2516f02fcae27f5117e3b7f83d03b2961ec405591d5b4",
+     "frames": 1,
+     "instanceNumber": 176,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -698.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.336834863711505222324541270282274895182",
+     "file": "dicom/ct-a9b86eb0e7/5dd3f0ec46c725b9.dcm",
+     "bytes": 182168,
+     "sha256": "5dd3f0ec46c725b9ce9ef538c91094c561fdf19e470ad8e51774f1a0ad69d843",
+     "frames": 1,
+     "instanceNumber": 177,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -697.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.21173593512689798138454216992367744867",
+     "file": "dicom/ct-a9b86eb0e7/df8dff6e7dde9017.dcm",
+     "bytes": 181732,
+     "sha256": "df8dff6e7dde9017fddd9b39ae68fddde949783858485507b5f3d635c99dae94",
+     "frames": 1,
+     "instanceNumber": 178,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -696.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.258590623912387911432015274760752376672",
+     "file": "dicom/ct-a9b86eb0e7/64684a1e2051f463.dcm",
+     "bytes": 181636,
+     "sha256": "64684a1e2051f463e854dad95c6ebe86829fca155ed0f95f414f74c1fbd64dd2",
+     "frames": 1,
+     "instanceNumber": 179,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -695.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.79539299810204854634346044633795278347",
+     "file": "dicom/ct-a9b86eb0e7/42e13f4dbe059f3c.dcm",
+     "bytes": 181548,
+     "sha256": "42e13f4dbe059f3cfe0435ac9d8f5bba3904ce95855cd708ffbb7782ad9302f8",
+     "frames": 1,
+     "instanceNumber": 180,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -694.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.205802726611134610134231151821663193811",
+     "file": "dicom/ct-a9b86eb0e7/13cc5ed117d76c2a.dcm",
+     "bytes": 182222,
+     "sha256": "13cc5ed117d76c2a6788f7aff17524aa5ddd030f3932b68ad0221d9a507ca869",
+     "frames": 1,
+     "instanceNumber": 181,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -693.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.394783752111193493430857811801675649769",
+     "file": "dicom/ct-a9b86eb0e7/988be541aaaa8078.dcm",
+     "bytes": 182874,
+     "sha256": "988be541aaaa80780eb9f20487300e71ce99fc1afdcd4f22b555b1c4778958a2",
+     "frames": 1,
+     "instanceNumber": 182,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -692.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.368080960212164694735404980570348637675",
+     "file": "dicom/ct-a9b86eb0e7/299d198ceb2e26f6.dcm",
+     "bytes": 182550,
+     "sha256": "299d198ceb2e26f6215956fc1b0a3920e06884c1608ed477dd10b33bf471d246",
+     "frames": 1,
+     "instanceNumber": 183,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -691.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.125197403510986412423362543510781512311",
+     "file": "dicom/ct-a9b86eb0e7/652a01eadd814420.dcm",
+     "bytes": 182194,
+     "sha256": "652a01eadd81442052314f4fbf84b64822596e65cda424c8adb5443f076d1e38",
+     "frames": 1,
+     "instanceNumber": 184,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -690.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.623673212339742134363019772070316459",
+     "file": "dicom/ct-a9b86eb0e7/f496a43638b260ba.dcm",
+     "bytes": 182776,
+     "sha256": "f496a43638b260ba385875708bca864aa9c89f9f69620a520e4413e5a3190109",
+     "frames": 1,
+     "instanceNumber": 185,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -689.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.39670061211186201816349636434114362488",
+     "file": "dicom/ct-a9b86eb0e7/4f84a37f799a9b79.dcm",
+     "bytes": 183258,
+     "sha256": "4f84a37f799a9b798b84c4e77363d924cd011a42c16cee0bb7b8127805e70617",
+     "frames": 1,
+     "instanceNumber": 186,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -688.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.248581491311765475400520790331253976440",
+     "file": "dicom/ct-a9b86eb0e7/a0b34ee6f5ff9ac2.dcm",
+     "bytes": 184016,
+     "sha256": "a0b34ee6f5ff9ac29cbbc8c4ede7720616130f1f70975d15b19d2a7999172125",
+     "frames": 1,
+     "instanceNumber": 187,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -687.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.234644693412328232605168160353297924819",
+     "file": "dicom/ct-a9b86eb0e7/3dca4b8f9ae4f863.dcm",
+     "bytes": 184386,
+     "sha256": "3dca4b8f9ae4f863bc16f8ff8908648999a0c90cb17ac71ec05f523c93c86fd5",
+     "frames": 1,
+     "instanceNumber": 188,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -686.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.84428408811547619133067711083451399117",
+     "file": "dicom/ct-a9b86eb0e7/3c5daac112ae42dc.dcm",
+     "bytes": 183572,
+     "sha256": "3c5daac112ae42dce8404d350626030da54854f73d68aa3fad8b487015fa0f07",
+     "frames": 1,
+     "instanceNumber": 189,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -685.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.43305110012546027805052210410339841706",
+     "file": "dicom/ct-a9b86eb0e7/315c81a6d47b2ce4.dcm",
+     "bytes": 182378,
+     "sha256": "315c81a6d47b2ce464d73d469f7e0d88a9774f887850b4981fe857e26156871a",
+     "frames": 1,
+     "instanceNumber": 190,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -684.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.56984327312965506416722651154102548626",
+     "file": "dicom/ct-a9b86eb0e7/a945bb53f370821a.dcm",
+     "bytes": 181636,
+     "sha256": "a945bb53f370821a09de73cb01fd57cc188c5a06cf40504586bc6900fe28f842",
+     "frames": 1,
+     "instanceNumber": 191,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -683.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.344870564311804053528290389991533205898",
+     "file": "dicom/ct-a9b86eb0e7/f3a2af6eebd68237.dcm",
+     "bytes": 181374,
+     "sha256": "f3a2af6eebd68237c47816b8339ed56835ef19921abaeb54ade4f6426a7724e8",
+     "frames": 1,
+     "instanceNumber": 192,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -682.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.162508985013714021112625056573975681952",
+     "file": "dicom/ct-a9b86eb0e7/a8f85bb17d0ae991.dcm",
+     "bytes": 182342,
+     "sha256": "a8f85bb17d0ae9917191c38a33c0f0e1e8be7db4c6edb96874be827fb8c05148",
+     "frames": 1,
+     "instanceNumber": 193,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -681.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.195774230912173421336655400043894990494",
+     "file": "dicom/ct-a9b86eb0e7/5af70c287a8e6da6.dcm",
+     "bytes": 183718,
+     "sha256": "5af70c287a8e6da6e9b52e09a81e431d4cedac023188b0a25d7e553ab16e338b",
+     "frames": 1,
+     "instanceNumber": 194,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -680.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.285336478813175891531329317733363226571",
+     "file": "dicom/ct-a9b86eb0e7/67d2dd9ea0f79b27.dcm",
+     "bytes": 183764,
+     "sha256": "67d2dd9ea0f79b274e96949d10fbdf2972a169ab51f5d06d036102ab4470ab38",
+     "frames": 1,
+     "instanceNumber": 195,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -679.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.158273829511785006930589697422145411109",
+     "file": "dicom/ct-a9b86eb0e7/92e2b48cb133045f.dcm",
+     "bytes": 183826,
+     "sha256": "92e2b48cb133045fa9bd96b47fd377c5290c443dfe082279f136eb7865610c66",
+     "frames": 1,
+     "instanceNumber": 196,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -678.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.302859458512536768019433844612452574675",
+     "file": "dicom/ct-a9b86eb0e7/8a98966ce39acae1.dcm",
+     "bytes": 184012,
+     "sha256": "8a98966ce39acae1b228d8074780cfd29e7c1e4d521027144a6cb9a002d6387e",
+     "frames": 1,
+     "instanceNumber": 197,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -677.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.304029511412297174840471445793619993109",
+     "file": "dicom/ct-a9b86eb0e7/53061e1708c58d76.dcm",
+     "bytes": 184640,
+     "sha256": "53061e1708c58d76d2b045262a2f74522406fc0292154b64eaa6d95d19ebfcb7",
+     "frames": 1,
+     "instanceNumber": 198,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -676.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.80292367111712219423858223690454068961",
+     "file": "dicom/ct-a9b86eb0e7/8a07ee1adb2a3bc1.dcm",
+     "bytes": 185674,
+     "sha256": "8a07ee1adb2a3bc10780e25dccd6fc3edd53d8ab5070a90ea902e2efdfacd1f1",
+     "frames": 1,
+     "instanceNumber": 199,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -675.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.91782237912273049911078593802438856008",
+     "file": "dicom/ct-a9b86eb0e7/e275f5d378c26034.dcm",
+     "bytes": 186708,
+     "sha256": "e275f5d378c260349889fa1b34403e275c6869480296164886370880fe41e10e",
+     "frames": 1,
+     "instanceNumber": 200,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -674.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.94651514512933889006470273814105647841",
+     "file": "dicom/ct-a9b86eb0e7/8dd634433245a076.dcm",
+     "bytes": 187058,
+     "sha256": "8dd634433245a076b0ee4dc2f027048d32ef35106fe97a92d2cbc66e5798f5ed",
+     "frames": 1,
+     "instanceNumber": 201,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -673.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.341592644712891755900163482913175594302",
+     "file": "dicom/ct-a9b86eb0e7/96cf0eefec2ab86a.dcm",
+     "bytes": 187260,
+     "sha256": "96cf0eefec2ab86aa700665ae72714a80ff1c154ce128d857b797c87074dc601",
+     "frames": 1,
+     "instanceNumber": 202,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -672.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.238785316410756251122429955961993043183",
+     "file": "dicom/ct-a9b86eb0e7/2fffcfb7e9827aa6.dcm",
+     "bytes": 187980,
+     "sha256": "2fffcfb7e9827aa61df48a97e65e429ce16ca9005125925581209784f6cae78b",
+     "frames": 1,
+     "instanceNumber": 203,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -671.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.373327563712800145703786866323942950510",
+     "file": "dicom/ct-a9b86eb0e7/b6bda9854c7d04d3.dcm",
+     "bytes": 188624,
+     "sha256": "b6bda9854c7d04d3e69a6d486e722b306a8dd71abe7a14a17419deb2ce9c35bb",
+     "frames": 1,
+     "instanceNumber": 204,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -670.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.287513063911160385027643547351605352152",
+     "file": "dicom/ct-a9b86eb0e7/5c6b8da00bc15067.dcm",
+     "bytes": 189678,
+     "sha256": "5c6b8da00bc150677fc59c6f2fbff33abd2ecf4229faee48a0d00f1b1b9ad3c6",
+     "frames": 1,
+     "instanceNumber": 205,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -669.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.80709867512772200003673022820483961684",
+     "file": "dicom/ct-a9b86eb0e7/3951b84c5e0ff6dc.dcm",
+     "bytes": 190916,
+     "sha256": "3951b84c5e0ff6dcda8450c6cbe3aaa16807fa78ada19181fd6a08936b306353",
+     "frames": 1,
+     "instanceNumber": 206,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -668.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.127653707311756035502591942471735953633",
+     "file": "dicom/ct-a9b86eb0e7/8eedf2f28b53e739.dcm",
+     "bytes": 191008,
+     "sha256": "8eedf2f28b53e7392b751691af6e67765978bd040a7e8b844cdbfea202badd88",
+     "frames": 1,
+     "instanceNumber": 207,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -667.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.131902112211040374517377606500042450888",
+     "file": "dicom/ct-a9b86eb0e7/686c7a6e22d8dfc3.dcm",
+     "bytes": 190900,
+     "sha256": "686c7a6e22d8dfc3bc353f4782d76ecd8e5c0cdaa94e1636eed4206c323c0edc",
+     "frames": 1,
+     "instanceNumber": 208,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -666.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.127866387013993505316771931250209378949",
+     "file": "dicom/ct-a9b86eb0e7/2a6d7d22fe8a4fef.dcm",
+     "bytes": 191420,
+     "sha256": "2a6d7d22fe8a4fef83c93e4bc4942d997020bf4c438287e81b1dc0d2ea8147e4",
+     "frames": 1,
+     "instanceNumber": 209,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -665.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.210728992612415889014908652861821272923",
+     "file": "dicom/ct-a9b86eb0e7/aac4cb9882829dd9.dcm",
+     "bytes": 191532,
+     "sha256": "aac4cb9882829dd9af1b428e7ed511f6b68ba42bb57be0f450d4d11e4507b994",
+     "frames": 1,
+     "instanceNumber": 210,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -664.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.64772422611869126927141262640884652252",
+     "file": "dicom/ct-a9b86eb0e7/d7366795cddb98f5.dcm",
+     "bytes": 191946,
+     "sha256": "d7366795cddb98f53759a741d57106db9af10b0cf319dbc2d12a8ec1a8dc1f7f",
+     "frames": 1,
+     "instanceNumber": 211,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -663.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.116412601911182425433172668610464568558",
+     "file": "dicom/ct-a9b86eb0e7/fc71b3cd3417e37a.dcm",
+     "bytes": 191756,
+     "sha256": "fc71b3cd3417e37a6dbd986b0fb8a9ebd027f50472301c96fee4a168b284776e",
+     "frames": 1,
+     "instanceNumber": 212,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -662.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.360539855710689228339615195262538354948",
+     "file": "dicom/ct-a9b86eb0e7/0420b8481234c4b6.dcm",
+     "bytes": 191266,
+     "sha256": "0420b8481234c4b63d8c55d332a3890e844919659cb0a9baabe4bf38f256ef06",
+     "frames": 1,
+     "instanceNumber": 213,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -661.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.241792070011658389025516509552398895102",
+     "file": "dicom/ct-a9b86eb0e7/c0efae70348ad5ad.dcm",
+     "bytes": 190556,
+     "sha256": "c0efae70348ad5ad561609cb470140d0adc24a5be5ea49187564d4f2b27ee2ee",
+     "frames": 1,
+     "instanceNumber": 214,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -660.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.387932367811520667727874379714143811747",
+     "file": "dicom/ct-a9b86eb0e7/cac3f98cf994d9f0.dcm",
+     "bytes": 190058,
+     "sha256": "cac3f98cf994d9f01ad792f7be57ab898bbf3c4a0fe3f3f2405fa8d916671d8c",
+     "frames": 1,
+     "instanceNumber": 215,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -659.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.378607370511515747312177509470453029278",
+     "file": "dicom/ct-a9b86eb0e7/2b5546e17b3e2d59.dcm",
+     "bytes": 189380,
+     "sha256": "2b5546e17b3e2d595730f02fe814dd51f4324364f31844ca04f3a774ffc3c5a6",
+     "frames": 1,
+     "instanceNumber": 216,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -658.6
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.62118097212310026710210075271891494778",
+     "file": "dicom/ct-a9b86eb0e7/e91a0b3af143d6fc.dcm",
+     "bytes": 189902,
+     "sha256": "e91a0b3af143d6fcb6edb4312d2e2f2cbc3b788f14703139fd0b52b1ff5e91ed",
+     "frames": 1,
+     "instanceNumber": 217,
+     "ipp": [
+      -170.7,
+      -162.0,
+      -657.6
+     ]
+    }
+   ],
+   "bytes": 40449690,
+   "thumbnail": "thumbs/ct-a9b86eb0e7.png",
+   "displayNote": "Header repairs before packing (pixel data unchanged): StudyInstanceUID/SeriesInstanceUID '0' replaced by derived UIDs; date attributes '0' and PatientBirthDate removed; PatientAge '000Y' removed; Manufacturer/InstitutionName/StudyDescription/AccessionNumber '0' cleared; PatientID set."
+  },
+  {
+   "uid": "2.25.208016074378713353746067436351091429943",
+   "studyUid": "2.25.1547359993828718243321428711369990629",
+   "subjectKey": "figshare:FUMPE:PAT021",
+   "modality": "CT",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.2",
+   "frameOfReferenceUid": "1.2.156.14702.1.1000.16.3.164.20150109101158281",
+   "number": 5,
+   "description": "CTPA axial 1 mm",
+   "bodyPart": null,
+   "role": "diagnostic",
+   "roleNote": "CT pulmonary angiogram (1 mm axial).",
+   "acquisition": {
+    "SeriesDescription": "CTPA axial 1 mm",
+    "ProtocolName": "PE 1",
+    "StudyDescription": "CT pulmonary angiogram (FUMPE)",
+    "ImageType": "ORIGINAL\\PRIMARY\\AXIAL\\HELICAL",
+    "ManufacturerModelName": "NeuViz 16",
+    "PatientPosition": "HFS",
+    "ScanOptions": "HELICAL",
+    "ContrastBolusAgent": "C+",
+    "KVP": "120",
+    "XRayTubeCurrent": "242",
+    "Exposure": "180",
+    "SliceThickness": "1",
+    "ConvolutionKernel": "SA",
+    "ReconstructionDiameter": "326",
+    "GantryDetectorTilt": "0",
+    "DistanceSourceToDetector": "1040",
+    "DistanceSourceToPatient": "570",
+    "AcquisitionNumber": "4"
+   },
+   "geometry": {
+    "rows": 512,
+    "columns": 512,
+    "pixelSpacing": [
+     0.636719,
+     0.636719
+    ],
+    "pixelSpacingSource": "PixelSpacing",
+    "spacingCalibrated": true,
+    "iop": [
+     1.0,
+     0.0,
+     0.0,
+     0.0,
+     1.0,
+     0.0
+    ],
+    "sliceSpacing": 1.0,
+    "sliceSpacingUniform": true,
+    "volumeEligible": true,
+    "volumeIssues": [],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": {
+     "slope": 1.0,
+     "intercept": -1024.0,
+     "type": null
+    },
+    "hu": true
+   },
+   "windowPresets": [
+    {
+     "label": "Soft tissue",
+     "center": 40,
+     "width": 400
+    },
+    {
+     "label": "Lung",
+     "center": -600,
+     "width": 1500
+    },
+    {
+     "label": "Mediastinum",
+     "center": 50,
+     "width": 350
+    },
+    {
+     "label": "Bone",
+     "center": 400,
+     "width": 1800
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 217}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.373435757711039614214098415920070301660",
+     "file": "dicom/ct-685a0b41a1/9dde78f471040715.dcm",
+     "bytes": 174810,
+     "sha256": "9dde78f4710407152c00c3539aedf3e2a44cb84cb271ad4559b55e8b32a6aa99",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -852.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.117565562612906920031829741102711188293",
+     "file": "dicom/ct-685a0b41a1/adcd8ceb7a7f7ade.dcm",
+     "bytes": 174554,
+     "sha256": "adcd8ceb7a7f7ade76102fc016afa5e5b756aad8af85f83eb4a1689586cc7c6b",
+     "frames": 1,
+     "instanceNumber": 2,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -851.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.109746177811496249703643969591360501591",
+     "file": "dicom/ct-685a0b41a1/f12faf07bb234945.dcm",
+     "bytes": 174400,
+     "sha256": "f12faf07bb234945556389be34b7149ff1366236ca768f8d4c3b13bcfeee81c1",
+     "frames": 1,
+     "instanceNumber": 3,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -850.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.129458995512152401709911164371115349965",
+     "file": "dicom/ct-685a0b41a1/11eac444c956ef63.dcm",
+     "bytes": 174038,
+     "sha256": "11eac444c956ef63d029a06233586033cfa5b0e5f9e9747447307b4c4709f903",
+     "frames": 1,
+     "instanceNumber": 4,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -849.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.110938782013545423736894834281162352353",
+     "file": "dicom/ct-685a0b41a1/5fbb5e32edf3a2ba.dcm",
+     "bytes": 174722,
+     "sha256": "5fbb5e32edf3a2ba09d63f1fbb04603b89d891d51d5e190ce9fe5e560791a148",
+     "frames": 1,
+     "instanceNumber": 5,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -848.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.278367587612067562607457724603686873014",
+     "file": "dicom/ct-685a0b41a1/f7fe747f9ad8cfc8.dcm",
+     "bytes": 175856,
+     "sha256": "f7fe747f9ad8cfc89f9e883676c4eb9dc5fac5892c31ef712c18ad0e2a3e80c4",
+     "frames": 1,
+     "instanceNumber": 6,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -847.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.171916291213573295734451244963461190504",
+     "file": "dicom/ct-685a0b41a1/f6cd2d2ab22cedf6.dcm",
+     "bytes": 176602,
+     "sha256": "f6cd2d2ab22cedf64a9e19aad8549e444b9fadaf19b742d6a89b985e36b78814",
+     "frames": 1,
+     "instanceNumber": 7,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -846.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.238312602812930097307541612954249354421",
+     "file": "dicom/ct-685a0b41a1/f3adc8a9df016dbb.dcm",
+     "bytes": 176996,
+     "sha256": "f3adc8a9df016dbb66ad50ce250b3abbdcf8b365af5158d67cb067c585586392",
+     "frames": 1,
+     "instanceNumber": 8,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -845.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.274615111312570683336355557501566280649",
+     "file": "dicom/ct-685a0b41a1/62b5d82c08ec80ae.dcm",
+     "bytes": 177708,
+     "sha256": "62b5d82c08ec80ae7a4e73f9dca812fdb79d2002d850fdae9d678f56378f4e58",
+     "frames": 1,
+     "instanceNumber": 9,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -844.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.358552735612357587230817524810622274162",
+     "file": "dicom/ct-685a0b41a1/ea3c77676392da1d.dcm",
+     "bytes": 178094,
+     "sha256": "ea3c77676392da1d6ddf4593997f913dfdad8bd270a34e12110f65e622be10bb",
+     "frames": 1,
+     "instanceNumber": 10,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -843.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.141868960811961359912620614672216486426",
+     "file": "dicom/ct-685a0b41a1/25a846c5719efcd9.dcm",
+     "bytes": 178456,
+     "sha256": "25a846c5719efcd9da6cd599ef7c44a7c9d1f341e3454a4b8463bf08a9902731",
+     "frames": 1,
+     "instanceNumber": 11,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -842.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.117217942711302047825927289633674900906",
+     "file": "dicom/ct-685a0b41a1/08e92a92ad6c2904.dcm",
+     "bytes": 178744,
+     "sha256": "08e92a92ad6c29042a7e4084bf1b7f22aadb40db82f9ebe5f61bac5132f06eb3",
+     "frames": 1,
+     "instanceNumber": 12,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -841.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.176125197112509843737336974261114441652",
+     "file": "dicom/ct-685a0b41a1/a2395ebdd269a009.dcm",
+     "bytes": 178446,
+     "sha256": "a2395ebdd269a00994b76f7e340fb92baa9db2570369f138c5775cdeffa8f981",
+     "frames": 1,
+     "instanceNumber": 13,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -840.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.219675513610698786416519095523382458989",
+     "file": "dicom/ct-685a0b41a1/be4fceb1e5963473.dcm",
+     "bytes": 178042,
+     "sha256": "be4fceb1e5963473c4e7ca47085b26065d8877033384cd605a6c6ff5cd42afaf",
+     "frames": 1,
+     "instanceNumber": 14,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -839.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.244171975411718815603109566941479222818",
+     "file": "dicom/ct-685a0b41a1/2d2f3136d903a23b.dcm",
+     "bytes": 177928,
+     "sha256": "2d2f3136d903a23b92826de8b7c4e7166b1c8f46ae7964c4a3047905f65cb10d",
+     "frames": 1,
+     "instanceNumber": 15,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -838.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.359962103113702916007409043632289882827",
+     "file": "dicom/ct-685a0b41a1/477ea23812bae1a0.dcm",
+     "bytes": 177552,
+     "sha256": "477ea23812bae1a074ea9bcb05203e4a641a1bd2b29958d03a5523cde61cc396",
+     "frames": 1,
+     "instanceNumber": 16,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -837.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.80168899112835124018130331333220405787",
+     "file": "dicom/ct-685a0b41a1/0030268c792ebc30.dcm",
+     "bytes": 177228,
+     "sha256": "0030268c792ebc30f6e804ce15d850539ff3ab404174f9ea9612a359f0b95649",
+     "frames": 1,
+     "instanceNumber": 17,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -836.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.396695498613587827942830168381249812102",
+     "file": "dicom/ct-685a0b41a1/04b7b58e4e30f5b8.dcm",
+     "bytes": 177184,
+     "sha256": "04b7b58e4e30f5b8bb4243c1029c4af2f4f1ed986b63cf76656851be55cd7122",
+     "frames": 1,
+     "instanceNumber": 18,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -835.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.322836583211632296416355588402182833301",
+     "file": "dicom/ct-685a0b41a1/f484c54d25df1b2a.dcm",
+     "bytes": 177432,
+     "sha256": "f484c54d25df1b2aa8c483ea67dff43fcd9d6aab56612adc36cd7be0cc311a55",
+     "frames": 1,
+     "instanceNumber": 19,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -834.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.277090481810422461330144216910597860863",
+     "file": "dicom/ct-685a0b41a1/d910d38b37c8c342.dcm",
+     "bytes": 177926,
+     "sha256": "d910d38b37c8c342798dfd7e05cb2c40bea014ecda58ae1e057c6bab33ed16e9",
+     "frames": 1,
+     "instanceNumber": 20,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -833.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.323253067813279369807607495031368796289",
+     "file": "dicom/ct-685a0b41a1/a1aac797d131568c.dcm",
+     "bytes": 179298,
+     "sha256": "a1aac797d131568c75cc12d8c3cbb94dbe3beaf9636f9c396b0eec0104e0ec8f",
+     "frames": 1,
+     "instanceNumber": 21,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -832.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.44297716413012213734957605263373566199",
+     "file": "dicom/ct-685a0b41a1/445662afbe2f1463.dcm",
+     "bytes": 180598,
+     "sha256": "445662afbe2f146393f12bc247c50b1488d9ab539a30eedfd88c198d6f3199d3",
+     "frames": 1,
+     "instanceNumber": 22,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -831.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.417523240212088778722900990893992499938",
+     "file": "dicom/ct-685a0b41a1/c765755e25f15573.dcm",
+     "bytes": 181862,
+     "sha256": "c765755e25f15573ad3f7ff455961e76edf701633bf9291b6ba02cccfe9183f7",
+     "frames": 1,
+     "instanceNumber": 23,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -830.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.277912404213055928037136736510190904827",
+     "file": "dicom/ct-685a0b41a1/81843aa771fd3a1e.dcm",
+     "bytes": 182564,
+     "sha256": "81843aa771fd3a1e2b350c3e46cb1e8aeb022a6a2a1348d1d0275be40df62f21",
+     "frames": 1,
+     "instanceNumber": 24,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -829.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.372996488212240518917866282552643158684",
+     "file": "dicom/ct-685a0b41a1/9a797bf36ec2cf39.dcm",
+     "bytes": 182274,
+     "sha256": "9a797bf36ec2cf39d88426f28f05cc821f42b926c69ca3e46ae71345c4c9a96e",
+     "frames": 1,
+     "instanceNumber": 25,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -828.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.24767234113035101142331601103980516006",
+     "file": "dicom/ct-685a0b41a1/7635adaaaef4cf0a.dcm",
+     "bytes": 181796,
+     "sha256": "7635adaaaef4cf0a0b9a778fdb48fa3bfec3f26aed3c3c6cc8365f41d24adf10",
+     "frames": 1,
+     "instanceNumber": 26,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -827.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.133682066911502286434203229672058699943",
+     "file": "dicom/ct-685a0b41a1/b21362aa1b0dd7e0.dcm",
+     "bytes": 181838,
+     "sha256": "b21362aa1b0dd7e036f9c9664e5a5f13b172294198c2cd312e201056463428a0",
+     "frames": 1,
+     "instanceNumber": 27,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -826.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.47568761813329264303859455220244409211",
+     "file": "dicom/ct-685a0b41a1/8dc345c7b5cbe7e0.dcm",
+     "bytes": 182080,
+     "sha256": "8dc345c7b5cbe7e070f48e36a1eecc1662b36ea00f147f8d3815a6873d08db58",
+     "frames": 1,
+     "instanceNumber": 28,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -825.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.45011720213157231911971501131949540298",
+     "file": "dicom/ct-685a0b41a1/1f119cd3927c25b2.dcm",
+     "bytes": 182614,
+     "sha256": "1f119cd3927c25b291aa72c531131539f6fdce71ee6dabe3a3ccafe1ff1685ad",
+     "frames": 1,
+     "instanceNumber": 29,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -824.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.50934378613318107220174654762322541550",
+     "file": "dicom/ct-685a0b41a1/d79f79817e08b30c.dcm",
+     "bytes": 183222,
+     "sha256": "d79f79817e08b30ccc65fa730b83b014c0e10a9d5628a6c84d5f891d72829d2c",
+     "frames": 1,
+     "instanceNumber": 30,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -823.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.216888781411884054610786338630182983425",
+     "file": "dicom/ct-685a0b41a1/55444c52294f71bd.dcm",
+     "bytes": 183680,
+     "sha256": "55444c52294f71bd23c891a72f3d98996beb16745addc033937369a4b517979b",
+     "frames": 1,
+     "instanceNumber": 31,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -822.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.336924875511860311442126985341767940159",
+     "file": "dicom/ct-685a0b41a1/259f62fb98962100.dcm",
+     "bytes": 183768,
+     "sha256": "259f62fb98962100851b884a1adbc47ee7d22be392b20bde55c70a6ea9b20e68",
+     "frames": 1,
+     "instanceNumber": 32,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -821.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.172955737611011178938690891872140477946",
+     "file": "dicom/ct-685a0b41a1/13dc1625c41c1e9e.dcm",
+     "bytes": 184278,
+     "sha256": "13dc1625c41c1e9eaf9f39a438ab0e8a9de3c8c15d4f65023a881d6e257bd0da",
+     "frames": 1,
+     "instanceNumber": 33,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -820.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.36724729812513414041821318662196153640",
+     "file": "dicom/ct-685a0b41a1/d159a15677a156d1.dcm",
+     "bytes": 185194,
+     "sha256": "d159a15677a156d18fcd32dc1c7f12537d28a4335f89b971086fc33860937b85",
+     "frames": 1,
+     "instanceNumber": 34,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -819.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.374648428011865551315664513740051343249",
+     "file": "dicom/ct-685a0b41a1/7d80f43d51cb927f.dcm",
+     "bytes": 186188,
+     "sha256": "7d80f43d51cb927f26e944313f02c5a813b6ababa179c466f35b230953452642",
+     "frames": 1,
+     "instanceNumber": 35,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -818.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.323343527212357473634591474373643794479",
+     "file": "dicom/ct-685a0b41a1/15e830e9aa11cc32.dcm",
+     "bytes": 186618,
+     "sha256": "15e830e9aa11cc324a8aec10a8f81a2bf2ed7d898ac01d5816cf25cd1137b66f",
+     "frames": 1,
+     "instanceNumber": 36,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -817.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.278051447113024556425117943071733117950",
+     "file": "dicom/ct-685a0b41a1/4ab8a00f7cbee52c.dcm",
+     "bytes": 186774,
+     "sha256": "4ab8a00f7cbee52c3eb32aeb76c9d0086468f1046212b97094a1f60e6075a423",
+     "frames": 1,
+     "instanceNumber": 37,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -816.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.377220452213046028216126509341756665548",
+     "file": "dicom/ct-685a0b41a1/4f995f1304c968ee.dcm",
+     "bytes": 186406,
+     "sha256": "4f995f1304c968ee22158dd892a72eaf07886b4daa0790353019fb6c134404dd",
+     "frames": 1,
+     "instanceNumber": 38,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -815.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.65353475212390704313068996172359543073",
+     "file": "dicom/ct-685a0b41a1/3f753cb74bba3978.dcm",
+     "bytes": 186284,
+     "sha256": "3f753cb74bba3978f35519845294998c16158ae90c77624ad971b8b78ffe72b0",
+     "frames": 1,
+     "instanceNumber": 39,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -814.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.320347382111702569100418651133071023598",
+     "file": "dicom/ct-685a0b41a1/b340cdfbaaf95a4c.dcm",
+     "bytes": 186332,
+     "sha256": "b340cdfbaaf95a4c7a67e71fecc90fa4e5d1382cd3cea6845134c4d95c854aac",
+     "frames": 1,
+     "instanceNumber": 40,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -813.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.309068513210942701304382120103037449341",
+     "file": "dicom/ct-685a0b41a1/7169aac407196b90.dcm",
+     "bytes": 186640,
+     "sha256": "7169aac407196b901d3fd842a0f9807b7077a70a1bc36488f5cc66f29cd41090",
+     "frames": 1,
+     "instanceNumber": 41,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -812.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.216823629111339370829669884370747401717",
+     "file": "dicom/ct-685a0b41a1/826e6999eb04c684.dcm",
+     "bytes": 186760,
+     "sha256": "826e6999eb04c684311530bbb5644d458ce2c850c7a9eceef9360844743d1395",
+     "frames": 1,
+     "instanceNumber": 42,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -811.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.177523370612725890334118304600861009693",
+     "file": "dicom/ct-685a0b41a1/94844a7d3dbabf64.dcm",
+     "bytes": 186892,
+     "sha256": "94844a7d3dbabf64d80db61316770abfa8ed3aecc77b0a36dca52c161dd0b7d1",
+     "frames": 1,
+     "instanceNumber": 43,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -810.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.361558065511074605022688027481326567765",
+     "file": "dicom/ct-685a0b41a1/16eb994e592d3995.dcm",
+     "bytes": 186430,
+     "sha256": "16eb994e592d39958f44e855ff81c874c6898d0d8be53d343fd0a19e1df3b071",
+     "frames": 1,
+     "instanceNumber": 44,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -809.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.40151402312726963230846701121627285634",
+     "file": "dicom/ct-685a0b41a1/9bfb2d14fc229ddf.dcm",
+     "bytes": 187360,
+     "sha256": "9bfb2d14fc229ddf3c6d312c9da3dc9b2ef4bb0d38645bd8591da3fbb9b1402f",
+     "frames": 1,
+     "instanceNumber": 45,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -808.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.192386913212417341139644745021975017088",
+     "file": "dicom/ct-685a0b41a1/4a634f8768f2f65c.dcm",
+     "bytes": 187636,
+     "sha256": "4a634f8768f2f65c649dbae7e346b9fe8c76ca0b6f9c44584211928d3a7ab8fa",
+     "frames": 1,
+     "instanceNumber": 46,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -807.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.83229030312659139541746794433119351808",
+     "file": "dicom/ct-685a0b41a1/f5e202fa94abb01c.dcm",
+     "bytes": 187180,
+     "sha256": "f5e202fa94abb01ceb6d171c70240e8ab7e30caf5617ba04494dcae28ab4e7e4",
+     "frames": 1,
+     "instanceNumber": 47,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -806.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.206408399911345419405596558420489889945",
+     "file": "dicom/ct-685a0b41a1/78e48c1f9b35b6c0.dcm",
+     "bytes": 186634,
+     "sha256": "78e48c1f9b35b6c071439e319adb9cf193943de19c050cf0553721c59eb982d2",
+     "frames": 1,
+     "instanceNumber": 48,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -805.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.84681696511940898131221518602995511216",
+     "file": "dicom/ct-685a0b41a1/969a9b27596c2cfb.dcm",
+     "bytes": 186078,
+     "sha256": "969a9b27596c2cfb0c0773a5f2799dedf7ddb6b7dae39805925baf852010ba3f",
+     "frames": 1,
+     "instanceNumber": 49,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -804.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.420185923011127740405438450251621598181",
+     "file": "dicom/ct-685a0b41a1/b7628d10ced93fa7.dcm",
+     "bytes": 186154,
+     "sha256": "b7628d10ced93fa7504b31547592a46a0a173f295d2d78f79f179ebd2f0a061d",
+     "frames": 1,
+     "instanceNumber": 50,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -803.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.401945823411709311323333372573489671871",
+     "file": "dicom/ct-685a0b41a1/8cd68a93b115d07a.dcm",
+     "bytes": 186772,
+     "sha256": "8cd68a93b115d07a55157ec133cda5d26e45652fa908b3be0d970656f70bcba7",
+     "frames": 1,
+     "instanceNumber": 51,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -802.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.382315552911197219803919817291145254864",
+     "file": "dicom/ct-685a0b41a1/5900f5a57e0f3624.dcm",
+     "bytes": 187424,
+     "sha256": "5900f5a57e0f36241aa9e119674df3e9d694cb06022f642871107a833cffc2bf",
+     "frames": 1,
+     "instanceNumber": 52,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -801.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.258488862212932792309862063432153623121",
+     "file": "dicom/ct-685a0b41a1/bfb507480b7dbf8e.dcm",
+     "bytes": 187096,
+     "sha256": "bfb507480b7dbf8ef1eb408eacb246d089ec90e697ab09964ee2807e77b8e211",
+     "frames": 1,
+     "instanceNumber": 53,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -800.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.346792854012492536627867081102717831689",
+     "file": "dicom/ct-685a0b41a1/0ef70ac47a93669d.dcm",
+     "bytes": 186364,
+     "sha256": "0ef70ac47a93669de183ce90dd079d20e1f958acd8e744416cef88ea5a81f76e",
+     "frames": 1,
+     "instanceNumber": 54,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -799.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.31877586712711888034759110731342345793",
+     "file": "dicom/ct-685a0b41a1/884b1c7fd11af69a.dcm",
+     "bytes": 185518,
+     "sha256": "884b1c7fd11af69afa6a532fe85cbfcdc17dfc2c9e89b1a6c1ee85181c7b6b2a",
+     "frames": 1,
+     "instanceNumber": 55,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -798.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.27173139112443005421235278360894097356",
+     "file": "dicom/ct-685a0b41a1/07a7c90eaba14485.dcm",
+     "bytes": 184402,
+     "sha256": "07a7c90eaba14485cfc98173fe3455f32dc5dab904245e9d0ea93583794f8f08",
+     "frames": 1,
+     "instanceNumber": 56,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -797.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.236834598612367546542619798261953221115",
+     "file": "dicom/ct-685a0b41a1/1c731d02d660ddcc.dcm",
+     "bytes": 183576,
+     "sha256": "1c731d02d660ddcc69e9a12a93c772dc681193b4459ab4f1dd8c132da504bd3a",
+     "frames": 1,
+     "instanceNumber": 57,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -796.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.283112094413132618820403381022739996500",
+     "file": "dicom/ct-685a0b41a1/845ac1e95bfc8859.dcm",
+     "bytes": 183418,
+     "sha256": "845ac1e95bfc88590f10df4a439f2625557c337ead712ec5a9238f68476565aa",
+     "frames": 1,
+     "instanceNumber": 58,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -795.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.407078253711581193433485152550026567595",
+     "file": "dicom/ct-685a0b41a1/8ffae0eeaae8597a.dcm",
+     "bytes": 183324,
+     "sha256": "8ffae0eeaae8597a7b270c48de77528fa6da49e101f4850ac76b8b5336fc4528",
+     "frames": 1,
+     "instanceNumber": 59,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -794.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.165780262312302256419181551551576729443",
+     "file": "dicom/ct-685a0b41a1/b0a42c830c39bdb2.dcm",
+     "bytes": 183774,
+     "sha256": "b0a42c830c39bdb26744d1ba2d79f2edd200d2ac23e78fea0acfa9fa8a0be293",
+     "frames": 1,
+     "instanceNumber": 60,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -793.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.31781885813949937804176001333148594060",
+     "file": "dicom/ct-685a0b41a1/46bec9b7a91d0c47.dcm",
+     "bytes": 183446,
+     "sha256": "46bec9b7a91d0c474b617aee639f2920141304805307d706682bfa02911de75b",
+     "frames": 1,
+     "instanceNumber": 61,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -792.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.116116388412065577408034797013726530118",
+     "file": "dicom/ct-685a0b41a1/aaf3c3dfb2574af0.dcm",
+     "bytes": 183350,
+     "sha256": "aaf3c3dfb2574af07a4c37b3a17a9ecd378c9d65abe18cdbbd62087a5b6e4688",
+     "frames": 1,
+     "instanceNumber": 62,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -791.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.40278297811555415423396527903904492607",
+     "file": "dicom/ct-685a0b41a1/264b379b17eb18b7.dcm",
+     "bytes": 183708,
+     "sha256": "264b379b17eb18b7d6578550c7bc44765a9c8e0cbf91fe0fb060f18712bd360e",
+     "frames": 1,
+     "instanceNumber": 63,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -790.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.192829376710236158227982803511561027126",
+     "file": "dicom/ct-685a0b41a1/a754ae2b8dda1c7a.dcm",
+     "bytes": 183742,
+     "sha256": "a754ae2b8dda1c7a3c3acb0959e02728b3f1b633312ad98579a19cece5e5d943",
+     "frames": 1,
+     "instanceNumber": 64,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -789.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.113728666710672414633251764880992633486",
+     "file": "dicom/ct-685a0b41a1/5ac286fb1e865c16.dcm",
+     "bytes": 182882,
+     "sha256": "5ac286fb1e865c16b5d289ba481f992e946b0afa36de82b688f26d2748958bfe",
+     "frames": 1,
+     "instanceNumber": 65,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -788.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.166789097811816440932873289091535262368",
+     "file": "dicom/ct-685a0b41a1/e4f514b8d95a8a57.dcm",
+     "bytes": 182450,
+     "sha256": "e4f514b8d95a8a5726676b94e74b0e0ff766cc1c27fe369700da7142857e70c1",
+     "frames": 1,
+     "instanceNumber": 66,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -787.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.331901089511764809539600478030371208656",
+     "file": "dicom/ct-685a0b41a1/e9e20fb5b8f0ca3a.dcm",
+     "bytes": 182232,
+     "sha256": "e9e20fb5b8f0ca3a45ef2807e58fa59a5a23e0921c1a9eb144c3cf1a152b3990",
+     "frames": 1,
+     "instanceNumber": 67,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -786.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.260235826112920909212258705141061808310",
+     "file": "dicom/ct-685a0b41a1/bb803ef415c21aa8.dcm",
+     "bytes": 181286,
+     "sha256": "bb803ef415c21aa85af81d7c609c81be4d5fd8d9dd206a71525501e054314cbe",
+     "frames": 1,
+     "instanceNumber": 68,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -785.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.385115016812283345514280861832319057103",
+     "file": "dicom/ct-685a0b41a1/31218e6554c445d9.dcm",
+     "bytes": 181250,
+     "sha256": "31218e6554c445d94d05938f3fb10b3bf24f024f272cf84b897182aab0149a84",
+     "frames": 1,
+     "instanceNumber": 69,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -784.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.53377707112779554238016416501521288759",
+     "file": "dicom/ct-685a0b41a1/d6a3832d319dfbcb.dcm",
+     "bytes": 181570,
+     "sha256": "d6a3832d319dfbcba7b38c49ae0d29274c82a8ed99c32c78275be1f456b2c4b6",
+     "frames": 1,
+     "instanceNumber": 70,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -783.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.203508025412251474710993225481828264460",
+     "file": "dicom/ct-685a0b41a1/812c49cbf8fdd699.dcm",
+     "bytes": 181530,
+     "sha256": "812c49cbf8fdd6996228ea0d982264b36777dca21268ea902f85ce73020635cc",
+     "frames": 1,
+     "instanceNumber": 71,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -782.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.64377964411753362716252282011016422394",
+     "file": "dicom/ct-685a0b41a1/93071122017f578a.dcm",
+     "bytes": 181772,
+     "sha256": "93071122017f578a216bd84cb947643e7fe80647ac6882cf6bcf25512b363524",
+     "frames": 1,
+     "instanceNumber": 72,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -781.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.99964342511243059006851667583492051924",
+     "file": "dicom/ct-685a0b41a1/542cd2e88e39ddc1.dcm",
+     "bytes": 181506,
+     "sha256": "542cd2e88e39ddc173bade78c13150c84fa9c12bbcf3c44964de087fb8a15a07",
+     "frames": 1,
+     "instanceNumber": 73,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -780.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.76077114010383260436317482363894393265",
+     "file": "dicom/ct-685a0b41a1/fd2fa30423423229.dcm",
+     "bytes": 181908,
+     "sha256": "fd2fa30423423229548ea8d50710dbc8769fb7eafcb5221c9a140c9e92d3f24c",
+     "frames": 1,
+     "instanceNumber": 74,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -779.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.323530789911382244904464503443631689515",
+     "file": "dicom/ct-685a0b41a1/fc8ac44d7edd9af2.dcm",
+     "bytes": 181892,
+     "sha256": "fc8ac44d7edd9af244c15f2a81d42ede46a37d34232a858e5f9e1f0016afd47d",
+     "frames": 1,
+     "instanceNumber": 75,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -778.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.193002154310416925714391458983027719912",
+     "file": "dicom/ct-685a0b41a1/bb11b4c6a22c81e8.dcm",
+     "bytes": 181616,
+     "sha256": "bb11b4c6a22c81e86bfb36ff73edf3130beeaa327b0efe3ea1ecb8c37843fd92",
+     "frames": 1,
+     "instanceNumber": 76,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -777.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.107986457911026477336897568523806343085",
+     "file": "dicom/ct-685a0b41a1/3abc92a7a3a4194d.dcm",
+     "bytes": 181432,
+     "sha256": "3abc92a7a3a4194d8c4a5a5777306a0bfacf8ff2b8c0c241df3302abbbb4d57c",
+     "frames": 1,
+     "instanceNumber": 77,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -776.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.112602140412217574906184487910944045480",
+     "file": "dicom/ct-685a0b41a1/3f854c47da320ce3.dcm",
+     "bytes": 180474,
+     "sha256": "3f854c47da320ce344f845a81e866d3798ab4d38bf34c5f2d024c9efc4453cca",
+     "frames": 1,
+     "instanceNumber": 78,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -775.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.405054611711014689025467119633162033654",
+     "file": "dicom/ct-685a0b41a1/d8ee3edc3edf20c4.dcm",
+     "bytes": 179422,
+     "sha256": "d8ee3edc3edf20c4c56e72f32a4282b26986b76f5d1b3d2231a5be4d8c82158c",
+     "frames": 1,
+     "instanceNumber": 79,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -774.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.119966366713841151814255389621479208011",
+     "file": "dicom/ct-685a0b41a1/a51b1f9bae4facf8.dcm",
+     "bytes": 177682,
+     "sha256": "a51b1f9bae4facf8158b132cce5f49a684ca6cba6eaf75569c70587c032a0fb1",
+     "frames": 1,
+     "instanceNumber": 80,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -773.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.6964510812591965722375683963827411571",
+     "file": "dicom/ct-685a0b41a1/a3eed8626152e8f7.dcm",
+     "bytes": 176448,
+     "sha256": "a3eed8626152e8f7e714b6d03b44a6e50fcc3246b3c3112ff4141fd9a1d79819",
+     "frames": 1,
+     "instanceNumber": 81,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -772.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.211694085512473477140710209482698373612",
+     "file": "dicom/ct-685a0b41a1/ad2338435640efaa.dcm",
+     "bytes": 176382,
+     "sha256": "ad2338435640efaad5160cc066f46fbac6a800e00a3165dda217706e8ad8cf3f",
+     "frames": 1,
+     "instanceNumber": 82,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -771.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.58519895610334274015761855123920147993",
+     "file": "dicom/ct-685a0b41a1/45077d0ce3a38d79.dcm",
+     "bytes": 176670,
+     "sha256": "45077d0ce3a38d79a73e540f5e4eb191183444bd4692eb4e8152ed6be574d2ac",
+     "frames": 1,
+     "instanceNumber": 83,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -770.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.188451582313525361211900985904122125846",
+     "file": "dicom/ct-685a0b41a1/04ab5fae055d273f.dcm",
+     "bytes": 177112,
+     "sha256": "04ab5fae055d273f575bb7a42a7f02d9bbf0987ba06c446ad0714ef281744ac2",
+     "frames": 1,
+     "instanceNumber": 84,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -769.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.44170208510411716524756701681801044948",
+     "file": "dicom/ct-685a0b41a1/a35edfa96682ec6b.dcm",
+     "bytes": 176952,
+     "sha256": "a35edfa96682ec6b46afc36a8b45945a48d3a1b5f95c87019272f0986ee6369a",
+     "frames": 1,
+     "instanceNumber": 85,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -768.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.100569733111402938527815507510245369467",
+     "file": "dicom/ct-685a0b41a1/5c8df5aa56bf7f7c.dcm",
+     "bytes": 177196,
+     "sha256": "5c8df5aa56bf7f7ccb18fe9fe82af4cdc2f2c174cc43cf818c77e235d5bbe7d2",
+     "frames": 1,
+     "instanceNumber": 86,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -767.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.428310273311555543605515465361592284306",
+     "file": "dicom/ct-685a0b41a1/e5c8fb6c110cd5e8.dcm",
+     "bytes": 177064,
+     "sha256": "e5c8fb6c110cd5e8b346f94ecf8a3b7ec53ccfce107ebf4f95fd3275f1d070fe",
+     "frames": 1,
+     "instanceNumber": 87,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -766.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.126750672313949771936025653074010460523",
+     "file": "dicom/ct-685a0b41a1/d027b892f8f7cf6a.dcm",
+     "bytes": 177140,
+     "sha256": "d027b892f8f7cf6a612869d0584e8bfed6bf8a8b2e077660d874b4e7844b269c",
+     "frames": 1,
+     "instanceNumber": 88,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -765.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.238522482012898172425837306234045712323",
+     "file": "dicom/ct-685a0b41a1/a6369f9521f8298c.dcm",
+     "bytes": 176694,
+     "sha256": "a6369f9521f8298ccc5e7ff42c9bf095fd01aaccaf1587254064dfddd4584727",
+     "frames": 1,
+     "instanceNumber": 89,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -764.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.299146604412961856417049750112167345725",
+     "file": "dicom/ct-685a0b41a1/7d9bba9536be94d9.dcm",
+     "bytes": 175864,
+     "sha256": "7d9bba9536be94d94f2a1209f3fa162f6da05cb154d684662213f0628d86a2d8",
+     "frames": 1,
+     "instanceNumber": 90,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -763.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.136851421711613702927026264590886860534",
+     "file": "dicom/ct-685a0b41a1/83e25b397e3662df.dcm",
+     "bytes": 175086,
+     "sha256": "83e25b397e3662dfdb2dd3a82d0912c2e482e60fc19bc10f7dd692fb03dfab63",
+     "frames": 1,
+     "instanceNumber": 91,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -762.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.290439895713278167222823456242524128993",
+     "file": "dicom/ct-685a0b41a1/f7273b48c2c281b9.dcm",
+     "bytes": 174382,
+     "sha256": "f7273b48c2c281b998f798df35c88b1db9d9fcf63f8d9015f4c07d253fc63635",
+     "frames": 1,
+     "instanceNumber": 92,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -761.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.162888138010151290111409176901099946171",
+     "file": "dicom/ct-685a0b41a1/31291ab9be6d9ccd.dcm",
+     "bytes": 174174,
+     "sha256": "31291ab9be6d9ccd8428614d8e9c588dd72a9ba289ed4129b1f85301f0f4ea8f",
+     "frames": 1,
+     "instanceNumber": 93,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -760.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.102508817112133473622328224610755901340",
+     "file": "dicom/ct-685a0b41a1/d40810820055c298.dcm",
+     "bytes": 174188,
+     "sha256": "d40810820055c2983c022ad59960e2a3f1e503f62cd807eb5207f9900a798682",
+     "frames": 1,
+     "instanceNumber": 94,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -759.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.211935929411221466024826574292934228364",
+     "file": "dicom/ct-685a0b41a1/f4f41459235eec81.dcm",
+     "bytes": 173812,
+     "sha256": "f4f41459235eec81cb3d483ef33d104ad76e2b789695973d172f00b0a3822741",
+     "frames": 1,
+     "instanceNumber": 95,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -758.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.404096406511863169327280659810486360113",
+     "file": "dicom/ct-685a0b41a1/0c3c5d878c3c7a42.dcm",
+     "bytes": 173480,
+     "sha256": "0c3c5d878c3c7a42ef6848c36fde5a6bd55d398fa4b483886633102b3f4ef72f",
+     "frames": 1,
+     "instanceNumber": 96,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -757.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.203261620312401236102830987762899604945",
+     "file": "dicom/ct-685a0b41a1/022ff9ec380b9057.dcm",
+     "bytes": 172952,
+     "sha256": "022ff9ec380b90575918619f77ad545d939ef6917543c5b58084cddd7266a0eb",
+     "frames": 1,
+     "instanceNumber": 97,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -756.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.67025949711764110620351963004100203593",
+     "file": "dicom/ct-685a0b41a1/d33f72e658991473.dcm",
+     "bytes": 172656,
+     "sha256": "d33f72e658991473cba0661a590c1e094674dcfb76fdf20951228567aee44e3e",
+     "frames": 1,
+     "instanceNumber": 98,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -755.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.145123379911903928328176587753709956926",
+     "file": "dicom/ct-685a0b41a1/b804c6580c58381f.dcm",
+     "bytes": 173016,
+     "sha256": "b804c6580c58381f4c2be4cedfb97878e71f1a9407cd4e8c9f66b16c87e36b05",
+     "frames": 1,
+     "instanceNumber": 99,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -754.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.65347543510759034326986118863306311532",
+     "file": "dicom/ct-685a0b41a1/25739735665ab921.dcm",
+     "bytes": 173356,
+     "sha256": "25739735665ab921aa4ebfed64c90f2205fc7bc49968fab5a6a25f04ed6e3b5a",
+     "frames": 1,
+     "instanceNumber": 100,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -753.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.261140516111250208229874257200660461213",
+     "file": "dicom/ct-685a0b41a1/06752df4f6ae0316.dcm",
+     "bytes": 173666,
+     "sha256": "06752df4f6ae0316efb88315c8ad0292c1376cebc9c2ff6c32fa53b63acfa278",
+     "frames": 1,
+     "instanceNumber": 101,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -752.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.421608965212917209542515575171903644746",
+     "file": "dicom/ct-685a0b41a1/37013bd3d83e0db8.dcm",
+     "bytes": 174290,
+     "sha256": "37013bd3d83e0db834718bd1c49a21849f6e5d9541a92cf4ab7a6e97b940e9d1",
+     "frames": 1,
+     "instanceNumber": 102,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -751.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.403177865512874223406695691972696364002",
+     "file": "dicom/ct-685a0b41a1/0e29984bc1e4d198.dcm",
+     "bytes": 173882,
+     "sha256": "0e29984bc1e4d198dafcc5cad683085998e6846e9fa6491194ac188d8762f609",
+     "frames": 1,
+     "instanceNumber": 103,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -750.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.316886908211288429542629713022453007214",
+     "file": "dicom/ct-685a0b41a1/5718584609544b35.dcm",
+     "bytes": 172642,
+     "sha256": "5718584609544b35ad63de175fa5ea05b6c94400865844675583ae6c8fe1635d",
+     "frames": 1,
+     "instanceNumber": 104,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -749.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.339534800112849871728044611860995994954",
+     "file": "dicom/ct-685a0b41a1/78c3e27a0b6847d2.dcm",
+     "bytes": 172768,
+     "sha256": "78c3e27a0b6847d2f1f5105d265c15cbcdfc35d31bab1f0e9338f9aad32a6ed5",
+     "frames": 1,
+     "instanceNumber": 105,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -748.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.241547695512557070328110493821799514283",
+     "file": "dicom/ct-685a0b41a1/576e417a7d10c2aa.dcm",
+     "bytes": 172994,
+     "sha256": "576e417a7d10c2aaf26c89f61632d9789ffb9dd4985701dff6581eb5ec7048b9",
+     "frames": 1,
+     "instanceNumber": 106,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -747.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.30833244511221064423324878390890564793",
+     "file": "dicom/ct-685a0b41a1/8915eb8ee0938c9b.dcm",
+     "bytes": 173258,
+     "sha256": "8915eb8ee0938c9b5e5dd66664bbcb5affb646e8b171aa47349fbd569eb2af37",
+     "frames": 1,
+     "instanceNumber": 107,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -746.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.78395188111726688830703881572665455691",
+     "file": "dicom/ct-685a0b41a1/cd26e64743e8d85b.dcm",
+     "bytes": 173566,
+     "sha256": "cd26e64743e8d85b3ac17476f7ec0a9d669575f0c5628f63cde14a690abf36f6",
+     "frames": 1,
+     "instanceNumber": 108,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -745.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.277638372111173597706185289060537835894",
+     "file": "dicom/ct-685a0b41a1/cacedc33a040728f.dcm",
+     "bytes": 174078,
+     "sha256": "cacedc33a040728f8070e6d1526115eb801eac5b6c9863cb276ec1cdabd5ef8b",
+     "frames": 1,
+     "instanceNumber": 109,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -744.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.161610766612746156827587626381746098975",
+     "file": "dicom/ct-685a0b41a1/574ce8eca08dcd8b.dcm",
+     "bytes": 174140,
+     "sha256": "574ce8eca08dcd8b14fc061f3726920a8a0e04c1595382a63a8c8ba5afbc9052",
+     "frames": 1,
+     "instanceNumber": 110,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -743.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.100555473212031606132468602182265373647",
+     "file": "dicom/ct-685a0b41a1/24ceb5583ecf9559.dcm",
+     "bytes": 174764,
+     "sha256": "24ceb5583ecf95598d3935d3e0d1ef853556c51395d58486d4348423f0ab0ba2",
+     "frames": 1,
+     "instanceNumber": 111,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -742.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.129969733213087273522078271062088015649",
+     "file": "dicom/ct-685a0b41a1/d3c71f138ed0d1f9.dcm",
+     "bytes": 175486,
+     "sha256": "d3c71f138ed0d1f942574c3d3dcf763c0bfe18b11fde357788ca6652168976e1",
+     "frames": 1,
+     "instanceNumber": 112,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -741.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.190329736211568911417756414791464502005",
+     "file": "dicom/ct-685a0b41a1/87a8665f4942c456.dcm",
+     "bytes": 176036,
+     "sha256": "87a8665f4942c456716e698a20d432640ef9b967384c6c5af820407cffadc9fc",
+     "frames": 1,
+     "instanceNumber": 113,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -740.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.1886057111323263533798381163368884469",
+     "file": "dicom/ct-685a0b41a1/6de0dc7f8e0763ed.dcm",
+     "bytes": 175782,
+     "sha256": "6de0dc7f8e0763ed1dd7b129b6dcb98de323f3e48db64398aa1c0d4dbca74c17",
+     "frames": 1,
+     "instanceNumber": 114,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -739.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.98261865411908512814685621010127800915",
+     "file": "dicom/ct-685a0b41a1/1630efdbe02fb4cb.dcm",
+     "bytes": 175430,
+     "sha256": "1630efdbe02fb4cb52ff426ef246a58d4f4fdc7dd4e05e1a8dbc02b5d7ece5b5",
+     "frames": 1,
+     "instanceNumber": 115,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -738.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.144513726211676916035461405680732956039",
+     "file": "dicom/ct-685a0b41a1/c9f4ba3128bc431b.dcm",
+     "bytes": 174050,
+     "sha256": "c9f4ba3128bc431bd5df715755c5365f11b17d0d453c450aaf286e000c011493",
+     "frames": 1,
+     "instanceNumber": 116,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -737.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.9297155911754070203974378321889375237",
+     "file": "dicom/ct-685a0b41a1/858c4c64e88dba14.dcm",
+     "bytes": 172696,
+     "sha256": "858c4c64e88dba1406cc9fe664d61db6f9475fe0db152ab6a14836f0b00311e9",
+     "frames": 1,
+     "instanceNumber": 117,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -736.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.333873871012340322717172476343432777809",
+     "file": "dicom/ct-685a0b41a1/6aec9f809c6697e8.dcm",
+     "bytes": 171738,
+     "sha256": "6aec9f809c6697e8781febf8dbdc8fdcda1aef273f114ad78f2d777c01f5648a",
+     "frames": 1,
+     "instanceNumber": 118,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -735.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.171219061111729141436749474923410887285",
+     "file": "dicom/ct-685a0b41a1/358b095ad9fa319b.dcm",
+     "bytes": 171124,
+     "sha256": "358b095ad9fa319b0a674d3f9840d971b86eced665c15d221fce2e4e0fdf95cb",
+     "frames": 1,
+     "instanceNumber": 119,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -734.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.166119102811728291509556916481019654722",
+     "file": "dicom/ct-685a0b41a1/a8b8eec609f93ac4.dcm",
+     "bytes": 171158,
+     "sha256": "a8b8eec609f93ac4bc35457d7c137fbd07442eba7060103b5ab4b459ef58c522",
+     "frames": 1,
+     "instanceNumber": 120,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -733.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.340972329311970777830645418340555918834",
+     "file": "dicom/ct-685a0b41a1/5ba0575075be4da7.dcm",
+     "bytes": 170648,
+     "sha256": "5ba0575075be4da7f9ab9a6ca7ba82975d68f060c5fb83d8a0cb32eeb4f74cd6",
+     "frames": 1,
+     "instanceNumber": 121,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -732.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.169429201211039885618629257170016757800",
+     "file": "dicom/ct-685a0b41a1/ef0366d72231b574.dcm",
+     "bytes": 170372,
+     "sha256": "ef0366d72231b5747f21d95dabcecfec39a344f66e38d5613e1923b340b43817",
+     "frames": 1,
+     "instanceNumber": 122,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -731.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.416100227611629824503870887932488732624",
+     "file": "dicom/ct-685a0b41a1/3dacf5af787666f1.dcm",
+     "bytes": 171408,
+     "sha256": "3dacf5af787666f14816284a7f115bec1ac2774013d9a222974ac0d1d5dca5ff",
+     "frames": 1,
+     "instanceNumber": 123,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -730.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.100800566811550220132769386361471449442",
+     "file": "dicom/ct-685a0b41a1/434be214899dd705.dcm",
+     "bytes": 171580,
+     "sha256": "434be214899dd705afde240ea68731fddb39d4bb627023432cf395af80987a29",
+     "frames": 1,
+     "instanceNumber": 124,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -729.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.369023892112151338614217473420655114915",
+     "file": "dicom/ct-685a0b41a1/60c963750c3b01b6.dcm",
+     "bytes": 171606,
+     "sha256": "60c963750c3b01b67bfe3fb9e2e14ab12e3eafe9c954e63c44fa2e6daa692159",
+     "frames": 1,
+     "instanceNumber": 125,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -728.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.21608708011879508207088257660275757195",
+     "file": "dicom/ct-685a0b41a1/05ce0bb795faca65.dcm",
+     "bytes": 171330,
+     "sha256": "05ce0bb795faca65c65184aa062c9a857d229be19352f53633becb472c09479f",
+     "frames": 1,
+     "instanceNumber": 126,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -727.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.313182708912117781418665898383939441070",
+     "file": "dicom/ct-685a0b41a1/3796e270bedde0ec.dcm",
+     "bytes": 170880,
+     "sha256": "3796e270bedde0ec60664eb2413744b33daa1c6c295564128b5abcef7954b29a",
+     "frames": 1,
+     "instanceNumber": 127,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -726.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.381747579011618996637251869943038092746",
+     "file": "dicom/ct-685a0b41a1/274cd952eb4ba50f.dcm",
+     "bytes": 170166,
+     "sha256": "274cd952eb4ba50f69c318d01623779795c248dcdf83689d2caa572e1b0582f0",
+     "frames": 1,
+     "instanceNumber": 128,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -725.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.27770655011318537421191799561663956977",
+     "file": "dicom/ct-685a0b41a1/8a8e25540226ed1d.dcm",
+     "bytes": 169108,
+     "sha256": "8a8e25540226ed1dcded75e0bfddd6d0a172d89574941efa05063d5e51d07972",
+     "frames": 1,
+     "instanceNumber": 129,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -724.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.265642643813446587813275810791402078851",
+     "file": "dicom/ct-685a0b41a1/7c01ebabb30aaf4b.dcm",
+     "bytes": 168786,
+     "sha256": "7c01ebabb30aaf4bf60a5cd0dd728b384d95db2b4012ed8283de449cdd618d08",
+     "frames": 1,
+     "instanceNumber": 130,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -723.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.200903704311689758430961785803045811366",
+     "file": "dicom/ct-685a0b41a1/68776d4bc813050a.dcm",
+     "bytes": 168094,
+     "sha256": "68776d4bc813050ac086906ea61dc172fa1296e5b0f1c2c2971dc80094fee01c",
+     "frames": 1,
+     "instanceNumber": 131,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -722.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.387748278911545953010356095300942713548",
+     "file": "dicom/ct-685a0b41a1/220f6516eb847414.dcm",
+     "bytes": 168144,
+     "sha256": "220f6516eb8474140834d75cf754c5b1b4a740f1d5f88c4ebf91dc00182f8462",
+     "frames": 1,
+     "instanceNumber": 132,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -721.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.20227724012985066803264679730167941956",
+     "file": "dicom/ct-685a0b41a1/3325cba9ffd4a3d0.dcm",
+     "bytes": 167682,
+     "sha256": "3325cba9ffd4a3d0a1def324f25485060891286179ffc62c62ac2f9fbf89d3d5",
+     "frames": 1,
+     "instanceNumber": 133,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -720.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.310952299811411176004887318133857047150",
+     "file": "dicom/ct-685a0b41a1/2584da49c16de84b.dcm",
+     "bytes": 166684,
+     "sha256": "2584da49c16de84bc0624400990cb5ce104ae1f8a8033c59323cee05983240b1",
+     "frames": 1,
+     "instanceNumber": 134,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -719.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.398040943813117174726798542470297218617",
+     "file": "dicom/ct-685a0b41a1/97ba81b2cb0a882b.dcm",
+     "bytes": 166410,
+     "sha256": "97ba81b2cb0a882bb57307eb4deeff00f240423862bbdf03e0614699b4a54668",
+     "frames": 1,
+     "instanceNumber": 135,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -718.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.184524710011700269310340284331165532601",
+     "file": "dicom/ct-685a0b41a1/b45b16ecd62485ae.dcm",
+     "bytes": 166406,
+     "sha256": "b45b16ecd62485ae01b6dd9adc88798e30c90514342041d821117a5532f6b9e7",
+     "frames": 1,
+     "instanceNumber": 136,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -717.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.17492247012782278401791069614052260629",
+     "file": "dicom/ct-685a0b41a1/997cc14f7a792f5e.dcm",
+     "bytes": 166392,
+     "sha256": "997cc14f7a792f5e980c1ee43ef4d8b6bd7ed77b040af4307a369417f4210056",
+     "frames": 1,
+     "instanceNumber": 137,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -716.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.124763013811094309822400874431976878600",
+     "file": "dicom/ct-685a0b41a1/bbdc6972cf1f3002.dcm",
+     "bytes": 166352,
+     "sha256": "bbdc6972cf1f300267eda43993ba43ffc79852fdefde5a42b335edbd723b7499",
+     "frames": 1,
+     "instanceNumber": 138,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -715.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.241281936211481071633901912584122431085",
+     "file": "dicom/ct-685a0b41a1/4ac6d458ee77fdfb.dcm",
+     "bytes": 165952,
+     "sha256": "4ac6d458ee77fdfbc2443eba9b8f8d19031cb5290a463832713f8375ac0d9c1d",
+     "frames": 1,
+     "instanceNumber": 139,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -714.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.43276927912854956507941845882788961005",
+     "file": "dicom/ct-685a0b41a1/8c1a9b23d412ccfd.dcm",
+     "bytes": 164902,
+     "sha256": "8c1a9b23d412ccfdb21309321da7184c8a4f373eaaf010cc155dcbf2a6e9cb2d",
+     "frames": 1,
+     "instanceNumber": 140,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -713.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.276810937211561437038431817392933395027",
+     "file": "dicom/ct-685a0b41a1/6a58a060f8683c31.dcm",
+     "bytes": 164084,
+     "sha256": "6a58a060f8683c3157885844f12859736b8c898feb61617a61cd47f5c75aedfc",
+     "frames": 1,
+     "instanceNumber": 141,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -712.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.26800274011411130717307455210117072446",
+     "file": "dicom/ct-685a0b41a1/c36341ee845c27b9.dcm",
+     "bytes": 163980,
+     "sha256": "c36341ee845c27b9fe078b15bf5472bd7b216d939a946ac4f6040088d254806a",
+     "frames": 1,
+     "instanceNumber": 142,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -711.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.267180287112118896227904882003808297220",
+     "file": "dicom/ct-685a0b41a1/a6cf6979a6f0dab0.dcm",
+     "bytes": 163328,
+     "sha256": "a6cf6979a6f0dab04a5cccaeded172e7f59225889f827e50c44bd12af0cc6340",
+     "frames": 1,
+     "instanceNumber": 143,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -710.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.45263057713924607209489404383741581890",
+     "file": "dicom/ct-685a0b41a1/fa4a25c1b3001bca.dcm",
+     "bytes": 163108,
+     "sha256": "fa4a25c1b3001bca14166d11c693ba9e920afa240bbb69fb548c180b4965300d",
+     "frames": 1,
+     "instanceNumber": 144,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -709.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.25169944712435879532290346321550807378",
+     "file": "dicom/ct-685a0b41a1/a77802a8c06098ce.dcm",
+     "bytes": 163504,
+     "sha256": "a77802a8c06098ce21c09889fd19eda99b2ad7b04ab40e5cecb22b3333577e1d",
+     "frames": 1,
+     "instanceNumber": 145,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -708.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.223979536313661894310788361222605810668",
+     "file": "dicom/ct-685a0b41a1/9bb2ca0a6a02dd35.dcm",
+     "bytes": 163558,
+     "sha256": "9bb2ca0a6a02dd3549e99bee96b136ef05b3037eabd55f820192c95cbaacbec1",
+     "frames": 1,
+     "instanceNumber": 146,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -707.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.363052467412639952832247740682908009818",
+     "file": "dicom/ct-685a0b41a1/416807c103af6f8f.dcm",
+     "bytes": 164248,
+     "sha256": "416807c103af6f8faeb184eabbbdb40c95920368388cf7d1301efd36176c72a7",
+     "frames": 1,
+     "instanceNumber": 147,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -706.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.102371404711016808900722423093131571332",
+     "file": "dicom/ct-685a0b41a1/de735add1bd48171.dcm",
+     "bytes": 165000,
+     "sha256": "de735add1bd48171c5956aff1becc6e79169496d62bcfaa1ae8295a432177726",
+     "frames": 1,
+     "instanceNumber": 148,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -705.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.278184134811952932820726398731385637070",
+     "file": "dicom/ct-685a0b41a1/b0997a0aa93975cf.dcm",
+     "bytes": 165704,
+     "sha256": "b0997a0aa93975cf46bf21b32cdaa3657e425d81f849882f787dd850554e162c",
+     "frames": 1,
+     "instanceNumber": 149,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -704.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.82406166813590664918199679124100036980",
+     "file": "dicom/ct-685a0b41a1/b81558c435e9f3ec.dcm",
+     "bytes": 165958,
+     "sha256": "b81558c435e9f3ecc76aac065ce603c1455b8146122ae1cec3bf77625a0f6a15",
+     "frames": 1,
+     "instanceNumber": 150,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -703.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.362211512411123500501815074780323961711",
+     "file": "dicom/ct-685a0b41a1/3ee14f69ea0c146e.dcm",
+     "bytes": 165878,
+     "sha256": "3ee14f69ea0c146eea44658b3f7246a92d2dfde7ef24a93e6c50d6811c6d8a1d",
+     "frames": 1,
+     "instanceNumber": 151,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -702.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.46433066910241400311490586913182445235",
+     "file": "dicom/ct-685a0b41a1/a6e7bff581a63ab4.dcm",
+     "bytes": 165592,
+     "sha256": "a6e7bff581a63ab470e91f5bafccbbd0d69fcf6cb6921a444fd56a3407f57eed",
+     "frames": 1,
+     "instanceNumber": 152,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -701.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.362412898810222871310974603981585507304",
+     "file": "dicom/ct-685a0b41a1/3b2871ec92892181.dcm",
+     "bytes": 165292,
+     "sha256": "3b2871ec92892181b22fc667d14369ada3bab8cf597b0aa81b1307bb287b019d",
+     "frames": 1,
+     "instanceNumber": 153,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -700.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.305469461811381893442342237643963746189",
+     "file": "dicom/ct-685a0b41a1/993ffebe8eb72185.dcm",
+     "bytes": 165030,
+     "sha256": "993ffebe8eb72185316146bbccc33a857e52553aed7b6b6f56e6460982491b52",
+     "frames": 1,
+     "instanceNumber": 154,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -699.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.209461605313746200620385263761025436650",
+     "file": "dicom/ct-685a0b41a1/15b6eb295f399407.dcm",
+     "bytes": 164396,
+     "sha256": "15b6eb295f3994075edc8bea78eecc768760188a5d4c90f7cf352474ecf60574",
+     "frames": 1,
+     "instanceNumber": 155,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -698.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.205043763913247719311301792311019903267",
+     "file": "dicom/ct-685a0b41a1/8356da27f471c88e.dcm",
+     "bytes": 163882,
+     "sha256": "8356da27f471c88edb11b057d6061f64a434952bf28dd3147b76d2556b789cec",
+     "frames": 1,
+     "instanceNumber": 156,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -697.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.363347975511616634009770676980242475846",
+     "file": "dicom/ct-685a0b41a1/f628e89b7b77a918.dcm",
+     "bytes": 163948,
+     "sha256": "f628e89b7b77a918839d05580ab7c894e81e68d5dcfb5f998241a12b0398c40b",
+     "frames": 1,
+     "instanceNumber": 157,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -696.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.352168927212016865720112472324201952166",
+     "file": "dicom/ct-685a0b41a1/c3ec33c675cf0759.dcm",
+     "bytes": 163660,
+     "sha256": "c3ec33c675cf07594476a1a9e0bcfe6d1933934b48f9c9f3b97f5143f489b644",
+     "frames": 1,
+     "instanceNumber": 158,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -695.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.97403872212957321414629925502179735906",
+     "file": "dicom/ct-685a0b41a1/cf4c43525266dba2.dcm",
+     "bytes": 163886,
+     "sha256": "cf4c43525266dba20ceef1e9948ef88e53142e23d7b3b1914ad9ec48a5bc0553",
+     "frames": 1,
+     "instanceNumber": 159,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -694.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.67137543512373293519213352152611531628",
+     "file": "dicom/ct-685a0b41a1/94a888510ec69420.dcm",
+     "bytes": 163738,
+     "sha256": "94a888510ec694204956f204a9a0b7f9d29beed866c0f6d71b70572b4e3b8286",
+     "frames": 1,
+     "instanceNumber": 160,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -693.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.308000243912391493232010331512274214124",
+     "file": "dicom/ct-685a0b41a1/e89d7d94e52b2678.dcm",
+     "bytes": 163444,
+     "sha256": "e89d7d94e52b2678e463788031862452c8e36e9494360777917f80646e035059",
+     "frames": 1,
+     "instanceNumber": 161,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -692.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.118512922110177986233897781100394960835",
+     "file": "dicom/ct-685a0b41a1/fee44d24413f9dda.dcm",
+     "bytes": 163536,
+     "sha256": "fee44d24413f9dda76b0a8e65ebd269f61d9195b796bb264b21e0edace872f1d",
+     "frames": 1,
+     "instanceNumber": 162,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -691.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.169587579210112749239147795810861398745",
+     "file": "dicom/ct-685a0b41a1/af8d5ed0887ddc06.dcm",
+     "bytes": 163282,
+     "sha256": "af8d5ed0887ddc067d2cf57abfaa73ea0e9fe3a12875e7303fe79900bf1792b4",
+     "frames": 1,
+     "instanceNumber": 163,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -690.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.262202436611145558842674855932998737737",
+     "file": "dicom/ct-685a0b41a1/870535c50acc8ec4.dcm",
+     "bytes": 162572,
+     "sha256": "870535c50acc8ec402cb6005c6154e21bf09ff87c1d59ca54b2522c779e44811",
+     "frames": 1,
+     "instanceNumber": 164,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -689.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.59725167511633838711936158064153961142",
+     "file": "dicom/ct-685a0b41a1/568f4a3245677486.dcm",
+     "bytes": 161972,
+     "sha256": "568f4a3245677486ec16b89e3fb6df488aa300d8d0d6c5404da3da6f429e90fc",
+     "frames": 1,
+     "instanceNumber": 165,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -688.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.58399421212090313311962256851184342644",
+     "file": "dicom/ct-685a0b41a1/dc58eaf800c4502a.dcm",
+     "bytes": 162686,
+     "sha256": "dc58eaf800c4502ae4e8c46e34e21ab09f42855c4735d331be246f661b955164",
+     "frames": 1,
+     "instanceNumber": 166,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -687.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.269704808811624316906423121071258663297",
+     "file": "dicom/ct-685a0b41a1/6ee4f2afc3edd8b6.dcm",
+     "bytes": 163232,
+     "sha256": "6ee4f2afc3edd8b6243333ae9bb741c9913c8864f2bda6369e18c8bdc298d375",
+     "frames": 1,
+     "instanceNumber": 167,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -686.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.10843149512544649915287261992887742653",
+     "file": "dicom/ct-685a0b41a1/ede70d934eb26c24.dcm",
+     "bytes": 163844,
+     "sha256": "ede70d934eb26c245a9c55d411bf2df1e9b293ad46b1739b4a228684a55fedec",
+     "frames": 1,
+     "instanceNumber": 168,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -685.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.155001577512614488930016336843734817296",
+     "file": "dicom/ct-685a0b41a1/3dcf94e25d59eb15.dcm",
+     "bytes": 164780,
+     "sha256": "3dcf94e25d59eb158ea9eab7867b0093eb1dc14aa7277505dfab68d350c5ad9c",
+     "frames": 1,
+     "instanceNumber": 169,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -684.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.52484684212643381225378208031201196442",
+     "file": "dicom/ct-685a0b41a1/5eea66aa5cd945cd.dcm",
+     "bytes": 164906,
+     "sha256": "5eea66aa5cd945cd6034c8506a845516f6771c114fa48755d8e274cf801141fb",
+     "frames": 1,
+     "instanceNumber": 170,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -683.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.299148584911583456828393363462878987251",
+     "file": "dicom/ct-685a0b41a1/70efd3036ae57a64.dcm",
+     "bytes": 165222,
+     "sha256": "70efd3036ae57a6460bfa50a5e515eda88caf74551343027b19e305611d88da6",
+     "frames": 1,
+     "instanceNumber": 171,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -682.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.314894421613936070435802983873629526411",
+     "file": "dicom/ct-685a0b41a1/2d84984644dd5be0.dcm",
+     "bytes": 165602,
+     "sha256": "2d84984644dd5be0eecf5fcd8e08482be45745a09a232c9a68113000b4804496",
+     "frames": 1,
+     "instanceNumber": 172,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -681.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.405130184111813762427789869183697567495",
+     "file": "dicom/ct-685a0b41a1/0a285cdb6b0a5e8a.dcm",
+     "bytes": 165858,
+     "sha256": "0a285cdb6b0a5e8a7bb553ebbe1c164737e915b9a4dc2f3a75dba4d262f8dfac",
+     "frames": 1,
+     "instanceNumber": 173,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -680.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.4623537911086095404501710591267601063",
+     "file": "dicom/ct-685a0b41a1/5adc413f032d2980.dcm",
+     "bytes": 165692,
+     "sha256": "5adc413f032d2980aab5a7adbe3c73f41c7d52c4af95743bde03adfdda8498d7",
+     "frames": 1,
+     "instanceNumber": 174,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -679.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.393362193011334670821314802294128705985",
+     "file": "dicom/ct-685a0b41a1/3fd7e727daece381.dcm",
+     "bytes": 165860,
+     "sha256": "3fd7e727daece381278d7e46e2acfc28355656e7844fe29ca4569ad6224d3729",
+     "frames": 1,
+     "instanceNumber": 175,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -678.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.50944454512021409323296789963203746413",
+     "file": "dicom/ct-685a0b41a1/37e0d6210c02f865.dcm",
+     "bytes": 165268,
+     "sha256": "37e0d6210c02f865d7acad816051ba4fd64a341620ff93708910e10a8db91255",
+     "frames": 1,
+     "instanceNumber": 176,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -677.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.361353688910040143812454547833410502212",
+     "file": "dicom/ct-685a0b41a1/785aa5caed7ca5e5.dcm",
+     "bytes": 163704,
+     "sha256": "785aa5caed7ca5e535f3663ac83b13cea16275344556dd434b28b1857cb0350c",
+     "frames": 1,
+     "instanceNumber": 177,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -676.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.344989400310567168324347954080883762266",
+     "file": "dicom/ct-685a0b41a1/8e0435d22e1a1e20.dcm",
+     "bytes": 163370,
+     "sha256": "8e0435d22e1a1e20f6218da3f8e003a693ee07334b26e7e35217600e3f60c416",
+     "frames": 1,
+     "instanceNumber": 178,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -675.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.411759651612065682039395360051322589139",
+     "file": "dicom/ct-685a0b41a1/65fe264aed03ff56.dcm",
+     "bytes": 163344,
+     "sha256": "65fe264aed03ff569c6b1e70084c47c91c0bb4f87f599acb69bf1f4c262a6f4e",
+     "frames": 1,
+     "instanceNumber": 179,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -674.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.287360866110764865302242211123671069016",
+     "file": "dicom/ct-685a0b41a1/d68d09148581ea57.dcm",
+     "bytes": 163656,
+     "sha256": "d68d09148581ea576481aa0d80e94f2b1f2bf0f2ad8346da6c3bab16595a8a63",
+     "frames": 1,
+     "instanceNumber": 180,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -673.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.379778680412953806520497007383023275398",
+     "file": "dicom/ct-685a0b41a1/d82b5ffb52453322.dcm",
+     "bytes": 163774,
+     "sha256": "d82b5ffb5245332234f499a55d01cc0a41348a0a4e35aa2556225e42ce5fed86",
+     "frames": 1,
+     "instanceNumber": 181,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -672.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.164728842612254124930204599392744143243",
+     "file": "dicom/ct-685a0b41a1/641d030039a7fa90.dcm",
+     "bytes": 163578,
+     "sha256": "641d030039a7fa9064fb837005ae535856ae1235a3bcd7a24bfbc72cbdab7e59",
+     "frames": 1,
+     "instanceNumber": 182,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -671.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.387672984212777188418077474773882668353",
+     "file": "dicom/ct-685a0b41a1/25a39dcc29c8950f.dcm",
+     "bytes": 164154,
+     "sha256": "25a39dcc29c8950f7ee6438735c007136edc502fc9f9c5203ccaf19755392438",
+     "frames": 1,
+     "instanceNumber": 183,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -670.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.168067987612843179732504948670223825128",
+     "file": "dicom/ct-685a0b41a1/c154524bc0430e14.dcm",
+     "bytes": 165372,
+     "sha256": "c154524bc0430e1498f62d6ad6a101e78ec579db925369967ef650b379cba9c9",
+     "frames": 1,
+     "instanceNumber": 184,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -669.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.205092461011600897009927000674197850498",
+     "file": "dicom/ct-685a0b41a1/4ce7a223e5d72951.dcm",
+     "bytes": 166080,
+     "sha256": "4ce7a223e5d72951c0fe1c016a51371e5ca44127055aa391b6033e10c98bd474",
+     "frames": 1,
+     "instanceNumber": 185,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -668.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.42143722110946596803851946672046320297",
+     "file": "dicom/ct-685a0b41a1/98f1cefa613954ee.dcm",
+     "bytes": 166750,
+     "sha256": "98f1cefa613954eedd79c27da6d60095cc4e09fcb8c1447005c465b6b1cce73f",
+     "frames": 1,
+     "instanceNumber": 186,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -667.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.391677774613011596837718217574062867325",
+     "file": "dicom/ct-685a0b41a1/a75f8fcff74a95f1.dcm",
+     "bytes": 167140,
+     "sha256": "a75f8fcff74a95f1c45f47a4ead02d654cbf7b48a05aaa8f9278b05033662587",
+     "frames": 1,
+     "instanceNumber": 187,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -666.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.327597235411297781739307442463136397496",
+     "file": "dicom/ct-685a0b41a1/f0bee9339733a5be.dcm",
+     "bytes": 167246,
+     "sha256": "f0bee9339733a5be9ba974323cd7208a1c779eb2c89d1b7f340f05866c04034d",
+     "frames": 1,
+     "instanceNumber": 188,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -665.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.296165709711830197838225125423676755971",
+     "file": "dicom/ct-685a0b41a1/078108aaba145f8b.dcm",
+     "bytes": 166766,
+     "sha256": "078108aaba145f8b4b8175c6d1e866b320a6f0037eb7b55876cdca9c77dbc65d",
+     "frames": 1,
+     "instanceNumber": 189,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -664.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.15778732511422666807814583261146293580",
+     "file": "dicom/ct-685a0b41a1/5e8685f092454956.dcm",
+     "bytes": 166342,
+     "sha256": "5e8685f09245495607b562012dbce6131b00ebdd8135645f3a9399f4818f097d",
+     "frames": 1,
+     "instanceNumber": 190,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -663.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.1214370112742383218812225830054327135",
+     "file": "dicom/ct-685a0b41a1/edc34aff5645d3d9.dcm",
+     "bytes": 165894,
+     "sha256": "edc34aff5645d3d92a9a7afcb079e3bf56f2253dbd3b820118f97c93022f55c7",
+     "frames": 1,
+     "instanceNumber": 191,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -662.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.183027748011787477213033379070450879446",
+     "file": "dicom/ct-685a0b41a1/a1ce9653b45a474e.dcm",
+     "bytes": 166276,
+     "sha256": "a1ce9653b45a474e28ae68cbb46a4da20909d8ef0659255139674f7b7c241fd0",
+     "frames": 1,
+     "instanceNumber": 192,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -661.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.334691100512200043141448388403577965412",
+     "file": "dicom/ct-685a0b41a1/006910d76533bbfd.dcm",
+     "bytes": 167092,
+     "sha256": "006910d76533bbfd4dd29a90f0f025964e95fe1a11b84012ca6cdfeb5e9e9e90",
+     "frames": 1,
+     "instanceNumber": 193,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -660.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.388560032612536557521798581060737798237",
+     "file": "dicom/ct-685a0b41a1/6ac73c9252d5cc00.dcm",
+     "bytes": 167306,
+     "sha256": "6ac73c9252d5cc00dfa3d4c7846e96aee45cad59d135c1deff744c70b8ab3478",
+     "frames": 1,
+     "instanceNumber": 194,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -659.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.43177509012204566330080977120673250604",
+     "file": "dicom/ct-685a0b41a1/b02ce3fd02c4607c.dcm",
+     "bytes": 167578,
+     "sha256": "b02ce3fd02c4607cb59a8111d17060cc51a0fc69ea9a9175281145dbba7eed7b",
+     "frames": 1,
+     "instanceNumber": 195,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -658.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.307686398512529171703312941251844457654",
+     "file": "dicom/ct-685a0b41a1/956a5268d5b033ca.dcm",
+     "bytes": 168516,
+     "sha256": "956a5268d5b033cabab9e3fd2388a4a3cb5bbe368a1c919b8a911525e3f82267",
+     "frames": 1,
+     "instanceNumber": 196,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -657.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.386354370611751959727448577780296095026",
+     "file": "dicom/ct-685a0b41a1/bcf357444d41a202.dcm",
+     "bytes": 168908,
+     "sha256": "bcf357444d41a2027b0dbb6083d85c17096f541ebac9c48682dbde4dc72e4e75",
+     "frames": 1,
+     "instanceNumber": 197,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -656.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.406370733813420559126469976384012487420",
+     "file": "dicom/ct-685a0b41a1/171dcf8cf2698654.dcm",
+     "bytes": 169144,
+     "sha256": "171dcf8cf2698654fb0407d629125be67f6bc2185a8dd3b805d904e1830c6a58",
+     "frames": 1,
+     "instanceNumber": 198,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -655.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.418952027810935653830670107112013825571",
+     "file": "dicom/ct-685a0b41a1/0430488c7515181c.dcm",
+     "bytes": 169346,
+     "sha256": "0430488c7515181c17afe8e1401c209bfcf44bed7c525e6c7681274d6e7437e5",
+     "frames": 1,
+     "instanceNumber": 199,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -654.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.23895949612280703014029710691942435861",
+     "file": "dicom/ct-685a0b41a1/0ad87f4e94785908.dcm",
+     "bytes": 168224,
+     "sha256": "0ad87f4e94785908e41d7709bfd4a49280a61b37357e5e4089faee632c958cb6",
+     "frames": 1,
+     "instanceNumber": 200,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -653.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.89436794911528273833083349920843591462",
+     "file": "dicom/ct-685a0b41a1/f03e826b1e9d1dad.dcm",
+     "bytes": 166242,
+     "sha256": "f03e826b1e9d1dad08fb41c6d0c8c69805d61ca0e396d47af17ddbe53423e31a",
+     "frames": 1,
+     "instanceNumber": 201,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -652.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.345164263512459695500008833431355565822",
+     "file": "dicom/ct-685a0b41a1/48e7732e6f4e74c2.dcm",
+     "bytes": 164966,
+     "sha256": "48e7732e6f4e74c2d5a59320098ee4f76db5e3a64639cf95222a3e741ea01f2a",
+     "frames": 1,
+     "instanceNumber": 202,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -651.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.156342453111015022123636146054170233298",
+     "file": "dicom/ct-685a0b41a1/5a3d0b1d7cbd306f.dcm",
+     "bytes": 165124,
+     "sha256": "5a3d0b1d7cbd306ffb67132d2d1b566074a9220861eead1300bc539127db2383",
+     "frames": 1,
+     "instanceNumber": 203,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -650.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.74003380612409352238248833653948680988",
+     "file": "dicom/ct-685a0b41a1/131971913786fa1b.dcm",
+     "bytes": 165852,
+     "sha256": "131971913786fa1b86dae33245b788805935073d16bac56f579cdea5473e0d11",
+     "frames": 1,
+     "instanceNumber": 204,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -649.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.243253526013107624617004903884290368266",
+     "file": "dicom/ct-685a0b41a1/46f8a2cf37303e69.dcm",
+     "bytes": 167040,
+     "sha256": "46f8a2cf37303e69e6601d398c8db914d83556582eb20f9c9d9eec68b82c63ee",
+     "frames": 1,
+     "instanceNumber": 205,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -648.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.350616263510529570322342972424057005383",
+     "file": "dicom/ct-685a0b41a1/70b20e250d3cf8e0.dcm",
+     "bytes": 167496,
+     "sha256": "70b20e250d3cf8e0121b404ae5704eeb77c5bd7e983d2923780553a74ad844c7",
+     "frames": 1,
+     "instanceNumber": 206,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -647.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.116297633412109684423766793353872750575",
+     "file": "dicom/ct-685a0b41a1/581a0b9551c36cdf.dcm",
+     "bytes": 168086,
+     "sha256": "581a0b9551c36cdfb0197b2c79f1ffdb788944187e581de052d48ce9480c8ac2",
+     "frames": 1,
+     "instanceNumber": 207,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -646.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.369815928311737952014033174242723183645",
+     "file": "dicom/ct-685a0b41a1/61435886c63af60e.dcm",
+     "bytes": 168698,
+     "sha256": "61435886c63af60e9f59caaabe8e502c210704a5e4c2d74f0cef309c3945db88",
+     "frames": 1,
+     "instanceNumber": 208,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -645.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.234397110912222013029257496871660653641",
+     "file": "dicom/ct-685a0b41a1/e6bf88a9d104482b.dcm",
+     "bytes": 169598,
+     "sha256": "e6bf88a9d104482bcfbdc33414c2c20ded97a54f137be487b576721fccea503a",
+     "frames": 1,
+     "instanceNumber": 209,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -644.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.114529309412255875738017214972529786280",
+     "file": "dicom/ct-685a0b41a1/7b22be3ef2677400.dcm",
+     "bytes": 170718,
+     "sha256": "7b22be3ef2677400c74241e6a16f34bbd40e698e92d6095798156248b3cb2061",
+     "frames": 1,
+     "instanceNumber": 210,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -643.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.387137418012353835128376759321215135641",
+     "file": "dicom/ct-685a0b41a1/94c88f94e3ca8834.dcm",
+     "bytes": 171340,
+     "sha256": "94c88f94e3ca883489ba9916d7e534b8bd760f6e5bdcb7787ebbacd88027f599",
+     "frames": 1,
+     "instanceNumber": 211,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -642.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.236362629112322121210477687083125000574",
+     "file": "dicom/ct-685a0b41a1/d9d9890e8458774f.dcm",
+     "bytes": 171596,
+     "sha256": "d9d9890e8458774ff3d9da5a7067998540aca11412e987ab157b4cd52ae9a7f0",
+     "frames": 1,
+     "instanceNumber": 212,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -641.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.285254907413144679210797528531094930060",
+     "file": "dicom/ct-685a0b41a1/81c251ceb4f3a606.dcm",
+     "bytes": 170246,
+     "sha256": "81c251ceb4f3a6069286bf1219ea19e9689fb9fabfec78f91872f6779509620e",
+     "frames": 1,
+     "instanceNumber": 213,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -640.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.214301986213829364822836039003926991736",
+     "file": "dicom/ct-685a0b41a1/b8f5aa3d4dd74d73.dcm",
+     "bytes": 169176,
+     "sha256": "b8f5aa3d4dd74d738737b67a1adee4c007ae345b69fb113bc86a88ad2a2920ac",
+     "frames": 1,
+     "instanceNumber": 214,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -639.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.107679625912305619231444317981909099743",
+     "file": "dicom/ct-685a0b41a1/f9b9b78a4351f908.dcm",
+     "bytes": 169222,
+     "sha256": "f9b9b78a4351f908abdb86637798d4ef14b9848ac4d7571545b34010d00e6a05",
+     "frames": 1,
+     "instanceNumber": 215,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -638.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.46256409012075544940813943601805723561",
+     "file": "dicom/ct-685a0b41a1/cd2f90d478944b98.dcm",
+     "bytes": 169424,
+     "sha256": "cd2f90d478944b98b101e13fee39420e0289ac85ce2e3c43543b971d29ccc725",
+     "frames": 1,
+     "instanceNumber": 216,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -637.3
+     ]
+    },
+    {
+     "sopInstanceUid": "1.3.6.1.4.1.9590.100.1.2.60046490911327782328693379994024724425",
+     "file": "dicom/ct-685a0b41a1/be102b5a5c4ba8b9.dcm",
+     "bytes": 170758,
+     "sha256": "be102b5a5c4ba8b9cbd46ee764140c7995cdbdf947861af87d5bbdfd37a94759",
+     "frames": 1,
+     "instanceNumber": 217,
+     "ipp": [
+      -127.3,
+      -163.0,
+      -636.3
+     ]
+    }
+   ],
+   "bytes": 37686714,
+   "thumbnail": "thumbs/ct-685a0b41a1.png",
+   "displayNote": "Header repairs before packing (pixel data unchanged): StudyInstanceUID/SeriesInstanceUID '0' replaced by derived UIDs; date attributes '0' and PatientBirthDate removed; PatientAge '000Y' removed; Manufacturer/InstitutionName/StudyDescription/AccessionNumber '0' cleared; PatientID set."
+  }
+ ],
+ "spatialLinks": [],
+ "referenceTargets": [
+  {
+   "id": "fumpe-pat005_pulmonary-embolism",
+   "label": "Pulmonary embolism (FUMPE radiologists' mask)",
+   "classId": "finding:pulmonary_embolism",
+   "seriesUid": "2.25.225694208448586268817010326638561875843",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/fumpe-pat005_pulmonary-embolism.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:FUMPE (Ground Truth.rar, label-edited)",
+    "method": "label-edited/PAT005.mat 'Mask' (512x512x217): two radiologists marked the emboli with a semi-automated tool (Masoudi et al. 2018). Mask slice k belongs to file D(k+1) in name order, which is also ascending position (checked: equal counts, monotonic ImagePositionPatient, overlay on the opacified pulmonary arteries). Traced with skimage find_contours (0.5) and approximate_polygon (0.25 px) into image_px [col, row].",
+    "note": "80 slices with embolus; outline-vertex centroid (LPS mm) [17.3, 44.0, -754.6]."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pulmonary_embolism"
+   ],
+   "unassessedNote": "Only the emboli are referenced; lungs, pleura, heart and other findings are unassessed.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Saddle embolus: the mask spans the main pulmonary artery bifurcation into both pulmonary arteries (checked by overlay)."
+  },
+  {
+   "id": "fumpe-pat021_pulmonary-embolism",
+   "label": "Pulmonary embolism (FUMPE radiologists' mask)",
+   "classId": "finding:pulmonary_embolism",
+   "seriesUid": "2.25.208016074378713353746067436351091429943",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/fumpe-pat021_pulmonary-embolism.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "figshare:FUMPE (Ground Truth.rar, label-edited)",
+    "method": "label-edited/PAT021.mat 'Mask' (512x512x217): two radiologists marked the emboli with a semi-automated tool (Masoudi et al. 2018). Mask slice k belongs to file D(k+1) in name order, which is also ascending position (checked: equal counts, monotonic ImagePositionPatient, overlay on the opacified pulmonary arteries). Traced with skimage find_contours (0.5) and approximate_polygon (0.25 px) into image_px [col, row].",
+    "note": "48 slices with embolus; outline-vertex centroid (LPS mm) [51.4, 1.1, -738.2]."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:pulmonary_embolism"
+   ],
+   "unassessedNote": "Only the emboli are referenced; lungs, pleura, heart and other findings are unassessed.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Large embolus in the right pulmonary artery (checked by overlay); a large right pleural effusion is also visible but not outlined."
+  }
+ ]
+}

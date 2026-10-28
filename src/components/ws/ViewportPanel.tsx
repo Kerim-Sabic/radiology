@@ -343,8 +343,10 @@ export function ViewportPanel(p: Props) {
           })}
           {p.overlay.showLabels &&
             [...new Map(shapes.filter((x) => x.kind === 'poly' && (!p.overlay.labelIds || p.overlay.labelIds.has(x.targetId))).map((x) => [x.targetId, x])).values()].map((sh) => {
-              const cx = sh.pts.reduce((a, q) => a + q[0], 0) / sh.pts.length;
-              const cy = sh.pts.reduce((a, q) => a + q[1], 0) / sh.pts.length;
+              // Centred on the outline, but kept inside the panel (a finding at the image edge keeps a readable name).
+              const half = (cleanName(sh.label).length * 6.1) / 2 + 4;
+              const cx = Math.min(Math.max(sh.pts.reduce((a, q) => a + q[0], 0) / sh.pts.length, half), Math.max(half, size[0] - half));
+              const cy = Math.min(Math.max(sh.pts.reduce((a, q) => a + q[1], 0) / sh.pts.length, 14), Math.max(14, size[1] - 8));
               return (
                 <text key={`l-${sh.targetId}`} x={cx} y={cy} fill="#ffd166" fontSize={11} textAnchor="middle" style={{ paintOrder: 'stroke', stroke: '#000', strokeWidth: 3, opacity: p.overlay.opacity }}>
                   {cleanName(sh.label)}

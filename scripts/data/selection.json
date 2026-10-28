@@ -100,6 +100,18 @@
    "doi": "10.7937/91ah-v663",
    "citation": "Tsai, E., Simpson, S., Lungren, M. P., Hershman, M., Roshkovan, L., Colak, E., Erickson, B. J., Shih, G., Stein, A., Kalpathy-Cramer, J., Shen, J., Hafez, M. A. F., John, S., Rajiah, P., Pogatchnik, B. P., Mongan, J. T., Altinmakas, E., Ranschaert, E., Kitamura, F. C., ... Wu, C. (2021). Medical Imaging Data Resource Center (MIDRC) - RSNA International COVID Radiology Database (RICORD) Release 1c - Chest x-ray, Covid+ (MIDRC-RICORD-1C) (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/91AH-V663",
    "accessNote": "Images retrieved anonymously from the TCIA NBIA REST API v1; study labels from the official MD.ai export 'midrc-ricord-1c-da-other-json.zip' linked on the TCIA collection page. License as reported by the API (LicenseName): non-commercial use only."
+  },
+  "tcia:Colorectal-Liver-Metastases": {
+   "collection": "Colorectal-Liver-Metastases",
+   "name": "Preoperative CT and Survival Data for Patients Undergoing Resection of Colorectal Liver Metastases (Colorectal-Liver-Metastases)",
+   "doi": "10.7937/QXK2-QG03",
+   "citation": "Simpson, A. L., Peoples, J., Creasy, J. M., Fichtinger, G., Gangai, N., Lasso, A., Keshava Murthy, K. N., Shia, J., D'Angelica, M. I., & Do, R. K. G. (2023). Preoperative CT and Survival Data for Patients Undergoing Resection of Colorectal Liver Metastases (Colorectal-Liver-Metastases) (Version 2) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/QXK2-QG03"
+  },
+  "tcia:Mediastinal-Lymph-Node-SEG": {
+   "collection": "Mediastinal-Lymph-Node-SEG",
+   "name": "Mediastinal Lymph Node Quantification (LNQ): Segmentation of Heterogeneous CT Data (Mediastinal-Lymph-Node-SEG)",
+   "doi": "10.7937/QVAZ-JA09",
+   "citation": "Idris, T., Somarouthu, S., Jacene, H., LaCasce, A., Ziegler, E., Pieper, S., Khajavi, R., Dorent, R., Pujol, S., Kikinis, R., & Harris, G. (2024). Mediastinal Lymph Node Quantification (LNQ): Segmentation of Heterogeneous CT Data (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/QVAZ-JA09"
   }
  },
  "packs": {
@@ -195,7 +207,7 @@
    "title": "Chest pairs: same-patient radiograph and CT",
    "description": "Same-patient chest radiograph + CT pairs. COVID-19-AR: three patients with a diagnostic frontal radiograph and an axial chest CT (same day, or 3 days apart, from consistently shifted dates); CT localizers are kept with role 'scout' to contrast with real radiographs, and one vendor coronal MPR is included as a labelled extra. LIDC-IDRI: three patients with CT plus CR/DX and multi-reader nodule outlines (>=3 mm, outlined by >=2 of 4 readers) from the official LIDC XML; LIDC dates are placeholders, so the CT-radiograph interval is unknown. Includes one CT series kept in its original uncompressed transfer syntax.",
    "version": "1.0.0",
-   "distribution": "fetch_script",
+   "distribution": "repo",
    "budgetBytes": 320000000,
    "subjects": [
     {
@@ -420,7 +432,7 @@
    "title": "CT-MRI pairs: extremity soft-tissue sarcoma",
    "description": "Two Soft-tissue-Sarcoma patients, each with a diagnostic MR study (axial T1 and axial T2 fat-saturated or STIR) and the CT component of an FDG PET/CT, plus the source RTSTRUCT tumour contours (GTV_Mass, GTV_Edema) delineated separately on CT, T1 and T2FS/STIR. CT and MR are linked only as 'independent' same-patient series: no registration is provided or implied.",
    "version": "1.0.0",
-   "distribution": "fetch_script",
+   "distribution": "repo",
    "budgetBytes": 200000000,
    "subjects": [
     {
@@ -621,7 +633,7 @@
    "title": "Body: kidney tumour CT, contrast chest CT, more thoracic RT cases",
    "description": "Arterial-phase abdominal CT with kidney and kidney-tumour segmentation (C4KC-KiTS, DICOM SEG); an IV-contrast chest CT whose range covers the whole superior mediastinum and thoracic inlet (great-vessel navigation; no reference targets); and two more LCTSC thoracic planning CTs from different institutions with RT organ-at-risk contours, for unseen-patient practice. Four different patients; the KiTS CT is stored RLE-lossless as a decoder fixture.",
    "version": "1.0.0",
-   "distribution": "fetch_script",
+   "distribution": "repo",
    "budgetBytes": 200000000,
    "subjects": [
     {
@@ -737,7 +749,7 @@
    "title": "Neuro and MSK: brain MRI sequences, spine levels, mammogram mass",
    "description": "Pre-operative brain MRI of one glioma patient (3D T1 post-contrast, axial T2 BLADE, axial FLAIR) with tumour, ventricle and cerebrum DICOM SEGs (ReMIND); one spine CT with vertebral-level segmentation T1-L5 for level identification (Spine-Mets-CT-SEG); one CBIS-DDSM craniocaudal film-screen mammogram with the source ROI mask and source-stated pathology.",
    "version": "1.0.0",
-   "distribution": "fetch_script",
+   "distribution": "repo",
    "budgetBytes": 200000000,
    "subjects": [
     {
@@ -888,7 +900,7 @@
    "title": "Expansion: more distinct patients for unseen-patient practice",
    "description": "Twelve patients not used in any other pack: four LCTSC thoracic planning CTs with RT organ-at-risk contours (three institutions), three LIDC-IDRI nodule CTs with multi-reader outlines plus the same patients' radiographs (interval unknown), two C4KC-KiTS arterial CTs with kidney/tumour SEG (tumour on the left in one, right in the other, by SEG centroid), two Spine-Mets-CT-SEG CTs with vertebral-level SEGs, and one ReMIND pre-operative brain MRI (T1 post-contrast, FLAIR, T2) with a manual glioma SEG.",
    "version": "1.0.0",
-   "distribution": "fetch_script",
+   "distribution": "repo",
    "budgetBytes": 450000000,
    "subjects": [
     {
@@ -1274,7 +1286,7 @@
    "title": "More CT and X-ray: pediatric organ atlas, RICORD radiographs, more chest pairs",
    "description": "21 patients not used in any other pack: four pediatric chest-abdomen-pelvis / abdomen-pelvis CTs (ages 1-15 y) with expert contours of up to 29 structures (atlas layer); six COVID-19-positive adult chest radiographs (MIDRC-RICORD-1C) with per-reader study-level labels; four COVID-19-AR same-day radiograph + axial CT pairs; four LIDC-IDRI nodule CTs with multi-reader outlines plus radiographs (interval unknown); three more LCTSC thoracic planning CTs with RT organ-at-risk contours.",
    "version": "1.0.0",
-   "distribution": "fetch_script",
+   "distribution": "repo",
    "budgetBytes": 650000000,
    "subjects": [
     {
@@ -2475,6 +2487,135 @@
        "labelSuffix": "RT contour",
        "teachingNote": "Radiotherapy organ-at-risk contours used clinically for treatment planning and reviewed/edited for consistency with the RTOG 1106 contouring atlas (LCTSC collection description). They are RT planning definitions, not necessarily anatomical teaching boundaries: the cranio-caudal start/stop levels and in-plane conventions (e.g. what is included with the heart, esophagus or cord) follow the RT atlas.",
        "why": "Source-manual OAR contours."
+      }
+     ]
+    }
+   ]
+  },
+  "ct-findings": {
+   "title": "CT findings: liver metastases and enlarged mediastinal lymph nodes",
+   "description": "Contrast CT with radiologist segmentations of the findings themselves: three colorectal liver metastases with the liver and portal vein (Colorectal-Liver-Metastases, DICOM SEG), and two chest CTs in which every abnormal mediastinal lymph node (estimated short axis > 1 cm) is segmented (Mediastinal-Lymph-Node-SEG, 'Fully Annotated'). Three different patients.",
+   "version": "1.0.0",
+   "distribution": "repo",
+   "budgetBytes": 150000000,
+   "subjects": [
+    {
+     "sourceId": "tcia:Colorectal-Liver-Metastases",
+     "patientId": "CRLM-CT-1140",
+     "slug": "crlm-ct-1140",
+     "why": "Read the SEGs of the six smallest CRLM CT series: CRLM-CT-1140 has three segmented tumours (13,126 / 3,504 / 887 voxels) — multiple liver metastases of different sizes in one liver — on a 30-image chest/abdomen/pelvis CT (15.8 MB).",
+     "series": [
+      {
+       "kind": "image",
+       "uid": "1.3.6.1.4.1.14519.5.2.1.9203.8273.570242987820172162772758577346",
+       "studyUid": "1.3.6.1.4.1.14519.5.2.1.9203.8273.165888529376874122587514985659",
+       "note": "CHEST/ABDOMEN/PELVIS (30)",
+       "region": "abdomen",
+       "why": "Preoperative contrast CT on which the SEG is defined."
+      },
+      {
+       "kind": "seg",
+       "uid": "1.3.6.1.4.1.14519.5.2.1.9203.8273.247666596121484068332106599142",
+       "studyUid": "1.3.6.1.4.1.14519.5.2.1.9203.8273.165888529376874122587514985659",
+       "labelSuffix": "CRLM SEG",
+       "segClass": {
+        "Tumor_1": [
+         "finding:liver_metastasis",
+         "Liver metastasis 1"
+        ],
+        "Tumor_2": [
+         "finding:liver_metastasis",
+         "Liver metastasis 2"
+        ],
+        "Tumor_3": [
+         "finding:liver_metastasis",
+         "Liver metastasis 3"
+        ],
+        "Liver": [
+         "anatomy:liver",
+         "Liver"
+        ],
+        "Hepatic": [
+         "anatomy:hepatic_veins",
+         "Hepatic veins"
+        ],
+        "Portal": [
+         "anatomy:portal_vein",
+         "Portal vein"
+        ],
+        "Liver Remnant": [
+         "anatomy:liver_remnant_planned",
+         "Planned liver remnant"
+        ]
+       },
+       "onlySegments": [
+        "finding:liver_metastasis",
+        "anatomy:liver",
+        "anatomy:portal_vein"
+       ],
+       "teachingNote": "Colorectal-Liver-Metastases (MSKCC): manual segmentations of the liver, hepatic and portal veins and each tumour on the preoperative CT of a patient who then had resection of colorectal liver metastases. Per-lesion pathology is not part of this target. The 'Liver Remnant' (surgical planning) and hepatic vein segments are not included.",
+       "unassessedNote": "Only the liver, the portal vein and the segmented tumours are referenced; everything else (hepatic veins, lungs, nodes, bowel, bones) is unassessed.",
+       "why": "Tumour, liver and vessel references."
+      }
+     ]
+    },
+    {
+     "sourceId": "tcia:Mediastinal-Lymph-Node-SEG",
+     "patientId": "case_0230",
+     "slug": "lnq-0230",
+     "why": "Of the six smallest 'Fully Annotated' chest CTs, case_0230 has the largest segmented node volume (39,659 voxels): several clearly enlarged nodes. 59 images, 31 MB.",
+     "series": [
+      {
+       "kind": "image",
+       "uid": "1.3.6.1.4.1.14519.5.2.1.273910224912592375430895644657966044381",
+       "studyUid": "1.3.6.1.4.1.14519.5.2.1.76208107011852161317231380336653303322",
+       "note": "chest (59)",
+       "region": "chest",
+       "why": "Chest CT on which the SEG is defined."
+      },
+      {
+       "kind": "seg",
+       "uid": "1.3.6.1.4.1.14519.5.2.1.179373970458908283296959945479251220074",
+       "studyUid": "1.3.6.1.4.1.14519.5.2.1.76208107011852161317231380336653303322",
+       "labelSuffix": "LNQ SEG",
+       "segClass": {
+        "Mediastinal lymph node": [
+         "finding:mediastinal_lymphadenopathy",
+         "Enlarged mediastinal lymph nodes"
+        ]
+       },
+       "teachingNote": "LNQ2023 'Fully Annotated' case: per the collection description, all mediastinal lymph nodes considered abnormal (estimated short axis larger than 1 cm) were segmented by expert annotators. The challenge paper notes that the visual short-axis estimate is error-prone near the 1 cm threshold. Patients were scanned during treatment for various cancers; the diagnosis behind the nodes is not given here.",
+       "why": "All abnormal mediastinal nodes segmented ('Fully Annotated')."
+      }
+     ]
+    },
+    {
+     "sourceId": "tcia:Mediastinal-Lymph-Node-SEG",
+     "patientId": "case_0837",
+     "slug": "lnq-0837",
+     "why": "Second 'Fully Annotated' chest CT (16,048 node voxels; 57 images, 30 MB) for practice on a different patient.",
+     "series": [
+      {
+       "kind": "image",
+       "uid": "1.3.6.1.4.1.14519.5.2.1.142260788480108655336896236659788697995",
+       "studyUid": "1.3.6.1.4.1.14519.5.2.1.306560482142963738430165119312050789523",
+       "note": "chest (57)",
+       "region": "chest",
+       "why": "Chest CT on which the SEG is defined."
+      },
+      {
+       "kind": "seg",
+       "uid": "1.3.6.1.4.1.14519.5.2.1.19983468511194992132015619551748354695",
+       "studyUid": "1.3.6.1.4.1.14519.5.2.1.306560482142963738430165119312050789523",
+       "labelSuffix": "LNQ SEG",
+       "segClass": {
+        "Mediastinal lymph node": [
+         "finding:mediastinal_lymphadenopathy",
+         "Enlarged mediastinal lymph nodes"
+        ]
+       },
+       "teachingNote": "LNQ2023 'Fully Annotated' case: per the collection description, all mediastinal lymph nodes considered abnormal (estimated short axis larger than 1 cm) were segmented by expert annotators. The challenge paper notes that the visual short-axis estimate is error-prone near the 1 cm threshold. Patients were scanned during treatment for various cancers; the diagnosis behind the nodes is not given here.",
+       "why": "All abnormal mediastinal nodes segmented ('Fully Annotated')."
       }
      ]
     }

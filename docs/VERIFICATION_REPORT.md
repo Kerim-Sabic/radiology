@@ -29,15 +29,15 @@ Offline Python pipelines prepare everything the app serves:
 
 | | count |
 |---|---|
-| Distinct patients with usable cases | **51** |
-| Studies / series / DICOM instances | 71 / 81 / 6,696 |
-| Image-based tasks | **220** |
-| — spatially scored vs source manual annotation | 83 |
-| — auto-checked choice on a real image | 26 |
-| — self-review against a source-linked checklist | 96 |
+| Distinct patients with usable cases | **84** |
+| Studies / series / DICOM instances | 104 / 114 / 7,304 |
+| Image-based tasks | **278** |
+| — spatially scored vs source manual annotation | 117 |
+| — auto-checked choice on a real image | 48 |
+| — self-review against a source-linked checklist | 98 |
 | — spatial vs unreviewed AI-draft reference (self-review until you review it) | 15 |
-| Reference targets | 3,986 (268 source manual, 3 source automated, 3,715 AI draft by Horalix) |
-| Curriculum | 37 units (29 chapters + 8 appendices), 274 objectives; 31 objectives (11%) have at least one real-scan task |
+| Reference targets | 4,023 (305 source manual, 3 source automated, 3,715 AI draft by Horalix) |
+| Curriculum | 37 units (29 chapters + 8 appendices), 274 objectives; 46 objectives (17%) have at least one real-scan task |
 
 **Same-patient comparisons (all `independent`, none registered):**
 - Radiograph ↔ diagnostic CT: 17 patients (COVID-19-AR and LIDC-IDRI).
@@ -87,7 +87,7 @@ Coronal renders of the airway labels were inspected on 6 CTs: adults, a child, c
 | check | result |
 |---|---|
 | `npm run typecheck` (app and tests) | pass |
-| `npm test` — unit tests (see below) | **169 / 169 pass** |
+| `npm test` — unit tests (see below) | **209 / 209 pass** |
 | `npm run build` | pass (shell 529 KB JS; the 4.3 MB imaging engine and the PDF reader are lazy-loaded; the book PDF is left out unless `KEEP_BOOK_IN_BUILD=1`) |
 | Playwright e2e on the production build (`vite preview`), Chromium + Firefox | **55 pass, 0 fail, 0 flaky**; 1 skipped (the speed measurement runs in Chromium only) |
 | Anatomy pack contract check (zod) and DICOM re-read | 3,650 / 3,650 targets pass |
@@ -188,6 +188,31 @@ Two independent reviews ran on 28 October: one checked every outline anatomicall
 - The 3D models come from AI draft outlines that no radiologist has checked. With 3 mm slices or thicker they look stepped.
 - The cut uses at most two planes per axis: the WebGL volume renderer takes six.
 - 3D needs WebGL, and was checked in Chromium and Firefox only.
+
+## 3c. Located cases for the book's conditions (28 October, evening)
+
+33 patients were added in four packs, each with the finding marked on the images by the dataset's experts. Every dataset was downloadable without a login or an agreement. Sources, licences, citations and exact files with hashes are in `docs/data/conditions-data.md`, and each case shows its source, licence and citation in the Case tab.
+
+| Condition | Cases added | Marked by | Dataset (licence) |
+|---|---|---|---|
+| Pneumothorax | 4 PA radiographs | radiologist box | NIH ChestX-ray14 (unrestricted; acknowledge NIH Clinical Center and cite) |
+| Pleural effusion, atelectasis, cardiomegaly, lung mass, lung nodule, pneumonia | 19 PA radiographs | radiologist box | NIH ChestX-ray14 |
+| Pulmonary embolism | 2 CT angiograms | radiologist masks | FUMPE (CC BY 4.0) |
+| Liver metastases | 1 CT (3 lesions) | segmentation | TCIA Colorectal-Liver-Metastases (CC BY 4.0) |
+| Enlarged mediastinal lymph nodes | 2 CTs | every abnormal node segmented | TCIA Mediastinal-Lymph-Node-SEG (CC BY 4.0) |
+| Fracture | 5 radiographs (wrist, ankle, shoulder, knee, hip) | expert outlines | FracAtlas (CC BY 4.0) |
+
+**Checks:**
+- Every radiograph was looked at with its box or outline drawn on, and kept only where the finding is clearly visible. 7 unclear NIH boxes were dropped (one "nodule" was the nipple shadow), as was one CT angiogram whose mask covered fewer slices than the scan.
+- All four packs pass the pack validator, the zod contract and the catalog tests.
+- In the browser, the reference sat on the abnormality in a pneumothorax, the saddle embolus, the liver metastases, the enlarged nodes and the hip fracture. The CT side letters are right, and the radiographs say "Orientation not recorded in file".
+- The condition search finds them; a pneumothorax link opens the case at the box.
+
+**Limits:**
+- The NIH files do not record the side, so no label states one.
+- The NIH labels come from report text and can be wrong; only the radiologist's box is scored.
+- FracAtlas has no patient IDs; three images that may be one person share one hold-out group.
+- No case shows a hemothorax yet. The only public located sets need a login, a signed agreement, or forbid public display, so they were not used. The same goes for intracranial hemorrhage, stroke, COPD/ILD, bowel conditions and aortic disease.
 
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
