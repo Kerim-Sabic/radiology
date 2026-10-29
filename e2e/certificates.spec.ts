@@ -71,3 +71,38 @@ test('start certification: the app opens the patient a level needs, then the nex
   await page.getByRole('group', { name: 'Mode' }).getByRole('button', { name: 'Learn' }).click();
   await expect(page).toHaveURL(/cert=chest-1/);
 });
+
+test('post it for me: the holder edits the post, LinkedIn is opened to allow it, and the result shows on return', async ({ page }) => {
+  const cert = { id: 'abcDEF123_-x', name: 'Test Member', area: 'chest', level: 1, title: 'Chest Imaging', patients: 12, judged: 14, accuracy: 0.8, issuedAt: '2026-10-29T10:00:00.000Z' };
+  await page.route('**/api/certificate?id=*', (r) => r.fulfill({ json: { certificate: cert } }));
+  await page.route('**/api/certificates', (r) => r.fulfill({ json: { certificates: [cert], linkedin: true } }));
+  let sent: { id: string; text: string } | null = null;
+  // Instead of LinkedIn, come straight back as LinkedIn would after posting.
+  await page.route('**/api/linkedin/start', async (r) => {
+    sent = r.request().postDataJSON();
+    await r.fulfill({ json: { url: '/certificate/abcDEF123_-x?linkedin=posted&post=urn%3Ali%3Ashare%3A7000000000000000001#add-to-linkedin' } });
+  });
+  await page.goto('/certificate/abcDEF123_-x');
+  const post = page.getByRole('textbox', { name: 'Post text' });
+  await expect(post).toHaveValue(/Proud to share that I have earned the Chest Imaging Certificate – Level 1 \(Foundation\)/);
+  await page.getByRole('group', { name: 'Post style' }).getByRole('button', { name: 'Short' }).click();
+  await expect(post).toHaveValue(/^Earned the Chest Imaging Certificate/);
+  await post.fill('My own words. #radiology');
+  await page.getByRole('button', { name: 'Post it on my LinkedIn' }).click();
+  await expect(page.locator('.cert-li-result')).toContainText('Posted on your LinkedIn.');
+  expect(sent).toEqual({ id: 'abcDEF123_-x', text: 'My own words. #radiology' });
+  await expect(page.locator('.cert-li-result').getByRole('link', { name: 'See your post' })).toHaveAttribute('href', 'https://www.linkedin.com/feed/update/urn:li:share:7000000000000000001/');
+  // The last step, the profile, is open; the result is not kept in the address.
+  await expect(page.locator('#add-to-linkedin')).toBeVisible();
+  await expect(page).toHaveURL(/\/certificate\/abcDEF123_-x#add-to-linkedin$/);
+});
+
+test('someone else viewing a certificate gets the share links, not the post-for-me button', async ({ page }) => {
+  const cert = { id: 'abcDEF123_-x', name: 'Test Member', area: 'chest', level: 1, title: 'Chest Imaging', patients: 12, judged: 14, accuracy: 0.8, issuedAt: '2026-10-29T10:00:00.000Z' };
+  await page.route('**/api/certificate?id=*', (r) => r.fulfill({ json: { certificate: cert } }));
+  await page.route('**/api/certificates', (r) => r.fulfill({ json: { certificates: [], linkedin: true } }));
+  await page.goto('/certificate/abcDEF123_-x');
+  await expect(page.getByRole('textbox', { name: 'Post text' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Post it on my LinkedIn' })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Post on LinkedIn' })).toHaveAttribute('href', /linkedin\.com\/sharing\/share-offsite/);
+});

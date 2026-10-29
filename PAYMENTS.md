@@ -48,6 +48,14 @@ All API URLs route through `api/index.ts` to the existing shared handler, keepin
 - `CRON_SECRET` protects `/api/cron/daily` (17:00 UTC, streak reminders) and `/api/cron/weekly` (Monday 07:00 UTC); Vercel Cron sends it automatically. `EMAIL_SECRET` signs unsubscribe links (falls back to `CRON_SECRET`). Every email carries `List-Unsubscribe` with one-click unsubscribe.
 - Learners opt in under Settings → Emails or from the prompt on Today. The server keeps only which days they studied (for the streak) and their email choices; answers stay in the browser.
 - Certificates (`/api/certificates`, members only) are issued from the bar the app shows (10 patients, 70% of graded answers) and have a public page at `/certificate/<id>`. They record practice as reported by the learner's app and say so.
+- **Post it on my LinkedIn** (optional): with `LINKEDIN_CLIENT_ID` and `LINKEDIN_CLIENT_SECRET` set, the holder of a certificate can have it posted to their LinkedIn feed (their text plus the certificate picture). LinkedIn asks them to allow it; the server uses the token for that one post and keeps nothing. LinkedIn does not let apps write to a profile's *Licenses & certifications* (that API is for partners it approves), so the page still walks the learner through saving it there. Without the two variables the button does not show. To set it up:
+  1. Create a LinkedIn Company Page for radiology.monster (it is also what learners pick as the issuing organization, so its logo shows on their certificates).
+  2. At https://www.linkedin.com/developers/apps create an app named radiology.monster, linked to that page, with the logo; a page admin verifies the link.
+  3. Under **Products**, add **Share on LinkedIn** and **Sign In with LinkedIn using OpenID Connect** (both self-serve).
+  4. Under **Auth**, add the redirect URL `https://www.radiology.monster/api/linkedin/callback` (exactly `APP_URL` + `/api/linkedin/callback`).
+  5. Copy the Client ID and Client Secret into Vercel as `LINKEDIN_CLIENT_ID` and `LINKEDIN_CLIENT_SECRET` (server-only, never `VITE_`), and redeploy.
+
+  It uses LinkedIn's versioned Posts and Images APIs; `LINKEDIN_API_VERSION` (default `202610`) picks the monthly version. LinkedIn supports each version for about a year, so move it forward by then. Failures are logged with the step and status only.
 - Vercel Web Analytics (enable it in the project's Analytics tab) counts page views without cookies; query strings are dropped. The app also keeps daily counters for the funnel (landing visit, Start free, account, first answer, plans opened, checkout, paid) and day-1 / day-7 return, shown to admins at `/admin`.
 
 ## Verification

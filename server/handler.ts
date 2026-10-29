@@ -10,6 +10,7 @@ import { adminStats, count, countOnce, cronAuthorized, dailyCron, emailPrefs, re
 import { claimCertificate, myCertificates, publicCertificate } from './certificates.js';
 import { certificateImage, certificatePageHtml } from './certificateShare.js';
 import { isAdmin } from './auth.js';
+import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
 
 export function json(value: unknown, status = 200) {
   return Response.json(value, { status, headers: { 'Cache-Control': 'private, no-store', 'CDN-Cache-Control': 'no-store', 'Vary': 'Cookie' } });
@@ -91,6 +92,8 @@ export async function handle(request: Request): Promise<Response> {
       catch { return authResult(false, [cookie(FLOW_COOKIE, '', 0)]); }
     }
     const user = await session(request);
+    // Back from LinkedIn after "Post it for me" (a page visit, so it answers with a redirect, signed in or not).
+    if (path === '/api/linkedin/callback' && request.method === 'GET') return redirect(`${appOrigin()}${await finishLinkedInPost(url, user)}`);
     if (path === '/api/logout' && request.method === 'POST') {
       if (user) await db().del(`rvm:session:${user.tokenHash}`);
       const response = json({ ok: true });
@@ -128,13 +131,19 @@ export async function handle(request: Request): Promise<Response> {
       return r.ok ? json(r) : json({ error: r.error }, 400);
     }
     if (path === '/api/certificates') {
-      if (request.method === 'GET') return json({ certificates: await myCertificates(user) });
+      if (request.method === 'GET') return json({ certificates: await myCertificates(user), linkedin: linkedinReady() });
       if (request.method === 'POST') {
         if (!(await accessFor(user.userId)).active) return json({ error: 'Certificates are part of membership.' }, 402);
         if (!await rateLimit(`cert:${user.userId}`, 20, 3600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
         const r = await claimCertificate(user, await request.json().catch(() => null));
         return r.ok ? json(r) : json({ error: r.error }, 400);
       }
+    }
+    if (path === '/api/linkedin/start' && request.method === 'POST') {
+      if (!linkedinReady()) return json({ error: 'Posting to LinkedIn is not set up yet.' }, 503);
+      if (!await rateLimit(`linkedin:${user.userId}`, 10, 3600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
+      const r = await startLinkedInPost(user, await request.json().catch(() => null));
+      return r.ok ? json({ url: r.url }) : json({ error: r.error }, 400);
     }
     if (path === '/api/admin/stats' && request.method === 'GET') {
       if (!(await isAdmin(user.userId))) return json({ error: 'Not allowed' }, 403);

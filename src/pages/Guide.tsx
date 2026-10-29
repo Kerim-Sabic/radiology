@@ -32,8 +32,8 @@ export default function GuidePage() {
             <b>Certificates</b> (top bar, members) — three levels for each body area: Foundation (10 patients read, 10 graded answers, 70% right), Intermediate (25
             patients, 30 answers, 80%) and Advanced (40 patients, 30 answers without hints, 85%), and three for the whole library (General Radiology). Press Start
             certification and the app opens each patient the level needs; after each answer, Next for your certificate. When the level is reached, Finish certification
-            and type your name. Each certificate has a check page, the fields and skills for LinkedIn’s Licenses &amp; certifications, posts to start from, and images for
-            posts and stories.
+            and type your name. Each certificate has a check page, the fields and skills for LinkedIn’s Licenses &amp; certifications, a post you can edit (and Post it on
+            my LinkedIn, which posts it with the certificate picture once you allow it), and images for posts and stories.
           </li>
           <li>
             <b>Quick search</b> — press <span className="kbd">Ctrl</span> + <span className="kbd">K</span> (<span className="kbd">⌘</span> <span className="kbd">K</span> on a Mac) on any

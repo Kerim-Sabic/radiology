@@ -145,6 +145,29 @@ export async function myCertificates(): Promise<IssuedCertificate[]> {
   }
 }
 
+/** Whether the signed-in account holds this certificate, and whether the server can post it to LinkedIn for them. */
+export async function certificateOwner(id: string): Promise<{ mine: boolean; linkedin: boolean }> {
+  try {
+    const r = await fetch('/api/certificates', { cache: 'no-store' });
+    if (!r.ok) return { mine: false, linkedin: false };
+    const j = (await r.json()) as { certificates: IssuedCertificate[]; linkedin?: boolean };
+    return { mine: j.certificates.some((c) => c.id === id), linkedin: j.linkedin === true };
+  } catch {
+    return { mine: false, linkedin: false };
+  }
+}
+
+/** Starts "Post it for me": the address of LinkedIn's sign-in, where the learner allows the one post. */
+export async function startLinkedInPost(id: string, text: string): Promise<{ ok: true; url: string } | { ok: false; error: string }> {
+  try {
+    const r = await fetch('/api/linkedin/start', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id, text }) });
+    const j = await r.json();
+    return r.ok && typeof j.url === 'string' ? { ok: true, url: j.url } : { ok: false, error: j.error ?? 'Could not open LinkedIn.' };
+  } catch {
+    return { ok: false, error: 'Could not reach the server. Check your connection.' };
+  }
+}
+
 export async function claimCertificate(s: CertStatus, name: string): Promise<{ ok: true; certificate: IssuedCertificate } | { ok: false; error: string }> {
   try {
     const r = await fetch('/api/certificates', {

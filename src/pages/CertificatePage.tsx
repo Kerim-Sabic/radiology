@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
-import { ArrowRight, Check, Copy, Download, FileText, ImageDown, Printer, Send, ShieldCheck, Smartphone } from 'lucide-react';
-import { EXAMPLE_CERTIFICATE, levelLabel, linkedInFields, linkedInUrl, type IssuedCertificate } from '../services/certificates';
+import { useEffect, useRef, useState } from 'react';
+import { ArrowRight, Check, Copy, Download, FileText, ImageDown, Info, Printer, Send, ShieldCheck, Smartphone } from 'lucide-react';
+import { EXAMPLE_CERTIFICATE, certificateOwner, levelLabel, linkedInFields, linkedInUrl, startLinkedInPost, type IssuedCertificate } from '../services/certificates';
 import { LEVEL_STYLE, credentialName, levelName, levelRequirement, levelRule, starPoints, type CertArea, type CertLevel } from '../../shared/certificateLevels';
 import { CertSeal } from '../components/CertSeal';
 import '../styles/certificate.css';
@@ -65,6 +65,14 @@ export function suggestedPost(c: IssuedCertificate, url: string, style: PostStyl
   ].join('\n');
 }
 
+/** What LinkedIn said after "Post it for me", read once from the address it returns to. */
+function linkedInResult(): { result: 'posted' | 'cancelled' | 'failed'; post: string } | null {
+  const q = new URLSearchParams(location.search);
+  const result = q.get('linkedin');
+  const post = q.get('post') ?? '';
+  return result === 'posted' || result === 'cancelled' || result === 'failed' ? { result, post: /^urn:li:(share|ugcPost):\d+$/.test(post) ? post : '' } : null;
+}
+
 /** The seal and its level. */
 function Seal({ level }: { level: CertLevel }) {
   return (
@@ -85,6 +93,14 @@ export default function CertificatePage() {
   const [style, setStyle] = useState<PostStyle>('proud');
   // Opened straight away when the learner arrives from claiming it.
   const [toLinkedIn, setToLinkedIn] = useState(() => location.hash === '#add-to-linkedin');
+  // The post as the learner edited it (null: the suggested one in the chosen style).
+  const [draft, setDraft] = useState<string | null>(null);
+  // The holder, signed in, can have it posted to LinkedIn for them when the server is set up for it.
+  const [owner, setOwner] = useState({ mine: false, linkedin: false });
+  const [posting, setPosting] = useState(false);
+  const [postError, setPostError] = useState<string | null>(null);
+  const [posted] = useState(linkedInResult);
+  const notice = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (example) return setCert(EXAMPLE_CERTIFICATE);
     fetch(`/api/certificate?id=${encodeURIComponent(id)}`, { cache: 'no-store' })
@@ -92,6 +108,15 @@ export default function CertificatePage() {
       .then((j) => setCert(j?.certificate ?? null))
       .catch(() => setCert(null));
   }, [id, example]);
+  useEffect(() => {
+    if (example) return;
+    void certificateOwner(id).then(setOwner);
+    // Keep the result off the address, so a reload or a shared link does not show it again.
+    if (posted) history.replaceState(null, '', location.pathname + location.hash);
+  }, [id, example, posted]);
+  useEffect(() => {
+    if (cert && posted) notice.current?.scrollIntoView({ block: 'center' });
+  }, [cert, posted]);
   useEffect(() => {
     if (cert) document.title = example ? 'Example certificate · radiology.monster' : `${cert.name} · ${credentialName(cert.title, cert.level)} · radiology.monster`;
   }, [cert, example]);
@@ -133,6 +158,16 @@ export default function CertificatePage() {
     { key: 'id', label: 'Credential ID', value: li.credentialId, copy: true },
     { key: 'url', label: 'Credential URL', value: li.credentialUrl, copy: true },
   ];
+  const text = draft ?? suggestedPost(cert, url, style);
+  const autoPost = owner.mine && owner.linkedin;
+  const postForMe = async () => {
+    setPosting(true);
+    setPostError(null);
+    const r = await startLinkedInPost(cert.id, text);
+    if (r.ok) return location.assign(r.url);
+    setPosting(false);
+    setPostError(r.error);
+  };
   const CopyButton = ({ what, value, label = 'Copy' }: { what: string; value: string; label?: string }) => (
     <button className="cert-btn small" aria-label={`${label} ${what}`} onClick={() => copy(what, value)}>
       {copied === what ? <Check size={14} /> : <Copy size={14} />} {copied === what ? 'Copied' : label}
@@ -278,13 +313,43 @@ export default function CertificatePage() {
       {example ? null : (
         <section className="cert-share" aria-label="Share this certificate">
           <h2>Share it</h2>
+          {posted ? (
+            <div ref={notice} className={`cert-li-result ${posted.result}`} role="status">
+              {posted.result === 'posted' ? (
+                <>
+                  <b>
+                    <Check size={16} /> Posted on your LinkedIn.
+                  </b>
+                  {posted.post ? (
+                    <a href={`https://www.linkedin.com/feed/update/${posted.post}/`} target="_blank" rel="noopener noreferrer">
+                      See your post
+                    </a>
+                  ) : null}
+                  <span>One more step: only you can add it to your profile. Follow the steps below to put it under Licenses &amp; certifications.</span>
+                </>
+              ) : (
+                <span>
+                  <Info size={16} />{' '}
+                  {posted.result === 'cancelled'
+                    ? 'Nothing was posted: LinkedIn was not given permission.'
+                    : 'LinkedIn did not take the post. Try again, or copy the text and use Post on LinkedIn.'}
+                </span>
+              )}
+            </div>
+          ) : null}
           <div className="cert-share-row">
             <button className="cert-btn linkedin" aria-expanded={toLinkedIn} aria-controls="add-to-linkedin" onClick={() => setToLinkedIn((v) => !v)}>
               <Linkedin size={17} /> Add to LinkedIn profile
             </button>
-            <a className="cert-btn" href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
-              <Send size={16} /> Post on LinkedIn
-            </a>
+            {autoPost ? (
+              <button className="cert-btn" onClick={() => document.getElementById('cert-post')?.scrollIntoView({ behavior: 'smooth', block: 'center' })}>
+                <Send size={16} /> Post on LinkedIn
+              </button>
+            ) : (
+              <a className="cert-btn" href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
+                <Send size={16} /> Post on LinkedIn
+              </a>
+            )}
             <button className="cert-btn" onClick={() => copy('link', url)}>
               {copied === 'link' ? <Check size={16} /> : <Copy size={16} />} {copied === 'link' ? 'Link copied' : 'Copy link'}
             </button>
@@ -350,7 +415,7 @@ export default function CertificatePage() {
                   <span className="cert-li-n">5</span>
                   <div>
                     <b>Save.</b>
-                    <small>Want your network to see it too? Use Post on LinkedIn above, with one of the posts below.</small>
+                    <small>Want your network to see it too? Use Post on LinkedIn above, with the post below.</small>
                   </div>
                 </li>
               </ol>
@@ -370,19 +435,46 @@ export default function CertificatePage() {
               <Printer size={16} /> Print or save as PDF
             </button>
           </div>
-          <div className="cert-post">
+          <div className="cert-post" id="cert-post">
             <div className="cert-post-head">
-              <b>A post you can start from</b>
+              <b>Your post</b>
               <div className="cert-post-styles" role="group" aria-label="Post style">
                 {POST_STYLES.map(([s, label]) => (
-                  <button key={s} aria-pressed={style === s} onClick={() => setStyle(s)}>
+                  <button
+                    key={s}
+                    aria-pressed={style === s}
+                    onClick={() => {
+                      setStyle(s);
+                      setDraft(null);
+                    }}
+                  >
                     {label}
                   </button>
                 ))}
               </div>
-              <CopyButton what="post" value={suggestedPost(cert, url, style)} label="Copy text" />
+              <CopyButton what="post" value={text} label="Copy text" />
             </div>
-            <pre>{suggestedPost(cert, url, style)}</pre>
+            <textarea
+              aria-label="Post text"
+              value={text}
+              rows={Math.min(14, text.split('\n').length + 1)}
+              maxLength={3000}
+              spellCheck
+              onChange={(e) => setDraft(e.target.value)}
+            />
+            {autoPost ? (
+              <div className="cert-autopost">
+                <button className="cert-btn linkedin" disabled={posting || !text.trim()} onClick={() => void postForMe()}>
+                  <Linkedin size={16} /> {posting ? 'Opening LinkedIn…' : 'Post it on my LinkedIn'}
+                </button>
+                <small>Posts this text with the certificate picture. LinkedIn asks you to allow it; radiology.monster makes this one post and keeps no access to your account.</small>
+                {postError ? (
+                  <p className="cert-autopost-error" role="alert">
+                    {postError}
+                  </p>
+                ) : null}
+              </div>
+            ) : null}
           </div>
           <div className="cert-cv">
             <div className="cert-post-head">
