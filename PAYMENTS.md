@@ -42,6 +42,8 @@ The requested fifth-edition book is stored in the private `radiology-book` Verce
 
 ## Emails, certificates and numbers
 
+All API URLs route through `api/index.ts` to the existing shared handler, keeping the deployment below Vercel Hobby's function-count limit. The SPA fallback excludes `/_vercel/` so Web Analytics endpoints are not served the application HTML.
+
 - `RESEND_API_KEY` and `EMAIL_FROM` (a verified sender, e.g. `radiology.monster <hello@radiology.monster>`) send the streak reminder and the case-of-the-week email through Resend. Without them nothing is sent.
 - `CRON_SECRET` protects `/api/cron/daily` (17:00 UTC, streak reminders) and `/api/cron/weekly` (Monday 07:00 UTC); Vercel Cron sends it automatically. `EMAIL_SECRET` signs unsubscribe links (falls back to `CRON_SECRET`). Every email carries `List-Unsubscribe` with one-click unsubscribe.
 - Learners opt in under Settings → Emails or from the prompt on Today. The server keeps only which days they studied (for the streak) and their email choices; answers stay in the browser.

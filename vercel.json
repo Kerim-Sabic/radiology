@@ -10,10 +10,14 @@
     },
     {
       "source": "/certificate/:id",
-      "destination": "/api/certificate-page?id=:id"
+      "destination": "/api/index?__rvm_path=certificate-page&id=:id"
     },
     {
-      "source": "/((?!api/|assets/|packs/|content/|favicon|\\.well-known/).*)",
+      "source": "/api/:path*",
+      "destination": "/api/index?__rvm_path=:path*"
+    },
+    {
+      "source": "/((?!api/|_vercel/|assets/|packs/|content/|favicon|\\.well-known/).*)",
       "destination": "/index.html"
     }
   ],

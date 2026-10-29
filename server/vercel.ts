@@ -1,5 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { handle } from './handler.js';
+import { requestUrl } from './requestUrl.js';
 
 export const config = { api: { bodyParser: false } };
 
@@ -16,7 +17,7 @@ export default async function api(req: VercelRequest, res: VercelResponse) {
   for (const [key, value] of Object.entries(req.headers)) {
     if (value) headers.set(key, Array.isArray(value) ? value.join(', ') : value);
   }
-  const request = new Request(`https://${req.headers.host}${req.url}`, {
+  const request = new Request(requestUrl(req.url || '/', req.headers.host || 'localhost', req.query.__rvm_path), {
     method: req.method, headers,
     body: req.method === 'GET' || req.method === 'HEAD' ? undefined : Buffer.concat(chunks),
   });
