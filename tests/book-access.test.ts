@@ -4,7 +4,7 @@ vi.mock('../server/auth', async original => ({ ...await original<typeof import('
 vi.mock('../server/billing', () => ({ accessFor: fake.access, checkout: vi.fn() }));
 vi.mock('@vercel/blob', () => ({ head: fake.head, get: fake.get }));
 import { handle } from '../server/handler';
-import { BOOK_PATH, BOOK_SIZE, bookAccountKey, bookRange, mailbox, servesBook } from '../server/book';
+import { BOOK_PATH, BOOK_SIZE, bookAccountKey, bookGift, bookRange, mailbox, servesBook } from '../server/book';
 const request = (method = 'GET', range = 'bytes=0-1023') => new Request('https://www.radiology.monster/api/book', { method, headers: { Range: range } });
 beforeEach(() => {
   vi.stubEnv('APP_URL', 'https://www.radiology.monster'); vi.stubEnv('WHOP_APP_ID', 'test');
@@ -42,9 +42,16 @@ describe('protected member textbook', () => {
     for (const email of ['adalove@yahoo.com', 'friend@example.org.evil.com', 'other@example.org']) expect(servesBook(email)).toBe(false);
     fake.session.mockResolvedValue({ userId: 'member', email: 'ada.love@gmail.com', name: 'Ada' });
     expect((await handle(request('HEAD'))).status).toBe(200);
-    // Membership is still required.
+    // Named accounts get the book without a plan (only the book); SSST students still need a membership.
+    expect(bookGift('ada.love@gmail.com')).toBe(true);
+    expect(bookGift('student@stu.ssst.edu.ba')).toBe(false);
     fake.access.mockResolvedValue({ active: false });
+    expect((await handle(request('HEAD'))).status).toBe(200);
+    const session = await handle(new Request('https://www.radiology.monster/api/session'));
+    expect(await session.json()).toMatchObject({ book: true, access: { active: false } });
+    fake.session.mockResolvedValue({ userId: 'member', email: 'student@stu.ssst.edu.ba', name: 'Student' });
     expect((await handle(request('HEAD'))).status).toBe(402);
+    expect(await (await handle(new Request('https://www.radiology.monster/api/session'))).json()).toMatchObject({ book: false });
   });
   it('provides private metadata for the reader without returning PDF bytes', async () => {
     const response = await handle(request('HEAD'));

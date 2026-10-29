@@ -1572,20 +1572,25 @@ kbd {
   color: var(--text-3);
   font-size: 11.5px;
 }
-/* The top bar keeps one line: less-used pages and the search label give way first, then every label. */
+/* The top bar keeps one line: less-used pages, and the search label give way first (below 2000 px), then every label (below 1430 px). */
 .navlink {
   white-space: nowrap;
   flex: none;
 }
-@media (max-width: 1600px) {
+@media (max-width: 2000px) {
   .topnav .navlink.minor span,
   .nav-search span,
+  .nav-search kbd,
   .account-menu a span,
   .account-menu button span {
     display: none;
   }
+  .topnav .navlink {
+    gap: 5px;
+    padding: 0 8px;
+  }
 }
-@media (max-width: 1400px) {
+@media (max-width: 1430px) {
   .topnav .navlink span,
   .nav-search kbd {
     display: none;

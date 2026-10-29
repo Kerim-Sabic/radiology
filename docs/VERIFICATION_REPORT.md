@@ -297,14 +297,14 @@ All five licences allow commercial use with no login: CC BY 4.0, CC BY 3.0 or NI
 - `proxy.ts` lets a free account load only those patients' files, the free manifests, the teaser list and the curriculum (`server/free.ts`, `npm run free:sync`, `tests/freeEdition.test.ts`).
 - Locked areas (drills, on call, atlas, book) explain what they are. The library lists every other patient by neutral title, locked. Upgrade prompts appear on Today, after an answer, and in the top bar. Signed-in visitors no longer see the marketing page; plans open on their own screen.
 
-**Book:** served only to verified `@stu.ssst.edu.ba` emails and named accounts (hashed list or `BOOK_EMAILS`), still with an active membership (`server/book.ts`, tested). Everyone else opens their own copy, which is checked against the 5th edition and stays on the device. The landing footer says the app is not affiliated with the book's publisher or authors.
+**Book:** served to verified `@stu.ssst.edu.ba` emails with an active membership, and to named accounts (hashed list or `BOOK_EMAILS`) with or without one; a named account without a plan gets only the book (`server/book.ts`, tested). Everyone else opens their own copy, which is checked against the 5th edition and stays on the device. The landing footer says the app is not affiliated with the book's publisher or authors.
 
 **Emails:**
 - A streak reminder (a daily job at 17:00 UTC, for streaks of 2 or more days not yet extended today) and the case-of-the-week email (Monday 07:00 UTC), both through Resend.
 - Opt-in, with signed one-click unsubscribe and `List-Unsubscribe` headers.
 - The server stores only study days and email choices.
 
-**Certificates:** one per body area (10 patients read, 70% of graded answers right) plus Radiology foundations. Each has a public page at `/certificate/<id>`, made for sharing: "Add to LinkedIn profile", "Post on LinkedIn", copy link, a post text to start from, print or PDF, and two images (1200×627 for posts, 1080×1080 for Instagram) rendered on the server (`server/certificateShare.ts`, Inter and Plus Jakarta Sans under the SIL Open Font Licence). The page carries its own preview tags, so a shared link shows the certificate picture and title. Visitors see an invitation to start free.
+**Certificates:** three levels for each body area (Core, Proficient, Advanced; the rules in `shared/certificateLevels.ts`, checked again by the server, which also names each certificate) and three for the whole library, on their own Certificates tab. Each has a public page at `/certificate/<id>`, made for sharing: "Add to LinkedIn profile", "Post on LinkedIn", copy link, a post text to start from, print or PDF, and two images (1200×627 for posts, 1080×1080 for Instagram) rendered on the server (`server/certificateShare.ts`, Inter and Plus Jakarta Sans under the SIL Open Font Licence). The page carries its own preview tags, so a shared link shows the certificate picture and title. Visitors see an invitation to start free.
 
 **Numbers:** Vercel Web Analytics, cookieless, with query strings dropped. Daily counters for the funnel: landing visit, Start free, account created, first answer, plans opened, checkout, paid. Day-1 and day-7 return. Admins see all of it at `/admin`.
 

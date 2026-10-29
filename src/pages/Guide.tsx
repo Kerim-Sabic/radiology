@@ -29,9 +29,9 @@ export default function GuidePage() {
             <b>Case of the week</b> (members) — every Monday a new real patient is featured on Today. Ask for the Monday email in Settings → Emails.
           </li>
           <li>
-            <b>Certificates</b> (Progress, members) — one per body area once you have read 10 of its patients and given 10 graded answers there with 70% right, and{' '}
-            <i>Radiology foundations</i> across the library. Press Claim and type your name; the certificate gets a public page that lists each field for LinkedIn’s Licenses
-            &amp; certifications form, a picture for a post, and a print version.
+            <b>Certificates</b> (top bar, members) — three levels for each body area: Core (10 patients read, 10 graded answers, 70% right), Proficient (25 patients, 30
+            answers, 80%) and Advanced (40 patients, 30 answers without hints, 85%), and three for the whole library (General radiology). Press Claim and type your name;
+            each certificate gets a public page that lists each field for LinkedIn’s Licenses &amp; certifications form, a picture for a post, and a print version.
           </li>
           <li>
             <b>Quick search</b> — press <span className="kbd">Ctrl</span> + <span className="kbd">K</span> (<span className="kbd">⌘</span> <span className="kbd">K</span> on a Mac) on any

@@ -30,10 +30,15 @@ const BOOK_ACCOUNTS = new Set([
   'd6ff5a5adeca1f50c18a44f71f4d0eb8c831b2935181155f534c29fb8decf4fc',
 ]);
 
-export function servesBook(email: string): boolean {
-  if (email.trim().toLowerCase().endsWith(`@${BOOK_EMAIL_DOMAIN}`)) return true;
+/** Named accounts get the book even without a plan; only the book: the rest of the app stays the free edition. */
+export function bookGift(email: string): boolean {
   const extra = (process.env.BOOK_EMAILS || '').split(',').map(v => v.trim()).filter(Boolean).map(mailbox);
   return extra.includes(mailbox(email)) || BOOK_ACCOUNTS.has(bookAccountKey(email));
+}
+
+/** SSST students (with a membership) and named accounts. */
+export function servesBook(email: string): boolean {
+  return email.trim().toLowerCase().endsWith(`@${BOOK_EMAIL_DOMAIN}`) || bookGift(email);
 }
 
 export function bookRange(value: string | null): { start: number; end: number } | null {
@@ -45,7 +50,7 @@ export function bookRange(value: string | null): { start: number; end: number } 
   return { start, end };
 }
 
-/** Called only after the account and current membership have been verified. */
+/** Called only after the account, and its membership or named access, have been verified. */
 export async function memberBook(request: Request): Promise<Response> {
   const headers = new Headers({
     'Content-Type': 'application/pdf', 'Content-Disposition': 'inline; filename="learning-radiology-5e.pdf"',

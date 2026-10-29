@@ -3,6 +3,7 @@ import { createRequire } from 'node:module';
 import { createElement as h, type ReactNode } from 'react';
 import { initWasm, Resvg } from '@resvg/resvg-wasm';
 import type { Certificate } from './certificates.js';
+import { levelLabel, levelRule, type CertArea } from '../shared/certificateLevels.js';
 
 /**
  * What a shared certificate looks like outside the app: the picture LinkedIn, X, WhatsApp or Slack show for its
@@ -39,8 +40,8 @@ type Style = Record<string, string | number>;
 const box = (style: Style, ...children: ReactNode[]) => h('div', { style: { display: 'flex', ...style } }, ...children);
 const text = (style: Style, value: string) => h('div', { style: { display: 'flex', ...style } }, value);
 
-/** A round seal: gradient ring, check mark, "VERIFIED". */
-function seal(size: number) {
+/** A round seal: ring, check mark and the level. */
+function seal(size: number, level: number) {
   const ring = h(
     'svg',
     { width: size, height: size, viewBox: '0 0 200 200' },
@@ -49,7 +50,7 @@ function seal(size: number) {
     h('circle', { cx: 100, cy: 100, r: 74, fill: '#eff4ff', stroke: '#c9d7fb', strokeWidth: 2, strokeDasharray: '4 6' }),
     h('path', { d: 'M68 102 L91 125 L134 80', fill: 'none', stroke: '#1d4ed8', strokeWidth: 14, strokeLinecap: 'round', strokeLinejoin: 'round' }),
   );
-  return box({ flexDirection: 'column', alignItems: 'center', gap: 10 }, ring, text({ fontSize: 16, fontWeight: 600, letterSpacing: 4, color: '#1d4ed8' }, 'VERIFIED'));
+  return box({ flexDirection: 'column', alignItems: 'center', gap: 10 }, ring, text({ fontSize: 16, fontWeight: 600, letterSpacing: 4, color: '#1d4ed8' }, `LEVEL ${level}`));
 }
 
 export async function certificateImage(c: Certificate, origin: string, square = false): Promise<Response> {
@@ -59,6 +60,7 @@ export async function certificateImage(c: Certificate, origin: string, square = 
   const height = square ? 1080 : 627;
   const pad = square ? 56 : 40;
   const logo = loadBrand();
+  const unaided = levelRule((c.area as CertArea) ?? 'chest', c.level ?? 1)?.independent ?? false;
   const long = c.name.length > 24;
   const nameSize = square ? (long ? 58 : 74) : long ? 50 : 64;
   const stat = (value: string, label: string) =>
@@ -67,7 +69,7 @@ export async function certificateImage(c: Certificate, origin: string, square = 
     { flexDirection: 'column', flexGrow: 1, flexShrink: 1, minWidth: 0 },
     text({ fontSize: 17, fontWeight: 600, letterSpacing: 4, color: '#6b7280' }, 'CERTIFICATE OF COMPLETION'),
     text({ marginTop: 10, fontFamily: 'Jakarta', fontSize: nameSize, lineHeight: 1.05, letterSpacing: -1.5 }, c.name),
-    text({ marginTop: 14, fontSize: 22, color: '#4b5563' }, 'has completed'),
+    text({ marginTop: 14, fontSize: 22, color: '#4b5563' }, `has completed ${levelLabel(c.level)} in`),
     text({ marginTop: 4, fontFamily: 'Jakarta', fontSize: square ? 52 : 42, color: '#1d4ed8', letterSpacing: -0.5, lineHeight: 1.1 }, c.title),
     text({ marginTop: 14, fontSize: 19, color: '#4b5563', lineHeight: 1.45, maxWidth: square ? 900 : 640 }, 'Real patients, each read in a full workstation, marked on the image and graded against the expert outline.'),
   );
@@ -96,12 +98,12 @@ export async function certificateImage(c: Certificate, origin: string, square = 
       ),
     ),
     square
-      ? box({ flexDirection: 'column', marginTop: 56, gap: 40 }, words, box({ justifyContent: 'center' }, seal(170)))
-      : box({ marginTop: 30, alignItems: 'center', gap: 32, width: '100%' }, words, seal(190)),
+      ? box({ flexDirection: 'column', marginTop: 56, gap: 40 }, words, box({ justifyContent: 'center' }, seal(170, c.level ?? 1)))
+      : box({ marginTop: 30, alignItems: 'center', gap: 32, width: '100%' }, words, seal(190, c.level ?? 1)),
     box(
       { marginTop: 'auto', gap: square ? 56 : 52, alignItems: 'flex-end', width: '100%', borderTop: '2px solid #e5e7eb', paddingTop: 18 },
       stat(String(c.patients), 'REAL PATIENTS'),
-      stat(`${Math.round(c.accuracy * 100)}%`, 'GRADED ANSWERS RIGHT'),
+      stat(`${Math.round(c.accuracy * 100)}%`, unaided ? 'RIGHT WITHOUT HINTS' : 'GRADED ANSWERS RIGHT'),
       stat(issuedMonth(c.issuedAt), 'ISSUED'),
     ),
     text({ marginTop: 12, fontSize: 15, color: '#6b7280' }, `Check this certificate: ${host(origin)}/certificate/${c.id}`),
@@ -128,7 +130,7 @@ const esc = (s: string) => s.replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '
 /** The app's page with tags for this certificate, so a shared link shows its picture and title. */
 export function certificatePageHtml(indexHtml: string, c: Certificate | null, origin: string, id: string): string {
   const url = `${origin}/certificate/${encodeURIComponent(id)}`;
-  const title = c ? `${c.name} completed ${c.title} · radiology.monster` : 'Certificate · radiology.monster';
+  const title = c ? `${c.name} completed ${c.title}, ${levelLabel(c.level)} · radiology.monster` : 'Certificate · radiology.monster';
   const desc = c
     ? `${c.name} read ${c.patients} real patients on radiology.monster, with ${Math.round(c.accuracy * 100)}% of ${c.judged} graded answers right, each marked on the image and checked against the expert outline.`
     : 'Certificates of completion from radiology.monster, radiology reading practice on real patients.';
@@ -145,7 +147,7 @@ export function certificatePageHtml(indexHtml: string, c: Certificate | null, or
     `<meta property="og:image" content="${esc(image)}" />`,
     `<meta property="og:image:width" content="${c ? 1200 : 1200}" />`,
     `<meta property="og:image:height" content="${c ? 627 : 630}" />`,
-    `<meta property="og:image:alt" content="${esc(c ? `Certificate: ${c.name}, ${c.title}` : 'radiology.monster')}" />`,
+    `<meta property="og:image:alt" content="${esc(c ? `Certificate: ${c.name}, ${c.title}, ${levelLabel(c.level)}` : 'radiology.monster')}" />`,
     `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${esc(title)}" />`,
     `<meta name="twitter:description" content="${esc(desc)}" />`,

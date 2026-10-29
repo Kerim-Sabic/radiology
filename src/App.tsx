@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router';
 import { Tooltip } from 'radix-ui';
-import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Lock, Search, Settings as SettingsIcon, NotebookPen, Siren, Stethoscope, Target } from 'lucide-react';
+import { Award, BookOpen, Bone, ChartColumn, CircleHelp, FolderOpen, GraduationCap, House, Library, Lock, Search, Settings as SettingsIcon, NotebookPen, Siren, Stethoscope, Target } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 import { AccountMenu } from './auth/AccountGate';
@@ -26,6 +26,7 @@ const DrillPage = lazy(() => import('./pages/Drill'));
 const ConditionsPage = lazy(() => import('./pages/Conditions'));
 const OnCallPage = lazy(() => import('./pages/OnCall'));
 const AdminPage = lazy(() => import('./pages/Admin'));
+const CertificatesPage = lazy(() => import('./pages/Certificates'));
 
 /** Members-only areas: a free account sees what each one is, and the plans. */
 const LOCKED: Record<string, { icon: React.ReactNode; title: string; text: string; points: string[] }> = {
@@ -55,10 +56,17 @@ const LOCKED: Record<string, { icon: React.ReactNode; title: string; text: strin
   },
 };
 const lockedArea = (path: string) => Object.keys(LOCKED).find((k) => path === k || path.startsWith(`${k}/`)) ?? null;
+/** A free account the server serves the book to (named accounts) reads it; everything else stays locked. */
+const lockedFor = (path: string, book: boolean) => {
+  const area = lockedArea(path);
+  return area === '/book' && book ? null : area;
+};
 
 function TopNav({ onSearch }: { onSearch: () => void }) {
   const { free } = useApp();
-  const admin = useAccount()?.account.access.role === 'admin';
+  const account = useAccount()?.account;
+  const admin = account?.access.role === 'admin';
+  const book = account?.book === true;
   const links = [
     { to: '/', label: 'Today', icon: <House size={16} /> },
     { to: '/cases', label: 'Cases', icon: <Library size={16} /> },
@@ -69,6 +77,7 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
     { to: '/course', label: 'Course', icon: <GraduationCap size={16} /> },
     { to: '/book', label: 'Book', icon: <BookOpen size={16} /> },
     { to: '/progress', label: 'Progress', icon: <ChartColumn size={16} /> },
+    { to: '/certificates', label: 'Certificates', icon: <Award size={16} /> },
     { to: '/import', label: 'Import', icon: <FolderOpen size={16} />, minor: true },
     { to: '/author', label: 'Author', icon: <NotebookPen size={16} />, minor: true },
     { to: '/settings', label: 'Settings', icon: <SettingsIcon size={16} />, minor: true },
@@ -86,7 +95,7 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
         <NavLink key={l.to} to={l.to} end={l.to === '/'} title={l.label} aria-label={l.label} className={({ isActive }) => `navlink${l.minor ? ' minor' : ''}${isActive ? ' active' : ''}`}>
           {l.icon}
           <span>{l.label}</span>
-          {free && LOCKED[l.to] ? <Lock size={11} className="nav-lock" aria-label="members" /> : null}
+          {free && lockedFor(l.to, book) ? <Lock size={11} className="nav-lock" aria-label="members" /> : null}
         </NavLink>
       ))}
       <span className="spacer" />
@@ -96,7 +105,8 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
         <kbd>{MAC ? '⌘K' : 'Ctrl K'}</kbd>
       </button>
       <AccountMenu />
-      <NavLink to="/guide" className={({ isActive }) => `navlink${isActive ? ' active' : ''}`}>
+      <NavLink to="/guide" title="Guide" aria-label="Guide" className={({ isActive }) => `navlink minor${isActive ? ' active' : ''}`}>
+        <CircleHelp size={16} />
         <span>Guide</span>
       </NavLink>
     </nav>
@@ -121,6 +131,7 @@ const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/course/, 'Course'],
   [/^\/book/, 'Book'],
   [/^\/progress/, 'Progress'],
+  [/^\/certificates/, 'Certificates'],
   [/^\/import/, 'Import'],
   [/^\/author/, 'Author'],
   [/^\/settings/, 'Settings'],
@@ -149,7 +160,8 @@ export function App() {
     return () => window.removeEventListener('keydown', onKey, true);
   }, []);
   const { free } = useApp();
-  const locked = free ? lockedArea(loc.pathname) : null;
+  const bookAccount = useAccount()?.account.book === true;
+  const locked = free ? lockedFor(loc.pathname, bookAccount) : null;
   const reading = loc.pathname.startsWith('/read');
   const fullHeight = reading || loc.pathname === '/drill' || /^\/book(\/\d+)?$/.test(loc.pathname);
   return (
@@ -175,6 +187,7 @@ export function App() {
               <Route path="/course" element={<CoursePage />} />
               <Route path="/course/:unitId" element={<CoursePage />} />
               <Route path="/progress" element={<ProgressPage />} />
+              <Route path="/certificates" element={<CertificatesPage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/import" element={<ImportPage />} />
               <Route path="/author" element={<AuthorPage />} />

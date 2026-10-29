@@ -3,7 +3,7 @@ import { accessFor, checkout, referralProfile } from './billing.js';
 import { affiliateCode } from '../shared/referrals.js';
 import { beginSignIn, cookie, createSession, finishSignIn, FLOW_COOKIE, hash, random, session, SESSION_COOKIE } from './auth.js';
 import { clerkIdentity } from './clerk.js';
-import { memberBook, servesBook } from './book.js';
+import { bookGift, memberBook, servesBook } from './book.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
 import { adminStats, count, countOnce, cronAuthorized, dailyCron, emailPrefs, recordActivity, trackable, unsubscribe, weeklyCron } from './engage.js';
@@ -48,7 +48,7 @@ export async function handle(request: Request): Promise<Response> {
     if (path === '/api/certificate-page' && request.method === 'GET') {
       const id = url.searchParams.get('id') ?? '';
       const [cert, index] = await Promise.all([publicCertificate(id), fetch(new URL('/index.html', appOrigin())).then((r) => r.text())]);
-      return new Response(certificatePageHtml(index, cert, appOrigin(), id), { status: cert ? 200 : 404, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=0, s-maxage=300' } });
+      return new Response(certificatePageHtml(index, cert, appOrigin(), id), { status: cert || id === 'example' ? 200 : 404, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=0, s-maxage=300' } });
     }
     if (path === '/api/og/certificate' && request.method === 'GET') {
       if (!await rateLimit(`cert-image:${ip()}`, 120, 600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
@@ -99,14 +99,16 @@ export async function handle(request: Request): Promise<Response> {
     if (!user) return json({ user: null, error: 'Please sign in. Signing in on another device ends your previous session.' }, 401);
     if (path === '/api/book') {
       if (!['GET', 'HEAD'].includes(request.method)) return json({ error: 'Use GET or HEAD' }, 405);
-      if (!(await accessFor(user.userId)).active) return json({ error: 'An active membership is required to read the book.' }, 402);
+      if (!bookGift(user.email) && !(await accessFor(user.userId)).active) return json({ error: 'An active membership is required to read the book.' }, 402);
       if (!servesBook(user.email)) return json({ error: 'The book is included for SSST students. Open your own copy of the book on this device instead.' }, 403);
       return await memberBook(request);
     }
     if (path === '/api/session' && request.method === 'GET') {
       const access = await accessFor(user.userId);
       if (access.active && access.role !== 'admin') await countOnce('paid', user.userId);
-      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book: servesBook(user.email) });
+      // Whether the book is served to this account now (named accounts get it without a plan).
+      const book = bookGift(user.email) || (access.active && servesBook(user.email));
+      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book });
     }
     if (path === '/api/access' && request.method === 'GET') {
       const access = await accessFor(user.userId);

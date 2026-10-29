@@ -582,3 +582,185 @@
   font-style: normal;
   color: #fde68a;
 }
+
+/* ---------------------------------------------------------------- certificates page */
+.certs-page {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.certs-intro {
+  display: grid;
+  gap: 12px;
+  max-width: 760px;
+}
+.certs-intro h1 {
+  font-size: clamp(26px, 3vw, 34px);
+}
+.certs-intro > p {
+  font-size: 15px;
+  line-height: 1.55;
+}
+.certs-mine {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.certs-mine li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel-2);
+}
+.certs-mine li > div {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+.certs-mine-ico {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border-radius: 10px;
+  background: var(--panel-3);
+  color: var(--text);
+}
+.certs-levels-wrap {
+  overflow-x: auto;
+}
+.certs-levels {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+.certs-levels th,
+.certs-levels td {
+  padding: 10px 12px 10px 0;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+.certs-levels thead th {
+  color: var(--text-3);
+  font-weight: 500;
+  font-size: 12.5px;
+}
+.certs-levels tbody th {
+  white-space: nowrap;
+  font-weight: 600;
+}
+.certs-levels td {
+  color: var(--text-2);
+}
+.certs-areas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 14px;
+}
+.certs-area {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.certs-area-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.certs-area-head h2 {
+  margin: 0;
+}
+.certs-area-head .faint {
+  font-size: 12.5px;
+}
+.certs-ladder {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+.certs-ladder > li {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel-2);
+}
+.certs-ladder > li.ok {
+  border-color: rgba(79, 209, 139, 0.45);
+}
+.certs-step-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.certs-step-head b {
+  font-size: 14px;
+}
+.certs-step-head .chip {
+  margin-left: auto;
+}
+.certs-badge {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid var(--line-strong);
+  color: var(--text);
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.certs-ladder > li.ok .certs-badge {
+  border-color: transparent;
+  background: var(--ok);
+  color: #04130a;
+}
+.certs-numbers {
+  font-size: 12px;
+  line-height: 1.45;
+}
+@media (max-width: 640px) {
+  .certs-areas {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  /* The levels as labelled rows instead of a table. */
+  .certs-levels thead {
+    display: none;
+  }
+  .certs-levels tr {
+    display: grid;
+    gap: 6px;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .certs-levels th,
+  .certs-levels td {
+    display: block;
+    padding: 0;
+    border: 0;
+  }
+  .certs-levels td::before {
+    content: attr(data-label);
+    display: block;
+    color: var(--text-3);
+    font-size: 12px;
+  }
+  .certs-mine li {
+    flex-wrap: wrap;
+  }
+}

@@ -198,6 +198,18 @@ test('free account: the sample patients open; the case of the week and everythin
   expect(dicom).toEqual([]);
 });
 
+test('a book-only account reads the book without a plan; the rest stays the free edition', async ({page}) => {
+  await page.route('**/api/config', route => route.fulfill({json:{auth:true,billing:true}}));
+  await page.route('**/api/session', route => route.fulfill({json:{user:{name:'Reader',email:'reader@example.com'},access:{active:false},billingReady:true,book:true}}));
+  await page.route('**/api/book', route => route.fulfill({status:404,body:''}));
+  await page.goto('/book');
+  await expect(page.locator('.free-banner')).toContainText('Free account');
+  await expect(page.getByRole('heading',{name:'The book, page by page'})).toHaveCount(0);
+  await expect(page.getByRole('link',{name:'Book'}).locator('.nav-lock')).toHaveCount(0);
+  await page.goto('/drill');
+  await expect(page.getByRole('heading',{name:'Drills that remember'})).toBeVisible();
+});
+
 test('a certificate has a public page that needs no sign-in', async ({page}) => {
   await page.route('**/api/session', route => route.fulfill({status:401,json:{user:null}}));
   await page.route('**/api/certificate?id=*', route => route.fulfill({json:{certificate:{id:'abcDEF123_-x',name:'Ada Lovelace',area:'chest',title:'Chest imaging',patients:14,judged:22,accuracy:0.82,issuedAt:'2026-10-29T10:00:00.000Z'}}}));

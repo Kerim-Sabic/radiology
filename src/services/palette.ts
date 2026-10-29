@@ -29,6 +29,7 @@ export const PAGES: PaletteItem[] = [
   ['/book', 'Book', 'Learning Radiology, 5th edition', 'textbook read pages'],
   ['/book/figures', 'Book figures', 'figures by chapter', 'images figures'],
   ['/progress', 'Progress', 'skills, mistakes, backup', 'stats statistics export import backup'],
+  ['/certificates', 'Certificates', 'levels, claim, LinkedIn', 'certificate certification level linkedin award diploma'],
   ['/settings', 'Settings', 'level, exam date, data packs', 'preferences options'],
   ['/guide', 'Guide', 'how to use the app and its shortcuts', 'help keyboard shortcuts manual'],
   ['/import', 'Import', 'open your own DICOM files', 'dicom upload files'],

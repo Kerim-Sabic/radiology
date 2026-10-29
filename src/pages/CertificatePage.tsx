@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight, Check, Copy, Download, ImageDown, Printer, Send } from 'lucide-react';
-import { linkedInFields, linkedInUrl, type IssuedCertificate } from '../services/certificates';
+import { EXAMPLE_CERTIFICATE, levelLabel, linkedInFields, linkedInUrl, type IssuedCertificate } from '../services/certificates';
+import { levelRule, type CertArea } from '../../shared/certificateLevels';
 import '../styles/certificate.css';
 
 /** LinkedIn's "in" mark for its share button (the icon set has no brand marks). */
@@ -15,7 +16,7 @@ function Linkedin({ size = 16 }: { size?: number }) {
 /** The text a learner can paste into a post (they edit it there). */
 export function suggestedPost(c: IssuedCertificate, url: string): string {
   return [
-    `I just completed ${c.title} on radiology.monster: ${c.patients} real patients read, ${Math.round(c.accuracy * 100)}% of ${c.judged} graded answers right, each finding marked on the image and checked against the expert outline.`,
+    `I just completed ${c.title} (${levelLabel(c.level)}) on radiology.monster: ${c.patients} real patients read, ${Math.round(c.accuracy * 100)}% of ${c.judged} graded answers right, each finding marked on the image and checked against the expert outline.`,
     '',
     `Certificate: ${url}`,
     '',
@@ -26,18 +27,21 @@ export function suggestedPost(c: IssuedCertificate, url: string): string {
 /** Public page of one certificate (no sign-in): the certificate, ways to share it, and an invitation to start. */
 export default function CertificatePage() {
   const id = decodeURIComponent(location.pathname.split('/')[2] ?? '');
+  // /certificate/example shows what a certificate looks like; it is never stored or checkable.
+  const example = id === 'example';
   const [cert, setCert] = useState<IssuedCertificate | null | undefined>(undefined);
   const [copied, setCopied] = useState<string | null>(null);
   // Opened straight away when the learner arrives from claiming it.
   const [toLinkedIn, setToLinkedIn] = useState(() => location.hash === '#add-to-linkedin');
   useEffect(() => {
+    if (example) return setCert(EXAMPLE_CERTIFICATE);
     fetch(`/api/certificate?id=${encodeURIComponent(id)}`, { cache: 'no-store' })
       .then((r) => (r.ok ? r.json() : null))
       .then((j) => setCert(j?.certificate ?? null))
       .catch(() => setCert(null));
-  }, [id]);
+  }, [id, example]);
   useEffect(() => {
-    if (cert) document.title = `${cert.name} · ${cert.title} · radiology.monster`;
+    if (cert) document.title = example ? 'Example certificate · radiology.monster' : `${cert.name} · ${cert.title}, ${levelLabel(cert.level)} · radiology.monster`;
   }, [cert]);
 
   if (cert === undefined) return <main className="cert-page"><p className="cert-status">Checking the certificate…</p></main>;
@@ -61,6 +65,7 @@ export default function CertificatePage() {
   const image = (square: boolean) => `/api/og/certificate?id=${encodeURIComponent(cert.id)}${square ? '&format=square' : ''}`;
   const file = `radiology-monster-${cert.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
   const li = linkedInFields(cert);
+  const unaided = levelRule((cert.area as CertArea) ?? 'chest', cert.level ?? 1)?.independent ?? false;
   // LinkedIn's form, in its order. The issue date is two lists there, so it is shown, not copied.
   const fields: Array<{ key: string; label: string; value: string; hint?: string; copy?: boolean }> = [
     { key: 'name', label: 'Name', value: li.name, copy: true },
@@ -78,10 +83,17 @@ export default function CertificatePage() {
             radiology<em>.monster</em>
           </span>
         </a>
-        <span className="cert-verified">
-          <Check size={14} /> Verified certificate
-        </span>
+        {example ? null : (
+          <span className="cert-verified">
+            <Check size={14} /> Verified certificate
+          </span>
+        )}
       </header>
+      {example ? (
+        <p className="cert-example" role="note">
+          This is an example. A real certificate carries the learner’s name, their own numbers and a check link of its own.
+        </p>
+      ) : null}
 
       <article className="cert" aria-label="Certificate">
         <div className="cert-head">
@@ -92,14 +104,14 @@ export default function CertificatePage() {
             </span>
           </span>
           <span className="cert-pill">
-            <i aria-hidden="true" /> Verified certificate
+            <i aria-hidden="true" /> {example ? 'Example' : 'Verified certificate'}
           </span>
         </div>
         <div className="cert-main">
           <div className="cert-words">
             <p className="cert-kicker">Certificate of completion</p>
             <h1 className="cert-name">{cert.name}</h1>
-            <p className="cert-line">has completed</p>
+            <p className="cert-line">has completed {levelLabel(cert.level)} in</p>
             <h2 className="cert-title">{cert.title}</h2>
             <p className="cert-detail">Real patients, each read in a full workstation, marked on the image and graded against the expert outline.</p>
           </div>
@@ -115,7 +127,7 @@ export default function CertificatePage() {
               <circle cx="100" cy="100" r="74" fill="#eff4ff" stroke="#c9d7fb" strokeWidth="2" strokeDasharray="4 6" />
               <path d="M68 102 L91 125 L134 80" fill="none" stroke="#1d4ed8" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <span>Verified</span>
+            <span>Level {cert.level ?? 1}</span>
           </div>
         </div>
         <div className="cert-stats">
@@ -125,22 +137,25 @@ export default function CertificatePage() {
           </div>
           <div>
             <b>{Math.round(cert.accuracy * 100)}%</b>
-            <span>Graded answers right</span>
+            <span>{unaided ? 'Right without hints' : 'Graded answers right'}</span>
           </div>
           <div>
             <b>{cert.judged}</b>
-            <span>Graded answers</span>
+            <span>{unaided ? 'Answers without hints' : 'Graded answers'}</span>
           </div>
           <div>
             <b>{issued}</b>
             <span>Issued</span>
           </div>
         </div>
-        <p className="cert-check">
-          Certificate ID <span className="mono">{cert.id}</span> · check it at {url.replace(/^https?:\/\/(www\.)?/, '')}
-        </p>
+        {example ? null : (
+          <p className="cert-check">
+            Certificate ID <span className="mono">{cert.id}</span> · check it at {url.replace(/^https?:\/\/(www\.)?/, '')}
+          </p>
+        )}
       </article>
 
+      {example ? null : (
       <section className="cert-share" aria-label="Share this certificate">
         <h2>Share it</h2>
         <div className="cert-share-row">
@@ -233,10 +248,11 @@ export default function CertificatePage() {
           <pre>{suggestedPost(cert, url)}</pre>
         </div>
       </section>
+      )}
 
       <section className="cert-cta">
         <div>
-          <h2>Learn to read scans the way {cert.name.split(/\s+/)[0]} did.</h2>
+          <h2>{example ? 'Earn yours by reading real patients.' : `Learn to read scans the way ${cert.name.split(/\s+/)[0]} did.`}</h2>
           <p>Real CT, MRI, X-ray, mammography and ultrasound. Mark what you see and get graded on the exact slice.</p>
         </div>
         <a className="cert-btn primary" href="/">

@@ -21,6 +21,9 @@ export interface AreaProgress {
   correct: number;
   /** Share of judged answers that were right (partly right counts half), or null before any. */
   accuracy: number | null;
+  /** The same for answers given without hints or reveal. */
+  independentJudged: number;
+  independentAccuracy: number | null;
   next: { caseId: string; taskId: string } | null;
 }
 
@@ -36,6 +39,8 @@ export function areaProgress(catalog: Pick<Catalog, 'cases' | 'tasksByCase' | 'h
     const mine = done.filter((a) => ids.has(a.caseId));
     const judged = mine.filter((a) => ['correct', 'partial', 'incorrect'].includes(outcome(a) ?? ''));
     const points = judged.reduce((s, a) => s + (outcome(a) === 'correct' ? 1 : outcome(a) === 'partial' ? 0.5 : 0), 0);
+    const unaided = judged.filter((a) => a.independent);
+    const unaidedPoints = unaided.reduce((s, a) => s + (outcome(a) === 'correct' ? 1 : outcome(a) === 'partial' ? 0.5 : 0), 0);
     const pick = (unseenOnly: boolean) => {
       let best: { caseId: string; task: Task } | null = null;
       for (const c of cases) {
@@ -56,6 +61,8 @@ export function areaProgress(catalog: Pick<Catalog, 'cases' | 'tasksByCase' | 'h
       judged: judged.length,
       correct: judged.filter((a) => outcome(a) === 'correct').length,
       accuracy: judged.length ? points / judged.length : null,
+      independentJudged: unaided.length,
+      independentAccuracy: unaided.length ? unaidedPoints / unaided.length : null,
       next: next ? { caseId: next.caseId, taskId: next.task.id } : null,
     };
   });

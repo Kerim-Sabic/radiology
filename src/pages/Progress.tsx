@@ -7,7 +7,7 @@ import { summary, type DrillStats } from '../services/drill';
 import { ERROR_LABELS, type ErrorCategory } from '../grading/types';
 import { OutcomeBadge } from '../components/ui';
 import { ActivityCalendar } from '../components/ActivityCalendar';
-import { CertificatesCard } from '../components/Certificates';
+import { CertificatesSummary } from '../components/Certificates';
 import { dailyActivity, streak, type ActivityLog } from '../services/activity';
 
 export default function ProgressPage() {
@@ -117,7 +117,7 @@ export default function ProgressPage() {
       </section>
       {overall.attempts > 0 && overall.attempts < 20 ? <div className="notice">Small sample: these numbers describe your attempts so far, not a reliable measure of skill.</div> : null}
 
-      <CertificatesCard />
+      <CertificatesSummary />
 
       <section className="card stack">
         <h2>Skills</h2>

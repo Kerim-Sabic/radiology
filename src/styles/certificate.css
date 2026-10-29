@@ -473,3 +473,16 @@
     -webkit-print-color-adjust: exact;
   }
 }
+
+/* The example page says what it is. */
+.cert-example {
+  width: min(1040px, 100%);
+  margin: 0;
+  padding: 10px 14px;
+  border: 1px solid #3a3a3e;
+  border-radius: 12px;
+  background: #111113;
+  color: #d1d1d6;
+  font-size: 14px;
+  text-align: center;
+}
