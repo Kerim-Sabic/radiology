@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 import { get, head } from '@vercel/blob';
 import { required } from './config.js';
 
@@ -6,10 +7,33 @@ export const BOOK_SIZE = 73_363_798;
 export const BOOK_SHA256 = '0f711fa48c1872ceb06cda81df9ec60b1de0eab0590b585dda0d9aae26dad1b1';
 const MAX_RANGE = 2 * 1024 * 1024;
 
-/** The textbook is served only to SSST students (verified university email); everyone else opens their own copy on their device. */
+/**
+ * The textbook is served only to SSST students (verified university email) and a few named accounts; everyone else
+ * opens their own copy on their device.
+ */
 export const BOOK_EMAIL_DOMAIN = 'stu.ssst.edu.ba';
+
+/** One mailbox, however it is written: lower case, and for Gmail without dots or a +tag. */
+export function mailbox(email: string): string {
+  const e = email.trim().toLowerCase();
+  const at = e.lastIndexOf('@');
+  if (at < 1) return e;
+  const [local, domain] = [e.slice(0, at), e.slice(at + 1)];
+  return domain === 'gmail.com' || domain === 'googlemail.com' ? `${local.split('+')[0].replaceAll('.', '')}@gmail.com` : e;
+}
+export const bookAccountKey = (email: string) => createHash('sha256').update(mailbox(email)).digest('hex');
+
+// Named accounts, kept as SHA-256 of the mailbox so this public repository does not list their addresses.
+// More can be added without a release in BOOK_EMAILS (comma-separated, server-only).
+const BOOK_ACCOUNTS = new Set([
+  'ecdda4cc9d17958d627317956285afc3bae148724bfb85a493b4695b00e034ee',
+  'd6ff5a5adeca1f50c18a44f71f4d0eb8c831b2935181155f534c29fb8decf4fc',
+]);
+
 export function servesBook(email: string): boolean {
-  return email.trim().toLowerCase().endsWith(`@${BOOK_EMAIL_DOMAIN}`);
+  if (email.trim().toLowerCase().endsWith(`@${BOOK_EMAIL_DOMAIN}`)) return true;
+  const extra = (process.env.BOOK_EMAILS || '').split(',').map(v => v.trim()).filter(Boolean).map(mailbox);
+  return extra.includes(mailbox(email)) || BOOK_ACCOUNTS.has(bookAccountKey(email));
 }
 
 export function bookRange(value: string | null): { start: number; end: number } | null {

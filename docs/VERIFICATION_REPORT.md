@@ -297,7 +297,7 @@ All five licences allow commercial use with no login: CC BY 4.0, CC BY 3.0 or NI
 - `proxy.ts` lets a free account load only those patients' files, the free manifests, the teaser list and the curriculum (`server/free.ts`, `npm run free:sync`, `tests/freeEdition.test.ts`).
 - Locked areas (drills, on call, atlas, book) explain what they are. The library lists every other patient by neutral title, locked. Upgrade prompts appear on Today, after an answer, and in the top bar. Signed-in visitors no longer see the marketing page; plans open on their own screen.
 
-**Book:** served only to verified `@stu.ssst.edu.ba` emails (`server/book.ts`, tested). Everyone else opens their own copy, which is checked against the 5th edition and stays on the device. The landing footer says the app is not affiliated with the book's publisher or authors.
+**Book:** served only to verified `@stu.ssst.edu.ba` emails and named accounts (hashed list or `BOOK_EMAILS`), still with an active membership (`server/book.ts`, tested). Everyone else opens their own copy, which is checked against the 5th edition and stays on the device. The landing footer says the app is not affiliated with the book's publisher or authors.
 
 **Emails:**
 - A streak reminder (a daily job at 17:00 UTC, for streaks of 2 or more days not yet extended today) and the case-of-the-week email (Monday 07:00 UTC), both through Resend.
@@ -310,7 +310,7 @@ All five licences allow commercial use with no login: CC BY 4.0, CC BY 3.0 or NI
 
 **Look:** the landing page, plans screen and app surfaces were restyled: centred hero, pill buttons, frosted top bar, rounder cards, calmer backgrounds. Checked at 1440 px and 390 px with no sideways scrolling.
 
-**Tests on the production build (merged with the referral and yearly-first pricing commits):** 447 unit tests; 97 browser tests in Chromium and Firefox (7 skipped as before), including the free account, the locked case of the week, the public certificate page and its share links, and the referral flows.
+**Tests on the production build (merged with the referral and yearly-first pricing commits):** 448 unit tests; 97 browser tests in Chromium and Firefox (7 skipped as before), including the free account, the locked case of the week, the public certificate page with its LinkedIn steps and share links, and the referral flows.
 
 ## 4. Measured performance (`docs/perf/measurements.json`)
 

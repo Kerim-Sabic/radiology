@@ -278,6 +278,94 @@
 .cert-btn.small {
   padding: 6px 12px;
   font-size: 12.5px;
+  white-space: nowrap;
+}
+/* Adding it to LinkedIn: the steps and each field to copy into its form. */
+.cert-li {
+  display: grid;
+  gap: 16px;
+  padding: 18px 18px 20px;
+  border-radius: 16px;
+  border: 1px solid rgba(56, 139, 221, 0.45);
+  background: rgba(10, 102, 194, 0.1);
+}
+.cert-li-lead {
+  margin: 0;
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.cert-li-lead b {
+  color: #fff;
+}
+.cert-li-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 16px;
+}
+.cert-li-steps > li {
+  display: grid;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+.cert-li-n {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #0a66c2;
+  color: #fff;
+  font: 700 13px var(--font);
+}
+.cert-li-steps > li > div {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+  min-width: 0;
+  padding-top: 4px;
+  color: #f3f4f6;
+  font-size: 14px;
+}
+.cert-li-steps small {
+  color: #94a3b8;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+.cert-li-fields {
+  margin: 0;
+  width: 100%;
+  display: grid;
+  gap: 6px;
+}
+.cert-li-fields > div {
+  display: grid;
+  grid-template-columns: 150px minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(2, 6, 23, 0.6);
+}
+.cert-li-fields dt {
+  color: #94a3b8;
+  font-size: 12.5px;
+  font-weight: 600;
+}
+.cert-li-fields dd {
+  margin: 0;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+.cert-li-fields dd span {
+  color: #fff;
+  font-weight: 600;
+  overflow-wrap: anywhere;
 }
 .cert-post {
   border-radius: 14px;
@@ -354,6 +442,16 @@
   .cert-btn {
     flex: 1 1 auto;
     justify-content: center;
+  }
+  .cert-li {
+    padding: 14px;
+  }
+  .cert-li-fields > div {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 4px 10px;
+  }
+  .cert-li-fields dt {
+    grid-column: 1 / -1;
   }
 }
 

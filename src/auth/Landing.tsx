@@ -87,6 +87,7 @@ const STEPS: Array<[string, string]> = [
 const FAQ: Array<[string, ReactNode]> = [
   ['Is there a free version?', 'Yes. A free account opens two sample patients in the full workstation, with grading. No card needed. Choose a plan when you want every patient, the case of the week, the drills, on-call shifts and certificates.'],
   ['Who is it for?', 'Medical students, residents and anyone learning to read images who wants practice on real studies alongside Learning Radiology (5th ed.). Choose Student or Resident and what you are asked to write adapts.'],
+  ['How do I earn a certificate?', 'Read 10 patients in a body area with 70% of your graded answers right, then claim it on Progress (members). Each certificate has a public page with a check link, and shows you how to add it to LinkedIn under Licenses & certifications.'],
   ['Where do the scans come from?', 'From public research collections released for reuse, including commercial use (Creative Commons and NIH terms). They are de-identified, and every case names its source and licence.'],
   ['Who marked the findings?', 'Findings are outlined by the radiologists and experts who published each collection. Organ outlines are AI drafts by Horalix and are labelled as drafts wherever they appear.'],
   ['Can I use it to diagnose patients?', 'No. radiology.monster is for education and practice only. It is not a medical device and must not be used for clinical decisions.'],

@@ -4,7 +4,7 @@ vi.mock('../server/auth', async original => ({ ...await original<typeof import('
 vi.mock('../server/billing', () => ({ accessFor: fake.access, checkout: vi.fn() }));
 vi.mock('@vercel/blob', () => ({ head: fake.head, get: fake.get }));
 import { handle } from '../server/handler';
-import { BOOK_PATH, BOOK_SIZE, bookRange, servesBook } from '../server/book';
+import { BOOK_PATH, BOOK_SIZE, bookAccountKey, bookRange, mailbox, servesBook } from '../server/book';
 const request = (method = 'GET', range = 'bytes=0-1023') => new Request('https://www.radiology.monster/api/book', { method, headers: { Range: range } });
 beforeEach(() => {
   vi.stubEnv('APP_URL', 'https://www.radiology.monster'); vi.stubEnv('WHOP_APP_ID', 'test');
@@ -30,6 +30,21 @@ describe('protected member textbook', () => {
     expect(fake.get).not.toHaveBeenCalled(); expect(fake.head).not.toHaveBeenCalled();
     expect(servesBook('Student@STU.SSST.EDU.BA ')).toBe(true);
     for (const email of ['x@ssst.edu.ba', 'x@evilstu.ssst.edu.ba', 'x@sub.stu.ssst.edu.ba', 'x@stu.ssst.edu.ba.evil.com', 'stu.ssst.edu.ba@gmail.com']) expect(servesBook(email)).toBe(false);
+  });
+  it('also serves named accounts (BOOK_EMAILS, or the hashed list), matching the mailbox however it is written', async () => {
+    expect(mailbox(' Ada.Love+radiology@GoogleMail.com ')).toBe('adalove@gmail.com');
+    expect(mailbox('Ada.Love+x@example.org')).toBe('ada.love+x@example.org'); // only Gmail ignores dots and tags
+    expect(bookAccountKey('ada.love@gmail.com')).toBe(bookAccountKey('ADALOVE+book@gmail.com'));
+    expect(servesBook('ada.love@gmail.com')).toBe(false);
+    vi.stubEnv('BOOK_EMAILS', ' AdaLove@gmail.com , friend@example.org');
+    expect(servesBook('ada.love@gmail.com')).toBe(true);
+    expect(servesBook('Friend@Example.org')).toBe(true);
+    for (const email of ['adalove@yahoo.com', 'friend@example.org.evil.com', 'other@example.org']) expect(servesBook(email)).toBe(false);
+    fake.session.mockResolvedValue({ userId: 'member', email: 'ada.love@gmail.com', name: 'Ada' });
+    expect((await handle(request('HEAD'))).status).toBe(200);
+    // Membership is still required.
+    fake.access.mockResolvedValue({ active: false });
+    expect((await handle(request('HEAD'))).status).toBe(402);
   });
   it('provides private metadata for the reader without returning PDF bytes', async () => {
     const response = await handle(request('HEAD'));

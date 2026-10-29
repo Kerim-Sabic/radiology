@@ -3,8 +3,10 @@ import { Award, ExternalLink, Lock } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { useAccount } from '../auth/AccountGate';
 import { areaProgress } from '../services/areas';
-import { certificateStatus, claimCertificate, myCertificates, type CertStatus, type IssuedCertificate } from '../services/certificates';
+import { CERT_BAR, FOUNDATIONS_BAR, certificateStatus, claimCertificate, myCertificates, type CertStatus, type IssuedCertificate } from '../services/certificates';
 import '../styles/upgrade.css';
+
+const pct = (x: number) => `${Math.round(x * 100)}%`;
 
 /** Progress page: how close you are to each certificate, and the ones you have. */
 export function CertificatesCard() {
@@ -31,7 +33,7 @@ export function CertificatesCard() {
     if (!r.ok) return setError(r.error);
     setIssued((xs) => [...xs.filter((x) => x.area !== r.certificate.area), r.certificate]);
     setClaiming(null);
-    window.open(`/certificate/${r.certificate.id}`, '_blank', 'noopener');
+    window.open(`/certificate/${r.certificate.id}#add-to-linkedin`, '_blank', 'noopener');
   };
 
   return (
@@ -47,9 +49,25 @@ export function CertificatesCard() {
           </button>
         ) : null}
       </div>
-      <p className="muted" style={{ margin: 0 }}>
-        One for each body area when you have read 10 of its patients with 70% of graded answers right, and <i>Radiology foundations</i> across the areas. Each has a public page you can share or add to LinkedIn.
-      </p>
+      <div className="cert-how">
+        <b>How to earn one</b>
+        <ol>
+          <li>
+            Read {CERT_BAR.minPatients} patients in a body area: answer at least one task on each.
+          </li>
+          <li>
+            Give {CERT_BAR.minJudged} graded answers there with {pct(CERT_BAR.minAccuracy)} right. Partly right counts half; retry your mistakes to raise it.
+          </li>
+          <li>
+            Press <b>Claim</b> and type your name as it should appear. The certificate gets its own public page with a check link.
+          </li>
+          <li>Add it to LinkedIn under Licenses &amp; certifications (the page shows each field to copy), post it, or print it.</li>
+        </ol>
+        <small className="faint">
+          <i>Radiology foundations</i> covers the whole library: {FOUNDATIONS_BAR.minPatients} patients and {FOUNDATIONS_BAR.minJudged} graded answers with{' '}
+          {pct(FOUNDATIONS_BAR.minAccuracy)} right, including at least {FOUNDATIONS_BAR.perArea} patients in each of {FOUNDATIONS_BAR.minAreas} body areas.
+        </small>
+      </div>
       <ul className="cert-list">
         {statuses.map((s) => {
           const mine = issued.find((c) => c.area === s.area);

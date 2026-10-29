@@ -411,6 +411,34 @@
 }
 
 /* ---------------------------------------------------------------- certificates (Progress) */
+.cert-how {
+  display: grid;
+  gap: 6px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  font-size: 13.5px;
+  color: var(--text-2);
+}
+.cert-how > b {
+  color: var(--text);
+  font-size: 14px;
+}
+.cert-how ol {
+  margin: 0;
+  padding-left: 20px;
+  display: grid;
+  gap: 4px;
+  line-height: 1.5;
+}
+.cert-how ol b {
+  color: var(--text);
+}
+.cert-how small {
+  font-size: 12.5px;
+  line-height: 1.5;
+}
 .cert-list {
   list-style: none;
   margin: 0;

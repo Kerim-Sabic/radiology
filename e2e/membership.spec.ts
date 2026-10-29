@@ -207,7 +207,21 @@ test('a certificate has a public page that needs no sign-in', async ({page}) => 
   await expect(page.locator('.cert-stats')).toContainText('14');
   await expect(page.locator('.cert-stats')).toContainText('Real patients');
   await expect(page.locator('.cert-stats')).toContainText('82%');
-  await expect(page.getByRole('link',{name:'Add to LinkedIn profile'})).toHaveAttribute('href',/linkedin\.com\/profile\/add\?startTask=CERTIFICATION_NAME/);
+  // LinkedIn opens its certification form empty, so the page lists each field to copy into it.
+  await expect(page.locator('#add-to-linkedin')).toHaveCount(0);
+  await page.getByRole('button',{name:'Add to LinkedIn profile'}).click();
+  const li = page.locator('#add-to-linkedin');
+  await expect(li.getByRole('link',{name:/Open LinkedIn.s certification form/})).toHaveAttribute('href',/linkedin\.com\/profile\/add\?startTask=CERTIFICATION_NAME/);
+  await expect(li.locator('.cert-li-fields')).toContainText('Chest imaging certificate');
+  await expect(li.locator('.cert-li-fields')).toContainText('radiology.monster');
+  await expect(li.locator('.cert-li-fields')).toContainText('October 2026');
+  await expect(li.locator('.cert-li-fields')).toContainText('abcDEF123_-x');
+  await expect(li.locator('.cert-li-fields')).toContainText('/certificate/abcDEF123_-x');
+  await expect(li.getByRole('button',{name:'Copy Credential URL'})).toBeVisible();
+  // Arriving from Claim opens it straight away.
+  await page.goto('about:blank');
+  await page.goto('/certificate/abcDEF123_-x#add-to-linkedin');
+  await expect(page.locator('#add-to-linkedin')).toBeVisible();
   await expect(page.getByRole('link',{name:'Post on LinkedIn'})).toHaveAttribute('href',/linkedin\.com\/sharing\/share-offsite\/\?url=.*certificate%2FabcDEF123_-x/);
   await expect(page.getByRole('link',{name:'Image for a post'})).toHaveAttribute('href','/api/og/certificate?id=abcDEF123_-x');
   await expect(page.locator('.cert-post pre')).toContainText('#radiology');

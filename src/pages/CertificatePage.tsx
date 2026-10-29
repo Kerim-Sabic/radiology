@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight, Check, Copy, Download, ImageDown, Printer, Send } from 'lucide-react';
-import { linkedInUrl, type IssuedCertificate } from '../services/certificates';
+import { linkedInFields, linkedInUrl, type IssuedCertificate } from '../services/certificates';
 import '../styles/certificate.css';
 
 /** LinkedIn's "in" mark for its share button (the icon set has no brand marks). */
@@ -27,7 +27,9 @@ export function suggestedPost(c: IssuedCertificate, url: string): string {
 export default function CertificatePage() {
   const id = decodeURIComponent(location.pathname.split('/')[2] ?? '');
   const [cert, setCert] = useState<IssuedCertificate | null | undefined>(undefined);
-  const [copied, setCopied] = useState<'link' | 'post' | null>(null);
+  const [copied, setCopied] = useState<string | null>(null);
+  // Opened straight away when the learner arrives from claiming it.
+  const [toLinkedIn, setToLinkedIn] = useState(() => location.hash === '#add-to-linkedin');
   useEffect(() => {
     fetch(`/api/certificate?id=${encodeURIComponent(id)}`, { cache: 'no-store' })
       .then((r) => (r.ok ? r.json() : null))
@@ -51,13 +53,22 @@ export default function CertificatePage() {
     );
   const issued = new Date(cert.issuedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
   const url = `${location.origin}/certificate/${cert.id}`;
-  const copy = (what: 'link' | 'post', value: string) =>
+  const copy = (what: string, value: string) =>
     void navigator.clipboard?.writeText(value).then(() => {
       setCopied(what);
       setTimeout(() => setCopied(null), 2500);
     });
   const image = (square: boolean) => `/api/og/certificate?id=${encodeURIComponent(cert.id)}${square ? '&format=square' : ''}`;
   const file = `radiology-monster-${cert.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+  const li = linkedInFields(cert);
+  // LinkedIn's form, in its order. The issue date is two lists there, so it is shown, not copied.
+  const fields: Array<{ key: string; label: string; value: string; hint?: string; copy?: boolean }> = [
+    { key: 'name', label: 'Name', value: li.name, copy: true },
+    { key: 'org', label: 'Issuing organization', value: li.organization, copy: true },
+    { key: 'issued', label: 'Issue date', value: li.issued, hint: 'Pick the month and year. Leave the expiration date empty: it does not expire.' },
+    { key: 'id', label: 'Credential ID', value: li.credentialId, copy: true },
+    { key: 'url', label: 'Credential URL', value: li.credentialUrl, copy: true },
+  ];
   return (
     <main className="cert-page">
       <header className="cert-top">
@@ -133,9 +144,9 @@ export default function CertificatePage() {
       <section className="cert-share" aria-label="Share this certificate">
         <h2>Share it</h2>
         <div className="cert-share-row">
-          <a className="cert-btn linkedin" href={linkedInUrl(cert)} target="_blank" rel="noopener noreferrer">
+          <button className="cert-btn linkedin" aria-expanded={toLinkedIn} aria-controls="add-to-linkedin" onClick={() => setToLinkedIn((v) => !v)}>
             <Linkedin size={17} /> Add to LinkedIn profile
-          </a>
+          </button>
           <a className="cert-btn" href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`} target="_blank" rel="noopener noreferrer">
             <Send size={16} /> Post on LinkedIn
           </a>
@@ -143,6 +154,64 @@ export default function CertificatePage() {
             {copied === 'link' ? <Check size={16} /> : <Copy size={16} />} {copied === 'link' ? 'Link copied' : 'Copy link'}
           </button>
         </div>
+        {toLinkedIn ? (
+          <div className="cert-li" id="add-to-linkedin">
+            <p className="cert-li-lead">
+              It goes under <b>Licenses &amp; certifications</b> on your profile, with a <b>Show credential</b> button that opens this page. LinkedIn opens its form empty, so
+              copy each line in; it takes a minute.
+            </p>
+            <ol className="cert-li-steps">
+              <li>
+                <span className="cert-li-n">1</span>
+                <div>
+                  <a className="cert-btn linkedin" href={linkedInUrl(cert)} target="_blank" rel="noopener noreferrer">
+                    <Linkedin size={16} /> Open LinkedIn’s certification form
+                  </a>
+                  <small>Or on your profile: Add profile section → Recommended → Add licenses &amp; certifications.</small>
+                </div>
+              </li>
+              <li>
+                <span className="cert-li-n">2</span>
+                <div>
+                  <b>Fill in each field</b>
+                  <dl className="cert-li-fields">
+                    {fields.map((f) => (
+                      <div key={f.key}>
+                        <dt>{f.label}</dt>
+                        <dd>
+                          <span>{f.value}</span>
+                          {f.hint ? <small>{f.hint}</small> : null}
+                        </dd>
+                        {f.copy ? (
+                          <button className="cert-btn small" aria-label={`Copy ${f.label}`} onClick={() => copy(f.key, f.value)}>
+                            {copied === f.key ? <Check size={14} /> : <Copy size={14} />} {copied === f.key ? 'Copied' : 'Copy'}
+                          </button>
+                        ) : null}
+                      </div>
+                    ))}
+                  </dl>
+                  <small>Skills (optional): add Radiology and Medical Imaging.</small>
+                </div>
+              </li>
+              <li>
+                <span className="cert-li-n">3</span>
+                <div>
+                  <b>Add the picture under Media</b>
+                  <a className="cert-btn small" href={image(false)} download={`${file}.png`}>
+                    <ImageDown size={14} /> Download the certificate image
+                  </a>
+                </div>
+              </li>
+              <li>
+                <span className="cert-li-n">4</span>
+                <div>
+                  <b>Save.</b>
+                  <small>Want your network to see it too? Use Post on LinkedIn above.</small>
+                </div>
+              </li>
+            </ol>
+          </div>
+        ) : null}
         <div className="cert-share-row">
           <a className="cert-btn" href={image(false)} download={`${file}.png`}>
             <ImageDown size={16} /> Image for a post

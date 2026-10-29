@@ -103,17 +103,32 @@ export async function claimCertificate(s: CertStatus, name: string): Promise<{ o
   }
 }
 
-/** LinkedIn's "Add licence or certification" link, prefilled. */
+/** What goes in LinkedIn's "Add license or certification" form, field by field. */
+export function linkedInFields(c: IssuedCertificate, origin = location.origin) {
+  return {
+    name: `${c.title} certificate`,
+    organization: 'radiology.monster',
+    issued: new Date(c.issuedAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }),
+    credentialId: c.id,
+    credentialUrl: `${origin}/certificate/${c.id}`,
+  };
+}
+
+/**
+ * LinkedIn's "Add license or certification" form. LinkedIn no longer fills it in from the link (the details below
+ * are kept in case it does again), so the certificate page lists each field to copy.
+ */
 export function linkedInUrl(c: IssuedCertificate, origin = location.origin): string {
   const d = new Date(c.issuedAt);
+  const f = linkedInFields(c, origin);
   const q = new URLSearchParams({
     startTask: 'CERTIFICATION_NAME',
-    name: `${c.title} · radiology.monster`,
-    organizationName: 'radiology.monster',
+    name: f.name,
+    organizationName: f.organization,
     issueYear: String(d.getUTCFullYear()),
     issueMonth: String(d.getUTCMonth() + 1),
-    certUrl: `${origin}/certificate/${c.id}`,
-    certId: c.id,
+    certUrl: f.credentialUrl,
+    certId: f.credentialId,
   });
   return `https://www.linkedin.com/profile/add?${q}`;
 }
