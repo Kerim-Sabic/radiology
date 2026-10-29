@@ -1,11 +1,13 @@
 import { useMemo, useState } from 'react';
 import { Link } from 'react-router';
-import { Eye, Layers, Target } from 'lucide-react';
+import { Eye, Layers, RotateCcw, Target } from 'lucide-react';
 import type { LoadedTarget } from '../../grading/spatialGrader';
-import { CATEGORY_COLORS, categoryFor } from './overlayShapes';
 import { AI_DRAFT_BY, cleanLabel as clean, isAutomatic, provenanceTag } from '../../lib/provenance';
 import { noteFor } from '../../content/structureNotes';
 import { canonicalAnatomyKey } from '../../content/bookAnatomy';
+import { GROUP_LABEL, GROUP_ORDER, groupFor, type Group3D } from '../../viewer/anatomyMask';
+import { colorOf, lookOf, segStyle, withGroup, withStructure } from '../../viewer/segStyle';
+import { ColorSwatch, LookSwitch, SegStyleBar, useSegStyle } from './SegStyleControls';
 
 interface Props {
   allowed: boolean;
@@ -15,42 +17,37 @@ interface Props {
   totalOnStudy: number;
   presentIds: Set<string>; // outlined on the image currently displayed
   showNames: boolean;
+  /** Groups hidden on the image (see Group3D). */
   hidden: Set<string>;
   isolateId: string | null;
   /** 'XR' | 'CT' | 'MR' of the focused series, for the right wording of notes. */
   family?: string;
   onToggle: (on: boolean) => void;
   onShowNames: (v: boolean) => void;
-  onToggleCategory: (c: string) => void;
+  onToggleGroup: (g: Group3D) => void;
   onPick: (t: LoadedTarget) => void;
   onShowAll: () => void;
 }
 
-const CATEGORY_LABEL: Record<string, string> = {
-  organ: 'Organs',
-  airway: 'Airways & lungs',
-  vessel: 'Heart & vessels',
-  bone: 'Bones',
-  muscle: 'Muscles',
-  gland: 'Glands',
-  other: 'Other',
-};
-const ORDER = ['organ', 'airway', 'vessel', 'bone', 'muscle', 'gland', 'other'];
 const isAi = (t: LoadedTarget) => isAutomatic(t.ref.provenance);
+const keyOf = (t: LoadedTarget) => canonicalAnatomyKey(t.ref.classId);
 
 export function AnatomyPanel(p: Props) {
   const [q, setQ] = useState('');
   const [onlyHere, setOnlyHere] = useState(false);
+  const style = useSegStyle();
+  // Every group on this series keeps its header (colour, fill, show/hide) even when the search hides its items.
   const groups = useMemo(() => {
-    const m = new Map<string, LoadedTarget[]>();
+    const m = new Map<Group3D, { all: LoadedTarget[]; items: LoadedTarget[] }>();
     for (const t of p.targets) {
-      if (q && !clean(t.ref.label).toLowerCase().includes(q.toLowerCase())) continue;
-      if (onlyHere && !p.presentIds.has(t.ref.id)) continue;
-      const c = categoryFor(t.ref);
-      m.set(c, [...(m.get(c) ?? []), t]);
+      const g = groupFor(keyOf(t));
+      const e = m.get(g) ?? { all: [], items: [] };
+      e.all.push(t);
+      if ((!q || clean(t.ref.label).toLowerCase().includes(q.toLowerCase())) && (!onlyHere || p.presentIds.has(t.ref.id))) e.items.push(t);
+      m.set(g, e);
     }
-    for (const arr of m.values()) arr.sort((a, b) => clean(a.ref.label).localeCompare(clean(b.ref.label), undefined, { numeric: true }));
-    return [...m.entries()].sort((a, b) => ORDER.indexOf(a[0]) - ORDER.indexOf(b[0]));
+    for (const e of m.values()) e.items.sort((a, b) => clean(a.ref.label).localeCompare(clean(b.ref.label), undefined, { numeric: true }));
+    return [...m.entries()].sort((a, b) => GROUP_ORDER.indexOf(a[0]) - GROUP_ORDER.indexOf(b[0]));
   }, [p.targets, q, onlyHere, p.presentIds]);
 
   if (!p.allowed)
@@ -73,6 +70,7 @@ export function AnatomyPanel(p: Props) {
           </button>
         </div>
       ) : null}
+      {isolated ? <StructureColor target={isolated} /> : null}
       {isolated ? <StructureNoteCard target={isolated} family={p.family} /> : (
         <div className="row wrap">
           <button className={`btn${p.on ? ' primary' : ''}`} onClick={() => p.onToggle(!p.on)}>
@@ -80,6 +78,9 @@ export function AnatomyPanel(p: Props) {
           </button>
           <label className="row" style={{ gap: 4, color: 'var(--text)' }}>
             <input type="checkbox" checked={p.showNames} onChange={(e) => p.onShowNames(e.target.checked)} /> Names on image
+          </label>
+          <label className="row" style={{ gap: 4, color: 'var(--text)' }}>
+            <input type="checkbox" checked={style.legend} onChange={(e) => segStyle.update((s) => ({ ...s, legend: e.target.checked }))} /> Colour key
           </label>
         </div>
       )}
@@ -95,15 +96,7 @@ export function AnatomyPanel(p: Props) {
           <span className="legend-swatch" style={{ borderColor: '#e7ebf0', borderTopStyle: 'dashed' }} /> dashed = {AI_DRAFT_BY} (quality-checked, not yet reviewed by a radiologist; edges can be a few mm off)
         </span>
       </div>
-      <div className="row wrap">
-        {ORDER.map((c) =>
-          groups.some(([g]) => g === c) || p.hidden.has(c) ? (
-            <button key={c} className="chip" aria-pressed={!p.hidden.has(c)} onClick={() => p.onToggleCategory(c)} title="Show/hide this group on the image">
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: CATEGORY_COLORS[c] }} /> {CATEGORY_LABEL[c]}
-            </button>
-          ) : null,
-        )}
-      </div>
+      {p.targets.length ? <SegStyleBar /> : null}
       <div className="row">
         <input type="search" placeholder="Find a structure (kidney, rib 5, aorta…)" value={q} onChange={(e) => setQ(e.target.value)} aria-label="Find a structure" style={{ flex: 1 }} />
         <label className="row" style={{ gap: 4, color: 'var(--text)', whiteSpace: 'nowrap' }}>
@@ -111,12 +104,29 @@ export function AnatomyPanel(p: Props) {
         </label>
       </div>
       {p.targets.length === 0 && !p.loading ? <small className="faint">No anatomical outlines exist for this series yet.</small> : null}
-      {groups.map(([cat, items]) => (
-        <div key={cat} className="stack" style={{ gap: 0 }}>
-          <div className="faint" style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em', margin: '6px 0 2px' }}>
-            {CATEGORY_LABEL[cat] ?? cat} · {items.length}
-          </div>
-          {items.map((t) => (
+      {groups.map(([g, { all, items }]) => {
+        const label = GROUP_LABEL[g];
+        const off = p.hidden.has(g);
+        return (
+          <div key={g} className={`anat-group${off ? ' off' : ''}`} data-group={g}>
+            <div className="anat-group-head">
+              <input type="checkbox" checked={!off} onChange={() => p.onToggleGroup(g)} aria-label={`Show ${label} on the image`} title="Show or hide this group on the image" />
+              <ColorSwatch
+                colors={[...new Set(all.map((t) => colorOf(style, keyOf(t), g)))]}
+                label={`Colour of ${label}`}
+                onChange={(c) => segStyle.update((s) => withGroup(s, g, { color: c }))}
+              />
+              <span className="anat-group-name">
+                {label} <span className="faint">· {all.length}</span>
+              </span>
+              {style.groups[g]?.color ? (
+                <button className="btn sm ghost icon" onClick={() => segStyle.update((s) => withGroup(s, g, { color: null }))} aria-label={`${label}: back to atlas colours`} title="Back to atlas colours">
+                  <RotateCcw size={11} />
+                </button>
+              ) : null}
+              <LookSwitch look={lookOf(style, g)} label={label} onChange={(l) => segStyle.update((s) => withGroup(s, g, { look: l }))} />
+            </div>
+            {items.map((t) => (
             <button
               key={t.ref.id}
               className={`anat-item${p.presentIds.has(t.ref.id) ? ' here' : ''}`}
@@ -124,15 +134,34 @@ export function AnatomyPanel(p: Props) {
               onClick={() => p.onPick(t)}
               title={p.presentIds.has(t.ref.id) ? 'Visible on the current slice — click to show only this structure' : 'Click to jump to it and show only this structure'}
             >
-              <span className="dot" style={{ background: CATEGORY_COLORS[cat] ?? '#fff' }} />
+              <span className="dot" style={{ background: colorOf(style, keyOf(t), g) }} />
               <span style={{ flex: 1 }}>{clean(t.ref.label)}</span>
               <span className="faint" style={{ fontSize: 10.5 }}>
                 {provenanceTag(t.ref.provenance)}
               </span>
             </button>
-          ))}
-        </div>
-      ))}
+            ))}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+/** The colour of the structure shown alone: its own colour, or back to its group's. */
+function StructureColor({ target }: { target: LoadedTarget }) {
+  const style = useSegStyle();
+  const key = keyOf(target);
+  const name = clean(target.ref.label);
+  return (
+    <div className="row" style={{ gap: 8, fontSize: 12.5 }}>
+      <ColorSwatch colors={[colorOf(style, key)]} label={`Colour of ${name}`} onChange={(c) => segStyle.update((s) => withStructure(s, key, c))} size={18} />
+      <span>Colour of {name}</span>
+      {style.structures[key] ? (
+        <button className="btn sm ghost" onClick={() => segStyle.update((s) => withStructure(s, key, null))}>
+          <RotateCcw size={11} /> Group colour
+        </button>
+      ) : null}
     </div>
   );
 }

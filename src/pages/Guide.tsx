@@ -59,6 +59,16 @@ export default function GuidePage() {
             <b>Structure notes</b> — pick any structure in the Anatomy tab or Atlas: how it looks, what it touches, one pitfall, and the chapter.
           </li>
           <li>
+            <b>Colours and fill</b> — in the Anatomy tab each group (arteries, veins, bones…) has a colour swatch and <i>Outline / Filled</i>: make the arteries red and
+            filled, the veins blue. A structure shown alone can get its own colour. The same colours are used on every slice, the reformatted views and the 3D models, and
+            are kept in this browser. <span className="kbd">V</span> fills or outlines everything, <span className="kbd">N</span> shows names, and the colour key on the
+            image says what each colour is.
+          </li>
+          <li>
+            <b>Save image</b> (picture button) — the view as a PNG for your notes, with its outlines, colour key and the image source and licence underneath. In Assess it
+            waits until you submit.
+          </li>
+          <li>
             <b>Conditions</b> (top bar) — type a condition (pneumothorax, nodule, COVID-19…) to see every installed case that shows it, where it is, and the book pages that
             teach it.
           </li>

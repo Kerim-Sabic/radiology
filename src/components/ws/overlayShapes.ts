@@ -7,6 +7,8 @@ import type { LoadedTarget } from '../../grading/spatialGrader';
 import type { SeriesIndex } from '../../grading/seriesIndex';
 import { add, cross, dot, imageToPatient, norm, normalize, pointInPolygon, polygonArea, scale, sub, type Vec2, type Vec3 } from '../../lib/geometry';
 import type { ViewerEngine } from '../../viewer/engine';
+import { groupFor, type Group3D } from '../../viewer/anatomyMask';
+import { canonicalAnatomyKey } from '../../content/bookAnatomy';
 
 export interface Shape {
   targetId: string;
@@ -17,7 +19,15 @@ export interface Shape {
   holes?: Vec2[][];
   provenance: string;
   category: string;
+  /** Canonical anatomy key and its group, for the learner's colours and fill (see segStyle). */
+  key: string;
+  group: Group3D;
   layer: string;
+}
+
+function shapeBase(t: LoadedTarget) {
+  const key = canonicalAnatomyKey(t.ref.classId);
+  return { targetId: t.ref.id, label: t.ref.label, provenance: t.ref.provenance, category: categoryFor(t.ref), key, group: groupFor(key), layer: t.ref.layer ?? 'task' };
 }
 
 /** Is the point on the structure itself (inside the outline and not in one of its holes)? */
@@ -48,7 +58,7 @@ export function shapesForPanel(engine: ViewerEngine, panelId: string, targets: L
     for (const t of targets) {
       if (t.ref.seriesUid !== info.seriesUid) continue;
       const g = t.geom;
-      const base = { targetId: t.ref.id, label: t.ref.label, provenance: t.ref.provenance, category: categoryFor(t.ref), layer: t.ref.layer ?? 'task' };
+      const base = shapeBase(t);
       const pxToCanvas = (p: Vec2) => {
         const w = engine.imagePxToWorld(imageId, p);
         return w ? toCanvas(w) : null;
@@ -85,7 +95,7 @@ export function shapesForPanel(engine: ViewerEngine, panelId: string, targets: L
   for (const t of targets) {
     if (t.ref.seriesUid !== series.uid) continue;
     const g = t.geom;
-    const base = { targetId: t.ref.id, label: t.ref.label, provenance: t.ref.provenance, category: categoryFor(t.ref), layer: t.ref.layer ?? 'task' };
+    const base = shapeBase(t);
     const polysLps: Vec3[][] = [];
     if (g.geometryType === 'contour_set') {
       for (const p of g.planes) {

@@ -399,6 +399,11 @@ test.describe('D. assess leakage, deep links', () => {
     await page.getByRole('tab', { name: 'Book' }).click();
     await expect(page.getByText(/book opens after you submit in Assess mode/)).toBeVisible();
     await expect(page.getByRole('button', { name: /Hint/ })).toHaveCount(0);
+    // The dataset's name can hint at the diagnosis, so the source waits for the answer too.
+    await page.getByRole('tab', { name: 'Case' }).click();
+    await expect(page.getByText(/source and its licence appear after you submit/)).toBeVisible();
+    await expect(page.getByText(/Lung CT Segmentation Challenge/)).toHaveCount(0);
+    await expect(page.getByRole('button', { name: 'Save image (after you submit)' })).toBeDisabled();
   });
 
 
@@ -437,6 +442,41 @@ test.describe('D. assess leakage, deep links', () => {
     await expect(page.getByRole('button', { name: 'Anatomy labels: Learn mode or after submitting' })).toBeDisabled();
     await page.getByRole('tab', { name: 'Anatomy' }).click();
     await expect(page.getByText(/available in Learn and Review mode, and after you submit/)).toBeVisible();
+  });
+
+  test('structure colours: arteries red and filled, kept after reload; V fills everything; the view saves as an image', async ({ page }) => {
+    await page.goto(CT_TASK('heart', 'learn'));
+    await waitPanel(page);
+    await page.getByRole('tab', { name: 'Anatomy' }).click();
+    const arteries = page.locator('.anat-group[data-group="arteries"]');
+    await arteries.locator('input[type="color"]').fill('#ff0000');
+    await arteries.getByRole('button', { name: 'Filled' }).click();
+    await page.evaluate(() => (window as any).__rvm.setIndex('p0', Math.round((window as any).__rvm.panelState('p0').count * 0.45)));
+    const redFilled = () =>
+      page.locator('[data-panel="p0"] svg.vp-svg polygon, [data-panel="p0"] svg.vp-svg path').evaluateAll((els) =>
+        els.filter((e) => (e as SVGElement).style.stroke === 'rgb(255, 0, 0)' && (e as SVGElement).style.fill === 'rgb(255, 0, 0)').length,
+      );
+    await expect.poll(redFilled, { timeout: 15000 }).toBeGreaterThan(0);
+    // Veins keep their atlas colour and stay outlined; the colour key names both groups.
+    const veinsOutlined = await page.locator('[data-panel="p0"] svg.vp-svg polygon').evaluateAll((els) => els.some((e) => (e as SVGElement).style.stroke === 'rgb(59, 130, 246)' && (e as SVGElement).style.fill === 'none'));
+    expect(veinsOutlined).toBe(true);
+    await expect(page.locator('[data-panel="p0"] .vp-legend')).toContainText('Arteries');
+    await page.reload();
+    await waitPanel(page);
+    await page.getByRole('tab', { name: 'Anatomy' }).click();
+    await expect(arteries.getByRole('button', { name: 'Filled' })).toHaveAttribute('aria-pressed', 'true');
+    await expect(arteries.locator('input[type="color"]')).toHaveValue('#ff0000');
+    // V from the keyboard: every group filled, then back to outlines (colours kept).
+    await page.locator('[data-panel="p0"] .vp-el').click({ position: { x: 10, y: 10 } });
+    await page.keyboard.press('v');
+    await expect(page.getByRole('button', { name: 'Fill all' })).toHaveAttribute('aria-pressed', 'true');
+    await page.keyboard.press('v');
+    await expect(page.getByRole('button', { name: 'Outline all' })).toHaveAttribute('aria-pressed', 'true');
+    await expect(arteries.locator('input[type="color"]')).toHaveValue('#ff0000');
+    const [file] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Save this view as an image' }).click()]);
+    expect(file.suggestedFilename()).toMatch(/^patient-a-ct-chest-.+\.png$/);
+    await page.getByRole('button', { name: 'Atlas colours', exact: true }).click();
+    await expect(arteries.getByRole('button', { name: /back to atlas colours/ })).toHaveCount(0);
   });
 
   test('anatomy atlas lists structures and deep-links to one shown alone on the scan', async ({ page }) => {

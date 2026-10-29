@@ -30,7 +30,7 @@ describe('3D anatomy groups and colours', () => {
     expect(groupFor('costal_cartilages')).toBe('bones');
     expect(groupFor('liver')).toBe('abdomen');
     expect(groupFor('iliopsoas_left')).toBe('muscles');
-    expect(groupFor('spinal_cord')).toBe('other');
+    expect(groupFor('spinal_cord')).toBe('brain');
   });
 
   it('colours by the atlas convention: systemic arteries red, veins blue, pulmonary arteries blue-violet', () => {

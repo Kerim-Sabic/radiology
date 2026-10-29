@@ -7,6 +7,8 @@ import type { Structure3D } from '../../viewer/anatomy3d';
 import type { Vec2 } from '../../lib/geometry';
 import { plainName } from '../../lib/provenance';
 import { inSentence } from '../../services/drill';
+import { segStyle, withGroup, withStructure } from '../../viewer/segStyle';
+import { ColorSwatch } from './SegStyleControls';
 
 export interface ThreeDProps {
   /** Anatomy models follow the reference rules: Learn mode, Review, or after submitting. */
@@ -66,7 +68,7 @@ const QUICK: Array<[string, Group3D[]]> = [
   ['Veins', ['veins']],
   ['Airways & lungs', ['airways', 'lungs']],
   ['Bones', ['bones']],
-  ['Abdomen', ['abdomen']],
+  ['Organs', ['abdomen']],
 ];
 
 type Pane = 'cut' | 'anatomy' | null;
@@ -318,14 +320,16 @@ function AnatomyPane(p: { engine: ViewerEngine; panelId: string; threeD: ThreeDP
                       apply(next);
                     }}
                   />
+                  <ColorSwatch colors={[...new Set(list.map((s) => s.color))]} label={`Colour of ${GROUP_LABEL[g]}`} onChange={(c) => segStyle.update((st) => withGroup(st, g, { color: c }))} size={12} />
                   <button className="linklike" onClick={() => setOpen((o) => new Set(o.has(g) ? [...o].filter((x) => x !== g) : [...o, g]))} aria-expanded={isOpen}>
                     {isOpen ? <ChevronDown size={12} /> : <ChevronRight size={12} />} {GROUP_LABEL[g]} <span className="faint">({list.length})</span>
                   </button>
                 </div>
                 {isOpen
                   ? list.map((s) => (
-                      <label key={s.id} className="v3d-item">
+                      <div key={s.id} className="v3d-item">
                         <input
+                          id={`v3d-${panelId}-${s.id}`}
                           type="checkbox"
                           checked={s.shown}
                           onChange={(e) => {
@@ -335,10 +339,12 @@ function AnatomyPane(p: { engine: ViewerEngine; panelId: string; threeD: ThreeDP
                             apply(next);
                           }}
                         />
-                        <span className="swatch" style={{ background: s.color }} aria-hidden />
-                        <span>{s.label}</span>
-                        {s.status === 'building' ? <span className="faint"> · building…</span> : s.status === 'empty' ? <span className="faint"> · nothing to draw</span> : null}
-                      </label>
+                        <ColorSwatch colors={[s.color]} label={`Colour of ${s.label}`} onChange={(c) => segStyle.update((st) => withStructure(st, s.key, c))} size={11} />
+                        <label htmlFor={`v3d-${panelId}-${s.id}`}>
+                          {s.label}
+                          {s.status === 'building' ? <span className="faint"> · building…</span> : s.status === 'empty' ? <span className="faint"> · nothing to draw</span> : null}
+                        </label>
+                      </div>
                     ))
                   : null}
               </div>

@@ -3,7 +3,9 @@ import { Link } from 'react-router';
 import { Check, CircleDashed, Target } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { BOOK_ANATOMY, canonicalAnatomyKey, imageFamily } from '../content/bookAnatomy';
-import { CATEGORY_COLORS, categoryFor } from '../components/ws/overlayShapes';
+import { GROUP_LABEL, GROUP_ORDER, groupFor, type Group3D } from '../viewer/anatomyMask';
+import { colorOf } from '../viewer/segStyle';
+import { useSegStyle } from '../components/ws/SegStyleControls';
 import { AI_DRAFT_BY, isAutomatic, plainName, provenanceTag } from '../lib/provenance';
 import { noteFor } from '../content/structureNotes';
 
@@ -17,26 +19,17 @@ interface Entry {
 interface Structure {
   key: string;
   name: string;
-  category: string;
+  group: Group3D;
   entries: Entry[];
 }
 
-const CATEGORY_LABEL: Record<string, string> = {
-  organ: 'Organs',
-  airway: 'Airways & lungs',
-  vessel: 'Heart & vessels',
-  bone: 'Bones',
-  muscle: 'Muscles',
-  gland: 'Glands',
-  other: 'Other',
-};
-const ORDER = ['organ', 'airway', 'vessel', 'bone', 'muscle', 'gland', 'other'];
 // The book's words where source datasets use other names, so the atlas and the checklist read the same.
 const BOOK_NAME: Record<string, string> = { colon: 'Colon (large intestine)', small_bowel: 'Small bowel (small intestine)' };
 const FAMILY_LABEL: Record<string, string> = { XR: 'X-ray', CT: 'CT', MR: 'MRI' };
 
 export default function AtlasPage() {
   const { catalog } = useApp();
+  const look = useSegStyle();
   const [q, setQ] = useState('');
   const [family, setFamily] = useState<'all' | 'XR' | 'CT' | 'MR'>('all');
   const [expertOnly, setExpertOnly] = useState(false);
@@ -52,7 +45,7 @@ export default function AtlasPage() {
         const t = catalog.targets.get(id);
         if (!t) continue;
         const key = canonicalAnatomyKey(t.classId);
-        const s = m.get(key) ?? { key, name: plainName(t.label), category: categoryFor(t), entries: [] };
+        const s = m.get(key) ?? { key, name: plainName(t.label), group: groupFor(key), entries: [] };
         if (!isAutomatic(t.provenance) && s.entries.every((e) => isAutomatic(e.provenance))) s.name = plainName(t.label); // expert wording wins
         if (BOOK_NAME[key]) s.name = BOOK_NAME[key];
         s.entries.push({ caseId: k.id, caseTitle: k.neutralTitle, targetId: id, family: imageFamily(catalog.series.get(t.seriesUid)?.modality ?? ''), provenance: t.provenance });
@@ -63,15 +56,15 @@ export default function AtlasPage() {
   }, [catalog]);
 
   const visible = useMemo(() => {
-    const out = new Map<string, Structure[]>();
+    const out = new Map<Group3D, Structure[]>();
     for (const s of structures.values()) {
       const entries = s.entries.filter((e) => (family === 'all' || e.family === family) && (!expertOnly || !isAutomatic(e.provenance)));
       if (!entries.length) continue;
       if (q && !s.name.toLowerCase().includes(q.toLowerCase()) && !s.key.includes(q.toLowerCase().replace(/\s+/g, '_'))) continue;
-      out.set(s.category, [...(out.get(s.category) ?? []), { ...s, entries }]);
+      out.set(s.group, [...(out.get(s.group) ?? []), { ...s, entries }]);
     }
     for (const arr of out.values()) arr.sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
-    return [...out.entries()].sort((a, b) => ORDER.indexOf(a[0]) - ORDER.indexOf(b[0]));
+    return [...out.entries()].sort((a, b) => GROUP_ORDER.indexOf(a[0]) - GROUP_ORDER.indexOf(b[0]));
   }, [structures, q, family, expertOnly]);
 
   const checklist = useMemo(
@@ -140,7 +133,7 @@ export default function AtlasPage() {
         {visible.map(([cat, items]) => (
           <div key={cat} className="stack" style={{ gap: 4 }}>
             <div className="faint" style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-              {CATEGORY_LABEL[cat] ?? cat} · {items.length}
+              {GROUP_LABEL[cat]} · {items.length}
             </div>
             <div className="atlas-grid">
               {items.map((s) => {
@@ -150,7 +143,7 @@ export default function AtlasPage() {
                 return (
                   <div key={s.key} className={`atlas-item${isOpen ? ' open' : ''}`}>
                     <button className="anat-item" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? null : s.key)}>
-                      <span className="dot" style={{ background: CATEGORY_COLORS[cat] ?? '#fff' }} />
+                      <span className="dot" style={{ background: colorOf(look, s.key, cat) }} />
                       <span style={{ flex: 1 }}>{s.name}</span>
                       <span className="faint" style={{ fontSize: 11 }}>
                         {patients} patient{patients === 1 ? '' : 's'}

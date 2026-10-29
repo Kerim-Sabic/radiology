@@ -5,7 +5,9 @@ import { Volume3DControls, type ThreeDProps } from './Volume3DControls';
 import type { Series } from '../../schema/content';
 import type { LoadedTarget } from '../../grading/spatialGrader';
 import type { SeriesIndex } from '../../grading/seriesIndex';
-import { shapesForPanel, shapeArea, shapeContains, CATEGORY_COLORS, type Shape } from './overlayShapes';
+import { shapesForPanel, shapeArea, shapeContains, type Shape } from './overlayShapes';
+import { colorOf, lookOf, segStyle, QUIZ_COLOR, REFERENCE_AI_COLOR, REFERENCE_COLOR } from '../../viewer/segStyle';
+import { GROUP_LABEL, GROUP_ORDER, type Group3D } from '../../viewer/anatomyMask';
 import { polygonArea } from '../../lib/geometry';
 import { layoutLabels, leaderEnd } from './labelLayout';
 import type { Vec2, Vec3 } from '../../lib/geometry';
@@ -89,6 +91,7 @@ export function ViewportPanel(p: Props) {
   const wrap = useRef<HTMLDivElement>(null);
   const { engine, panelId } = p;
   useSyncExternalStore(engine.subscribe, engine.getVersion);
+  const look = useSyncExternalStore(segStyle.subscribe, segStyle.get);
   const [probe, setProbe] = useState<{ value: number; unit: string } | null>(null);
   const [seqOpen, setSeqOpen] = useState(false);
   const [size, setSize] = useState<[number, number]>([0, 0]);
@@ -132,7 +135,7 @@ export function ViewportPanel(p: Props) {
   const anatomyShapes = useMemo(() => {
     const a = p.overlay.anatomy;
     if (!a?.on || !st?.ready || !a.targets.length) return [] as Shape[];
-    return shapesForPanel(engine, panelId, a.targets, p.seriesIndex).filter((sh) => !a.hidden.has(sh.category));
+    return shapesForPanel(engine, panelId, a.targets, p.seriesIndex).filter((sh) => !a.hidden.has(sh.group));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [engine, panelId, p.overlay.anatomy, p.seriesIndex, st?.index, st?.currentImageId, st?.zoom, st?.ready, engine.getVersion(), size[0], size[1]]);
   const [hover, setHover] = useState<{ id: string; label: string; x: number; y: number; tag: string } | null>(null);
@@ -151,7 +154,7 @@ export function ViewportPanel(p: Props) {
     const byTarget = new Map<string, { text: string; color: string; polys: Array<Array<[number, number]>> }>();
     for (const sh of drawnAnatomy) {
       if (sh.kind !== 'poly' || sh.pts.length < 3) continue;
-      const e = byTarget.get(sh.targetId) ?? { text: cleanName(sh.label), color: CATEGORY_COLORS[sh.category] ?? CATEGORY_COLORS.other, polys: [] };
+      const e = byTarget.get(sh.targetId) ?? { text: cleanName(sh.label), color: colorOf(look, sh.key, sh.group), polys: [] };
       e.polys.push(sh.pts);
       byTarget.set(sh.targetId, e);
     }
@@ -159,7 +162,15 @@ export function ViewportPanel(p: Props) {
       .filter(([, v]) => isolating || v.polys.some((pl) => polygonArea(pl) > 40))
       .map(([id, v]) => ({ id, ...v, priority: id === hover?.id ? 2 : 0 }));
     return layoutLabels(items, size[0], size[1], { preferOutside: isolating });
-  }, [drawnAnatomy, p.overlay.anatomy, isolating, size, hover?.id]);
+  }, [drawnAnatomy, p.overlay.anatomy, isolating, size, hover?.id, look]);
+
+  // Colour key: the groups drawn on this slice, each with its colours (several when its structures keep atlas colours).
+  const legend = useMemo(() => {
+    if (!look.legend || quiz || isolating || !drawnAnatomy.length || size[0] < 420 || size[1] < 300) return [];
+    const m = new Map<Group3D, Set<string>>();
+    for (const sh of drawnAnatomy) m.set(sh.group, (m.get(sh.group) ?? new Set()).add(colorOf(look, sh.key, sh.group)));
+    return GROUP_ORDER.filter((g) => m.has(g)).map((g) => ({ g, colors: [...m.get(g)!].slice(0, 4), filled: lookOf(look, g) === 'fill' }));
+  }, [drawnAnatomy, look, quiz, isolating, size]);
 
   const badgePts = useMemo(() => {
     if (!st?.ready) return [];
@@ -259,13 +270,16 @@ export function ViewportPanel(p: Props) {
         <svg className="vp-svg" aria-hidden>
           {drawnAnatomy.map((sh, i) => {
             const ai = isAutomatic(sh.provenance);
-            const color = CATEGORY_COLORS[sh.category] ?? CATEGORY_COLORS.other;
+            // A drill question keeps one neutral colour: the atlas colour of an artery or a vein would hint at the answer.
+            const color = quiz ? QUIZ_COLOR : colorOf(look, sh.key, sh.group);
+            const filled = lookOf(look, sh.group) === 'fill';
             const strong = isolating || p.overlay.anatomy!.highlightId === sh.targetId || hover?.id === sh.targetId;
             const style = {
               stroke: color,
-              strokeWidth: isolating ? 2.2 : strong ? 2 : 1,
-              fill: isolating ? `${color}38` : strong ? `${color}26` : 'none',
-              opacity: strong ? 1 : 0.7,
+              strokeWidth: look.line + (isolating ? 0.8 : strong ? 0.6 : 0),
+              strokeOpacity: strong ? 1 : 0.85,
+              fill: filled || strong ? color : 'none',
+              fillOpacity: filled ? Math.min(0.9, look.fill + (strong ? 0.15 : 0)) : isolating ? 0.22 : 0.15,
               strokeDasharray: ai ? (isolating ? '6 3' : '4 2') : undefined,
               strokeLinejoin: 'round' as const,
             };
@@ -274,6 +288,30 @@ export function ViewportPanel(p: Props) {
             if (sh.holes?.length) return <path key={i} d={ringsPath([sh.pts, ...sh.holes])} fillRule="evenodd" style={style} />;
             return <polygon key={i} points={sh.pts.map((q) => q.join(',')).join(' ')} style={style} />;
           })}
+          {legend.length
+            ? (() => {
+                const w = Math.max(...legend.map((l) => GROUP_LABEL[l.g].length)) * 6.4 + 30;
+                const h = legend.length * 16 + 8;
+                const x0 = size[0] - w - 30;
+                const y0 = size[1] - h - 12;
+                return (
+                  <g className="vp-legend">
+                    <rect x={x0} y={y0} width={w} height={h} rx={5} fill="rgba(10,12,15,0.8)" stroke="rgba(255,255,255,0.14)" />
+                    {legend.map((l, i) => (
+                      <g key={l.g} transform={`translate(${x0 + 8},${y0 + 6 + i * 16})`}>
+                        {l.colors.map((c, j) => (
+                          <rect key={c} x={(j * 11) / l.colors.length} y={1} width={11 / l.colors.length} height={11} fill={c} fillOpacity={l.filled ? 0.9 : 0.3} />
+                        ))}
+                        <rect x={0} y={1} width={11} height={11} fill="none" stroke={l.colors[0]} strokeWidth={1.2} />
+                        <text x={17} y={10.5} fill="#e2e8f0" fontSize={11}>
+                          {GROUP_LABEL[l.g]}
+                        </text>
+                      </g>
+                    ))}
+                  </g>
+                );
+              })()
+            : null}
           {labels.placed.map((l) => {
             const end = leaderEnd(l.anchor, l.box);
             return (
@@ -340,8 +378,17 @@ export function ViewportPanel(p: Props) {
         <svg className="vp-svg" aria-hidden>
           {shapes.map((sh, i) => {
             const hl = p.overlay.highlightIds.has(sh.targetId);
-            const color = sh.provenance === 'ai_draft' ? '#f2a65a' : '#ffd166';
-            const style = { stroke: color, strokeWidth: hl ? 2.2 : 1.4, fill: hl ? 'rgba(255,209,102,0.12)' : 'none', opacity: p.overlay.opacity, strokeDasharray: sh.provenance === 'ai_draft' ? '5 3' : undefined };
+            // The answer outlines take the findings colour and fill when the learner chose them.
+            const color = look.groups.findings?.color ?? (sh.provenance === 'ai_draft' ? REFERENCE_AI_COLOR : REFERENCE_COLOR);
+            const filled = lookOf(look, 'findings') === 'fill';
+            const style = {
+              stroke: color,
+              strokeWidth: Math.max(1.4, look.line) + (hl ? 0.8 : 0),
+              fill: filled || hl ? color : 'none',
+              fillOpacity: filled ? Math.min(0.9, look.fill + (hl ? 0.1 : 0)) : 0.12,
+              opacity: p.overlay.opacity,
+              strokeDasharray: sh.provenance === 'ai_draft' ? '5 3' : undefined,
+            };
             if (sh.kind === 'circle') return <circle key={i} cx={sh.pts[0][0]} cy={sh.pts[0][1]} r={6} style={style} />;
             if (sh.kind === 'seg') return <line key={i} x1={sh.pts[0][0]} y1={sh.pts[0][1]} x2={sh.pts[1][0]} y2={sh.pts[1][1]} style={style} />;
             if (sh.holes?.length) return <path key={i} d={ringsPath([sh.pts, ...sh.holes])} fillRule="evenodd" style={style} />;
@@ -360,7 +407,7 @@ export function ViewportPanel(p: Props) {
               const cx = Math.min(Math.max(sh.pts.reduce((a, q) => a + q[0], 0) / sh.pts.length, half), Math.max(half, size[0] - half));
               const cy = Math.min(Math.max(sh.pts.reduce((a, q) => a + q[1], 0) / sh.pts.length, 14), Math.max(14, size[1] - 8));
               return (
-                <text key={`l-${sh.targetId}`} x={cx} y={cy} fill="#ffd166" fontSize={11} textAnchor="middle" style={{ paintOrder: 'stroke', stroke: '#000', strokeWidth: 3, opacity: p.overlay.opacity }}>
+                <text key={`l-${sh.targetId}`} x={cx} y={cy} fill={look.groups.findings?.color ?? REFERENCE_COLOR} fontSize={11} textAnchor="middle" style={{ paintOrder: 'stroke', stroke: '#000', strokeWidth: 3, opacity: p.overlay.opacity }}>
                   {cleanName(sh.label)}
                 </text>
               );

@@ -17,6 +17,7 @@ import type { LoadedTarget } from '../grading/spatialGrader';
 import { canonicalAnatomyKey } from '../content/bookAnatomy';
 import { cleanLabel, provenanceTag } from '../lib/provenance';
 import { colorFor, firstHit, groupFor, opacityFor, rasterize, smoothField, type Group3D, type Mask, type SliceRings } from './anatomyMask';
+import { colorOf, segStyle } from './segStyle';
 import { normalize, sub, type Vec2, type Vec3 } from '../lib/geometry';
 
 export interface Structure3D {
@@ -24,6 +25,7 @@ export interface Structure3D {
   key: string;
   label: string;
   group: Group3D;
+  /** The learner's colour for it (atlas colour unless changed; see segStyle). */
   color: string;
   /** Where the outline comes from ("AI draft by Horalix", "source manual"…). */
   tag: string;
@@ -78,6 +80,7 @@ export class Anatomy3D {
   private disposed = false;
   private targetKey = '';
   private sopIndex: Map<string, number>;
+  private unsubscribe: () => void;
 
   constructor(
     private vp: Vp3D,
@@ -85,6 +88,13 @@ export class Anatomy3D {
     private onChange: () => void,
   ) {
     this.sopIndex = new Map(source.sopUids.map((s, i) => [s, i]));
+    // Colours chosen in the anatomy list or the structures pane repaint the models at once.
+    this.unsubscribe = segStyle.subscribe(() => {
+      if (this.disposed) return;
+      this.restyle();
+      this.vp.render();
+      this.onChange();
+    });
   }
 
   /** Structures available for this series; one per anatomical key (the whole-anatomy layer wins over other packs). */
@@ -117,7 +127,8 @@ export class Anatomy3D {
   }
 
   state(): Anatomy3DState {
-    const structures = [...this.entries.values()].map((e) => ({ ...e.info })).sort((a, b) => a.label.localeCompare(b.label));
+    const style = segStyle.get();
+    const structures = [...this.entries.values()].map((e) => ({ ...e.info, color: colorOf(style, e.info.key, e.info.group) })).sort((a, b) => a.label.localeCompare(b.label));
     return { structures, showVolume: this.showVolume, building: this.building, highlight: this.highlightId, quiz: this.quiz };
   }
 
@@ -192,6 +203,7 @@ export class Anatomy3D {
 
   dispose() {
     this.disposed = true;
+    this.unsubscribe();
     const uids = [...this.entries.values()].filter((e) => e.actor).map((e) => this.uid(e.info.id));
     try {
       if (uids.length) this.vp.removeActors(uids);
@@ -324,12 +336,13 @@ export class Anatomy3D {
   }
 
   private restyle() {
+    const style = segStyle.get();
     for (const e of this.entries.values()) {
       if (!e.actor) continue;
       const prop = e.actor.getProperty();
       const dim = this.ghost && this.highlightId && e.info.id !== this.highlightId;
       const focus = this.highlightId === e.info.id;
-      prop.setColor(...rgb(dim ? GHOST : e.info.color));
+      prop.setColor(...rgb(dim ? GHOST : colorOf(style, e.info.key, e.info.group)));
       prop.setOpacity(dim ? 0.12 : focus ? 1 : opacityFor(e.info.key));
       prop.setAmbient(focus ? 0.35 : 0.18);
     }

@@ -1148,6 +1148,92 @@ button.chip[aria-pressed='true'] {
 .anat-item.here {
   font-weight: 600;
 }
+.anat-group {
+  display: flex;
+  flex-direction: column;
+  margin-top: 6px;
+}
+.anat-group.off > .anat-item {
+  opacity: 0.45;
+}
+.anat-group-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0 3px;
+  border-bottom: 1px solid var(--line);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-2);
+}
+.anat-group-name {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.anat-group-head .btn.sm {
+  text-transform: none;
+  letter-spacing: 0;
+}
+.look-switch .btn.sm {
+  padding: 1px 7px;
+  font-size: 11px;
+  height: 22px;
+}
+.btn.icon {
+  padding: 2px 4px;
+}
+/* A colour swatch that opens the system colour picker. */
+.color-swatch {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35), 0 0 0 2px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+.color-swatch:focus-within {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+.color-swatch input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+.segbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  padding: 6px 8px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--panel-2);
+  font-size: 12px;
+}
+.segbar .btn.sm {
+  height: 24px;
+  padding: 0 8px;
+  font-size: 11.5px;
+}
+.segbar-range {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-2);
+}
+.segbar-range input {
+  width: 80px;
+}
 .book-contents-toggle {
   display: none;
 }

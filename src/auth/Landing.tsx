@@ -63,13 +63,13 @@ const MODALITIES: Array<{ id: string; name: string; img: string; alt: string; ti
 
 const FEATURES: Array<{ icon: ReactNode; title: string; text: string }> = [
   { icon: <Link2 />, title: 'Linked views', text: 'Scroll one plane and the others follow, with reference lines showing where you are. Double-click to jump all views to a point.' },
-  { icon: <Rotate3d />, title: '3D you can take apart', text: 'Cut the volume at the slice you are reading, or show only the heart, the arteries, the veins or the finding itself.' },
+  { icon: <Rotate3d />, title: '3D you can take apart', text: 'Cut the volume at the slice you are reading, or show only the heart, the arteries, the veins or the finding itself, in colours you choose.' },
   { icon: <Crosshair />, title: 'Graded where you mark', text: 'Mark what you see on the image. Level, side, position and name are checked separately against the expert outline.' },
   { icon: <BookOpen />, title: 'Linked to the book', text: 'Every task links to the page of Learning Radiology (5th ed.) that explains it, and its figure where there is one, then brings you back to your scan.' },
   { icon: <Repeat />, title: 'Drills that remember', text: 'Point to structures and findings. What you miss comes back later, on a different patient, until you know it.' },
   { icon: <Siren />, title: 'On-call shifts', text: 'A run of unknown cases with an optional clock, read with no hints, and a scored report at the end.' },
   { icon: <Search />, title: 'Search by condition', text: 'Type pneumothorax or pulmonary embolism and see every patient who has it, where it is, and the book pages.' },
-  { icon: <Bone />, title: 'Anatomy atlas', text: 'Pick any structure, a rib, a vertebra, a lobe, and see it alone on a real CT or radiograph.' },
+  { icon: <Bone />, title: 'Anatomy atlas', text: 'Pick any structure, a rib, a vertebra, a lobe, and see it alone on a real CT or radiograph, outlined or filled in the colour you choose.' },
   { icon: <ListChecks />, title: 'Search-pattern coach', text: 'A step-by-step review for chest films, CT and MRI that shows each step’s structures together, so you never skip one.' },
 ];
 

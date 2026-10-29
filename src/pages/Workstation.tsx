@@ -44,6 +44,8 @@ import {
   Play,
   Pause,
   Search as SearchIcon,
+  PaintBucket,
+  ImageDown,
 } from 'lucide-react';
 import '../styles/viewer3d.css';
 import { useApp } from '../app/AppContext';
@@ -54,6 +56,9 @@ import { secondsLeft, shiftUrl, type OncallShift, type ShiftItem } from '../serv
 
 const MARK_TOOLS = new Set<ToolId>(['point', 'arrow', 'box', 'outline', 'eraser']);
 import { arrowLabelHook } from '../viewer/csInit';
+import { lookOf, segStyle, withLookAll } from '../viewer/segStyle';
+import { GROUP_ORDER } from '../viewer/anatomyMask';
+import { downloadBlob, shortLicense, slug, viewToPng } from '../lib/viewImage';
 import { ViewportPanel, type MarkBadge } from '../components/ws/ViewportPanel';
 import { TaskPanel } from '../components/ws/TaskPanel';
 import { BookPanel } from '../components/ws/BookPanel';
@@ -145,7 +150,10 @@ export default function Workstation() {
   const [timeLeft, setTimeLeft] = useState<number | null>(null);
   const [anatomyOn, setAnatomyOn] = useState<boolean | null>(null); // null = mode default
   const [anatomyNames, setAnatomyNames] = useState(false);
-  const [anatomyHidden, setAnatomyHidden] = useState<Set<string>>(new Set(['muscle']));
+  const [anatomyHidden, setAnatomyHidden] = useState<Set<string>>(new Set(['muscles']));
+  const look = useSyncExternalStore(segStyle.subscribe, segStyle.get);
+  const allFilled = GROUP_ORDER.every((g) => lookOf(look, g) === 'fill');
+  const toggleFill = () => segStyle.update((x) => withLookAll(x, allFilled ? 'outline' : 'fill'));
   const [anatomyHighlight, setAnatomyHighlight] = useState<string | null>(null);
   const [isolateId, setIsolateId] = useState<string | null>(null);
   const [anatomyTargets, setAnatomyTargets] = useState<LoadedTarget[]>([]);
@@ -696,6 +704,29 @@ export default function Workstation() {
     toast.show('Bookmark saved (series, slice, camera and window).');
   };
 
+  // The focused view as a PNG for notes, credited to its image source (never while an Assess answer is open:
+  // the dataset name can hint at the diagnosis).
+  const saveImage = async () => {
+    const pd = panels.find((x) => x.id === focused);
+    const s = pd ? catalog?.series.get(pd.seriesUid) : undefined;
+    const el = document.querySelector<HTMLElement>(`[data-panel="${focused}"]`);
+    const st = engine.panelState(focused);
+    if (!el || !s || !kase || !catalog) return;
+    const subject = catalog.subjects.get(kase.subjectKey);
+    const src = catalog.packs.find((x) => x.id === kase.packId)?.manifest.sources.find((x) => x.id === subject?.sourceId);
+    const where = st && st.kind !== '3d' ? `image ${st.index + 1}/${st.count}` : '3D';
+    const blob = await viewToPng(el, [
+      [kase.neutralTitle, `${s.modality} ${s.description ?? ''}`.trim(), where].filter(Boolean).join(' · '),
+      [src ? `Source: ${src.name} (${shortLicense(src.license)})` : '', 'radiology.monster'].filter(Boolean).join(' · '),
+    ]);
+    if (!blob) {
+      toast.show('This view could not be saved as an image.');
+      return;
+    }
+    downloadBlob(blob, `${slug(kase.neutralTitle)}-${slug(s.description || s.modality)}-${st && st.kind !== '3d' ? st.index + 1 : '3d'}.png`);
+    toast.show('Image saved, with the outlines and the image source.');
+  };
+
   // ---------------------------------------------------------------- keyboard
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -748,6 +779,10 @@ export default function Workstation() {
       else if (k === 'r') engine.reset(focused);
       else if (k === 'i') engine.invert(focused);
       else if (k === 'f') toggleFullscreen();
+      else if (k === 'v' && refAllowed) {
+        setAnatomyOn(true);
+        toggleFill();
+      } else if (k === 'n' && anatomyVisible) setAnatomyNames((v) => !v);
       else if (k === '?') setHelpOpen(true);
       else if (k === '[') setLeftOpen((v) => !v);
       else if (k === ']') setRightOpen((v) => !v);
@@ -1242,6 +1277,22 @@ export default function Workstation() {
         >
           <Layers size={17} />
         </IconButton>
+        {refAllowed ? (
+          <IconButton
+            label={allFilled ? 'Outline the structures (no fill)' : 'Fill the structures with colour'}
+            shortcut="V"
+            active={allFilled && anatomyVisible}
+            onClick={() => {
+              setAnatomyOn(true);
+              toggleFill();
+            }}
+          >
+            <PaintBucket size={17} />
+          </IconButton>
+        ) : null}
+        <IconButton label={assessMasked ? 'Save image (after you submit)' : 'Save this view as an image'} disabled={assessMasked} onClick={() => void saveImage()}>
+          <ImageDown size={17} />
+        </IconButton>
         <IconButton label="Bookmark this view" onClick={addBookmark}>
           <Bookmark size={17} />
         </IconButton>
@@ -1447,7 +1498,7 @@ export default function Workstation() {
               family={imageFamily(focusedSeries?.modality ?? '')}
               onToggle={(v) => setAnatomyOn(v)}
               onShowNames={setAnatomyNames}
-              onToggleCategory={(c) =>
+              onToggleGroup={(c) =>
                 setAnatomyHidden((h) => {
                   const n = new Set(h);
                   if (n.has(c)) n.delete(c);
@@ -1549,6 +1600,7 @@ export default function Workstation() {
                   ['L G E', 'Length, Angle, Eraser'],
                   ['1–6', 'Window presets for this series'],
                   ['I  R  F', 'Invert, Reset, Full screen'],
+                  ['V  N', 'Filled or outlined structures, names on the image (Learn, Review, after submitting)'],
                   ['X', 'Crosshairs: click to move all MPR planes'],
                   ['K', 'Link / unlink views (scroll together, reference lines)'],
                   ['Space', 'Play / stop the slices as a cine loop'],
@@ -1661,12 +1713,19 @@ function CaseInfo({
     <div className="stack">
       <div className="stack" style={{ gap: 4 }}>
         <h3>Patient &amp; source</h3>
-        <small className="muted">
-          Subject <span className="mono">{kase.subjectKey}</span>
-        </small>
-        <small className="muted">{subject?.linkageEvidence}</small>
+        {/* The subject key and linkage name the source dataset, which can hint at the diagnosis while assessing. */}
+        {!assessMasked ? (
+          <>
+            <small className="muted">
+              Subject <span className="mono">{kase.subjectKey}</span>
+            </small>
+            <small className="muted">{subject?.linkageEvidence}</small>
+          </>
+        ) : null}
         {kase.clinicalContext ? <p>Context: {kase.clinicalContext}</p> : null}
-        {source ? (
+        {source && assessMasked ? (
+          <small className="faint">The image source and its licence appear after you submit: a dataset's name can hint at the diagnosis.</small>
+        ) : source ? (
           <small className="faint">
             {source.name} · {source.license} ·{' '}
             <a href={source.doi ? `https://doi.org/${source.doi.replace(/^https?:\/\/doi\.org\//, '')}` : source.url} target="_blank" rel="noreferrer">

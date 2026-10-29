@@ -5,7 +5,7 @@
  */
 import type { Vec3 } from '../lib/geometry';
 
-export type Group3D = 'findings' | 'heart' | 'arteries' | 'veins' | 'airways' | 'lungs' | 'bones' | 'abdomen' | 'muscles' | 'other';
+export type Group3D = 'findings' | 'heart' | 'arteries' | 'veins' | 'airways' | 'lungs' | 'brain' | 'bones' | 'abdomen' | 'glands' | 'muscles' | 'other';
 
 export const GROUP_LABEL: Record<Group3D, string> = {
   findings: 'Findings (expert outlines)',
@@ -14,12 +14,30 @@ export const GROUP_LABEL: Record<Group3D, string> = {
   veins: 'Veins',
   airways: 'Airways',
   lungs: 'Lungs',
+  brain: 'Brain & spinal cord',
   bones: 'Bones',
-  abdomen: 'Abdominal organs',
+  abdomen: 'Organs',
+  glands: 'Glands',
   muscles: 'Muscles',
   other: 'Other',
 };
-export const GROUP_ORDER: Group3D[] = ['findings', 'heart', 'arteries', 'veins', 'airways', 'lungs', 'bones', 'abdomen', 'muscles', 'other'];
+export const GROUP_ORDER: Group3D[] = ['findings', 'heart', 'arteries', 'veins', 'airways', 'lungs', 'brain', 'bones', 'abdomen', 'glands', 'muscles', 'other'];
+
+/** One colour that stands for each group (its swatch); the structures inside keep their own atlas colours until a group colour is chosen. */
+export const GROUP_COLOR: Record<Group3D, string> = {
+  findings: '#facc15',
+  heart: '#f43f5e',
+  arteries: '#dc2626',
+  veins: '#3b82f6',
+  airways: '#67e8f9',
+  lungs: '#f9a8d4',
+  brain: '#f5d0fe',
+  bones: '#f5f0e6',
+  abdomen: '#d97706',
+  glands: '#34d399',
+  muscles: '#ea580c',
+  other: '#94a3b8',
+};
 
 /** Group of a canonical anatomy key (see canonicalAnatomyKey). Pulmonary arteries are arteries, pulmonary veins veins. */
 export function groupFor(key: string): Group3D {
@@ -29,8 +47,10 @@ export function groupFor(key: string): Group3D {
   if (/vein|vena|^portal/.test(key)) return 'veins';
   if (/^trachea|bronch/.test(key)) return 'airways';
   if (/^lung/.test(key)) return 'lungs';
-  if (/rib|vertebra|^sacrum|^femur|^humerus|^scapula|^clavicle|^sternum|^hip|^skull|^spine|costal/.test(key)) return 'bones';
-  if (/^(liver|gallbladder|spleen|pancreas|kidney|adrenal|stomach|duodenum|small_bowel|colon|rectum|bladder|prostate|uterus|esophagus)/.test(key)) return 'abdomen';
+  if (/^(brain|cerebr|cerebell|spinal_cord|spinal_canal)/.test(key)) return 'brain';
+  if (/rib|vertebra|^sacrum|^femur|^femoral_head|^humerus|^scapula|^clavicle|^sternum|^hip|^skull|^spine|costal|^bones?$/.test(key)) return 'bones';
+  if (/^(thyroid|thymus|adrenal|breast|gonad|prostat)/.test(key)) return 'glands';
+  if (/^(liver|gallbladder|spleen|pancreas|kidney|stomach|duodenum|small_bowel|colon|rectum|bladder|uterus|esophagus)/.test(key)) return 'abdomen';
   if (/gluteus|iliopsoas|autochthon|diaphragm|muscle/.test(key)) return 'muscles';
   return 'other';
 }
@@ -56,20 +76,27 @@ export function colorFor(key: string): string {
     [/^trachea|bronch/, '#67e8f9'],
     [/^lung/, '#f9a8d4'],
     [/costal/, '#cbd5e1'],
-    [/rib|vertebra|^sacrum|^femur|^humerus|^scapula|^clavicle|^sternum|^hip|^skull|^spine/, '#f5f0e6'],
+    [/rib|vertebra|^sacrum|^femur|^femoral_head|^humerus|^scapula|^clavicle|^sternum|^hip|^skull|^spine|^bones?$/, '#f5f0e6'],
     [/^liver/, '#b45309'],
     [/^gallbladder/, '#65a30d'],
     [/^spleen/, '#7c3aed'],
     [/^kidney_cyst/, '#fde68a'],
     [/^kidney/, '#d97706'],
-    [/^adrenal/, '#facc15'],
+    [/^adrenal/, '#2dd4bf'],
     [/^pancreas/, '#fcd34d'],
     [/^(stomach|esophagus)/, '#fb923c'],
     [/^(duodenum|small_bowel)/, '#fdba74'],
     [/^(colon|rectum)/, '#c2410c'],
     [/^bladder/, '#fde047'],
-    [/^(prostate|thyroid)/, '#34d399'],
+    [/^(prostat|thyroid)/, '#34d399'],
     [/^spinal_cord/, '#fef08a'],
+    [/^spinal_canal/, '#fde68a'],
+    [/^brain_ventricles/, '#38bdf8'],
+    [/^(brain|cerebr|cerebell)/, '#f5d0fe'],
+    [/^thymus/, '#a3e635'],
+    [/^breast/, '#fbcfe8'],
+    [/^gonad/, '#f472b6'],
+    [/^fetal_head/, '#fcd34d'],
     [/gluteus|iliopsoas|autochthon|diaphragm|muscle/, '#ea580c'],
   ];
   for (const [re, c] of rules) if (re.test(key)) return c;

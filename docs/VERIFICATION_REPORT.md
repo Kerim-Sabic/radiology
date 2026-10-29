@@ -251,6 +251,29 @@ Two independent reviews ran on 28 October: one checked every outline anatomicall
 
 **Tests on the production build (merged with the monthly/yearly plans):** 356 unit tests; 87 browser tests in Chromium and Firefox (7 skipped as before), including the landing tour, quick search from the reading room, and today's square on the activity calendar.
 
+## 3f. Colours and fill for outlines, colour key, saved images (29 October, afternoon)
+
+**Colours and fill** (`src/viewer/segStyle.ts`):
+- Every group in the Anatomy tab (heart, arteries, veins, airways, lungs, brain & spinal cord, bones, organs, glands, muscles) has a colour swatch, *Outline / Filled* and a show/hide tick box. *Fill all / Outline all*, fill strength, line width and *Atlas colours* sit above the list; a structure shown alone can get its own colour.
+- Until the learner picks a colour, slices use the same atlas colours as the 3D models (systemic arteries red, veins blue, pulmonary arteries blue-violet). Before this, slices used one pink for the heart, arteries and veins alike.
+- One style for axial slices, the coronal, sagittal and oblique reformats, the 3D models (recoloured live) and the Atlas page. It is kept in this browser (`localStorage`, read back field by field).
+- Brain & spinal cord, glands and whole bones (`bones`, `femoral_head`) are now groups of their own: they used to fall into *Other*.
+
+**Colour key, keys and toolbar:**
+- A colour key on the image lists the groups drawn on that slice. It is hidden on small panels, while a structure is shown alone, and in drills.
+- **V** fills or outlines everything, **N** toggles names, and a fill button sits beside the anatomy button.
+
+**Drills:** the asked structure is drawn in one neutral colour. It used to carry its group's colour, which hinted at the answer (vessel pink).
+
+**Save image:** downloads the focused view as a PNG with its outlines, marks, colour key and orientation letters. A footer gives the neutral case title, series, slice, and the image source with a short licence name (CC BY 4.0…).
+
+**Assess leakage fixed:** while an Assess answer is open, the Case tab no longer shows the source dataset, the subject key or the linkage note, because a dataset's name (for example a pulmonary-embolism or stroke collection) can hint at the diagnosis. *Save image* waits for the submission too.
+
+**Tests:**
+- Unit: `tests/segStyle.test.ts` (precedence structure → group → atlas, outline/fill per group and for all, reset, defensive parsing, new groups) and `tests/viewImage.test.ts` (licence names, file names, footer fitting).
+- Browser: arteries red and filled on the slice while the veins stay outlined, the choice kept after a reload, **V** both ways, the download, and *Atlas colours*. The Assess test also checks the hidden source.
+- Totals on the production build: 364 unit tests; 89 browser tests in Chromium and Firefox (7 skipped as before).
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:
