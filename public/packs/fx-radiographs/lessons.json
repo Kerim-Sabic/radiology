@@ -6,7 +6,7 @@
   {
    "id": "fx-img0000019",
    "packId": "fx-radiographs",
-   "neutralTitle": "Radiograph, wrist and distal forearm · FracAtlas IMG0000019",
+   "neutralTitle": "Patient CG · Radiograph, wrist and distal forearm",
    "learnTitle": "Fracture: wrist and distal forearm (expert outline)",
    "subjectKey": "figshare:FracAtlas:IMG0000019",
    "studyUids": [
@@ -73,7 +73,7 @@
   {
    "id": "fx-img0000151",
    "packId": "fx-radiographs",
-   "neutralTitle": "Radiograph, ankle · FracAtlas IMG0000151",
+   "neutralTitle": "Patient CH · Radiograph, ankle",
    "learnTitle": "Fracture: ankle (expert outline)",
    "subjectKey": "figshare:FracAtlas:IMG0000151",
    "studyUids": [
@@ -140,7 +140,7 @@
   {
    "id": "fx-img0002302",
    "packId": "fx-radiographs",
-   "neutralTitle": "Radiograph, shoulder and proximal humerus · FracAtlas IMG0002302",
+   "neutralTitle": "Patient CI · Radiograph, shoulder and proximal humerus",
    "learnTitle": "Fracture: shoulder and proximal humerus (expert outline)",
    "subjectKey": "figshare:FracAtlas:IMG0002302",
    "studyUids": [
@@ -207,7 +207,7 @@
   {
    "id": "fx-img0002308",
    "packId": "fx-radiographs",
-   "neutralTitle": "Radiograph, knee and proximal tibia · FracAtlas IMG0002308",
+   "neutralTitle": "Patient CJ · Radiograph, knee and proximal tibia",
    "learnTitle": "Fracture: knee and proximal tibia (expert outline)",
    "subjectKey": "figshare:FracAtlas:IMG0002308",
    "studyUids": [
@@ -274,7 +274,7 @@
   {
    "id": "fx-img0002337",
    "packId": "fx-radiographs",
-   "neutralTitle": "Radiograph, hip and proximal femur · FracAtlas IMG0002337",
+   "neutralTitle": "Patient CK · Radiograph, hip and proximal femur",
    "learnTitle": "Fracture: hip and proximal femur (expert outline)",
    "subjectKey": "figshare:FracAtlas:IMG0002337",
    "studyUids": [

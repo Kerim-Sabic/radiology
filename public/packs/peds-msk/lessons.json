@@ -6,7 +6,7 @@
   {
    "id": "peds-wrist-3390",
    "packId": "peds-msk",
-   "neutralTitle": "Wrist radiographs, child · GRAZPEDWRI-DX 3390",
+   "neutralTitle": "Patient DI · Wrist radiographs, child",
    "learnTitle": "Salter-Harris II fracture of the distal radius (radiologist box)",
    "subjectKey": "figshare:GRAZPEDWRI-DX:3390",
    "studyUids": [
@@ -73,7 +73,7 @@
   {
    "id": "peds-wrist-3853",
    "packId": "peds-msk",
-   "neutralTitle": "Wrist radiographs, child · GRAZPEDWRI-DX 3853",
+   "neutralTitle": "Patient DJ · Wrist radiographs, child",
    "learnTitle": "Salter-Harris II fracture of the distal radius (radiologist box)",
    "subjectKey": "figshare:GRAZPEDWRI-DX:3853",
    "studyUids": [
@@ -140,7 +140,7 @@
   {
    "id": "peds-wrist-0030",
    "packId": "peds-msk",
-   "neutralTitle": "Wrist radiographs, child · GRAZPEDWRI-DX 0030",
+   "neutralTitle": "Patient DK · Wrist radiographs, child",
    "learnTitle": "Incomplete (torus/buckle or greenstick) fracture of the distal radius (radiologist box)",
    "subjectKey": "figshare:GRAZPEDWRI-DX:30",
    "studyUids": [
@@ -185,7 +185,7 @@
   {
    "id": "peds-wrist-0071",
    "packId": "peds-msk",
-   "neutralTitle": "Wrist radiographs, child · GRAZPEDWRI-DX 0071",
+   "neutralTitle": "Patient DL · Wrist radiographs, child",
    "learnTitle": "Incomplete (torus/buckle or greenstick) fracture of the distal radius (radiologist box)",
    "subjectKey": "figshare:GRAZPEDWRI-DX:71",
    "studyUids": [
@@ -230,7 +230,7 @@
   {
    "id": "knee-kl-196c5239",
    "packId": "peds-msk",
-   "neutralTitle": "Knee radiograph · Digital Knee X-ray 196c5239",
+   "neutralTitle": "Patient DM · Knee radiograph",
    "learnTitle": "Knee: Kellgren-Lawrence grade 0 (graded by two experts; not outlined)",
    "subjectKey": "mendeley:Digital-Knee-X-ray:196c52391d8a",
    "studyUids": [
@@ -297,7 +297,7 @@
   {
    "id": "knee-kl-0b79036f",
    "packId": "peds-msk",
-   "neutralTitle": "Knee radiograph · Digital Knee X-ray 0b79036f",
+   "neutralTitle": "Patient DN · Knee radiograph",
    "learnTitle": "Knee: Kellgren-Lawrence grade 2 (graded by two experts; not outlined)",
    "subjectKey": "mendeley:Digital-Knee-X-ray:0b79036fc768",
    "studyUids": [
@@ -364,7 +364,7 @@
   {
    "id": "knee-kl-bbbd048a",
    "packId": "peds-msk",
-   "neutralTitle": "Knee radiograph · Digital Knee X-ray bbbd048a",
+   "neutralTitle": "Patient DO · Knee radiograph",
    "learnTitle": "Knee: Kellgren-Lawrence grade 4 (graded by two experts; not outlined)",
    "subjectKey": "mendeley:Digital-Knee-X-ray:bbbd048a1720",
    "studyUids": [

@@ -6,7 +6,7 @@
   {
    "id": "pe-pat005",
    "packId": "pe-cta",
-   "neutralTitle": "CT chest with contrast · FUMPE PAT005",
+   "neutralTitle": "Patient CB · CT chest with contrast",
    "learnTitle": "Pulmonary embolism on CT pulmonary angiography (radiologists' mask)",
    "subjectKey": "figshare:FUMPE:PAT005",
    "studyUids": [
@@ -44,7 +44,7 @@
   {
    "id": "pe-pat021",
    "packId": "pe-cta",
-   "neutralTitle": "CT chest with contrast · FUMPE PAT021",
+   "neutralTitle": "Patient CC · CT chest with contrast",
    "learnTitle": "Pulmonary embolism on CT pulmonary angiography (radiologists' mask)",
    "subjectKey": "figshare:FUMPE:PAT021",
    "studyUids": [

@@ -898,7 +898,7 @@ export const CONDITIONS: Condition[] = [
       { kind: 'finding', classIds: ['finding:fracture'], note: 'Fracture outlined by experts on the radiograph (FracAtlas)' },
       {
         kind: 'finding',
-        classIds: ['finding:physeal_fracture', 'finding:incomplete_fracture'],
+        classIds: ['finding:physeal_fracture', 'finding:incomplete_fracture', 'finding:complete_fracture'],
         note: "Children's distal radius fractures boxed on both wrist views; the type comes from the dataset's fracture code (GRAZPEDWRI-DX)",
       },
     ],
@@ -1210,7 +1210,7 @@ export const CONDITIONS: Condition[] = [
       {
         kind: 'finding',
         classIds: ['finding:breast_mass'],
-        note: 'Mass outlined on mammograms (CBIS-DDSM; pathology in the label where the dataset gives it) or by a radiologist on breast ultrasound (Breast-Lesions-USG; biopsy-proven)',
+        note: 'Mass outlined on mammograms (CBIS-DDSM; pathology in the label where the dataset gives it) or by a radiologist on breast ultrasound (Breast-Lesions-USG; proven by biopsy, or benign on follow-up)',
       },
     ],
   },

@@ -84,7 +84,7 @@
   {
    "uid": "2.25.309539425087975497702642986248125444378",
    "subjectKey": "tcia:CBIS-DDSM:P_00021",
-   "description": "Mammography (CBIS-DDSM)",
+   "description": "Mammography",
    "modalities": [
     "MG"
    ],
@@ -102,7 +102,7 @@
   {
    "uid": "2.25.183840859607545224920292625153210576600",
    "subjectKey": "tcia:CBIS-DDSM:P_00039",
-   "description": "Mammography (CBIS-DDSM)",
+   "description": "Mammography",
    "modalities": [
     "MG"
    ],
@@ -118,7 +118,7 @@
   {
    "uid": "2.25.74317700285158014964099942142858096033",
    "subjectKey": "tcia:CBIS-DDSM:P_00051",
-   "description": "Mammography (CBIS-DDSM)",
+   "description": "Mammography",
    "modalities": [
     "MG"
    ],
@@ -134,7 +134,7 @@
   {
    "uid": "2.25.153979521194258539668318169225502893396",
    "subjectKey": "tcia:CBIS-DDSM:P_00307",
-   "description": "Mammography (CBIS-DDSM)",
+   "description": "Mammography",
    "modalities": [
     "MG"
    ],
@@ -150,7 +150,7 @@
   {
    "uid": "2.25.191243280400066920158282646978931093627",
    "subjectKey": "tcia:CBIS-DDSM:P_00425",
-   "description": "Mammography (CBIS-DDSM)",
+   "description": "Mammography",
    "modalities": [
     "MG"
    ],
@@ -179,7 +179,7 @@
    "roleNote": "Screening-film mammogram, left CC view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Left CC",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "CC",
@@ -252,7 +252,7 @@
    "roleNote": "Screening-film mammogram, left MLO view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Left MLO",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "MLO",
@@ -325,7 +325,7 @@
    "roleNote": "Screening-film mammogram, right CC view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Right CC",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "CC",
@@ -398,7 +398,7 @@
    "roleNote": "Screening-film mammogram, right MLO view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Right MLO",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "MLO",
@@ -471,7 +471,7 @@
    "roleNote": "Screening-film mammogram, right CC view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Right CC",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "CC",
@@ -544,7 +544,7 @@
    "roleNote": "Screening-film mammogram, right MLO view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Right MLO",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "MLO",
@@ -617,7 +617,7 @@
    "roleNote": "Screening-film mammogram, left CC view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Left CC",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "CC",
@@ -690,7 +690,7 @@
    "roleNote": "Screening-film mammogram, left MLO view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Left MLO",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "MLO",
@@ -763,7 +763,7 @@
    "roleNote": "Screening-film mammogram, left CC view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Left CC",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "CC",
@@ -836,7 +836,7 @@
    "roleNote": "Screening-film mammogram, left MLO view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Left MLO",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "MLO",
@@ -909,7 +909,7 @@
    "roleNote": "Screening-film mammogram, right CC view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Right CC",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "CC",
@@ -982,7 +982,7 @@
    "roleNote": "Screening-film mammogram, right MLO view (CBIS-DDSM).",
    "acquisition": {
     "SeriesDescription": "Right MLO",
-    "StudyDescription": "Mammography (CBIS-DDSM)",
+    "StudyDescription": "Mammography",
     "ImageType": "DERIVED\\SECONDARY",
     "BodyPartExamined": "BREAST",
     "ViewPosition": "MLO",

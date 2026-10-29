@@ -6,7 +6,7 @@
   {
    "id": "stroke-isles-0015",
    "packId": "stroke-mri",
-   "neutralTitle": "MRI brain, diffusion · ISLES 2022 case 15",
+   "neutralTitle": "Patient CL · MRI brain",
    "learnTitle": "Ischemic stroke on diffusion MRI (expert-approved lesion mask)",
    "subjectKey": "zenodo:ISLES-2022:sub-strokecase0015",
    "studyUids": [
@@ -16,7 +16,7 @@
    "region": [
     "head"
    ],
-   "clinicalContext": "Adult with an ischemic stroke.",
+   "clinicalContext": "Adult with sudden neurological symptoms.",
    "contextSource": "Dataset description (ISLES 2022: MRI of acute to subacute ischemic stroke).",
    "difficulty": "typical",
    "objectiveIds": [
@@ -51,7 +51,7 @@
   {
    "id": "stroke-isles-0057",
    "packId": "stroke-mri",
-   "neutralTitle": "MRI brain, diffusion · ISLES 2022 case 57",
+   "neutralTitle": "Patient CM · MRI brain",
    "learnTitle": "Ischemic stroke on diffusion MRI (expert-approved lesion mask)",
    "subjectKey": "zenodo:ISLES-2022:sub-strokecase0057",
    "studyUids": [
@@ -61,7 +61,7 @@
    "region": [
     "head"
    ],
-   "clinicalContext": "Adult with an ischemic stroke.",
+   "clinicalContext": "Adult with sudden neurological symptoms.",
    "contextSource": "Dataset description (ISLES 2022: MRI of acute to subacute ischemic stroke).",
    "difficulty": "typical",
    "objectiveIds": [

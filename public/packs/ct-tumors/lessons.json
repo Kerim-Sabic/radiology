@@ -6,7 +6,7 @@
   {
    "id": "lung-dx-a0010",
    "packId": "ct-tumors",
-   "neutralTitle": "CT chest · Lung-PET-CT-Dx A0010",
+   "neutralTitle": "Patient CN · CT chest",
    "learnTitle": "Lung cancer (adenocarcinoma) on chest CT (radiologists' box)",
    "subjectKey": "tcia:Lung-PET-CT-Dx:Lung_Dx-A0010",
    "studyUids": [
@@ -16,7 +16,7 @@
    "region": [
     "chest"
    ],
-   "clinicalContext": "Adult with a lung cancer later confirmed by biopsy.",
+   "clinicalContext": "Adult referred for chest CT.",
    "contextSource": "Collection description (Lung-PET-CT-Dx: patients with biopsy-confirmed lung cancer; histology from the patient ID).",
    "difficulty": "typical",
    "objectiveIds": [
@@ -51,7 +51,7 @@
   {
    "id": "lung-dx-g0007",
    "packId": "ct-tumors",
-   "neutralTitle": "CT chest · Lung-PET-CT-Dx G0007",
+   "neutralTitle": "Patient CO · CT chest",
    "learnTitle": "Lung cancer (squamous cell carcinoma) on chest CT (radiologists' box)",
    "subjectKey": "tcia:Lung-PET-CT-Dx:Lung_Dx-G0007",
    "studyUids": [
@@ -61,7 +61,7 @@
    "region": [
     "chest"
    ],
-   "clinicalContext": "Adult with a lung cancer later confirmed by biopsy.",
+   "clinicalContext": "Adult referred for chest CT.",
    "contextSource": "Collection description (Lung-PET-CT-Dx: patients with biopsy-confirmed lung cancer; histology from the patient ID).",
    "difficulty": "typical",
    "objectiveIds": [
@@ -96,7 +96,7 @@
   {
    "id": "lung-dx-b0022",
    "packId": "ct-tumors",
-   "neutralTitle": "CT chest · Lung-PET-CT-Dx B0022",
+   "neutralTitle": "Patient CP · CT chest",
    "learnTitle": "Lung cancer (small cell carcinoma) on chest CT (radiologists' box)",
    "subjectKey": "tcia:Lung-PET-CT-Dx:Lung_Dx-B0022",
    "studyUids": [
@@ -106,7 +106,7 @@
    "region": [
     "chest"
    ],
-   "clinicalContext": "Adult with a lung cancer later confirmed by biopsy.",
+   "clinicalContext": "Adult referred for chest CT.",
    "contextSource": "Collection description (Lung-PET-CT-Dx: patients with biopsy-confirmed lung cancer; histology from the patient ID).",
    "difficulty": "typical",
    "objectiveIds": [
@@ -141,7 +141,7 @@
   {
    "id": "lung-dx-e0004",
    "packId": "ct-tumors",
-   "neutralTitle": "CT chest · Lung-PET-CT-Dx E0004",
+   "neutralTitle": "Patient CQ · CT chest",
    "learnTitle": "Lung cancer (large cell carcinoma) on chest CT (radiologists' box)",
    "subjectKey": "tcia:Lung-PET-CT-Dx:Lung_Dx-E0004",
    "studyUids": [
@@ -151,7 +151,7 @@
    "region": [
     "chest"
    ],
-   "clinicalContext": "Adult with a lung cancer later confirmed by biopsy.",
+   "clinicalContext": "Adult referred for chest CT.",
    "contextSource": "Collection description (Lung-PET-CT-Dx: patients with biopsy-confirmed lung cancer; histology from the patient ID).",
    "difficulty": "typical",
    "objectiveIds": [
@@ -186,7 +186,7 @@
   {
    "id": "hcc-010",
    "packId": "ct-tumors",
-   "neutralTitle": "CT abdomen, liver protocol · HCC-TACE-Seg 010",
+   "neutralTitle": "Patient CR · CT abdomen (contrast)",
    "learnTitle": "Hepatocellular carcinoma on contrast CT (tumor and liver segmented)",
    "subjectKey": "tcia:HCC-TACE-Seg:HCC_010",
    "studyUids": [
@@ -196,7 +196,7 @@
    "region": [
     "abdomen"
    ],
-   "clinicalContext": "Adult with confirmed hepatocellular carcinoma, before transarterial chemoembolization.",
+   "clinicalContext": "Adult referred for a multiphase liver CT.",
    "contextSource": "Collection description (HCC-TACE-Seg: confirmed HCC, baseline CT before the first TACE).",
    "difficulty": "typical",
    "objectiveIds": [
@@ -231,7 +231,7 @@
   {
    "id": "hcc-003",
    "packId": "ct-tumors",
-   "neutralTitle": "CT abdomen, liver protocol · HCC-TACE-Seg 003",
+   "neutralTitle": "Patient CS · CT abdomen (contrast)",
    "learnTitle": "Hepatocellular carcinoma on contrast CT (tumor and liver segmented)",
    "subjectKey": "tcia:HCC-TACE-Seg:HCC_003",
    "studyUids": [
@@ -241,7 +241,7 @@
    "region": [
     "abdomen"
    ],
-   "clinicalContext": "Adult with confirmed hepatocellular carcinoma, before transarterial chemoembolization.",
+   "clinicalContext": "Adult referred for a multiphase liver CT.",
    "contextSource": "Collection description (HCC-TACE-Seg: confirmed HCC, baseline CT before the first TACE).",
    "difficulty": "typical",
    "objectiveIds": [
@@ -276,7 +276,7 @@
   {
    "id": "vs-seg-001",
    "packId": "ct-tumors",
-   "neutralTitle": "MRI brain, posterior fossa · VS-SEG 001",
+   "neutralTitle": "Patient CT · MRI brain",
    "learnTitle": "Vestibular schwannoma on contrast T1 and high-resolution T2 (manual contour)",
    "subjectKey": "tcia:Vestibular-Schwannoma-SEG:VS-SEG-001",
    "studyUids": [
@@ -286,7 +286,7 @@
    "region": [
     "head"
    ],
-   "clinicalContext": "Adult treated with Gamma Knife radiosurgery for a vestibular schwannoma.",
+   "clinicalContext": "Adult referred for brain MRI.",
    "contextSource": "Collection description (Vestibular-Schwannoma-SEG: patients treated with Gamma Knife radiosurgery).",
    "difficulty": "typical",
    "objectiveIds": [

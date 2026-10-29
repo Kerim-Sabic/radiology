@@ -133,10 +133,12 @@ def nih_dataset(c: dict) -> Dataset:
     return ds
 
 
-def build_nih() -> tuple[list, list, list, dict]:
-    sel = json.loads((RAW / "NIH-ChestXray14" / "_meta" / "selection.json").read_text(encoding="utf-8"))
+def build_nih(selection: str = "selection.json", skip: dict | None = None) -> tuple[list, list, list, dict]:
+    sel = json.loads((RAW / "NIH-ChestXray14" / "_meta" / selection).read_text(encoding="utf-8"))
     results, targets, geoms, notes = [], [], [], {}
     for c in sel:
+        if skip and c["image"] in skip:
+            continue
         ds = nih_dataset(c)
         skey = f"nih:ChestX-ray14:{int(c['entry']['Patient ID'])}"
         item = to_item(ds, c["image"])
@@ -436,7 +438,9 @@ def _isles_slice(a3, k, fi, fj):
     return np.ascontiguousarray(m.T)  # rows = j, columns = i
 
 
-def isles_series(case: dict, kind: str, img, data: np.ndarray, sidecar: dict, frame_uid: str) -> list[Item]:
+def isles_series(case: dict, kind: str, img, data: np.ndarray, sidecar: dict, frame_uid: str, adc_per_mm2s: float = 1.0) -> list[Item]:
+    """adc_per_mm2s: how many of the distributed ADC units make 1 mm2/s (1 for mm2/s, 1e3 for 10^-3 mm2/s, 1e6 for 10^-6 mm2/s);
+    the ISLES 2022 centres store ADC in different units, so round-4 cases pass the unit found from the brain's median ADC."""
     fi, fj, rowdir, coldir, ps, step, ipp = _isles_grid(img)
     study, series = uid_for("isles", case["case"], "study"), uid_for("isles", case["case"], kind, "series")
     if kind == "dwi":
@@ -446,10 +450,11 @@ def isles_series(case: dict, kind: str, img, data: np.ndarray, sidecar: dict, fr
         wc, ww = float(np.percentile(px[px > 0], 99.5)) / 2, float(np.percentile(px[px > 0], 99.5))
         deriv = "DWI trace as distributed (float), clipped at 0 and rounded to integer signal values; arbitrary units."
     else:
-        px = np.round(np.clip(data, 0, None) * 1e6).astype(np.uint16)
+        px = np.round(np.clip(data / adc_per_mm2s, 0, None) * 1e6).astype(np.uint16)
         desc = "ADC map, 10^-6 mm2/s (ISLES 2022, converted from NIfTI)"
         wc, ww = 1000.0, 2000.0
-        deriv = "ADC as distributed in mm2/s (float), clipped at 0 and stored in units of 10^-6 mm2/s (integer)."
+        unit = {1.0: "mm2/s", 1e3: "10^-3 mm2/s", 1e6: "10^-6 mm2/s"}[adc_per_mm2s]
+        deriv = f"ADC as distributed in {unit} (float), clipped at 0 and stored in units of 10^-6 mm2/s (integer)."
     items = []
     for k in range(data.shape[2]):
         a = _isles_slice(px, k, fi, fj)
@@ -826,11 +831,13 @@ def _half(a: np.ndarray) -> np.ndarray:
     return a[:h, :w].reshape(h // 2, 2, w // 2, 2).mean(axis=(1, 3))
 
 
-def build_mammo() -> tuple[list, list, list, dict]:
+def build_mammo(selection: str = "selection.json", skip: dict | None = None) -> tuple[list, list, list, dict]:
     import zipfile
     results, targets, geoms = [], [], []
-    sel = json.loads((RAW / "CBIS-DDSM" / "selection.json").read_text(encoding="utf-8"))
+    sel = json.loads((RAW / "CBIS-DDSM" / selection).read_text(encoding="utf-8"))
     for r in sel:
+        if skip and r["patient_id"] in skip:
+            continue
         side, view, pid = r["left or right breast"], r["image view"], r["patient_id"]
         zf = zipfile.ZipFile(RAW / r["fullZip"])
         src = pydicom.dcmread(io.BytesIO(zf.read([n for n in zf.namelist() if n.endswith(".dcm")][0])))
@@ -863,7 +870,7 @@ def build_mammo() -> tuple[list, list, list, dict]:
                                "(distances are not measurable). The burned-in film marker shows the side and view."))
         if calc:
             cid = "finding:breast_calcifications"
-            lab = f"Breast calcifications: {r['calc type'].lower().replace('_', ' ')}, {str(r['calc distribution']).lower().replace('nan', 'distribution not given')} ({r['pathology'].replace('_', ' ').lower()}; DDSM region outline)"
+            lab = f"Breast calcifications: {r['calc type'].lower().replace('_', ' ')}, {str(r['calc distribution']).lower().replace('nan', 'distribution not given').replace('n/a', 'distribution not given')} ({r['pathology'].replace('_', ' ').lower()}; DDSM region outline)"
             method = "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced."
         else:
             cid = "finding:breast_mass"

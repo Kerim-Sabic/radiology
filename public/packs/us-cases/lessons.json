@@ -6,7 +6,7 @@
   {
    "id": "us-breast-case007",
    "packId": "us-cases",
-   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 7",
+   "neutralTitle": "Patient CU · Breast ultrasound",
    "learnTitle": "Invasive carcinoma on breast ultrasound (proven by biopsy; radiologist outline)",
    "subjectKey": "tcia:Breast-Lesions-USG:case007",
    "studyUids": [
@@ -66,7 +66,7 @@
   {
    "id": "us-breast-case013",
    "packId": "us-cases",
-   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 13",
+   "neutralTitle": "Patient CV · Breast ultrasound",
    "learnTitle": "Invasive carcinoma on breast ultrasound (proven by biopsy; radiologist outline)",
    "subjectKey": "tcia:Breast-Lesions-USG:case013",
    "studyUids": [
@@ -126,7 +126,7 @@
   {
    "id": "us-breast-case068",
    "packId": "us-cases",
-   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 68",
+   "neutralTitle": "Patient CW · Breast ultrasound",
    "learnTitle": "Fibroadenoma on breast ultrasound (proven by biopsy; radiologist outline)",
    "subjectKey": "tcia:Breast-Lesions-USG:case068",
    "studyUids": [
@@ -186,7 +186,7 @@
   {
    "id": "us-breast-case025",
    "packId": "us-cases",
-   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 25",
+   "neutralTitle": "Patient CX · Breast ultrasound",
    "learnTitle": "Fibroadenoma on breast ultrasound (proven by biopsy; radiologist outline)",
    "subjectKey": "tcia:Breast-Lesions-USG:case025",
    "studyUids": [
@@ -246,7 +246,7 @@
   {
    "id": "us-breast-case048",
    "packId": "us-cases",
-   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 48",
+   "neutralTitle": "Patient CY · Breast ultrasound",
    "learnTitle": "Simple cyst on breast ultrasound (confirmed on follow-up; radiologist outline)",
    "subjectKey": "tcia:Breast-Lesions-USG:case048",
    "studyUids": [
@@ -306,7 +306,7 @@
   {
    "id": "us-breast-case237",
    "packId": "us-cases",
-   "neutralTitle": "Breast ultrasound · Breast-Lesions-USG case 237",
+   "neutralTitle": "Patient CZ · Breast ultrasound",
    "learnTitle": "Simple cyst on breast ultrasound (confirmed on follow-up; radiologist outline)",
    "subjectKey": "tcia:Breast-Lesions-USG:case237",
    "studyUids": [
@@ -366,7 +366,7 @@
   {
    "id": "us-fetal-head-113",
    "packId": "us-cases",
-   "neutralTitle": "Obstetric ultrasound · HC18 image 113",
+   "neutralTitle": "Patient DA · Obstetric ultrasound",
    "learnTitle": "Fetal head on the standard plane for head circumference (sonographer's ellipse)",
    "subjectKey": "zenodo:HC18:113_HC",
    "studyUids": [
@@ -425,7 +425,7 @@
   {
    "id": "us-fetal-head-365",
    "packId": "us-cases",
-   "neutralTitle": "Obstetric ultrasound · HC18 image 365",
+   "neutralTitle": "Patient DB · Obstetric ultrasound",
    "learnTitle": "Fetal head on the standard plane for head circumference (sonographer's ellipse)",
    "subjectKey": "zenodo:HC18:365_HC",
    "studyUids": [
@@ -484,7 +484,7 @@
   {
    "id": "us-fetal-head-687",
    "packId": "us-cases",
-   "neutralTitle": "Obstetric ultrasound · HC18 image 687",
+   "neutralTitle": "Patient DC · Obstetric ultrasound",
    "learnTitle": "Fetal head on the standard plane for head circumference (sonographer's ellipse)",
    "subjectKey": "zenodo:HC18:687_HC",
    "studyUids": [

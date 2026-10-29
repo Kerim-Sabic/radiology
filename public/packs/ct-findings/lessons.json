@@ -6,7 +6,7 @@
   {
    "id": "ct-crlm-1140",
    "packId": "ct-findings",
-   "neutralTitle": "CT chest, abdomen and pelvis (contrast) · CRLM 1140",
+   "neutralTitle": "Patient CD · CT chest, abdomen and pelvis (contrast)",
    "learnTitle": "Liver metastases from colorectal cancer, with liver and vessel segmentations",
    "subjectKey": "tcia:Colorectal-Liver-Metastases:CRLM-CT-1140",
    "studyUids": [
@@ -16,7 +16,7 @@
    "region": [
     "abdomen"
    ],
-   "clinicalContext": "Before planned liver surgery for colorectal cancer that has spread to the liver.",
+   "clinicalContext": "Adult with known colorectal cancer, preoperative CT.",
    "contextSource": "Collection description (Colorectal-Liver-Metastases: patients who had resection of colorectal liver metastases).",
    "difficulty": "typical",
    "objectiveIds": [
@@ -66,7 +66,7 @@
   {
    "id": "ct-lnq-0230",
    "packId": "ct-findings",
-   "neutralTitle": "CT chest with contrast · LNQ 0230",
+   "neutralTitle": "Patient CE · CT chest with contrast",
    "learnTitle": "Enlarged mediastinal lymph nodes (every abnormal node segmented)",
    "subjectKey": "tcia:Mediastinal-Lymph-Node-SEG:case_0230",
    "studyUids": [
@@ -104,7 +104,7 @@
   {
    "id": "ct-lnq-0837",
    "packId": "ct-findings",
-   "neutralTitle": "CT chest with contrast · LNQ 0837",
+   "neutralTitle": "Patient CF · CT chest with contrast",
    "learnTitle": "Enlarged mediastinal lymph nodes (every abnormal node segmented)",
    "subjectKey": "tcia:Mediastinal-Lymph-Node-SEG:case_0837",
    "studyUids": [

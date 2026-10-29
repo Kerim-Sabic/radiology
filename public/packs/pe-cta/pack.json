@@ -48,7 +48,7 @@
   {
    "uid": "2.25.188070595313388473937610407432780011209",
    "subjectKey": "figshare:FUMPE:PAT005",
-   "description": "CT pulmonary angiogram (FUMPE)",
+   "description": "CT pulmonary angiogram",
    "modalities": [
     "CT"
    ],
@@ -63,7 +63,7 @@
   {
    "uid": "2.25.1547359993828718243321428711369990629",
    "subjectKey": "figshare:FUMPE:PAT021",
-   "description": "CT pulmonary angiogram (FUMPE)",
+   "description": "CT pulmonary angiogram",
    "modalities": [
     "CT"
    ],
@@ -92,7 +92,7 @@
    "acquisition": {
     "SeriesDescription": "CTPA axial 1 mm",
     "ProtocolName": "PE 1",
-    "StudyDescription": "CT pulmonary angiogram (FUMPE)",
+    "StudyDescription": "CT pulmonary angiogram",
     "ImageType": "ORIGINAL\\PRIMARY\\AXIAL\\HELICAL",
     "ManufacturerModelName": "NeuViz 16",
     "PatientPosition": "HFS",
@@ -3014,7 +3014,7 @@
    "acquisition": {
     "SeriesDescription": "CTPA axial 1 mm",
     "ProtocolName": "PE 1",
-    "StudyDescription": "CT pulmonary angiogram (FUMPE)",
+    "StudyDescription": "CT pulmonary angiogram",
     "ImageType": "ORIGINAL\\PRIMARY\\AXIAL\\HELICAL",
     "ManufacturerModelName": "NeuViz 16",
     "PatientPosition": "HFS",

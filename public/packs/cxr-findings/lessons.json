@@ -6,7 +6,7 @@
   {
    "id": "cxr-00003400-003",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00003400-003",
+   "neutralTitle": "Patient BE · Chest radiograph PA",
    "learnTitle": "Pneumothorax on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:3400",
    "studyUids": [
@@ -66,7 +66,7 @@
   {
    "id": "cxr-00010767-016",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00010767-016",
+   "neutralTitle": "Patient BF · Chest radiograph PA",
    "learnTitle": "Pneumothorax on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:10767",
    "studyUids": [
@@ -126,7 +126,7 @@
   {
    "id": "cxr-00011355-011",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00011355-011",
+   "neutralTitle": "Patient BG · Chest radiograph PA",
    "learnTitle": "Pneumothorax on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:11355",
    "studyUids": [
@@ -186,7 +186,7 @@
   {
    "id": "cxr-00013209-018",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00013209-018",
+   "neutralTitle": "Patient BH · Chest radiograph PA",
    "learnTitle": "Pneumothorax on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:13209",
    "studyUids": [
@@ -246,7 +246,7 @@
   {
    "id": "cxr-00001437-012",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00001437-012",
+   "neutralTitle": "Patient BI · Chest radiograph PA",
    "learnTitle": "Pleural effusion on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:1437",
    "studyUids": [
@@ -299,7 +299,7 @@
   {
    "id": "cxr-00013337-000",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00013337-000",
+   "neutralTitle": "Patient BJ · Chest radiograph PA",
    "learnTitle": "Pleural effusion on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:13337",
    "studyUids": [
@@ -352,7 +352,7 @@
   {
    "id": "cxr-00023058-004",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00023058-004",
+   "neutralTitle": "Patient BK · Chest radiograph PA",
    "learnTitle": "Pleural effusion on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:23058",
    "studyUids": [
@@ -405,7 +405,7 @@
   {
    "id": "cxr-00029894-000",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00029894-000",
+   "neutralTitle": "Patient BL · Chest radiograph PA",
    "learnTitle": "Pleural effusion on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:29894",
    "studyUids": [
@@ -458,7 +458,7 @@
   {
    "id": "cxr-00012299-002",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00012299-002",
+   "neutralTitle": "Patient BM · Chest radiograph PA",
    "learnTitle": "Atelectasis on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:12299",
    "studyUids": [
@@ -518,7 +518,7 @@
   {
    "id": "cxr-00016267-000",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00016267-000",
+   "neutralTitle": "Patient BN · Chest radiograph PA",
    "learnTitle": "Atelectasis on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:16267",
    "studyUids": [
@@ -578,7 +578,7 @@
   {
    "id": "cxr-00030674-000",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00030674-000",
+   "neutralTitle": "Patient BO · Chest radiograph PA",
    "learnTitle": "Atelectasis on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:30674",
    "studyUids": [
@@ -638,7 +638,7 @@
   {
    "id": "cxr-00000377-004",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00000377-004",
+   "neutralTitle": "Patient BP · Chest radiograph PA",
    "learnTitle": "Cardiomegaly on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:377",
    "studyUids": [
@@ -705,7 +705,7 @@
   {
    "id": "cxr-00000661-000",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00000661-000",
+   "neutralTitle": "Patient BQ · Chest radiograph PA",
    "learnTitle": "Cardiomegaly on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:661",
    "studyUids": [
@@ -772,7 +772,7 @@
   {
    "id": "cxr-00000845-000",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00000845-000",
+   "neutralTitle": "Patient BR · Chest radiograph PA",
    "learnTitle": "Cardiomegaly on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:845",
    "studyUids": [
@@ -839,7 +839,7 @@
   {
    "id": "cxr-00001075-024",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00001075-024",
+   "neutralTitle": "Patient BS · Chest radiograph PA",
    "learnTitle": "Lung mass on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:1075",
    "studyUids": [
@@ -884,7 +884,7 @@
   {
    "id": "cxr-00011157-001",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00011157-001",
+   "neutralTitle": "Patient BT · Chest radiograph PA",
    "learnTitle": "Lung mass on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:11157",
    "studyUids": [
@@ -929,7 +929,7 @@
   {
    "id": "cxr-00022192-003",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00022192-003",
+   "neutralTitle": "Patient BU · Chest radiograph PA",
    "learnTitle": "Lung mass on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:22192",
    "studyUids": [
@@ -974,7 +974,7 @@
   {
    "id": "cxr-00020274-021",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00020274-021",
+   "neutralTitle": "Patient BV · Chest radiograph PA",
    "learnTitle": "Lung nodule on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:20274",
    "studyUids": [
@@ -1019,7 +1019,7 @@
   {
    "id": "cxr-00012374-000",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00012374-000",
+   "neutralTitle": "Patient BW · Chest radiograph PA",
    "learnTitle": "Lung nodule on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:12374",
    "studyUids": [
@@ -1064,7 +1064,7 @@
   {
    "id": "cxr-00013673-001",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00013673-001",
+   "neutralTitle": "Patient BX · Chest radiograph PA",
    "learnTitle": "Lung nodule on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:13673",
    "studyUids": [
@@ -1109,7 +1109,7 @@
   {
    "id": "cxr-00001933-000",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00001933-000",
+   "neutralTitle": "Patient BY · Chest radiograph PA",
    "learnTitle": "Pneumonia on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:1933",
    "studyUids": [
@@ -1176,7 +1176,7 @@
   {
    "id": "cxr-00003894-005",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00003894-005",
+   "neutralTitle": "Patient BZ · Chest radiograph PA",
    "learnTitle": "Pneumonia on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:3894",
    "studyUids": [
@@ -1243,7 +1243,7 @@
   {
    "id": "cxr-00014294-011",
    "packId": "cxr-findings",
-   "neutralTitle": "Chest radiograph PA · NIH 00014294-011",
+   "neutralTitle": "Patient CA · Chest radiograph PA",
    "learnTitle": "Pneumonia on a PA chest radiograph (radiologist box)",
    "subjectKey": "nih:ChestX-ray14:14294",
    "studyUids": [

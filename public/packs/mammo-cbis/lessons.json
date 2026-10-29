@@ -6,7 +6,7 @@
   {
    "id": "mg-cbis-p00021",
    "packId": "mammo-cbis",
-   "neutralTitle": "Mammogram, both breasts, CC and MLO · CBIS-DDSM P_00021",
+   "neutralTitle": "Patient DD · Mammogram, both breasts, CC and MLO",
    "learnTitle": "Mass on CC and MLO mammograms (benign at pathology; mass outline)",
    "subjectKey": "tcia:CBIS-DDSM:P_00021",
    "studyUids": [
@@ -66,7 +66,7 @@
   {
    "id": "mg-cbis-p00039",
    "packId": "mammo-cbis",
-   "neutralTitle": "Mammogram, right breast, CC and MLO · CBIS-DDSM P_00039",
+   "neutralTitle": "Patient DE · Mammogram, right breast, CC and MLO",
    "learnTitle": "Mass on CC and MLO mammograms (malignant at pathology; mass outline)",
    "subjectKey": "tcia:CBIS-DDSM:P_00039",
    "studyUids": [
@@ -126,7 +126,7 @@
   {
    "id": "mg-cbis-p00051",
    "packId": "mammo-cbis",
-   "neutralTitle": "Mammogram, left breast, CC and MLO · CBIS-DDSM P_00051",
+   "neutralTitle": "Patient DF · Mammogram, left breast, CC and MLO",
    "learnTitle": "Mass on CC and MLO mammograms (malignant at pathology; mass outline)",
    "subjectKey": "tcia:CBIS-DDSM:P_00051",
    "studyUids": [
@@ -186,7 +186,7 @@
   {
    "id": "mg-cbis-p00307",
    "packId": "mammo-cbis",
-   "neutralTitle": "Mammogram, left breast, CC and MLO · CBIS-DDSM P_00307",
+   "neutralTitle": "Patient DG · Mammogram, left breast, CC and MLO",
    "learnTitle": "Calcifications on CC and MLO mammograms (malignant at pathology; DDSM region outline)",
    "subjectKey": "tcia:CBIS-DDSM:P_00307",
    "studyUids": [
@@ -239,7 +239,7 @@
   {
    "id": "mg-cbis-p00425",
    "packId": "mammo-cbis",
-   "neutralTitle": "Mammogram, right breast, CC and MLO · CBIS-DDSM P_00425",
+   "neutralTitle": "Patient DH · Mammogram, right breast, CC and MLO",
    "learnTitle": "Calcifications on CC and MLO mammograms (benign at pathology; DDSM region outline)",
    "subjectKey": "tcia:CBIS-DDSM:P_00425",
    "studyUids": [

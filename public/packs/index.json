@@ -171,6 +171,51 @@
    "bytes": 7883927,
    "distribution": "repo",
    "note": "7 subjects, 7 studies, 11 series, 11 instances, 14 reference targets; DICOM 7.6 MB. Committed to the repository; rebuild with scripts/data/external.py + build_external.py."
+  },
+  {
+   "id": "us-breast-2",
+   "title": "Breast ultrasound: more lesions proven by biopsy or follow-up",
+   "manifest": "us-breast-2/pack.json",
+   "lessons": "us-breast-2/lessons.json",
+   "bytes": 18474443,
+   "distribution": "repo",
+   "note": "98 subjects, 98 studies, 98 series, 98 instances, 98 reference targets; DICOM 13.0 MB. Committed to the repository; rebuild with scripts/data/external_r4.py + build_r4.py; lessons scripts/lessons/round4.py."
+  },
+  {
+   "id": "peds-wrist-2",
+   "title": "Children's wrist fractures: more Salter-Harris II, torus/greenstick and complete fractures",
+   "manifest": "peds-wrist-2/pack.json",
+   "lessons": "peds-wrist-2/lessons.json",
+   "bytes": 45414871,
+   "distribution": "repo",
+   "note": "30 subjects, 30 studies, 60 series, 60 instances, 60 reference targets; DICOM 43.9 MB. Committed to the repository; rebuild with scripts/data/external_r4.py + build_r4.py; lessons scripts/lessons/round4.py."
+  },
+  {
+   "id": "cxr-findings-2",
+   "title": "Chest radiograph findings: more pneumothorax, effusion, collapse, big heart, mass, nodule and pneumonia",
+   "manifest": "cxr-findings-2/pack.json",
+   "lessons": "cxr-findings-2/lessons.json",
+   "bytes": 28519233,
+   "distribution": "repo",
+   "note": "67 subjects, 67 studies, 67 series, 67 instances, 75 reference targets; DICOM 25.8 MB. Committed to the repository; rebuild with scripts/data/external_r4.py + build_r4.py; lessons scripts/lessons/round4.py."
+  },
+  {
+   "id": "stroke-mri-2",
+   "title": "Stroke MRI: more ischemic lesions on DWI and ADC with expert-approved masks",
+   "manifest": "stroke-mri-2/pack.json",
+   "lessons": "stroke-mri-2/lessons.json",
+   "bytes": 38913243,
+   "distribution": "repo",
+   "note": "50 subjects, 50 studies, 100 series, 7240 instances, 100 reference targets; DICOM 33.1 MB. Committed to the repository; rebuild with scripts/data/external_r4.py + build_r4.py; lessons scripts/lessons/round4.py."
+  },
+  {
+   "id": "mammo-cbis-2",
+   "title": "Mammography: more masses and calcifications on CC and MLO views",
+   "manifest": "mammo-cbis-2/pack.json",
+   "lessons": "mammo-cbis-2/lessons.json",
+   "bytes": 58593971,
+   "distribution": "repo",
+   "note": "11 subjects, 11 studies, 22 series, 22 instances, 22 reference targets; DICOM 58.0 MB. Committed to the repository; rebuild with scripts/data/external_r4.py + build_r4.py; lessons scripts/lessons/round4.py."
   }
  ]
 }

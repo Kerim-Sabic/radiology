@@ -288,7 +288,7 @@ describe.skipIf(!real)('results from the installed cases', () => {
   });
 
   it('finds the new tumors and the stroke lesions on their own series', async () => {
-    for (const [id, family, n] of [['hepatocellular_carcinoma', 'CT', 2], ['vestibular_schwannoma', 'MRI', 1], ['ischemic_stroke', 'MRI', 2]] as const) {
+    for (const [id, family, n] of [['hepatocellular_carcinoma', 'CT', 2], ['vestibular_schwannoma', 'MRI', 1], ['ischemic_stroke', 'MRI', 52]] as const) {
       const hits = await run(id);
       if (!hits.length) continue; // pack not installed in this checkout
       expect(new Set(hits.map((h) => h.caseId)).size).toBe(n);
@@ -335,8 +335,8 @@ describe.skipIf(!real)('results from the installed cases', () => {
     expect(new Set(cysts.map((h) => h.caseId)).size).toBe(2);
     for (const h of cysts) expect([h.family, h.strength, h.items[0].where]).toEqual(['Ultrasound', 'outlined', 'outlined on the image']);
     const calcs = await run('breast_calcifications');
-    expect(new Set(calcs.map((h) => h.caseId)).size).toBe(2);
-    expect(calcs).toHaveLength(4); // a CC and an MLO for each woman
+    expect(new Set(calcs.map((h) => h.caseId)).size).toBe(7);
+    expect(calcs).toHaveLength(14); // a CC and an MLO for each woman
     for (const h of calcs) expect([h.family, h.strength]).toEqual(['Mammography', 'outlined']);
     const masses = await run('breast_mass');
     expect(new Set(masses.map((h) => h.family))).toEqual(new Set(['Mammography', 'Ultrasound']));
@@ -348,8 +348,8 @@ describe.skipIf(!real)('results from the installed cases', () => {
     if (!sh.length) return;
     const torus = await run('torus_greenstick_fracture');
     for (const hits of [sh, torus]) {
-      expect(new Set(hits.map((h) => h.caseId)).size).toBe(2);
-      expect(hits).toHaveLength(4); // frontal and lateral of each child
+      expect(new Set(hits.map((h) => h.caseId)).size).toBe(12);
+      expect(hits).toHaveLength(24); // frontal and lateral of each child
       for (const h of hits) {
         expect(h.family).toBe('X-ray');
         expect(h.items.every((i) => i.where === 'boxed on the image')).toBe(true);
@@ -359,6 +359,10 @@ describe.skipIf(!real)('results from the installed cases', () => {
     expect(sh.every((h) => /Salter-Harris type II/.test(h.items[0].label))).toBe(true);
     const all = await run('fracture');
     for (const h of [...sh, ...torus]) expect(all.some((x) => x.seriesUid === h.seriesUid)).toBe(true);
+    // Complete metaphyseal fractures (AO/OTA M/3) are listed under fracture only, never as torus/greenstick or Salter-Harris.
+    const complete = all.filter((h) => h.items.some((i) => /complete metaphyseal/.test(i.label)));
+    expect(new Set(complete.map((h) => h.caseId)).size).toBe(10);
+    for (const h of complete) expect([...sh, ...torus].some((x) => x.seriesUid === h.seriesUid)).toBe(false);
   });
 
   it('lists knee osteoarthritis only where both experts gave Kellgren-Lawrence 2 or more', async () => {

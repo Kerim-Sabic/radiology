@@ -1,0 +1,1589 @@
+{
+ "packId": "us-breast-2",
+ "generatedAt": "2026-10-29T13:12:35Z",
+ "packBytesExcludingLessons": 16962807,
+ "budgetBytes": 40000000,
+ "series": [
+  {
+   "uid": "2.25.233164040014963501173200408334602970933",
+   "short": "us-af426e88f6",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 161482
+  },
+  {
+   "uid": "2.25.73404086422029861128139104639212541425",
+   "short": "us-7db7e17110",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 203420
+  },
+  {
+   "uid": "2.25.47419913733178193668541979227677302101",
+   "short": "us-4f3eb52cb2",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 100400
+  },
+  {
+   "uid": "2.25.123985803704837914059797748738625314656",
+   "short": "us-0761b538b4",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 152014
+  },
+  {
+   "uid": "2.25.234987767466605837103647973895910142178",
+   "short": "us-dc714ae583",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 111976
+  },
+  {
+   "uid": "2.25.111189633878079518370519970897806226699",
+   "short": "us-cb1f00bf40",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 154572
+  },
+  {
+   "uid": "2.25.112140552346048876565515107584925321986",
+   "short": "us-7039b999b2",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 101726
+  },
+  {
+   "uid": "2.25.192421977662291855521435496442069996861",
+   "short": "us-edf3c1e174",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 118568
+  },
+  {
+   "uid": "2.25.1717293469814075443137640917740898513",
+   "short": "us-42bae2743b",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 103996
+  },
+  {
+   "uid": "2.25.104876500367815067095961659068972978963",
+   "short": "us-ef8faba2d5",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 129862
+  },
+  {
+   "uid": "2.25.224953554118065838230086291604875422882",
+   "short": "us-1d8c8fb667",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 118012
+  },
+  {
+   "uid": "2.25.191490907151877142703823814741539338877",
+   "short": "us-595bb6326a",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 91252
+  },
+  {
+   "uid": "2.25.87347899873745619403822715805167295159",
+   "short": "us-b56a023869",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 120156
+  },
+  {
+   "uid": "2.25.28908243945651329620357765362434010291",
+   "short": "us-5c415678fb",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 169104
+  },
+  {
+   "uid": "2.25.20515277778371082770362256881267130272",
+   "short": "us-01698599de",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 120910
+  },
+  {
+   "uid": "2.25.237496515533490376739193621420433312858",
+   "short": "us-27ffcdced6",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 108136
+  },
+  {
+   "uid": "2.25.334976919974000697458314907721058753369",
+   "short": "us-5f63bc3d30",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 129976
+  },
+  {
+   "uid": "2.25.8752361464114734651735729341998362354",
+   "short": "us-7988eb88a2",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 123080
+  },
+  {
+   "uid": "2.25.30003755234211733047787862573858275095",
+   "short": "us-92e54fa564",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 99418
+  },
+  {
+   "uid": "2.25.288463537613942979367864214185486280044",
+   "short": "us-26fa481f5b",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 123804
+  },
+  {
+   "uid": "2.25.15052156618093795086719329317915412206",
+   "short": "us-4a303633f3",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 118888
+  },
+  {
+   "uid": "2.25.23256161963351927883912139799761120797",
+   "short": "us-054646bc8c",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 110052
+  },
+  {
+   "uid": "2.25.118895811833705660250650167967023447502",
+   "short": "us-b8ace2a8a9",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 128952
+  },
+  {
+   "uid": "2.25.239352289451536029964155954188526318524",
+   "short": "us-c42e184fba",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 157768
+  },
+  {
+   "uid": "2.25.322792844689795651300290278711980406971",
+   "short": "us-c2d177fe40",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 171256
+  },
+  {
+   "uid": "2.25.65923350571755361018857761069190291326",
+   "short": "us-a69f896a03",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 110910
+  },
+  {
+   "uid": "2.25.176687429196609861239172380544084330304",
+   "short": "us-b58263616c",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 142158
+  },
+  {
+   "uid": "2.25.183342795109431005246032183111332301804",
+   "short": "us-1256ff80e7",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 120718
+  },
+  {
+   "uid": "2.25.221649323343945043628281055515853686714",
+   "short": "us-9a16b3be4f",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 125620
+  },
+  {
+   "uid": "2.25.299568441760098772282779954551068258521",
+   "short": "us-d0f94ad931",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 197048
+  },
+  {
+   "uid": "2.25.129836098878045256379712646883603509742",
+   "short": "us-15e34f76f3",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 118762
+  },
+  {
+   "uid": "2.25.209740676252441325233959497106229750818",
+   "short": "us-7a9fed9477",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 117654
+  },
+  {
+   "uid": "2.25.203550241516978495691073450232799973131",
+   "short": "us-1da8ebb3f5",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 167004
+  },
+  {
+   "uid": "2.25.299222580392376176106153274435088999442",
+   "short": "us-56dd031e4c",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 113550
+  },
+  {
+   "uid": "2.25.143861415067092152954410900382825317121",
+   "short": "us-399f584016",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 112000
+  },
+  {
+   "uid": "2.25.27119082993371113670744516923071224581",
+   "short": "us-29556ee94d",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 114190
+  },
+  {
+   "uid": "2.25.243098887319891493624214443468734338661",
+   "short": "us-9bbcd7242f",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 109442
+  },
+  {
+   "uid": "2.25.155885019580431467348569097399023076285",
+   "short": "us-349116226f",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 119248
+  },
+  {
+   "uid": "2.25.335282830378569465055715372063688116933",
+   "short": "us-ca08970baa",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 109520
+  },
+  {
+   "uid": "2.25.194608280147006424158650253254121773851",
+   "short": "us-ff64ae47db",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 123568
+  },
+  {
+   "uid": "2.25.18534801992394812576774420961965542626",
+   "short": "us-c42a77e830",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 160936
+  },
+  {
+   "uid": "2.25.15101406867823008312297813322449906656",
+   "short": "us-1a1ca369c2",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 159324
+  },
+  {
+   "uid": "2.25.6207608721007012651305510451394863710",
+   "short": "us-1f3f2e5587",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 127756
+  },
+  {
+   "uid": "2.25.47164307228514051789070986876161008438",
+   "short": "us-dc11871f76",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 127952
+  },
+  {
+   "uid": "2.25.53980506329768937337171271448615501275",
+   "short": "us-bf4840a011",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 122672
+  },
+  {
+   "uid": "2.25.23986017810266691328620768577074746339",
+   "short": "us-c3c5f3e0f3",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 174686
+  },
+  {
+   "uid": "2.25.218517522032265835199874300597969586808",
+   "short": "us-e43aabc44c",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 127750
+  },
+  {
+   "uid": "2.25.310663834671941513753270501459335073901",
+   "short": "us-7c39837e82",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 68852
+  },
+  {
+   "uid": "2.25.25906583292676645540608954306460680603",
+   "short": "us-02f0bdddeb",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 137332
+  },
+  {
+   "uid": "2.25.208095051474877326086660104702857755176",
+   "short": "us-8028fd9927",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 126142
+  },
+  {
+   "uid": "2.25.205551905244669922635533061570789006384",
+   "short": "us-0c450cf0ad",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 120156
+  },
+  {
+   "uid": "2.25.311229350754195023371324159609293130729",
+   "short": "us-3227a25989",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 161884
+  },
+  {
+   "uid": "2.25.104660833564290024764309096378474501772",
+   "short": "us-aad5f2593e",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 124744
+  },
+  {
+   "uid": "2.25.213404275247814894205069951496971400678",
+   "short": "us-03b7e51ba5",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 129072
+  },
+  {
+   "uid": "2.25.123008674592642630598434543287474355686",
+   "short": "us-e09686186e",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 109774
+  },
+  {
+   "uid": "2.25.301388242620626350697822946451200884618",
+   "short": "us-8136f0a1ad",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 122802
+  },
+  {
+   "uid": "2.25.28404848047980876524726144034755634727",
+   "short": "us-b2da0e5566",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 131548
+  },
+  {
+   "uid": "2.25.114875552831203608815096214741424295136",
+   "short": "us-c7334a5383",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 131364
+  },
+  {
+   "uid": "2.25.87064440415227390516062989234577780096",
+   "short": "us-9f2658e6bf",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 135096
+  },
+  {
+   "uid": "2.25.200159670410806134774815208618292843745",
+   "short": "us-5ed8086b22",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 160110
+  },
+  {
+   "uid": "2.25.279106504945941298567898360915064895604",
+   "short": "us-aa369bd553",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 120326
+  },
+  {
+   "uid": "2.25.304443584845933084017839373739249244123",
+   "short": "us-6dd72555cf",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 124370
+  },
+  {
+   "uid": "2.25.66903985462957099727273011509327003779",
+   "short": "us-bec98cc4ca",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 66624
+  },
+  {
+   "uid": "2.25.258763866281700992763784886364468092053",
+   "short": "us-f5aa690cb0",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 129926
+  },
+  {
+   "uid": "2.25.311424203931051006079583502489244184405",
+   "short": "us-f3c9cb79f9",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 115998
+  },
+  {
+   "uid": "2.25.224425988282720771406223253071937871867",
+   "short": "us-dbb50bc628",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 154720
+  },
+  {
+   "uid": "2.25.126726983170635159000066656172199011695",
+   "short": "us-4e5a90e047",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 124144
+  },
+  {
+   "uid": "2.25.92510248122652872641414115698398491773",
+   "short": "us-11262f13b8",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 126706
+  },
+  {
+   "uid": "2.25.81168469573688440881267637490397861482",
+   "short": "us-094b238a08",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 132288
+  },
+  {
+   "uid": "2.25.15131050806269075463210767253191843044",
+   "short": "us-6cb97ed7b4",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 146020
+  },
+  {
+   "uid": "2.25.252426725145362466866292503282524297792",
+   "short": "us-5b41e34931",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 169372
+  },
+  {
+   "uid": "2.25.63377703567956512805107349334290219150",
+   "short": "us-07f9b5e67f",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 124250
+  },
+  {
+   "uid": "2.25.311058319953152668844856639199491695266",
+   "short": "us-d8b1d32d0d",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 164524
+  },
+  {
+   "uid": "2.25.327130202128818919010130090707858651418",
+   "short": "us-f32e299217",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 132830
+  },
+  {
+   "uid": "2.25.299587770583742048238830613546359659371",
+   "short": "us-9d91213e4e",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 114804
+  },
+  {
+   "uid": "2.25.51843296319410882884099244435040005424",
+   "short": "us-89650e60fe",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 126366
+  },
+  {
+   "uid": "2.25.7252990875080099914238457889855950742",
+   "short": "us-30bb0bb4e8",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 138916
+  },
+  {
+   "uid": "2.25.25462190335571287879457703268788693467",
+   "short": "us-e584adf178",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 114678
+  },
+  {
+   "uid": "2.25.147500878757122770553566838460659918477",
+   "short": "us-3c229b917a",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 140902
+  },
+  {
+   "uid": "2.25.153972435362770764158439172907832632711",
+   "short": "us-de6fed293d",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 119496
+  },
+  {
+   "uid": "2.25.257999244441508245128187225184457262213",
+   "short": "us-734fe2d23e",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 124626
+  },
+  {
+   "uid": "2.25.62212959646640544844654401241359854266",
+   "short": "us-05fc3e46d2",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 162968
+  },
+  {
+   "uid": "2.25.261240721116369423038511087555259385117",
+   "short": "us-b6e676dff4",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 139014
+  },
+  {
+   "uid": "2.25.144245313975284644861091877961094030868",
+   "short": "us-8c05877367",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 151994
+  },
+  {
+   "uid": "2.25.64086048601226515861464013997445171745",
+   "short": "us-814b3a3545",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 132016
+  },
+  {
+   "uid": "2.25.90001335835284509673933630016418886596",
+   "short": "us-7c644a7a5b",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 131090
+  },
+  {
+   "uid": "2.25.175766947171136059891532011390833085987",
+   "short": "us-72c0096315",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 129088
+  },
+  {
+   "uid": "2.25.252680635980188112988181582677938812840",
+   "short": "us-efdf22f541",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 161870
+  },
+  {
+   "uid": "2.25.256983262964137766132873691813865990032",
+   "short": "us-659dae899d",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 161734
+  },
+  {
+   "uid": "2.25.45840831407552346549506375815393298668",
+   "short": "us-413464788e",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 122030
+  },
+  {
+   "uid": "2.25.264496547648972995361952297112749244465",
+   "short": "us-8f197cbde6",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 167520
+  },
+  {
+   "uid": "2.25.274324996900135809749236525259636900844",
+   "short": "us-f78c96a9ac",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 157286
+  },
+  {
+   "uid": "2.25.108066019411189093972373783630238469752",
+   "short": "us-5fe3d82f51",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 163342
+  },
+  {
+   "uid": "2.25.159742289535694149636123480702850577983",
+   "short": "us-3e5ecbdeb5",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 159886
+  },
+  {
+   "uid": "2.25.213007517041065343051305993683483583904",
+   "short": "us-de1d131194",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 153764
+  },
+  {
+   "uid": "2.25.7839254351990681812384387346503075632",
+   "short": "us-2d90ecf58b",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 110310
+  },
+  {
+   "uid": "2.25.252492975736266561173076668138453658744",
+   "short": "us-e8ffa735d4",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 119530
+  },
+  {
+   "uid": "2.25.312406732249157471648995745170939637264",
+   "short": "us-108c6cf87a",
+   "modality": "US",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "only 1 slice(s)",
+    "no ImageOrientationPatient"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 165120
+  }
+ ],
+ "targets": [
+  "breast-usg-case005_mass",
+  "breast-usg-case008_mass",
+  "breast-usg-case010_mass",
+  "breast-usg-case011_mass",
+  "breast-usg-case012_mass",
+  "breast-usg-case026_mass",
+  "breast-usg-case027_mass",
+  "breast-usg-case032_mass",
+  "breast-usg-case034_mass",
+  "breast-usg-case035_mass",
+  "breast-usg-case046_mass",
+  "breast-usg-case050_mass",
+  "breast-usg-case053_mass",
+  "breast-usg-case055_mass",
+  "breast-usg-case058_mass",
+  "breast-usg-case063_mass",
+  "breast-usg-case067_mass",
+  "breast-usg-case072_mass",
+  "breast-usg-case075_mass",
+  "breast-usg-case079_mass",
+  "breast-usg-case082_mass",
+  "breast-usg-case087_mass",
+  "breast-usg-case088_mass",
+  "breast-usg-case094_mass",
+  "breast-usg-case101_mass",
+  "breast-usg-case102_mass",
+  "breast-usg-case106_mass",
+  "breast-usg-case109_mass",
+  "breast-usg-case111_mass",
+  "breast-usg-case113_mass",
+  "breast-usg-case117_mass",
+  "breast-usg-case125_mass",
+  "breast-usg-case132_mass",
+  "breast-usg-case133_mass",
+  "breast-usg-case150_mass",
+  "breast-usg-case172_mass",
+  "breast-usg-case176_mass",
+  "breast-usg-case199_mass",
+  "breast-usg-case206_mass",
+  "breast-usg-case212_mass",
+  "breast-usg-case225_mass",
+  "breast-usg-case230_mass",
+  "breast-usg-case249_mass",
+  "breast-usg-case254_mass",
+  "breast-usg-case255_mass",
+  "breast-usg-case002_mass",
+  "breast-usg-case006_mass",
+  "breast-usg-case009_mass",
+  "breast-usg-case014_mass",
+  "breast-usg-case016_mass",
+  "breast-usg-case018_mass",
+  "breast-usg-case019_mass",
+  "breast-usg-case021_mass",
+  "breast-usg-case023_mass",
+  "breast-usg-case024_mass",
+  "breast-usg-case031_mass",
+  "breast-usg-case037_mass",
+  "breast-usg-case041_mass",
+  "breast-usg-case042_mass",
+  "breast-usg-case044_mass",
+  "breast-usg-case047_mass",
+  "breast-usg-case051_mass",
+  "breast-usg-case056_mass",
+  "breast-usg-case069_mass",
+  "breast-usg-case071_mass",
+  "breast-usg-case077_mass",
+  "breast-usg-case078_mass",
+  "breast-usg-case081_mass",
+  "breast-usg-case093_mass",
+  "breast-usg-case115_mass",
+  "breast-usg-case119_mass",
+  "breast-usg-case120_mass",
+  "breast-usg-case129_mass",
+  "breast-usg-case143_mass",
+  "breast-usg-case162_mass",
+  "breast-usg-case168_mass",
+  "breast-usg-case179_mass",
+  "breast-usg-case182_mass",
+  "breast-usg-case229_mass",
+  "breast-usg-case004_mass",
+  "breast-usg-case028_mass",
+  "breast-usg-case029_mass",
+  "breast-usg-case030_mass",
+  "breast-usg-case052_mass",
+  "breast-usg-case065_mass",
+  "breast-usg-case091_mass",
+  "breast-usg-case096_mass",
+  "breast-usg-case097_mass",
+  "breast-usg-case108_mass",
+  "breast-usg-case118_mass",
+  "breast-usg-case136_mass",
+  "breast-usg-case167_mass",
+  "breast-usg-case175_mass",
+  "breast-usg-case196_mass",
+  "breast-usg-case216_mass",
+  "breast-usg-case222_mass",
+  "breast-usg-case235_mass",
+  "breast-usg-case240_mass"
+ ],
+ "qcReview": {
+  "tool": "scripts/data/qc_render.py <packId> <outDir> [--crop]: decodes the packed DICOM and draws every reference target on it (contour sets on the image with the largest outlined area), so a shifted, flipped or misplaced outline would show",
+  "selectionRule": "Breast-Lesions-USG cases not used before, benign or malignant (not normal), one lesion mask per image (no 'other' masks), proven by biopsy or follow-up, not a scar/implant/duct finding or a risk lesion (LCIS, ALH); stratified 45 malignant (biopsy), 35 benign (biopsy), 20 benign (follow-up), round-robin over diagnoses.",
+  "review": "All 99 built cases drawn with the radiologist's outline (full image, zoom for the smallest) and checked by eye.",
+  "kept": 98,
+  "dropped": {
+   "57": "radiologist's interpretation 'simple cyst', but recorded as irregular with no posterior enhancement, which does not meet the simple-cyst criteria the lessons teach; ambiguous",
+   "142": "pathology 'simple cyst' disagrees with the radiologist's description (complex cyst, heterogeneous echoes); ambiguous"
+  },
+  "leakCheck": "study/series descriptions, role and display notes checked against LEAK (dataset names, diagnoses) at build"
+ }
+}

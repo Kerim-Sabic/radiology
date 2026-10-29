@@ -17,7 +17,7 @@
    "region": [
     "extremity"
    ],
-   "clinicalContext": "Adult enrolled in a soft-tissue sarcoma imaging research collection (source description).",
+   "clinicalContext": "Adult referred for imaging of a limb.",
    "contextSource": "TCIA Soft-tissue-Sarcoma collection description",
    "difficulty": "typical",
    "objectiveIds": [
@@ -57,7 +57,7 @@
    "region": [
     "extremity"
    ],
-   "clinicalContext": "Adult enrolled in a soft-tissue sarcoma imaging research collection (source description).",
+   "clinicalContext": "Adult referred for imaging of a limb.",
    "contextSource": "TCIA Soft-tissue-Sarcoma collection description",
    "difficulty": "typical",
    "objectiveIds": [
