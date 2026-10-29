@@ -1,25 +1,31 @@
-/* radiology.monster — calm reading-room design system.
-   Near-black image canvas, slate chrome, Monster Blue accent (Accent Purple only in brand gradients).
+/* radiology.monster — reading-room design system.
+   Black canvas and neutral greys like a PACS workstation, white primary actions, one blue for links and focus.
+   No gradients or glows on chrome; colour is kept for the images and the marks on them.
    Correctness never relies on colour alone. */
 :root {
-  --bg: #020617;
+  --bg: #000;
   --canvas: #000;
-  --panel: #0a1122;
-  --panel-2: #0f172a;
-  --panel-3: #172136;
-  --line: #1e2a40;
-  --line-strong: #2f3d57;
-  --text: #f8fafc;
-  --text-2: #a7b3c5;
-  --text-3: #7f8ba0;
-  /* Text-safe tint of Monster Blue (≥ 5.8:1 on every panel); the true brand colours fill surfaces. */
-  --accent: #6e9bf7;
-  --accent-rgb: 110, 155, 247;
+  --panel: #0e0e10;
+  --panel-2: #161618;
+  --panel-3: #202023;
+  --line: #242427;
+  --line-strong: #3a3a3e;
+  --text: #f5f5f7;
+  --text-2: #a1a1a6;
+  --text-3: #8a8a8f;
+  /* Link and focus blue (≥ 6:1 on every panel). */
+  --accent: #3b9cff;
+  --accent-rgb: 59, 156, 255;
   --accent-ink: #ffffff;
   --accent-soft: rgba(var(--accent-rgb), 0.14);
-  --brand: #2563eb; /* Monster Blue */
-  --brand-2: #7c3aed; /* Accent Purple */
-  --brand-grad: linear-gradient(135deg, #2563eb 0%, #4f46e5 55%, #7c3aed 100%);
+  /* Primary actions: white on black. */
+  --primary: #f5f5f7;
+  --primary-hover: #ffffff;
+  --primary-ink: #0b0b0c;
+  --brand: #3b9cff;
+  --brand-2: #3b9cff;
+  /* Kept for progress fills; solid on purpose. */
+  --brand-grad: var(--accent);
   --ok: #4fd18b;
   --warn: #f2c14e;
   --bad: #ff6b6b;
@@ -28,7 +34,7 @@
   --radius: 8px;
   --radius-sm: 6px;
   --font: 'Inter Variable', 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-display: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', var(--font);
+  --font-display: var(--font);
   --mono: ui-monospace, 'SFMono-Regular', 'Cascadia Mono', Consolas, monospace;
   --toolbar-h: 48px;
   --focus: 0 0 0 2px var(--bg), 0 0 0 4px var(--accent);
@@ -68,8 +74,8 @@ h3,
 h4 {
   margin: 0;
   font-family: var(--font-display);
-  font-weight: 650;
-  letter-spacing: -0.01em;
+  font-weight: 600;
+  letter-spacing: -0.012em;
 }
 h1 {
   font-size: 22px;
@@ -137,13 +143,13 @@ small,
   cursor: not-allowed;
 }
 .btn.primary {
-  background: var(--brand-grad);
+  background: var(--primary);
   border-color: transparent;
-  color: var(--accent-ink);
+  color: var(--primary-ink);
   font-weight: 600;
 }
 .btn.primary:hover {
-  filter: brightness(1.08);
+  background: var(--primary-hover);
 }
 .btn.ghost {
   background: transparent;
@@ -340,9 +346,9 @@ button.chip[aria-pressed='true'] {
   align-items: center;
   gap: 9px;
   font-family: var(--font-display);
-  font-size: 15.5px;
-  font-weight: 650;
-  letter-spacing: -0.015em;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.012em;
   color: var(--text);
   margin-right: 12px;
   text-decoration: none !important;
@@ -354,7 +360,7 @@ button.chip[aria-pressed='true'] {
   flex: none;
 }
 .brand-tld {
-  color: var(--accent);
+  color: inherit;
 }
 .navlink {
   display: inline-flex;
@@ -965,7 +971,7 @@ button.chip[aria-pressed='true'] {
   padding: 24px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: linear-gradient(180deg, var(--panel), var(--bg));
+  background: var(--panel);
 }
 .stat {
   display: flex;
@@ -1395,7 +1401,7 @@ button.chip[aria-pressed='true'] {
   padding: 2px 8px;
   border-radius: 999px;
   border: 1px solid rgba(var(--accent-rgb), 0.55);
-  background: rgba(2, 6, 23, 0.72);
+  background: rgba(0, 0, 0, 0.72);
   color: #e2e8f0;
   font: 600 11.5px/1.4 var(--font);
   text-shadow: none;
@@ -1418,7 +1424,7 @@ button.chip[aria-pressed='true'] {
   padding: 10px 12px;
   border-radius: 10px;
   border: 1px solid var(--line-strong);
-  background: rgba(10, 17, 34, 0.96);
+  background: rgba(14, 14, 16, 0.96);
   font-size: 12.5px;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
 }
@@ -1461,7 +1467,7 @@ kbd {
   overflow: hidden;
 }
 .palette::backdrop {
-  background: rgba(2, 6, 23, 0.6);
+  background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
 }
 .palette-box {
@@ -1593,7 +1599,7 @@ kbd {
   --radius-sm: 10px;
 }
 .topnav {
-  background: rgba(10, 17, 34, 0.78);
+  background: rgba(14, 14, 16, 0.78);
   backdrop-filter: saturate(1.6) blur(18px);
   -webkit-backdrop-filter: saturate(1.6) blur(18px);
   border-bottom-color: rgba(47, 61, 87, 0.6);
@@ -1605,18 +1611,18 @@ kbd {
   transition: background 0.15s ease, color 0.15s ease;
 }
 .navlink.active {
-  background: rgba(var(--accent-rgb), 0.16);
+  background: rgba(255, 255, 255, 0.1);
   color: #fff;
 }
 .card {
-  border-radius: 18px;
-  border-color: rgba(47, 61, 87, 0.7);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0) 120px), var(--panel);
+  border-radius: 16px;
+  border-color: var(--line);
+  background: var(--panel);
   padding: 18px 20px;
 }
 .page-inner h1 {
   font-family: var(--font-display);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.022em;
 }
 .page-inner h2 {
   letter-spacing: -0.015em;
@@ -1625,7 +1631,7 @@ kbd {
   transition: background 0.15s ease, border-color 0.15s ease, filter 0.15s ease, transform 0.15s ease;
 }
 .btn.primary {
-  box-shadow: 0 6px 18px -8px rgba(79, 70, 229, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  box-shadow: none;
 }
 .btn.primary:active {
   transform: translateY(1px);

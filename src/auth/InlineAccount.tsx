@@ -4,7 +4,7 @@ import { ClerkFailed, ClerkLoading, ClerkProvider, SignIn, SignUp, useAuth, useC
 type Mode = 'signup' | 'login';
 interface Props { publishableKey: string; mode: Mode; onModeChange: (mode: Mode) => void; onSuccess: () => Promise<void>; }
 const appearance = {
-  variables: { colorPrimary: '#8bd4ff', colorPrimaryForeground: '#102331', colorBackground: '#141f2b', colorForeground: '#e7ebf0', colorMutedForeground: '#aab9c9', colorInput: '#0b141e', colorInputForeground: '#e7ebf0', borderRadius: '0.6rem', fontFamily: 'inherit' },
+  variables: { colorPrimary: '#f5f5f7', colorPrimaryForeground: '#0b0b0c', colorBackground: '#111113', colorForeground: '#f5f5f7', colorMutedForeground: '#a1a1a6', colorInput: '#000000', colorInputForeground: '#f5f5f7', borderRadius: '0.6rem', fontFamily: 'inherit' },
   elements: { rootBox: 'inline-account-root', cardBox: 'inline-account-cardbox', card: 'inline-account-card', footerAction: 'inline-account-hidden', formButtonPrimary: 'inline-account-submit' },
 };
 

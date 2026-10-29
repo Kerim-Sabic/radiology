@@ -148,7 +148,7 @@ test('landing page: modality tour, answers, screenshots and credits, all before 
   const dataRequests: string[]=[];
   page.on('request', r=> { if(/\/(packs|content)\//.test(r.url())) dataRequests.push(r.url()); });
   await page.goto('/');
-  await expect(page.getByRole('heading',{level:1})).toContainText('Learn to see.');
+  await expect(page.getByRole('heading',{level:1})).toContainText('Learn to read scans on real patients.');
   await expect.poll(()=>page.locator('.lp-hero-shot img').evaluate((i: HTMLImageElement)=>i.naturalWidth)).toBeGreaterThan(0);
   await page.getByRole('tab',{name:'Mammography'}).click();
   await expect(page.getByRole('tabpanel')).toContainText('Hung like a real mammography reading');

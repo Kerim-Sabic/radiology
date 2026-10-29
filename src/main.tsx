@@ -4,9 +4,8 @@ import { BrowserRouter } from 'react-router';
 import { Analytics } from '@vercel/analytics/react';
 import { App } from './App';
 import { AppProvider } from './app/AppContext';
-// Brand typefaces, self-hosted (no third-party font request): Inter for text, Plus Jakarta Sans for headings.
+// Brand typeface, self-hosted (no third-party font request).
 import '@fontsource-variable/inter';
-import '@fontsource-variable/plus-jakarta-sans';
 import './styles/app.css';
 import { AccountGate } from './auth/AccountGate';
 

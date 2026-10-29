@@ -44,12 +44,12 @@ function seal(size: number) {
   const ring = h(
     'svg',
     { width: size, height: size, viewBox: '0 0 200 200' },
-    h('defs', null, h('linearGradient', { id: 'g', x1: '0', y1: '0', x2: '1', y2: '1' }, h('stop', { offset: '0', stopColor: '#2563eb' }), h('stop', { offset: '1', stopColor: '#7c3aed' }))),
+    h('defs', null, h('linearGradient', { id: 'g', x1: '0', y1: '0', x2: '1', y2: '1' }, h('stop', { offset: '0', stopColor: '#1d4ed8' }), h('stop', { offset: '1', stopColor: '#1e40af' }))),
     h('circle', { cx: 100, cy: 100, r: 92, fill: 'none', stroke: 'url(#g)', strokeWidth: 10 }),
-    h('circle', { cx: 100, cy: 100, r: 74, fill: '#eef2ff', stroke: '#c7d2fe', strokeWidth: 2, strokeDasharray: '4 6' }),
-    h('path', { d: 'M68 102 L91 125 L134 80', fill: 'none', stroke: '#4f46e5', strokeWidth: 14, strokeLinecap: 'round', strokeLinejoin: 'round' }),
+    h('circle', { cx: 100, cy: 100, r: 74, fill: '#eff4ff', stroke: '#c9d7fb', strokeWidth: 2, strokeDasharray: '4 6' }),
+    h('path', { d: 'M68 102 L91 125 L134 80', fill: 'none', stroke: '#1d4ed8', strokeWidth: 14, strokeLinecap: 'round', strokeLinejoin: 'round' }),
   );
-  return box({ flexDirection: 'column', alignItems: 'center', gap: 10 }, ring, text({ fontSize: 16, fontWeight: 600, letterSpacing: 4, color: '#4f46e5' }, 'VERIFIED'));
+  return box({ flexDirection: 'column', alignItems: 'center', gap: 10 }, ring, text({ fontSize: 16, fontWeight: 600, letterSpacing: 4, color: '#1d4ed8' }, 'VERIFIED'));
 }
 
 export async function certificateImage(c: Certificate, origin: string, square = false): Promise<Response> {
@@ -68,7 +68,7 @@ export async function certificateImage(c: Certificate, origin: string, square = 
     text({ fontSize: 17, fontWeight: 600, letterSpacing: 4, color: '#6b7280' }, 'CERTIFICATE OF COMPLETION'),
     text({ marginTop: 10, fontFamily: 'Jakarta', fontSize: nameSize, lineHeight: 1.05, letterSpacing: -1.5 }, c.name),
     text({ marginTop: 14, fontSize: 22, color: '#4b5563' }, 'has completed'),
-    text({ marginTop: 4, fontFamily: 'Jakarta', fontSize: square ? 52 : 42, color: '#4f46e5', letterSpacing: -0.5, lineHeight: 1.1 }, c.title),
+    text({ marginTop: 4, fontFamily: 'Jakarta', fontSize: square ? 52 : 42, color: '#1d4ed8', letterSpacing: -0.5, lineHeight: 1.1 }, c.title),
     text({ marginTop: 14, fontSize: 19, color: '#4b5563', lineHeight: 1.45, maxWidth: square ? 900 : 640 }, 'Real patients, each read in a full workstation, marked on the image and graded against the expert outline.'),
   );
   const card = box(
@@ -87,7 +87,7 @@ export async function certificateImage(c: Certificate, origin: string, square = 
       box(
         { alignItems: 'center', gap: 14 },
         h('img', { src: logo.icon, width: square ? 64 : 54, height: square ? 64 : 54, style: { borderRadius: square ? 16 : 13 } }),
-        box({ fontFamily: 'Jakarta', fontSize: square ? 32 : 28 }, text({ color: '#111827' }, 'radiology'), text({ color: '#4f46e5' }, '.monster')),
+        box({ fontFamily: 'Jakarta', fontSize: square ? 32 : 28 }, text({ color: '#111827' }, 'radiology'), text({ color: '#1d4ed8' }, '.monster')),
       ),
       box(
         { alignItems: 'center', gap: 10, padding: '8px 16px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0' },
@@ -111,7 +111,7 @@ export async function certificateImage(c: Certificate, origin: string, square = 
       width: '100%',
       height: '100%',
       padding: pad,
-      background: 'radial-gradient(circle at 85% 0%, #7c3aed 0%, transparent 45%), radial-gradient(circle at 0% 100%, #2563eb 0%, transparent 50%), #0b1020',
+      background: '#0b0b0c',
     },
     card,
   );

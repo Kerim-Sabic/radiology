@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
-import { ArrowRight, CalendarDays, Check, Lock, Sparkles } from 'lucide-react';
+import { ArrowRight, CalendarDays, Check, Lock, LockOpen } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { caseOfWeek, FREE_CASES } from '../content/weekly';
 import { LANDING_FACTS } from '../auth/landingFacts';
@@ -50,7 +50,7 @@ export function LockedFeature({ icon, title, text, points }: { icon: ReactNode; 
         </ul>
         <div className="locked-actions">
           <button className="btn primary lg" onClick={openPlans}>
-            <Sparkles size={15} /> See plans
+            See plans
           </button>
           <Link className="btn ghost lg" to="/cases">
             Open the free patients
@@ -68,7 +68,7 @@ export function UpgradeCard({ title, text, compact }: { title: string; text: str
   return (
     <section className={`upgrade-card${compact ? ' compact' : ''}`}>
       <span className="upgrade-ico" aria-hidden="true">
-        <Sparkles size={18} />
+        <LockOpen size={18} />
       </span>
       <div>
         <b>{title}</b>
@@ -135,7 +135,7 @@ function LockedCaseOfWeek({ caseId, endsAt }: { caseId: string; endsAt: Date }) 
           {t ? `${modalityName(t.modality)} · ${t.tasks} graded task${t.tasks === 1 ? '' : 's'}. ` : ''}Members read a new featured patient every Monday, with an email when it is out, and keep every earlier one.
         </p>
         <button className="btn primary" onClick={openPlans}>
-          <Sparkles size={15} /> Unlock this week’s case
+          Unlock this week’s case
         </button>
       </div>
     </section>
@@ -160,7 +160,7 @@ export function LockedCase({ caseId }: { caseId: string }) {
         </p>
         <div className="locked-actions">
           <button className="btn primary lg" onClick={openPlans}>
-            <Sparkles size={15} /> See plans
+            See plans
           </button>
           <Link className="btn ghost lg" to="/cases">
             Back to the free patients
@@ -192,7 +192,7 @@ export function LockedLibrary() {
           <p className="muted">{[...byModality.entries()].map(([m, n]) => `${n} ${m}`).join(' · ')}</p>
         </div>
         <button className="btn primary" onClick={openPlans}>
-          <Sparkles size={15} /> Unlock all
+          Unlock all
         </button>
       </div>
       <ul className="locked-grid">

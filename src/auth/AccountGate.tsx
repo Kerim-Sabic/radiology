@@ -1,5 +1,5 @@
 import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
-import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers, Sparkles } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers, LockOpen } from 'lucide-react';
 import './account.css';
 import './plans.css';
 import { Landing } from './Landing';
@@ -37,7 +37,7 @@ export function AccountMenu() {
   const context = useContext(AccountContext);
   if (!context) return null;
   if (context.free) return <span className="account-menu">
-    <button className="upgrade-btn" onClick={context.openPlans} title="See the plans"><Sparkles size={15} /><span>Upgrade</span></button>
+    <button className="upgrade-btn" onClick={context.openPlans} title="See the plans"><LockOpen size={15} /><span>Upgrade</span></button>
     <button onClick={context.logout} title={`Sign out (${context.account.user?.email ?? ''})`}><LogOut size={16} /><span>Sign out</span></button>
   </span>;
   return <span className="account-menu">
@@ -225,7 +225,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
     <section className="membership-panel" id="plans" aria-label="Membership">
       {payment && account?.user ? <>
         <button className="checkout-back text-button" onClick={() => { setPayment(null); setError(''); }}><ArrowLeft size={15} /> Change plan</button>
-        <span className="membership-step">COMPLETE YOUR MEMBERSHIP</span>
+        <span className="membership-step">Checkout</span>
         <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
         <p className="checkout-account">{account.user.email}</p>
         {!payment.promoCode && <button className="text-button" onClick={() => setPayment(null)}>Have a promo code? Add it before payment</button>}
@@ -234,14 +234,14 @@ function MembershipGate({ children }: { children: ReactNode }) {
         </Suspense>
         <p className="membership-fine">{payment.promoCode ? 'Your code is prefilled in the payment form. Review the discounted recurring total before paying; Whop confirms whether it is still available.' : payment.tier === 'monthly' ? 'Standard price: $20 USD every 30 days.' : 'Standard price: $150 USD every 365 days.'} Discounts and any applicable tax are shown in the payment form. Cancel future renewals from Billing. Access opens after payment is verified.</p>
       </> : <>
-      <span className="membership-step">{account?.user ? 'CHOOSE YOUR PLAN' : 'YOUR NEXT STEP FROM THEORY TO PRACTICE'}</span>
-      <h2>{account?.user ? 'Unlock the whole library.' : 'More practice. A clearer picture.'}</h2>
-      <p>{account?.user ? `Signed in as ${account.user.email}` : 'One membership for real cases, guided practice and the book beside you.'}</p>
+      <span className="membership-step">{account?.user ? 'Choose your plan' : 'Membership'}</span>
+      <h2>{account?.user ? 'Unlock the whole library.' : 'The whole library, every tool.'}</h2>
+      <p>{account?.user ? `Signed in as ${account.user.email}` : 'One membership for every patient, drill and on-call shift, with the book beside you.'}</p>
       {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
       <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>Choose a plan below. Your discount will appear in the secure payment form.</p></details>
       <div className="membership-plans">
         <article className="membership-plan yearly" aria-labelledby="yearly-plan-title">
-          <span className="membership-best">BEST VALUE</span>
+          <span className="membership-best">Best value</span>
           <div className="plan-heading"><h3 id="yearly-plan-title">Yearly</h3><span>For a year of steady progress</span></div>
           <div className="membership-price">$12.50<span>/ month</span></div>
           <p className="plan-billing"><strong>$150 billed yearly</strong><span>One payment every 365 days.</span></p>

@@ -12,10 +12,7 @@
   padding: 26px;
   border: 1px solid var(--line);
   border-radius: 16px;
-  background:
-    radial-gradient(ellipse 70% 90% at 0% 0%, rgba(37, 99, 235, 0.2), transparent 60%),
-    radial-gradient(ellipse 50% 80% at 100% 100%, rgba(124, 58, 237, 0.16), transparent 60%),
-    var(--panel);
+  background: var(--panel);
   overflow: hidden;
 }
 .home-hero-main {
@@ -32,11 +29,9 @@
   flex-wrap: wrap;
 }
 .home-greet {
-  color: var(--accent);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  color: var(--text-3);
+  font-size: 13px;
+  font-weight: 500;
 }
 .home-hero h1 {
   font-size: clamp(24px, 2.6vw, 32px);
@@ -50,14 +45,14 @@
   padding: 10px 14px 10px 10px;
   border: 1px solid var(--line-strong);
   border-radius: 12px;
-  background: rgba(2, 6, 23, 0.55);
+  background: rgba(0, 0, 0, 0.55);
   color: var(--text);
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 .home-next:hover {
   text-decoration: none;
   border-color: rgba(var(--accent-rgb), 0.6);
-  background: rgba(2, 6, 23, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 .home-next img,
 .home-next-ph {
@@ -76,11 +71,9 @@
   min-width: 0;
 }
 .home-next-text small {
-  color: var(--accent);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  color: var(--text-3);
+  font-size: 12px;
+  font-weight: 500;
 }
 .home-next-text b {
   font-size: 15px;
@@ -106,7 +99,7 @@
   padding: 16px;
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: rgba(2, 6, 23, 0.5);
+  background: rgba(0, 0, 0, 0.5);
   min-width: 0;
 }
 .home-streak-head {
@@ -137,8 +130,7 @@
 .home-flame.lit {
   color: #fff;
   border-color: transparent;
-  background: linear-gradient(135deg, #f59e0b, #ef4444);
-  box-shadow: 0 8px 24px -8px rgba(239, 68, 68, 0.7);
+  background: #ff9f0a;
 }
 .home-streak-foot {
   display: flex;
@@ -172,19 +164,19 @@
   border-radius: 3px;
 }
 .actcal-day {
-  background: #142038;
+  background: #1c1c1e;
 }
 .actcal-day.l1 {
-  background: #1e3a8a;
+  background: #0d3a66;
 }
 .actcal-day.l2 {
-  background: #2f56c9;
+  background: #1866b8;
 }
 .actcal-day.l3 {
-  background: #5b7cf0;
+  background: #3b9cff;
 }
 .actcal-day.l4 {
-  background: #a5b4fc;
+  background: #a3d0ff;
 }
 .actcal-legend {
   display: flex;
@@ -252,20 +244,18 @@
 .home-tile-icon {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
-  margin-bottom: 8px;
-  border-radius: 10px;
-  background: var(--accent-soft);
-  color: var(--accent);
+  justify-items: start;
+  height: 26px;
+  margin-bottom: 6px;
+  color: var(--text-2);
 }
 .home-tile-icon svg {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.75;
 }
 .home-tile.hot .home-tile-icon {
-  background: var(--brand-grad);
-  color: #fff;
+  color: var(--text);
 }
 .home-tile small {
   color: var(--text-3);

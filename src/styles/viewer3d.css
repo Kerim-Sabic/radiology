@@ -111,7 +111,7 @@
   max-width: 100%;
   padding: 4px;
   border-radius: 10px;
-  background: rgba(2, 6, 23, 0.78);
+  background: rgba(0, 0, 0, 0.78);
   border: 1px solid var(--line);
   backdrop-filter: blur(6px);
 }
@@ -134,7 +134,7 @@
   overflow: auto;
   padding: 10px 12px;
   border-radius: 10px;
-  background: rgba(10, 17, 34, 0.96);
+  background: rgba(14, 14, 16, 0.96);
   border: 1px solid var(--line-strong);
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
   font-size: 12.5px;

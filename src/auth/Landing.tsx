@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { trackFunnel } from '../services/serverSync';
-import { ArrowRight, BookOpen, Bone, CalendarDays, Check, Crosshair, Layers, Link2, ListChecks, Repeat, Rotate3d, Search, ShieldCheck, Siren, Sparkles } from 'lucide-react';
+import { ArrowRight, Check, ShieldCheck } from 'lucide-react';
 import { fact, LANDING_CREDITS, LANDING_FACTS } from './landingFacts';
 import './landing.css';
 
@@ -64,16 +64,16 @@ const MODALITIES: Array<{ id: string; name: string; img: string; alt: string; ti
   },
 ];
 
-const FEATURES: Array<{ icon: ReactNode; title: string; text: string }> = [
-  { icon: <Link2 />, title: 'Linked views', text: 'Scroll one plane and the others follow, with reference lines showing where you are. Double-click to jump all views to a point.' },
-  { icon: <Rotate3d />, title: '3D you can take apart', text: 'Cut the volume at the slice you are reading, or show only the heart, the arteries, the veins or the finding itself, in colours you choose.' },
-  { icon: <Crosshair />, title: 'Graded where you mark', text: 'Mark what you see on the image. Level, side, position and name are checked separately against the expert outline.' },
-  { icon: <BookOpen />, title: 'Linked to the book', text: 'Every task names the page of Learning Radiology (5th ed.) that explains it. Open your own copy and the link jumps there, then back to your scan.' },
-  { icon: <Repeat />, title: 'Drills that remember', text: 'Point to structures and findings. What you miss comes back later, on a different patient, until you know it.' },
-  { icon: <Siren />, title: 'On-call shifts', text: 'A run of unknown cases with an optional clock, read with no hints, and a scored report at the end.' },
-  { icon: <Search />, title: 'Search by condition', text: 'Type pneumothorax or pulmonary embolism and see every patient who has it, where it is, and the book pages.' },
-  { icon: <Bone />, title: 'Anatomy atlas', text: 'Pick any structure, a rib, a vertebra, a lobe, and see it alone on a real CT or radiograph, outlined or filled in the colour you choose.' },
-  { icon: <ListChecks />, title: 'Search-pattern coach', text: 'A step-by-step review for chest films, CT and MRI that shows each step’s structures together, so you never skip one.' },
+const FEATURES: Array<{ title: string; text: string }> = [
+  { title: 'Linked views', text: 'Scroll one plane and the others follow, with reference lines showing where you are. Double-click to jump all views to a point.' },
+  { title: '3D you can take apart', text: 'Cut the volume at the slice you are reading, or show only the heart, the arteries, the veins or the finding itself, in colours you choose.' },
+  { title: 'Graded where you mark', text: 'Mark what you see on the image. Level, side, position and name are checked separately against the expert outline.' },
+  { title: 'Linked to the book', text: 'Every task names the page of Learning Radiology (5th ed.) that explains it. Open your own copy and the link jumps there, then back to your scan.' },
+  { title: 'Drills that remember', text: 'Point to structures and findings. What you miss comes back later, on a different patient, until you know it.' },
+  { title: 'On-call shifts', text: 'A run of unknown cases with an optional clock, read with no hints, and a scored report at the end.' },
+  { title: 'Search by condition', text: 'Type pneumothorax or pulmonary embolism and see every patient who has it, where it is, and the book pages.' },
+  { title: 'Anatomy atlas', text: 'Pick any structure, a rib, a vertebra, a lobe, and see it alone on a real CT or radiograph, outlined or filled in the colour you choose.' },
+  { title: 'Search-pattern coach', text: 'A step-by-step review for chest films, CT and MRI that shows each step’s structures together, so you never skip one.' },
 ];
 
 const STEPS: Array<[string, string]> = [
@@ -116,10 +116,8 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
       <header className="lp-header">
         <div className="lp-wrap lp-header-row">
           <a className="lp-brand" href="/" aria-label="radiology.monster home">
-            <img src="/logo-mark.svg" alt="" width={24} height={25} />
-            <span>
-              radiology<span>.monster</span>
-            </span>
+            <img src="/logo-mark.svg" alt="" width={22} height={23} />
+            <span>radiology.monster</span>
           </a>
           <nav className="lp-nav" aria-label="Page sections">
             <a href="#modalities">Modalities</a>
@@ -128,98 +126,82 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
             <a href="#pricing">Pricing</a>
             <a href="#faq">FAQ</a>
           </nav>
-          <button className="lp-signin" onClick={onSignIn} disabled={signInDisabled}>
-            {signInLabel} <ArrowRight size={15} />
-          </button>
+          <div className="lp-header-actions">
+            <button className="lp-signin" onClick={onSignIn} disabled={signInDisabled}>
+              {signInLabel}
+            </button>
+            <button className="lp-btn primary small" onClick={onStartFree} disabled={signInDisabled}>
+              Start free
+            </button>
+          </div>
         </div>
       </header>
 
       <section className="lp-hero">
-        <div className="lp-wrap lp-hero-grid">
-          <div className="lp-hero-copy">
-            <span className="lp-eyebrow">
-              <Sparkles size={13} /> Real scans · real feedback · the book beside you
-            </span>
-            <h1>
-              Learn to see.
-              <br />
-              <em>Then know why.</em>
-            </h1>
-            <p className="lp-lead">
-              Read real CT, MRI, X-ray, mammography and ultrasound studies in a full workstation. Mark what you see, get graded on the exact slice, and open the page of <i>Learning Radiology</i> that explains it.
-            </p>
-            <div className="lp-cta">
-              <button className="lp-btn primary" onClick={onStartFree} disabled={signInDisabled}>
-                Start free <ArrowRight size={17} />
-              </button>
-              <a className="lp-btn" href="#plans">
-                See plans
-              </a>
-            </div>
-            <ul className="lp-ticks">
-              <li>Free account, no card</li>
-              <li>{fact(LANDING_FACTS.patients)}+ real patients</li>
-              <li>New case every Monday</li>
-            </ul>
+        <div className="lp-wrap lp-hero-copy">
+          <p className="lp-overline">For medical students and residents</p>
+          <h1>Learn to read scans on real patients.</h1>
+          <p className="lp-lead">
+            {fact(LANDING_FACTS.patients)}+ de-identified CT, MRI, X-ray, mammography and ultrasound studies in a full reading workstation. Mark what you see, get graded
+            against the expert outline on the exact slice, and open the page of <i>Learning Radiology</i> that explains it.
+          </p>
+          <div className="lp-cta">
+            <button className="lp-btn primary" onClick={onStartFree} disabled={signInDisabled}>
+              Start free
+            </button>
+            <a className="lp-btn" href="#plans">
+              See plans
+            </a>
           </div>
-          <figure className="lp-shot lp-hero-shot">
-              <div className="lp-shot-bar" aria-hidden="true">
-                <i />
-                <i />
-                <i />
-                <span>radiology.monster/read</span>
-              </div>
-              <img
-                src="/landing/hero.webp"
-                width={1920}
-                height={1200}
-                fetchPriority="high"
-                alt="The workstation: a CT pulmonary angiogram in linked axial, coronal and sagittal views, with a 3D view showing the clot inside the pulmonary arteries"
-              />
-              <figcaption className="lp-callout c1">
-                <Link2 size={14} /> Scroll one view, the others follow
-              </figcaption>
-              <figcaption className="lp-callout c2">
-                <Rotate3d size={14} /> 3D: the clot inside the pulmonary arteries
-              </figcaption>
-              <figcaption className="lp-callout c3">
-                <Crosshair size={14} /> Graded against the expert outline
-              </figcaption>
-            </figure>
+          <p className="lp-note">Free account with two patients. No card needed.</p>
         </div>
+        <figure className="lp-wrap lp-figure lp-hero-shot">
+          <div className="lp-frame">
+            <img
+              src="/landing/hero.webp"
+              width={1920}
+              height={1200}
+              fetchPriority="high"
+              alt="The workstation: a CT pulmonary angiogram in linked axial, coronal and sagittal views, with a 3D view showing the clot inside the pulmonary arteries"
+            />
+          </div>
+          <figcaption>
+            <b>Fig. 1</b> CT pulmonary angiogram in the workstation. Linked axial, coronal and sagittal views follow each other; the clot is outlined by the radiologists
+            who published the study, and shown inside the pulmonary arteries in 3D.
+          </figcaption>
+        </figure>
       </section>
 
-      <section className="lp-stats" aria-label="What is inside">
-        <div className="lp-wrap lp-stats-row">
+      <section className="lp-facts" aria-label="What is inside">
+        <dl className="lp-wrap">
           <div>
-            <b>{fact(LANDING_FACTS.patients)}+</b>
-            <span>real patients</span>
+            <dt>Real patients</dt>
+            <dd>{fact(LANDING_FACTS.patients)}+</dd>
           </div>
           <div>
-            <b>{fact(LANDING_FACTS.tasks)}+</b>
-            <span>image tasks</span>
+            <dt>Graded image tasks</dt>
+            <dd>{fact(LANDING_FACTS.tasks)}+</dd>
           </div>
           <div>
-            <b>{LANDING_FACTS.modalities.length}</b>
-            <span>modalities</span>
+            <dt>Modalities</dt>
+            <dd>{LANDING_FACTS.modalities.length}</dd>
           </div>
           <div>
-            <b>{LANDING_FACTS.conditions}+</b>
-            <span>conditions to search</span>
+            <dt>Conditions to search</dt>
+            <dd>{LANDING_FACTS.conditions}+</dd>
           </div>
           <div>
-            <b>{LANDING_FACTS.objectives}</b>
-            <span>book objectives mapped</span>
+            <dt>Book objectives mapped</dt>
+            <dd>{LANDING_FACTS.objectives}</dd>
           </div>
-        </div>
+        </dl>
       </section>
 
       <section className="lp-section" id="modalities">
         <div className="lp-wrap">
           <div className="lp-head">
-            <span className="lp-kicker">Every modality in the book</span>
-            <h2>One workstation, built for each kind of image</h2>
-            <p>Each modality is shown the way radiologists read it, not as a flat picture.</p>
+            <h2>Every modality, read the way radiologists read it.</h2>
+            <p>The whole study, in the planes, windows and sequences it was acquired in. Not a flat picture with an arrow on it.</p>
           </div>
           <div className="lp-tabs" role="tablist" aria-label="Modalities">
             {MODALITIES.map((m, i) => (
@@ -238,8 +220,13 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
             ))}
           </div>
           <div className="lp-modality" id="lp-modality-panel" role="tabpanel" aria-labelledby={`lp-tab-${shown.id}`}>
-            <figure className="lp-shot">
-              <img key={shown.id} src={shown.img} width={1280} height={800} alt={shown.alt} loading="lazy" />
+            <figure className="lp-figure">
+              <div className="lp-frame">
+                <img key={shown.id} src={shown.img} width={1280} height={800} alt={shown.alt} loading="lazy" />
+              </div>
+              <figcaption>
+                <b>Fig. 2</b> {shown.alt}.
+              </figcaption>
             </figure>
             <div className="lp-modality-copy">
               <h3>{shown.title}</h3>
@@ -254,18 +241,15 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
         </div>
       </section>
 
-      <section className="lp-section alt" id="features">
+      <section className="lp-section" id="features">
         <div className="lp-wrap">
           <div className="lp-head">
-            <span className="lp-kicker">More than a viewer</span>
-            <h2>Everything you need to learn reading, in one place</h2>
+            <h2>More than a viewer.</h2>
+            <p>What sits around the image, so that looking turns into reading.</p>
           </div>
-          <div className="lp-features">
+          <div className="lp-specs">
             {FEATURES.map((f) => (
-              <article key={f.title} className="lp-feature">
-                <span className="lp-feature-icon" aria-hidden="true">
-                  {f.icon}
-                </span>
+              <article key={f.title}>
                 <h3>{f.title}</h3>
                 <p>{f.text}</p>
               </article>
@@ -277,12 +261,13 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
       <section className="lp-section" id="how">
         <div className="lp-wrap lp-split">
           <div>
-            <span className="lp-kicker">How a session works</span>
-            <h2>Practice that turns into skill</h2>
+            <div className="lp-head">
+              <h2>A session, step by step.</h2>
+            </div>
             <ol className="lp-steps">
               {STEPS.map(([h, t], i) => (
                 <li key={h}>
-                  <span className="lp-step-n">{i + 1}</span>
+                  <span className="lp-step-n">{String(i + 1).padStart(2, '0')}</span>
                   <div>
                     <b>{h}</b>
                     <p>{t}</p>
@@ -291,40 +276,40 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
               ))}
             </ol>
             <p className="lp-modes">
-              <Layers size={15} />
-              <span>
-                Four modes: <b>Learn</b> with labels on, <b>Practice</b> with hints, <b>Assess</b> with no help, and <b>Review</b> to go over your answers.
-              </span>
+              Four modes: <b>Learn</b> with labels on, <b>Practice</b> with hints, <b>Assess</b> with no help, and <b>Review</b> to go over your answers.
             </p>
           </div>
-          <figure className="lp-shot">
-            <img src="/landing/conditions.webp" width={1280} height={800} loading="lazy" alt="Condition search for pneumothorax: four patients with the finding boxed, and the book pages that explain it" />
+          <figure className="lp-figure">
+            <div className="lp-frame">
+              <img src="/landing/conditions.webp" width={1280} height={800} loading="lazy" alt="Condition search for pneumothorax: four patients with the finding boxed, and the book pages that explain it" />
+            </div>
+            <figcaption>
+              <b>Fig. 3</b> Condition search for pneumothorax: four patients with the finding boxed by the source readers, and the book pages that explain it.
+            </figcaption>
           </figure>
         </div>
       </section>
 
       <section className="lp-section" id="weekly">
         <div className="lp-wrap lp-weekly">
-          <span className="lp-weekly-ico" aria-hidden="true">
-            <CalendarDays size={26} />
-          </span>
           <div>
-            <span className="lp-kicker">Case of the week</span>
-            <h2>A new real case, every Monday.</h2>
-            <p>Members get one featured patient every week, with the task, the expert outline and the page of the book that explains it, and an email when it is out. Every earlier case stays in the library.</p>
+            <h2>A new case every Monday.</h2>
+            <p>
+              Members get one featured patient every week, with the task, the expert outline and the page of the book that explains it, and an email when it is out.
+              Every earlier case stays in the library.
+            </p>
           </div>
-          <a className="lp-btn primary" href="#pricing">
-            See plans <ArrowRight size={17} />
+          <a className="lp-btn" href="#pricing">
+            See plans <ArrowRight size={16} />
           </a>
         </div>
       </section>
 
-      <section className="lp-section alt" id="pricing">
+      <section className="lp-section" id="pricing">
         <div className="lp-wrap">
           <div className="lp-head">
-            <span className="lp-kicker">Pricing</span>
-            <h2>Built for your next rotation.<br />And the ones after it.</h2>
-            <p>For medical students and radiology trainees who want to turn reading into hands-on practice. Start free, then choose how you pay; every plan opens every patient, drill, on-call shift and certificate.</p>
+            <h2>Start free. Upgrade when you are ready.</h2>
+            <p>Every plan opens every patient, drill, on-call shift and certificate.</p>
           </div>
           <div className="lp-pricing-grid">
             <article className="lp-free">
@@ -343,7 +328,7 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
                 ))}
               </ul>
               <button className="lp-btn" onClick={onStartFree} disabled={signInDisabled}>
-                Create a free account <ArrowRight size={16} />
+                Create a free account
               </button>
             </article>
             <div className="lp-pricing">{panel}</div>
@@ -354,8 +339,7 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
       <section className="lp-section" id="faq">
         <div className="lp-wrap lp-faq-wrap">
           <div className="lp-head">
-            <span className="lp-kicker">Questions</span>
-            <h2>Good to know</h2>
+            <h2>Questions</h2>
           </div>
           <div className="lp-faq">
             {FAQ.map(([q, a]) => (
@@ -371,9 +355,9 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
       <section className="lp-final">
         <div className="lp-wrap">
           <h2>Your next scan is waiting.</h2>
-          <div className="lp-cta center">
+          <div className="lp-cta">
             <button className="lp-btn primary" onClick={onStartFree} disabled={signInDisabled}>
-              Start free <ArrowRight size={17} />
+              Start free
             </button>
             <a className="lp-btn" href="#pricing">
               Choose a plan

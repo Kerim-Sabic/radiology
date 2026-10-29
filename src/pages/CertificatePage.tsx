@@ -107,13 +107,13 @@ export default function CertificatePage() {
             <svg viewBox="0 0 200 200" width="170" height="170">
               <defs>
                 <linearGradient id="cert-ring" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0" stopColor="#2563eb" />
-                  <stop offset="1" stopColor="#7c3aed" />
+                  <stop offset="0" stopColor="#1d4ed8" />
+                  <stop offset="1" stopColor="#1e40af" />
                 </linearGradient>
               </defs>
               <circle cx="100" cy="100" r="92" fill="none" stroke="url(#cert-ring)" strokeWidth="10" />
-              <circle cx="100" cy="100" r="74" fill="#eef2ff" stroke="#c7d2fe" strokeWidth="2" strokeDasharray="4 6" />
-              <path d="M68 102 L91 125 L134 80" fill="none" stroke="#4f46e5" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" />
+              <circle cx="100" cy="100" r="74" fill="#eff4ff" stroke="#c9d7fb" strokeWidth="2" strokeDasharray="4 6" />
+              <path d="M68 102 L91 125 L134 80" fill="none" stroke="#1d4ed8" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span>Verified</span>
           </div>
