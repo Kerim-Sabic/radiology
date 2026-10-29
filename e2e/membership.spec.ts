@@ -105,9 +105,10 @@ test('a promo code survives signup and reaches the on-page monthly checkout', as
   await expect(page.getByText('Your code is prefilled',{exact:false})).toBeVisible();
 });
 
-test('members can copy their verified referral link in an accessible phone dialog', async ({page, context}) => {
+test('members can copy their verified referral link in an accessible phone dialog', async ({page, context, browserName}) => {
   await page.setViewportSize({width:390,height:844});
-  await context.grantPermissions(['clipboard-read','clipboard-write']);
+  // Only Chromium lets a test read the clipboard back.
+  if (browserName === 'chromium') await context.grantPermissions(['clipboard-read','clipboard-write']);
   await account(page,true);
   await page.route('**/api/session',route=>route.fulfill({json:{user:{name:'Member',email:'member@example.com'},access:{active:true,tier:'monthly'},billingReady:true}}));
   const link='https://whop.com/e/trk_zpdZ5h59TRkTrN/study-pal';
@@ -119,7 +120,7 @@ test('members can copy their verified referral link in an accessible phone dialo
   await expect(page.getByLabel('Your referral link')).toHaveValue(link);
   await page.getByRole('button',{name:'Copy link',exact:true}).click();
   await expect(page.getByRole('button',{name:'Copied!'})).toBeVisible();
-  expect(await page.evaluate(()=>navigator.clipboard.readText())).toBe(link);
+  if (browserName === 'chromium') expect(await page.evaluate(()=>navigator.clipboard.readText())).toBe(link);
   await expect(dialog).toContainText('30-day waiting period');
   await expect(dialog.getByRole('link',{name:'Referral activity'})).toHaveAttribute('href','https://whop.com/radiology-monster/affiliates/');
   expect(await dialog.evaluate(el=>el.scrollWidth <= el.clientWidth)).toBe(true);
@@ -133,7 +134,7 @@ test('referral lookup failure offers the real Whop portal and can recover', asyn
   await account(page,true);
   let failing=true;
   await page.route('**/api/referrals',route=>route.fulfill({status:failing?503:200,json:failing?{error:'Unavailable'}:{shareUrl:null}}));
-  await page.goto('/');
+  await page.goto('/?plans'); // a free account finds the invite on the plans screen
   await page.getByRole('button',{name:'Invite friends',exact:true}).click();
   await expect(page.getByRole('alert')).toContainText('couldn’t load your link');
   await expect(page.getByRole('link',{name:'Get my link on Whop'})).toHaveAttribute('href','https://whop.com/radiology-monster/affiliates/');
@@ -157,7 +158,7 @@ test('landing page: modality tour, answers, screenshots and credits, all before 
   await page.getByText('Can I use it to diagnose patients?').click();
   await expect(page.getByText('It is not a medical device')).toBeVisible();
   await expect(page.locator('.lp-credits').last()).toContainText('CBIS-DDSM');
-  await page.getByRole('link',{name:'See plans'}).click();
+  await page.getByRole('link',{name:'See plans',exact:true}).first().click();
   await expect(page.getByRole('button',{name:'Choose monthly'})).toBeInViewport();
   await expect(page.locator('.lp-free')).toContainText('$0');
   await expect(page.locator('.lp-affiliation')).toContainText('not affiliated');
@@ -167,11 +168,12 @@ test('landing page: modality tour, answers, screenshots and credits, all before 
   expect(dataRequests).toEqual([]);
 });
 
-test('free account: samples and this week’s case open, everything else shows what membership adds', async ({page}) => {
+test('free account: the sample patients open; the case of the week and everything else show what membership adds', async ({page}) => {
   await account(page,true);
   await page.goto('/');
   await expect(page.locator('.free-banner')).toContainText('Free account');
-  await expect(page.locator('.cow')).toContainText('Case of the week');
+  await expect(page.locator('.cow.locked')).toContainText('Case of the week · members');
+  await expect(page.locator('.cow.locked')).toContainText('Patient');
   // Members-only areas explain themselves and lead to the plans.
   await page.goto('/drill');
   await expect(page.getByRole('heading',{name:'Drills that remember'})).toBeVisible();
@@ -183,7 +185,8 @@ test('free account: samples and this week’s case open, everything else shows w
   // The library: the free patients open, the rest listed by neutral title and locked.
   await page.goto('/cases');
   await expect(page.locator('.case-card').first()).toBeVisible();
-  expect(await page.locator('.case-card').count()).toBe(3);
+  expect(await page.locator('.case-card').count()).toBe(2);
+  await expect(page.locator('.locked-tile').first()).toContainText('Case of the week');
   await expect(page.locator('.locked-library h2')).toContainText('more patients for members');
   await expect(page.locator('.locked-tile').first()).toBeVisible();
   // A members' patient from a link: what it is, not an error and not the images.
@@ -201,7 +204,13 @@ test('a certificate has a public page that needs no sign-in', async ({page}) => 
   await page.goto('/certificate/abcDEF123_-x');
   await expect(page.locator('.cert-name')).toHaveText('Ada Lovelace');
   await expect(page.locator('.cert-title')).toHaveText('Chest imaging');
-  await expect(page.locator('.cert-detail')).toContainText('14 real patients');
-  await expect(page.getByRole('link',{name:'Add to LinkedIn'})).toHaveAttribute('href',/linkedin\.com\/profile\/add\?startTask=CERTIFICATION_NAME/);
+  await expect(page.locator('.cert-stats')).toContainText('14');
+  await expect(page.locator('.cert-stats')).toContainText('Real patients');
+  await expect(page.locator('.cert-stats')).toContainText('82%');
+  await expect(page.getByRole('link',{name:'Add to LinkedIn profile'})).toHaveAttribute('href',/linkedin\.com\/profile\/add\?startTask=CERTIFICATION_NAME/);
+  await expect(page.getByRole('link',{name:'Post on LinkedIn'})).toHaveAttribute('href',/linkedin\.com\/sharing\/share-offsite\/\?url=.*certificate%2FabcDEF123_-x/);
+  await expect(page.getByRole('link',{name:'Image for a post'})).toHaveAttribute('href','/api/og/certificate?id=abcDEF123_-x');
+  await expect(page.locator('.cert-post pre')).toContainText('#radiology');
+  await expect(page.getByRole('link',{name:'Start free'})).toHaveAttribute('href','/');
   await expect(page.getByRole('button',{name:'Choose monthly'})).toHaveCount(0);
 });

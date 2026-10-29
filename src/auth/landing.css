@@ -1126,3 +1126,8 @@ button.lp-btn:disabled {
     justify-content: center;
   }
 }
+
+.lp #plans,
+.lp #pricing {
+  scroll-margin-top: 80px;
+}

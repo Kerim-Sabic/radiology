@@ -40,7 +40,7 @@ interface AppState {
   settings: Settings;
   setSettings: (s: Partial<Settings>) => void;
   reloadCatalog: () => void;
-  /** Signed in without a plan: the catalog is the free edition (sample patients and this week's case). */
+  /** Signed in without a plan: the catalog is the free edition (the sample patients). */
   free: boolean;
   /** Open the plans screen (free accounts; does nothing otherwise). */
   openPlans: () => void;

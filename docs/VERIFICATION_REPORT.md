@@ -293,7 +293,7 @@ All five licences allow commercial use with no login: CC BY 4.0, CC BY 3.0 or NI
 - `tests/neutralTitles.test.ts` checks all four.
 
 **Free account** (signed in, no plan):
-- Two sample patients, plus the case of the week: a new patient every Monday (UTC), 52 weeks scheduled in `src/content/weekly.ts`.
+- Two sample patients. The case of the week (a new featured patient every Monday, UTC, 52 weeks scheduled in `src/content/weekly.ts`) is for members; free accounts see it locked, by neutral title, and cannot switch on its email.
 - `proxy.ts` lets a free account load only those patients' files, the free manifests, the teaser list and the curriculum (`server/free.ts`, `npm run free:sync`, `tests/freeEdition.test.ts`).
 - Locked areas (drills, on call, atlas, book) explain what they are. The library lists every other patient by neutral title, locked. Upgrade prompts appear on Today, after an answer, and in the top bar. Signed-in visitors no longer see the marketing page; plans open on their own screen.
 
@@ -304,13 +304,13 @@ All five licences allow commercial use with no login: CC BY 4.0, CC BY 3.0 or NI
 - Opt-in, with signed one-click unsubscribe and `List-Unsubscribe` headers.
 - The server stores only study days and email choices.
 
-**Certificates:** one per body area (10 patients read, 70% of graded answers right) plus Radiology foundations. Each has a public page at `/certificate/<id>`, with print and "Add to LinkedIn".
+**Certificates:** one per body area (10 patients read, 70% of graded answers right) plus Radiology foundations. Each has a public page at `/certificate/<id>`, made for sharing: "Add to LinkedIn profile", "Post on LinkedIn", copy link, a post text to start from, print or PDF, and two images (1200×627 for posts, 1080×1080 for Instagram) rendered on the server (`server/certificateShare.ts`, Inter and Plus Jakarta Sans under the SIL Open Font Licence). The page carries its own preview tags, so a shared link shows the certificate picture and title. Visitors see an invitation to start free.
 
 **Numbers:** Vercel Web Analytics, cookieless, with query strings dropped. Daily counters for the funnel: landing visit, Start free, account created, first answer, plans opened, checkout, paid. Day-1 and day-7 return. Admins see all of it at `/admin`.
 
 **Look:** the landing page, plans screen and app surfaces were restyled: centred hero, pill buttons, frosted top bar, rounder cards, calmer backgrounds. Checked at 1440 px and 390 px with no sideways scrolling.
 
-**Tests on the production build:** 432 unit tests; 93 browser tests in Chromium and Firefox (7 skipped as before), including the free account, locked patients and the public certificate page.
+**Tests on the production build (merged with the referral and yearly-first pricing commits):** 447 unit tests; 97 browser tests in Chromium and Firefox (7 skipped as before), including the free account, the locked case of the week, the public certificate page and its share links, and the referral flows.
 
 ## 4. Measured performance (`docs/perf/measurements.json`)
 

@@ -10,11 +10,11 @@ interface Props {
   signInLabel: string;
   signInDisabled: boolean;
   onSignIn: () => void;
-  /** Create a free account (sample patients and the case of the week). */
+  /** Create a free account (the sample patients). */
   onStartFree: () => void;
 }
 
-const FREE_POINTS = ['Two sample patients in the full workstation', 'A new case of the week, every Monday', 'Learn and Practice modes with grading', 'No card needed'];
+const FREE_POINTS = ['Two sample patients in the full workstation', 'Learn and Practice modes, graded on the slice', 'Outlines, colours and 3D', 'No card needed'];
 
 const MODALITIES: Array<{ id: string; name: string; img: string; alt: string; title: string; text: string; points: string[] }> = [
   {
@@ -85,7 +85,7 @@ const STEPS: Array<[string, string]> = [
 ];
 
 const FAQ: Array<[string, ReactNode]> = [
-  ['Is there a free version?', 'Yes. A free account opens two sample patients in the full workstation, with grading, plus a new case of the week every Monday. No card needed. Choose a plan when you want every patient, the drills, on-call shifts and certificates.'],
+  ['Is there a free version?', 'Yes. A free account opens two sample patients in the full workstation, with grading. No card needed. Choose a plan when you want every patient, the case of the week, the drills, on-call shifts and certificates.'],
   ['Who is it for?', 'Medical students, residents and anyone learning to read images who wants practice on real studies alongside Learning Radiology (5th ed.). Choose Student or Resident and what you are asked to write adapts.'],
   ['Where do the scans come from?', 'From public research collections released for reuse, including commercial use (Creative Commons and NIH terms). They are de-identified, and every case names its source and licence.'],
   ['Who marked the findings?', 'Findings are outlined by the radiologists and experts who published each collection. Organ outlines are AI drafts by Horalix and are labelled as drafts wherever they appear.'],
@@ -151,7 +151,7 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
               <button className="lp-btn primary" onClick={onStartFree} disabled={signInDisabled}>
                 Start free <ArrowRight size={17} />
               </button>
-              <a className="lp-btn" href="#pricing">
+              <a className="lp-btn" href="#plans">
                 See plans
               </a>
             </div>
@@ -309,12 +309,12 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
           </span>
           <div>
             <span className="lp-kicker">Case of the week</span>
-            <h2>A new real case, every Monday. Free.</h2>
-            <p>Every week one more patient opens to every account, members and free alike, with the task, the expert outline and the page of the book that explains it. Members get an email when it is out, and every earlier case stays open to them.</p>
+            <h2>A new real case, every Monday.</h2>
+            <p>Members get one featured patient every week, with the task, the expert outline and the page of the book that explains it, and an email when it is out. Every earlier case stays in the library.</p>
           </div>
-          <button className="lp-btn primary" onClick={onStartFree} disabled={signInDisabled}>
-            Get this week’s case <ArrowRight size={17} />
-          </button>
+          <a className="lp-btn primary" href="#pricing">
+            See plans <ArrowRight size={17} />
+          </a>
         </div>
       </section>
 

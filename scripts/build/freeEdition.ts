@@ -3,10 +3,10 @@ import { dirname, posix, resolve } from 'node:path';
 import { LessonFile, PackIndex, PackManifest, type TeachingCase } from '../../src/schema/content';
 
 /**
- * The free edition: what a signed-up account without a plan may load. It is the sample patients plus every
- * scheduled case of the week (the server lets a free account fetch only this week's one; see server/free.ts),
- * as filtered copies of the pack manifests and lessons, and a teaser list of every patient (neutral titles only)
- * so the library can show what membership unlocks.
+ * The free edition: what a signed-up account without a plan may load. It is the sample patients, as filtered
+ * copies of the pack manifests and lessons, and a teaser list of every patient (neutral titles only) so the library
+ * can show what membership unlocks. The schedule's cases of the week are members-only; they appear here only in
+ * `info` (neutral title, modality, tasks) for the Monday email.
  */
 export interface FreeSchedule {
   epoch: string;
@@ -62,8 +62,8 @@ export function computeFreeEdition(packsDir: string, schedule: FreeSchedule) {
   const sourceOfSubject = new Map<string, string>();
   for (const p of packs) for (const s of p.manifest.subjects) sourceOfSubject.set(s.key, s.sourceId);
 
-  const freeIds = [...new Set([...schedule.always, ...schedule.weekly])];
-  for (const id of freeIds) {
+  const freeIds = [...new Set(schedule.always)];
+  for (const id of new Set([...schedule.always, ...schedule.weekly])) {
     const c = cases.get(id);
     if (!c) throw new Error(`Free edition: case ${id} is not in any pack`);
     if (NON_COMMERCIAL.test(licenceOf.get(sourceOfSubject.get(c.subjectKey) ?? '') ?? '')) throw new Error(`Free edition: case ${id} has a non-commercial licence`);
@@ -136,7 +136,8 @@ export function computeFreeEdition(packsDir: string, schedule: FreeSchedule) {
     .sort((a, b) => a.title.localeCompare(b.title, undefined, { numeric: true }));
   outputs.push({ rel: 'teaser.json', json: { cases: teaser } });
 
-  const info = Object.fromEntries(teaser.filter((t) => free.has(t.id)).map((t) => [t.id, { title: t.title, modality: t.modality, tasks: t.tasks }]));
+  const listed = new Set([...schedule.always, ...schedule.weekly]);
+  const info = Object.fromEntries(teaser.filter((t) => listed.has(t.id)).map((t) => [t.id, { title: t.title, modality: t.modality, tasks: t.tasks }]));
   const data: FreeEditionData = { ...schedule, shared: shared.sort(), cases: out, info };
   return { data, outputs };
 }

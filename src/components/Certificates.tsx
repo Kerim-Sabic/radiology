@@ -68,7 +68,7 @@ export function CertificatesCard() {
                 <small className="faint">{s.todo ?? (mine ? `Issued ${new Date(mine.issuedAt).toLocaleDateString()}` : 'Ready to claim.')}</small>
                 {mine ? (
                   <a className="btn sm" href={`/certificate/${mine.id}`} target="_blank" rel="noopener noreferrer">
-                    View <ExternalLink size={12} />
+                    View and share <ExternalLink size={12} />
                   </a>
                 ) : null}
                 {s.eligible && !free && signedIn ? (

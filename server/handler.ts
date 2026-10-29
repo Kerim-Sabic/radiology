@@ -8,6 +8,7 @@ import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
 import { adminStats, count, countOnce, cronAuthorized, dailyCron, emailPrefs, recordActivity, trackable, unsubscribe, weeklyCron } from './engage.js';
 import { claimCertificate, myCertificates, publicCertificate } from './certificates.js';
+import { certificateImage, certificatePageHtml } from './certificateShare.js';
 import { isAdmin } from './auth.js';
 
 export function json(value: unknown, status = 200) {
@@ -42,6 +43,17 @@ export async function handle(request: Request): Promise<Response> {
       if (path === '/api/cron/daily') return json(await dailyCron());
       if (path === '/api/cron/weekly') return json(await weeklyCron());
       return json({ error: 'Not found' }, 404);
+    }
+    // A shared certificate link: the page with its own preview tags, and the preview picture (public, for link crawlers).
+    if (path === '/api/certificate-page' && request.method === 'GET') {
+      const id = url.searchParams.get('id') ?? '';
+      const [cert, index] = await Promise.all([publicCertificate(id), fetch(new URL('/index.html', appOrigin())).then((r) => r.text())]);
+      return new Response(certificatePageHtml(index, cert, appOrigin(), id), { status: cert ? 200 : 404, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=0, s-maxage=300' } });
+    }
+    if (path === '/api/og/certificate' && request.method === 'GET') {
+      if (!await rateLimit(`cert-image:${ip()}`, 120, 600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
+      const cert = await publicCertificate(url.searchParams.get('id') ?? '');
+      return cert ? await certificateImage(cert, appOrigin(), url.searchParams.get('format') === 'square') : json({ error: 'No certificate with this id.' }, 404);
     }
     if (path === '/api/certificate' && request.method === 'GET') {
       if (!await rateLimit(`cert-check:${ip()}`, 60, 600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
@@ -106,7 +118,10 @@ export async function handle(request: Request): Promise<Response> {
       return r.ok ? json(r) : json({ error: r.error }, 400);
     }
     if (path === '/api/email/prefs' && (request.method === 'GET' || request.method === 'POST')) {
-      const r = await emailPrefs(user, request.method === 'POST' ? await request.json().catch(() => null) : undefined);
+      const body = request.method === 'POST' ? await request.json().catch(() => null) : undefined;
+      // The case of the week is for members, so is its email.
+      if ((body as { weekly?: unknown } | undefined)?.weekly === true && !(await accessFor(user.userId)).active) return json({ error: 'The case of the week is for members.' }, 402);
+      const r = await emailPrefs(user, body);
       return r.ok ? json(r) : json({ error: r.error }, 400);
     }
     if (path === '/api/certificates') {

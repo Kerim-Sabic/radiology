@@ -136,7 +136,7 @@ export function HomePage() {
       <CaseOfWeekCard />
       <UpgradeCard
         title={`Unlock ${LANDING_FACTS.patients}+ real patients`}
-        text="Your free account opens two sample patients and this week’s case. Members also get drills, on-call shifts, certificates and every earlier case of the week."
+        text="Your free account opens two sample patients. Members also get the case of the week, drills, on-call shifts and certificates."
       />
 
       <section className="home-stats" aria-label="Your numbers">

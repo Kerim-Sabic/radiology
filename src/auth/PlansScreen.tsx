@@ -76,7 +76,7 @@ export function PlansScreen({ panel, email, onClose, onSignOut }: { panel: React
             <em>Now read everything.</em>
           </h1>
           <p className="plans-now">
-            <Check size={15} /> Your free account: two sample patients and this week’s case of the week, in the full workstation.
+            <Check size={15} /> Your free account: two sample patients in the full workstation.
           </p>
           <ul className="plans-unlocks">
             {UNLOCKS.map((u) => (

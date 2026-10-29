@@ -546,3 +546,25 @@
     grid-column: 1 / -1;
   }
 }
+.cow.locked .cow-media {
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 50% 40%, rgba(250, 204, 21, 0.18), transparent 60%),
+    repeating-linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0 8px, transparent 8px 16px),
+    #05070d;
+}
+.cow-lock {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 16px;
+  border: 1px solid rgba(253, 224, 71, 0.35);
+  background: rgba(250, 204, 21, 0.12);
+  color: #fde68a;
+}
+.locked-tile-week {
+  font-style: normal;
+  color: #fde68a;
+}

@@ -35,9 +35,9 @@ export function EmailChoices() {
         </span>
       </label>
       <label className="row" style={{ gap: 8 }}>
-        <input type="checkbox" checked={!!prefs?.weekly} disabled={!prefs || saving} onChange={(e) => void change({ weekly: e.target.checked })} />
+        <input type="checkbox" checked={!!prefs?.weekly} disabled={!prefs || saving || account.free} onChange={(e) => void change({ weekly: e.target.checked })} />
         <span>
-          <b>Case of the week</b> <span className="faint">— Monday morning, when the new case opens</span>
+          <b>Case of the week</b> <span className="faint">— Monday morning, when the new case opens{account.free ? ' (members)' : ''}</span>
         </span>
       </label>
     </section>
@@ -78,13 +78,13 @@ export function EmailOptIn() {
       </span>
       <div>
         <b>Keep the habit</b>
-        <p>An email when your streak is about to end, and the new case of the week every Monday. Stop either with one click.</p>
+        <p>{account.free ? 'An email when your streak is about to end. Stop it with one click.' : 'An email when your streak is about to end, and the new case of the week every Monday. Stop either with one click.'}</p>
       </div>
       <div className="row" style={{ gap: 6 }}>
         <button
           className="btn primary"
           onClick={() => {
-            void setEmailPrefs({ streak: true, weekly: true }).then(() => close());
+            void setEmailPrefs(account.free ? { streak: true } : { streak: true, weekly: true }).then(() => close());
           }}
         >
           Yes, email me

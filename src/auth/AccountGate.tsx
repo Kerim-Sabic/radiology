@@ -21,7 +21,7 @@ interface Account { user: { name: string; email: string } | null; access: Access
 interface AccountState {
   account: Account;
   logout: () => void;
-  /** Signed in without a plan: the free edition (sample patients and the case of the week). */
+  /** Signed in without a plan: the free edition (the sample patients). */
   free: boolean;
   /** Open the plans screen (free accounts). */
   openPlans: () => void;

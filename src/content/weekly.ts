@@ -1,7 +1,7 @@
 /**
- * Free cases and the case of the week. A free account (signed up, no plan) reads the sample patients and the
- * current case of the week; members read everything, and the case of the week is their weekly highlight and email.
- * The server allows a free account to load exactly these patients (see server/freeEdition.generated.ts, which
+ * Free cases and the case of the week. A free account (signed up, no plan) reads only the sample patients; the case
+ * of the week is for members (their weekly highlight and Monday email; free accounts see it locked). The server
+ * allows a free account to load exactly the sample patients (see server/freeEdition.generated.ts, which
  * `npm run free:sync` writes from this file; a unit test keeps the two in step).
  */
 
@@ -88,7 +88,7 @@ export function caseOfWeek(now: Date = new Date()): CaseOfWeek {
   return { caseId: WEEKLY_CASES[week % WEEKLY_CASES.length], week, startsAt, endsAt: new Date(startsAt.getTime() + WEEK_MS) };
 }
 
-/** Patients a free account can open right now. */
-export function freeCaseIds(now: Date = new Date()): Set<string> {
-  return new Set([...FREE_CASES, caseOfWeek(now).caseId]);
+/** Patients a free account can open. */
+export function freeCaseIds(): Set<string> {
+  return new Set(FREE_CASES);
 }

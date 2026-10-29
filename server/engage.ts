@@ -189,11 +189,11 @@ export function weeklyMail(p: Profile, userId: string, now = new Date()): Mail {
     'This week’s case is open',
     [
       `${info ? `${info.title} · ${info.tasks} graded task${info.tasks === 1 ? '' : 's'}.` : 'A new real patient.'} Read it in the full workstation, mark what you see and get graded on the exact slice.`,
-      'It is free for every account until Sunday.',
+      'Every earlier case of the week stays in your library.',
     ],
     { text: 'Read this week’s case', url: `${appOrigin()}/read/${encodeURIComponent(id)}?mode=practice` },
     unsubscribe,
-    'You signed up for the case of the week.',
+    'You asked for the case of the week, a member email.',
   );
   return { to: p.email, subject: info ? `Case of the week: ${info.title}` : 'This week’s case is open', html, text, unsubscribe };
 }

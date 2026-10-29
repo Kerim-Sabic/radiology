@@ -26,7 +26,7 @@ export default function GuidePage() {
         <h2>Study tools</h2>
         <ul className="stack" style={{ gap: 6, paddingLeft: 18, margin: 0 }}>
           <li>
-            <b>Case of the week</b> — every Monday a new real patient opens on Today, free for every account that week. Ask for the Monday email in Settings → Emails.
+            <b>Case of the week</b> (members) — every Monday a new real patient is featured on Today. Ask for the Monday email in Settings → Emails.
           </li>
           <li>
             <b>Certificates</b> (Progress) — one per body area once you have read 10 of its patients with 70% of graded answers right; each has a public page to print or add to
