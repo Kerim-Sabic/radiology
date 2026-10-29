@@ -59,6 +59,8 @@ import { arrowLabelHook } from '../viewer/csInit';
 import { lookOf, segStyle, withLookAll } from '../viewer/segStyle';
 import { GROUP_ORDER } from '../viewer/anatomyMask';
 import { downloadBlob, shortLicense, slug, viewToPng } from '../lib/viewImage';
+import { LockedCase, UpgradeCard } from '../components/Upgrade';
+import { fact, LANDING_FACTS } from '../auth/landingFacts';
 import { ViewportPanel, type MarkBadge } from '../components/ws/ViewportPanel';
 import { TaskPanel } from '../components/ws/TaskPanel';
 import { BookPanel } from '../components/ws/BookPanel';
@@ -110,7 +112,7 @@ export default function Workstation() {
   const { caseId = '' } = useParams();
   const [sp, setSp] = useSearchParams();
   const navigate = useNavigate();
-  const { catalog, curriculum, progress, attempts, settings, reviews } = useApp();
+  const { catalog, curriculum, progress, attempts, settings, reviews, free } = useApp();
   const engineRef = useRef<ViewerEngine | null>(null);
   if (!engineRef.current) engineRef.current = new ViewerEngine();
   const engine = engineRef.current;
@@ -911,6 +913,8 @@ export default function Workstation() {
     [anatomyTargets, targets],
   );
   if (!catalog) return <div className="vp-status">Loading case catalogue…</div>;
+  // A free account opening a members' patient from a link sees what it is and the plans, not an error.
+  if (!kase && free) return <LockedCase caseId={caseId ?? ''} />;
   if (!kase || !task || !session) {
     return (
       <div className="page-inner stack">
@@ -1428,6 +1432,9 @@ export default function Workstation() {
             <Tabs.Trigger value="info">Case</Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="task" className="tab-body">
+            {free && session.submitted ? (
+              <UpgradeCard compact title="Graded on the exact slice." text={`Members get ${fact(LANDING_FACTS.tasks)}+ tasks like this on ${LANDING_FACTS.patients}+ patients, with drills and on-call shifts.`} />
+            ) : null}
             <TaskPanel
               task={task}
               kase={kase}

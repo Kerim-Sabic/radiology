@@ -26,6 +26,13 @@ export default function GuidePage() {
         <h2>Study tools</h2>
         <ul className="stack" style={{ gap: 6, paddingLeft: 18, margin: 0 }}>
           <li>
+            <b>Case of the week</b> — every Monday a new real patient opens on Today, free for every account that week. Ask for the Monday email in Settings → Emails.
+          </li>
+          <li>
+            <b>Certificates</b> (Progress) — one per body area once you have read 10 of its patients with 70% of graded answers right; each has a public page to print or add to
+            LinkedIn.
+          </li>
+          <li>
             <b>Quick search</b> — press <span className="kbd">Ctrl</span> + <span className="kbd">K</span> (<span className="kbd">⌘</span> <span className="kbd">K</span> on a Mac) on any
             page, the reading room included, to jump to a page, a condition, a book chapter or a case. Cases are found by their neutral titles only, so search never gives away a
             diagnosis.

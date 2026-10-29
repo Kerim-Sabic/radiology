@@ -1,17 +1,20 @@
-import { useState, type ReactNode } from 'react';
-import { ArrowRight, BookOpen, Bone, Crosshair, Layers, Link2, ListChecks, Play, Repeat, Rotate3d, Search, ShieldCheck, Siren, Sparkles } from 'lucide-react';
-import { LANDING_CREDITS, LANDING_FACTS } from './landingFacts';
+import { useEffect, useState, type ReactNode } from 'react';
+import { trackFunnel } from '../services/serverSync';
+import { ArrowRight, BookOpen, Bone, CalendarDays, Check, Crosshair, Layers, Link2, ListChecks, Repeat, Rotate3d, Search, ShieldCheck, Siren, Sparkles } from 'lucide-react';
+import { fact, LANDING_CREDITS, LANDING_FACTS } from './landingFacts';
 import './landing.css';
 
 interface Props {
   /** The plans and checkout panel (owned by the membership gate). */
   panel: ReactNode;
-  /** Signed in without access yet: the panel takes the hero's place, so checkout is the first thing on screen. */
-  panelInHero: boolean;
   signInLabel: string;
   signInDisabled: boolean;
   onSignIn: () => void;
+  /** Create a free account (sample patients and the case of the week). */
+  onStartFree: () => void;
 }
+
+const FREE_POINTS = ['Two sample patients in the full workstation', 'A new case of the week, every Monday', 'Learn and Practice modes with grading', 'No card needed'];
 
 const MODALITIES: Array<{ id: string; name: string; img: string; alt: string; title: string; text: string; points: string[] }> = [
   {
@@ -65,7 +68,7 @@ const FEATURES: Array<{ icon: ReactNode; title: string; text: string }> = [
   { icon: <Link2 />, title: 'Linked views', text: 'Scroll one plane and the others follow, with reference lines showing where you are. Double-click to jump all views to a point.' },
   { icon: <Rotate3d />, title: '3D you can take apart', text: 'Cut the volume at the slice you are reading, or show only the heart, the arteries, the veins or the finding itself, in colours you choose.' },
   { icon: <Crosshair />, title: 'Graded where you mark', text: 'Mark what you see on the image. Level, side, position and name are checked separately against the expert outline.' },
-  { icon: <BookOpen />, title: 'Linked to the book', text: 'Every task links to the page of Learning Radiology (5th ed.) that explains it, and its figure where there is one, then brings you back to your scan.' },
+  { icon: <BookOpen />, title: 'Linked to the book', text: 'Every task names the page of Learning Radiology (5th ed.) that explains it. Open your own copy and the link jumps there, then back to your scan.' },
   { icon: <Repeat />, title: 'Drills that remember', text: 'Point to structures and findings. What you miss comes back later, on a different patient, until you know it.' },
   { icon: <Siren />, title: 'On-call shifts', text: 'A run of unknown cases with an optional clock, read with no hints, and a scored report at the end.' },
   { icon: <Search />, title: 'Search by condition', text: 'Type pneumothorax or pulmonary embolism and see every patient who has it, where it is, and the book pages.' },
@@ -82,18 +85,21 @@ const STEPS: Array<[string, string]> = [
 ];
 
 const FAQ: Array<[string, ReactNode]> = [
+  ['Is there a free version?', 'Yes. A free account opens two sample patients in the full workstation, with grading, plus a new case of the week every Monday. No card needed. Choose a plan when you want every patient, the drills, on-call shifts and certificates.'],
   ['Who is it for?', 'Medical students, residents and anyone learning to read images who wants practice on real studies alongside Learning Radiology (5th ed.). Choose Student or Resident and what you are asked to write adapts.'],
   ['Where do the scans come from?', 'From public research collections released for reuse, including commercial use (Creative Commons and NIH terms). They are de-identified, and every case names its source and licence.'],
   ['Who marked the findings?', 'Findings are outlined by the radiologists and experts who published each collection. Organ outlines are AI drafts by Horalix and are labelled as drafts wherever they appear.'],
   ['Can I use it to diagnose patients?', 'No. radiology.monster is for education and practice only. It is not a medical device and must not be used for clinical decisions.'],
   ['What do I need?', 'A recent desktop browser such as Chrome, Edge or Firefox. Nothing to install. Tablets and phones work too; reading is easiest on a larger screen. The 3D view needs WebGL.'],
+  ['Do I need the book?', 'No, but it helps. Every task names the page of Learning Radiology (5th ed.) that explains it. Open your own copy of the PDF in the app and the links jump straight to the page; it stays on your device and is never uploaded. SSST students signed in with their university email get the book included.'],
   ['Where is my progress kept?', 'In your browser on your device. Export a backup from Settings to move it to another device. One device is active at a time; signing in on another moves you there.'],
   ['Is the yearly plan paid monthly?', 'No. The yearly plan costs $150 in one payment every 365 days. $12.50 is its monthly equivalent. If you prefer a smaller upfront payment, choose monthly at $20 every 30 days.'],
   ['How do I cancel?', 'Both plans renew, monthly every 30 days and yearly every 365 days, until you cancel future renewals from Billing. Have a promo code? Enter it before you choose a plan.'],
 ];
 
-export function Landing({ panel, panelInHero, signInLabel, signInDisabled, onSignIn }: Props) {
+export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartFree }: Props) {
   const [tab, setTab] = useState(MODALITIES[0].id);
+  useEffect(() => trackFunnel('visit', true), []);
   const shown = MODALITIES.find((m) => m.id === tab) ?? MODALITIES[0];
   const onTabKey = (e: React.KeyboardEvent, i: number) => {
     const step = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
@@ -127,7 +133,7 @@ export function Landing({ panel, panelInHero, signInLabel, signInDisabled, onSig
         </div>
       </header>
 
-      <section className={`lp-hero${panelInHero ? ' with-panel' : ''}`}>
+      <section className="lp-hero">
         <div className="lp-wrap lp-hero-grid">
           <div className="lp-hero-copy">
             <span className="lp-eyebrow">
@@ -141,26 +147,21 @@ export function Landing({ panel, panelInHero, signInLabel, signInDisabled, onSig
             <p className="lp-lead">
               Read real CT, MRI, X-ray, mammography and ultrasound studies in a full workstation. Mark what you see, get graded on the exact slice, and open the page of <i>Learning Radiology</i> that explains it.
             </p>
-            {panelInHero ? null : (
-              <div className="lp-cta">
-                <a className="lp-btn primary" href="#pricing">
-                  Start learning <ArrowRight size={17} />
-                </a>
-                <a className="lp-btn" href="#modalities">
-                  <Play size={15} /> See it in action
-                </a>
-              </div>
-            )}
+            <div className="lp-cta">
+              <button className="lp-btn primary" onClick={onStartFree} disabled={signInDisabled}>
+                Start free <ArrowRight size={17} />
+              </button>
+              <a className="lp-btn" href="#pricing">
+                See plans
+              </a>
+            </div>
             <ul className="lp-ticks">
-              <li>{LANDING_FACTS.modalities.length} modalities</li>
-              <li>{LANDING_FACTS.patients}+ real patients</li>
-              <li>Book-linked feedback</li>
+              <li>Free account, no card</li>
+              <li>{fact(LANDING_FACTS.patients)}+ real patients</li>
+              <li>New case every Monday</li>
             </ul>
           </div>
-          {panelInHero ? (
-            panel
-          ) : (
-            <figure className="lp-shot lp-hero-shot">
+          <figure className="lp-shot lp-hero-shot">
               <div className="lp-shot-bar" aria-hidden="true">
                 <i />
                 <i />
@@ -184,18 +185,17 @@ export function Landing({ panel, panelInHero, signInLabel, signInDisabled, onSig
                 <Crosshair size={14} /> Graded against the expert outline
               </figcaption>
             </figure>
-          )}
         </div>
       </section>
 
       <section className="lp-stats" aria-label="What is inside">
         <div className="lp-wrap lp-stats-row">
           <div>
-            <b>{LANDING_FACTS.patients}+</b>
+            <b>{fact(LANDING_FACTS.patients)}+</b>
             <span>real patients</span>
           </div>
           <div>
-            <b>{LANDING_FACTS.tasks}+</b>
+            <b>{fact(LANDING_FACTS.tasks)}+</b>
             <span>image tasks</span>
           </div>
           <div>
@@ -302,18 +302,53 @@ export function Landing({ panel, panelInHero, signInLabel, signInDisabled, onSig
         </div>
       </section>
 
-      {panelInHero ? null : (
-        <section className="lp-section alt" id="pricing">
-          <div className="lp-wrap">
-            <div className="lp-head">
-              <span className="lp-kicker">Pricing</span>
-              <h2>Built for your next rotation.<br />And the ones after it.</h2>
-              <p>For medical students and radiology trainees who want to turn reading into hands-on practice. Choose how you pay; get every feature either way.</p>
-            </div>
+      <section className="lp-section" id="weekly">
+        <div className="lp-wrap lp-weekly">
+          <span className="lp-weekly-ico" aria-hidden="true">
+            <CalendarDays size={26} />
+          </span>
+          <div>
+            <span className="lp-kicker">Case of the week</span>
+            <h2>A new real case, every Monday. Free.</h2>
+            <p>Every week one more patient opens to every account, members and free alike, with the task, the expert outline and the page of the book that explains it. Members get an email when it is out, and every earlier case stays open to them.</p>
+          </div>
+          <button className="lp-btn primary" onClick={onStartFree} disabled={signInDisabled}>
+            Get this week’s case <ArrowRight size={17} />
+          </button>
+        </div>
+      </section>
+
+      <section className="lp-section alt" id="pricing">
+        <div className="lp-wrap">
+          <div className="lp-head">
+            <span className="lp-kicker">Pricing</span>
+            <h2>Built for your next rotation.<br />And the ones after it.</h2>
+            <p>For medical students and radiology trainees who want to turn reading into hands-on practice. Start free, then choose how you pay; every plan opens every patient, drill, on-call shift and certificate.</p>
+          </div>
+          <div className="lp-pricing-grid">
+            <article className="lp-free">
+              <div>
+                <h3>Free</h3>
+                <span>See how it works</span>
+              </div>
+              <div className="lp-free-price">
+                $0<span>forever</span>
+              </div>
+              <ul>
+                {FREE_POINTS.map((p) => (
+                  <li key={p}>
+                    <Check size={15} /> {p}
+                  </li>
+                ))}
+              </ul>
+              <button className="lp-btn" onClick={onStartFree} disabled={signInDisabled}>
+                Create a free account <ArrowRight size={16} />
+              </button>
+            </article>
             <div className="lp-pricing">{panel}</div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       <section className="lp-section" id="faq">
         <div className="lp-wrap lp-faq-wrap">
@@ -332,16 +367,19 @@ export function Landing({ panel, panelInHero, signInLabel, signInDisabled, onSig
         </div>
       </section>
 
-      {panelInHero ? null : (
-        <section className="lp-final">
-          <div className="lp-wrap">
-            <h2>Your next scan is waiting.</h2>
-            <a className="lp-btn primary" href="#pricing">
-              Choose your plan <ArrowRight size={17} />
+      <section className="lp-final">
+        <div className="lp-wrap">
+          <h2>Your next scan is waiting.</h2>
+          <div className="lp-cta center">
+            <button className="lp-btn primary" onClick={onStartFree} disabled={signInDisabled}>
+              Start free <ArrowRight size={17} />
+            </button>
+            <a className="lp-btn" href="#pricing">
+              Choose a plan
             </a>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       <footer className="lp-footer">
         <div className="lp-wrap">
@@ -354,6 +392,9 @@ export function Landing({ panel, panelInHero, signInLabel, signInDisabled, onSig
               <ShieldCheck size={14} /> For education and practice. Not for clinical diagnosis.
             </span>
           </div>
+          <p className="lp-credits lp-affiliation">
+            <i>Learning Radiology: Recognizing the Basics</i> is referenced by page for study. radiology.monster is not affiliated with or endorsed by its publisher or authors.
+          </p>
           <p className="lp-credits">
             Images on this page are screenshots of the app showing public research data, with outlines drawn by the app from each collection’s own annotations:{' '}
             {LANDING_CREDITS.map((c, i) => (

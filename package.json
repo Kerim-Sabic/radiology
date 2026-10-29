@@ -17,7 +17,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "catalog:validate": "vitest run tests/catalog.test.ts",
-    "packs:list": "python scripts/data/packs.py list"
+    "packs:list": "python scripts/data/packs.py list",
+    "free:sync": "tsx scripts/build/freeSync.ts"
   },
   "dependencies": {
     "@clerk/backend": "3.26.4",
@@ -31,6 +32,7 @@
     "@fontsource-variable/plus-jakarta-sans": "5.3.0",
     "@kitware/vtk.js": "36.4.1",
     "@upstash/redis": "1.40.0",
+    "@vercel/analytics": "2.0.1",
     "@vercel/blob": "2.8.2",
     "@vercel/functions": "3.10.4",
     "@whop/elements": "1.9.0",

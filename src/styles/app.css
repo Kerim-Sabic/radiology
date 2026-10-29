@@ -1585,3 +1585,66 @@ kbd {
     display: none;
   }
 }
+
+/* ---------------------------------------------------------------- polish (29 October): calmer surfaces, rounder
+   corners, frosted top bar, tighter headings — the same look as the landing page */
+:root {
+  --radius: 14px;
+  --radius-sm: 10px;
+}
+.topnav {
+  background: rgba(10, 17, 34, 0.78);
+  backdrop-filter: saturate(1.6) blur(18px);
+  -webkit-backdrop-filter: saturate(1.6) blur(18px);
+  border-bottom-color: rgba(47, 61, 87, 0.6);
+  position: relative;
+  z-index: 10;
+}
+.navlink {
+  border-radius: 999px;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.navlink.active {
+  background: rgba(var(--accent-rgb), 0.16);
+  color: #fff;
+}
+.card {
+  border-radius: 18px;
+  border-color: rgba(47, 61, 87, 0.7);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.025), rgba(255, 255, 255, 0) 120px), var(--panel);
+  padding: 18px 20px;
+}
+.page-inner h1 {
+  font-family: var(--font-display);
+  letter-spacing: -0.03em;
+}
+.page-inner h2 {
+  letter-spacing: -0.015em;
+}
+.btn {
+  transition: background 0.15s ease, border-color 0.15s ease, filter 0.15s ease, transform 0.15s ease;
+}
+.btn.primary {
+  box-shadow: 0 6px 18px -8px rgba(79, 70, 229, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+}
+.btn.primary:active {
+  transform: translateY(1px);
+}
+.chip {
+  border-radius: 999px;
+}
+.case-card {
+  border-radius: 18px;
+  transition: border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+.case-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -24px rgba(0, 0, 0, 0.8);
+}
+input[type='search'],
+input[type='text'],
+input:not([type]),
+select,
+textarea {
+  border-radius: 10px;
+}

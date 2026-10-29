@@ -38,7 +38,7 @@ test('sign-in window returns to the selected plan without leaving the site', asy
   await expect(page.getByRole('heading',{name:'Your study space is almost ready.'})).toBeVisible();
   expect(tier).toEqual({tier:'yearly'});
   expect(new URL(page.url()).origin).toBe('http://localhost:4317');
-  await expect(page.getByRole('dialog')).not.toBeVisible();
+  await expect(page.locator('.auth-dialog')).not.toBeVisible();
   await expect(page.getByText('Standard price: $150 USD every 365 days.',{exact:false})).toBeVisible();
   await page.getByRole('button',{name:'Change plan'}).click();
   await expect(page.getByRole('button',{name:'Choose monthly'})).toBeEnabled();
@@ -54,7 +54,7 @@ test('signed-in customer selects only the approved monthly tier', async ({page})
   await account(page,true);
   let submitted: unknown;
   await page.route('**/api/billing/checkout', async route => { submitted=route.request().postDataJSON(); await route.fulfill({status:503,json:{error:'Checkout is temporarily unavailable.'}}); });
-  await page.goto('/');
+  await page.goto('/?plans');
   await page.getByRole('button',{name:'Choose monthly'}).click();
   await expect(page.getByRole('alert')).toContainText('temporarily unavailable');
   expect(submitted).toEqual({tier:'monthly'});
@@ -76,7 +76,7 @@ test('service failure keeps study content locked and offers retry', async ({page
 test('membership is usable on a narrow phone screen', async ({page}) => {
   await page.setViewportSize({width:390,height:844});
   await account(page,true);
-  await page.goto('/');
+  await page.goto('/?plans');
   await expect(page.getByRole('button',{name:'Start yearly'})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   const annual = page.locator('.membership-plan.yearly');
@@ -156,8 +156,52 @@ test('landing page: modality tour, answers, screenshots and credits, all before 
   await expect(page.getByRole('tabpanel')).toContainText('Cyst or solid?');
   await page.getByText('Can I use it to diagnose patients?').click();
   await expect(page.getByText('It is not a medical device')).toBeVisible();
-  await expect(page.locator('.lp-credits')).toContainText('CBIS-DDSM');
-  await page.getByRole('link',{name:'Start learning'}).click();
+  await expect(page.locator('.lp-credits').last()).toContainText('CBIS-DDSM');
+  await page.getByRole('link',{name:'See plans'}).click();
   await expect(page.getByRole('button',{name:'Choose monthly'})).toBeInViewport();
+  await expect(page.locator('.lp-free')).toContainText('$0');
+  await expect(page.locator('.lp-affiliation')).toContainText('not affiliated');
+  await page.getByRole('button',{name:'Start free'}).first().click();
+  await expect(page.locator('.auth-dialog')).toBeVisible();
+  await expect(page.getByRole('tab',{name:'Create account'})).toHaveAttribute('aria-selected','true');
   expect(dataRequests).toEqual([]);
+});
+
+test('free account: samples and this week’s case open, everything else shows what membership adds', async ({page}) => {
+  await account(page,true);
+  await page.goto('/');
+  await expect(page.locator('.free-banner')).toContainText('Free account');
+  await expect(page.locator('.cow')).toContainText('Case of the week');
+  // Members-only areas explain themselves and lead to the plans.
+  await page.goto('/drill');
+  await expect(page.getByRole('heading',{name:'Drills that remember'})).toBeVisible();
+  await page.getByRole('button',{name:'See plans'}).last().click();
+  await expect(page.getByRole('heading',{name:'Unlock the whole library.'})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Start yearly'})).toBeEnabled();
+  await page.getByRole('button',{name:'Back to the app'}).click();
+  await expect(page.locator('.plans-screen')).toHaveCount(0);
+  // The library: the free patients open, the rest listed by neutral title and locked.
+  await page.goto('/cases');
+  await expect(page.locator('.case-card').first()).toBeVisible();
+  expect(await page.locator('.case-card').count()).toBe(3);
+  await expect(page.locator('.locked-library h2')).toContainText('more patients for members');
+  await expect(page.locator('.locked-tile').first()).toBeVisible();
+  // A members' patient from a link: what it is, not an error and not the images.
+  const dicom: string[] = [];
+  page.on('request', r => { if (/\/packs\/pe-cta\/dicom\/.*pat021|\/packs\/[\w-]+\/pack\.json$/.test(r.url())) dicom.push(r.url()); });
+  await page.goto('/read/pe-pat021?mode=practice');
+  await expect(page.locator('.locked-card')).toContainText('Patient');
+  await expect(page.getByRole('button',{name:'See plans'})).toBeVisible();
+  expect(dicom).toEqual([]);
+});
+
+test('a certificate has a public page that needs no sign-in', async ({page}) => {
+  await page.route('**/api/session', route => route.fulfill({status:401,json:{user:null}}));
+  await page.route('**/api/certificate?id=*', route => route.fulfill({json:{certificate:{id:'abcDEF123_-x',name:'Ada Lovelace',area:'chest',title:'Chest imaging',patients:14,judged:22,accuracy:0.82,issuedAt:'2026-10-29T10:00:00.000Z'}}}));
+  await page.goto('/certificate/abcDEF123_-x');
+  await expect(page.locator('.cert-name')).toHaveText('Ada Lovelace');
+  await expect(page.locator('.cert-title')).toHaveText('Chest imaging');
+  await expect(page.locator('.cert-detail')).toContainText('14 real patients');
+  await expect(page.getByRole('link',{name:'Add to LinkedIn'})).toHaveAttribute('href',/linkedin\.com\/profile\/add\?startTask=CERTIFICATION_NAME/);
+  await expect(page.getByRole('button',{name:'Choose monthly'})).toHaveCount(0);
 });

@@ -4,6 +4,7 @@ import { useApp } from '../app/AppContext';
 import { bookStatus, EXPECTED_SHA256, hasBook, importBook, openBook, removeLocalBook } from '../book/bookPdf';
 import { formatBytes } from '../components/ui';
 import { packBaseUrl } from '../services/caseRepository';
+import { EmailChoices } from '../components/EmailChoices';
 
 export default function SettingsPage() {
   const { settings, setSettings, catalog, progress, reloadCatalog } = useApp();
@@ -23,6 +24,7 @@ export default function SettingsPage() {
   return (
     <div className="page-inner stack" style={{ gap: 18, maxWidth: 860 }}>
       <h1>Settings</h1>
+      <EmailChoices />
 
       <section className="card stack">
         <h2>Study</h2>

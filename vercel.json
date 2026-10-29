@@ -65,6 +65,10 @@
       "/content/:path*"
     ]
   },
+  "crons": [
+    { "path": "/api/cron/daily", "schedule": "0 17 * * *" },
+    { "path": "/api/cron/weekly", "schedule": "0 7 * * 1" }
+  ],
   "functions": {
     "api/**/*.ts": {
       "maxDuration": 60

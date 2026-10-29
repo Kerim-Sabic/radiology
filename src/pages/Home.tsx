@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
-import { ArrowRight, BookOpen, Bone, CalendarClock, Flame, GraduationCap, Library, Play, Search, Siren, Target, Trophy } from 'lucide-react';
+import { ArrowRight, BookOpen, Bone, CalendarClock, Flame, GraduationCap, Library, Lock, Play, Search, Siren, Target, Trophy } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { mistakeNotebook, statsFor, todayPlan, unseenAssessTasks } from '../services/learningModel';
 import { summary, type DrillStats } from '../services/drill';
@@ -8,13 +8,16 @@ import { dailyActivity, streak, type ActivityLog } from '../services/activity';
 import { areaProgress, weakestArea } from '../services/areas';
 import { CONDITIONS } from '../content/conditions';
 import { ActivityCalendar } from '../components/ActivityCalendar';
+import { CaseOfWeekCard, UpgradeCard } from '../components/Upgrade';
+import { EmailOptIn } from '../components/EmailChoices';
+import { LANDING_FACTS } from '../auth/landingFacts';
 import '../styles/home.css';
 
 const greeting = (h: number) => (h < 5 ? 'Working late' : h < 12 ? 'Good morning' : h < 18 ? 'Good afternoon' : 'Good evening');
 const readUrl = (caseId: string, taskId: string, mode = 'practice') => `/read/${caseId}?task=${encodeURIComponent(taskId)}&mode=${mode}`;
 
 export function HomePage() {
-  const { catalog, attempts, settings, setSettings, curriculum, progress } = useApp();
+  const { catalog, attempts, settings, setSettings, curriculum, progress, free } = useApp();
   const [drill, setDrill] = useState<DrillStats>({});
   const [log, setLog] = useState<ActivityLog>({});
   // Re-read after any progress change (a drill answer, an import), not only on first render.
@@ -129,6 +132,13 @@ export function HomePage() {
         </aside>
       </section>
 
+      <EmailOptIn />
+      <CaseOfWeekCard />
+      <UpgradeCard
+        title={`Unlock ${LANDING_FACTS.patients}+ real patients`}
+        text="Your free account opens two sample patients and this week’s case. Members also get drills, on-call shifts, certificates and every earlier case of the week."
+      />
+
       <section className="home-stats" aria-label="Your numbers">
         <div>
           <b>{overall.patients}</b>
@@ -154,7 +164,10 @@ export function HomePage() {
             <span className="home-tile-icon" aria-hidden="true">
               {t.icon}
             </span>
-            <b>{t.title}</b>
+            <b>
+              {t.title}
+              {free && ['/drill', '/oncall', '/atlas', '/book'].includes(t.to) ? <Lock size={12} className="home-tile-lock" aria-label="members" /> : null}
+            </b>
             <small>{t.sub}</small>
           </Link>
         ))}

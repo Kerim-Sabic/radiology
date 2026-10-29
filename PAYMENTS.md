@@ -36,7 +36,17 @@ Checkout return parameters and browser completion events never grant access. Che
 
 Vercel routing middleware protects `/packs/*` and `/content/*`, including direct asset requests, before the CDN. Do not deploy this application as an unprotected static site. Published static builds omit the textbook and the six noncommercial RICORD subjects; source files remain unchanged.
 
-The requested fifth-edition book is stored in the private `radiology-book` Vercel Blob store. `/api/book` checks the active app session and membership (or verified admin access) for every HEAD/range request. `BLOB_READ_WRITE_TOKEN` is server-only and supplied by the connected store. PDF.js retrieves ranges of at most 1 MiB; the endpoint rejects requests over 2 MiB and sends private/no-store headers. Storage URLs and tokens are never sent to the browser. The 73,363,798-byte source matches the existing 552-page chapter/figure map and its SHA-256 in `server/book.ts`.
+**Free accounts.** A signed-in account without a plan gets the free edition: the sample patients in `src/content/weekly.ts` (`FREE_CASES`) and this week's case of the week (`WEEKLY_CASES`, weeks start Monday 00:00 UTC). The middleware lets such an account fetch only `index.free.json`, the `*.free.json` manifests and lessons, `teaser.json` (every patient by neutral title, no diagnosis), the curriculum, and the exact files of those patients (`server/freeEdition.generated.ts`); everything else answers 402. After changing the free cases or the schedule, run `npm run free:sync` (a unit test fails until the generated list matches). The build writes the free manifests beside the commercial packs.
+
+The requested fifth-edition book is stored in the private `radiology-book` Vercel Blob store. `/api/book` checks the active app session and membership (or verified admin access) for every HEAD/range request, and serves it only to verified `@stu.ssst.edu.ba` emails (`servesBook` in `server/book.ts`); every other member opens their own copy, which stays in the browser. `BLOB_READ_WRITE_TOKEN` is server-only and supplied by the connected store. PDF.js retrieves ranges of at most 1 MiB; the endpoint rejects requests over 2 MiB and sends private/no-store headers. Storage URLs and tokens are never sent to the browser. The 73,363,798-byte source matches the existing 552-page chapter/figure map and its SHA-256 in `server/book.ts`.
+
+## Emails, certificates and numbers
+
+- `RESEND_API_KEY` and `EMAIL_FROM` (a verified sender, e.g. `radiology.monster <hello@radiology.monster>`) send the streak reminder and the case-of-the-week email through Resend. Without them nothing is sent.
+- `CRON_SECRET` protects `/api/cron/daily` (17:00 UTC, streak reminders) and `/api/cron/weekly` (Monday 07:00 UTC); Vercel Cron sends it automatically. `EMAIL_SECRET` signs unsubscribe links (falls back to `CRON_SECRET`). Every email carries `List-Unsubscribe` with one-click unsubscribe.
+- Learners opt in under Settings → Emails or from the prompt on Today. The server keeps only which days they studied (for the streak) and their email choices; answers stay in the browser.
+- Certificates (`/api/certificates`, members only) are issued from the bar the app shows (10 patients, 70% of graded answers) and have a public page at `/certificate/<id>`. They record practice as reported by the learner's app and say so.
+- Vercel Web Analytics (enable it in the project's Analytics tab) counts page views without cookies; query strings are dropped. The app also keeps daily counters for the funnel (landing visit, Start free, account, first answer, plans opened, checkout, paid) and day-1 / day-7 return, shown to admins at `/admin`.
 
 ## Verification
 

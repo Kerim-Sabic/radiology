@@ -4,12 +4,12 @@ vi.mock('../server/auth', async original => ({ ...await original<typeof import('
 vi.mock('../server/billing', () => ({ accessFor: fake.access, checkout: vi.fn() }));
 vi.mock('@vercel/blob', () => ({ head: fake.head, get: fake.get }));
 import { handle } from '../server/handler';
-import { BOOK_PATH, BOOK_SIZE, bookRange } from '../server/book';
+import { BOOK_PATH, BOOK_SIZE, bookRange, servesBook } from '../server/book';
 const request = (method = 'GET', range = 'bytes=0-1023') => new Request('https://www.radiology.monster/api/book', { method, headers: { Range: range } });
 beforeEach(() => {
   vi.stubEnv('APP_URL', 'https://www.radiology.monster'); vi.stubEnv('WHOP_APP_ID', 'test');
   vi.stubEnv('KV_REST_API_URL', 'https://example.invalid'); vi.stubEnv('KV_REST_API_TOKEN', 'test'); vi.stubEnv('BLOB_READ_WRITE_TOKEN', 'private-test-token');
-  fake.session.mockResolvedValue({ userId: 'member' }); fake.access.mockResolvedValue({ active: true });
+  fake.session.mockResolvedValue({ userId: 'member', email: 'student@stu.ssst.edu.ba', name: 'Student' }); fake.access.mockResolvedValue({ active: true });
   fake.head.mockResolvedValue({ size: BOOK_SIZE, contentType: 'application/pdf' });
   fake.get.mockImplementation(async () => ({ stream: new Response(new Uint8Array(1024)).body, headers: new Headers({ 'content-range': `bytes 0-1023/${BOOK_SIZE}` }) }));
 });
@@ -23,6 +23,13 @@ describe('protected member textbook', () => {
   it('rejects unpaid or revoked membership', async () => {
     fake.access.mockResolvedValue({ active: false });
     expect((await handle(request())).status).toBe(402); expect(fake.get).not.toHaveBeenCalled();
+  });
+  it('serves the book only to verified SSST student emails; other members open their own copy', async () => {
+    fake.session.mockResolvedValue({ userId: 'member', email: 'someone@gmail.com', name: 'Member' });
+    for (const method of ['GET', 'HEAD']) expect((await handle(request(method))).status).toBe(403);
+    expect(fake.get).not.toHaveBeenCalled(); expect(fake.head).not.toHaveBeenCalled();
+    expect(servesBook('Student@STU.SSST.EDU.BA ')).toBe(true);
+    for (const email of ['x@ssst.edu.ba', 'x@evilstu.ssst.edu.ba', 'x@sub.stu.ssst.edu.ba', 'x@stu.ssst.edu.ba.evil.com', 'stu.ssst.edu.ba@gmail.com']) expect(servesBook(email)).toBe(false);
   });
   it('provides private metadata for the reader without returning PDF bytes', async () => {
     const response = await handle(request('HEAD'));

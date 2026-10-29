@@ -65,12 +65,17 @@ export class Catalog {
   private geometryCache = new Map<string, Promise<TargetGeometry>>();
   private indexCache = new Map<string, SeriesIndex>();
 
-  static async load(signal?: AbortSignal): Promise<Catalog> {
+  /**
+   * `edition: 'free'` loads the free edition (sample patients and the cases of the week, written by the build beside
+   * the packs); `onlyCases` then keeps the ones open right now.
+   */
+  static async load(signal?: AbortSignal, edition: 'full' | 'free' = 'full', onlyCases?: Set<string>): Promise<Catalog> {
     const c = new Catalog();
+    c.edition = edition;
     const base = packBaseUrl();
     let index: PackIndex;
     try {
-      const res = await fetch(`${base}index.json`, { signal, cache: 'no-cache' });
+      const res = await fetch(`${base}${edition === 'free' ? 'index.free.json' : 'index.json'}`, { signal, cache: 'no-cache' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       index = PackIndex.parse(await res.json());
     } catch (e) {
@@ -79,7 +84,7 @@ export class Catalog {
     }
     await Promise.all(
       index.packs.map(async (entry) => {
-        const root = absolute(`${base}${entry.manifest.replace(/pack\.json$/, '')}`);
+        const root = absolute(`${base}${entry.manifest.replace(/pack(\.free)?\.json$/, '')}`);
         try {
           const res = await fetch(absolute(`${base}${entry.manifest}`), { signal, cache: 'no-cache' });
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -91,7 +96,7 @@ export class Catalog {
           let lessons: LessonFile | null = null;
           {
             // Authored lessons live beside pack.json unless the index names another file.
-            const lessonsPath = entry.lessons ?? entry.manifest.replace(/pack\.json$/, 'lessons.json');
+            const lessonsPath = entry.lessons ?? entry.manifest.replace(/pack(\.free)?\.json$/, (_m, free?: string) => `lessons${free ?? ''}.json`);
             const lr = await fetch(absolute(`${base}${lessonsPath}`), { signal, cache: 'no-cache' }).catch(() => null);
             // SPA hosts answer missing files with index.html — only accept real JSON.
             if (lr?.ok && (lr.headers.get('content-type') ?? '').includes('json')) {
@@ -120,7 +125,21 @@ export class Catalog {
     );
     c.packs.sort((a, b) => a.id.localeCompare(b.id));
     c.index();
+    if (onlyCases) c.keepCases(onlyCases);
     return c;
+  }
+
+  /** 'free' when this catalog is the free edition (sample patients and the case of the week). */
+  edition: 'full' | 'free' = 'full';
+
+  /** Drop every case (and its tasks) not in `ids`. */
+  keepCases(ids: Set<string>) {
+    for (const id of [...this.cases.keys()]) {
+      if (ids.has(id)) continue;
+      this.cases.delete(id);
+      for (const t of this.tasksByCase.get(id) ?? []) this.tasks.delete(t.id);
+      this.tasksByCase.delete(id);
+    }
   }
 
   private index() {

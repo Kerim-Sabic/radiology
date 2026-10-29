@@ -1,11 +1,13 @@
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
-import { BookOpen, ChevronLeft, ChevronRight, Images, Search, Upload, ZoomIn, ZoomOut } from 'lucide-react';
+import { BookOpen, ChevronLeft, ChevronRight, Images, Search, ZoomIn, ZoomOut } from 'lucide-react';
 import { useApp } from '../app/AppContext';
-import { bookOpenProgress, bookStatus, ensureTextIndex, hasBook, importBook, renderPage, searchBook } from '../book/bookPdf';
+import { bookOpenProgress, bookStatus, ensureTextIndex, hasBook, renderPage, searchBook } from '../book/bookPdf';
 import { readingProgress } from '../book/readingProgress';
 import { printedLabel, unitForPhysical } from '../services/curriculum';
 import { newId, type Note } from '../services/progressRepository';
+import { OwnBookPrompt } from '../components/OwnBook';
+import '../styles/upgrade.css';
 
 const LAST_PAGE_KEY = 'rvm.bookLastPage';
 
@@ -105,26 +107,8 @@ export default function BookReader() {
 
   if (available === false) {
     return (
-      <div className="page-inner stack" style={{ maxWidth: 720 }}>
-        <h1>Book</h1>
-        <div className="notice info">
-          The member textbook is temporarily unavailable. Please reload the page to try again. You can also import your own PDF below; that copy stays in this browser.
-        </div>
-        <label className="btn primary" style={{ alignSelf: 'flex-start' }}>
-          <Upload size={14} /> Import PDF
-          <input
-            type="file"
-            accept="application/pdf"
-            hidden
-            onChange={async (e) => {
-              const f = e.target.files?.[0];
-              if (f) {
-                await importBook(f);
-                setAvailable(true);
-              }
-            }}
-          />
-        </label>
+      <div className="page-inner locked-page">
+        <OwnBookPrompt onReady={() => setAvailable(true)} />
       </div>
     );
   }

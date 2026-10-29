@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import { useApp } from '../app/AppContext';
 import { Empty, formatBytes } from '../components/ui';
 import { AI_DRAFT_BY } from '../lib/provenance';
+import { LockedLibrary } from '../components/Upgrade';
+import { caseOfWeek } from '../content/weekly';
 
 export function LibraryPage() {
   const { catalog, attempts } = useApp();
@@ -14,6 +16,7 @@ export function LibraryPage() {
   const regions = [...new Set(cases.flatMap((c) => c.region))].sort();
   const mods = [...new Set(cases.flatMap((c) => catalog!.seriesForCase(c).map((s) => s.modality)))].sort();
   const seen = new Set(attempts.map((a) => a.holdoutGroup));
+  const weekly = caseOfWeek().caseId;
 
   const counts = new Map(cases.map((c) => [c.id, catalog ? catalog.anatomyCounts(c.id) : { expert: 0, ai: 0, total: 0 }]));
   // "Fully labelled": every organ in the field of view outlined (≥20 on cross-sectional studies; the 14-structure set on a radiograph).
@@ -95,6 +98,7 @@ export function LibraryPage() {
                       {m}
                     </span>
                   ))}
+                  {c.id === weekly ? <span className="chip warn">Case of the week</span> : null}
                   {c.studyUids.length > 1 ? <span className="chip accent">Same patient · {c.studyUids.length} exams</span> : null}
                   {seen.has(catalog.holdoutGroup(c.id)) ? <span className="chip">Seen</span> : <span className="chip ok">Unseen</span>}
                   {(() => {
@@ -116,6 +120,7 @@ export function LibraryPage() {
           })}
         </div>
       )}
+      <LockedLibrary />
       {catalog.invalidCases.length ? (
         <details>
           <summary className="faint">{catalog.invalidCases.length} authored item(s) hidden because their assets did not validate</summary>

@@ -1,11 +1,14 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router';
 import { Tooltip } from 'radix-ui';
-import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Search, Settings as SettingsIcon, NotebookPen, Siren, Stethoscope, Target } from 'lucide-react';
+import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Lock, Search, Settings as SettingsIcon, NotebookPen, Siren, Stethoscope, Target } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 import { AccountMenu } from './auth/AccountGate';
 import { CommandPalette } from './components/CommandPalette';
+import { FreeBanner, LockedFeature } from './components/Upgrade';
+import { useApp } from './app/AppContext';
+import { useAccount } from './auth/AccountGate';
 
 const MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 
@@ -22,8 +25,40 @@ const AtlasPage = lazy(() => import('./pages/Atlas'));
 const DrillPage = lazy(() => import('./pages/Drill'));
 const ConditionsPage = lazy(() => import('./pages/Conditions'));
 const OnCallPage = lazy(() => import('./pages/OnCall'));
+const AdminPage = lazy(() => import('./pages/Admin'));
+
+/** Members-only areas: a free account sees what each one is, and the plans. */
+const LOCKED: Record<string, { icon: React.ReactNode; title: string; text: string; points: string[] }> = {
+  '/drill': {
+    icon: <Target />,
+    title: 'Drills that remember',
+    text: 'Point to a structure or a finding on a patient you have not seen, then name it. What you miss comes back later, on a different patient, until you know it.',
+    points: ['Anatomy and findings, on every patient', 'Spaced repetition: back after 1, 3, 7, 16 and 35 days', 'Pick a region, or review what is due'],
+  },
+  '/oncall': {
+    icon: <Siren />,
+    title: 'On-call shifts',
+    text: 'A run of unknown patients with an optional clock, read with no titles and no hints, and a scored report at the end.',
+    points: ['Unknown patients across every modality', 'Write your impression, then see how you did', 'A timer to build speed for exams'],
+  },
+  '/atlas': {
+    icon: <Bone />,
+    title: 'Anatomy atlas',
+    text: 'Every labelled structure on every patient. Pick a rib, a lobe or a vessel and see it alone on a real scan.',
+    points: ['Hundreds of structures on CT, X-ray and MRI', 'The book’s anatomy checklist, chapter by chapter', 'Drill any structure on other patients'],
+  },
+  '/book': {
+    icon: <BookOpen />,
+    title: 'The book, page by page',
+    text: 'Read Learning Radiology beside your scans: every task opens the page and the figure that explain it, then brings you back.',
+    points: ['Open your own copy: it stays on your device', 'Included for SSST students signed in with their university email', 'Search the text and browse the figures'],
+  },
+};
+const lockedArea = (path: string) => Object.keys(LOCKED).find((k) => path === k || path.startsWith(`${k}/`)) ?? null;
 
 function TopNav({ onSearch }: { onSearch: () => void }) {
+  const { free } = useApp();
+  const admin = useAccount()?.account.access.role === 'admin';
   const links = [
     { to: '/', label: 'Today', icon: <House size={16} /> },
     { to: '/cases', label: 'Cases', icon: <Library size={16} /> },
@@ -37,6 +72,7 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
     { to: '/import', label: 'Import', icon: <FolderOpen size={16} />, minor: true },
     { to: '/author', label: 'Author', icon: <NotebookPen size={16} />, minor: true },
     { to: '/settings', label: 'Settings', icon: <SettingsIcon size={16} />, minor: true },
+    ...(admin ? [{ to: '/admin', label: 'Numbers', icon: <ChartColumn size={16} />, minor: true }] : []),
   ];
   return (
     <nav className="topnav" aria-label="Main">
@@ -50,6 +86,7 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
         <NavLink key={l.to} to={l.to} end={l.to === '/'} title={l.label} aria-label={l.label} className={({ isActive }) => `navlink${l.minor ? ' minor' : ''}${isActive ? ' active' : ''}`}>
           {l.icon}
           <span>{l.label}</span>
+          {free && LOCKED[l.to] ? <Lock size={11} className="nav-lock" aria-label="members" /> : null}
         </NavLink>
       ))}
       <span className="spacer" />
@@ -111,15 +148,19 @@ export function App() {
     window.addEventListener('keydown', onKey, true);
     return () => window.removeEventListener('keydown', onKey, true);
   }, []);
+  const { free } = useApp();
+  const locked = free ? lockedArea(loc.pathname) : null;
   const reading = loc.pathname.startsWith('/read');
   const fullHeight = reading || loc.pathname === '/drill' || /^\/book(\/\d+)?$/.test(loc.pathname);
   return (
     <Tooltip.Provider>
       <div className="shell">
         {reading ? null : <TopNav onSearch={() => setSearching(true)} />}
+        {reading ? null : <FreeBanner />}
         <CommandPalette open={searching} onClose={() => setSearching(false)} />
         <main className="page" style={fullHeight ? { overflow: 'hidden' } : undefined} id="main">
           <Suspense fallback={<Loading />}>
+            {locked ? <LockedFeature {...LOCKED[locked]} /> : (
             <Routes>
               <Route path="/" element={<HomePage />} />
               <Route path="/cases" element={<LibraryPage />} />
@@ -138,8 +179,10 @@ export function App() {
               <Route path="/import" element={<ImportPage />} />
               <Route path="/author" element={<AuthorPage />} />
               <Route path="/guide" element={<GuidePage />} />
+              <Route path="/admin" element={<AdminPage />} />
               <Route path="*" element={<div className="page-inner"><h1>Not found</h1><p className="muted">This address does not exist. <NavLink to="/">Go to Today</NavLink>.</p></div>} />
             </Routes>
+            )}
           </Suspense>
         </main>
       </div>

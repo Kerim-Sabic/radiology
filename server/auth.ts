@@ -1,6 +1,7 @@
 import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import { appOrigin, required } from './config.js';
 import { db } from './store.js';
+import { markJoined } from './joined.js';
 import { exchange, identity, revoke } from './oauth.js';
 
 const SESSION_SECONDS = 30 * 86400;
@@ -47,6 +48,7 @@ export async function createSession(profile: { sub: string; email: string; email
   if (provider === 'whop') tx.set(`rvm:whop-user:${user.userId}`, profile.sub);
   tx.set(`rvm:identity:${user.userId}`, { email: profile.email, emailVerified: true, provider });
   await tx.exec();
+  await markJoined(user.userId);
   return cookie(SESSION_COOKIE, token, SESSION_SECONDS);
 }
 export async function beginSignIn() {

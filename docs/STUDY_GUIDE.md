@@ -21,6 +21,12 @@ Anywhere, **Ctrl + K** (⌘ K on a Mac) opens quick search: pages, conditions, b
 - *Provisionally independent* (a product heuristic): independent success on ≥3 distinct patients including a retry ≥20 h after the first success. It is not a clinical competence claim.
 - Small samples are flagged as such.
 
+## Free account, case of the week, emails, certificates
+- **Free account.** Create an account without a plan to read the sample patients and this week's case in the full workstation, with grading. Members-only areas (drills, on call, the atlas, the book reader, the rest of the library) show what they are and lead to the plans.
+- **Case of the week.** Every Monday one more real patient is the case of the week: on Today, tagged in Cases, open to every account for that week. Members keep every earlier one.
+- **Emails** (Settings → Emails, or the prompt on Today after your first answer): an evening reminder when a streak of 2 or more days is about to end, and the new case every Monday. Each email has a one-click link to stop it. The server only learns which days you studied; your answers stay in your browser.
+- **Certificates** (Progress → Certificates): one per body area when you have read 10 of its patients with 70% of graded answers right, and *Radiology foundations* across the areas. Each has a public page to print, share or add to LinkedIn. It records your practice here; it is not a medical qualification or CME credit.
+
 ## Read the book in the app
 **Book** (top bar) opens the full reader: chapter and section contents (case quiz ❓/✅, take-home ★, pitfalls ⚠), page-by-page reading with ←/→, zoom and search. The right panel shows what is on the page: figures (click to highlight), the curriculum objectives anchored there, **real-scan tasks** that practise them, the chapter's case quiz (write your answer, then open the book's answer page) and your own notes. **Figures** shows every figure of a chapter cropped from your PDF. The Course map shows how much of each chapter you have opened.
 
@@ -69,7 +75,7 @@ The **two-people button** in the toolbar opens a different patient beside your s
 Rate your confidence before submitting. An answer rated 4–5 that turns out wrong is marked **sure but wrong**: it goes to the top of your review plan, and Progress → *Confidence check* shows how often “sure” is actually right.
 
 ## Import the book
-On your own computer the book is already installed for local use (`python scripts/book/install_book.py --pdf <file>` copies it to the git-ignored `public/book/`). On another device: Settings → Book → Import PDF. The file is checked against the verified 5th-edition SHA-256 (`0f711fa4…`). Page anchors use a page-by-page map (inserted e-pages such as 2.e1 and 79.e1–e5 are handled). Search builds a local index the first time (text stays in your browser).
+SSST students signed in with their `@stu.ssst.edu.ba` email get the book included. Everyone else opens their own copy: the Book page, the Book tab of a case and Settings → Book ask for the PDF once, and it stays in that browser (never uploaded). On your own computer the book can also be installed for local use (`python scripts/book/install_book.py --pdf <file>` copies it to the git-ignored `public/book/`). The file is checked against the verified 5th-edition SHA-256 (`0f711fa4…`). Page anchors use a page-by-page map (inserted e-pages such as 2.e1 and 79.e1–e5 are handled). Search builds a local index the first time (text stays in your browser).
 
 ## Open your own DICOM
 Import → drop a folder, files or a ZIP (ZIPs expanding beyond 1.5 GB or 20,000 files are refused). Files are parsed in the browser, grouped by study/series/orientation and sorted by slice position. Imported studies have no answer key — free reading with self-review — and last for the browser session.

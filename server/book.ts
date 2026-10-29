@@ -6,6 +6,12 @@ export const BOOK_SIZE = 73_363_798;
 export const BOOK_SHA256 = '0f711fa48c1872ceb06cda81df9ec60b1de0eab0590b585dda0d9aae26dad1b1';
 const MAX_RANGE = 2 * 1024 * 1024;
 
+/** The textbook is served only to SSST students (verified university email); everyone else opens their own copy on their device. */
+export const BOOK_EMAIL_DOMAIN = 'stu.ssst.edu.ba';
+export function servesBook(email: string): boolean {
+  return email.trim().toLowerCase().endsWith(`@${BOOK_EMAIL_DOMAIN}`);
+}
+
 export function bookRange(value: string | null): { start: number; end: number } | null {
   const match = /^bytes=(\d*)-(\d*)$/.exec(value || '');
   if (!match || (!match[1] && !match[2])) return null;

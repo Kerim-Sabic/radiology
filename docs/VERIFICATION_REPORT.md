@@ -274,6 +274,44 @@ Two independent reviews ran on 28 October: one checked every outline anatomicall
 - Browser: arteries red and filled on the slice while the veins stay outlined, the choice kept after a reload, **V** both ways, the download, and *Atlas colours*. The Assess test also checks the hidden source.
 - Totals on the production build: 364 unit tests; 89 browser tests in Chromium and Firefox (7 skipped as before).
 
+## 3g. Library ×3, free accounts, case of the week, emails, certificates, numbers (29 October, evening)
+
+**Library.** The commercial catalogue grew from 108 patients and 346 tasks to **364 patients and 1,043 tasks**, in five new packs:
+- `us-breast-2`: 98 breast ultrasound patients, 392 tasks.
+- `stroke-mri-2`: 50 diffusion MRI patients, 106 tasks.
+- `cxr-findings-2`: 67 chest radiographs with radiologist boxes, 106 tasks.
+- `peds-wrist-2`: 30 children's wrists, both views, 60 tasks.
+- `mammo-cbis-2`: 11 mammograms, CC and MLO, 33 tasks.
+
+All five licences allow commercial use with no login: CC BY 4.0, CC BY 3.0 or NIH unrestricted, each checked on the official page and recorded in the pack. Every answer comes from the dataset's expert annotation. Every overlay was rendered and reviewed, and 129 of 196 candidate radiographs were dropped, each with its reason (`docs/data/round4-data.md`, `*-2-build-qc.json`). The packs add 190 MB to the repository. The landing page now says 350+ patients and 1,000+ tasks, still checked by `tests/landingFacts.test.ts`.
+
+**Fixed: wording that gave the diagnosis away before an answer.** It appeared in Assess, quick search, drills and saved images:
+- **Case titles.** 63 titles named their dataset (e.g. "HCC-TACE-Seg", "ISLES 2022", "FracAtlas", "FUMPE"). All titles now read "Patient <code> · <scan>".
+- **Scan descriptions.** Some studies and series named the dataset or the finding (e.g. "MRI brain, stroke (ISLES 2022)").
+- **Clinical context.** 65 contexts named the diagnosis, e.g. "with an ischemic stroke", "lung cancer later confirmed by biopsy", "vestibular schwannoma". They now give a neutral referral, e.g. "sudden neurological symptoms", "referred for chest CT".
+- **Case tab in Assess.** The source dataset and subject key are now hidden until submission.
+- `tests/neutralTitles.test.ts` checks all four.
+
+**Free account** (signed in, no plan):
+- Two sample patients, plus the case of the week: a new patient every Monday (UTC), 52 weeks scheduled in `src/content/weekly.ts`.
+- `proxy.ts` lets a free account load only those patients' files, the free manifests, the teaser list and the curriculum (`server/free.ts`, `npm run free:sync`, `tests/freeEdition.test.ts`).
+- Locked areas (drills, on call, atlas, book) explain what they are. The library lists every other patient by neutral title, locked. Upgrade prompts appear on Today, after an answer, and in the top bar. Signed-in visitors no longer see the marketing page; plans open on their own screen.
+
+**Book:** served only to verified `@stu.ssst.edu.ba` emails (`server/book.ts`, tested). Everyone else opens their own copy, which is checked against the 5th edition and stays on the device. The landing footer says the app is not affiliated with the book's publisher or authors.
+
+**Emails:**
+- A streak reminder (a daily job at 17:00 UTC, for streaks of 2 or more days not yet extended today) and the case-of-the-week email (Monday 07:00 UTC), both through Resend.
+- Opt-in, with signed one-click unsubscribe and `List-Unsubscribe` headers.
+- The server stores only study days and email choices.
+
+**Certificates:** one per body area (10 patients read, 70% of graded answers right) plus Radiology foundations. Each has a public page at `/certificate/<id>`, with print and "Add to LinkedIn".
+
+**Numbers:** Vercel Web Analytics, cookieless, with query strings dropped. Daily counters for the funnel: landing visit, Start free, account created, first answer, plans opened, checkout, paid. Day-1 and day-7 return. Admins see all of it at `/admin`.
+
+**Look:** the landing page, plans screen and app surfaces were restyled: centred hero, pill buttons, frosted top bar, rounder cards, calmer backgrounds. Checked at 1440 px and 390 px with no sideways scrolling.
+
+**Tests on the production build:** 432 unit tests; 93 browser tests in Chromium and Firefox (7 skipped as before), including the free account, locked patients and the public certificate page.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

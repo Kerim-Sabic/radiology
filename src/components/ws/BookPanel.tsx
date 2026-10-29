@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { ChevronLeft, ChevronRight, Search, Upload } from 'lucide-react';
-import { bookOpenProgress, bookStatus, ensureTextIndex, hasBook, importBook, renderPage, searchBook, EXPECTED_SHA256 } from '../../book/bookPdf';
+import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { bookOpenProgress, bookStatus, ensureTextIndex, hasBook, renderPage, searchBook } from '../../book/bookPdf';
+import { OwnBookPrompt } from '../OwnBook';
 import { printedLabel, unitForPhysical, type Curriculum } from '../../services/curriculum';
 import type { BookAnchorRef } from '../../schema/content';
 
@@ -52,29 +53,13 @@ export function BookPanel({ curriculum, anchor, onReturnToScan, locked }: Props)
   if (available === false) {
     return (
       <div className="stack">
-        <div className="notice info">
-          The member textbook is temporarily unavailable. Reload to try again, or import your own PDF on this device.
-        </div>
-        <label className="btn">
-          <Upload size={14} /> Import Learning Radiology PDF
-          <input
-            type="file"
-            accept="application/pdf"
-            hidden
-            onChange={async (e) => {
-              const f = e.target.files?.[0];
-              if (!f) return;
-              try {
-                const st = await importBook(f);
-                if (st.sha256 !== EXPECTED_SHA256) setError('Imported, but this copy differs from the verified 5th-edition file — page anchors may not line up.');
-                setAvailable(true);
-              } catch (err) {
-                setError(String(err));
-              }
-            }}
-          />
-        </label>
-        {error ? <div className="notice bad">{error}</div> : null}
+        {anchor ? (
+          <div className="notice">
+            This task is explained on page <b>{printed ?? anchor.printed ?? anchor.physical}</b>
+            {unit ? ` (${unit.kind === 'appendix' ? 'Appendix' : 'Chapter'} ${unit.number})` : ''} of the book.
+          </div>
+        ) : null}
+        <OwnBookPrompt compact onReady={() => setAvailable(true)} />
       </div>
     );
   }

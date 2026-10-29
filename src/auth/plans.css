@@ -1,0 +1,198 @@
+/* The plans screen for a signed-in account without a plan (over the free app), and the upgrade button. */
+.plans-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  overflow-y: auto;
+  background:
+    radial-gradient(900px 500px at 85% -10%, rgba(79, 70, 229, 0.28), transparent 70%),
+    radial-gradient(700px 500px at -10% 110%, rgba(37, 99, 235, 0.18), transparent 70%),
+    var(--lp-bg);
+}
+.plans-top {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 12px clamp(16px, 4vw, 40px);
+  background: rgba(2, 6, 23, 0.82);
+  border-bottom: 1px solid var(--lp-line);
+  backdrop-filter: blur(10px);
+}
+.plans-back,
+.plans-signout {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  justify-self: start;
+  border: 1px solid var(--lp-line-strong);
+  background: var(--lp-surface);
+  color: var(--lp-text);
+  border-radius: 999px;
+  padding: 7px 14px;
+  font: inherit;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+.plans-back:hover,
+.plans-signout:hover {
+  border-color: var(--lp-accent);
+}
+.plans-signout {
+  padding: 7px 9px;
+}
+.plans-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+}
+.plans-brand span {
+  color: var(--lp-accent);
+}
+.plans-who {
+  justify-self: end;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--lp-text-3);
+  font-size: 13px;
+  min-width: 0;
+}
+.plans-who > span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.plans-body {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: clamp(28px, 5vw, 64px);
+  align-items: start;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: clamp(28px, 6vh, 64px) clamp(16px, 4vw, 40px) 64px;
+}
+.plans-value h1 {
+  margin: 10px 0 18px;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.6vw, 46px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+}
+.plans-value h1 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #60a5fa, #a78bfa);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.plans-now {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 0 0 22px;
+  padding: 10px 14px;
+  border: 1px solid rgba(74, 222, 128, 0.35);
+  background: rgba(22, 101, 52, 0.18);
+  border-radius: 12px;
+  color: #bbf7d0;
+  font-size: 14px;
+  line-height: 1.45;
+}
+.plans-now svg {
+  flex: none;
+  margin-top: 2px;
+}
+.plans-unlocks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 14px;
+}
+.plans-unlocks li {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.plans-unlocks b {
+  display: block;
+  font-size: 15.5px;
+  margin-bottom: 2px;
+}
+.plans-unlocks p {
+  margin: 0;
+  color: var(--lp-text-2);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.plans-ico {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 11px;
+  background: rgba(99, 102, 241, 0.16);
+  border: 1px solid rgba(129, 140, 248, 0.35);
+  color: #c7d2fe;
+}
+.plans-panel .membership-panel {
+  margin: 0;
+}
+@media (max-width: 900px) {
+  .plans-body {
+    grid-template-columns: 1fr;
+  }
+  .plans-panel {
+    order: -1;
+  }
+  .plans-who > span {
+    display: none;
+  }
+  .plans-brand {
+    font-size: 14px;
+  }
+}
+@media (max-width: 480px) {
+  .plans-top {
+    grid-template-columns: auto 1fr auto;
+  }
+  .plans-back {
+    padding: 7px 10px;
+  }
+  .plans-brand {
+    justify-self: center;
+  }
+}
+
+/* ---------------------------------------------------------------- free account bits inside the app */
+.account-menu .upgrade-btn {
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 55%, #7c3aed 100%);
+  border-color: transparent;
+  color: #fff;
+  font-weight: 600;
+}
+.plans-screen:focus {
+  outline: none;
+}
+.plans-brand {
+  gap: 0;
+}
+.plans-brand img {
+  margin-right: 8px;
+}
+.plans-value h1 {
+  margin-bottom: 24px;
+}
+@media (max-width: 480px) {
+  .plans-back-long {
+    display: none;
+  }
+}

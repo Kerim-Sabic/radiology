@@ -4,16 +4,19 @@
  * the condition list and the curriculum, so a claim can never be larger than what members actually get.
  */
 export const LANDING_FACTS = {
-  /** Distinct real patients (shown as "100+"). */
-  patients: 100,
-  /** Image tasks across all cases (shown as "340+"). */
-  tasks: 340,
+  /** Distinct real patients (shown as "350+"). */
+  patients: 350,
+  /** Image tasks across all cases (shown as "1,000+"). */
+  tasks: 1000,
   /** Conditions in the condition search (shown as "75+"). */
   conditions: 75,
   /** Learning objectives mapped from the book (exact). */
   objectives: 274,
   modalities: ['CT', 'MRI', 'X-ray', 'Mammography', 'Ultrasound'] as const,
 };
+
+/** A landing number as shown: 1000 → "1,000". */
+export const fact = (n: number) => n.toLocaleString('en-US');
 
 /** Data shown in the landing-page screenshots, with the credit each licence asks for. */
 export const LANDING_CREDITS: Array<{ name: string; license: string; url: string }> = [

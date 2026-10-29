@@ -3,6 +3,10 @@ import { Catalog } from '../services/caseRepository';
 import { ProgressRepository, type Attempt, type TargetReview } from '../services/progressRepository';
 import { loadCurriculum, type Curriculum } from '../services/curriculum';
 import { preloadBook } from '../book/bookPdf';
+import { useAccount } from '../auth/AccountGate';
+import { freeCaseIds } from '../content/weekly';
+import { dayKey } from '../services/activity';
+import { pingStudied } from '../services/serverSync';
 
 export type Level = 'student' | 'resident';
 
@@ -36,6 +40,10 @@ interface AppState {
   settings: Settings;
   setSettings: (s: Partial<Settings>) => void;
   reloadCatalog: () => void;
+  /** Signed in without a plan: the catalog is the free edition (sample patients and this week's case). */
+  free: boolean;
+  /** Open the plans screen (free accounts; does nothing otherwise). */
+  openPlans: () => void;
 }
 
 const Ctx = createContext<AppState | null>(null);
@@ -51,17 +59,21 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [reviews, setReviews] = useState<TargetReview[]>([]);
   const progressVersion = useSyncExternalStore(progress.subscribe, progress.getVersion);
+  const account = useAccount();
+  const free = !!account?.free;
+  const openPlans = account?.openPlans;
 
   useEffect(() => {
     const ac = new AbortController();
-    Catalog.load(ac.signal)
+    Catalog.load(ac.signal, free ? 'free' : 'full', free ? freeCaseIds() : undefined)
       .then((c) => {
-        (window as unknown as { __catalog: Catalog }).__catalog = c; // inspection handle for acceptance tests
+        if (ac.signal.aborted) return; // a newer load (e.g. after the account changed) replaces this one
+        (window as unknown as { __catalog: Catalog }).__catalog = c;
         setCatalog(c);
       })
-      .catch((e) => setCatalogError(String(e)));
+      .catch((e) => !ac.signal.aborted && setCatalogError(String(e)));
     return () => ac.abort();
-  }, [reloadKey]);
+  }, [reloadKey, free]);
 
   useEffect(() => {
     loadCurriculum().then(setCurriculum);
@@ -74,6 +86,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
     progress.attempts().then(setAttempts);
     progress.reviews().then(setReviews);
   }, [progressVersion]);
+
+  // Signed in: tell the server you studied today (an answer or a drill), for streak reminders and retention.
+  const signedIn = !!account;
+  useEffect(() => {
+    if (!signedIn) return;
+    const today = dayKey(new Date());
+    if (attempts.some((a) => a.submittedAt && dayKey(a.submittedAt) === today)) pingStudied();
+    else void progress.activityLog().then((l) => l[today]?.drills && pingStudied());
+  }, [signedIn, attempts, progressVersion]);
 
   const value = useMemo<AppState>(
     () => ({
@@ -95,8 +116,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
           return next;
         }),
       reloadCatalog: () => setReloadKey((k) => k + 1),
+      free,
+      openPlans: openPlans ?? (() => undefined),
     }),
-    [catalog, catalogError, curriculum, attempts, reviews, settings],
+    [catalog, catalogError, curriculum, attempts, reviews, settings, free, openPlans],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

@@ -904,3 +904,225 @@
   border-radius: 10px;
   background: #060d1d;
 }
+
+/* ---------------------------------------------------------------- refresh (29 October): centred hero, larger type,
+   pill buttons, calmer backgrounds; the free plan and the case of the week */
+.lp-hero {
+  padding: clamp(56px, 9vh, 112px) 0 24px;
+  text-align: center;
+}
+.lp-hero::before {
+  background:
+    radial-gradient(ellipse 50% 45% at 50% 18%, rgba(79, 70, 229, 0.32), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 15% 60%, rgba(37, 99, 235, 0.16), transparent 70%),
+    radial-gradient(ellipse 40% 40% at 85% 60%, rgba(124, 58, 237, 0.14), transparent 70%);
+  mask-image: none;
+}
+.lp-hero-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(40px, 6vh, 72px);
+  justify-items: center;
+}
+.lp-hero-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 900px;
+}
+.lp-hero h1 {
+  font-size: clamp(46px, 7.4vw, 104px);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+.lp-lead {
+  max-width: 640px;
+  font-size: clamp(17px, 1.5vw, 21px);
+  line-height: 1.55;
+}
+.lp-cta {
+  justify-content: center;
+}
+.lp-ticks {
+  justify-content: center;
+}
+.lp-btn {
+  border-radius: 999px;
+  padding: 13px 24px;
+}
+button.lp-btn {
+  cursor: pointer;
+}
+button.lp-btn:disabled {
+  opacity: 0.55;
+  cursor: wait;
+  transform: none;
+}
+.lp-hero-shot {
+  width: min(1120px, 100%);
+  border-radius: 22px;
+  box-shadow: 0 70px 160px -50px rgba(79, 70, 229, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+.lp-hero-shot .lp-shot-bar {
+  border-radius: 21px 21px 0 0;
+  height: 34px;
+}
+.lp-hero-shot img {
+  border-radius: 0 0 21px 21px;
+}
+.lp-callout {
+  border-radius: 999px;
+  padding: 9px 15px;
+}
+@media (min-width: 1100px) and (prefers-reduced-motion: no-preference) {
+  .lp-hero-shot,
+  .lp-hero-shot:hover {
+    transform: none;
+  }
+}
+.lp-head {
+  max-width: 780px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.lp-head h2 {
+  font-size: clamp(32px, 4.4vw, 58px);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+.lp-section {
+  padding: clamp(80px, 12vh, 136px) 0;
+}
+.lp-feature {
+  border-radius: 22px;
+}
+.lp-shot {
+  border-radius: 18px;
+}
+
+/* Case of the week */
+.lp-weekly {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 28px;
+  padding: clamp(28px, 4vw, 44px);
+  border-radius: 28px;
+  border: 1px solid rgba(250, 204, 21, 0.25);
+  background:
+    radial-gradient(ellipse 60% 120% at 0% 0%, rgba(250, 204, 21, 0.13), transparent 60%),
+    var(--lp-surface);
+}
+.lp-weekly h2 {
+  margin: 6px 0 8px;
+  font-size: clamp(26px, 3vw, 38px);
+  letter-spacing: -0.035em;
+}
+.lp-weekly p {
+  margin: 0;
+  max-width: 62ch;
+  color: var(--lp-text-2);
+  line-height: 1.6;
+}
+.lp-weekly-ico {
+  display: grid;
+  place-items: center;
+  width: 68px;
+  height: 68px;
+  border-radius: 20px;
+  border: 1px solid rgba(253, 224, 71, 0.35);
+  background: linear-gradient(145deg, rgba(250, 204, 21, 0.3), rgba(249, 115, 22, 0.22));
+  color: #fde68a;
+}
+#weekly {
+  padding-top: 24px;
+}
+
+/* Free plan beside the paid plans */
+.lp-pricing-grid {
+  display: grid;
+  grid-template-columns: minmax(250px, 310px) minmax(0, 780px);
+  justify-content: center;
+  align-items: stretch;
+  gap: 20px;
+}
+.lp-pricing-grid .lp-pricing {
+  margin: 0;
+  max-width: none;
+}
+.lp-pricing-grid .membership-panel {
+  height: 100%;
+}
+.lp-free {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 34px 28px;
+  border-radius: 20px;
+  border: 1px solid var(--lp-line-strong);
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(10, 17, 34, 0.96));
+}
+.lp-free h3 {
+  font-size: 22px;
+}
+.lp-free > div:first-child span {
+  display: block;
+  margin-top: 2px;
+  color: var(--lp-text-3);
+  font-size: 13px;
+}
+.lp-free-price {
+  font: 750 46px var(--font-display);
+  letter-spacing: -0.03em;
+}
+.lp-free-price span {
+  margin-left: 8px;
+  font: 500 14px var(--font);
+  letter-spacing: 0;
+  color: var(--lp-text-3);
+}
+.lp-free ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 11px;
+  color: var(--lp-text-2);
+  font-size: 14px;
+}
+.lp-free li {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+.lp-free li svg {
+  flex: none;
+  margin-top: 3px;
+  color: #4ade80;
+}
+.lp-free .lp-btn {
+  margin-top: auto;
+  justify-content: center;
+}
+.lp-cta.center {
+  margin-top: 0;
+}
+@media (max-width: 1050px) {
+  .lp-pricing-grid {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 780px;
+    margin: 0 auto;
+  }
+  .lp-weekly {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@media (max-width: 640px) {
+  .lp-hero h1 {
+    font-size: 46px;
+  }
+  .lp-weekly .lp-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

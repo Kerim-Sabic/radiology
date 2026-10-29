@@ -1,9 +1,12 @@
 import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
-import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers, Sparkles } from 'lucide-react';
 import './account.css';
+import './plans.css';
 import { Landing } from './Landing';
 import { InviteFriends } from './InviteFriends';
 import { currentReferral } from './referralAttribution';
+import { PlansScreen } from './PlansScreen';
+import { trackFunnel } from '../services/serverSync';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
 type Tier = 'monthly' | 'yearly';
@@ -14,12 +17,29 @@ function rememberedPlan(): Tier | null { try { const value = sessionStorage.getI
 function rememberPlan(tier: Tier | null) { try { if (tier) sessionStorage.setItem(planKey, tier); else sessionStorage.removeItem(planKey); } catch { /* Storage is optional. */ } }
 
 interface Access { active: boolean; role?: 'admin'; tier?: Tier | 'lifetime'; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
-interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; }
-const AccountContext = createContext<{ account: Account; logout: () => void } | null>(null);
+interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; book?: boolean; }
+interface AccountState {
+  account: Account;
+  logout: () => void;
+  /** Signed in without a plan: the free edition (sample patients and the case of the week). */
+  free: boolean;
+  /** Open the plans screen (free accounts). */
+  openPlans: () => void;
+}
+const AccountContext = createContext<AccountState | null>(null);
+
+/** The signed-in account, or null where there is none (local development without the gate). */
+export function useAccount(): AccountState | null {
+  return useContext(AccountContext);
+}
 
 export function AccountMenu() {
   const context = useContext(AccountContext);
   if (!context) return null;
+  if (context.free) return <span className="account-menu">
+    <button className="upgrade-btn" onClick={context.openPlans} title="See the plans"><Sparkles size={15} /><span>Upgrade</span></button>
+    <button onClick={context.logout} title={`Sign out (${context.account.user?.email ?? ''})`}><LogOut size={16} /><span>Sign out</span></button>
+  </span>;
   return <span className="account-menu">
     <span title={context.account.user?.email}>{context.account.access.role === 'admin' ? 'Admin · free access' : context.account.access.tier === 'lifetime' ? 'Lifetime member' : context.account.access.tier === 'yearly' ? 'Yearly member' : 'Monthly member'}</span>
     {context.account.access.manageUrl && <a href={context.account.access.manageUrl} target="_blank" rel="noopener noreferrer" title="Manage billing on Whop"><CreditCard size={16} /><span>Billing</span></a>}
@@ -54,6 +74,14 @@ function MembershipGate({ children }: { children: ReactNode }) {
   });
   const [authWaiting, setAuthWaiting] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<Tier | null>(rememberedPlan);
+  // Free accounts use the app; the plans open as their own screen (from Upgrade, a locked feature, or ?plans).
+  const [plansOpen, setPlansOpen] = useState(() => new URLSearchParams(location.search).has('plans') || !!rememberedPlan());
+  const openPlans = useCallback(() => { setPlansOpen(true); setError(''); trackFunnel('plans', true); }, []);
+  function closePlans() {
+    setPlansOpen(false); setPayment(null); setReturned(false); setError('');
+    const q = new URLSearchParams(location.search);
+    if (q.has('plans') || q.has('checkout')) { q.delete('plans'); q.delete('checkout'); history.replaceState(null, '', `${location.pathname}${q.size ? `?${q}` : ''}`); }
+  }
   const [promoCode, setPromoCode] = useState(rememberedPromo);
   const [payment, setPayment] = useState<{ id: string; returnUrl: string; tier: Tier; promoCode?: string } | null>(null);
   function updatePromo(value: string) {
@@ -171,6 +199,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       if (!response.ok) throw new Error(data.error);
       if (!/^ch_[A-Za-z0-9]+$/.test(data.id)) throw new Error('Unable to open the payment form. Please try again.');
       setPayment({ id: data.id, returnUrl: data.returnUrl, tier, promoCode: data.promoCode });
+      setPlansOpen(true); // "Change plan" goes back to the plans, not to the app
       rememberPlan(null);
     } catch (e) { if (mounted.current && current === checkoutGeneration.current) setError(e instanceof Error ? e.message : 'Checkout is unavailable. Please try again.'); }
     finally { if (mounted.current && current === checkoutGeneration.current) setBusy(null); }
@@ -182,7 +211,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
   }, [selectedPlan, account, buy]);
   function choose(tier: Tier) {
     if (account?.user) { void buy(tier); return; }
-    setSelectedPlan(tier); rememberPlan(tier); setAuthMode('signup'); setError('');
+    setSelectedPlan(tier); rememberPlan(tier); setAuthMode('signup'); setError(''); trackFunnel('signup_start', true);
   }
   function startSignIn() {
     setAuthWaiting(true); setError('');
@@ -190,7 +219,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
     if (!authWindow.current) location.assign('/api/auth/email');
   }
 
-  if (account?.access.active) return <AccountContext.Provider value={{ account, logout }}>{children}</AccountContext.Provider>;
+  if (account?.access.active) return <AccountContext.Provider value={{ account, logout, free: false, openPlans }}>{children}</AccountContext.Provider>;
   if (loading) return <div className="membership-loading" role="status"><ScanLine size={30} /><p>Opening your study space…</p></div>;
   const panel = <>
     <section className="membership-panel" id="plans" aria-label="Membership">
@@ -205,8 +234,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
         </Suspense>
         <p className="membership-fine">{payment.promoCode ? 'Your code is prefilled in the payment form. Review the discounted recurring total before paying; Whop confirms whether it is still available.' : payment.tier === 'monthly' ? 'Standard price: $20 USD every 30 days.' : 'Standard price: $150 USD every 365 days.'} Discounts and any applicable tax are shown in the payment form. Cancel future renewals from Billing. Access opens after payment is verified.</p>
       </> : <>
-      <span className="membership-step">YOUR NEXT STEP FROM THEORY TO PRACTICE</span>
-      <h2>{account?.user ? 'You’re one step away.' : 'More practice. A clearer picture.'}</h2>
+      <span className="membership-step">{account?.user ? 'CHOOSE YOUR PLAN' : 'YOUR NEXT STEP FROM THEORY TO PRACTICE'}</span>
+      <h2>{account?.user ? 'Unlock the whole library.' : 'More practice. A clearer picture.'}</h2>
       <p>{account?.user ? `Signed in as ${account.user.email}` : 'One membership for real cases, guided practice and the book beside you.'}</p>
       {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
       <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>Choose a plan below. Your discount will appear in the secure payment form.</p></details>
@@ -242,16 +271,24 @@ function MembershipGate({ children }: { children: ReactNode }) {
       {!account?.user && <p className="existing-account">Already a member? <button className="text-button" disabled={!ready?.auth} onClick={() => setAuthMode('login')}>Sign in</button></p>}
       </>}
       {account?.access.pendingMembership && <p className="membership-message">You already have a membership awaiting payment confirmation or a billing update. {account.access.manageUrl && <a href={account.access.manageUrl} target="_blank" rel="noopener noreferrer">Open billing in Whop</a>} to check it before purchasing again.</p>}
-      {!payment && <p className="membership-fine">Prices in USD; applicable tax is shown at checkout. ¹Wallet availability depends on your device and payment setup. Payments powered by Whop.</p>}
+      {!payment && <p className="membership-fine">Book links open your own copy of the book (included for SSST students). Prices in USD; applicable tax is shown at checkout. ¹Wallet availability depends on your device and payment setup. Payments powered by Whop.</p>}
       {account?.user && !payment && <InviteFriends />}
       {account?.user && <div className="membership-restore"><button disabled={checking} onClick={() => void refreshPayment()}>{checking ? 'Checking with Whop…' : 'Already paid? Check access'}</button>{!account.billingReady && <p>Payments are being configured. Checkout will open once it’s ready.</p>}</div>}
       {(error || new URLSearchParams(location.search).get('signin') === 'failed') && <p className="membership-message" role="alert">{error || 'Email sign-in was canceled or expired. Please try again.'}</p>}
       {!account && error && <button className="text-button" onClick={() => void load()}>Try again</button>}
     </section>
   </>;
+  if (account?.user) {
+    // Signed in, no plan: the free edition of the app, with the plans on their own screen when asked for.
+    const showPlans = plansOpen || !!payment || returned;
+    return <AccountContext.Provider value={{ account, logout, free: true, openPlans }}>
+      {children}
+      {showPlans ? <PlansScreen panel={panel} email={account.user.email} onClose={closePlans} onSignOut={() => void logout()} /> : null}
+    </AccountContext.Provider>;
+  }
   return <main className="membership-page lp">
-    <Landing panel={panel} panelInHero={!!account?.user} signInLabel={account?.user ? 'Sign out' : 'Sign in'} signInDisabled={!account?.user && !ready?.auth}
-      onSignIn={() => { if (account?.user) void logout(); else setAuthMode('login'); }} />
+    <Landing panel={panel} signInLabel="Sign in" signInDisabled={!ready?.auth}
+      onSignIn={() => setAuthMode('login')} onStartFree={() => { setAuthMode('signup'); setError(''); trackFunnel('signup_start', true); }} />
     <dialog className="auth-dialog" ref={dialog} onCancel={() => setAuthMode(null)} onClose={() => setAuthMode(null)} aria-labelledby="auth-title">
       <button className="auth-close" aria-label="Close sign-in" onClick={() => setAuthMode(null)}><X size={20} /></button>
       <div className="auth-icon"><Mail size={25} /></div>
