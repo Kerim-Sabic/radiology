@@ -8,13 +8,15 @@ Apple Pay is enabled through Whop Elements for eligible devices/browsers with an
 
 ## Offers
 
-- Monthly: USD 10, billed every 30 days, no trial. Customers cancel future renewals in Whop.
-- Lifetime: USD 100 once, no expiry or recurring charge.
+- Monthly: USD 20, billed every 30 days, no trial. Customers cancel future renewals in Whop.
+- Yearly: USD 150, billed every 365 days, no trial.
 - Both plans unlock the same application and the protected on-site textbook reader. Study progress is stored in the customer's browser.
+
+Historical monthly/lifetime plan IDs remain allowlisted through `WHOP_LEGACY_MONTHLY_PLAN_ID` and `WHOP_LIFETIME_PLAN_ID`. Existing subscriptions and their discounts are not migrated or repriced. The original one-use `nadin` promotion keeps its $1/month recurring offer on the legacy plan. Enter it in the website promo field before choosing monthly; the server selects the original plan, and Whop Elements applies the code on its first quote. Whop enforces the redemption limit and displays any invalid/used-code error before payment. The redeemed `empa` subscription remains unchanged.
 
 ## Server configuration
 
-Configure `APP_URL`, `WHOP_APP_ID`, `WHOP_ACCOUNT_ID`, `WHOP_PRODUCT_ID`, `WHOP_MONTHLY_PLAN_ID`, and `WHOP_LIFETIME_PLAN_ID` in Vercel. Use `KV_REST_API_URL` and `KV_REST_API_TOKEN` from the Upstash integration (or their `UPSTASH_REDIS_REST_*` equivalents). Clerk's Marketplace integration supplies `CLERK_SECRET_KEY` and `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`. Only the publishable key is returned to the browser. The production Clerk domain is `clerk.www.radiology.monster`; email-code authentication and verified email at signup are enabled.
+Configure `APP_URL`, `WHOP_APP_ID`, `WHOP_ACCOUNT_ID`, `WHOP_PRODUCT_ID`, `WHOP_MONTHLY_PLAN_ID`, and `WHOP_YEARLY_PLAN_ID` in Vercel. Use `KV_REST_API_URL` and `KV_REST_API_TOKEN` from the Upstash integration (or their `UPSTASH_REDIS_REST_*` equivalents). Clerk's Marketplace integration supplies `CLERK_SECRET_KEY` and `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`. Only the publishable key is returned to the browser. The production Clerk domain is `clerk.www.radiology.monster`; email-code authentication and verified email at signup are enabled.
 
 Merchant authorization uses `WHOP_OAUTH_ENABLED=1` and a secret `TOKEN_ENCRYPTION_KEY` containing 32 random bytes encoded as base64. Tokens are encrypted in Redis and refreshed with a distributed lock. An optional server-only `WHOP_API_KEY` can replace merchant OAuth. Never expose these values as Vite variables or commit environment files.
 

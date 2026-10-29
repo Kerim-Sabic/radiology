@@ -3,12 +3,14 @@ import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard
 import './account.css';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
-type Tier = 'monthly' | 'lifetime';
+type Tier = 'monthly' | 'yearly';
+const promoKey = 'rvm:promo-code';
+function rememberedPromo() { try { return sessionStorage.getItem(promoKey) || ''; } catch { return ''; } }
 const planKey = 'rvm:selected-plan';
-function rememberedPlan(): Tier | null { try { const value = sessionStorage.getItem(planKey); return value === 'monthly' || value === 'lifetime' ? value : null; } catch { return null; } }
+function rememberedPlan(): Tier | null { try { const value = sessionStorage.getItem(planKey); return value === 'monthly' || value === 'yearly' ? value : null; } catch { return null; } }
 function rememberPlan(tier: Tier | null) { try { if (tier) sessionStorage.setItem(planKey, tier); else sessionStorage.removeItem(planKey); } catch { /* Storage is optional. */ } }
 
-interface Access { active: boolean; role?: 'admin'; tier?: Tier; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
+interface Access { active: boolean; role?: 'admin'; tier?: Tier | 'lifetime'; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
 interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; }
 const AccountContext = createContext<{ account: Account; logout: () => void } | null>(null);
 
@@ -16,7 +18,7 @@ export function AccountMenu() {
   const context = useContext(AccountContext);
   if (!context) return null;
   return <span className="account-menu">
-    <span title={context.account.user?.email}>{context.account.access.role === 'admin' ? 'Admin · free access' : context.account.access.tier === 'lifetime' ? 'Lifetime member' : 'Monthly member'}</span>
+    <span title={context.account.user?.email}>{context.account.access.role === 'admin' ? 'Admin · free access' : context.account.access.tier === 'lifetime' ? 'Lifetime member' : context.account.access.tier === 'yearly' ? 'Yearly member' : 'Monthly member'}</span>
     {context.account.access.manageUrl && <a href={context.account.access.manageUrl} target="_blank" rel="noopener noreferrer" title="Manage billing on Whop"><CreditCard size={16} /><span>Billing</span></a>}
     <button onClick={context.logout} title="Sign out"><LogOut size={16} /><span>Sign out</span></button>
   </span>;
@@ -47,7 +49,12 @@ function MembershipGate({ children }: { children: ReactNode }) {
   });
   const [authWaiting, setAuthWaiting] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<Tier | null>(rememberedPlan);
-  const [payment, setPayment] = useState<{ id: string; returnUrl: string; tier: Tier } | null>(null);
+  const [promoCode, setPromoCode] = useState(rememberedPromo);
+  const [payment, setPayment] = useState<{ id: string; returnUrl: string; tier: Tier; promoCode?: string } | null>(null);
+  function updatePromo(value: string) {
+    setPromoCode(value);
+    try { if (value) sessionStorage.setItem(promoKey, value); else sessionStorage.removeItem(promoKey); } catch { /* Optional storage. */ }
+  }
   const authWindow = useRef<Window | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const checkoutHeading = useRef<HTMLHeadingElement>(null);
@@ -152,16 +159,16 @@ function MembershipGate({ children }: { children: ReactNode }) {
     const current = ++checkoutGeneration.current;
     setBusy(tier); setError('');
     try {
-      const response = await fetch('/api/billing/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tier }) });
+      const response = await fetch('/api/billing/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tier, ...(promoCode.trim() ? { promoCode: promoCode.trim() } : {}) }) });
       const data = await response.json();
       if (!mounted.current || current !== checkoutGeneration.current) return;
       if (!response.ok) throw new Error(data.error);
       if (!/^ch_[A-Za-z0-9]+$/.test(data.id)) throw new Error('Unable to open the payment form. Please try again.');
-      setPayment({ id: data.id, returnUrl: data.returnUrl, tier });
+      setPayment({ id: data.id, returnUrl: data.returnUrl, tier, promoCode: data.promoCode });
       rememberPlan(null);
     } catch (e) { if (mounted.current && current === checkoutGeneration.current) setError(e instanceof Error ? e.message : 'Checkout is unavailable. Please try again.'); }
     finally { if (mounted.current && current === checkoutGeneration.current) setBusy(null); }
-  }, []);
+  }, [promoCode]);
   useEffect(() => {
     if (selectedPlan && account?.user && !account.access.active && !account.access.pendingMembership && account.billingReady) {
       setSelectedPlan(null); void buy(selectedPlan);
@@ -200,21 +207,23 @@ function MembershipGate({ children }: { children: ReactNode }) {
           <span className="membership-step">COMPLETE YOUR MEMBERSHIP</span>
           <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
           <p className="checkout-account">{account.user.email}</p>
+          {!payment.promoCode && <button className="text-button" onClick={() => setPayment(null)}>Have a promo code? Add it before payment</button>}
           <Suspense fallback={<p className="checkout-loading" role="status">Loading secure payment form…</p>}>
-            <EmbeddedCheckout key={payment.id} id={payment.id} returnUrl={payment.returnUrl} email={account.user.email} onComplete={() => { setReturned(true); void refreshPayment(); }} />
+            <EmbeddedCheckout key={payment.id} id={payment.id} returnUrl={payment.returnUrl} email={account.user.email} promoCode={payment.promoCode} onComplete={() => { setReturned(true); void refreshPayment(); }} />
           </Suspense>
-          <p className="membership-fine">{payment.tier === 'monthly' ? '$10 USD every 30 days. Cancel future renewals from Billing.' : '$100 USD once for lifetime access. No recurring payments.'} Any applicable tax is shown in the payment form. Access opens after payment is verified.</p>
+          <p className="membership-fine">{payment.promoCode ? 'Your code is prefilled in the payment form. Review the discounted recurring total before paying; Whop confirms whether it is still available.' : payment.tier === 'monthly' ? 'Standard price: $20 USD every 30 days.' : 'Standard price: $150 USD every 365 days.'} Discounts and any applicable tax are shown in the payment form. Cancel future renewals from Billing. Access opens after payment is verified.</p>
         </> : <>
         <span className="membership-step">ONE STUDY SPACE. TWO WAYS IN.</span>
         <h2>{account?.user ? 'You’re one step away.' : 'Invest in the way you learn.'}</h2>
         <p>{account?.user ? `Signed in as ${account.user.email}` : 'Choose your plan, create your account, and start exploring.'}</p>
         {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
+        <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>Choose a plan below. Your discount will appear in the secure payment form.</p></details>
         <div className="membership-plans">
-          <article className="membership-plan"><div><h3>Monthly</h3><span>Build your routine</span></div><div className="membership-price">$10<span>/ month</span></div><p>Billed every 30 days. Cancel future renewals in Whop.</p>
+          <article className="membership-plan"><div><h3>Monthly</h3><span>Build your routine</span></div><div className="membership-price">$20<span>/ month</span></div><p>Billed every 30 days. Cancel future renewals in Whop.</p>
             <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('monthly')}>{busy === 'monthly' ? 'Preparing payment…' : 'Choose monthly'}<ArrowRight size={17} /></button>
           </article>
-          <article className="membership-plan lifetime"><span className="membership-best">ONE PAYMENT</span><div><h3>Lifetime</h3><span>Make it your study companion</span></div><div className="membership-price">$100<span>once</span></div><p>Lifetime access to this app. No recurring subscription.</p>
-            <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('lifetime')}>{busy === 'lifetime' ? 'Preparing payment…' : 'Get lifetime access'}<ArrowRight size={17} /></button>
+          <article className="membership-plan yearly"><span className="membership-best">BEST VALUE</span><div><h3>Yearly</h3><span>Commit to a year of progress</span></div><div className="membership-price">$150<span>/ year</span></div><p>$12.50/month equivalent, billed $150 every 365 days. Cancel future renewals anytime.</p>
+            <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('yearly')}>{busy === 'yearly' ? 'Preparing payment…' : 'Choose yearly'}<ArrowRight size={17} /></button>
           </article>
         </div>
         <p className="payment-reassurance"><ShieldCheck size={15} /> Secure checkout on this site · Powered by Whop</p>
@@ -237,7 +246,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       </div>
       <h2 id="auth-title">{authMode === 'signup' ? 'Your next chapter starts here.' : 'Welcome back.'}</h2>
       <p>{authMode === 'signup' ? 'Create your account with your email, right here. No Google account needed.' : 'Sign in with the email you used for your membership.'}</p>
-      {selectedPlan && <div className="selected-plan"><Check size={16} />{selectedPlan === 'monthly' ? 'Monthly · $10 / month' : 'Lifetime · $100 once'}</div>}
+      {selectedPlan && <div className="selected-plan"><Check size={16} />{selectedPlan === 'monthly' ? 'Monthly · $20 / month' : 'Yearly · $150 / year'}</div>}
       {authMode && ready?.authProvider === 'clerk' && ready.clerkPublishableKey ? <Suspense fallback={<p className="auth-waiting" role="status">Loading secure sign-in…</p>}>
         <InlineAccount publishableKey={ready.clerkPublishableKey} mode={authMode} onModeChange={setAuthMode} onSuccess={load} />
       </Suspense> : <button className="email-signin" onClick={startSignIn} disabled={!ready?.auth}><Mail size={18} />{authWaiting ? 'Reopen sign-in window' : 'Continue with email'}<ArrowRight size={18} /></button>}

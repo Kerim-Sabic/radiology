@@ -4,7 +4,7 @@ import { Checkout, CheckoutElement, WhopElements } from '@whop/elements-react';
 import { LockKeyhole } from 'lucide-react';
 
 const elements = loadWhop();
-export default function EmbeddedCheckout({ id, returnUrl, email, onComplete }: { id: string; returnUrl: string; email: string; onComplete: () => void }) {
+export default function EmbeddedCheckout({ id, returnUrl, email, promoCode, onComplete }: { id: string; returnUrl: string; email: string; promoCode?: string; onComplete: () => void }) {
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const retryLoader = useRef<(() => void) | null>(null);
@@ -14,7 +14,7 @@ export default function EmbeddedCheckout({ id, returnUrl, email, onComplete }: {
       <button className="text-button" onClick={() => { setError(false); if (retryLoader.current) { retryLoader.current(); retryLoader.current = null; } else setAttempt(n => n + 1); }}>Reload payment form</button>
     </div>}
     <WhopElements key={attempt} elements={elements} appearance={{ theme: { appearance: 'dark', accentColor: 'blue', grayColor: 'slate' } }} onLoadError={(_error, retry) => { retryLoader.current = retry; setError(true); }}>
-      <Checkout checkoutConfiguration={id} returnUrl={returnUrl} onComplete={onComplete} fallback={<p className="checkout-loading" role="status">Loading secure payment form…</p>}>
+      <Checkout promoCode={promoCode} checkoutConfiguration={id} returnUrl={returnUrl} onComplete={onComplete} fallback={<p className="checkout-loading" role="status">Loading secure payment form…</p>}>
         <CheckoutElement buyerEmail={email} lockBuyerEmail onError={() => setError(true)} />
       </Checkout>
     </WhopElements>

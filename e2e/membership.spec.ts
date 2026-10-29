@@ -9,11 +9,12 @@ test('anonymous visitors see prices and email sign-in without loading study cont
   page.on('request', r=> { if(/\/(packs|content)\//.test(r.url())) dataRequests.push(r.url()); });
   await page.goto('/');
   await expect(page.getByRole('button',{name:'Choose monthly'})).toBeEnabled();
-  await expect(page.getByText('$10',{exact:false})).toHaveCount(2);
+  await expect(page.getByText('$20',{exact:false})).toBeVisible();
+  await expect(page.getByText('$150',{exact:false})).toHaveCount(2);
   expect(dataRequests).toEqual([]);
-  await page.getByRole('button',{name:'Get lifetime access'}).click();
+  await page.getByRole('button',{name:'Choose yearly'}).click();
   await expect(page.getByRole('dialog')).toBeVisible();
-  await expect(page.getByRole('dialog')).toContainText('Lifetime · $100 once');
+  await expect(page.getByRole('dialog')).toContainText('Yearly · $150 / year');
   await expect(page.getByRole('button',{name:'Continue with email'})).toBeEnabled();
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).not.toBeVisible();
@@ -27,13 +28,13 @@ test('sign-in window returns to the selected plan without leaving the site', asy
   await page.route('**/api/billing/checkout',route=>{tier=route.request().postDataJSON();return route.fulfill({json:{id:'ch_test',returnUrl:'http://localhost:4317/?checkout=returned'}});});
   await page.route('**/*whop.com/**',route=>route.abort());
   await page.goto('/');
-  await page.getByRole('button',{name:'Get lifetime access'}).click();
+  await page.getByRole('button',{name:'Choose yearly'}).click();
   await page.getByRole('button',{name:'Continue with email'}).click();
   await expect(page.getByRole('heading',{name:'Your study space is almost ready.'})).toBeVisible();
-  expect(tier).toEqual({tier:'lifetime'});
+  expect(tier).toEqual({tier:'yearly'});
   expect(new URL(page.url()).origin).toBe('http://localhost:4317');
   await expect(page.getByRole('dialog')).not.toBeVisible();
-  await expect(page.getByText('$100 USD once for lifetime access.',{exact:false})).toBeVisible();
+  await expect(page.getByText('Standard price: $150 USD every 365 days.',{exact:false})).toBeVisible();
   await page.getByRole('button',{name:'Change plan'}).click();
   await expect(page.getByRole('button',{name:'Choose monthly'})).toBeEnabled();
 });
@@ -59,7 +60,7 @@ test('return URL cannot grant access without confirmed payment', async ({page}) 
   await page.route('**/api/billing/refresh',route=>route.fulfill({json:{access:{active:false}}}));
   await page.goto('/?checkout=returned');
   await expect(page.getByRole('alert')).toContainText('payment hasn’t been confirmed');
-  await expect(page.getByRole('button',{name:'Get lifetime access'})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Choose yearly'})).toBeVisible();
 });
 test('service failure keeps study content locked and offers retry', async ({page}) => {
   await account(page,false,true);
@@ -71,7 +72,25 @@ test('membership is usable on a narrow phone screen', async ({page}) => {
   await page.setViewportSize({width:390,height:844});
   await account(page,true);
   await page.goto('/');
-  await expect(page.getByRole('button',{name:'Get lifetime access'})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Choose yearly'})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   await page.screenshot({path:'test-results/membership-mobile.png',fullPage:true});
+});
+
+test('a promo code survives signup and reaches the on-page monthly checkout', async ({page, context}) => {
+  let signedIn = false;
+  await page.route('**/api/config',route=>route.fulfill({json:{auth:true,billing:true}}));
+  await page.route('**/api/session',route=>route.fulfill({status:signedIn?200:401,json:signedIn?{user:{name:'Member',email:'member@example.com'},access:{active:false},billingReady:true}:{user:null}}));
+  await context.route('**/api/auth/email',route=> { signedIn=true; return route.fulfill({contentType:'text/html',body:`<script>opener.postMessage({type:'rvm-auth',ok:true},location.origin);window.close();</script>`}); });
+  let submitted: unknown;
+  await page.route('**/api/billing/checkout',route=>{submitted=route.request().postDataJSON();return route.fulfill({json:{id:'ch_promo',promoCode:'nadin',returnUrl:'http://localhost:4317/?checkout=returned'}});});
+  await page.route('**/*whop.com/**',route=>route.abort());
+  await page.goto('/');
+  await page.getByText('Have a promo code?',{exact:true}).click();
+  await page.getByLabel('Promo code',{exact:true}).fill('NADIN');
+  await page.getByRole('button',{name:'Choose monthly'}).click();
+  await page.getByRole('button',{name:'Continue with email'}).click();
+  await expect(page.getByRole('heading',{name:'Your study space is almost ready.'})).toBeVisible();
+  expect(submitted).toEqual({tier:'monthly',promoCode:'NADIN'});
+  await expect(page.getByText('Your code is prefilled',{exact:false})).toBeVisible();
 });

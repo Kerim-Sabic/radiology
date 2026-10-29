@@ -77,12 +77,13 @@ export async function handle(request: Request): Promise<Response> {
     }
     if (path === '/api/billing/checkout' && request.method === 'POST') {
       if (!await rateLimit(`checkout:${user.userId}`, 10, 60)) return json({ error: 'Please wait a moment before trying again.' }, 429);
-      const body = z.object({ tier: z.enum(['monthly', 'lifetime']) }).strict().safeParse(await request.json());
-      if (!body.success) return json({ error: 'Choose monthly or lifetime access.' }, 400);
+      const body = z.object({ tier: z.enum(['monthly', 'yearly']), promoCode: z.string().trim().max(40).optional() }).strict().safeParse(await request.json());
+      if (!body.success) return json({ error: 'Choose monthly or yearly access.' }, 400);
+      if (body.data.promoCode && (body.data.promoCode.toLowerCase() !== 'nadin' || body.data.tier !== 'monthly')) return json({ error: 'This code is not available for this plan. Choose monthly or remove the code.' }, 400);
       const existing = await accessFor(user.userId, true);
       if (existing.active) return json({ error: 'You already have access. Manage your plan from your account.' }, 409);
       if (existing.pendingMembership) return json({ error: 'You have an existing membership. Open billing in Whop to check its payment before purchasing again.' }, 409);
-      return json(await checkout(user.userId, body.data.tier));
+      return json(await checkout(user.userId, body.data.tier, body.data.promoCode));
     }
     return json({ error: 'Not found' }, 404);
   } catch (error) {

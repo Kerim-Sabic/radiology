@@ -18,7 +18,7 @@ vi.mock('@whop/sdk', () => ({ WhopClient: class {
   members = { list: async () => ({ async *[Symbol.asyncIterator]() { yield* fake.members; } }) };
   memberships = { list: async () => ({ data: fake.memberships, async *[Symbol.asyncIterator]() { yield* fake.memberships; } }) };
   payments = { list: async () => ({ data: fake.payments }) };
-  variants = { retrieve: async ({ id }: { id: string }) => ({ id, account: { id: 'biz_test' }, currency: 'usd', plan_type: id === 'plan_monthly' ? 'renewal' : 'one_time', billing_period: id === 'plan_monthly' ? 30 : null, initial_price: id === 'plan_monthly' ? 0 : 100, renewal_price: id === 'plan_monthly' ? 10 : 0, adaptive_pricing_enabled: false }) };
+  variants = { retrieve: async ({ id }: { id: string }) => ({ id, account: { id: 'biz_test' }, currency: 'usd', plan_type: 'renewal', billing_period: id === 'plan_yearly' ? 365 : 30, initial_price: 0, renewal_price: id === 'plan_monthly' ? 20 : id === 'plan_legacy_monthly' ? 10 : 150, adaptive_pricing_enabled: false }) };
   checkoutConfigurations = { create: async (body: unknown, options: unknown) => { fake.checkoutCalls.push({ body, options }); return { id: 'ch_test', purchase_url: 'https://whop.com/checkout/ch_test' }; } };
 } }));
 
@@ -31,7 +31,7 @@ const member = (changes = {}) => ({ id: 'mem_test', account: { id: 'biz_test' },
 
 beforeEach(() => {
   fake.records.clear(); fake.members = []; fake.memberships = []; fake.payments = []; fake.checkoutCalls = []; fake.clerkIdentity.mockReset();
-  for (const [k, v] of Object.entries({ ADMIN_EMAILS: '', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_LIFETIME_PLAN_ID: 'plan_lifetime', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test' })) vi.stubEnv(k, v);
+  for (const [k, v] of Object.entries({ ADMIN_EMAILS: '', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_YEARLY_PLAN_ID: 'plan_yearly', WHOP_LEGACY_MONTHLY_PLAN_ID: 'plan_legacy_monthly', WHOP_LIFETIME_PLAN_ID: 'plan_lifetime', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test' })) vi.stubEnv(k, v);
 });
 afterAll(() => vi.unstubAllEnvs());
 
@@ -57,7 +57,12 @@ describe('paid access policy', () => {
     await createSession({ sub: 'clerk_new', provider: 'clerk', email: 'new@example.com', emailVerified: true });
     expect(await checkout(hash('clerk:clerk_new'), 'monthly')).toMatchObject({ id: 'ch_test' });
   });
-  it('permits paid monthly and non-expiring lifetime memberships', () => {
+  it('preserves legacy monthly discounts and lifetime access alongside the new plans', () => {
+    expect(membershipAccess(member({ plan_id: 'plan_legacy_monthly' }))).toMatchObject({ active: true, tier: 'monthly' });
+    expect(membershipAccess(member({ plan_id: 'plan_yearly' }))).toMatchObject({ active: true, tier: 'yearly' });
+    expect(membershipAccess(member({ plan_id: 'plan_yearly', current_period_end: '2020-01-01' })).active).toBe(false);
+    expect(membershipAccess(member({ plan_id: 'plan_yearly', current_period_end: null })).active).toBe(false);
+    expect(membershipAccess(member({ plan_id: 'plan_yearly', status: 'completed' })).active).toBe(false);
     expect(membershipAccess(member()).active).toBe(true);
     expect(membershipAccess(member({ plan_id: 'plan_lifetime', status: 'completed', current_period_end: null }))).toMatchObject({ active: true, tier: 'lifetime', expiresAt: null });
   });
@@ -85,11 +90,34 @@ describe('paid access policy', () => {
     expect(calls[0].options.idempotencyKey).toBe(calls[1].options.idempotencyKey);
     expect(calls[0].body.plan_id).toBe('plan_monthly');
     fake.memberships = [member()]; fake.payments = [{ status: 'paid', substatus: 'succeeded' }];
-    await expect(checkout('u', 'lifetime')).rejects.toThrow('already have access');
+    await expect(checkout('u', 'yearly')).rejects.toThrow('already have access');
   });
   it('returns a reusable embedded checkout configuration with the approved return origin', async () => {
     fake.records.set('rvm:whop-user:u', 'user_test');
-    expect(await checkout('u', 'lifetime')).toEqual({ id: 'ch_test', url: 'https://whop.com/checkout/ch_test', returnUrl: 'https://radiology.monster/?checkout=returned' });
+    expect(await checkout('u', 'yearly')).toEqual({ id: 'ch_test', url: 'https://whop.com/checkout/ch_test', returnUrl: 'https://radiology.monster/?checkout=returned' });
+  });
+  it('routes Nadin to its original one-use offer and never lets it discount yearly', async () => {
+    const result = await checkout('new-customer', 'monthly', ' NADIN ');
+    expect(result.promoCode).toBe('nadin');
+    expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: 'plan_legacy_monthly' } });
+    await expect(checkout('new-customer', 'yearly', 'nadin')).rejects.toThrow('not available');
+    await expect(checkout('new-customer', 'monthly', 'empa')).rejects.toThrow('not available');
+    expect(fake.checkoutCalls).toHaveLength(1);
+  });
+  it('binds yearly checkout to the yearly plan and rejects wrong annual terms', async () => {
+    await checkout('new-customer', 'yearly');
+    expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: 'plan_yearly' } });
+    const annual = { account: { id: 'biz_test' }, currency: 'usd', plan_type: 'renewal', billing_period: 365, initial_price: 0, renewal_price: 150 } as Whop.Variant;
+    expect(() => validatePlan(annual, 'yearly')).not.toThrow();
+    expect(() => validatePlan({ ...annual, billing_period: 30 }, 'yearly')).toThrow();
+    expect(() => validatePlan({ ...annual, renewal_price: 100 }, 'yearly')).toThrow();
+  });
+  it('keeps paid legacy subscribers entitled and prevents a duplicate purchase', async () => {
+    fake.records.set('rvm:whop-user:u', 'user_test');
+    fake.memberships = [member({ plan_id: 'plan_legacy_monthly' })];
+    fake.payments = [{ status: 'paid', substatus: 'succeeded' }];
+    expect(await accessFor('u', true)).toMatchObject({ active: true, tier: 'monthly' });
+    await expect(checkout('u', 'yearly')).rejects.toThrow('already have access');
   });
   it('grants free admin access only to the exact verified email and revokes it when removed', async () => {
     vi.stubEnv('ADMIN_EMAILS', 'kerim.sabic@gmail.com');
@@ -142,7 +170,7 @@ describe('sessions and request boundaries', () => {
     const token = await createSession({ sub: 'user_admin', email: 'kerim.sabic@gmail.com', emailVerified: true });
     expect(await (await handle(request(token))).json()).toMatchObject({ access: { active: true, role: 'admin' } });
     expect((await handle(request(token, '/api/access'))).status).toBe(200);
-    expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'lifetime' }))).status).toBe(409);
+    expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'yearly' }))).status).toBe(409);
     expect(fake.checkoutCalls).toHaveLength(0);
   });
   it('finishes popup sign-in with a secure cookie and an origin-bound notification', async () => {
