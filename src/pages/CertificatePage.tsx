@@ -75,7 +75,7 @@ export default function CertificatePage() {
       <article className="cert" aria-label="Certificate">
         <div className="cert-head">
           <span className="cert-brand">
-            <span className="cert-mark" aria-hidden="true" />
+            <img className="cert-logo" src="/favicon.svg" alt="" width={48} height={48} />
             <span className="cert-word">
               radiology<em>.monster</em>
             </span>

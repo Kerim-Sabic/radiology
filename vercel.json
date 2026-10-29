@@ -76,7 +76,7 @@
   "functions": {
     "api/**/*.ts": {
       "maxDuration": 60,
-      "includeFiles": "{server/fonts/**,node_modules/@resvg/resvg-wasm/index_bg.wasm}"
+      "includeFiles": "{server/fonts/**,server/brand/**,node_modules/@resvg/resvg-wasm/index_bg.wasm}"
     }
   }
 }

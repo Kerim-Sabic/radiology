@@ -22,6 +22,13 @@ function loadFonts(): FontEntry[] {
   return fonts;
 }
 
+// The logo as the app icon (the mark on its dark tile), which reads on the white certificate.
+let brand: { icon: string } | null = null;
+function loadBrand() {
+  brand ??= { icon: `data:image/png;base64,${readFileSync(new URL('./brand/icon.png', import.meta.url)).toString('base64')}` };
+  return brand;
+}
+
 // The PNG renderer is WebAssembly; it is loaded once per server instance.
 let wasm: Promise<void> | null = null;
 const renderer = () => (wasm ??= initWasm(readFileSync(createRequire(import.meta.url).resolve('@resvg/resvg-wasm/index_bg.wasm'))));
@@ -50,6 +57,7 @@ export async function certificateImage(c: Certificate, origin: string, square = 
   const width = square ? 1080 : 1200;
   const height = square ? 1080 : 627;
   const pad = square ? 56 : 40;
+  const logo = loadBrand();
   const long = c.name.length > 24;
   const nameSize = square ? (long ? 58 : 74) : long ? 50 : 64;
   const stat = (value: string, label: string) =>
@@ -76,9 +84,9 @@ export async function certificateImage(c: Certificate, origin: string, square = 
     box(
       { justifyContent: 'space-between', alignItems: 'center', width: '100%' },
       box(
-        { alignItems: 'center', gap: 12 },
-        box({ width: 34, height: 34, borderRadius: 10, background: 'linear-gradient(135deg, #2563eb, #7c3aed)' }),
-        box({ fontFamily: 'Jakarta', fontSize: 28 }, text({ color: '#111827' }, 'radiology'), text({ color: '#4f46e5' }, '.monster')),
+        { alignItems: 'center', gap: 14 },
+        h('img', { src: logo.icon, width: square ? 64 : 54, height: square ? 64 : 54, style: { borderRadius: square ? 16 : 13 } }),
+        box({ fontFamily: 'Jakarta', fontSize: square ? 32 : 28 }, text({ color: '#111827' }, 'radiology'), text({ color: '#4f46e5' }, '.monster')),
       ),
       box(
         { alignItems: 'center', gap: 10, padding: '8px 16px', borderRadius: 999, background: '#ecfdf5', border: '1px solid #a7f3d0' },

@@ -82,21 +82,21 @@
 .cert-brand {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   font-family: var(--font-display);
   font-weight: 800;
-  font-size: clamp(16px, 2.2vw, 22px);
+  font-size: clamp(17px, 2.4vw, 24px);
   letter-spacing: -0.01em;
 }
 .cert-word em {
   font-style: normal;
   color: #4f46e5;
 }
-.cert-mark {
-  width: clamp(22px, 2.6vw, 30px);
-  height: clamp(22px, 2.6vw, 30px);
-  border-radius: 9px;
-  background: linear-gradient(135deg, #2563eb, #7c3aed);
+.cert-logo {
+  width: clamp(34px, 4.4vw, 50px);
+  height: clamp(34px, 4.4vw, 50px);
+  border-radius: 22%;
+  flex: none;
 }
 .cert-pill {
   display: inline-flex;
