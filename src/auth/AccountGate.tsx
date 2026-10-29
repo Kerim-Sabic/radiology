@@ -1,5 +1,5 @@
 import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
-import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers } from 'lucide-react';
 import './account.css';
 import { Landing } from './Landing';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
@@ -200,24 +200,44 @@ function MembershipGate({ children }: { children: ReactNode }) {
         </Suspense>
         <p className="membership-fine">{payment.promoCode ? 'Your code is prefilled in the payment form. Review the discounted recurring total before paying; Whop confirms whether it is still available.' : payment.tier === 'monthly' ? 'Standard price: $20 USD every 30 days.' : 'Standard price: $150 USD every 365 days.'} Discounts and any applicable tax are shown in the payment form. Cancel future renewals from Billing. Access opens after payment is verified.</p>
       </> : <>
-      <span className="membership-step">ONE STUDY SPACE. TWO WAYS IN.</span>
-      <h2>{account?.user ? 'You’re one step away.' : 'Invest in the way you learn.'}</h2>
-      <p>{account?.user ? `Signed in as ${account.user.email}` : 'Choose your plan, create your account, and start exploring.'}</p>
+      <span className="membership-step">YOUR NEXT STEP FROM THEORY TO PRACTICE</span>
+      <h2>{account?.user ? 'You’re one step away.' : 'More practice. A clearer picture.'}</h2>
+      <p>{account?.user ? `Signed in as ${account.user.email}` : 'One membership for real cases, guided practice and the book beside you.'}</p>
       {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
       <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>Choose a plan below. Your discount will appear in the secure payment form.</p></details>
       <div className="membership-plans">
-        <article className="membership-plan"><div><h3>Monthly</h3><span>Build your routine</span></div><div className="membership-price">$20<span>/ month</span></div><p>Billed every 30 days. Cancel future renewals in Whop.</p>
-          <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('monthly')}>{busy === 'monthly' ? 'Preparing payment…' : 'Choose monthly'}<ArrowRight size={17} /></button>
+        <article className="membership-plan yearly" aria-labelledby="yearly-plan-title">
+          <span className="membership-best">BEST VALUE</span>
+          <div className="plan-heading"><h3 id="yearly-plan-title">Yearly</h3><span>For a year of steady progress</span></div>
+          <div className="membership-price">$12.50<span>/ month</span></div>
+          <p className="plan-billing"><strong>$150 billed yearly</strong><span>One payment every 365 days.</span></p>
+          <div className="plan-value"><strong>Save $90</strong><span>vs. 12 monthly payments</span></div>
+          <p className="plan-access">Full access for your whole study year.</p>
+          <button aria-describedby="yearly-billing-note" disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('yearly')}>{busy === 'yearly' ? 'Preparing payment…' : 'Start yearly'}<ArrowRight size={17} /></button>
+          <p className="plan-cancel" id="yearly-billing-note">Billed annually. Cancel future renewals anytime.</p>
         </article>
-        <article className="membership-plan yearly"><span className="membership-best">BEST VALUE</span><div><h3>Yearly</h3><span>Commit to a year of progress</span></div><div className="membership-price">$150<span>/ year</span></div><p>$12.50/month equivalent, billed $150 every 365 days. Cancel future renewals anytime.</p>
-          <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('yearly')}>{busy === 'yearly' ? 'Preparing payment…' : 'Choose yearly'}<ArrowRight size={17} /></button>
+        <article className="membership-plan monthly" aria-labelledby="monthly-plan-title">
+          <div className="plan-heading"><h3 id="monthly-plan-title">Monthly</h3><span>For a shorter study stretch</span></div>
+          <div className="membership-price">$20<span>/ month</span></div>
+          <p className="plan-billing"><strong>$20 billed every 30 days</strong><span>A smaller upfront payment.</span></p>
+          <p className="plan-access">The same full access, one month at a time.</p>
+          <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('monthly')}>{busy === 'monthly' ? 'Preparing payment…' : 'Choose monthly'}<ArrowRight size={17} /></button>
+          <p className="plan-cancel">Cancel future renewals anytime.</p>
         </article>
       </div>
-      <p className="payment-reassurance"><ShieldCheck size={15} /> Secure checkout on this site · Powered by Whop</p>
+      <div className="plan-inclusions">
+        <h3>Every plan includes the whole study space</h3>
+        <ul>
+          <li><Layers size={18} /><span><strong>Real scans, real tools</strong>CT, MRI, X-ray, ultrasound & mammography</span></li>
+          <li><Crosshair size={18} /><span><strong>Practice with feedback</strong>Guided cases, anatomy drills & on-call shifts</span></li>
+          <li><BookOpen size={18} /><span><strong>The book, connected</strong>Read the explanation, then return to your scan</span></li>
+        </ul>
+      </div>
+      <p className="payment-reassurance"><ShieldCheck size={15} /> Secure on-page checkout · Card, Apple Pay & Google Pay¹</p>
       {!account?.user && <p className="existing-account">Already a member? <button className="text-button" disabled={!ready?.auth} onClick={() => setAuthMode('login')}>Sign in</button></p>}
       </>}
       {account?.access.pendingMembership && <p className="membership-message">You already have a membership awaiting payment confirmation or a billing update. {account.access.manageUrl && <a href={account.access.manageUrl} target="_blank" rel="noopener noreferrer">Open billing in Whop</a>} to check it before purchasing again.</p>}
-      {!payment && <p className="membership-fine">Both plans include all app features and the on-site book reader. Prices in USD; any applicable tax is shown at checkout. Study progress stays in this browser; export a backup to move it.</p>}
+      {!payment && <p className="membership-fine">Prices in USD; applicable tax is shown at checkout. ¹Wallet availability depends on your device and payment setup. Payments powered by Whop.</p>}
       {account?.user && <div className="membership-restore"><button disabled={checking} onClick={() => void refreshPayment()}>{checking ? 'Checking with Whop…' : 'Already paid? Check access'}</button>{!account.billingReady && <p>Payments are being configured. Checkout will open once it’s ready.</p>}</div>}
       {(error || new URLSearchParams(location.search).get('signin') === 'failed') && <p className="membership-message" role="alert">{error || 'Email sign-in was canceled or expired. Please try again.'}</p>}
       {!account && error && <button className="text-button" onClick={() => void load()}>Try again</button>}
@@ -235,7 +255,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       </div>
       <h2 id="auth-title">{authMode === 'signup' ? 'Your next chapter starts here.' : 'Welcome back.'}</h2>
       <p>{authMode === 'signup' ? 'Create your account with your email, right here. No Google account needed.' : 'Sign in with the email you used for your membership.'}</p>
-      {selectedPlan && <div className="selected-plan"><Check size={16} />{selectedPlan === 'monthly' ? 'Monthly · $20 / month' : 'Yearly · $150 / year'}</div>}
+      {selectedPlan && <div className="selected-plan"><Check size={16} />{selectedPlan === 'monthly' ? 'Monthly · $20 / month' : 'Yearly · $12.50/month equivalent · $150 billed yearly'}</div>}
       {authMode && ready?.authProvider === 'clerk' && ready.clerkPublishableKey ? <Suspense fallback={<p className="auth-waiting" role="status">Loading secure sign-in…</p>}>
         <InlineAccount publishableKey={ready.clerkPublishableKey} mode={authMode} onModeChange={setAuthMode} onSuccess={load} />
       </Suspense> : <button className="email-signin" onClick={startSignIn} disabled={!ready?.auth}><Mail size={18} />{authWaiting ? 'Reopen sign-in window' : 'Continue with email'}<ArrowRight size={18} /></button>}

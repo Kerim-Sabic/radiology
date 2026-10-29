@@ -9,12 +9,17 @@ test('anonymous visitors see prices and email sign-in without loading study cont
   page.on('request', r=> { if(/\/(packs|content)\//.test(r.url())) dataRequests.push(r.url()); });
   await page.goto('/');
   await expect(page.getByRole('button',{name:'Choose monthly'})).toBeEnabled();
-  await expect(page.getByText('$20',{exact:false})).toBeVisible();
-  await expect(page.getByText('$150',{exact:false})).toHaveCount(2);
+  const plans = page.locator('.membership-plan');
+  await expect(plans.first()).toContainText('Yearly');
+  await expect(plans.first()).toContainText('$12.50/ month');
+  await expect(plans.first()).toContainText('$150 billed yearly');
+  await expect(plans.first()).toContainText('Save $90');
+  await expect(plans.nth(1)).toContainText('Monthly');
+  await expect(plans.nth(1)).toContainText('$20 billed every 30 days');
   expect(dataRequests).toEqual([]);
-  await page.getByRole('button',{name:'Choose yearly'}).click();
+  await page.getByRole('button',{name:'Start yearly'}).click();
   await expect(page.getByRole('dialog')).toBeVisible();
-  await expect(page.getByRole('dialog')).toContainText('Yearly · $150 / year');
+  await expect(page.getByRole('dialog')).toContainText('Yearly · $12.50/month equivalent · $150 billed yearly');
   await expect(page.getByRole('button',{name:'Continue with email'})).toBeEnabled();
   await page.keyboard.press('Escape');
   await expect(page.getByRole('dialog')).not.toBeVisible();
@@ -28,7 +33,7 @@ test('sign-in window returns to the selected plan without leaving the site', asy
   await page.route('**/api/billing/checkout',route=>{tier=route.request().postDataJSON();return route.fulfill({json:{id:'ch_test',returnUrl:'http://localhost:4317/?checkout=returned'}});});
   await page.route('**/*whop.com/**',route=>route.abort());
   await page.goto('/');
-  await page.getByRole('button',{name:'Choose yearly'}).click();
+  await page.getByRole('button',{name:'Start yearly'}).click();
   await page.getByRole('button',{name:'Continue with email'}).click();
   await expect(page.getByRole('heading',{name:'Your study space is almost ready.'})).toBeVisible();
   expect(tier).toEqual({tier:'yearly'});
@@ -60,7 +65,7 @@ test('return URL cannot grant access without confirmed payment', async ({page}) 
   await page.route('**/api/billing/refresh',route=>route.fulfill({json:{access:{active:false}}}));
   await page.goto('/?checkout=returned');
   await expect(page.getByRole('alert')).toContainText('payment hasn’t been confirmed');
-  await expect(page.getByRole('button',{name:'Choose yearly'})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Start yearly'})).toBeVisible();
 });
 test('service failure keeps study content locked and offers retry', async ({page}) => {
   await account(page,false,true);
@@ -72,9 +77,13 @@ test('membership is usable on a narrow phone screen', async ({page}) => {
   await page.setViewportSize({width:390,height:844});
   await account(page,true);
   await page.goto('/');
-  await expect(page.getByRole('button',{name:'Choose yearly'})).toBeVisible();
+  await expect(page.getByRole('button',{name:'Start yearly'})).toBeVisible();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-  await page.screenshot({path:'test-results/membership-mobile.png',fullPage:true});
+  const annual = page.locator('.membership-plan.yearly');
+  const monthly = page.locator('.membership-plan.monthly');
+  expect((await annual.boundingBox())!.y).toBeLessThan((await monthly.boundingBox())!.y);
+  await expect(annual.getByText('$150 billed yearly')).toBeVisible();
+  await page.locator('#plans').screenshot({path:'test-results/membership-mobile.png'});
 });
 
 test('a promo code survives signup and reaches the on-page monthly checkout', async ({page, context}) => {

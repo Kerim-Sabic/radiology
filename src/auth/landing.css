@@ -566,42 +566,73 @@
   color: var(--lp-text);
 }
 
-/* Pricing (the gate's own panel, restyled to the brand) */
-.lp-pricing {
-  max-width: 780px;
-  margin: 0 auto;
-}
+/* Membership choices: annual value first, with its real charge beside the equivalent. */
+.lp-pricing { max-width: 900px; margin: 0 auto; }
 .lp .membership-panel {
-  background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(10, 17, 34, 0.96));
-  border-color: var(--lp-line-strong);
-  border-radius: 20px;
-  box-shadow: var(--lp-glow);
+  background: linear-gradient(180deg, rgba(15, 23, 42, .96), rgba(10, 17, 34, .96));
+  border-color: var(--lp-line-strong); border-radius: 24px; box-shadow: var(--lp-glow);
+  padding: clamp(20px, 3vw, 36px); min-width: 0;
 }
-.lp .membership-step {
-  color: var(--lp-accent);
-}
+.lp .membership-panel > h2 { margin: 12px 0 10px; font-size: clamp(24px, 3vw, 30px); }
+.lp .membership-step { color: var(--lp-accent); font-size: 10px; letter-spacing: 1.6px; }
+.lp .membership-plans { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; margin: 30px 0 24px; }
 .lp .membership-plan {
-  background: var(--lp-surface);
-  border-color: var(--lp-line-strong);
-  border-radius: 14px;
+  background: var(--lp-surface); border: 1px solid var(--lp-line-strong); border-radius: 16px;
+  padding: 26px 24px 18px; gap: 18px; min-width: 0;
 }
 .lp .membership-plan.yearly {
-  border-color: rgba(129, 140, 248, 0.7);
-  background: linear-gradient(160deg, rgba(37, 99, 235, 0.22), rgba(124, 58, 237, 0.16));
+  border: 2px solid #8397ff;
+  background: radial-gradient(ellipse at 0 0, #3b5de32b, transparent 80%), linear-gradient(150deg, #142142, #1a1535);
+  box-shadow: 0 0 32px #5f6bff14;
 }
 .lp .membership-plan .membership-best {
-  background: var(--lp-grad);
-  color: #fff;
+  top: -12px; right: 18px; padding: 5px 11px; border-radius: 6px;
+  background: #aab9ff; color: #101831; font-size: 10px; letter-spacing: 1px;
 }
+.lp .plan-heading h3 { margin: 0 0 8px; font-size: 21px; }
+.lp .plan-heading > span { font-size: 12px; color: #bac6db; line-height: 1.6; display: block; }
+.lp .membership-price { font-size: clamp(37px, 4vw, 49px); line-height: 1.1; letter-spacing: -2px; font-weight: 650; color: #f8fafc; }
+.lp .membership-price > span { font-size: 14px; color: #bac6db; margin-left: 5px; }
+.lp .membership-plan p { min-height: 0; margin: 0; font-size: 13px; line-height: 1.6; }
+.lp .membership-plan .plan-billing strong { display: block; color: #f0f3ff; font-size: 15px; font-weight: 600; }
+.lp .plan-billing > span { display: block; font-size: 12px; color: #aebad0; margin-top: 3px; }
+.lp .plan-value { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 9px; }
+.lp .plan-value strong { padding: 5px 9px; border-radius: 5px; background: #94efc31a; border: 1px solid #94efc335; color: #a5f3cd; font-size: 12px; }
+.lp .plan-value > span { font-size: 11px; color: #b8c5da; }
+.lp .membership-plan .plan-access { color: #b8c5da; }
 .lp .membership-plan button {
-  border-color: #3b4d72;
-  background: #182440;
-  border-radius: 10px;
+  border: 1px solid #405371; background: #182440; color: #e6ecfb; border-radius: 10px;
+  padding: 14px 16px; min-height: 48px; font-size: 14px; font-weight: 600; transition: background .15s, box-shadow .15s;
 }
-.lp .membership-plan.yearly button {
-  border-color: transparent;
-  background: var(--lp-grad);
-  color: #fff;
+.lp .membership-plan.yearly button { border-color: transparent; background: var(--lp-grad); color: #fff; box-shadow: 0 5px 20px #4556dd35; }
+.lp .membership-plan button:hover:not(:disabled) { background: #263859; }
+.lp .membership-plan.yearly button:hover:not(:disabled) { background: linear-gradient(135deg,#356ff0,#6357ef,#8a48ef); box-shadow: 0 6px 24px #6357ef60; }
+.lp .membership-plan .plan-cancel { font-size: 11px; color: #a9b7cd; text-align: center; }
+.lp .plan-inclusions { border-top: 1px solid var(--lp-line-strong); padding-top: 22px; }
+.lp .plan-inclusions h3 { font-size: 14px; font-weight: 600; margin: 0 0 16px; }
+.lp .plan-inclusions ul { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; list-style: none; padding: 0; margin: 0; }
+.lp .plan-inclusions li { display: flex; gap: 9px; color: #a7b3c5; font-size: 11px; line-height: 1.6; }
+.lp .plan-inclusions li > svg { flex-shrink: 0; color: #a5b4fc; margin-top: 2px; }
+.lp .plan-inclusions strong { display: block; color: #dfe7f7; font-size: 12px; margin-bottom: 3px; }
+.lp .membership-panel .payment-reassurance { flex-wrap: wrap; line-height: 1.6; text-align: center; font-size: 11px; margin: 22px 0 14px; }
+.lp .membership-panel .existing-account { margin: 14px 0; }
+.lp .membership-panel .membership-fine { font-size: 11px; line-height: 1.7; color: #96a5bd; }
+.lp .promo-entry { margin-top: 18px; }
+.lp .promo-entry summary { width: fit-content; min-height: 24px; font-size: 12px; color: #b5c5ef; }
+.lp .selected-plan { line-height: 1.6; align-items: flex-start; }
+.lp .selected-plan svg { flex-shrink: 0; margin-top: 2px; }
+@media (max-width: 640px) {
+  .lp .membership-plans { grid-template-columns: minmax(0,1fr); gap: 18px; margin-top: 28px; }
+  .lp .membership-plan { padding: 24px 20px 18px; gap: 15px; }
+  .lp .membership-price { font-size: 46px; }
+  .lp .plan-inclusions ul { grid-template-columns: minmax(0,1fr); gap: 14px; }
+  .lp .plan-inclusions li { font-size: 12px; }
+  .lp .membership-panel > h2 { font-size: 25px; }
+}
+@media (min-width: 1051px) {
+  .lp-hero.with-panel .membership-plan { padding-left: 16px; padding-right: 16px; }
+  .lp-hero.with-panel .membership-price { font-size: 37px; }
+  .lp-hero.with-panel .plan-inclusions ul { grid-template-columns: minmax(0,1fr); gap: 12px; }
 }
 .lp .membership-restore button,
 .lp .text-button {

@@ -88,6 +88,7 @@ const FAQ: Array<[string, ReactNode]> = [
   ['Can I use it to diagnose patients?', 'No. radiology.monster is for education and practice only. It is not a medical device and must not be used for clinical decisions.'],
   ['What do I need?', 'A recent desktop browser such as Chrome, Edge or Firefox. Nothing to install. Tablets and phones work too; reading is easiest on a larger screen. The 3D view needs WebGL.'],
   ['Where is my progress kept?', 'In your browser on your device. Export a backup from Settings to move it to another device. One device is active at a time; signing in on another moves you there.'],
+  ['Is the yearly plan paid monthly?', 'No. The yearly plan costs $150 in one payment every 365 days. $12.50 is its monthly equivalent. If you prefer a smaller upfront payment, choose monthly at $20 every 30 days.'],
   ['How do I cancel?', 'Both plans renew, monthly every 30 days and yearly every 365 days, until you cancel future renewals from Billing. Have a promo code? Enter it before you choose a plan.'],
 ];
 
@@ -306,8 +307,8 @@ export function Landing({ panel, panelInHero, signInLabel, signInDisabled, onSig
           <div className="lp-wrap">
             <div className="lp-head">
               <span className="lp-kicker">Pricing</span>
-              <h2>Simple plans. Every feature included.</h2>
-              <p>Both plans open the whole study space: every case, drill, shift and the on-site book reader.</p>
+              <h2>Built for your next rotation.<br />And the ones after it.</h2>
+              <p>For medical students and radiology trainees who want to turn reading into hands-on practice. Choose how you pay; get every feature either way.</p>
             </div>
             <div className="lp-pricing">{panel}</div>
           </div>
