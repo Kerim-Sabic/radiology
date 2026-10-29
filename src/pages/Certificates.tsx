@@ -17,6 +17,7 @@ import {
   type IssuedCertificate,
 } from '../services/certificates';
 import { certKey, nextCertificateTask, parseCertKey, stepUrl } from '../services/certify';
+import { LEVEL_STYLE } from '../../shared/certificateLevels';
 import '../styles/upgrade.css';
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
@@ -146,7 +147,7 @@ export default function CertificatesPage() {
               <tr>
                 <th scope="col">Level</th>
                 <th scope="col">Each body area</th>
-                <th scope="col">General radiology (the whole library)</th>
+                <th scope="col">General Radiology (the whole library)</th>
               </tr>
             </thead>
             <tbody>
@@ -154,7 +155,7 @@ export default function CertificatesPage() {
                 <tr key={rule.level}>
                   <th scope="row">{levelLabel(rule.level)}</th>
                   <td data-label="Each body area">{levelRequirement('chest', rule)}</td>
-                  <td data-label="General radiology">{levelRequirement('all', LEVELS.all[i])}</td>
+                  <td data-label="General Radiology">{levelRequirement('all', LEVELS.all[i])}</td>
                 </tr>
               ))}
             </tbody>
@@ -180,7 +181,7 @@ export default function CertificatesPage() {
               {levels.map((s) => {
                 const have = issued.find((c) => same(c, s));
                 return (
-                  <li key={s.level} id={`cert-${certKey(s.area, s.level)}`} className={s.eligible ? 'ok' : ''}>
+                  <li key={s.level} id={`cert-${certKey(s.area, s.level)}`} className={s.eligible ? 'ok' : ''} style={{ ['--lvl' as string]: LEVEL_STYLE[s.level].ring[0] }}>
                     <div className="certs-step-head">
                       <span className="certs-badge" aria-hidden="true">
                         {s.level}
@@ -188,6 +189,10 @@ export default function CertificatesPage() {
                       <b>
                         Level {s.level} · {s.levelName}
                       </b>
+                      <span className="certs-stars" aria-label={`${s.level} of 3 stars`}>
+                        {'★'.repeat(s.level)}
+                        {'☆'.repeat(3 - s.level)}
+                      </span>
                       {have ? <span className="chip ok">Issued</span> : s.eligible ? <span className="chip accent">Ready</span> : null}
                     </div>
                     <span className="faint certs-numbers">

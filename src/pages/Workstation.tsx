@@ -84,6 +84,8 @@ import type { ViewSnapshot } from '../viewer/engine';
 import { imageToPatient, patientToPlaneMm, polygonArea, polygonCentroid, type Vec2, type Vec3 } from '../lib/geometry';
 import { AI_DRAFT_BY, cleanLabel, isAiDraft, plainName } from '../lib/provenance';
 import { certKey, certName, certStatusFor, nextCertificateTask, parseCertKey, stepUrl } from '../services/certify';
+import { levelLabel } from '../services/certificates';
+import { CertSeal } from '../components/CertSeal';
 
 const centroid3 = (poly: Vec3[]): Vec3 => [
   poly.reduce((a, q) => a + q[0], 0) / poly.length,
@@ -113,7 +115,7 @@ export default function Workstation() {
   const { caseId = '' } = useParams();
   const [sp, setSp] = useSearchParams();
   const navigate = useNavigate();
-  const { catalog, curriculum, progress, attempts, settings, reviews, free } = useApp();
+  const { catalog, curriculum, progress, attempts, settings, reviews, free, openPlans } = useApp();
   const engineRef = useRef<ViewerEngine | null>(null);
   if (!engineRef.current) engineRef.current = new ViewerEngine();
   const engine = engineRef.current;
@@ -318,6 +320,24 @@ export default function Workstation() {
     const step = nextCertificateTask(catalog, attempts, certParam.area, certParam.level, sp.get('task') ?? undefined);
     navigate(step ? stepUrl(step, certParam.area, certParam.level) : '/certificates');
   };
+  // The answer that completes a level: say so, and offer to finish the certification.
+  const [celebrate, setCelebrate] = useState(false);
+  const eligibleAtOpen = useRef<boolean | null>(null);
+  useEffect(() => {
+    eligibleAtOpen.current = null;
+    setCelebrate(false);
+  }, [caseId, sp.get('task')]);
+  useEffect(() => {
+    if (!certStatus) return;
+    if (eligibleAtOpen.current === null) {
+      eligibleAtOpen.current = certStatus.eligible;
+      return;
+    }
+    if (certStatus.eligible && !eligibleAtOpen.current && session?.submitted) {
+      eligibleAtOpen.current = true;
+      setCelebrate(true);
+    }
+  }, [certStatus, session?.submitted]);
   const goNextInShift = async () => {
     if (!shift) return;
     if (nextInShift >= 0) navigate(shiftUrl(shift, nextInShift));
@@ -1097,6 +1117,26 @@ export default function Workstation() {
 
   return (
     <div className="ws">
+      {celebrate && certStatus ? (
+        <div className="cert-celebrate" role="dialog" aria-modal="true" aria-labelledby="cert-celebrate-h">
+          <div className="cert-celebrate-card">
+            <CertSeal level={certStatus.level} size={132} />
+            <h2 id="cert-celebrate-h">Level reached</h2>
+            <p>
+              <b>{certStatus.title}</b> · {levelLabel(certStatus.level)}
+            </p>
+            <p className="muted">Finish the certification to get your certificate, with its own check link, ready for LinkedIn.</p>
+            <div className="row" style={{ gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button className="btn primary lg" autoFocus onClick={goNextForCert}>
+                Finish certification
+              </button>
+              <button className="btn lg ghost" onClick={() => setCelebrate(false)}>
+                Keep reading
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : null}
       {/* ------------------------------------------------ toolbar */}
       <div className="ws-bar" role="toolbar" aria-label="Viewer tools">
         <IconButton label={certParam ? 'Back to certificates' : 'Back to cases'} onClick={() => navigate(certParam ? '/certificates' : '/cases')}>
@@ -1519,6 +1559,8 @@ export default function Workstation() {
           </Tabs.Content>
           <Tabs.Content value="anatomy" className="tab-body">
             <AnatomyPanel
+              limited={free}
+              onUpgrade={openPlans}
               allowed={refAllowed}
               on={anatomyVisible}
               loading={anatomyLoading}

@@ -1,9 +1,10 @@
+import { readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 import { computeFreeEdition } from '../scripts/build/freeEdition';
 import { FREE_EDITION } from '../server/freeEdition.generated';
 import { freePathAllowed, weeklyCase } from '../server/free';
-import { caseOfWeek, FREE_CASES, freeCaseIds, WEEKLY_CASES, WEEKLY_EPOCH } from '../src/content/weekly';
+import { caseOfWeek, FREE_ANATOMY, FREE_CASES, freeCaseIds, WEEKLY_CASES, WEEKLY_EPOCH } from '../src/content/weekly';
 import { LessonFile, PackManifest } from '../src/schema/content';
 
 const packs = resolve(__dirname, '../public/packs');
@@ -47,6 +48,25 @@ describe('free edition', () => {
     expect(freePathAllowed(`${sample.prefixes[0]}%2e%2e/x.dcm`)).toBe(false);
     // The Monday email still knows each weekly case by its neutral title.
     for (const id of WEEKLY_CASES) expect(FREE_EDITION.info[id]?.title, id).toMatch(/^Patient [A-Z]{1,3} · /);
+  });
+
+  it('the sample patients keep their task outlines and a few main structures; detailed anatomy is for members', () => {
+    const manifests = outputs.filter((o) => o.rel.endsWith('pack.free.json')).map((o) => PackManifest.parse(o.json));
+    const free = manifests.flatMap((m) => m.referenceTargets);
+    const atlas = free.filter((t) => t.layer === 'atlas');
+    expect(atlas.length).toBeGreaterThan(0);
+    expect(atlas.length).toBeLessThanOrEqual(FREE_ANATOMY.length);
+    for (const t of atlas) expect(FREE_ANATOMY).toContain(t.classId);
+    // Task outlines stay, so grading works.
+    expect(free.some((t) => t.layer !== 'atlas' && t.classId === 'anatomy:heart')).toBe(true);
+    // A detailed structure on the same patient exists in the full pack, and its file is refused.
+    const full = PackManifest.parse(JSON.parse(readFileSync(resolve(packs, 'anatomy-atlas/pack.json'), 'utf8')));
+    const freeSeries = new Set(free.map((t) => t.seriesUid));
+    const rib = full.referenceTargets.find((t) => t.layer === 'atlas' && freeSeries.has(t.seriesUid) && t.classId.startsWith('anatomy:rib_'));
+    expect(rib).toBeTruthy();
+    expect(freePathAllowed(`/packs/anatomy-atlas/${rib!.geometryFile}`)).toBe(false);
+    const heart = full.referenceTargets.find((t) => t.layer === 'atlas' && freeSeries.has(t.seriesUid) && t.classId === 'anatomy:heart');
+    if (heart) expect(freePathAllowed(`/packs/anatomy-atlas/${heart.geometryFile}`)).toBe(true);
   });
 
   it('free manifests hold only the sample patients and still validate', () => {

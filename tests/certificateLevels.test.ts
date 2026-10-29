@@ -23,7 +23,9 @@ describe('certificate levels', () => {
   it('gives every area three levels, then three for the whole library', () => {
     const list = certificateStatus([area('chest', {}), area('head', {})], []);
     expect(list.map((s) => `${s.area}:${s.level}`)).toEqual(['chest:1', 'chest:2', 'chest:3', 'head:1', 'head:2', 'head:3', 'all:1', 'all:2', 'all:3']);
-    expect(find(list, 'all', 1).title).toBe('General radiology');
+    expect(find(list, 'all', 1).title).toBe('General Radiology');
+    expect(levelLabel(1)).toBe('Level 1 · Foundation');
+    expect(levelLabel(2)).toBe('Level 2 · Intermediate');
     expect(levelLabel(3)).toBe('Level 3 · Advanced');
     expect(levelRequirement('chest', LEVELS.area[2])).toBe('40 patients · 30 graded answers without hints · 85% right');
   });
@@ -65,8 +67,10 @@ describe('certificate levels', () => {
   });
 
   it('names the level in the LinkedIn certification', () => {
-    const f = linkedInFields({ id: 'abcDEF123_-x', name: 'Ada', area: 'chest', level: 2, title: 'Chest imaging', patients: 25, judged: 30, accuracy: 0.8, issuedAt: '2026-10-29T10:00:00.000Z' }, 'https://www.radiology.monster');
-    expect(f.name).toBe('Chest imaging certificate (Level 2 · Proficient)');
-    expect(linkedInFields({ id: 'x', name: 'Ada', area: 'chest', title: 'Chest imaging', patients: 12, judged: 12, accuracy: 0.8, issuedAt: '2026-10-29T10:00:00.000Z' }, 'https://x').name).toBe('Chest imaging certificate (Level 1 · Core)');
+    const f = linkedInFields({ id: 'abcDEF123_-x', name: 'Ada', area: 'chest', level: 2, title: 'Chest Imaging', patients: 25, judged: 30, accuracy: 0.8, issuedAt: '2026-10-29T10:00:00.000Z' }, 'https://www.radiology.monster');
+    expect(f.name).toBe('Chest Imaging Certificate – Level 2 (Intermediate)');
+    expect(f.skills).toEqual(['Radiology', 'Chest Radiography', 'Computed Tomography (CT)', 'Medical Imaging']);
+    expect(f.credentialUrl).toBe('https://www.radiology.monster/certificate/abcDEF123_-x');
+    expect(linkedInFields({ id: 'x', name: 'Ada', area: 'breast', title: 'Breast Imaging', patients: 12, judged: 12, accuracy: 0.8, issuedAt: '2026-10-29T10:00:00.000Z' }, 'https://x').name).toBe('Breast Imaging Certificate – Level 1 (Foundation)');
   });
 });

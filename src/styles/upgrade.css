@@ -720,15 +720,20 @@
   height: 22px;
   flex: none;
   border-radius: 50%;
-  border: 1px solid var(--line-strong);
+  border: 1.5px solid var(--lvl, var(--line-strong));
   color: var(--text);
   font-size: 11.5px;
   font-weight: 700;
 }
 .certs-ladder > li.ok .certs-badge {
   border-color: transparent;
-  background: var(--ok);
-  color: #04130a;
+  background: var(--lvl, var(--ok));
+  color: #fff;
+}
+.certs-stars {
+  color: var(--lvl);
+  font-size: 12px;
+  letter-spacing: 1px;
 }
 .certs-numbers {
   font-size: 12px;

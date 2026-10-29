@@ -27,6 +27,9 @@ interface Props {
   onToggleGroup: (g: Group3D) => void;
   onPick: (t: LoadedTarget) => void;
   onShowAll: () => void;
+  /** A free account: only the main structures are labelled (the rest is for members). */
+  limited?: boolean;
+  onUpgrade?: () => void;
 }
 
 const isAi = (t: LoadedTarget) => isAutomatic(t.ref.provenance);
@@ -59,6 +62,18 @@ export function AnatomyPanel(p: Props) {
 
   return (
     <div className="stack" style={{ gap: 10 }}>
+      {p.limited ? (
+        <div className="notice info row" style={{ gap: 8, alignItems: 'center' }}>
+          <span style={{ flex: 1 }}>
+            Free account: the main structures only. Members see every labelled structure on every patient: lobes, ribs, vertebrae, vessels and more.
+          </span>
+          {p.onUpgrade ? (
+            <button className="btn sm primary" onClick={p.onUpgrade}>
+              See plans
+            </button>
+          ) : null}
+        </div>
+      ) : null}
       {isolated ? (
         <div className="notice info row" style={{ gap: 8 }}>
           <Eye size={15} />

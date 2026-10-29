@@ -53,7 +53,8 @@ export async function handle(request: Request): Promise<Response> {
     if (path === '/api/og/certificate' && request.method === 'GET') {
       if (!await rateLimit(`cert-image:${ip()}`, 120, 600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
       const cert = await publicCertificate(url.searchParams.get('id') ?? '');
-      return cert ? await certificateImage(cert, appOrigin(), url.searchParams.get('format') === 'square') : json({ error: 'No certificate with this id.' }, 404);
+      const format = url.searchParams.get('format');
+      return cert ? await certificateImage(cert, appOrigin(), format === 'square' || format === 'story' ? format : 'wide') : json({ error: 'No certificate with this id.' }, 404);
     }
     if (path === '/api/certificate' && request.method === 'GET') {
       if (!await rateLimit(`cert-check:${ip()}`, 60, 600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);

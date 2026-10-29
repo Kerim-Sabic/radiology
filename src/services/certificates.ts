@@ -5,16 +5,27 @@
  */
 import type { AreaProgress } from './areas';
 import type { Attempt } from './progressRepository';
-import { CERT_TITLES, LEVELS, PATIENT_FLOOR, levelLabel, type CertArea, type CertLevel, type LevelRule } from '../../shared/certificateLevels';
+import {
+  CERT_SKILLS,
+  CERT_TITLES,
+  LEVELS,
+  PATIENT_FLOOR,
+  credentialName,
+  levelLabel,
+  levelRequirement,
+  type CertArea,
+  type CertLevel,
+  type LevelRule,
+} from '../../shared/certificateLevels';
 
-export { CERT_TITLES, LEVELS, levelLabel };
+export { CERT_TITLES, LEVELS, credentialName, levelLabel, levelRequirement };
 export type { CertArea, CertLevel };
 
 export interface CertStatus {
   area: CertArea;
   title: string;
   level: CertLevel;
-  /** "Core", "Proficient", "Advanced" */
+  /** "Foundation", "Intermediate", "Advanced" */
   levelName: string;
   /** Patients in the library for this area. */
   patients: number;
@@ -111,13 +122,6 @@ export function certificateStatus(areas: AreaProgress[], attempts: Attempt[]): C
   return list;
 }
 
-/** What a level asks for, in one line. */
-export function levelRequirement(area: CertArea, rule: LevelRule): string {
-  const patients = area === 'all' ? `${rule.minPatients} patients across the library` : `${rule.minPatients} patients`;
-  const breadth = rule.minAreas ? `, ${rule.perArea}+ in each of ${rule.minAreas} areas` : '';
-  return `${patients}${breadth} · ${rule.minJudged} graded answers${rule.independent ? ' without hints' : ''} · ${pct(rule.minAccuracy)} right`;
-}
-
 export interface IssuedCertificate {
   id: string;
   name: string;
@@ -158,8 +162,9 @@ export async function claimCertificate(s: CertStatus, name: string): Promise<{ o
 /** What goes in LinkedIn's "Add license or certification" form, field by field. */
 export function linkedInFields(c: IssuedCertificate, origin = location.origin) {
   return {
-    name: `${c.title} certificate (${levelLabel(c.level)})`,
+    name: credentialName(c.title, c.level),
     organization: 'radiology.monster',
+    skills: CERT_SKILLS[(c.area as CertArea) in CERT_SKILLS ? (c.area as CertArea) : 'all'],
     issued: new Date(c.issuedAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }),
     credentialId: c.id,
     credentialUrl: `${origin}/certificate/${c.id}`,

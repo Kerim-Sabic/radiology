@@ -108,5 +108,5 @@ export function nextCertificateTask(catalog: CatalogView, attempts: Attempt[], a
   return step(pick(() => true, () => true), 'Another graded answer for this level.');
 }
 
-/** "Chest imaging · Level 2 · Proficient" */
+/** "Chest Imaging · Level 2 · Intermediate" */
 export const certName = (s: CertStatus) => `${s.title} · ${levelLabel(s.level)}`;

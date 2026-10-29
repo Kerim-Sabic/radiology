@@ -1,13 +1,16 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, posix, resolve } from 'node:path';
-import { LessonFile, PackIndex, PackManifest, type TeachingCase } from '../../src/schema/content';
+import { LessonFile, PackIndex, PackManifest, type ReferenceTarget, type TeachingCase } from '../../src/schema/content';
+import { FREE_ANATOMY } from '../../src/content/weekly';
 
 /**
  * The free edition: what a signed-up account without a plan may load. It is the sample patients, as filtered
  * copies of the pack manifests and lessons, and a teaser list of every patient (neutral titles only) so the library
  * can show what membership unlocks. The schedule's cases of the week are members-only; they appear here only in
- * `info` (neutral title, modality, tasks) for the Monday email.
+ * `info` (neutral title, modality, tasks) for the Monday email. Of the whole-anatomy labels (the atlas layer) the
+ * sample patients keep only the main structures in FREE_ANATOMY; the outlines their tasks use always stay.
  */
+const freeTarget = (t: ReferenceTarget) => t.layer !== 'atlas' || FREE_ANATOMY.includes(t.classId);
 export interface FreeSchedule {
   epoch: string;
   always: string[];
@@ -86,7 +89,7 @@ export function computeFreeEdition(packsDir: string, schedule: FreeSchedule) {
         for (const i of s.instances) prefixes.add(`/packs/${p.dir}/${posix.dirname(i.file)}/`);
         if (s.thumbnail) files.add(`/packs/${p.dir}/${s.thumbnail}`);
       }
-    for (const p of packs) for (const t of p.manifest.referenceTargets) if (series.has(t.seriesUid)) files.add(`/packs/${p.dir}/${t.geometryFile}`);
+    for (const p of packs) for (const t of p.manifest.referenceTargets) if (series.has(t.seriesUid) && freeTarget(t)) files.add(`/packs/${p.dir}/${t.geometryFile}`);
     out[id] = { prefixes: [...prefixes].sort(), files: [...files].sort() };
     series.forEach((s) => freeSeries.add(s));
     studies.forEach((s) => freeStudies.add(s));
@@ -100,7 +103,7 @@ export function computeFreeEdition(packsDir: string, schedule: FreeSchedule) {
   for (const p of packs) {
     const m = p.manifest;
     const series = m.series.filter((s) => freeSeries.has(s.uid));
-    const referenceTargets = m.referenceTargets.filter((t) => freeSeries.has(t.seriesUid));
+    const referenceTargets = m.referenceTargets.filter((t) => freeSeries.has(t.seriesUid) && freeTarget(t));
     const lessons = p.lessons ? { ...p.lessons, cases: p.lessons.cases.filter((c) => free.has(c.id)), tasks: p.lessons.tasks.filter((t) => free.has(t.caseId)) } : null;
     if (!series.length && !referenceTargets.length && !lessons?.cases.length && !lessons?.tasks.length) continue;
     const subjects = m.subjects.filter((s) => freeSubjects.has(s.key)).map((s) => ({ ...s, studyUids: s.studyUids.filter((u) => freeStudies.has(u)) }));

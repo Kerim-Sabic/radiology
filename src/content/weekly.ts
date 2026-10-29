@@ -8,6 +8,12 @@
 /** Sample patients every free account can read. */
 export const FREE_CASES = ['starter-ct-chest-01', 'cxr-00003400-003'];
 
+/**
+ * Anatomy on the sample patients: the outlines their tasks use, plus these main structures. Every other labelled
+ * structure (lobes, ribs, vertebrae, vessels and the rest) is for members; its files are not served to free accounts.
+ */
+export const FREE_ANATOMY = ['anatomy:heart', 'anatomy:aorta', 'anatomy:pulmonary_trunk', 'anatomy:trachea', 'anatomy:liver', 'anatomy:spleen', 'anatomy:stomach', 'anatomy:sternum'];
+
 /** Weeks start on Monday 00:00 UTC; week 0 began on this Monday. */
 export const WEEKLY_EPOCH = '2026-10-26';
 

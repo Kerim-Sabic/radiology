@@ -13,17 +13,17 @@ test('the certificates tab shows every level, what each asks for, and the certif
   await expect(page).toHaveURL(/\/certificates$/);
   await expect(page.getByRole('heading', { level: 1, name: 'Certificates' })).toBeVisible();
   const levels = page.locator('.certs-levels');
-  await expect(levels).toContainText('Level 1 · Core');
-  await expect(levels).toContainText('Level 2 · Proficient');
+  await expect(levels).toContainText('Level 1 · Foundation');
+  await expect(levels).toContainText('Level 2 · Intermediate');
   await expect(levels).toContainText('Level 3 · Advanced');
   await expect(levels).toContainText('30 graded answers without hints · 85% right');
-  for (const title of ['Chest imaging', 'Neuroimaging', 'Breast imaging', 'General radiology']) await expect(page.getByRole('heading', { level: 2, name: title })).toBeVisible();
+  for (const title of ['Chest Imaging', 'Neuroimaging', 'Breast Imaging', 'General Radiology']) await expect(page.getByRole('heading', { level: 2, name: title })).toBeVisible();
   // Three levels in every area, each with its progress.
-  const chest = page.locator('section.certs-area', { has: page.getByRole('heading', { name: 'Chest imaging' }) });
+  const chest = page.locator('section.certs-area', { has: page.getByRole('heading', { name: 'Chest Imaging' }) });
   await expect(chest.locator('.certs-ladder > li')).toHaveCount(3);
-  await expect(chest.getByRole('progressbar', { name: /Chest imaging, Level 3 · Advanced/ })).toBeVisible();
+  await expect(chest.getByRole('progressbar', { name: /Chest Imaging, Level 3 · Advanced/ })).toBeVisible();
   // The certificate held: listed, and marked on its level.
-  await expect(page.locator('.certs-mine')).toContainText('Level 1 · Core');
+  await expect(page.locator('.certs-mine')).toContainText('Level 1 · Foundation');
   await expect(page.locator('.certs-mine').getByRole('link', { name: /View and share/ })).toHaveAttribute('href', '/certificate/abcDEF123_-x');
   await expect(chest.locator('.certs-ladder > li').first()).toContainText('Issued');
   await expect(page.getByRole('link', { name: /See an example/ })).toHaveAttribute('href', '/certificate/example');
@@ -36,9 +36,10 @@ test('the certificates tab shows every level, what each asks for, and the certif
 test('the example certificate shows a level and says it is an example', async ({ page }) => {
   await page.goto('/certificate/example');
   await expect(page.locator('.cert-name')).toHaveText('Your Name');
-  await expect(page.locator('.cert-line')).toHaveText('has completed Level 2 · Proficient in');
+  await expect(page.locator('.cert-line')).toHaveText('has successfully completed');
+  await expect(page.locator('.cert-level')).toHaveText('Level 2 · Intermediate');
   await expect(page.locator('.cert-example')).toContainText('This is an example');
-  await expect(page.locator('.cert-seal')).toContainText('Level 2');
+  await expect(page.locator('.cert-verify')).toContainText('Chest Imaging Certificate – Level 2 (Intermediate)');
   await expect(page.getByRole('button', { name: 'Add to LinkedIn profile' })).toHaveCount(0);
   await expect(page.locator('.cert-check')).toHaveCount(0);
 });
@@ -47,11 +48,11 @@ test('start certification: the app opens the patient a level needs, then the nex
   await page.goto('/certificates');
   await expect(page.locator('.certs-how')).toContainText('Start certification');
   await expect(page.locator('.certs-how')).toContainText('Finish certification');
-  const chest = page.locator('section.certs-area', { has: page.getByRole('heading', { name: 'Chest imaging' }) });
+  const chest = page.locator('section.certs-area', { has: page.getByRole('heading', { name: 'Chest Imaging' }) });
   await chest.getByRole('button', { name: /Start certification/ }).first().click();
   await expect(page).toHaveURL(/\/read\/[^?]+\?task=.+&mode=practice&cert=chest-1$/);
   const bar = page.locator('.ws-cert');
-  await expect(bar).toContainText('Chest imaging · Level 1 · Core');
+  await expect(bar).toContainText('Chest Imaging · Level 1 · Foundation');
   await expect(bar).toContainText('0/10 patients');
   const first = new URL(page.url()).pathname;
   // Answer in the quickest honest way (first option, or "not assessable").

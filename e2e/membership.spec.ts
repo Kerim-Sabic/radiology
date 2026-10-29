@@ -224,7 +224,7 @@ test('a certificate has a public page that needs no sign-in', async ({page}) => 
   await page.getByRole('button',{name:'Add to LinkedIn profile'}).click();
   const li = page.locator('#add-to-linkedin');
   await expect(li.getByRole('link',{name:/Open LinkedIn.s certification form/})).toHaveAttribute('href',/linkedin\.com\/profile\/add\?startTask=CERTIFICATION_NAME/);
-  await expect(li.locator('.cert-li-fields')).toContainText('Chest imaging certificate');
+  await expect(li.locator('.cert-li-fields')).toContainText('Certificate – Level 1 (Foundation)');
   await expect(li.locator('.cert-li-fields')).toContainText('radiology.monster');
   await expect(li.locator('.cert-li-fields')).toContainText('October 2026');
   await expect(li.locator('.cert-li-fields')).toContainText('abcDEF123_-x');

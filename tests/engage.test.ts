@@ -167,7 +167,7 @@ describe('certificates', () => {
     // The whole library counts patients across areas.
     expect((await claimCertificate(user, { ...claim, area: 'all', judged: 40 })).ok).toBe(false);
     const all = await claimCertificate(user, { ...claim, area: 'all', patients: 40, judged: 40 });
-    expect(all.ok && all.certificate.title).toBe('General radiology');
+    expect(all.ok && all.certificate.title).toBe('General Radiology');
     // Renewing a level keeps its id.
     const again = await claimCertificate(user, { ...claim, area: 'head', level: 2, judged: 35, accuracy: 0.85 });
     expect(again.ok && again.certificate.id).toBe(two.certificate.id);
