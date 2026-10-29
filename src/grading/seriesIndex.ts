@@ -44,6 +44,13 @@ export class SeriesIndex {
     for (const i of this.instances) this.bySop.set(i.sopInstanceUid, i);
   }
 
+  /** Distance between neighbouring slices along the normal (median, mm), or null without slice positions. */
+  get spacingMm(): number | null {
+    const pos = this.instances.map((i) => i.normalPos).filter((x): x is number => x !== null).sort((a, b) => a - b);
+    const gaps = pos.slice(1).map((x, i) => x - pos[i]).filter((g) => g > 1e-3).sort((a, b) => a - b);
+    return gaps.length ? gaps[Math.floor(gaps.length / 2)] : null;
+  }
+
   get hasPatientGeometry() {
     return this.normal !== null && this.instances.every((i) => i.plane !== null);
   }

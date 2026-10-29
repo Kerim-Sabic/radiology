@@ -48,7 +48,9 @@ Members on radiology.monster can open **Book** directly. For local development, 
 
 | command | what it does |
 |---|---|
-| `npm run dev` | dev server |
+| `npm run dev` | dev server (opens the study space without sign-in on your own computer) |
+| `npm run dev:landing` | the public landing page as a visitor sees it (port 5174; sign-in answers as signed out) |
+| `node scripts/landing/shoot.mjs` + `python scripts/landing/encode.py` | retake the landing-page screenshots from the running dev server (own browser profile) |
 | `npm run build` | type-check (app, server, tests) + production build to `dist/` |
 | `npm run preview` | serve the production build on :4317 |
 | `npm test` | unit tests + validation of every installed pack/lesson/book anchor |

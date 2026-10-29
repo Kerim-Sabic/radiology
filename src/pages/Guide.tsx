@@ -26,6 +26,15 @@ export default function GuidePage() {
         <h2>Study tools</h2>
         <ul className="stack" style={{ gap: 6, paddingLeft: 18, margin: 0 }}>
           <li>
+            <b>Quick search</b> — press <span className="kbd">Ctrl</span> + <span className="kbd">K</span> (<span className="kbd">⌘</span> <span className="kbd">K</span> on a Mac) on any
+            page, the reading room included, to jump to a page, a condition, a book chapter or a case. Cases are found by their neutral titles only, so search never gives away a
+            diagnosis.
+          </li>
+          <li>
+            <b>Today</b> — your next scan, a streak and a calendar of the days you studied (answers and drill answers), and <i>Your areas</i>: patients read and how often you
+            were right in each body area, with a link to practise the area that needs it most on a patient you have not read.
+          </li>
+          <li>
             <b>Drills</b> — point to a structure or a finding (pneumothorax, effusion, nodule, embolus, fracture…), find its level, name the outline, best window. Misses
             return on a different patient; known ones return after 1, 3, 7, 16 and 35 days.
           </li>

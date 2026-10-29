@@ -228,6 +228,29 @@ Two independent reviews ran on 28 October: one checked every outline anatomicall
 
 **Not available under a licence the paid site can use, with the finding located:** abdominal plain films, neonatal and vascular ultrasound, FAST, hemothorax, intracranial hemorrhage.
 
+## 3e. Landing page, Today, quick search, solid outlines on reformats (29 October)
+
+**Public landing page** (what a visitor without access sees; `npm run dev:landing` shows it locally):
+- Hero, five-modality tour, features, how a session works, pricing (the existing plans and checkout panel, unchanged in behaviour), questions and answers.
+- Every image is a screenshot of the app (`scripts/landing/shoot.mjs`, run in its own browser profile) showing data whose licence allows commercial use, credited in the footer: FUMPE, C4KC-KiTS, ISLES 2022, CBIS-DDSM, BrEaST, NIH ChestX-ray14.
+- The numbers it states (100+ patients, 340+ tasks, 75+ conditions, 274 objectives, 5 modalities) are checked by `tests/landingFacts.test.ts` against the commercial catalogue members actually get: 108 patients and 346 tasks after the non-commercial filter.
+- The page still loads no study content before access, and is checked at 1440 px and 390 px with no sideways scrolling. A signed-in visitor without access sees the plans in the hero.
+
+**Today:**
+- Next scan with its thumbnail.
+- Streak and a 20-week activity calendar. Answers come from the attempts; drill answers come from a per-day log that travels in the backup and is cleared by a reset.
+- Your areas: patients read and share right per body area, with a link to the next task on an unread patient in the weakest area.
+- One tile per study mode.
+- The Progress page shows 26 weeks of activity.
+
+**Quick search (Ctrl/⌘ K, every page including the reading room):** pages, conditions (typo-tolerant), book chapters and appendices, and cases by neutral title only. A test checks that a diagnosis never finds a case.
+
+**Outlines on coronal, sagittal and oblique views** were drawn as one line per acquired slice, which looked like hatching. They are now rebuilt as solid cross-sections: neighbouring slices are joined, and each end reaches half a slice beyond the last outline. Covered by `tests/crossSection.test.ts`.
+
+**Top bar:** stays on one line from 900 px to 1920 px, with or without the account menu. Labels give way to icons, less-used pages first.
+
+**Tests on the production build (merged with the monthly/yearly plans):** 356 unit tests; 87 browser tests in Chromium and Firefox (7 skipped as before), including the landing tour, quick search from the reading room, and today's square on the activity calendar.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:
@@ -250,7 +273,7 @@ The shell downloads 8.5 MB of JSON manifests, uncompressed (the largest is the a
 - **Book:** the PDF is never committed or shipped (it is copyrighted). Book search and page links need it imported on each device (Book → Import PDF).
 - **Untested browsers and devices:** Safari/WebKit, iOS and Android hardware, Edge, and real touch input. Only Chromium and Firefox desktop are covered.
 - **Data limits:**
-  - No head CT, no paediatric radiographs, no MSK radiographs, no bowel obstruction or perforation, no ultrasound and no nuclear medicine. These need credentialed datasets.
+  - No head CT for hemorrhage, no bowel obstruction or perforation, no FAST, neonatal or vascular ultrasound, and no nuclear medicine. Every public set found for these needs a login, a signed agreement, or forbids commercial use.
   - No whole-study reviewed references, so false positives are reported as "unscored", never counted.
 - **AI-draft outlines:**
   - No radiologist has reviewed them. Edges can be a few mm off, and they never score you until you review them yourself in Author.

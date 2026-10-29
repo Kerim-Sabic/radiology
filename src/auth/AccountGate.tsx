@@ -1,6 +1,7 @@
 import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X } from 'lucide-react';
 import './account.css';
+import { Landing } from './Landing';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
 type Tier = 'monthly' | 'yearly';
@@ -186,57 +187,45 @@ function MembershipGate({ children }: { children: ReactNode }) {
 
   if (account?.access.active) return <AccountContext.Provider value={{ account, logout }}>{children}</AccountContext.Provider>;
   if (loading) return <div className="membership-loading" role="status"><ScanLine size={30} /><p>Opening your study space…</p></div>;
-  return <main className="membership-page">
-    <header className="membership-header"><a className="membership-brand" href="/"><ScanLine size={25} /> radiology.monster</a>{account?.user ? <button className="header-signin" onClick={logout}>Sign out</button> : <button className="header-signin" disabled={!ready?.auth} onClick={() => setAuthMode('login')}>Sign in <ArrowRight size={15} /></button>}</header>
-    <div className="membership-layout">
-      <section className="membership-intro">
-        <span className="membership-eyebrow">YOUR RADIOLOGY STUDY SPACE</span>
-        <h1>Learn to see.<br /><em>Then know why.</em></h1>
-        <p className="membership-lead">Build your confidence with real scans, guided anatomy, and focused practice. One place to turn studying into a daily habit.</p>
-        <ul className="membership-features">
-          <li><Check />Explore real DICOM studies with a full imaging viewer</li>
-          <li><Check />Practice anatomy and get spatial feedback</li>
-          <li><Check />Follow a structured course and track your progress</li>
-          <li><Check />Read the textbook with linked chapters, figures, and notes</li>
-        </ul>
-        <div className="membership-note"><ShieldCheck size={22} /><p>Secure payment, right here on radiology.monster.<br />One active device at a time. Switch devices by signing in.</p></div>
-      </section>
-      <section className="membership-panel" aria-label="Membership">
-        {payment && account?.user ? <>
-          <button className="checkout-back text-button" onClick={() => { setPayment(null); setError(''); }}><ArrowLeft size={15} /> Change plan</button>
-          <span className="membership-step">COMPLETE YOUR MEMBERSHIP</span>
-          <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
-          <p className="checkout-account">{account.user.email}</p>
-          {!payment.promoCode && <button className="text-button" onClick={() => setPayment(null)}>Have a promo code? Add it before payment</button>}
-          <Suspense fallback={<p className="checkout-loading" role="status">Loading secure payment form…</p>}>
-            <EmbeddedCheckout key={payment.id} id={payment.id} returnUrl={payment.returnUrl} email={account.user.email} promoCode={payment.promoCode} onComplete={() => { setReturned(true); void refreshPayment(); }} />
-          </Suspense>
-          <p className="membership-fine">{payment.promoCode ? 'Your code is prefilled in the payment form. Review the discounted recurring total before paying; Whop confirms whether it is still available.' : payment.tier === 'monthly' ? 'Standard price: $20 USD every 30 days.' : 'Standard price: $150 USD every 365 days.'} Discounts and any applicable tax are shown in the payment form. Cancel future renewals from Billing. Access opens after payment is verified.</p>
-        </> : <>
-        <span className="membership-step">ONE STUDY SPACE. TWO WAYS IN.</span>
-        <h2>{account?.user ? 'You’re one step away.' : 'Invest in the way you learn.'}</h2>
-        <p>{account?.user ? `Signed in as ${account.user.email}` : 'Choose your plan, create your account, and start exploring.'}</p>
-        {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
-        <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>Choose a plan below. Your discount will appear in the secure payment form.</p></details>
-        <div className="membership-plans">
-          <article className="membership-plan"><div><h3>Monthly</h3><span>Build your routine</span></div><div className="membership-price">$20<span>/ month</span></div><p>Billed every 30 days. Cancel future renewals in Whop.</p>
-            <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('monthly')}>{busy === 'monthly' ? 'Preparing payment…' : 'Choose monthly'}<ArrowRight size={17} /></button>
-          </article>
-          <article className="membership-plan yearly"><span className="membership-best">BEST VALUE</span><div><h3>Yearly</h3><span>Commit to a year of progress</span></div><div className="membership-price">$150<span>/ year</span></div><p>$12.50/month equivalent, billed $150 every 365 days. Cancel future renewals anytime.</p>
-            <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('yearly')}>{busy === 'yearly' ? 'Preparing payment…' : 'Choose yearly'}<ArrowRight size={17} /></button>
-          </article>
-        </div>
-        <p className="payment-reassurance"><ShieldCheck size={15} /> Secure checkout on this site · Powered by Whop</p>
-        {!account?.user && <p className="existing-account">Already a member? <button className="text-button" disabled={!ready?.auth} onClick={() => setAuthMode('login')}>Sign in</button></p>}
-        </>}
-        {account?.access.pendingMembership && <p className="membership-message">You already have a membership awaiting payment confirmation or a billing update. {account.access.manageUrl && <a href={account.access.manageUrl} target="_blank" rel="noopener noreferrer">Open billing in Whop</a>} to check it before purchasing again.</p>}
-        {!payment && <p className="membership-fine">Both plans include all app features and the on-site book reader. Prices in USD; any applicable tax is shown at checkout. Study progress stays in this browser; export a backup to move it.</p>}
-        {account?.user && <div className="membership-restore"><button disabled={checking} onClick={() => void refreshPayment()}>{checking ? 'Checking with Whop…' : 'Already paid? Check access'}</button>{!account.billingReady && <p>Payments are being configured. Checkout will open once it’s ready.</p>}</div>}
-        {(error || new URLSearchParams(location.search).get('signin') === 'failed') && <p className="membership-message" role="alert">{error || 'Email sign-in was canceled or expired. Please try again.'}</p>}
-        {!account && error && <button className="text-button" onClick={() => void load()}>Try again</button>}
-      </section>
-    </div>
-    <footer className="membership-footer">For education and practice. Not for clinical diagnosis.</footer>
+  const panel = <>
+    <section className="membership-panel" id="plans" aria-label="Membership">
+      {payment && account?.user ? <>
+        <button className="checkout-back text-button" onClick={() => { setPayment(null); setError(''); }}><ArrowLeft size={15} /> Change plan</button>
+        <span className="membership-step">COMPLETE YOUR MEMBERSHIP</span>
+        <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
+        <p className="checkout-account">{account.user.email}</p>
+        {!payment.promoCode && <button className="text-button" onClick={() => setPayment(null)}>Have a promo code? Add it before payment</button>}
+        <Suspense fallback={<p className="checkout-loading" role="status">Loading secure payment form…</p>}>
+          <EmbeddedCheckout key={payment.id} id={payment.id} returnUrl={payment.returnUrl} email={account.user.email} promoCode={payment.promoCode} onComplete={() => { setReturned(true); void refreshPayment(); }} />
+        </Suspense>
+        <p className="membership-fine">{payment.promoCode ? 'Your code is prefilled in the payment form. Review the discounted recurring total before paying; Whop confirms whether it is still available.' : payment.tier === 'monthly' ? 'Standard price: $20 USD every 30 days.' : 'Standard price: $150 USD every 365 days.'} Discounts and any applicable tax are shown in the payment form. Cancel future renewals from Billing. Access opens after payment is verified.</p>
+      </> : <>
+      <span className="membership-step">ONE STUDY SPACE. TWO WAYS IN.</span>
+      <h2>{account?.user ? 'You’re one step away.' : 'Invest in the way you learn.'}</h2>
+      <p>{account?.user ? `Signed in as ${account.user.email}` : 'Choose your plan, create your account, and start exploring.'}</p>
+      {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
+      <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>Choose a plan below. Your discount will appear in the secure payment form.</p></details>
+      <div className="membership-plans">
+        <article className="membership-plan"><div><h3>Monthly</h3><span>Build your routine</span></div><div className="membership-price">$20<span>/ month</span></div><p>Billed every 30 days. Cancel future renewals in Whop.</p>
+          <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('monthly')}>{busy === 'monthly' ? 'Preparing payment…' : 'Choose monthly'}<ArrowRight size={17} /></button>
+        </article>
+        <article className="membership-plan yearly"><span className="membership-best">BEST VALUE</span><div><h3>Yearly</h3><span>Commit to a year of progress</span></div><div className="membership-price">$150<span>/ year</span></div><p>$12.50/month equivalent, billed $150 every 365 days. Cancel future renewals anytime.</p>
+          <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('yearly')}>{busy === 'yearly' ? 'Preparing payment…' : 'Choose yearly'}<ArrowRight size={17} /></button>
+        </article>
+      </div>
+      <p className="payment-reassurance"><ShieldCheck size={15} /> Secure checkout on this site · Powered by Whop</p>
+      {!account?.user && <p className="existing-account">Already a member? <button className="text-button" disabled={!ready?.auth} onClick={() => setAuthMode('login')}>Sign in</button></p>}
+      </>}
+      {account?.access.pendingMembership && <p className="membership-message">You already have a membership awaiting payment confirmation or a billing update. {account.access.manageUrl && <a href={account.access.manageUrl} target="_blank" rel="noopener noreferrer">Open billing in Whop</a>} to check it before purchasing again.</p>}
+      {!payment && <p className="membership-fine">Both plans include all app features and the on-site book reader. Prices in USD; any applicable tax is shown at checkout. Study progress stays in this browser; export a backup to move it.</p>}
+      {account?.user && <div className="membership-restore"><button disabled={checking} onClick={() => void refreshPayment()}>{checking ? 'Checking with Whop…' : 'Already paid? Check access'}</button>{!account.billingReady && <p>Payments are being configured. Checkout will open once it’s ready.</p>}</div>}
+      {(error || new URLSearchParams(location.search).get('signin') === 'failed') && <p className="membership-message" role="alert">{error || 'Email sign-in was canceled or expired. Please try again.'}</p>}
+      {!account && error && <button className="text-button" onClick={() => void load()}>Try again</button>}
+    </section>
+  </>;
+  return <main className="membership-page lp">
+    <Landing panel={panel} panelInHero={!!account?.user} signInLabel={account?.user ? 'Sign out' : 'Sign in'} signInDisabled={!account?.user && !ready?.auth}
+      onSignIn={() => { if (account?.user) void logout(); else setAuthMode('login'); }} />
     <dialog className="auth-dialog" ref={dialog} onCancel={() => setAuthMode(null)} onClose={() => setAuthMode(null)} aria-labelledby="auth-title">
       <button className="auth-close" aria-label="Close sign-in" onClick={() => setAuthMode(null)}><X size={20} /></button>
       <div className="auth-icon"><Mail size={25} /></div>

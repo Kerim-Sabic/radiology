@@ -615,6 +615,43 @@ test.describe('E. study tools', () => {
     expect(checked).toBe(true);
   });
 
+  test('quick search (Ctrl K) opens from the reading room and jumps to a condition or a page', async ({ page }) => {
+    await page.goto(CT_TASK('heart', 'practice'));
+    await waitPanel(page);
+    await page.keyboard.press('Control+k');
+    const box = page.getByRole('combobox', { name: 'Search' });
+    await expect(box).toBeFocused();
+    await box.fill('pnemothorax'); // a typo
+    await expect(page.locator('.palette-list li.active')).toContainText('Pneumothorax');
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/\/conditions\?c=pneumothorax/);
+    await expect(page.getByRole('heading', { name: 'Pneumothorax', exact: true })).toBeVisible();
+    await page.getByRole('button', { name: 'Search (Ctrl K)' }).click();
+    await page.getByRole('combobox', { name: 'Search' }).fill('atlas');
+    await page.keyboard.press('Enter');
+    await expect(page).toHaveURL(/\/atlas$/);
+  });
+
+  test('Today: next scan, streak and areas; a drill answer lights today in the calendar', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('.home-next')).toBeVisible();
+    await expect(page.locator('.home-streak')).toContainText('0 days');
+    await expect(page.locator('.home-area').first()).toBeVisible();
+    await page.evaluate(async () => {
+      const r = indexedDB.open('radiology-visual-mastery');
+      const db: IDBDatabase = await new Promise((ok) => (r.onsuccess = () => ok(r.result)));
+      const d = new Date();
+      const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+      const tx = db.transaction('meta', 'readwrite');
+      tx.objectStore('meta').put({ [key]: { drills: 3 } }, 'activity');
+      await new Promise((ok) => (tx.oncomplete = ok));
+    });
+    await page.reload();
+    await expect(page.locator('.home-streak')).toContainText('1 day');
+    await expect(page.locator('.home-flame.lit')).toBeVisible();
+    await expect(page.locator('.actcal-grid .actcal-day').last()).toHaveClass(/l2/); // today: 3 drill answers
+  });
+
   test('search-pattern coach shows a step’s structures together in the right window', async ({ page }) => {
     await page.goto('/read/starter-ct-chest-01?mode=learn');
     await waitPanel(page);

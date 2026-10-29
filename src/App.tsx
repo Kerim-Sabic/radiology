@@ -1,10 +1,13 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router';
 import { Tooltip } from 'radix-ui';
-import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Settings as SettingsIcon, NotebookPen, Siren, Stethoscope, Target } from 'lucide-react';
+import { BookOpen, Bone, ChartColumn, FolderOpen, GraduationCap, House, Library, Search, Settings as SettingsIcon, NotebookPen, Siren, Stethoscope, Target } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 import { AccountMenu } from './auth/AccountGate';
+import { CommandPalette } from './components/CommandPalette';
+
+const MAC = typeof navigator !== 'undefined' && /Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent);
 
 const Workstation = lazy(() => import('./pages/Workstation'));
 const CoursePage = lazy(() => import('./pages/Course'));
@@ -20,7 +23,7 @@ const DrillPage = lazy(() => import('./pages/Drill'));
 const ConditionsPage = lazy(() => import('./pages/Conditions'));
 const OnCallPage = lazy(() => import('./pages/OnCall'));
 
-function TopNav() {
+function TopNav({ onSearch }: { onSearch: () => void }) {
   const links = [
     { to: '/', label: 'Today', icon: <House size={16} /> },
     { to: '/cases', label: 'Cases', icon: <Library size={16} /> },
@@ -31,9 +34,9 @@ function TopNav() {
     { to: '/course', label: 'Course', icon: <GraduationCap size={16} /> },
     { to: '/book', label: 'Book', icon: <BookOpen size={16} /> },
     { to: '/progress', label: 'Progress', icon: <ChartColumn size={16} /> },
-    { to: '/import', label: 'Import', icon: <FolderOpen size={16} /> },
-    { to: '/author', label: 'Author', icon: <NotebookPen size={16} /> },
-    { to: '/settings', label: 'Settings', icon: <SettingsIcon size={16} /> },
+    { to: '/import', label: 'Import', icon: <FolderOpen size={16} />, minor: true },
+    { to: '/author', label: 'Author', icon: <NotebookPen size={16} />, minor: true },
+    { to: '/settings', label: 'Settings', icon: <SettingsIcon size={16} />, minor: true },
   ];
   return (
     <nav className="topnav" aria-label="Main">
@@ -44,12 +47,17 @@ function TopNav() {
         </span>
       </NavLink>
       {links.map((l) => (
-        <NavLink key={l.to} to={l.to} end={l.to === '/'} className={({ isActive }) => `navlink${isActive ? ' active' : ''}`}>
+        <NavLink key={l.to} to={l.to} end={l.to === '/'} title={l.label} aria-label={l.label} className={({ isActive }) => `navlink${l.minor ? ' minor' : ''}${isActive ? ' active' : ''}`}>
           {l.icon}
           <span>{l.label}</span>
         </NavLink>
       ))}
       <span className="spacer" />
+      <button className="navlink nav-search" onClick={onSearch} aria-label="Search (Ctrl K)" title="Search pages, conditions, chapters and cases">
+        <Search size={16} />
+        <span>Search</span>
+        <kbd>{MAC ? '⌘K' : 'Ctrl K'}</kbd>
+      </button>
       <AccountMenu />
       <NavLink to="/guide" className={({ isActive }) => `navlink${isActive ? ' active' : ''}`}>
         <span>Guide</span>
@@ -90,12 +98,26 @@ export function App() {
     const t = PAGE_TITLES.find(([re]) => re.test(loc.pathname))?.[1];
     document.title = t ? `${t} · radiology.monster` : SITE_TITLE;
   }, [loc.pathname]);
+  const [searching, setSearching] = useState(false);
+  // Ctrl/⌘ K opens quick search on every page, the reading room included (caught before the page's own keys).
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && !e.altKey && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        e.stopPropagation();
+        setSearching((v) => !v);
+      }
+    };
+    window.addEventListener('keydown', onKey, true);
+    return () => window.removeEventListener('keydown', onKey, true);
+  }, []);
   const reading = loc.pathname.startsWith('/read');
   const fullHeight = reading || loc.pathname === '/drill' || /^\/book(\/\d+)?$/.test(loc.pathname);
   return (
     <Tooltip.Provider>
       <div className="shell">
-        {reading ? null : <TopNav />}
+        {reading ? null : <TopNav onSearch={() => setSearching(true)} />}
+        <CommandPalette open={searching} onClose={() => setSearching(false)} />
         <main className="page" style={fullHeight ? { overflow: 'hidden' } : undefined} id="main">
           <Suspense fallback={<Loading />}>
             <Routes>

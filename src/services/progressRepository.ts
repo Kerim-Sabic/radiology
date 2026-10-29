@@ -9,6 +9,7 @@ import type { ViewSnapshot } from '../viewer/engine';
 import type { DrillStats } from './drill';
 import type { OncallShift } from './oncall';
 import { readingProgress } from '../book/readingProgress';
+import { logDrillAnswer, mergeLogs, type ActivityLog } from './activity';
 
 export type Mode = 'learn' | 'practice' | 'assess' | 'review';
 
@@ -207,6 +208,10 @@ export class ProgressRepository {
   async drillStats(): Promise<DrillStats> {
     return ((await (await this.dbp).get('meta', 'drillStats')) as DrillStats | undefined) ?? {};
   }
+  /** Drill answers per day (submitted answers are counted from the attempts themselves). */
+  async activityLog(): Promise<ActivityLog> {
+    return ((await (await this.dbp).get('meta', 'activity')) as ActivityLog | undefined) ?? {};
+  }
   /** The on-call shift in progress (or the last one, once finished). */
   async oncallShift(): Promise<OncallShift | null> {
     return ((await (await this.dbp).get('meta', 'oncallShift')) as OncallShift | undefined) ?? null;
@@ -236,9 +241,13 @@ export class ProgressRepository {
     }
     return done;
   }
-  async saveDrillStats(stats: DrillStats) {
+  /** Saves drill state after an answer; the answer also counts toward that day's study activity. */
+  async saveDrillStats(stats: DrillStats, answeredAt: Date | null = new Date()) {
     try {
-      await (await this.dbp).put('meta', stats, 'drillStats');
+      const tx = (await this.dbp).transaction('meta', 'readwrite');
+      await tx.store.put(stats, 'drillStats');
+      if (answeredAt) await tx.store.put(logDrillAnswer(((await tx.store.get('activity')) as ActivityLog | undefined) ?? {}, answeredAt), 'activity');
+      await tx.done;
       this.changed();
     } catch (e) {
       wrap(e);
@@ -257,6 +266,7 @@ export class ProgressRepository {
       notes: await db.getAll('notes'),
       reviews: await db.getAll('reviews'),
       drillStats: ((await db.get('meta', 'drillStats')) as DrillStats | undefined) ?? {},
+      activity: ((await db.get('meta', 'activity')) as ActivityLog | undefined) ?? {},
       bookPagesRead: [...readingProgress.pages()],
     };
   }
@@ -273,6 +283,8 @@ export class ProgressRepository {
       const drill = { ...(((await tx.objectStore('meta').get('drillStats')) as DrillStats | undefined) ?? {}) };
       for (const st of Object.values((d.drillStats as DrillStats) ?? {})) if (!drill[st.key] || st.lastAt >= drill[st.key].lastAt) drill[st.key] = st;
       await tx.objectStore('meta').put(drill, 'drillStats');
+      if (d.activity && typeof d.activity === 'object')
+        await tx.objectStore('meta').put(mergeLogs(((await tx.objectStore('meta').get('activity')) as ActivityLog | undefined) ?? {}, d.activity as ActivityLog), 'activity');
       for (const a of (d.attempts as Attempt[]) ?? []) {
         const cur = await tx.objectStore('attempts').get(a.id);
         if (!cur || (a.submittedAt ?? '') >= (cur.submittedAt ?? '')) {
@@ -307,7 +319,7 @@ export class ProgressRepository {
   async resetAll() {
     const db = await this.dbp;
     const tx = db.transaction(['attempts', 'bookmarks', 'notes', 'reviews', 'meta'], 'readwrite');
-    await Promise.all([tx.objectStore('attempts').clear(), tx.objectStore('bookmarks').clear(), tx.objectStore('notes').clear(), tx.objectStore('reviews').clear(), tx.objectStore('meta').delete('drillStats'), tx.objectStore('meta').delete('oncallShift'), tx.objectStore('meta').delete('oncallHistory')]);
+    await Promise.all([tx.objectStore('attempts').clear(), tx.objectStore('bookmarks').clear(), tx.objectStore('notes').clear(), tx.objectStore('reviews').clear(), tx.objectStore('meta').delete('drillStats'), tx.objectStore('meta').delete('oncallShift'), tx.objectStore('meta').delete('oncallHistory'), tx.objectStore('meta').delete('activity')]);
     await tx.done;
     readingProgress.clear();
     this.changed();

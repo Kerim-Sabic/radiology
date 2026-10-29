@@ -6,6 +6,8 @@ import { byDimension, errorCounts, mistakeNotebook, statsFor, STATE_LABEL, MILES
 import { summary, type DrillStats } from '../services/drill';
 import { ERROR_LABELS, type ErrorCategory } from '../grading/types';
 import { OutcomeBadge } from '../components/ui';
+import { ActivityCalendar } from '../components/ActivityCalendar';
+import { dailyActivity, streak, type ActivityLog } from '../services/activity';
 
 export default function ProgressPage() {
   const { attempts, catalog, progress } = useApp();
@@ -21,11 +23,17 @@ export default function ProgressPage() {
   const sureRight = sure.filter((a) => a.grade?.outcome === 'correct' || a.selfReview?.verdict === 'correct').length;
   const sureWrong = notebook.filter((m) => m.sureButWrong && !m.resolved);
   const [drill, setDrill] = useState<DrillStats>({});
+  const [log, setLog] = useState<ActivityLog>({});
   // Re-read after any progress change (import, reset), not only on first render.
   useEffect(() => {
-    progress.drillStats().then(setDrill);
+    void Promise.all([progress.drillStats(), progress.activityLog()]).then(([d, l]) => {
+      setDrill(d);
+      setLog(l);
+    });
   }, [progress, attempts]);
   const drillSum = summary(drill);
+  const days = dailyActivity(attempts, log, drill, 182);
+  const run = streak(days);
 
   const doExport = async () => {
     const data = await progress.exportAll();
@@ -94,6 +102,17 @@ export default function ProgressPage() {
             <span>{l}</span>
           </div>
         ))}
+      </section>
+      <section className="card stack">
+        <div className="row wrap">
+          <h2>Study activity</h2>
+          <span className="faint">
+            Answers and drill answers per day, last 26 weeks · streak {run.current} day{run.current === 1 ? '' : 's'} · best {run.best} · {days.filter((d) => d.total > 0).length} active days
+          </span>
+        </div>
+        <div style={{ maxWidth: 520 }}>
+          <ActivityCalendar days={days} />
+        </div>
       </section>
       {overall.attempts > 0 && overall.attempts < 20 ? <div className="notice">Small sample: these numbers describe your attempts so far, not a reliable measure of skill.</div> : null}
 

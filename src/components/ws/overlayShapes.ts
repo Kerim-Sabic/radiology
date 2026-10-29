@@ -5,7 +5,7 @@
  */
 import type { LoadedTarget } from '../../grading/spatialGrader';
 import type { SeriesIndex } from '../../grading/seriesIndex';
-import { dot, imageToPatient, pointInPolygon, polygonArea, sub, type Vec2, type Vec3 } from '../../lib/geometry';
+import { add, cross, dot, imageToPatient, norm, normalize, pointInPolygon, polygonArea, scale, sub, type Vec2, type Vec3 } from '../../lib/geometry';
 import type { ViewerEngine } from '../../viewer/engine';
 
 export interface Shape {
@@ -109,30 +109,130 @@ export function shapesForPanel(engine: ViewerEngine, panelId: string, targets: L
         if (c) out.push({ ...base, kind: 'circle', pts: [c] });
       }
     }
+    const across: Vec3[][] = [];
     for (const poly of polysLps) {
       const d = poly.map((v) => dot(sub(v, plane.point), plane.normal));
       if (d.every((x) => Math.abs(x) <= halfThickness)) {
         const pts = poly.map(toCanvas).filter((p): p is Vec2 => !!p);
         if (pts.length >= 2) out.push({ ...base, kind: 'poly', pts });
-        continue;
-      }
-      const crossings: Vec3[] = [];
-      for (let i = 0; i < poly.length; i++) {
-        const j = (i + 1) % poly.length;
-        if (d[i] === 0) crossings.push(poly[i]);
-        else if (d[i] * d[j] < 0) {
-          const s = d[i] / (d[i] - d[j]);
-          crossings.push([poly[i][0] + s * (poly[j][0] - poly[i][0]), poly[i][1] + s * (poly[j][1] - poly[i][1]), poly[i][2] + s * (poly[j][2] - poly[i][2])]);
-        }
-      }
-      for (let k = 0; k + 1 < crossings.length; k += 2) {
-        const a = toCanvas(crossings[k]);
-        const b = toCanvas(crossings[k + 1]);
-        if (a && b) out.push({ ...base, kind: 'seg', pts: [a, b] });
-      }
+      } else across.push(poly);
+    }
+    if (!across.length || !series.normal) continue;
+    // Outlines drawn on the acquired slices, seen across: rebuild the solid cross-section instead of one line per slice.
+    for (const ring of crossSection(across, series.normal, plane.point, plane.normal, series.spacingMm ?? 1)) {
+      const pts = ring.map(toCanvas).filter((p): p is Vec2 => !!p);
+      if (pts.length >= 3) out.push({ ...base, kind: 'poly', pts });
     }
   }
   return out;
+}
+
+interface Run {
+  /** Position of the acquired slice along its normal (mm). */
+  s: number;
+  /** Ends of the run along the line where that slice meets the view plane. */
+  t0: number;
+  t1: number;
+}
+
+/**
+ * Cross-section of a structure outlined on parallel slices, cut by another plane (MPR, oblique). Each slice's outline meets
+ * the view plane in runs along one line; runs that overlap on neighbouring slices are joined into one outline whose ends
+ * reach half a slice beyond the first and last slice (each outline stands for its slice's thickness). Patient-space rings.
+ */
+export function crossSection(polys: Vec3[][], sliceNormal: Vec3, viewPoint: Vec3, viewNormal: Vec3, spacingMm: number): Vec3[][] {
+  const n = normalize(sliceNormal);
+  const m = normalize(viewNormal);
+  const along = cross(n, m);
+  if (norm(along) < 1e-3) return []; // the view is parallel to the slices
+  const u = normalize(along);
+  // In the view plane, across the runs, pointing to higher slice positions.
+  let v = normalize(cross(m, u));
+  if (dot(v, n) < 0) v = scale(v, -1);
+  const stepPerMm = 1 / Math.max(0.2, dot(v, n)); // in-plane distance per mm along the slice normal
+  // A point of the view plane: on the line of slice position s, at position t along it.
+  const at = (s: number, t: number): Vec3 => {
+    const s0 = dot(viewPoint, n);
+    const t0 = dot(viewPoint, u);
+    return add(add(viewPoint, scale(v, (s - s0) * stepPerMm)), scale(u, t - t0));
+  };
+
+  const bySlice = new Map<number, Run[]>();
+  for (const poly of polys) {
+    if (poly.length < 3) continue;
+    const s = dot(poly[0], n);
+    const d = poly.map((p) => dot(sub(p, viewPoint), m));
+    const ts: number[] = [];
+    for (let i = 0; i < poly.length; i++) {
+      const j = (i + 1) % poly.length;
+      if (d[i] >= 0 === d[j] >= 0) continue;
+      const f = d[i] / (d[i] - d[j]);
+      ts.push(dot(add(poly[i], scale(sub(poly[j], poly[i]), f)), u));
+    }
+    ts.sort((a, b) => a - b);
+    const key = Math.round(s * 100) / 100;
+    const runs = bySlice.get(key) ?? [];
+    for (let k = 0; k + 1 < ts.length; k += 2) runs.push({ s, t0: ts[k], t1: ts[k + 1] });
+    if (runs.length) bySlice.set(key, runs);
+  }
+  // Join overlapping runs on the same slice (several outlines of one structure).
+  const slices = [...bySlice.entries()]
+    .sort((a, b) => a[0] - b[0])
+    .map(([, runs]) => {
+      runs.sort((a, b) => a.t0 - b.t0);
+      const merged: Run[] = [];
+      for (const r of runs) {
+        const last = merged[merged.length - 1];
+        if (last && r.t0 <= last.t1) last.t1 = Math.max(last.t1, r.t1);
+        else merged.push({ ...r });
+      }
+      return merged;
+    });
+
+  const half = spacingMm / 2;
+  const rings: Vec3[][] = [];
+  const close = (runs: Run[]) => {
+    const first = runs[0];
+    const last = runs[runs.length - 1];
+    rings.push([
+      at(first.s - half, first.t0),
+      ...runs.map((r) => at(r.s, r.t0)),
+      at(last.s + half, last.t0),
+      at(last.s + half, last.t1),
+      ...runs.map((r) => at(r.s, r.t1)).reverse(),
+      at(first.s - half, first.t1),
+    ]);
+  };
+  let open: Run[][] = [];
+  for (const runs of slices) {
+    const prevS = open[0]?.[open[0].length - 1].s;
+    if (prevS !== undefined && runs[0].s - prevS > spacingMm * 1.5) {
+      open.forEach(close);
+      open = [];
+    }
+    // Each outline carries on into the run it overlaps most; where a structure splits or merges, the other runs start
+    // outlines of their own and the outlines left over end here.
+    const pairs: Array<{ o: Run[]; r: Run; overlap: number }> = [];
+    for (const o of open)
+      for (const r of runs) {
+        const a = o[o.length - 1];
+        const overlap = Math.min(a.t1, r.t1) - Math.max(a.t0, r.t0);
+        if (overlap >= 0) pairs.push({ o, r, overlap });
+      }
+    pairs.sort((a, b) => b.overlap - a.overlap);
+    const continued = new Set<Run[]>();
+    const placed = new Set<Run>();
+    for (const { o, r } of pairs) {
+      if (continued.has(o) || placed.has(r)) continue;
+      o.push(r);
+      continued.add(o);
+      placed.add(r);
+    }
+    for (const o of open) if (!continued.has(o)) close(o);
+    open = [...continued, ...runs.filter((r) => !placed.has(r)).map((r) => [r])];
+  }
+  open.forEach(close);
+  return rings;
 }
 
 /** Group a structure for the anatomy list and colours: lungs with the airways, the heart with the vessels. */

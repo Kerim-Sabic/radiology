@@ -9,6 +9,7 @@
   },
   "scripts": {
     "dev": "vite",
+    "dev:landing": "vite --mode landing --port 5174",
     "build": "npm run typecheck && vite build",
     "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.test.json --noEmit && tsc -p tsconfig.server.json",
     "preview": "vite preview --port 4317",

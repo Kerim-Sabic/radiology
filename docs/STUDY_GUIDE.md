@@ -12,6 +12,10 @@ Modes: **Learn** (reference and explanation visible; always counts as assisted),
 
 Students: keep **Student** level (guided descriptions). Residents: switch to **Resident** (full findings / impression / differential on every task, oral-exam prompts).
 
+Anywhere, **Ctrl + K** (⌘ K on a Mac) opens quick search: pages, conditions, book chapters and cases (by neutral title only, so it never gives away a diagnosis).
+
+**Today** also shows your streak and a calendar of the days you studied (answers and drill answers), and **Your areas**: patients read and how often you were right in each body area, with a link that opens the next task on a patient you have not read in the area that needs it most.
+
 ## What the numbers mean
 - *Independent* = no hint or reveal before submitting. *Assisted* attempts are kept but counted separately.
 - *Provisionally independent* (a product heuristic): independent success on ≥3 distinct patients including a retry ≥20 h after the first success. It is not a clinical competence claim.

@@ -94,3 +94,22 @@ test('a promo code survives signup and reaches the on-page monthly checkout', as
   expect(submitted).toEqual({tier:'monthly',promoCode:'NADIN'});
   await expect(page.getByText('Your code is prefilled',{exact:false})).toBeVisible();
 });
+test('landing page: modality tour, answers, screenshots and credits, all before access', async ({page}) => {
+  await account(page);
+  const dataRequests: string[]=[];
+  page.on('request', r=> { if(/\/(packs|content)\//.test(r.url())) dataRequests.push(r.url()); });
+  await page.goto('/');
+  await expect(page.getByRole('heading',{level:1})).toContainText('Learn to see.');
+  await expect.poll(()=>page.locator('.lp-hero-shot img').evaluate((i: HTMLImageElement)=>i.naturalWidth)).toBeGreaterThan(0);
+  await page.getByRole('tab',{name:'Mammography'}).click();
+  await expect(page.getByRole('tabpanel')).toContainText('Hung like a real mammography reading');
+  await page.getByRole('tab',{name:'Mammography'}).press('ArrowRight');
+  await expect(page.getByRole('tab',{name:'Ultrasound'})).toBeFocused();
+  await expect(page.getByRole('tabpanel')).toContainText('Cyst or solid?');
+  await page.getByText('Can I use it to diagnose patients?').click();
+  await expect(page.getByText('It is not a medical device')).toBeVisible();
+  await expect(page.locator('.lp-credits')).toContainText('CBIS-DDSM');
+  await page.getByRole('link',{name:'Start learning'}).click();
+  await expect(page.getByRole('button',{name:'Choose monthly'})).toBeInViewport();
+  expect(dataRequests).toEqual([]);
+});

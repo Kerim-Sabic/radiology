@@ -17,11 +17,30 @@ const neverShipTheBook = (): Plugin => ({
   },
 });
 
+// `npm run dev:landing` shows the public landing page as a visitor sees it: the membership gate is on and
+// /api answers as for a signed-out visitor (there is no account service in `vite` itself).
+const landingPreview = (): Plugin => ({
+  name: 'landing-preview',
+  apply: 'serve',
+  configureServer(server) {
+    server.middlewares.use('/api/config', (_req, res) => {
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ auth: true, billing: true }));
+    });
+    server.middlewares.use('/api/session', (_req, res) => {
+      res.statusCode = 401;
+      res.setHeader('Content-Type', 'application/json');
+      res.end(JSON.stringify({ user: null }));
+    });
+  },
+});
+
 // Cornerstone3D v5 + Vite, following the official integration guide:
 // CommonJS shim for dicom-parser, keep the DICOM loader (and its codec WASM)
 // out of dev pre-bundling, and emit ES-module workers.
-export default defineConfig({
-  plugins: [react(), viteCommonjs(), neverShipTheBook()],
+export default defineConfig(({ mode }) => ({
+  plugins: [react(), viteCommonjs(), neverShipTheBook(), ...(mode === 'landing' ? [landingPreview()] : [])],
+  define: mode === 'landing' ? { 'import.meta.env.VITE_REQUIRE_SIGN_IN': JSON.stringify('1') } : {},
   resolve: {
     // vtk.js → xmlbuilder2 extends Node's EventEmitter; use the browser polyfill instead of an empty stub.
     alias: { events: 'events/' },
@@ -42,4 +61,4 @@ export default defineConfig({
   server: {
     port: 5173,
   },
-});
+}));
