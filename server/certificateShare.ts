@@ -1,7 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { createElement as h, type ReactNode } from 'react';
-import satori from 'satori';
 import { initWasm, Resvg } from '@resvg/resvg-wasm';
 import type { Certificate } from './certificates.js';
 
@@ -54,6 +53,8 @@ function seal(size: number) {
 }
 
 export async function certificateImage(c: Certificate, origin: string, square = false): Promise<Response> {
+  // Only image requests need the font engine and its WebAssembly initialization.
+  const { default: satori } = await import('satori');
   const width = square ? 1080 : 1200;
   const height = square ? 1080 : 627;
   const pad = square ? 56 : 40;
