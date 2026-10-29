@@ -12,7 +12,7 @@ Apple Pay is enabled through Whop Elements for eligible devices/browsers with an
 - Yearly: USD 150, billed every 365 days, no trial.
 - Both plans unlock the same application and the protected on-site textbook reader. Study progress is stored in the customer's browser.
 
-Historical monthly/lifetime plan IDs remain allowlisted through `WHOP_LEGACY_MONTHLY_PLAN_ID` and `WHOP_LIFETIME_PLAN_ID`. Existing subscriptions and their discounts are not migrated or repriced. The original one-use `nadin` promotion keeps its $1/month recurring offer on the legacy plan. Enter it in the website promo field before choosing monthly; the server selects the original plan, and Whop Elements applies the code on its first quote. Whop enforces the redemption limit and displays any invalid/used-code error before payment. The redeemed `empa` subscription remains unchanged.
+Historical monthly/lifetime plan IDs remain allowlisted through `WHOP_LEGACY_MONTHLY_PLAN_ID` and `WHOP_LIFETIME_PLAN_ID`. Existing subscriptions and their discounts are not migrated or repriced. The original one-use `nadin` promotion keeps its $1/month recurring offer on the legacy plan. Enter it in the website promo field before choosing monthly, or use Apply code above the payment form; the server selects the original plan, and Whop Elements applies the code on its first quote. Editing that field hides the previous payment form until the updated offer is loaded. Entering NADIN directly inside Whop's standard $20 checkout cannot switch plans and is rejected by Whop. Whop enforces the redemption limit and displays any invalid/used-code error before payment. The redeemed `empa` subscription remains unchanged.
 
 ## Server configuration
 

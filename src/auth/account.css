@@ -29,3 +29,4 @@
 .inline-account-cardbox{overflow:visible!important;border-radius:0!important}
 
 .promo-entry{margin-top:20px;color:#a1a1a6;font-size:12px}.promo-entry summary{cursor:pointer;color:#3b9cff}.promo-entry label{display:block;margin:14px 0 6px}.promo-entry input{width:100%;box-sizing:border-box;background:#000;border:1px solid #3a3a3e;border-radius:6px;padding:12px;color:#eef4fa;font:inherit;font-size:16px}.promo-entry p{font-size:12px;line-height:1.6;margin-top:8px}
+.checkout-promo-row{display:flex;align-items:center;gap:12px}.checkout-promo-row input{min-width:0;flex:1}.checkout-promo-row button{flex-shrink:0;min-height:44px}.checkout-promo-row button:disabled{opacity:.5;cursor:default}

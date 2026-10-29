@@ -221,6 +221,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
 
   if (account?.access.active) return <AccountContext.Provider value={{ account, logout, free: false, openPlans }}>{children}</AccountContext.Provider>;
   if (loading) return <div className="membership-loading" role="status"><ScanLine size={30} /><p>Opening your study space…</p></div>;
+  const checkoutCodeChanged = promoCode.trim().toLowerCase() !== (payment?.promoCode || '').toLowerCase();
   const panel = <>
     <section className="membership-panel" id="plans" aria-label="Membership">
       {payment && account?.user ? <>
@@ -228,10 +229,14 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <span className="membership-step">Checkout</span>
         <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
         <p className="checkout-account">{account.user.email}</p>
-        {!payment.promoCode && <button className="text-button" onClick={() => setPayment(null)}>Have a promo code? Add it before payment</button>}
-        <Suspense fallback={<p className="checkout-loading" role="status">Loading secure payment form…</p>}>
+        <form className="promo-entry checkout-promo" onSubmit={event => { event.preventDefault(); if (!busy && checkoutCodeChanged) void buy(payment.tier); }}>
+          <label htmlFor="checkout-promo">Promo code</label>
+          <div className="checkout-promo-row"><input id="checkout-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} disabled={!!busy} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code" /><button type="submit" className="text-button" disabled={!!busy || !checkoutCodeChanged}>{busy ? 'Updating…' : promoCode.trim() ? 'Apply code' : 'Remove code'}</button></div>
+          <p>Apply your code here so we can open the matching offer. Whop confirms the discount before payment.</p>
+        </form>
+        {busy || checkoutCodeChanged ? <p className="checkout-loading" role="status">{busy ? 'Updating your payment form…' : 'Apply your code to update the price before paying.'}</p> : <Suspense fallback={<p className="checkout-loading" role="status">Loading secure payment form…</p>}>
           <EmbeddedCheckout key={payment.id} id={payment.id} returnUrl={payment.returnUrl} email={account.user.email} promoCode={payment.promoCode} onComplete={() => { setReturned(true); void refreshPayment(); }} />
-        </Suspense>
+        </Suspense>}
         <p className="membership-fine">{payment.promoCode ? 'Your code is prefilled in the payment form. Review the discounted recurring total before paying; Whop confirms whether it is still available.' : payment.tier === 'monthly' ? 'Standard price: $20 USD every 30 days.' : 'Standard price: $150 USD every 365 days.'} Discounts and any applicable tax are shown in the payment form. Cancel future renewals from Billing. Access opens after payment is verified.</p>
       </> : <>
       <span className="membership-step">{account?.user ? 'Choose your plan' : 'Membership'}</span>

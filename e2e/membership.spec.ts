@@ -105,6 +105,31 @@ test('a promo code survives signup and reaches the on-page monthly checkout', as
   await expect(page.getByText('Your code is prefilled',{exact:false})).toBeVisible();
 });
 
+test('a code added after choosing monthly switches offers before payment and can be removed', async ({page}) => {
+  await page.setViewportSize({width:390,height:844});
+  await page.route('**/api/config',route=>route.fulfill({json:{auth:true,billing:true}}));
+  await page.route('**/api/session',route=>route.fulfill({json:{user:{name:'Member',email:'member@example.com'},access:{active:false},billingReady:true}}));
+  const submitted: {tier:string;promoCode?:string}[]=[];
+  await page.route('**/api/billing/checkout',route=>{
+    const body=route.request().postDataJSON(); submitted.push(body);
+    return route.fulfill({json:{id:body.promoCode?'ch_promo':'ch_standard',...(body.promoCode?{promoCode:'nadin'}:{}),returnUrl:'http://localhost:4317/?checkout=returned'}});
+  });
+  await page.route('**/*whop.com/**',route=>route.abort());
+  await page.goto('/?plans');
+  await page.getByRole('button',{name:'Choose monthly'}).click();
+  await page.getByLabel('Promo code',{exact:true}).fill(' NADIN ');
+  await expect(page.getByRole('status').filter({hasText:'Apply your code to update the price before paying.'})).toBeVisible();
+  await page.getByRole('button',{name:'Apply code',exact:true}).click();
+  await expect(page.getByText('Your code is prefilled',{exact:false})).toBeVisible();
+  expect(submitted.at(-1)).toEqual({tier:'monthly',promoCode:'NADIN'});
+  await expect(page.getByRole('button',{name:'Apply code',exact:true})).toBeDisabled();
+  await page.getByLabel('Promo code',{exact:true}).fill('');
+  await page.getByRole('button',{name:'Remove code',exact:true}).click();
+  await expect(page.getByText('Standard price: $20 USD every 30 days.',{exact:false})).toBeVisible();
+  expect(submitted.at(-1)).toEqual({tier:'monthly'});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+});
+
 test('members can copy their verified referral link in an accessible phone dialog', async ({page, context, browserName}) => {
   await page.setViewportSize({width:390,height:844});
   // Only Chromium lets a test read the clipboard back.
