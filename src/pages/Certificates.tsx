@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Award, ExternalLink } from 'lucide-react';
+import { useNavigate, useSearchParams } from 'react-router';
+import { ArrowRight, Award, ExternalLink } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { useAccount } from '../auth/AccountGate';
 import { areaProgress } from '../services/areas';
@@ -15,6 +16,7 @@ import {
   type CertStatus,
   type IssuedCertificate,
 } from '../services/certificates';
+import { certKey, nextCertificateTask, parseCertKey, stepUrl } from '../services/certify';
 import '../styles/upgrade.css';
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
@@ -25,6 +27,8 @@ const same = (c: IssuedCertificate, s: CertStatus) => c.area === s.area && (c.le
 export default function CertificatesPage() {
   const { catalog, attempts, free, openPlans, settings } = useApp();
   const account = useAccount();
+  const navigate = useNavigate();
+  const [sp, setSp] = useSearchParams();
   const [issued, setIssued] = useState<IssuedCertificate[]>([]);
   const [claiming, setClaiming] = useState<CertStatus | null>(null);
   const [name, setName] = useState('');
@@ -44,6 +48,23 @@ export default function CertificatesPage() {
     setClaiming(s);
     setName(own && !own.includes('@') ? own : settings.reviewerName === 'me' ? '' : settings.reviewerName);
     setError('');
+  };
+  // Back from the reading room with a level reached (?claim=chest-2): open its form.
+  const claimParam = sp.get('claim');
+  useEffect(() => {
+    const want = parseCertKey(claimParam);
+    const s = want && statuses.find((x) => x.area === want.area && x.level === want.level);
+    if (!s) return;
+    if (s.eligible && !free && account) startClaim(s);
+    setSp({}, { replace: true });
+    requestAnimationFrame(() => document.getElementById(`cert-${certKey(want.area, want.level)}`)?.scrollIntoView({ block: 'center', behavior: 'smooth' }));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [claimParam, statuses.length]);
+  /** Start or continue a level: the next patient or task it still needs, in the reading room. */
+  const work = (s: CertStatus) => {
+    if (!catalog) return;
+    const step = nextCertificateTask(catalog, attempts, s.area, s.level);
+    if (step) navigate(stepUrl(step, s.area, s.level));
   };
   const claim = async () => {
     if (!claiming) return;
@@ -65,6 +86,20 @@ export default function CertificatesPage() {
           Earned by reading real patients here. Each body area has three levels, and the whole library three more; every level is its own certificate, with a public
           check link and the steps to add it to LinkedIn under Licenses &amp; certifications.
         </p>
+        <ol className="certs-how" aria-label="How to get a certificate">
+          <li>
+            <b>Start certification</b>
+            <span>Pick a level below. The app opens the first patient it needs.</span>
+          </li>
+          <li>
+            <b>Read the patients it gives you</b>
+            <span>After each answer, press Next for your certificate. The bar at the top shows what is left.</span>
+          </li>
+          <li>
+            <b>Finish certification</b>
+            <span>When the level is reached, type your name. Your certificate is ready to share on LinkedIn.</span>
+          </li>
+        </ol>
         <div className="row" style={{ gap: 8, flexWrap: 'wrap' }}>
           <a className="btn" href="/certificate/example" target="_blank" rel="noopener noreferrer">
             See an example <ExternalLink size={13} />
@@ -145,7 +180,7 @@ export default function CertificatesPage() {
               {levels.map((s) => {
                 const have = issued.find((c) => same(c, s));
                 return (
-                  <li key={s.level} className={s.eligible ? 'ok' : ''}>
+                  <li key={s.level} id={`cert-${certKey(s.area, s.level)}`} className={s.eligible ? 'ok' : ''}>
                     <div className="certs-step-head">
                       <span className="certs-badge" aria-hidden="true">
                         {s.level}
@@ -177,16 +212,21 @@ export default function CertificatesPage() {
                             View and share <ExternalLink size={12} />
                           </a>
                         ) : null}
-                        {s.eligible && !free && signedIn ? (
-                          <button className="btn sm primary" onClick={() => startClaim(s)}>
-                            {have ? 'Renew' : 'Claim'}
-                          </button>
-                        ) : null}
-                        {s.eligible && free ? (
+                        {free ? (
                           <button className="btn sm primary" onClick={openPlans}>
                             See plans
                           </button>
-                        ) : null}
+                        ) : s.eligible ? (
+                          signedIn ? (
+                            <button className="btn sm primary" onClick={() => startClaim(s)}>
+                              {have ? 'Renew' : 'Finish certification'}
+                            </button>
+                          ) : null
+                        ) : have ? null : (
+                          <button className="btn sm primary" onClick={() => work(s)}>
+                            {s.read || s.judged ? 'Continue certification' : 'Start certification'} <ArrowRight size={13} />
+                          </button>
+                        )}
                       </span>
                     </div>
                     {claiming && same({ area: claiming.area, level: claiming.level } as IssuedCertificate, s) ? (

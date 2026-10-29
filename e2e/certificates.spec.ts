@@ -42,3 +42,31 @@ test('the example certificate shows a level and says it is an example', async ({
   await expect(page.getByRole('button', { name: 'Add to LinkedIn profile' })).toHaveCount(0);
   await expect(page.locator('.cert-check')).toHaveCount(0);
 });
+
+test('start certification: the app opens the patient a level needs, then the next one after each answer', async ({ page }) => {
+  await page.goto('/certificates');
+  await expect(page.locator('.certs-how')).toContainText('Start certification');
+  await expect(page.locator('.certs-how')).toContainText('Finish certification');
+  const chest = page.locator('section.certs-area', { has: page.getByRole('heading', { name: 'Chest imaging' }) });
+  await chest.getByRole('button', { name: /Start certification/ }).first().click();
+  await expect(page).toHaveURL(/\/read\/[^?]+\?task=.+&mode=practice&cert=chest-1$/);
+  const bar = page.locator('.ws-cert');
+  await expect(bar).toContainText('Chest imaging · Level 1 · Core');
+  await expect(bar).toContainText('0/10 patients');
+  const first = new URL(page.url()).pathname;
+  // Answer in the quickest honest way (first option, or "not assessable").
+  await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
+  const options = page.getByRole('group', { name: 'Answer options' }).locator('input');
+  if (await options.count()) await options.first().check();
+  else if (await page.getByRole('button', { name: 'Not visible / not assessable' }).count()) await page.getByRole('button', { name: 'Not visible / not assessable' }).click();
+  else if (await page.getByRole('button', { name: 'No abnormality found' }).count()) await page.getByRole('button', { name: 'No abnormality found' }).click();
+  await page.getByRole('button', { name: 'Submit', exact: true }).click();
+  await expect(bar).toContainText('1/10 patients');
+  await page.getByRole('button', { name: 'Next for your certificate →' }).click();
+  await expect(page).toHaveURL(/cert=chest-1$/);
+  expect(new URL(page.url()).pathname).not.toBe(first);
+  await expect(page.locator('.ws-cert')).toContainText('1/10 patients');
+  // Switching mode keeps the certificate.
+  await page.getByRole('group', { name: 'Mode' }).getByRole('button', { name: 'Learn' }).click();
+  await expect(page).toHaveURL(/cert=chest-1/);
+});

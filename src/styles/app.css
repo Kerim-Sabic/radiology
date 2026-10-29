@@ -1659,3 +1659,10 @@ select,
 textarea {
   border-radius: 10px;
 }
+
+/* Working towards a certificate in the reading room: the level and what is left, kept short. */
+.ws-cert {
+  max-width: 340px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

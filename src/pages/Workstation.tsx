@@ -83,6 +83,7 @@ import { anchorLabel as fmtAnchor } from '../services/curriculum';
 import type { ViewSnapshot } from '../viewer/engine';
 import { imageToPatient, patientToPlaneMm, polygonArea, polygonCentroid, type Vec2, type Vec3 } from '../lib/geometry';
 import { AI_DRAFT_BY, cleanLabel, isAiDraft, plainName } from '../lib/provenance';
+import { certKey, certName, certStatusFor, nextCertificateTask, parseCertKey, stepUrl } from '../services/certify';
 
 const centroid3 = (poly: Vec3[]): Vec3 => [
   poly.reduce((a, q) => a + q[0], 0) / poly.length,
@@ -124,6 +125,9 @@ export default function Workstation() {
   const kase = catalog?.cases.get(caseId) ?? null;
   const tasks = useMemo(() => (catalog?.tasksByCase.get(caseId) ?? []).slice(), [catalog, caseId]);
   const mode = (sp.get('mode') as Mode) || 'practice';
+  // Working towards a certificate level (from the Certificates page): kept in the URL across tasks and modes.
+  const certParam = parseCertKey(sp.get('cert'));
+  const keepCert: Record<string, string> = certParam ? { cert: certKey(certParam.area, certParam.level) } : {};
   const availableTasks = tasks.filter((t) => mode === 'review' || t.modes.includes(mode === 'assess' ? 'assess' : mode === 'learn' ? 'learn' : 'practice'));
   const task: Task | null = availableTasks.find((t) => t.id === sp.get('task')) ?? availableTasks[0] ?? tasks.find((t) => t.id === sp.get('task')) ?? null;
 
@@ -303,6 +307,17 @@ export default function Workstation() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.submitted, shiftItem?.submittedAt]);
   const nextInShift = shift ? shift.items.findIndex((it, i) => i !== shiftIndex && !it.submittedAt) : -1;
+  const certStatus = useMemo(
+    () => (catalog && certParam ? certStatusFor(catalog, attempts, certParam.area, certParam.level) : null),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [catalog, attempts, sp.get('cert')],
+  );
+  const goNextForCert = () => {
+    if (!catalog || !certParam) return;
+    if (certStatus?.eligible) return navigate(`/certificates?claim=${certKey(certParam.area, certParam.level)}`);
+    const step = nextCertificateTask(catalog, attempts, certParam.area, certParam.level, sp.get('task') ?? undefined);
+    navigate(step ? stepUrl(step, certParam.area, certParam.level) : '/certificates');
+  };
   const goNextInShift = async () => {
     if (!shift) return;
     if (nextInShift >= 0) navigate(shiftUrl(shift, nextInShift));
@@ -667,7 +682,8 @@ export default function Workstation() {
     return cands.sort((a, b) => Number(tried.has(a.id)) - Number(tried.has(b.id)))[0] ?? null;
   }, [catalog, task, kase, attempts]);
 
-  const goTask = (t: Task, m: Mode = mode === 'learn' || mode === 'review' ? 'practice' : mode) => navigate(`/read/${t.caseId}?task=${encodeURIComponent(t.id)}&mode=${m}`);
+  const goTask = (t: Task, m: Mode = mode === 'learn' || mode === 'review' ? 'practice' : mode) =>
+    navigate(`/read/${t.caseId}?task=${encodeURIComponent(t.id)}&mode=${m}${certParam ? `&cert=${certKey(certParam.area, certParam.level)}` : ''}`);
 
   const openBook = (a: BookAnchorRef) => {
     const snap = engine.snapshot(focused);
@@ -1083,7 +1099,7 @@ export default function Workstation() {
     <div className="ws">
       {/* ------------------------------------------------ toolbar */}
       <div className="ws-bar" role="toolbar" aria-label="Viewer tools">
-        <IconButton label="Back to cases" onClick={() => navigate('/cases')}>
+        <IconButton label={certParam ? 'Back to certificates' : 'Back to cases'} onClick={() => navigate(certParam ? '/certificates' : '/cases')}>
           <ArrowLeft size={17} />
         </IconButton>
         <IconButton label="Case navigator" shortcut="[" active={leftOpen} onClick={() => setLeftOpen((v) => !v)}>
@@ -1103,9 +1119,19 @@ export default function Workstation() {
             {nextInShift >= 0 ? 'Next case →' : 'End shift: see the report'}
           </button>
         ) : null}
+        {certStatus ? (
+          <span className={`chip ${certStatus.eligible ? 'ok' : 'accent'} ws-cert`} title={certStatus.todo ?? 'This level is reached: finish the certification.'}>
+            Certificate: {certName(certStatus)} · {certStatus.eligible ? 'reached' : `${Math.min(certStatus.read, certStatus.needPatients)}/${certStatus.needPatients} patients`}
+          </span>
+        ) : null}
+        {certStatus && (session.submitted || certStatus.eligible) ? (
+          <button className="btn sm primary" onClick={goNextForCert}>
+            {certStatus.eligible ? 'Finish certification' : 'Next for your certificate →'}
+          </button>
+        ) : null}
         <div className="mode-switch" role="group" aria-label="Mode" style={shiftItem && !session.submitted ? { display: 'none' } : undefined}>
           {MODES.map(([m, label]) => (
-            <button key={m} aria-pressed={mode === m} onClick={() => setSp({ task: task.id, mode: m })}>
+            <button key={m} aria-pressed={mode === m} onClick={() => setSp({ task: task.id, mode: m, ...keepCert })}>
               {label}
             </button>
           ))}
@@ -1359,7 +1385,7 @@ export default function Workstation() {
             {availableTasks.map((t, i) => {
               const done = attempts.some((a) => a.taskId === t.id && a.submittedAt);
               return (
-                <button key={t.id} className="series-item" style={{ gridTemplateColumns: '18px 1fr' }} aria-current={t.id === task.id} onClick={() => setSp({ task: t.id, mode })}>
+                <button key={t.id} className="series-item" style={{ gridTemplateColumns: '18px 1fr' }} aria-current={t.id === task.id} onClick={() => setSp({ task: t.id, mode, ...keepCert })}>
                   <span className="faint">{done ? '✓' : i + 1}</span>
                   <span className="series-meta">
                     <strong>{mode === 'assess' && t.id !== task.id ? `Task ${i + 1}` : mode === 'assess' && !session.submitted ? `Task ${i + 1}` : t.title}</strong>
@@ -1461,13 +1487,13 @@ export default function Workstation() {
                 setSelfReview(null);
                 setAttemptId(newId());
                 setHighlight(new Set());
-                if (mode === 'review') setSp({ task: task.id, mode: 'practice' });
+                if (mode === 'review') setSp({ task: task.id, mode: 'practice', ...keepCert });
                 toast.show('New attempt on the same patient — it will be recorded, but it is not an unseen-patient test.');
               }}
               onNextTask={(() => {
                 const i = availableTasks.findIndex((t) => t.id === task.id);
                 const n = availableTasks[i + 1];
-                return n ? () => setSp({ task: n.id, mode }) : null;
+                return n ? () => setSp({ task: n.id, mode, ...keepCert }) : null;
               })()}
               selfReview={selfReview}
               onSelfReview={setSelfReview}

@@ -764,3 +764,48 @@
     flex-wrap: wrap;
   }
 }
+/* How a certificate is earned, in three steps. */
+.certs-how {
+  list-style: none;
+  counter-reset: how;
+  margin: 4px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+.certs-how li {
+  counter-increment: how;
+  display: grid;
+  gap: 4px;
+  align-content: start;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel);
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.45;
+}
+.certs-how li b {
+  color: var(--text);
+  font-size: 14px;
+}
+.certs-how li b::before {
+  content: counter(how);
+  display: inline-grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: var(--primary-ink);
+  font-size: 11.5px;
+  vertical-align: 1px;
+}
+@media (max-width: 760px) {
+  .certs-how {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
