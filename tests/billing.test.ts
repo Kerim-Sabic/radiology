@@ -22,7 +22,7 @@ vi.mock('@whop/sdk', () => ({ WhopClient: class {
   checkoutConfigurations = { create: async (body: unknown, options: unknown) => { fake.checkoutCalls.push({ body, options }); return { id: 'ch_test', purchase_url: 'https://whop.com/checkout/ch_test' }; } };
 } }));
 
-import { accessFor, checkout, membershipAccess, paymentGrantsAccess, safeWhopUrl, validatePlan } from '../server/billing';
+import { accessFor, checkout, membershipAccess, paymentGrantsAccess, safeWhopUrl, validatePlan, referralProfile } from '../server/billing';
 import { beginSignIn, createSession, finishSignIn, hash, session } from '../server/auth';
 import { handle } from '../server/handler';
 
@@ -36,6 +36,31 @@ beforeEach(() => {
 afterAll(() => vi.unstubAllEnvs());
 
 describe('paid access policy', () => {
+  it('credits the referral on both plans, keeps retries stable and isolates different referrers', async () => {
+    await checkout('new-customer', 'yearly', undefined, 'student-one');
+    await checkout('new-customer', 'yearly', undefined, 'student-one');
+    await checkout('new-customer', 'yearly', undefined, 'student-two');
+    await checkout('new-customer', 'yearly');
+    await checkout('new-customer', 'monthly', 'nadin', 'student-one');
+    const calls = fake.checkoutCalls as { body: { plan_id: string; affiliate_code?: string }; options: { idempotencyKey: string } }[];
+    expect(calls[0].body).toMatchObject({ plan_id: 'plan_yearly', affiliate_code: 'student-one' });
+    expect(calls[0].options.idempotencyKey).toBe(calls[1].options.idempotencyKey);
+    expect(new Set([calls[0], calls[2], calls[3]].map(c => c.options.idempotencyKey)).size).toBe(3);
+    expect(calls[3].body.affiliate_code).toBeUndefined();
+    expect(calls[4].body).toMatchObject({ plan_id: 'plan_legacy_monthly', affiliate_code: 'student-one' });
+  });
+  it('builds a referral link only for an exact verified member and suppresses known self-referrals', async () => {
+    await createSession({ sub: 'clerk_referrer', provider: 'clerk', email: 'member@example.com', emailVerified: true });
+    const id = hash('clerk:clerk_referrer');
+    fake.members = [{ account_id: 'biz_other', email: 'member@example.com', user: { id: 'user_other', username: 'not-mine' } }, { account_id: 'biz_test', email: 'somebody@example.com', user: { id: 'user_else', username: 'also-not-mine' } }];
+    expect((await referralProfile(id)).shareUrl).toBeNull();
+    fake.members.push({ account_id: 'biz_test', email: 'MEMBER@example.com', user: { id: 'user_mine', username: 'study-pal' } });
+    expect((await referralProfile(id)).shareUrl).toBe('https://whop.com/e/trk_zpdZ5h59TRkTrN/study-pal');
+    await checkout(id, 'monthly', undefined, 'study-pal');
+    expect(fake.checkoutCalls[0]).not.toHaveProperty('body.affiliate_code');
+    fake.members.push({ account_id: 'biz_test', email: 'member@example.com', user: { id: 'user_duplicate', username: 'another' } });
+    await expect(referralProfile(id)).rejects.toThrow('Ambiguous');
+  });
   it('restores Whop membership only through an exact match to the verified Clerk email', async () => {
     await createSession({ sub: 'clerk_test', provider: 'clerk', email: 'buyer@example.com', emailVerified: true });
     const userId = hash('clerk:clerk_test');
@@ -194,10 +219,13 @@ describe('sessions and request boundaries', () => {
     expect(latest).toContain('HttpOnly; Secure; SameSite=Lax');
   });
   it('blocks anonymous and forged sessions, cross-origin checkout, and arbitrary prices', async () => {
+    expect((await handle(request('', '/api/referrals'))).status).toBe(401);
     expect((await handle(request('__Host-rvm-session=forged'))).status).toBe(401);
     const token = await createSession({ sub: 'user_test', email: 'test@example.com', emailVerified: true });
     expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'monthly' }, 'https://evil.test'))).status).toBe(403);
     expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'monthly', amount: 0 }))).status).toBe(400);
+    expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'monthly', affiliateCode: 'https://evil.test' }))).status).toBe(400);
+    expect((await handle(request(token, '/api/referrals'))).headers.get('cache-control')).toBe('private, no-store');
     expect((await handle(request(token, '/api/access'))).status).toBe(402);
     expect((await handle(request(token))).headers.get('cache-control')).toBe('private, no-store');
   });

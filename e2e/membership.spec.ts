@@ -94,14 +94,53 @@ test('a promo code survives signup and reaches the on-page monthly checkout', as
   let submitted: unknown;
   await page.route('**/api/billing/checkout',route=>{submitted=route.request().postDataJSON();return route.fulfill({json:{id:'ch_promo',promoCode:'nadin',returnUrl:'http://localhost:4317/?checkout=returned'}});});
   await page.route('**/*whop.com/**',route=>route.abort());
-  await page.goto('/');
+  await page.goto('/?a=study-pal');
+  await page.goto('/'); // A return visit must preserve credit before the friend signs up.
   await page.getByText('Have a promo code?',{exact:true}).click();
   await page.getByLabel('Promo code',{exact:true}).fill('NADIN');
   await page.getByRole('button',{name:'Choose monthly'}).click();
   await page.getByRole('button',{name:'Continue with email'}).click();
   await expect(page.getByRole('heading',{name:'Your study space is almost ready.'})).toBeVisible();
-  expect(submitted).toEqual({tier:'monthly',promoCode:'NADIN'});
+  expect(submitted).toEqual({tier:'monthly',promoCode:'NADIN',affiliateCode:'study-pal'});
   await expect(page.getByText('Your code is prefilled',{exact:false})).toBeVisible();
+});
+
+test('members can copy their verified referral link in an accessible phone dialog', async ({page, context}) => {
+  await page.setViewportSize({width:390,height:844});
+  await context.grantPermissions(['clipboard-read','clipboard-write']);
+  await account(page,true);
+  await page.route('**/api/session',route=>route.fulfill({json:{user:{name:'Member',email:'member@example.com'},access:{active:true,tier:'monthly'},billingReady:true}}));
+  const link='https://whop.com/e/trk_zpdZ5h59TRkTrN/study-pal';
+  await page.route('**/api/referrals',route=>route.fulfill({json:{shareUrl:link}}));
+  await page.goto('/');
+  await page.getByRole('button',{name:'Invite friends',exact:true}).click();
+  const dialog=page.getByRole('dialog',{name:'Share the practice. Earn 20% cash.'});
+  await expect(dialog).toBeVisible();
+  await expect(page.getByLabel('Your referral link')).toHaveValue(link);
+  await page.getByRole('button',{name:'Copy link',exact:true}).click();
+  await expect(page.getByRole('button',{name:'Copied!'})).toBeVisible();
+  expect(await page.evaluate(()=>navigator.clipboard.readText())).toBe(link);
+  await expect(dialog).toContainText('30-day waiting period');
+  await expect(dialog.getByRole('link',{name:'Referral activity'})).toHaveAttribute('href','https://whop.com/radiology-monster/affiliates/');
+  expect(await dialog.evaluate(el=>el.scrollWidth <= el.clientWidth)).toBe(true);
+  await dialog.screenshot({path:'test-results/referrals-mobile.png'});
+  await page.keyboard.press('Escape');
+  await expect(dialog).not.toBeVisible();
+  await expect(page.getByRole('button',{name:'Invite friends',exact:true})).toBeFocused();
+});
+
+test('referral lookup failure offers the real Whop portal and can recover', async ({page}) => {
+  await account(page,true);
+  let failing=true;
+  await page.route('**/api/referrals',route=>route.fulfill({status:failing?503:200,json:failing?{error:'Unavailable'}:{shareUrl:null}}));
+  await page.goto('/');
+  await page.getByRole('button',{name:'Invite friends',exact:true}).click();
+  await expect(page.getByRole('alert')).toContainText('couldn’t load your link');
+  await expect(page.getByRole('link',{name:'Get my link on Whop'})).toHaveAttribute('href','https://whop.com/radiology-monster/affiliates/');
+  failing=false;
+  await page.getByRole('button',{name:'Check my linked account again'}).click();
+  await expect(page.getByRole('alert')).not.toBeVisible();
+  await expect(page.getByRole('heading',{name:'Get your personal link'})).toBeVisible();
 });
 test('landing page: modality tour, answers, screenshots and credits, all before access', async ({page}) => {
   await account(page);

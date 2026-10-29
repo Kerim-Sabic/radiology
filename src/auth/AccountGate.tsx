@@ -2,6 +2,8 @@ import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useR
 import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers } from 'lucide-react';
 import './account.css';
 import { Landing } from './Landing';
+import { InviteFriends } from './InviteFriends';
+import { currentReferral } from './referralAttribution';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
 type Tier = 'monthly' | 'yearly';
@@ -21,6 +23,7 @@ export function AccountMenu() {
   return <span className="account-menu">
     <span title={context.account.user?.email}>{context.account.access.role === 'admin' ? 'Admin · free access' : context.account.access.tier === 'lifetime' ? 'Lifetime member' : context.account.access.tier === 'yearly' ? 'Yearly member' : 'Monthly member'}</span>
     {context.account.access.manageUrl && <a href={context.account.access.manageUrl} target="_blank" rel="noopener noreferrer" title="Manage billing on Whop"><CreditCard size={16} /><span>Billing</span></a>}
+    <InviteFriends />
     <button onClick={context.logout} title="Sign out"><LogOut size={16} /><span>Sign out</span></button>
   </span>;
 }
@@ -37,6 +40,7 @@ export function AccountGate({ children }: { children: ReactNode }) {
 }
 
 function MembershipGate({ children }: { children: ReactNode }) {
+  const [referral] = useState(currentReferral);
   const [account, setAccount] = useState<Account | null>(null);
   const [ready, setReady] = useState<{ auth: boolean; billing: boolean; authProvider?: 'clerk' | 'whop'; clerkPublishableKey?: string } | null>(null);
   const [loading, setLoading] = useState(true);
@@ -160,7 +164,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
     const current = ++checkoutGeneration.current;
     setBusy(tier); setError('');
     try {
-      const response = await fetch('/api/billing/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tier, ...(promoCode.trim() ? { promoCode: promoCode.trim() } : {}) }) });
+      const affiliate = currentReferral() || referral;
+      const response = await fetch('/api/billing/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tier, ...(promoCode.trim() ? { promoCode: promoCode.trim() } : {}), ...(affiliate ? { affiliateCode: affiliate } : {}) }) });
       const data = await response.json();
       if (!mounted.current || current !== checkoutGeneration.current) return;
       if (!response.ok) throw new Error(data.error);
@@ -169,7 +174,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       rememberPlan(null);
     } catch (e) { if (mounted.current && current === checkoutGeneration.current) setError(e instanceof Error ? e.message : 'Checkout is unavailable. Please try again.'); }
     finally { if (mounted.current && current === checkoutGeneration.current) setBusy(null); }
-  }, [promoCode]);
+  }, [promoCode, referral]);
   useEffect(() => {
     if (selectedPlan && account?.user && !account.access.active && !account.access.pendingMembership && account.billingReady) {
       setSelectedPlan(null); void buy(selectedPlan);
@@ -238,6 +243,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       </>}
       {account?.access.pendingMembership && <p className="membership-message">You already have a membership awaiting payment confirmation or a billing update. {account.access.manageUrl && <a href={account.access.manageUrl} target="_blank" rel="noopener noreferrer">Open billing in Whop</a>} to check it before purchasing again.</p>}
       {!payment && <p className="membership-fine">Prices in USD; applicable tax is shown at checkout. ¹Wallet availability depends on your device and payment setup. Payments powered by Whop.</p>}
+      {account?.user && !payment && <InviteFriends />}
       {account?.user && <div className="membership-restore"><button disabled={checking} onClick={() => void refreshPayment()}>{checking ? 'Checking with Whop…' : 'Already paid? Check access'}</button>{!account.billingReady && <p>Payments are being configured. Checkout will open once it’s ready.</p>}</div>}
       {(error || new URLSearchParams(location.search).get('signin') === 'failed') && <p className="membership-message" role="alert">{error || 'Email sign-in was canceled or expired. Please try again.'}</p>}
       {!account && error && <button className="text-button" onClick={() => void load()}>Try again</button>}

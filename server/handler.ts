@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { accessFor, checkout } from './billing.js';
+import { accessFor, checkout, referralProfile } from './billing.js';
+import { affiliateCode } from '../shared/referrals.js';
 import { beginSignIn, cookie, createSession, finishSignIn, FLOW_COOKIE, hash, random, session, SESSION_COOKIE } from './auth.js';
 import { clerkIdentity } from './clerk.js';
 import { memberBook } from './book.js';
@@ -71,19 +72,24 @@ export async function handle(request: Request): Promise<Response> {
       return json(access, access.active ? 200 : 402);
     }
     if (!readiness().billing) return json({ error: 'Payments are being configured. Please try again shortly.' }, 503);
+    if (path === '/api/referrals' && request.method === 'GET') {
+      if (!await rateLimit(`referrals:${user.userId}`, 15, 60)) return json({ error: 'Please wait a moment before trying again.' }, 429);
+      const { shareUrl } = await referralProfile(user.userId);
+      return json({ shareUrl });
+    }
     if (path === '/api/billing/refresh' && request.method === 'POST') {
       if (!await rateLimit(`refresh:${user.userId}`, 15, 60)) return json({ error: 'Please wait a moment before checking again.' }, 429);
       return json({ access: await accessFor(user.userId, true) });
     }
     if (path === '/api/billing/checkout' && request.method === 'POST') {
       if (!await rateLimit(`checkout:${user.userId}`, 10, 60)) return json({ error: 'Please wait a moment before trying again.' }, 429);
-      const body = z.object({ tier: z.enum(['monthly', 'yearly']), promoCode: z.string().trim().max(40).optional() }).strict().safeParse(await request.json());
+      const body = z.object({ tier: z.enum(['monthly', 'yearly']), promoCode: z.string().trim().max(40).optional(), affiliateCode: z.string().max(100).refine(value => !!affiliateCode(value)).optional() }).strict().safeParse(await request.json());
       if (!body.success) return json({ error: 'Choose monthly or yearly access.' }, 400);
       if (body.data.promoCode && (body.data.promoCode.toLowerCase() !== 'nadin' || body.data.tier !== 'monthly')) return json({ error: 'This code is not available for this plan. Choose monthly or remove the code.' }, 400);
       const existing = await accessFor(user.userId, true);
       if (existing.active) return json({ error: 'You already have access. Manage your plan from your account.' }, 409);
       if (existing.pendingMembership) return json({ error: 'You have an existing membership. Open billing in Whop to check its payment before purchasing again.' }, 409);
-      return json(await checkout(user.userId, body.data.tier, body.data.promoCode));
+      return json(await checkout(user.userId, body.data.tier, body.data.promoCode, body.data.affiliateCode));
     }
     return json({ error: 'Not found' }, 404);
   } catch (error) {

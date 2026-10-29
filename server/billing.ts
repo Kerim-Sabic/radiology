@@ -3,9 +3,30 @@ import { appOrigin, plans, readiness, required, membershipPlans, type AccessTier
 import { db } from './store.js';
 import { hash, isAdmin, random } from './auth.js';
 import { merchantToken } from './oauth.js';
+import { affiliateCode } from '../shared/referrals.js';
 
 export async function whop() {
   return new WhopClient({ token: await merchantToken(), apiVersionDate: '2026-10-15-1', timeoutInSeconds: 15, maxRetries: 1 });
+}
+
+/** Resolve only the signed-in, verified identity. Search results alone are not identity proof. */
+export async function referralProfile(userId: string) {
+  const identity = await db().get<{ email: string; emailVerified: boolean }>(`rvm:identity:${userId}`);
+  if (identity?.emailVerified !== true) return { shareUrl: null };
+  const client = await whop();
+  const candidates = await client.members.list({ account_id: required('WHOP_ACCOUNT_ID'), query: identity.email, first: 100 });
+  const matches = new Map<string, string | undefined>();
+  for await (const member of candidates) {
+    if (member.account_id === required('WHOP_ACCOUNT_ID') && member.email?.trim().toLowerCase() === identity.email.trim().toLowerCase() && member.user?.id) {
+      const code = affiliateCode(member.user.username);
+      matches.set(member.user.id, code);
+    }
+  }
+  if (matches.size > 1) throw new Error('Ambiguous referral identity');
+  const code = [...matches.values()][0];
+  // This is the business's native Whop external-link asset. It records clicks,
+  // then redirects to radiology.monster with the affiliate's public username.
+  return { shareUrl: code ? `https://whop.com/e/trk_zpdZ5h59TRkTrN/${encodeURIComponent(code)}` : null, code };
 }
 export interface Access { active: boolean; role?: 'admin'; tier?: AccessTier; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
 
@@ -82,7 +103,7 @@ export async function accessFor(userId: string, fresh = false): Promise<Access> 
   return result;
 }
 
-export async function checkout(userId: string, tier: Tier, promoCode?: string) {
+export async function checkout(userId: string, tier: Tier, promoCode?: string, referralCode?: string) {
   const existing = await accessFor(userId, true);
   if (existing.active) throw new Error('You already have access. Manage your existing plan in your account.');
   if (existing.pendingMembership) throw new Error('An existing membership needs attention. Check your payment in Whop before purchasing again.');
@@ -96,12 +117,15 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string) {
   if (promo) {
     validateRecurringPlan(plan, { days: 30, price: 10 });
   } else validatePlan(plan, tier);
-  const key = `rvm:checkout:${userId}:${planId}:${hash(appOrigin())}`;
+  let affiliate = affiliateCode(referralCode);
+  if (affiliate && (await referralProfile(userId)).code === affiliate) affiliate = undefined;
+  const key = `rvm:checkout:${userId}:${planId}:${hash(appOrigin())}${affiliate ? `:${hash(affiliate)}` : ''}`;
   // Keep the same idempotency key across retries, including ambiguous network failures.
   await db().set(key, random(), { nx: true, ex: 86400 });
   const orderId = (await db().get<string>(key))!;
   const config = await client.checkoutConfigurations.create({
     account_id: required('WHOP_ACCOUNT_ID'), plan_id: planId, mode: 'payment',
+    ...(affiliate ? { affiliate_code: affiliate } : {}),
     metadata: { rvm_user: userId, rvm_order: orderId },
     redirect_url: `${appOrigin()}/?checkout=returned`,
   }, { idempotencyKey: orderId });
