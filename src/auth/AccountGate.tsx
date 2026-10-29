@@ -231,7 +231,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <p className="checkout-account">{account.user.email}</p>
         <form className="promo-entry checkout-promo" onSubmit={event => { event.preventDefault(); if (!busy && checkoutCodeChanged) void buy(payment.tier); }}>
           <label htmlFor="checkout-promo">Promo code</label>
-          <div className="checkout-promo-row"><input id="checkout-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} disabled={!!busy} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code" /><button type="submit" className="text-button" disabled={!!busy || !checkoutCodeChanged}>{busy ? 'Updating…' : promoCode.trim() ? 'Apply code' : 'Remove code'}</button></div>
+          <div className="checkout-promo-row"><input id="checkout-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} disabled={!!busy} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code" /><button type="submit" className="text-button" disabled={!!busy || !checkoutCodeChanged}>{busy ? 'Updating…' : payment.promoCode && !promoCode.trim() ? 'Remove code' : 'Apply code'}</button></div>
           <p>Apply your code here so we can open the matching offer. Whop confirms the discount before payment.</p>
         </form>
         {busy || checkoutCodeChanged ? <p className="checkout-loading" role="status">{busy ? 'Updating your payment form…' : 'Apply your code to update the price before paying.'}</p> : <Suspense fallback={<p className="checkout-loading" role="status">Loading secure payment form…</p>}>
