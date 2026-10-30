@@ -27,6 +27,7 @@ const ConditionsPage = lazy(() => import('./pages/Conditions'));
 const OnCallPage = lazy(() => import('./pages/OnCall'));
 const AdminPage = lazy(() => import('./pages/Admin'));
 const CertificatesPage = lazy(() => import('./pages/Certificates'));
+const ExamResultPage = lazy(() => import('./pages/ExamResult'));
 
 /** Members-only areas: a free account sees what each one is, and the plans. */
 const LOCKED: Record<string, { icon: React.ReactNode; title: string; text: string; points: string[] }> = {
@@ -188,6 +189,7 @@ export function App() {
               <Route path="/course/:unitId" element={<CoursePage />} />
               <Route path="/progress" element={<ProgressPage />} />
               <Route path="/certificates" element={<CertificatesPage />} />
+              <Route path="/certificates/exam/:id" element={<ExamResultPage />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/import" element={<ImportPage />} />
               <Route path="/author" element={<AuthorPage />} />

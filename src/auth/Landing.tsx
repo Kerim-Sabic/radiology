@@ -2,6 +2,7 @@ import { useEffect, useState, type ReactNode } from 'react';
 import { trackFunnel } from '../services/serverSync';
 import { ArrowRight, Check, ShieldCheck } from 'lucide-react';
 import { fact, LANDING_CREDITS, LANDING_FACTS } from './landingFacts';
+import { AI_CREDIT } from '../lib/provenance';
 import './landing.css';
 
 interface Props {
@@ -87,9 +88,19 @@ const STEPS: Array<[string, string]> = [
 const FAQ: Array<[string, ReactNode]> = [
   ['Is there a free version?', 'Yes. A free account opens two sample patients in the full workstation, with grading. No card needed. Choose a plan when you want every patient, the case of the week, the drills, on-call shifts and certificates.'],
   ['Who is it for?', 'Medical students, residents and anyone learning to read images who wants practice on real studies alongside Learning Radiology (5th ed.). Choose Student or Resident and what you are asked to write adapts.'],
-  ['How do I earn a certificate?', 'Each body area has three levels, from Foundation (10 patients read, 70% of graded answers right) through Intermediate (25 patients, 80%) to Advanced (40 patients, 85% right without hints), and the whole library has three more. On the Certificates page press Start certification and the app takes you through the patients a level needs; when it is reached, Finish certification. Every certificate has its own check page, goes on LinkedIn under Licenses & certifications, and comes as images for posts and stories.'],
+  ['How do I earn a certificate?', 'Pass an exam. The levels go in order, and each is a real step up. Foundation: 15 questions, untimed, pass mark 70%. Intermediate: 25 questions, 3 minutes each, pass mark 80%, at least half of them marking the finding on the image, with no two-answer questions. Advanced: 40 questions, 2 minutes each, pass mark 90% with no half points, mostly marked on the image, subtle cases first. The whole library has three more levels, with 30, 50 and 75 questions from across the body areas. Each question shows a real patient, with no hints, and every answer is graded against the expert\'s reference; the result comes after the last question, with every answer to review. Pass, type your name, and your certificate has its own check page, goes on LinkedIn under Licenses & certifications, and comes as images for posts and stories.'],
   ['Where do the scans come from?', 'From public research collections released for reuse, including commercial use (Creative Commons and NIH terms). They are de-identified, and every case names its source and licence.'],
-  ['Who marked the findings?', 'Findings are outlined by the radiologists and experts who published each collection. Organ outlines are AI drafts by Horalix and are labelled as drafts wherever they appear.'],
+  [
+    'Who marked the findings and the anatomy?',
+    <>
+      Findings are outlined by the radiologists and experts who published each collection, and only those expert outlines grade your answers. The anatomy layer, the
+      organs, vessels, bones and airways named on every scan, is drawn by AI and labelled AI wherever it appears.{' '}
+      <a href={AI_CREDIT.url} target="_blank" rel="noopener">
+        Thanks to {AI_CREDIT.name}
+      </a>
+      , every structure in it is marked.
+    </>,
+  ],
   ['Can I use it to diagnose patients?', 'No. radiology.monster is for education and practice only. It is not a medical device and must not be used for clinical decisions.'],
   ['What do I need?', 'A recent desktop browser such as Chrome, Edge or Firefox. Nothing to install. Tablets and phones work too; reading is easiest on a larger screen. The 3D view needs WebGL.'],
   ['Do I need the book?', 'No, but it helps. Every task names the page of Learning Radiology (5th ed.) that explains it. Open your own copy of the PDF in the app and the links jump straight to the page; it stays on your device and is never uploaded. SSST students signed in with their university email get the book included.'],
@@ -379,6 +390,13 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
           </div>
           <p className="lp-credits lp-affiliation">
             <i>Learning Radiology: Recognizing the Basics</i> is referenced by page for study. radiology.monster is not affiliated with or endorsed by its publisher or authors.
+          </p>
+          <p className="lp-credits">
+            Anatomy outlines: AI.{' '}
+            <a href={AI_CREDIT.url} target="_blank" rel="noopener">
+              Thanks to {AI_CREDIT.name}
+            </a>
+            , we managed to mark every structure in the anatomy layer.
           </p>
           <p className="lp-credits">
             Images on this page are screenshots of the app showing public research data, with outlines drawn by the app from each collection’s own annotations:{' '}

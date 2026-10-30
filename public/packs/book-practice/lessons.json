@@ -96,7 +96,7 @@
     "requireLabels": true
    },
    "scoring": "exploratory_self_review",
-   "explanation": "Fissures define the lobes: the major fissures run obliquely from high posteriorly to low anteriorly, so on low axial slices most of the lung is lower lobe; the minor fissure marks the top of the right middle lobe. Knowing where the fissures normally lie is what later shows volume loss when they move. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "explanation": "Fissures define the lobes: the major fissures run obliquely from high posteriorly to low anteriorly, so on low axial slices most of the lung is lower lobe; the minor fissure marks the top of the right middle lobe. Knowing where the fissures normally lie is what later shows volume loss when they move. The outlines were drawn by AI and have not been reviewed by a radiologist: the answer is self-reviewed until you review the reference in Author.",
    "bookAnchors": [
     {
      "physical": 31,
@@ -220,7 +220,7 @@
     "requireLabels": true
    },
    "scoring": "exploratory_self_review",
-   "explanation": "Fissures define the lobes: the major fissures run obliquely from high posteriorly to low anteriorly, so on low axial slices most of the lung is lower lobe; the minor fissure marks the top of the right middle lobe. Knowing where the fissures normally lie is what later shows volume loss when they move. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "explanation": "Fissures define the lobes: the major fissures run obliquely from high posteriorly to low anteriorly, so on low axial slices most of the lung is lower lobe; the minor fissure marks the top of the right middle lobe. Knowing where the fissures normally lie is what later shows volume loss when they move. The outlines were drawn by AI and have not been reviewed by a radiologist: the answer is self-reviewed until you review the reference in Author.",
    "bookAnchors": [
     {
      "physical": 31,
@@ -344,7 +344,7 @@
     "requireLabels": true
    },
    "scoring": "exploratory_self_review",
-   "explanation": "Fissures define the lobes: the major fissures run obliquely from high posteriorly to low anteriorly, so on low axial slices most of the lung is lower lobe; the minor fissure marks the top of the right middle lobe. Knowing where the fissures normally lie is what later shows volume loss when they move. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "explanation": "Fissures define the lobes: the major fissures run obliquely from high posteriorly to low anteriorly, so on low axial slices most of the lung is lower lobe; the minor fissure marks the top of the right middle lobe. Knowing where the fissures normally lie is what later shows volume loss when they move. The outlines were drawn by AI and have not been reviewed by a radiologist: the answer is self-reviewed until you review the reference in Author.",
    "bookAnchors": [
     {
      "physical": 31,
@@ -442,7 +442,7 @@
     "requireLabels": true
    },
    "scoring": "exploratory_self_review",
-   "explanation": "Below the aortic arch and above the pulmonary artery lies the aortopulmonary window, normally filled with fat and a few small nodes. Enlarged nodes there are a common, easily missed finding, so look at this level on every chest CT. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "explanation": "Below the aortic arch and above the pulmonary artery lies the aortopulmonary window, normally filled with fat and a few small nodes. Enlarged nodes there are a common, easily missed finding, so look at this level on every chest CT. The outlines were drawn by AI and have not been reviewed by a radiologist: the answer is self-reviewed until you review the reference in Author.",
    "bookAnchors": [
     {
      "physical": 41,
@@ -533,7 +533,7 @@
     "requireLabels": true
    },
    "scoring": "exploratory_self_review",
-   "explanation": "Below the aortic arch and above the pulmonary artery lies the aortopulmonary window, normally filled with fat and a few small nodes. Enlarged nodes there are a common, easily missed finding, so look at this level on every chest CT. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "explanation": "Below the aortic arch and above the pulmonary artery lies the aortopulmonary window, normally filled with fat and a few small nodes. Enlarged nodes there are a common, easily missed finding, so look at this level on every chest CT. The outlines were drawn by AI and have not been reviewed by a radiologist: the answer is self-reviewed until you review the reference in Author.",
    "bookAnchors": [
     {
      "physical": 41,
@@ -624,7 +624,7 @@
     "requireLabels": true
    },
    "scoring": "exploratory_self_review",
-   "explanation": "Below the aortic arch and above the pulmonary artery lies the aortopulmonary window, normally filled with fat and a few small nodes. Enlarged nodes there are a common, easily missed finding, so look at this level on every chest CT. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "explanation": "Below the aortic arch and above the pulmonary artery lies the aortopulmonary window, normally filled with fat and a few small nodes. Enlarged nodes there are a common, easily missed finding, so look at this level on every chest CT. The outlines were drawn by AI and have not been reviewed by a radiologist: the answer is self-reviewed until you review the reference in Author.",
    "bookAnchors": [
     {
      "physical": 41,
@@ -698,7 +698,7 @@
     "inPlaneToleranceMm": 2.5
    },
    "scoring": "exploratory_self_review",
-   "explanation": "Calcified costal cartilage is a normal finding that increases with age. Like phleboliths in the pelvic veins, it is a benign calcification you should recognize so that it is not mistaken for disease — phleboliths are small, round and often have a lucent centre, while a stone lies along the course of the ureter or in the kidney or bladder. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "explanation": "Calcified costal cartilage is a normal finding that increases with age. Like phleboliths in the pelvic veins, it is a benign calcification you should recognize so that it is not mistaken for disease — phleboliths are small, round and often have a lucent centre, while a stone lies along the course of the ureter or in the kidney or bladder. The outlines were drawn by AI and have not been reviewed by a radiologist: the answer is self-reviewed until you review the reference in Author.",
    "bookAnchors": [
     {
      "physical": 155,
@@ -772,7 +772,7 @@
     "inPlaneToleranceMm": 2.5
    },
    "scoring": "exploratory_self_review",
-   "explanation": "Calcified costal cartilage is a normal finding that increases with age. Like phleboliths in the pelvic veins, it is a benign calcification you should recognize so that it is not mistaken for disease — phleboliths are small, round and often have a lucent centre, while a stone lies along the course of the ureter or in the kidney or bladder. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "explanation": "Calcified costal cartilage is a normal finding that increases with age. Like phleboliths in the pelvic veins, it is a benign calcification you should recognize so that it is not mistaken for disease — phleboliths are small, round and often have a lucent centre, while a stone lies along the course of the ureter or in the kidney or bladder. The outlines were drawn by AI and have not been reviewed by a radiologist: the answer is self-reviewed until you review the reference in Author.",
    "bookAnchors": [
     {
      "physical": 155,
@@ -859,7 +859,7 @@
     "requireLabels": true
    },
    "scoring": "exploratory_self_review",
-   "explanation": "From top to bottom the left border is made by the aortic knob, the main pulmonary artery segment and the left ventricle; the right border by the superior vena cava and the right atrium. A knob that is too large or an ascending aorta bulging to the right beyond the right heart border are clues to hypertension or aortic stenosis. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "explanation": "From top to bottom the left border is made by the aortic knob, the main pulmonary artery segment and the left ventricle; the right border by the superior vena cava and the right atrium. An enlarged knob together with a prominent ascending and descending aorta suggests hypertension; a convex ascending aorta bulging to the right on its own suggests aortic stenosis (post-stenotic dilatation). The outlines were drawn by AI and have not been reviewed by a radiologist: the answer is self-reviewed until you review the reference in Author.",
    "bookAnchors": [
     {
      "physical": 440,
@@ -968,7 +968,7 @@
     "requireLabels": true
    },
    "scoring": "exploratory_self_review",
-   "explanation": "From top to bottom the left border is made by the aortic knob, the main pulmonary artery segment and the left ventricle; the right border by the superior vena cava and the right atrium. A knob that is too large or an ascending aorta bulging to the right beyond the right heart border are clues to hypertension or aortic stenosis. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "explanation": "From top to bottom the left border is made by the aortic knob, the main pulmonary artery segment and the left ventricle; the right border by the superior vena cava and the right atrium. An enlarged knob together with a prominent ascending and descending aorta suggests hypertension; a convex ascending aorta bulging to the right on its own suggests aortic stenosis (post-stenotic dilatation). The outlines were drawn by AI and have not been reviewed by a radiologist: the answer is self-reviewed until you review the reference in Author.",
    "bookAnchors": [
     {
      "physical": 440,
@@ -1077,7 +1077,7 @@
     "requireLabels": true
    },
    "scoring": "exploratory_self_review",
-   "explanation": "From top to bottom the left border is made by the aortic knob, the main pulmonary artery segment and the left ventricle; the right border by the superior vena cava and the right atrium. A knob that is too large or an ascending aorta bulging to the right beyond the right heart border are clues to hypertension or aortic stenosis. The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author.",
+   "explanation": "From top to bottom the left border is made by the aortic knob, the main pulmonary artery segment and the left ventricle; the right border by the superior vena cava and the right atrium. An enlarged knob together with a prominent ascending and descending aorta suggests hypertension; a convex ascending aorta bulging to the right on its own suggests aortic stenosis (post-stenotic dilatation). The outlines were drawn by AI and have not been reviewed by a radiologist: the answer is self-reviewed until you review the reference in Author.",
    "bookAnchors": [
     {
      "physical": 440,
@@ -1523,7 +1523,7 @@
     },
     {
      "id": "fat",
-     "text": "Fat (dark grey): the soft tissues of the chest wall, axillae and shoulders — darker than muscle.",
+     "text": "Fat (dark grey): the subcutaneous fat of the chest wall, axillae and shoulders — darker than muscle.",
      "weight": "essential",
      "category": "finding"
     },
@@ -1612,7 +1612,7 @@
     },
     {
      "id": "fat",
-     "text": "Fat (dark grey): the soft tissues of the chest wall, axillae and shoulders — darker than muscle.",
+     "text": "Fat (dark grey): the subcutaneous fat of the chest wall, axillae and shoulders — darker than muscle.",
      "weight": "essential",
      "category": "finding"
     },
@@ -2158,7 +2158,7 @@
     ]
    },
    "scoring": "authoritative",
-   "explanation": "Only a few substances shorten T1 and look bright on T1-weighted images: fat, gadolinium contrast, some blood products (methemoglobin) and melanin. Fluid is dark on T1 and bright on T2 — the quickest way to tell the two sequences apart is to look at fat and fluid.",
+   "explanation": "Only a few substances shorten T1 and look bright on T1-weighted images: fat, gadolinium contrast, some blood products (methemoglobin), melanin and highly proteinaceous fluid. Simple fluid is dark on T1 and bright on T2 — the quickest way to tell the two sequences apart is to look at fat and fluid.",
    "bookAnchors": [
     {
      "physical": 262,
@@ -2254,7 +2254,7 @@
     ]
    },
    "scoring": "authoritative",
-   "explanation": "Only a few substances shorten T1 and look bright on T1-weighted images: fat, gadolinium contrast, some blood products (methemoglobin) and melanin. Fluid is dark on T1 and bright on T2 — the quickest way to tell the two sequences apart is to look at fat and fluid.",
+   "explanation": "Only a few substances shorten T1 and look bright on T1-weighted images: fat, gadolinium contrast, some blood products (methemoglobin), melanin and highly proteinaceous fluid. Simple fluid is dark on T1 and bright on T2 — the quickest way to tell the two sequences apart is to look at fat and fluid.",
    "bookAnchors": [
     {
      "physical": 262,

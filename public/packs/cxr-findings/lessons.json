@@ -513,7 +513,7 @@
     }
    ],
    "referenceSummary": "One box drawn by a board-certified radiologist around the atelectasis (NIH ChestX-ray14). The labels mined from this film's report are: Atelectasis (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
-   "learnNotes": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing."
+   "learnNotes": "Atelectasis is loss of lung volume. The airless lung becomes more opaque, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing."
   },
   {
    "id": "cxr-00016267-000",
@@ -573,7 +573,7 @@
     }
    ],
    "referenceSummary": "One box drawn by a board-certified radiologist around the atelectasis (NIH ChestX-ray14). The labels mined from this film's report are: Atelectasis (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
-   "learnNotes": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing."
+   "learnNotes": "Atelectasis is loss of lung volume. The airless lung becomes more opaque, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing."
   },
   {
    "id": "cxr-00030674-000",
@@ -633,7 +633,7 @@
     }
    ],
    "referenceSummary": "One box drawn by a board-certified radiologist around the atelectasis (NIH ChestX-ray14). The labels mined from this film's report are: Atelectasis (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
-   "learnNotes": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing."
+   "learnNotes": "Atelectasis is loss of lung volume. The airless lung becomes more opaque, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing."
   },
   {
    "id": "cxr-00000377-004",
@@ -1014,7 +1014,7 @@
     }
    ],
    "referenceSummary": "One box drawn by a board-certified radiologist around the lung nodule (NIH ChestX-ray14). The labels mined from this film's report are: Nodule (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
-   "learnNotes": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it."
+   "learnNotes": "A nodule is a rounded or irregular opacity up to 3 cm in diameter. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it."
   },
   {
    "id": "cxr-00012374-000",
@@ -1059,7 +1059,7 @@
     }
    ],
    "referenceSummary": "One box drawn by a board-certified radiologist around the lung nodule (NIH ChestX-ray14). The labels mined from this film's report are: Nodule (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
-   "learnNotes": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it."
+   "learnNotes": "A nodule is a rounded or irregular opacity up to 3 cm in diameter. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it."
   },
   {
    "id": "cxr-00013673-001",
@@ -1104,7 +1104,7 @@
     }
    ],
    "referenceSummary": "One box drawn by a board-certified radiologist around the lung nodule (NIH ChestX-ray14). The labels mined from this film's report are: Nodule (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
-   "learnNotes": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it."
+   "learnNotes": "A nodule is a rounded or irregular opacity up to 3 cm in diameter. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it."
   },
   {
    "id": "cxr-00001933-000",
@@ -1445,7 +1445,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -1463,7 +1463,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -1663,7 +1663,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -1681,7 +1681,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -1881,7 +1881,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -1899,7 +1899,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -2099,7 +2099,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -2117,7 +2117,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -2277,9 +2277,7 @@
    "title": "Name the main finding",
    "prompt": "Which is the main finding on this radiograph?",
    "modes": [
-    "learn",
-    "practice",
-    "assess"
+    "learn"
    ],
    "seriesUids": [
     "2.25.249876676135355966610483047539390403300"
@@ -2310,7 +2308,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -2328,7 +2326,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -2345,7 +2343,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a pleural effusion. Blunted costophrenic angle or a meniscus that rises along the lateral chest wall. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed a pleural effusion. Blunted costophrenic angle or a meniscus that rises along the lateral chest wall. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present. This film is not a clean test of that label: the right hemithorax also contains lucent pockets with horizontal air-fluid levels and several drainage catheters, so air in the pleural space as well (a hydropneumothorax) is a defensible reading.",
    "bookAnchors": [
     {
      "physical": 77,
@@ -2514,7 +2512,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -2532,7 +2530,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -2718,7 +2716,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -2736,7 +2734,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -2922,7 +2920,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -2940,7 +2938,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -3045,7 +3043,7 @@
      }
     }
    ],
-   "explanation": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "Atelectasis is loss of lung volume. The airless lung becomes more opaque, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
    "bookAnchors": [
     {
      "physical": 65,
@@ -3133,7 +3131,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": true,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -3151,7 +3149,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -3168,7 +3166,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a atelectasis. Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift). The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed an area of atelectasis: increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift). The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
    "bookAnchors": [
     {
      "physical": 65,
@@ -3263,7 +3261,7 @@
      }
     }
    ],
-   "explanation": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "Atelectasis is loss of lung volume. The airless lung becomes more opaque, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
    "bookAnchors": [
     {
      "physical": 65,
@@ -3319,8 +3317,7 @@
    "prompt": "Which is the main finding on this radiograph?",
    "modes": [
     "learn",
-    "practice",
-    "assess"
+    "practice"
    ],
    "seriesUids": [
     "2.25.156746103252885932781593040879107040118"
@@ -3351,7 +3348,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": true,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -3369,7 +3366,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -3386,7 +3383,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a atelectasis. Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift). The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed an area of atelectasis: increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift). The answer comes from the radiologist's box and the report labels for this film; other findings may also be present. On this film the boxed atelectasis at the right base is subtle; look closely inside the box.",
    "bookAnchors": [
     {
      "physical": 65,
@@ -3481,7 +3478,7 @@
      }
     }
    ],
-   "explanation": "Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "Atelectasis is loss of lung volume. The airless lung becomes more opaque, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
    "bookAnchors": [
     {
      "physical": 65,
@@ -3569,7 +3566,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": true,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -3587,7 +3584,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -3604,7 +3601,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a atelectasis. Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift). The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed an area of atelectasis: increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift). The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
    "bookAnchors": [
     {
      "physical": 65,
@@ -3794,7 +3791,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -3812,7 +3809,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -3829,7 +3826,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a cardiomegaly. Cardiothoracic ratio over 0.5 on a PA film with a good inspiration. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed an enlarged cardiac silhouette (cardiomegaly): cardiothoracic ratio over 0.5 on a PA film with a good inspiration. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
    "bookAnchors": [
     {
      "physical": 131,
@@ -4026,7 +4023,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -4044,7 +4041,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -4061,7 +4058,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a cardiomegaly. Cardiothoracic ratio over 0.5 on a PA film with a good inspiration. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed an enlarged cardiac silhouette (cardiomegaly): cardiothoracic ratio over 0.5 on a PA film with a good inspiration. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
    "bookAnchors": [
     {
      "physical": 131,
@@ -4258,7 +4255,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -4276,7 +4273,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -4293,7 +4290,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a cardiomegaly. Cardiothoracic ratio over 0.5 on a PA film with a good inspiration. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed an enlarged cardiac silhouette (cardiomegaly): cardiothoracic ratio over 0.5 on a PA film with a good inspiration. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
    "bookAnchors": [
     {
      "physical": 131,
@@ -4468,7 +4465,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -4486,7 +4483,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -4583,7 +4580,7 @@
      }
     }
    ],
-   "explanation": "A mass is a lung opacity larger than 3 cm (smaller ones are nodules). Describe its size, margins (smooth, lobulated or spiculated), location and any cavitation, and look for what goes with it: hilar or mediastinal enlargement, an effusion, rib destruction or collapse beyond it. In an adult a lung mass must be explained; the radiograph shows it but does not give the diagnosis. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "A mass is a lung opacity larger than 3 cm (smaller ones are nodules). Describe its size, margins (smooth, lobulated or spiculated), location and any cavitation, and look for what goes with it: hilar or mediastinal enlargement, an effusion, rib destruction or collapse beyond it. In an adult a lung mass must be explained; the radiograph shows it but does not give the diagnosis. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels. A second rounded opacity projects over the left mid zone; it is not boxed, so a mark on that one alone does not match the reference.",
    "bookAnchors": [
     {
      "physical": 120,
@@ -4656,7 +4653,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -4674,7 +4671,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -4844,7 +4841,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -4862,7 +4859,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -4959,7 +4956,7 @@
      }
     }
    ],
-   "explanation": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "A nodule is a rounded or irregular opacity up to 3 cm in diameter. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
    "bookAnchors": [
     {
      "physical": 118,
@@ -5032,7 +5029,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -5050,7 +5047,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": true,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -5067,7 +5064,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a lung nodule. A round opacity up to 3 cm. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed a lung nodule: a rounded or irregular opacity up to 3 cm in diameter. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
    "bookAnchors": [
     {
      "physical": 118,
@@ -5147,7 +5144,7 @@
      }
     }
    ],
-   "explanation": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "A nodule is a rounded or irregular opacity up to 3 cm in diameter. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
    "bookAnchors": [
     {
      "physical": 118,
@@ -5220,7 +5217,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -5238,7 +5235,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": true,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -5255,7 +5252,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a lung nodule. A round opacity up to 3 cm. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed a lung nodule: a rounded or irregular opacity up to 3 cm in diameter. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
    "bookAnchors": [
     {
      "physical": 118,
@@ -5335,7 +5332,7 @@
      }
     }
    ],
-   "explanation": "A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "A nodule is a rounded or irregular opacity up to 3 cm in diameter. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it. The reference is the radiologist's box, a rectangle around the finding rather than an outline; this image has no pixel spacing, so the tolerance is counted in pixels.",
    "bookAnchors": [
     {
      "physical": 118,
@@ -5408,7 +5405,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -5426,7 +5423,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": true,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -5443,7 +5440,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a lung nodule. A round opacity up to 3 cm. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed a lung nodule: a rounded or irregular opacity up to 3 cm in diameter. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
    "bookAnchors": [
     {
      "physical": 118,
@@ -5618,7 +5615,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -5636,7 +5633,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -5653,7 +5650,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a pneumonia. Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed an area of pneumonia: airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
    "bookAnchors": [
     {
      "physical": 85,
@@ -5953,7 +5950,7 @@
       "id": "atel",
       "text": "Atelectasis",
       "correct": false,
-      "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
+      "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift)."
      },
      {
       "id": "cardio",
@@ -5971,7 +5968,7 @@
       "id": "nod",
       "text": "Lung nodule",
       "correct": false,
-      "why": "A round opacity up to 3 cm."
+      "why": "A rounded or irregular opacity up to 3 cm in diameter."
      },
      {
       "id": "pna",
@@ -5988,7 +5985,7 @@
      "text": "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm."
     }
    ],
-   "explanation": "The radiologist boxed a pneumonia. Airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
+   "explanation": "The radiologist boxed an area of pneumonia: airspace opacity, often with air bronchograms, filling part of a lobe; the silhouette sign localises it. The answer comes from the radiologist's box and the report labels for this film; other findings may also be present.",
    "bookAnchors": [
     {
      "physical": 85,

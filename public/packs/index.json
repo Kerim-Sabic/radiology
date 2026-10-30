@@ -62,16 +62,16 @@
    "lessons": null,
    "bytes": 1116359,
    "distribution": "repo",
-   "note": "AI draft by Horalix (unreviewed) on 5 contrast chest CT series: 55 vessel/structure contour sets + 10 slice-interval levels. No images; requires the body and chest-pairs packs."
+   "note": "AI outlines (unreviewed) on 5 contrast chest CT series: 55 vessel/structure contour sets + 10 slice-interval levels. No images; requires the body and chest-pairs packs."
   },
   {
    "id": "anatomy-atlas",
-   "title": "Anatomy atlas (AI draft by Horalix)",
+   "title": "Anatomy atlas (AI)",
    "manifest": "anatomy-atlas/pack.json",
    "lessons": null,
-   "bytes": 77183453,
+   "bytes": 75735191,
    "distribution": "repo",
-   "note": "AI draft by Horalix (unreviewed) anatomy layer: 4409 structure outlines on 51 CT series and 24 frontal chest radiographs, automatic QC applied. No images; requires body, chest-pairs, ct-findings, ct-mri-pairs, ct-tumors, expansion, more-ct-xr, neuro-msk, pe-cta, starter."
+   "note": "AI anatomy layer (unreviewed): 4318 structure outlines on 51 CT series and 24 frontal chest radiographs, automatic QC applied. No images; requires body, chest-pairs, ct-findings, ct-mri-pairs, ct-tumors, expansion, more-ct-xr, neuro-msk, pe-cta, starter."
   },
   {
    "id": "more-ct-xr",

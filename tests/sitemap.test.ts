@@ -15,13 +15,13 @@ describe('public site: sitemap and robots', () => {
 
   it('lists every course chapter', () => {
     const units = JSON.parse(readFileSync(join(root, 'public/content/curriculum.v1.json'), 'utf8')).units.map((u: { id: string }) => u.id);
-    for (const u of units) expect(locs).toContain(`https://radiology.monster/course/${u}`);
+    for (const u of units) expect(locs).toContain(`https://www.radiology.monster/course/${u}`);
   });
 
   it('keeps personal pages and the book reader out of search, and points to the sitemap', () => {
     const robots = readFileSync(join(root, 'public/robots.txt'), 'utf8');
     for (const p of ['/progress', '/import', '/settings', '/author', '/book']) expect(robots).toContain(`Disallow: ${p}`);
-    expect(robots).toContain('Sitemap: https://radiology.monster/sitemap.xml');
+    expect(robots).toContain('Sitemap: https://www.radiology.monster/sitemap.xml');
     expect(readFileSync(join(root, 'index.html'), 'utf8')).not.toMatch(/noindex/);
   });
 });

@@ -60,7 +60,7 @@
      "sectionId": "ch18-s02"
     }
    ],
-   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape irregular, margin not circumscribed - spiculated&indistinct, echo pattern hypoechoic, posterior features shadowing, BI-RADS 5. Diagnosis proven by biopsy. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
+   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape irregular, margin not circumscribed (spiculated, indistinct), echo pattern hypoechoic, posterior features shadowing, BI-RADS 5. Diagnosis proven by biopsy. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
    "learnNotes": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis."
   },
   {
@@ -120,7 +120,7 @@
      "sectionId": "ch18-s02"
     }
    ],
-   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape irregular, margin not circumscribed - spiculated&angular&indistinct, echo pattern hypoechoic, posterior features shadowing, BI-RADS 5. Diagnosis proven by biopsy. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
+   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape irregular, margin not circumscribed (spiculated, angular, indistinct), echo pattern hypoechoic, posterior features shadowing, BI-RADS 5. Diagnosis proven by biopsy. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
    "learnNotes": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis."
   },
   {
@@ -180,7 +180,7 @@
      "sectionId": "ch18-s02"
     }
    ],
-   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape oval, margin circumscribed, echo pattern hypoechoic, posterior features no, BI-RADS 3. Diagnosis proven by biopsy. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
+   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape oval, margin circumscribed, echo pattern hypoechoic, no posterior features, BI-RADS 3. Diagnosis proven by biopsy. The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
    "learnNotes": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis."
   },
   {
@@ -672,7 +672,7 @@
       "id": "solid",
       "text": "Solid mass",
       "correct": true,
-      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+      "why": "A solid mass has internal echoes (hypoechoic, isoechoic or heterogeneous rather than anechoic) and does not meet the simple-cyst criteria; low-level echoes alone can also be a complicated cyst."
      }
     ]
    },
@@ -683,7 +683,7 @@
      "text": "Compare the inside of the lesion with the black of fluid, and look at the tissue just deep to it."
     }
    ],
-   "explanation": "The radiologist recorded the echo pattern as hypoechoic and posterior features as shadowing; this lesion is a invasive carcinoma (proven by biopsy). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
+   "explanation": "The radiologist recorded the echo pattern as hypoechoic and posterior features as shadowing; this lesion is an invasive carcinoma (proven by biopsy). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
    "bookAnchors": [
     {
      "physical": 411,
@@ -981,7 +981,7 @@
       "id": "solid",
       "text": "Solid mass",
       "correct": true,
-      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+      "why": "A solid mass has internal echoes (hypoechoic, isoechoic or heterogeneous rather than anechoic) and does not meet the simple-cyst criteria; low-level echoes alone can also be a complicated cyst."
      }
     ]
    },
@@ -992,7 +992,7 @@
      "text": "Compare the inside of the lesion with the black of fluid, and look at the tissue just deep to it."
     }
    ],
-   "explanation": "The radiologist recorded the echo pattern as hypoechoic and posterior features as shadowing; this lesion is a invasive carcinoma (proven by biopsy). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
+   "explanation": "The radiologist recorded the echo pattern as hypoechoic and posterior features as shadowing; this lesion is an invasive carcinoma (proven by biopsy). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
    "bookAnchors": [
     {
      "physical": 411,
@@ -1290,7 +1290,7 @@
       "id": "solid",
       "text": "Solid mass",
       "correct": true,
-      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+      "why": "A solid mass has internal echoes (hypoechoic, isoechoic or heterogeneous rather than anechoic) and does not meet the simple-cyst criteria; low-level echoes alone can also be a complicated cyst."
      }
     ]
    },
@@ -1301,7 +1301,7 @@
      "text": "Compare the inside of the lesion with the black of fluid, and look at the tissue just deep to it."
     }
    ],
-   "explanation": "The radiologist recorded the echo pattern as hypoechoic and posterior features as no; this lesion is a fibroadenoma (proven by biopsy). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
+   "explanation": "The radiologist recorded the echo pattern as hypoechoic and no posterior features; this lesion is a fibroadenoma (proven by biopsy). Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis.",
    "bookAnchors": [
     {
      "physical": 411,
@@ -1422,7 +1422,7 @@
      "text": "Echo pattern is judged against the subcutaneous fat; posterior features are judged in the tissue directly deep to the lesion."
     }
    ],
-   "explanation": "The radiologist described this lesion as hypoechoic with posterior features: no. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone.",
+   "explanation": "The radiologist described this lesion as hypoechoic with no posterior features. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone.",
    "bookAnchors": [
     {
      "physical": 411,
@@ -1599,7 +1599,7 @@
       "id": "solid",
       "text": "Solid mass",
       "correct": true,
-      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+      "why": "A solid mass has internal echoes (hypoechoic, isoechoic or heterogeneous rather than anechoic) and does not meet the simple-cyst criteria; low-level echoes alone can also be a complicated cyst."
      }
     ]
    },
@@ -1908,7 +1908,7 @@
       "id": "solid",
       "text": "Solid mass",
       "correct": false,
-      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+      "why": "A solid mass has internal echoes (hypoechoic, isoechoic or heterogeneous rather than anechoic) and does not meet the simple-cyst criteria; low-level echoes alone can also be a complicated cyst."
      }
     ]
    },
@@ -2217,7 +2217,7 @@
       "id": "solid",
       "text": "Solid mass",
       "correct": false,
-      "why": "Internal echoes (hypoechoic or heterogeneous rather than anechoic) mean solid tissue, whatever the margin."
+      "why": "A solid mass has internal echoes (hypoechoic, isoechoic or heterogeneous rather than anechoic) and does not meet the simple-cyst criteria; low-level echoes alone can also be a complicated cyst."
      }
     ]
    },

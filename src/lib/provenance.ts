@@ -1,15 +1,18 @@
 /** How the app names the origin of a reference label. One place, so every screen says the same thing. */
-export const AI_DRAFT_BY = 'AI draft by Horalix';
+export const AI_LABEL = 'AI';
 
-/** Horalix AI drafts: automatic segmentation that no radiologist has reviewed. */
+/** Who to thank for the AI outlines, with a link, in the sources and credits. */
+export const AI_CREDIT = { name: 'Horalix.com', url: 'https://horalix.com', text: 'Thanks to Horalix.com, every structure in the anatomy layer is marked.' };
+
+/** AI outlines: automatic segmentation that no radiologist has reviewed. */
 export const isAiDraft = (p: string) => p === 'ai_draft';
 
-/** Machine-made labels: Horalix AI drafts and automated labels shipped with a source dataset. */
+/** Machine-made labels: AI outlines and automated labels shipped with a source dataset. */
 export const isAutomatic = (p: string) => p === 'ai_draft' || p === 'source_automated';
 
 /** Short tag for lists and tooltips. */
 export function provenanceTag(p: string): string {
-  if (p === 'ai_draft') return AI_DRAFT_BY;
+  if (p === 'ai_draft') return AI_LABEL;
   if (p === 'source_automated') return 'dataset auto-label';
   if (p === 'human_reviewed') return 'reviewed by you';
   return 'expert';
@@ -17,7 +20,7 @@ export function provenanceTag(p: string): string {
 
 /** Where a label came from and how it was made, in words a learner can read. */
 export function provenanceMethod(ref: { provenance: string; provenanceDetail: { source: string; method: string } }): string {
-  if (ref.provenance === 'ai_draft') return `${AI_DRAFT_BY} — automatic segmentation, not reviewed by a radiologist`;
+  if (ref.provenance === 'ai_draft') return `${AI_LABEL} — automatic outline, not reviewed by a radiologist`;
   return `${ref.provenanceDetail.source} — ${ref.provenanceDetail.method}`;
 }
 

@@ -37,7 +37,7 @@ const effective = (t) => {
   if (t.grading.kind === 'choice') return 'auto-checked choice';
   const provs = t.targets.map((x) => targets.get(x.targetId)?.provenance);
   if (provs.length && provs.every((p) => p === 'source_manual')) return 'spatial · source manual reference';
-  return 'spatial · AI draft by Horalix / dataset auto-label reference (self-review until user review)';
+  return 'spatial · AI outline / dataset auto-label reference (self-review until user review)';
 };
 const count = (arr, f) => arr.reduce((m, x) => ((m[f(x)] = (m[f(x)] ?? 0) + 1), m), {});
 const fmtMB = (b) => `${(b / 1048576).toFixed(1)} MB`;

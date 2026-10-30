@@ -1,7 +1,7 @@
 import { Tooltip } from 'radix-ui';
 import { forwardRef, useEffect, useState, type ButtonHTMLAttributes, type ReactNode } from 'react';
 import { Check, CircleQuestionMark, TriangleAlert, X } from 'lucide-react';
-import { AI_DRAFT_BY } from '../lib/provenance';
+import { AI_LABEL } from '../lib/provenance';
 
 export function Tip({ label, shortcut, children, side = 'bottom' }: { label: string; shortcut?: string; children: ReactNode; side?: 'top' | 'bottom' | 'left' | 'right' }) {
   return (
@@ -62,7 +62,7 @@ export function ProvenanceChip({ provenance }: { provenance: string }) {
   const map: Record<string, [string, string]> = {
     source_manual: ['ok', 'Source manual annotation'],
     source_automated: ['warn', 'Source automated label'],
-    ai_draft: ['warn', `${AI_DRAFT_BY} — unreviewed`],
+    ai_draft: ['warn', `${AI_LABEL} — unreviewed`],
     human_reviewed: ['accent', 'Reviewed by you'],
   };
   const [cls, text] = map[provenance] ?? ['', provenance];

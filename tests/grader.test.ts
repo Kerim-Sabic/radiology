@@ -270,4 +270,41 @@ describe('findings (whole-study style)', () => {
     expect(r.outcome).toBe('incorrect');
     expect(r.errors).toContain('missed_finding');
   });
+  // E.g. the stroke lesion on DWI (required) and on ADC (optional), or a second box on a chest film.
+  const withExtra = task({
+    type: 'locate_finding',
+    targets: [
+      { targetId: 'heart', name: 'Finding A', required: true },
+      { targetId: 'lungL', name: 'Extra finding', required: false },
+    ],
+    grading: { kind: 'findings', matchRule: 'center_in_target', iouThreshold: 0.3, slabToleranceMm: 1.3, inPlaneToleranceMm: 3, allowNoFinding: true },
+  });
+  it('is fully right when every required finding is marked, without the optional ones', () => {
+    const r = gradeTask({ task: withExtra, targets, series: seriesMap, marks: [pointMark('a', ...px(0, -10), 6)] });
+    expect(r.outcome).toBe('correct');
+    expect(r.score).toBe(1);
+    expect(r.errors).not.toContain('missed_finding');
+    expect(r.targets.map((x) => x.targetId)).toEqual(['heart']);
+  });
+  it('credits an optional finding when it is marked, and still needs the required one', () => {
+    const both = gradeTask({ task: withExtra, targets, series: seriesMap, marks: [pointMark('a', ...px(0, -10), 6), pointMark('b', ...px(25, 0), 6)] });
+    expect(both.outcome).toBe('correct');
+    expect(both.targets.find((x) => x.targetId === 'lungL')?.note).toMatch(/not required/);
+    const extraOnly = gradeTask({ task: withExtra, targets, series: seriesMap, marks: [pointMark('b', ...px(25, 0), 6)] });
+    expect(extraOnly.outcome).toBe('incorrect');
+    expect(extraOnly.errors).toContain('missed_finding');
+  });
+  it('lets the required finding take the mark when an optional one covers the same place', () => {
+    const same = new Map(targets);
+    same.set('copy', { ref: ref('copy', 'finding:a', 'Same lesion, other series'), geom: squareContour(0, -10, 6, 4, 10) });
+    const overlapping = task({ ...withExtra, targets: [{ targetId: 'copy', name: 'Same lesion, other series', required: false }, { targetId: 'heart', name: 'Finding A', required: true }] });
+    const r = gradeTask({ task: overlapping, targets: same, series: seriesMap, marks: [pointMark('a', ...px(0, -10), 6)] });
+    expect(r.outcome).toBe('correct');
+    expect(r.targets.find((x) => x.targetId === 'heart')?.status).toBe('found');
+  });
+  it('asks only for the required findings when the learner declares none', () => {
+    const r = gradeTask({ task: withExtra, targets, series: seriesMap, marks: [], declaredNoFinding: true });
+    expect(r.targets.map((x) => x.targetId)).toEqual(['heart']);
+    expect(r.messages[0]).toMatch(/1 finding/);
+  });
 });

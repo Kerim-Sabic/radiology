@@ -1,16 +1,17 @@
 import { describe, expect, it } from 'vitest';
 import { BOOK_ANATOMY, canonicalAnatomyKey, imageFamily } from '../src/content/bookAnatomy';
-import { AI_DRAFT_BY, cleanLabel, provenanceMethod, provenanceTag } from '../src/lib/provenance';
+import { AI_CREDIT, AI_LABEL, cleanLabel, provenanceMethod, provenanceTag } from '../src/lib/provenance';
 import { categoryFor } from '../src/components/ws/overlayShapes';
 
 describe('provenance wording', () => {
-  it('names every AI draft "AI draft by Horalix" and never the dataset labels', () => {
-    expect(AI_DRAFT_BY).toBe('AI draft by Horalix');
-    expect(provenanceTag('ai_draft')).toBe('AI draft by Horalix');
+  it('names every AI outline just "AI", credits Horalix.com in the sources, and never shows the dataset labels', () => {
+    expect(AI_LABEL).toBe('AI');
+    expect(provenanceTag('ai_draft')).toBe('AI');
+    expect(AI_CREDIT.url).toBe('https://horalix.com');
     expect(provenanceTag('source_manual')).toBe('expert');
     expect(provenanceTag('source_automated')).toBe('dataset auto-label');
     const detail = { source: 'any tool', method: 'internal method text' };
-    expect(provenanceMethod({ provenance: 'ai_draft', provenanceDetail: detail })).toMatch(/^AI draft by Horalix — /);
+    expect(provenanceMethod({ provenance: 'ai_draft', provenanceDetail: detail })).toBe('AI — automatic outline, not reviewed by a radiologist');
     expect(provenanceMethod({ provenance: 'source_manual', provenanceDetail: detail })).toBe('any tool — internal method text');
   });
 

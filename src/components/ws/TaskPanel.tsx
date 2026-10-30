@@ -1,4 +1,4 @@
-import { BookOpen, Check, Eye, Lightbulb, MapPin, ArrowUpRight, Square, PenLine, Trash2, ArrowRight, RotateCcw, X } from 'lucide-react';
+import { BookOpen, Check, Eye, Lightbulb, MapPin, ArrowUpRight, Square, PenLine, Trash2, ArrowRight, RotateCcw, Timer, X } from 'lucide-react';
 import type { BookAnchorRef, Task, TeachingCase } from '../../schema/content';
 import type { GradeResult, LearnerMark } from '../../grading/types';
 import { ERROR_LABELS } from '../../grading/types';
@@ -31,6 +31,8 @@ interface Props {
   onSelfReview: (s: { checked: string[]; verdict: 'correct' | 'partial' | 'incorrect' | null }) => void;
   independentNote: string;
   scoringLabel: { text: string; tone: 'ok' | 'warn' | 'accent'; title: string };
+  /** A question of a certification exam: the question and its answer only, then on to the next one. */
+  exam?: { index: number; total: number; secondsLeft: number | null } | null;
 }
 
 const TOOL_NAME: Record<LearnerMark['tool'], string> = { point: 'Point', arrow: 'Arrow', box: 'Box', outline: 'Outline' };
@@ -42,8 +44,11 @@ export function TaskPanel(p: Props) {
   const nextHint = hints.find((h) => !opened.has(h.level));
   const names = task.targets.map((t) => t.name);
   const showMarks = needsMarks(task);
-  const showReport = reportShown(task, p.level);
+  const exam = p.exam ?? null;
+  const showReport = !exam && reportShown(task, p.level);
   const submittable = canSubmit(task, s, p.marks.length, showReport);
+
+  if (exam && !s.submitted) return <ExamQuestion {...p} exam={exam} submittable={submittable} />;
 
   return (
     <div className="stack" style={{ gap: 14 }}>
@@ -73,85 +78,9 @@ export function TaskPanel(p: Props) {
         </div>
       ) : null}
 
-      {showMarks && !s.submitted ? (
-        <div className="stack" style={{ gap: 8 }}>
-          <div className="row">
-            <h3>Your marks</h3>
-            <span className="spacer" />
-            <button className={`btn sm${p.activeTool === 'point' ? ' primary' : ''}`} onClick={() => p.onTool('point')} title="Point (M)">
-              <MapPin size={13} /> Point
-            </button>
-            <button className={`btn sm${p.activeTool === 'arrow' ? ' primary' : ''}`} onClick={() => p.onTool('arrow')} title="Arrow + label (A)">
-              <ArrowUpRight size={13} /> Arrow
-            </button>
-            <button className={`btn sm${p.activeTool === 'box' ? ' primary' : ''}`} onClick={() => p.onTool('box')} title="Box (B)">
-              <Square size={13} />
-            </button>
-            <button className={`btn sm${p.activeTool === 'outline' ? ' primary' : ''}`} onClick={() => p.onTool('outline')} title="Outline (O)">
-              <PenLine size={13} />
-            </button>
-          </div>
-          {p.marks.length === 0 ? (
-            <p className="faint">Choose a marking tool, then click on the image. Hold Shift and drag to adjust the window while marking.</p>
-          ) : (
-            p.marks.map((m, i) => (
-              <div key={m.id} className="mark-row">
-                <span className="mark-dot" aria-hidden />
-                <div className="stack" style={{ gap: 4 }}>
-                  <span className="faint" style={{ fontSize: 12 }}>
-                    {i + 1}. {TOOL_NAME[m.tool]} · {m.view === 'stack' ? 'stack' : m.view}
-                  </span>
-                  {needsLabels(task) || (task.grading.kind === 'point_in_target' && names.length > 1) ? (
-                    <select value={m.label ?? ''} onChange={(e) => p.onLabel(m.id, e.target.value)} aria-label={`Name for mark ${i + 1}`}>
-                      <option value="">Name this mark…</option>
-                      {names.map((n) => (
-                        <option key={n} value={n}>
-                          {n}
-                        </option>
-                      ))}
-                      <option value="Not sure">Not sure</option>
-                    </select>
-                  ) : (
-                    <input type="text" placeholder="Optional label" value={m.label ?? ''} onChange={(e) => p.onLabel(m.id, e.target.value)} aria-label={`Label for mark ${i + 1}`} />
-                  )}
-                </div>
-                <button className="icon-btn" onClick={() => p.onRemoveMark(m.id)} aria-label={`Delete mark ${i + 1}`}>
-                  <Trash2 size={15} />
-                </button>
-              </div>
-            ))
-          )}
-        </div>
-      ) : null}
+      {showMarks && !s.submitted ? <MarkList {...p} names={names} /> : null}
 
-      {task.grading.kind === 'choice' ? (
-        <div className="stack" style={{ gap: 6 }} role="group" aria-label="Answer options">
-          {task.grading.options.map((o) => {
-            const picked = s.choice.includes(o.id);
-            const g = task.grading.kind === 'choice' ? task.grading : null;
-            return (
-              <label key={o.id} className="mark-row" style={{ gridTemplateColumns: '20px 1fr', cursor: s.submitted ? 'default' : 'pointer', color: 'var(--text)' }}>
-                <input
-                  type={g?.multiple ? 'checkbox' : 'radio'}
-                  name={`choice-${task.id}`}
-                  checked={picked}
-                  disabled={s.submitted}
-                  onChange={() => p.update({ choice: g?.multiple ? (picked ? s.choice.filter((x) => x !== o.id) : [...s.choice, o.id]) : [o.id] })}
-                />
-                <span>
-                  {o.text}
-                  {s.submitted ? (
-                    <span className="faint" style={{ display: 'block', fontSize: 12, marginTop: 2 }}>
-                      {o.correct ? '✓ ' : '✗ '}
-                      {o.why}
-                    </span>
-                  ) : null}
-                </span>
-              </label>
-            );
-          })}
-        </div>
-      ) : null}
+      {task.grading.kind === 'choice' ? <ChoiceList {...p} /> : null}
 
       {showReport ? (
         <div className="stack" style={{ gap: 8 }}>
@@ -242,6 +171,146 @@ export function TaskPanel(p: Props) {
       ) : null}
 
       {s.submitted && p.grade ? <Feedback {...p} /> : null}
+    </div>
+  );
+}
+
+/** The learner's marks: tool buttons, then each mark with its name or label. */
+function MarkList(p: Props & { names: string[] }) {
+  const { task, names } = p;
+  return (
+    <div className="stack" style={{ gap: 8 }}>
+      <div className="row">
+        <h3>Your marks</h3>
+        <span className="spacer" />
+        <button className={`btn sm${p.activeTool === 'point' ? ' primary' : ''}`} onClick={() => p.onTool('point')} title="Point (M)">
+          <MapPin size={13} /> Point
+        </button>
+        <button className={`btn sm${p.activeTool === 'arrow' ? ' primary' : ''}`} onClick={() => p.onTool('arrow')} title="Arrow + label (A)">
+          <ArrowUpRight size={13} /> Arrow
+        </button>
+        <button className={`btn sm${p.activeTool === 'box' ? ' primary' : ''}`} onClick={() => p.onTool('box')} title="Box (B)">
+          <Square size={13} />
+        </button>
+        <button className={`btn sm${p.activeTool === 'outline' ? ' primary' : ''}`} onClick={() => p.onTool('outline')} title="Outline (O)">
+          <PenLine size={13} />
+        </button>
+      </div>
+      {p.marks.length === 0 ? (
+        <p className="faint">Choose a marking tool, then click on the image. Hold Shift and drag to adjust the window while marking.</p>
+      ) : (
+        p.marks.map((m, i) => (
+          <div key={m.id} className="mark-row">
+            <span className="mark-dot" aria-hidden />
+            <div className="stack" style={{ gap: 4 }}>
+              <span className="faint" style={{ fontSize: 12 }}>
+                {i + 1}. {TOOL_NAME[m.tool]} · {m.view === 'stack' ? 'stack' : m.view}
+              </span>
+              {needsLabels(task) || (task.grading.kind === 'point_in_target' && names.length > 1) ? (
+                <select value={m.label ?? ''} onChange={(e) => p.onLabel(m.id, e.target.value)} aria-label={`Name for mark ${i + 1}`}>
+                  <option value="">Name this mark…</option>
+                  {names.map((n) => (
+                    <option key={n} value={n}>
+                      {n}
+                    </option>
+                  ))}
+                  <option value="Not sure">Not sure</option>
+                </select>
+              ) : (
+                <input type="text" placeholder="Optional label" value={m.label ?? ''} onChange={(e) => p.onLabel(m.id, e.target.value)} aria-label={`Label for mark ${i + 1}`} />
+              )}
+            </div>
+            <button className="icon-btn" onClick={() => p.onRemoveMark(m.id)} aria-label={`Delete mark ${i + 1}`}>
+              <Trash2 size={15} />
+            </button>
+          </div>
+        ))
+      )}
+    </div>
+  );
+}
+
+/** The answer options; after submitting, each one says whether it was right and why. */
+function ChoiceList(p: Props) {
+  const { task, session: s } = p;
+  if (task.grading.kind !== 'choice') return null;
+  return (
+    <div className="stack" style={{ gap: 6 }} role="group" aria-label="Answer options">
+      {task.grading.options.map((o) => {
+        const picked = s.choice.includes(o.id);
+        const g = task.grading.kind === 'choice' ? task.grading : null;
+        return (
+          <label key={o.id} className="mark-row" style={{ gridTemplateColumns: '20px 1fr', cursor: s.submitted ? 'default' : 'pointer', color: 'var(--text)' }}>
+            <input
+              type={g?.multiple ? 'checkbox' : 'radio'}
+              name={`choice-${task.id}`}
+              checked={picked}
+              disabled={s.submitted}
+              onChange={() => p.update({ choice: g?.multiple ? (picked ? s.choice.filter((x) => x !== o.id) : [...s.choice, o.id]) : [o.id] })}
+            />
+            <span>
+              {o.text}
+              {s.submitted ? (
+                <span className="faint" style={{ display: 'block', fontSize: 12, marginTop: 2 }}>
+                  {o.correct ? '✓ ' : '✗ '}
+                  {o.why}
+                </span>
+              ) : null}
+            </span>
+          </label>
+        );
+      })}
+    </div>
+  );
+}
+
+/**
+ * A question of a certification exam: the question, the image tools and the answer, nothing else (no hints, no
+ * confidence, no written report). Saving the answer opens the next question; the result comes at the end.
+ */
+function ExamQuestion(p: Props & { exam: { index: number; total: number; secondsLeft: number | null }; submittable: boolean }) {
+  const { task, session: s, exam } = p;
+  const last = exam.index === exam.total - 1;
+  const left = exam.secondsLeft;
+  return (
+    <div className="stack exam-question" style={{ gap: 14 }}>
+      <div className="exam-q-head">
+        <span className="exam-q-num">
+          Question {exam.index + 1} <span className="faint">of {exam.total}</span>
+        </span>
+        {left !== null ? (
+          <span className={`chip ${left <= 20 ? 'bad' : 'warn'}`} role="timer" aria-label="Time left for this question">
+            <Timer size={12} /> {Math.floor(Math.max(0, left) / 60)}:{String(Math.max(0, left) % 60).padStart(2, '0')} left
+          </span>
+        ) : (
+          <span className="chip">No hints · result at the end</span>
+        )}
+      </div>
+      <p className="prompt">{task.prompt}</p>
+      {task.grading.kind === 'slice_interval' ? (
+        <div className="notice info">
+          Scroll to the level you think is right, then save your answer. Your current slice is what gets checked{p.currentSliceLabel ? ` (now: ${p.currentSliceLabel})` : ''}.
+        </div>
+      ) : null}
+      {needsMarks(task) ? <MarkList {...p} names={task.targets.map((t) => t.name)} /> : null}
+      {task.grading.kind === 'choice' ? <ChoiceList {...p} /> : null}
+      {task.grading.kind === 'findings' && task.grading.allowNoFinding ? (
+        <div className="row wrap">
+          <button className="chip" aria-pressed={s.declaredNoFinding} onClick={() => p.update({ declaredNoFinding: !s.declaredNoFinding })}>
+            No abnormality found
+          </button>
+        </div>
+      ) : null}
+      <div className="stack" style={{ gap: 6 }}>
+        <button className="btn primary lg" disabled={!p.submittable} onClick={p.onSubmit}>
+          {last ? 'Save answer and finish the exam' : 'Save answer · next question'} <ArrowRight size={16} />
+        </button>
+        <small className="faint">
+          {left !== null
+            ? 'Answers cannot be changed once saved. When the time is up, what you have marked or chosen is saved; with nothing marked the question counts as not answered. The clock keeps running if you leave.'
+            : 'Answers cannot be changed once saved. You can leave and come back: the exam waits for you.'}
+        </small>
+      </div>
     </div>
   );
 }

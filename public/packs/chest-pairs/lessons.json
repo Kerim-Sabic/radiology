@@ -1534,8 +1534,8 @@
    "id": "chest-pairs-covid-19-ar-16434363:scout",
    "caseId": "chest-pairs-covid-19-ar-16434363",
    "type": "compare_appearances",
-   "title": "Diagnostic radiograph or CT scout?",
-   "prompt": "Two frontal projection images exist for this patient. Which one is the diagnostic chest radiograph?",
+   "title": "Diagnostic radiograph or CT locator slice?",
+   "prompt": "Two single-image series are offered for this patient. Which one is the diagnostic chest radiograph?",
    "modes": [
     "learn",
     "practice",
@@ -1565,7 +1565,7 @@
       "id": "scout",
       "text": "The 'locator' image (study 'CT PE CHEST')",
       "correct": false,
-      "why": "Modality CT: the CT scanner's low-dose localizer used to plan slices. Not a diagnostic radiograph."
+      "why": "Modality CT: a single 10 mm axial slice labelled 'locator' that the CT scanner acquires to set up the scan. It is not a radiograph and not a diagnostic series."
      }
     ]
    },
@@ -1576,7 +1576,7 @@
      "text": "Read the modality and description in the viewport corners."
     }
    ],
-   "explanation": "A CT scout is a planning projection acquired by the CT gantry. It must not be reported as, or paired as, a chest radiograph.",
+   "explanation": "The 'locator' here is a single thick axial slice that the CT scanner acquires to set up the scan; other scanners use a low-dose frontal projection (scout, topogram) for slice planning. Neither is a diagnostic image: it must not be reported as, or paired as, a chest radiograph.",
    "bookAnchors": [
     {
      "physical": 16,
@@ -1905,8 +1905,8 @@
    "id": "chest-pairs-covid-19-ar-16434411:scout",
    "caseId": "chest-pairs-covid-19-ar-16434411",
    "type": "compare_appearances",
-   "title": "Diagnostic radiograph or CT scout?",
-   "prompt": "Two frontal projection images exist for this patient. Which one is the diagnostic chest radiograph?",
+   "title": "Diagnostic radiograph or CT locator slice?",
+   "prompt": "Two single-image series are offered for this patient. Which one is the diagnostic chest radiograph?",
    "modes": [
     "learn",
     "practice",
@@ -1936,7 +1936,7 @@
       "id": "scout",
       "text": "The 'locator' image (study 'CT PE CHEST')",
       "correct": false,
-      "why": "Modality CT: the CT scanner's low-dose localizer used to plan slices. Not a diagnostic radiograph."
+      "why": "Modality CT: a single 10 mm axial slice labelled 'locator' that the CT scanner acquires to set up the scan. It is not a radiograph and not a diagnostic series."
      }
     ]
    },
@@ -1947,7 +1947,7 @@
      "text": "Read the modality and description in the viewport corners."
     }
    ],
-   "explanation": "A CT scout is a planning projection acquired by the CT gantry. It must not be reported as, or paired as, a chest radiograph.",
+   "explanation": "The 'locator' here is a single thick axial slice that the CT scanner acquires to set up the scan; other scanners use a low-dose frontal projection (scout, topogram) for slice planning. Neither is a diagnostic image: it must not be reported as, or paired as, a chest radiograph.",
    "bookAnchors": [
     {
      "physical": 16,
@@ -2395,7 +2395,7 @@
     },
     {
      "id": "proj",
-     "text": "Projection caveat stated (PA: usable)",
+     "text": "Projection caveat stated (the view is not recorded in the header: judge PA or AP from the image before trusting the ratio)",
      "weight": "essential",
      "category": "limitation"
     }

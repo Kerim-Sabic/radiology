@@ -391,7 +391,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "Source manual vertebral body segmentations (15 levels). Lesions are not referenced here.",
+   "referenceSummary": "Source manual vertebra segmentations (15 levels; each outlines the whole vertebra, body and posterior elements). Lesions are not referenced here.",
    "learnNotes": "Count from the last rib-bearing vertebra (usually T12) and check on the sagittal MPR."
   },
   {
@@ -429,7 +429,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "Source manual vertebral body segmentations (17 levels). Lesions are not referenced here.",
+   "referenceSummary": "Source manual vertebra segmentations (17 levels; each outlines the whole vertebra, body and posterior elements). Lesions are not referenced here.",
    "learnNotes": "Count from the last rib-bearing vertebra (usually T12) and check on the sagittal MPR."
   },
   {
@@ -1495,7 +1495,7 @@
    "caseId": "exp-lidc-idri-0134",
    "type": "differential",
    "title": "Oral exam: show it, describe it, defend it",
-   "prompt": "As if presenting to an examiner: (1) show the key finding with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a pulmonary vessel seen end-on or a granuloma is less likely.",
+   "prompt": "As if presenting to an examiner: (1) show the most important lung nodule with an arrow, (2) describe it in one sentence (location, size, pattern), (3) give your leading interpretation with the image evidence for it, and (4) explain why a pulmonary vessel seen end-on or a granuloma is less likely. Then name the other major abnormality on this study.",
    "modes": [
     "learn",
     "practice"
@@ -1551,6 +1551,12 @@
      "text": "Stated what needs comparison, other sequences/phases, or clinical information",
      "weight": "supportive",
      "category": "limitation"
+    },
+    {
+     "id": "other",
+     "text": "Also reported the large right pleural effusion with compressive collapse (atelectasis) of the adjacent right lung.",
+     "weight": "supportive",
+     "category": "associated_sign"
     }
    ],
    "bookAnchors": [
@@ -1693,7 +1699,7 @@
    "rubric": [
     {
      "id": "right",
-     "text": "Right border: SVC and right atrium identified",
+     "text": "Right border: SVC identified, and noted that the right heart border (right atrium) is hidden by the right-sided pleural opacity (silhouette sign)",
      "weight": "essential",
      "category": "location"
     },
@@ -1767,13 +1773,13 @@
    "rubric": [
     {
      "id": "meas",
-     "text": "Both widths measured at the right places",
+     "text": "Recognised that the right heart border is hidden by the right-sided pleural opacity, so the heart width cannot be measured reliably on this film",
      "weight": "essential",
      "category": "finding"
     },
     {
      "id": "ratio",
-     "text": "Ratio stated",
+     "text": "Ratio given only with that caveat, or stated as not measurable",
      "weight": "essential",
      "category": "finding"
     },

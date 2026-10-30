@@ -358,7 +358,7 @@ function AnatomyPane(p: { engine: ViewerEngine; panelId: string; threeD: ThreeDP
           </button>
         </div>
         <p className="faint" style={{ marginTop: 6, fontSize: 11 }}>
-          Models are built from the AI draft outlines by Horalix (not checked by a radiologist); slices far apart make them look stepped.
+          Models are built from the AI outlines (not checked by a radiologist); slices far apart make them look stepped.
         </p>
       </>
     );

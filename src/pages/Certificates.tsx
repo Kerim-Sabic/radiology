@@ -1,136 +1,87 @@
 import { useEffect, useMemo, useState } from 'react';
-import { useNavigate, useSearchParams } from 'react-router';
-import { ArrowRight, Award, ExternalLink } from 'lucide-react';
+import { useNavigate } from 'react-router';
+import { ArrowRight, Award, ExternalLink, Lock, RotateCcw } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { useAccount } from '../auth/AccountGate';
-import { areaProgress } from '../services/areas';
-import {
-  CERT_TITLES,
-  LEVELS,
-  certificateStatus,
-  claimCertificate,
-  levelLabel,
-  levelRequirement,
-  myCertificates,
-  linkedInUrl,
-  verifiedCertificateStatuses,
-  verifySavedAnswers,
-  type CertArea,
-  type CertStatus,
-  type IssuedCertificate,
-} from '../services/certificates';
-import { certKey, nextCertificateTask, parseCertKey, stepUrl } from '../services/certify';
-import { LEVEL_STYLE } from '../../shared/certificateLevels';
+import { CERT_TITLES, EXAMS, examRequirement, examRule, levelLabel, myCertificates, type CertArea, type CertLevel, type IssuedCertificate } from '../services/certificates';
+import { examAvailable, examBlock, examResultUrl, examScore, examUrl, finishExam, nextQuestion, startExam, type CertExam } from '../services/exam';
+import { LEVEL_STYLE, examDetail, levelName } from '../../shared/certificateLevels';
 import '../styles/upgrade.css';
 
 const pct = (x: number) => `${Math.round(x * 100)}%`;
 const ORDER: CertArea[] = ['chest', 'abdomen', 'head', 'msk', 'breast', 'all'];
-const same = (c: IssuedCertificate, s: CertStatus) => c.area === s.area && (c.level ?? 1) === s.level;
+const LEVELS_123: CertLevel[] = [1, 2, 3];
+const onDay = (iso: string) => new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
 
-/** Every certificate: the levels, how close you are to each, and the ones you have. */
+/** Every certificate: one exam per level, the exam in progress, the last result of each, and the certificates held. */
 export default function CertificatesPage() {
-  const { catalog, attempts, free, openPlans, settings } = useApp();
+  const { catalog, attempts, progress, free, openPlans } = useApp();
   const account = useAccount();
   const navigate = useNavigate();
-  const [sp, setSp] = useSearchParams();
   const [issued, setIssued] = useState<IssuedCertificate[]>([]);
-  const [claiming, setClaiming] = useState<CertStatus | null>(null);
-  const [name, setName] = useState('');
-  const [error, setError] = useState('');
-  const [busy, setBusy] = useState(false);
-  const [email, setEmail] = useState(false);
-  const [syncing, setSyncing] = useState(false);
-  const [syncMessage, setSyncMessage] = useState('');
-  const [verified, setVerified] = useState<CertStatus[]>([]);
-  const localStatuses = useMemo(() => (catalog ? certificateStatus(areaProgress(catalog, attempts), attempts) : []), [catalog, attempts]);
-  const statuses = account ? verified : localStatuses;
-  useEffect(() => {
-    if (account)
-      void verifiedCertificateStatuses()
-        .then(setVerified)
-        .catch((e) => setSyncMessage(e.message));
-  }, [account]);
-  const sync = async () => {
-    setSyncing(true);
-    setSyncMessage('Verifying your saved answers…');
-    try {
-      const r = await verifySavedAnswers(attempts);
-      setVerified(await verifiedCertificateStatuses());
-      setSyncMessage(`${r.counted} distinct answers checked.${r.rejected ? ` ${r.rejected} older answers need a retry on the current case.` : ''}`);
-    } catch (e) {
-      setSyncMessage((e as Error).message);
-    } finally {
-      setSyncing(false);
-    }
-  };
+  const [current, setCurrent] = useState<CertExam | null>(null);
+  const [history, setHistory] = useState<CertExam[]>([]);
   useEffect(() => {
     if (account && !free) void myCertificates().then(setIssued);
   }, [account, free]);
-  const signedIn = !!account;
-  const groups = ORDER.map((area) => [area, statuses.filter((s) => s.area === area)] as const).filter(([, levels]) => levels.length);
-  const mine = [...issued].sort((a, b) => ORDER.indexOf(a.area as CertArea) - ORDER.indexOf(b.area as CertArea) || (b.level ?? 1) - (a.level ?? 1));
-  const issuedOn = (iso: string) =>
-    new Date(iso).toLocaleDateString(undefined, {
-      day: 'numeric',
-      month: 'long',
-      year: 'numeric',
-    });
-
-  const startClaim = (s: CertStatus) => {
-    const own = account?.account.user?.name;
-    setClaiming(s);
-    setName(own && !own.includes('@') ? own : settings.reviewerName === 'me' ? '' : settings.reviewerName);
-    setError('');
-  };
-  // Back from the reading room with a level reached (?claim=chest-2): open its form.
-  const claimParam = sp.get('claim');
   useEffect(() => {
-    const want = parseCertKey(claimParam);
-    const s = want && statuses.find((x) => x.area === want.area && x.level === want.level);
-    if (!s) return;
-    if (s.eligible && !free && account) startClaim(s);
-    setSp({}, { replace: true });
-    requestAnimationFrame(() => document.getElementById(`cert-${certKey(want.area, want.level)}`)?.scrollIntoView({ block: 'center', behavior: 'smooth' }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [claimParam, statuses.length]);
-  /** Start or continue a level: the next patient or task it still needs, in the reading room. */
-  const work = (s: CertStatus) => {
-    if (!catalog) return;
-    const step = nextCertificateTask(catalog, attempts, s.area, s.level, undefined, account ? s : undefined);
-    if (step) navigate(stepUrl(step, s.area, s.level));
-  };
-  const claim = async () => {
-    if (!claiming) return;
-    setBusy(true);
+    void progress.currentCertExam().then((e) => setCurrent(e && !e.finishedAt ? e : null));
+    void progress.certExamHistory().then(setHistory);
+  }, [progress, attempts.length]);
+  const signedIn = !!account;
+  const mine = [...issued].sort((a, b) => ORDER.indexOf(a.area as CertArea) - ORDER.indexOf(b.area as CertArea) || (b.level ?? 1) - (a.level ?? 1));
+  const available = useMemo(() => {
+    const m = new Map<string, boolean>();
+    if (catalog) for (const a of ORDER) for (const l of LEVELS_123) m.set(`${a}-${l}`, examAvailable(catalog, a, l));
+    return m;
+  }, [catalog]);
+
+  const [starting, setStarting] = useState(false);
+  const [error, setError] = useState('');
+  // The server picks the questions (and checks the order of levels and the wait after a failed exam).
+  const start = async (area: CertArea, level: CertLevel) => {
+    setStarting(true);
     setError('');
-    const r = await claimCertificate(claiming, name.trim(), email);
-    setBusy(false);
+    const r = await startExam(area, level);
+    setStarting(false);
     if (!r.ok) return setError(r.error);
-    setIssued((xs) => [...xs.filter((x) => x.id !== r.certificate.id), r.certificate]);
-    setClaiming(null);
-    location.assign(`/verify/${r.certificate.id}#add-to-linkedin`);
+    await progress.saveCertExam(r.data.exam);
+    navigate(examUrl(r.data.exam, 0));
   };
+  // The last answer given, or an exam ended early: the server scores it (questions not answered count as wrong).
+  const end = async (e: CertExam) => {
+    const r = await finishExam(e.id);
+    const done = await progress.finishCertExam(r.ok ? { ...e, result: r.data.result, finishedAt: r.data.result.finishedAt } : e);
+    navigate(examResultUrl(done));
+  };
+  const resume = (e: CertExam) => {
+    const i = nextQuestion(e);
+    if (i >= 0) navigate(examUrl(e, i));
+    else void end(e);
+  };
+  const answered = current ? current.items.filter((it) => it.submittedAt).length : 0;
 
   return (
     <div className="page-inner certs-page">
       <header className="certs-intro">
         <h1>Certificates</h1>
         <p className="muted">
-          Earned by reading real patients here. Each body area has three levels, and the whole library three more; every level is its own certificate, with a public check link and
-          the steps to add it to LinkedIn under Licenses &amp; certifications.
+          Each body area has three levels, from Foundation to Advanced, and the whole library three more. Every level is an exam on real patients, and each one is a real
+          step up: more questions, a higher pass mark, a clock, more findings to mark on the image yourself, subtle cases, and at Advanced no half points. Pass it and the
+          certificate is yours, with a public check link and the steps to add it to LinkedIn under Licenses &amp; certifications.
         </p>
-        <ol className="certs-how" aria-label="How to get a certificate">
+        <ol className="certs-how" aria-label="How the exam works">
           <li>
-            <b>Start certification</b>
-            <span>Pick a level below. The app opens the first patient it needs.</span>
+            <b>Start with Level 1</b>
+            <span>The levels go in order: pass one to unlock the next. Each question shows one patient's images and asks one thing.</span>
           </li>
           <li>
-            <b>Read the patients it gives you</b>
-            <span>After each answer, press Next for your certificate. The bar at the top shows what is left.</span>
+            <b>Answer every question</b>
+            <span>Mark the finding or choose the answer, then go on. No hints, and no result until the end. From Level 2 each question is timed.</span>
           </li>
           <li>
-            <b>Finish certification</b>
-            <span>When the level is reached, type your name. Your certificate is ready to share on LinkedIn.</span>
+            <b>Passed or not</b>
+            <span>The result comes right after the last question, with every answer to review. Passed? Type your name and your certificate is ready.</span>
           </li>
         </ol>
         <div className="row" style={{ gap: 8, flexWrap: 'wrap' }}>
@@ -143,21 +94,39 @@ export default function CertificatesPage() {
             </button>
           ) : null}
         </div>
-        {free ? <p className="notice">Certificates are issued to members. Your answers on the sample patients already count towards them.</p> : null}
-        {!signedIn ? <p className="notice">Sign in as a member to claim certificates.</p> : null}
-        {signedIn ? (
-          <div className="notice">
-            <p>
-              Certificates use server-graded answers. Verify saved answers to include work already on this device. Only submit your own work. Self-review scores do not count;
-              Advanced requires Assess mode. This is unproctored study, not accredited CME or a professional qualification.
-            </p>
-            <button className="btn" disabled={syncing} onClick={() => void sync()}>
-              {syncing ? 'Verifying…' : 'Verify saved answers'}
-            </button>
-            <p role="status">{syncMessage}</p>
-          </div>
+        {free ? <p className="notice">The exams draw on the whole library, so they are for members.</p> : null}
+        {signedIn && !free ? (
+          <p className="faint certs-own">
+            The server picks every exam's questions, keeps each question's clock and grades every answer itself; a certificate is issued once, for a pass it scored. Take
+            the exams yourself: a certificate can be revoked.
+          </p>
         ) : null}
+        {error ? (
+          <p className="notice bad" role="alert">
+            {error}
+          </p>
+        ) : null}
+        {!signedIn ? <p className="notice">Sign in as a member to take the exams and get certificates.</p> : null}
       </header>
+
+      {current ? (
+        <section className="card certs-current" aria-labelledby="certs-current-h">
+          <div>
+            <h2 id="certs-current-h">Exam in progress</h2>
+            <p className="muted" style={{ margin: 0 }}>
+              <b>{CERT_TITLES[current.area]}</b> · {levelLabel(current.level)} · {answered} of {current.items.length} questions answered
+            </p>
+          </div>
+          <div className="row" style={{ gap: 8, flexWrap: 'wrap' }}>
+            <button className="btn primary" onClick={() => resume(current)}>
+              Continue the exam <ArrowRight size={14} />
+            </button>
+            <button className="btn ghost" onClick={() => void end(current)} title="End now: the questions not answered count as wrong">
+              End it now
+            </button>
+          </div>
+        </section>
+      ) : null}
 
       {mine.length ? (
         <section className="card stack" aria-labelledby="certs-mine-h">
@@ -171,18 +140,12 @@ export default function CertificatesPage() {
                 <div>
                   <b>{c.title}</b>
                   <span className="faint">
-                    {levelLabel(c.level)} · issued {issuedOn(c.issuedAt)}
+                    {levelLabel(c.level)} · {c.exam ? `passed with ${pct(c.accuracy)}` : `${pct(c.accuracy)} right`} · issued {onDay(c.issuedAt)}
                   </span>
                 </div>
                 <a className="btn sm" href={`/verify/${c.id}`} target="_blank" rel="noopener noreferrer">
                   View and share <ExternalLink size={12} />
                 </a>
-                {c.status !== 'revoked' && (
-                  <a className="btn sm" href={linkedInUrl(c)} target="_blank" rel="noopener noreferrer">
-                    Add to LinkedIn
-                  </a>
-                )}
-                {c.status === 'revoked' && <span className="notice bad">Revoked</span>}
               </li>
             ))}
           </ul>
@@ -190,7 +153,7 @@ export default function CertificatesPage() {
       ) : null}
 
       <section className="card stack" aria-labelledby="certs-levels-h">
-        <h2 id="certs-levels-h">The levels</h2>
+        <h2 id="certs-levels-h">The exams</h2>
         <div className="certs-levels-wrap">
           <table className="certs-levels">
             <thead>
@@ -201,123 +164,112 @@ export default function CertificatesPage() {
               </tr>
             </thead>
             <tbody>
-              {LEVELS.area.map((rule, i) => (
+              {EXAMS.area.map((rule, i) => (
                 <tr key={rule.level}>
-                  <th scope="row">{levelLabel(rule.level)}</th>
-                  <td data-label="Each body area">{levelRequirement('chest', rule)}</td>
-                  <td data-label="General Radiology">{levelRequirement('all', LEVELS.all[i])}</td>
+                  <th scope="row">
+                    {levelLabel(rule.level)}
+                    <small className="faint certs-level-detail">{examDetail(rule)}</small>
+                  </th>
+                  <td data-label="Each body area">{examRequirement(rule)}</td>
+                  <td data-label="General Radiology">{examRequirement(EXAMS.all[i])}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
         <small className="faint">
-          Patients read means you submitted an answer on at least one of their tasks. Partly right counts half. Without hints means no hint opened and nothing revealed, as in
-          Assess mode. Where an area has fewer patients than a level asks for, that level asks for every patient there. Retry your mistakes to raise your share right.
+          Every question is graded automatically against the expert's reference: a mark must land on the finding, on the right image and side, or the answer must match
+          the expert's. A partly right answer counts half at Levels 1 and 2 and nothing at Level 3. When a question's time runs out, what you have marked or chosen is
+          saved; with nothing marked it counts as wrong. Two-answer questions (a guess passes half of them) are left out from Level 2. Questions you have not answered
+          before come first, so a new attempt brings new patients. After an exam you did not pass, Level 2 can be tried again after an hour and Level 3 after a day.
         </small>
       </section>
 
       <div className="certs-areas">
-        {groups.map(([area, levels]) => (
+        {ORDER.map((area) => (
           <section key={area} className="card certs-area" aria-labelledby={`certs-${area}`}>
             <div className="certs-area-head">
               <h2 id={`certs-${area}`}>{CERT_TITLES[area]}</h2>
-              <span className="faint">
-                {levels[0].read} of {levels[0].patients} patients read
-              </span>
             </div>
             <ol className="certs-ladder">
-              {levels.map((s) => {
-                const have = issued.find((c) => same(c, s) && c.verification === 'server-graded') ?? issued.find((c) => same(c, s));
+              {LEVELS_123.map((level) => {
+                const rule = examRule(area, level);
+                const have = issued.find((c) => c.area === area && (c.level ?? 1) === level && c.status !== 'revoked');
+                const last = history.find((e) => e.area === area && e.level === level) ?? null;
+                const lastScore = last ? examScore(last, attempts) : null;
+                const here = current && current.area === area && current.level === level ? current : null;
+                const ok = available.get(`${area}-${level}`) ?? false;
+                const block = examBlock(area, level, issued, history, attempts);
+                let status = 'Not taken yet.';
+                if (here) status = `In progress: ${here.items.filter((it) => it.submittedAt).length} of ${here.items.length} answered.`;
+                else if (last && lastScore)
+                  status = `Last exam ${onDay(last.finishedAt ?? last.startedAt)}: ${pct(lastScore.score)}, ${lastScore.passed ? 'passed' : `not passed (needs ${pct(lastScore.passMark)})`}.`;
+                else if (have) status = `Issued ${onDay(have.issuedAt)}.`;
+                else if (free) status = 'For members: the exam draws on the whole library.';
+                else if (!catalog) status = 'Loading the library…';
+                else if (!ok) status = 'Not enough patients in the library for this level yet: more are on the way.';
+                else if (block) status = block.text;
                 return (
-                  <li
-                    key={s.level}
-                    id={`cert-${certKey(s.area, s.level)}`}
-                    className={s.eligible ? 'ok' : ''}
-                    style={{
-                      ['--lvl' as string]: LEVEL_STYLE[s.level].ring[0],
-                    }}
-                  >
+                  <li key={level} id={`cert-${area}-${level}`} className={have || lastScore?.passed ? 'ok' : ''} style={{ ['--lvl' as string]: LEVEL_STYLE[level].ring[0] }}>
                     <div className="certs-step-head">
                       <span className="certs-badge" aria-hidden="true">
-                        {s.level}
+                        {level}
                       </span>
                       <b>
-                        Level {s.level} · {s.levelName}
+                        Level {level} · {levelName(level)}
                       </b>
-                      <span className="certs-stars" aria-label={`${s.level} of 3 stars`}>
-                        {'★'.repeat(s.level)}
-                        {'☆'.repeat(3 - s.level)}
+                      <span className="certs-stars" aria-label={`${level} of 3 stars`}>
+                        {'★'.repeat(level)}
+                        {'☆'.repeat(3 - level)}
                       </span>
-                      {have ? <span className="chip ok">Issued</span> : s.eligible ? <span className="chip accent">Ready</span> : null}
+                      {have ? <span className="chip ok">Issued</span> : lastScore?.passed ? <span className="chip accent">Passed</span> : null}
                     </div>
-                    <span className="faint certs-numbers">
-                      {s.read}/{s.needPatients} patients · {s.judged}/{s.needJudged} graded
-                      {s.independent ? ' without hints' : ''} · {s.accuracy === null ? 'no graded answers yet' : `${pct(s.accuracy)} right`} (needs {pct(s.minAccuracy)})
-                    </span>
-                    <div
-                      className="cert-bar"
-                      role="progressbar"
-                      aria-valuemin={0}
-                      aria-valuemax={100}
-                      aria-valuenow={Math.round(s.progress * 100)}
-                      aria-label={`${s.title}, ${levelLabel(s.level)}: progress to the certificate`}
-                    >
-                      <span style={{ width: `${Math.round(s.progress * 100)}%` }} />
-                    </div>
+                    <span className="faint certs-numbers">{examRequirement(rule)}</span>
                     <div className="cert-row">
-                      <small className="faint">{s.todo ?? (have ? `Issued ${issuedOn(have.issuedAt)}` : 'Ready to claim.')}</small>
-                      <span className="row" style={{ gap: 6 }}>
+                      <small className="faint">{status}</small>
+                      <span className="row" style={{ gap: 6, flexWrap: 'wrap' }}>
                         {have ? (
-                          <a className="btn sm" href={`/certificate/${have.id}`} target="_blank" rel="noopener noreferrer">
+                          <a className="btn sm" href={`/verify/${have.id}`} target="_blank" rel="noopener noreferrer">
                             View and share <ExternalLink size={12} />
                           </a>
+                        ) : null}
+                        {last && lastScore ? (
+                          <button className="btn sm" onClick={() => navigate(examResultUrl(last))}>
+                            {lastScore.passed && !have ? 'Get the certificate' : 'See the result'}
+                          </button>
                         ) : null}
                         {free ? (
                           <button className="btn sm primary" onClick={openPlans}>
                             See plans
                           </button>
-                        ) : s.eligible && (!have || have.verification !== 'server-graded') ? (
-                          signedIn ? (
-                            <button className="btn sm primary" onClick={() => startClaim(s)}>
-                              Finish certification
-                            </button>
-                          ) : null
-                        ) : have ? null : (
-                          <button className="btn sm primary" onClick={() => work(s)}>
-                            {s.read || s.judged ? 'Continue certification' : 'Start certification'} <ArrowRight size={13} />
+                        ) : here ? (
+                          <button className="btn sm primary" onClick={() => resume(here)}>
+                            Continue the exam <ArrowRight size={13} />
                           </button>
-                        )}
+                        ) : have ? null : signedIn && ok && block?.reason === 'order' ? (
+                          <span className="chip" title={block.text}>
+                            <Lock size={12} /> Level {level - 1} first
+                          </span>
+                        ) : signedIn && ok ? (
+                          <button
+                            className="btn sm primary"
+                            disabled={!!current || !!block || starting}
+                            title={current ? 'Finish or end the exam in progress first.' : block?.text}
+                            onClick={() => void start(area, level)}
+                          >
+                            {last ? (
+                              <>
+                                <RotateCcw size={13} /> Try again
+                              </>
+                            ) : (
+                              <>
+                                Start the exam <ArrowRight size={13} />
+                              </>
+                            )}
+                          </button>
+                        ) : null}
                       </span>
                     </div>
-                    {claiming &&
-                    same(
-                      {
-                        area: claiming.area,
-                        level: claiming.level,
-                      } as IssuedCertificate,
-                      s,
-                    ) ? (
-                      <div className="cert-claim">
-                        <label>
-                          Name on the certificate
-                          <input value={name} onChange={(e) => setName(e.target.value)} maxLength={80} placeholder="Your full name" autoFocus />
-                        </label>
-                        <p>Your name and achievement will be visible to anyone with the verification link. Once issued, this record cannot be edited.</p>
-                        <label>
-                          <input type="checkbox" checked={email} onChange={(e) => setEmail(e.target.checked)} /> Email me the certificate and LinkedIn link
-                        </label>
-                        <div className="row" style={{ gap: 6 }}>
-                          <button className="btn primary" disabled={busy || name.trim().length < 2} onClick={() => void claim()}>
-                            {busy ? 'Issuing…' : 'Issue certificate'}
-                          </button>
-                          <button className="btn ghost" onClick={() => setClaiming(null)}>
-                            Cancel
-                          </button>
-                        </div>
-                        {error ? <div className="notice bad">{error}</div> : null}
-                      </div>
-                    ) : null}
                   </li>
                 );
               })}

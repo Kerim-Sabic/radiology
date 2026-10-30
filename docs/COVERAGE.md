@@ -1,6 +1,6 @@
 # Curriculum coverage — Learning Radiology, 5th edition
 
-_Generated 2026-10-28 from `public/content/curriculum.v1.json` and the installed lessons. A unit is never "mastered" from text or quizzes; this map shows where real-scan practice exists and where it does not._
+_Generated 2026-10-30 from `public/content/curriculum.v1.json` and the installed lessons. A unit is never "mastered" from text or quizzes; this map shows where real-scan practice exists and where it does not._
 
 Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SHA-256 `0f711fa48c1872ce…`.
 
@@ -11,30 +11,30 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 | Ch 3 | Recognizing Normal Cardiac Anatomy | 22–33 (37–48) | 8 | 6 | 30 | 14 | 1 / 0 / 1 |
 | Ch 4 | Recognizing Airspace Versus Interstitial Lung Disease | 34–44 (49–59) | 7 | 2 | 7 | 0 | 1 / 4 / 0 |
 | Ch 5 | Recognizing the Causes of an Opacified Hemithorax | 45–49 (60–64) | 6 | 0 | 0 | 0 | 1 / 3 / 2 |
-| Ch 6 | Recognizing Atelectasis | 50–58 (65–73) | 7 | 2 | 3 | 3 | 0 / 4 / 1 |
-| Ch 7 | Recognizing a Pleural Effusion | 59–68 (74–83) | 7 | 2 | 4 | 4 | 1 / 0 / 4 |
-| Ch 8 | Recognizing Pneumonia | 69–78 (84–93) | 7 | 3 | 16 | 3 | 1 / 2 / 1 |
+| Ch 6 | Recognizing Atelectasis | 50–58 (65–73) | 7 | 2 | 10 | 10 | 0 / 4 / 1 |
+| Ch 7 | Recognizing a Pleural Effusion | 59–68 (74–83) | 7 | 2 | 14 | 14 | 1 / 0 / 4 |
+| Ch 8 | Recognizing Pneumonia | 69–78 (84–93) | 7 | 3 | 27 | 14 | 1 / 2 / 1 |
 | Ch 9 | Recognizing the Correct Placement of Lines and Tubes and Their Potential Complications: Critical Care Radiology | 79–91 (94–111) | 7 | 0 | 0 | 0 | 0 / 7 / 0 |
-| Ch 10 | Recognizing Other Diseases of the Chest | 92–110 (112–130) | 10 | 4 | 24 | 24 | 4 / 0 / 2 |
-| Ch 11 | Recognizing Adult Heart Disease | 111–127 (131–147) | 8 | 2 | 3 | 3 | 0 / 3 / 3 |
+| Ch 10 | Recognizing Other Diseases of the Chest | 92–110 (112–130) | 10 | 4 | 38 | 38 | 4 / 0 / 2 |
+| Ch 11 | Recognizing Adult Heart Disease | 111–127 (131–147) | 8 | 2 | 20 | 20 | 0 / 3 / 3 |
 | Ch 12 | Recognizing the Normal Abdomen and Pelvis: Conventional Radiographs | 128–139 (148–159) | 6 | 1 | 2 | 0 | 0 / 0 / 5 |
 | Ch 13 | Recognizing the Normal Abdomen and Pelvis: Computed Tomography | 140–148 (160–168) | 6 | 5 | 10 | 22 | 1 / 0 / 0 |
 | Ch 14 | Recognizing Bowel Obstruction and Ileus | 149–160 (169–180) | 7 | 0 | 0 | 0 | 0 / 0 / 7 |
 | Ch 15 | Recognizing Extraluminal Air in the Abdomen | 161–170 (181–190) | 7 | 0 | 0 | 0 | 0 / 0 / 7 |
 | Ch 16 | Recognizing Abnormal Calcifications and Their Causes | 171–178 (191–198) | 6 | 0 | 0 | 0 | 0 / 0 / 6 |
 | Ch 17 | Recognizing Gastrointestinal, Hepatobiliary, and Urinary Tract Abnormalities | 179–200 (199–220) | 11 | 2 | 6 | 6 | 4 / 0 / 5 |
-| Ch 18 | Ultrasonography: Understanding the Principles and Its Uses in Abdominal and Pelvic Imaging | 201–222 (221–242) | 10 | 1 | 9 | 9 | 0 / 0 / 9 |
+| Ch 18 | Ultrasonography: Understanding the Principles and Its Uses in Abdominal and Pelvic Imaging | 201–222 (221–242) | 10 | 1 | 107 | 107 | 0 / 0 / 9 |
 | Ch 19 | Vascular, Pediatric, and Point-of-Care Ultrasound | 223–235 (243–255) | 8 | 0 | 0 | 0 | 0 / 0 / 8 |
 | Ch 20 | Magnetic Resonance Imaging: Understanding the Principles and Recognizing the Basics | 236–246 (256–266) | 6 | 5 | 5 | 5 | 0 / 0 / 1 |
 | Ch 21 | Recognizing Nontraumatic Abnormalities of the Appendicular Skeleton and Arthritis | 247–269 (267–289) | 10 | 2 | 3 | 0 | 0 / 0 / 8 |
 | Ch 22 | Recognizing Nontraumatic Abnormalities of the Spine | 270–282 (290–302) | 8 | 1 | 3 | 9 | 4 / 3 / 0 |
-| Ch 23 | Recognizing Trauma to the Bony Skeleton | 283–300 (303–320) | 10 | 2 | 9 | 9 | 1 / 1 / 6 |
-| Ch 24 | Recognizing the Imaging Findings of Trauma to the Chest | 301–313 (321–333) | 8 | 2 | 4 | 4 | 0 / 1 / 5 |
+| Ch 23 | Recognizing Trauma to the Bony Skeleton | 283–300 (303–320) | 10 | 2 | 39 | 39 | 1 / 1 / 6 |
+| Ch 24 | Recognizing the Imaging Findings of Trauma to the Chest | 301–313 (321–333) | 8 | 2 | 12 | 12 | 0 / 1 / 5 |
 | Ch 25 | Recognizing the Imaging Findings of Trauma to the Abdomen and Pelvis | 314–320 (334–340) | 6 | 0 | 0 | 0 | 0 / 4 / 2 |
-| Ch 26 | Recognizing Some Common Causes of Intracranial Pathology | 321–346 (341–366) | 12 | 3 | 5 | 5 | 0 / 7 / 2 |
-| Ch 27 | Recognizing Pediatric Diseases | 347–361 (367–381) | 9 | 2 | 4 | 4 | 0 / 4 / 3 |
+| Ch 26 | Recognizing Some Common Causes of Intracranial Pathology | 321–346 (341–366) | 12 | 3 | 55 | 55 | 0 / 7 / 2 |
+| Ch 27 | Recognizing Pediatric Diseases | 347–361 (367–381) | 9 | 2 | 14 | 14 | 0 / 4 / 3 |
 | Ch 28 | Using Image-Guided Interventions in Diagnosis and Treatment (Interventional Radiology) | 362–381 (382–401) | 9 | 0 | 0 | 0 | 0 / 1 / 8 |
-| Ch 29 | Recognizing the Findings in Breast Imaging | 382–399 (402–419) | 9 | 4 | 12 | 11 | 4 / 0 / 1 |
+| Ch 29 | Recognizing the Findings in Breast Imaging | 382–399 (402–419) | 9 | 4 | 121 | 120 | 4 / 0 / 1 |
 | App A | Nuclear Medicine: Understanding the Principles and Recognizing the Basics | e1–e20 (420–439) | 9 | 0 | 0 | 0 | 0 / 0 / 9 |
 | App B | The ABCs of Heart Disease | e21–e34 (440–453) | 7 | 2 | 6 | 0 | 3 / 1 / 1 |
 | App C | Radiation Dose and Safety | e35–e38 (454–457) | 3 | 0 | 0 | 0 | 0 / 0 / 3 |
@@ -79,31 +79,31 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 
 ### Chapter 6 — Recognizing Atelectasis
 
-- **ch06-o01** (p. 50 / PDF 65, Box 6.1): Signs of volume loss: displaced fissure, raised hemidiaphragm, mediastinal and hilar shift, crowded ribs and compensatory overinflation. — 6 task(s) on 3 patient(s)
-- **ch06-o02** (p. 51 / PDF 66, Table 6.1): Different types of atelectasis: obstructive, passive (compressive), adhesive and cicatricial. — 6 task(s) on 3 patient(s)
+- **ch06-o01** (p. 50 / PDF 65, Box 6.1): Signs of volume loss: displaced fissure, raised hemidiaphragm, mediastinal and hilar shift, crowded ribs and compensatory overinflation. — 20 task(s) on 10 patient(s)
+- **ch06-o02** (p. 51 / PDF 66, Table 6.1): Different types of atelectasis: obstructive, passive (compressive), adhesive and cicatricial. — 20 task(s) on 10 patient(s)
 
 ### Chapter 7 — Recognizing a Pleural Effusion
 
-- **ch07-o01** (p. 62 / PDF 77, Fig 7.4): Blunting of the posterior sulcus on the lateral view and of the lateral angle on the frontal view. — 8 task(s) on 4 patient(s)
-- **ch07-o02** (p. 63 / PDF 78, Fig 7.7): The meniscus of a moderate or large effusion. — 8 task(s) on 4 patient(s)
+- **ch07-o01** (p. 62 / PDF 77, Fig 7.4): Blunting of the posterior sulcus on the lateral view and of the lateral angle on the frontal view. — 21 task(s) on 14 patient(s)
+- **ch07-o02** (p. 63 / PDF 78, Fig 7.7): The meniscus of a moderate or large effusion. — 21 task(s) on 14 patient(s)
 
 ### Chapter 8 — Recognizing Pneumonia
 
-- **ch08-o01** (p. 70 / PDF 85, Box 8.1): The core features of pneumonia: airspace opacity, air bronchograms and segmental or lobar shape. — 5 task(s) on 3 patient(s)
-- **ch08-o02** (p. 71 / PDF 86, Fig 8.3): Lobar, segmental (bronchopneumonia) and interstitial pneumonia patterns. — 11 task(s) on 9 patient(s)
+- **ch08-o01** (p. 70 / PDF 85, Box 8.1): The core features of pneumonia: airspace opacity, air bronchograms and segmental or lobar shape. — 21 task(s) on 14 patient(s)
+- **ch08-o02** (p. 71 / PDF 86, Fig 8.3): Lobar, segmental (bronchopneumonia) and interstitial pneumonia patterns. — 27 task(s) on 20 patient(s)
 - **ch08-o05** (p. 73 / PDF 88, Fig 8.9): COVID-19 pneumonia: bilateral, peripheral, lower-zone ground-glass and consolidation. — 18 task(s) on 13 patient(s)
 
 ### Chapter 10 — Recognizing Other Diseases of the Chest
 
 - **ch10-o03** (p. 96 / PDF 116, Fig 10.8): Middle mediastinal adenopathy and posterior mediastinal neurogenic tumours. — 2 task(s) on 2 patient(s)
-- **ch10-o04** (p. 98 / PDF 118, Fig 10.11): A solitary pulmonary nodule and its margins, calcification pattern and growth. — 32 task(s) on 13 patient(s)
-- **ch10-o05** (p. 100 / PDF 120, Fig 10.13): Lung cancer presenting as a mass, cavity, airway obstruction, hilar adenopathy or apical tumour. — 14 task(s) on 7 patient(s)
+- **ch10-o04** (p. 98 / PDF 118, Fig 10.11): A solitary pulmonary nodule and its margins, calcification pattern and growth. — 45 task(s) on 20 patient(s)
+- **ch10-o05** (p. 100 / PDF 120, Fig 10.13): Lung cancer presenting as a mass, cavity, airway obstruction, hilar adenopathy or apical tumour. — 23 task(s) on 14 patient(s)
 - **ch10-o07** (p. 104 / PDF 124, Fig 10.20): Pulmonary embolism: a peripheral wedge-shaped opacity on radiograph and filling defects on CT angiography. — 4 task(s) on 2 patient(s)
 
 ### Chapter 11 — Recognizing Adult Heart Disease
 
-- **ch11-o01** (p. 111 / PDF 131, Box 11.1): An enlarged cardiac silhouette and its possible sources: chamber enlargement, pericardial fluid or extracardiac factors. — 6 task(s) on 3 patient(s)
-- **ch11-o02** (p. 113 / PDF 133, Fig 11.2): Cardiomegaly on portable AP and on lateral radiographs. — 6 task(s) on 3 patient(s)
+- **ch11-o01** (p. 111 / PDF 131, Box 11.1): An enlarged cardiac silhouette and its possible sources: chamber enlargement, pericardial fluid or extracardiac factors. — 34 task(s) on 20 patient(s)
+- **ch11-o02** (p. 113 / PDF 133, Fig 11.2): Cardiomegaly on portable AP and on lateral radiographs. — 34 task(s) on 20 patient(s)
 
 ### Chapter 12 — Recognizing the Normal Abdomen and Pelvis: Conventional Radiographs
 
@@ -124,7 +124,7 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 
 ### Chapter 18 — Ultrasonography: Understanding the Principles and Its Uses in Abdominal and Pelvic Imaging
 
-- **ch18-o01** (p. 202 / PDF 222, Fig 18.1): Echogenicity terms in practice: anechoic, hypoechoic, hyperechoic, shadowing and enhancement. — 24 task(s) on 9 patient(s)
+- **ch18-o01** (p. 202 / PDF 222, Fig 18.1): Echogenicity terms in practice: anechoic, hypoechoic, hyperechoic, shadowing and enhancement. — 220 task(s) on 107 patient(s)
 
 ### Chapter 20 — Magnetic Resonance Imaging: Understanding the Principles and Recognizing the Basics
 
@@ -145,31 +145,31 @@ Book: Learning Radiology: Recognizing the Basics, 5th edition, 552 PDF pages, SH
 
 ### Chapter 23 — Recognizing Trauma to the Bony Skeleton
 
-- **ch23-o01** (p. 283 / PDF 303, Fig 23.1): Acute fractures and their mimics: greenstick and torus fractures, nutrient canals and growth plates. — 13 task(s) on 9 patient(s)
+- **ch23-o01** (p. 283 / PDF 303, Fig 23.1): Acute fractures and their mimics: greenstick and torus fractures, nutrient canals and growth plates. — 73 task(s) on 39 patient(s)
 - **ch23-o03** (p. 287 / PDF 307, Fig 23.7): Fracture description: fragments, line direction, displacement, angulation, rotation and open versus closed. — 5 task(s) on 5 patient(s)
 
 ### Chapter 24 — Recognizing the Imaging Findings of Trauma to the Chest
 
-- **ch24-o03** (p. 304 / PDF 324, Fig 24.6): A pneumothorax on upright films and CT. — 8 task(s) on 4 patient(s)
-- **ch24-o04** (p. 306 / PDF 326, Fig 24.12): Pneumothorax mimics. — 8 task(s) on 4 patient(s)
+- **ch24-o03** (p. 304 / PDF 324, Fig 24.6): A pneumothorax on upright films and CT. — 21 task(s) on 12 patient(s)
+- **ch24-o04** (p. 306 / PDF 326, Fig 24.12): Pneumothorax mimics. — 21 task(s) on 12 patient(s)
 
 ### Chapter 26 — Recognizing Some Common Causes of Intracranial Pathology
 
 - **ch26-o02** (p. 324 / PDF 344, Fig 26.3): Normal brain MRI on T1 and T2. — 1 task(s) on 1 patient(s)
-- **ch26-o08** (p. 334 / PDF 354, Fig 26.17): Ischaemic stroke on CT and diffusion MRI, including lacunar infarcts. — 4 task(s) on 2 patient(s)
+- **ch26-o08** (p. 334 / PDF 354, Fig 26.17): Ischaemic stroke on CT and diffusion MRI, including lacunar infarcts. — 110 task(s) on 52 patient(s)
 - **ch26-o11** (p. 342 / PDF 362, Fig 26.28): Brain tumours: glioblastoma, metastases, meningioma and vestibular schwannoma. — 7 task(s) on 3 patient(s)
 
 ### Chapter 27 — Recognizing Pediatric Diseases
 
 - **ch27-o06** (p. 355 / PDF 375, Fig 27.18): The normal infant chest and thymus. — 2 task(s) on 2 patient(s)
-- **ch27-o07** (p. 356 / PDF 376, Fig 27.20): Growth plate injuries and slipped capital femoral epiphysis. — 4 task(s) on 2 patient(s)
+- **ch27-o07** (p. 356 / PDF 376, Fig 27.20): Growth plate injuries and slipped capital femoral epiphysis. — 24 task(s) on 12 patient(s)
 
 ### Chapter 29 — Recognizing the Findings in Breast Imaging
 
-- **ch29-o01** (p. 385 / PDF 405, Fig 29.6): Standard mammographic views and tomosynthesis. — 6 task(s) on 6 patient(s)
-- **ch29-o03** (p. 388 / PDF 408, Fig 29.10): Masses on mammography: shape, margin and density. — 7 task(s) on 4 patient(s)
-- **ch29-o05** (p. 391 / PDF 411, Fig 29.16): Breast calcifications. — 2 task(s) on 2 patient(s)
-- **ch29-o06** (p. 391 / PDF 411, Fig 29.17): Breast ultrasound of cysts and solid masses. — 18 task(s) on 6 patient(s)
+- **ch29-o01** (p. 385 / PDF 405, Fig 29.6): Standard mammographic views and tomosynthesis. — 17 task(s) on 17 patient(s)
+- **ch29-o03** (p. 388 / PDF 408, Fig 29.10): Masses on mammography: shape, margin and density. — 25 task(s) on 10 patient(s)
+- **ch29-o05** (p. 391 / PDF 411, Fig 29.16): Breast calcifications. — 17 task(s) on 7 patient(s)
+- **ch29-o06** (p. 391 / PDF 411, Fig 29.17): Breast ultrasound of cysts and solid masses. — 410 task(s) on 104 patient(s)
 
 ### Appendix B — The ABCs of Heart Disease
 

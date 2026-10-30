@@ -8,4 +8,4 @@ Disallow: /settings
 Disallow: /author
 Disallow: /book
 
-Sitemap: https://radiology.monster/sitemap.xml
+Sitemap: https://www.radiology.monster/sitemap.xml

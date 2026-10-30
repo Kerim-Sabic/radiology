@@ -8,6 +8,10 @@ const index = `<!doctype html><html><head>
     <meta property="og:image" content="https://x/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <title>radiology.monster — Real cases.</title>
+    <link rel="canonical" href="https://www.radiology.monster/" />
+    <script type="application/ld+json" id="site-ld">
+      { "@context": "https://schema.org", "@type": "WebSite" }
+    </script>
   </head><body><div id="root"></div><script type="module" src="/assets/index.js"></script></body></html>`;
 
 describe('shared certificate links', () => {
@@ -34,8 +38,23 @@ describe('shared certificate links', () => {
     expect(html.match(/<title>/g)).toHaveLength(1);
     expect(html).not.toContain('content="site"');
     expect(html).toContain('<script type="module" src="/assets/index.js"></script>');
+    // The page has its own canonical address and credential data, not the landing page's.
+    expect(html.match(/rel="canonical"/g)).toHaveLength(1);
+    expect(html).toContain('<link rel="canonical" href="https://www.radiology.monster/verify/abcDEF123_-x" />');
+    expect(html).not.toContain('id="site-ld"');
     // An unknown id still serves the app (which says so), with the site picture.
     expect(certificatePageHtml(index, null, 'https://www.radiology.monster', 'nope')).toContain('og.png');
+  });
+
+  it('say what an exam certificate records', () => {
+    const exam = { ...cert, patients: 25, judged: 25, accuracy: 0.86, exam: { questions: 25, passMark: 0.8, secondsPerQuestion: 180, partialCredit: true } };
+    const html = certificatePageHtml(index, exam, 'https://www.radiology.monster', exam.id);
+    expect(html).toContain('Passed a 25-question exam on 25 real patients · 86% right (pass mark 80%)');
+    const ld = JSON.parse(/<script type="application\/ld\+json">(.*?)<\/script>/.exec(html)![1]);
+    expect(ld.competencyRequired).toBe("An exam of 25 questions on real patients, 3 min each, without hints, each answer graded against the expert's reference; pass mark 80%");
+    const top = { ...exam, level: 3 as const, exam: { questions: 40, passMark: 0.9, secondsPerQuestion: 120, partialCredit: false } };
+    const topLd = JSON.parse(/<script type="application\/ld\+json">(.*?)<\/script>/.exec(certificatePageHtml(index, top, 'https://www.radiology.monster', top.id))![1]);
+    expect(topLd.competencyRequired).toBe("An exam of 40 questions on real patients, 2 min each, without hints, each answer graded against the expert's reference; only fully right answers count; pass mark 90%");
   });
 
   it('render a PNG for posts (1200×627), a square one (1080×1080) and a story (1080×1920)', async () => {

@@ -814,3 +814,126 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+/* The exam in progress, at the top of the Certificates page. */
+.certs-current {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  border-color: rgba(var(--accent-rgb), 0.45);
+  background: linear-gradient(0deg, var(--accent-soft), var(--accent-soft)), var(--panel);
+}
+.certs-current h2 {
+  margin: 0 0 4px;
+  font-size: 17px;
+}
+
+/* The result of an exam: passed or not, the score, the certificate and the answers. */
+.exam-result {
+  display: grid;
+  gap: 16px;
+  max-width: 860px;
+}
+.exam-verdict {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 26px 28px;
+}
+.exam-verdict h1 {
+  margin: 0;
+  font-size: 40px;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.exam-verdict.pass {
+  border-color: rgba(79, 209, 139, 0.5);
+}
+.exam-verdict.pass h1 {
+  color: var(--ok);
+}
+.exam-verdict.fail h1 {
+  color: var(--text);
+}
+.exam-score {
+  margin: 0;
+  font-size: 16px;
+}
+.exam-score b {
+  font-size: 22px;
+  font-variant-numeric: tabular-nums;
+}
+.exam-answers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+.exam-answers li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel-2);
+}
+.exam-answer-ico {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 99px;
+  background: var(--panel-3);
+}
+.exam-answers li.correct .exam-answer-ico {
+  color: var(--ok);
+}
+.exam-answers li.partial .exam-answer-ico {
+  color: var(--warn);
+}
+.exam-answers li.incorrect .exam-answer-ico,
+.exam-answers li.unanswered .exam-answer-ico {
+  color: var(--bad);
+}
+.exam-answer-text {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+.exam-answer-text > * {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .exam-verdict {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 20px;
+  }
+  .exam-verdict h1 {
+    font-size: 32px;
+  }
+  .exam-answers li {
+    flex-wrap: wrap;
+  }
+  .exam-answer-text {
+    flex-basis: calc(100% - 40px);
+  }
+}
+
+/* What makes each exam level harder, under its name in the levels table. */
+.certs-level-detail {
+  display: block;
+  margin-top: 3px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1.4;
+}

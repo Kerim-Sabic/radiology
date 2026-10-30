@@ -917,7 +917,7 @@
    "caseId": "body-kits-00015",
    "type": "find_structure",
    "title": "Find the kidneys",
-   "prompt": "Mark the right kidney and the left kidney with named arrows.",
+   "prompt": "Mark the right kidney and the left kidney with named arrows. Both kidneys form one reference structure here, so each arrow is checked for lying in a kidney; check the side yourself from the edge letters.",
    "modes": [
     "learn",
     "practice"
@@ -1042,7 +1042,7 @@
      }
     }
    ],
-   "explanation": "A solid renal mass typically distorts the renal contour and enhances differently from the cortex; simple cysts are water density and do not enhance. A box drawn around the mass is also scored for overlap (≥30%) so you can see how well you outlined it.",
+   "explanation": "A solid renal mass typically distorts the renal contour and enhances differently from the cortex; simple cysts are water density and do not enhance. A box drawn around the mass is also scored for overlap (≥30%) so you can see how well you outlined it. In this patient the upper left kidney also holds a large lesion of near-water density (about 10–20 HU) that the source labels as kidney, not tumour — it behaves like a simple cyst. The scored target is the smaller enhancing solid mass lower in the same kidney; a mark on the cyst is not scored.",
    "rubric": [
     {
      "id": "side",

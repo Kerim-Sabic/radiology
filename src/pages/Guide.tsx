@@ -29,10 +29,12 @@ export default function GuidePage() {
             <b>Case of the week</b> (members) — every Monday a new real patient is featured on Today. Ask for the Monday email in Settings → Emails.
           </li>
           <li>
-            <b>Certificates</b> (top bar, members) — three levels for each body area: Foundation (10 patients read, 10 graded answers, 70% right), Intermediate (25
-            patients, 30 answers, 80%) and Advanced (40 patients, 30 answers without hints, 85%), and three for the whole library (General Radiology). Press Start
-            certification and the app opens each patient the level needs; after each answer, Next for your certificate. When the level is reached, Finish certification
-            and type your name. Each certificate has a check page, the fields and skills for LinkedIn’s Licenses &amp; certifications, a post you can edit (and Post it on
+            <b>Certificates</b> (top bar, members) — three levels for each body area and three for the whole library (General Radiology), each an exam,
+            taken in order and each a real step up: Foundation 15 untimed questions, pass mark 70%; Intermediate 25 questions at 3 minutes each, 80%, at least half
+            marked on the image and no two-answer questions; Advanced 40 questions at 2 minutes each, 90% with no half points, mostly marked on the image, subtle
+            cases first (the whole library: 30, 50 and 75 questions). Press Start the exam: each question opens one real patient; mark the finding or choose the
+            answer and go on, with no hints and no result until the end. After the last question you see whether you passed, with every answer to review; pass and
+            type your name. Each certificate has a check page, the fields and skills for LinkedIn’s Licenses &amp; certifications, a post you can edit (and Post it on
             my LinkedIn, which posts it with the certificate picture once you allow it), and images for posts and stories.
           </li>
           <li>
@@ -99,7 +101,7 @@ export default function GuidePage() {
         <h2>What scores mean</h2>
         <p className="muted">
           Scores come from deterministic geometry against source annotations — never from the AI. If a reference only covers some structures, marks elsewhere are “unscored”, not
-          wrong. Drafts (labelled “AI draft by Horalix”) are comparison aids only until you review them in Author. Milestones are product heuristics, not certification.
+          wrong. AI outlines (labelled “AI”) are comparison aids only until you review them in Author. Milestones are product heuristics, not certification.
         </p>
       </section>
       <section className="card stack">

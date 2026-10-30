@@ -1057,7 +1057,7 @@
    "caseId": "hcc-010",
    "type": "locate_finding",
    "title": "Find the liver tumor",
-   "prompt": "Read the liver slice by slice on a soft-tissue window. Mark the tumor (point or box), or state that you find none.",
+   "prompt": "Read the liver slice by slice on a soft-tissue window. Mark any focal liver lesion (point or box), or state that you find none.",
    "modes": [
     "learn",
     "practice",
@@ -1240,7 +1240,7 @@
    "caseId": "hcc-003",
    "type": "locate_finding",
    "title": "Find the liver tumor",
-   "prompt": "Read the liver slice by slice on a soft-tissue window. Mark the tumor (point or box), or state that you find none.",
+   "prompt": "Read the liver slice by slice on a soft-tissue window. Mark any focal liver lesion (point or box), or state that you find none.",
    "modes": [
     "learn",
     "practice",
@@ -1518,7 +1518,7 @@
    "caseId": "vs-seg-001",
    "type": "differential",
    "title": "Inside or outside the brain?",
-   "prompt": "Is this mass intra-axial (within the brain) or extra-axial (outside the brain, in the cerebellopontine angle)?",
+   "prompt": "Is the posterior fossa mass intra-axial (arising within the brain substance) or extra-axial (arising outside the brain, from the coverings, nerves or spaces around it)?",
    "modes": [
     "learn",
     "practice"

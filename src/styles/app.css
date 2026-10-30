@@ -1660,50 +1660,66 @@ textarea {
   border-radius: 10px;
 }
 
-/* Working towards a certificate in the reading room: the level and what is left, kept short. */
-.ws-cert {
-  max-width: 340px;
+/* A certification exam in the reading room: which exam, which question, how far along. */
+.ws-exam {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.ws-exam .chip {
+  max-width: 300px;
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
-/* A level reached in the reading room. */
-.cert-celebrate {
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  display: grid;
-  place-items: center;
-  padding: 16px;
-  background: rgba(0, 0, 0, 0.72);
-  backdrop-filter: blur(6px);
+.ws-exam-count {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
 }
-.cert-celebrate-card {
-  width: min(440px, 100%);
-  display: grid;
-  justify-items: center;
-  gap: 10px;
-  padding: 30px 26px 24px;
-  border: 1px solid var(--line-strong);
-  border-radius: 22px;
-  background: var(--panel);
-  text-align: center;
-  animation: cert-pop 0.35s ease;
+.ws-exam-bar {
+  position: relative;
+  width: 90px;
+  height: 6px;
+  flex: none;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--panel-3);
 }
-.cert-celebrate-card h2 {
-  margin-top: 6px;
-  font-size: 26px;
-  letter-spacing: -0.02em;
+.ws-exam-bar > span {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: inherit;
+  background: var(--accent);
+  transition: width 0.3s ease;
 }
-.cert-celebrate-card p {
-  margin: 0;
-  line-height: 1.5;
-}
-.cert-celebrate-card .row {
-  margin-top: 10px;
-}
-@keyframes cert-pop {
-  from {
-    transform: scale(0.94);
-    opacity: 0;
+@media (max-width: 1100px) {
+  .ws-exam .chip,
+  .ws-exam-bar {
+    display: none;
   }
+}
+/* On a phone the question panel says which question it is; the toolbar keeps its room for the tools. */
+@media (max-width: 760px) {
+  .ws-exam {
+    display: none;
+  }
+}
+.exam-q-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.exam-q-num {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.exam-question .prompt {
+  font-size: 15px;
+  line-height: 1.55;
 }

@@ -74,8 +74,6 @@ import { categoryFor } from '../components/ws/overlayShapes';
 import { landmarks, levelName, mapZ, matchLevels, type Landmark } from '../services/levelSync';
 import { IconButton, ProvenanceChip, Toast, useToast } from '../components/ui';
 import { gradeTask, measureWithinSlab, probeOfMark, type LoadedTarget } from '../grading/spatialGrader';
-import { verifiedCertificateStatuses, verifySavedAnswers, type CertStatus } from '../services/certificates';
-import { useAccount } from '../auth/AccountGate';
 import type { GradeResult, LearnerMark } from '../grading/types';
 import type { BookAnchorRef, Series, Task } from '../schema/content';
 import type { SeriesIndex } from '../grading/seriesIndex';
@@ -84,10 +82,9 @@ import { newId, type Attempt, type Mode } from '../services/progressRepository';
 import { anchorLabel as fmtAnchor } from '../services/curriculum';
 import type { ViewSnapshot } from '../viewer/engine';
 import { imageToPatient, patientToPlaneMm, polygonArea, polygonCentroid, type Vec2, type Vec3 } from '../lib/geometry';
-import { AI_DRAFT_BY, cleanLabel, isAiDraft, plainName } from '../lib/provenance';
-import { certKey, certName, certStatusFor, nextCertificateTask, parseCertKey, stepUrl } from '../services/certify';
-import { levelLabel } from '../services/certificates';
-import { CertSeal } from '../components/CertSeal';
+import { AI_CREDIT, AI_LABEL, cleanLabel, isAiDraft, plainName } from '../lib/provenance';
+import { answerQuestion, examResultUrl, examUrl, finishExam, openQuestion, questionSecondsLeft, type CertExam } from '../services/exam';
+import { CERT_TITLES, levelLabel } from '../services/certificates';
 
 const centroid3 = (poly: Vec3[]): Vec3 => [
   poly.reduce((a, q) => a + q[0], 0) / poly.length,
@@ -109,19 +106,14 @@ const MODES: Array<[Mode, string]> = [
   ['review', 'Review'],
 ];
 
+/** "1:05" */
+const clockText = (s: number) => `${Math.floor(Math.max(0, s) / 60)}:${String(Math.max(0, s) % 60).padStart(2, '0')}`;
+
 function studyLabel(series: Series, date: string | null) {
   return `${series.modality}${date ? ` · ${date}` : ''} · ${series.description || `Series ${series.number ?? ''}`}`;
 }
 
 export default function Workstation() {
-  const account = useAccount();
-  const [verifiedStatuses, setVerifiedStatuses] = useState<CertStatus[]>([]);
-  useEffect(() => {
-    if (!account) return;
-    let cancelled = false;
-    void verifiedCertificateStatuses().then(s=>{if(!cancelled)setVerifiedStatuses(s);}).catch(()=>{});
-    return ()=>{cancelled=true;};
-  }, [account]);
   const { caseId = '' } = useParams();
   const [sp, setSp] = useSearchParams();
   const navigate = useNavigate();
@@ -137,10 +129,11 @@ export default function Workstation() {
   const kase = catalog?.cases.get(caseId) ?? null;
   const tasks = useMemo(() => (catalog?.tasksByCase.get(caseId) ?? []).slice(), [catalog, caseId]);
   const mode = (sp.get('mode') as Mode) || 'practice';
-  // Working towards a certificate level (from the Certificates page): kept in the URL across tasks and modes.
-  const certParam = parseCertKey(sp.get('cert'));
-  const keepCert: Record<string, string> = certParam ? { cert: certKey(certParam.area, certParam.level) } : {};
-  const availableTasks = tasks.filter((t) => mode === 'review' || t.modes.includes(mode === 'assess' ? 'assess' : mode === 'learn' ? 'learn' : 'practice'));
+  // A question of a certification exam (from the Certificates page): only that question, in Assess mode.
+  const examId = sp.get('exam');
+  const availableTasks = tasks.filter(
+    (t) => (!examId || t.id === sp.get('task')) && (mode === 'review' || t.modes.includes(mode === 'assess' ? 'assess' : mode === 'learn' ? 'learn' : 'practice')),
+  );
   const task: Task | null = availableTasks.find((t) => t.id === sp.get('task')) ?? availableTasks[0] ?? tasks.find((t) => t.id === sp.get('task')) ?? null;
 
   const [layout, setLayout] = useState<Layout>('1');
@@ -256,7 +249,7 @@ export default function Workstation() {
     setPanels([{ id: 'p0', seriesUid: task.start.seriesUid, kind: 'stack' }]);
     setFocused('p0');
     setTab('task');
-    setTimeLeft(mode === 'assess' && settings.assessTimerMinutes ? settings.assessTimerMinutes * 60 : null);
+    setTimeLeft(mode === 'assess' && !examId && settings.assessTimerMinutes ? settings.assessTimerMinutes * 60 : null);
     if (mode === 'review') {
       progress.attemptsForTask(task.id).then((list) => {
         const last = list.filter((a) => a.submittedAt).sort((a, b) => (a.submittedAt! < b.submittedAt! ? 1 : -1))[0];
@@ -319,35 +312,91 @@ export default function Workstation() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [session?.submitted, shiftItem?.submittedAt]);
   const nextInShift = shift ? shift.items.findIndex((it, i) => i !== shiftIndex && !it.submittedAt) : -1;
-  const certStatus = useMemo(
-    () => (catalog && certParam ? account ? verifiedStatuses.find(s=>s.area===certParam.area && s.level===certParam.level) ?? null : certStatusFor(catalog, attempts, certParam.area, certParam.level) : null),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [catalog, attempts, sp.get('cert'), account, verifiedStatuses],
-  );
-  const goNextForCert = () => {
-    if (!catalog || !certParam) return;
-    if (certStatus?.eligible) return navigate(`/certificates?claim=${certKey(certParam.area, certParam.level)}`);
-    const step = nextCertificateTask(catalog, attempts, certParam.area, certParam.level, sp.get('task') ?? undefined, account ? certStatus ?? undefined : undefined);
-    navigate(step ? stepUrl(step, certParam.area, certParam.level) : '/certificates');
-  };
-  // The answer that completes a level: say so, and offer to finish the certification.
-  const [celebrate, setCelebrate] = useState(false);
-  const eligibleAtOpen = useRef<boolean | null>(null);
+
+  // ---------------------------------------------------------------- certification exam
+  // One question after another, with no feedback: the server grades the answer and the next question opens; after the
+  // last one the server scores the exam and the result page says whether you passed.
+  const [exam, setExam] = useState<CertExam | null>(null);
   useEffect(() => {
-    eligibleAtOpen.current = null;
-    setCelebrate(false);
-  }, [caseId, sp.get('task')]);
-  useEffect(() => {
-    if (!certStatus) return;
-    if (eligibleAtOpen.current === null) {
-      eligibleAtOpen.current = certStatus.eligible;
+    if (!examId) {
+      setExam(null);
       return;
     }
-    if (certStatus.eligible && !eligibleAtOpen.current && session?.submitted) {
-      eligibleAtOpen.current = true;
-      setCelebrate(true);
-    }
-  }, [certStatus, session?.submitted]);
+    let cancelled = false;
+    progress.certExam(examId).then((e) => {
+      if (cancelled) return;
+      if (e?.finishedAt) navigate(examResultUrl(e), { replace: true });
+      else setExam(e);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [examId, progress]); // eslint-disable-line react-hooks/exhaustive-deps
+  const examIndex = exam && task ? exam.items.findIndex((it) => it.caseId === caseId && it.taskId === task.id) : -1;
+  const examItem = exam && examIndex >= 0 && mode === 'assess' ? exam.items[examIndex] : null;
+  const goNextInExam = async (e: CertExam) => {
+    const i = e.items.findIndex((it) => !it.submittedAt);
+    if (i >= 0) return navigate(examUrl(e, i), { replace: true });
+    // The last answer: the server scores the exam (the result page asks again if this fails).
+    const r = await finishExam(e.id);
+    navigate(examResultUrl(await progress.finishCertExam(r.ok ? { ...e, result: r.data.result, finishedAt: r.data.result.finishedAt } : e)), { replace: true });
+  };
+  // An answered question (e.g. opened again with Back) moves on to the next one.
+  useEffect(() => {
+    if (exam && examItem?.submittedAt) void goNextInExam(exam);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exam?.id, examIndex]);
+  // From Level 2 each question has a clock, kept by the server. It starts once the image is on screen and keeps running
+  // across reloads and visits, so leaving does not stop it.
+  useEffect(() => {
+    if (!exam || !examItem || examItem.startedAt || examItem.submittedAt || !p0Ready) return;
+    let cancelled = false;
+    void openQuestion(exam.id, examIndex).then((r) => {
+      if (cancelled) return;
+      if (!r.ok) return toast.show(r.error);
+      const next = { ...exam, items: exam.items.map((it, i) => (i === examIndex ? { ...it, startedAt: r.data.openedAt } : it)) };
+      setExam(next);
+      void progress.saveCertExam(next);
+    });
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exam?.id, examIndex, examItem?.startedAt, p0Ready]);
+  const [examNow, setExamNow] = useState(() => Date.now());
+  const examTimed = !!(exam && examItem?.startedAt && !examItem.submittedAt && questionSecondsLeft(exam, examItem) !== null);
+  useEffect(() => {
+    if (!examTimed) return;
+    const t = setInterval(() => setExamNow(Date.now()), 250);
+    return () => clearInterval(t);
+  }, [examTimed]);
+  const examLeft = exam && examItem?.startedAt ? questionSecondsLeft(exam, examItem, examNow) : null;
+  // Time up: what is marked or chosen is saved as the answer; with nothing to save, the question counts as not answered.
+  const timedOutRef = useRef('');
+  useEffect(() => {
+    if (examLeft === null || examLeft > 0 || !exam || !examItem || examItem.submittedAt || !task || !session) return;
+    const key = `${exam.id}|${examIndex}`;
+    if (timedOutRef.current === key) return;
+    timedOutRef.current = key;
+    void (async () => {
+      if (canSubmit(task, session, engine.collectMarks().length, false)) {
+        toast.show('Time is up: your answer was saved.');
+        await submit();
+        return;
+      }
+      const saved = await answerQuestion(exam.id, examIndex, null);
+      if (!saved.ok) {
+        timedOutRef.current = '';
+        return toast.show(saved.error);
+      }
+      const next = { ...exam, items: exam.items.map((it, i) => (i === examIndex ? { ...it, submittedAt: new Date().toISOString(), timedOut: true } : it)) };
+      await progress.saveCertExam(next);
+      setExam(next);
+      toast.show('Time is up: this question counts as not answered.');
+      await goNextInExam(next);
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [examLeft]);
   const goNextInShift = async () => {
     if (!shift) return;
     if (nextInShift >= 0) navigate(shiftUrl(shift, nextInShift));
@@ -563,7 +612,7 @@ export default function Workstation() {
   const submit = async () => {
     if (!session || !task || !catalog) return;
     const frozen = engine.collectMarks();
-    if (!canSubmit(task, session, frozen.length, reportShown(task, settings.level))) return;
+    if (!canSubmit(task, session, frozen.length, !examItem && reportShown(task, settings.level))) return;
     const pp = panels.find((p) => p.id === focused) ?? panels[0];
     const cp = engine.currentPlanePoint(pp.id);
     const seriesMap = new Map(caseSeries.map((s) => [s.uid, catalog.seriesIndex(s.uid)!]));
@@ -587,7 +636,7 @@ export default function Workstation() {
         const hits = [...atlas.values()]
           .map((t) => ({ t, m: measureWithinSlab(probe, t, seriesMap.get(mk.seriesUid), 1.6) }))
           .filter((x) => x.m.comparable && x.m.sliceDistanceMm <= 1.6 && x.m.inPlaneDistanceMm === 0)
-          .map((x) => `${cleanLabel(x.t.ref.label)}${isAiDraft(x.t.ref.provenance) ? ` (${AI_DRAFT_BY}, unreviewed)` : ''}`);
+          .map((x) => `${cleanLabel(x.t.ref.label)}${isAiDraft(x.t.ref.provenance) ? ` (${AI_LABEL}, unreviewed)` : ''}`);
         if (hits.length) mo.note += ` Anatomy labels place this point in: ${[...new Set(hits)].slice(0, 3).join(', ')}.`;
       }
     }
@@ -595,17 +644,39 @@ export default function Workstation() {
       g.outcome = g.authoritative ? 'incorrect' : 'self_review';
       g.messages.push('You reported this as uncertain or not assessable. The reference shows the target on this study — use the explanation to see why.');
     }
+    const attempt: Attempt = { ...buildAttempt(g, true), marks: frozen, position: { seriesUid: pp.seriesUid, sopInstanceUid: cp.sop, worldLps: cp.world }, independent: rules.independent(session) };
+    if (exam && examItem) {
+      // Exam: the server grades the answer as given; save it here too and go on, without showing the result.
+      try {
+        await progress.saveAttempt(attempt);
+      } catch (e) {
+        toast.show((e as Error).message);
+        return;
+      }
+      const saved = await answerQuestion(exam.id, examIndex, {
+        taskId: attempt.taskId,
+        lessonVersion: attempt.lessonVersion,
+        mode: 'assess',
+        marks: attempt.marks,
+        position: attempt.position,
+        choice: attempt.choice,
+        declaredNoFinding: attempt.declaredNoFinding,
+        hintsUsed: attempt.hintsUsed,
+        revealed: attempt.revealed,
+      });
+      if (!saved.ok) return toast.show(`Your answer was not saved: ${saved.error}`);
+      const next = { ...exam, items: exam.items.map((it, i) => (i === examIndex ? { ...it, submittedAt: attempt.submittedAt, attemptId: attempt.id } : it)) };
+      await progress.saveCertExam(next);
+      setExam(next);
+      await goNextInExam(next);
+      return;
+    }
     setSubmittedMarks(frozen);
     setGrade(g);
     const next = { ...session, submitted: true };
     setSession(next);
-    const attempt: Attempt = { ...buildAttempt(g, true), marks: frozen, position: { seriesUid: pp.seriesUid, sopInstanceUid: cp.sop, worldLps: cp.world }, independent: rules.independent(session) };
     try {
       await progress.saveAttempt(attempt);
-      if (g.authoritative && account) {
-        await verifySavedAnswers([attempt]);
-        setVerifiedStatuses(await verifiedCertificateStatuses());
-      }
     } catch (e) {
       toast.show((e as Error).message);
     }
@@ -717,7 +788,7 @@ export default function Workstation() {
   }, [catalog, task, kase, attempts]);
 
   const goTask = (t: Task, m: Mode = mode === 'learn' || mode === 'review' ? 'practice' : mode) =>
-    navigate(`/read/${t.caseId}?task=${encodeURIComponent(t.id)}&mode=${m}${certParam ? `&cert=${certKey(certParam.area, certParam.level)}` : ''}`);
+    navigate(`/read/${t.caseId}?task=${encodeURIComponent(t.id)}&mode=${m}`);
 
   const openBook = (a: BookAnchorRef) => {
     const snap = engine.snapshot(focused);
@@ -998,7 +1069,7 @@ export default function Workstation() {
           ? { text: 'Scored vs source reference', tone: 'ok', title: 'Deterministic geometry against source-provided manual annotations.' }
           : taskRefs.some((r) => r.provenance === 'human_reviewed') && taskRefs.every((r) => r.provenance === 'source_manual' || r.provenance === 'human_reviewed')
             ? { text: 'Scored vs your reviewed reference', tone: 'accent', title: 'Includes references you reviewed in Author.' }
-            : { text: 'Draft reference · self-review', tone: 'warn', title: `Unreviewed references (${AI_DRAFT_BY} or dataset auto-labels): comparison only until you review them.` };
+            : { text: 'Draft reference · self-review', tone: 'warn', title: `Unreviewed references (${AI_LABEL} outlines or dataset auto-labels): comparison only until you review them.` };
   const independentNote = rules.independent(session) ? 'Counts as an independent attempt (no hints or reveal so far).' : 'This attempt is recorded as assisted.';
   const relNote = (p: PanelDef) => {
     if (compare && p.id === 'p1' && p.seriesUid === compare.seriesUid) {
@@ -1131,29 +1202,9 @@ export default function Workstation() {
 
   return (
     <div className="ws">
-      {celebrate && certStatus ? (
-        <div className="cert-celebrate" role="dialog" aria-modal="true" aria-labelledby="cert-celebrate-h">
-          <div className="cert-celebrate-card">
-            <CertSeal level={certStatus.level} size={132} />
-            <h2 id="cert-celebrate-h">Level reached</h2>
-            <p>
-              <b>{certStatus.title}</b> · {levelLabel(certStatus.level)}
-            </p>
-            <p className="muted">Finish the certification to get your certificate, with its own check link, ready for LinkedIn.</p>
-            <div className="row" style={{ gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <button className="btn primary lg" autoFocus onClick={goNextForCert}>
-                Finish certification
-              </button>
-              <button className="btn lg ghost" onClick={() => setCelebrate(false)}>
-                Keep reading
-              </button>
-            </div>
-          </div>
-        </div>
-      ) : null}
       {/* ------------------------------------------------ toolbar */}
       <div className="ws-bar" role="toolbar" aria-label="Viewer tools">
-        <IconButton label={certParam ? 'Back to certificates' : 'Back to cases'} onClick={() => navigate(certParam ? '/certificates' : '/cases')}>
+        <IconButton label={examItem ? 'Leave the exam (your answers are kept)' : 'Back to cases'} onClick={() => navigate(examItem ? '/certificates' : '/cases')}>
           <ArrowLeft size={17} />
         </IconButton>
         <IconButton label="Case navigator" shortcut="[" active={leftOpen} onClick={() => setLeftOpen((v) => !v)}>
@@ -1173,19 +1224,34 @@ export default function Workstation() {
             {nextInShift >= 0 ? 'Next case →' : 'End shift: see the report'}
           </button>
         ) : null}
-        {certStatus ? (
-          <span className={`chip ${certStatus.eligible ? 'ok' : 'accent'} ws-cert`} title={certStatus.todo ?? 'This level is reached: finish the certification.'}>
-            Certificate: {certName(certStatus)} · {certStatus.eligible ? 'reached' : `${Math.min(certStatus.read, certStatus.needPatients)}/${certStatus.needPatients} patients`}
+        {examItem && exam ? (
+          <span className="ws-exam" title="Certification exam: no hints, and no result until the end">
+            <span className="chip accent">
+              Exam · {CERT_TITLES[exam.area]} · {levelLabel(exam.level)}
+            </span>
+            <span className="ws-exam-count">
+              Question {examIndex + 1} of {exam.items.length}
+            </span>
+            {examLeft !== null ? (
+              <span className={`chip ${examLeft <= 20 ? 'bad' : 'warn'} ws-exam-clock`} aria-label="Time left for this question">
+                <Timer size={12} /> {clockText(examLeft)}
+              </span>
+            ) : null}
+            <span
+              className="ws-exam-bar"
+              role="progressbar"
+              aria-label="Questions answered"
+              aria-valuemin={0}
+              aria-valuemax={exam.items.length}
+              aria-valuenow={exam.items.filter((it) => it.submittedAt).length}
+            >
+              <span style={{ width: `${(100 * exam.items.filter((it) => it.submittedAt).length) / exam.items.length}%` }} />
+            </span>
           </span>
         ) : null}
-        {certStatus && (session.submitted || certStatus.eligible) ? (
-          <button className="btn sm primary" onClick={goNextForCert}>
-            {certStatus.eligible ? 'Finish certification' : 'Next for your certificate →'}
-          </button>
-        ) : null}
-        <div className="mode-switch" role="group" aria-label="Mode" style={shiftItem && !session.submitted ? { display: 'none' } : undefined}>
+        <div className="mode-switch" role="group" aria-label="Mode" style={(shiftItem && !session.submitted) || examItem ? { display: 'none' } : undefined}>
           {MODES.map(([m, label]) => (
-            <button key={m} aria-pressed={mode === m} onClick={() => setSp({ task: task.id, mode: m, ...keepCert })}>
+            <button key={m} aria-pressed={mode === m} onClick={() => setSp({ task: task.id, mode: m })}>
               {label}
             </button>
           ))}
@@ -1439,7 +1505,7 @@ export default function Workstation() {
             {availableTasks.map((t, i) => {
               const done = attempts.some((a) => a.taskId === t.id && a.submittedAt);
               return (
-                <button key={t.id} className="series-item" style={{ gridTemplateColumns: '18px 1fr' }} aria-current={t.id === task.id} onClick={() => setSp({ task: t.id, mode, ...keepCert })}>
+                <button key={t.id} className="series-item" style={{ gridTemplateColumns: '18px 1fr' }} aria-current={t.id === task.id} onClick={() => setSp({ task: t.id, mode })}>
                   <span className="faint">{done ? '✓' : i + 1}</span>
                   <span className="series-meta">
                     <strong>{mode === 'assess' && t.id !== task.id ? `Task ${i + 1}` : mode === 'assess' && !session.submitted ? `Task ${i + 1}` : t.title}</strong>
@@ -1541,18 +1607,19 @@ export default function Workstation() {
                 setSelfReview(null);
                 setAttemptId(newId());
                 setHighlight(new Set());
-                if (mode === 'review') setSp({ task: task.id, mode: 'practice', ...keepCert });
+                if (mode === 'review') setSp({ task: task.id, mode: 'practice' });
                 toast.show('New attempt on the same patient — it will be recorded, but it is not an unseen-patient test.');
               }}
               onNextTask={(() => {
                 const i = availableTasks.findIndex((t) => t.id === task.id);
                 const n = availableTasks[i + 1];
-                return n ? () => setSp({ task: n.id, mode, ...keepCert }) : null;
+                return n ? () => setSp({ task: n.id, mode }) : null;
               })()}
               selfReview={selfReview}
               onSelfReview={setSelfReview}
               independentNote={independentNote}
               scoringLabel={scoringLabel}
+              exam={examItem && exam ? { index: examIndex, total: exam.items.length, secondsLeft: examLeft } : null}
             />
           </Tabs.Content>
           <Tabs.Content value="book" className="tab-body">
@@ -1821,6 +1888,15 @@ function CaseInfo({
               source
             </a>
             {source.citation ? <span style={{ display: 'block', marginTop: 2 }}>Cite: {source.citation}</span> : null}
+          </small>
+        ) : null}
+        {catalog!.anatomyTargetsForSeries(catalog!.seriesForCase(kase).map((s) => s.uid)).length ? (
+          <small className="faint">
+            Anatomy outlines: {AI_LABEL}.{' '}
+            <a href={AI_CREDIT.url} target="_blank" rel="noopener">
+              Thanks to {AI_CREDIT.name}
+            </a>
+            , every structure in the anatomy layer is marked.
           </small>
         ) : null}
       </div>

@@ -3,7 +3,7 @@ import { createRequire } from 'node:module';
 import { createElement as h, type ReactNode } from 'react';
 import { initWasm, Resvg } from '@resvg/resvg-wasm';
 import type { Certificate } from './certificates.js';
-import { LEVEL_STYLE, credentialName, levelName, levelRequirement, levelRule, starPoints, type CertArea, type CertLevel } from '../shared/certificateLevels.js';
+import { LEVEL_STYLE, certRequirement, certResult, credentialName, levelName, starPoints, type CertLevel } from '../shared/certificateLevels.js';
 
 /**
  * What a shared certificate looks like outside the app: the picture LinkedIn, X, WhatsApp or Slack show for its
@@ -85,7 +85,6 @@ export async function certificateImage(c: Certificate, origin: string, as: Image
   const level = (c.level ?? 1) as CertLevel;
   const st = LEVEL_STYLE[level];
   const logo = loadBrand();
-  const unaided = levelRule((c.area as CertArea) ?? 'chest', level)?.independent ?? false;
   const nameSize = c.name.length > 26 ? Math.round(k.name * 0.78) : k.name;
   const small = (value: string, style: Style = {}) => text({ fontSize: k.base * 0.8, fontWeight: 600, letterSpacing: 2.5, color: '#6b7280', ...style }, value);
   const signature = (value: string, label: string) =>
@@ -104,7 +103,7 @@ export async function certificateImage(c: Certificate, origin: string, as: Image
     ),
     text({ fontSize: k.base * 1.05, fontWeight: 600, letterSpacing: 3, color: st.accent }, `LEVEL ${level} · ${levelName(level).toUpperCase()}`),
   );
-  const result = `${c.patients} real patients read · ${c.judged} graded answers${unaided ? ' without hints' : ''} · ${Math.round(c.accuracy * 100)}% right`;
+  const result = certResult(c);
   const brandRow = box(
     { alignItems: 'center', gap: 12 },
     h('img', { src: logo.icon, width: k.base * 2.5, height: k.base * 2.5, style: { borderRadius: k.base * 0.6 } }),
@@ -178,11 +177,12 @@ export function certificatePageHtml(indexHtml: string, c: Certificate | null, or
   const url = `${origin}/verify/${encodeURIComponent(id)}`;
   const revoked = c?.status === 'revoked';
   const credential = c ? credentialName(c.title, c.level) : '';
-  const unaided = c ? (levelRule((c.area as CertArea) ?? 'chest', (c.level ?? 1) as CertLevel)?.independent ?? false) : false;
   const title = revoked ? 'Revoked certificate · radiology.monster' : c ? `${c.name} earned the ${credential} · radiology.monster` : 'Certificate · radiology.monster';
-  const desc = revoked ? 'This certificate has been revoked and is no longer valid.' : c
-    ? `${c.name} earned the ${credential} on radiology.monster: ${c.patients} real patients read, ${Math.round(c.accuracy * 100)}% of ${c.judged} graded answers right${unaided ? ' without hints' : ''}, each marked on the image and checked against the expert outline.`
-    : 'Certificates of completion from radiology.monster, radiology reading practice on real patients.';
+  const desc = revoked
+    ? 'This certificate has been revoked and is no longer valid.'
+    : c
+      ? `${c.name} earned the ${credential} on radiology.monster. ${certResult(c)}; every answer marked on the image and checked against the expert's reference.`
+      : 'Certificates from radiology.monster, radiology reading practice and exams on real patients.';
   const image = c && !revoked ? `${origin}/api/og/certificate?id=${encodeURIComponent(c.id)}` : `${origin}/og.png`;
   const tags = [
     `<title>${esc(title)}</title>`,
@@ -204,7 +204,6 @@ export function certificatePageHtml(indexHtml: string, c: Certificate | null, or
   ];
   if (c && !revoked) {
     // The credential in schema.org terms, so search engines and profile tools read it as one.
-    const rule = levelRule((c.area as CertArea) ?? 'chest', (c.level ?? 1) as CertLevel);
     const data = {
       '@context': 'https://schema.org',
       '@type': 'EducationalOccupationalCredential',
@@ -212,7 +211,7 @@ export function certificatePageHtml(indexHtml: string, c: Certificate | null, or
       credentialCategory: 'certificate',
       educationalLevel: levelName(c.level),
       about: c.title,
-      competencyRequired: c.requirements ?? (rule ? levelRequirement((c.area as CertArea) ?? 'chest', rule) : undefined),
+      competencyRequired: c.exam ? certRequirement(c) : (c.requirements ?? certRequirement(c)),
       identifier: c.id,
       url,
       image,
@@ -225,6 +224,9 @@ export function certificatePageHtml(indexHtml: string, c: Certificate | null, or
   // Replace the site-wide title and sharing tags with this certificate's.
   const stripped = indexHtml
     .replace(/<title>[\s\S]*?<\/title>/i, '')
-    .replace(/<meta\s+(?:property="og:[^"]*"|name="twitter:[^"]*"|name="description")[^>]*>\s*/gi, '');
+    .replace(/<meta\s+(?:property="og:[^"]*"|name="twitter:[^"]*"|name="description")[^>]*>\s*/gi, '')
+    // The site's own canonical address and data describe the landing page, not this certificate.
+    .replace(/<link\s+rel="canonical"[^>]*>\s*/gi, '')
+    .replace(/<script type="application\/ld\+json" id="site-ld">[\s\S]*?<\/script>\s*/i, '');
   return stripped.replace(/<\/head>/i, `    ${tags.join('\n    ')}\n  </head>`);
 }

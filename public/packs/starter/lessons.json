@@ -55,7 +55,7 @@
    "id": "starter-cxr-01",
    "packId": "starter",
    "neutralTitle": "Patient B · Chest radiograph + CT localizer",
-   "learnTitle": "Portable AP chest radiograph vs CT scout (same patient)",
+   "learnTitle": "Portable AP chest radiograph vs CT locator slice (same patient)",
    "subjectKey": "tcia:COVID-19-AR:COVID-19-AR-16406503",
    "studyUids": [
     "1.3.6.1.4.1.14519.5.2.1.9999.103.2752219814091402100315433912652",
@@ -99,7 +99,7 @@
     }
    ],
    "referenceSummary": "No finding-level reference exists for this radiograph. Tasks are about technique and a systematic search, checked against a source-linked checklist (self-review). The patient is from the COVID-19-AR research collection; that cohort label is not a finding on this image.",
-   "learnNotes": "This patient has a portable AP chest radiograph and, one day later (dates shifted, interval preserved), a CT whose localizer ('scout') image is included here. A scout is a low-dose projection the CT scanner uses to plan slices — it is not a diagnostic chest radiograph and should not be read as one.\n\nThe radiograph is stored as MONOCHROME1 (higher pixel values display darker); the viewer handles that so bone still appears white. No side marker is recorded in the file header, so the viewer shows 'orientation not recorded' rather than guessing."
+   "learnNotes": "This patient has a portable AP chest radiograph and, one day later (dates shifted, interval preserved), a CT ('CT PE CHEST') whose 'locator' image is included here. That image is a single 10 mm axial slice the CT scanner acquires to set up the scan; other scanners use a low-dose frontal projection (scout, topogram) instead. Neither is a diagnostic image, and neither should be read as a chest radiograph.\n\nThe radiograph is stored as MONOCHROME1 (higher pixel values display darker); the viewer handles that so bone still appears white. No side marker is recorded in the file header, so the viewer shows 'orientation not recorded' rather than guessing; the 'L' burned into the image itself is the side evidence."
   },
   {
    "id": "starter-mr-prostate-01",
@@ -725,8 +725,8 @@
    "id": "starter-cxr-01:scout-vs-cxr",
    "caseId": "starter-cxr-01",
    "type": "compare_appearances",
-   "title": "Diagnostic radiograph or CT scout?",
-   "prompt": "This patient has two frontal projection images (use the two-up layout or the series list). Which one is the diagnostic chest radiograph you would report?",
+   "title": "Diagnostic radiograph or CT locator slice?",
+   "prompt": "This patient has two single-image series (use the two-up layout or the series list). Which one is the diagnostic chest radiograph you would report?",
    "modes": [
     "learn",
     "practice",
@@ -756,7 +756,7 @@
       "id": "scout",
       "text": "The 'locator' image from the CT study",
       "correct": false,
-      "why": "This is the CT localizer (scout): a low-dose planning projection with modality CT. It is useful for orientation but is not a diagnostic radiograph."
+      "why": "This is a single 10 mm axial CT slice labelled 'locator' (modality CT), an auxiliary image the scanner acquires to set up the scan. It is not a radiograph and not a diagnostic series."
      }
     ]
    },
@@ -768,10 +768,10 @@
     },
     {
      "level": 2,
-     "text": "Which image was acquired by the CT scanner to plan its slices?"
+     "text": "Which image was acquired by the CT scanner rather than by a radiography unit?"
     }
    ],
-   "explanation": "CT scouts (localizer/topogram/scanogram) are acquired by the CT gantry for slice planning, at low dose and lower quality. They can show gross findings but are not a substitute for a chest radiograph. The app never counts a scout as an X-ray in same-patient comparisons.",
+   "explanation": "The 'locator' here is a single thick axial slice that the CT scanner acquired to set up the scan; other scanners use a low-dose frontal projection (scout, topogram, scanogram) for slice planning. Such set-up images can show gross findings but are no substitute for a chest radiograph or the diagnostic CT series. The app never counts a scout as an X-ray in same-patient comparisons.",
    "bookAnchors": [
     {
      "physical": 16,

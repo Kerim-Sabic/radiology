@@ -8,7 +8,7 @@ import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
 import { adminStats, count, countOnce, cronAuthorized, dailyCron, emailPrefs, recordActivity, trackable, unsubscribe, weeklyCron } from './engage.js';
 import { claimCertificate, myCertificates, publicCertificate, revokeCertificate } from './certificates.js';
-import { recordAnswer, verifiedProgress } from './certificateProgress.js';
+import { answerQuestion, finishExam, openQuestion, startExam } from './certificateExam.js';
 import { queueCertificateEmail, sendCertificateEmails } from './certificateEmail.js';
 import { certificateImage, certificatePageHtml } from './certificateShare.js';
 import { isAdmin } from './auth.js';
@@ -139,14 +139,20 @@ export async function handle(request: Request): Promise<Response> {
       const r = await emailPrefs(user, body);
       return r.ok ? json(r) : json({ error: r.error }, 400);
     }
-    if (path === '/api/certificates/progress' && request.method==='GET') return json({statuses:await verifiedProgress(user.userId)});
-    if (path === '/api/certificates/answers' && request.method==='POST') {
-      if(!await rateLimit(`cert-answers:${user.userId}`,120,60)) return json({error:'Please wait before verifying more answers.'},429);
-      const batch=z.object({answers:z.array(z.unknown()).min(1).max(20)}).strict().safeParse(await request.json());
-      if(!batch.success) return json({error:'Submit at most 20 answers at a time.'},400);
-      const results=[];
-      for(const answer of batch.data.answers) results.push(await recordAnswer(user.userId,answer));
-      return json({results});
+    // Certification exams: the server picks the questions, starts each question's clock, grades each answer and scores the exam.
+    if (path.startsWith('/api/certificates/exam/') && request.method === 'POST') {
+      if (!(await accessFor(user.userId)).active) return json({ error: 'The exams are part of membership.' }, 402);
+      if (!await rateLimit(`cert-exam:${user.userId}`, 300, 600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
+      const body = await request.json().catch(() => null);
+      const held = async () => (await myCertificates(user)).map((c) => ({ area: c.area, level: c.level, status: c.status }));
+      const r =
+        path === '/api/certificates/exam/start' ? await startExam(user.userId, await held(), body)
+        : path === '/api/certificates/exam/open' ? await openQuestion(user.userId, body)
+        : path === '/api/certificates/exam/answer' ? await answerQuestion(user.userId, body)
+        : path === '/api/certificates/exam/finish' ? await finishExam(user.userId, body)
+        : null;
+      if (!r) return json({ error: 'Not found' }, 404);
+      return r.ok ? json(r) : json({ error: r.error }, 400);
     }
     if(path==='/api/admin/certificates/revoke' && request.method==='POST') {
       if(!await isAdmin(user.userId)) return json({error:'Admin accounts only.'},403);

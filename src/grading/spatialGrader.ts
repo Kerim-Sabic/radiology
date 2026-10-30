@@ -517,18 +517,25 @@ function gradeLabelled(base: GradeResult, input: GradeInput, o: LabelledOptions)
 
 function gradeFindings(base: GradeResult, input: GradeInput, g: Extract<Task['grading'], { kind: 'findings' }>): GradeResult {
   const { task, marks } = input;
-  const loaded = task.targets.map((t) => ({ t, lt: input.targets.get(t.targetId)! })).filter((x) => x.lt);
+  // Optional targets (an extra finding on the film, or the same lesion on a second series) count when marked and are
+  // never needed: the score and the outcome come from the required ones. Required targets take the marks first.
+  const isRequired = (t: Task['targets'][number]) => t.required !== false;
+  const loaded = task.targets
+    .map((t) => ({ t, lt: input.targets.get(t.targetId)! }))
+    .filter((x) => x.lt)
+    .sort((a, b) => Number(!isRequired(a.t)) - Number(!isRequired(b.t)));
+  const required = loaded.filter((x) => isRequired(x.t));
   const wholeStudy = loaded.length > 0 && loaded.every((x) => x.lt.ref.completeness === 'whole_study_reviewed');
   if (!marks.length && !input.declaredNoFinding) return { ...base, messages: ['No marks placed.'] };
   if (input.declaredNoFinding && !marks.length) {
-    if (!loaded.length) return { ...base, outcome: 'correct', score: 1, messages: ['You reported no target finding.'] };
+    if (!required.length) return { ...base, outcome: 'correct', score: 1, messages: ['You reported no target finding.'] };
     return {
       ...base,
       outcome: 'incorrect',
       score: 0,
       errors: ['missed_finding'],
-      targets: loaded.map(({ t }) => ({ targetId: t.targetId, name: t.name, status: 'missed', markId: null, inPlaneDistanceMm: null, sliceDistanceMm: null, overlap: null, note: 'Present in the reference but not marked.' })),
-      messages: [`The reference contains ${loaded.length} finding(s) you did not mark.`],
+      targets: required.map(({ t }) => ({ targetId: t.targetId, name: t.name, status: 'missed', markId: null, inPlaneDistanceMm: null, sliceDistanceMm: null, overlap: null, note: 'Present in the reference but not marked.' })),
+      messages: [`The reference contains ${required.length} finding(s) you did not mark.`],
     };
   }
   const probes = new Map(marks.map((m) => [m.id, probeOfMark(m, input.series.get(m.seriesUid))]));
@@ -550,8 +557,9 @@ function gradeFindings(base: GradeResult, input: GradeInput, g: Extract<Task['gr
       used.add(best.id);
       const precise = best.iou === null || g.iouThreshold === null || best.iou >= g.iouThreshold;
       markOut.push({ markId: best.id, status: 'matched', targetId: t.targetId, note: `Matches ${t.name}.` });
-      targets.push({ targetId: t.targetId, name: t.name, status: 'found', markId: best.id, inPlaneDistanceMm: best.m.inPlaneDistanceMm, sliceDistanceMm: best.m.sliceDistanceMm, overlap: best.iou, note: precise ? 'Detected.' : `Detected; boundary overlap ${(best.iou! * 100).toFixed(0)}% is below the ${(g.iouThreshold! * 100).toFixed(0)}% outline target.` });
-    } else targets.push({ targetId: t.targetId, name: t.name, status: 'missed', markId: null, inPlaneDistanceMm: null, sliceDistanceMm: null, overlap: null, note: 'Present in the reference but not marked.' });
+      const extra = isRequired(t) ? '' : ' (not required)';
+      targets.push({ targetId: t.targetId, name: t.name, status: 'found', markId: best.id, inPlaneDistanceMm: best.m.inPlaneDistanceMm, sliceDistanceMm: best.m.sliceDistanceMm, overlap: best.iou, note: precise ? `Detected${extra}.` : `Detected${extra}; boundary overlap ${(best.iou! * 100).toFixed(0)}% is below the ${(g.iouThreshold! * 100).toFixed(0)}% outline target.` });
+    } else if (isRequired(t)) targets.push({ targetId: t.targetId, name: t.name, status: 'missed', markId: null, inPlaneDistanceMm: null, sliceDistanceMm: null, overlap: null, note: 'Present in the reference but not marked.' });
   }
   for (const mk of marks) {
     if (used.has(mk.id)) continue;
@@ -570,24 +578,24 @@ function gradeFindings(base: GradeResult, input: GradeInput, g: Extract<Task['gr
           : { markId: mk.id, status: 'unmatched_unscored', targetId: null, note: 'Outside the referenced findings. The reference does not cover the whole study, so this is unscored rather than counted as a false positive.' },
       );
   }
-  const found = targets.filter((t) => t.status === 'found').length;
+  const found = targets.filter((t) => t.status === 'found' && required.some((r) => r.t.targetId === t.targetId)).length;
   const fps = markOut.filter((m) => m.status === 'false_positive').length;
   const imprecise = targets.some((t) => t.overlap !== null && g.iouThreshold !== null && t.overlap < g.iouThreshold);
   const errors: ErrorCategory[] = [];
-  if (found < loaded.length) errors.push('missed_finding');
+  if (found < required.length) errors.push('missed_finding');
   if (fps) errors.push('overcalling');
   if (imprecise) errors.push('inaccurate_contour');
-  const score = loaded.length ? found / (loaded.length + fps) : 0;
+  const score = required.length ? found / (required.length + fps) : fps ? 0 : 1;
   return {
     ...base,
-    outcome: found === loaded.length && fps === 0 ? 'correct' : found > 0 ? 'partial' : 'incorrect',
+    outcome: found === required.length && fps === 0 ? 'correct' : found > 0 ? 'partial' : 'incorrect',
     score,
-    components: { detection: { ok: found === loaded.length, detail: `${found} of ${loaded.length} referenced finding(s) detected${wholeStudy ? `, ${fps} false positive(s)` : ''}.` } },
+    components: { detection: { ok: found === required.length, detail: `${found} of ${required.length} referenced finding(s) detected${wholeStudy ? `, ${fps} false positive(s)` : ''}.` } },
     targets,
     marks: markOut,
     errors,
     messages: [
-      `${found} of ${loaded.length} referenced finding(s) detected.`,
+      `${found} of ${required.length} referenced finding(s) detected.`,
       wholeStudy ? `False positives: ${fps}.` : 'False positives are not counted because the reference covers only the listed findings.',
     ],
   };

@@ -6,7 +6,7 @@ import { BOOK_ANATOMY, canonicalAnatomyKey, imageFamily } from '../content/bookA
 import { GROUP_LABEL, GROUP_ORDER, groupFor, type Group3D } from '../viewer/anatomyMask';
 import { colorOf } from '../viewer/segStyle';
 import { useSegStyle } from '../components/ws/SegStyleControls';
-import { AI_DRAFT_BY, isAutomatic, plainName, provenanceTag } from '../lib/provenance';
+import { AI_CREDIT, AI_LABEL, isAutomatic, plainName, provenanceTag } from '../lib/provenance';
 import { noteFor } from '../content/structureNotes';
 
 interface Entry {
@@ -99,7 +99,11 @@ export default function AtlasPage() {
         <h1>Anatomy atlas</h1>
         <span className="muted">
           Every labelled structure on every patient. Pick one to open the scan with that structure shown alone; use ‹ › on the image to step through its neighbours.
-          Solid outlines are expert labels from the source datasets; dashed ones are {AI_DRAFT_BY} (quality-checked, not yet reviewed by a radiologist).
+          Solid outlines are expert labels from the source datasets; dashed ones are drawn by {AI_LABEL} (quality-checked, not yet reviewed by a radiologist).{' '}
+          <a href={AI_CREDIT.url} target="_blank" rel="noopener">
+            Thanks to {AI_CREDIT.name}
+          </a>
+          , every structure here is marked.
         </span>
       </div>
 
@@ -107,7 +111,7 @@ export default function AtlasPage() {
         <h2>Most completely labelled studies</h2>
         <div className="row wrap">
           {best.map(({ k, n }) => (
-            <Link key={k.id} className="chip" to={`/read/${encodeURIComponent(k.id)}?mode=learn`} title={`${n.expert} expert, ${n.ai} ${AI_DRAFT_BY}`}>
+            <Link key={k.id} className="chip" to={`/read/${encodeURIComponent(k.id)}?mode=learn`} title={`${n.expert} expert, ${n.ai} ${AI_LABEL}`}>
               {k.neutralTitle} · <b>{n.total}</b> structures{n.expert >= n.total * 0.9 ? ' · expert' : ''}
             </Link>
           ))}

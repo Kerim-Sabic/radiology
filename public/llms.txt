@@ -1,0 +1,24 @@
+# radiology.monster
+
+> Real cases. Deeper understanding. radiology.monster is a radiology reading workstation in the browser for medical students and residents: real CT, MRI, X-ray, mammography and ultrasound studies, where you scroll the whole study, mark what you see and are graded against the expert reference on the exact slice, with each task linked to the page of Learning Radiology (Herring, 5th ed.) that explains it.
+
+## What it offers
+
+- 350+ real, de-identified patients and 1,000+ image tasks across CT, MRI, X-ray, mammography and ultrasound, from public research collections whose licences allow reuse (Creative Commons, NIH).
+- Learn, Practice, Assess and Review modes; marking tools; deterministic grading against the experts' own outlines and boxes (a mark must land on the finding, on the right slice and side).
+- An anatomy layer naming the organs, vessels, bones and airways on every scan, an anatomy atlas, anatomy drills with spaced repetition, on-call shifts and a search-pattern coach.
+- Certificates in three levels (Foundation, Intermediate, Advanced) for each body area (chest, abdomen and pelvis, neuro, musculoskeletal, breast) and for the whole library (General Radiology). Each level is an exam, taken in order, and each is a real step up: Foundation 15 untimed questions, pass mark 70%; Intermediate 25 questions at 3 minutes each, pass mark 80%, at least half of them marking the finding on the image, no two-answer questions; Advanced 40 questions at 2 minutes each, pass mark 90% with no half points, mostly marked on the image, subtle cases first (the whole library: 30, 50 and 75 questions). No hints, every answer graded against the expert reference, and the result after the last question. Each certificate has a public check page and can be added to LinkedIn under Licenses & certifications.
+- A free account opens sample patients in the full workstation; members get the whole library.
+- For education and practice only: not a medical device, not for clinical decisions, and its certificates are not a medical qualification.
+
+## Credits
+
+- Anatomy outlines: AI. Thanks to Horalix.com (https://horalix.com), we managed to mark every structure in the anatomy layer. Horalix is a medical AI company from Sarajevo building an AI-assisted echocardiography workflow.
+- Findings: outlined by the radiologists and experts who published each image collection; every case names its source and licence.
+- radiology.monster is not affiliated with or endorsed by the publisher or authors of Learning Radiology.
+
+## Links
+
+- Home: https://www.radiology.monster/
+- Example certificate: https://www.radiology.monster/certificate/example
+- Horalix: https://horalix.com

@@ -137,7 +137,7 @@
      }
     }
    ],
-   "explanation": "On CT pulmonary angiography the pulmonary arteries are bright with contrast. An embolus is a filling defect: grey, unenhanced clot inside the white lumen, either with contrast around it or blocking the vessel. A saddle embolus straddles the bifurcation of the main pulmonary artery. Follow every pulmonary artery from the trunk out to the segmental branches on a wide window and in two planes. Then look at the consequences: a right ventricle larger than the left (right heart strain) and peripheral wedge-shaped opacities (infarcts). Any mark inside the radiologists' mask, on a slice within 1.5 mm, counts.",
+   "explanation": "On CT pulmonary angiography the pulmonary arteries are bright with contrast. An embolus is a filling defect: grey, unenhanced clot inside the white lumen, either with contrast around it or blocking the vessel. A saddle embolus straddles the bifurcation of the main pulmonary artery. Follow every pulmonary artery from the trunk out to the segmental branches on a wide window and in two planes. Then look at the consequences: a right ventricle larger than the left (right heart strain) and peripheral wedge-shaped opacities (infarcts). Any mark inside the radiologists' mask, or within 3 mm of its edge, on a slice within 1.5 mm of a masked slice, counts.",
    "bookAnchors": [
     {
      "physical": 124,
@@ -306,7 +306,7 @@
      }
     }
    ],
-   "explanation": "On CT pulmonary angiography the pulmonary arteries are bright with contrast. An embolus is a filling defect: grey, unenhanced clot inside the white lumen, either with contrast around it or blocking the vessel. A saddle embolus straddles the bifurcation of the main pulmonary artery. Follow every pulmonary artery from the trunk out to the segmental branches on a wide window and in two planes. Then look at the consequences: a right ventricle larger than the left (right heart strain) and peripheral wedge-shaped opacities (infarcts). Any mark inside the radiologists' mask, on a slice within 1.5 mm, counts.",
+   "explanation": "On CT pulmonary angiography the pulmonary arteries are bright with contrast. An embolus is a filling defect: grey, unenhanced clot inside the white lumen, either with contrast around it or blocking the vessel. A saddle embolus straddles the bifurcation of the main pulmonary artery. Follow every pulmonary artery from the trunk out to the segmental branches on a wide window and in two planes. Then look at the consequences: a right ventricle larger than the left (right heart strain) and peripheral wedge-shaped opacities (infarcts). Any mark inside the radiologists' mask, or within 3 mm of its edge, on a slice within 1.5 mm of a masked slice, counts.",
    "bookAnchors": [
     {
      "physical": 124,

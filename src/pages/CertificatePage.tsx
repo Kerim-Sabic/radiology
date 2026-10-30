@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Check, Copy, Download, FileText, ImageDown, Info, Printer, Send, ShieldCheck, Smartphone } from 'lucide-react';
 import { EXAMPLE_CERTIFICATE, certificateOwner, levelLabel, linkedInFields, linkedInUrl, startLinkedInPost, type IssuedCertificate } from '../services/certificates';
-import { LEVEL_STYLE, credentialName, levelName, levelRequirement, levelRule, starPoints, type CertArea, type CertLevel } from '../../shared/certificateLevels';
+import { AI_CREDIT } from '../lib/provenance';
+import { LEVEL_STYLE, certRequirement, certResult, credentialName, levelName, levelRule, starPoints, type CertArea, type CertLevel } from '../../shared/certificateLevels';
 import { CertSeal } from '../components/CertSeal';
 import '../styles/certificate.css';
 import { verificationUrl } from '../../shared/credential';
@@ -38,6 +39,36 @@ export function suggestedPost(c: IssuedCertificate, url: string, style: PostStyl
   const pct = `${Math.round(c.accuracy * 100)}%`;
   const unaided = levelRule((c.area as CertArea) ?? 'chest', level)?.independent ?? false;
   const tags = `#radiology #medicalstudent #medicaleducation #meded ${AREA_TAG[c.area] ?? '#imaging'}`;
+  const next = level < 3 ? `Next goal: Level ${level + 1} (${levelName((level + 1) as CertLevel)}).` : 'Level 3 is the top level, and I am proud to have reached it.';
+  if (c.exam) {
+    const pass = `${Math.round(c.exam.passMark * 100)}%`;
+    if (style === 'short')
+      return [`Passed the ${credential} exam on radiology.monster: ${c.exam.questions} questions on real patient scans, ${pct} right (pass mark ${pass}).`, '', `Verify it: ${url}`, '', tags].join('\n');
+    if (style === 'detailed')
+      return [
+        `New certificate: ${credential}, issued by radiology.monster.`,
+        '',
+        'What it took:',
+        `• A ${c.exam.questions}-question exam on ${c.patients} real patients, in a full radiology workstation`,
+        '• No hints, and no result until the last question',
+        `• Every finding marked on the image and graded against the expert's reference: ${pct} right (pass mark ${pass})`,
+        '',
+        `Verify it: ${url}`,
+        '',
+        tags,
+      ].join('\n');
+    return [
+      `Proud to share that I have earned the ${credential} from radiology.monster.`,
+      '',
+      `I passed its ${c.exam.questions}-question exam on real patient scans in a full radiology workstation: scrolling each study, marking the finding on the image and getting graded against the expert's reference, with no hints. I scored ${pct} (pass mark ${pass}).`,
+      '',
+      next,
+      '',
+      `Verify it here: ${url}`,
+      '',
+      tags,
+    ].join('\n');
+  }
   if (style === 'short')
     return [
       `Earned the ${credential} on radiology.monster: ${c.patients} real patients read, ${pct} right${unaided ? ' without hints' : ''}.`,
@@ -64,7 +95,7 @@ export function suggestedPost(c: IssuedCertificate, url: string, style: PostStyl
     '',
     `I read ${c.patients} real patient scans in a full radiology workstation: scrolling the whole study, marking each finding on the image and getting graded against the expert outline. ${pct} of my ${c.judged} graded answers were right${unaided ? ', all without hints' : ''}.`,
     '',
-    level < 3 ? `Next goal: Level ${level + 1} (${levelName((level + 1) as CertLevel)}).` : 'Level 3 is the top level, and I am proud to have reached it.',
+    next,
     '',
     `Verify it here: ${url}`,
     '',
@@ -290,11 +321,11 @@ export default function CertificatePage() {
               </div>
               <div>
                 <b>{pct}</b>
-                <span>{unaided ? 'Right without hints' : 'Graded answers right'}</span>
+                <span>{cert.exam ? 'Exam score' : unaided ? 'Right without hints' : 'Graded answers right'}</span>
               </div>
               <div>
                 <b>{cert.judged}</b>
-                <span>{unaided ? 'Answers without hints' : 'Graded answers'}</span>
+                <span>{cert.exam ? 'Exam questions' : unaided ? 'Answers without hints' : 'Graded answers'}</span>
               </div>
             </div>
             <div className="cert-foot">
@@ -353,21 +384,16 @@ export default function CertificatePage() {
             <dt>Issued on</dt>
             <dd>{issued}</dd>
           </div>
-          {rule ? (
-            <div>
-              <dt>What the level asks</dt>
-              <dd>
-                {cert.requirements ?? levelRequirement(area, rule)}
-                {!cert.requirements && area !== 'all' ? ' (every patient of the area where it has fewer)' : ''}
-              </dd>
-            </div>
-          ) : null}
+          <div>
+            <dt>What the level asks</dt>
+            <dd>
+              {cert.exam ? certRequirement(cert) : cert.requirements ?? certRequirement(cert)}
+              {!cert.exam && !cert.requirements && area !== 'all' ? ' (every patient of the area where it has fewer)' : ''}
+            </dd>
+          </div>
           <div>
             <dt>Result</dt>
-            <dd>
-              {cert.patients} patients read · {cert.judged} graded answers
-              {unaided ? ' without hints' : ''} · {pct} right
-            </dd>
+            <dd>{certResult(cert)}</dd>
           </div>
           <div>
             <dt>Skills</dt>
@@ -558,7 +584,7 @@ export default function CertificatePage() {
 
       <section className="cert-cta">
         <div>
-          <h2>{example ? 'Earn yours by reading real patients.' : `Learn to read scans the way ${cert.name.split(/\s+/)[0]} did.`}</h2>
+          <h2>{example ? 'Earn yours on real patients.' : `Learn to read scans the way ${cert.name.split(/\s+/)[0]} did.`}</h2>
           <p>Real CT, MRI, X-ray, mammography and ultrasound. Mark what you see and get graded on the exact slice.</p>
         </div>
         <a className="cert-btn primary" href="/">
@@ -566,7 +592,14 @@ export default function CertificatePage() {
         </a>
       </section>
       <p className="cert-fine">
-        Unproctored educational course completion. Not accredited CME, a professional qualification, or proof of clinical competence. Always check this page for current validity.
+        {cert.exam
+          ? 'An unproctored educational exam, graded by radiology.monster’s server against expert references.'
+          : 'Unproctored educational course completion.'}{' '}
+        Not accredited CME, a professional qualification, or proof of clinical competence. Always check this page for current validity. Anatomy outlines: AI.{' '}
+        <a href={AI_CREDIT.url} target="_blank" rel="noopener">
+          Thanks to {AI_CREDIT.name}
+        </a>
+        , every structure in the anatomy layer is marked.
       </p>
     </main>
   );

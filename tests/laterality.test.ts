@@ -1,7 +1,7 @@
 /**
  * Accuracy guard over the REAL installed labels: every left/right pair of outlines on a series must lie on
  * the correct side of the patient, and every image-space outline must lie inside its image. A swapped side is
- * the most harmful labelling error, so this runs for expert and "AI draft by Horalix" labels alike.
+ * the most harmful labelling error, so this runs for expert and AI labels alike.
  */
 import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';

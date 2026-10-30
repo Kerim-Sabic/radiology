@@ -46,7 +46,7 @@
     }
    ],
    "referenceSummary": "The ischemic lesion was outlined with a model's help, corrected by trained annotators and a neuroradiologist in training, and approved by an attending neuroradiologist (ISLES 2022). The images are skull-stripped and resliced to 2 mm by the dataset authors; time since onset is not given.",
-   "learnNotes": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences."
+   "learnNotes": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery; in the posterior fossa the cerebellar arteries or basilar branches; or a watershed or lacunar pattern) and look for hemorrhage on the other sequences."
   },
   {
    "id": "stroke-isles-0057",
@@ -91,7 +91,7 @@
     }
    ],
    "referenceSummary": "The ischemic lesion was outlined with a model's help, corrected by trained annotators and a neuroradiologist in training, and approved by an attending neuroradiologist (ISLES 2022). The images are skull-stripped and resliced to 2 mm by the dataset authors; time since onset is not given.",
-   "learnNotes": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences."
+   "learnNotes": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery; in the posterior fossa the cerebellar arteries or basilar branches; or a watershed or lacunar pattern) and look for hemorrhage on the other sequences."
   }
  ],
  "tasks": [
@@ -157,7 +157,7 @@
      }
     }
    ],
-   "explanation": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
+   "explanation": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery; in the posterior fossa the cerebellar arteries or basilar branches; or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
    "bookAnchors": [
     {
      "physical": 354,
@@ -218,7 +218,7 @@
       "id": "dark",
       "text": "Dark (low ADC): true restricted diffusion",
       "correct": true,
-      "why": "Water motion is restricted in the swollen cells of an acute infarct, so the ADC is low and the map is dark."
+      "why": "Water motion is restricted in the swollen cells of an acute infarct, so the ADC is low and the map is dark. Here the median ADC inside the outline is 610 against 896 x10^-6 mm2/s in the rest of the brain."
      },
      {
       "id": "bright",
@@ -241,7 +241,7 @@
      "text": "Use the linked views: double-click the lesion on DWI and the ADC view goes to the same place."
     }
    ],
-   "explanation": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
+   "explanation": "The ADC map is dark where the outline is: median 610 against 896 x10^-6 mm2/s in the rest of the brain (measured inside the expert mask). In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery; in the posterior fossa the cerebellar arteries or basilar branches; or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
    "bookAnchors": [
     {
      "physical": 354,
@@ -335,7 +335,7 @@
      }
     }
    ],
-   "explanation": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
+   "explanation": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery; in the posterior fossa the cerebellar arteries or basilar branches; or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
    "bookAnchors": [
     {
      "physical": 354,
@@ -396,7 +396,7 @@
       "id": "dark",
       "text": "Dark (low ADC): true restricted diffusion",
       "correct": true,
-      "why": "Water motion is restricted in the swollen cells of an acute infarct, so the ADC is low and the map is dark."
+      "why": "Water motion is restricted in the swollen cells of an acute infarct, so the ADC is low and the map is dark. Here the median ADC inside the outline is 766 against 935 x10^-6 mm2/s in the rest of the brain."
      },
      {
       "id": "bright",
@@ -419,7 +419,7 @@
      "text": "Use the linked views: double-click the lesion on DWI and the ADC view goes to the same place."
     }
    ],
-   "explanation": "In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
+   "explanation": "The ADC map is darker inside the outline than in the rest of the brain, but only moderately and in patches (median 766 against 935 x10^-6 mm2/s, measured inside the expert mask): compare the outlined cortex with the same place on the other side. In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not restriction. Name the territory (anterior, middle or posterior cerebral artery; in the posterior fossa the cerebellar arteries or basilar branches; or a watershed or lacunar pattern) and look for hemorrhage on the other sequences.",
    "bookAnchors": [
     {
      "physical": 354,

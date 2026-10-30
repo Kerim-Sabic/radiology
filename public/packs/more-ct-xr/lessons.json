@@ -7,7 +7,7 @@
    "id": "more-pediatric-ct-seg-40fefef6",
    "packId": "more-ct-xr",
    "neutralTitle": "Patient AA · CT chest, abdomen and pelvis (child, 1 y)",
-   "learnTitle": "Paediatric CT with every organ outlined by experts (Pediatric-CT-SEG-40FEFEF6)",
+   "learnTitle": "Paediatric CT with the main organs outlined by experts (Pediatric-CT-SEG-40FEFEF6)",
    "subjectKey": "tcia:Pediatric-CT-SEG:Pediatric-CT-SEG-40FEFEF6",
    "studyUids": [
     "1.3.6.1.4.1.14519.5.2.1.3999117692215267671575684021377736261"
@@ -18,7 +18,7 @@
     "abdomen",
     "pelvis"
    ],
-   "clinicalContext": "Child aged 1 years (DICOM header).",
+   "clinicalContext": "Child aged 1 year (DICOM header).",
    "contextSource": "DICOM PatientAge",
    "difficulty": "typical",
    "objectiveIds": [
@@ -50,14 +50,14 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "Expert organ contours from the Pediatric-CT-SEG collection: 24 structures (organs, bowel, glands, femoral heads, all bones). Every organ in the field of view is outlined, so this is a complete anatomy study.",
+   "referenceSummary": "Expert organ contours from the Pediatric-CT-SEG collection: 24 structures (organs, bowel, glands, femoral heads, all bones). Each listed structure is outlined wherever it appears, but vessels, muscles, lymph nodes and anything not on the list are not, so this is not a reference for everything in the image.",
    "learnNotes": "Turn on Anatomy and click each structure to see it alone; then switch to Practice and find them without labels. Children have less fat, so organs sit closer together than in adults."
   },
   {
    "id": "more-pediatric-ct-seg-9d907991",
    "packId": "more-ct-xr",
    "neutralTitle": "Patient AB · CT chest, abdomen and pelvis (child, 5 y)",
-   "learnTitle": "Paediatric CT with every organ outlined by experts (Pediatric-CT-SEG-9D907991)",
+   "learnTitle": "Paediatric CT with the main organs outlined by experts (Pediatric-CT-SEG-9D907991)",
    "subjectKey": "tcia:Pediatric-CT-SEG:Pediatric-CT-SEG-9D907991",
    "studyUids": [
     "1.3.6.1.4.1.14519.5.2.1.132542792715868826567548392433564506281"
@@ -100,14 +100,14 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "Expert organ contours from the Pediatric-CT-SEG collection: 25 structures (organs, bowel, glands, femoral heads, all bones). Every organ in the field of view is outlined, so this is a complete anatomy study.",
+   "referenceSummary": "Expert organ contours from the Pediatric-CT-SEG collection: 25 structures (organs, bowel, glands, femoral heads, all bones). Each listed structure is outlined wherever it appears, but vessels, muscles, lymph nodes and anything not on the list are not, so this is not a reference for everything in the image.",
    "learnNotes": "Turn on Anatomy and click each structure to see it alone; then switch to Practice and find them without labels. Children have less fat, so organs sit closer together than in adults."
   },
   {
    "id": "more-pediatric-ct-seg-397",
    "packId": "more-ct-xr",
    "neutralTitle": "Patient AC · CT abdomen and pelvis (child, 12 y)",
-   "learnTitle": "Paediatric CT with every organ outlined by experts (Pediatric-CT-SEG-397)",
+   "learnTitle": "Paediatric CT with the main organs outlined by experts (Pediatric-CT-SEG-397)",
    "subjectKey": "tcia:Pediatric-CT-SEG:Pediatric-CT-SEG-397",
    "studyUids": [
     "1.3.6.1.4.1.14519.5.2.1.337725068449942769899077846680825150631"
@@ -148,14 +148,14 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "Expert organ contours from the Pediatric-CT-SEG collection: 26 structures (organs, bowel, glands, femoral heads, all bones). Every organ in the field of view is outlined, so this is a complete anatomy study.",
+   "referenceSummary": "Expert organ contours from the Pediatric-CT-SEG collection: 26 structures (organs, bowel, glands, femoral heads, all bones). Each listed structure is outlined wherever it appears, but vessels, muscles, lymph nodes and anything not on the list are not, so this is not a reference for everything in the image.",
    "learnNotes": "Turn on Anatomy and click each structure to see it alone; then switch to Practice and find them without labels. Children have less fat, so organs sit closer together than in adults."
   },
   {
    "id": "more-pediatric-ct-seg-3555a98f",
    "packId": "more-ct-xr",
    "neutralTitle": "Patient AD · CT abdomen and pelvis (child, 15 y)",
-   "learnTitle": "Paediatric CT with every organ outlined by experts (Pediatric-CT-SEG-3555A98F)",
+   "learnTitle": "Paediatric CT with the main organs outlined by experts (Pediatric-CT-SEG-3555A98F)",
    "subjectKey": "tcia:Pediatric-CT-SEG:Pediatric-CT-SEG-3555A98F",
    "studyUids": [
     "1.3.6.1.4.1.14519.5.2.1.115482956047293745446634785494105587353"
@@ -196,7 +196,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "Expert organ contours from the Pediatric-CT-SEG collection: 24 structures (organs, bowel, glands, femoral heads, all bones). Every organ in the field of view is outlined, so this is a complete anatomy study.",
+   "referenceSummary": "Expert organ contours from the Pediatric-CT-SEG collection: 24 structures (organs, bowel, glands, femoral heads, all bones). Each listed structure is outlined wherever it appears, but vessels, muscles, lymph nodes and anything not on the list are not, so this is not a reference for everything in the image.",
    "learnNotes": "Turn on Anatomy and click each structure to see it alone; then switch to Practice and find them without labels. Children have less fat, so organs sit closer together than in adults."
   },
   {
@@ -1237,7 +1237,7 @@
    "hints": [
     {
      "level": 1,
-     "text": "They sit above and in front of the upper poles of the kidneys; the right one is behind the IVC."
+     "text": "They sit above and medial to the upper poles of the kidneys; the right one lies directly behind the IVC, the left one beside the aorta."
     },
     {
      "level": 5,
@@ -1796,7 +1796,7 @@
    "hints": [
     {
      "level": 1,
-     "text": "They sit above and in front of the upper poles of the kidneys; the right one is behind the IVC."
+     "text": "They sit above and medial to the upper poles of the kidneys; the right one lies directly behind the IVC, the left one beside the aorta."
     },
     {
      "level": 5,
@@ -2355,7 +2355,7 @@
    "hints": [
     {
      "level": 1,
-     "text": "They sit above and in front of the upper poles of the kidneys; the right one is behind the IVC."
+     "text": "They sit above and medial to the upper poles of the kidneys; the right one lies directly behind the IVC, the left one beside the aorta."
     },
     {
      "level": 5,
@@ -2847,7 +2847,7 @@
    "hints": [
     {
      "level": 1,
-     "text": "They sit above and in front of the upper poles of the kidneys; the right one is behind the IVC."
+     "text": "They sit above and medial to the upper poles of the kidneys; the right one lies directly behind the IVC, the left one beside the aorta."
     },
     {
      "level": 5,
@@ -4509,13 +4509,13 @@
       "id": "pa",
       "text": "Pulmonary arterial (CT pulmonary angiogram)",
       "correct": true,
-      "why": "The pulmonary arteries are brighter than the aorta: contrast was timed for the pulmonary arteries, to look for emboli."
+      "why": "The pulmonary trunk is densely opacified (about as bright as the aorta in this patient) while the liver has barely enhanced: an early, arterial timing. The study is a CT pulmonary angiogram, timed for the pulmonary arteries to look for emboli."
      },
      {
       "id": "venous",
       "text": "Portal venous",
       "correct": false,
-      "why": "Arteries and veins are similarly enhanced and the liver and portal vein are bright: a venous-phase body CT."
+      "why": "In a portal venous phase the liver and portal vein would be well enhanced; here the liver has barely enhanced while the pulmonary arteries are dense."
      },
      {
       "id": "none",
@@ -4529,7 +4529,7 @@
    "hints": [
     {
      "level": 1,
-     "text": "Hover the main pulmonary artery and the aorta and compare the HU values."
+     "text": "Hover the main pulmonary artery, the aorta and the liver and compare the HU values."
     }
    ],
    "explanation": "The source study is described as 'CT PE CHEST'. Knowing the phase tells you which vessels you can judge.",
@@ -4903,7 +4903,7 @@
       "id": "venous",
       "text": "Portal venous",
       "correct": false,
-      "why": "Arteries and veins are similarly enhanced and the liver and portal vein are bright: a venous-phase body CT."
+      "why": "In a portal venous phase the portal vein and liver would be well enhanced; here the portal vein is barely opacified while the pulmonary arteries are dense."
      },
      {
       "id": "none",
@@ -5285,7 +5285,7 @@
       "id": "pa",
       "text": "Pulmonary arterial (CT pulmonary angiogram)",
       "correct": false,
-      "why": "The pulmonary arteries are brighter than the aorta: contrast was timed for the pulmonary arteries, to look for emboli."
+      "why": "In a CT pulmonary angiogram the pulmonary arteries would be densely opacified (often more than the aorta) while the liver and portal vein are still unenhanced; here arteries and veins are enhanced to a similar degree."
      },
      {
       "id": "venous",
@@ -5653,8 +5653,7 @@
    "prompt": "Compare the brightness of the pulmonary arteries, the aorta and (if included) the portal vein and kidneys. Which phase was this CT timed for?",
    "modes": [
     "learn",
-    "practice",
-    "assess"
+    "practice"
    ],
    "seriesUids": [
     "1.3.6.1.4.1.14519.5.2.1.9999.103.2571588625672387018784880321510"
@@ -5673,19 +5672,19 @@
       "id": "pa",
       "text": "Pulmonary arterial (CT pulmonary angiogram)",
       "correct": false,
-      "why": "The pulmonary arteries are brighter than the aorta: contrast was timed for the pulmonary arteries, to look for emboli."
+      "why": "In a CT pulmonary angiogram the pulmonary arteries would be densely opacified (often more than the aorta) while the liver and portal vein are still unenhanced; here arteries and veins are enhanced to a similar degree."
      },
      {
       "id": "venous",
       "text": "Portal venous",
       "correct": true,
-      "why": "Arteries and veins are similarly enhanced and the liver and portal vein are bright: a venous-phase body CT."
+      "why": "Arteries and veins are enhanced to a similar, modest degree (aorta and portal vein both roughly 70–90 HU), the kidneys enhance evenly and there is no dense pulmonary-arterial bolus: a venous-phase body CT, here with weak enhancement."
      },
      {
       "id": "none",
       "text": "No IV contrast",
       "correct": false,
-      "why": "The vessels are clearly brighter than muscle, so contrast was given."
+      "why": "Contrast was given, although enhancement is weak: the aorta (roughly 70–90 HU) is denser than muscle (about 50 HU) and the kidneys enhance (about 85 HU, against roughly 30–45 HU without contrast)."
      }
     ]
    },
@@ -5696,7 +5695,7 @@
      "text": "Hover the main pulmonary artery and the aorta and compare the HU values."
     }
    ],
-   "explanation": "The source study is described as 'CT CHEST ABDOMEN PELVIS W'. Knowing the phase tells you which vessels you can judge.",
+   "explanation": "The source study is described as 'CT CHEST ABDOMEN PELVIS W'. Knowing the phase tells you which vessels you can judge. Enhancement is weak in this patient, so measure rather than eyeball: compare the aorta and the kidneys with muscle.",
    "bookAnchors": [
     {
      "physical": 166,

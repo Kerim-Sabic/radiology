@@ -8,6 +8,7 @@ import type { GradeResult, LearnerMark, PositionAtSubmit } from '../grading/type
 import type { ViewSnapshot } from '../viewer/engine';
 import type { DrillStats } from './drill';
 import type { OncallShift } from './oncall';
+import type { CertExam } from './exam';
 import { readingProgress } from '../book/readingProgress';
 import { logDrillAnswer, mergeLogs, type ActivityLog } from './activity';
 
@@ -241,6 +242,42 @@ export class ProgressRepository {
     }
     return done;
   }
+  /** A certification exam by id: the one in progress or a finished one. */
+  async certExam(id: string): Promise<CertExam | null> {
+    const db = await this.dbp;
+    const current = (await db.get('meta', 'certExam')) as CertExam | undefined;
+    if (current?.id === id) return current;
+    return (((await db.get('meta', 'certExamHistory')) as CertExam[] | undefined) ?? []).find((e) => e.id === id) ?? null;
+  }
+  /** The exam in progress (or the last one, once finished). */
+  async currentCertExam(): Promise<CertExam | null> {
+    return ((await (await this.dbp).get('meta', 'certExam')) as CertExam | undefined) ?? null;
+  }
+  async saveCertExam(exam: CertExam) {
+    try {
+      await (await this.dbp).put('meta', exam, 'certExam');
+      this.changed();
+    } catch (e) {
+      wrap(e);
+    }
+  }
+  /** Finished exams, newest first (the last 50). */
+  async certExamHistory(): Promise<CertExam[]> {
+    return ((await (await this.dbp).get('meta', 'certExamHistory')) as CertExam[] | undefined) ?? [];
+  }
+  async finishCertExam(exam: CertExam) {
+    const done = { ...exam, finishedAt: exam.finishedAt ?? new Date().toISOString() };
+    try {
+      const db = await this.dbp;
+      const history = (((await db.get('meta', 'certExamHistory')) as CertExam[] | undefined) ?? []).filter((e) => e.id !== done.id);
+      await db.put('meta', [done, ...history].slice(0, 50), 'certExamHistory');
+      await db.put('meta', done, 'certExam');
+      this.changed();
+    } catch (e) {
+      wrap(e);
+    }
+    return done;
+  }
   /** Saves drill state after an answer; the answer also counts toward that day's study activity. */
   async saveDrillStats(stats: DrillStats, answeredAt: Date | null = new Date()) {
     try {
@@ -319,7 +356,7 @@ export class ProgressRepository {
   async resetAll() {
     const db = await this.dbp;
     const tx = db.transaction(['attempts', 'bookmarks', 'notes', 'reviews', 'meta'], 'readwrite');
-    await Promise.all([tx.objectStore('attempts').clear(), tx.objectStore('bookmarks').clear(), tx.objectStore('notes').clear(), tx.objectStore('reviews').clear(), tx.objectStore('meta').delete('drillStats'), tx.objectStore('meta').delete('oncallShift'), tx.objectStore('meta').delete('oncallHistory'), tx.objectStore('meta').delete('activity')]);
+    await Promise.all([tx.objectStore('attempts').clear(), tx.objectStore('bookmarks').clear(), tx.objectStore('notes').clear(), tx.objectStore('reviews').clear(), tx.objectStore('meta').delete('drillStats'), tx.objectStore('meta').delete('oncallShift'), tx.objectStore('meta').delete('oncallHistory'), tx.objectStore('meta').delete('certExam'), tx.objectStore('meta').delete('certExamHistory'), tx.objectStore('meta').delete('activity')]);
     await tx.done;
     readingProgress.clear();
     this.changed();

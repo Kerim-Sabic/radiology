@@ -7,7 +7,7 @@
    "id": "mg-cbis-p00021",
    "packId": "mammo-cbis",
    "neutralTitle": "Patient DD · Mammogram, both breasts, CC and MLO",
-   "learnTitle": "Mass on CC and MLO mammograms (benign at pathology; mass outline)",
+   "learnTitle": "Masses in both breasts on CC and MLO mammograms (benign at pathology; mass outline)",
    "subjectKey": "tcia:CBIS-DDSM:P_00021",
    "studyUids": [
     "2.25.309539425087975497702642986248125444378"
@@ -60,8 +60,8 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "Mass outlined on every view (oval, circumscribed margin (benign; outline)); BI-RADS assessment and pathology as given in the CBIS-DDSM case description. Mass outlines were refined in CBIS-DDSM from the original DDSM contours. Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable.",
-   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
+   "referenceSummary": "A mass in each breast, outlined on every view (oval, circumscribed margin (benign; outline)); BI-RADS assessment and pathology as given in the CBIS-DDSM case description. Mass outlines were refined in CBIS-DDSM from the original DDSM contours. Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable.",
+   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
   },
   {
    "id": "mg-cbis-p00039",
@@ -121,7 +121,7 @@
     }
    ],
    "referenceSummary": "Mass outlined on every view (irregular, spiculated margin (malignant; outline)); BI-RADS assessment and pathology as given in the CBIS-DDSM case description. Mass outlines were refined in CBIS-DDSM from the original DDSM contours. Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable.",
-   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
+   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
   },
   {
    "id": "mg-cbis-p00051",
@@ -181,7 +181,7 @@
     }
    ],
    "referenceSummary": "Mass outlined on every view (irregular, spiculated margin (malignant; outline)); BI-RADS assessment and pathology as given in the CBIS-DDSM case description. Mass outlines were refined in CBIS-DDSM from the original DDSM contours. Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable.",
-   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
+   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
   },
   {
    "id": "mg-cbis-p00307",
@@ -234,7 +234,7 @@
     }
    ],
    "referenceSummary": "Calcifications outlined on every view (pleomorphic, clustered (malignant; DDSM region outline)); BI-RADS assessment and pathology as given in the CBIS-DDSM case description. Calcification outlines are the original DDSM regions, drawn around the group, not around each particle. Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable.",
-   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
+   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
   },
   {
    "id": "mg-cbis-p00425",
@@ -287,7 +287,7 @@
     }
    ],
    "referenceSummary": "Calcifications outlined on every view (coarse-pleomorphic, clustered (benign; DDSM region outline)); BI-RADS assessment and pathology as given in the CBIS-DDSM case description. Calcification outlines are the original DDSM regions, drawn around the group, not around each particle. Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable.",
-   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
+   "learnNotes": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental)."
   }
  ],
  "tasks": [
@@ -295,7 +295,7 @@
    "id": "mg-cbis-p00021:locate",
    "caseId": "mg-cbis-p00021",
    "type": "locate_finding",
-   "title": "Find the mass on both views",
+   "title": "Find the masses on every view",
    "prompt": "Read every view, comparing the two breasts. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
    "modes": [
     "learn",
@@ -361,7 +361,7 @@
      }
     }
    ],
-   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
    "bookAnchors": [
     {
      "physical": 408,
@@ -414,11 +414,10 @@
    "caseId": "mg-cbis-p00021",
    "type": "describe_finding",
    "title": "Describe the mass margin",
-   "prompt": "Zoom in on the mass on both views. How would you describe its margin?",
+   "prompt": "Zoom in on each mass on every view. How would you describe the margin?",
    "modes": [
     "learn",
-    "practice",
-    "assess"
+    "practice"
    ],
    "seriesUids": [
     "2.25.7874263547277609057652042395327567324",
@@ -440,7 +439,7 @@
       "id": "circumscribed",
       "text": "Circumscribed",
       "correct": true,
-      "why": "Sharp, well-defined edge over most of the outline: favors a benign lesion."
+      "why": "Sharp, well-defined edge over at least 75% of the outline (the rest may be obscured): favors a benign lesion."
      },
      {
       "id": "obscured",
@@ -475,7 +474,7 @@
      "text": "Follow the edge of the mass all the way round; spicules are thin lines that radiate out from it."
     }
    ],
-   "explanation": "The case description gives shape oval and margin circumscribed; pathology benign (BI-RADS assessment and pathology from CBIS-DDSM). A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental).",
+   "explanation": "The case description gives shape oval and margin circumscribed for both masses; pathology benign (BI-RADS assessment and pathology from CBIS-DDSM). A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental).",
    "bookAnchors": [
     {
      "physical": 408,
@@ -526,7 +525,7 @@
    "caseId": "mg-cbis-p00039",
    "type": "locate_finding",
    "title": "Find the mass on both views",
-   "prompt": "Read every view, comparing the two breasts. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
+   "prompt": "Read both views of this breast. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
    "modes": [
     "learn",
     "practice",
@@ -565,7 +564,7 @@
    "hints": [
     {
      "level": 1,
-     "text": "Hang the CC views and the MLO views mirror-image and compare left with right, quadrant by quadrant."
+     "text": "Read the CC and the MLO quadrant by quadrant; a real finding is usually seen on both views."
     },
     {
      "level": 2,
@@ -579,7 +578,7 @@
      }
     }
    ],
-   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
    "bookAnchors": [
     {
      "physical": 408,
@@ -656,7 +655,7 @@
       "id": "circumscribed",
       "text": "Circumscribed",
       "correct": false,
-      "why": "Sharp, well-defined edge over most of the outline: favors a benign lesion."
+      "why": "Sharp, well-defined edge over at least 75% of the outline (the rest may be obscured): favors a benign lesion."
      },
      {
       "id": "obscured",
@@ -691,7 +690,7 @@
      "text": "Follow the edge of the mass all the way round; spicules are thin lines that radiate out from it."
     }
    ],
-   "explanation": "The case description gives shape irregular and margin spiculated; pathology malignant (BI-RADS assessment and pathology from CBIS-DDSM). A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental).",
+   "explanation": "The case description gives shape irregular and margin spiculated; pathology malignant (BI-RADS assessment and pathology from CBIS-DDSM). A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental).",
    "bookAnchors": [
     {
      "physical": 408,
@@ -742,7 +741,7 @@
    "caseId": "mg-cbis-p00051",
    "type": "locate_finding",
    "title": "Find the mass on both views",
-   "prompt": "Read every view, comparing the two breasts. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
+   "prompt": "Read both views of this breast. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
    "modes": [
     "learn",
     "practice",
@@ -781,7 +780,7 @@
    "hints": [
     {
      "level": 1,
-     "text": "Hang the CC views and the MLO views mirror-image and compare left with right, quadrant by quadrant."
+     "text": "Read the CC and the MLO quadrant by quadrant; a real finding is usually seen on both views."
     },
     {
      "level": 2,
@@ -795,7 +794,7 @@
      }
     }
    ],
-   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
    "bookAnchors": [
     {
      "physical": 408,
@@ -872,7 +871,7 @@
       "id": "circumscribed",
       "text": "Circumscribed",
       "correct": false,
-      "why": "Sharp, well-defined edge over most of the outline: favors a benign lesion."
+      "why": "Sharp, well-defined edge over at least 75% of the outline (the rest may be obscured): favors a benign lesion."
      },
      {
       "id": "obscured",
@@ -907,7 +906,7 @@
      "text": "Follow the edge of the mass all the way round; spicules are thin lines that radiate out from it."
     }
    ],
-   "explanation": "The case description gives shape irregular and margin spiculated; pathology malignant (BI-RADS assessment and pathology from CBIS-DDSM). A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental).",
+   "explanation": "The case description gives shape irregular and margin spiculated; pathology malignant (BI-RADS assessment and pathology from CBIS-DDSM). A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental).",
    "bookAnchors": [
     {
      "physical": 408,
@@ -958,7 +957,7 @@
    "caseId": "mg-cbis-p00307",
    "type": "locate_finding",
    "title": "Find the calcifications on both views",
-   "prompt": "Read every view, comparing the two breasts. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
+   "prompt": "Read both views of this breast. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
    "modes": [
     "learn",
     "practice",
@@ -997,7 +996,7 @@
    "hints": [
     {
      "level": 1,
-     "text": "Hang the CC views and the MLO views mirror-image and compare left with right, quadrant by quadrant."
+     "text": "Read the CC and the MLO quadrant by quadrant; a real finding is usually seen on both views."
     },
     {
      "level": 2,
@@ -1011,7 +1010,7 @@
      }
     }
    ],
-   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
    "bookAnchors": [
     {
      "physical": 411,
@@ -1057,7 +1056,7 @@
    "caseId": "mg-cbis-p00425",
    "type": "locate_finding",
    "title": "Find the calcifications on both views",
-   "prompt": "Read every view, comparing the two breasts. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
+   "prompt": "Read both views of this breast. Mark the abnormality on each view where you see it (point, box or outline), or state that you find none.",
    "modes": [
     "learn",
     "practice",
@@ -1096,7 +1095,7 @@
    "hints": [
     {
      "level": 1,
-     "text": "Hang the CC views and the MLO views mirror-image and compare left with right, quadrant by quadrant."
+     "text": "Read the CC and the MLO quadrant by quadrant; a real finding is usually seen on both views."
     },
     {
      "level": 2,
@@ -1110,7 +1109,7 @@
      }
     }
    ],
-   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
+   "explanation": "A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin (circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim (lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, segmental). These films have no pixel spacing, so the tolerance is counted in pixels.",
    "bookAnchors": [
     {
      "physical": 411,

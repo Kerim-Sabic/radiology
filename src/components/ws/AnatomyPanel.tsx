@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router';
 import { Eye, Layers, RotateCcw, Target } from 'lucide-react';
 import type { LoadedTarget } from '../../grading/spatialGrader';
-import { AI_DRAFT_BY, cleanLabel as clean, isAutomatic, provenanceTag } from '../../lib/provenance';
+import { AI_CREDIT, AI_LABEL, cleanLabel as clean, isAutomatic, provenanceTag } from '../../lib/provenance';
 import { noteFor } from '../../content/structureNotes';
 import { canonicalAnatomyKey } from '../../content/bookAnatomy';
 import { GROUP_LABEL, GROUP_ORDER, groupFor, type Group3D } from '../../viewer/anatomyMask';
@@ -101,14 +101,18 @@ export function AnatomyPanel(p: Props) {
       )}
       <small className="muted">
         <b>Click a structure to see only it</b> — the viewer jumps to the slice where it is largest and centres it. {p.targets.length} structures on this series
-        {p.totalOnStudy > p.targets.length ? ` (${p.totalOnStudy} across this patient's series)` : ''}: {expert} expert, {ai} {AI_DRAFT_BY}{p.loading ? ' — loading…' : ''}.
+        {p.totalOnStudy > p.targets.length ? ` (${p.totalOnStudy} across this patient's series)` : ''}: {expert} expert, {ai} {AI_LABEL}{p.loading ? ' — loading…' : ''}.
       </small>
       <div className="stack" style={{ gap: 2, fontSize: 12 }}>
         <span>
           <span className="legend-swatch" style={{ borderColor: '#e7ebf0' }} /> solid outline = expert label from the source dataset
         </span>
         <span>
-          <span className="legend-swatch" style={{ borderColor: '#e7ebf0', borderTopStyle: 'dashed' }} /> dashed = {AI_DRAFT_BY} (quality-checked, not yet reviewed by a radiologist; edges can be a few mm off)
+          <span className="legend-swatch" style={{ borderColor: '#e7ebf0', borderTopStyle: 'dashed' }} /> dashed = {AI_LABEL} (quality-checked, not yet reviewed by a radiologist; edges can be a few mm off).{' '}
+          <a href={AI_CREDIT.url} target="_blank" rel="noopener">
+            Thanks to {AI_CREDIT.name}
+          </a>
+          , every structure here is marked.
         </span>
       </div>
       {p.targets.length ? <SegStyleBar /> : null}

@@ -183,6 +183,10 @@ test('landing page: modality tour, answers, screenshots and credits, all before 
   await page.getByText('Can I use it to diagnose patients?').click();
   await expect(page.getByText('It is not a medical device')).toBeVisible();
   await expect(page.locator('.lp-credits').last()).toContainText('CBIS-DDSM');
+  // The anatomy outlines are labelled AI, and Horalix.com is thanked, with a link.
+  await expect(page.locator('.lp-credits', {hasText: 'Anatomy outlines: AI.'}).getByRole('link',{name:'Thanks to Horalix.com'})).toHaveAttribute('href','https://horalix.com');
+  await page.getByText('Who marked the findings and the anatomy?').click();
+  await expect(page.getByText('labelled AI wherever it appears')).toBeVisible();
   await page.getByRole('link',{name:'See plans',exact:true}).first().click();
   await expect(page.getByRole('button',{name:'Choose monthly'})).toBeInViewport();
   await expect(page.locator('.lp-free')).toContainText('$0');

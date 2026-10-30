@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link } from 'react-router';
 import { useApp } from '../app/AppContext';
 import { Empty, formatBytes } from '../components/ui';
-import { AI_DRAFT_BY } from '../lib/provenance';
+import { AI_LABEL } from '../lib/provenance';
 import { LockedLibrary } from '../components/Upgrade';
 import { caseOfWeek } from '../content/weekly';
 
@@ -105,7 +105,7 @@ export function LibraryPage() {
                     const n = counts.get(c.id)!;
                     if (!n.total) return null;
                     return (
-                      <span className={`chip ${isFull(c.id) ? 'accent' : ''}`} title={`${n.expert} expert-drawn, ${n.ai} ${AI_DRAFT_BY} anatomy outlines`}>
+                      <span className={`chip ${isFull(c.id) ? 'accent' : ''}`} title={`${n.expert} expert-drawn, ${n.ai} ${AI_LABEL} anatomy outlines`}>
                         {isFull(c.id) ? 'Full anatomy · ' : ''}
                         {n.total} labels
                       </span>

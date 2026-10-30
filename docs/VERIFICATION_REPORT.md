@@ -13,7 +13,7 @@ The app is a React 19 + TypeScript 6 + Vite 8 single-page app:
 Offline Python pipelines prepare everything the app serves:
 - TCIA download, inventory, lossless re-encode, annotation conversion and validation.
 - The book index.
-- The machine-drawn anatomy and vessel outlines, shown in the app as **"AI draft by Horalix"**. Tools, versions and licences are recorded only in `docs/data/`.
+- The machine-drawn anatomy and vessel outlines, shown in the app as **"AI"** (the sources thank Horalix.com). Tools, versions and licences are recorded only in `docs/data/`.
 
 **Study tools:**
 - Learn / Practice / Assess / Review modes with deterministic grading.
@@ -311,6 +311,37 @@ All five licences allow commercial use with no login: CC BY 4.0, CC BY 3.0 or NI
 **Look:** the landing page, plans screen and app surfaces were restyled: centred hero, pill buttons, frosted top bar, rounder cards, calmer backgrounds. Checked at 1440 px and 390 px with no sideways scrolling.
 
 **Tests on the production build (merged with the referral and yearly-first pricing commits):** 448 unit tests; 97 browser tests in Chromium and Firefox (7 skipped as before), including the free account, the locked case of the week, the public certificate page with its LinkedIn steps and share links, and the referral flows.
+
+## 3h. Every question and outline checked; certification exams (30 October)
+
+**Questions (all 1,060 tasks in 23 lesson files).** Four reviewers each took a group of packs, checked every answer key by script against the dataset's own expert label stored in the pack, read every option, explanation, hint and rubric, and looked at the images (every reference overlay in the breast, chest radiograph, stroke and fracture packs; every scored outline in the CT/MR packs). **No answer key was wrong.** What they fixed:
+- Text that was wrong or misleading, for example: the CT "locator" described as a frontal scout (it is a single axial slice); "unchanged on follow-up" for breast lesions the dataset only says were confirmed benign on follow-up; the ACR BI-RADS 5th edition definitions (circumscribed margin, calcification morphology); stroke notes missing the posterior-fossa territories; one stroke case whose ADC is high (T2 shine-through) taught as restriction; contrast-phase reasoning that did not match the measured HU; an unmentioned kidney cyst; a prompt that said "mark the tumor".
+- Questions that cannot fairly be answered from the image now stay in Learn/Practice and out of Assess and the exams: seven chest-radiograph "name the finding" questions with a second defensible answer, the 21 breast "benign or malignant?" questions on BI-RADS 4B lesions (10–50% chance of cancer by definition), six breast lesions whose outcome contradicts the radiologist's own category, and a few mammograms whose graded feature is not visible on the film.
+- A hint that named the fractured bone before the answer; "AI draft by Horalix" in lesson text (now "AI").
+
+**Grading bug fixed.** A finding task scored optional references (the stroke lesion on the ADC map, a second box on a chest film) as required, so a correct single mark was "partly right" on all 52 stroke cases and 8 chest films. Optional references now count when marked and are never needed (`tests/grader.test.ts`).
+
+**Anatomy layer (AI outlines).** All 4,409 outlines on 51 CTs and 24 radiographs were checked by script (side against the midline, rib against vertebra, organ level and side, HU, overlaps with the expert outlines on 43 CTs) and by eye (labelled axial, coronal and sagittal sheets for every CT, every radiograph). Removed: 91 outlines (vertebrae numbered one level off the experts' own vertebra outlines on two spine scans and unreliable on a 7.5 mm scan, a "spleen" that is a kidney mass, kidney cysts inside tumours, an adrenal inside a tumour, a "brain" on the floor of the mouth, iliac "common" vessels, all 24 radiograph tracheas, which ran into the bronchi, a ballooned clavicle, and the 23 radiograph "Diaphragm" regions, which covered the whole abdomen below the domes). Trimmed: 66 (spinal cord below L1, colon below S3 into the rectum, common iliac vessels below the top of the sacrum, four lobe pieces drawn on soft tissue). Nothing was renamed: when in doubt an outline is removed. 4,318 outlines remain. The label is now just **AI**; the sources thank Horalix.com.
+
+**Certification exams.** Certificates are no longer earned by practice counts: each level is an exam, and each level is much harder than the one below.
+
+| | Foundation | Intermediate | Advanced |
+|---|---|---|---|
+| Questions (each body area / whole library) | 15 / 30 | 25 / 50 | 40 / 75 |
+| Time per question | none | 3 min | 2 min |
+| Pass mark | 70% | 80% | 90% |
+| Partly right | ½ point | ½ point | 0 |
+| Marked on the image | any | ≥ 50% | ≥ 60% |
+| Two-answer questions | yes | no | no |
+| Cases | typical first | any | subtle first |
+| Needs | — | Level 1 certificate | Level 2 certificate |
+| Retry after a fail | at once | after 1 hour | after 24 hours |
+
+Every question is graded automatically against an expert reference (never self-review, never an AI outline), one question per patient where the library allows (at most three), questions not answered before first. Questions come one after another in Assess mode with no hints and no feedback; the clock of an opened question keeps running across reloads, and when it runs out what is marked is saved (with nothing marked the question counts as not answered). The result page says passed or not, with every answer to review. **The server runs the exam** (merged with the server-verified certificates of the same day): it picks every exam's questions from the answer keys built with the app (questions the learner had before last), starts each question's clock and refuses or zeroes an answer given after its time (plus 15 s for the network), grades every answer itself with the app's grader from the marks or choice as given (a grade sent by the app is refused), scores the exam, keeps the order of levels and the wait after a failed exam, and issues a level once (immutable `RAD-…` id, revocable by an admin) only for an exam it scored as passed. The certificate records the exam's rules, and its page and share texts say what it took (`tests/certificateSecurity.test.ts`). `npx tsx scripts/report/exam-pools.ts` shows what each exam can draw on: every exam can be filled except Abdomen and Pelvis Levels 2 and 3 (12 patients), which say so.
+
+**Credits and search.** "Anatomy outlines: AI. Thanks to Horalix.com, we managed to mark every structure in the anatomy layer." appears in the landing footer and questions, the Atlas, the Anatomy tab, the Case tab and the public certificate pages, with a link. The page shell now carries schema.org data (website, app, Horalix as contributor, FAQ) and a no-JavaScript summary, there is an `/llms.txt`, and the canonical address, sitemap and sharing tags use `https://www.radiology.monster` (the bare domain redirects there).
+
+**Tests:** 504 unit tests; the full browser suite in Chromium and Firefox, including a 15-question exam answered end to end, the clock running out, the order of levels, and a passed exam issuing the certificate.
 
 ## 4. Measured performance (`docs/perf/measurements.json`)
 

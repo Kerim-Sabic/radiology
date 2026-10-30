@@ -27,7 +27,7 @@ export interface Structure3D {
   group: Group3D;
   /** The learner's colour for it (atlas colour unless changed; see segStyle). */
   color: string;
-  /** Where the outline comes from ("AI draft by Horalix", "source manual"…). */
+  /** Where the outline comes from ("AI", "expert"…). */
   tag: string;
   shown: boolean;
   status: 'idle' | 'building' | 'ready' | 'empty';

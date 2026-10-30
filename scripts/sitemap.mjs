@@ -5,7 +5,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
-const SITE = 'https://radiology.monster';
+const SITE = 'https://www.radiology.monster';
 
 const conditions = [...readFileSync(`${root}src/content/conditions.ts`, 'utf8').matchAll(/^ {4}id: '([a-z0-9_]+)',$/gm)].map((m) => m[1]);
 const units = JSON.parse(readFileSync(`${root}public/content/curriculum.v1.json`, 'utf8')).units.map((u) => u.id);

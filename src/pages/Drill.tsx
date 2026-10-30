@@ -7,7 +7,7 @@ import { ViewportPanel, type MarkBadge } from '../components/ws/ViewportPanel';
 import { shapeArea, shapeContains, shapeRings, shapesForPanel } from '../components/ws/overlayShapes';
 import type { LoadedTarget } from '../grading/spatialGrader';
 import { patientToPlaneMm, polygonArea, type Vec2, type Vec3 } from '../lib/geometry';
-import { AI_DRAFT_BY, cleanLabel, isAutomatic } from '../lib/provenance';
+import { AI_LABEL, cleanLabel, isAutomatic } from '../lib/provenance';
 import { noteFor, type WindowName } from '../content/structureNotes';
 import {
   KIND_LABEL,
@@ -410,7 +410,7 @@ export default function DrillPage() {
                   <option value={0}>Until I stop</option>
                 </select>
               </label>
-              <label className="row" style={{ gap: 4 }} title={`Leave off to include ${AI_DRAFT_BY} outlines (aorta and colon parts, bones, vessels).`}>
+              <label className="row" style={{ gap: 4 }} title={`Leave off to include ${AI_LABEL} outlines (aorta and colon parts, bones, vessels).`}>
                 <input type="checkbox" checked={setup.expertOnly} onChange={(e) => setSetup((s) => ({ ...s, expertOnly: e.target.checked }))} /> Expert labels only
               </label>
             </div>
@@ -571,7 +571,7 @@ export default function DrillPage() {
               </div>
             ) : null}
             <small className="faint">
-              Reference: {ai ? `${AI_DRAFT_BY} — quality-checked, not yet reviewed by a radiologist; edges can be a few mm off.` : 'expert label from the source dataset.'}
+              Reference: {ai ? `${AI_LABEL} outline — quality-checked, not yet reviewed by a radiologist; edges can be a few mm off.` : 'expert label from the source dataset.'}
             </small>
             <div className="row wrap">
               <button className="btn primary" onClick={() => void next()} autoFocus>

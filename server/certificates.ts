@@ -2,18 +2,28 @@ import { randomBytes } from 'node:crypto';
 import { z } from 'zod';
 import { db } from './store.js';
 import type { Session } from './auth.js';
-import { CERT_AREAS, CERT_TITLES, levelRule, type CertLevel } from '../shared/certificateLevels.js';
+import { CERT_AREAS, CERT_TITLES, certRequirement, examRule, levelLabel, type CertLevel } from '../shared/certificateLevels.js';
 import { ISSUER, validCertificateId } from '../shared/credential.js';
-import { verifiedProgress } from './certificateProgress.js';
+import { examFor } from './certificateExam.js';
 
+/**
+ * Certificates. Each level of each area is its own certificate, issued for an exam the server graded and scored as
+ * passed: questions on real patients, each answer graded here against the expert's reference, without hints. The
+ * levels are taken in order: a level is issued only to someone who holds the one below it. A certificate is issued
+ * once and never changed afterwards (it can be revoked by an admin); it is not a medical qualification. Every
+ * certificate has a public page so it can be shared and checked.
+ */
 export interface Certificate {
   id: string;
   name: string;
   area: string;
   level: CertLevel;
   title: string;
+  /** Patients the exam's questions came from (for older certificates: patients read). */
   patients: number;
+  /** Questions in the exam (older certificates: graded answers). */
   judged: number;
+  /** Share right: correct 1, partly right ½ where the level gives half points. */
   accuracy: number;
   issuedAt: string;
   issuer?: string;
@@ -21,11 +31,13 @@ export interface Certificate {
   status?: 'active' | 'revoked';
   revokedAt?: string;
   requirements?: string;
+  /** The exam passed, with the rules it was taken under. Older certificates have none. */
+  exam?: { questions: number; passMark: number; secondsPerQuestion: number | null; partialCredit: boolean };
 }
 const Claim = z
   .object({
     area: z.enum(CERT_AREAS),
-    level: z.union([z.literal(1), z.literal(2), z.literal(3)]).default(1),
+    level: z.union([z.literal(1), z.literal(2), z.literal(3)]),
     name: z
       .string()
       .trim()
@@ -33,10 +45,7 @@ const Claim = z
       .max(80)
       .regex(/^[^\u0000-\u001f\u007f]+$/u),
     email: z.boolean().optional(),
-    title: z.string().optional(),
-    patients: z.number().optional(),
-    judged: z.number().optional(),
-    accuracy: z.number().optional(),
+    examId: z.string().max(60),
   })
   .strict();
 const certKey = (id: string) => `rvm:cert:${id}`;
@@ -63,35 +72,37 @@ export async function myCertificates(user: Session): Promise<Certificate[]> {
 }
 export async function claimCertificate(user: Session, body: unknown): Promise<{ ok: true; certificate: Certificate; emailRequested?: boolean } | { ok: false; error: string }> {
   const parsed = Claim.safeParse(body);
-  if (!parsed.success) return { ok: false, error: 'That certificate request is not valid.' };
+  if (!parsed.success) return { ok: false, error: 'That certificate request is not valid. Reload the page and try again.' };
   const c = parsed.data;
-  const slot = `rvm:cert-slot:${user.userId}:${c.area}:${c.level}`;
+  const level = c.level as CertLevel;
+  const slot = `rvm:cert-slot:${user.userId}:${c.area}:${level}`;
   const existing = await db().get<string>(slot);
   if (existing) {
     const certificate = await publicCertificate(existing);
     if (certificate) return { ok: true, certificate, emailRequested: c.email === true };
   }
-  const result = (await verifiedProgress(user.userId)).find((s) => s.area === c.area && s.level === c.level);
-  if (!result?.eligible)
-    return {
-      ok: false,
-      error: result?.todo ?? 'Complete the server-graded requirements before claiming this certificate.',
-    };
+  const exam = await examFor(user.userId, c.examId);
+  if (!exam || exam.area !== c.area || exam.level !== level || !exam.finishedAt || !exam.result)
+    return { ok: false, error: `${levelLabel(level)} is issued for an exam taken here: finish its exam first.` };
+  if (!exam.result.passed) return { ok: false, error: `This exam was not passed: ${Math.round(exam.result.score * 100)}% against a pass mark of ${Math.round(examRule(c.area, level).passMark * 100)}%.` };
+  if (level > 1 && !(await myCertificates(user)).some((x) => x.area === c.area && x.level === level - 1 && x.status !== 'revoked'))
+    return { ok: false, error: `${levelLabel(level)} is issued after ${levelLabel((level - 1) as CertLevel)}: get that certificate first.` };
+  const rule = examRule(c.area, level);
   const cert: Certificate = {
     id: newCertId(),
     name: c.name,
     area: c.area,
-    level: c.level,
+    level,
     title: CERT_TITLES[c.area],
-    patients: result.read,
-    judged: result.judged,
-    accuracy: Math.round((result.accuracy ?? 0) * 1000) / 1000,
+    patients: exam.result.patients,
+    judged: exam.result.questions,
+    accuracy: Math.round(exam.result.score * 1000) / 1000,
     issuedAt: new Date().toISOString(),
     issuer: ISSUER,
     verification: 'server-graded',
+    exam: { questions: exam.result.questions, passMark: rule.passMark, secondsPerQuestion: rule.secondsPerQuestion, partialCredit: rule.partialCredit },
   };
-  const rule = levelRule(c.area, c.level);
-  cert.requirements = `${result.needPatients} distinct patients · ${result.needJudged} distinct graded tasks · ${Math.round(result.minAccuracy * 100)}% score${result.independent ? ' · Assess mode without hints or reveals' : ''}${rule.minAreas ? ` · at least ${rule.perArea} patients in each of ${rule.minAreas} areas` : ''}. Partial answers score one half. Latest answer per task counts.`;
+  cert.requirements = `${certRequirement(cert)}.`;
   // One atomic issuance per user/area/level. Later claims cannot rename, renew or overwrite it.
   const id = (await db().eval(
     `local old=redis.call('GET',KEYS[1]); if old then return old end; if redis.call('EXISTS',KEYS[2])==1 then return '' end; redis.call('SET',KEYS[2],ARGV[2]); redis.call('SET',KEYS[1],ARGV[1]); redis.call('SADD',KEYS[3],ARGV[1]); return ARGV[1]`,

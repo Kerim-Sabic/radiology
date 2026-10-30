@@ -86,7 +86,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "Source manual vertebral body segmentations T1–L5. Lesions are not referenced in this pack, so the tasks are about level identification only.",
+   "referenceSummary": "Source segmentations of the whole vertebrae T1–L5 (body and posterior elements; semi-automatic, labelled level by level and verified by an expert). Lesions are not referenced in this pack, so the tasks are about level identification only.",
    "learnNotes": "Count from a fixed landmark and say which you used: ribs articulate with T1–T12; the last rib-bearing vertebra is usually T12 and L1 is the first without ribs. The sagittal MPR shows the whole column at once; check your count on axial images."
   },
   {

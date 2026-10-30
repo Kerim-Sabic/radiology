@@ -358,3 +358,7 @@ Mapping back: 512-grid coordinate m → original pixel (m + 0.5)·S/512 − 0.5 
 
 - Unreviewed machine outlines: rib/vertebra numbering can be off by one level, bowel loops can be confused, structures at the edge of the field of view are partial. QC catches flips, slice mix-ups, gross mislabels and fragments, not subtle boundary errors.
 - Radiograph outlines are projection regions at the model's 512-pixel resolution (about 4–6 original pixels per edge).
+
+## Audit of 30 October 2026
+
+Every outline was checked by script and by eye (see `docs/VERIFICATION_REPORT.md`, section 3h). 91 outlines were removed and 66 trimmed; each trimmed outline's `provenanceDetail.note` ends with "Audit 30 Oct 2026: N of M slices removed: <reason>". Nothing was renamed. The pack now holds 4,318 outlines. In the app the label is "AI"; the pack source thanks Horalix.com.

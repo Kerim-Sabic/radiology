@@ -61,7 +61,7 @@
     }
    ],
    "referenceSummary": "Radiologists segmented three liver tumours, the liver and the portal vein (Colorectal-Liver-Metastases). The CT has 7.5 mm slices, so small lesions show on only one or two slices. Nothing outside the liver is outlined.",
-   "learnNotes": "Metastases are the commonest malignant liver lesions. On portal venous phase CT, colorectal metastases are usually darker than the enhancing liver, round and often multiple, sometimes with an enhancing rim. Read every slice of the liver, including the dome and the tip of the right lobe; small lesions hide on thick slices. A simple cyst is water density with a sharp wall and no enhancement; a hemangioma enhances from the periphery in nodules."
+   "learnNotes": "Metastases are the commonest malignant liver lesions. On portal venous phase CT, colorectal metastases are usually darker than the enhancing liver, round and often multiple, sometimes with an enhancing rim. Read every slice of the liver, including the dome and the tip of the right lobe; small lesions hide on thick slices. A simple cyst is water density with a sharp margin, no visible wall and no enhancement; a hemangioma enhances from the periphery in nodules."
   },
   {
    "id": "ct-lnq-0230",
@@ -99,7 +99,7 @@
     }
    ],
    "referenceSummary": "Expert annotators segmented every mediastinal lymph node they judged abnormal (estimated short axis over 1 cm; 'Fully Annotated' LNQ2023 case). The underlying cancer is not given. Nothing else is outlined.",
-   "learnNotes": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant."
+   "learnNotes": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, prevascular (in front of the great vessels), aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant."
   },
   {
    "id": "ct-lnq-0837",
@@ -137,7 +137,7 @@
     }
    ],
    "referenceSummary": "Expert annotators segmented every mediastinal lymph node they judged abnormal (estimated short axis over 1 cm; 'Fully Annotated' LNQ2023 case). The underlying cancer is not given. Nothing else is outlined.",
-   "learnNotes": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant."
+   "learnNotes": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, prevascular (in front of the great vessels), aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant."
   }
  ],
  "tasks": [
@@ -207,7 +207,7 @@
      }
     }
    ],
-   "explanation": "Metastases are the commonest malignant liver lesions. On portal venous phase CT, colorectal metastases are usually darker than the enhancing liver, round and often multiple, sometimes with an enhancing rim. Read every slice of the liver, including the dome and the tip of the right lobe; small lesions hide on thick slices. A simple cyst is water density with a sharp wall and no enhancement; a hemangioma enhances from the periphery in nodules. The smallest lesion is about 1 cm and shows on two slices; finding it is a bonus, not required.",
+   "explanation": "Metastases are the commonest malignant liver lesions. On portal venous phase CT, colorectal metastases are usually darker than the enhancing liver, round and often multiple, sometimes with an enhancing rim. Read every slice of the liver, including the dome and the tip of the right lobe; small lesions hide on thick slices. A simple cyst is water density with a sharp margin, no visible wall and no enhancement; a hemangioma enhances from the periphery in nodules. The smallest lesion is about 2 cm across but shows on only two of these thick slices; finding it is a bonus, not required.",
    "bookAnchors": [
     {
      "physical": 211,
@@ -274,7 +274,7 @@
    "hints": [
     {
      "level": 1,
-     "text": "The portal vein enters the liver at the porta hepatis, behind the pancreas neck; it divides into right and left branches."
+     "text": "The portal vein forms behind the neck of the pancreas, where the splenic and superior mesenteric veins join, runs up to the porta hepatis and divides there into right and left branches."
     }
    ],
    "explanation": "Knowing which vessel a lesion touches matters for surgery: the portal vein and its branches run with the bile ducts through the middle of each liver segment, the hepatic veins run between segments.",
@@ -354,7 +354,7 @@
      }
     }
    ],
-   "explanation": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant.",
+   "explanation": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, prevascular (in front of the great vessels), aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant.",
    "bookAnchors": [
     {
      "physical": 116,
@@ -432,7 +432,7 @@
      }
     }
    ],
-   "explanation": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant.",
+   "explanation": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, prevascular (in front of the great vessels), aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant.",
    "bookAnchors": [
     {
      "physical": 116,
