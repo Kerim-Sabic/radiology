@@ -219,9 +219,12 @@ describe('sessions and request boundaries', () => {
     expect(latest).toContain('HttpOnly; Secure; SameSite=Lax');
   });
   it('blocks anonymous and forged sessions, cross-origin checkout, and arbitrary prices', async () => {
+    for (const path of ['/api/certificates','/api/certificates/answers','/api/admin/certificates/revoke']) expect((await handle(request('',path,'POST',{}))).status).toBe(401);
     expect((await handle(request('', '/api/referrals'))).status).toBe(401);
     expect((await handle(request('__Host-rvm-session=forged'))).status).toBe(401);
     const token = await createSession({ sub: 'user_test', email: 'test@example.com', emailVerified: true });
+    expect((await handle(request(token,'/api/admin/certificates/revoke','POST',{id:'abcDEF123_-x',reason:'Forged revocation'}))).status).toBe(403);
+    expect((await handle(request(token,'/api/certificates','POST',{area:'chest',name:'Ada'}))).status).toBe(402);
     expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'monthly' }, 'https://evil.test'))).status).toBe(403);
     expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'monthly', amount: 0 }))).status).toBe(400);
     expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'monthly', affiliateCode: 'https://evil.test' }))).status).toBe(400);

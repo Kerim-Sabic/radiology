@@ -11,10 +11,17 @@ const index = `<!doctype html><html><head>
   </head><body><div id="root"></div><script type="module" src="/assets/index.js"></script></body></html>`;
 
 describe('shared certificate links', () => {
+  it('removes credential endorsement and earned image from revoked records',()=>{
+    const html=certificatePageHtml(index,{...cert,status:'revoked'},'https://www.radiology.monster',cert.id);
+    expect(html).toContain('Revoked certificate');
+    expect(html).not.toContain('application/ld+json');
+    expect(html).not.toContain('/api/og/certificate');
+    expect(html).toContain('no longer valid');
+  });
   it('give link previews this certificate’s title, words and picture, safely escaped', () => {
     const html = certificatePageHtml(index, cert, 'https://www.radiology.monster', cert.id);
     expect(html).toContain('<meta property="og:image" content="https://www.radiology.monster/api/og/certificate?id=abcDEF123_-x" />');
-    expect(html).toContain('<meta property="og:url" content="https://www.radiology.monster/certificate/abcDEF123_-x" />');
+    expect(html).toContain('<meta property="og:url" content="https://www.radiology.monster/verify/abcDEF123_-x" />');
     expect(html).toContain('<title>Ada &quot;Ace&quot; &lt;Lovelace&gt; earned the Chest Imaging Certificate – Level 2 (Intermediate) · radiology.monster</title>');
     // Read as a credential: schema.org data, with nothing able to close the script early.
     const ld = JSON.parse(/<script type="application\/ld\+json">(.*?)<\/script>/.exec(html)![1]);

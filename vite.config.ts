@@ -6,6 +6,7 @@ import { viteCommonjs } from '@originjs/vite-plugin-commonjs';
 import { prepareCommercialContent } from './scripts/build/commercialContent';
 import { computeFreeEdition, writeFreeEdition } from './scripts/build/freeEdition';
 import { FREE_CASES, WEEKLY_CASES, WEEKLY_EPOCH } from './src/content/weekly';
+import { writeCertificateData } from './scripts/build/certificateData';
 
 const FREE_SCHEDULE = { epoch: WEEKLY_EPOCH, always: FREE_CASES, weekly: WEEKLY_CASES };
 
@@ -20,6 +21,7 @@ const neverShipTheBook = (): Plugin => ({
     prepareCommercialContent(resolve(__dirname, 'dist'));
     // The free edition (sample patients, cases of the week, teaser list) is cut from the commercial packs.
     writeFreeEdition(resolve(__dirname, 'dist', 'packs'), FREE_SCHEDULE);
+    writeCertificateData(resolve(__dirname, 'dist', 'packs'), resolve(__dirname, 'server/certificate-data.json.gz'));
   },
 });
 

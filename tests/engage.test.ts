@@ -26,7 +26,7 @@ vi.mock('../server/store', () => {
 });
 
 import { adminStats, countOnce, dailyCron, emailPrefs, localDay, recordActivity, streakEnding, unsubscribe, unsubscribeToken, unsubscribeUrl, weeklyCron, type Profile } from '../server/engage';
-import { claimCertificate, publicCertificate } from '../server/certificates';
+
 import { markJoined } from '../server/joined';
 
 const uid = 'a'.repeat(64);
@@ -132,44 +132,5 @@ describe('funnel numbers for the admin page', () => {
     await countOnce('paid', uid);
     await countOnce('paid', uid);
     expect(fake.kv.get(`rvm:m:paid:${new Date().toISOString().slice(0, 10)}`)).toBe(1);
-  });
-});
-
-describe('certificates', () => {
-  const claim = { area: 'chest', title: 'Chest imaging', name: 'Ada Lovelace', patients: 12, judged: 20, accuracy: 0.8 };
-  it('issues one per area above the bar, renews it, and can be checked publicly', async () => {
-    expect((await claimCertificate(user, { ...claim, accuracy: 0.6 })).ok).toBe(false);
-    expect((await claimCertificate(user, { ...claim, patients: 3 })).ok).toBe(false);
-    expect((await claimCertificate(user, { ...claim, area: 'everything' })).ok).toBe(false);
-    const a = await claimCertificate(user, claim);
-    expect(a.ok).toBe(true);
-    const id = a.ok ? a.certificate.id : '';
-    expect(id).toMatch(/^[\w-]{12}$/);
-    const b = await claimCertificate(user, { ...claim, patients: 15 });
-    expect(b.ok && b.certificate.id).toBe(id);
-    expect((await publicCertificate(id))?.patients).toBe(15);
-    expect(await publicCertificate('../../etc')).toBeNull();
-  });
-  it('issues each level as its own certificate, with the bar of that level, named by the server', async () => {
-    const one = await claimCertificate(user, { ...claim, area: 'head' });
-    expect(one.ok && one.certificate.level).toBe(1);
-    // Level 2 asks for 30 graded answers at 80%; level 3 for 85% (answers without hints, counted by the app).
-    expect((await claimCertificate(user, { ...claim, area: 'head', level: 2 })).ok).toBe(false);
-    expect((await claimCertificate(user, { ...claim, area: 'head', level: 2, judged: 30, accuracy: 0.79 })).ok).toBe(false);
-    const two = await claimCertificate(user, { ...claim, area: 'head', level: 2, judged: 30, accuracy: 0.8, title: 'Board certified neurosurgeon' });
-    expect(two.ok).toBe(true);
-    if (!two.ok || !one.ok) return;
-    expect(two.certificate.id).not.toBe(one.certificate.id);
-    expect(two.certificate.title).toBe('Neuroimaging');
-    expect((await claimCertificate(user, { ...claim, area: 'head', level: 3, judged: 30, accuracy: 0.84 })).ok).toBe(false);
-    expect((await claimCertificate(user, { ...claim, area: 'head', level: 3, judged: 30, accuracy: 0.9 })).ok).toBe(true);
-    expect((await claimCertificate(user, { ...claim, area: 'head', level: 4 })).ok).toBe(false);
-    // The whole library counts patients across areas.
-    expect((await claimCertificate(user, { ...claim, area: 'all', judged: 40 })).ok).toBe(false);
-    const all = await claimCertificate(user, { ...claim, area: 'all', patients: 40, judged: 40 });
-    expect(all.ok && all.certificate.title).toBe('General Radiology');
-    // Renewing a level keeps its id.
-    const again = await claimCertificate(user, { ...claim, area: 'head', level: 2, judged: 35, accuracy: 0.85 });
-    expect(again.ok && again.certificate.id).toBe(two.certificate.id);
   });
 });

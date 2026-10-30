@@ -131,8 +131,8 @@ export async function certificateImage(c: Certificate, origin: string, as: Image
   // A story is narrow: the ID and the address on two lines.
   const check = box(
     { flexDirection: story ? 'column' : 'row', alignItems: 'center', gap: story ? 4 : 6, marginTop: 10 + k.gap / 2, fontSize: k.base * 0.8, color: '#6b7280' },
-    text({}, story ? `Verified credential · ID ${c.id}` : `Verified credential · ID ${c.id} ·`),
-    text({}, `${host(origin)}/certificate/${c.id}`),
+    text({}, story ? `Completion record · ID ${c.id}` : `Completion record · ID ${c.id} ·`),
+    text({}, `${host(origin)}/verify/${c.id}`),
   );
   // Paper, a double rule in the level's colour, and the content centred inside it.
   const inner = box(
@@ -167,7 +167,7 @@ export async function certificateImage(c: Certificate, origin: string, as: Image
   await renderer();
   const png = new Resvg(svg, { fitTo: { mode: 'width', value: width } }).render().asPng();
   return new Response(new Uint8Array(png), {
-    headers: { 'Content-Type': 'image/png', 'Cache-Control': 'public, max-age=600, s-maxage=3600', 'X-Content-Type-Options': 'nosniff' },
+    headers: { 'Content-Type': 'image/png', 'Cache-Control': 'no-store', 'X-Content-Type-Options': 'nosniff' },
   });
 }
 
@@ -175,14 +175,15 @@ const esc = (s: string) => s.replace(/[&<>"']/g, (ch) => ({ '&': '&amp;', '<': '
 
 /** The app's page with tags for this certificate, so a shared link shows its picture and title, and search engines read it as a credential. */
 export function certificatePageHtml(indexHtml: string, c: Certificate | null, origin: string, id: string): string {
-  const url = `${origin}/certificate/${encodeURIComponent(id)}`;
+  const url = `${origin}/verify/${encodeURIComponent(id)}`;
+  const revoked = c?.status === 'revoked';
   const credential = c ? credentialName(c.title, c.level) : '';
   const unaided = c ? (levelRule((c.area as CertArea) ?? 'chest', (c.level ?? 1) as CertLevel)?.independent ?? false) : false;
-  const title = c ? `${c.name} earned the ${credential} · radiology.monster` : 'Certificate · radiology.monster';
-  const desc = c
+  const title = revoked ? 'Revoked certificate · radiology.monster' : c ? `${c.name} earned the ${credential} · radiology.monster` : 'Certificate · radiology.monster';
+  const desc = revoked ? 'This certificate has been revoked and is no longer valid.' : c
     ? `${c.name} earned the ${credential} on radiology.monster: ${c.patients} real patients read, ${Math.round(c.accuracy * 100)}% of ${c.judged} graded answers right${unaided ? ' without hints' : ''}, each marked on the image and checked against the expert outline.`
     : 'Certificates of completion from radiology.monster, radiology reading practice on real patients.';
-  const image = c ? `${origin}/api/og/certificate?id=${encodeURIComponent(c.id)}` : `${origin}/og.png`;
+  const image = c && !revoked ? `${origin}/api/og/certificate?id=${encodeURIComponent(c.id)}` : `${origin}/og.png`;
   const tags = [
     `<title>${esc(title)}</title>`,
     `<meta name="description" content="${esc(desc)}" />`,
@@ -201,7 +202,7 @@ export function certificatePageHtml(indexHtml: string, c: Certificate | null, or
     `<meta name="twitter:description" content="${esc(desc)}" />`,
     `<meta name="twitter:image" content="${esc(image)}" />`,
   ];
-  if (c) {
+  if (c && !revoked) {
     // The credential in schema.org terms, so search engines and profile tools read it as one.
     const rule = levelRule((c.area as CertArea) ?? 'chest', (c.level ?? 1) as CertLevel);
     const data = {
@@ -211,7 +212,7 @@ export function certificatePageHtml(indexHtml: string, c: Certificate | null, or
       credentialCategory: 'certificate',
       educationalLevel: levelName(c.level),
       about: c.title,
-      competencyRequired: rule ? levelRequirement((c.area as CertArea) ?? 'chest', rule) : undefined,
+      competencyRequired: c.requirements ?? (rule ? levelRequirement((c.area as CertArea) ?? 'chest', rule) : undefined),
       identifier: c.id,
       url,
       image,

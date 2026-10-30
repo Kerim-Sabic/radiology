@@ -20,6 +20,7 @@ describe('single-function API routing', () => {
     expect(requestUrl('https://evil.test/api/config','www.radiology.monster').origin).toBe('https://www.radiology.monster');
   });
   it('preserves the public certificate route and preview parameters', () => {
+    expect(requestUrl('/verify/RAD-2026-1234567890ABCDEF','www.radiology.monster').href).toBe('https://www.radiology.monster/api/certificate-page?id=RAD-2026-1234567890ABCDEF');
     expect(requestUrl('/certificate/cert123?format=square','www.radiology.monster').href).toBe('https://www.radiology.monster/api/certificate-page?format=square&id=cert123');
   });
   it.each(['../config','https://evil.test','//config',['config','session']])('rejects malformed internal route %s', route => {

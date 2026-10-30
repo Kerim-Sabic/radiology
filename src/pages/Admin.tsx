@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ExternalLink, RefreshCw } from 'lucide-react';
 import { useAccount } from '../auth/AccountGate';
 import '../styles/upgrade.css';
+import { CertificateAdmin } from '../components/CertificateAdmin';
 
 type Metric = 'visit' | 'signup_start' | 'signup' | 'studied' | 'plans' | 'checkout' | 'paid';
 interface Stats {
@@ -50,6 +51,7 @@ export default function AdminPage() {
         </a>
       </div>
       {error ? <div className="notice bad">{error}</div> : null}
+      <CertificateAdmin />
       {stats ? (
         <>
           <section className="card stack">

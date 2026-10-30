@@ -8,6 +8,7 @@ dist/
 playwright-report/
 test-results/
 coverage/
+server/certificate-data.json.gz
 .claude/settings.local.json
 # Data packs (DICOM + thumbnails) are committed so a git-connected host can serve them.
 # Never commit the copyrighted textbook or text extracted from it.

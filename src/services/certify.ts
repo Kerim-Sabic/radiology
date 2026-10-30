@@ -43,15 +43,15 @@ export const stepUrl = (step: CertStep, area: CertArea, level: CertLevel) =>
   `/read/${step.caseId}?task=${encodeURIComponent(step.taskId)}&mode=${step.mode}&cert=${certKey(area, level)}`;
 
 /** The next task for a level, or null when the level is reached (or nothing in the library fits). */
-export function nextCertificateTask(catalog: CatalogView, attempts: Attempt[], area: CertArea, level: CertLevel, skipTaskId?: string): CertStep | null {
+export function nextCertificateTask(catalog: CatalogView, attempts: Attempt[], area: CertArea, level: CertLevel, skipTaskId?: string, verified?: CertStatus): CertStep | null {
   const areas = areaProgress(catalog, attempts);
-  const s = certificateStatus(areas, attempts).find((x) => x.area === area && x.level === level);
+  const s = verified ?? certificateStatus(areas, attempts).find((x) => x.area === area && x.level === level);
   if (!s || s.eligible) return null;
   const rule = levelRule(area, level);
-  const modeFor = (t: Task): Mode | null => (s.independent && t.modes.includes('assess') ? 'assess' : t.modes.includes('practice') ? 'practice' : null);
+  const modeFor = (t: Task): Mode | null => (s.independent ? t.modes.includes('assess') ? 'assess' : null : t.modes.includes('practice') ? 'practice' : null);
   const inArea = (region: string[]) => area === 'all' || (SHIFT_REGIONS.find((r) => r.id === area)?.test(region) ?? false);
   const cases = [...catalog.cases.values()].filter((c) => inArea(c.region));
-  const done = attempts.filter((a) => a.submittedAt);
+  const done = attempts.filter((a) => a.submittedAt && (!verified || a.grade?.authoritative && (!s.independent || a.mode === 'assess' && !a.revealed && !a.hintsUsed.length)));
   const readGroups = new Set(done.map((a) => a.holdoutGroup));
   const tried = new Set(done.map((a) => a.taskId));
   const taskById = new Map<string, Task>();
@@ -63,7 +63,7 @@ export function nextCertificateTask(catalog: CatalogView, attempts: Attempt[], a
       if (!caseOk(c.id, c.region)) continue;
       for (const t of catalog.tasksByCase.get(c.id) ?? []) {
         const m = modeFor(t);
-        if (!m || t.id === skipTaskId || !(t.type in RANK) || !taskOk(t)) continue;
+        if (!m || t.id === skipTaskId || !(t.type in RANK) || !taskOk(t) || (verified && (t.scoring !== 'authoritative' || t.grading.kind === 'self_review'))) continue;
         if (!best || rank(t) < rank(best.task)) best = { task: t, mode: m };
       }
     }

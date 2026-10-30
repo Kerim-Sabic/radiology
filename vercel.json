@@ -9,6 +9,10 @@
       "destination": "https://whop.com/.well-known/apple-platform-integrator/apple-developer-merchantid-domain-association"
     },
     {
+      "source": "/verify/:id",
+      "destination": "/api/index?__rvm_path=certificate-page&id=:id"
+    },
+    {
       "source": "/certificate/:id",
       "destination": "/api/index?__rvm_path=certificate-page&id=:id"
     },
@@ -74,13 +78,19 @@
     ]
   },
   "crons": [
-    { "path": "/api/cron/daily", "schedule": "0 17 * * *" },
-    { "path": "/api/cron/weekly", "schedule": "0 7 * * 1" }
+    {
+      "path": "/api/cron/daily",
+      "schedule": "0 17 * * *"
+    },
+    {
+      "path": "/api/cron/weekly",
+      "schedule": "0 7 * * 1"
+    }
   ],
   "functions": {
     "api/**/*.ts": {
       "maxDuration": 60,
-      "includeFiles": "{server/fonts/**,server/brand/**,node_modules/@resvg/resvg-wasm/index_bg.wasm,node_modules/harfbuzzjs/*.wasm}"
+      "includeFiles": "{server/certificate-data.json.gz,server/fonts/**,server/brand/**,node_modules/@resvg/resvg-wasm/index_bg.wasm,node_modules/harfbuzzjs/*.wasm}"
     }
   }
 }

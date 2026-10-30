@@ -5,6 +5,7 @@ import { random, type Session } from './auth.js';
 import { myCertificates, publicCertificate } from './certificates.js';
 import { certificateImage } from './certificateShare.js';
 import { credentialName, type CertLevel } from '../shared/certificateLevels.js';
+import { validCertificateId } from '../shared/credential.js';
 
 /**
  * "Post it for me": the learner allows radiology.monster to post once (LinkedIn's sign-in with the Share on LinkedIn
@@ -25,14 +26,14 @@ interface Pending {
   text: string;
 }
 
-const Start = z.object({ id: z.string().regex(/^[\w-]{12}$/), text: z.string().trim().min(1).max(3000) }).strict();
+const Start = z.object({ id: z.string().refine(validCertificateId), text: z.string().trim().min(1).max(3000) }).strict();
 
 /** LinkedIn's sign-in page, after the post to make is saved for ten minutes under a one-time state. */
 export async function startLinkedInPost(user: Session, body: unknown): Promise<{ ok: true; url: string } | { ok: false; error: string }> {
   const parsed = Start.safeParse(body);
   if (!parsed.success) return { ok: false, error: 'Write a post of up to 3,000 characters.' };
   const { id, text } = parsed.data;
-  if (!(await myCertificates(user)).some((c) => c.id === id)) return { ok: false, error: 'You can post only your own certificates.' };
+  if (!(await myCertificates(user)).some((c) => c.id === id && c.status !== 'revoked')) return { ok: false, error: 'You can post only your own valid certificates.' };
   const state = random();
   await db().set<Pending>(pendingKey(state), { userId: user.userId, certId: id, text }, { ex: TEN_MINUTES });
   const q = new URLSearchParams({
@@ -87,7 +88,7 @@ async function call(step: string, input: string, init: RequestInit): Promise<Res
 /** Sign-in code → token → member → picture upload → post. Returns the post's URN. */
 async function publish(code: string, pending: Pending): Promise<string> {
   const cert = await publicCertificate(pending.certId);
-  if (!cert) throw new LinkedInError('certificate', 404);
+  if (!cert || cert.status === 'revoked') throw new LinkedInError('certificate', 404);
   const token = await call('token', 'https://www.linkedin.com/oauth/v2/accessToken', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

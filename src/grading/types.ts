@@ -1,4 +1,4 @@
-import type { Vec2, Vec3 } from '../lib/geometry';
+import type { Vec2, Vec3 } from '../lib/geometry.js';
 
 /** A learner mark, stored in source-image terms — never only canvas pixels. */
 export interface LearnerMark {

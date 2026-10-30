@@ -11,7 +11,7 @@ import { AccountGate } from './auth/AccountGate';
 
 // A certificate's public page opens for anyone, without signing in.
 const CertificatePage = lazy(() => import('./pages/CertificatePage'));
-const publicCertificate = location.pathname.startsWith('/certificate/');
+const publicCertificate = /^\/(certificate|verify)\//.test(location.pathname);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

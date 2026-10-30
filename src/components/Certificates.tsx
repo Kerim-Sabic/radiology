@@ -40,7 +40,7 @@ export function CertificatesSummary() {
         </Link>
       </div>
       <p className="muted" style={{ margin: 0 }}>
-        {issued.length} issued{ready ? `, ${ready} ready to claim` : ''}. Three levels for each body area and for the whole library.
+        {issued.length} issued{ready ? `, ${ready} ready for server verification` : ''}. Progress below is a guide from this device; open Certificates to verify saved answers.
         {next ? (
           <>
             {' '}

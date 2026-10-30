@@ -70,7 +70,7 @@ describe('certificate levels', () => {
     const f = linkedInFields({ id: 'abcDEF123_-x', name: 'Ada', area: 'chest', level: 2, title: 'Chest Imaging', patients: 25, judged: 30, accuracy: 0.8, issuedAt: '2026-10-29T10:00:00.000Z' }, 'https://www.radiology.monster');
     expect(f.name).toBe('Chest Imaging Certificate – Level 2 (Intermediate)');
     expect(f.skills).toEqual(['Radiology', 'Chest Radiography', 'Computed Tomography (CT)', 'Medical Imaging']);
-    expect(f.credentialUrl).toBe('https://www.radiology.monster/certificate/abcDEF123_-x');
+    expect(f.credentialUrl).toBe('https://www.radiology.monster/verify/abcDEF123_-x');
     expect(linkedInFields({ id: 'x', name: 'Ada', area: 'breast', title: 'Breast Imaging', patients: 12, judged: 12, accuracy: 0.8, issuedAt: '2026-10-29T10:00:00.000Z' }, 'https://x').name).toBe('Breast Imaging Certificate – Level 1 (Foundation)');
   });
 });

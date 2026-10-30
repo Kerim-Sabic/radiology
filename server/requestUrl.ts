@@ -4,7 +4,7 @@ export function requestUrl(raw: string, host: string, route?: string | string[])
   if (/^\/api\/index\/?$/.test(url.pathname)) {
     const routed = route ?? url.searchParams.get('__rvm_path');
     url.pathname = typeof routed === 'string' && /^[a-z]+(?:[/-][a-z]+)*$/.test(routed) ? `/api/${routed}` : '/api/not-found';
-  } else if (/^\/certificate\/[^/]+\/?$/.test(url.pathname)) {
+  } else if (/^\/(?:certificate|verify)\/[^/]+\/?$/.test(url.pathname)) {
     url.searchParams.set('id', url.pathname.split('/')[2]);
     url.pathname = '/api/certificate-page';
   }

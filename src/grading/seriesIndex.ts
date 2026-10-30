@@ -1,5 +1,5 @@
-import type { Series } from '../schema/content';
-import { dot, sliceNormal, type ImagePlane, type Vec2, type Vec3 } from '../lib/geometry';
+import type { Series } from '../schema/content.js';
+import { dot, sliceNormal, type ImagePlane, type Vec2, type Vec3 } from '../lib/geometry.js';
 
 export interface InstanceGeom {
   sopInstanceUid: string;

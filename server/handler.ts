@@ -7,7 +7,9 @@ import { bookGift, memberBook, servesBook } from './book.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
 import { adminStats, count, countOnce, cronAuthorized, dailyCron, emailPrefs, recordActivity, trackable, unsubscribe, weeklyCron } from './engage.js';
-import { claimCertificate, myCertificates, publicCertificate } from './certificates.js';
+import { claimCertificate, myCertificates, publicCertificate, revokeCertificate } from './certificates.js';
+import { recordAnswer, verifiedProgress } from './certificateProgress.js';
+import { queueCertificateEmail, sendCertificateEmails } from './certificateEmail.js';
 import { certificateImage, certificatePageHtml } from './certificateShare.js';
 import { isAdmin } from './auth.js';
 import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
@@ -41,7 +43,7 @@ export async function handle(request: Request): Promise<Response> {
     }
     if (path.startsWith('/api/cron/') && request.method === 'GET') {
       if (!cronAuthorized(request)) return json({ error: 'Not allowed' }, 401);
-      if (path === '/api/cron/daily') return json(await dailyCron());
+      if (path === '/api/cron/daily') return json({ ...await dailyCron(), certificates:await sendCertificateEmails() });
       if (path === '/api/cron/weekly') return json(await weeklyCron());
       return json({ error: 'Not found' }, 404);
     }
@@ -49,13 +51,20 @@ export async function handle(request: Request): Promise<Response> {
     if (path === '/api/certificate-page' && request.method === 'GET') {
       const id = url.searchParams.get('id') ?? '';
       const [cert, index] = await Promise.all([publicCertificate(id), fetch(new URL('/index.html', appOrigin())).then((r) => r.text())]);
-      return new Response(certificatePageHtml(index, cert, appOrigin(), id), { status: cert || id === 'example' ? 200 : 404, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'public, max-age=0, s-maxage=300' } });
+      return new Response(certificatePageHtml(index, cert, appOrigin(), id), { status: cert || id === 'example' ? 200 : 404, headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store' } });
     }
     if (path === '/api/og/certificate' && request.method === 'GET') {
       if (!await rateLimit(`cert-image:${ip()}`, 120, 600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
       const cert = await publicCertificate(url.searchParams.get('id') ?? '');
       const format = url.searchParams.get('format');
-      return cert ? await certificateImage(cert, appOrigin(), format === 'square' || format === 'story' ? format : 'wide') : json({ error: 'No certificate with this id.' }, 404);
+      return cert?.status==='revoked' ? json({error:'This certificate has been revoked.'},410) : cert ? await certificateImage(cert, appOrigin(), format === 'square' || format === 'story' ? format : 'wide') : json({ error: 'No certificate with this id.' }, 404);
+    }
+    if (path === '/api/certificate/pdf' && request.method === 'GET') {
+      if (!await rateLimit(`cert-pdf:${ip()}`,30,600)) return json({error:'Please try again shortly.'},429);
+      const cert=await publicCertificate(url.searchParams.get('id')??'');
+      if(!cert) return json({error:'Certificate not found.'},404);
+      const {certificatePdf}=await import('./certificatePdf.js');
+      return new Response(Buffer.from(await certificatePdf(cert,appOrigin())),{headers:{'Content-Type':'application/pdf','Content-Disposition':`attachment; filename="radiology-${cert.id}.pdf"`,'Cache-Control':'no-store'}});
     }
     if (path === '/api/certificate' && request.method === 'GET') {
       if (!await rateLimit(`cert-check:${ip()}`, 60, 600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
@@ -130,12 +139,32 @@ export async function handle(request: Request): Promise<Response> {
       const r = await emailPrefs(user, body);
       return r.ok ? json(r) : json({ error: r.error }, 400);
     }
+    if (path === '/api/certificates/progress' && request.method==='GET') return json({statuses:await verifiedProgress(user.userId)});
+    if (path === '/api/certificates/answers' && request.method==='POST') {
+      if(!await rateLimit(`cert-answers:${user.userId}`,120,60)) return json({error:'Please wait before verifying more answers.'},429);
+      const batch=z.object({answers:z.array(z.unknown()).min(1).max(20)}).strict().safeParse(await request.json());
+      if(!batch.success) return json({error:'Submit at most 20 answers at a time.'},400);
+      const results=[];
+      for(const answer of batch.data.answers) results.push(await recordAnswer(user.userId,answer));
+      return json({results});
+    }
+    if(path==='/api/admin/certificates/revoke' && request.method==='POST') {
+      if(!await isAdmin(user.userId)) return json({error:'Admin accounts only.'},403);
+      const r=await revokeCertificate(user.userId,await request.json());
+      return json(r,r.ok?200:400);
+    }
     if (path === '/api/certificates') {
       if (request.method === 'GET') return json({ certificates: await myCertificates(user), linkedin: linkedinReady() });
       if (request.method === 'POST') {
         if (!(await accessFor(user.userId)).active) return json({ error: 'Certificates are part of membership.' }, 402);
         if (!await rateLimit(`cert:${user.userId}`, 20, 3600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
         const r = await claimCertificate(user, await request.json().catch(() => null));
+        if(r.ok && r.emailRequested) {
+          try {
+            await queueCertificateEmail(r.certificate,user.email);
+            await sendCertificateEmails(r.certificate.id);
+          } catch { console.error('Certificate email deferred; certificate remains issued'); }
+        }
         return r.ok ? json(r) : json({ error: r.error }, 400);
       }
     }

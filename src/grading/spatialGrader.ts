@@ -3,7 +3,7 @@
  * All comparisons are made in source geometry (patient LPS mm or contract image px on a
  * specific SOP instance), never in canvas pixels.
  */
-import type { ReferenceTarget, TargetGeometry, Task } from '../schema/content';
+import type { ReferenceTarget, TargetGeometry, Task } from '../schema/content.js';
 import {
   boxIoU,
   distanceToBoundary,
@@ -20,9 +20,9 @@ import {
   type Box,
   type Vec2,
   type Vec3,
-} from '../lib/geometry';
-import type { SeriesIndex } from './seriesIndex';
-import type { ErrorCategory, GradeResult, LearnerMark, MarkOutcome, PositionAtSubmit, TargetOutcome } from './types';
+} from '../lib/geometry.js';
+import type { SeriesIndex } from './seriesIndex.js';
+import type { ErrorCategory, GradeResult, LearnerMark, MarkOutcome, PositionAtSubmit, TargetOutcome } from './types.js';
 
 export interface LoadedTarget {
   ref: ReferenceTarget;

@@ -4,6 +4,7 @@ import { EXAMPLE_CERTIFICATE, certificateOwner, levelLabel, linkedInFields, link
 import { LEVEL_STYLE, credentialName, levelName, levelRequirement, levelRule, starPoints, type CertArea, type CertLevel } from '../../shared/certificateLevels';
 import { CertSeal } from '../components/CertSeal';
 import '../styles/certificate.css';
+import { verificationUrl } from '../../shared/credential';
 
 /** LinkedIn's "in" mark for its share button (the icon set has no brand marks). */
 function Linkedin({ size = 16 }: { size?: number }) {
@@ -38,7 +39,13 @@ export function suggestedPost(c: IssuedCertificate, url: string, style: PostStyl
   const unaided = levelRule((c.area as CertArea) ?? 'chest', level)?.independent ?? false;
   const tags = `#radiology #medicalstudent #medicaleducation #meded ${AREA_TAG[c.area] ?? '#imaging'}`;
   if (style === 'short')
-    return [`Earned the ${credential} on radiology.monster: ${c.patients} real patients read, ${pct} right${unaided ? ' without hints' : ''}.`, '', `Verify it: ${url}`, '', tags].join('\n');
+    return [
+      `Earned the ${credential} on radiology.monster: ${c.patients} real patients read, ${pct} right${unaided ? ' without hints' : ''}.`,
+      '',
+      `Verify it: ${url}`,
+      '',
+      tags,
+    ].join('\n');
   if (style === 'detailed')
     return [
       `New certificate: ${credential}, issued by radiology.monster.`,
@@ -66,7 +73,10 @@ export function suggestedPost(c: IssuedCertificate, url: string, style: PostStyl
 }
 
 /** What LinkedIn said after "Post it for me", read once from the address it returns to. */
-function linkedInResult(): { result: 'posted' | 'cancelled' | 'failed'; post: string } | null {
+function linkedInResult(): {
+  result: 'posted' | 'cancelled' | 'failed';
+  post: string;
+} | null {
   const q = new URLSearchParams(location.search);
   const result = q.get('linkedin');
   const post = q.get('post') ?? '';
@@ -74,11 +84,11 @@ function linkedInResult(): { result: 'posted' | 'cancelled' | 'failed'; post: st
 }
 
 /** The seal and its level. */
-function Seal({ level }: { level: CertLevel }) {
+function Seal({ level, label }: { level: CertLevel; label: string }) {
   return (
     <div className="cert-seal" aria-hidden="true">
       <CertSeal level={level} />
-      <span style={{ color: LEVEL_STYLE[level].accent }}>Verified</span>
+      <span style={{ color: LEVEL_STYLE[level].accent }}>{label}</span>
     </div>
   );
 }
@@ -89,6 +99,7 @@ export default function CertificatePage() {
   // /certificate/example shows what a certificate looks like; it is never stored or checkable.
   const example = id === 'example';
   const [cert, setCert] = useState<IssuedCertificate | null | undefined>(undefined);
+  const [loadError, setLoadError] = useState(false);
   const [copied, setCopied] = useState<string | null>(null);
   const [style, setStyle] = useState<PostStyle>('proud');
   // Opened straight away when the learner arrives from claiming it.
@@ -103,10 +114,18 @@ export default function CertificatePage() {
   const notice = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (example) return setCert(EXAMPLE_CERTIFICATE);
-    fetch(`/api/certificate?id=${encodeURIComponent(id)}`, { cache: 'no-store' })
-      .then((r) => (r.ok ? r.json() : null))
+    fetch(`/api/certificate?id=${encodeURIComponent(id)}`, {
+      cache: 'no-store',
+    })
+      .then((r) => {
+        if (!r.ok && r.status !== 404) throw new Error('Unavailable');
+        return r.ok ? r.json() : null;
+      })
       .then((j) => setCert(j?.certificate ?? null))
-      .catch(() => setCert(null));
+      .catch(() => {
+        setLoadError(true);
+        setCert(null);
+      });
   }, [id, example]);
   useEffect(() => {
     if (example) return;
@@ -121,13 +140,22 @@ export default function CertificatePage() {
     if (cert) document.title = example ? 'Example certificate · radiology.monster' : `${cert.name} · ${credentialName(cert.title, cert.level)} · radiology.monster`;
   }, [cert, example]);
 
-  if (cert === undefined) return <main className="cert-page"><p className="cert-status">Checking the certificate…</p></main>;
+  if (cert === undefined)
+    return (
+      <main className="cert-page">
+        <p className="cert-status">Checking the certificate…</p>
+      </main>
+    );
   if (!cert)
     return (
       <main className="cert-page">
         <div className="cert-missing">
-          <h1>No certificate with this link</h1>
-          <p>Check that the link is complete. Certificates are issued by radiology.monster and each has its own address.</p>
+          <h1>{loadError ? 'Verification is temporarily unavailable' : 'No certificate with this link'}</h1>
+          <p>
+            {loadError
+              ? 'Please reload to check the current record. This does not mean the certificate is invalid.'
+              : 'Check that the link is complete. Certificates are issued by radiology.monster and each has its own address.'}
+          </p>
           <a href="/">radiology.monster</a>
         </div>
       </main>
@@ -137,8 +165,15 @@ export default function CertificatePage() {
   const area = ((cert.area as CertArea) ?? 'chest') as CertArea;
   const rule = levelRule(area, level);
   const credential = credentialName(cert.title, level);
-  const issued = new Date(cert.issuedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'UTC' });
-  const url = `${location.origin}/certificate/${cert.id}`;
+  const issued = new Date(cert.issuedAt).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    timeZone: 'UTC',
+  });
+  const url = verificationUrl(cert.id, location.origin);
+  const revoked = cert.status === 'revoked';
+  const legacy = cert.verification !== 'server-graded';
   const copy = (what: string, value: string) =>
     void navigator.clipboard?.writeText(value).then(() => {
       setCopied(what);
@@ -151,12 +186,34 @@ export default function CertificatePage() {
   const pct = `${Math.round(cert.accuracy * 100)}%`;
   const cvLine = `${credential}, radiology.monster (${li.issued}). Credential ID ${cert.id}. ${url}`;
   // LinkedIn's form, in its order. The issue date is two lists there, so it is shown, not copied.
-  const fields: Array<{ key: string; label: string; value: string; hint?: string; copy?: boolean }> = [
+  const fields: Array<{
+    key: string;
+    label: string;
+    value: string;
+    hint?: string;
+    copy?: boolean;
+  }> = [
     { key: 'name', label: 'Name', value: li.name, copy: true },
-    { key: 'org', label: 'Issuing organization', value: li.organization, hint: 'If LinkedIn suggests the radiology.monster page, pick it so its logo shows.', copy: true },
-    { key: 'issued', label: 'Issue date', value: li.issued, hint: 'Pick the month and year. Leave the expiration date empty: it does not expire.' },
+    {
+      key: 'org',
+      label: 'Issuing organization',
+      value: li.organization,
+      hint: 'If LinkedIn suggests the radiology.monster page, pick it so its logo shows.',
+      copy: true,
+    },
+    {
+      key: 'issued',
+      label: 'Issue date',
+      value: li.issued,
+      hint: 'Pick the month and year. Leave the expiration date empty: it does not expire.',
+    },
     { key: 'id', label: 'Credential ID', value: li.credentialId, copy: true },
-    { key: 'url', label: 'Credential URL', value: li.credentialUrl, copy: true },
+    {
+      key: 'url',
+      label: 'Credential URL',
+      value: li.credentialUrl,
+      copy: true,
+    },
   ];
   const text = draft ?? suggestedPost(cert, url, style);
   const autoPost = owner.mine && owner.linkedin;
@@ -184,7 +241,7 @@ export default function CertificatePage() {
         </a>
         {example ? null : (
           <span className="cert-verified">
-            <Check size={14} /> Verified certificate
+            <Check size={14} /> {revoked ? 'Revoked certificate' : 'Certificate record found'}
           </span>
         )}
       </header>
@@ -194,7 +251,16 @@ export default function CertificatePage() {
         </p>
       ) : null}
 
-      <article className="cert" aria-label="Certificate" style={{ ['--cert-accent' as string]: st.accent }}>
+      {revoked ? (
+        <p className="cert-example" role="alert">
+          <strong>REVOKED — this certificate is no longer valid.</strong> Revoked on{' '}
+          {new Date(cert.revokedAt!).toLocaleDateString('en-US', {
+            timeZone: 'UTC',
+          })}
+          . The original record is retained below.
+        </p>
+      ) : null}
+      <article className="cert" aria-label="Certificate" style={{ ['--cert-accent' as string]: revoked ? '#b91c1c' : st.accent }}>
         <div className="cert-frame">
           <div className="cert-inner">
             <span className="cert-brand">
@@ -203,7 +269,7 @@ export default function CertificatePage() {
                 radiology<em>.monster</em>
               </span>
             </span>
-            <p className="cert-kicker">Certificate of achievement</p>
+            <p className="cert-kicker">{revoked ? 'REVOKED CERTIFICATE' : 'Certificate of completion'}</p>
             <p className="cert-intro">This certifies that</p>
             <h1 className="cert-name">{cert.name}</h1>
             <span className="cert-rule" aria-hidden="true" />
@@ -237,7 +303,7 @@ export default function CertificatePage() {
                 <i aria-hidden="true" />
                 <span>Date of issue</span>
               </div>
-              <Seal level={level} />
+              <Seal level={level} label={revoked ? 'Revoked' : legacy ? 'Recorded' : 'Verified'} />
               <div className="cert-sign">
                 <b>radiology.monster</b>
                 <i aria-hidden="true" />
@@ -246,7 +312,7 @@ export default function CertificatePage() {
             </div>
             {example ? null : (
               <p className="cert-check">
-                Verified credential · ID <span className="mono">{cert.id}</span> · {url.replace(/^https?:\/\/(www\.)?/, '')}
+                {revoked ? 'Revoked' : 'Completion record'} · ID <span className="mono">{cert.id}</span> · {url.replace(/^https?:\/\/(www\.)?/, '')}
               </p>
             )}
           </div>
@@ -259,15 +325,18 @@ export default function CertificatePage() {
             <ShieldCheck size={20} />
           </span>
           <div>
-            <h2 id="cert-verify-h">{example ? 'Example verification' : 'Valid certificate'}</h2>
-            <p>
-              {example
-                ? 'A real certificate shows its record here.'
-                : 'This page is loaded from radiology.monster’s records, so the holder cannot change what it says.'}
-            </p>
+            <h2 id="cert-verify-h">{example ? 'Example verification' : revoked ? 'Revoked — no longer valid' : 'Valid completion certificate'}</h2>
+            <p>{example ? 'A real certificate shows its record here.' : 'This page is loaded from radiology.monster’s records, so the holder cannot change what it says.'}</p>
           </div>
         </div>
         <dl className="cert-verify-list">
+          <div>
+            <dt>Verification method</dt>
+            <dd>
+              {legacy ? 'Legacy record: completion totals were reported by the learner’s app.' : 'Course requirements checked against answers graded by our server.'} Learning is
+              unproctored; the learner supplies their display name.
+            </dd>
+          </div>
           <div>
             <dt>Issued to</dt>
             <dd>{cert.name}</dd>
@@ -288,15 +357,16 @@ export default function CertificatePage() {
             <div>
               <dt>What the level asks</dt>
               <dd>
-                {levelRequirement(area, rule)}
-                {area !== 'all' ? ' (every patient of the area where it has fewer)' : ''}
+                {cert.requirements ?? levelRequirement(area, rule)}
+                {!cert.requirements && area !== 'all' ? ' (every patient of the area where it has fewer)' : ''}
               </dd>
             </div>
           ) : null}
           <div>
             <dt>Result</dt>
             <dd>
-              {cert.patients} patients read · {cert.judged} graded answers{unaided ? ' without hints' : ''} · {pct} right
+              {cert.patients} patients read · {cert.judged} graded answers
+              {unaided ? ' without hints' : ''} · {pct} right
             </dd>
           </div>
           <div>
@@ -310,7 +380,7 @@ export default function CertificatePage() {
         </dl>
       </section>
 
-      {example ? null : (
+      {example || revoked ? null : (
         <section className="cert-share" aria-label="Share this certificate">
           <h2>Share it</h2>
           {posted ? (
@@ -357,8 +427,8 @@ export default function CertificatePage() {
           {toLinkedIn ? (
             <div className="cert-li" id="add-to-linkedin">
               <p className="cert-li-lead">
-                It goes under <b>Licenses &amp; certifications</b> on your profile, with a <b>Show credential</b> button that opens this page, and it counts towards each
-                skill you add. LinkedIn opens its form empty, so copy each line in; it takes a minute.
+                It goes under <b>Licenses &amp; certifications</b> on your profile, with a <b>Show credential</b> button that opens this page, and it counts towards each skill you
+                add. We pass the details to LinkedIn, but pre-filling is best-effort. Check each field and copy any missing details below before saving.
               </p>
               <ol className="cert-li-steps">
                 <li>
@@ -431,8 +501,11 @@ export default function CertificatePage() {
             <a className="cert-btn" href={image('story')} download={`${file}-story.png`}>
               <Smartphone size={16} /> Story (Instagram, WhatsApp)
             </a>
+            <a className="cert-btn" href={`/api/certificate/pdf?id=${encodeURIComponent(cert.id)}`} download>
+              <Download size={16} /> Download PDF with verification QR
+            </a>
             <button className="cert-btn" onClick={() => window.print()}>
-              <Printer size={16} /> Print or save as PDF
+              <Printer size={16} /> Print certificate
             </button>
           </div>
           <div className="cert-post" id="cert-post">
@@ -454,20 +527,15 @@ export default function CertificatePage() {
               </div>
               <CopyButton what="post" value={text} label="Copy text" />
             </div>
-            <textarea
-              aria-label="Post text"
-              value={text}
-              rows={Math.min(14, text.split('\n').length + 1)}
-              maxLength={3000}
-              spellCheck
-              onChange={(e) => setDraft(e.target.value)}
-            />
+            <textarea aria-label="Post text" value={text} rows={Math.min(14, text.split('\n').length + 1)} maxLength={3000} spellCheck onChange={(e) => setDraft(e.target.value)} />
             {autoPost ? (
               <div className="cert-autopost">
                 <button className="cert-btn linkedin" disabled={posting || !text.trim()} onClick={() => void postForMe()}>
                   <Linkedin size={16} /> {posting ? 'Opening LinkedIn…' : 'Post it on my LinkedIn'}
                 </button>
-                <small>Posts this text with the certificate picture. LinkedIn asks you to allow it; radiology.monster makes this one post and keeps no access to your account.</small>
+                <small>
+                  Posts this text with the certificate picture. LinkedIn asks you to allow it; radiology.monster makes this one post and keeps no access to your account.
+                </small>
                 {postError ? (
                   <p className="cert-autopost-error" role="alert">
                     {postError}
@@ -497,7 +565,9 @@ export default function CertificatePage() {
           Start free <ArrowRight size={16} />
         </a>
       </section>
-      <p className="cert-fine">An educational record of practice on radiology.monster, as reported by the learner’s app. Not a medical qualification or CME credit.</p>
+      <p className="cert-fine">
+        Unproctored educational course completion. Not accredited CME, a professional qualification, or proof of clinical competence. Always check this page for current validity.
+      </p>
     </main>
   );
 }

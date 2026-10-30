@@ -74,6 +74,8 @@ import { categoryFor } from '../components/ws/overlayShapes';
 import { landmarks, levelName, mapZ, matchLevels, type Landmark } from '../services/levelSync';
 import { IconButton, ProvenanceChip, Toast, useToast } from '../components/ui';
 import { gradeTask, measureWithinSlab, probeOfMark, type LoadedTarget } from '../grading/spatialGrader';
+import { verifiedCertificateStatuses, verifySavedAnswers, type CertStatus } from '../services/certificates';
+import { useAccount } from '../auth/AccountGate';
 import type { GradeResult, LearnerMark } from '../grading/types';
 import type { BookAnchorRef, Series, Task } from '../schema/content';
 import type { SeriesIndex } from '../grading/seriesIndex';
@@ -112,6 +114,14 @@ function studyLabel(series: Series, date: string | null) {
 }
 
 export default function Workstation() {
+  const account = useAccount();
+  const [verifiedStatuses, setVerifiedStatuses] = useState<CertStatus[]>([]);
+  useEffect(() => {
+    if (!account) return;
+    let cancelled = false;
+    void verifiedCertificateStatuses().then(s=>{if(!cancelled)setVerifiedStatuses(s);}).catch(()=>{});
+    return ()=>{cancelled=true;};
+  }, [account]);
   const { caseId = '' } = useParams();
   const [sp, setSp] = useSearchParams();
   const navigate = useNavigate();
@@ -310,14 +320,14 @@ export default function Workstation() {
   }, [session?.submitted, shiftItem?.submittedAt]);
   const nextInShift = shift ? shift.items.findIndex((it, i) => i !== shiftIndex && !it.submittedAt) : -1;
   const certStatus = useMemo(
-    () => (catalog && certParam ? certStatusFor(catalog, attempts, certParam.area, certParam.level) : null),
+    () => (catalog && certParam ? account ? verifiedStatuses.find(s=>s.area===certParam.area && s.level===certParam.level) ?? null : certStatusFor(catalog, attempts, certParam.area, certParam.level) : null),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [catalog, attempts, sp.get('cert')],
+    [catalog, attempts, sp.get('cert'), account, verifiedStatuses],
   );
   const goNextForCert = () => {
     if (!catalog || !certParam) return;
     if (certStatus?.eligible) return navigate(`/certificates?claim=${certKey(certParam.area, certParam.level)}`);
-    const step = nextCertificateTask(catalog, attempts, certParam.area, certParam.level, sp.get('task') ?? undefined);
+    const step = nextCertificateTask(catalog, attempts, certParam.area, certParam.level, sp.get('task') ?? undefined, account ? certStatus ?? undefined : undefined);
     navigate(step ? stepUrl(step, certParam.area, certParam.level) : '/certificates');
   };
   // The answer that completes a level: say so, and offer to finish the certification.
@@ -592,6 +602,10 @@ export default function Workstation() {
     const attempt: Attempt = { ...buildAttempt(g, true), marks: frozen, position: { seriesUid: pp.seriesUid, sopInstanceUid: cp.sop, worldLps: cp.world }, independent: rules.independent(session) };
     try {
       await progress.saveAttempt(attempt);
+      if (g.authoritative && account) {
+        await verifySavedAnswers([attempt]);
+        setVerifiedStatuses(await verifiedCertificateStatuses());
+      }
     } catch (e) {
       toast.show((e as Error).message);
     }

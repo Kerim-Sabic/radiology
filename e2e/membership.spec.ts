@@ -253,13 +253,13 @@ test('a certificate has a public page that needs no sign-in', async ({page}) => 
   await expect(li.locator('.cert-li-fields')).toContainText('radiology.monster');
   await expect(li.locator('.cert-li-fields')).toContainText('October 2026');
   await expect(li.locator('.cert-li-fields')).toContainText('abcDEF123_-x');
-  await expect(li.locator('.cert-li-fields')).toContainText('/certificate/abcDEF123_-x');
+  await expect(li.locator('.cert-li-fields')).toContainText('/verify/abcDEF123_-x');
   await expect(li.getByRole('button',{name:'Copy Credential URL'})).toBeVisible();
   // Arriving from Claim opens it straight away.
   await page.goto('about:blank');
   await page.goto('/certificate/abcDEF123_-x#add-to-linkedin');
   await expect(page.locator('#add-to-linkedin')).toBeVisible();
-  await expect(page.getByRole('link',{name:'Post on LinkedIn'})).toHaveAttribute('href',/linkedin\.com\/sharing\/share-offsite\/\?url=.*certificate%2FabcDEF123_-x/);
+  await expect(page.getByRole('link',{name:'Post on LinkedIn'})).toHaveAttribute('href',/linkedin\.com\/sharing\/share-offsite\/\?url=.*verify%2FabcDEF123_-x/);
   await expect(page.getByRole('link',{name:'Image for a post'})).toHaveAttribute('href','/api/og/certificate?id=abcDEF123_-x');
   await expect(page.getByRole('textbox',{name:'Post text'})).toHaveValue(/#radiology/);
   await expect(page.getByRole('link',{name:'Start free'})).toHaveAttribute('href','/');

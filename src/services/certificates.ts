@@ -5,6 +5,7 @@
  */
 import type { AreaProgress } from './areas';
 import type { Attempt } from './progressRepository';
+import { linkedinCredentialUrl, verificationUrl } from '../../shared/credential';
 import {
   CERT_SKILLS,
   CERT_TITLES,
@@ -123,6 +124,11 @@ export function certificateStatus(areas: AreaProgress[], attempts: Attempt[]): C
 }
 
 export interface IssuedCertificate {
+  requirements?: string;
+  issuer?: string;
+  verification?: 'server-graded' | 'legacy-self-reported';
+  status?: 'active' | 'revoked';
+  revokedAt?: string;
   id: string;
   name: string;
   area: string;
@@ -168,12 +174,12 @@ export async function startLinkedInPost(id: string, text: string): Promise<{ ok:
   }
 }
 
-export async function claimCertificate(s: CertStatus, name: string): Promise<{ ok: true; certificate: IssuedCertificate } | { ok: false; error: string }> {
+export async function claimCertificate(s: CertStatus, name: string, email = false): Promise<{ ok: true; certificate: IssuedCertificate } | { ok: false; error: string }> {
   try {
     const r = await fetch('/api/certificates', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ area: s.area, level: s.level, name, patients: s.read, judged: s.judged, accuracy: s.accuracy ?? 0 }),
+      body: JSON.stringify({ area: s.area, level: s.level, name, email }),
     });
     const j = await r.json();
     return r.ok ? { ok: true, certificate: j.certificate } : { ok: false, error: j.error ?? 'Could not issue the certificate.' };
@@ -190,27 +196,38 @@ export function linkedInFields(c: IssuedCertificate, origin = location.origin) {
     skills: CERT_SKILLS[(c.area as CertArea) in CERT_SKILLS ? (c.area as CertArea) : 'all'],
     issued: new Date(c.issuedAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric', timeZone: 'UTC' }),
     credentialId: c.id,
-    credentialUrl: `${origin}/certificate/${c.id}`,
+    credentialUrl: verificationUrl(c.id, origin),
   };
 }
 
 /**
- * LinkedIn's "Add license or certification" form. LinkedIn no longer fills it in from the link (the details below
+ * LinkedIn's "Add license or certification" form. LinkedIn may not fill every field from the link (the details below
  * are kept in case it does again), so the certificate page lists each field to copy.
  */
 export function linkedInUrl(c: IssuedCertificate, origin = location.origin): string {
-  const d = new Date(c.issuedAt);
-  const f = linkedInFields(c, origin);
-  const q = new URLSearchParams({
-    startTask: 'CERTIFICATION_NAME',
-    name: f.name,
-    organizationName: f.organization,
-    issueYear: String(d.getUTCFullYear()),
-    issueMonth: String(d.getUTCMonth() + 1),
-    certUrl: f.credentialUrl,
-    certId: f.credentialId,
-  });
-  return `https://www.linkedin.com/profile/add?${q}`;
+  return linkedinCredentialUrl({...c,title:credentialName(c.title,c.level)},origin,import.meta.env.VITE_LINKEDIN_ORG_ID);
+}
+
+export async function verifiedCertificateStatuses(): Promise<CertStatus[]> {
+  const r=await fetch('/api/certificates/progress',{cache:'no-store'});
+  if(!r.ok) throw new Error('Could not load verified progress. Please retry.');
+  return (await r.json()).statuses;
+}
+/** The server recomputes raw answers. Local grades and self-review never become certificate evidence. */
+export async function verifySavedAnswers(attempts: Attempt[]) {
+  const latest=new Map<string,Attempt>();
+  for(const a of [...attempts].sort((a,b)=>(a.submittedAt??'').localeCompare(b.submittedAt??'')))
+    if(a.submittedAt && a.mode!=='review' && a.grade?.authoritative) latest.set(a.taskId,a);
+  const answers=[...latest.values()].map(a=>({taskId:a.taskId,lessonVersion:a.lessonVersion,mode:a.mode,marks:a.marks,position:a.position,choice:a.choice,declaredNoFinding:a.declaredNoFinding,hintsUsed:a.hintsUsed,revealed:a.revealed}));
+  let counted=0, rejected=0;
+  for(let i=0;i<answers.length;i+=10) {
+    const r=await fetch('/api/certificates/answers',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({answers:answers.slice(i,i+10)}),signal:AbortSignal.timeout(20000)});
+    if(!r.ok) throw new Error('Your answers are saved on this device, but verification could not finish. Retry from Certificates.');
+    const data=await r.json();
+    counted+=data.results.filter((x:{counted?:boolean})=>x.counted).length;
+    rejected+=data.results.filter((x:{ok:boolean})=>!x.ok).length;
+  }
+  return {counted,rejected};
 }
 
 /** A sample certificate for the example page (never stored, never checkable). */

@@ -12,6 +12,9 @@ import {
   levelLabel,
   levelRequirement,
   myCertificates,
+  linkedInUrl,
+  verifiedCertificateStatuses,
+  verifySavedAnswers,
   type CertArea,
   type CertStatus,
   type IssuedCertificate,
@@ -35,14 +38,43 @@ export default function CertificatesPage() {
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
-  const statuses = useMemo(() => (catalog ? certificateStatus(areaProgress(catalog, attempts), attempts) : []), [catalog, attempts]);
+  const [email, setEmail] = useState(false);
+  const [syncing, setSyncing] = useState(false);
+  const [syncMessage, setSyncMessage] = useState('');
+  const [verified, setVerified] = useState<CertStatus[]>([]);
+  const localStatuses = useMemo(() => (catalog ? certificateStatus(areaProgress(catalog, attempts), attempts) : []), [catalog, attempts]);
+  const statuses = account ? verified : localStatuses;
+  useEffect(() => {
+    if (account)
+      void verifiedCertificateStatuses()
+        .then(setVerified)
+        .catch((e) => setSyncMessage(e.message));
+  }, [account]);
+  const sync = async () => {
+    setSyncing(true);
+    setSyncMessage('Verifying your saved answers…');
+    try {
+      const r = await verifySavedAnswers(attempts);
+      setVerified(await verifiedCertificateStatuses());
+      setSyncMessage(`${r.counted} distinct answers checked.${r.rejected ? ` ${r.rejected} older answers need a retry on the current case.` : ''}`);
+    } catch (e) {
+      setSyncMessage((e as Error).message);
+    } finally {
+      setSyncing(false);
+    }
+  };
   useEffect(() => {
     if (account && !free) void myCertificates().then(setIssued);
   }, [account, free]);
   const signedIn = !!account;
   const groups = ORDER.map((area) => [area, statuses.filter((s) => s.area === area)] as const).filter(([, levels]) => levels.length);
   const mine = [...issued].sort((a, b) => ORDER.indexOf(a.area as CertArea) - ORDER.indexOf(b.area as CertArea) || (b.level ?? 1) - (a.level ?? 1));
-  const issuedOn = (iso: string) => new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' });
+  const issuedOn = (iso: string) =>
+    new Date(iso).toLocaleDateString(undefined, {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric',
+    });
 
   const startClaim = (s: CertStatus) => {
     const own = account?.account.user?.name;
@@ -64,19 +96,19 @@ export default function CertificatesPage() {
   /** Start or continue a level: the next patient or task it still needs, in the reading room. */
   const work = (s: CertStatus) => {
     if (!catalog) return;
-    const step = nextCertificateTask(catalog, attempts, s.area, s.level);
+    const step = nextCertificateTask(catalog, attempts, s.area, s.level, undefined, account ? s : undefined);
     if (step) navigate(stepUrl(step, s.area, s.level));
   };
   const claim = async () => {
     if (!claiming) return;
     setBusy(true);
     setError('');
-    const r = await claimCertificate(claiming, name.trim());
+    const r = await claimCertificate(claiming, name.trim(), email);
     setBusy(false);
     if (!r.ok) return setError(r.error);
     setIssued((xs) => [...xs.filter((x) => x.id !== r.certificate.id), r.certificate]);
     setClaiming(null);
-    window.open(`/certificate/${r.certificate.id}#add-to-linkedin`, '_blank', 'noopener');
+    location.assign(`/verify/${r.certificate.id}#add-to-linkedin`);
   };
 
   return (
@@ -84,8 +116,8 @@ export default function CertificatesPage() {
       <header className="certs-intro">
         <h1>Certificates</h1>
         <p className="muted">
-          Earned by reading real patients here. Each body area has three levels, and the whole library three more; every level is its own certificate, with a public
-          check link and the steps to add it to LinkedIn under Licenses &amp; certifications.
+          Earned by reading real patients here. Each body area has three levels, and the whole library three more; every level is its own certificate, with a public check link and
+          the steps to add it to LinkedIn under Licenses &amp; certifications.
         </p>
         <ol className="certs-how" aria-label="How to get a certificate">
           <li>
@@ -113,6 +145,18 @@ export default function CertificatesPage() {
         </div>
         {free ? <p className="notice">Certificates are issued to members. Your answers on the sample patients already count towards them.</p> : null}
         {!signedIn ? <p className="notice">Sign in as a member to claim certificates.</p> : null}
+        {signedIn ? (
+          <div className="notice">
+            <p>
+              Certificates use server-graded answers. Verify saved answers to include work already on this device. Only submit your own work. Self-review scores do not count;
+              Advanced requires Assess mode. This is unproctored study, not accredited CME or a professional qualification.
+            </p>
+            <button className="btn" disabled={syncing} onClick={() => void sync()}>
+              {syncing ? 'Verifying…' : 'Verify saved answers'}
+            </button>
+            <p role="status">{syncMessage}</p>
+          </div>
+        ) : null}
       </header>
 
       {mine.length ? (
@@ -130,9 +174,15 @@ export default function CertificatesPage() {
                     {levelLabel(c.level)} · issued {issuedOn(c.issuedAt)}
                   </span>
                 </div>
-                <a className="btn sm" href={`/certificate/${c.id}`} target="_blank" rel="noopener noreferrer">
+                <a className="btn sm" href={`/verify/${c.id}`} target="_blank" rel="noopener noreferrer">
                   View and share <ExternalLink size={12} />
                 </a>
+                {c.status !== 'revoked' && (
+                  <a className="btn sm" href={linkedInUrl(c)} target="_blank" rel="noopener noreferrer">
+                    Add to LinkedIn
+                  </a>
+                )}
+                {c.status === 'revoked' && <span className="notice bad">Revoked</span>}
               </li>
             ))}
           </ul>
@@ -162,9 +212,8 @@ export default function CertificatesPage() {
           </table>
         </div>
         <small className="faint">
-          Patients read means you submitted an answer on at least one of their tasks. Partly right counts half. Without hints means no hint opened and nothing revealed,
-          as in Assess mode. Where an area has fewer patients than a level asks for, that level asks for every patient there. Retry your mistakes to raise your share
-          right.
+          Patients read means you submitted an answer on at least one of their tasks. Partly right counts half. Without hints means no hint opened and nothing revealed, as in
+          Assess mode. Where an area has fewer patients than a level asks for, that level asks for every patient there. Retry your mistakes to raise your share right.
         </small>
       </section>
 
@@ -179,9 +228,16 @@ export default function CertificatesPage() {
             </div>
             <ol className="certs-ladder">
               {levels.map((s) => {
-                const have = issued.find((c) => same(c, s));
+                const have = issued.find((c) => same(c, s) && c.verification === 'server-graded') ?? issued.find((c) => same(c, s));
                 return (
-                  <li key={s.level} id={`cert-${certKey(s.area, s.level)}`} className={s.eligible ? 'ok' : ''} style={{ ['--lvl' as string]: LEVEL_STYLE[s.level].ring[0] }}>
+                  <li
+                    key={s.level}
+                    id={`cert-${certKey(s.area, s.level)}`}
+                    className={s.eligible ? 'ok' : ''}
+                    style={{
+                      ['--lvl' as string]: LEVEL_STYLE[s.level].ring[0],
+                    }}
+                  >
                     <div className="certs-step-head">
                       <span className="certs-badge" aria-hidden="true">
                         {s.level}
@@ -196,8 +252,8 @@ export default function CertificatesPage() {
                       {have ? <span className="chip ok">Issued</span> : s.eligible ? <span className="chip accent">Ready</span> : null}
                     </div>
                     <span className="faint certs-numbers">
-                      {s.read}/{s.needPatients} patients · {s.judged}/{s.needJudged} graded{s.independent ? ' without hints' : ''} ·{' '}
-                      {s.accuracy === null ? 'no graded answers yet' : `${pct(s.accuracy)} right`} (needs {pct(s.minAccuracy)})
+                      {s.read}/{s.needPatients} patients · {s.judged}/{s.needJudged} graded
+                      {s.independent ? ' without hints' : ''} · {s.accuracy === null ? 'no graded answers yet' : `${pct(s.accuracy)} right`} (needs {pct(s.minAccuracy)})
                     </span>
                     <div
                       className="cert-bar"
@@ -221,10 +277,10 @@ export default function CertificatesPage() {
                           <button className="btn sm primary" onClick={openPlans}>
                             See plans
                           </button>
-                        ) : s.eligible ? (
+                        ) : s.eligible && (!have || have.verification !== 'server-graded') ? (
                           signedIn ? (
                             <button className="btn sm primary" onClick={() => startClaim(s)}>
-                              {have ? 'Renew' : 'Finish certification'}
+                              Finish certification
                             </button>
                           ) : null
                         ) : have ? null : (
@@ -234,11 +290,22 @@ export default function CertificatesPage() {
                         )}
                       </span>
                     </div>
-                    {claiming && same({ area: claiming.area, level: claiming.level } as IssuedCertificate, s) ? (
+                    {claiming &&
+                    same(
+                      {
+                        area: claiming.area,
+                        level: claiming.level,
+                      } as IssuedCertificate,
+                      s,
+                    ) ? (
                       <div className="cert-claim">
                         <label>
                           Name on the certificate
                           <input value={name} onChange={(e) => setName(e.target.value)} maxLength={80} placeholder="Your full name" autoFocus />
+                        </label>
+                        <p>Your name and achievement will be visible to anyone with the verification link. Once issued, this record cannot be edited.</p>
+                        <label>
+                          <input type="checkbox" checked={email} onChange={(e) => setEmail(e.target.checked)} /> Email me the certificate and LinkedIn link
                         </label>
                         <div className="row" style={{ gap: 6 }}>
                           <button className="btn primary" disabled={busy || name.trim().length < 2} onClick={() => void claim()}>
