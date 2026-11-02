@@ -47,7 +47,7 @@ describe('paid access policy', () => {
     expect(calls[0].options.idempotencyKey).toBe(calls[1].options.idempotencyKey);
     expect(new Set([calls[0], calls[2], calls[3]].map(c => c.options.idempotencyKey)).size).toBe(3);
     expect(calls[3].body.affiliate_code).toBeUndefined();
-    expect(calls[4].body).toMatchObject({ plan_id: 'plan_legacy_monthly', affiliate_code: 'student-one' });
+    expect(calls[4].body).toMatchObject({ plan_id: 'plan_monthly', affiliate_code: 'student-one' });
   });
   it('builds a referral link only for an exact verified member and suppresses known self-referrals', async () => {
     await createSession({ sub: 'clerk_referrer', provider: 'clerk', email: 'member@example.com', emailVerified: true });
@@ -121,12 +121,11 @@ describe('paid access policy', () => {
     fake.records.set('rvm:whop-user:u', 'user_test');
     expect(await checkout('u', 'yearly')).toEqual({ id: 'ch_test', url: 'https://whop.com/checkout/ch_test', returnUrl: 'https://radiology.monster/?checkout=returned' });
   });
-  it.each(['nadin', 'nadin1'])('routes %s to the legacy offer and never lets it discount yearly', async promo => {
+  it.each(['nadin', 'nadin1', 'empa', 'test123', 'future-promo'])('prefills %s on the current monthly offer and never on yearly', async promo => {
     const result = await checkout('new-customer', 'monthly', ` ${promo.toUpperCase()} `);
     expect(result.promoCode).toBe(promo);
-    expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: 'plan_legacy_monthly' } });
+    expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: 'plan_monthly' } });
     await expect(checkout('new-customer', 'yearly', promo)).rejects.toThrow('not available');
-    await expect(checkout('new-customer', 'monthly', 'empa')).rejects.toThrow('not available');
     expect(fake.checkoutCalls).toHaveLength(1);
   });
   it('binds yearly checkout to the yearly plan and rejects wrong annual terms', async () => {
@@ -168,15 +167,13 @@ describe('paid access policy', () => {
 
 describe('sessions and request boundaries', () => {
   const request = (cookie: string, path = '/api/session', method = 'GET', body?: unknown, origin = 'https://radiology.monster') => new Request(`https://radiology.monster${path}`, { method, headers: { Cookie: cookie.split(';')[0], Origin: origin, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
-  it('accepts NADIN1 for monthly checkout, prefills the code and rejects yearly or unapproved codes', async () => {
+  it.each(['NADIN1', 'TEST123', 'EMPA', 'NEW-OFFER'])('passes %s to Whop on the current monthly plan and rejects yearly', async promo => {
     const token = await createSession({ sub: 'user_promo', email: 'promo-buyer@example.com', emailVerified: true });
-    const response = await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'monthly', promoCode: ' NADIN1 ' }));
+    const response = await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'monthly', promoCode: ` ${promo} ` }));
     expect(response.status).toBe(200);
-    expect(await response.json()).toMatchObject({ id: 'ch_test', promoCode: 'nadin1' });
-    expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: 'plan_legacy_monthly' } });
-    for (const body of [{ tier: 'yearly', promoCode: 'nadin1' }, { tier: 'monthly', promoCode: 'nadin2' }]) {
-      expect((await handle(request(token, '/api/billing/checkout', 'POST', body))).status).toBe(400);
-    }
+    expect(await response.json()).toMatchObject({ id: 'ch_test', promoCode: promo.toLowerCase() });
+    expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: 'plan_monthly' } });
+    expect((await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'yearly', promoCode: promo }))).status).toBe(400);
     expect(fake.checkoutCalls).toHaveLength(1);
   });
   it('exchanges a verified Clerk identity for a secure app session and preserves free admin access', async () => {
