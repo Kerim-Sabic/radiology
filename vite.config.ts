@@ -55,7 +55,7 @@ const landingPreview = (): Plugin => ({
       res.setHeader('Content-Type', 'application/json');
       res.end(JSON.stringify({ auth: true, billing: true }));
     });
-    // /api/mock?as=free|member|out switches the pretend account (a cookie), to preview each view of the gate.
+    // /api/mock?as=free|student|member|out switches the pretend account (a cookie), to preview each view of the gate.
     server.middlewares.use('/api/mock', (req, res) => {
       const as = new URL(req.url ?? '', 'http://x').searchParams.get('as') ?? 'out';
       res.statusCode = 303;
@@ -67,6 +67,7 @@ const landingPreview = (): Plugin => ({
       const as = /(?:^|;\s*)rvm-mock=(\w+)/.exec(req.headers.cookie ?? '')?.[1];
       const user = { name: 'Test Student', email: 'student@example.com' };
       res.setHeader('Content-Type', 'application/json');
+      if (as === 'student') return res.end(JSON.stringify({ user: { ...user, email: 'student@stu.ssst.edu.ba' }, access: { active: false }, billingReady: true, book: false, studentDiscountEligible: true }));
       if (as === 'free') return res.end(JSON.stringify({ user, access: { active: false }, billingReady: true, book: false }));
       if (as === 'member') return res.end(JSON.stringify({ user, access: { active: true, tier: 'yearly', expiresAt: null }, billingReady: true, book: false }));
       res.statusCode = 401;

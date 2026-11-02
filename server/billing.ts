@@ -5,6 +5,7 @@ import { hash, isAdmin, random } from './auth.js';
 import { merchantToken } from './oauth.js';
 import { grantActive, grantFor } from './grants.js';
 import { affiliateCode } from '../shared/referrals.js';
+import { checkoutDiscount } from './studentDiscount.js';
 
 export async function whop() {
   return new WhopClient({ token: await merchantToken(), apiVersionDate: '2026-10-15-1', timeoutInSeconds: 15, maxRetries: 1 });
@@ -137,6 +138,7 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   const client = await whop();
   const plan = await client.variants.retrieve({ id: planId });
   validatePlan(plan, tier);
+  const discount = await checkoutDiscount(client, userId, tier, planId, promo);
   let affiliate = affiliateCode(referralCode);
   if (affiliate && (await referralProfile(userId)).code === affiliate) affiliate = undefined;
   const key = `rvm:checkout:${userId}:${planId}:${hash(appOrigin())}${affiliate ? `:${hash(affiliate)}` : ''}`;
@@ -152,7 +154,7 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   const url = safeWhopUrl(config.purchase_url);
   if (!url) throw new Error('Whop did not return a checkout URL');
   if (!/^ch_[A-Za-z0-9]+$/.test(config.id)) throw new Error('Whop did not return an embedded checkout configuration');
-  return { id: config.id, url, ...(promo ? { promoCode: promo } : {}), returnUrl: `${appOrigin()}/?checkout=returned` };
+  return { id: config.id, url, ...discount, returnUrl: `${appOrigin()}/?checkout=returned` };
 }
 
 export function paymentGrantsAccess(payment: Pick<Whop.Payment, 'status' | 'substatus'>) {
