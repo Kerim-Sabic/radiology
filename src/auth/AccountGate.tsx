@@ -17,7 +17,7 @@ function rememberedPlan(): Tier | null { try { const value = sessionStorage.getI
 function rememberPlan(tier: Tier | null) { try { if (tier) sessionStorage.setItem(planKey, tier); else sessionStorage.removeItem(planKey); } catch { /* Storage is optional. */ } }
 
 interface Access { active: boolean; role?: 'admin' | 'granted'; tier?: Tier | 'lifetime'; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
-interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; book?: boolean; }
+interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; book?: boolean; studentDiscountEligible?: boolean; }
 interface AccountState {
   account: Account;
   logout: () => void;
@@ -83,7 +83,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
     if (q.has('plans') || q.has('checkout')) { q.delete('plans'); q.delete('checkout'); history.replaceState(null, '', `${location.pathname}${q.size ? `?${q}` : ''}`); }
   }
   const [promoCode, setPromoCode] = useState(rememberedPromo);
-  const [payment, setPayment] = useState<{ id: string; returnUrl: string; tier: Tier; promoCode?: string } | null>(null);
+  const [payment, setPayment] = useState<{ id: string; returnUrl: string; tier: Tier; promoCode?: string; enteredPromoCode: string; studentDiscount?: boolean } | null>(null);
   function updatePromo(value: string) {
     setPromoCode(value);
     try { if (value) sessionStorage.setItem(promoKey, value); else sessionStorage.removeItem(promoKey); } catch { /* Optional storage. */ }
@@ -193,12 +193,13 @@ function MembershipGate({ children }: { children: ReactNode }) {
     setBusy(tier); setError('');
     try {
       const affiliate = currentReferral() || referral;
-      const response = await fetch('/api/billing/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tier, ...(promoCode.trim() ? { promoCode: promoCode.trim() } : {}), ...(affiliate ? { affiliateCode: affiliate } : {}) }) });
+      const enteredPromoCode = promoCode.trim().toLowerCase();
+      const response = await fetch('/api/billing/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tier, ...(enteredPromoCode ? { promoCode: enteredPromoCode } : {}), ...(affiliate ? { affiliateCode: affiliate } : {}) }) });
       const data = await response.json();
       if (!mounted.current || current !== checkoutGeneration.current) return;
       if (!response.ok) throw new Error(data.error);
       if (!/^ch_[A-Za-z0-9]+$/.test(data.id)) throw new Error('Unable to open the payment form. Please try again.');
-      setPayment({ id: data.id, returnUrl: data.returnUrl, tier, promoCode: data.promoCode });
+      setPayment({ id: data.id, returnUrl: data.returnUrl, tier, promoCode: data.promoCode, enteredPromoCode, studentDiscount: data.studentDiscount });
       setPlansOpen(true); // "Change plan" goes back to the plans, not to the app
       rememberPlan(null);
     } catch (e) { if (mounted.current && current === checkoutGeneration.current) setError(e instanceof Error ? e.message : 'Checkout is unavailable. Please try again.'); }
@@ -221,7 +222,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
 
   if (account?.access.active) return <AccountContext.Provider value={{ account, logout, free: false, openPlans }}>{children}</AccountContext.Provider>;
   if (loading) return <div className="membership-loading" role="status"><ScanLine size={30} /><p>Opening your study space…</p></div>;
-  const checkoutCodeChanged = promoCode.trim().toLowerCase() !== (payment?.promoCode || '').toLowerCase();
+  const student = account?.studentDiscountEligible === true;
+  const checkoutCodeChanged = promoCode.trim().toLowerCase() !== (payment?.enteredPromoCode || '');
   const panel = <>
     <section className="membership-panel" id="plans" aria-label="Membership">
       {payment && account?.user ? <>
@@ -229,36 +231,39 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <span className="membership-step">Checkout</span>
         <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
         <p className="checkout-account">{account.user.email}</p>
+        {payment.studentDiscount && <p className="student-offer" role="status"><strong>30% student discount applied</strong><span>{payment.tier === 'monthly' ? '$14 USD every 30 days' : '$105 USD every 365 days'}, including every renewal. {payment.enteredPromoCode ? 'Your student offer gives a better recurring price than that code.' : 'Your university email is verified.'}</span></p>}
+        {student && payment.studentDiscount === false && <p className="student-offer">Your promo gives an equal or better recurring discount. Discounts do not stack.</p>}
         <form className="promo-entry checkout-promo" onSubmit={event => { event.preventDefault(); if (!busy && checkoutCodeChanged) void buy(payment.tier); }}>
           <label htmlFor="checkout-promo">Promo code</label>
-          <div className="checkout-promo-row"><input id="checkout-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} disabled={!!busy} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code" /><button type="submit" className="text-button" disabled={!!busy || !checkoutCodeChanged}>{busy ? 'Updating…' : payment.promoCode && !promoCode.trim() ? 'Remove code' : 'Apply code'}</button></div>
+          <div className="checkout-promo-row"><input id="checkout-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} disabled={!!busy} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code" /><button type="submit" className="text-button" disabled={!!busy || !checkoutCodeChanged}>{busy ? 'Updating…' : payment.enteredPromoCode && !promoCode.trim() ? 'Remove code' : 'Apply code'}</button></div>
           <p>Apply your code here so we can open the matching offer. Whop confirms the discount before payment.</p>
         </form>
         {busy || checkoutCodeChanged ? <p className="checkout-loading" role="status">{busy ? 'Updating your payment form…' : 'Apply your code to update the price before paying.'}</p> : <Suspense fallback={<p className="checkout-loading" role="status">Loading secure payment form…</p>}>
-          <EmbeddedCheckout key={payment.id} id={payment.id} returnUrl={payment.returnUrl} email={account.user.email} promoCode={payment.promoCode} onComplete={() => { setReturned(true); void refreshPayment(); }} />
+          <EmbeddedCheckout key={`${payment.id}:${payment.promoCode || ''}`} id={payment.id} returnUrl={payment.returnUrl} email={account.user.email} promoCode={payment.promoCode} onComplete={() => { setReturned(true); void refreshPayment(); }} />
         </Suspense>}
         <p className="membership-fine">{payment.promoCode ? 'Your code is prefilled in the payment form. Review the discounted recurring total before paying; Whop confirms whether it is still available.' : payment.tier === 'monthly' ? 'Standard price: $20 USD every 30 days.' : 'Standard price: $150 USD every 365 days.'} Discounts and any applicable tax are shown in the payment form. Cancel future renewals from Billing. Access opens after payment is verified.</p>
       </> : <>
       <span className="membership-step">{account?.user ? 'Choose your plan' : 'Membership'}</span>
       <h2>{account?.user ? 'Unlock the whole library.' : 'The whole library, every tool.'}</h2>
       <p>{account?.user ? `Signed in as ${account.user.email}` : 'One membership for every patient, drill and on-call shift, with the book beside you.'}</p>
+      <p className="student-offer"><strong>{student ? 'Your verified university email unlocks 30% off' : '30% off for eligible university email addresses'}</strong><span>{student ? 'Student prices include every renewal. A better recurring promo takes precedence; discounts do not stack.' : 'Verify an eligible email, including .edu, .edu.ba or .ac.uk, for $14 every 30 days or $105 every 365 days. The discount continues on every renewal.'}</span></p>
       {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
       <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>Choose a plan below. Your discount will appear in the secure payment form.</p></details>
       <div className="membership-plans">
         <article className="membership-plan yearly" aria-labelledby="yearly-plan-title">
           <span className="membership-best">Best value</span>
           <div className="plan-heading"><h3 id="yearly-plan-title">Yearly</h3><span>For a year of steady progress</span></div>
-          <div className="membership-price">$12.50<span>/ month</span></div>
-          <p className="plan-billing"><strong>$150 billed yearly</strong><span>One payment every 365 days.</span></p>
-          <div className="plan-value"><strong>Save $90</strong><span>vs. 12 monthly payments</span></div>
+          <div className="membership-price">{student ? '$8.75' : '$12.50'}<span>/ month</span></div>
+          <p className="plan-billing"><strong>{student ? '$105' : '$150'} billed yearly</strong><span>One payment every 365 days.{student ? ' Student price, every renewal.' : ''}</span></p>
+          <div className="plan-value"><strong>Save {student ? '$63' : '$90'}</strong><span>vs. 12 monthly payments</span></div>
           <p className="plan-access">Full access for your whole study year.</p>
           <button aria-describedby="yearly-billing-note" disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('yearly')}>{busy === 'yearly' ? 'Preparing payment…' : 'Start yearly'}<ArrowRight size={17} /></button>
           <p className="plan-cancel" id="yearly-billing-note">Billed annually. Cancel future renewals anytime.</p>
         </article>
         <article className="membership-plan monthly" aria-labelledby="monthly-plan-title">
           <div className="plan-heading"><h3 id="monthly-plan-title">Monthly</h3><span>For a shorter study stretch</span></div>
-          <div className="membership-price">$20<span>/ month</span></div>
-          <p className="plan-billing"><strong>$20 billed every 30 days</strong><span>A smaller upfront payment.</span></p>
+          <div className="membership-price">{student ? '$14' : '$20'}<span>/ month</span></div>
+          <p className="plan-billing"><strong>{student ? '$14' : '$20'} billed every 30 days</strong><span>{student ? 'Student price, every renewal.' : 'A smaller upfront payment.'}</span></p>
           <p className="plan-access">The same full access, one month at a time.</p>
           <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('monthly')}>{busy === 'monthly' ? 'Preparing payment…' : 'Choose monthly'}<ArrowRight size={17} /></button>
           <p className="plan-cancel">Cancel future renewals anytime.</p>

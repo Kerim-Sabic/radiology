@@ -1,7 +1,7 @@
 import { beforeEach, afterAll, describe, expect, it, vi } from 'vitest';
 import type { Whop } from '@whop/sdk';
 
-const fake = vi.hoisted(() => ({ records: new Map<string, unknown>(), members: [] as unknown[], memberships: [] as unknown[], payments: [] as unknown[], checkoutCalls: [] as unknown[], revoke: vi.fn(), exchange: vi.fn(), identity: vi.fn(), clerkIdentity: vi.fn() }));
+const fake = vi.hoisted(() => ({ records: new Map<string, unknown>(), members: [] as unknown[], memberships: [] as unknown[], payments: [] as unknown[], checkoutCalls: [] as unknown[], revoke: vi.fn(), exchange: vi.fn(), identity: vi.fn(), clerkIdentity: vi.fn(), promoCreate: vi.fn(), promoRetrieve: vi.fn(), promoList: vi.fn() }));
 vi.mock('../server/clerk', () => ({ clerkIdentity: fake.clerkIdentity }));
 vi.mock('../server/store', () => {
   const store = {
@@ -15,6 +15,7 @@ vi.mock('../server/store', () => {
 });
 vi.mock('../server/oauth', () => ({ merchantToken: async () => 'test-token', exchange: fake.exchange, identity: fake.identity, revoke: fake.revoke }));
 vi.mock('@whop/sdk', () => ({ WhopClient: class {
+  promoCodes = { create: fake.promoCreate, retrieve: fake.promoRetrieve, list: fake.promoList };
   members = { list: async () => ({ async *[Symbol.asyncIterator]() { yield* fake.members; } }) };
   memberships = { list: async () => ({ data: fake.memberships, async *[Symbol.asyncIterator]() { yield* fake.memberships; } }) };
   payments = { list: async () => ({ data: fake.payments }) };
@@ -26,15 +27,112 @@ import { accessFor, checkout, membershipAccess, paymentGrantsAccess, safeWhopUrl
 import { beginSignIn, createSession, finishSignIn, hash, session } from '../server/auth';
 import { handle } from '../server/handler';
 import { mailboxKey } from '../server/mailbox';
+import { studentEligible } from '../server/studentDiscount';
 
 const future = () => new Date(Date.now() + 86400000).toISOString();
 const member = (changes = {}) => ({ id: 'mem_test', account: { id: 'biz_test' }, plan_id: 'plan_monthly', status: 'active', current_period_end: future(), expires_at: null, manage_url: 'https://whop.com/billing', user_id: 'user_test', product_id: 'prod_test', ...changes }) as Whop.Membership;
 
 beforeEach(() => {
   fake.records.clear(); fake.members = []; fake.memberships = []; fake.payments = []; fake.checkoutCalls = []; fake.clerkIdentity.mockReset();
+  fake.promoCreate.mockReset(); fake.promoRetrieve.mockReset(); fake.promoList.mockReset();
   for (const [k, v] of Object.entries({ ADMIN_EMAILS: '', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_YEARLY_PLAN_ID: 'plan_yearly', WHOP_LEGACY_MONTHLY_PLAN_ID: 'plan_legacy_monthly', WHOP_LIFETIME_PLAN_ID: 'plan_lifetime', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test' })) vi.stubEnv(k, v);
 });
 afterAll(() => vi.unstubAllEnvs());
+
+describe('verified university discounts', () => {
+  const eligible = () => fake.records.set('rvm:identity:student', { email: 'student@stu.ssst.edu.ba', emailVerified: true });
+  const offer = (changes = {}) => ({ id: 'promo_student', account: { id: 'biz_test' }, product: { id: 'prod_test' }, code: 'nadin1', status: 'active', promo_type: 'percentage', amount_off: .3, duration: 'forever', currency: 'usd', uses: 0, stock: 1, unlimited_stock: false, one_per_customer: true, new_users_only: false, churned_users_only: false, existing_memberships_only: false, expires_at: future(), ...changes });
+  beforeEach(() => {
+    eligible();
+    fake.promoCreate.mockImplementation(async body => {
+      fake.promoRetrieve.mockResolvedValue(offer({ code: body.code, expires_at: body.expires_at }));
+      return { id: 'promo_student' };
+    });
+  });
+  it.each(['monthly', 'yearly'] as const)('applies 30%% forever to the unchanged %s plan with one expiring redemption', async tier => {
+    const result = await checkout('student', tier, undefined, 'study-pal');
+    expect(result).toMatchObject({ studentDiscount: true, promoCode: expect.stringMatching(/^rvmstudent[a-f0-9]{24}$/) });
+    expect(fake.promoCreate.mock.calls[0][0]).toMatchObject({ account_id: 'biz_test', product_id: 'prod_test', plan_ids: [`plan_${tier}`], amount_off: 30, promo_type: 'percentage', promo_duration_months: 0, stock: 1, unlimited_stock: false, one_per_customer: true, new_users_only: false, churned_users_only: false, existing_memberships_only: false });
+    const expires = Date.parse(fake.promoCreate.mock.calls[0][0].expires_at);
+    expect(expires - Date.now()).toBeGreaterThan(23 * 3600000);
+    expect(expires - Date.now()).toBeLessThanOrEqual(24 * 3600000);
+    expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: `plan_${tier}`, affiliate_code: 'study-pal' } });
+  });
+  it.each([
+    { email: 'student@school.edu', emailVerified: false },
+    { email: 'student@gmail.com', emailVerified: true },
+    { email: 'student@school.edu.evil.com', emailVerified: true },
+  ])('requires a server-verified academic identity: %j', async identity => {
+    fake.records.set('rvm:identity:student', identity);
+    expect(await studentEligible('student')).toBe(false);
+    expect(await checkout('student', 'monthly', 'nadin1')).toMatchObject({ promoCode: 'nadin1' });
+    expect(fake.promoCreate).not.toHaveBeenCalled();
+  });
+  it('does not grant the offer to an account without an identity', async () => {
+    expect(await studentEligible('unknown')).toBe(false);
+    expect(await checkout('unknown', 'yearly')).not.toHaveProperty('promoCode');
+  });
+  it('reuses the same offer but retrieves fresh redemption status before every checkout', async () => {
+    const first = await checkout('student', 'monthly');
+    expect((await checkout('student', 'monthly')).promoCode).toBe(first.promoCode);
+    expect(fake.promoCreate).toHaveBeenCalledTimes(1);
+    expect(fake.promoRetrieve).toHaveBeenCalledTimes(2);
+    const current = await fake.promoRetrieve();
+    fake.promoRetrieve.mockResolvedValue({ ...current, uses: 1 });
+    await expect(checkout('student', 'monthly')).rejects.toThrow('could not confirm');
+    expect(fake.checkoutCalls).toHaveLength(2);
+  });
+  it('preserves the idempotency key after an ambiguous provider failure', async () => {
+    fake.promoCreate.mockRejectedValueOnce(new Error('Network timeout'));
+    await expect(checkout('student', 'monthly')).rejects.toThrow('could not confirm');
+    expect(fake.checkoutCalls).toHaveLength(0);
+    await checkout('student', 'monthly');
+    expect(fake.promoCreate.mock.calls[0]).toEqual(fake.promoCreate.mock.calls[1]);
+  });
+  it.each([
+    { amount_off: .95 }, { amount_off: 95 }, { amount_off: .30 },
+    { promo_type: 'flat_amount', amount_off: 6 },
+  ])('preserves a better or equal recurring promo: %j', async changes => {
+    fake.promoList.mockResolvedValue([offer(changes)]);
+    expect(await checkout('student', 'monthly', ' NADIN1 ')).toMatchObject({ promoCode: 'nadin1', studentDiscount: false });
+    expect(fake.promoList).toHaveBeenCalledWith(expect.objectContaining({ account_id: 'biz_test', plan_ids: ['plan_monthly'] }));
+    expect(fake.promoCreate).not.toHaveBeenCalled();
+  });
+  it.each([{ amount_off: .10 }, { amount_off: .95, duration: 'once' }, { promo_type: 'flat_amount', amount_off: 5 }])('uses the student offer when recurring savings are better: %j', async changes => {
+    fake.promoList.mockResolvedValue([offer(changes)]);
+    expect(await checkout('student', 'monthly', 'nadin1')).toMatchObject({ studentDiscount: true, promoCode: expect.stringMatching(/^rvmstudent/) });
+  });
+  it.each([{ uses: 1 }, { expires_at: '2020-01-01' }, { product: { id: 'prod_other' } }, { status: 'inactive' }])('rejects an unavailable entered code without opening payment: %j', async changes => {
+    fake.promoList.mockResolvedValue([offer(changes)]);
+    await expect(checkout('student', 'monthly', 'nadin1')).rejects.toThrow('not available');
+    expect(fake.checkoutCalls).toHaveLength(0);
+  });
+  it('does not accept another account’s generated offer as a manually entered code', async () => {
+    await expect(checkout('unknown', 'monthly', 'rvmstudent0123456789abcdef')).rejects.toThrow('automatically');
+    expect(fake.checkoutCalls).toHaveLength(0);
+  });
+  it.each([
+    { account: { id: 'biz_other' } }, { product: { id: 'prod_other' } }, { amount_off: .20 },
+    { duration: 'once' }, { unlimited_stock: true }, { stock: 2 }, { uses: 1 },
+    { expires_at: null }, { expires_at: '2020-01-01' }, { one_per_customer: false }, { new_users_only: true },
+  ])('fails closed if Whop does not confirm the exact student offer: %j', async changes => {
+    fake.promoCreate.mockImplementation(async body => {
+      fake.promoRetrieve.mockResolvedValue(offer({ code: body.code, expires_at: body.expires_at, ...changes }));
+      return { id: 'promo_student' };
+    });
+    await expect(checkout('student', 'monthly')).rejects.toThrow('could not confirm');
+    expect(fake.checkoutCalls).toHaveLength(0);
+  });
+  it('returns eligibility from the saved identity and rejects forged discount fields', async () => {
+    const cookie = (await createSession({ sub: 'student-api', email: 'student@uni.ac.uk', emailVerified: true })).split(';')[0];
+    const request = (path: string, body?: unknown) => new Request(`https://radiology.monster${path}`, { method: body ? 'POST' : 'GET', headers: { Cookie: cookie, Origin: 'https://radiology.monster', 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+    expect(await (await handle(request('/api/session'))).json()).toMatchObject({ studentDiscountEligible: true });
+    expect((await handle(request('/api/billing/checkout', { tier: 'monthly', studentDiscountEligible: true, email: 'fake@uni.edu' }))).status).toBe(400);
+    const response = await handle(request('/api/billing/checkout', { tier: 'yearly' }));
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({ studentDiscount: true });
+  });
+});
 
 describe('paid access policy', () => {
   it('credits the referral on both plans, keeps retries stable and isolates different referrers', async () => {

@@ -1024,6 +1024,19 @@
   }
 }
 
+.membership-panel .student-offer {
+  display: grid;
+  gap: 5px;
+  padding: 14px 16px;
+  border: 1px solid #34594b;
+  border-radius: 12px;
+  background: #14261e;
+  color: #d5eddf;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.student-offer span { color: #c0d5c8; }
+
 /* What makes each exam level harder, under its name in the levels table. */
 .certs-level-detail {
   display: block;

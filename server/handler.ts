@@ -14,6 +14,7 @@ import { certificateImage, certificatePageHtml } from './certificateShare.js';
 import { isAdmin } from './auth.js';
 import { addPerson, adminPeople, emailSignIn, removeFreeAccess, setFreeAccess } from './admin.js';
 import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
+import { studentEligible, StudentDiscountError } from './studentDiscount.js';
 
 export function json(value: unknown, status = 200) {
   return Response.json(value, { status, headers: { 'Cache-Control': 'private, no-store', 'CDN-Cache-Control': 'no-store', 'Vary': 'Cookie' } });
@@ -122,7 +123,7 @@ export async function handle(request: Request): Promise<Response> {
       if (access.active && !access.role) await countOnce('paid', user.userId);
       // Whether the book is served to this account now (named accounts get it without a plan).
       const book = bookGift(user.email) || (access.active && servesBook(user.email));
-      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book });
+      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book, studentDiscountEligible: await studentEligible(user.userId) });
     }
     if (path === '/api/access' && request.method === 'GET') {
       const access = await accessFor(user.userId);
@@ -225,6 +226,7 @@ export async function handle(request: Request): Promise<Response> {
     }
     return json({ error: 'Not found' }, 404);
   } catch (error) {
+    if (error instanceof StudentDiscountError) return json({ error: error.message }, 400);
     // Never log OAuth codes, cookies, API response bodies, or personal details.
     console.error('Account request failed', { path, kind: error instanceof Error ? error.name : 'UnknownError' });
     return json({ error: 'We could not verify your account or payment. Please try again shortly. You have not been given access yet.' }, 503);

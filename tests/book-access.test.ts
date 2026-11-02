@@ -2,6 +2,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 const fake = vi.hoisted(() => ({ session: vi.fn(), access: vi.fn(), head: vi.fn(), get: vi.fn() }));
 vi.mock('../server/auth', async original => ({ ...await original<typeof import('../server/auth')>(), session: fake.session }));
 vi.mock('../server/billing', () => ({ accessFor: fake.access, checkout: vi.fn() }));
+vi.mock('../server/studentDiscount', async original => ({ ...await original<typeof import('../server/studentDiscount')>(), studentEligible: async () => false }));
 vi.mock('@vercel/blob', () => ({ head: fake.head, get: fake.get }));
 import { handle } from '../server/handler';
 import { BOOK_PATH, BOOK_SIZE, bookAccountKey, bookGift, bookRange, mailbox, servesBook } from '../server/book';
