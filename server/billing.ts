@@ -4,6 +4,7 @@ import { db } from './store.js';
 import { hash, isAdmin, random } from './auth.js';
 import { merchantToken } from './oauth.js';
 import { grantActive, grantFor } from './grants.js';
+import { professorRole } from './roles.js';
 import { affiliateCode } from '../shared/referrals.js';
 import { checkoutDiscount } from './studentDiscount.js';
 import { PromoUnavailableError } from './checkoutError.js';
@@ -31,8 +32,8 @@ export async function referralProfile(userId: string) {
   // then redirects to radiology.monster with the affiliate's public username.
   return { shareUrl: code ? `https://whop.com/e/trk_zpdZ5h59TRkTrN/${encodeURIComponent(code)}` : null, code };
 }
-/** `role`: an admin, or free access an admin gave (neither is a payment). */
-export interface Access { active: boolean; role?: 'admin' | 'granted'; tier?: AccessTier; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
+/** `role`: an admin, free access an admin or a class gave, or a professor (none is a payment). */
+export interface Access { active: boolean; role?: 'admin' | 'granted' | 'professor'; tier?: AccessTier; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
 
 export function membershipAccess(m: Pick<Whop.Membership, 'account' | 'plan_id' | 'status' | 'current_period_end' | 'expires_at' | 'manage_url'>, now = Date.now()): Access {
   if (m.account.id !== required('WHOP_ACCOUNT_ID')) return { active: false };
@@ -78,6 +79,7 @@ export async function accessFor(userId: string, fresh = false): Promise<Access> 
 async function grantedAccess(userId: string): Promise<Access | null> {
   const identity = await db().get<{ email: string; emailVerified: boolean }>(`rvm:identity:${userId}`);
   if (identity?.emailVerified !== true) return null;
+  if (await professorRole(identity.email)) return { active: true, role: 'professor', expiresAt: null };
   const grant = await grantFor(identity.email);
   return grant && grantActive(grant) ? { active: true, role: 'granted', expiresAt: grant.until } : null;
 }

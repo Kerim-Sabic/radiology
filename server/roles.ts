@@ -39,3 +39,39 @@ export async function allAdminRoles(): Promise<AdminRole[]> {
   const found = (await db().mget<Array<AdminRole | null>>(...keys.map((k) => `rvm:admin:${k}`))) as Array<AdminRole | null>;
   return found.filter((r): r is AdminRole => !!r);
 }
+
+/**
+ * A professor the owner added. They teach a class on /class: add students by email and follow their study days, exam
+ * results and certificates. `seats` is how many of their students they may give free access (0: none), until `freeUntil`.
+ */
+export interface ProfessorRole {
+  email: string;
+  seats: number;
+  /** End of the free access their students get (ISO time), or null for no end date. */
+  freeUntil: string | null;
+  by: string;
+  at: string;
+}
+
+const professorKey = (email: string) => `rvm:professor:${mailboxKey(email)}`;
+
+export async function professorRole(email: string): Promise<ProfessorRole | null> {
+  return db().get<ProfessorRole>(professorKey(email));
+}
+
+export async function setProfessorRole(r: ProfessorRole) {
+  await db().set(professorKey(r.email), r);
+  await db().sadd('rvm:professors', mailboxKey(r.email));
+}
+
+export async function removeProfessorRole(email: string) {
+  await db().del(professorKey(email));
+  await db().srem('rvm:professors', mailboxKey(email));
+}
+
+export async function allProfessorRoles(): Promise<ProfessorRole[]> {
+  const keys = (await db().smembers('rvm:professors')) as string[];
+  if (!keys.length) return [];
+  const found = (await db().mget<Array<ProfessorRole | null>>(...keys.map((k) => `rvm:professor:${k}`))) as Array<ProfessorRole | null>;
+  return found.filter((r): r is ProfessorRole => !!r);
+}

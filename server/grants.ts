@@ -11,9 +11,11 @@ export interface Grant {
   until: string | null;
   /** A private note for the admins (who it is, why). */
   note?: string;
-  /** The admin who gave it, and when. */
+  /** The admin (or professor) who gave it, and when. */
   by: string;
   at: string;
+  /** Given through a professor's class (the professor's mailbox key): it ends when the student leaves the class. */
+  classOf?: string;
 }
 
 const grantKey = (email: string) => `rvm:grant:${mailboxKey(email)}`;

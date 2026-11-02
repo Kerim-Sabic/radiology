@@ -8,6 +8,7 @@ import { ERROR_LABELS, type ErrorCategory } from '../grading/types';
 import { OutcomeBadge } from '../components/ui';
 import { ActivityCalendar } from '../components/ActivityCalendar';
 import { CertificatesSummary } from '../components/Certificates';
+import { ClassNotice } from '../components/ClassNotice';
 import { dailyActivity, streak, type ActivityLog } from '../services/activity';
 
 export default function ProgressPage() {
@@ -48,6 +49,7 @@ export default function ProgressPage() {
 
   return (
     <div className="page-inner stack" style={{ gap: 18 }}>
+      <ClassNotice />
       <div className="row wrap">
         <h1>Progress</h1>
         <span className="spacer" />

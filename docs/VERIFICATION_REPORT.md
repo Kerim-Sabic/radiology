@@ -396,6 +396,26 @@ The form shows the resulting prices before you create a code. The list shows eac
 
 `tests/billing.test.ts` covers yearly codes. `e2e/admin.spec.ts` has 9 tests, run in Chromium and Firefox, including the price preview and the shared link.
 
+## 3l. Professors and classes (3 November)
+
+A new role, **Professor**, set by the owner with an optional number of free places and an end date. A professor's **My class** page adds students by pasting their emails (accounts are made, sign-in emails sent). For each student it shows:
+- study days this week and in 30 days
+- last activity
+- the last exam result per area and level, with its score
+- certificates, linked to their verification pages
+
+Free access given through a class is marked with it. It ends when the student leaves, is removed, or the professor's role ends, and follows the professor's end date when the owner changes it. Students see on Settings and Progress who can follow their progress, and can leave. Professors see no payments, and admins see only the role, not its free places. On a phone each student is a card; at 1440 px "My class" is an icon in the top bar, so nothing scrolls sideways.
+
+**Tests:** 623 unit tests. `tests/admin.test.ts`, "professors and their classes", covers:
+- who gets the class page, and that everyone else gets "Not found"
+- adding students: accounts made, free places used up in order, emails sent, duplicates skipped
+- the roster's study days, exam scores and certificates, with no payment data
+- a student leaving and a professor removing, so only class free access ends
+- the owner's end date and removing the role
+- what other admins can see
+
+`e2e/class.spec.ts` has 4 tests, run in Chromium and Firefox.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

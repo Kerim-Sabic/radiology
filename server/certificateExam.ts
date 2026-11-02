@@ -252,7 +252,7 @@ async function finish(e: ServerExam, now: Date) {
     finishedAt: e.finishedAt,
   };
   await save(e);
-  await db().set(lastExamKey(e.userId, e.area, e.level), { finishedAt: e.finishedAt, passed: e.result.passed }, { ex: NINETY_DAYS });
+  await db().set(lastExamKey(e.userId, e.area, e.level), { finishedAt: e.finishedAt, passed: e.result.passed, score: e.result.score }, { ex: NINETY_DAYS });
   if ((await db().get<string>(openKey(e.userId))) === e.id) await db().del(openKey(e.userId));
   return e;
 }

@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router';
 import { Tooltip } from 'radix-ui';
-import { Award, BookOpen, Bone, ChartColumn, CircleHelp, FolderOpen, GraduationCap, House, Library, Lock, Search, Settings as SettingsIcon, NotebookPen, Siren, Stethoscope, Target, UsersRound } from 'lucide-react';
+import { Award, BookOpen, Bone, ChartColumn, CircleHelp, FolderOpen, GraduationCap, House, Library, Lock, Search, Settings as SettingsIcon, NotebookPen, School, Siren, Stethoscope, Target, UsersRound } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 import { AccountMenu } from './auth/AccountGate';
@@ -26,6 +26,7 @@ const DrillPage = lazy(() => import('./pages/Drill'));
 const ConditionsPage = lazy(() => import('./pages/Conditions'));
 const OnCallPage = lazy(() => import('./pages/OnCall'));
 const AdminPage = lazy(() => import('./pages/Admin'));
+const ClassPage = lazy(() => import('./pages/Class'));
 const CertificatesPage = lazy(() => import('./pages/Certificates'));
 const ExamResultPage = lazy(() => import('./pages/ExamResult'));
 
@@ -82,6 +83,7 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
     { to: '/import', label: 'Import', icon: <FolderOpen size={16} />, minor: true },
     { to: '/author', label: 'Author', icon: <NotebookPen size={16} />, minor: true },
     { to: '/settings', label: 'Settings', icon: <SettingsIcon size={16} />, minor: true },
+    ...(account?.teaches ? [{ to: '/class', label: 'My class', icon: <School size={16} />, minor: true }] : []),
     ...(admin ? [{ to: '/admin', label: 'Admin', icon: <UsersRound size={16} />, minor: true }] : []),
   ];
   return (
@@ -195,6 +197,7 @@ export function App() {
               <Route path="/author" element={<AuthorPage />} />
               <Route path="/guide" element={<GuidePage />} />
               <Route path="/admin" element={<AdminPage />} />
+              <Route path="/class" element={<ClassPage />} />
               <Route path="*" element={<div className="page-inner"><h1>Not found</h1><p className="muted">This address does not exist. <NavLink to="/">Go to Today</NavLink>.</p></div>} />
             </Routes>
             )}

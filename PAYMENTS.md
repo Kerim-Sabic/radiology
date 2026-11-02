@@ -40,6 +40,14 @@ The Whop app is a public OAuth client. Register `https://www.radiology.monster/a
 
 This repository is public, so the code itself shows that an owner level exists; only who it is and what each admin may do stay private.
 
+**Professors and classes (`server/classes.ts`; the role in `server/roles.ts`).**
+- **The role:** the owner makes someone a Professor on the admin page (roles are one at a time: user, professor or admin). A professor uses the whole app (shown as "Professor · free access"; a paid plan still wins) and gets **My class** (`/class`).
+- **Adding students:** a professor pastes up to 100 student emails at a time, 500 per class. Each gets an account if they have none, and can be emailed how to sign in.
+- **What the professor sees:** each student's study days (7 and 30 days), last activity, the last exam result per area and level (with the score from 3 November 2026 on), and their certificates. Never answers or payments.
+- **Free places:** the owner can give a professor free places, for example 30 students until 30 June. New students then get free access marked with the class, as long as places last. A student who already has free access keeps theirs, and it uses no place.
+- **Ending free access:** it ends when the student leaves or is removed. Changing the professor's end date moves it, and removing the role ends it; the roster is kept in case the role comes back.
+- **What students are told:** on Settings and Progress, students see who can follow their progress, and can leave the class themselves.
+
 **Promo codes on the admin page (`server/promos.ts`; the owner, or an admin given "promo codes").**
 - **Creating a code in Whop:** the code, % or $ off, and the plans (monthly, yearly or both). Then how long the discount lasts: the first payment, a number of months (Whop's `promo_duration_months`), or every payment (`0`). Optional limits: a total number of uses, one use per person, new customers only, and a last day.
 - **The list** shows every code with its uses (Whop's `stock` counts down: it is the uses left, so the total is used + left), and lets you pause, resume or delete it. Deleting archives the code in Whop; memberships that already use it keep their discount. Student offers (`rvmstudent…`) are counted, not listed, and cannot be changed here.

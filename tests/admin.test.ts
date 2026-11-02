@@ -322,6 +322,125 @@ describe('promo codes', () => {
   });
 });
 
+describe('professors and their classes', () => {
+  const role = (cookie: string, body: unknown) => handle(request(cookie, '/api/admin/role', 'POST', body));
+  const nextYearDay = () => new Date(Date.now() + 365 * 86_400_000).toISOString().slice(0, 10);
+  async function professor(seats = 2, freeUntil: string | null = nextYearDay()) {
+    const owner_ = await owner();
+    fake.clerkUsers.push(clerkUser('clerk_prof', 'prof@ssst.edu.ba', 'Amra'));
+    expect(await (await role(owner_, { email: 'prof@ssst.edu.ba', role: 'professor', seats, freeUntil })).json()).toMatchObject({ ok: true, role: 'professor', seats });
+    const cookie = await createSession({ sub: 'clerk_prof', provider: 'clerk', email: 'prof@ssst.edu.ba', emailVerified: true, name: 'Prof. Amra Hodžić' });
+    return { owner_, cookie };
+  }
+  const add = (cookie: string, emails: string[], sendEmail = true) => handle(request(cookie, '/api/class/students', 'POST', { emails, sendEmail }));
+
+  it('gives a professor the whole app and their class page, and nobody else that page', async () => {
+    const { owner_, cookie } = await professor();
+    expect(await (await handle(request(cookie, '/api/session'))).json()).toMatchObject({ access: { active: true, role: 'professor' }, teaches: true });
+    expect(await (await handle(request(cookie, '/api/class'))).json()).toMatchObject({ free: { seats: 2, used: 0, left: 2, open: true }, summary: { students: 0 } });
+    // The owner, other admins and students get "Not found".
+    expect((await handle(request(owner_, '/api/class'))).status).toBe(404);
+    const student = await createSession({ sub: 'clerk_s', provider: 'clerk', email: 's@example.com', emailVerified: true });
+    expect((await handle(request(student, '/api/class'))).status).toBe(404);
+    expect((await handle(request(student, '/api/class/students', 'POST', { emails: ['x@example.com'], sendEmail: false }))).status).toBe(404);
+    // A professor is not an admin.
+    expect((await handle(request(cookie, '/api/admin/people'))).status).toBe(403);
+  });
+
+  it('adds students by email, makes their accounts and gives free access while places last', async () => {
+    const { cookie } = await professor(2);
+    fake.clerkUsers.push(clerkUser('clerk_old', 'old@example.com', 'Old'));
+    const r = await (await add(cookie, ['New.One@example.com', 'two@example.com', 'old@example.com', 'prof@ssst.edu.ba', 'not-an-email'.replace('not-an-email', 'three@example.com')])).json();
+    expect(r.results).toEqual([
+      { email: 'new.one@example.com', added: true, created: true, free: true, emailed: true },
+      { email: 'two@example.com', added: true, created: true, free: true, emailed: true },
+      { email: 'old@example.com', added: true, created: false, free: false, emailed: true },
+      { email: 'three@example.com', added: true, created: true, free: false, emailed: true },
+    ]);
+    expect(r.freeLeft).toBe(0);
+    expect(fake.mails[0]).toMatchObject({ to: ['new.one@example.com'], subject: 'You are in Prof. Amra Hodžić’s class on radiology.monster' });
+    expect(fake.mails[0].text).toContain('can see your study days, exam results and certificates');
+    expect(fake.mails[0].text).toContain('free access to everything until');
+    expect(fake.mails[2].text).not.toContain('free access');
+    expect(fake.records.get(`rvm:grant:${mailboxKey('two@example.com')}`)).toMatchObject({ by: 'prof@ssst.edu.ba', classOf: mailboxKey('prof@ssst.edu.ba'), note: 'Class of Prof. Amra Hodžić' });
+    // Adding again changes nothing.
+    expect((await (await add(cookie, ['two@example.com'], false)).json()).results).toEqual([{ email: 'two@example.com', added: false, note: 'already in your class' }]);
+    // The student sees the class and has access.
+    const student = await createSession({ sub: 'clerk_1', provider: 'clerk', email: 'new.one@example.com', emailVerified: true });
+    expect(await (await handle(request(student, '/api/session'))).json()).toMatchObject({ access: { active: true, role: 'granted' }, classes: [{ email: 'prof@ssst.edu.ba', name: 'Prof. Amra Hodžić' }] });
+    expect((await add(cookie, Array.from({ length: 101 }, (_, i) => `s${i}@example.com`))).status).toBe(400);
+  });
+
+  it('shows each student’s study days, exam results and certificates, never payments', async () => {
+    const { cookie } = await professor(0);
+    fake.clerkUsers.push(clerkUser('clerk_st', 'st@example.com', 'Lejla', Date.now() - 86_400_000));
+    await add(cookie, ['st@example.com'], false);
+    const id = hash('clerk:clerk_st');
+    const today = new Date().toISOString().slice(0, 10);
+    fake.records.set(`rvm:profile:${id}`, { email: 'st@example.com', name: 'Lejla', tz: 'UTC', days: ['2026-01-05', today], prefs: { streak: false, weekly: false } });
+    fake.records.set(`rvm:exam-last:${id}:chest:1`, { finishedAt: '2026-11-01T10:00:00.000Z', passed: true, score: 0.85 });
+    fake.records.set(`rvm:exam-last:${id}:head:2`, { finishedAt: '2026-11-02T10:00:00.000Z', passed: false });
+    fake.records.set('rvm:cert:RAD-2026-ABCDEF0123456789', { id: 'RAD-2026-ABCDEF0123456789', name: 'Lejla', area: 'chest', level: 1, title: 'Chest Imaging', patients: 15, judged: 15, accuracy: 0.85, issuedAt: '2026-11-01T10:05:00.000Z' });
+    fake.sets.set(`rvm:certs-v2:${id}`, new Set(['RAD-2026-ABCDEF0123456789']));
+    const r = await (await handle(request(cookie, '/api/class'))).json();
+    expect(r.free).toMatchObject({ seats: 0, open: false });
+    expect(r.summary).toMatchObject({ students: 1, signedUp: 1, active7: 1, examsPassed: 1, certificates: 1 });
+    expect(r.students[0]).toMatchObject({
+      email: 'st@example.com', name: 'Lejla', account: true, days7: 1, lastStudied: today, freeFromClass: null,
+      exams: [{ area: 'chest', level: 1, passed: true, score: 0.85 }, { area: 'head', level: 2, passed: false, score: null }],
+      certificates: [{ id: 'RAD-2026-ABCDEF0123456789', revoked: false }],
+    });
+    expect(r.students[0].certificates[0].title).toContain('Chest Imaging');
+    expect(JSON.stringify(r)).not.toMatch(/plan|paid|monthly|yearly/);
+  });
+
+  it('lets a student leave and a professor remove, ending only the free access the class gave', async () => {
+    const { owner_, cookie } = await professor(1);
+    // One student already had free access from an admin: it is not the class's to take away.
+    await handle(request(owner_, '/api/admin/free', 'POST', { email: 'kept@example.com', freeUntil: null }));
+    await add(cookie, ['kept@example.com', 'class@example.com'], false);
+    expect(fake.records.get(`rvm:grant:${mailboxKey('kept@example.com')}`)).not.toHaveProperty('classOf');
+    expect(fake.records.get(`rvm:grant:${mailboxKey('class@example.com')}`)).toMatchObject({ classOf: mailboxKey('prof@ssst.edu.ba') });
+    const classMate = await createSession({ sub: 'clerk_c', provider: 'clerk', email: 'class@example.com', emailVerified: true });
+    expect((await handle(request(classMate, '/api/class/leave', 'POST', { professor: 'someone@example.com' }))).status).toBe(400);
+    expect((await handle(request(classMate, '/api/class/leave', 'POST', { professor: 'prof@ssst.edu.ba' }))).status).toBe(200);
+    expect(fake.records.has(`rvm:grant:${mailboxKey('class@example.com')}`)).toBe(false);
+    expect(await (await handle(request(classMate, '/api/session'))).json()).not.toHaveProperty('classes');
+    expect((await handle(request(cookie, '/api/class/students/remove', 'POST', { email: 'kept@example.com' }))).status).toBe(200);
+    expect(fake.records.get(`rvm:grant:${mailboxKey('kept@example.com')}`)).toMatchObject({ until: null });
+    expect((await (await handle(request(cookie, '/api/class'))).json()).summary.students).toBe(0);
+    expect((await handle(request(cookie, '/api/class/students/remove', 'POST', { email: 'kept@example.com' }))).status).toBe(400);
+  });
+
+  it('follows the owner: a new end date moves the class’s free access, and ending the role ends it', async () => {
+    const { owner_, cookie } = await professor(5);
+    await add(cookie, ['a@example.com', 'b@example.com'], false);
+    const later = new Date(Date.now() + 500 * 86_400_000).toISOString().slice(0, 10);
+    await role(owner_, { email: 'prof@ssst.edu.ba', role: 'professor', seats: 5, freeUntil: later });
+    expect(fake.records.get(`rvm:grant:${mailboxKey('a@example.com')}`)).toMatchObject({ until: `${later}T23:59:59.999Z` });
+    // In the owner's list, with the class size; other admins see only the role.
+    const ownerView = await (await handle(request(owner_, '/api/admin/people'))).json();
+    expect(ownerView.people.find((x: { email: string }) => x.email === 'prof@ssst.edu.ba')).toMatchObject({ role: 'professor', access: 'professor', professor: { seats: 5, students: 2 } });
+    expect(ownerView.counts.professors).toBe(1);
+    const helper = await createSession({ sub: 'clerk_helper', provider: 'clerk', email: 'helper@example.com', emailVerified: true });
+    await role(owner_, { email: 'helper@example.com', role: 'admin', permissions: ['people'] });
+    const helperView = await (await handle(request(helper, '/api/admin/people'))).json();
+    expect(helperView.people.find((x: { email: string }) => x.email === 'prof@ssst.edu.ba')).toMatchObject({ role: 'professor' });
+    expect(helperView.people.find((x: { email: string }) => x.email === 'prof@ssst.edu.ba')).not.toHaveProperty('professor');
+    // Back to a user: no class page, no class free access, and students no longer see the class.
+    await role(owner_, { email: 'prof@ssst.edu.ba', role: 'user' });
+    expect((await handle(request(cookie, '/api/class'))).status).toBe(404);
+    expect(fake.records.has(`rvm:grant:${mailboxKey('a@example.com')}`)).toBe(false);
+    const a = await createSession({ sub: 'clerk_a', provider: 'clerk', email: 'a@example.com', emailVerified: true });
+    expect(await (await handle(request(a, '/api/session'))).json()).not.toHaveProperty('classes');
+    // A professor made an admin stops teaching too.
+    await role(owner_, { email: 'prof@ssst.edu.ba', role: 'professor', seats: 0 });
+    await role(owner_, { email: 'prof@ssst.edu.ba', role: 'admin', permissions: ['people'] });
+    expect((await handle(request(cookie, '/api/class'))).status).toBe(404);
+    expect((await role(owner_, { email: 'prof@ssst.edu.ba', role: 'professor', seats: 9999 })).status).toBe(400);
+  });
+});
+
 describe('creating accounts and free access', () => {
   it('creates a passwordless account with free access and emails the sign-in steps', async () => {
     const admin = await owner();

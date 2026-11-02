@@ -11,11 +11,13 @@ interface Person {
   firstVisit: string | null;
   lastStudied: string | null;
   studyDays: number;
-  access: 'admin' | 'paid' | 'member' | 'free' | 'none';
-  role: 'admin' | 'user';
+  access: 'admin' | 'paid' | 'member' | 'professor' | 'free' | 'none';
+  role: 'admin' | 'professor' | 'user';
   /** Only in the owner's view. */
   adminSource?: 'owner' | 'vercel' | 'dashboard';
   permissions?: Grantable[];
+  /** Only in the owner's view: a professor's free places for students, and class size. */
+  professor?: { seats: number; freeUntil: string | null; students: number };
   plan?: 'monthly' | 'yearly' | 'lifetime';
   paidUntil?: string | null;
   grant?: {
@@ -37,6 +39,7 @@ interface People {
     free: number;
     freeWaiting: number;
     admins: number;
+    professors: number;
     newAccounts: { d1: number; d7: number; d30: number };
     active: { d7: number; d30: number };
     studied: { d7: number; d30: number };
@@ -282,10 +285,10 @@ function AddPerson({ onDone, canFree }: { onDone: () => void; canFree: boolean }
   );
 }
 
-type Filter = 'all' | 'paid' | 'free' | 'none' | 'admin' | 'waiting';
+type Filter = 'all' | 'paid' | 'free' | 'none' | 'admin' | 'professor' | 'waiting';
 const PAGE = 100;
 
-const matches = (p: Person, f: Filter) => (f === 'all' ? true : f === 'waiting' ? !p.account : p.access === f);
+const matches = (p: Person, f: Filter) => (f === 'all' ? true : f === 'waiting' ? !p.account : f === 'professor' ? p.role === 'professor' : p.access === f);
 
 function PeopleList({ data, onChange, can }: { data: People; onChange: () => void; can: Can }) {
   const [query, setQuery] = useState('');
@@ -302,6 +305,7 @@ function PeopleList({ data, onChange, can }: { data: People; onChange: () => voi
     ['free', 'Free access'],
     ['none', 'Free edition'],
     ['admin', 'Admins'],
+    ['professor', 'Professors'],
     ['waiting', 'No account yet'],
   ];
   return (
@@ -388,6 +392,18 @@ function AccessCell({ p }: { p: Person }) {
       </>
     );
   if (p.access === 'member') return <span className="chip ok">Member</span>;
+  if (p.access === 'professor')
+    return (
+      <>
+        <span className="chip accent">Professor</span>
+        {p.professor ? (
+          <small className="faint">
+            {p.professor.students} student{p.professor.students === 1 ? '' : 's'}
+            {p.professor.seats ? ` · free access for ${p.professor.seats}` : ''}
+          </small>
+        ) : null}
+      </>
+    );
   if (p.access === 'paid')
     return (
       <>
@@ -502,6 +518,9 @@ function ManagePerson({ p, onChange, can }: { p: Person; onChange: () => void; c
   const [role, setRole] = useState(p.role);
   const [perms, setPerms] = useState<Set<Grantable>>(() => new Set(p.permissions ?? ['people', 'numbers']));
   const [trusted, setTrusted] = useState(false);
+  const [seats, setSeats] = useState(String(p.professor?.seats ?? 0));
+  const [seatsEnd, setSeatsEnd] = useState(p.professor?.freeUntil ? p.professor.freeUntil.slice(0, 10) : '');
+  const professorChanged = role === 'professor' && (Number(seats) !== (p.professor?.seats ?? -1) || (seatsEnd || null) !== (p.professor?.freeUntil?.slice(0, 10) ?? null));
   const permsChanged = role === 'admin' && (perms.size !== (p.permissions?.length ?? -1) || [...perms].some((x) => !p.permissions?.includes(x)));
   const saveRole = () =>
     act(async () => {
@@ -513,9 +532,12 @@ function ManagePerson({ p, onChange, can }: { p: Person; onChange: () => void; c
               permissions: GRANTABLE.map(([k]) => k).filter((k) => perms.has(k)),
             }
           : {}),
+        ...(role === 'professor' ? { seats: Number(seats) || 0, freeUntil: Number(seats) > 0 && seatsEnd ? seatsEnd : null } : {}),
       });
       setTrusted(false);
-      return role === 'user' ? `${p.email} is a user now; they no longer see Admin.` : p.role === 'admin' ? `Saved what ${p.email} may see and do.` : `${p.email} is an admin now.`;
+      if (role === 'user') return `${p.email} is a user now; they no longer see Admin or My class.`;
+      if (role === 'professor') return p.role === 'professor' ? `Saved ${p.email}’s class settings.` : `${p.email} is a professor now: they see My class and can add students.`;
+      return p.role === 'admin' ? `Saved what ${p.email} may see and do.` : `${p.email} is an admin now.`;
     });
   return (
     <div className="stack admin-manage">
@@ -533,6 +555,7 @@ function ManagePerson({ p, onChange, can }: { p: Person; onChange: () => void; c
               Role
               <select value={role} onChange={(e) => setRole(e.target.value as Person['role'])} disabled={!editable}>
                 <option value="user">User</option>
+                <option value="professor">Professor</option>
                 <option value="admin">Admin</option>
               </select>
             </label>
@@ -557,6 +580,22 @@ function ManagePerson({ p, onChange, can }: { p: Person; onChange: () => void; c
               ))}
             </fieldset>
           ) : null}
+          {editable && role === 'professor' ? (
+            <fieldset className="admin-perms">
+              <legend>Their class</legend>
+              <span className="admin-check">
+                Free access for up to
+                <input type="number" min={0} max={500} value={seats} onChange={(e) => setSeats(e.target.value)} aria-label="Students they may give free access" style={{ width: 80 }} />
+                students (0: none)
+              </span>
+              <span className="admin-check">
+                until
+                <input type="date" value={seatsEnd} onChange={(e) => setSeatsEnd(e.target.value)} disabled={!Number(seats)} aria-label="Last day of their students' free access" />
+                (empty: no end date)
+              </span>
+              <small className="faint">Professors use the whole app, add students on My class and see their study days, exam results and certificates, not payments. Removing the role ends the free access their class gave.</small>
+            </fieldset>
+          ) : null}
           {editable && role === 'admin' && p.role !== 'admin' ? (
             <label className="admin-check">
               <input type="checkbox" checked={trusted} onChange={(e) => setTrusted(e.target.checked)} /> I trust them with these permissions
@@ -564,7 +603,7 @@ function ManagePerson({ p, onChange, can }: { p: Person; onChange: () => void; c
           ) : null}
           {editable ? (
             <div className="row wrap">
-              <button className="btn" type="submit" disabled={busy || (role === p.role && !permsChanged) || (role === 'admin' && p.role !== 'admin' && !trusted)}>
+              <button className="btn" type="submit" disabled={busy || (role === p.role && !permsChanged && !professorChanged) || (role === 'admin' && p.role !== 'admin' && !trusted)}>
                 <ShieldCheck size={14} /> Save role
               </button>
             </div>

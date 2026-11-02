@@ -1,12 +1,13 @@
-import { createClerkClient, type User } from '@clerk/backend';
-import { isClerkAPIResponseError } from '@clerk/backend/errors';
+import type { User } from '@clerk/backend';
+import { accountMail, clerk, ensureAccount, longDate, sendAccountMail, SIGN_IN_STEPS } from './accounts.js';
 import { z } from 'zod';
-import { appOrigin, membershipPlans, readiness, required, type AccessTier } from './config.js';
-import { db, rateLimit } from './store.js';
+import { membershipPlans, readiness, required, type AccessTier } from './config.js';
+import { db } from './store.js';
 import { hash, isAdminEmail, isOwnerEmail, type AdminAccess } from './auth.js';
 import { mailboxKey } from './mailbox.js';
 import { allGrants, grantActive, grantFor, removeGrant, setGrant, type Grant } from './grants.js';
-import { allAdminRoles, PERMISSIONS, removeAdminRole, setAdminRole, type Permission } from './roles.js';
+import { allAdminRoles, allProfessorRoles, PERMISSIONS, professorRole, removeAdminRole, removeProfessorRole, setAdminRole, setProfessorRole, type Permission } from './roles.js';
+import { classSize, endClassAccess, MAX_STUDENTS, syncClassAccess } from './classes.js';
 import { membershipAccess, whop } from './billing.js';
 import type { Profile } from './engage.js';
 
@@ -27,18 +28,19 @@ export interface Person {
   lastStudied: string | null;
   studyDays: number;
   /** `member`: has paid access, shown so to admins who may not see payments. */
-  access: 'admin' | 'paid' | 'member' | 'free' | 'none';
+  access: 'admin' | 'paid' | 'member' | 'professor' | 'free' | 'none';
   /** Admin or user; an admin's role comes from ADMIN_EMAILS in Vercel or from the dashboard. */
-  role: 'admin' | 'user';
+  role: 'admin' | 'professor' | 'user';
   /** For the owner only: where an admin's role comes from, and what they may do. Others see every admin alike. */
   adminSource?: 'owner' | 'vercel' | 'dashboard';
   permissions?: Permission[];
+  /** For the owner only: a professor's free places for students, and class size. */
+  professor?: { seats: number; freeUntil: string | null; students: number };
   plan?: AccessTier;
   paidUntil?: string | null;
   grant?: { until: string | null; note?: string; by: string; at: string; active: boolean };
 }
 
-const clerk = () => createClerkClient({ secretKey: required('CLERK_SECRET_KEY') });
 const iso = (ms: number | null | undefined) => (ms ? new Date(ms).toISOString() : null);
 const DAY_MS = 86_400_000;
 
@@ -89,7 +91,7 @@ export async function adminPeople(viewer: AdminAccess, now = Date.now()) {
     const out = { ...p };
     if (!payments && out.access === 'paid') out.access = 'member';
     if (!payments) delete out.plan, delete out.paidUntil;
-    if (!viewer.owner) delete out.adminSource, delete out.permissions;
+    if (!viewer.owner) delete out.adminSource, delete out.permissions, delete out.professor;
     return out;
   });
   const counts = payments ? full.counts : { ...full.counts, paying: null, payingWithoutAccount: null, plans: null };
@@ -97,7 +99,13 @@ export async function adminPeople(viewer: AdminAccess, now = Date.now()) {
 }
 
 async function everyone(now: number) {
-  const [{ users, total }, appUsers, grants, roles, whopPaid] = await Promise.all([clerkUsers(), db().smembers('rvm:users') as Promise<string[]>, allGrants(), allAdminRoles(), payingMembers()]);
+  const [{ users, total }, appUsers, grants, roles, professors, whopPaid] = await Promise.all([clerkUsers(), db().smembers('rvm:users') as Promise<string[]>, allGrants(), allAdminRoles(), allProfessorRoles(), payingMembers()]);
+  const professorBy = new Map(professors.map((r) => [mailboxKey(r.email), r]));
+  const classSizes = new Map(await Promise.all(professors.map(async (r) => [mailboxKey(r.email), await classSize(r.email)] as const)));
+  const professorFields = (email: string) => {
+    const r = professorBy.get(mailboxKey(email));
+    return r ? { professor: { seats: r.seats, freeUntil: r.freeUntil, students: classSizes.get(mailboxKey(email)) ?? 0 } } : {};
+  };
   const roleBy = new Map(roles.map((r) => [mailboxKey(r.email), r]));
   const adminSource = (email: string): Person['adminSource'] => (isOwnerEmail(email) ? 'owner' : isAdminEmail(email) ? 'vercel' : roleBy.has(mailboxKey(email)) ? 'dashboard' : undefined);
   const roleFields = (email: string, source: Person['adminSource']) =>
@@ -153,8 +161,9 @@ async function everyone(now: number) {
       firstVisit: r.joined,
       lastStudied: days.at(-1) ?? null,
       studyDays: days.length,
-      access: source ? 'admin' : paid ? 'paid' : g && grantActive(g, now) ? 'free' : 'none',
-      role: source ? 'admin' : 'user',
+      access: source ? 'admin' : paid ? 'paid' : professorBy.has(key) ? 'professor' : g && grantActive(g, now) ? 'free' : 'none',
+      role: source ? 'admin' : professorBy.has(key) ? 'professor' : 'user',
+      ...professorFields(email),
       ...roleFields(email, source),
       ...(paid ? { plan: paid.tier, paidUntil: paid.until } : {}),
       ...(g ? { grant: { until: g.until, note: g.note, by: g.by, at: g.at, active: grantActive(g, now) } } : {}),
@@ -162,7 +171,7 @@ async function everyone(now: number) {
   }
   // Free access or an admin role given to an email that has no account yet.
   const listed = new Set(seenMailboxes);
-  for (const email of [...grants.map((g) => g.email), ...roles.map((r) => r.email)]) {
+  for (const email of [...grants.map((g) => g.email), ...roles.map((r) => r.email), ...professors.map((r) => r.email)]) {
     const key = mailboxKey(email);
     if (listed.has(key)) continue;
     listed.add(key);
@@ -170,8 +179,9 @@ async function everyone(now: number) {
     const source = adminSource(email);
     people.push({
       email, name: '', account: null, createdAt: null, lastActiveAt: null, firstVisit: null, lastStudied: null, studyDays: 0,
-      access: source ? 'admin' : g && grantActive(g, now) ? 'free' : 'none',
-      role: source ? 'admin' : 'user',
+      access: source ? 'admin' : professorBy.has(key) ? 'professor' : g && grantActive(g, now) ? 'free' : 'none',
+      role: source ? 'admin' : professorBy.has(key) ? 'professor' : 'user',
+      ...professorFields(email),
       ...roleFields(email, source),
       ...(g ? { grant: { until: g.until, note: g.note, by: g.by, at: g.at, active: grantActive(g, now) } } : {}),
     });
@@ -194,6 +204,7 @@ async function everyone(now: number) {
       free: grants.filter((g) => grantActive(g, now)).length,
       freeWaiting: people.filter((p) => !p.account && p.access === 'free').length,
       admins: people.filter((p) => p.access === 'admin').length,
+      professors: people.filter((p) => p.role === 'professor').length,
       newAccounts: { d1: withAccount.filter((p) => within(p.createdAt, 1)).length, d7: withAccount.filter((p) => within(p.createdAt, 7)).length, d30: withAccount.filter((p) => within(p.createdAt, 30)).length },
       active: { d7: withAccount.filter((p) => within(p.lastActiveAt, 7)).length, d30: withAccount.filter((p) => within(p.lastActiveAt, 30)).length },
       studied: { d7: withAccount.filter((p) => within(p.lastStudied, 7)).length, d30: withAccount.filter((p) => within(p.lastStudied, 30)).length },
@@ -220,7 +231,7 @@ function endOf(day: string | null, now = Date.now()): string | null | undefined 
   return new Date(t).toISOString();
 }
 
-const clerkError = (e: unknown) => (isClerkAPIResponseError(e) && e.errors[0] ? e.errors[0].longMessage || e.errors[0].message : 'Clerk could not create this account. Please try again.');
+
 
 async function giveFree(email: string, until: string | null, note: string | undefined, admin: string): Promise<Grant> {
   const existing = await grantFor(email);
@@ -236,21 +247,14 @@ export async function addPerson(admin: string, body: unknown) {
   const until = p.data.freeUntil === undefined ? undefined : endOf(p.data.freeUntil);
   if (p.data.freeUntil !== undefined && until === undefined) return { ok: false as const, error: 'Choose a free-access end date in the future.' };
   const { email, name } = p.data;
-  const found = await clerk().users.getUserList({ emailAddress: [email], limit: 1 });
-  let created = false;
-  if (!found.data.length) {
-    const [firstName, ...rest] = (name ?? '').split(/\s+/).filter(Boolean);
-    try {
-      await clerk().users.createUser({ emailAddress: [email], ...(firstName ? { firstName } : {}), ...(rest.length ? { lastName: rest.join(' ') } : {}), skipPasswordRequirement: true });
-      created = true;
-    } catch (e) {
-      return { ok: false as const, error: clerkError(e) };
-    }
-  }
+  const account = await ensureAccount(email, name);
+  if (!account.ok) return account;
   const grant = until === undefined ? null : await giveFree(email, until, p.data.note, admin);
-  const emailed = p.data.sendEmail ? await sendWelcome(email, name || found.data[0]?.firstName || undefined, grant ?? (await grantFor(email))) : false;
-  return { ok: true as const, created, grant, emailed };
+  const emailed = p.data.sendEmail ? await sendWelcome(email, name || account.firstName, grant ?? (await grantFor(email))) : false;
+  return { ok: true as const, created: account.created, grant, emailed };
 }
+
+
 
 export async function setFreeAccess(admin: string, body: unknown) {
   const p = GrantBody.safeParse(body);
@@ -267,19 +271,46 @@ export async function removeFreeAccess(body: unknown) {
   return { ok: true as const };
 }
 
-const RoleBody = z.object({ email: Email, role: z.enum(['admin', 'user']), permissions: z.array(z.enum(PERMISSIONS)).max(PERMISSIONS.length).optional() }).strict();
+const RoleBody = z
+  .object({
+    email: Email,
+    role: z.enum(['admin', 'professor', 'user']),
+    permissions: z.array(z.enum(PERMISSIONS)).max(PERMISSIONS.length).optional(),
+    /** A professor: how many of their students they may give free access (0: none), and its last day (or none). */
+    seats: z.number().int().min(0).max(MAX_STUDENTS).optional(),
+    freeUntil: FreeUntil.optional(),
+  })
+  .strict();
 
-/** The owner makes someone an admin with chosen permissions, changes them, or makes them a user again. */
+/** The owner makes someone an admin with chosen permissions, a professor, or a user again. Roles are one at a time. */
 export async function setRole(owner: string, body: unknown) {
   const p = RoleBody.safeParse(body);
-  if (!p.success) return { ok: false as const, error: 'Expected an email address, the role admin or user, and what an admin may do.' };
+  if (!p.success) return { ok: false as const, error: 'Expected an email address, the role admin, professor or user, and what it allows.' };
   const { email, role } = p.data;
   if (isOwnerEmail(email)) return { ok: false as const, error: 'Your own role cannot be changed.' };
   if (isAdminEmail(email)) return { ok: false as const, error: 'This admin is set in Vercel (ADMIN_EMAILS). Change it there.' };
+  const until = p.data.freeUntil === undefined ? null : endOf(p.data.freeUntil);
+  if (until === undefined) return { ok: false as const, error: 'Choose a last day of free access in the future.' };
+  const wasProfessor = !!(await professorRole(email));
+  // Leaving the professor role ends the free access their class gave (the roster is kept, in case they return).
+  const stopTeaching = async () => {
+    if (!wasProfessor) return;
+    await removeProfessorRole(email);
+    await endClassAccess(email);
+  };
   if (role === 'user') {
     await removeAdminRole(email);
+    await stopTeaching();
     return { ok: true as const, role };
   }
+  if (role === 'professor') {
+    const seats = p.data.seats ?? 0;
+    await removeAdminRole(email);
+    await setProfessorRole({ email, seats, freeUntil: until, by: owner, at: new Date().toISOString() });
+    await syncClassAccess(email, until);
+    return { ok: true as const, role, seats, freeUntil: until };
+  }
+  await stopTeaching();
   const permissions = PERMISSIONS.filter((x) => p.data.permissions?.includes(x));
   await setAdminRole({ email, permissions, by: owner, at: new Date().toISOString() });
   return { ok: true as const, role, permissions };
@@ -296,48 +327,18 @@ export async function emailSignIn(body: unknown) {
 }
 
 // ---------------------------------------------------------------- the welcome email
-const esc = (s: string) => s.replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]!);
-const longDate = (value: string) => new Date(value).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
-
 export function welcomeMail(email: string, name: string | undefined, grant: Grant | null, now = Date.now()) {
   const free = grant && grantActive(grant, now) ? grant : null;
-  const signIn = `${appOrigin()}/?account=login`;
   const lines = [
     `Hi ${name?.split(/\s+/)[0] || 'there'},`,
     `An account for ${email} is ready on radiology.monster, where you read real CT, MRI, X-ray, mammography and ultrasound cases and get graded on the exact slice.`,
     ...(free ? [free.until ? `Free access to everything is switched on for you until ${longDate(free.until)}.` : 'Free access to everything is switched on for you, with no end date.'] : []),
-    'To sign in, open radiology.monster, choose Sign in and enter this email address. We email you a code; there is no password.',
+    SIGN_IN_STEPS,
   ];
   const subject = free ? 'Your free radiology.monster access is ready' : 'Your radiology.monster account is ready';
-  const why = 'You get this email because the radiology.monster team created this account for you. For education only, not for clinical diagnosis.';
-  const html = `<!doctype html><html><body style="margin:0;background:#f5f5f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,Arial,sans-serif;color:#1d1d1f">
-<div style="max-width:520px;margin:0 auto;padding:32px 20px">
-<p style="margin:0 0 24px;font-weight:700;font-size:15px">radiology<span style="color:#4f46e5">.monster</span></p>
-<div style="background:#fff;border-radius:18px;padding:28px 26px">
-<h1 style="margin:0 0 12px;font-size:22px;line-height:1.25;letter-spacing:-0.01em">${esc(subject)}</h1>
-${lines.map((l) => `<p style="margin:0 0 12px;font-size:15px;line-height:1.55;color:#424245">${esc(l)}</p>`).join('')}
-<p style="margin:22px 0 4px"><a href="${esc(signIn)}" style="display:inline-block;background:#2563eb;color:#fff;text-decoration:none;font-weight:600;font-size:15px;padding:12px 20px;border-radius:12px">Sign in to radiology.monster</a></p>
-</div>
-<p style="margin:18px 6px 0;font-size:12px;line-height:1.5;color:#86868b">${esc(why)}</p>
-</div></body></html>`;
-  return { subject, html, text: `${subject}\n\n${lines.join('\n\n')}\n\nSign in: ${signIn}\n\n${why}` };
+  return accountMail(subject, lines, 'You get this email because the radiology.monster team created this account for you. For education only, not for clinical diagnosis.');
 }
 
 async function sendWelcome(email: string, name: string | undefined, grant: Grant | null): Promise<boolean> {
-  const key = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM;
-  if (!key || !from || !(await rateLimit(`welcome:${mailboxKey(email)}`, 3, 3600))) return false;
-  try {
-    const r = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: { Authorization: `Bearer ${key}`, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from, to: [email], ...welcomeMail(email, name, grant) }),
-      signal: AbortSignal.timeout(10000),
-    });
-    if (!r.ok) console.error('Welcome email failed', { status: r.status });
-    return r.ok;
-  } catch {
-    console.error('Welcome email failed');
-    return false;
-  }
+  return sendAccountMail(email, welcomeMail(email, name, grant));
 }

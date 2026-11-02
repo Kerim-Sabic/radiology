@@ -16,6 +16,7 @@ import { adminAccess } from './auth.js';
 import type { Permission } from './roles.js';
 import { addPerson, adminPeople, emailSignIn, removeFreeAccess, setFreeAccess, setRole } from './admin.js';
 import { changePromo, createPromo, listPromos, PromoAccessError } from './promos.js';
+import { addStudents, classesOf, classRoster, leaveClass, professorFor, removeStudent } from './classes.js';
 import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
 import { studentEligible, StudentDiscountError } from './studentDiscount.js';
 import { beginMerchantConnect, finishMerchantConnect, MERCHANT_COOKIE, merchantConnectPage } from './merchantConnect.js';
@@ -154,7 +155,10 @@ export async function handle(request: Request): Promise<Response> {
       // What this admin may do on the admin page ("admins": manage admins, the owner's alone).
       const admin = access.role === 'admin' ? await adminAccess(user.userId) : null;
       const adminPermissions = admin ? [...admin.permissions, ...(admin.owner ? ['admins'] : [])] : undefined;
-      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book, studentDiscountEligible: await studentEligible(user.userId), ...(adminPermissions ? { adminPermissions } : {}) });
+      // A professor sees "My class"; a student sees who can follow their progress, and can leave.
+      // Never fails the session: without this information the app works as before.
+      const [teaches, classes] = await Promise.all([professorFor(user.userId).then((r) => !!r, () => false), classesOf(user.email).catch(() => [])]);
+      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book, studentDiscountEligible: await studentEligible(user.userId), ...(adminPermissions ? { adminPermissions } : {}), ...(teaches ? { teaches } : {}), ...(classes.length ? { classes } : {}) });
     }
     if (path === '/api/access' && request.method === 'GET') {
       const access = await accessFor(user.userId);
@@ -212,6 +216,25 @@ export async function handle(request: Request): Promise<Response> {
       if (!await rateLimit(`linkedin:${user.userId}`, 10, 3600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
       const r = await startLinkedInPost(user, await request.json().catch(() => null));
       return r.ok ? json({ url: r.url }) : json({ error: r.error }, 400);
+    }
+    // A student leaves a class; a professor's class page (anyone else gets "Not found").
+    if (path === '/api/class/leave' && request.method === 'POST') {
+      const r = await leaveClass(user.email, await request.json().catch(() => null));
+      return r.ok ? json(r) : json({ error: r.error }, 400);
+    }
+    if (path === '/api/class' || path.startsWith('/api/class/')) {
+      const professor = await professorFor(user.userId);
+      if (!professor) return json({ error: 'Not found' }, 404);
+      if (path === '/api/class' && request.method === 'GET') return json(await classRoster(professor));
+      if (request.method !== 'POST') return json({ error: 'Not found' }, 404);
+      if (!await rateLimit(`class:${user.userId}`, 60, 600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
+      const body = await request.json().catch(() => null);
+      const r =
+        path === '/api/class/students' ? await addStudents(professor, user.name, body)
+        : path === '/api/class/students/remove' ? await removeStudent(professor, body)
+        : null;
+      if (!r) return json({ error: 'Not found' }, 404);
+      return r.ok ? json(r) : json({ error: r.error }, 400);
     }
     // The admin dashboard. Each part needs its own permission; managing admins is the owner's alone, and answers
     // "Not found" to everyone else, so nothing tells an admin that it exists.

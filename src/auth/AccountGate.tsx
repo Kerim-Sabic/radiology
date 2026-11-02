@@ -23,9 +23,9 @@ const planKey = 'rvm:selected-plan';
 function rememberedPlan(): Tier | null { try { const value = sessionStorage.getItem(planKey); return value === 'monthly' || value === 'yearly' ? value : null; } catch { return null; } }
 function rememberPlan(tier: Tier | null) { try { if (tier) sessionStorage.setItem(planKey, tier); else sessionStorage.removeItem(planKey); } catch { /* Storage is optional. */ } }
 
-interface Access { active: boolean; role?: 'admin' | 'granted'; tier?: Tier | 'lifetime'; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
-/** `adminPermissions`: what an admin may see and do on the admin page. */
-interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; book?: boolean; studentDiscountEligible?: boolean; adminPermissions?: string[]; }
+interface Access { active: boolean; role?: 'admin' | 'granted' | 'professor'; tier?: Tier | 'lifetime'; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
+/** `adminPermissions`: what an admin may see and do on the admin page; `teaches`: a professor; `classes`: the classes a student is in. */
+interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; book?: boolean; studentDiscountEligible?: boolean; adminPermissions?: string[]; teaches?: boolean; classes?: Array<{ email: string; name: string }>; }
 interface AccountState {
   account: Account;
   logout: () => void;
@@ -49,7 +49,7 @@ export function AccountMenu() {
     <button onClick={context.logout} title={`Sign out (${context.account.user?.email ?? ''})`}><LogOut size={16} /><span>Sign out</span></button>
   </span>;
   return <span className="account-menu">
-    <span title={context.account.user?.email}>{context.account.access.role === 'admin' ? 'Admin · free access' : context.account.access.role === 'granted' ? (context.account.access.expiresAt ? `Free access until ${new Date(context.account.access.expiresAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}` : 'Free access') : context.account.access.tier === 'lifetime' ? 'Lifetime member' : context.account.access.tier === 'yearly' ? 'Yearly member' : 'Monthly member'}</span>
+    <span title={context.account.user?.email}>{context.account.access.role === 'admin' ? 'Admin · free access' : context.account.access.role === 'professor' ? 'Professor · free access' : context.account.access.role === 'granted' ? (context.account.access.expiresAt ? `Free access until ${new Date(context.account.access.expiresAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}` : 'Free access') : context.account.access.tier === 'lifetime' ? 'Lifetime member' : context.account.access.tier === 'yearly' ? 'Yearly member' : 'Monthly member'}</span>
     {context.account.access.manageUrl && <a href={context.account.access.manageUrl} target="_blank" rel="noopener noreferrer" title="Manage billing on Whop"><CreditCard size={16} /><span>Billing</span></a>}
     <InviteFriends />
     <button onClick={context.logout} title="Sign out"><LogOut size={16} /><span>Sign out</span></button>

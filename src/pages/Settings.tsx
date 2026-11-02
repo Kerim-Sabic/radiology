@@ -5,6 +5,7 @@ import { bookStatus, EXPECTED_SHA256, hasBook, importBook, openBook, removeLocal
 import { formatBytes } from '../components/ui';
 import { packBaseUrl } from '../services/caseRepository';
 import { EmailChoices } from '../components/EmailChoices';
+import { ClassNotice } from '../components/ClassNotice';
 
 export default function SettingsPage() {
   const { settings, setSettings, catalog, progress, reloadCatalog } = useApp();
@@ -24,6 +25,7 @@ export default function SettingsPage() {
   return (
     <div className="page-inner stack" style={{ gap: 18, maxWidth: 860 }}>
       <h1>Settings</h1>
+      <ClassNotice />
       <EmailChoices />
 
       <section className="card stack">
