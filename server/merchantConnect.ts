@@ -60,6 +60,6 @@ export function merchantConnectPage(result?: boolean) {
   return new Response(`<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} · radiology.monster</title></head><body style="font:16px system-ui;background:#0c1016;color:#e7ebf0;max-width:640px;margin:60px auto;padding:24px"><h1>${title}</h1><p>${message}</p>${result === true ? '<a href="/">Return to radiology.monster</a>' : '<form method="post" action="/api/merchant/connect"><button type="submit">Authorize promo permissions in Whop</button></form>'}</body></html>`, {
     status: result === false ? 400 : 200,
     headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'private, no-store', 'Referrer-Policy': 'no-referrer',
-      'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'" },
+      'Content-Security-Policy': "default-src 'none'; style-src 'unsafe-inline'; form-action 'self' https://api.whop.com https://whop.com; base-uri 'none'; frame-ancestors 'none'" },
   });
 }
