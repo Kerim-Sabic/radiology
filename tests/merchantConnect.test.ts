@@ -85,6 +85,7 @@ describe('owner-authorized merchant promo connection', () => {
   it('keeps the reconnect page private, prevents framing and never includes token values', async () => {
     const response = merchantConnectPage(true);
     expect(response.headers.get('Cache-Control')).toContain('no-store');
+    expect(response.headers.get('Referrer-Policy')).toBe('origin');
     expect(response.headers.get('Content-Security-Policy')).toContain("frame-ancestors 'none'");
     expect(await response.text()).not.toContain('new-secret');
   });
