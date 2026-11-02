@@ -11,15 +11,29 @@ export const MERCHANT_SCOPES = 'openid profile email company:basic:read member:b
 type Flow = { nonce: string; verifier: string; ownerId: string };
 const clientFor = (token: string) => new WhopClient({ token, apiVersionDate: '2026-10-15-1', timeoutInSeconds: 15, maxRetries: 1 });
 
+async function verifyBusiness(client: WhopClient) {
+  // Use the existing plan-read permission; account retrieval needs a different grant.
+  const plan = await client.variants.retrieve({ id: required('WHOP_MONTHLY_PLAN_ID') });
+  if (plan.id !== required('WHOP_MONTHLY_PLAN_ID') || plan.account?.id !== required('WHOP_ACCOUNT_ID')
+    || plan.product?.id !== required('WHOP_PRODUCT_ID')) throw new Error('The authorized business does not match.');
+}
+
 export async function beginMerchantConnect() {
   if (process.env.WHOP_API_KEY) throw new Error('This deployment uses an API key rather than the merchant OAuth connection.');
   required('TOKEN_ENCRYPTION_KEY');
-  const account = await clientFor(await merchantToken()).accounts.retrieve({ id: required('WHOP_ACCOUNT_ID') });
-  if (account.id !== required('WHOP_ACCOUNT_ID') || !account.owner?.id?.startsWith('user_')) throw new Error('Could not verify the current business owner.');
+  const token = await merchantToken();
+  // The stored connection was owner-authorized. Bind renewal to that same identity.
+  const response = await fetch('https://api.whop.com/oauth/userinfo', {
+    headers: { Authorization: `Bearer ${token}` }, signal: AbortSignal.timeout(15000),
+  });
+  if (!response.ok) throw new Error('Could not verify the existing merchant identity.');
+  const owner = await response.json();
+  if (typeof owner.sub !== 'string' || !owner.sub.startsWith('user_') || owner.email_verified !== true) throw new Error('Could not verify the existing merchant identity.');
+  await verifyBusiness(clientFor(token));
   const state = `merchant.${random()}`, nonce = random(), verifier = random();
-  await db().set(`rvm:merchant-flow:${hash(state)}`, { nonce, verifier, ownerId: account.owner.id } satisfies Flow, { ex: 600 });
+  await db().set(`rvm:merchant-flow:${hash(state)}`, { nonce, verifier, ownerId: owner.sub } satisfies Flow, { ex: 600 });
   const params = new URLSearchParams({ client_id: required('WHOP_APP_ID'), response_type: 'code', redirect_uri: `${appOrigin()}/api/auth/callback`,
-    scope: MERCHANT_SCOPES, company_id: account.id, state, nonce,
+    scope: MERCHANT_SCOPES, company_id: required('WHOP_ACCOUNT_ID'), state, nonce,
     code_challenge: Buffer.from(hash(verifier), 'hex').toString('base64url'), code_challenge_method: 'S256' });
   return { url: `https://api.whop.com/oauth/authorize?${params}`, cookie: cookie(MERCHANT_COOKIE, state, 600) };
 }
@@ -34,10 +48,9 @@ export async function finishMerchantConnect(request: Request) {
   const owner = await identity(tokens, flow.nonce);
   if (owner.sub !== flow.ownerId) throw new Error('Authorize using the existing Whop business owner account.');
   const client = clientFor(tokens.access_token);
-  const account = await client.accounts.retrieve({ id: required('WHOP_ACCOUNT_ID') });
-  if (account.id !== required('WHOP_ACCOUNT_ID') || account.owner.id !== owner.sub) throw new Error('The authorized business does not match.');
+  await verifyBusiness(client);
   // Prove both added permissions before replacing the working connection or enabling student prices.
-  await client.promoCodes.list({ account_id: account.id, first: 1 });
+  await client.promoCodes.list({ account_id: required('WHOP_ACCOUNT_ID'), first: 1 });
   await studentCode(client, `merchant-check:${hash(state)}`, required('WHOP_MONTHLY_PLAN_ID'), 600);
   const lock = random();
   if (!await db().set('rvm:merchant-refresh', lock, { nx: true, ex: 45 })) throw new Error('Merchant authorization is refreshing. Please retry.');
