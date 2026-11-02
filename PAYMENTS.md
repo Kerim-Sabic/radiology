@@ -45,7 +45,7 @@ This repository is public, so the code itself shows that an owner level exists; 
 - **The list** shows every code with its uses, and lets you pause, resume or delete it. Deleting archives the code in Whop; memberships that already use it keep their discount. Student offers (`rvmstudent…`) are counted, not listed, and cannot be changed here.
 - **Share links:** each code has one, `https://www.radiology.monster/?promo=CODE`, which fills the code in at checkout.
 - **Yearly checkout** accepts only a live code made for the yearly plan. Monthly passes an entered code on to Whop as before.
-- **Whop access needed:** the merchant connection must include `promo_code:basic:read promo_code:create promo_code:update promo_code:delete access_pass:basic:read`. They are now in `scripts/setup-whop-merchant.ts`. If the saved connection predates them, the page says so, and re-running that script once as the business owner adds them.
+- **Whop access needed:** the merchant connection must include `promo_code:basic:read promo_code:create promo_code:update promo_code:delete`. These are `MERCHANT_SCOPES` in `server/merchantConnect.ts`, also used by `scripts/setup-whop-merchant.ts`. If the saved connection lacks them, the page says so and links to `/api/merchant/connect`, where the business owner approves them once in Whop.
 
 An opaque secure HttpOnly cookie identifies a Redis session. A new sign-in replaces the user's active device pointer. Previous devices lose authorization on their next request, and the app checks every 30 seconds and on focus. Already downloaded content cannot be remotely erased.
 

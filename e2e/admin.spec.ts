@@ -225,7 +225,7 @@ test('explains how to reconnect Whop when it has no promo code access', async ({
   await page.goto('/admin');
   const section = page.getByRole('region', { name: 'Promo codes' });
   await expect(section).toContainText('Whop has not given this app access to promo codes yet.');
-  await expect(section).toContainText('scripts/setup-whop-merchant.ts');
+  await expect(section.getByRole('link', { name: 'Reconnect Whop' })).toHaveAttribute('href', '/api/merchant/connect');
   await expect(section.getByRole('form', { name: 'Create a promo code' })).toHaveCount(0);
 });
 

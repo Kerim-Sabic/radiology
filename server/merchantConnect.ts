@@ -6,8 +6,9 @@ import { db } from './store.js';
 import { studentCode, STUDENT_READY_KEY } from './studentDiscount.js';
 
 export const MERCHANT_COOKIE = '__Host-rvm-merchant';
-// Preserve the existing merchant grant and add only the two owner-approved promo scopes.
-export const MERCHANT_SCOPES = 'openid profile email company:basic:read member:basic:read member:email:read member:manage payment:basic:read plan:basic:read checkout_configuration:create promo_code:create promo_code:basic:read';
+// Preserve the existing merchant grant and add only the owner-approved promo scopes: create and read for student
+// offers, update and delete for pausing and deleting codes on the admin page.
+export const MERCHANT_SCOPES = 'openid profile email company:basic:read member:basic:read member:email:read member:manage payment:basic:read plan:basic:read checkout_configuration:create promo_code:create promo_code:basic:read promo_code:update promo_code:delete';
 type Flow = { nonce: string; verifier: string; ownerId: string };
 const clientFor = (token: string) => new WhopClient({ token, apiVersionDate: '2026-10-15-1', timeoutInSeconds: 15, maxRetries: 1 });
 
@@ -67,7 +68,7 @@ export async function finishMerchantConnect(request: Request) {
 export function merchantConnectPage(result?: boolean) {
   const title = result === undefined ? 'Enable university discounts' : result ? 'Student discounts are connected' : 'Merchant connection was not updated';
   const message = result === undefined
-    ? 'Authorize with the existing Whop business owner account. This adds permission to create and read promo codes. Existing payment, membership and plan permissions stay the same. No payment is taken.'
+    ? 'Authorize with the existing Whop business owner account. This adds permission to create, read, pause and delete promo codes. Existing payment, membership and plan permissions stay the same. No payment is taken.'
     : result ? 'Whop confirmed promo creation and reading. The verified connection is saved securely, and university pricing is enabled. Return to the app to verify the checkout totals.'
       : 'The owner or promo permissions could not be verified. The previous stored connection was preserved. Please retry with the business owner account.';
   return new Response(`<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title} · radiology.monster</title></head><body style="font:16px system-ui;background:#0c1016;color:#e7ebf0;max-width:640px;margin:60px auto;padding:24px"><h1>${title}</h1><p>${message}</p>${result === true ? '<a href="/">Return to radiology.monster</a>' : '<form method="post" action="/api/merchant/connect"><button type="submit">Authorize promo permissions in Whop</button></form>'}</body></html>`, {

@@ -32,11 +32,11 @@ const callback = async () => {
 };
 
 describe('owner-authorized merchant promo connection', () => {
-  it('requests precisely the existing scopes plus promo create/read using PKCE and a secure separate cookie', async () => {
+  it('requests precisely the existing scopes plus the promo scopes using PKCE and a secure separate cookie', async () => {
     const flow = await beginMerchantConnect(), url = new URL(flow.url);
     expect(url.origin).toBe('https://api.whop.com');
     expect(url.searchParams.get('scope')).toBe(MERCHANT_SCOPES);
-    expect(MERCHANT_SCOPES.split(' ')).toEqual(['openid', 'profile', 'email', 'company:basic:read', 'member:basic:read', 'member:email:read', 'member:manage', 'payment:basic:read', 'plan:basic:read', 'checkout_configuration:create', 'promo_code:create', 'promo_code:basic:read']);
+    expect(MERCHANT_SCOPES.split(' ')).toEqual(['openid', 'profile', 'email', 'company:basic:read', 'member:basic:read', 'member:email:read', 'member:manage', 'payment:basic:read', 'plan:basic:read', 'checkout_configuration:create', 'promo_code:create', 'promo_code:basic:read', 'promo_code:update', 'promo_code:delete']);
     expect(url.searchParams.get('redirect_uri')).toBe('https://www.radiology.monster/api/auth/callback');
     expect(url.searchParams.get('company_id')).toBe('biz_test');
     expect(url.searchParams.get('code_challenge_method')).toBe('S256');

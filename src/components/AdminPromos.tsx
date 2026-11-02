@@ -48,8 +48,11 @@ function WhopAccessNotice() {
   return (
     <div className="notice bad stack" style={{ gap: 6 }}>
       <b>Whop has not given this app access to promo codes yet.</b>
+      <span>Reconnect Whop once, signed in to Whop as the business owner. It adds promo code permissions only; payments and memberships stay as they are, and no payment is taken.</span>
       <span>
-        Reconnect Whop once with promo code access: in the project folder run <code>npx tsx --env-file=.env.local scripts/setup-whop-merchant.ts</code>, open the link it writes and approve it as the business owner. Codex can do this for you.
+        <a className="btn" href="/api/merchant/connect" target="_blank" rel="noopener">
+          Reconnect Whop
+        </a>
       </span>
     </div>
   );
