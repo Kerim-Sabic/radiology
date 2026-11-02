@@ -39,8 +39,8 @@ const promos = (needsWhopAccess = false) =>
     ? { ok: false, error: 'Whop has not given this app access to promo codes yet.', needsWhopAccess: true }
     : {
         promos: [
-          { id: 'promo_spring', code: 'spring20', type: 'percentage', amountOff: 20, duration: 'once', months: 1, plans: ['monthly', 'yearly'], uses: 4, stock: 50, expiresAt: null, newUsersOnly: false, onePerCustomer: true, status: 'active', createdAt: '2026-11-01T10:00:00.000Z' },
-          { id: 'promo_year', code: 'year30', type: 'flat_amount', amountOff: 30, duration: 'forever', months: 0, plans: ['yearly'], uses: 0, stock: null, expiresAt: '2027-01-31T23:59:59.999Z', newUsersOnly: true, onePerCustomer: true, status: 'inactive', createdAt: '2026-10-30T10:00:00.000Z' },
+          { id: 'promo_spring', code: 'spring20', type: 'percentage', amountOff: 20, duration: 'once', months: 1, plans: ['monthly', 'yearly'], uses: 4, stock: 50, left: 46, expiresAt: null, newUsersOnly: false, onePerCustomer: true, status: 'active', createdAt: '2026-11-01T10:00:00.000Z' },
+          { id: 'promo_year', code: 'year30', type: 'flat_amount', amountOff: 30, duration: 'forever', months: 0, plans: ['yearly'], uses: 0, stock: null, left: null, expiresAt: '2027-01-31T23:59:59.999Z', newUsersOnly: true, onePerCustomer: true, status: 'inactive', createdAt: '2026-10-30T10:00:00.000Z' },
         ],
         studentOffers: { issued: 3, used: 1 },
       };

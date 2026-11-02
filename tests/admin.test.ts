@@ -224,7 +224,7 @@ describe('the owner, admins and their permissions', () => {
 describe('promo codes', () => {
   const promo = (changes: Record<string, unknown> = {}) => ({
     id: 'promo_spring', account: { id: 'biz_test' }, code: 'spring20', plans: ['plan_monthly', 'plan_yearly'], promo_type: 'percentage', amount_off: 0.2,
-    duration: 'once', promo_duration_months: 1, uses: 4, stock: 50, unlimited_stock: false, expires_at: null, new_users_only: false, one_per_customer: true,
+    duration: 'once', promo_duration_months: 1, uses: 4, stock: 46, unlimited_stock: false, expires_at: null, new_users_only: false, one_per_customer: true,
     status: 'active', created_at: '2026-11-01T10:00:00.000Z', ...changes,
   });
   const create = (cookie: string, body: Record<string, unknown>) => handle(request(cookie, '/api/admin/promos', 'POST', body));
@@ -234,13 +234,19 @@ describe('promo codes', () => {
       promo(),
       promo({ id: 'promo_year', code: 'year30', plans: ['plan_yearly'], promo_type: 'flat_amount', amount_off: 30, duration: 'forever', promo_duration_months: 0, unlimited_stock: true, created_at: '2026-11-02T10:00:00.000Z' }),
       promo({ id: 'promo_old', code: 'gone', status: 'archived' }),
+      // The two live cases Whop showed as 1/2 and 1/1.
+      promo({ id: 'promo_nadin', code: 'nadin', uses: 1, stock: 1, created_at: '2026-10-20T10:00:00.000Z' }),
+      promo({ id: 'promo_test123', code: 'test123', uses: 1, stock: 0, created_at: '2026-10-19T10:00:00.000Z' }),
       promo({ id: 'promo_s1', code: 'rvmstudentabc', uses: 1 }),
       promo({ id: 'promo_s2', code: 'rvmstudentdef', uses: 0 }),
     ];
     const r = await (await handle(request(await owner(), '/api/admin/promos'))).json();
-    expect(r.promos.map((p: { code: string }) => p.code)).toEqual(['year30', 'spring20']);
-    expect(r.promos[1]).toMatchObject({ type: 'percentage', amountOff: 20, plans: ['monthly', 'yearly'], uses: 4, stock: 50, duration: 'once' });
-    expect(r.promos[0]).toMatchObject({ type: 'flat_amount', amountOff: 30, plans: ['yearly'], stock: null, duration: 'forever' });
+    expect(r.promos.map((p: { code: string }) => p.code)).toEqual(['year30', 'spring20', 'nadin', 'test123']);
+    expect(r.promos[2]).toMatchObject({ uses: 1, stock: 2, left: 1 });
+    expect(r.promos[3]).toMatchObject({ uses: 1, stock: 1, left: 0 });
+    // Whop counts stock down: 4 used and 46 left is 4 of 50.
+    expect(r.promos[1]).toMatchObject({ type: 'percentage', amountOff: 20, plans: ['monthly', 'yearly'], uses: 4, stock: 50, left: 46, duration: 'once' });
+    expect(r.promos[0]).toMatchObject({ type: 'flat_amount', amountOff: 30, plans: ['yearly'], stock: null, left: null, duration: 'forever' });
     expect(r.studentOffers).toEqual({ issued: 2, used: 1 });
   });
   it('creates a code in Whop with exactly the chosen terms', async () => {

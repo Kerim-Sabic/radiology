@@ -42,7 +42,7 @@ This repository is public, so the code itself shows that an owner level exists; 
 
 **Promo codes on the admin page (`server/promos.ts`; the owner, or an admin given "promo codes").**
 - **Creating a code in Whop:** the code, % or $ off, and the plans (monthly, yearly or both). Then how long the discount lasts: the first payment, a number of months (Whop's `promo_duration_months`), or every payment (`0`). Optional limits: a total number of uses, one use per person, new customers only, and a last day.
-- **The list** shows every code with its uses, and lets you pause, resume or delete it. Deleting archives the code in Whop; memberships that already use it keep their discount. Student offers (`rvmstudent…`) are counted, not listed, and cannot be changed here.
+- **The list** shows every code with its uses (Whop's `stock` counts down: it is the uses left, so the total is used + left), and lets you pause, resume or delete it. Deleting archives the code in Whop; memberships that already use it keep their discount. Student offers (`rvmstudent…`) are counted, not listed, and cannot be changed here.
 - **Share links:** each code has one, `https://www.radiology.monster/?promo=CODE`, which fills the code in at checkout.
 - **Yearly checkout** accepts only a live code made for the yearly plan. Monthly passes an entered code on to Whop as before.
 - **Whop access needed:** the merchant connection must include `promo_code:basic:read promo_code:create promo_code:update promo_code:delete`. These are `MERCHANT_SCOPES` in `server/merchantConnect.ts`, also used by `scripts/setup-whop-merchant.ts`. If the saved connection lacks them, the page says so and links to `/api/merchant/connect`, where the business owner approves them once in Whop.

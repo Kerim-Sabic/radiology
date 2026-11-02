@@ -23,7 +23,8 @@ function percentage(amount: number) { return amount <= 1 ? amount * 100 : amount
 function available(code: Whop.PromoCode | Whop.PromoCodeListItem): boolean {
   return code.status === 'active'
     && (!code.expires_at || Date.parse(code.expires_at) > Date.now())
-    && (code.unlimited_stock || code.uses < code.stock)
+    // Whop's stock is the uses left (it counts down), not the total.
+    && (code.unlimited_stock || code.stock > 0)
     && (!code.product || code.product.id === required('WHOP_PRODUCT_ID'));
 }
 
@@ -59,7 +60,7 @@ export async function studentCode(client: WhopClient, userId: string, planId: st
     // Do not show a payment form unless Whop confirms the promised recurring offer.
     if (result.account.id !== required('WHOP_ACCOUNT_ID') || !available(result) || result.code?.toLowerCase() !== offer.code || result.promo_type !== 'percentage'
       || percentage(result.amount_off) !== STUDENT_PERCENT || result.duration !== 'forever'
-      || result.product?.id !== required('WHOP_PRODUCT_ID') || result.unlimited_stock || result.stock !== 1
+      || result.product?.id !== required('WHOP_PRODUCT_ID') || result.unlimited_stock || result.stock !== 1 || result.uses !== 0
       || !result.expires_at || Date.parse(result.expires_at) > Date.parse(offer.expiresAt) + 1000
       || !result.one_per_customer || result.existing_memberships_only || result.churned_users_only || result.new_users_only) {
       throw new Error('Unexpected student offer');

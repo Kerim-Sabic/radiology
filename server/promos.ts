@@ -22,8 +22,10 @@ export interface Promo {
   months: number | null;
   plans: Tier[];
   uses: number;
-  /** Uses allowed, or null for no limit. */
+  /** Uses allowed in total (used + left), or null for no limit. */
   stock: number | null;
+  /** Uses left, or null for no limit. */
+  left: number | null;
   expiresAt: string | null;
   newUsersOnly: boolean;
   onePerCustomer: boolean;
@@ -70,7 +72,9 @@ export async function listPromos() {
       months: c.promo_duration_months,
       plans: (['monthly', 'yearly'] as const).filter((t) => on[t].has(c.id)),
       uses: c.uses,
-      stock: c.unlimited_stock ? null : c.stock,
+      // Whop's `stock` counts down: it is the uses left, so the total is used + left.
+      stock: c.unlimited_stock ? null : c.uses + c.stock,
+      left: c.unlimited_stock ? null : c.stock,
       expiresAt: c.expires_at,
       newUsersOnly: c.new_users_only,
       onePerCustomer: c.one_per_customer,

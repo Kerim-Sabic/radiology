@@ -11,7 +11,9 @@ interface Promo {
   months: number | null;
   plans: Array<'monthly' | 'yearly'>;
   uses: number;
+  /** Uses allowed in total, and uses left; null for no limit. */
   stock: number | null;
+  left: number | null;
   expiresAt: string | null;
   newUsersOnly: boolean;
   onePerCustomer: boolean;
@@ -261,7 +263,7 @@ function PromoList({ data, onChange }: { data: Promos; onChange: () => void }) {
               <tr key={p.id}>
                 <td>
                   <b className="mono">{p.code}</b>
-                  <small className="faint">{p.status === 'active' ? 'working' : 'paused'}{p.newUsersOnly ? ' · new customers only' : ''}{p.onePerCustomer ? ' · one per person' : ''}</small>
+                  <small className="faint">{p.left === 0 ? 'used up' : p.status === 'active' ? 'working' : 'paused'}{p.newUsersOnly ? ' · new customers only' : ''}{p.onePerCustomer ? ' · one per person' : ''}</small>
                 </td>
                 <td data-label="Discount">
                   {offText(p)}

@@ -15,3 +15,5 @@ An available entered monthly promo with equal or greater recurring savings takes
 Verification before release: `npm test`, `npm run build`, student and ordinary-account desktop/mobile previews, then an unpaid verified academic account in real Whop checkout on both plans. Confirm $14/30 days and $105/365 days without submitting payment. Also confirm the merchant can create/read the scoped promo and that an available stronger monthly recurring code still takes precedence. Local tests mock Whop and do not establish live provider permissions or a successful charge.
 
 Provider reference: https://sandbox.whop.com/blog/add-promo-codes/
+
+Whop's `stock` on a promo code is the number of uses left (it counts down), not the total: a redeemed single-use code reads `uses: 1, stock: 0`. Availability checks use `stock > 0`, and a freshly issued student offer must also read `uses: 0`.

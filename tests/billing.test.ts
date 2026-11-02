@@ -86,7 +86,7 @@ describe('verified university discounts', () => {
     expect(fake.promoCreate).toHaveBeenCalledTimes(1);
     expect(fake.promoRetrieve).toHaveBeenCalledTimes(2);
     const current = await fake.promoRetrieve();
-    fake.promoRetrieve.mockResolvedValue({ ...current, uses: 1 });
+    fake.promoRetrieve.mockResolvedValue({ ...current, uses: 1, stock: 0 });
     await expect(checkout('student', 'monthly')).rejects.toThrow('could not confirm');
     expect(fake.checkoutCalls).toHaveLength(2);
   });
@@ -110,7 +110,11 @@ describe('verified university discounts', () => {
     fake.promoList.mockResolvedValue([offer(changes)]);
     expect(await checkout('student', 'monthly', 'nadin1')).toMatchObject({ studentDiscount: true, promoCode: expect.stringMatching(/^rvmstudent/) });
   });
-  it.each([{ uses: 1 }, { expires_at: '2020-01-01' }, { product: { id: 'prod_other' } }, { status: 'inactive' }])('rejects an unavailable entered code without opening payment: %j', async changes => {
+  it('accepts a partly used entered code: Whop counts its stock down', async () => {
+    fake.promoList.mockResolvedValue([offer({ uses: 1, stock: 1 })]);
+    expect(await checkout('student', 'monthly', 'nadin1')).toMatchObject({ promoCode: 'nadin1', studentDiscount: false });
+  });
+  it.each([{ uses: 1, stock: 0 }, { expires_at: '2020-01-01' }, { product: { id: 'prod_other' } }, { status: 'inactive' }])('rejects an unavailable entered code without opening payment: %j', async changes => {
     fake.promoList.mockResolvedValue([offer(changes)]);
     await expect(checkout('student', 'monthly', 'nadin1')).rejects.toThrow('not available');
     expect(fake.checkoutCalls).toHaveLength(0);
@@ -236,12 +240,13 @@ describe('paid access policy', () => {
     expect(fake.checkoutCalls).toHaveLength(1);
   });
   it('accepts on yearly only a live code made for the yearly plan', async () => {
+    // Whop's stock is the uses left: 2 used, 10 left.
     const code = (changes = {}) => ({ code: 'year30', status: 'active', expires_at: null, unlimited_stock: false, stock: 10, uses: 2, ...changes });
     fake.promoList.mockResolvedValue([code()]);
     expect((await checkout('new-customer', 'yearly', 'YEAR30')).promoCode).toBe('year30');
     expect(fake.promoList).toHaveBeenCalledWith(expect.objectContaining({ account_id: 'biz_test', plan_ids: ['plan_yearly'], status: 'active' }));
     expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: 'plan_yearly' } });
-    for (const used of [code({ uses: 10 }), code({ expires_at: new Date(Date.now() - 1000).toISOString() }), code({ code: 'other' })]) {
+    for (const used of [code({ uses: 12, stock: 0 }), code({ expires_at: new Date(Date.now() - 1000).toISOString() }), code({ code: 'other' })]) {
       fake.promoList.mockResolvedValue([used]);
       await expect(checkout('new-customer', 'yearly', 'year30')).rejects.toThrow('not available');
     }

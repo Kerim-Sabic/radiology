@@ -164,7 +164,7 @@ async function promoLiveFor(client: WhopClient, planId: string, promo: string) {
   try {
     const codes = await client.promoCodes.list({ account_id: required('WHOP_ACCOUNT_ID'), plan_ids: [planId], status: 'active', first: 100 });
     for await (const c of codes)
-      if (c.code?.toLowerCase() === promo) return (!c.expires_at || Date.parse(c.expires_at) > Date.now()) && (c.unlimited_stock || c.uses < c.stock);
+      if (c.code?.toLowerCase() === promo) return (!c.expires_at || Date.parse(c.expires_at) > Date.now()) && (c.unlimited_stock || c.stock > 0); // stock: uses left
   } catch {
     /* No promo code access: no yearly codes. */
   }
