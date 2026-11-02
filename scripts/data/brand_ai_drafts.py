@@ -1,11 +1,11 @@
-"""Give every AI-draft reference in a pack the learner-facing wording "AI draft by Horalix".
+"""Give every AI-draft reference in a pack the learner-facing wording "AI".
 
 Usage: python scripts/data/brand_ai_drafts.py <pack-id> [<pack-id> ...]
 
 Rewrites, for referenceTargets with provenance 'ai_draft' only:
   * label            -> plain anatomical name (provenance suffixes such as "(AI)" removed; the app shows the tag)
   * unassessedNote   -> one consistent sentence
-  * provenanceDetail -> source "Horalix", method "AI draft by Horalix - ..."
+  * provenanceDetail -> source "Horalix", method "AI - ..."
 and the same wording in lessons.json text. Technical build details stay in docs/data/<pack>-report.md and the
 generator scripts. Expert and dataset-supplied labels are never touched. Idempotent.
 """
@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
-BY = "AI draft by Horalix"
+BY = "AI"
 METHOD = f"{BY} — automatic segmentation, not reviewed by a radiologist"
 SUFFIX = re.compile(r"\s*\((AI|AI draft|AI-derived draft|AI, unreviewed)\)\s*$", re.I)
 TEXT = [

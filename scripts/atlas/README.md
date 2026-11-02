@@ -6,7 +6,7 @@ image packs (`starter`, `chest-pairs`, `body`, `expansion`, `ct-mri-pairs`, `neu
 **Every target is an unreviewed AI draft**: `provenance: "ai_draft"`, `review.status: "unreviewed"`,
 `completeness: "target_only"`, `layer: "atlas"`, a `category` (bone | organ | vessel | airway | muscle | gland | other)
 and a plain anatomical `label` ("Rib 5 left", "L1 vertebra", "Left upper lobe", "Ascending aorta"; "(partially imaged)"
-when cut by the scan edge). In the pack, `provenanceDetail.source` is "Horalix" and `method` is "AI draft by Horalix —
+when cut by the scan edge). In the pack, `provenanceDetail.source` is "Horalix" and `method` is "AI —
 automatic segmentation, not reviewed by a radiologist" (owner decision); `provenanceDetail.note` carries the structure's
 QC result. The actual tools and versions are documented only here and in `docs/data/anatomy-atlas-report.md`.
 

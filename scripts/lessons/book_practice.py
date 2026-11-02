@@ -8,7 +8,7 @@ public/packs/index.json if it is missing.
 
 Rules (accuracy first):
   * A task is written only where installed labels or the image header support its answer: expert outlines and
-    boxes, anatomy outlines (AI drafts by Horalix — graded as self-review until the learner reviews them),
+    boxes, anatomy outlines (AI outlines — graded as self-review until the learner reviews them),
     the DICOM geometry (orientation), the sequence and contrast recorded in the header (MRI T1, oral contrast).
   * Choice answers are physics or convention the book teaches (T1-bright fat, enhancement, orientation, the
     words for bright and dark), never a diagnosis the source does not state.
@@ -175,7 +175,7 @@ LOBES = [
     ("anatomy:lung_upper_lobe_left", "Left upper lobe", ["LUL", "Left upper lobe"]),
     ("anatomy:lung_lower_lobe_left", "Left lower lobe", ["LLL", "Left lower lobe"]),
 ]
-AI_NOTE = "The outlines are AI drafts by Horalix that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author."
+AI_NOTE = "The outlines are AI outlines that no radiologist has reviewed: the answer is self-reviewed until you review the reference in Author."
 
 
 def build():
@@ -557,7 +557,7 @@ def main():
         "packId": PACK_ID,
         "version": "0.1.0",
         "title": "Book practice: tasks for Learning Radiology objectives on installed cases",
-        "description": "Practice tasks tied to Learning Radiology (5th ed.) objectives, written on cases of the other packs. Contains no images or targets of its own: every task points at a case, series and reference target of another pack. Anatomy outlines used here are AI drafts by Horalix (self-review until reviewed); findings are the source datasets' expert labels; orientation, sequence and contrast answers come from the image headers.",
+        "description": "Practice tasks tied to Learning Radiology (5th ed.) objectives, written on cases of the other packs. Contains no images or targets of its own: every task points at a case, series and reference target of another pack. Anatomy outlines used here are AI outlines (self-review until reviewed); findings are the source datasets' expert labels; orientation, sequence and contrast answers come from the image headers.",
         "generatedAt": now,
         "generator": "scripts/lessons/book_practice.py",
         "sources": [],

@@ -97,7 +97,11 @@ export async function certificatePdf(c: Certificate, origin: string): Promise<Ui
   });
   page.drawText(url, { x: 65, y: 139, size: 10, font, color: accent });
   page.drawText(
-    c.verification === 'server-graded' ? 'Completion checked against server-graded study records.' : 'Legacy certificate: completion was reported by the learner’s app.',
+    c.exam
+      ? `Exam graded by our server against expert references: ${c.exam.questions} questions, ${Math.round(c.accuracy * 100)}% right (pass mark ${Math.round(c.exam.passMark * 100)}%).`
+      : c.verification === 'server-graded'
+        ? 'Completion checked against server-graded study records.'
+        : 'Legacy certificate: completion was reported by the learner’s app.',
     { x: 65, y: 114, size: 10, font, color: muted },
   );
   center('Unproctored education. Not accredited CME, a professional licence, or proof of clinical competence.', 61, 9, false, muted);

@@ -5,7 +5,7 @@ pack's entry into public/packs/index.json (by id; other packs untouched).
   C:/Users/kerim/radiology-data/venv-ts/Scripts/python.exe scripts/atlas/write_pack.py [--no-index]
 
 Pack content rules (owner): every target has layer "atlas", provenance "ai_draft", review unreviewed, completeness
-target_only, a category, a plain anatomical label, provenanceDetail.source "Horalix", method "AI draft by Horalix -
+target_only, a category, a plain anatomical label, provenanceDetail.source "Horalix", method "AI -
 automatic segmentation, not reviewed by a radiologist", and its QC result in provenanceDetail.note. Tool / model names
 and versions appear only in this script and in the report, never in pack labels or methods. lessons.json in the pack
 folder is never written. Targets reference series / SOP UIDs of the image packs; the pack itself has no images.
@@ -26,7 +26,7 @@ PACK_ID = "anatomy-atlas"
 VERSION = "0.3.0"
 REVIEW = {"status": "unreviewed", "reviewer": None, "at": None, "note": None}
 SOURCE = "Horalix"
-METHOD = "AI draft by Horalix \u2014 automatic segmentation, not reviewed by a radiologist"
+METHOD = "AI \u2014 automatic segmentation, not reviewed by a radiologist"
 LIMIT_BYTES = 80_000_000  # owner: up to 80 MB is fine for the repo
 RULE_NAMES = {0: "mapping/alignment", 1: "fragments / too small", 2: "density (HU)", 3: "coverage / volume",
               4: "laterality / anatomical order / side verification", 5: "CXR area / thorax box / side", 6: "heart-chamber QC"}
@@ -240,9 +240,9 @@ def main(argv):
             row["written"] += 1
 
     used_packs = sorted({sidx[r["seriesUid"]][0] for r in refs})
-    sources = [{"id": "horalix", "name": "Horalix", "url": "docs/data/anatomy-atlas-report.md", "doi": None,
+    sources = [{"id": "horalix", "name": "Horalix (horalix.com)", "url": "https://horalix.com", "doi": None,
                 "license": "AI-generated drafts for this app; the segmentation tools and their licences are listed in docs/data/anatomy-atlas-report.md",
-                "citation": METHOD, "accessNote": "Unreviewed AI drafts; never used for grading."}]
+                "citation": "Thanks to Horalix.com, every structure in the anatomy layer is marked. The outlines are AI, not reviewed by a radiologist.", "accessNote": "Unreviewed AI drafts; never used for grading."}]
     seen = set()
     for _, _, m in source_manifests():
         for s in m["sources"]:
@@ -250,8 +250,8 @@ def main(argv):
                 seen.add(s["id"])
                 sources.append(s)
     manifest = {
-        "schemaVersion": 1, "packId": PACK_ID, "version": VERSION, "title": "Anatomy atlas (AI draft by Horalix)",
-        "description": ("Whole-anatomy outlines for the Learn-mode anatomy layer (layer 'atlas'): AI drafts by Horalix on every CT series "
+        "schemaVersion": 1, "packId": PACK_ID, "version": VERSION, "title": "Anatomy atlas (AI)",
+        "description": ("Whole-anatomy outlines for the Learn-mode anatomy layer (layer 'atlas'): AI outlines on every CT series "
                         f"and every frontal chest radiograph of the {', '.join(used_packs)} packs, after automatic QC. Not reviewed "
                         "by a radiologist; never used for grading. No images: targets reference those packs' series and SOP UIDs."),
         "generatedAt": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
@@ -269,9 +269,9 @@ def main(argv):
     bad += [{"laterality": f} for f in lat_fail]
     n_ct = sum(1 for c in ct_cases if c.get("written"))
     n_x = sum(1 for c in cxr_cases if c.get("written"))
-    entry = {"id": PACK_ID, "title": "Anatomy atlas (AI draft by Horalix)", "manifest": f"{PACK_ID}/pack.json",
+    entry = {"id": PACK_ID, "title": "Anatomy atlas (AI)", "manifest": f"{PACK_ID}/pack.json",
              "lessons": None, "bytes": total, "distribution": "repo" if total < LIMIT_BYTES else "fetch_script",
-             "note": (f"AI draft by Horalix (unreviewed) anatomy layer: {len(refs)} structure outlines on {n_ct} CT series and "
+             "note": (f"AI outlines (unreviewed) anatomy layer: {len(refs)} structure outlines on {n_ct} CT series and "
                       f"{n_x} frontal chest radiographs, automatic QC applied. No images; requires {', '.join(used_packs)}.")}
     write_report(manifest, ct_cases, cxr_cases, xmeta, total, ver, problems, used_packs, typical, n_ref, visual)
     dump_json(entry, WORK / "index_entry.json")
@@ -301,7 +301,7 @@ def write_report(manifest, ct_cases, cxr_cases, xmeta, total, ver, problems, use
       "`scripts/atlas/README.md`. Do not edit by hand._")
     w("")
     w("> Every target in `public/packs/anatomy-atlas/` is an **unreviewed machine proposal**: provenance `ai_draft`, review "
-      "`unreviewed`, completeness `target_only`, `layer: \"atlas\"`. In the pack they are branded \"AI draft by Horalix\" "
+      "`unreviewed`, completeness `target_only`, `layer: \"atlas\"`. In the pack they are branded \"AI\" "
       "(owner decision); the tools that produced them are listed below. Never used for grading.")
     w("")
     cats, rules = {}, {}

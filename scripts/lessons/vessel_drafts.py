@@ -75,7 +75,7 @@ for prefix in subjects:
         ],
         "explanation": (
             "At the five-vessel level the two brachiocephalic veins lie anteriorly and the three branches of the aortic arch lie behind them, right to left: brachiocephalic artery, "
-            "left common carotid artery, left subclavian artery. The accepted level is a slice interval (here from vessel masks (AI draft by Horalix): all five present as separate cross-sections "
+            "left common carotid artery, left subclavian artery. The accepted level is a slice interval (here from vessel masks (AI): all five present as separate cross-sections "
             "and above the arch), not one exact slice — patients differ. Level, vessel identity, side and position are graded separately; two arrows in one vessel count once. "
             "These outlines are unreviewed AI proposals: compare carefully, and record your own review in Author before trusting them as a key."
         ),
@@ -97,7 +97,7 @@ for prefix in subjects:
         "grading": {"kind": "slice_interval", "toleranceMm": round(spacing / 2, 2)},
         "scoring": "authoritative",
         "hints": [hint(1, "Find the top of the aortic arch first, then go a little superior."), hint(3, "Jumping into the accepted interval.", {"type": "jumpSliceInterval", "targetId": level_id}), hint(5, "Reveal.", {"type": "reveal"})],
-        "explanation": "The feedback tells you how many millimetres superior or inferior you were. The accepted interval comes from the vessel masks (AI draft by Horalix) and is therefore a draft until you review it.",
+        "explanation": "The feedback tells you how many millimetres superior or inferior you were. The accepted interval comes from the vessel masks (AI) and is therefore a draft until you review it.",
         "rubric": [{"id": "landmarks", "text": "Named landmarks used: top of the aortic arch below, brachiocephalic veins anteriorly, three arch branches behind them", "weight": "essential", "category": "location"}],
         "bookAnchors": BOOK[:2],
         "objectiveIds": OBJ,
@@ -118,7 +118,7 @@ for prefix in subjects:
             "grading": {"kind": "slice_interval", "toleranceMm": round(spacing / 2, 2)},
             "scoring": "authoritative",
             "hints": [hint(1, "The arch is the curved tube connecting the ascending aorta (anterior) to the descending aorta (left of the spine)."), hint(3, "Jumping into the accepted interval.", {"type": "jumpSliceInterval", "targetId": arch_id}), hint(5, "Reveal.", {"type": "reveal"})],
-            "explanation": "Just below the five-vessel level, the arch appears as one continuous curved vessel across the mediastinum. (Draft interval — AI draft by Horalix.)",
+            "explanation": "Just below the five-vessel level, the arch appears as one continuous curved vessel across the mediastinum. (Draft interval — AI.)",
             "bookAnchors": [b for b in BOOK if b.get("figureId") in (None, "Fig 3.6")][:2] or BOOK[:1],
             "objectiveIds": OBJ,
             "skillDimensions": ["navigation_windowing", "anatomy"],

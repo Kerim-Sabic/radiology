@@ -26,7 +26,7 @@ const UNLOCKS: Array<{ icon: ReactNode; title: string; text: string }> = [
   {
     icon: <Award size={18} />,
     title: 'Certificates',
-    text: 'Three levels for each body area and for the whole library, each with a public check link for LinkedIn.',
+    text: 'An exam in three levels for each body area and the whole library, each much harder than the last, graded by our server, with a certificate you can verify and add to LinkedIn.',
   },
   {
     icon: <BookOpen size={18} />,

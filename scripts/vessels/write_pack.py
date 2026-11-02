@@ -26,10 +26,10 @@ NOTE = "unreviewed AI proposal"
 # Owner decision (2026-10-27): user-visible pack fields carry the Horalix brand only; tool and model names stay in this
 # script and in docs/data/vessel-drafts-report.md.
 BRAND_SOURCE = "Horalix"
-BRAND_METHOD = "AI draft by Horalix \u2014 automatic segmentation, not reviewed by a radiologist"
-HORALIX_SOURCE = {"id": "horalix", "name": "Horalix", "url": "docs/data/vessel-drafts-report.md", "doi": None,
+BRAND_METHOD = "AI \u2014 automatic segmentation, not reviewed by a radiologist"
+HORALIX_SOURCE = {"id": "horalix", "name": "Horalix (horalix.com)", "url": "https://horalix.com", "doi": None,
                   "license": "AI-generated drafts for this app; the segmentation tools and their licences are listed in docs/data/vessel-drafts-report.md",
-                  "citation": BRAND_METHOD, "accessNote": "Unreviewed AI drafts."}
+                  "citation": "Thanks to Horalix.com, every structure in the anatomy layer is marked. The outlines are AI, not reviewed by a radiologist.", "accessNote": "Unreviewed AI drafts."}
 
 
 def ts_source(report: dict) -> dict:
@@ -170,7 +170,7 @@ def main(argv):
                 "(normal = IOP row x column cosines). "
                 + (f"Wall contact without a visible gap between labels on: {contacts}. " if contacts else "")
                 + (f"Other qualifying runs (slice indices): {fv['runs'][1:]}. " if len(fv["runs"]) > 1 else "")
-                + "AI draft by Horalix; QC: laterality checks passed for the five structures."
+                + "AI; QC: laterality checks passed for the five structures."
             )
             g = {"geometryType": "slice_interval", "space": "patient_lps_mm", "normal": n, "range": fv["range"],
                  "sopInstanceUids": fv["sopInstanceUids"], "derivation": derivation}
@@ -199,7 +199,7 @@ def main(argv):
                 "the aorta is a single cross-section (one component), ending before the first slice where it splits into ascending "
                 f"and descending parts (here two components of {arch['split']['componentAreasMm2']} mm2 at slice index {arch['split']['k']}). "
                 "Accepted because at least one slice spans the tracheal centroid in x (arch crossing the midline) and the run is "
-                f"{arch['lengthMm']} mm long (<= 45 mm). Range = [min, max] of IPP . normal. AI draft by Horalix."
+                f"{arch['lengthMm']} mm long (<= 45 mm). Range = [min, max] of IPP . normal. AI."
             )
             g = {"geometryType": "slice_interval", "space": "patient_lps_mm", "normal": n, "range": arch["range"],
                  "sopInstanceUids": arch["sopInstanceUids"], "derivation": derivation}
@@ -233,7 +233,7 @@ def main(argv):
         "version": VERSION,
         "title": "Vessel drafts: AI-proposed great-vessel outlines and levels (unreviewed)",
         "description": (
-            "UNREVIEWED AI DRAFTS by Horalix for the five great vessels of the superior mediastinum "
+            "UNREVIEWED AI OUTLINES for the five great vessels of the superior mediastinum "
             "(both brachiocephalic veins, brachiocephalic trunk, left common carotid, left subclavian) plus context "
             "structures, and AI-derived five-vessel / aortic-arch slice intervals, on contrast-enhanced chest CTs of the "
             f"{' and '.join(used_packs)} pack(s). Contains no images: every target references series and SOP Instance UIDs "
@@ -268,7 +268,7 @@ def index_entry(manifest, pack_bytes, used_packs):
     series = {t["seriesUid"] for t in manifest["referenceTargets"]}
     return {"id": PACK_ID, "title": "Vessel drafts: AI-proposed great vessels (unreviewed)", "manifest": f"{PACK_ID}/pack.json",
             "lessons": None, "bytes": pack_bytes, "distribution": "repo",
-            "note": (f"AI draft by Horalix (unreviewed) on {len(series)} contrast chest CT series: {n_c} vessel/structure "
+            "note": (f"AI outlines (unreviewed) on {len(series)} contrast chest CT series: {n_c} vessel/structure "
                      f"contour sets + {n_l} slice-interval levels. No images; requires the {' and '.join(used_packs)} pack(s).")}
 
 
