@@ -43,11 +43,19 @@ describe('verified university discounts', () => {
   const eligible = () => fake.records.set('rvm:identity:student', { email: 'student@stu.ssst.edu.ba', emailVerified: true });
   const offer = (changes = {}) => ({ id: 'promo_student', account: { id: 'biz_test' }, product: { id: 'prod_test' }, code: 'nadin1', status: 'active', promo_type: 'percentage', amount_off: .3, duration: 'forever', currency: 'usd', uses: 0, stock: 1, unlimited_stock: false, one_per_customer: true, new_users_only: false, churned_users_only: false, existing_memberships_only: false, expires_at: future(), ...changes });
   beforeEach(() => {
+    fake.records.set('rvm:student-discount-ready', true);
     eligible();
     fake.promoCreate.mockImplementation(async body => {
       fake.promoRetrieve.mockResolvedValue(offer({ code: body.code, expires_at: body.expires_at }));
       return { id: 'promo_student' };
     });
+  });
+  it('keeps standard checkout available until merchant promo permissions have been verified', async () => {
+    fake.records.delete('rvm:student-discount-ready');
+    expect(await studentEligible('student')).toBe(false);
+    expect(await checkout('student', 'monthly', 'nadin1')).toMatchObject({ promoCode: 'nadin1' });
+    expect(fake.promoCreate).not.toHaveBeenCalled();
+    expect(fake.promoList).not.toHaveBeenCalled();
   });
   it.each(['monthly', 'yearly'] as const)('applies 30%% forever to the unchanged %s plan with one expiring redemption', async tier => {
     const result = await checkout('student', tier, undefined, 'study-pal');
