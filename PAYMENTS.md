@@ -40,6 +40,13 @@ The Whop app is a public OAuth client. Register `https://www.radiology.monster/a
 
 This repository is public, so the code itself shows that an owner level exists; only who it is and what each admin may do stay private.
 
+**Promo codes on the admin page (`server/promos.ts`; the owner, or an admin given "promo codes").**
+- **Creating a code in Whop:** the code, % or $ off, and the plans (monthly, yearly or both). Then how long the discount lasts: the first payment, a number of months (Whop's `promo_duration_months`), or every payment (`0`). Optional limits: a total number of uses, one use per person, new customers only, and a last day.
+- **The list** shows every code with its uses, and lets you pause, resume or delete it. Deleting archives the code in Whop; memberships that already use it keep their discount. Student offers (`rvmstudent…`) are counted, not listed, and cannot be changed here.
+- **Share links:** each code has one, `https://www.radiology.monster/?promo=CODE`, which fills the code in at checkout.
+- **Yearly checkout** accepts only a live code made for the yearly plan. Monthly passes an entered code on to Whop as before.
+- **Whop access needed:** the merchant connection must include `promo_code:basic:read promo_code:create promo_code:update promo_code:delete access_pass:basic:read`. They are now in `scripts/setup-whop-merchant.ts`. If the saved connection predates them, the page says so, and re-running that script once as the business owner adds them.
+
 An opaque secure HttpOnly cookie identifies a Redis session. A new sign-in replaces the user's active device pointer. Previous devices lose authorization on their next request, and the app checks every 30 seconds and on focus. Already downloaded content cannot be remotely erased.
 
 The server verifies the exact business, product and allowlisted plan, membership status, expiration, and the latest paid charge. Refunded or disputed payments do not unlock access. Results are cached for at most 30 seconds; returning from checkout triggers immediate checks. Webhooks are not required for this implementation. If Whop or Redis cannot verify access, access fails closed.

@@ -8,6 +8,9 @@ const fake = vi.hoisted(() => ({
   members: [] as unknown[],
   memberships: [] as unknown[],
   mails: [] as Array<{ to: string[]; subject: string; text: string }>,
+  promos: [] as Array<Record<string, unknown> & { id: string; plans: string[] }>,
+  promoCreated: [] as Array<{ body: Record<string, unknown>; options: unknown }>,
+  promoForbidden: false,
 }));
 vi.mock('../server/store', () => {
   const set = (k: string) => fake.sets.get(k) ?? fake.sets.set(k, new Set()).get(k)!;
@@ -53,6 +56,23 @@ vi.mock('@whop/sdk', () => ({
     members = { list: async () => ({ async *[Symbol.asyncIterator]() { yield* fake.members; } }) };
     memberships = { list: async () => ({ data: fake.memberships, async *[Symbol.asyncIterator]() { yield* fake.memberships; } }) };
     payments = { list: async () => ({ data: [{ status: 'paid', substatus: 'succeeded' }] }) };
+    promoCodes = {
+      list: async (p: { plan_ids?: string[] }) => {
+        if (fake.promoForbidden) throw Object.assign(new Error('Forbidden'), { statusCode: 403 });
+        const found = fake.promos.filter((c) => !p.plan_ids || c.plans.some((id) => p.plan_ids!.includes(id)));
+        return { async *[Symbol.asyncIterator]() { yield* found; } };
+      },
+      create: async (body: Record<string, unknown>, options: unknown) => {
+        fake.promoCreated.push({ body, options });
+        const c = { id: `promo_${fake.promos.length + 1}`, account: { id: 'biz_test' }, code: body.code, plans: body.plan_ids as string[], status: 'active', uses: 0, created_at: new Date().toISOString() };
+        fake.promos.push(c);
+        return c;
+      },
+      retrieve: async ({ id }: { id: string }) => fake.promos.find((c) => c.id === id) ?? Promise.reject(Object.assign(new Error('Not found'), { statusCode: 404 })),
+      deactivate: async ({ id }: { id: string }) => Object.assign(fake.promos.find((c) => c.id === id)!, { status: 'inactive' }),
+      activate: async ({ id }: { id: string }) => Object.assign(fake.promos.find((c) => c.id === id)!, { status: 'active' }),
+      delete: async ({ id }: { id: string }) => (Object.assign(fake.promos.find((c) => c.id === id)!, { status: 'archived' }), true),
+    };
   },
 }));
 
@@ -78,6 +98,9 @@ beforeEach(() => {
   fake.members = [];
   fake.memberships = [];
   fake.mails = [];
+  fake.promos = [];
+  fake.promoCreated = [];
+  fake.promoForbidden = false;
   vi.stubGlobal('fetch', vi.fn(async (_url: string, init: { body: string }) => (fake.mails.push(JSON.parse(init.body)), new Response('{}'))));
   for (const [k, v] of Object.entries({ OWNER_EMAILS: 'kerim.sabic@gmail.com', ADMIN_EMAILS: 'kerim.sabic@gmail.com,vercel.admin@example.com', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_YEARLY_PLAN_ID: 'plan_yearly', CLERK_SECRET_KEY: 'sk_test', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test', RESEND_API_KEY: 're_test', EMAIL_FROM: 'radiology.monster <hello@radiology.monster>' })) vi.stubEnv(k, v);
 });
@@ -195,6 +218,101 @@ describe('the owner, admins and their permissions', () => {
     expect(by['helper@example.com']).toMatchObject({ role: 'admin', adminSource: 'dashboard', permissions: ['people', 'numbers'] });
     expect(by['future-admin@example.com']).toMatchObject({ role: 'admin', account: null, permissions: [] });
     expect(r.counts.admins).toBe(3);
+  });
+});
+
+describe('promo codes', () => {
+  const promo = (changes: Record<string, unknown> = {}) => ({
+    id: 'promo_spring', account: { id: 'biz_test' }, code: 'spring20', plans: ['plan_monthly', 'plan_yearly'], promo_type: 'percentage', amount_off: 0.2,
+    duration: 'once', promo_duration_months: 1, uses: 4, stock: 50, unlimited_stock: false, expires_at: null, new_users_only: false, one_per_customer: true,
+    status: 'active', created_at: '2026-11-01T10:00:00.000Z', ...changes,
+  });
+  const create = (cookie: string, body: Record<string, unknown>) => handle(request(cookie, '/api/admin/promos', 'POST', body));
+  const valid = { code: 'Spring20', type: 'percentage', amountOff: 20, plans: ['monthly', 'yearly'], duration: 'once', stock: 50, lastDay: null, newUsersOnly: false, onePerCustomer: true };
+  it('lists the codes with their plans and uses, without the single-use student offers', async () => {
+    fake.promos = [
+      promo(),
+      promo({ id: 'promo_year', code: 'year30', plans: ['plan_yearly'], promo_type: 'flat_amount', amount_off: 30, duration: 'forever', promo_duration_months: 0, unlimited_stock: true, created_at: '2026-11-02T10:00:00.000Z' }),
+      promo({ id: 'promo_old', code: 'gone', status: 'archived' }),
+      promo({ id: 'promo_s1', code: 'rvmstudentabc', uses: 1 }),
+      promo({ id: 'promo_s2', code: 'rvmstudentdef', uses: 0 }),
+    ];
+    const r = await (await handle(request(await owner(), '/api/admin/promos'))).json();
+    expect(r.promos.map((p: { code: string }) => p.code)).toEqual(['year30', 'spring20']);
+    expect(r.promos[1]).toMatchObject({ type: 'percentage', amountOff: 20, plans: ['monthly', 'yearly'], uses: 4, stock: 50, duration: 'once' });
+    expect(r.promos[0]).toMatchObject({ type: 'flat_amount', amountOff: 30, plans: ['yearly'], stock: null, duration: 'forever' });
+    expect(r.studentOffers).toEqual({ issued: 2, used: 1 });
+  });
+  it('creates a code in Whop with exactly the chosen terms', async () => {
+    const admin = await owner();
+    const day = new Date(Date.now() + 30 * 86_400_000).toISOString().slice(0, 10);
+    const r = await create(admin, { ...valid, duration: 'months', months: 3, lastDay: day, newUsersOnly: true });
+    expect(await r.json()).toMatchObject({ ok: true, code: 'spring20' });
+    expect(fake.promoCreated[0].body).toEqual({
+      account_id: 'biz_test', product_id: 'prod_test', plan_ids: ['plan_monthly', 'plan_yearly'], code: 'spring20', promo_type: 'percentage', amount_off: 20, base_currency: 'usd',
+      promo_duration_months: 3, new_users_only: true, churned_users_only: false, existing_memberships_only: false, one_per_customer: true, unlimited_stock: false, stock: 50,
+      expires_at: `${day}T23:59:59.999Z`,
+    });
+    expect(fake.promoCreated[0].options).toMatchObject({ idempotencyKey: expect.stringMatching(/^promo-[a-f0-9]{64}$/) });
+    // Every payment, no limit, no end, monthly only.
+    await create(admin, { ...valid, code: 'forever10', amountOff: 10, plans: ['monthly'], duration: 'forever', stock: null });
+    expect(fake.promoCreated[1].body).toMatchObject({ plan_ids: ['plan_monthly'], promo_duration_months: 0, unlimited_stock: true, expires_at: null });
+    expect(fake.promoCreated[1].body).not.toHaveProperty('stock');
+  });
+  it('refuses unclear or impossible codes before Whop sees them', async () => {
+    const admin = await owner();
+    fake.promos = [promo()];
+    const cases: Array<[Record<string, unknown>, string]> = [
+      [{ code: 'SPRING20' }, 'already exists'],
+      [{ code: 'rvmstudentfree' }, 'student offers'],
+      [{ code: 'no spaces' }, 'Check the code'],
+      [{ code: 'ab' }, 'Check the code'],
+      [{ amountOff: 120 }, 'whole number from 1 to 100'],
+      [{ amountOff: 12.5 }, 'whole number from 1 to 100'],
+      [{ type: 'flat_amount', amountOff: 25, plans: ['monthly', 'yearly'] }, 'at most $20'],
+      [{ duration: 'months' }, 'how many months'],
+      [{ lastDay: '2020-01-01' }, 'in the future'],
+      [{ plans: [] }, 'Check the code'],
+      [{ extra: true }, 'Check the code'],
+    ];
+    for (const [changes, error] of cases) {
+      const r = await create(admin, { ...valid, code: 'fresh1', ...changes });
+      expect(r.status).toBe(400);
+      expect((await r.json()).error).toContain(error);
+    }
+    expect(fake.promoCreated).toHaveLength(0);
+  });
+  it('pauses, resumes and deletes only this business’s codes, never a student offer', async () => {
+    const admin = await owner();
+    fake.promos = [promo(), promo({ id: 'promo_other', account: { id: 'biz_other' } }), promo({ id: 'promo_s1', code: 'rvmstudentabc' })];
+    const change = (id: string, action: string) => handle(request(admin, '/api/admin/promos/change', 'POST', { id, action }));
+    expect((await change('promo_spring', 'pause')).status).toBe(200);
+    expect(fake.promos[0].status).toBe('inactive');
+    expect((await change('promo_spring', 'resume')).status).toBe(200);
+    expect(fake.promos[0].status).toBe('active');
+    expect((await change('promo_spring', 'delete')).status).toBe(200);
+    expect(fake.promos[0].status).toBe('archived');
+    for (const id of ['promo_other', 'promo_s1']) expect((await change(id, 'pause')).status).toBe(400);
+    expect(fake.promos[1].status).toBe('active');
+    expect((await change('promo_spring', 'archive')).status).toBe(400);
+  });
+  it('says plainly when the Whop connection has no promo code access', async () => {
+    fake.promoForbidden = true;
+    const admin = await owner();
+    expect(await (await handle(request(admin, '/api/admin/promos'))).json()).toMatchObject({ ok: false, needsWhopAccess: true });
+    const r = await create(admin, valid);
+    expect(r.status).toBe(400);
+    expect(await r.json()).toMatchObject({ needsWhopAccess: true });
+  });
+  it('is the owner’s, or an admin’s given the promo permission', async () => {
+    const admin = await owner();
+    const helper = await createSession({ sub: 'clerk_helper', provider: 'clerk', email: 'helper@example.com', emailVerified: true });
+    await handle(request(admin, '/api/admin/role', 'POST', { email: 'helper@example.com', role: 'admin', permissions: ['people'] }));
+    expect((await handle(request(helper, '/api/admin/promos'))).status).toBe(403);
+    expect((await create(helper, valid)).status).toBe(403);
+    await handle(request(admin, '/api/admin/role', 'POST', { email: 'helper@example.com', role: 'admin', permissions: ['people', 'promos'] }));
+    expect((await handle(request(helper, '/api/admin/promos'))).status).toBe(200);
+    expect((await create(helper, valid)).status).toBe(200);
   });
 });
 

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { accessFor, checkout, referralProfile } from './billing.js';
+import { PromoUnavailableError } from './checkoutError.js';
 import { affiliateCode } from '../shared/referrals.js';
 import { beginSignIn, cookie, createSession, finishSignIn, FLOW_COOKIE, hash, random, session, SESSION_COOKIE } from './auth.js';
 import { clerkIdentity } from './clerk.js';
@@ -14,6 +15,7 @@ import { certificateImage, certificatePageHtml } from './certificateShare.js';
 import { adminAccess } from './auth.js';
 import type { Permission } from './roles.js';
 import { addPerson, adminPeople, emailSignIn, removeFreeAccess, setFreeAccess, setRole } from './admin.js';
+import { changePromo, createPromo, listPromos, PromoAccessError } from './promos.js';
 import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
 import { studentEligible, StudentDiscountError } from './studentDiscount.js';
 import { beginMerchantConnect, finishMerchantConnect, MERCHANT_COOKIE, merchantConnectPage } from './merchantConnect.js';
@@ -32,6 +34,15 @@ function authResult(ok: boolean, cookies: string[]) {
     'Content-Security-Policy': `default-src 'none'; script-src 'nonce-${nonce}'; style-src 'unsafe-inline'; base-uri 'none'; frame-ancestors 'none'` });
   for (const value of cookies) headers.append('Set-Cookie', value);
   return new Response(`<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1"><title>${ok ? 'Signed in' : 'Sign-in interrupted'} · radiology.monster</title></head><body style="font:16px system-ui;background:#0c1016;color:#e7ebf0;padding:40px"><h1>${ok ? 'You’re signed in.' : 'Sign-in wasn’t completed.'}</h1><p>${ok ? 'Returning to your study space…' : 'Close this window and try signing in again.'}</p><a style="color:#8bd4ff" href="${destination}">Return to radiology.monster</a><script nonce="${nonce}">if(window.opener){window.opener.postMessage({type:'rvm-auth',ok:${ok}},${JSON.stringify(appOrigin())});window.close();}else{location.replace(${JSON.stringify(destination)});}</script></body></html>`, { headers });
+}
+/** Promo codes live in Whop: say plainly when the Whop connection has not been given promo code access. */
+async function promoRequest<T>(fn: () => Promise<T>): Promise<T | { ok: false; error: string; needsWhopAccess: true }> {
+  try {
+    return await fn();
+  } catch (e) {
+    if (e instanceof PromoAccessError) return { ok: false, error: e.message, needsWhopAccess: true };
+    throw e;
+  }
 }
 export async function handle(request: Request): Promise<Response> {
   const path = new URL(request.url).pathname.replace(/\/$/, '');
@@ -213,6 +224,7 @@ export async function handle(request: Request): Promise<Response> {
       if (request.method === 'GET') {
         if (path === '/api/admin/stats') return may('numbers') ? json(await adminStats()) : denied();
         if (path === '/api/admin/people') return may('people') ? json(await adminPeople(admin)) : denied();
+        if (path === '/api/admin/promos') return may('promos') ? json(await promoRequest(listPromos)) : denied();
         return json({ error: 'Not found' }, 404);
       }
       if (request.method !== 'POST') return json({ error: 'Not found' }, 404);
@@ -225,10 +237,12 @@ export async function handle(request: Request): Promise<Response> {
         : path === '/api/admin/free/remove' ? (may('free') ? await removeFreeAccess(body) : 'denied')
         : path === '/api/admin/email-sign-in' ? (may('add') ? await emailSignIn(body) : 'denied')
         : path === '/api/admin/role' ? await setRole(user.email, body)
+        : path === '/api/admin/promos' ? (may('promos') ? await promoRequest(() => createPromo(body)) : 'denied')
+        : path === '/api/admin/promos/change' ? (may('promos') ? await promoRequest(() => changePromo(body)) : 'denied')
         : null;
       if (!r) return json({ error: 'Not found' }, 404);
       if (r === 'denied') return denied();
-      return r.ok ? json(r) : json({ error: r.error }, 400);
+      return r.ok ? json(r) : json({ error: r.error, ...('needsWhopAccess' in r ? { needsWhopAccess: true } : {}) }, 400);
     }
     if (!readiness().billing) return json({ error: 'Payments are being configured. Please try again shortly.' }, 503);
     if (path === '/api/referrals' && request.method === 'GET') {
@@ -244,7 +258,6 @@ export async function handle(request: Request): Promise<Response> {
       if (!await rateLimit(`checkout:${user.userId}`, 10, 60)) return json({ error: 'Please wait a moment before trying again.' }, 429);
       const body = z.object({ tier: z.enum(['monthly', 'yearly']), promoCode: z.string().trim().max(40).optional(), affiliateCode: z.string().max(100).refine(value => !!affiliateCode(value)).optional() }).strict().safeParse(await request.json());
       if (!body.success) return json({ error: 'Choose monthly or yearly access.' }, 400);
-      if (body.data.promoCode && body.data.tier !== 'monthly') return json({ error: 'This code is not available for this plan. Choose monthly or remove the code.' }, 400);
       const existing = await accessFor(user.userId, true);
       if (existing.active) return json({ error: 'You already have access. Manage your plan from your account.' }, 409);
       if (existing.pendingMembership) return json({ error: 'You have an existing membership. Open billing in Whop to check its payment before purchasing again.' }, 409);
@@ -254,7 +267,7 @@ export async function handle(request: Request): Promise<Response> {
     }
     return json({ error: 'Not found' }, 404);
   } catch (error) {
-    if (error instanceof StudentDiscountError) return json({ error: error.message }, 400);
+    if (error instanceof StudentDiscountError || error instanceof PromoUnavailableError) return json({ error: error.message }, 400);
     // Never log OAuth codes, cookies, API response bodies, or personal details.
     console.error('Account request failed', { path, kind: error instanceof Error ? error.name : 'UnknownError' });
     return json({ error: 'We could not verify your account or payment. Please try again shortly. You have not been given access yet.' }, 503);

@@ -3,6 +3,7 @@ import { ExternalLink, RefreshCw } from 'lucide-react';
 import { useAccount } from '../auth/AccountGate';
 import '../styles/upgrade.css';
 import { AdminPeople, type AdminPermission } from '../components/AdminPeople';
+import { AdminPromos } from '../components/AdminPromos';
 import { CertificateAdmin } from '../components/CertificateAdmin';
 
 type Metric = 'visit' | 'signup_start' | 'signup' | 'studied' | 'plans' | 'checkout' | 'paid';
@@ -63,7 +64,8 @@ export default function AdminPage() {
         </a>
       </div>
       {can('people') || can('add') ? <AdminPeople version={version} can={can} /> : null}
-      {!['people', 'add', 'numbers', 'certificates'].some((p) => can(p as AdminPermission)) ? <p className="muted">There is nothing here for your account yet.</p> : null}
+      {can('promos') ? <AdminPromos version={version} /> : null}
+      {!['people', 'add', 'promos', 'numbers', 'certificates'].some((p) => can(p as AdminPermission)) ? <p className="muted">There is nothing here for your account yet.</p> : null}
       {error ? <div className="notice bad">{error}</div> : null}
       {!can('numbers') ? null : stats ? (
         <>

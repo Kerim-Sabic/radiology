@@ -33,8 +33,18 @@ function people() {
   };
 }
 
-const ALL = ['people', 'payments', 'add', 'free', 'numbers', 'certificates', 'admins'];
-async function admin(page: Page, adminPermissions = ALL, view: () => object = people) {
+const ALL = ['people', 'payments', 'add', 'free', 'promos', 'numbers', 'certificates', 'admins'];
+const promos = (needsWhopAccess = false) =>
+  needsWhopAccess
+    ? { ok: false, error: 'Whop has not given this app access to promo codes yet.', needsWhopAccess: true }
+    : {
+        promos: [
+          { id: 'promo_spring', code: 'spring20', type: 'percentage', amountOff: 20, duration: 'once', months: 1, plans: ['monthly', 'yearly'], uses: 4, stock: 50, expiresAt: null, newUsersOnly: false, onePerCustomer: true, status: 'active', createdAt: '2026-11-01T10:00:00.000Z' },
+          { id: 'promo_year', code: 'year30', type: 'flat_amount', amountOff: 30, duration: 'forever', months: 0, plans: ['yearly'], uses: 0, stock: null, expiresAt: '2027-01-31T23:59:59.999Z', newUsersOnly: true, onePerCustomer: true, status: 'inactive', createdAt: '2026-10-30T10:00:00.000Z' },
+        ],
+        studentOffers: { issued: 3, used: 1 },
+      };
+async function admin(page: Page, adminPermissions = ALL, view: () => object = people, promoView: () => object = promos) {
   const posts: Array<{ path: string; body: Record<string, unknown> }> = [];
   await page.route('**/api/config', (r) => r.fulfill({ json: { auth: true, billing: true } }));
   await page.route('**/api/session', (r) => r.fulfill({ json: { user: { name: 'Kerim', email: 'kerim.sabic@gmail.com' }, access: { active: true, role: 'admin', expiresAt: null }, billingReady: true, adminPermissions } }));
@@ -42,10 +52,11 @@ async function admin(page: Page, adminPermissions = ALL, view: () => object = pe
   await page.route('**/api/admin/**', async (r) => {
     const path = new URL(r.request().url()).pathname;
     if (path === '/api/admin/stats') return r.fallback();
-    if (r.request().method() === 'GET') return r.fulfill({ json: view() });
+    if (r.request().method() === 'GET') return r.fulfill({ json: path === '/api/admin/promos' ? promoView() : view() });
     const body = r.request().postDataJSON();
     posts.push({ path, body });
     if (path === '/api/admin/people') return r.fulfill({ json: { ok: true, created: true, emailed: true, grant: body.freeUntil === undefined ? null : { email: body.email, until: body.freeUntil ? `${body.freeUntil}T23:59:59.999Z` : null } } });
+    if (path === '/api/admin/promos') return r.fulfill({ json: { ok: true, id: 'promo_new', code: String(body.code).toLowerCase() } });
     if (path === '/api/admin/free') return r.fulfill({ json: { ok: true, grant: { email: body.email, until: body.freeUntil ? `${body.freeUntil}T23:59:59.999Z` : null } } });
     return r.fulfill({ json: { ok: true } });
   });
@@ -175,4 +186,52 @@ test('an admin sees only what they may, and nothing about managing admins', asyn
   await expect(page.getByRole('button', { name: /^Manage / })).toHaveCount(0);
   await expect(page.getByRole('button', { name: /^Paying · / })).toHaveCount(0);
   await expect(page.getByText(/only you manage|permissions|set in Vercel|Role/)).toHaveCount(0);
+});
+
+test('creates a promo code with a clear price preview, and pauses or deletes one', async ({ page }) => {
+  const posts = await admin(page);
+  await page.goto('/admin');
+  const section = page.getByRole('region', { name: 'Promo codes' });
+  await expect(section.getByRole('row', { name: /spring20/ })).toContainText('20% off');
+  await expect(section.getByRole('row', { name: /spring20/ })).toContainText('4 of 50');
+  await expect(section.getByRole('row', { name: /year30/ })).toContainText('$30 off');
+  await expect(section.getByRole('row', { name: /year30/ })).toContainText('paused');
+  await expect(section).toContainText('3 single-use offers issued');
+  const form = section.getByRole('form', { name: 'Create a promo code' });
+  await form.getByLabel('Code').fill('Exam25');
+  await form.getByLabel('Amount off').fill('25');
+  await form.getByLabel('Lasts for').selectOption('months');
+  await form.getByLabel('Months', { exact: true }).fill('3');
+  await form.getByRole('checkbox', { name: /^Yearly/ }).uncheck();
+  await form.getByLabel('Limit the number of uses').check();
+  await form.getByLabel('Number of uses', { exact: true }).fill('100');
+  await expect(form).toContainText('Monthly: $20 → $15 for the first 3 months, then $20');
+  await form.getByRole('button', { name: 'Create code' }).click();
+  await expect(form.getByRole('status')).toContainText('Created “exam25”');
+  expect(posts.at(-1)).toEqual({ path: '/api/admin/promos', body: { code: 'Exam25', type: 'percentage', amountOff: 25, plans: ['monthly'], duration: 'months', months: 3, stock: 100, lastDay: null, newUsersOnly: false, onePerCustomer: true } });
+  await section.getByRole('button', { name: 'Pause spring20' }).click();
+  await expect(section.getByRole('status').last()).toContainText('“spring20” is paused.');
+  expect(posts.at(-1)).toEqual({ path: '/api/admin/promos/change', body: { id: 'promo_spring', action: 'pause' } });
+  // Deleting asks once more.
+  await section.getByRole('button', { name: 'Delete year30' }).click();
+  expect(posts.at(-1)?.body).not.toMatchObject({ action: 'delete' });
+  await section.getByRole('button', { name: 'Confirm deleting year30' }).click();
+  await expect(section.getByRole('status').last()).toContainText('“year30” is deleted.');
+  expect(posts.at(-1)).toEqual({ path: '/api/admin/promos/change', body: { id: 'promo_year', action: 'delete' } });
+});
+
+test('explains how to reconnect Whop when it has no promo code access', async ({ page }) => {
+  await admin(page, ALL, people, () => promos(true));
+  await page.goto('/admin');
+  const section = page.getByRole('region', { name: 'Promo codes' });
+  await expect(section).toContainText('Whop has not given this app access to promo codes yet.');
+  await expect(section).toContainText('scripts/setup-whop-merchant.ts');
+  await expect(section.getByRole('form', { name: 'Create a promo code' })).toHaveCount(0);
+});
+
+test('a shared promo link fills in the code for the buyer', async ({ page }) => {
+  await page.route('**/api/config', (r) => r.fulfill({ json: { auth: true, billing: true } }));
+  await page.route('**/api/session', (r) => r.fulfill({ json: { user: { name: 'Student', email: 'student@example.com' }, access: { active: false }, billingReady: true } }));
+  await page.goto('/?plans&promo=SPRING20');
+  await expect(page.getByLabel('Promo code', { exact: true })).toHaveValue('SPRING20');
 });

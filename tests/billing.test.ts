@@ -235,6 +235,18 @@ describe('paid access policy', () => {
     await expect(checkout('new-customer', 'yearly', promo)).rejects.toThrow('not available');
     expect(fake.checkoutCalls).toHaveLength(1);
   });
+  it('accepts on yearly only a live code made for the yearly plan', async () => {
+    const code = (changes = {}) => ({ code: 'year30', status: 'active', expires_at: null, unlimited_stock: false, stock: 10, uses: 2, ...changes });
+    fake.promoList.mockResolvedValue([code()]);
+    expect((await checkout('new-customer', 'yearly', 'YEAR30')).promoCode).toBe('year30');
+    expect(fake.promoList).toHaveBeenCalledWith(expect.objectContaining({ account_id: 'biz_test', plan_ids: ['plan_yearly'], status: 'active' }));
+    expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: 'plan_yearly' } });
+    for (const used of [code({ uses: 10 }), code({ expires_at: new Date(Date.now() - 1000).toISOString() }), code({ code: 'other' })]) {
+      fake.promoList.mockResolvedValue([used]);
+      await expect(checkout('new-customer', 'yearly', 'year30')).rejects.toThrow('not available');
+    }
+    expect(fake.checkoutCalls).toHaveLength(1);
+  });
   it('binds yearly checkout to the yearly plan and rejects wrong annual terms', async () => {
     await checkout('new-customer', 'yearly');
     expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: 'plan_yearly' } });

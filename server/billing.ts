@@ -6,6 +6,7 @@ import { merchantToken } from './oauth.js';
 import { grantActive, grantFor } from './grants.js';
 import { affiliateCode } from '../shared/referrals.js';
 import { checkoutDiscount } from './studentDiscount.js';
+import { PromoUnavailableError } from './checkoutError.js';
 
 export async function whop() {
   return new WhopClient({ token: await merchantToken(), apiVersionDate: '2026-10-15-1', timeoutInSeconds: 15, maxRetries: 1 });
@@ -131,11 +132,12 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   if (existing.active) throw new Error('You already have access. Manage your existing plan in your account.');
   if (existing.pendingMembership) throw new Error('An existing membership needs attention. Check your payment in Whop before purchasing again.');
   const promo = promoCode?.trim().toLowerCase();
-  if (promo && tier !== 'monthly') throw new Error('This code is not available for this plan.');
   // New purchases, including promotions, always use the current plan.
   // Whop remains authoritative for availability, the final quote, and atomic redemption.
   const planId = required(plans[tier].env);
   const client = await whop();
+  // Monthly passes an entered code on to Whop; yearly takes only a live code made for the yearly plan (from the admin page).
+  if (promo && tier === 'yearly' && !(await promoLiveFor(client, planId, promo))) throw new PromoUnavailableError('This code is not available for the yearly plan. Check the code, or choose monthly.');
   const plan = await client.variants.retrieve({ id: planId });
   validatePlan(plan, tier);
   const discount = await checkoutDiscount(client, userId, tier, planId, promo);
@@ -155,6 +157,18 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   if (!url) throw new Error('Whop did not return a checkout URL');
   if (!/^ch_[A-Za-z0-9]+$/.test(config.id)) throw new Error('Whop did not return an embedded checkout configuration');
   return { id: config.id, url, ...discount, returnUrl: `${appOrigin()}/?checkout=returned` };
+}
+
+/** Whether a code is active, unexpired and not used up on this plan in Whop. */
+async function promoLiveFor(client: WhopClient, planId: string, promo: string) {
+  try {
+    const codes = await client.promoCodes.list({ account_id: required('WHOP_ACCOUNT_ID'), plan_ids: [planId], status: 'active', first: 100 });
+    for await (const c of codes)
+      if (c.code?.toLowerCase() === promo) return (!c.expires_at || Date.parse(c.expires_at) > Date.now()) && (c.unlimited_stock || c.uses < c.stock);
+  } catch {
+    /* No promo code access: no yearly codes. */
+  }
+  return false;
 }
 
 export function paymentGrantsAccess(payment: Pick<Whop.Payment, 'status' | 'substatus'>) {

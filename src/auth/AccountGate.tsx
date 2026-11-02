@@ -11,7 +11,14 @@ const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
 type Tier = 'monthly' | 'yearly';
 const promoKey = 'rvm:promo-code';
-function rememberedPromo() { try { return sessionStorage.getItem(promoKey) || ''; } catch { return ''; } }
+/** A code from a shared link (?promo=CODE) is kept for checkout; otherwise the one entered earlier in this tab. */
+function rememberedPromo() {
+  const fromLink = new URLSearchParams(location.search).get('promo') ?? '';
+  try {
+    if (/^[A-Za-z0-9_-]{3,30}$/.test(fromLink)) { sessionStorage.setItem(promoKey, fromLink); return fromLink; }
+    return sessionStorage.getItem(promoKey) || '';
+  } catch { return /^[A-Za-z0-9_-]{3,30}$/.test(fromLink) ? fromLink : ''; }
+}
 const planKey = 'rvm:selected-plan';
 function rememberedPlan(): Tier | null { try { const value = sessionStorage.getItem(planKey); return value === 'monthly' || value === 'yearly' ? value : null; } catch { return null; } }
 function rememberPlan(tier: Tier | null) { try { if (tier) sessionStorage.setItem(planKey, tier); else sessionStorage.removeItem(planKey); } catch { /* Storage is optional. */ } }

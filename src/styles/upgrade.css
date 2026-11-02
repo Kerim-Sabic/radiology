@@ -534,11 +534,11 @@
 .admin input[type='search'] {
   min-width: min(260px, 100%);
 }
-.admin-people td small {
+.admin-table td small {
   display: block;
   margin-top: 3px;
 }
-.admin-people tr:not(.admin-edit) > td:last-child {
+.admin-table tr:not(.admin-edit) > td:last-child {
   text-align: right;
 }
 .admin-edit > td {
@@ -578,37 +578,37 @@
 }
 /* On a phone each person is a small card: name, access, then the dates with their labels. */
 @media (max-width: 720px) {
-  .page-inner table.admin-people,
-  .admin-people tbody,
-  .admin-people tr,
-  .admin-people td {
+  .page-inner table.admin-table,
+  .admin-table tbody,
+  .admin-table tr,
+  .admin-table td {
     display: block;
     width: 100%;
     overflow: visible;
   }
-  .admin-people thead {
+  .admin-table thead {
     display: none;
   }
-  .admin-people tr:not(.admin-edit) {
+  .admin-table tr:not(.admin-edit) {
     position: relative;
     padding: 10px 0;
     border-bottom: 1px solid var(--line);
   }
-  .table.admin-people td {
+  .table.admin-table td {
     border: 0;
     padding: 2px 0;
   }
-  .admin-people td[data-label]::before {
+  .admin-table td[data-label]::before {
     content: attr(data-label) ': ';
     color: var(--text-3);
   }
-  .admin-people tr:not(.admin-edit) > td:last-child {
+  .admin-table tr:not(.admin-edit) > td:last-child {
     position: absolute;
     top: 10px;
     right: 0;
     width: auto;
   }
-  .admin-people tr:not(.admin-edit) > td:first-child {
+  .admin-table tr:not(.admin-edit) > td:first-child {
     padding-right: 96px;
   }
   .admin-edit > td {

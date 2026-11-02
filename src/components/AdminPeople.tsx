@@ -47,12 +47,13 @@ interface People {
 
 /** What an admin may do (mirrors server/roles.ts); "admins", managing admins, is the owner's alone. */
 export type AdminPermission = Grantable | 'admins';
-type Grantable = 'people' | 'payments' | 'add' | 'free' | 'numbers' | 'certificates';
+type Grantable = 'people' | 'payments' | 'add' | 'free' | 'promos' | 'numbers' | 'certificates';
 const GRANTABLE: Array<[Grantable, string]> = [
   ['people', 'See the people list: names, emails, study'],
   ['payments', 'See who pays and on which plan'],
   ['add', 'Add people and email them the sign-in steps'],
   ['free', 'Give and remove free access'],
+  ['promos', 'Create, pause and delete promo codes'],
   ['numbers', 'See the sign-up and retention numbers'],
   ['certificates', 'Look up and revoke certificates'],
 ];
@@ -339,7 +340,7 @@ function PeopleList({ data, onChange, can }: { data: People; onChange: () => voi
       </div>
       {data.whop === 'unavailable' ? <div className="notice bad">Whop could not be read just now, so paying members show as free edition. Refresh in a minute.</div> : null}
       {shown.length ? (
-        <table className="table admin-people">
+        <table className="table admin-table admin-people">
           <thead>
             <tr>
               <th>Person</th>

@@ -376,6 +376,26 @@ The server checks each permission on every request. An admin sees only the parts
 
 `e2e/admin.spec.ts` has 6 tests, run in Chromium and Firefox: the owner choosing permissions, and a limited admin seeing only the people list.
 
+## 3k. Promo codes from the admin page (2 November)
+
+The owner, or an admin given the "promo codes" permission, creates codes in Whop from the admin page:
+- % or $ off
+- monthly, yearly or both
+- lasting for the first payment, some months, or every payment
+- optional limits: uses, one per person, new customers only, a last day
+
+The form shows the resulting prices before you create a code. The list shows each code's uses and lets you pause, resume or delete it. Each code has a link that fills it in at checkout (`/?promo=CODE`). Yearly checkout now takes a live code made for the yearly plan; any other code on yearly is still refused, with a clear message. If the Whop connection lacks promo code access, the page shows how to reconnect.
+
+**Tests:** 601 unit tests. `tests/admin.test.ts` covers:
+- listing, with student offers hidden and counted
+- the exact Whop create payload
+- refused codes: duplicates, the student prefix, bad amounts, past dates
+- pause, resume and delete limited to this business's codes
+- missing Whop access
+- the permission
+
+`tests/billing.test.ts` covers yearly codes. `e2e/admin.spec.ts` has 9 tests, run in Chromium and Firefox, including the price preview and the shared link.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:
