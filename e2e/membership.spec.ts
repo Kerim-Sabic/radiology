@@ -101,7 +101,7 @@ test('a promo code survives signup and reaches the on-page monthly checkout', as
   await page.getByRole('button',{name:'Choose monthly'}).click();
   await page.getByRole('button',{name:'Continue with email'}).click();
   await expect(page.getByRole('heading',{name:'Your study space is almost ready.'})).toBeVisible();
-  expect(submitted).toEqual({tier:'monthly',promoCode:'NADIN',affiliateCode:'study-pal'});
+  expect(submitted).toEqual({tier:'monthly',promoCode:'nadin',affiliateCode:'study-pal'});
   await expect(page.getByText('Your code is prefilled',{exact:false})).toBeVisible();
 });
 
@@ -121,7 +121,7 @@ test('a code added after choosing monthly switches offers before payment and can
   await expect(page.getByRole('status').filter({hasText:'Apply your code to update the price before paying.'})).toBeVisible();
   await page.getByRole('button',{name:'Apply code',exact:true}).click();
   await expect(page.getByText('Your code is prefilled',{exact:false})).toBeVisible();
-  expect(submitted.at(-1)).toEqual({tier:'monthly',promoCode:'NADIN'});
+  expect(submitted.at(-1)).toEqual({tier:'monthly',promoCode:'nadin'});
   await expect(page.getByRole('button',{name:'Apply code',exact:true})).toBeDisabled();
   await page.getByLabel('Promo code',{exact:true}).fill('');
   await page.getByRole('button',{name:'Remove code',exact:true}).click();
