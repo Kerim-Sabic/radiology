@@ -108,15 +108,13 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   if (existing.active) throw new Error('You already have access. Manage your existing plan in your account.');
   if (existing.pendingMembership) throw new Error('An existing membership needs attention. Check your payment in Whop before purchasing again.');
   const promo = promoCode?.trim().toLowerCase();
-  if (promo && (!['nadin', 'nadin1'].includes(promo) || tier !== 'monthly')) throw new Error('This code is not available for this plan.');
-  // Both approved Whop promotions use the legacy plan without changing existing subscribers.
+  if (promo && tier !== 'monthly') throw new Error('This code is not available for this plan.');
+  // New purchases, including promotions, always use the current plan.
   // Whop remains authoritative for availability, the final quote, and atomic redemption.
-  const planId = required(promo ? 'WHOP_LEGACY_MONTHLY_PLAN_ID' : plans[tier].env);
+  const planId = required(plans[tier].env);
   const client = await whop();
   const plan = await client.variants.retrieve({ id: planId });
-  if (promo) {
-    validateRecurringPlan(plan, { days: 30, price: 10 });
-  } else validatePlan(plan, tier);
+  validatePlan(plan, tier);
   let affiliate = affiliateCode(referralCode);
   if (affiliate && (await referralProfile(userId)).code === affiliate) affiliate = undefined;
   const key = `rvm:checkout:${userId}:${planId}:${hash(appOrigin())}${affiliate ? `:${hash(affiliate)}` : ''}`;
