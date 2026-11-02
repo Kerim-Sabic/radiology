@@ -199,6 +199,7 @@ small,
   cursor: not-allowed;
 }
 input[type='text'],
+input[type='email'],
 input[type='number'],
 input[type='date'],
 input[type='search'],
@@ -1654,6 +1655,7 @@ kbd {
 }
 input[type='search'],
 input[type='text'],
+input[type='email'],
 input:not([type]),
 select,
 textarea {

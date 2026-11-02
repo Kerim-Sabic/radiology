@@ -30,11 +30,15 @@ export async function session(request: Request): Promise<Session | null> {
   if (await db().get<string>(`rvm:device:${found.userId}`) !== tokenHash) return null;
   return { ...found, tokenHash };
 }
-export async function isAdmin(userId: string) {
+/** Whether a verified email is an exact entry in ADMIN_EMAILS. */
+export function isAdminEmail(email: string) {
   const allowed = (process.env.ADMIN_EMAILS || '').split(',').map(v => v.trim().toLowerCase()).filter(Boolean);
-  if (!allowed.length) return false;
+  return allowed.includes(email.trim().toLowerCase());
+}
+export async function isAdmin(userId: string) {
+  if (!(process.env.ADMIN_EMAILS || '').trim()) return false;
   const identity = await db().get<{ email: string; emailVerified: boolean }>(`rvm:identity:${userId}`);
-  return identity?.emailVerified === true && allowed.includes(identity.email.trim().toLowerCase());
+  return identity?.emailVerified === true && isAdminEmail(identity.email);
 }
 export async function createSession(profile: { sub: string; email: string; emailVerified: boolean; name?: string; provider?: 'whop' | 'clerk' }) {
   if (profile.emailVerified !== true) throw new Error('Verified email required');

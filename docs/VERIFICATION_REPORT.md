@@ -343,6 +343,17 @@ Every question is graded automatically against an expert reference (never self-r
 
 **Tests:** 504 unit tests; the full browser suite in Chromium and Firefox, including a 15-question exam answered end to end, the clock running out, the order of levels, and a passed exam issuing the certificate.
 
+## 3i. Admin dashboard: accounts, paying members, free access (2 November)
+
+`/admin` (admins only) now opens on exact counts: accounts (Clerk and older Whop sign-ins), paying members by plan from Whop's active memberships, free access, and the number of people who were active or studied this week. Below the counts is everyone in one list, searchable and filtered by access, showing when each person joined, was last active and last studied.
+
+- **Add a person** creates the Clerk account for an email, with free access for a set time, until a date, or with no end date, and an optional note. It can email them the sign-in steps: they sign in with that email and a code, with no password.
+- **Manage** on a row changes or removes free access, re-sends the sign-in email, or creates the account for free access given before an account existed.
+
+Free access is kept per mailbox and checked on every request. It needs a verified email, and a paid plan still wins. The funnel never counts it as Paid. On a phone each person shows as a card, with no sideways scrolling at 390 px.
+
+**Tests:** 531 unit tests (`tests/admin.test.ts`: only admins, same-origin changes, passwordless account creation, dates in the future only, Clerk refusals shown, exact counts across Clerk, Whop and free access, Whop down; `tests/billing.test.ts`: free access opens, ends and yields to a paid plan); 8 browser tests in `e2e/admin.spec.ts` (Chromium and Firefox).
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

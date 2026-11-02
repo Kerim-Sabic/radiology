@@ -12,6 +12,7 @@ import { answerQuestion, finishExam, openQuestion, startExam } from './certifica
 import { queueCertificateEmail, sendCertificateEmails } from './certificateEmail.js';
 import { certificateImage, certificatePageHtml } from './certificateShare.js';
 import { isAdmin } from './auth.js';
+import { addPerson, adminPeople, emailSignIn, removeFreeAccess, setFreeAccess } from './admin.js';
 import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
 
 export function json(value: unknown, status = 200) {
@@ -118,7 +119,7 @@ export async function handle(request: Request): Promise<Response> {
     }
     if (path === '/api/session' && request.method === 'GET') {
       const access = await accessFor(user.userId);
-      if (access.active && access.role !== 'admin') await countOnce('paid', user.userId);
+      if (access.active && !access.role) await countOnce('paid', user.userId);
       // Whether the book is served to this account now (named accounts get it without a plan).
       const book = bookGift(user.email) || (access.active && servesBook(user.email));
       return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book });
@@ -183,6 +184,22 @@ export async function handle(request: Request): Promise<Response> {
     if (path === '/api/admin/stats' && request.method === 'GET') {
       if (!(await isAdmin(user.userId))) return json({ error: 'Not allowed' }, 403);
       return json(await adminStats());
+    }
+    // The people on the admin dashboard: every account, creating one for an email, and free access.
+    if (path === '/api/admin/people' || path.startsWith('/api/admin/free') || path === '/api/admin/email-sign-in') {
+      if (!(await isAdmin(user.userId))) return json({ error: 'Admin accounts only.' }, 403);
+      if (path === '/api/admin/people' && request.method === 'GET') return json(await adminPeople());
+      if (request.method !== 'POST') return json({ error: 'Not found' }, 404);
+      if (!await rateLimit(`admin:${user.userId}`, 120, 600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
+      const body = await request.json().catch(() => null);
+      const r =
+        path === '/api/admin/people' ? await addPerson(user.email, body)
+        : path === '/api/admin/free' ? await setFreeAccess(user.email, body)
+        : path === '/api/admin/free/remove' ? await removeFreeAccess(body)
+        : path === '/api/admin/email-sign-in' ? await emailSignIn(body)
+        : null;
+      if (!r) return json({ error: 'Not found' }, 404);
+      return r.ok ? json(r) : json({ error: r.error }, 400);
     }
     if (!readiness().billing) return json({ error: 'Payments are being configured. Please try again shortly.' }, 503);
     if (path === '/api/referrals' && request.method === 'GET') {

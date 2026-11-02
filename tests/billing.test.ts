@@ -25,6 +25,7 @@ vi.mock('@whop/sdk', () => ({ WhopClient: class {
 import { accessFor, checkout, membershipAccess, paymentGrantsAccess, safeWhopUrl, validatePlan, referralProfile } from '../server/billing';
 import { beginSignIn, createSession, finishSignIn, hash, session } from '../server/auth';
 import { handle } from '../server/handler';
+import { mailboxKey } from '../server/mailbox';
 
 const future = () => new Date(Date.now() + 86400000).toISOString();
 const member = (changes = {}) => ({ id: 'mem_test', account: { id: 'biz_test' }, plan_id: 'plan_monthly', status: 'active', current_period_end: future(), expires_at: null, manage_url: 'https://whop.com/billing', user_id: 'user_test', product_id: 'prod_test', ...changes }) as Whop.Membership;
@@ -158,6 +159,30 @@ describe('paid access policy', () => {
     expect((await accessFor(userId)).active).toBe(true);
     vi.stubEnv('ADMIN_EMAILS', '');
     expect((await accessFor(userId)).active).toBe(false);
+  });
+  it('opens free access an admin gave to a verified email, ends it on its date, and lets a paid plan win', async () => {
+    const userId = hash('clerk:clerk_gift');
+    fake.records.set(`rvm:identity:${userId}`, { email: 'friend@example.com', emailVerified: true, provider: 'clerk' });
+    expect((await accessFor(userId)).active).toBe(false);
+    const grant = { email: 'friend@example.com', until: future(), by: 'kerim.sabic@gmail.com', at: new Date().toISOString() };
+    fake.records.set(`rvm:grant:${mailboxKey('Friend@Example.com')}`, grant);
+    expect(await accessFor(userId)).toEqual({ active: true, role: 'granted', expiresAt: grant.until });
+    await expect(checkout(userId, 'monthly')).rejects.toThrow('already have access');
+    // An unverified identity with the same address gets nothing.
+    fake.records.set(`rvm:identity:${userId}`, { email: 'friend@example.com', emailVerified: false });
+    expect((await accessFor(userId)).active).toBe(false);
+    fake.records.set(`rvm:identity:${userId}`, { email: 'friend@example.com', emailVerified: true, provider: 'clerk' });
+    // A paid plan wins, so its billing link stays.
+    fake.members = [{ account_id: 'biz_test', email: 'friend@example.com', user: { id: 'user_test' } }];
+    fake.memberships = [member()]; fake.payments = [{ status: 'paid', substatus: 'succeeded' }];
+    expect(await accessFor(userId, true)).toMatchObject({ active: true, tier: 'monthly', manageUrl: 'https://whop.com/billing' });
+    fake.memberships = [];
+    expect((await accessFor(userId, true)).role).toBe('granted');
+    // Ended free access closes again; no end date stays open.
+    fake.records.set(`rvm:grant:${mailboxKey('friend@example.com')}`, { ...grant, until: new Date(Date.now() - 1000).toISOString() });
+    expect((await accessFor(userId, true)).active).toBe(false);
+    fake.records.set(`rvm:grant:${mailboxKey('friend@example.com')}`, { ...grant, until: null });
+    expect(await accessFor(userId, true)).toEqual({ active: true, role: 'granted', expiresAt: null });
   });
   it('rejects a changed price and unsafe redirect hosts', () => {
     expect(() => validatePlan({ account: { id: 'biz_test' }, currency: 'usd', plan_type: 'renewal', billing_period: 30, initial_price: 10, renewal_price: 10 } as Whop.Variant, 'monthly')).toThrow();

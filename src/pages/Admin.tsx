@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ExternalLink, RefreshCw } from 'lucide-react';
 import { useAccount } from '../auth/AccountGate';
 import '../styles/upgrade.css';
+import { AdminPeople } from '../components/AdminPeople';
 import { CertificateAdmin } from '../components/CertificateAdmin';
 
 type Metric = 'visit' | 'signup_start' | 'signup' | 'studied' | 'plans' | 'checkout' | 'paid';
@@ -24,11 +25,12 @@ const STEPS: Array<[Metric, string]> = [
 ];
 const pct = (a: number, b: number) => (b ? `${Math.round((a / b) * 100)}%` : '–');
 
-/** Owner's numbers: the sign-up funnel and retention (admin accounts only). */
+/** The owner's dashboard: accounts and free access, the sign-up funnel and retention, certificates (admin accounts only). */
 export default function AdminPage() {
   const account = useAccount();
   const [stats, setStats] = useState<Stats | null>(null);
   const [error, setError] = useState('');
+  const [version, setVersion] = useState(0);
   const load = () => {
     setError('');
     fetch('/api/admin/stats', { cache: 'no-store' })
@@ -40,18 +42,24 @@ export default function AdminPage() {
   const max = Math.max(1, ...(stats?.series.map((d) => d.visit) ?? [1]));
   return (
     <div className="page-inner stack admin" style={{ gap: 18 }}>
-      <div className="row">
-        <h1 style={{ margin: 0 }}>Numbers</h1>
+      <div className="row wrap">
+        <h1 style={{ margin: 0 }}>Admin</h1>
         <span className="spacer" />
-        <button className="btn" onClick={load}>
+        <button
+          className="btn"
+          onClick={() => {
+            load();
+            setVersion((v) => v + 1);
+          }}
+        >
           <RefreshCw size={14} /> Refresh
         </button>
         <a className="btn" href="https://vercel.com/dashboard" target="_blank" rel="noopener noreferrer">
           Web Analytics <ExternalLink size={13} />
         </a>
       </div>
+      <AdminPeople version={version} />
       {error ? <div className="notice bad">{error}</div> : null}
-      <CertificateAdmin />
       {stats ? (
         <>
           <section className="card stack">
@@ -72,13 +80,13 @@ export default function AdminPage() {
                 );
               })}
             </ol>
-            <small className="faint">Landing visits and Start-free clicks are counted once per browser session; accounts by their first sign-in; Paid once per account.</small>
+            <small className="faint">Landing visits and Start-free clicks are counted once per browser session; accounts by their first sign-in; Paid once per account (free access is not counted).</small>
           </section>
           <div className="grid-3">
             <section className="card stack">
-              <b>Accounts</b>
-              <span className="big-num">{stats.accounts}</span>
-              <small className="faint">{stats.subscribers} want emails</small>
+              <b>Want emails</b>
+              <span className="big-num">{stats.subscribers}</span>
+              <small className="faint">accounts with a streak reminder or the case of the week switched on</small>
             </section>
             <section className="card stack">
               <b>Back on day 1+</b>
@@ -109,8 +117,9 @@ export default function AdminPage() {
           </section>
         </>
       ) : !error ? (
-        <p className="muted">Loading…</p>
+        <p className="muted">Loading the funnel…</p>
       ) : null}
+      <CertificateAdmin />
     </div>
   );
 }

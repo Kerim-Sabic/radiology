@@ -3,6 +3,7 @@ import { appOrigin, plans, readiness, required, membershipPlans, type AccessTier
 import { db } from './store.js';
 import { hash, isAdmin, random } from './auth.js';
 import { merchantToken } from './oauth.js';
+import { grantActive, grantFor } from './grants.js';
 import { affiliateCode } from '../shared/referrals.js';
 
 export async function whop() {
@@ -28,7 +29,8 @@ export async function referralProfile(userId: string) {
   // then redirects to radiology.monster with the affiliate's public username.
   return { shareUrl: code ? `https://whop.com/e/trk_zpdZ5h59TRkTrN/${encodeURIComponent(code)}` : null, code };
 }
-export interface Access { active: boolean; role?: 'admin'; tier?: AccessTier; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
+/** `role`: an admin, or free access an admin gave (neither is a payment). */
+export interface Access { active: boolean; role?: 'admin' | 'granted'; tier?: AccessTier; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
 
 export function membershipAccess(m: Pick<Whop.Membership, 'account' | 'plan_id' | 'status' | 'current_period_end' | 'expires_at' | 'manage_url'>, now = Date.now()): Access {
   if (m.account.id !== required('WHOP_ACCOUNT_ID')) return { active: false };
@@ -58,7 +60,27 @@ export async function accessFor(userId: string, fresh = false): Promise<Access> 
   // Only server-recorded, verified identities can match the private admin allowlist.
   // Admin access is not cached, so removing an allowlist entry takes effect immediately.
   if (await isAdmin(userId)) return { active: true, role: 'admin', expiresAt: null };
-  if (!readiness().billing) return { active: false };
+  // Free access an admin gave is not cached either. A paid plan still wins, so its member keeps the billing link,
+  // and a Whop outage does not lock out someone who has free access.
+  const granted = await grantedAccess(userId);
+  if (!readiness().billing) return granted ?? { active: false };
+  try {
+    const paid = await paidAccess(userId, fresh);
+    return paid.active || !granted ? paid : granted;
+  } catch (error) {
+    if (granted) return granted;
+    throw error;
+  }
+}
+
+async function grantedAccess(userId: string): Promise<Access | null> {
+  const identity = await db().get<{ email: string; emailVerified: boolean }>(`rvm:identity:${userId}`);
+  if (identity?.emailVerified !== true) return null;
+  const grant = await grantFor(identity.email);
+  return grant && grantActive(grant) ? { active: true, role: 'granted', expiresAt: grant.until } : null;
+}
+
+async function paidAccess(userId: string, fresh: boolean): Promise<Access> {
   if (!fresh) {
     const cached = await db().get<Access>(`rvm:access:${userId}`);
     if (cached && (!cached.expiresAt || Date.parse(cached.expiresAt) > Date.now())) return cached;

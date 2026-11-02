@@ -1,7 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { NavLink, Route, Routes, useLocation } from 'react-router';
 import { Tooltip } from 'radix-ui';
-import { Award, BookOpen, Bone, ChartColumn, CircleHelp, FolderOpen, GraduationCap, House, Library, Lock, Search, Settings as SettingsIcon, NotebookPen, Siren, Stethoscope, Target } from 'lucide-react';
+import { Award, BookOpen, Bone, ChartColumn, CircleHelp, FolderOpen, GraduationCap, House, Library, Lock, Search, Settings as SettingsIcon, NotebookPen, Siren, Stethoscope, Target, UsersRound } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 import { AccountMenu } from './auth/AccountGate';
@@ -82,7 +82,7 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
     { to: '/import', label: 'Import', icon: <FolderOpen size={16} />, minor: true },
     { to: '/author', label: 'Author', icon: <NotebookPen size={16} />, minor: true },
     { to: '/settings', label: 'Settings', icon: <SettingsIcon size={16} />, minor: true },
-    ...(admin ? [{ to: '/admin', label: 'Numbers', icon: <ChartColumn size={16} />, minor: true }] : []),
+    ...(admin ? [{ to: '/admin', label: 'Admin', icon: <UsersRound size={16} />, minor: true }] : []),
   ];
   return (
     <nav className="topnav" aria-label="Main">
