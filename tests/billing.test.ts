@@ -121,11 +121,11 @@ describe('paid access policy', () => {
     fake.records.set('rvm:whop-user:u', 'user_test');
     expect(await checkout('u', 'yearly')).toEqual({ id: 'ch_test', url: 'https://whop.com/checkout/ch_test', returnUrl: 'https://radiology.monster/?checkout=returned' });
   });
-  it('routes Nadin to its original one-use offer and never lets it discount yearly', async () => {
-    const result = await checkout('new-customer', 'monthly', ' NADIN ');
-    expect(result.promoCode).toBe('nadin');
+  it.each(['nadin', 'nadin1'])('routes %s to the legacy offer and never lets it discount yearly', async promo => {
+    const result = await checkout('new-customer', 'monthly', ` ${promo.toUpperCase()} `);
+    expect(result.promoCode).toBe(promo);
     expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: 'plan_legacy_monthly' } });
-    await expect(checkout('new-customer', 'yearly', 'nadin')).rejects.toThrow('not available');
+    await expect(checkout('new-customer', 'yearly', promo)).rejects.toThrow('not available');
     await expect(checkout('new-customer', 'monthly', 'empa')).rejects.toThrow('not available');
     expect(fake.checkoutCalls).toHaveLength(1);
   });
@@ -168,6 +168,17 @@ describe('paid access policy', () => {
 
 describe('sessions and request boundaries', () => {
   const request = (cookie: string, path = '/api/session', method = 'GET', body?: unknown, origin = 'https://radiology.monster') => new Request(`https://radiology.monster${path}`, { method, headers: { Cookie: cookie.split(';')[0], Origin: origin, 'Content-Type': 'application/json' }, body: body ? JSON.stringify(body) : undefined });
+  it('accepts NADIN1 for monthly checkout, prefills the code and rejects yearly or unapproved codes', async () => {
+    const token = await createSession({ sub: 'user_promo', email: 'promo-buyer@example.com', emailVerified: true });
+    const response = await handle(request(token, '/api/billing/checkout', 'POST', { tier: 'monthly', promoCode: ' NADIN1 ' }));
+    expect(response.status).toBe(200);
+    expect(await response.json()).toMatchObject({ id: 'ch_test', promoCode: 'nadin1' });
+    expect(fake.checkoutCalls[0]).toMatchObject({ body: { plan_id: 'plan_legacy_monthly' } });
+    for (const body of [{ tier: 'yearly', promoCode: 'nadin1' }, { tier: 'monthly', promoCode: 'nadin2' }]) {
+      expect((await handle(request(token, '/api/billing/checkout', 'POST', body))).status).toBe(400);
+    }
+    expect(fake.checkoutCalls).toHaveLength(1);
+  });
   it('exchanges a verified Clerk identity for a secure app session and preserves free admin access', async () => {
     vi.stubEnv('ADMIN_EMAILS', 'admin@example.com');
     fake.clerkIdentity.mockResolvedValue({ sub: 'clerk_admin', provider: 'clerk', email: 'admin@example.com', emailVerified: true });

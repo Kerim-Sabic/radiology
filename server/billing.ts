@@ -108,8 +108,8 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   if (existing.active) throw new Error('You already have access. Manage your existing plan in your account.');
   if (existing.pendingMembership) throw new Error('An existing membership needs attention. Check your payment in Whop before purchasing again.');
   const promo = promoCode?.trim().toLowerCase();
-  if (promo && (promo !== 'nadin' || tier !== 'monthly')) throw new Error('This code is not available for this plan.');
-  // Preserve the original one-redemption Whop promotion without changing an existing subscriber.
+  if (promo && (!['nadin', 'nadin1'].includes(promo) || tier !== 'monthly')) throw new Error('This code is not available for this plan.');
+  // Both approved Whop promotions use the legacy plan without changing existing subscribers.
   // Whop remains authoritative for availability, the final quote, and atomic redemption.
   const planId = required(promo ? 'WHOP_LEGACY_MONTHLY_PLAN_ID' : plans[tier].env);
   const client = await whop();
