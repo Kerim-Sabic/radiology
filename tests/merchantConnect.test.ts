@@ -1,6 +1,6 @@
 import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
-const fake = vi.hoisted(() => ({ records: new Map<string, unknown>(), retrieve: vi.fn(), exchange: vi.fn(), identity: vi.fn(), probe: vi.fn(), list: vi.fn(), encrypt: vi.fn() }));
+const fake = vi.hoisted(() => ({ records: new Map<string, unknown>(), retrieve: vi.fn(), fetch: vi.fn(), exchange: vi.fn(), identity: vi.fn(), probe: vi.fn(), list: vi.fn(), encrypt: vi.fn() }));
 vi.mock('../server/store', () => ({ db: () => ({
   get: async (key: string) => fake.records.get(key) ?? null,
   getdel: async (key: string) => { const value = fake.records.get(key); fake.records.delete(key); return value ?? null; },
@@ -10,19 +10,21 @@ vi.mock('../server/store', () => ({ db: () => ({
 }) }));
 vi.mock('../server/oauth', () => ({ merchantToken: async () => 'old-credential', exchange: fake.exchange, identity: fake.identity, encrypt: fake.encrypt }));
 vi.mock('../server/studentDiscount', () => ({ studentCode: fake.probe, STUDENT_READY_KEY: 'rvm:student-discount-ready' }));
-vi.mock('@whop/sdk', () => ({ WhopClient: class { accounts = { retrieve: fake.retrieve }; promoCodes = { list: fake.list }; } }));
+vi.mock('@whop/sdk', () => ({ WhopClient: class { variants = { retrieve: fake.retrieve }; promoCodes = { list: fake.list }; } }));
 import { beginMerchantConnect, finishMerchantConnect, MERCHANT_COOKIE, MERCHANT_SCOPES, merchantConnectPage } from '../server/merchantConnect';
 
 beforeEach(() => {
   vi.resetAllMocks(); fake.records.clear();
   fake.records.set('rvm:merchant', 'old-encrypted-credential');
-  for (const [key, value] of Object.entries({ APP_URL: 'https://www.radiology.monster', WHOP_API_KEY: '', TOKEN_ENCRYPTION_KEY: 'test', WHOP_APP_ID: 'app_test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly' })) vi.stubEnv(key, value);
-  fake.retrieve.mockResolvedValue({ id: 'biz_test', owner: { id: 'user_owner' } });
+  for (const [key, value] of Object.entries({ APP_URL: 'https://www.radiology.monster', WHOP_API_KEY: '', TOKEN_ENCRYPTION_KEY: 'test', WHOP_APP_ID: 'app_test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly' })) vi.stubEnv(key, value);
+  vi.stubGlobal('fetch', fake.fetch);
+  fake.fetch.mockImplementation(async () => Response.json({ sub: 'user_owner', email_verified: true }));
+  fake.retrieve.mockResolvedValue({ id: 'plan_monthly', account: { id: 'biz_test' }, product: { id: 'prod_test' } });
   fake.exchange.mockResolvedValue({ access_token: 'new-secret', refresh_token: 'new-refresh', expiresAt: Date.now() + 3600000 });
   fake.identity.mockResolvedValue({ sub: 'user_owner', emailVerified: true });
   fake.encrypt.mockReturnValue('new-encrypted-credential');
 });
-afterAll(() => vi.unstubAllEnvs());
+afterAll(() => { vi.unstubAllEnvs(); vi.unstubAllGlobals(); });
 const callback = async () => {
   const flow = await beginMerchantConnect();
   const state = new URL(flow.url).searchParams.get('state')!;
@@ -42,6 +44,7 @@ describe('owner-authorized merchant promo connection', () => {
     expect(flow.cookie).toContain(`${MERCHANT_COOKIE}=merchant.`);
     expect(flow.cookie).toContain('HttpOnly; Secure; SameSite=Lax; Max-Age=600');
     expect(fake.records.get('rvm:merchant')).toBe('old-encrypted-credential');
+    expect(fake.fetch).toHaveBeenCalledWith('https://api.whop.com/oauth/userinfo', expect.objectContaining({ headers: { Authorization: 'Bearer old-credential' } }));
   });
   it('checks the owner and both permissions before atomically saving the encrypted connection and enabling discounts', async () => {
     await finishMerchantConnect(await callback());
@@ -56,7 +59,7 @@ describe('owner-authorized merchant promo connection', () => {
   it.each(['wrong owner', 'wrong business', 'read denied', 'create denied', 'refresh locked'])('preserves the previous connection when %s', async scenario => {
     const request = await callback();
     if (scenario === 'wrong owner') fake.identity.mockResolvedValue({ sub: 'user_attacker' });
-    if (scenario === 'wrong business') fake.retrieve.mockResolvedValue({ id: 'biz_other', owner: { id: 'user_owner' } });
+    if (scenario === 'wrong business') fake.retrieve.mockResolvedValue({ id: 'plan_monthly', account: { id: 'biz_other' }, product: { id: 'prod_test' } });
     if (scenario === 'read denied') fake.list.mockRejectedValue(new Error('403'));
     if (scenario === 'create denied') fake.probe.mockRejectedValue(new Error('403'));
     if (scenario === 'refresh locked') fake.records.set('rvm:merchant-refresh', 'another-request');
@@ -64,6 +67,14 @@ describe('owner-authorized merchant promo connection', () => {
     expect(fake.records.get('rvm:merchant')).toBe('old-encrypted-credential');
     expect(fake.records.has('rvm:student-discount-ready')).toBe(false);
     expect(fake.encrypt).not.toHaveBeenCalled();
+  });
+  it.each(['denied', 'unverified', 'invalid identity', 'wrong product'])('does not begin reauthorization when existing identity is %s', async scenario => {
+    if (scenario === 'denied') fake.fetch.mockResolvedValue(Response.json({}, { status: 403 }));
+    if (scenario === 'unverified') fake.fetch.mockResolvedValue(Response.json({ sub: 'user_owner', email_verified: false }));
+    if (scenario === 'invalid identity') fake.fetch.mockResolvedValue(Response.json({ sub: 'biz_test', email_verified: true }));
+    if (scenario === 'wrong product') fake.retrieve.mockResolvedValue({ id: 'plan_monthly', account: { id: 'biz_test' }, product: { id: 'prod_other' } });
+    await expect(beginMerchantConnect()).rejects.toThrow();
+    expect([...fake.records.keys()]).toEqual(['rvm:merchant']);
   });
   it('rejects a forged cookie or alias origin before exchanging an authorization code', async () => {
     const request = await callback();
