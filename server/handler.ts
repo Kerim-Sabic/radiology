@@ -11,8 +11,9 @@ import { claimCertificate, myCertificates, publicCertificate, revokeCertificate 
 import { answerQuestion, finishExam, openQuestion, startExam } from './certificateExam.js';
 import { queueCertificateEmail, sendCertificateEmails } from './certificateEmail.js';
 import { certificateImage, certificatePageHtml } from './certificateShare.js';
-import { isAdmin } from './auth.js';
-import { addPerson, adminPeople, emailSignIn, removeFreeAccess, setFreeAccess } from './admin.js';
+import { adminAccess } from './auth.js';
+import type { Permission } from './roles.js';
+import { addPerson, adminPeople, emailSignIn, removeFreeAccess, setFreeAccess, setRole } from './admin.js';
 import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
 import { studentEligible, StudentDiscountError } from './studentDiscount.js';
 
@@ -123,7 +124,10 @@ export async function handle(request: Request): Promise<Response> {
       if (access.active && !access.role) await countOnce('paid', user.userId);
       // Whether the book is served to this account now (named accounts get it without a plan).
       const book = bookGift(user.email) || (access.active && servesBook(user.email));
-      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book, studentDiscountEligible: await studentEligible(user.userId) });
+      // What this admin may do on the admin page ("admins": manage admins, the owner's alone).
+      const admin = access.role === 'admin' ? await adminAccess(user.userId) : null;
+      const adminPermissions = admin ? [...admin.permissions, ...(admin.owner ? ['admins'] : [])] : undefined;
+      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book, studentDiscountEligible: await studentEligible(user.userId), ...(adminPermissions ? { adminPermissions } : {}) });
     }
     if (path === '/api/access' && request.method === 'GET') {
       const access = await accessFor(user.userId);
@@ -157,7 +161,7 @@ export async function handle(request: Request): Promise<Response> {
       return r.ok ? json(r) : json({ error: r.error }, 400);
     }
     if(path==='/api/admin/certificates/revoke' && request.method==='POST') {
-      if(!await isAdmin(user.userId)) return json({error:'Admin accounts only.'},403);
+      if(!(await adminAccess(user.userId))?.permissions.includes('certificates')) return json({error:'Admin accounts only.'},403);
       const r=await revokeCertificate(user.userId,await request.json());
       return json(r,r.ok?200:400);
     }
@@ -182,24 +186,32 @@ export async function handle(request: Request): Promise<Response> {
       const r = await startLinkedInPost(user, await request.json().catch(() => null));
       return r.ok ? json({ url: r.url }) : json({ error: r.error }, 400);
     }
-    if (path === '/api/admin/stats' && request.method === 'GET') {
-      if (!(await isAdmin(user.userId))) return json({ error: 'Not allowed' }, 403);
-      return json(await adminStats());
-    }
-    // The people on the admin dashboard: every account, creating one for an email, and free access.
-    if (path === '/api/admin/people' || path.startsWith('/api/admin/free') || path === '/api/admin/email-sign-in') {
-      if (!(await isAdmin(user.userId))) return json({ error: 'Admin accounts only.' }, 403);
-      if (path === '/api/admin/people' && request.method === 'GET') return json(await adminPeople());
+    // The admin dashboard. Each part needs its own permission; managing admins is the owner's alone, and answers
+    // "Not found" to everyone else, so nothing tells an admin that it exists.
+    if (path.startsWith('/api/admin/') && path !== '/api/admin/certificates/revoke') {
+      const admin = await adminAccess(user.userId);
+      if (!admin) return json({ error: 'Admin accounts only.' }, 403);
+      const may = (p: Permission) => admin.permissions.includes(p);
+      const denied = () => json({ error: 'Not allowed' }, 403);
+      if (path === '/api/admin/role' && !admin.owner) return json({ error: 'Not found' }, 404);
+      if (request.method === 'GET') {
+        if (path === '/api/admin/stats') return may('numbers') ? json(await adminStats()) : denied();
+        if (path === '/api/admin/people') return may('people') ? json(await adminPeople(admin)) : denied();
+        return json({ error: 'Not found' }, 404);
+      }
       if (request.method !== 'POST') return json({ error: 'Not found' }, 404);
       if (!await rateLimit(`admin:${user.userId}`, 120, 600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
       const body = await request.json().catch(() => null);
+      const givesFree = (body as { freeUntil?: unknown } | null)?.freeUntil !== undefined;
       const r =
-        path === '/api/admin/people' ? await addPerson(user.email, body)
-        : path === '/api/admin/free' ? await setFreeAccess(user.email, body)
-        : path === '/api/admin/free/remove' ? await removeFreeAccess(body)
-        : path === '/api/admin/email-sign-in' ? await emailSignIn(body)
+        path === '/api/admin/people' ? (may('add') && (!givesFree || may('free')) ? await addPerson(user.email, body) : 'denied')
+        : path === '/api/admin/free' ? (may('free') ? await setFreeAccess(user.email, body) : 'denied')
+        : path === '/api/admin/free/remove' ? (may('free') ? await removeFreeAccess(body) : 'denied')
+        : path === '/api/admin/email-sign-in' ? (may('add') ? await emailSignIn(body) : 'denied')
+        : path === '/api/admin/role' ? await setRole(user.email, body)
         : null;
       if (!r) return json({ error: 'Not found' }, 404);
+      if (r === 'denied') return denied();
       return r.ok ? json(r) : json({ error: r.error }, 400);
     }
     if (!readiness().billing) return json({ error: 'Payments are being configured. Please try again shortly.' }, 503);

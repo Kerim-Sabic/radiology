@@ -3,9 +3,10 @@ import { isClerkAPIResponseError } from '@clerk/backend/errors';
 import { z } from 'zod';
 import { appOrigin, membershipPlans, readiness, required, type AccessTier } from './config.js';
 import { db, rateLimit } from './store.js';
-import { hash, isAdminEmail } from './auth.js';
+import { hash, isAdminEmail, isOwnerEmail, type AdminAccess } from './auth.js';
 import { mailboxKey } from './mailbox.js';
 import { allGrants, grantActive, grantFor, removeGrant, setGrant, type Grant } from './grants.js';
+import { allAdminRoles, PERMISSIONS, removeAdminRole, setAdminRole, type Permission } from './roles.js';
 import { membershipAccess, whop } from './billing.js';
 import type { Profile } from './engage.js';
 
@@ -25,7 +26,13 @@ export interface Person {
   firstVisit: string | null;
   lastStudied: string | null;
   studyDays: number;
-  access: 'admin' | 'paid' | 'free' | 'none';
+  /** `member`: has paid access, shown so to admins who may not see payments. */
+  access: 'admin' | 'paid' | 'member' | 'free' | 'none';
+  /** Admin or user; an admin's role comes from ADMIN_EMAILS in Vercel or from the dashboard. */
+  role: 'admin' | 'user';
+  /** For the owner only: where an admin's role comes from, and what they may do. Others see every admin alike. */
+  adminSource?: 'owner' | 'vercel' | 'dashboard';
+  permissions?: Permission[];
   plan?: AccessTier;
   paidUntil?: string | null;
   grant?: { until: string | null; note?: string; by: string; at: string; active: boolean };
@@ -74,8 +81,27 @@ async function payingMembers() {
   }
 }
 
-export async function adminPeople(now = Date.now()) {
-  const [{ users, total }, appUsers, grants, whopPaid] = await Promise.all([clerkUsers(), db().smembers('rvm:users') as Promise<string[]>, allGrants(), payingMembers()]);
+/** The dashboard's people, shown as `viewer` may see them (payments only with that permission; roles in full only to the owner). */
+export async function adminPeople(viewer: AdminAccess, now = Date.now()) {
+  const full = await everyone(now);
+  const payments = viewer.permissions.includes('payments');
+  const people = full.people.map((p): Person => {
+    const out = { ...p };
+    if (!payments && out.access === 'paid') out.access = 'member';
+    if (!payments) delete out.plan, delete out.paidUntil;
+    if (!viewer.owner) delete out.adminSource, delete out.permissions;
+    return out;
+  });
+  const counts = payments ? full.counts : { ...full.counts, paying: null, payingWithoutAccount: null, plans: null };
+  return { counts, whop: payments ? full.whop : 'hidden', people };
+}
+
+async function everyone(now: number) {
+  const [{ users, total }, appUsers, grants, roles, whopPaid] = await Promise.all([clerkUsers(), db().smembers('rvm:users') as Promise<string[]>, allGrants(), allAdminRoles(), payingMembers()]);
+  const roleBy = new Map(roles.map((r) => [mailboxKey(r.email), r]));
+  const adminSource = (email: string): Person['adminSource'] => (isOwnerEmail(email) ? 'owner' : isAdminEmail(email) ? 'vercel' : roleBy.has(mailboxKey(email)) ? 'dashboard' : undefined);
+  const roleFields = (email: string, source: Person['adminSource']) =>
+    source ? { adminSource: source, permissions: source === 'dashboard' ? roleBy.get(mailboxKey(email))!.permissions : [...PERMISSIONS] } : {};
 
   // Accounts by app user id (the hash of the Clerk id), so the app's own records join without a lookup.
   const accounts = new Map<string, Pick<Person, 'email' | 'name' | 'account' | 'createdAt' | 'lastActiveAt'>>();
@@ -117,6 +143,7 @@ export async function adminPeople(now = Date.now()) {
     if (r.whopUser && whopPaid?.paid.has(r.whopUser)) seenWhopUsers.add(r.whopUser);
     const g = grantBy.get(key);
     const days = r.profile?.days ?? [];
+    const source = adminSource(email);
     people.push({
       email,
       name: a?.name || r.profile?.name || '',
@@ -126,15 +153,28 @@ export async function adminPeople(now = Date.now()) {
       firstVisit: r.joined,
       lastStudied: days.at(-1) ?? null,
       studyDays: days.length,
-      access: isAdminEmail(email) ? 'admin' : paid ? 'paid' : g && grantActive(g, now) ? 'free' : 'none',
+      access: source ? 'admin' : paid ? 'paid' : g && grantActive(g, now) ? 'free' : 'none',
+      role: source ? 'admin' : 'user',
+      ...roleFields(email, source),
       ...(paid ? { plan: paid.tier, paidUntil: paid.until } : {}),
       ...(g ? { grant: { until: g.until, note: g.note, by: g.by, at: g.at, active: grantActive(g, now) } } : {}),
     });
   }
-  // Free access given to an email that has no account yet.
-  for (const g of grants) {
-    if (seenMailboxes.has(mailboxKey(g.email))) continue;
-    people.push({ email: g.email, name: '', account: null, createdAt: null, lastActiveAt: null, firstVisit: null, lastStudied: null, studyDays: 0, access: grantActive(g, now) ? 'free' : 'none', grant: { until: g.until, note: g.note, by: g.by, at: g.at, active: grantActive(g, now) } });
+  // Free access or an admin role given to an email that has no account yet.
+  const listed = new Set(seenMailboxes);
+  for (const email of [...grants.map((g) => g.email), ...roles.map((r) => r.email)]) {
+    const key = mailboxKey(email);
+    if (listed.has(key)) continue;
+    listed.add(key);
+    const g = grantBy.get(key);
+    const source = adminSource(email);
+    people.push({
+      email, name: '', account: null, createdAt: null, lastActiveAt: null, firstVisit: null, lastStudied: null, studyDays: 0,
+      access: source ? 'admin' : g && grantActive(g, now) ? 'free' : 'none',
+      role: source ? 'admin' : 'user',
+      ...roleFields(email, source),
+      ...(g ? { grant: { until: g.until, note: g.note, by: g.by, at: g.at, active: grantActive(g, now) } } : {}),
+    });
   }
   people.sort((x, y) => (y.createdAt ?? '').localeCompare(x.createdAt ?? ''));
 
@@ -225,6 +265,24 @@ export async function removeFreeAccess(body: unknown) {
   if (!p.success) return { ok: false as const, error: 'Enter a valid email address.' };
   await removeGrant(p.data.email);
   return { ok: true as const };
+}
+
+const RoleBody = z.object({ email: Email, role: z.enum(['admin', 'user']), permissions: z.array(z.enum(PERMISSIONS)).max(PERMISSIONS.length).optional() }).strict();
+
+/** The owner makes someone an admin with chosen permissions, changes them, or makes them a user again. */
+export async function setRole(owner: string, body: unknown) {
+  const p = RoleBody.safeParse(body);
+  if (!p.success) return { ok: false as const, error: 'Expected an email address, the role admin or user, and what an admin may do.' };
+  const { email, role } = p.data;
+  if (isOwnerEmail(email)) return { ok: false as const, error: 'Your own role cannot be changed.' };
+  if (isAdminEmail(email)) return { ok: false as const, error: 'This admin is set in Vercel (ADMIN_EMAILS). Change it there.' };
+  if (role === 'user') {
+    await removeAdminRole(email);
+    return { ok: true as const, role };
+  }
+  const permissions = PERMISSIONS.filter((x) => p.data.permissions?.includes(x));
+  await setAdminRole({ email, permissions, by: owner, at: new Date().toISOString() });
+  return { ok: true as const, role, permissions };
 }
 
 /** Email the sign-in steps again to an existing person. */

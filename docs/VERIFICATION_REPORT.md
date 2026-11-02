@@ -354,6 +354,28 @@ Free access is kept per mailbox and checked on every request. It needs a verifie
 
 **Tests:** 531 unit tests (`tests/admin.test.ts`: only admins, same-origin changes, passwordless account creation, dates in the future only, Clerk refusals shown, exact counts across Clerk, Whop and free access, Whop down; `tests/billing.test.ts`: free access opens, ends and yields to a paid plan); 8 browser tests in `e2e/admin.spec.ts` (Chromium and Firefox).
 
+## 3j. Owner, admins and permissions (2 November)
+
+The admin page is now the owner's (`OWNER_EMAILS`). Only the owner makes someone an admin or a user again, and ticks what each admin may do:
+- see the people list
+- see payments
+- add people
+- give free access
+- see the numbers
+- revoke certificates
+
+The server checks each permission on every request. An admin sees only the parts they were given, and nothing about managing admins: that request answers "Not found" to them, and the owner looks like any other admin.
+
+**Tests:** 536 unit tests. `tests/admin.test.ts` covers:
+- permissions given and taken away at once
+- adding without free access
+- payments hidden
+- "Not found" for anyone but the owner
+- the owner's own role and Vercel admins left unchanged
+- verified email required
+
+`e2e/admin.spec.ts` has 6 tests, run in Chromium and Firefox: the owner choosing permissions, and a limited admin seeing only the people list.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

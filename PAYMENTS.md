@@ -30,6 +30,16 @@ The Whop app is a public OAuth client. Register `https://www.radiology.monster/a
 
 **Admin dashboard and free access (`/admin`, `server/admin.ts`).** Admins see the exact number of accounts (every Clerk account, plus older Whop sign-ins), paying members by plan (read live from Whop's active memberships), free access, and who was active or studied this week, with everyone in one searchable list. "Add a person" creates the Clerk account for an email (no password: this Clerk instance signs in with an emailed code) and can email them the sign-in steps through Resend. Free access is stored per mailbox (`rvm:grant:<sha256>`, `server/grants.ts`) with an end date or none. It works before the person has signed in and opens only for a verified email. It is read on every access check, so removing it takes effect at once. A paid plan still wins, so a paying member keeps the Billing link; free access does not cancel Whop charges. Free access is never counted as Paid in the funnel, and nothing here changes Whop.
 
+**Owner, admins and permissions (`server/roles.ts`).**
+- **The owner** is the email in `OWNER_EMAILS` (server-only; without it, everyone in `ADMIN_EMAILS`). The owner may do everything and is the only one who makes someone an admin or a user again, and chooses what each admin may do.
+- **What an owner can give an admin:** see the people list, see payments, add people, give free access, see the numbers, revoke certificates.
+- **Other `ADMIN_EMAILS` entries** may do everything except manage admins. They can be changed only in Vercel.
+- **Checks:** every admin request is checked against these permissions on the server. Admins without the payments permission see paying members only as "Member", without plan or dates.
+- **Managing admins stays hidden.** To anyone but the owner, the request that manages admins answers "Not found". Their own session lists only their permissions, and in the people list every admin, the owner included, looks alike.
+- **Data:** roles are kept per mailbox (`rvm:admin:<sha256>`), need a verified email and take effect at once.
+
+This repository is public, so the code itself shows that an owner level exists; only who it is and what each admin may do stay private.
+
 An opaque secure HttpOnly cookie identifies a Redis session. A new sign-in replaces the user's active device pointer. Previous devices lose authorization on their next request, and the app checks every 30 seconds and on focus. Already downloaded content cannot be remotely erased.
 
 The server verifies the exact business, product and allowlisted plan, membership status, expiration, and the latest paid charge. Refunded or disputed payments do not unlock access. Results are cached for at most 30 seconds; returning from checkout triggers immediate checks. Webhooks are not required for this implementation. If Whop or Redis cannot verify access, access fails closed.

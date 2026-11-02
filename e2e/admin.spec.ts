@@ -24,24 +24,25 @@ function people() {
     },
     whop: 'ok',
     people: [
-      { email: 'kerim.sabic@gmail.com', name: 'Kerim', account: 'clerk', createdAt: iso(-40 * day), lastActiveAt: iso(0), firstVisit: '2026-09-01', lastStudied: null, studyDays: 0, access: 'admin' },
-      { email: 'payer@example.com', name: 'Paying Student', account: 'clerk', createdAt: iso(-3 * day), lastActiveAt: iso(-day), firstVisit: '2026-10-30', lastStudied: '2026-11-01', studyDays: 4, access: 'paid', plan: 'yearly', paidUntil: iso(300 * day) },
-      { email: 'friend@example.com', name: 'Lejla', account: 'clerk', createdAt: iso(-2 * day), lastActiveAt: iso(-2 * day), firstVisit: '2026-10-31', lastStudied: null, studyDays: 0, access: 'free', grant: { until: null, note: 'Family', by: 'kerim.sabic@gmail.com', at: iso(-2 * day), active: true } },
-      { email: 'waiting@example.com', name: '', account: null, createdAt: null, lastActiveAt: null, firstVisit: null, lastStudied: null, studyDays: 0, access: 'free', grant: { until: '2027-11-02T23:59:59.999Z', by: 'kerim.sabic@gmail.com', at: iso(0), active: true } },
-      { email: 'plain@example.com', name: '', account: 'clerk', createdAt: iso(-60 * day), lastActiveAt: iso(-20 * day), firstVisit: '2026-09-03', lastStudied: '2026-10-12', studyDays: 1, access: 'none' },
+      { email: 'kerim.sabic@gmail.com', name: 'Kerim', account: 'clerk', createdAt: iso(-40 * day), lastActiveAt: iso(0), firstVisit: '2026-09-01', lastStudied: null, studyDays: 0, access: 'admin', role: 'admin', adminSource: 'owner', permissions: ['people', 'payments', 'add', 'free', 'numbers', 'certificates'] },
+      { email: 'payer@example.com', name: 'Paying Student', account: 'clerk', createdAt: iso(-3 * day), lastActiveAt: iso(-day), firstVisit: '2026-10-30', lastStudied: '2026-11-01', studyDays: 4, access: 'paid', role: 'user', plan: 'yearly', paidUntil: iso(300 * day) },
+      { email: 'friend@example.com', name: 'Lejla', account: 'clerk', createdAt: iso(-2 * day), lastActiveAt: iso(-2 * day), firstVisit: '2026-10-31', lastStudied: null, studyDays: 0, access: 'free', role: 'user', grant: { until: null, note: 'Family', by: 'kerim.sabic@gmail.com', at: iso(-2 * day), active: true } },
+      { email: 'waiting@example.com', name: '', account: null, createdAt: null, lastActiveAt: null, firstVisit: null, lastStudied: null, studyDays: 0, access: 'free', role: 'user', grant: { until: '2027-11-02T23:59:59.999Z', by: 'kerim.sabic@gmail.com', at: iso(0), active: true } },
+      { email: 'plain@example.com', name: '', account: 'clerk', createdAt: iso(-60 * day), lastActiveAt: iso(-20 * day), firstVisit: '2026-09-03', lastStudied: '2026-10-12', studyDays: 1, access: 'none', role: 'user' },
     ],
   };
 }
 
-async function admin(page: Page) {
+const ALL = ['people', 'payments', 'add', 'free', 'numbers', 'certificates', 'admins'];
+async function admin(page: Page, adminPermissions = ALL, view: () => object = people) {
   const posts: Array<{ path: string; body: Record<string, unknown> }> = [];
   await page.route('**/api/config', (r) => r.fulfill({ json: { auth: true, billing: true } }));
-  await page.route('**/api/session', (r) => r.fulfill({ json: { user: { name: 'Kerim', email: 'kerim.sabic@gmail.com' }, access: { active: true, role: 'admin', expiresAt: null }, billingReady: true } }));
+  await page.route('**/api/session', (r) => r.fulfill({ json: { user: { name: 'Kerim', email: 'kerim.sabic@gmail.com' }, access: { active: true, role: 'admin', expiresAt: null }, billingReady: true, adminPermissions } }));
   await page.route('**/api/admin/stats', (r) => r.fulfill({ json: { series: [], totals: { visit: 10, signup_start: 5, signup: 4, studied: 3, plans: 2, checkout: 1, paid: 1 }, accounts: 4, subscribers: 1, retention: { d1: { base: 3, back: 2 }, d7: { base: 2, back: 1 } } } }));
   await page.route('**/api/admin/**', async (r) => {
     const path = new URL(r.request().url()).pathname;
     if (path === '/api/admin/stats') return r.fallback();
-    if (r.request().method() === 'GET') return r.fulfill({ json: people() });
+    if (r.request().method() === 'GET') return r.fulfill({ json: view() });
     const body = r.request().postDataJSON();
     posts.push({ path, body });
     if (path === '/api/admin/people') return r.fulfill({ json: { ok: true, created: true, emailed: true, grant: body.freeUntil === undefined ? null : { email: body.email, until: body.freeUntil ? `${body.freeUntil}T23:59:59.999Z` : null } } });
@@ -127,4 +128,51 @@ test('a free-access account sees its access in the menu', async ({ page }) => {
   await expect(page.getByText('Free access until 30 Jun 2027', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Upgrade' })).toHaveCount(0);
   await expect(page.getByRole('link', { name: 'Admin' })).toHaveCount(0);
+});
+
+test('makes a person an admin with the permissions chosen, only after confirming', async ({ page }) => {
+  const posts = await admin(page);
+  await page.goto('/admin');
+  await page.getByRole('button', { name: 'Manage payer@example.com' }).click();
+  const panel = page.locator('.admin-edit');
+  const role = panel.getByRole('form', { name: 'Role' });
+  const save = role.getByRole('button', { name: 'Save role' });
+  await expect(save).toBeDisabled();
+  await role.getByRole('combobox', { name: /^Role/ }).selectOption('admin');
+  // A new admin starts with seeing people and the numbers; the owner picks the rest.
+  await expect(role.getByLabel('See the people list: names, emails, study')).toBeChecked();
+  await expect(role.getByLabel('Give and remove free access')).not.toBeChecked();
+  await role.getByLabel('Give and remove free access').check();
+  await role.getByLabel('See the sign-up and retention numbers').uncheck();
+  await expect(save).toBeDisabled();
+  await role.getByLabel('I trust them with these permissions').check();
+  await save.click();
+  await expect(panel.getByRole('status')).toContainText('payer@example.com is an admin now.');
+  expect(posts.at(-1)).toEqual({ path: '/api/admin/role', body: { email: 'payer@example.com', role: 'admin', permissions: ['people', 'free'] } });
+  // Your own row cannot be changed here.
+  await page.getByRole('button', { name: 'Manage kerim.sabic@gmail.com' }).click();
+  await expect(panel.getByRole('combobox', { name: /^Role/ })).toBeDisabled();
+  await expect(panel).toContainText('only you manage admins');
+});
+
+test('an admin sees only what they may, and nothing about managing admins', async ({ page }) => {
+  // What the server sends an admin who may see people only: payments hidden, roles without their source.
+  const limited = () => {
+    const v = people();
+    return {
+      ...v,
+      counts: { ...v.counts, paying: null, payingWithoutAccount: null, plans: null },
+      whop: 'hidden',
+      people: v.people.map(({ adminSource: _s, permissions: _p, plan: _plan, paidUntil: _u, ...p }: Record<string, unknown>) => ({ ...p, access: p.access === 'paid' ? 'member' : p.access })),
+    };
+  };
+  await admin(page, ['people'], limited);
+  await page.goto('/admin');
+  await expect(page.locator('table.admin-people tbody tr')).toHaveCount(5);
+  await expect(page.getByLabel('Accounts at a glance')).not.toContainText('Paying');
+  await expect(page.getByRole('row', { name: /Paying Student/ })).toContainText('Member');
+  for (const hidden of ['Add a person', 'Funnel, last 30 days', 'Certificate records']) await expect(page.getByText(hidden)).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /^Manage / })).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /^Paying · / })).toHaveCount(0);
+  await expect(page.getByText(/only you manage|permissions|set in Vercel|Role/)).toHaveCount(0);
 });

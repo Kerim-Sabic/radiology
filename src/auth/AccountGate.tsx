@@ -17,7 +17,8 @@ function rememberedPlan(): Tier | null { try { const value = sessionStorage.getI
 function rememberPlan(tier: Tier | null) { try { if (tier) sessionStorage.setItem(planKey, tier); else sessionStorage.removeItem(planKey); } catch { /* Storage is optional. */ } }
 
 interface Access { active: boolean; role?: 'admin' | 'granted'; tier?: Tier | 'lifetime'; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
-interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; book?: boolean; studentDiscountEligible?: boolean; }
+/** `adminPermissions`: what an admin may see and do on the admin page. */
+interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; book?: boolean; studentDiscountEligible?: boolean; adminPermissions?: string[]; }
 interface AccountState {
   account: Account;
   logout: () => void;

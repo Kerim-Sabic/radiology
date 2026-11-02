@@ -547,6 +547,35 @@
 .admin-manage {
   padding: 6px 2px;
 }
+.admin-role .admin-form {
+  grid-template-columns: minmax(200px, 320px);
+}
+.admin-role {
+  gap: 10px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--line);
+}
+.admin-perms {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 6px 16px;
+  margin: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+.admin-perms legend {
+  padding: 0 4px;
+  color: var(--text-2);
+  font-size: 12px;
+}
+.admin-role .admin-check,
+.admin-perms .admin-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
 /* On a phone each person is a small card: name, access, then the dates with their labels. */
 @media (max-width: 720px) {
   .page-inner table.admin-people,

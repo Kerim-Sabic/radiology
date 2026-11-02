@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { ExternalLink, RefreshCw } from 'lucide-react';
 import { useAccount } from '../auth/AccountGate';
 import '../styles/upgrade.css';
-import { AdminPeople } from '../components/AdminPeople';
+import { AdminPeople, type AdminPermission } from '../components/AdminPeople';
 import { CertificateAdmin } from '../components/CertificateAdmin';
 
 type Metric = 'visit' | 'signup_start' | 'signup' | 'studied' | 'plans' | 'checkout' | 'paid';
@@ -31,7 +31,11 @@ export default function AdminPage() {
   const [stats, setStats] = useState<Stats | null>(null);
   const [error, setError] = useState('');
   const [version, setVersion] = useState(0);
+  const permissions = account?.account.adminPermissions;
+  // Stable while the permissions are, so the people list does not reload on every render.
+  const can = useCallback((p: AdminPermission) => !!permissions?.includes(p), [permissions?.join()]);
   const load = () => {
+    if (!can('numbers')) return;
     setError('');
     fetch('/api/admin/stats', { cache: 'no-store' })
       .then(async (r) => (r.ok ? setStats(await r.json()) : setError(r.status === 403 ? 'Admin accounts only.' : `Could not load the numbers (HTTP ${r.status}).`)))
@@ -58,9 +62,10 @@ export default function AdminPage() {
           Web Analytics <ExternalLink size={13} />
         </a>
       </div>
-      <AdminPeople version={version} />
+      {can('people') || can('add') ? <AdminPeople version={version} can={can} /> : null}
+      {!['people', 'add', 'numbers', 'certificates'].some((p) => can(p as AdminPermission)) ? <p className="muted">There is nothing here for your account yet.</p> : null}
       {error ? <div className="notice bad">{error}</div> : null}
-      {stats ? (
+      {!can('numbers') ? null : stats ? (
         <>
           <section className="card stack">
             <h2 style={{ margin: 0 }}>Funnel, last 30 days</h2>
@@ -119,7 +124,7 @@ export default function AdminPage() {
       ) : !error ? (
         <p className="muted">Loading the funnel…</p>
       ) : null}
-      <CertificateAdmin />
+      {can('certificates') ? <CertificateAdmin /> : null}
     </div>
   );
 }

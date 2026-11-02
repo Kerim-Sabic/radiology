@@ -2,6 +2,7 @@ import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import { appOrigin, required } from './config.js';
 import { db } from './store.js';
 import { markJoined } from './joined.js';
+import { adminRole, PERMISSIONS, type Permission } from './roles.js';
 import { exchange, identity, revoke } from './oauth.js';
 
 const SESSION_SECONDS = 30 * 86400;
@@ -30,15 +31,31 @@ export async function session(request: Request): Promise<Session | null> {
   if (await db().get<string>(`rvm:device:${found.userId}`) !== tokenHash) return null;
   return { ...found, tokenHash };
 }
-/** Whether a verified email is an exact entry in ADMIN_EMAILS. */
+const emailList = (name: string) => (process.env[name] || '').split(',').map(v => v.trim().toLowerCase()).filter(Boolean);
+/** The owner (OWNER_EMAILS; without it, everyone in ADMIN_EMAILS): every permission, and the only one who manages admins. */
+export function isOwnerEmail(email: string) {
+  const owners = emailList('OWNER_EMAILS');
+  return (owners.length ? owners : emailList('ADMIN_EMAILS')).includes(email.trim().toLowerCase());
+}
+/** Whether a verified email is an exact entry in ADMIN_EMAILS (or is the owner). */
 export function isAdminEmail(email: string) {
-  const allowed = (process.env.ADMIN_EMAILS || '').split(',').map(v => v.trim().toLowerCase()).filter(Boolean);
-  return allowed.includes(email.trim().toLowerCase());
+  return isOwnerEmail(email) || emailList('ADMIN_EMAILS').includes(email.trim().toLowerCase());
+}
+export interface AdminAccess { owner: boolean; permissions: Permission[]; }
+/**
+ * What a signed-in account may do as an admin, or null for a user. ADMIN_EMAILS admins may do everything except manage
+ * admins; dashboard admins only what the owner gave them. Read on every request, so a change takes effect at once.
+ */
+export async function adminAccess(userId: string): Promise<AdminAccess | null> {
+  const identity = await db().get<{ email: string; emailVerified: boolean }>(`rvm:identity:${userId}`);
+  if (identity?.emailVerified !== true) return null;
+  if (isOwnerEmail(identity.email)) return { owner: true, permissions: [...PERMISSIONS] };
+  if (isAdminEmail(identity.email)) return { owner: false, permissions: [...PERMISSIONS] };
+  const role = await adminRole(identity.email);
+  return role ? { owner: false, permissions: role.permissions.filter(p => (PERMISSIONS as readonly string[]).includes(p)) } : null;
 }
 export async function isAdmin(userId: string) {
-  if (!(process.env.ADMIN_EMAILS || '').trim()) return false;
-  const identity = await db().get<{ email: string; emailVerified: boolean }>(`rvm:identity:${userId}`);
-  return identity?.emailVerified === true && isAdminEmail(identity.email);
+  return !!(await adminAccess(userId));
 }
 export async function createSession(profile: { sub: string; email: string; emailVerified: boolean; name?: string; provider?: 'whop' | 'clerk' }) {
   if (profile.emailVerified !== true) throw new Error('Verified email required');

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react';
-import { Mail, UserRoundPlus } from 'lucide-react';
+import { Mail, ShieldCheck, UserRoundPlus } from 'lucide-react';
 
 /** Mirrors server/admin.ts. */
 interface Person {
@@ -11,10 +11,20 @@ interface Person {
   firstVisit: string | null;
   lastStudied: string | null;
   studyDays: number;
-  access: 'admin' | 'paid' | 'free' | 'none';
+  access: 'admin' | 'paid' | 'member' | 'free' | 'none';
+  role: 'admin' | 'user';
+  /** Only in the owner's view. */
+  adminSource?: 'owner' | 'vercel' | 'dashboard';
+  permissions?: Grantable[];
   plan?: 'monthly' | 'yearly' | 'lifetime';
   paidUntil?: string | null;
-  grant?: { until: string | null; note?: string; by: string; at: string; active: boolean };
+  grant?: {
+    until: string | null;
+    note?: string;
+    by: string;
+    at: string;
+    active: boolean;
+  };
 }
 interface People {
   counts: {
@@ -23,7 +33,7 @@ interface People {
     openedApp: number;
     paying: number | null;
     payingWithoutAccount: number | null;
-    plans: { monthly: number; yearly: number; lifetime: number };
+    plans: { monthly: number; yearly: number; lifetime: number } | null;
     free: number;
     freeWaiting: number;
     admins: number;
@@ -31,9 +41,22 @@ interface People {
     active: { d7: number; d30: number };
     studied: { d7: number; d30: number };
   };
-  whop: 'ok' | 'unavailable' | 'off';
+  whop: 'ok' | 'unavailable' | 'off' | 'hidden';
   people: Person[];
 }
+
+/** What an admin may do (mirrors server/roles.ts); "admins", managing admins, is the owner's alone. */
+export type AdminPermission = Grantable | 'admins';
+type Grantable = 'people' | 'payments' | 'add' | 'free' | 'numbers' | 'certificates';
+const GRANTABLE: Array<[Grantable, string]> = [
+  ['people', 'See the people list: names, emails, study'],
+  ['payments', 'See who pays and on which plan'],
+  ['add', 'Add people and email them the sign-in steps'],
+  ['free', 'Give and remove free access'],
+  ['numbers', 'See the sign-up and retention numbers'],
+  ['certificates', 'Look up and revoke certificates'],
+];
+type Can = (p: AdminPermission) => boolean;
 
 type Length = 'none' | '1m' | '3m' | '6m' | '1y' | 'forever' | 'date';
 const LENGTHS: Array<[Length, string]> = [
@@ -55,7 +78,15 @@ function lastDay(length: Length, date: string): string | null | undefined {
   d.setMonth(d.getMonth() + { '1m': 1, '3m': 3, '6m': 6, '1y': 12 }[length]);
   return localDay(d);
 }
-const date = (value: string | null | undefined) => (value ? new Date(value.length === 10 ? `${value}T12:00:00Z` : value).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' }) : '–');
+const date = (value: string | null | undefined) =>
+  value
+    ? new Date(value.length === 10 ? `${value}T12:00:00Z` : value).toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+        timeZone: 'UTC',
+      })
+    : '–';
 function ago(value: string | null) {
   if (!value) return 'never';
   const days = Math.floor((Date.now() - Date.parse(value)) / 86_400_000);
@@ -65,17 +96,22 @@ const freeText = (until: string | null) => (until ? `until ${date(until)}` : 'no
 const planName = { monthly: 'Monthly', yearly: 'Yearly', lifetime: 'Lifetime' };
 
 async function post(path: string, body: unknown) {
-  const r = await fetch(path, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+  const r = await fetch(path, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  });
   const data = await r.json().catch(() => ({}));
   if (!r.ok) throw new Error(data.error || `The request failed (HTTP ${r.status}).`);
   return data;
 }
 
 /** Accounts, paying members and free access: exact counts, adding a person by email, and everyone in a list. */
-export function AdminPeople({ version }: { version: number }) {
+export function AdminPeople({ version, can }: { version: number; can: Can }) {
   const [data, setData] = useState<People | null>(null);
   const [error, setError] = useState('');
   const load = useCallback(async () => {
+    if (!can('people')) return;
     setError('');
     try {
       const r = await fetch('/api/admin/people', { cache: 'no-store' });
@@ -84,14 +120,14 @@ export function AdminPeople({ version }: { version: number }) {
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Could not reach the server.');
     }
-  }, []);
+  }, [can]);
   useEffect(() => void load(), [load, version]);
   return (
     <>
       {error ? <div className="notice bad">{error}</div> : null}
-      {data ? <Counts c={data.counts} /> : !error ? <p className="muted">Loading the accounts…</p> : null}
-      <AddPerson onDone={load} />
-      {data ? <PeopleList data={data} onChange={load} /> : null}
+      {can('people') ? data ? <Counts c={data.counts} /> : !error ? <p className="muted">Loading the accounts…</p> : null : null}
+      {can('add') ? <AddPerson onDone={load} canFree={can('free')} /> : null}
+      {can('people') && data ? <PeopleList data={data} onChange={load} can={can} /> : null}
     </>
   );
 }
@@ -106,14 +142,16 @@ function Counts({ c }: { c: People['counts'] }) {
           {c.newAccounts.d1} today · {c.newAccounts.d7} this week · {c.newAccounts.d30} in 30 days
         </small>
       </section>
-      <section className="card">
-        <b>Paying</b>
-        <span className="big-num">{c.paying ?? '–'}</span>
-        <small className="faint">
-          {c.paying === null ? 'Whop could not be read' : `${c.plans.monthly} monthly · ${c.plans.yearly} yearly${c.plans.lifetime ? ` · ${c.plans.lifetime} lifetime` : ''}`}
-          {c.payingWithoutAccount ? ` · ${c.payingWithoutAccount} paid on Whop with no account here` : ''}
-        </small>
-      </section>
+      {c.plans ? (
+        <section className="card">
+          <b>Paying</b>
+          <span className="big-num">{c.paying ?? '–'}</span>
+          <small className="faint">
+            {c.paying === null ? 'Whop could not be read' : `${c.plans.monthly} monthly · ${c.plans.yearly} yearly${c.plans.lifetime ? ` · ${c.plans.lifetime} lifetime` : ''}`}
+            {c.payingWithoutAccount ? ` · ${c.payingWithoutAccount} paid on Whop with no account here` : ''}
+          </small>
+        </section>
+      ) : null}
       <section className="card">
         <b>Free access</b>
         <span className="big-num">{c.free}</span>
@@ -127,7 +165,9 @@ function Counts({ c }: { c: People['counts'] }) {
       <section className="card">
         <b>Studied this week</b>
         <span className="big-num">{c.studied.d7}</span>
-        <small className="faint">{c.studied.d30} in 30 days · {c.openedApp} have opened the app</small>
+        <small className="faint">
+          {c.studied.d30} in 30 days · {c.openedApp} have opened the app
+        </small>
       </section>
     </div>
   );
@@ -157,7 +197,7 @@ function AccessFields({ length, setLength, until, setUntil, withNone }: { length
   );
 }
 
-function AddPerson({ onDone }: { onDone: () => void }) {
+function AddPerson({ onDone, canFree }: { onDone: () => void; canFree: boolean }) {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [length, setLength] = useState<Length>('forever');
@@ -171,23 +211,34 @@ function AddPerson({ onDone }: { onDone: () => void }) {
     setBusy(true);
     setResult(null);
     try {
-      const freeUntil = lastDay(length, until);
-      const r = await post('/api/admin/people', { email, ...(name.trim() ? { name } : {}), ...(freeUntil !== undefined ? { freeUntil } : {}), ...(note.trim() ? { note } : {}), sendEmail });
+      const freeUntil = canFree ? lastDay(length, until) : undefined;
+      const r = await post('/api/admin/people', {
+        email,
+        ...(name.trim() ? { name } : {}),
+        ...(freeUntil !== undefined ? { freeUntil } : {}),
+        ...(note.trim() ? { note } : {}),
+        sendEmail,
+      });
       const who = email.trim().toLowerCase();
       setResult({
         ok: true,
         text: [
           r.created ? `Account created for ${who}.` : `${who} already had an account.`,
-          r.grant ? `Free access is on, ${freeText(r.grant.until)}.` : 'No free access: they see the free edition.',
+          r.grant ? `Free access is on, ${freeText(r.grant.until)}.` : canFree ? 'No free access: they see the free edition.' : '',
           sendEmail ? (r.emailed ? 'We emailed them how to sign in.' : 'The email could not be sent; send it again from the list below.') : 'No email was sent.',
-        ].join(' '),
+        ]
+          .filter(Boolean)
+          .join(' '),
       });
       setEmail('');
       setName('');
       setNote('');
       onDone();
     } catch (err) {
-      setResult({ ok: false, text: err instanceof Error ? err.message : 'Please try again.' });
+      setResult({
+        ok: false,
+        text: err instanceof Error ? err.message : 'Please try again.',
+      });
     } finally {
       setBusy(false);
     }
@@ -209,7 +260,7 @@ function AddPerson({ onDone }: { onDone: () => void }) {
           Name (optional)
           <input type="text" value={name} onChange={(e) => setName(e.target.value)} maxLength={100} autoComplete="off" />
         </label>
-        <AccessFields length={length} setLength={setLength} until={until} setUntil={setUntil} withNone="No free access (free edition)" />
+        {canFree ? <AccessFields length={length} setLength={setLength} until={until} setUntil={setUntil} withNone="No free access (free edition)" /> : null}
         <label>
           Note (only admins see it)
           <input type="text" value={note} onChange={(e) => setNote(e.target.value)} maxLength={200} autoComplete="off" placeholder="e.g. SSST tutor" />
@@ -217,7 +268,7 @@ function AddPerson({ onDone }: { onDone: () => void }) {
         <label className="admin-check">
           <input type="checkbox" checked={sendEmail} onChange={(e) => setSendEmail(e.target.checked)} /> Email them how to sign in
         </label>
-        <button className="btn primary" type="submit" disabled={busy || !email.trim() || (length === 'date' && !until)}>
+        <button className="btn primary" type="submit" disabled={busy || !email.trim() || (canFree && length === 'date' && !until)}>
           <UserRoundPlus size={15} /> {busy ? 'Creating…' : 'Create account'}
         </button>
       </form>
@@ -235,7 +286,7 @@ const PAGE = 100;
 
 const matches = (p: Person, f: Filter) => (f === 'all' ? true : f === 'waiting' ? !p.account : p.access === f);
 
-function PeopleList({ data, onChange }: { data: People; onChange: () => void }) {
+function PeopleList({ data, onChange, can }: { data: People; onChange: () => void; can: Can }) {
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState<Filter>('all');
   const [open, setOpen] = useState<string | null>(null);
@@ -246,7 +297,7 @@ function PeopleList({ data, onChange }: { data: People; onChange: () => void }) 
   }, [data.people, filter, query]);
   const filters: Array<[Filter, string]> = [
     ['all', 'Everyone'],
-    ['paid', 'Paying'],
+    ...(can('payments') ? ([['paid', 'Paying']] as Array<[Filter, string]>) : []),
     ['free', 'Free access'],
     ['none', 'Free edition'],
     ['admin', 'Admins'],
@@ -258,15 +309,30 @@ function PeopleList({ data, onChange }: { data: People; onChange: () => void }) 
         <h2 id="people-title" style={{ margin: 0 }}>
           People
         </h2>
-        <small className="faint">
-          {shown.length === data.people.length ? `${data.people.length}` : `${shown.length} of ${data.people.length}`}
-        </small>
+        <small className="faint">{shown.length === data.people.length ? `${data.people.length}` : `${shown.length} of ${data.people.length}`}</small>
         <span className="spacer" />
-        <input type="search" value={query} onChange={(e) => { setQuery(e.target.value); setLimit(PAGE); }} placeholder="Search name, email or note" aria-label="Search people" />
+        <input
+          type="search"
+          value={query}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setLimit(PAGE);
+          }}
+          placeholder="Search name, email or note"
+          aria-label="Search people"
+        />
       </div>
       <div className="row wrap" role="group" aria-label="Show">
         {filters.map(([f, label]) => (
-          <button key={f} className="chip" aria-pressed={filter === f} onClick={() => { setFilter(f); setLimit(PAGE); }}>
+          <button
+            key={f}
+            className="chip"
+            aria-pressed={filter === f}
+            onClick={() => {
+              setFilter(f);
+              setLimit(PAGE);
+            }}
+          >
             {label} · {data.people.filter((p) => matches(p, f)).length}
           </button>
         ))}
@@ -288,7 +354,7 @@ function PeopleList({ data, onChange }: { data: People; onChange: () => void }) 
           </thead>
           <tbody>
             {shown.slice(0, limit).map((p) => (
-              <PersonRow key={`${p.account}:${p.email}`} p={p} open={open === p.email} toggle={() => setOpen(open === p.email ? null : p.email)} onChange={onChange} />
+              <PersonRow key={`${p.account}:${p.email}`} p={p} open={open === p.email} toggle={() => setOpen(open === p.email ? null : p.email)} onChange={onChange} can={can} />
             ))}
           </tbody>
         </table>
@@ -305,7 +371,22 @@ function PeopleList({ data, onChange }: { data: People; onChange: () => void }) 
 }
 
 function AccessCell({ p }: { p: Person }) {
-  if (p.access === 'admin') return <span className="chip accent">Admin</span>;
+  if (p.access === 'admin')
+    return (
+      <>
+        <span className="chip accent">Admin</span>
+        {p.adminSource === 'owner' ? (
+          <small className="faint">you</small>
+        ) : p.adminSource === 'vercel' ? (
+          <small className="faint">set in Vercel</small>
+        ) : p.permissions ? (
+          <small className="faint">
+            {p.permissions.length} of {GRANTABLE.length} permissions
+          </small>
+        ) : null}
+      </>
+    );
+  if (p.access === 'member') return <span className="chip ok">Member</span>;
   if (p.access === 'paid')
     return (
       <>
@@ -328,14 +409,18 @@ function AccessCell({ p }: { p: Person }) {
   );
 }
 
-function PersonRow({ p, open, toggle, onChange }: { p: Person; open: boolean; toggle: () => void; onChange: () => void }) {
+function PersonRow({ p, open, toggle, onChange, can }: { p: Person; open: boolean; toggle: () => void; onChange: () => void; can: Can }) {
   return (
     <>
       <tr>
         <td>
           <b>{p.name || p.email}</b>
           {p.name ? <small className="faint">{p.email}</small> : null}
-          {p.account === null ? <small className="faint">No account yet: free access opens at their first sign-in</small> : p.account === 'whop' ? <small className="faint">Signed in with Whop</small> : null}
+          {p.account === null ? (
+            <small className="faint">No account yet: free access opens at their first sign-in</small>
+          ) : p.account === 'whop' ? (
+            <small className="faint">Signed in with Whop</small>
+          ) : null}
           {p.grant?.note ? <small className="faint">Note: {p.grant.note}</small> : null}
         </td>
         <td>
@@ -345,15 +430,17 @@ function PersonRow({ p, open, toggle, onChange }: { p: Person; open: boolean; to
         <td data-label="Last active">{p.account === 'clerk' ? ago(p.lastActiveAt) : '–'}</td>
         <td data-label="Study">{p.studyDays ? `${p.studyDays} day${p.studyDays === 1 ? '' : 's'} · last ${date(p.lastStudied)}` : '–'}</td>
         <td>
-          <button className="btn" aria-expanded={open} onClick={toggle} aria-label={`Manage ${p.email}`}>
-            Manage
-          </button>
+          {can('free') || can('add') || can('admins') ? (
+            <button className="btn" aria-expanded={open} onClick={toggle} aria-label={`Manage ${p.email}`}>
+              Manage
+            </button>
+          ) : null}
         </td>
       </tr>
       {open ? (
         <tr className="admin-edit">
           <td colSpan={6}>
-            <ManagePerson p={p} onChange={onChange} />
+            <ManagePerson p={p} onChange={onChange} can={can} />
           </td>
         </tr>
       ) : null}
@@ -361,7 +448,7 @@ function PersonRow({ p, open, toggle, onChange }: { p: Person; open: boolean; to
   );
 }
 
-function ManagePerson({ p, onChange }: { p: Person; onChange: () => void }) {
+function ManagePerson({ p, onChange, can }: { p: Person; onChange: () => void; can: Can }) {
   const [length, setLength] = useState<Length>(p.grant?.active && p.grant.until ? 'date' : 'forever');
   const [until, setUntil] = useState(p.grant?.active && p.grant.until ? p.grant.until.slice(0, 10) : '');
   const [note, setNote] = useState(p.grant?.note ?? '');
@@ -374,14 +461,21 @@ function ManagePerson({ p, onChange }: { p: Person; onChange: () => void }) {
       setMessage({ ok: true, text: await fn() });
       onChange();
     } catch (e) {
-      setMessage({ ok: false, text: e instanceof Error ? e.message : 'Please try again.' });
+      setMessage({
+        ok: false,
+        text: e instanceof Error ? e.message : 'Please try again.',
+      });
     } finally {
       setBusy(false);
     }
   }
   const save = () =>
     act(async () => {
-      const r = await post('/api/admin/free', { email: p.email, freeUntil: lastDay(length, until), note });
+      const r = await post('/api/admin/free', {
+        email: p.email,
+        freeUntil: lastDay(length, until),
+        note,
+      });
       return `Free access is on, ${freeText(r.grant.until)}.`;
     });
   const remove = () =>
@@ -396,36 +490,119 @@ function ManagePerson({ p, onChange }: { p: Person; onChange: () => void }) {
     });
   const create = () =>
     act(async () => {
-      const r = await post('/api/admin/people', { email: p.email, sendEmail: true });
+      const r = await post('/api/admin/people', {
+        email: p.email,
+        sendEmail: true,
+      });
       return `Account created for ${p.email}.${r.emailed ? ' We emailed them how to sign in.' : ' The email could not be sent; try Email sign-in steps.'}`;
+    });
+  // Roles and permissions: only the owner sees these controls (the "admins" permission).
+  const editable = can('admins') && p.adminSource !== 'owner' && p.adminSource !== 'vercel';
+  const [role, setRole] = useState(p.role);
+  const [perms, setPerms] = useState<Set<Grantable>>(() => new Set(p.permissions ?? ['people', 'numbers']));
+  const [trusted, setTrusted] = useState(false);
+  const permsChanged = role === 'admin' && (perms.size !== (p.permissions?.length ?? -1) || [...perms].some((x) => !p.permissions?.includes(x)));
+  const saveRole = () =>
+    act(async () => {
+      await post('/api/admin/role', {
+        email: p.email,
+        role,
+        ...(role === 'admin'
+          ? {
+              permissions: GRANTABLE.map(([k]) => k).filter((k) => perms.has(k)),
+            }
+          : {}),
+      });
+      setTrusted(false);
+      return role === 'user' ? `${p.email} is a user now; they no longer see Admin.` : p.role === 'admin' ? `Saved what ${p.email} may see and do.` : `${p.email} is an admin now.`;
     });
   return (
     <div className="stack admin-manage">
+      {can('admins') ? (
+        <form
+          className="stack admin-role"
+          aria-label="Role"
+          onSubmit={(e) => {
+            e.preventDefault();
+            void saveRole();
+          }}
+        >
+          <div className="admin-form">
+            <label>
+              Role
+              <select value={role} onChange={(e) => setRole(e.target.value as Person['role'])} disabled={!editable}>
+                <option value="user">User</option>
+                <option value="admin">Admin</option>
+              </select>
+            </label>
+          </div>
+          {editable && role === 'admin' ? (
+            <fieldset className="admin-perms">
+              <legend>What this admin may see and do</legend>
+              {GRANTABLE.map(([k, label]) => (
+                <label key={k} className="admin-check">
+                  <input
+                    type="checkbox"
+                    checked={perms.has(k)}
+                    onChange={(e) => {
+                      const next = new Set(perms);
+                      if (e.target.checked) next.add(k);
+                      else next.delete(k);
+                      setPerms(next);
+                    }}
+                  />{' '}
+                  {label}
+                </label>
+              ))}
+            </fieldset>
+          ) : null}
+          {editable && role === 'admin' && p.role !== 'admin' ? (
+            <label className="admin-check">
+              <input type="checkbox" checked={trusted} onChange={(e) => setTrusted(e.target.checked)} /> I trust them with these permissions
+            </label>
+          ) : null}
+          {editable ? (
+            <div className="row wrap">
+              <button className="btn" type="submit" disabled={busy || (role === p.role && !permsChanged) || (role === 'admin' && p.role !== 'admin' && !trusted)}>
+                <ShieldCheck size={14} /> Save role
+              </button>
+            </div>
+          ) : p.adminSource === 'owner' ? (
+            <p className="faint">This is you. You can do everything, and only you manage admins; to other admins you look like any admin.</p>
+          ) : p.adminSource === 'vercel' ? (
+            <p className="faint">Set in Vercel (ADMIN_EMAILS): they can do everything except manage admins. Change it there.</p>
+          ) : null}
+        </form>
+      ) : null}
       {p.access === 'admin' ? <p className="muted">Admins always have full access.</p> : null}
-      {p.access === 'paid' ? <p className="notice">They pay on Whop ({planName[p.plan ?? 'monthly']}). Free access does not stop their Whop charges: they cancel renewals from Billing in the app.</p> : null}
-      <form
-        className="admin-form"
-        onSubmit={(e) => {
-          e.preventDefault();
-          void save();
-        }}
-      >
-        <AccessFields length={length} setLength={setLength} until={until} setUntil={setUntil} />
-        <label>
-          Note (only admins see it)
-          <input type="text" value={note} onChange={(e) => setNote(e.target.value)} maxLength={200} autoComplete="off" />
-        </label>
-        <button className="btn primary" type="submit" disabled={busy || (length === 'date' && !until)}>
-          {p.grant?.active ? 'Save free access' : 'Give free access'}
-        </button>
-      </form>
+      {p.access === 'paid' ? (
+        <p className="notice">They pay on Whop ({planName[p.plan ?? 'monthly']}). Free access does not stop their Whop charges: they cancel renewals from Billing in the app.</p>
+      ) : null}
+      {can('free') ? (
+        <form
+          className="admin-form"
+          onSubmit={(e) => {
+            e.preventDefault();
+            void save();
+          }}
+        >
+          <AccessFields length={length} setLength={setLength} until={until} setUntil={setUntil} />
+          <label>
+            Note (only admins see it)
+            <input type="text" value={note} onChange={(e) => setNote(e.target.value)} maxLength={200} autoComplete="off" />
+          </label>
+          <button className="btn primary" type="submit" disabled={busy || (length === 'date' && !until)}>
+            {p.grant?.active ? 'Save free access' : 'Give free access'}
+          </button>
+        </form>
+      ) : null}
       <div className="row wrap">
-        {p.grant ? (
+        {p.grant && can('free') ? (
           <button className="btn" disabled={busy} onClick={() => void remove()}>
             Remove free access
           </button>
         ) : null}
-        {p.account === 'clerk' ? (
+        {!can('add') ? null : p.account === 'clerk' ? (
           <button className="btn" disabled={busy} onClick={() => void resend()}>
             <Mail size={14} /> Email sign-in steps
           </button>

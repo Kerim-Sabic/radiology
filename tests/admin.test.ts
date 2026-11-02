@@ -79,7 +79,7 @@ beforeEach(() => {
   fake.memberships = [];
   fake.mails = [];
   vi.stubGlobal('fetch', vi.fn(async (_url: string, init: { body: string }) => (fake.mails.push(JSON.parse(init.body)), new Response('{}'))));
-  for (const [k, v] of Object.entries({ ADMIN_EMAILS: 'kerim.sabic@gmail.com', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_YEARLY_PLAN_ID: 'plan_yearly', CLERK_SECRET_KEY: 'sk_test', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test', RESEND_API_KEY: 're_test', EMAIL_FROM: 'radiology.monster <hello@radiology.monster>' })) vi.stubEnv(k, v);
+  for (const [k, v] of Object.entries({ OWNER_EMAILS: 'kerim.sabic@gmail.com', ADMIN_EMAILS: 'kerim.sabic@gmail.com,vercel.admin@example.com', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_YEARLY_PLAN_ID: 'plan_yearly', CLERK_SECRET_KEY: 'sk_test', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test', RESEND_API_KEY: 're_test', EMAIL_FROM: 'radiology.monster <hello@radiology.monster>' })) vi.stubEnv(k, v);
 });
 afterAll(() => {
   vi.unstubAllEnvs();
@@ -91,12 +91,110 @@ describe('admin dashboard boundaries', () => {
     for (const path of ['/api/admin/people', '/api/admin/free']) expect((await handle(request('', path, 'POST', {}))).status).toBe(401);
     const learner = await createSession({ sub: 'clerk_learner', provider: 'clerk', email: 'learner@example.com', emailVerified: true });
     expect((await handle(request(learner, '/api/admin/people'))).status).toBe(403);
-    for (const path of ['/api/admin/people', '/api/admin/free', '/api/admin/free/remove', '/api/admin/email-sign-in'])
-      expect((await handle(request(learner, path, 'POST', { email: 'learner@example.com', freeUntil: null, sendEmail: false }))).status).toBe(403);
+    for (const path of ['/api/admin/people', '/api/admin/free', '/api/admin/free/remove', '/api/admin/email-sign-in', '/api/admin/role'])
+      expect((await handle(request(learner, path, 'POST', { email: 'learner@example.com', freeUntil: null, sendEmail: false, role: 'admin' }))).status).toBe(403);
     expect(fake.records.has(`rvm:grant:${mailboxKey('learner@example.com')}`)).toBe(false);
+    expect(fake.records.has(`rvm:admin:${mailboxKey('learner@example.com')}`)).toBe(false);
     const admin = await owner();
     expect((await handle(request(admin, '/api/admin/people', 'POST', { email: 'x@example.com', sendEmail: false }, 'https://evil.test'))).status).toBe(403);
     expect((await handle(request(admin, '/api/admin/people'))).status).toBe(200);
+  });
+});
+
+describe('the owner, admins and their permissions', () => {
+  const role = (cookie: string, body: unknown) => handle(request(cookie, '/api/admin/role', 'POST', body));
+  const helperSession = () => createSession({ sub: 'clerk_helper', provider: 'clerk', email: 'helper@gmail.com', emailVerified: true });
+  it('gives an admin only the permissions the owner chose, at once', async () => {
+    const owner_ = await owner();
+    const helper = await helperSession();
+    expect((await handle(request(helper, '/api/admin/people'))).status).toBe(403);
+    // Kept by mailbox: a Gmail address however it is written.
+    expect(await (await role(owner_, { email: 'Hel.per@gmail.com', role: 'admin', permissions: ['people'] })).json()).toMatchObject({ ok: true, permissions: ['people'] });
+    expect(fake.records.get(`rvm:admin:${mailboxKey('helper@gmail.com')}`)).toMatchObject({ permissions: ['people'], by: 'kerim.sabic@gmail.com' });
+    expect(await (await handle(request(helper, '/api/session'))).json()).toMatchObject({ access: { active: true, role: 'admin' }, adminPermissions: ['people'] });
+    expect((await handle(request(helper, '/api/admin/people'))).status).toBe(200);
+    for (const [path, method, body] of [
+      ['/api/admin/stats', 'GET', undefined],
+      ['/api/admin/free', 'POST', { email: 'x@example.com', freeUntil: null }],
+      ['/api/admin/free/remove', 'POST', { email: 'x@example.com' }],
+      ['/api/admin/people', 'POST', { email: 'x@example.com', sendEmail: false }],
+      ['/api/admin/email-sign-in', 'POST', { email: 'x@example.com' }],
+      ['/api/admin/certificates/revoke', 'POST', { id: 'RAD-2026-abcdef', reason: 'Testing revocation' }],
+    ] as const)
+      expect((await handle(request(helper, path, method, body))).status).toBe(403);
+    // More permissions, still without free access: adding works, giving free access while adding does not.
+    await role(owner_, { email: 'helper@gmail.com', role: 'admin', permissions: ['people', 'add', 'numbers'] });
+    expect((await handle(request(helper, '/api/admin/stats'))).status).toBe(200);
+    expect((await handle(request(helper, '/api/admin/people', 'POST', { email: 'x@example.com', freeUntil: null, sendEmail: false }))).status).toBe(403);
+    expect((await handle(request(helper, '/api/admin/people', 'POST', { email: 'x@example.com', sendEmail: false }))).status).toBe(200);
+    expect(fake.sets.get('rvm:grants')?.size ?? 0).toBe(0);
+    await role(owner_, { email: 'helper@gmail.com', role: 'user' });
+    expect((await handle(request(helper, '/api/admin/people'))).status).toBe(403);
+    expect(await (await handle(request(helper, '/api/session'))).json()).toMatchObject({ access: { active: false } });
+  });
+  it('keeps managing admins the owner’s alone, and invisible to everyone else', async () => {
+    const owner_ = await owner();
+    const helper = await helperSession();
+    await role(owner_, { email: 'helper@gmail.com', role: 'admin', permissions: ['people', 'payments', 'add', 'free', 'numbers', 'certificates'] });
+    const vercelAdmin = await createSession({ sub: 'clerk_vercel', provider: 'clerk', email: 'vercel.admin@example.com', emailVerified: true });
+    for (const cookie of [helper, vercelAdmin]) {
+      // "Not found", as if the address did not exist; nobody else's role changes.
+      const r = await role(cookie, { email: 'kerim.sabic@gmail.com', role: 'user' });
+      expect(r.status).toBe(404);
+      expect(await r.json()).toEqual({ error: 'Not found' });
+      expect((await role(cookie, { email: 'friend@example.com', role: 'admin', permissions: ['people'] })).status).toBe(404);
+      const session = await (await handle(request(cookie, '/api/session'))).json();
+      expect(session.adminPermissions).not.toContain('admins');
+      const people = JSON.stringify(await (await handle(request(cookie, '/api/admin/people'))).json());
+      expect(people).not.toMatch(/owner|adminSource|permissions/);
+    }
+    expect(fake.records.has(`rvm:admin:${mailboxKey('friend@example.com')}`)).toBe(false);
+    expect((await (await handle(request(owner_, '/api/session'))).json()).adminPermissions).toContain('admins');
+    // The owner's own role and ADMIN_EMAILS admins are not changed here.
+    expect((await role(owner_, { email: 'kerim.sabic@gmail.com', role: 'user' })).status).toBe(400);
+    const v = await role(owner_, { email: 'vercel.admin@example.com', role: 'user' });
+    expect(v.status).toBe(400);
+    expect((await v.json()).error).toContain('Vercel');
+    expect((await role(owner_, { email: 'helper@gmail.com', role: 'owner' })).status).toBe(400);
+    expect((await role(owner_, { email: 'helper@gmail.com', role: 'admin', permissions: ['admins'] })).status).toBe(400);
+  });
+  it('hides payments from admins without that permission', async () => {
+    fake.clerkUsers.push(clerkUser('clerk_payer', 'payer@example.com', 'Payer'));
+    const future = new Date(Date.now() + 20 * 86_400_000).toISOString();
+    fake.memberships = [{ id: 'mem_payer', account: { id: 'biz_test' }, plan_id: 'plan_yearly', status: 'active', current_period_end: future, expires_at: null, manage_url: null, user_id: 'user_payer', product_id: 'prod_test' }];
+    fake.members = [{ account_id: 'biz_test', email: 'payer@example.com', user: { id: 'user_payer' } }];
+    const owner_ = await owner();
+    const helper = await helperSession();
+    await role(owner_, { email: 'helper@gmail.com', role: 'admin', permissions: ['people'] });
+    const seen = await (await handle(request(helper, '/api/admin/people'))).json();
+    expect(seen.whop).toBe('hidden');
+    expect(seen.counts).toMatchObject({ paying: null, plans: null });
+    const payer = seen.people.find((p: { email: string }) => p.email === 'payer@example.com');
+    expect(payer).toMatchObject({ access: 'member' });
+    expect(payer).not.toHaveProperty('plan');
+    expect(payer).not.toHaveProperty('paidUntil');
+    await role(owner_, { email: 'helper@gmail.com', role: 'admin', permissions: ['people', 'payments'] });
+    const paid = await (await handle(request(helper, '/api/admin/people'))).json();
+    expect(paid.people.find((p: { email: string }) => p.email === 'payer@example.com')).toMatchObject({ access: 'paid', plan: 'yearly' });
+  });
+  it('needs a verified email before an admin role opens anything', async () => {
+    const owner_ = await owner();
+    await role(owner_, { email: 'unverified@example.com', role: 'admin', permissions: ['people'] });
+    const id = hash('whop:user_unverified');
+    fake.records.set(`rvm:identity:${id}`, { email: 'unverified@example.com', emailVerified: false });
+    expect((await accessFor(id)).active).toBe(false);
+  });
+  it('shows the owner each admin’s source and permissions', async () => {
+    fake.clerkUsers.push(clerkUser('clerk_helper', 'helper@example.com', 'Helper'));
+    const owner_ = await owner();
+    await role(owner_, { email: 'helper@example.com', role: 'admin', permissions: ['numbers', 'people'] });
+    await role(owner_, { email: 'future-admin@example.com', role: 'admin', permissions: [] });
+    const r = await (await handle(request(owner_, '/api/admin/people'))).json();
+    const by = Object.fromEntries((r.people as Array<{ email: string }>).map((p) => [p.email, p]));
+    expect(by['kerim.sabic@gmail.com']).toMatchObject({ role: 'admin', adminSource: 'owner', access: 'admin' });
+    expect(by['helper@example.com']).toMatchObject({ role: 'admin', adminSource: 'dashboard', permissions: ['people', 'numbers'] });
+    expect(by['future-admin@example.com']).toMatchObject({ role: 'admin', account: null, permissions: [] });
+    expect(r.counts.admins).toBe(3);
   });
 });
 
