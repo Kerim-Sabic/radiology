@@ -6,11 +6,13 @@ import { db } from './store.js';
 
 const PREFIX = 'rvmstudent';
 const OFFER_SECONDS = 24 * 60 * 60;
+export const STUDENT_READY_KEY = 'rvm:student-discount-ready';
 type Offer = { code: string; expiresAt: string; key: string; id?: string };
 
 export class StudentDiscountError extends Error {}
 
 export async function studentEligible(userId: string): Promise<boolean> {
+  if (await db().get(STUDENT_READY_KEY) !== true) return false;
   const identity = await db().get<{ email: string; emailVerified: boolean }>(`rvm:identity:${userId}`);
   return identity?.emailVerified === true && academicEmail(identity.email);
 }
@@ -34,13 +36,13 @@ function atLeastStudent(code: Whop.PromoCode | Whop.PromoCodeListItem, tier: Tie
 }
 
 /** Issue one unguessable, expiring redemption per account and plan. Existing subscriptions are never edited. */
-async function studentCode(client: WhopClient, userId: string, planId: string): Promise<string> {
+export async function studentCode(client: WhopClient, userId: string, planId: string, offerSeconds = OFFER_SECONDS): Promise<string> {
   const storageKey = `rvm:student-offer:${userId}:${planId}`;
   await db().set(storageKey, {
     code: `${PREFIX}${hash(random()).slice(0, 24)}`,
-    expiresAt: new Date(Date.now() + OFFER_SECONDS * 1000).toISOString(),
+    expiresAt: new Date(Date.now() + offerSeconds * 1000).toISOString(),
     key: random(),
-  } satisfies Offer, { nx: true, ex: OFFER_SECONDS });
+  } satisfies Offer, { nx: true, ex: offerSeconds });
   const offer = await db().get<Offer>(storageKey);
   if (!offer || Date.parse(offer.expiresAt) <= Date.now()) throw new StudentDiscountError('Your student offer expired. Please retry.');
   try {

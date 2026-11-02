@@ -16,6 +16,7 @@ import type { Permission } from './roles.js';
 import { addPerson, adminPeople, emailSignIn, removeFreeAccess, setFreeAccess, setRole } from './admin.js';
 import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
 import { studentEligible, StudentDiscountError } from './studentDiscount.js';
+import { beginMerchantConnect, finishMerchantConnect, MERCHANT_COOKIE, merchantConnectPage } from './merchantConnect.js';
 
 export function json(value: unknown, status = 200) {
   return Response.json(value, { status, headers: { 'Cache-Control': 'private, no-store', 'CDN-Cache-Control': 'no-store', 'Vary': 'Cookie' } });
@@ -75,6 +76,13 @@ export async function handle(request: Request): Promise<Response> {
       return cert ? json({ certificate: cert }) : json({ error: 'No certificate with this id.' }, 404);
     }
     if (request.method === 'POST' && request.headers.get('origin') !== new URL(request.url).origin) return json({ error: 'Invalid request origin' }, 403);
+    if (path === '/api/merchant/connect' && ['GET', 'POST'].includes(request.method)) {
+      if (url.origin !== appOrigin()) return redirect(`${appOrigin()}/api/merchant/connect`);
+      if (request.method === 'GET') return merchantConnectPage();
+      if (!await rateLimit(`merchant-connect:${ip()}`, 5, 600)) return json({ error: 'Please wait before retrying merchant authorization.' }, 429);
+      const flow = await beginMerchantConnect();
+      return redirect(flow.url, [flow.cookie]);
+    }
     if (path === '/api/track' && request.method === 'POST') {
       const event = trackable((await request.json().catch(() => null))?.event);
       if (!event) return json({ error: 'Unknown event' }, 400);
@@ -100,6 +108,14 @@ export async function handle(request: Request): Promise<Response> {
       return redirect(flow.url, [flow.cookie]);
     }
     if (path === '/api/auth/callback' && request.method === 'GET') {
+      if (url.searchParams.get('state')?.startsWith('merchant.')) {
+        let ok = false;
+        try { await finishMerchantConnect(request); ok = true; }
+        catch { console.error('Merchant promo authorization was not completed'); }
+        const response = merchantConnectPage(ok);
+        response.headers.append('Set-Cookie', cookie(MERCHANT_COOKIE, '', 0));
+        return response;
+      }
       try { return authResult(true, [await finishSignIn(request), cookie(FLOW_COOKIE, '', 0)]); }
       catch { return authResult(false, [cookie(FLOW_COOKIE, '', 0)]); }
     }
