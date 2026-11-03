@@ -50,6 +50,14 @@ The site is public and indexable. Search engines get:
 
 After adding a condition or a chapter, run `node scripts/sitemap.mjs`; `tests/sitemap.test.ts` fails until you do. Once the domain is live, add it in Google Search Console and submit `https://radiology.monster/sitemap.xml`.
 
+## Search engines and AI answers
+
+- **The name:** the site's name is **Radiology Monster**, with **radiology.monster** as its other name. It is set in `index.html` (title, description, Open Graph, and the `WebSite` / `Organization` / `WebApplication` / `FAQPage` JSON-LD), `public/site.webmanifest`, `public/llms.txt` and the certificate pages' publisher. `tests/sitemap.test.ts` keeps them consistent.
+- **Crawlers without JavaScript:** most AI crawlers don't run JavaScript, so they read the `<noscript>` summary in `index.html`, which has the same answers as the FAQ.
+- **The sitemap** (`node scripts/sitemap.mjs`) lists only pages a signed-out visitor can read: the home page and the example certificate. Study pages need an account and show the home page; add a page there once it is public with its own content and canonical.
+- **After a deploy that changes public pages,** run `node scripts/indexnow.mjs` to notify Bing (used by ChatGPT search and Copilot), Yandex and other IndexNow engines. The key file is `public/c5061eada849d4d690467554078dd81f.txt`.
+- **Done once, by the owner:** verify the domain in Google Search Console and Bing Webmaster Tools (a DNS TXT record on radiology.monster), then submit `https://www.radiology.monster/sitemap.xml` in both.
+
 ## Without protected hosting
 Run locally (`npm run build && npm run preview`) or use the hosted app with only the starter pack and import your own studies on each device (Import page — files never leave the browser). A public, unlisted URL is **not** private.
 

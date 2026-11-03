@@ -1,27 +1,40 @@
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it } from 'vitest';
-import { CONDITIONS } from '../src/content/conditions';
 
 const root = join(__dirname, '..');
 const sitemap = readFileSync(join(root, 'public/sitemap.xml'), 'utf8');
 const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+const index = readFileSync(join(root, 'index.html'), 'utf8');
 
-describe('public site: sitemap and robots', () => {
-  it('lists every condition page and only real conditions (re-run scripts/sitemap.mjs after adding one)', () => {
-    const inMap = locs.filter((l) => l.includes('/conditions?c=')).map((l) => l.split('?c=')[1]);
-    expect(new Set(inMap)).toEqual(new Set(CONDITIONS.map((c) => c.id)));
+describe('public site: sitemap, robots and the brand', () => {
+  it('lists only pages a signed-out visitor can read (study pages need an account and show the home page)', () => {
+    expect(locs).toEqual(['https://www.radiology.monster/', 'https://www.radiology.monster/verify/example']);
   });
 
-  it('lists every course chapter', () => {
-    const units = JSON.parse(readFileSync(join(root, 'public/content/curriculum.v1.json'), 'utf8')).units.map((u: { id: string }) => u.id);
-    for (const u of units) expect(locs).toContain(`https://www.radiology.monster/course/${u}`);
-  });
-
-  it('keeps personal pages and the book reader out of search, and points to the sitemap', () => {
+  it('keeps personal and private pages out of search, and points to the sitemap', () => {
     const robots = readFileSync(join(root, 'public/robots.txt'), 'utf8');
-    for (const p of ['/progress', '/import', '/settings', '/author', '/book']) expect(robots).toContain(`Disallow: ${p}`);
+    for (const p of ['/progress', '/import', '/settings', '/author', '/book', '/admin', '/class', '/join/']) expect(robots).toContain(`Disallow: ${p}`);
     expect(robots).toContain('Sitemap: https://www.radiology.monster/sitemap.xml');
-    expect(readFileSync(join(root, 'index.html'), 'utf8')).not.toMatch(/noindex/);
+    expect(index).not.toMatch(/noindex/);
+  });
+
+  it('names the site "Radiology Monster" everywhere a search engine or an AI reads it, with radiology.monster as its other name', () => {
+    expect(index).toMatch(/<title>Radiology Monster · /);
+    expect(index).toContain('<meta property="og:site_name" content="Radiology Monster" />');
+    const graph = JSON.parse(/<script type="application\/ld\+json" id="site-ld">([\s\S]*?)<\/script>/.exec(index)![1])['@graph'] as Array<Record<string, unknown>>;
+    const site = graph.find((g) => g['@type'] === 'WebSite')!;
+    const org = graph.find((g) => g['@id'] === 'https://www.radiology.monster/#organization')!;
+    expect(site).toMatchObject({ name: 'Radiology Monster', url: 'https://www.radiology.monster/', publisher: { '@id': org['@id'] } });
+    expect(site.alternateName).toContain('radiology.monster');
+    expect(org).toMatchObject({ '@type': 'Organization', name: 'Radiology Monster', alternateName: 'radiology.monster', logo: { url: 'https://www.radiology.monster/icon-512.png' } });
+    // The prices answer engines quote come from the real plans.
+    const app = graph.find((g) => g['@type'] === 'WebApplication') as { offers: Array<{ price: string }> };
+    expect(app.offers.map((o) => o.price)).toEqual(['0', '20', '150']);
+    const faq = graph.find((g) => g['@type'] === 'FAQPage') as { mainEntity: Array<{ name: string }> };
+    expect(faq.mainEntity[0].name).toBe('What is Radiology Monster?');
+    // Crawlers that do not run JavaScript (most AI crawlers) read the same answers in plain HTML.
+    expect(/<noscript>[\s\S]*What is Radiology Monster\?[\s\S]*How much does it cost\?[\s\S]*<\/noscript>/.test(index)).toBe(true);
+    expect(readFileSync(join(root, 'public/llms.txt'), 'utf8')).toMatch(/^# Radiology Monster \(radiology\.monster\)/);
   });
 });

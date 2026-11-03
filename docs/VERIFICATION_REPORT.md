@@ -455,6 +455,16 @@ Each professor has one class link (`/join/<code>`) on My class: copy it, make a 
 
 **Tests:** 627 unit tests, including the per-campaign cohort counts.
 
+## 3p. Search engines and AI answers: "Radiology Monster" (3 November)
+
+- **The name:** the site's name is now **Radiology Monster**, with radiology.monster as its other name. It appears in the title ("Radiology Monster · Real radiology cases for medical students"), the description, Open Graph, the web app manifest, `llms.txt` and the certificates' publisher.
+- **Structured data:** a `WebSite` with `alternateName`, and an `Organization` for Radiology Monster with its logo and its Whop store page as `sameAs`. The `WebApplication` now carries its features and its three offers ($0, $20, $150), and the FAQ starts with "What is Radiology Monster?", "How much does it cost?" and "Can professors use it with a class?". The same answers are on the visible landing FAQ and in the `<noscript>` summary, for crawlers that don't run JavaScript.
+- **Sitemap:** cut from 122 addresses to the 2 a signed-out visitor can read. The others showed the home page with its canonical, so search engines only saw duplicates.
+- **robots.txt:** now also keeps `/admin`, `/class` and `/join/` out of search.
+- **IndexNow:** a key file and `scripts/indexnow.mjs`.
+
+**Tests:** 627 unit tests (`tests/sitemap.test.ts` checks the name everywhere, the offers, the FAQ order, the noscript answers and the sitemap). The membership, certificate and class browser tests pass in Chromium and Firefox.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

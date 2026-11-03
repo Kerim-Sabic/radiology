@@ -1,7 +1,7 @@
 {
-  "name": "radiology.monster",
+  "name": "Radiology Monster",
   "short_name": "radiology.monster",
-  "description": "Real cases. Deeper understanding. Radiology reading practice on real CT, MRI and radiographs.",
+  "description": "Radiology Monster: read real CT, MRI, X-ray, mammography and ultrasound scans and get graded on the exact slice.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

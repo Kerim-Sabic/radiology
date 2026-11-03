@@ -7,5 +7,9 @@ Disallow: /import
 Disallow: /settings
 Disallow: /author
 Disallow: /book
+# Private app pages: the admin, a professor's class, and class invitation links.
+Disallow: /admin
+Disallow: /class
+Disallow: /join/
 
 Sitemap: https://www.radiology.monster/sitemap.xml

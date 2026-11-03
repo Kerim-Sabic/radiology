@@ -126,7 +126,7 @@ function Loading() {
   );
 }
 
-const SITE_TITLE = 'radiology.monster — Real cases. Deeper understanding.';
+const SITE_TITLE = 'Radiology Monster · Real radiology cases for medical students';
 /** Page titles for browser tabs and search results (pages with their own subject, e.g. a condition, refine it). */
 const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/cases/, 'Cases'],

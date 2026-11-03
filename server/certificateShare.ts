@@ -216,7 +216,7 @@ export function certificatePageHtml(indexHtml: string, c: Certificate | null, or
       url,
       image,
       dateCreated: c.issuedAt.slice(0, 10),
-      publisher: { '@type': 'Organization', name: 'radiology.monster', url: origin },
+      publisher: { '@type': 'Organization', '@id': `${origin}/#organization`, name: 'Radiology Monster', alternateName: 'radiology.monster', url: `${origin}/` },
     };
     // `<` is escaped so the JSON cannot close the script element.
     tags.push(`<script type="application/ld+json">${JSON.stringify(data).replace(/</g, '\\u003c')}</script>`);
