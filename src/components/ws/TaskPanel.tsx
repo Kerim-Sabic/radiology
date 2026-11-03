@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { BookOpen, Check, Eye, Lightbulb, MapPin, ArrowUpRight, Square, PenLine, Trash2, ArrowRight, RotateCcw, Timer, X } from 'lucide-react';
 import type { BookAnchorRef, Task, TeachingCase } from '../../schema/content';
 import type { GradeResult, LearnerMark } from '../../grading/types';
@@ -27,6 +28,8 @@ interface Props {
   onNextDifferentPatient: (() => void) | null;
   onRetry: () => void;
   onNextTask: (() => void) | null;
+  /** The one next step shown with the result: the next task on this study, or the next patient in today's plan. */
+  next: { label: string; go: () => void } | null;
   selfReview: { checked: string[]; verdict: 'correct' | 'partial' | 'incorrect' | null } | null;
   onSelfReview: (s: { checked: string[]; verdict: 'correct' | 'partial' | 'incorrect' | null }) => void;
   independentNote: string;
@@ -52,6 +55,7 @@ export function TaskPanel(p: Props) {
 
   return (
     <div className="stack" style={{ gap: 14 }}>
+      {s.submitted && p.grade ? <Result {...p} /> : null}
       <div className="row wrap">
         <span className="chip accent">{s.mode === 'learn' ? 'Learn' : s.mode === 'practice' ? 'Practice' : s.mode === 'assess' ? 'Assess' : 'Review'}</span>
         <span className={`chip ${p.scoringLabel.tone}`} title={p.scoringLabel.title}>
@@ -315,6 +319,34 @@ function ExamQuestion(p: Props & { exam: { index: number; total: number; seconds
   );
 }
 
+/** The result at the top of the panel, scrolled into view, with the one next step; the details follow below. */
+function Result(p: Props) {
+  const g = p.grade!;
+  const s = p.session;
+  const box = useRef<HTMLDivElement>(null);
+  // Braces matter: newer browsers return a Promise from scrollIntoView, and React would call it as a cleanup.
+  useEffect(() => {
+    box.current?.scrollIntoView({ block: 'nearest' });
+  }, []);
+  return (
+    <div ref={box} className={`outcome result-first ${g.outcome}`} role="status">
+      <div className="stack" style={{ gap: 4, flex: 1 }}>
+        <div className="row wrap">
+          <OutcomeBadge outcome={g.outcome} />
+          {g.score !== null ? <span className="big">{Math.round(g.score * 100)}%</span> : null}
+          <span className={`chip ${rules.independent(s) ? 'ok' : 'warn'}`}>{rules.independent(s) ? 'Independent' : 'Assisted'}</span>
+        </div>
+        <small className="muted">{g.authorityNote}</small>
+      </div>
+      {p.next ? (
+        <button className="btn primary" onClick={p.next.go}>
+          {p.next.label} <ArrowRight size={15} />
+        </button>
+      ) : null}
+    </div>
+  );
+}
+
 function Feedback(p: Props) {
   const g = p.grade!;
   const { task, session: s } = p;
@@ -322,16 +354,6 @@ function Feedback(p: Props) {
   const sr = p.selfReview ?? { checked: [], verdict: null };
   return (
     <div className="stack" style={{ gap: 12 }}>
-      <div className={`outcome ${g.outcome}`} role="status">
-        <div className="stack" style={{ gap: 4, flex: 1 }}>
-          <div className="row wrap">
-            <OutcomeBadge outcome={g.outcome} />
-            {g.score !== null ? <span className="big">{Math.round(g.score * 100)}%</span> : null}
-            <span className={`chip ${rules.independent(s) ? 'ok' : 'warn'}`}>{rules.independent(s) ? 'Independent' : 'Assisted'}</span>
-          </div>
-          <small className="muted">{g.authorityNote}</small>
-        </div>
-      </div>
       {(g.outcome === 'incorrect' || g.outcome === 'partial' || sr.verdict === 'incorrect') && (s.confidence ?? 0) >= 4 ? (
         <div className="notice bad">
           <b>You were sure, but this was not right.</b> Confident mistakes are the ones that cause real misses, so this goes to the top of your reviews and comes back on a
@@ -442,14 +464,17 @@ function Feedback(p: Props) {
 
       <div className="divider" />
       <div className="stack" style={{ gap: 6 }}>
+        {p.next ? (
+          <button className="btn primary" onClick={p.next.go}>
+            <ArrowRight size={15} /> {p.next.label}
+          </button>
+        ) : null}
         {p.onNextDifferentPatient ? (
-          <button className="btn primary" onClick={p.onNextDifferentPatient}>
+          <button className="btn" onClick={p.onNextDifferentPatient}>
             <ArrowRight size={15} /> Same skill, different patient
           </button>
-        ) : (
-          <small className="faint">No other patient has this exact skill yet — it is listed as a content gap in the Course view.</small>
-        )}
-        {p.onNextTask ? (
+        ) : null}
+        {p.onNextTask && p.next?.go !== p.onNextTask ? (
           <button className="btn" onClick={p.onNextTask}>
             Next task on this study
           </button>

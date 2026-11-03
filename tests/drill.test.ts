@@ -25,7 +25,7 @@ import { noteFor, structureBase } from '../src/content/structureNotes';
 import { SEARCH_PATTERNS, patternsFor } from '../src/content/searchPatterns';
 import { canonicalAnatomyKey } from '../src/content/bookAnatomy';
 import { Catalog } from '../src/services/caseRepository';
-import { mistakeNotebook, todayPlan } from '../src/services/learningModel';
+import { FIRST_TASK, mistakeNotebook, todayPlan } from '../src/services/learningModel';
 import { shapeArea, shapeContains, shapeRings, type Shape } from '../src/components/ws/overlayShapes';
 import type { LoadedTarget } from '../src/grading/spatialGrader';
 import type { ReferenceTarget } from '../src/schema/content';
@@ -197,6 +197,14 @@ describe("today's plan", () => {
     expect(new Set(newOnes).size).toBe(newOnes.length);
     expect(new Set(plan.map((x) => x.caseId)).size).toBe(4);
     expect(plan.find((x) => x.kind === 'weak')?.why).toMatch(/^Begin with /);
+  });
+  it('starts a learner who has answered nothing with the pneumothorax, then moves on once they have', () => {
+    const c = new Catalog();
+    c.tasks.set('ct:orientation', { id: 'ct:orientation', caseId: 'ct', modes: ['practice'], skillDimensions: ['orientation'], objectiveIds: [], type: 'compare_appearances', title: '' } as never);
+    c.tasks.set(FIRST_TASK, { id: FIRST_TASK, caseId: 'cxr', modes: ['practice'], skillDimensions: ['detection'], objectiveIds: [], type: 'locate_finding', title: '' } as never);
+    expect(todayPlan([], c, 30)[0]).toMatchObject({ taskId: FIRST_TASK, why: 'Start here: mark the finding and get graded on the exact slice' });
+    const answered = { id: 'a', taskId: FIRST_TASK, caseId: 'cxr', holdoutGroup: 'cxr', submittedAt: '2026-11-03T09:00:00Z', skillDimensions: ['detection'], objectiveIds: [], grade: { outcome: 'correct', errors: [] } } as never;
+    expect(todayPlan([answered], c, 30)[0].taskId).not.toBe(FIRST_TASK);
   });
 });
 

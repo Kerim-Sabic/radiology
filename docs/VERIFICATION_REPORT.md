@@ -416,6 +416,20 @@ Free access given through a class is marked with it. It ends when the student le
 
 `e2e/class.spec.ts` has 4 tests, run in Chromium and Firefox.
 
+## 3m. First session (3 November)
+
+- **First task:** a learner who has answered nothing starts with "Find the pneumothorax" on the free chest X-ray (`FIRST_TASK` in `src/services/learningModel.ts`), a marking task graded on the image. Before, they started with an orientation question.
+- **Result first:** after an answer, the result (outcome, score, independent or assisted) is the first thing in the task panel and scrolls into view, with one primary button. It is **Next task** on the same study, or **Next patient** from today's plan once the study is done, so a free account never meets a dead end.
+- **Upgrade card:** a free account's card now comes after the result instead of above it.
+- **Wording:** the learner-facing "content gap in the Course view" line was removed.
+
+**Checked in a browser:** at 1280×720 as a new free account:
+- Today offered the pneumothorax first.
+- After answering the CT orientation question, "Correct 100%" was in view at the top with "Next task", and the upgrade card was below.
+- After the X-ray's last task, "Next patient" opened the CT chest.
+
+**Tests:** 624 unit tests, including the first-task rule.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

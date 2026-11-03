@@ -139,6 +139,12 @@ export interface PlanItem {
  * Today plan: overdue reviews first (on a different patient where possible), then weakest
  * dimension, then unseen patients. `minutes` shapes the length (≈3 min per task).
  */
+/**
+ * A new learner's first task: marking a pneumothorax and being graded on the exact slice shows what the app does in two
+ * minutes (an orientation question first did not). It is one of the free sample patients, so every account has it.
+ */
+export const FIRST_TASK = 'cxr-00003400-003:locate';
+
 export function todayPlan(attempts: Attempt[], catalog: Catalog | null, minutes: number | null): PlanItem[] {
   if (!catalog) return [];
   const n = Math.max(3, Math.min(20, Math.round((minutes ?? 20) / 3)));
@@ -154,6 +160,10 @@ export function todayPlan(attempts: Attempt[], catalog: Catalog | null, minutes:
     used.add(t.id);
     plan.push({ taskId: t.id, caseId: t.caseId, why, kind });
   };
+
+  // 0) nothing answered yet: start with the first task
+  const firstTask = attempts.some(submitted) ? undefined : catalog.tasks.get(FIRST_TASK);
+  if (firstTask?.modes.includes('practice')) push(firstTask, 'Start here: mark the finding and get graded on the exact slice', 'new');
 
   // 1) due reviews → a sibling task on a different patient if available
   for (const m of mistakeNotebook(attempts, catalog).filter((x) => !x.resolved)) {

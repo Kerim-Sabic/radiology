@@ -60,6 +60,7 @@ import { lookOf, segStyle, withLookAll } from '../viewer/segStyle';
 import { GROUP_ORDER } from '../viewer/anatomyMask';
 import { downloadBlob, shortLicense, slug, viewToPng } from '../lib/viewImage';
 import { LockedCase, UpgradeCard } from '../components/Upgrade';
+import { todayPlan } from '../services/learningModel';
 import { fact, LANDING_FACTS } from '../auth/landingFacts';
 import { ViewportPanel, type MarkBadge } from '../components/ws/ViewportPanel';
 import { TaskPanel } from '../components/ws/TaskPanel';
@@ -789,6 +790,16 @@ export default function Workstation() {
 
   const goTask = (t: Task, m: Mode = mode === 'learn' || mode === 'review' ? 'practice' : mode) =>
     navigate(`/read/${t.caseId}?task=${encodeURIComponent(t.id)}&mode=${m}`);
+  const nextOnStudy = (() => {
+    const n = task ? availableTasks[availableTasks.findIndex((t) => t.id === task.id) + 1] : undefined;
+    return n ? () => setSp({ task: n.id, mode }) : null;
+  })();
+  // After an answer there is always one next step: the next task on this study, else the next patient in today's plan.
+  const nextPatient = useMemo(() => {
+    const p = catalog ? todayPlan(attempts, catalog, settings.minutesPerDay).find((x) => x.caseId !== kase?.id) : undefined;
+    return p ? catalog?.tasks.get(p.taskId) : undefined;
+  }, [attempts, catalog, settings.minutesPerDay, kase?.id]);
+  const nextStep = nextOnStudy ? { label: 'Next task', go: nextOnStudy } : nextPatient ? { label: 'Next patient', go: () => goTask(nextPatient, 'practice') } : null;
 
   const openBook = (a: BookAnchorRef) => {
     const snap = engine.snapshot(focused);
@@ -1578,9 +1589,6 @@ export default function Workstation() {
             <Tabs.Trigger value="info">Case</Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="task" className="tab-body">
-            {free && session.submitted ? (
-              <UpgradeCard compact title="Graded on the exact slice." text={`Members get ${fact(LANDING_FACTS.tasks)}+ tasks like this on ${LANDING_FACTS.patients}+ patients, with drills and on-call shifts.`} />
-            ) : null}
             <TaskPanel
               task={task}
               kase={kase}
@@ -1610,17 +1618,18 @@ export default function Workstation() {
                 if (mode === 'review') setSp({ task: task.id, mode: 'practice' });
                 toast.show('New attempt on the same patient — it will be recorded, but it is not an unseen-patient test.');
               }}
-              onNextTask={(() => {
-                const i = availableTasks.findIndex((t) => t.id === task.id);
-                const n = availableTasks[i + 1];
-                return n ? () => setSp({ task: n.id, mode }) : null;
-              })()}
+              onNextTask={nextOnStudy}
+              next={exam || shift ? null : nextStep}
               selfReview={selfReview}
               onSelfReview={setSelfReview}
               independentNote={independentNote}
               scoringLabel={scoringLabel}
               exam={examItem && exam ? { index: examIndex, total: exam.items.length, secondsLeft: examLeft } : null}
             />
+            {/* After the learner's own result, never before it. */}
+            {free && session.submitted ? (
+              <UpgradeCard compact title="Graded on the exact slice." text={`Members get ${fact(LANDING_FACTS.tasks)}+ tasks like this on ${LANDING_FACTS.patients}+ patients, with drills and on-call shifts.`} />
+            ) : null}
           </Tabs.Content>
           <Tabs.Content value="book" className="tab-body">
             <BookPanel
