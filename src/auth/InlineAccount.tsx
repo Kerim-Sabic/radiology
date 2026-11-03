@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ClerkFailed, ClerkLoading, ClerkProvider, SignIn, SignUp, useAuth, useClerk, useUser } from '@clerk/react';
+import { adSource } from '../services/source';
 
 type Mode = 'signup' | 'login';
 interface Props { publishableKey: string; mode: Mode; onModeChange: (mode: Mode) => void; onSuccess: () => Promise<void>; }
@@ -24,7 +25,9 @@ function AccountForm({ mode, complete, onSuccess }: { mode: Mode; complete: bool
     try {
       const token = await getToken();
       if (!token) throw new Error('Please finish verifying your email.');
-      const response = await fetch('/api/auth/session', { method: 'POST', headers: { Authorization: `Bearer ${token}` } });
+      // The campaign this visitor arrived from, kept on a new account (src/services/source.ts).
+      const source = adSource();
+      const response = await fetch('/api/auth/session', { method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(source ? { source } : {}) });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || 'Sign-in could not be completed. Please try again.');
       await onSuccess();

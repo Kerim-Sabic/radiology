@@ -7,7 +7,7 @@ import { clerkIdentity } from './clerk.js';
 import { bookGift, memberBook, servesBook } from './book.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
-import { adminStats, count, countOnce, cronAuthorized, dailyCron, emailPrefs, recordActivity, trackable, unsubscribe, weeklyCron } from './engage.js';
+import { adminStats, cleanSource, count, countOnce, countSource, cronAuthorized, dailyCron, emailPrefs, recordActivity, rememberSource, trackable, unsubscribe, weeklyCron } from './engage.js';
 import { claimCertificate, myCertificates, publicCertificate, revokeCertificate } from './certificates.js';
 import { answerQuestion, finishExam, openQuestion, startExam } from './certificateExam.js';
 import { queueCertificateEmail, sendCertificateEmails } from './certificateEmail.js';
@@ -102,18 +102,28 @@ export async function handle(request: Request): Promise<Response> {
       return redirect(flow.url, [flow.cookie]);
     }
     if (path === '/api/track' && request.method === 'POST') {
-      const event = trackable((await request.json().catch(() => null))?.event);
+      const body = await request.json().catch(() => null);
+      const event = trackable(body?.event);
       if (!event) return json({ error: 'Unknown event' }, 400);
-      if (await rateLimit(`track:${ip()}`, 60, 600)) await count(event);
+      const source = cleanSource(body?.source);
+      if (await rateLimit(`track:${ip()}`, 60, 600)) {
+        await count(event);
+        if (source && (event === 'visit' || event === 'signup_start')) await countSource(event, source);
+      }
       return json({ ok: true });
     }
     if (path === '/api/auth/session' && request.method === 'POST') {
       const ip = hash(request.headers.get('x-vercel-forwarded-for') || request.headers.get('x-forwarded-for') || 'unknown');
       if (!await rateLimit(`account-session:${ip}`, 30, 600)) return json({ error: 'Too many sign-in attempts. Try again in a few minutes.' }, 429);
       try {
+        const source = cleanSource((await request.json().catch(() => null))?.source);
         const profile = await clerkIdentity(request);
+        // A new account keeps the campaign it arrived with (for the admin page's "where sign-ups come from").
+        const userId = hash(`${profile.provider}:${profile.sub}`);
+        const isNew = !(await db().get(`rvm:once:signup:${userId}`));
         const response = json({ ok: true });
         response.headers.append('Set-Cookie', await createSession(profile));
+        if (isNew && source) await rememberSource(userId, source);
         return response;
       } catch { return json({ error: 'We couldn’t verify this sign-in. Please verify your email and try again.' }, 401); }
     }

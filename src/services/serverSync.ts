@@ -4,6 +4,7 @@
  */
 import { track as vercelTrack } from '@vercel/analytics/react';
 import { dayKey } from './activity';
+import { adSource } from './source';
 
 const SENT_KEY = 'rvm.activity.sent';
 
@@ -46,7 +47,8 @@ export function trackFunnel(event: FunnelEvent, once = false) {
   } catch {
     /* analytics is optional */
   }
-  void fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event }), keepalive: true }).catch(() => undefined);
+  const source = adSource();
+  void fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event, ...(source ? { source } : {}) }), keepalive: true }).catch(() => undefined);
 }
 
 export interface EmailPrefs {

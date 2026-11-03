@@ -439,6 +439,22 @@ Each professor has one class link (`/join/<code>`) on My class: copy it, make a 
 
 **Tests:** 626 unit tests (`tests/admin.test.ts`: the invitation, joining with free places, joining twice, a new link stopping the old one, pausing, the role ending). `e2e/class.spec.ts` has 8 tests, run in Chromium and Firefox: sharing and replacing the link, the invitation surviving sign-in, joining, an ended link. No sideways scrolling at 390 px or 1440 px.
 
+## 3o. Ready for ads: where sign-ups come from (3 November)
+
+- **Campaign tags, no cookies:** a link tagged `?utm_source=…&utm_campaign=…` (or `?src=…`) is kept in the browser for 30 days, the latest tagged link winning (`src/services/source.ts`). It is sent with the landing-visit and Start-free counts, and a new account keeps it at its first sign-in. Later visits never move an account to another campaign.
+- **The admin table:** "Where sign-ups come from, last 30 days" shows, per tag, visits, Start free clicks, accounts, first answers and payments. Untagged traffic is one row.
+- **No dead end after the free patients:** the result's button becomes "See the plans" once nothing free is left.
+- **Copy:**
+  - The hero note adds "30% off with a university email".
+  - Settings now states the real book rule: SSST students with a membership read it on the site; everyone else opens their own copy.
+
+**Checked in a browser:**
+- A visit from `/?utm_source=Instagram&utm_campaign=Find It` counted as `instagram:find-it`.
+- A later untagged visit's Start free click still carried it.
+- The admin table rendered.
+
+**Tests:** 627 unit tests, including the per-campaign cohort counts.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

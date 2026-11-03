@@ -264,6 +264,45 @@ export async function weeklyCron(now = new Date()) {
   return { candidates: list.length, sent };
 }
 
+// ---------------------------------------------------------------- where visitors come from
+/**
+ * A campaign tag from an ad or post link (`?utm_source=instagram&utm_campaign=find-it`), cleaned: lower case, letters,
+ * digits, `-`, `_` and `:` only. Tags are counted per day without cookies, and a new account keeps the tag it arrived with.
+ */
+export function cleanSource(value: unknown): string | null {
+  if (typeof value !== 'string') return null;
+  const s = value.trim().toLowerCase().replace(/[^a-z0-9:_-]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60);
+  return s.length >= 2 ? s : null;
+}
+const MAX_SOURCES = 200;
+const sourceKey = (userId: string) => `rvm:source:${userId}`;
+
+async function knownSource(source: string) {
+  const known = (await db().smembers('rvm:sources')) as string[];
+  if (known.includes(source)) return true;
+  if (known.length >= MAX_SOURCES) return false;
+  await db().sadd('rvm:sources', source);
+  return true;
+}
+
+/** Count a landing visit or a Start free click for a campaign; never fails the request. */
+export async function countSource(metric: 'visit' | 'signup_start', source: string) {
+  try {
+    if (await knownSource(source)) await db().incrby(`rvm:ms:${metric}:${utcDay()}:${source}`, 1);
+  } catch {
+    /* metrics are best effort */
+  }
+}
+
+/** A new account remembers the campaign it arrived with (set once; never changed by later visits). */
+export async function rememberSource(userId: string, source: string) {
+  try {
+    if (await knownSource(source)) await db().set(sourceKey(userId), source, { nx: true });
+  } catch {
+    /* metrics are best effort */
+  }
+}
+
 // ---------------------------------------------------------------- admin numbers
 export async function adminStats(now = new Date(), days = 30) {
   const dayList = Array.from({ length: days }, (_, i) => utcDay(new Date(now.getTime() - (days - 1 - i) * 86_400_000)));
@@ -274,6 +313,8 @@ export async function adminStats(now = new Date(), days = 30) {
 
   // Retention: of accounts that signed up 1+ / 7+ days ago, how many studied again on day 1 / day 7 or later.
   const users = (await db().smembers('rvm:users')) as string[];
+  // Per campaign, for accounts that joined in the window: how many answered a first task and how many paid.
+  const cohort = new Map<string, { accounts: number; studied: number; paid: number }>();
   let d1Base = 0;
   let d1 = 0;
   let d7Base = 0;
@@ -282,9 +323,18 @@ export async function adminStats(now = new Date(), days = 30) {
     const chunk = users.slice(i, i + 100);
     const joined = (await db().mget<Array<string | null>>(...chunk.map((u) => `rvm:once:signup:${u}`))) as Array<string | null>;
     const ps = (await db().mget<Profile[]>(...chunk.map(profileKey))) as Array<Profile | null>;
+    const marks = (await db().mget<Array<string | null>>(...chunk.flatMap((u) => [sourceKey(u), `rvm:once:studied:${u}`, `rvm:once:paid:${u}`]))) as Array<string | null>;
     chunk.forEach((_, j) => {
       const start = joined[j] ?? ps[j]?.days[0];
       if (!start) return;
+      if (joined[j] && joined[j]! >= dayList[0]) {
+        const [source, studied, paid] = marks.slice(j * 3, j * 3 + 3);
+        const row = cohort.get(source ?? '') ?? { accounts: 0, studied: 0, paid: 0 };
+        row.accounts++;
+        if (studied) row.studied++;
+        if (paid) row.paid++;
+        cohort.set(source ?? '', row);
+      }
       if (joined[j]) joinedOn.set(joined[j]!, (joinedOn.get(joined[j]!) ?? 0) + 1);
       const age = Math.floor((now.getTime() - Date.parse(`${start}T00:00:00Z`)) / 86_400_000);
       const studied = ps[j]?.days ?? [];
@@ -302,7 +352,20 @@ export async function adminStats(now = new Date(), days = 30) {
   for (const s of series) s.signup = joinedOn.get(s.day) ?? 0;
   const totals = Object.fromEntries(METRICS.map((m) => [m, series.reduce((s, d) => s + d[m], 0)])) as Record<Metric, number>;
   const subs = Number((await db().scard('rvm:subscribers')) ?? 0);
-  return { series, totals, accounts: users.length, subscribers: subs, retention: { d1: { base: d1Base, back: d1 }, d7: { base: d7Base, back: d7 } } };
+  // Visits and Start free clicks per campaign over the window; untagged visits are the rest of the total.
+  const tags = (await db().smembers('rvm:sources')) as string[];
+  const tagged = new Map<string, { visits: number; starts: number }>();
+  for (const tag of tags) {
+    const v = (await db().mget<Array<number | null>>(...dayList.flatMap((d) => [`rvm:ms:visit:${d}:${tag}`, `rvm:ms:signup_start:${d}:${tag}`]))) as Array<number | string | null>;
+    tagged.set(tag, { visits: v.filter((_, i) => i % 2 === 0).reduce((s: number, x) => s + Number(x ?? 0), 0), starts: v.filter((_, i) => i % 2 === 1).reduce((s: number, x) => s + Number(x ?? 0), 0) });
+  }
+  const sum = (k: 'visits' | 'starts') => [...tagged.values()].reduce((s, t) => s + t[k], 0);
+  const sources = [...new Set([...tagged.keys(), ...[...cohort.keys()].filter(Boolean)])]
+    .map((source) => ({ source, ...(tagged.get(source) ?? { visits: 0, starts: 0 }), ...(cohort.get(source) ?? { accounts: 0, studied: 0, paid: 0 }) }))
+    .filter((r) => r.visits || r.starts || r.accounts)
+    .sort((a, b) => b.accounts - a.accounts || b.visits - a.visits);
+  const untagged = { source: '', visits: Math.max(0, totals.visit - sum('visits')), starts: Math.max(0, totals.signup_start - sum('starts')), ...(cohort.get('') ?? { accounts: 0, studied: 0, paid: 0 }) };
+  return { series, totals, accounts: users.length, subscribers: subs, retention: { d1: { base: d1Base, back: d1 }, d7: { base: d7Base, back: d7 } }, sources: [...sources, untagged] };
 }
 
 export function trackable(event: unknown): Metric | null {

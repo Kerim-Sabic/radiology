@@ -1619,7 +1619,7 @@ export default function Workstation() {
                 toast.show('New attempt on the same patient — it will be recorded, but it is not an unseen-patient test.');
               }}
               onNextTask={nextOnStudy}
-              next={exam || shift ? null : nextStep}
+              next={exam || shift ? null : (nextStep ?? (free ? { label: 'See the plans', go: openPlans } : null))}
               selfReview={selfReview}
               onSelfReview={setSelfReview}
               independentNote={independentNote}

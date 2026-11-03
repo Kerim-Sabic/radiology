@@ -63,7 +63,7 @@ export default function SettingsPage() {
       <section className="card stack">
         <h2>Book</h2>
         <p className="muted">
-          Members can open the fifth-edition textbook directly on the site. You may also import your own PDF; imported copies stay only in this browser.
+          SSST students with a membership, signed in with their university email, open the fifth-edition textbook right on the site. Everyone else opens their own copy: import the PDF here, and it stays only in this browser.
         </p>
         {haveBook ? (
           <div className="stack" style={{ gap: 4 }}>

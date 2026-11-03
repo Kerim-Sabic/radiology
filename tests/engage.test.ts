@@ -25,7 +25,7 @@ vi.mock('../server/store', () => {
   return { db: () => store, rateLimit: async () => true };
 });
 
-import { adminStats, countOnce, dailyCron, emailPrefs, localDay, recordActivity, streakEnding, unsubscribe, unsubscribeToken, unsubscribeUrl, weeklyCron, type Profile } from '../server/engage';
+import { adminStats, cleanSource, countOnce, countSource, dailyCron, emailPrefs, localDay, recordActivity, rememberSource, streakEnding, unsubscribe, unsubscribeToken, unsubscribeUrl, weeklyCron, type Profile } from '../server/engage';
 
 import { markJoined } from '../server/joined';
 
@@ -132,5 +132,33 @@ describe('funnel numbers for the admin page', () => {
     await countOnce('paid', uid);
     await countOnce('paid', uid);
     expect(fake.kv.get(`rvm:m:paid:${new Date().toISOString().slice(0, 10)}`)).toBe(1);
+  });
+  it('says which campaign brought visits, accounts, first answers and payments', async () => {
+    expect(cleanSource(' Instagram:Find It! ')).toBe('instagram:find-it');
+    expect(cleanSource('x')).toBeNull();
+    expect(cleanSource(42)).toBeNull();
+    const today = new Date().toISOString().slice(0, 10);
+    await countSource('visit', 'instagram:find-it');
+    await countSource('visit', 'instagram:find-it');
+    await countSource('signup_start', 'instagram:find-it');
+    fake.kv.set(`rvm:m:visit:${today}`, 5);
+    fake.kv.set(`rvm:m:signup_start:${today}`, 2);
+    // Two accounts from the ad (one answered and paid), one with no tag, and an old account outside the window.
+    for (const [id, joined] of [['b', today], ['c', today], ['d', today], ['e', '2020-01-01']] as const) {
+      fake.kv.set(`rvm:once:signup:${id.repeat(64)}`, joined);
+      fake.sets.set('rvm:users', new Set([...(fake.sets.get('rvm:users') ?? []), id.repeat(64)]));
+    }
+    await rememberSource('b'.repeat(64), 'instagram:find-it');
+    await rememberSource('c'.repeat(64), 'instagram:find-it');
+    await rememberSource('e'.repeat(64), 'instagram:find-it');
+    // A later link never moves an account to another campaign.
+    await rememberSource('b'.repeat(64), 'tiktok:other');
+    fake.kv.set(`rvm:once:studied:${'b'.repeat(64)}`, today);
+    fake.kv.set(`rvm:once:paid:${'b'.repeat(64)}`, today);
+    const s = await adminStats(new Date(), 30);
+    expect(s.sources).toEqual([
+      { source: 'instagram:find-it', visits: 2, starts: 1, accounts: 2, studied: 1, paid: 1 },
+      { source: '', visits: 3, starts: 1, accounts: 1, studied: 0, paid: 0 },
+    ]);
   });
 });

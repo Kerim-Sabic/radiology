@@ -13,6 +13,8 @@ interface Stats {
   accounts: number;
   subscribers: number;
   retention: { d1: { base: number; back: number }; d7: { base: number; back: number } };
+  /** Per campaign tag (utm_source:utm_campaign) over 30 days; the last row, with no tag, is everything untagged. */
+  sources?: Array<{ source: string; visits: number; starts: number; accounts: number; studied: number; paid: number }>;
 }
 
 const STEPS: Array<[Metric, string]> = [
@@ -89,6 +91,44 @@ export default function AdminPage() {
             </ol>
             <small className="faint">Landing visits and Start-free clicks are counted once per browser session; accounts by their first sign-in; Paid once per account (free access is not counted).</small>
           </section>
+          {stats.sources ? (
+            <section className="card stack" aria-labelledby="sources-title">
+              <h2 id="sources-title" style={{ margin: 0 }}>
+                Where sign-ups come from, last 30 days
+              </h2>
+              <small className="faint">
+                Tag every ad and post link, for example <span className="mono">https://www.radiology.monster/?utm_source=instagram&amp;utm_campaign=find-it</span>. Accounts are counted by the tag they arrived with, and First answer and Paid are of those accounts.
+              </small>
+              <table className="table admin-table">
+                <thead>
+                  <tr>
+                    <th>Campaign</th>
+                    <th>Visits</th>
+                    <th>Start free</th>
+                    <th>Accounts</th>
+                    <th>First answer</th>
+                    <th>Paid</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {stats.sources.map((r) => (
+                    <tr key={r.source || 'untagged'}>
+                      <td>{r.source ? <span className="mono">{r.source}</span> : <span className="faint">No tag (direct, search, old links)</span>}</td>
+                      <td data-label="Visits">{r.visits}</td>
+                      <td data-label="Start free">{r.starts}</td>
+                      <td data-label="Accounts">{r.accounts}</td>
+                      <td data-label="First answer">
+                        {r.studied} <small className="faint">{pct(r.studied, r.accounts)}</small>
+                      </td>
+                      <td data-label="Paid" style={{ textAlign: 'left' }}>
+                        {r.paid} <small className="faint">{pct(r.paid, r.accounts)}</small>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </section>
+          ) : null}
           <div className="grid-3">
             <section className="card stack">
               <b>Want emails</b>

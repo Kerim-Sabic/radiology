@@ -17,3 +17,6 @@ public/book/
 __pycache__/
 .vercel
 .env*
+
+# Marketing plans and creative (private; this repository is public)
+/marketing/

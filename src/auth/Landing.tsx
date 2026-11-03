@@ -165,7 +165,7 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
               See plans
             </a>
           </div>
-          <p className="lp-note">Free account with two patients. No card needed.</p>
+          <p className="lp-note">Free account with two patients. No card needed. 30% off with a university email.</p>
         </div>
         <figure className="lp-wrap lp-figure lp-hero-shot">
           <div className="lp-frame">
