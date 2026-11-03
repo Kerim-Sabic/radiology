@@ -47,6 +47,10 @@ This repository is public, so the code itself shows that an owner level exists; 
 - **Free places:** the owner can give a professor free places, for example 30 students until 30 June. New students then get free access marked with the class, as long as places last. A student who already has free access keeps theirs, and it uses no place.
 - **Ending free access:** it ends when the student leaves or is removed. Changing the professor's end date moves it, and removing the role ends it; the roster is kept in case the role comes back.
 - **What students are told:** on Settings and Progress, students see who can follow their progress, and can leave the class themselves.
+- **Join links:** each professor has one class link, `/join/<code>`, on My class.
+  - **Signed out:** the invitation shows above the landing page (the public `/api/class/invite` gives only the professor's name and whether free places are left, never their email). The code is kept in the tab through sign-up, and the app returns to the invitation afterwards.
+  - **Signed in:** the student sees what the professor will follow and joins with one click (`/api/class/join`). Free access works exactly as when the professor adds them by email.
+  - **Managing it:** the professor can make a new link (the old one stops at once) or turn joining off; students already in the class stay. A link stops working when its professor loses the role.
 
 **Promo codes on the admin page (`server/promos.ts`; the owner, or an admin given "promo codes").**
 - **Creating a code in Whop:** the code, % or $ off, and the plans (monthly, yearly or both). Then how long the discount lasts: the first payment, a number of months (Whop's `promo_duration_months`), or every payment (`0`). Optional limits: a total number of uses, one use per person, new customers only, and a last day.

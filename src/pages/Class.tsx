@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState, type FormEvent } from 'react';
-import { Award, RefreshCw, UserMinus, UserRoundPlus } from 'lucide-react';
+import { Award, Copy, RefreshCw, UserMinus, UserRoundPlus } from 'lucide-react';
 import { useAccount } from '../auth/AccountGate';
 import '../styles/upgrade.css';
 
@@ -17,6 +17,7 @@ interface Student {
   freeFromClass: { until: string | null } | null;
 }
 interface ClassData {
+  join: { code: string; open: boolean };
   free: { seats: number; used: number; left: number; until: string | null; open: boolean };
   summary: { students: number; signedUp: number; active7: number; examsPassed: number; certificates: number };
   students: Student[];
@@ -91,6 +92,7 @@ export default function ClassPage() {
               <small className="faint">earned by your students</small>
             </section>
           </div>
+          <JoinLinkCard join={data.join} onChange={load} />
           <AddStudents free={data.free} onDone={load} />
           <Roster data={data} onChange={load} />
         </>
@@ -98,6 +100,76 @@ export default function ClassPage() {
         <p className="muted">Loading your class…</p>
       ) : null}
     </div>
+  );
+}
+
+function JoinLinkCard({ join, onChange }: { join: ClassData['join']; onChange: () => void }) {
+  const [confirm, setConfirm] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState<{ ok: boolean; text: string } | null>(null);
+  const link = `${location.origin}/join/${join.code}`;
+  async function change(action: 'new' | 'close' | 'open') {
+    setBusy(true);
+    setMessage(null);
+    try {
+      const r = await fetch('/api/class/link', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ action }) });
+      if (!r.ok) throw new Error((await r.json().catch(() => ({}))).error || 'Please try again.');
+      setMessage({ ok: true, text: action === 'new' ? 'A new link is ready. The old one no longer works.' : action === 'close' ? 'Joining is off. Students already in the class stay.' : 'Joining is on again.' });
+      setConfirm(false);
+      onChange();
+    } catch (e) {
+      setMessage({ ok: false, text: e instanceof Error ? e.message : 'Please try again.' });
+    } finally {
+      setBusy(false);
+    }
+  }
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(link);
+      setMessage({ ok: true, text: 'Copied the join link.' });
+    } catch {
+      setMessage({ ok: true, text: `Your join link: ${link}` });
+    }
+  }
+  return (
+    <section className="card stack" aria-labelledby="join-title">
+      <div className="stack" style={{ gap: 4 }}>
+        <h2 id="join-title" style={{ margin: 0 }}>
+          Join link
+        </h2>
+        <p className="muted">Share it with your class by email, WhatsApp or Teams. Students open it, sign in or create a free account, see what you can follow, and join.</p>
+      </div>
+      {join.open ? (
+        <div className="row wrap">
+          <input type="text" readOnly value={link} aria-label="Join link" className="mono" style={{ flex: '1 1 320px' }} onFocus={(e) => e.target.select()} />
+          <button className="btn primary" onClick={() => void copy()}>
+            <Copy size={14} /> Copy link
+          </button>
+        </div>
+      ) : (
+        <p className="notice">Joining is off: the link does not work until you turn it back on.</p>
+      )}
+      <div className="row wrap">
+        <button className="btn" disabled={busy} onClick={() => void change(join.open ? 'close' : 'open')}>
+          {join.open ? 'Turn joining off' : 'Turn joining on'}
+        </button>
+        {confirm ? (
+          <button className="btn" disabled={busy} onClick={() => void change('new')}>
+            Yes, make a new link
+          </button>
+        ) : (
+          <button className="btn" disabled={busy} onClick={() => setConfirm(true)}>
+            <RefreshCw size={14} /> Make a new link
+          </button>
+        )}
+        {confirm ? <small className="faint">The old link stops working; students already in the class stay.</small> : null}
+      </div>
+      {message ? (
+        <p className={`notice ${message.ok ? 'ok' : 'bad'}`} role="status">
+          {message.text}
+        </p>
+      ) : null}
+    </section>
   );
 }
 

@@ -1,5 +1,6 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
-import { NavLink, Route, Routes, useLocation } from 'react-router';
+import { NavLink, Route, Routes, useLocation, useNavigate } from 'react-router';
+import { pendingJoinCode } from './auth/joinCode';
 import { Tooltip } from 'radix-ui';
 import { Award, BookOpen, Bone, ChartColumn, CircleHelp, FolderOpen, GraduationCap, House, Library, Lock, Search, Settings as SettingsIcon, NotebookPen, School, Siren, Stethoscope, Target, UsersRound } from 'lucide-react';
 import { HomePage } from './pages/Home';
@@ -27,6 +28,7 @@ const ConditionsPage = lazy(() => import('./pages/Conditions'));
 const OnCallPage = lazy(() => import('./pages/OnCall'));
 const AdminPage = lazy(() => import('./pages/Admin'));
 const ClassPage = lazy(() => import('./pages/Class'));
+const JoinPage = lazy(() => import('./pages/Join'));
 const CertificatesPage = lazy(() => import('./pages/Certificates'));
 const ExamResultPage = lazy(() => import('./pages/ExamResult'));
 
@@ -140,10 +142,19 @@ const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/settings/, 'Settings'],
   [/^\/guide/, 'Guide'],
   [/^\/read\//, 'Reading'],
+  [/^\/join\//, 'Join a class'],
+  [/^\/class/, 'My class'],
 ];
 
 export function App() {
   const loc = useLocation();
+  const navigate = useNavigate();
+  // Signed up from a class join link: go back to its invitation once.
+  useEffect(() => {
+    const code = pendingJoinCode();
+    if (code && !loc.pathname.startsWith('/join/')) navigate(`/join/${code}`, { replace: true });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   useEffect(() => {
     if (loc.pathname.startsWith('/conditions')) return; // titled by the condition shown
     const t = PAGE_TITLES.find(([re]) => re.test(loc.pathname))?.[1];
@@ -198,6 +209,7 @@ export function App() {
               <Route path="/guide" element={<GuidePage />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/class" element={<ClassPage />} />
+              <Route path="/join/:code" element={<JoinPage />} />
               <Route path="*" element={<div className="page-inner"><h1>Not found</h1><p className="muted">This address does not exist. <NavLink to="/">Go to Today</NavLink>.</p></div>} />
             </Routes>
             )}

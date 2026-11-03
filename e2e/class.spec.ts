@@ -4,7 +4,9 @@
  */
 import { test, expect, type Page } from '@playwright/test';
 
+const CODE = 'AbCdEf123456';
 const classData = () => ({
+  join: { code: CODE, open: true },
   free: { seats: 30, used: 2, left: 28, until: '2027-06-30T23:59:59.999Z', open: true },
   summary: { students: 3, signedUp: 2, active7: 1, examsPassed: 2, certificates: 1 },
   students: [
@@ -115,4 +117,72 @@ test('the owner makes someone a professor with free places for their students', 
   await roleForm.getByRole('button', { name: 'Save role' }).click();
   await expect(page.locator('.admin-edit').getByRole('status')).toContainText('prof@ssst.edu.ba is a professor now');
   expect(posts.at(-1)).toEqual({ path: '/api/admin/role', body: { email: 'prof@ssst.edu.ba', role: 'professor', seats: 30, freeUntil: '2027-06-30' } });
+});
+
+test('a professor shares, replaces or pauses the class join link', async ({ page }) => {
+  const posts = await professor(page);
+  await page.goto('/class');
+  const card = page.getByRole('region', { name: 'Join link' });
+  await expect(card.getByLabel('Join link')).toHaveValue(`http://localhost:4317/join/${CODE}`);
+  await card.getByRole('button', { name: 'Make a new link' }).click();
+  expect(posts).toHaveLength(0);
+  await expect(card).toContainText('The old link stops working; students already in the class stay.');
+  await card.getByRole('button', { name: 'Yes, make a new link' }).click();
+  await expect(card.getByRole('status')).toContainText('A new link is ready. The old one no longer works.');
+  expect(posts.at(-1)).toEqual({ path: '/api/class/link', body: { action: 'new' } });
+  await card.getByRole('button', { name: 'Turn joining off' }).click();
+  await expect(card.getByRole('status')).toContainText('Joining is off.');
+  expect(posts.at(-1)).toEqual({ path: '/api/class/link', body: { action: 'close' } });
+});
+
+async function visitor(page: Page, signedIn: boolean) {
+  const joined: unknown[] = [];
+  await page.route('**/api/config', (r) => r.fulfill({ json: { auth: true, billing: true } }));
+  await page.route('**/api/session', (r) =>
+    r.fulfill(signedIn ? { json: { user: { name: 'Lejla', email: 'lejla@stu.ssst.edu.ba' }, access: { active: false }, billingReady: true } } : { status: 401, json: { user: null } }),
+  );
+  await page.route('**/api/class/invite**', (r) => (new URL(r.request().url()).searchParams.get('code') === CODE ? r.fulfill({ json: { name: 'Prof. Amra', free: true } }) : r.fulfill({ status: 404, json: { error: 'This join link does not work any more.' } })));
+  await page.route('**/api/class/join', async (r) => {
+    joined.push(r.request().postDataJSON());
+    await r.fulfill({ json: { ok: true, name: 'Prof. Amra', already: false, free: { until: '2027-06-30T23:59:59.999Z' } } });
+  });
+  return joined;
+}
+
+test('a visitor with the link sees the invitation, and is taken back to it after signing in', async ({ page }) => {
+  await visitor(page, false);
+  await page.goto(`/join/${CODE}`);
+  const banner = page.getByRole('note').filter({ hasText: 'invited you to their class' });
+  await expect(banner).toContainText('Prof. Amra invited you to their class on radiology.monster. It includes free access to everything.');
+  await banner.getByRole('button', { name: 'Create a free account' }).click();
+  await expect(page.locator('.auth-dialog')).toBeVisible();
+  // Signed in now (the tab kept the code): the app opens the invitation instead of Today.
+  await page.unrouteAll();
+  await visitor(page, true);
+  await page.goto('/');
+  await expect(page).toHaveURL(new RegExp(`/join/${CODE}$`));
+  await expect(page.getByRole('heading', { name: 'Join Prof. Amra’s class' })).toBeVisible();
+});
+
+test('a signed-in student sees what the professor will follow, then joins with one click', async ({ page }) => {
+  const joined = await visitor(page, true);
+  await page.goto(`/join/${CODE}`);
+  await expect(page.getByRole('heading', { name: 'Join Prof. Amra’s class' })).toBeVisible();
+  await expect(page.locator('.join-card')).toContainText('Prof. Amra will see your study days, exam results and certificates, not your answers or payments.');
+  await expect(page.locator('.join-card')).toContainText('This class includes free access to everything');
+  await page.getByRole('button', { name: 'Join the class' }).click();
+  await expect(page.getByRole('heading', { name: /You are in Prof. Amra’s class/ })).toBeVisible();
+  await expect(page.getByRole('status')).toContainText('Free access to everything is on until 30 June 2027.');
+  expect(joined).toEqual([{ code: CODE }]);
+  // The code is used up in this tab: Today stays Today.
+  await page.goto('/');
+  await expect(page).toHaveURL(/\/$/);
+});
+
+test('an old or mistyped link says so plainly', async ({ page }) => {
+  const joined = await visitor(page, true);
+  await page.goto('/join/OldCode123456');
+  await expect(page.getByRole('heading', { name: 'This link has ended' })).toBeVisible();
+  await expect(page.locator('.join-card')).toContainText('Ask your professor for the current one.');
+  expect(joined).toHaveLength(0);
 });

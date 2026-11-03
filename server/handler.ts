@@ -16,7 +16,7 @@ import { adminAccess } from './auth.js';
 import type { Permission } from './roles.js';
 import { addPerson, adminPeople, emailSignIn, removeFreeAccess, setFreeAccess, setRole } from './admin.js';
 import { changePromo, createPromo, listPromos, PromoAccessError } from './promos.js';
-import { addStudents, classesOf, classRoster, leaveClass, professorFor, removeStudent } from './classes.js';
+import { addStudents, changeJoinLink, classesOf, classRoster, invitation, joinClass, leaveClass, professorFor, removeStudent, setTeacherName } from './classes.js';
 import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
 import { studentEligible, StudentDiscountError } from './studentDiscount.js';
 import { beginMerchantConnect, finishMerchantConnect, MERCHANT_COOKIE, merchantConnectPage } from './merchantConnect.js';
@@ -81,6 +81,12 @@ export async function handle(request: Request): Promise<Response> {
       if(!cert) return json({error:'Certificate not found.'},404);
       const {certificatePdf}=await import('./certificatePdf.js');
       return new Response(Buffer.from(await certificatePdf(cert,appOrigin())),{headers:{'Content-Type':'application/pdf','Content-Disposition':`attachment; filename="radiology-${cert.id}.pdf"`,'Cache-Control':'no-store'}});
+    }
+    // A class invitation from a join link (public: anyone with the link sees whose class it is before signing up).
+    if (path === '/api/class/invite' && request.method === 'GET') {
+      if (!await rateLimit(`class-invite:${ip()}`, 60, 600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
+      const found = await invitation(url.searchParams.get('code') ?? '');
+      return found ? json(found) : json({ error: 'This join link does not work any more.' }, 404);
     }
     if (path === '/api/certificate' && request.method === 'GET') {
       if (!await rateLimit(`cert-check:${ip()}`, 60, 600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
@@ -217,7 +223,12 @@ export async function handle(request: Request): Promise<Response> {
       const r = await startLinkedInPost(user, await request.json().catch(() => null));
       return r.ok ? json({ url: r.url }) : json({ error: r.error }, 400);
     }
-    // A student leaves a class; a professor's class page (anyone else gets "Not found").
+    // A student joins with a class link or leaves a class; a professor's class page (anyone else gets "Not found").
+    if (path === '/api/class/join' && request.method === 'POST') {
+      if (!await rateLimit(`class-join:${user.userId}`, 20, 600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
+      const r = await joinClass(user.email, await request.json().catch(() => null));
+      return r.ok ? json(r) : json({ error: r.error }, 400);
+    }
     if (path === '/api/class/leave' && request.method === 'POST') {
       const r = await leaveClass(user.email, await request.json().catch(() => null));
       return r.ok ? json(r) : json({ error: r.error }, 400);
@@ -225,13 +236,17 @@ export async function handle(request: Request): Promise<Response> {
     if (path === '/api/class' || path.startsWith('/api/class/')) {
       const professor = await professorFor(user.userId);
       if (!professor) return json({ error: 'Not found' }, 404);
-      if (path === '/api/class' && request.method === 'GET') return json(await classRoster(professor));
+      if (path === '/api/class' && request.method === 'GET') {
+        await setTeacherName(professor, user.name);
+        return json(await classRoster(professor));
+      }
       if (request.method !== 'POST') return json({ error: 'Not found' }, 404);
       if (!await rateLimit(`class:${user.userId}`, 60, 600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
       const body = await request.json().catch(() => null);
       const r =
         path === '/api/class/students' ? await addStudents(professor, user.name, body)
         : path === '/api/class/students/remove' ? await removeStudent(professor, body)
+        : path === '/api/class/link' ? await changeJoinLink(professor, body)
         : null;
       if (!r) return json({ error: 'Not found' }, 404);
       return r.ok ? json(r) : json({ error: r.error }, 400);

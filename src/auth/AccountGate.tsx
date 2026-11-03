@@ -1,5 +1,6 @@
 import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
-import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers, LockOpen } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers, LockOpen, School } from 'lucide-react';
+import { fetchInvitation, pendingJoinCode, type Invitation } from './joinCode';
 import './account.css';
 import './plans.css';
 import { Landing } from './Landing';
@@ -39,6 +40,24 @@ const AccountContext = createContext<AccountState | null>(null);
 /** The signed-in account, or null where there is none (local development without the gate). */
 export function useAccount(): AccountState | null {
   return useContext(AccountContext);
+}
+
+/** A class invitation from a join link, for a visitor who is not signed in yet. */
+function InviteBanner({ onJoin, onSignIn }: { onJoin: () => void; onSignIn: () => void }) {
+  const [invite, setInvite] = useState<Invitation | null>(null);
+  useEffect(() => {
+    const code = pendingJoinCode();
+    if (code) void fetchInvitation(code).then(setInvite);
+  }, []);
+  if (!invite) return null;
+  return <div className="invite-banner" role="note">
+    <School size={18} aria-hidden="true" />
+    <span><b>{invite.name}</b> invited you to their class on radiology.monster.{invite.free ? ' It includes free access to everything.' : ''} Create a free account or sign in, then join.</span>
+    <span className="invite-banner-actions">
+      <button className="lp-btn primary small" onClick={onJoin}>Create a free account</button>
+      <button className="text-button" onClick={onSignIn}>Sign in</button>
+    </span>
+  </div>;
 }
 
 export function AccountMenu() {
@@ -305,6 +324,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
     </AccountContext.Provider>;
   }
   return <main className="membership-page lp">
+    <InviteBanner onJoin={() => { setAuthMode('signup'); setError(''); trackFunnel('signup_start', true); }} onSignIn={() => setAuthMode('login')} />
     <Landing panel={panel} signInLabel="Sign in" signInDisabled={!ready?.auth}
       onSignIn={() => setAuthMode('login')} onStartFree={() => { setAuthMode('signup'); setError(''); trackFunnel('signup_start', true); }} />
     <dialog className="auth-dialog" ref={dialog} onCancel={() => setAuthMode(null)} onClose={() => setAuthMode(null)} aria-labelledby="auth-title">

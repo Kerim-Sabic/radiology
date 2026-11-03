@@ -1,3 +1,4 @@
+import { randomBytes } from 'node:crypto';
 import type { User } from '@clerk/backend';
 import { z } from 'zod';
 import { accountMail, clerk, ensureAccount, longDate, sendAccountMail, SIGN_IN_STEPS } from './accounts.js';
@@ -113,6 +114,7 @@ export async function classRoster(professor: ProfessorRole, now = Date.now()) {
   }
   const used = students.filter((s) => s.freeFromClass).length;
   return {
+    join: await joinLink(professor),
     free: { seats: professor.seats, used, left: Math.max(0, professor.seats - used), until: professor.freeUntil, open: professor.seats > 0 && (!professor.freeUntil || Date.parse(professor.freeUntil) > now) },
     summary: {
       students: students.length,
@@ -139,17 +141,39 @@ function classMail(student: string, teacher: string, free: { until: string | nul
   return accountMail(`You are in ${teacher}’s class on radiology.monster`, lines, 'You get this email because your professor added you to their class. For education only, not for clinical diagnosis.');
 }
 
+/** Free places the class still has: the owner's number, minus students holding free access through the class. */
+async function freePlacesLeft(professor: ProfessorRole, now = Date.now()) {
+  if (professor.seats <= 0 || (professor.freeUntil && Date.parse(professor.freeUntil) <= now)) return 0;
+  return Math.max(0, professor.seats - (await classGrants(professor.email, now)).length);
+}
+
+/** Put a student in the class; give free access through it if a place is left and they have none. Returns whether it did. */
+async function enroll(professor: ProfessorRole, teacher: string, email: string, placeLeft: boolean, now: number) {
+  await db().sadd(classKey(professor.email), email);
+  await db().sadd(memberOfKey(email), professor.email);
+  const existing = await grantFor(email);
+  if (!placeLeft || (existing && grantActive(existing, now))) return false;
+  await setGrant({ email, until: professor.freeUntil, note: `Class of ${teacher}`, by: professor.email, at: new Date(now).toISOString(), classOf: mailboxKey(professor.email) });
+  return true;
+}
+
+/** The name the professor shows to students (from their account), kept for invitations and the student notice. */
+export async function setTeacherName(professor: ProfessorRole, name: string) {
+  const teacher = name.trim() || professor.email;
+  await db().set(metaKey(professor.email), { name: teacher });
+  return teacher;
+}
+
 /** Add students by email: their account is made if needed, and free access given while the class has free places. */
 export async function addStudents(professor: ProfessorRole, teacherName: string, body: unknown, now = Date.now()) {
   const p = AddBody.safeParse(body);
   if (!p.success) return { ok: false as const, error: 'Enter up to 100 valid email addresses.' };
-  const teacher = teacherName.trim() || professor.email;
-  await db().set(metaKey(professor.email), { name: teacher });
+  const teacher = await setTeacherName(professor, teacherName);
   const current = new Set(await emailsOf(professor.email));
   const wanted = [...new Set(p.data.emails)].filter((e) => mailboxKey(e) !== mailboxKey(professor.email));
   const fresh = wanted.filter((e) => !current.has(e));
   if (current.size + fresh.length > MAX_STUDENTS) return { ok: false as const, error: `A class holds up to ${MAX_STUDENTS} students.` };
-  let freeLeft = professor.seats > 0 && (!professor.freeUntil || Date.parse(professor.freeUntil) > now) ? Math.max(0, professor.seats - (await classGrants(professor.email, now)).length) : 0;
+  let freeLeft = await freePlacesLeft(professor, now);
   const results: Array<{ email: string; added: boolean; created?: boolean; free?: boolean; emailed?: boolean; note?: string }> = [];
   for (const email of wanted) {
     if (current.has(email)) {
@@ -161,15 +185,8 @@ export async function addStudents(professor: ProfessorRole, teacherName: string,
       results.push({ email, added: false, note: account.error });
       continue;
     }
-    await db().sadd(classKey(professor.email), email);
-    await db().sadd(memberOfKey(email), professor.email);
-    const existing = await grantFor(email);
-    let free = false;
-    if (freeLeft > 0 && !(existing && grantActive(existing, now))) {
-      await setGrant({ email, until: professor.freeUntil, note: `Class of ${teacher}`, by: professor.email, at: new Date(now).toISOString(), classOf: mailboxKey(professor.email) });
-      freeLeft--;
-      free = true;
-    }
+    const free = await enroll(professor, teacher, email, freeLeft > 0, now);
+    if (free) freeLeft--;
     const emailed = p.data.sendEmail ? await sendAccountMail(email, classMail(email, teacher, free ? { until: professor.freeUntil } : null)) : false;
     results.push({ email, added: true, created: account.created, free, emailed });
   }
@@ -216,6 +233,74 @@ export async function endClassAccess(professor: string) {
 /** When the owner changes a professor's end date, the free access their class gave follows it. */
 export async function syncClassAccess(professor: string, until: string | null) {
   for (const g of await classGrants(professor)) await setGrant({ ...g, until });
+}
+
+// ---------------------------------------------------------------- join links
+const joinKey = (professor: string) => `rvm:class-join:${mailboxKey(professor)}`;
+const codeKey = (code: string) => `rvm:class-code:${code}`;
+const CODE = /^[A-Za-z0-9_-]{10,24}$/;
+const newCode = () => randomBytes(9).toString('base64url');
+export interface JoinLink {
+  code: string;
+  /** False while the professor has turned joining off. */
+  open: boolean;
+}
+
+/** The professor's class link, made the first time they need it. */
+export async function joinLink(professor: ProfessorRole): Promise<JoinLink> {
+  const found = await db().get<JoinLink>(joinKey(professor.email));
+  if (found) return found;
+  const link = { code: newCode(), open: true };
+  await db().set(codeKey(link.code), professor.email);
+  await db().set(joinKey(professor.email), link);
+  return link;
+}
+
+/** A new link (the old one stops working at once), or joining turned off or on. Students already in the class stay. */
+export async function changeJoinLink(professor: ProfessorRole, body: unknown) {
+  const p = z.object({ action: z.enum(['new', 'close', 'open']) }).strict().safeParse(body);
+  if (!p.success) return { ok: false as const, error: 'Expected new, close or open.' };
+  const link = await joinLink(professor);
+  let next: JoinLink = { ...link, open: p.data.action !== 'close' };
+  if (p.data.action === 'new') {
+    await db().del(codeKey(link.code));
+    next = { code: newCode(), open: true };
+    await db().set(codeKey(next.code), professor.email);
+  }
+  await db().set(joinKey(professor.email), next);
+  return { ok: true as const, join: next };
+}
+
+/** The class a link opens, while it works: its professor, and the name shown on the invitation. */
+async function classFor(code: string) {
+  if (!CODE.test(code)) return null;
+  const email = await db().get<string>(codeKey(code));
+  const professor = email ? await professorRole(email) : null;
+  const link = professor ? await db().get<JoinLink>(joinKey(professor.email)) : null;
+  if (!professor || !link || link.code !== code || !link.open) return null;
+  const meta = await db().get<{ name?: string }>(metaKey(professor.email));
+  return { professor, name: meta?.name || 'Your professor' };
+}
+
+/** The invitation anyone with the link sees (before signing up): whose class, and whether it includes free access. */
+export async function invitation(code: string, now = Date.now()) {
+  const c = await classFor(code);
+  return c ? { name: c.name, free: (await freePlacesLeft(c.professor, now)) > 0 } : null;
+}
+
+/** A signed-in student joins with the link, after the app told them what the professor will see. */
+export async function joinClass(student: string, body: unknown, now = Date.now()) {
+  const p = z.object({ code: z.string().max(40) }).strict().safeParse(body);
+  if (!p.success) return { ok: false as const, error: 'That join link is not valid.' };
+  const c = await classFor(p.data.code);
+  if (!c) return { ok: false as const, error: 'This join link does not work any more. Ask your professor for the current one.' };
+  const email = student.trim().toLowerCase();
+  if (mailboxKey(email) === mailboxKey(c.professor.email)) return { ok: false as const, error: 'This is your own class.' };
+  const roster = await emailsOf(c.professor.email);
+  if (roster.some((e) => mailboxKey(e) === mailboxKey(email))) return { ok: true as const, name: c.name, already: true, free: null };
+  if (roster.length >= MAX_STUDENTS) return { ok: false as const, error: 'This class is full. Ask your professor.' };
+  const free = await enroll(c.professor, c.name, email, (await freePlacesLeft(c.professor, now)) > 0, now);
+  return { ok: true as const, name: c.name, already: false, free: free ? { until: c.professor.freeUntil } : null };
 }
 
 /** How many students a professor has, for the owner's view. */

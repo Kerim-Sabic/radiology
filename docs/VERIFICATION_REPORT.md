@@ -430,6 +430,15 @@ Free access given through a class is marked with it. It ends when the student le
 
 **Tests:** 624 unit tests, including the first-task rule.
 
+## 3n. Class join links (3 November)
+
+Each professor has one class link (`/join/<code>`) on My class: copy it, make a new one (the old stops at once), or turn joining off.
+- **Before signing in:** a visitor with the link sees "Prof. … invited you to their class" above the landing page, with "Create a free account". The invitation API gives only the professor's shown name and whether free places are left. The tab keeps the code through sign-up, and the app opens the invitation afterwards.
+- **Joining:** the student sees what the professor will follow (study days, exam results, certificates, not answers or payments), then joins with one click. Free places are used exactly as when the professor adds students by email.
+- **Refused:** an old, paused or mistyped link says plainly that it has ended, a professor cannot join their own class, and a link stops when its professor loses the role.
+
+**Tests:** 626 unit tests (`tests/admin.test.ts`: the invitation, joining with free places, joining twice, a new link stopping the old one, pausing, the role ending). `e2e/class.spec.ts` has 8 tests, run in Chromium and Firefox: sharing and replacing the link, the invitation surviving sign-in, joining, an ended link. No sideways scrolling at 390 px or 1440 px.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

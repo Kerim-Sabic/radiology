@@ -412,6 +412,54 @@ describe('professors and their classes', () => {
     expect((await handle(request(cookie, '/api/class/students/remove', 'POST', { email: 'kept@example.com' }))).status).toBe(400);
   });
 
+  it('lets students join with the class link after seeing whose class it is, using free places like an invitation', async () => {
+    const { owner_, cookie } = await professor(1);
+    const r = await (await handle(request(cookie, '/api/class'))).json();
+    expect(r.join).toMatchObject({ open: true, code: expect.stringMatching(/^[A-Za-z0-9_-]{12}$/) });
+    const code = r.join.code as string;
+    // Anyone with the link sees whose class it is (signed out too), never the professor's email.
+    const invite = await handle(new Request(`https://radiology.monster/api/class/invite?code=${code}`));
+    expect(await invite.json()).toEqual({ name: 'Prof. Amra Hodžić', free: true });
+    expect((await handle(new Request('https://radiology.monster/api/class/invite?code=nope'))).status).toBe(404);
+    // Joining needs an account; the first student gets the one free place, the second joins without.
+    expect((await handle(request('', '/api/class/join', 'POST', { code }))).status).toBe(401);
+    const first = await createSession({ sub: 'clerk_j1', provider: 'clerk', email: 'first@example.com', emailVerified: true });
+    expect(await (await handle(request(first, '/api/class/join', 'POST', { code }))).json()).toMatchObject({ ok: true, name: 'Prof. Amra Hodžić', already: false, free: { until: expect.any(String) } });
+    expect(await (await handle(request(first, '/api/session'))).json()).toMatchObject({ access: { active: true, role: 'granted' }, classes: [{ email: 'prof@ssst.edu.ba' }] });
+    expect(await (await handle(request(first, '/api/class/join', 'POST', { code }))).json()).toMatchObject({ ok: true, already: true });
+    expect(await (await handle(new Request(`https://radiology.monster/api/class/invite?code=${code}`))).json()).toEqual({ name: 'Prof. Amra Hodžić', free: false });
+    const second = await createSession({ sub: 'clerk_j2', provider: 'clerk', email: 'second@example.com', emailVerified: true });
+    expect(await (await handle(request(second, '/api/class/join', 'POST', { code }))).json()).toMatchObject({ ok: true, free: null });
+    expect((await (await handle(request(cookie, '/api/class'))).json()).summary.students).toBe(2);
+    // The professor cannot join their own class; the owner is just another student here.
+    expect((await handle(request(cookie, '/api/class/join', 'POST', { code }))).status).toBe(400);
+    expect((await handle(request(owner_, '/api/class/join', 'POST', { code }))).status).toBe(200);
+  });
+
+  it('stops an old link at once, and pauses joining without removing anyone', async () => {
+    const { cookie } = await professor(0);
+    const old = ((await (await handle(request(cookie, '/api/class'))).json()).join as { code: string }).code;
+    const changed = await (await handle(request(cookie, '/api/class/link', 'POST', { action: 'new' }))).json();
+    expect(changed.join.code).not.toBe(old);
+    const student = await createSession({ sub: 'clerk_k', provider: 'clerk', email: 'k@example.com', emailVerified: true });
+    const refused = await handle(request(student, '/api/class/join', 'POST', { code: old }));
+    expect(refused.status).toBe(400);
+    expect((await refused.json()).error).toContain('does not work any more');
+    expect((await handle(request(student, '/api/class/join', 'POST', { code: changed.join.code }))).status).toBe(200);
+    expect(await (await handle(request(cookie, '/api/class/link', 'POST', { action: 'close' }))).json()).toMatchObject({ join: { open: false } });
+    expect((await handle(new Request(`https://radiology.monster/api/class/invite?code=${changed.join.code}`))).status).toBe(404);
+    const late = await createSession({ sub: 'clerk_l', provider: 'clerk', email: 'late@example.com', emailVerified: true });
+    expect((await handle(request(late, '/api/class/join', 'POST', { code: changed.join.code }))).status).toBe(400);
+    expect((await (await handle(request(cookie, '/api/class'))).json()).summary.students).toBe(1);
+    await handle(request(cookie, '/api/class/link', 'POST', { action: 'open' }));
+    expect((await handle(request(late, '/api/class/join', 'POST', { code: changed.join.code }))).status).toBe(200);
+    expect((await handle(request(cookie, '/api/class/link', 'POST', { action: 'delete' }))).status).toBe(400);
+    // A link stops when its professor is no longer one.
+    const owner_ = await owner();
+    await handle(request(owner_, '/api/admin/role', 'POST', { email: 'prof@ssst.edu.ba', role: 'user' }));
+    expect((await handle(new Request(`https://radiology.monster/api/class/invite?code=${changed.join.code}`))).status).toBe(404);
+  });
+
   it('follows the owner: a new end date moves the class’s free access, and ending the role ends it', async () => {
     const { owner_, cookie } = await professor(5);
     await add(cookie, ['a@example.com', 'b@example.com'], false);

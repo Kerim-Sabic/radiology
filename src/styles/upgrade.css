@@ -1074,3 +1074,40 @@
   font-size: 12px;
   line-height: 1.4;
 }
+
+/* ---------------------------------------------------------------- class invitations */
+.invite-banner {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+  max-width: 1100px;
+  margin: 12px auto 0;
+  padding: 12px 16px;
+  border: 1px solid rgba(var(--accent-rgb), 0.45);
+  border-radius: 14px;
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 14px;
+}
+.invite-banner > span:first-of-type {
+  flex: 1 1 280px;
+}
+.invite-banner-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.join-card h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+@media (max-width: 720px) {
+  .invite-banner {
+    margin: 10px 12px 0;
+  }
+}
