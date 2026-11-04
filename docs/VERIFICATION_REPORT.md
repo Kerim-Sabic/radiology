@@ -509,6 +509,22 @@ Each professor has one class link (`/join/<code>`) on My class: copy it, make a 
 - Sticky parts now really stay in view: the page used `overflow-x: hidden`, which (with the membership page's `overflow: auto`) made it its own scroll box, so the FAQ heading never stuck. The landing page now uses `overflow-x: clip` (checked: the free card, Fig. 3 and the FAQ heading hold their place while scrolling); the in-app plans screen, a fixed overlay that scrolls itself, keeps its own overflow (its e2e tests at phone width pass).
 - Phones: the five numbers sit three over two (no empty cell, also at 1024 px), the modality tabs scroll sideways with a fade at the edge, and sections are closer together. Checked at 1440, 1024 and 390 px, with no sideways scroll.
 
+## 3u. Progress and Certificates (4 November)
+
+- **Progress:**
+  - A short header, with the backup tools (Export, Import, Reset) moved to a "Your data" card at the end.
+  - The six totals are tiles with a line on what they count. Independent means Practice or Assess with no hints opened and nothing revealed; assisted is everything else, as `lessonEngine.ts` defines it.
+  - The activity calendar has the current streak, best streak and active days beside it.
+  - Skill states are coloured chips with a bar for independent correct. Error patterns are bars, and the confidence check leads with its percentage.
+  - The mistake notebook lists open entries first, shows 8 until "Show all", writes dates as "28 Oct 2026" and starts every reason with a capital.
+- **Certificates:**
+  - The exams come right after the three steps, and the levels table and fine print move to the end.
+  - Each area shows "x of 3 levels" with a bar lit in each passed level's colour.
+  - The stars are gone (the number and name already say the level), and a locked level no longer says it twice: the lock is in its line, "Get the Level 1 certificate first."
+  - Locked levels and levels without enough patients are dashed and quieter. Held certificates are tinted in their level's colour.
+  - On phones the levels table ran off the card; it now wraps.
+- **Checked** at 1440, 1024 and 390 px with a seeded study history (46 answers, 18 drilled structures, 10 weeks of activity, one passed exam) and with none, with no sideways scroll.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

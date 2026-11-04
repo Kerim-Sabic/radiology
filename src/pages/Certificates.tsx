@@ -60,6 +60,9 @@ export default function CertificatesPage() {
     else void end(e);
   };
   const answered = current ? current.items.filter((it) => it.submittedAt).length : 0;
+  const passed = (area: CertArea, level: CertLevel) =>
+    issued.some((c) => c.area === area && (c.level ?? 1) === level && c.status !== 'revoked') ||
+    history.some((e) => e.area === area && e.level === level && examScore(e, attempts)?.passed);
 
   return (
     <div className="page-inner certs-page">
@@ -95,12 +98,6 @@ export default function CertificatesPage() {
           ) : null}
         </div>
         {free ? <p className="notice">The exams draw on the whole library, so they are for members.</p> : null}
-        {signedIn && !free ? (
-          <p className="faint certs-own">
-            The server picks every exam's questions, keeps each question's clock and grades every answer itself; a certificate is issued once, for a pass it scored. Take
-            the exams yourself: a certificate can be revoked.
-          </p>
-        ) : null}
         {error ? (
           <p className="notice bad" role="alert">
             {error}
@@ -133,7 +130,7 @@ export default function CertificatesPage() {
           <h2 id="certs-mine-h">Your certificates</h2>
           <ul className="certs-mine">
             {mine.map((c) => (
-              <li key={c.id}>
+              <li key={c.id} style={{ ['--lvl' as string]: LEVEL_STYLE[(c.level ?? 1) as CertLevel].ring[0] }}>
                 <span className="certs-mine-ico" aria-hidden="true">
                   <Award size={18} />
                 </span>
@@ -151,6 +148,109 @@ export default function CertificatesPage() {
           </ul>
         </section>
       ) : null}
+
+
+      <div className="certs-areas">
+        {ORDER.map((area) => (
+          <section key={area} className="card certs-area" aria-labelledby={`certs-${area}`}>
+            <div className="certs-area-head">
+              <h2 id={`certs-${area}`}>{CERT_TITLES[area]}</h2>
+              <span className="faint">{LEVELS_123.filter((l) => passed(area, l)).length} of 3 levels</span>
+            </div>
+            <div className="certs-area-bar" aria-hidden="true">
+              {LEVELS_123.map((l) => (
+                <i key={l} className={passed(area, l) ? 'on' : ''} style={{ ['--lvl' as string]: LEVEL_STYLE[l].ring[0] }} />
+              ))}
+            </div>
+            <ol className="certs-ladder">
+              {LEVELS_123.map((level) => {
+                const rule = examRule(area, level);
+                const have = issued.find((c) => c.area === area && (c.level ?? 1) === level && c.status !== 'revoked');
+                const last = history.find((e) => e.area === area && e.level === level) ?? null;
+                const lastScore = last ? examScore(last, attempts) : null;
+                const here = current && current.area === area && current.level === level ? current : null;
+                const ok = available.get(`${area}-${level}`) ?? false;
+                const block = examBlock(area, level, issued, history, attempts);
+                let status = 'Not taken yet.';
+                if (here) status = `In progress: ${here.items.filter((it) => it.submittedAt).length} of ${here.items.length} answered.`;
+                else if (last && lastScore)
+                  status = `Last exam ${onDay(last.finishedAt ?? last.startedAt)}: ${pct(lastScore.score)}, ${lastScore.passed ? 'passed' : `not passed (needs ${pct(lastScore.passMark)})`}.`;
+                else if (have) status = `Issued ${onDay(have.issuedAt)}.`;
+                else if (free) status = 'For members: the exam draws on the whole library.';
+                else if (!catalog) status = 'Loading the library…';
+                else if (!ok) status = 'Not enough patients in the library for this level yet: more are on the way.';
+                else if (block) status = block.text;
+                // Waiting for the level below, or not enough patients yet: shown, but quieter.
+                const lockedOut = signedIn && ok && !have && !here && block?.reason === 'order';
+                const quiet = lockedOut || (!!catalog && !ok && !have);
+                return (
+                  <li
+                    key={level}
+                    id={`cert-${area}-${level}`}
+                    className={[have || lastScore?.passed ? 'ok' : '', quiet ? 'quiet' : ''].filter(Boolean).join(' ')}
+                    style={{ ['--lvl' as string]: LEVEL_STYLE[level].ring[0] }}
+                  >
+                    <div className="certs-step-head">
+                      <span className="certs-badge" aria-hidden="true">
+                        {level}
+                      </span>
+                      <b>
+                        Level {level} · {levelName(level)}
+                      </b>
+                      {have ? <span className="chip ok">Issued</span> : lastScore?.passed ? <span className="chip accent">Passed</span> : null}
+                    </div>
+                    <span className="faint certs-numbers">{examRequirement(rule)}</span>
+                    <div className="cert-row">
+                      <small className="faint certs-status">
+                        {lockedOut ? <Lock size={12} aria-hidden /> : null}
+                        {status}
+                      </small>
+                      <span className="row" style={{ gap: 6, flexWrap: 'wrap' }}>
+                        {have ? (
+                          <a className="btn sm" href={`/verify/${have.id}`} target="_blank" rel="noopener noreferrer">
+                            View and share <ExternalLink size={12} />
+                          </a>
+                        ) : null}
+                        {last && lastScore ? (
+                          <button className="btn sm" onClick={() => navigate(examResultUrl(last))}>
+                            {lastScore.passed && !have ? 'Get the certificate' : 'See the result'}
+                          </button>
+                        ) : null}
+                        {free ? (
+                          <button className="btn sm primary" onClick={openPlans}>
+                            See plans
+                          </button>
+                        ) : here ? (
+                          <button className="btn sm primary" onClick={() => resume(here)}>
+                            Continue the exam <ArrowRight size={13} />
+                          </button>
+                        ) : have || lockedOut ? null : signedIn && ok ? (
+                          <button
+                            className="btn sm primary"
+                            disabled={!!current || !!block || starting}
+                            title={current ? 'Finish or end the exam in progress first.' : block?.text}
+                            onClick={() => void start(area, level)}
+                          >
+                            {last ? (
+                              <>
+                                <RotateCcw size={13} /> Try again
+                              </>
+                            ) : (
+                              <>
+                                Start the exam <ArrowRight size={13} />
+                              </>
+                            )}
+                          </button>
+                        ) : null}
+                      </span>
+                    </div>
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
+        ))}
+      </div>
 
       <section className="card stack" aria-labelledby="certs-levels-h">
         <h2 id="certs-levels-h">The exams</h2>
@@ -183,100 +283,13 @@ export default function CertificatesPage() {
           saved; with nothing marked it counts as wrong. Two-answer questions (a guess passes half of them) are left out from Level 2. Questions you have not answered
           before come first, so a new attempt brings new patients. After an exam you did not pass, Level 2 can be tried again after an hour and Level 3 after a day.
         </small>
+        {signedIn && !free ? (
+          <small className="faint certs-own">
+            The server picks every exam's questions, keeps each question's clock and grades every answer itself; a certificate is issued once, for a pass it scored. Take
+            the exams yourself: a certificate can be revoked.
+          </small>
+        ) : null}
       </section>
-
-      <div className="certs-areas">
-        {ORDER.map((area) => (
-          <section key={area} className="card certs-area" aria-labelledby={`certs-${area}`}>
-            <div className="certs-area-head">
-              <h2 id={`certs-${area}`}>{CERT_TITLES[area]}</h2>
-            </div>
-            <ol className="certs-ladder">
-              {LEVELS_123.map((level) => {
-                const rule = examRule(area, level);
-                const have = issued.find((c) => c.area === area && (c.level ?? 1) === level && c.status !== 'revoked');
-                const last = history.find((e) => e.area === area && e.level === level) ?? null;
-                const lastScore = last ? examScore(last, attempts) : null;
-                const here = current && current.area === area && current.level === level ? current : null;
-                const ok = available.get(`${area}-${level}`) ?? false;
-                const block = examBlock(area, level, issued, history, attempts);
-                let status = 'Not taken yet.';
-                if (here) status = `In progress: ${here.items.filter((it) => it.submittedAt).length} of ${here.items.length} answered.`;
-                else if (last && lastScore)
-                  status = `Last exam ${onDay(last.finishedAt ?? last.startedAt)}: ${pct(lastScore.score)}, ${lastScore.passed ? 'passed' : `not passed (needs ${pct(lastScore.passMark)})`}.`;
-                else if (have) status = `Issued ${onDay(have.issuedAt)}.`;
-                else if (free) status = 'For members: the exam draws on the whole library.';
-                else if (!catalog) status = 'Loading the library…';
-                else if (!ok) status = 'Not enough patients in the library for this level yet: more are on the way.';
-                else if (block) status = block.text;
-                return (
-                  <li key={level} id={`cert-${area}-${level}`} className={have || lastScore?.passed ? 'ok' : ''} style={{ ['--lvl' as string]: LEVEL_STYLE[level].ring[0] }}>
-                    <div className="certs-step-head">
-                      <span className="certs-badge" aria-hidden="true">
-                        {level}
-                      </span>
-                      <b>
-                        Level {level} · {levelName(level)}
-                      </b>
-                      <span className="certs-stars" aria-label={`${level} of 3 stars`}>
-                        {'★'.repeat(level)}
-                        {'☆'.repeat(3 - level)}
-                      </span>
-                      {have ? <span className="chip ok">Issued</span> : lastScore?.passed ? <span className="chip accent">Passed</span> : null}
-                    </div>
-                    <span className="faint certs-numbers">{examRequirement(rule)}</span>
-                    <div className="cert-row">
-                      <small className="faint">{status}</small>
-                      <span className="row" style={{ gap: 6, flexWrap: 'wrap' }}>
-                        {have ? (
-                          <a className="btn sm" href={`/verify/${have.id}`} target="_blank" rel="noopener noreferrer">
-                            View and share <ExternalLink size={12} />
-                          </a>
-                        ) : null}
-                        {last && lastScore ? (
-                          <button className="btn sm" onClick={() => navigate(examResultUrl(last))}>
-                            {lastScore.passed && !have ? 'Get the certificate' : 'See the result'}
-                          </button>
-                        ) : null}
-                        {free ? (
-                          <button className="btn sm primary" onClick={openPlans}>
-                            See plans
-                          </button>
-                        ) : here ? (
-                          <button className="btn sm primary" onClick={() => resume(here)}>
-                            Continue the exam <ArrowRight size={13} />
-                          </button>
-                        ) : have ? null : signedIn && ok && block?.reason === 'order' ? (
-                          <span className="chip" title={block.text}>
-                            <Lock size={12} /> Level {level - 1} first
-                          </span>
-                        ) : signedIn && ok ? (
-                          <button
-                            className="btn sm primary"
-                            disabled={!!current || !!block || starting}
-                            title={current ? 'Finish or end the exam in progress first.' : block?.text}
-                            onClick={() => void start(area, level)}
-                          >
-                            {last ? (
-                              <>
-                                <RotateCcw size={13} /> Try again
-                              </>
-                            ) : (
-                              <>
-                                Start the exam <ArrowRight size={13} />
-                              </>
-                            )}
-                          </button>
-                        ) : null}
-                      </span>
-                    </div>
-                  </li>
-                );
-              })}
-            </ol>
-          </section>
-        ))}
-      </div>
     </div>
   );
 }

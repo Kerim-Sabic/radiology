@@ -32,7 +32,7 @@ test('the certificates tab shows every level as an exam, and the certificates he
   await expect(chest.locator('.certs-ladder > li').first()).toContainText('Issued');
   // The levels go in order: Level 2 is open with Level 1 held, Level 3 waits for Level 2; another area starts at Level 1.
   await expect(chest.locator('.certs-ladder > li').nth(1).getByRole('button', { name: /Start the exam/ })).toBeVisible();
-  await expect(chest.locator('.certs-ladder > li').nth(2)).toContainText('Level 2 first');
+  await expect(chest.locator('.certs-ladder > li').nth(2)).toContainText('Get the Level 2 certificate first.');
   await expect(chest.locator('.certs-ladder > li').nth(2).getByRole('button', { name: /Start the exam/ })).toHaveCount(0);
   const head = page.locator('section.certs-area', { has: page.getByRole('heading', { name: 'Neuroimaging' }) });
   await expect(head.locator('.certs-ladder > li').first().getByRole('button', { name: /Start the exam/ })).toBeVisible();

@@ -31,7 +31,7 @@ export function CertificatesSummary() {
         </Link>
       </div>
       <p className="muted" style={{ margin: 0 }}>
-        {issued.length} issued. Three levels for each body area and for the whole library; each level is a short exam on real patients, with the result at the end.
+        {issued.length ? `${issued.length} issued.` : 'None yet.'} Three levels for each body area and for the whole library; each level is a short exam on real patients, with the result at the end.
         {current ? (
           <>
             {' '}

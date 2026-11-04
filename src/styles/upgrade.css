@@ -745,11 +745,12 @@
 .certs-mine-ico {
   display: grid;
   place-items: center;
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   flex: none;
+  border: 1px solid color-mix(in srgb, var(--lvl, var(--line-strong)) 55%, transparent);
   border-radius: 10px;
-  background: var(--panel-3);
+  background: color-mix(in srgb, var(--lvl, var(--panel-3)) 18%, var(--panel-3));
   color: var(--text);
 }
 .certs-levels-wrap {
@@ -773,7 +774,7 @@
   font-size: 12.5px;
 }
 .certs-levels tbody th {
-  white-space: nowrap;
+  width: 40%;
   font-weight: 600;
 }
 .certs-levels td {
@@ -802,6 +803,21 @@
 .certs-area-head .faint {
   font-size: 12.5px;
 }
+/* Three segments, one per level, lit in the level's colour once it is passed. */
+.certs-area-bar {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  margin-top: -4px;
+}
+.certs-area-bar i {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--panel-3);
+}
+.certs-area-bar i.on {
+  background: var(--lvl);
+}
 .certs-ladder {
   list-style: none;
   margin: 0;
@@ -820,6 +836,23 @@
 }
 .certs-ladder > li.ok {
   border-color: rgba(79, 209, 139, 0.45);
+}
+/* Waiting for the level below, or not enough patients yet. */
+.certs-ladder > li.quiet {
+  background: transparent;
+  border-style: dashed;
+}
+.certs-ladder > li.quiet .certs-step-head b,
+.certs-ladder > li.quiet .certs-numbers {
+  color: var(--text-3);
+}
+.certs-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.certs-status svg {
+  flex: none;
 }
 .certs-step-head {
   display: flex;
@@ -848,11 +881,6 @@
   border-color: transparent;
   background: var(--lvl, var(--ok));
   color: #fff;
-}
-.certs-stars {
-  color: var(--lvl);
-  font-size: 12px;
-  letter-spacing: 1px;
 }
 .certs-numbers {
   font-size: 12px;
@@ -883,6 +911,14 @@
     display: block;
     color: var(--text-3);
     font-size: 12px;
+  }
+  /* Stacked rows wrap their text instead of running off the card. */
+  .certs-levels,
+  .certs-levels tbody {
+    display: block;
+  }
+  .certs-levels tbody th {
+    width: auto;
   }
   .certs-mine li {
     flex-wrap: wrap;
