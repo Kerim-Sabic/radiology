@@ -565,6 +565,13 @@ Each professor has one class link (`/join/<code>`) on My class: copy it, make a 
   - End-to-end: a report sent from a CT case, including the server refusing one; the Admin list and marking one fixed; the list hidden without the permission.
   - The form and the Admin list at 1440 and 390 px (touch), with no sideways scroll.
 
+## 3x. Clean marks, the apex left clear, and a link that survives sign-up (4 November)
+
+- **Box, ellipse and outline marks** no longer draw Cornerstone's pixel statistics (area, mean, min, max, standard deviation) over the image they mark. No task uses them; on a phone they covered the lung the student had just boxed. Length and angle still show their measurements.
+- **"Orientation not recorded in file"** (and the ultrasound note) moved from the top edge to the bottom edge of the image. At the top it covered the lung apices, which is exactly where a pneumothorax shows first.
+- **A link to a page survives sign-up.** Clerk used to return every new account to `/?account=verified`, so someone arriving from an ad or post linking to a free case landed on the home page. Clerk now returns to the page they signed up from, and once the session opens only the `account` flag is removed, so the case, its task, its mode and any campaign tag stay (`src/auth/returnPath.ts`). Checked on a phone-sized window: a signed-out visit to `/read/cxr-00003400-003?task=…&utm_campaign=noarrow_a` shows the landing page and keeps the tag; the account opens straight onto "Find the pneumothorax".
+- **Checked:** 720 unit tests, including the new return-path tests; all end-to-end tests in Chromium and Firefox.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

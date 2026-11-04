@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ClerkFailed, ClerkLoading, ClerkProvider, SignIn, SignUp, useAuth, useClerk, useUser } from '@clerk/react';
 import { adSource } from '../services/source';
+import { withAccount } from './returnPath';
 
 type Mode = 'signup' | 'login';
 interface Props { publishableKey: string; mode: Mode; onModeChange: (mode: Mode) => void; onSuccess: () => Promise<void>; }
@@ -45,8 +46,8 @@ function AccountForm({ mode, complete, onSuccess }: { mode: Mode; complete: bool
     <ClerkLoading><p className="auth-waiting" role="status">Loading secure sign-in…</p></ClerkLoading>
     <ClerkFailed><p className="membership-message" role="alert">Sign-in couldn’t load. Check your connection, then close and reopen this form.</p></ClerkFailed>
     {isLoaded && !isSignedIn && (mode === 'signup'
-      ? <SignUp routing="hash" forceRedirectUrl="/?account=verified" signInUrl="/?account=login" />
-      : <SignIn routing="hash" withSignUp forceRedirectUrl="/?account=verified" signUpForceRedirectUrl="/?account=verified" signUpUrl="/?account=signup" />)}
+      ? <SignUp routing="hash" forceRedirectUrl={withAccount('verified')} signInUrl={withAccount('login')} />
+      : <SignIn routing="hash" withSignUp forceRedirectUrl={withAccount('verified')} signUpForceRedirectUrl={withAccount('verified')} signUpUrl={withAccount('signup')} />)}
     {isLoaded && isSignedIn && <div className="inline-account-continue">
       <p>Signed in as <strong>{user?.primaryEmailAddress?.emailAddress || 'your account'}</strong></p>
       <button className="email-signin" disabled={busy} onClick={() => void continueSession()}>{busy ? 'Opening your account…' : 'Continue to radiology.monster'}</button>

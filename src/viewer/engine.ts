@@ -182,6 +182,9 @@ export class ViewerEngine {
             getTextCallback: (done: (t: string) => void) => (arrowLabelHook.request ? arrowLabelHook.request(done) : done('')),
             changeTextCallback: (_d: unknown, _e: unknown, done: (t: string) => void) => (arrowLabelHook.request ? arrowLabelHook.request(done) : done('')),
           });
+        } else if (n === TOOL.Rectangle || n === TOOL.Ellipse || n === TOOL.Freehand) {
+          // A box, ellipse or outline marks where a finding is: no pixel statistics drawn over the image it marks.
+          g.addTool(n, { getTextLines: () => [] });
         } else if (n === TOOL.Magnify) {
           // A loupe for radiographs, mammograms and ultrasound: 3× under the cursor while the button is held.
           g.addTool(n, { magnifySize: 3, magnifyWidth: 260, magnifyHeight: 260 });

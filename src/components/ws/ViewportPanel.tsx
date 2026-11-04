@@ -487,11 +487,12 @@ export function ViewportPanel(p: Props) {
             <span className="vp-edge b">{st.edges.bottom}</span>
           </>
         ) : st?.ready && p.kind !== '3d' && s.modality === 'US' ? (
-          <span className="vp-edge t vp-tag info" title="Ultrasound images carry no patient orientation. When the probe marker is shown on the image, it points (by convention) to the patient's head or right.">
+          <span className="vp-edge b vp-tag info" title="Ultrasound images carry no patient orientation. When the probe marker is shown on the image, it points (by convention) to the patient's head or right.">
             Ultrasound: no patient orientation in the file
           </span>
         ) : st?.ready && p.kind !== '3d' ? (
-          <span className="vp-edge t vp-tag warn">Orientation not recorded in file</span>
+          // At the bottom edge: at the top it covered the lung apices, where a pneumothorax shows first.
+          <span className="vp-edge b vp-tag warn">Orientation not recorded in file</span>
         ) : null}
         {p.relationNote ? (
           <div className="rel-banner">

@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard
 import { DropdownMenu } from 'radix-ui';
 import { Link } from 'react-router';
 import { fetchInvitation, pendingJoinCode, type Invitation } from './joinCode';
+import { withoutAccount } from './returnPath';
 import './account.css';
 import './plans.css';
 import { Landing } from './Landing';
@@ -203,7 +204,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       setAccount(data);
       setError('');
       if (data.user) { setAuthMode(null); setAuthWaiting(false); }
-      if (data.user && new URLSearchParams(location.search).has('account')) history.replaceState(null, '', location.pathname);
+      if (data.user && new URLSearchParams(location.search).has('account')) history.replaceState(null, '', withoutAccount());
       if (data.access.active) {
         setReturned(false);
         setPayment(null); setSelectedPlan(null); rememberPlan(null);
