@@ -993,6 +993,16 @@ button.chip[aria-pressed='true'] {
   overflow-y: hidden;
   scrollbar-width: none;
 }
+.ws-bar-head,
+.ws-bar-tools {
+  display: contents;
+}
+.ws-sm-only,
+.mode-select,
+.ws-scrim,
+.ws-sheet-handle {
+  display: none;
+}
 .ws-bar .sep {
   width: 1px;
   height: 22px;
@@ -1571,23 +1581,122 @@ button.chip[aria-pressed='true'] {
 }
 @media (max-width: 860px) {
   .ws {
-    grid-template-columns: 1fr;
-    grid-template-rows: var(--toolbar-h) 1fr auto;
+    --ws-bar-h: 94px;
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: var(--ws-bar-h) 1fr auto;
     grid-template-areas: 'bar' 'main' 'right';
+  }
+  /* Two rows: the case (back, title, mode) and the tools, which scroll sideways and fade at the edge. */
+  .ws-bar {
+    display: block;
+    min-width: 0;
+    padding: 0;
+    overflow: visible;
+  }
+  .ws-bar-head,
+  .ws-bar-tools {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    padding: 0 6px;
+  }
+  .ws-bar-head {
+    height: 48px;
+    border-bottom: 1px solid var(--line);
+  }
+  .ws-bar-tools {
+    height: 46px;
+    padding-right: 28px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+    mask-image: linear-gradient(to right, #000 calc(100% - 28px), transparent);
+  }
+  .ws-bar-tools::-webkit-scrollbar {
+    display: none;
+  }
+  .ws-bar-tools > .sep:first-child {
+    display: none;
+  }
+  .ws-bar-tools .icon-btn {
+    flex: none;
+    width: 40px;
+    height: 40px;
+  }
+  .ws-bar-tools .btn.sm {
+    flex: none;
+    height: 34px;
+  }
+  .ws-title {
+    flex: 1;
+    max-width: none;
+    margin: 0 6px;
+  }
+  .ws-sm-only {
+    display: contents;
   }
   .ws-left {
     position: fixed;
-    top: var(--toolbar-h);
+    top: var(--ws-bar-h);
     bottom: 0;
     left: 0;
     z-index: 30;
+    width: min(300px, 86vw);
     box-shadow: 8px 0 24px rgba(0, 0, 0, 0.5);
+  }
+  .ws-scrim {
+    display: block;
+    position: fixed;
+    inset: var(--ws-bar-h) 0 0 0;
+    z-index: 29;
+    border: 0;
+    background: rgba(0, 0, 0, 0.5);
+    cursor: default;
   }
   .ws-right {
     width: 100%;
-    max-height: 46vh;
+    max-height: 44vh;
+    max-height: 44dvh;
     border-left: 0;
     border-top: 1px solid var(--line);
+  }
+  .ws-right.tall {
+    height: 80vh;
+    height: 80dvh;
+    max-height: 80vh;
+    max-height: 80dvh;
+  }
+  /* A bottom sheet: the bar on top makes the panel taller or smaller. */
+  .ws-sheet-handle {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 100%;
+    height: 18px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+  }
+  .ws-sheet-handle span {
+    width: 40px;
+    height: 4px;
+    border-radius: 999px;
+    background: var(--line-strong);
+  }
+  .ws-sheet-handle:hover span,
+  .ws-sheet-handle:focus-visible span {
+    background: var(--text-3);
+  }
+  .ws-right .tabs-list {
+    padding-top: 0;
+  }
+  .ws-right .tabs-list button {
+    flex: 1 1 auto;
+    padding: 0 6px;
+    height: 40px;
   }
   .vgrid.l4 {
     grid-template: 1fr 1fr / 1fr;
@@ -2445,5 +2554,123 @@ textarea {
   }
   .progress-bars li {
     grid-template-columns: minmax(0, 1fr) 72px 24px;
+  }
+}
+
+/* ---------- reading room on a phone ---------- */
+/* Long structure names shorten instead of pushing the buttons off the image. */
+.vp-isolate > span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.vp-isolate .btn {
+  flex: none;
+}
+.vpanel:has(.vp-picker) .vp-edge.t {
+  top: 40px;
+}
+@media (max-width: 600px) {
+  .ws-bar-head .mode-switch {
+    display: none;
+  }
+  .mode-select {
+    display: block;
+    flex: none;
+    height: 32px;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .ws-title strong {
+    font-size: 13.5px;
+  }
+  /* The image corners keep what is needed to read it; the acquisition details are in the Case tab. */
+  .vp-overlay {
+    font-size: 11px;
+  }
+  .vp-corner {
+    max-width: 27%;
+    padding: 6px 8px;
+  }
+  .vp-corner .faint {
+    display: none;
+  }
+  /* Below the corners' first two lines, so the picker and the window values never meet. */
+  .vp-picker {
+    top: 38px;
+    max-width: 46%;
+  }
+  .vpanel:has(.vp-picker) .vp-edge.t {
+    top: 72px;
+  }
+  .vp-picker select {
+    max-width: 100%;
+    height: 28px;
+  }
+  .vp-isolate {
+    max-width: calc(100% - 56px);
+    padding: 3px 4px 3px 8px;
+  }
+}
+/* Fingers: a wider slice slider, with the corner text kept clear of it. */
+@media (pointer: coarse) {
+  .vp-slider {
+    width: 30px;
+    right: 2px;
+  }
+  .vp-slider input[type='range'] {
+    width: 30px;
+  }
+  .vp-corner.br {
+    right: 36px;
+  }
+  .vp-edge.r {
+    right: 38px;
+  }
+}
+/* Keep the top-right lines clear of the slice slider. */
+.vpanel:has(.vp-slider) .vp-corner.tr {
+  padding-right: 30px;
+}
+@media (pointer: coarse) {
+  .vpanel:has(.vp-slider) .vp-corner.tr {
+    padding-right: 38px;
+  }
+}
+@media (max-width: 600px) {
+  .vpanel:has(.vp-slider) .vp-corner.tr {
+    max-width: calc(27% + 30px);
+  }
+  .ws-tool-flash {
+    max-width: calc(100% - 80px);
+  }
+}
+.ws-tool-flash {
+  position: absolute;
+  top: 44px;
+  left: 50%;
+  z-index: 8;
+  max-width: calc(100% - 32px);
+  padding: 6px 12px;
+  transform: translateX(-50%);
+  border: 1px solid var(--line-strong);
+  border-radius: 12px;
+  background: rgba(10, 12, 15, 0.92);
+  color: var(--text);
+  font-size: 12.5px;
+  text-align: center;
+  pointer-events: none;
+  animation: ws-flash-in 0.15s ease-out;
+}
+@keyframes ws-flash-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -4px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ws-tool-flash {
+    animation: none;
   }
 }

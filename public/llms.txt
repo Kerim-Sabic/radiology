@@ -17,13 +17,13 @@ Also written: radiology.monster, RadiologyMonster, Radiology.Monster. Official s
 
 - Free account: two sample patients in the full workstation, with grading. No card needed.
 - Monthly: $20 every 30 days. Yearly: $150 every 365 days ($12.50 a month).
-- Students: 30% off with an eligible university email (including .edu, .edu.ba and .ac.uk): $14 every 30 days or $105 a year.
+- Students: 30% off with an eligible university email (including .edu, .edu.ba and .ac.uk): $14 every 30 days or $105 every 365 days.
 - Payments by Whop; cancel future renewals at any time from Billing.
 
 ## Credits
 
 - Anatomy outlines: AI. Thanks to Horalix.com (https://horalix.com), we managed to mark every structure in the anatomy layer. Horalix is a medical AI company from Sarajevo building an AI-assisted echocardiography workflow.
-- Findings: outlined by the radiologists and experts who published each image collection; every case names its source and licence.
+- Findings: the reference annotations published with each image collection, made by its radiologists and clinicians or under their supervision; every case names its source and licence.
 - Radiology Monster is not affiliated with or endorsed by the publisher or authors of Learning Radiology.
 
 ## Links

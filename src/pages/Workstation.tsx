@@ -100,6 +100,25 @@ interface PanelDef {
   kind: ViewKind;
 }
 
+/** What each tool does with one finger (a pinch always zooms). */
+const TOOL_NAMES: Record<ToolId, string> = {
+  windowLevel: 'Window / level: drag to change brightness and contrast',
+  pan: 'Pan: drag to move the image',
+  zoom: 'Zoom: drag up or down',
+  scroll: 'Scroll: drag up or down through the slices',
+  magnify: 'Magnifier: hold over fine detail',
+  point: 'Point mark: tap the finding',
+  arrow: 'Arrow: drag from the finding',
+  box: 'Box: drag around the finding',
+  outline: 'Outline: draw around the finding',
+  length: 'Length: drag between two points',
+  angle: 'Angle: drag one arm, then tap the end of the other',
+  ellipse: 'Ellipse: drag over the area to measure',
+  eraser: 'Eraser: tap a mark to remove it',
+  crosshairs: 'Crosshairs: tap to move every plane',
+  rotate3d: 'Rotate: drag to turn the model',
+};
+
 const MODES: Array<[Mode, string]> = [
   ['learn', 'Learn'],
   ['practice', 'Practice'],
@@ -144,6 +163,8 @@ export default function Workstation() {
   const [focused, setFocused] = useState('p0');
   const [leftOpen, setLeftOpen] = useState(() => window.innerWidth > 860);
   const [rightOpen, setRightOpen] = useState(true);
+  /** On a phone the learning panel sits under the image: half the screen, or most of it. */
+  const [sheetTall, setSheetTall] = useState(false);
   const [tab, setTab] = useState('task');
   const [session, setSession] = useState<SessionState | null>(null);
   const [grade, setGrade] = useState<GradeResult | null>(null);
@@ -1044,6 +1065,18 @@ export default function Workstation() {
     () => [...anatomyTargets, ...[...targets.values()].filter((t) => t.ref.classId.startsWith('finding:') && t.geom.geometryType === 'contour_set')],
     [anatomyTargets, targets],
   );
+  // On a touch screen the tool buttons have no hover label: picking one says its name for a moment.
+  const activeTool = engine.getTool();
+  const [toolFlash, setToolFlash] = useState<string | null>(null);
+  const lastTool = useRef(activeTool);
+  useEffect(() => {
+    if (lastTool.current === activeTool) return;
+    lastTool.current = activeTool;
+    if (!window.matchMedia('(hover: none)').matches) return;
+    setToolFlash(TOOL_NAMES[activeTool]);
+    const t = setTimeout(() => setToolFlash(null), 1800);
+    return () => clearTimeout(t);
+  }, [activeTool]);
   if (!catalog) return <div className="vp-status">Loading case catalogue…</div>;
   // A free account opening a members' patient from a link sees what it is and the plans, not an error.
   if (!kase && free) return <LockedCase caseId={caseId ?? ''} />;
@@ -1205,6 +1238,9 @@ export default function Workstation() {
     const w = presetFor(focusedSeries.windowPresets, step.window, chest);
     if (w) engine.setWindow(focused, w.center, w.width);
   };
+  const closeNavOnPhone = () => {
+    if (window.matchMedia('(max-width: 860px)').matches) setLeftOpen(false);
+  };
   const focusedImageId = engine.panelState(focused)?.currentImageId ?? null;
   const focusedSop = focusedImageId ? (engine.imageIdInfo(focusedImageId)?.sop ?? null) : null;
   const presentIds = new Set(
@@ -1215,6 +1251,8 @@ export default function Workstation() {
     <div className="ws">
       {/* ------------------------------------------------ toolbar */}
       <div className="ws-bar" role="toolbar" aria-label="Viewer tools">
+        {/* On a phone: the case and its mode on one row, the tools on a second row that scrolls. Wider: one row. */}
+        <div className="ws-bar-head">
         <IconButton label={examItem ? 'Leave the exam (your answers are kept)' : 'Back to cases'} onClick={() => navigate(examItem ? '/certificates' : '/cases')}>
           <ArrowLeft size={17} />
         </IconButton>
@@ -1267,6 +1305,22 @@ export default function Workstation() {
             </button>
           ))}
         </div>
+        {(shiftItem && !session.submitted) || examItem ? null : (
+          <select className="mode-select" aria-label="Mode" value={mode} onChange={(e) => setSp({ task: task.id, mode: e.target.value as Mode })}>
+            {MODES.map(([m, label]) => (
+              <option key={m} value={m}>
+                {label}
+              </option>
+            ))}
+          </select>
+        )}
+        <span className="ws-sm-only">
+          <IconButton label="Learning panel" shortcut="]" active={rightOpen} onClick={() => setRightOpen((v) => !v)}>
+            <PanelRight size={17} />
+          </IconButton>
+        </span>
+        </div>
+        <div className="ws-bar-tools">
         <span className="sep" />
         <IconButton label="Window / level" shortcut="W" active={tool === 'windowLevel'} onClick={() => engine.setTool('windowLevel')}>
           <SunMoon size={17} />
@@ -1463,9 +1517,12 @@ export default function Workstation() {
         <IconButton label="Keyboard shortcuts" shortcut="?" onClick={() => setHelpOpen(true)}>
           <Keyboard size={17} />
         </IconButton>
-        <IconButton label="Learning panel" shortcut="]" active={rightOpen} onClick={() => setRightOpen((v) => !v)}>
-          <PanelRight size={17} />
-        </IconButton>
+        <span className="hide-sm">
+          <IconButton label="Learning panel" shortcut="]" active={rightOpen} onClick={() => setRightOpen((v) => !v)}>
+            <PanelRight size={17} />
+          </IconButton>
+        </span>
+        </div>
       </div>
 
       {/* ------------------------------------------------ left navigator */}
@@ -1490,7 +1547,10 @@ export default function Workstation() {
                       key={u}
                       className="series-item"
                       aria-current={focusedPanel?.seriesUid === u}
-                      onClick={() => pickSeries(focused, u)}
+                      onClick={() => {
+                        pickSeries(focused, u);
+                        closeNavOnPhone();
+                      }}
                       title="Show in the focused panel"
                     >
                       <span className="series-thumb" style={thumb ? { backgroundImage: `url(${thumb})` } : undefined} aria-hidden />
@@ -1516,7 +1576,10 @@ export default function Workstation() {
             {availableTasks.map((t, i) => {
               const done = attempts.some((a) => a.taskId === t.id && a.submittedAt);
               return (
-                <button key={t.id} className="series-item" style={{ gridTemplateColumns: '18px 1fr' }} aria-current={t.id === task.id} onClick={() => setSp({ task: t.id, mode })}>
+                <button key={t.id} className="series-item" style={{ gridTemplateColumns: '18px 1fr' }} aria-current={t.id === task.id} onClick={() => {
+                  setSp({ task: t.id, mode });
+                  closeNavOnPhone();
+                }}>
                   <span className="faint">{done ? '✓' : i + 1}</span>
                   <span className="series-meta">
                     <strong>{mode === 'assess' && t.id !== task.id ? `Task ${i + 1}` : mode === 'assess' && !session.submitted ? `Task ${i + 1}` : t.title}</strong>
@@ -1528,9 +1591,15 @@ export default function Workstation() {
           </div>
         </div>
       </aside>
+      {leftOpen ? <button className="ws-scrim" tabIndex={-1} aria-label="Close the case navigator" onClick={() => setLeftOpen(false)} /> : null}
 
       {/* ------------------------------------------------ viewports */}
       <section className="ws-main" aria-label="Image viewports">
+        {toolFlash ? (
+          <div className="ws-tool-flash" role="status">
+            {toolFlash}
+          </div>
+        ) : null}
         <div
           className={`vgrid ${layout === '1' ? 'l1' : layout === '2' ? 'l2' : layout === 'mpr' ? 'l3mpr' : layout === 'mpr3d' ? 'l4 mpr3d' : layout === 'mg' ? (panels.length > 2 ? 'l4' : 'l2') : 'l4'}${big ? ' big' : ''}`}
           style={big ? { gridTemplateRows: `repeat(${panels.length - 1}, 1fr)` } : undefined}
@@ -1579,7 +1648,15 @@ export default function Workstation() {
       </section>
 
       {/* ------------------------------------------------ right panel */}
-      <aside className={`ws-right${rightOpen ? '' : ' collapsed'}`} aria-label="Learning panel">
+      <aside className={`ws-right${rightOpen ? '' : ' collapsed'}${sheetTall ? ' tall' : ''}`} aria-label="Learning panel">
+        <button
+          className="ws-sheet-handle"
+          aria-expanded={sheetTall}
+          aria-label={sheetTall ? 'Make the learning panel smaller' : 'Make the learning panel taller'}
+          onClick={() => setSheetTall((v) => !v)}
+        >
+          <span aria-hidden />
+        </button>
         <Tabs.Root value={tab} onValueChange={setTab} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, flex: 1 }}>
           <Tabs.List className="tabs-list" aria-label="Learning panel tabs">
             <Tabs.Trigger value="task">Task</Tabs.Trigger>

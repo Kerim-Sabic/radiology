@@ -525,6 +525,31 @@ Each professor has one class link (`/join/<code>`) on My class: copy it, make a 
   - On phones the levels table ran off the card; it now wraps.
 - **Checked** at 1440, 1024 and 390 px with a seeded study history (46 answers, 18 drilled structures, 10 weeks of activity, one passed exam) and with none, with no sideways scroll.
 
+## 3v. The reading room on phones, and the search icon (4 November)
+
+- **Toolbar (860 px and narrower):** two rows instead of one row about 1,170 px wide that hid every tool past the first.
+  - The first row: Back, the navigator, the case title, the mode and the learning panel.
+  - The second row: the tools. It scrolls sideways, fades at the edge, and has 40 px buttons.
+  - At 600 px and narrower the mode is a native picker. Wider screens keep the one-row layout (both rows use `display: contents` there).
+- **Navigator:** a backdrop behind it closes it on tap, and picking a series or a task closes it on a phone.
+- **Learning panel:** a bottom sheet with a bar on top that switches it between 44% and 80% of the screen.
+- **Image corners on a phone:** keep the modality, series, image number and window. The acquisition details move to the Case tab, so nothing overlaps the series picker.
+- **Overlay fixes, all widths:**
+  - The top-right lines keep clear of the slice slider (they were cut off: "3.0 mm spacin").
+  - Long structure names in the "Show all" bar shorten instead of running off the image.
+- **Touch screens:**
+  - The slice slider is wider.
+  - Picking a tool shows its name and what one finger does ("Pan: drag to move the image") for 1.8 s, since there is no hover label.
+- **Favicon:** Google showed no icon beside the result.
+  - The cause: `/favicon.ico` was a 404, and the only PNG was 32 px (Google asks for a multiple of 48).
+  - Added: `favicon.ico` (16, 32 and 48 px) and `favicon-96.png`, both rendered from `favicon.svg`. They are declared first in `index.html`.
+- **Copy:**
+  - Prices say "every 365 days" everywhere, matching the payment form.
+  - The FAQ and `llms.txt` say findings come from each collection's published reference annotations, made by its radiologists and clinicians or under their supervision, instead of "outlined by the radiologists".
+- **Checked:**
+  - 360, 390 (touch), 768 and 1440 px on a radiograph, an MR and a CT with an isolated structure.
+  - No sideways page scroll. At 1440 the layout is unchanged.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

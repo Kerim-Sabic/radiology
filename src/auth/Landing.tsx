@@ -87,7 +87,7 @@ const STEPS: Array<[string, string]> = [
 
 const FAQ: Array<[string, ReactNode]> = [
   ['What is Radiology Monster?', 'Radiology Monster (radiology.monster) is a radiology reading workstation in your browser for medical students and residents: real CT, MRI, X-ray, mammography and ultrasound studies from 600+ patients, where you scroll the whole study, mark what you see and are graded against the expert reference on the exact slice.'],
-  ['How much does it cost?', 'A free account opens two sample patients, with grading and no card. Membership is $20 every 30 days or $150 a year ($12.50 a month). An eligible university email gets 30% off: $14 every 30 days or $105 a year.'],
+  ['How much does it cost?', 'A free account opens two sample patients, with grading and no card. Membership is $20 every 30 days or $150 every 365 days (equal to $12.50 a month). An eligible university email gets 30% off: $14 every 30 days or $105 every 365 days.'],
   ['Can professors use it with a class?', 'Yes. A professor gets a class page with one join link to share. Students join after seeing what the professor can follow: their study days, exam results and certificates, never their answers or payments. Students can leave the class at any time.'],
   ['Is there a student discount?', 'Yes. Verify an eligible university email, including .edu, .edu.ba or .ac.uk, and get 30% off: $14 every 30 days or $105 every 365 days, including every renewal. It is applied automatically when you start a new membership. A better recurring promo takes precedence; discounts do not stack. Existing memberships are unchanged.'],
   ['Is there a free version?', 'Yes. A free account opens two sample patients in the full workstation, with grading. No card needed. Choose a plan when you want every patient, the case of the week, the drills, on-call shifts and certificates.'],
@@ -97,7 +97,8 @@ const FAQ: Array<[string, ReactNode]> = [
   [
     'Who marked the findings and the anatomy?',
     <>
-      Findings are outlined by the radiologists and experts who published each collection, and only those expert outlines grade your answers. The anatomy layer, the
+      Findings come from the reference annotations published with each collection, made by its radiologists and clinicians or under their supervision, and only those
+      references grade your answers. Each case names its source. The anatomy layer, the
       organs, vessels, bones and airways named on every scan, is drawn by AI and labelled AI wherever it appears.{' '}
       <a href={AI_CREDIT.url} target="_blank" rel="noopener">
         Thanks to {AI_CREDIT.name}
