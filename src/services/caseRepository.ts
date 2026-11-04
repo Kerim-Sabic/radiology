@@ -56,6 +56,9 @@ export class Catalog {
   series = new Map<string, Series>();
   seriesPack = new Map<string, LoadedPack>();
   targets = new Map<string, ReferenceTarget>();
+  /** The targets of each series (rebuilt when `targets` has grown): lookups by series never scan every target. */
+  private bySeries: { size: number; map: Map<string, ReferenceTarget[]> } | null = null;
+  private anatomyCountCache = new Map<string, { expert: number; ai: number; total: number }>();
   targetPack = new Map<string, LoadedPack>();
   links: SpatialLink[] = [];
   cases = new Map<string, TeachingCase>();
@@ -334,12 +337,29 @@ export class Catalog {
 
   /** Task-layer targets on the series of a case (used for grading and to explain where a mark landed). */
   targetsForSeries(seriesUids: string[]): string[] {
-    const set = new Set(seriesUids);
-    return [...this.targets.values()].filter((t) => set.has(t.seriesUid) && t.layer !== 'atlas').map((t) => t.id);
+    return this.onSeries(seriesUids).filter((t) => t.layer !== 'atlas').map((t) => t.id);
+  }
+
+  /** Every target on these series, in load order (a target belongs to one series). */
+  private onSeries(seriesUids: string[]): ReferenceTarget[] {
+    if (!this.bySeries || this.bySeries.size !== this.targets.size) {
+      const map = new Map<string, ReferenceTarget[]>();
+      for (const t of this.targets.values()) {
+        const arr = map.get(t.seriesUid);
+        if (arr) arr.push(t);
+        else map.set(t.seriesUid, [t]);
+      }
+      this.bySeries = { size: this.targets.size, map };
+      this.anatomyCountCache.clear();
+    }
+    const map = this.bySeries.map;
+    return [...new Set(seriesUids)].flatMap((u) => map.get(u) ?? []);
   }
 
   /** How many anatomy labels a case has (from manifests only — nothing is downloaded). */
   anatomyCounts(caseId: string): { expert: number; ai: number; total: number } {
+    const cached = this.anatomyCountCache.get(caseId);
+    if (cached) return cached;
     const k = this.cases.get(caseId);
     if (!k) return { expert: 0, ai: 0, total: 0 };
     const ids = this.anatomyTargetsForSeries(this.seriesForCase(k).map((s) => s.uid));
@@ -350,7 +370,9 @@ export class Catalog {
       if (p === 'ai_draft' || p === 'source_automated') ai++;
       else expert++;
     }
-    return { expert, ai, total: expert + ai };
+    const out = { expert, ai, total: expert + ai };
+    this.anatomyCountCache.set(caseId, out);
+    return out;
   }
 
   /**
@@ -358,9 +380,8 @@ export class Catalog {
    * anatomical task references. Findings (nodules, tumours…) are excluded — they are answers, not anatomy.
    */
   anatomyTargetsForSeries(seriesUids: string[]): string[] {
-    const set = new Set(seriesUids);
-    const candidates = [...this.targets.values()].filter(
-      (t) => set.has(t.seriesUid) && t.geometryType === 'contour_set' && (t.layer === 'atlas' || (t.classId.startsWith('anatomy:') && t.provenance !== 'ai_draft')),
+    const candidates = this.onSeries(seriesUids).filter(
+      (t) => t.geometryType === 'contour_set' && (t.layer === 'atlas' || (t.classId.startsWith('anatomy:') && t.provenance !== 'ai_draft')),
     );
     // Expert labels win: hide an AI outline when an expert one exists for the same structure on the same series.
     const isAi = (p: string) => p === 'ai_draft' || p === 'source_automated';

@@ -484,6 +484,13 @@ Each professor has one class link (`/join/<code>`) on My class: copy it, make a 
 
 **Tests:** `tests/round5Content.test.ts` re-derives every graded answer of the new packs from pack.json; the condition counts grew (strokes 82, mammographic calcifications 14 women, children's wrists 24 Salter-Harris II, 26 torus/greenstick and 24 complete fractures).
 
+## 3r. Faster cases and conditions, clearer navigation (4 November)
+
+- **Cases page:** a filter change used to redraw all 620 cards and, for each one, scan every one of the about 6,000 outlines in the library (230-370 ms per click on a fast desktop, seconds on a phone). The catalog now indexes outlines by series, the cards' details are worked out once, and cards are drawn 48 at a time as the list scrolls: about 30 ms. A search box finds a patient code or a scan ("NW", "CT", "breast"); titles stay neutral, so it never reveals a diagnosis.
+- **Conditions:** the page used to download the outline of every matching reference of all 75+ conditions before showing anything. It now lists every condition's cases at once and reads outlines only for the condition shown, to give their slice range.
+- **Pack files:** every request still passes `proxy.ts`, but a member's yes is kept for one minute per session (a no never), so a study's hundreds of slices no longer each repeat the session and membership lookups. Content-addressed slices may now be kept by the member's own browser (`private, immutable`), and manifests, lessons, outlines and thumbnails are revalidated (`private, no-cache`) instead of downloaded again on every visit; no CDN caches any of them (`tests/packProxy.test.ts`).
+- **Navigation:** on screens narrower than 1430 px the top bar showed 15 unlabelled icons. The six main sections (Today, Cases, Conditions, Course, Progress, Certificates) now keep their names down to 1080 px, and the rest are under More, each with a line saying what it is for. The header says Radiology Monster. Loading states show a spinner with what is coming.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

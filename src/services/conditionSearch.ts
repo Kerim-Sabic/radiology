@@ -173,13 +173,28 @@ export type GeometryLoader = (targetId: string) => Promise<TargetGeometry | null
 const RANK: Record<Strength, number> = { outlined: 0, labelled: 1, collection: 2 };
 
 /** Every installed case that shows a condition, strongest evidence first. */
-export async function findCases(catalog: CatalogView, cond: Condition, load: GeometryLoader): Promise<CaseHit[]> {
+/** Case of each series, built once per catalog (every condition looks it up). */
+const caseOfSeriesCache = new WeakMap<object, Map<string, TeachingCase>>();
+function casesBySeries(catalog: CatalogView): Map<string, TeachingCase> {
+  let m = caseOfSeriesCache.get(catalog.cases);
+  if (!m) {
+    m = new Map();
+    for (const k of catalog.cases.values()) for (const s of catalog.seriesForCase(k)) if (!m.has(s.uid)) m.set(s.uid, k);
+    caseOfSeriesCache.set(catalog.cases, m);
+  }
+  return m;
+}
+
+/**
+ * `where: false` skips reading the outlines' geometry, so the slice range ("images 41–46 of 133") is left out: enough to
+ * count and list the cases of every condition at once; the page reads the geometry only for the condition it shows.
+ */
+export async function findCases(catalog: CatalogView, cond: Condition, load: GeometryLoader, opts: { where?: boolean } = {}): Promise<CaseHit[]> {
   if (!cond.evidence?.length) return [];
-  const caseOfSeries = new Map<string, TeachingCase>();
-  for (const k of catalog.cases.values()) for (const s of catalog.seriesForCase(k)) if (!caseOfSeries.has(s.uid)) caseOfSeries.set(s.uid, k);
+  const caseOfSeries = casesBySeries(catalog);
   const hits: CaseHit[] = [];
   for (const ev of cond.evidence) {
-    if (ev.kind === 'finding') hits.push(...(await findingHits(catalog, ev, caseOfSeries, load)));
+    if (ev.kind === 'finding') hits.push(...(await findingHits(catalog, ev, caseOfSeries, load, opts.where ?? true)));
     else if (ev.kind === 'reader_labels') hits.push(...(await labelHits(catalog, ev, caseOfSeries, load)));
     else hits.push(...collectionHits(catalog, ev));
   }
@@ -230,7 +245,7 @@ export function whereText(g: TargetGeometry | null, sopOrder: string[]): string 
   return a === b ? `image ${a} of ${sopOrder.length}` : `images ${a}–${b} of ${sopOrder.length}`;
 }
 
-async function findingHits(catalog: CatalogView, ev: Extract<Evidence, { kind: 'finding' }>, caseOfSeries: Map<string, TeachingCase>, load: GeometryLoader) {
+async function findingHits(catalog: CatalogView, ev: Extract<Evidence, { kind: 'finding' }>, caseOfSeries: Map<string, TeachingCase>, load: GeometryLoader, withWhere: boolean) {
   const bySeries = new Map<string, ReferenceTarget[]>();
   for (const t of catalog.targets.values()) {
     if (!ev.classIds.includes(t.classId) || t.layer === 'atlas') continue;
@@ -249,7 +264,7 @@ async function findingHits(catalog: CatalogView, ev: Extract<Evidence, { kind: '
         targetId: t.id,
         label: ev.names?.[t.classId] ?? cleanLabel(t.label),
         source: ev.names?.[t.classId] ? cleanLabel(t.label) : undefined,
-        where: whereText(await load(t.id).catch(() => null), order),
+        where: withWhere ? whereText(await load(t.id).catch(() => null), order) : undefined,
       })),
     );
     out.push({ ...baseHit(catalog, k, seriesUid), strength: 'outlined', note: ev.note ?? 'Marked (outline or box) in the source data', items, link: linkFor(catalog, k.id, seriesUid, sorted.map((t) => t.id)) });

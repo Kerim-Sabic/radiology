@@ -15,13 +15,16 @@ export default function ConditionsPage() {
   const q = sp.get('q') ?? '';
   const pickedId = sp.get('c');
   const [hitsById, setHitsById] = useState<Map<string, CaseHit[]> | null>(null);
+  // The shown condition's hits with the slice range of every outline ("images 41–46 of 133"), read when it is opened.
+  const [detail, setDetail] = useState<{ id: string; hits: CaseHit[] } | null>(null);
 
-  // Find the installed cases for every condition that can have them (a few small label files are read once).
+  // Find the installed cases for every condition that can have them, without reading any outline: the list and the counts
+  // appear at once (only the few reader-label files are read).
   useEffect(() => {
     if (!catalog) return;
     let cancelled = false;
     const load = (id: string) => catalog.targetGeometry(id).catch(() => null);
-    Promise.all(CONDITIONS.filter((c) => c.evidence?.length).map(async (c) => [c.id, await findCases(catalog, c, load)] as const)).then((rows) => {
+    Promise.all(CONDITIONS.filter((c) => c.evidence?.length).map(async (c) => [c.id, await findCases(catalog, c, load, { where: false })] as const)).then((rows) => {
       if (!cancelled) setHitsById(new Map(rows));
     });
     return () => {
@@ -34,6 +37,16 @@ export default function ConditionsPage() {
   const picked = pickedId ? (CONDITION_BY_ID.get(pickedId) ?? null) : null;
   const shown = picked ?? matches[0]?.condition ?? null;
   const via = !picked && matches[0] ? matches[0].via : null;
+  useEffect(() => {
+    if (!catalog || !shown?.evidence?.length) return;
+    let cancelled = false;
+    findCases(catalog, shown, (id) => catalog.targetGeometry(id).catch(() => null)).then((hits) => {
+      if (!cancelled) setDetail({ id: shown.id, hits });
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [catalog, shown]);
   useEffect(() => {
     document.title = shown ? `${shown.name}: imaging, cases and book pages · radiology.monster` : 'Conditions: find any condition in real cases · radiology.monster';
   }, [shown]);
@@ -89,7 +102,7 @@ export default function ConditionsPage() {
           <ConditionView
             c={shown}
             via={via && normalizeQuery(shown.name) !== via ? via : null}
-            hits={hitsById ? (hitsById.get(shown.id) ?? []) : null}
+            hits={detail?.id === shown.id ? detail.hits : hitsById ? (hitsById.get(shown.id) ?? []) : null}
             caseCount={caseCount}
             open={open}
             bookLabel={(a) => (curriculum ? anchorLabel(curriculum, a) : `PDF page ${a.physical}`)}

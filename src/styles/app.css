@@ -1591,11 +1591,67 @@ kbd {
     padding: 0 8px;
   }
 }
-@media (max-width: 1430px) {
-  .topnav .navlink span,
+@media (max-width: 1080px) {
+  /* Narrow screens: the main sections keep their icons; their names stay in the tooltips and in More. */
+  .topnav .navlink > span,
   .nav-search kbd {
     display: none;
   }
+}
+/* More: the other sections, with a line on what each is for. */
+.nav-more {
+  gap: 4px;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+.nav-more[data-state='open'] {
+  color: var(--text);
+  background: var(--panel-2);
+}
+.nav-more > span {
+  display: inline !important;
+}
+.nav-menu {
+  z-index: 60;
+  min-width: 260px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+}
+.nav-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  color: var(--text-2);
+  text-decoration: none !important;
+  outline: none;
+}
+.nav-menu-item:hover,
+.nav-menu-item[data-highlighted] {
+  background: var(--panel-2);
+  color: var(--text);
+}
+.nav-menu-item.active {
+  background: var(--panel-3);
+  color: var(--text);
+}
+.nav-menu-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+}
+.nav-menu-text b {
+  font-weight: 600;
+}
+.nav-menu-text small {
+  color: var(--text-3, var(--text-2));
+  font-size: 12px;
 }
 
 /* ---------------------------------------------------------------- polish (29 October): calmer surfaces, rounder
@@ -1724,4 +1780,31 @@ textarea {
 .exam-question .prompt {
   font-size: 15px;
   line-height: 1.55;
+}
+
+/* Loading: a quiet spinner with a line saying what is coming. */
+.loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-2);
+}
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--line-strong);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  flex: none;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .spinner {
+    animation: none;
+  }
 }

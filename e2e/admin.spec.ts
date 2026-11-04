@@ -81,7 +81,8 @@ test('shows the exact counts and every person with their access', async ({ page 
   await page.getByRole('button', { name: /^Everyone · 5$/ }).click();
   await page.getByLabel('Search people').fill('family');
   await expect(table.locator('tbody tr')).toHaveCount(1);
-  await expect(page.getByRole('link', { name: 'Admin' })).toBeVisible();
+  await page.getByRole('button', { name: 'More sections' }).click();
+  await expect(page.getByRole('menuitem', { name: /^Admin/ })).toBeVisible();
 });
 
 test('creates an account for an email with free access and the sign-in email', async ({ page }) => {
@@ -138,7 +139,9 @@ test('a free-access account sees its access in the menu', async ({ page }) => {
   await page.goto('/');
   await expect(page.getByText('Free access until 30 Jun 2027', { exact: true })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Upgrade' })).toHaveCount(0);
-  await expect(page.getByRole('link', { name: 'Admin' })).toHaveCount(0);
+  await page.getByRole('button', { name: 'More sections' }).click();
+  await expect(page.getByRole('menuitem', { name: /^Drills/ })).toBeVisible();
+  await expect(page.getByRole('menuitem', { name: /^Admin/ })).toHaveCount(0);
 });
 
 test('makes a person an admin with the permissions chosen, only after confirming', async ({ page }) => {

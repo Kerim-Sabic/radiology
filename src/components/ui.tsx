@@ -95,6 +95,17 @@ export function formatBytes(n: number) {
   return `${(n / 1024 ** 3).toFixed(2)} GB`;
 }
 
+/** Something is on its way: a spinner and a line saying what (announced to screen readers). */
+export function Loading({ label = 'Loading…', page = false }: { label?: string; page?: boolean }) {
+  const body = (
+    <div className="loading" role="status" aria-live="polite">
+      <span className="spinner" aria-hidden />
+      <span>{label}</span>
+    </div>
+  );
+  return page ? <div className="page-inner">{body}</div> : body;
+}
+
 export function Empty({ title, children }: { title: string; children?: ReactNode }) {
   return (
     <div className="card stack" style={{ alignItems: 'flex-start' }}>

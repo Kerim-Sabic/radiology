@@ -1,13 +1,14 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
-import { NavLink, Route, Routes, useLocation, useNavigate } from 'react-router';
+import { Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router';
 import { pendingJoinCode } from './auth/joinCode';
-import { Tooltip } from 'radix-ui';
-import { Award, BookOpen, Bone, ChartColumn, CircleHelp, FolderOpen, GraduationCap, House, Library, Lock, Search, Settings as SettingsIcon, NotebookPen, School, Siren, Stethoscope, Target, UsersRound } from 'lucide-react';
+import { DropdownMenu, Tooltip } from 'radix-ui';
+import { Award, BookOpen, Bone, ChartColumn, ChevronDown, CircleHelp, FolderOpen, GraduationCap, House, Library, Lock, Search, Settings as SettingsIcon, NotebookPen, School, Siren, Stethoscope, Target, UsersRound } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 import { AccountMenu } from './auth/AccountGate';
 import { CommandPalette } from './components/CommandPalette';
 import { FreeBanner, LockedFeature } from './components/Upgrade';
+import { Loading as UiLoading } from './components/ui';
 import { useApp } from './app/AppContext';
 import { useAccount } from './auth/AccountGate';
 
@@ -71,38 +72,67 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
   const account = useAccount()?.account;
   const admin = account?.access.role === 'admin';
   const book = account?.book === true;
-  const links = [
+  const { pathname } = useLocation();
+  // The main sections, always named; everything else is one click away under More (and in the Today tiles and Ctrl K).
+  const main = [
     { to: '/', label: 'Today', icon: <House size={16} /> },
     { to: '/cases', label: 'Cases', icon: <Library size={16} /> },
     { to: '/conditions', label: 'Conditions', icon: <Stethoscope size={16} /> },
-    { to: '/atlas', label: 'Atlas', icon: <Bone size={16} /> },
-    { to: '/drill', label: 'Drills', icon: <Target size={16} /> },
-    { to: '/oncall', label: 'On call', icon: <Siren size={16} /> },
     { to: '/course', label: 'Course', icon: <GraduationCap size={16} /> },
-    { to: '/book', label: 'Book', icon: <BookOpen size={16} /> },
     { to: '/progress', label: 'Progress', icon: <ChartColumn size={16} /> },
     { to: '/certificates', label: 'Certificates', icon: <Award size={16} /> },
-    { to: '/import', label: 'Import', icon: <FolderOpen size={16} />, minor: true },
-    { to: '/author', label: 'Author', icon: <NotebookPen size={16} />, minor: true },
-    { to: '/settings', label: 'Settings', icon: <SettingsIcon size={16} />, minor: true },
-    ...(account?.teaches ? [{ to: '/class', label: 'My class', icon: <School size={16} />, minor: true }] : []),
-    ...(admin ? [{ to: '/admin', label: 'Admin', icon: <UsersRound size={16} />, minor: true }] : []),
   ];
+  const more = [
+    { to: '/drill', label: 'Drills', hint: 'Point and name', icon: <Target size={16} /> },
+    { to: '/oncall', label: 'On call', hint: 'Timed unknown cases', icon: <Siren size={16} /> },
+    { to: '/atlas', label: 'Atlas', hint: 'Any structure, alone', icon: <Bone size={16} /> },
+    { to: '/book', label: 'Book', hint: 'Read beside your scans', icon: <BookOpen size={16} /> },
+    ...(account?.teaches ? [{ to: '/class', label: 'My class', hint: 'Your students', icon: <School size={16} /> }] : []),
+    ...(admin ? [{ to: '/admin', label: 'Admin', hint: 'Accounts and access', icon: <UsersRound size={16} /> }] : []),
+    { to: '/import', label: 'Import', hint: 'Your own studies', icon: <FolderOpen size={16} /> },
+    { to: '/author', label: 'Author', hint: 'Write your own cases', icon: <NotebookPen size={16} /> },
+    { to: '/settings', label: 'Settings', hint: 'Data packs, display', icon: <SettingsIcon size={16} /> },
+    { to: '/guide', label: 'Guide', hint: 'How everything works', icon: <CircleHelp size={16} /> },
+  ];
+  const inMore = more.some((l) => pathname === l.to || pathname.startsWith(`${l.to}/`));
+  const lock = (to: string) => (free && lockedFor(to, book) ? <Lock size={11} className="nav-lock" aria-label="members" /> : null);
   return (
     <nav className="topnav" aria-label="Main">
-      <NavLink to="/" className="brand" aria-label="radiology.monster home">
+      <NavLink to="/" className="brand" aria-label="Radiology Monster home">
         <img className="brand-mark" src="/logo-mark.svg" alt="" width={21} height={22} />
-        <span>
-          radiology<span className="brand-tld">.monster</span>
-        </span>
+        <span>Radiology Monster</span>
       </NavLink>
-      {links.map((l) => (
-        <NavLink key={l.to} to={l.to} end={l.to === '/'} title={l.label} aria-label={l.label} className={({ isActive }) => `navlink${l.minor ? ' minor' : ''}${isActive ? ' active' : ''}`}>
+      {main.map((l) => (
+        <NavLink key={l.to} to={l.to} end={l.to === '/'} title={l.label} aria-label={l.label} className={({ isActive }) => `navlink${isActive ? ' active' : ''}`}>
           {l.icon}
           <span>{l.label}</span>
-          {free && lockedFor(l.to, book) ? <Lock size={11} className="nav-lock" aria-label="members" /> : null}
+          {lock(l.to)}
         </NavLink>
       ))}
+      <DropdownMenu.Root modal={false}>
+        <DropdownMenu.Trigger asChild>
+          <button className={`navlink nav-more${inMore ? ' active' : ''}`} aria-label="More sections">
+            <span>More</span>
+            <ChevronDown size={14} aria-hidden />
+          </button>
+        </DropdownMenu.Trigger>
+        <DropdownMenu.Portal>
+          <DropdownMenu.Content className="nav-menu" align="start" sideOffset={6}>
+            {more.map((l) => (
+              <DropdownMenu.Item key={l.to} asChild>
+                <Link to={l.to} className={`nav-menu-item${pathname === l.to || pathname.startsWith(`${l.to}/`) ? ' active' : ''}`}>
+                  {l.icon}
+                  <span className="nav-menu-text">
+                    <b>{l.label}</b>
+                    <small>{l.hint}</small>
+                  </span>
+                  {lock(l.to)}
+                </Link>
+              </DropdownMenu.Item>
+            ))}
+          </DropdownMenu.Content>
+        </DropdownMenu.Portal>
+      </DropdownMenu.Root>
       <span className="spacer" />
       <button className="navlink nav-search" onClick={onSearch} aria-label="Search (Ctrl K)" title="Search pages, conditions, chapters and cases">
         <Search size={16} />
@@ -110,10 +140,6 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
         <kbd>{MAC ? '⌘K' : 'Ctrl K'}</kbd>
       </button>
       <AccountMenu />
-      <NavLink to="/guide" title="Guide" aria-label="Guide" className={({ isActive }) => `navlink minor${isActive ? ' active' : ''}`}>
-        <CircleHelp size={16} />
-        <span>Guide</span>
-      </NavLink>
     </nav>
   );
 }
@@ -121,7 +147,7 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
 function Loading() {
   return (
     <div className="vp-status" style={{ position: 'static', height: '100%' }}>
-      Loading…
+      <UiLoading />
     </div>
   );
 }
