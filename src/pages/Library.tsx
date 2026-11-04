@@ -76,19 +76,20 @@ export function LibraryPage() {
   if (!catalog) return <Loading page label="Loading the case library…" />;
   return (
     <div className="page-inner stack" style={{ gap: 16 }}>
-      <div className="row wrap">
+      <div className="lib-head">
         <h1>Cases</h1>
         <span className="faint">
           Titles stay neutral so a case never tells you its diagnosis. Looking for one? <Link to="/conditions">Search by condition</Link>.
         </span>
-        <span className="spacer" />
+      </div>
+      <div className="lib-filters">
         <input
           type="search"
+          className="lib-find"
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Patient code or scan, e.g. NW, CT, breast"
           aria-label="Find a patient or scan"
-          style={{ minWidth: 220 }}
         />
         <select value={region} onChange={(e) => setRegion(e.target.value)} aria-label="Region">
           <option value="all">All regions</option>
@@ -102,10 +103,10 @@ export function LibraryPage() {
             <option key={m}>{m}</option>
           ))}
         </select>
-        <label className="row" style={{ gap: 4 }}>
+        <label className="row" style={{ gap: 6 }}>
           <input type="checkbox" checked={pairedOnly} onChange={(e) => setPairedOnly(e.target.checked)} /> Same-patient comparisons
         </label>
-        <label className="row" style={{ gap: 4 }}>
+        <label className="row" style={{ gap: 6 }}>
           <input type="checkbox" checked={labelledOnly} onChange={(e) => setLabelledOnly(e.target.checked)} /> Fully labelled anatomy
         </label>
       </div>

@@ -2,7 +2,7 @@ import { lazy, Suspense, useEffect, useState } from 'react';
 import { Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router';
 import { pendingJoinCode } from './auth/joinCode';
 import { DropdownMenu, Tooltip } from 'radix-ui';
-import { Award, BookOpen, Bone, ChartColumn, ChevronDown, CircleHelp, FolderOpen, GraduationCap, House, Library, Lock, Search, Settings as SettingsIcon, NotebookPen, School, Siren, Stethoscope, Target, UsersRound } from 'lucide-react';
+import { Award, BookOpen, Bone, ChartColumn, ChevronDown, FolderOpen, GraduationCap, House, LayoutGrid, Library, Lock, Search, NotebookPen, Siren, Stethoscope, Target } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 import { AccountMenu } from './auth/AccountGate';
@@ -70,10 +70,11 @@ const lockedFor = (path: string, book: boolean) => {
 function TopNav({ onSearch }: { onSearch: () => void }) {
   const { free } = useApp();
   const account = useAccount()?.account;
-  const admin = account?.access.role === 'admin';
   const book = account?.book === true;
   const { pathname } = useLocation();
-  // The main sections, always named; everything else is one click away under More (and in the Today tiles and Ctrl K).
+  const on = (to: string) => (to === '/' ? pathname === '/' : pathname === to || pathname.startsWith(`${to}/`));
+  const lock = (to: string) => (free && lockedFor(to, book) ? <Lock size={11} className="nav-lock" aria-label="members" /> : null);
+  // The main sections, named in the top bar on a computer; on a phone the tab bar holds the first four (with their icons).
   const main = [
     { to: '/', label: 'Today', icon: <House size={16} /> },
     { to: '/cases', label: 'Cases', icon: <Library size={16} /> },
@@ -82,65 +83,105 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
     { to: '/progress', label: 'Progress', icon: <ChartColumn size={16} /> },
     { to: '/certificates', label: 'Certificates', icon: <Award size={16} /> },
   ];
-  const more = [
+  // Study tools, under More (Settings, the guide, the class and admin pages are in the account menu).
+  const tools = [
     { to: '/drill', label: 'Drills', hint: 'Point and name', icon: <Target size={16} /> },
     { to: '/oncall', label: 'On call', hint: 'Timed unknown cases', icon: <Siren size={16} /> },
     { to: '/atlas', label: 'Atlas', hint: 'Any structure, alone', icon: <Bone size={16} /> },
     { to: '/book', label: 'Book', hint: 'Read beside your scans', icon: <BookOpen size={16} /> },
-    ...(account?.teaches ? [{ to: '/class', label: 'My class', hint: 'Your students', icon: <School size={16} /> }] : []),
-    ...(admin ? [{ to: '/admin', label: 'Admin', hint: 'Accounts and access', icon: <UsersRound size={16} /> }] : []),
     { to: '/import', label: 'Import', hint: 'Your own studies', icon: <FolderOpen size={16} /> },
     { to: '/author', label: 'Author', hint: 'Write your own cases', icon: <NotebookPen size={16} /> },
-    { to: '/settings', label: 'Settings', hint: 'Data packs, display', icon: <SettingsIcon size={16} /> },
-    { to: '/guide', label: 'Guide', hint: 'How everything works', icon: <CircleHelp size={16} /> },
   ];
-  const inMore = more.some((l) => pathname === l.to || pathname.startsWith(`${l.to}/`));
-  const lock = (to: string) => (free && lockedFor(to, book) ? <Lock size={11} className="nav-lock" aria-label="members" /> : null);
-  return (
-    <nav className="topnav" aria-label="Main">
-      <NavLink to="/" className="brand" aria-label="Radiology Monster home">
-        <img className="brand-mark" src="/logo-mark.svg" alt="" width={21} height={22} />
-        <span>Radiology Monster</span>
-      </NavLink>
-      {main.map((l) => (
-        <NavLink key={l.to} to={l.to} end={l.to === '/'} title={l.label} aria-label={l.label} className={({ isActive }) => `navlink${isActive ? ' active' : ''}`}>
-          {l.icon}
-          <span>{l.label}</span>
-          {lock(l.to)}
-        </NavLink>
+  const tabs = main.slice(0, 4);
+  // On a phone, More also holds the main sections the tab bar has no room for.
+  const phoneOnly = main.slice(4).map((l) => ({ ...l, hint: l.to === '/progress' ? 'What you have read and learned' : 'Exams and your certificates' }));
+  const moreItems = (phone: boolean) => (
+    <>
+      {phone
+        ? phoneOnly.map((l) => (
+            <DropdownMenu.Item key={l.to} asChild>
+              <Link to={l.to} className={`nav-menu-item${on(l.to) ? ' active' : ''}`}>
+                {l.icon}
+                <span className="nav-menu-text"><b>{l.label}</b><small>{l.hint}</small></span>
+              </Link>
+            </DropdownMenu.Item>
+          ))
+        : null}
+      {phone ? <DropdownMenu.Separator className="nav-sep" /> : null}
+      {tools.map((l) => (
+        <DropdownMenu.Item key={l.to} asChild>
+          <Link to={l.to} className={`nav-menu-item${on(l.to) ? ' active' : ''}`}>
+            {l.icon}
+            <span className="nav-menu-text"><b>{l.label}</b><small>{l.hint}</small></span>
+            {lock(l.to)}
+          </Link>
+        </DropdownMenu.Item>
       ))}
-      <DropdownMenu.Root modal={false}>
-        <DropdownMenu.Trigger asChild>
-          <button className={`navlink nav-more${inMore ? ' active' : ''}`} aria-label="More sections">
-            <span>More</span>
-            <ChevronDown size={14} aria-hidden />
-          </button>
-        </DropdownMenu.Trigger>
-        <DropdownMenu.Portal>
-          <DropdownMenu.Content className="nav-menu" align="start" sideOffset={6}>
-            {more.map((l) => (
-              <DropdownMenu.Item key={l.to} asChild>
-                <Link to={l.to} className={`nav-menu-item${pathname === l.to || pathname.startsWith(`${l.to}/`) ? ' active' : ''}`}>
-                  {l.icon}
-                  <span className="nav-menu-text">
-                    <b>{l.label}</b>
-                    <small>{l.hint}</small>
-                  </span>
-                  {lock(l.to)}
-                </Link>
-              </DropdownMenu.Item>
-            ))}
-          </DropdownMenu.Content>
-        </DropdownMenu.Portal>
-      </DropdownMenu.Root>
-      <span className="spacer" />
-      <button className="navlink nav-search" onClick={onSearch} aria-label="Search (Ctrl K)" title="Search pages, conditions, chapters and cases">
-        <Search size={16} />
-        <span>Search</span>
-        <kbd>{MAC ? '⌘K' : 'Ctrl K'}</kbd>
-      </button>
-      <AccountMenu />
-    </nav>
+    </>
+  );
+  const toolsActive = tools.some((l) => on(l.to));
+  return (
+    <>
+      <nav className="topnav" aria-label="Main">
+        <NavLink to="/" className="brand" aria-label="Radiology Monster home">
+          <img className="brand-mark" src="/logo-mark.svg" alt="" width={22} height={23} />
+          <span className="brand-name">Radiology Monster</span>
+        </NavLink>
+        <div className="nav-main">
+          {main.map((l) => (
+            <NavLink key={l.to} to={l.to} end={l.to === '/'} className={({ isActive }) => `navlink${isActive ? ' active' : ''}`}>
+              <span>{l.label}</span>
+              {lock(l.to)}
+            </NavLink>
+          ))}
+          <DropdownMenu.Root modal={false}>
+            <DropdownMenu.Trigger asChild>
+              <button className={`navlink nav-more${toolsActive ? ' active' : ''}`} aria-label="More sections">
+                <span>More</span>
+                <ChevronDown size={14} aria-hidden className="nav-more-chevron" />
+              </button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content className="nav-menu" align="start" sideOffset={8}>
+                {moreItems(false)}
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
+        </div>
+        <span className="spacer" />
+        <button className="nav-search" onClick={onSearch} aria-label="Search (Ctrl K)" title="Search pages, conditions, chapters and cases">
+          <Search size={15} aria-hidden />
+          <span className="nav-search-text">
+            <span className="nav-search-long">Search cases, conditions, chapters…</span>
+            <span className="nav-search-short">Search…</span>
+          </span>
+          <kbd>{MAC ? '⌘K' : 'Ctrl K'}</kbd>
+        </button>
+        <AccountMenu />
+      </nav>
+      <nav className="tabbar" aria-label="Sections">
+        {tabs.map((l) => (
+          <NavLink key={l.to} to={l.to} end={l.to === '/'} className={({ isActive }) => `tab${isActive ? ' active' : ''}`}>
+            {l.icon}
+            <span>{l.label}</span>
+            {lock(l.to)}
+          </NavLink>
+        ))}
+        <DropdownMenu.Root modal={false}>
+          <DropdownMenu.Trigger asChild>
+            <button className={`tab${toolsActive || phoneOnly.some((l) => on(l.to)) ? ' active' : ''}`} aria-label="More sections">
+              <LayoutGrid size={16} aria-hidden />
+              <span>More</span>
+            </button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content className="nav-menu nav-menu-sheet" side="top" align="end" sideOffset={8} collisionPadding={8}>
+              {moreItems(true)}
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
+      </nav>
+    </>
   );
 }
 
@@ -184,7 +225,7 @@ export function App() {
   useEffect(() => {
     if (loc.pathname.startsWith('/conditions')) return; // titled by the condition shown
     const t = PAGE_TITLES.find(([re]) => re.test(loc.pathname))?.[1];
-    document.title = t ? `${t} · radiology.monster` : SITE_TITLE;
+    document.title = t ? `${t} · Radiology Monster` : SITE_TITLE;
   }, [loc.pathname]);
   const [searching, setSearching] = useState(false);
   // Ctrl/⌘ K opens quick search on every page, the reading room included (caught before the page's own keys).
@@ -206,7 +247,7 @@ export function App() {
   const fullHeight = reading || loc.pathname === '/drill' || /^\/book(\/\d+)?$/.test(loc.pathname);
   return (
     <Tooltip.Provider>
-      <div className="shell">
+      <div className={`shell${reading ? '' : ' with-tabbar'}`}>
         {reading ? null : <TopNav onSearch={() => setSearching(true)} />}
         {reading ? null : <FreeBanner />}
         <CommandPalette open={searching} onClose={() => setSearching(false)} />

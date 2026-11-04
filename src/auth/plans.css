@@ -168,12 +168,6 @@
 }
 
 /* ---------------------------------------------------------------- free account bits inside the app */
-.account-menu .upgrade-btn {
-  background: var(--primary);
-  border-color: transparent;
-  color: var(--primary-ink);
-  font-weight: 600;
-}
 .plans-screen:focus {
   outline: none;
 }

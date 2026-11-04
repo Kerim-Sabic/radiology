@@ -1,5 +1,7 @@
 import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
-import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers, LockOpen, School } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers, LockOpen, School, ChevronDown, CircleHelp, Settings as SettingsIcon, UsersRound } from 'lucide-react';
+import { DropdownMenu } from 'radix-ui';
+import { Link } from 'react-router';
 import { fetchInvitation, pendingJoinCode, type Invitation } from './joinCode';
 import './account.css';
 import './plans.css';
@@ -60,18 +62,75 @@ function InviteBanner({ onJoin, onSignIn }: { onJoin: () => void; onSignIn: () =
   </div>;
 }
 
+/** What the account holds, in a few words: the plan, or the free access and until when. */
+function accessLabel(account: Account, free: boolean): string {
+  const a = account.access;
+  if (free) return 'Free account · two sample patients';
+  if (a.role === 'admin') return 'Admin · free access';
+  if (a.role === 'professor') return 'Professor · free access';
+  if (a.role === 'granted') return a.expiresAt
+    ? `Free access until ${new Date(a.expiresAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}`
+    : 'Free access';
+  return a.tier === 'lifetime' ? 'Lifetime member' : a.tier === 'yearly' ? 'Yearly member' : 'Monthly member';
+}
+
+/** Two letters for the avatar: the first and last name's initials, else the email's first letter. */
+function initials(user: Account['user']): string {
+  const words = (user?.name ?? '').trim().split(/\s+/).filter(Boolean);
+  if (words.length >= 2) return (words[0][0] + words[words.length - 1][0]).toUpperCase();
+  if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
+  return (user?.email?.[0] ?? '?').toUpperCase();
+}
+
+/**
+ * The account in the top bar: one button with the member's initials, opening a menu with who is signed in, the plan,
+ * billing, settings, the guide, the class and admin pages for those who have them, and sign out. A free account also
+ * keeps an Upgrade button beside it. Local development without an account keeps Settings and the guide.
+ */
 export function AccountMenu() {
   const context = useContext(AccountContext);
-  if (!context) return null;
-  if (context.free) return <span className="account-menu">
-    <button className="upgrade-btn" onClick={context.openPlans} title="See the plans"><LockOpen size={15} /><span>Upgrade</span></button>
-    <button onClick={context.logout} title={`Sign out (${context.account.user?.email ?? ''})`}><LogOut size={16} /><span>Sign out</span></button>
-  </span>;
-  return <span className="account-menu">
-    <span title={context.account.user?.email}>{context.account.access.role === 'admin' ? 'Admin · free access' : context.account.access.role === 'professor' ? 'Professor · free access' : context.account.access.role === 'granted' ? (context.account.access.expiresAt ? `Free access until ${new Date(context.account.access.expiresAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric', timeZone: 'UTC' })}` : 'Free access') : context.account.access.tier === 'lifetime' ? 'Lifetime member' : context.account.access.tier === 'yearly' ? 'Yearly member' : 'Monthly member'}</span>
-    {context.account.access.manageUrl && <a href={context.account.access.manageUrl} target="_blank" rel="noopener noreferrer" title="Manage billing on Whop"><CreditCard size={16} /><span>Billing</span></a>}
-    <InviteFriends />
-    <button onClick={context.logout} title="Sign out"><LogOut size={16} /><span>Sign out</span></button>
+  const account = context?.account;
+  const item = (to: string, icon: ReactNode, label: string) => (
+    <DropdownMenu.Item asChild>
+      <Link to={to} className="acct-item">{icon}<span>{label}</span></Link>
+    </DropdownMenu.Item>
+  );
+  return <span className="acct">
+    {context?.free ? <button className="acct-upgrade" onClick={context.openPlans} title="See the plans"><LockOpen size={15} /><span>Upgrade</span></button> : null}
+    {context && !context.free ? <InviteFriends /> : null}
+    <DropdownMenu.Root modal={false}>
+      <DropdownMenu.Trigger asChild>
+        <button className="acct-trigger" aria-label="Account" title={account?.user?.email ?? 'Settings and guide'}>
+          {account ? <span className="acct-avatar" aria-hidden>{initials(account.user)}</span> : <SettingsIcon size={16} aria-hidden />}
+          <ChevronDown size={14} aria-hidden className="acct-chevron" />
+        </button>
+      </DropdownMenu.Trigger>
+      <DropdownMenu.Portal>
+        <DropdownMenu.Content className="nav-menu acct-menu" align="end" sideOffset={8}>
+          {account ? <div className="acct-head">
+            <span className="acct-avatar lg" aria-hidden>{initials(account.user)}</span>
+            <span className="acct-who">
+              <b>{account.user?.name || account.user?.email || 'Your account'}</b>
+              {account.user?.name && account.user.email ? <small>{account.user.email}</small> : null}
+              <span className="acct-plan">{accessLabel(account, !!context?.free)}</span>
+            </span>
+          </div> : null}
+          {account ? <DropdownMenu.Separator className="nav-sep" /> : null}
+          {context?.free ? <DropdownMenu.Item className="acct-item" onSelect={context.openPlans}><LockOpen size={16} /><span>See the plans</span></DropdownMenu.Item> : null}
+          {account?.access.manageUrl ? <DropdownMenu.Item asChild>
+            <a className="acct-item" href={account.access.manageUrl} target="_blank" rel="noopener noreferrer"><CreditCard size={16} /><span>Billing</span></a>
+          </DropdownMenu.Item> : null}
+          {account?.teaches ? item('/class', <School size={16} />, 'My class') : null}
+          {account?.access.role === 'admin' ? item('/admin', <UsersRound size={16} />, 'Admin') : null}
+          {item('/settings', <SettingsIcon size={16} />, 'Settings')}
+          {item('/guide', <CircleHelp size={16} />, 'Guide')}
+          {context ? <>
+            <DropdownMenu.Separator className="nav-sep" />
+            <DropdownMenu.Item className="acct-item" onSelect={context.logout}><LogOut size={16} /><span>Sign out</span></DropdownMenu.Item>
+          </> : null}
+        </DropdownMenu.Content>
+      </DropdownMenu.Portal>
+    </DropdownMenu.Root>
   </span>;
 }
 

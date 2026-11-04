@@ -328,11 +328,6 @@
   right: 10px;
   color: var(--text-3);
 }
-.navlink .nav-lock {
-  margin-left: -2px;
-  opacity: 0.6;
-}
-
 /* ---------------------------------------------------------------- open your own copy of the book */
 .own-book {
   width: min(560px, 100%);

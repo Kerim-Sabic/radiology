@@ -150,7 +150,7 @@ describe('certification exams on the server', () => {
     const taskId = s.exam.items[i].taskId;
     // A grade sent with the answer, a different question, or another learner's exam: refused.
     expect((await answerQuestion(user.userId, { examId: id, index: i, answer: answer(taskId, { grade: { outcome: 'correct' } }) }, keys, t0)).ok).toBe(false);
-    expect((await answerQuestion(user.userId, { examId: id, index: i, answer: answer('choice-59') }, keys, t0)).ok).toBe(false);
+    expect((await answerQuestion(user.userId, { examId: id, index: i, answer: answer(taskId === 'choice-59' ? 'choice-58' : 'choice-59') }, keys, t0)).ok).toBe(false);
     expect((await answerQuestion(other.userId, { examId: id, index: i, answer: answer(taskId) }, keys, t0)).ok).toBe(false);
     expect((await answerQuestion(user.userId, { examId: id, index: i, answer: answer(taskId, { mode: 'practice' }) }, keys, t0)).ok).toBe(false);
     // The right answer (the view left on another series of the patient does not matter), then a second answer.

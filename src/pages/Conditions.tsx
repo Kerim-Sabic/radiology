@@ -48,7 +48,7 @@ export default function ConditionsPage() {
     };
   }, [catalog, shown]);
   useEffect(() => {
-    document.title = shown ? `${shown.name}: imaging, cases and book pages · radiology.monster` : 'Conditions: find any condition in real cases · radiology.monster';
+    document.title = shown ? `${shown.name}: imaging, cases and book pages · Radiology Monster` : 'Conditions: find any condition in real cases · Radiology Monster';
   }, [shown]);
 
   const setQuery = (text: string) => setSp(text ? { q: text } : {}, { replace: true });

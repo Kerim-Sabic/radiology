@@ -47,7 +47,10 @@ test('verified admin enters the app without a purchase', async ({page}) => {
   await account(page,true);
   await page.route('**/api/session',route=>route.fulfill({json:{user:{name:'Kerim',email:'kerim.sabic@gmail.com'},access:{active:true,role:'admin'},billingReady:true}}));
   await page.goto('/');
-  await expect(page.getByText('Admin · free access',{exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'Account',exact:true}).click();
+  await expect(page.getByRole('menu').getByText('Admin · free access',{exact:true})).toBeVisible();
+  await expect(page.getByRole('menuitem',{name:'Admin'})).toBeVisible();
+  await page.keyboard.press('Escape');
   await expect(page.getByRole('button',{name:'Choose monthly'})).not.toBeVisible();
 });
 test('signed-in customer selects only the approved monthly tier', async ({page}) => {
@@ -234,7 +237,11 @@ test('a book-only account reads the book without a plan; the rest stays the free
   await page.goto('/book');
   await expect(page.locator('.free-banner')).toContainText('Free account');
   await expect(page.getByRole('heading',{name:'The book, page by page'})).toHaveCount(0);
-  await expect(page.getByRole('link',{name:'Book'}).locator('.nav-lock')).toHaveCount(0);
+  await page.getByRole('button',{name:'More sections'}).click();
+  await expect(page.getByRole('menuitem',{name:/^Book/})).toBeVisible();
+  await expect(page.getByRole('menuitem',{name:/^Book/}).locator('.nav-lock')).toHaveCount(0);
+  await expect(page.getByRole('menuitem',{name:/^Drills/}).locator('.nav-lock')).toHaveCount(1);
+  await page.keyboard.press('Escape');
   await page.goto('/drill');
   await expect(page.getByRole('heading',{name:'Drills that remember'})).toBeVisible();
 });

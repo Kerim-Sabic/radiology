@@ -491,6 +491,15 @@ Each professor has one class link (`/join/<code>`) on My class: copy it, make a 
 - **Pack files:** every request still passes `proxy.ts`, but a member's yes is kept for one minute per session (a no never), so a study's hundreds of slices no longer each repeat the session and membership lookups. Content-addressed slices may now be kept by the member's own browser (`private, immutable`), and manifests, lessons, outlines and thumbnails are revalidated (`private, no-cache`) instead of downloaded again on every visit; no CDN caches any of them (`tests/packProxy.test.ts`).
 - **Navigation:** on screens narrower than 1430 px the top bar showed 15 unlabelled icons. The six main sections (Today, Cases, Conditions, Course, Progress, Certificates) now keep their names down to 1080 px, and the rest are under More, each with a line saying what it is for. The header says Radiology Monster. Loading states show a spinner with what is coming.
 
+## 3s. The top bar (4 November)
+
+- **On a computer:** the logo and name, the six main sections by name (Today, Cases, Conditions, Course, Progress, Certificates) as pill links, and More with the study tools only (Drills, On call, Atlas, Book, Import, Author), each with an icon and a line on what it is for, and a lock for free accounts. On the right: a search field that opens the Ctrl/⌘ K palette, Upgrade (free accounts) or Invite friends (members), and one avatar with the member's initials.
+- **The account menu** (the avatar) shows the name, email and plan ("Lifetime member", "Free access until 30 Jun 2027", "Professor · free access"...), then See the plans or Billing, My class and Admin for those who have them, Settings, Guide and Sign out. These used to be loose icons in the bar.
+- **Narrower screens:** the search label shortens below 1400 px, the search and Invite become round icons below 1240/1120 px, the name hides below 1040 px; the bar never scrolls or wraps (checked at 1440, 1280, 1100, 960, 900 and 390 px, free and member).
+- **Phones (900 px and below):** name, search and the account on top; a tab bar at the bottom (Today, Cases, Conditions, Course, More, where More also holds Progress and Certificates), above the home indicator, not shown in the reading room. Keyboard focus shows a ring on every control; menus open with a short fade, off when reduced motion is asked for.
+- **Cases page:** the title, then the filters on their own row (on a phone: the search full width, the two lists side by side).
+- Page titles end in "· Radiology Monster". E2E tests now open the account menu for Admin, My class and the plan.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

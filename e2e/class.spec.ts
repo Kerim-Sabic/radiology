@@ -41,10 +41,10 @@ test('a professor follows each student’s study, exams and certificates', async
   await professor(page);
   await page.goto('/class');
   await expect(page.getByRole('heading', { name: 'My class', level: 1 })).toBeVisible();
-  await page.getByRole('button', { name: 'More sections' }).click();
-  await expect(page.getByRole('menuitem', { name: /^My class/ })).toBeVisible();
+  await page.getByRole('button', { name: 'Account', exact: true }).click();
+  await expect(page.getByRole('menuitem', { name: 'My class' })).toBeVisible();
+  await expect(page.getByRole('menu').getByText('Professor · free access', { exact: true })).toBeVisible();
   await page.keyboard.press('Escape');
-  await expect(page.getByText('Professor · free access', { exact: true })).toBeVisible();
   await expect(page.getByLabel('Your class at a glance')).toContainText('Students3');
   await expect(page.getByRole('region', { name: 'Add students' })).toContainText('free access to 28 more students (2 of 30 used, until 30 Jun 2027)');
   const lejla = page.getByRole('row', { name: /Lejla/ });
@@ -85,9 +85,9 @@ test('a student is told who follows their progress, and can leave', async ({ pag
   await page.goto('/settings');
   const notice = page.getByRole('region', { name: 'Your class' });
   await expect(notice).toContainText('You are in Prof. Amra’s class. Prof. Amra can see your study days, exam results and certificates, not your answers or payments.');
-  await page.getByRole('button', { name: 'More sections' }).click();
-  await expect(page.getByRole('menuitem', { name: /^Drills/ })).toBeVisible();
-  await expect(page.getByRole('menuitem', { name: /^My class/ })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Account', exact: true }).click();
+  await expect(page.getByRole('menuitem', { name: 'Settings' })).toBeVisible();
+  await expect(page.getByRole('menuitem', { name: 'My class' })).toHaveCount(0);
   await page.keyboard.press('Escape');
   await notice.getByRole('button', { name: 'Leave this class' }).click();
   await expect(notice).toContainText('Leaving ends any free access you have through the class.');
