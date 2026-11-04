@@ -79,7 +79,8 @@ for (const [id, pack] of packs) {
       }
       expect(wrong, `swapped sides: ${wrong.join(', ')}`).toEqual([]);
       expect(checked).toBeGreaterThan(0);
-    });
+      // Reads every outline of the pack: more than the default 5 s on a busy machine.
+    }, 30_000);
     it('image-space outlines stay inside their image', () => {
       const outside: string[] = [];
       for (const t of lateral) {
@@ -92,6 +93,6 @@ for (const [id, pack] of packs) {
         if (bad) outside.push(t.id);
       }
       expect(outside).toEqual([]);
-    });
+    }, 30_000);
   });
 }

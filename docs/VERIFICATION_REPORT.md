@@ -500,6 +500,15 @@ Each professor has one class link (`/join/<code>`) on My class: copy it, make a 
 - **Cases page:** the title, then the filters on their own row (on a phone: the search full width, the two lists side by side).
 - Page titles end in "· Radiology Monster". E2E tests now open the account menu for Admin, My class and the plan.
 
+## 3t. The landing page (4 November)
+
+- The header and footer say Radiology Monster. The audience line is a small pill above the headline; the hero has a little less space above it, so more of the workstation shows on a 1440 x 900 screen, with a soft blue light behind it.
+- The nine features are cards, each with the same icon as its place in the app (Drills, On call, Atlas, conditions...). The case of the week is a card with its own label. The closing call is centred under the logo, with "Two sample patients are free, with grading. No card needed."
+- Fig. 3 (condition search) was taken again with the new top bar (`scripts/landing/shoot.mjs conditions`, which now clears the search field's focus first); its caption no longer says "four patients" (there are 13 now) but "every patient who has it".
+- The free plan card is only as tall as its content and stays in view beside the membership plans; the promo-code toggle has a + instead of the browser's triangle.
+- Sticky parts now really stay in view: the page used `overflow-x: hidden`, which (with the membership page's `overflow: auto`) made it its own scroll box, so the FAQ heading never stuck. The landing page now uses `overflow-x: clip` (checked: the free card, Fig. 3 and the FAQ heading hold their place while scrolling); the in-app plans screen, a fixed overlay that scrolls itself, keeps its own overflow (its e2e tests at phone width pass).
+- Phones: the five numbers sit three over two (no empty cell, also at 1024 px), the modality tabs scroll sideways with a fade at the edge, and sections are closer together. Checked at 1440, 1024 and 390 px, with no sideways scroll.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

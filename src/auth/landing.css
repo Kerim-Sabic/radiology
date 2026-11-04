@@ -17,6 +17,14 @@
   overflow-x: hidden;
   font-size: 16px;
 }
+/* The landing page scrolls with the document. Clip, not hidden: a hidden overflow (with the membership page's own
+   overflow: auto) made it a scroll box that never scrolls, so nothing inside could stay in view (sticky). The plans
+   screen is a fixed overlay that scrolls itself, and keeps its overflow. */
+.membership-page.lp {
+  overflow: visible;
+  overflow-x: hidden;
+  overflow-x: clip;
+}
 .lp h1,
 .lp h2,
 .lp h3 {
@@ -140,20 +148,36 @@ button.lp-btn:disabled {
 
 /* ---------------------------------------------------------------- hero */
 .lp-hero {
-  padding: clamp(64px, 11vh, 128px) 0 0;
+  position: relative;
+  isolation: isolate;
+  padding: clamp(48px, 8vh, 104px) 0 0;
 }
 .lp-hero-copy {
   max-width: 1180px;
 }
 .lp-overline {
-  margin: 0 0 18px;
-  color: var(--lp-text-3);
-  font-size: 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 22px;
+  padding: 6px 14px 6px 12px;
+  border: 1px solid var(--lp-line-strong);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--lp-text-2);
+  font-size: 13.5px;
   font-weight: 500;
+}
+.lp-overline-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--lp-accent);
+  box-shadow: 0 0 0 3px rgba(59, 156, 255, 0.2);
 }
 .lp-hero h1 {
   max-width: 17ch;
-  font-size: clamp(44px, 6.2vw, 84px);
+  font-size: clamp(44px, 5.8vw, 80px);
   line-height: 1.02;
   letter-spacing: -0.04em;
 }
@@ -210,7 +234,25 @@ button.lp-btn:disabled {
   font-weight: 600;
 }
 .lp-hero-shot {
-  margin: clamp(48px, 8vh, 80px) auto 0;
+  position: relative;
+  margin: clamp(40px, 6vh, 64px) auto 0;
+}
+.lp-hero-shot::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  top: -12%;
+  left: 8%;
+  right: 8%;
+  height: 72%;
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(59, 156, 255, 0.22), rgba(59, 156, 255, 0.06) 60%, transparent);
+  filter: blur(24px);
+  pointer-events: none;
+}
+.lp-hero-shot .lp-frame {
+  border-color: rgba(255, 255, 255, 0.14);
+  box-shadow: 0 40px 120px -30px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
 /* ---------------------------------------------------------------- facts */
@@ -348,15 +390,32 @@ button.lp-btn:disabled {
   font-size: 15px;
 }
 
-/* Features: plain text, three columns, hairline above each. */
+/* Features: three columns of cards, an icon on each. */
 .lp-specs {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 40px clamp(28px, 4vw, 56px);
+  gap: 16px;
 }
 .lp-specs article {
-  padding-top: 20px;
-  border-top: 1px solid var(--lp-line-strong);
+  padding: 24px 24px 26px;
+  border: 1px solid var(--lp-line);
+  border-radius: 18px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0) 55%), var(--lp-surface);
+  transition: border-color 0.2s ease;
+}
+.lp-specs article:hover {
+  border-color: var(--lp-line-strong);
+}
+.lp-spec-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  margin-bottom: 18px;
+  border: 1px solid var(--lp-line-strong);
+  border-radius: 11px;
+  background: var(--lp-surface-2);
+  color: var(--lp-text);
 }
 .lp-specs h3 {
   font-size: 17px;
@@ -415,6 +474,10 @@ button.lp-btn:disabled {
   color: var(--lp-text);
   font-weight: 600;
 }
+.lp-split-figure {
+  position: sticky;
+  top: 96px;
+}
 
 /* Case of the week */
 .lp-weekly {
@@ -422,6 +485,23 @@ button.lp-btn:disabled {
   align-items: flex-end;
   justify-content: space-between;
   gap: 32px;
+  padding: clamp(28px, 4vw, 52px);
+  border: 1px solid var(--lp-line-strong);
+  border-radius: 24px;
+  background: radial-gradient(120% 140% at 100% 0%, rgba(59, 156, 255, 0.14), transparent 55%), var(--lp-surface);
+}
+.lp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-bottom: 18px;
+  padding: 5px 12px 5px 10px;
+  border: 1px solid rgba(59, 156, 255, 0.3);
+  border-radius: 999px;
+  background: rgba(59, 156, 255, 0.1);
+  color: #8cc6ff;
+  font-size: 13px;
+  font-weight: 600;
 }
 .lp-weekly > div {
   max-width: 680px;
@@ -438,12 +518,14 @@ button.lp-btn:disabled {
   display: grid;
   grid-template-columns: minmax(0, 0.42fr) minmax(0, 1fr);
   gap: 20px;
-  align-items: stretch;
+  align-items: start;
 }
 .lp-pricing {
   min-width: 0;
 }
 .lp-free {
+  position: sticky;
+  top: 88px;
   display: flex;
   flex-direction: column;
   gap: 22px;
@@ -494,7 +576,7 @@ button.lp-btn:disabled {
   color: var(--lp-text);
 }
 .lp-free .lp-btn {
-  margin-top: auto;
+  margin-top: 6px;
 }
 
 /* Membership choices (panel owned by the account gate): yearly first, with its real charge beside the equivalent. */
@@ -705,10 +787,27 @@ button.lp-btn:disabled {
   color: var(--lp-text-2);
 }
 .lp .promo-entry summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   width: fit-content;
   min-height: 24px;
+  list-style: none;
   color: var(--lp-accent);
   font-size: 13px;
+  cursor: pointer;
+}
+.lp .promo-entry summary::-webkit-details-marker {
+  display: none;
+}
+.lp .promo-entry summary::before {
+  content: '+';
+  font-size: 16px;
+  line-height: 1;
+  transition: transform 0.2s ease;
+}
+.lp .promo-entry[open] summary::before {
+  transform: rotate(45deg);
 }
 .lp .promo-entry input {
   border-color: var(--lp-line-strong);
@@ -797,9 +896,21 @@ button.lp-btn:disabled {
 .lp-final {
   padding: clamp(88px, 14vh, 152px) 0;
   border-top: 1px solid var(--lp-line);
+  background: radial-gradient(60% 90% at 50% 110%, rgba(59, 156, 255, 0.16), transparent 70%);
+  text-align: center;
+}
+.lp-final-mark {
+  display: block;
+  margin: 0 auto 26px;
+}
+.lp-final p {
+  margin: 16px 0 0;
+  color: var(--lp-text-2);
+  font-size: clamp(16px, 1.4vw, 19px);
 }
 .lp-final .lp-cta {
-  margin-top: 28px;
+  justify-content: center;
+  margin-top: 30px;
 }
 .lp-footer {
   padding: 36px 0 44px;
@@ -858,14 +969,22 @@ button.lp-btn:disabled {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .lp-facts dl {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+  }
+  .lp-facts dl > div {
+    grid-column: span 2;
+  }
+  .lp-facts dl > div:nth-child(n + 4) {
+    grid-column: span 3;
+    border-top: 1px solid var(--lp-line);
   }
   .lp-facts dl > div:nth-child(4) {
     padding-left: 0;
     border-left: 0;
   }
-  .lp-facts dl > div:nth-child(n + 4) {
-    border-top: 1px solid var(--lp-line);
+  .lp-split-figure,
+  .lp-free {
+    position: static;
   }
 }
 @media (max-width: 640px) {
@@ -876,7 +995,13 @@ button.lp-btn:disabled {
     gap: 12px;
   }
   .lp-hero {
-    padding-top: 48px;
+    padding-top: 40px;
+  }
+  .lp-section {
+    padding: 64px 0;
+  }
+  .lp-final {
+    padding: 80px 0;
   }
   .lp-hero h1 {
     font-size: 42px;
@@ -897,33 +1022,49 @@ button.lp-btn:disabled {
   .lp-hero-shot figcaption {
     padding: 0 16px;
   }
-  .lp-facts dl {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .lp-facts dl > div {
+    padding: 20px 0 20px 14px;
   }
-  .lp-facts dl > div,
+  .lp-facts dl > div:first-child,
   .lp-facts dl > div:nth-child(4) {
-    padding: 20px 0 20px 16px;
-    border-left: 1px solid var(--lp-line);
-  }
-  .lp-facts dl > div:nth-child(odd) {
     padding-left: 0;
-    border-left: 0;
   }
-  .lp-facts dl > div:nth-child(n + 3) {
-    border-top: 1px solid var(--lp-line);
+  .lp-facts dd {
+    font-size: 26px;
+  }
+  .lp-facts dt {
+    font-size: 12.5px;
   }
   .lp-specs {
     grid-template-columns: minmax(0, 1fr);
-    gap: 28px;
+    gap: 12px;
   }
+  .lp-specs article {
+    padding: 20px 20px 22px;
+  }
+  /* The modality tabs scroll sideways, fading at the edge so the cut reads as more to come. */
   .lp-tabs {
     display: flex;
     flex-wrap: nowrap;
+    max-width: 100%;
     overflow-x: auto;
     scrollbar-width: none;
+    -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent);
+    mask-image: linear-gradient(90deg, #000 calc(100% - 32px), transparent);
+  }
+  .lp-tabs::-webkit-scrollbar {
+    display: none;
+  }
+  .lp-tabs::after {
+    content: '';
+    flex: 0 0 24px;
   }
   .lp-tabs button {
     flex: none;
+  }
+  .lp-final-mark {
+    width: 36px;
+    height: auto;
   }
   .lp-weekly {
     flex-direction: column;

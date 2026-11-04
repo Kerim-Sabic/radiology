@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { trackFunnel } from '../services/serverSync';
-import { ArrowRight, Check, ShieldCheck } from 'lucide-react';
+import { ArrowRight, BookOpen, Bone, Box, CalendarDays, Check, Crosshair, Link2, ListChecks, ShieldCheck, Siren, Stethoscope, Target, type LucideIcon } from 'lucide-react';
 import { fact, LANDING_CREDITS, LANDING_FACTS } from './landingFacts';
 import { AI_CREDIT } from '../lib/provenance';
 import './landing.css';
@@ -65,16 +65,16 @@ const MODALITIES: Array<{ id: string; name: string; img: string; alt: string; ti
   },
 ];
 
-const FEATURES: Array<{ title: string; text: string }> = [
-  { title: 'Linked views', text: 'Scroll one plane and the others follow, with reference lines showing where you are. Double-click to jump all views to a point.' },
-  { title: '3D you can take apart', text: 'Cut the volume at the slice you are reading, or show only the heart, the arteries, the veins or the finding itself, in colours you choose.' },
-  { title: 'Graded where you mark', text: 'Mark what you see on the image. Level, side, position and name are checked separately against the expert outline.' },
-  { title: 'Linked to the book', text: 'Every task names the page of Learning Radiology (5th ed.) that explains it. Open your own copy and the link jumps there, then back to your scan.' },
-  { title: 'Drills that remember', text: 'Point to structures and findings. What you miss comes back later, on a different patient, until you know it.' },
-  { title: 'On-call shifts', text: 'A run of unknown cases with an optional clock, read with no hints, and a scored report at the end.' },
-  { title: 'Search by condition', text: 'Type pneumothorax or pulmonary embolism and see every patient who has it, where it is, and the book pages.' },
-  { title: 'Anatomy atlas', text: 'Pick any structure, a rib, a vertebra, a lobe, and see it alone on a real CT or radiograph, outlined or filled in the colour you choose.' },
-  { title: 'Search-pattern coach', text: 'A step-by-step review for chest films, CT and MRI that shows each step’s structures together, so you never skip one.' },
+const FEATURES: Array<{ icon: LucideIcon; title: string; text: string }> = [
+  { icon: Link2, title: 'Linked views', text: 'Scroll one plane and the others follow, with reference lines showing where you are. Double-click to jump all views to a point.' },
+  { icon: Box, title: '3D you can take apart', text: 'Cut the volume at the slice you are reading, or show only the heart, the arteries, the veins or the finding itself, in colours you choose.' },
+  { icon: Crosshair, title: 'Graded where you mark', text: 'Mark what you see on the image. Level, side, position and name are checked separately against the expert outline.' },
+  { icon: BookOpen, title: 'Linked to the book', text: 'Every task names the page of Learning Radiology (5th ed.) that explains it. Open your own copy and the link jumps there, then back to your scan.' },
+  { icon: Target, title: 'Drills that remember', text: 'Point to structures and findings. What you miss comes back later, on a different patient, until you know it.' },
+  { icon: Siren, title: 'On-call shifts', text: 'A run of unknown cases with an optional clock, read with no hints, and a scored report at the end.' },
+  { icon: Stethoscope, title: 'Search by condition', text: 'Type pneumothorax or pulmonary embolism and see every patient who has it, where it is, and the book pages.' },
+  { icon: Bone, title: 'Anatomy atlas', text: 'Pick any structure, a rib, a vertebra, a lobe, and see it alone on a real CT or radiograph, outlined or filled in the colour you choose.' },
+  { icon: ListChecks, title: 'Search-pattern coach', text: 'A step-by-step review for chest films, CT and MRI that shows each step’s structures together, so you never skip one.' },
 ];
 
 const STEPS: Array<[string, string]> = [
@@ -130,9 +130,9 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
     <>
       <header className="lp-header">
         <div className="lp-wrap lp-header-row">
-          <a className="lp-brand" href="/" aria-label="radiology.monster home">
+          <a className="lp-brand" href="/" aria-label="Radiology Monster home">
             <img src="/logo-mark.svg" alt="" width={22} height={23} />
-            <span>radiology.monster</span>
+            <span>Radiology Monster</span>
           </a>
           <nav className="lp-nav" aria-label="Page sections">
             <a href="#modalities">Modalities</a>
@@ -154,7 +154,9 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
 
       <section className="lp-hero">
         <div className="lp-wrap lp-hero-copy">
-          <p className="lp-overline">For medical students and residents</p>
+          <p className="lp-overline">
+            <span className="lp-overline-dot" aria-hidden /> For medical students and residents
+          </p>
           <h1>Learn to read scans on real patients.</h1>
           <p className="lp-lead">
             {fact(LANDING_FACTS.patients)}+ de-identified CT, MRI, X-ray, mammography and ultrasound studies in a full reading workstation. Mark what you see, get graded
@@ -263,10 +265,13 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
             <p>What sits around the image, so that looking turns into reading.</p>
           </div>
           <div className="lp-specs">
-            {FEATURES.map((f) => (
-              <article key={f.title}>
-                <h3>{f.title}</h3>
-                <p>{f.text}</p>
+            {FEATURES.map(({ icon: Icon, title, text }) => (
+              <article key={title}>
+                <span className="lp-spec-icon" aria-hidden>
+                  <Icon size={18} />
+                </span>
+                <h3>{title}</h3>
+                <p>{text}</p>
               </article>
             ))}
           </div>
@@ -294,12 +299,19 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
               Four modes: <b>Learn</b> with labels on, <b>Practice</b> with hints, <b>Assess</b> with no help, and <b>Review</b> to go over your answers.
             </p>
           </div>
-          <figure className="lp-figure">
+          <figure className="lp-figure lp-split-figure">
             <div className="lp-frame">
-              <img src="/landing/conditions.webp" width={1280} height={800} loading="lazy" alt="Condition search for pneumothorax: four patients with the finding boxed, and the book pages that explain it" />
+              <img
+                src="/landing/conditions.webp"
+                width={1280}
+                height={800}
+                loading="lazy"
+                alt="Condition search for pneumothorax: every patient who has it, with the finding boxed, and the book pages that explain it"
+              />
             </div>
             <figcaption>
-              <b>Fig. 3</b> Condition search for pneumothorax: four patients with the finding boxed by the source readers, and the book pages that explain it.
+              <b>Fig. 3</b> Condition search for pneumothorax: every patient who has it, with the finding boxed by the source readers, and the book pages that explain
+              it.
             </figcaption>
           </figure>
         </div>
@@ -308,6 +320,9 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
       <section className="lp-section" id="weekly">
         <div className="lp-wrap lp-weekly">
           <div>
+            <span className="lp-badge">
+              <CalendarDays size={14} aria-hidden /> Case of the week
+            </span>
             <h2>A new case every Monday.</h2>
             <p>
               Members get one featured patient every week, with the task, the expert outline and the page of the book that explains it, and an email when it is out.
@@ -369,7 +384,9 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
 
       <section className="lp-final">
         <div className="lp-wrap">
+          <img className="lp-final-mark" src="/logo-mark.svg" alt="" width={44} height={46} />
           <h2>Your next scan is waiting.</h2>
+          <p>Two sample patients are free, with grading. No card needed.</p>
           <div className="lp-cta">
             <button className="lp-btn primary" onClick={onStartFree} disabled={signInDisabled}>
               Start free
@@ -386,14 +403,14 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
           <div className="lp-footer-top">
             <span className="lp-brand small">
               <img src="/logo-mark.svg" alt="" width={18} height={19} />
-              radiology.monster
+              Radiology Monster
             </span>
             <span className="lp-safe">
               <ShieldCheck size={14} /> For education and practice. Not for clinical diagnosis.
             </span>
           </div>
           <p className="lp-credits lp-affiliation">
-            <i>Learning Radiology: Recognizing the Basics</i> is referenced by page for study. radiology.monster is not affiliated with or endorsed by its publisher or authors.
+            <i>Learning Radiology: Recognizing the Basics</i> is referenced by page for study. Radiology Monster is not affiliated with or endorsed by its publisher or authors.
           </p>
           <p className="lp-credits">
             Anatomy outlines: AI.{' '}

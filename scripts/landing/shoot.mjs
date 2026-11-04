@@ -105,6 +105,8 @@ if (want('conditions')) {
   await page.goto(`${BASE}/conditions?c=pneumothorax`);
   await page.waitForSelector('.cond-detail, .cond-results, main h1', { timeout: 30_000 });
   await settle(3000);
+  // No focus ring on the search field in the picture.
+  await page.evaluate(() => document.activeElement instanceof HTMLElement && document.activeElement.blur());
   await shot('conditions');
 }
 
