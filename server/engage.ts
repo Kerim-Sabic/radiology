@@ -24,7 +24,7 @@ export interface Profile {
   lastWeeklyMail?: number;
 }
 
-export const METRICS = ['visit', 'signup_start', 'signup', 'studied', 'plans', 'checkout', 'paid'] as const;
+export const METRICS = ['visit', 'signup_start', 'signup', 'opened', 'studied', 'plans', 'checkout', 'paid'] as const;
 export type Metric = (typeof METRICS)[number];
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
 

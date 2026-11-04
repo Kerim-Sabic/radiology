@@ -2,7 +2,7 @@ import { db } from './store.js';
 import { mailboxKey } from './mailbox.js';
 
 /** What an admin may see or do on the admin page. Only the owner decides these, per admin. */
-export const PERMISSIONS = ['people', 'payments', 'add', 'free', 'promos', 'numbers', 'certificates'] as const;
+export const PERMISSIONS = ['people', 'payments', 'add', 'free', 'promos', 'numbers', 'certificates', 'reports'] as const;
 export type Permission = (typeof PERMISSIONS)[number];
 
 /**

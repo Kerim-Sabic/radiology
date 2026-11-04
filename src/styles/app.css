@@ -2724,3 +2724,80 @@ textarea {
     animation: none;
   }
 }
+
+/* ---------- reporting a problem with a case ---------- */
+.report-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-top: 14px;
+  padding: 6px 0;
+  border: 0;
+  background: transparent;
+  color: var(--text-3);
+  font: 12.5px var(--font);
+  cursor: pointer;
+}
+.report-link:hover,
+.report-link:focus-visible {
+  color: var(--text);
+  text-decoration: underline;
+}
+.report-kinds {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.report-kind {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+.report-kind:hover {
+  border-color: var(--line-strong);
+}
+.report-kind:has(input:checked) {
+  border-color: rgba(var(--accent-rgb), 0.6);
+  background: var(--accent-soft);
+}
+.report-kind input {
+  margin-top: 2px;
+}
+.report-dialog h2 {
+  margin: 0 0 6px;
+}
+.report-dialog textarea {
+  width: 100%;
+  resize: vertical;
+  font: 13.5px var(--font);
+}
+.report-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.report-list li {
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.report-list li .btn.sm {
+  margin-left: auto;
+}
+.report-list li.done {
+  opacity: 0.65;
+}
+.report-text {
+  margin: 6px 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

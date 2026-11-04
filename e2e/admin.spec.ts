@@ -243,3 +243,47 @@ test('a shared promo link fills in the code for the buyer', async ({ page }) => 
   await page.goto('/?plans&promo=SPRING20');
   await expect(page.getByLabel('Promo code', { exact: true })).toHaveValue('SPRING20');
 });
+
+test('case reports: open ones first, a link to the case, and marking one fixed', async ({ page }) => {
+  const posts = await admin(page, [...ALL, 'reports']);
+  const report = (id: string, over: object = {}) => ({
+    id,
+    at: '2026-11-04T10:00:00.000Z',
+    kind: 'outline',
+    text: 'The heart outline stops two slices early.',
+    caseId: 'starter-ct-chest-01',
+    taskId: 'starter-ct-chest-01:heart',
+    mode: 'practice',
+    view: { seriesUid: '1.2.3', kind: 'stack', slice: 21, of: 120 },
+    email: 'learner@example.com',
+    name: 'Ada Lovelace',
+    done: false,
+    ...over,
+  });
+  await page.route('**/api/admin/reports', (r) =>
+    r.fulfill({ json: { reports: [report('a1'), report('a2', { kind: 'book', text: '', exam: true }), report('a3', { taskId: 'starter-cxr-01:systematic', caseId: 'starter-cxr-01', done: true })], open: 2 } }),
+  );
+  await page.goto('/admin');
+  const section = page.getByRole('region', { name: 'Case reports' });
+  await expect(section.getByText('2 open', { exact: true })).toBeVisible();
+  await expect(section.getByRole('listitem')).toHaveCount(2);
+  await expect(section.getByText('2 open reports on this task').first()).toBeVisible();
+  await expect(section.getByText('In an exam')).toBeVisible();
+  await expect(section.getByText('No details given.')).toBeVisible();
+  await expect(section.getByRole('link', { name: 'starter-ct-chest-01:heart' }).first()).toHaveAttribute('href', '/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aheart&mode=learn');
+  await expect(section.getByRole('link', { name: 'learner@example.com' }).first()).toHaveAttribute('href', 'mailto:learner@example.com');
+  await section.getByRole('button', { name: 'Mark fixed' }).first().click();
+  await expect.poll(() => posts.at(-1)).toEqual({ path: '/api/admin/reports/resolve', body: { id: 'a1', done: true } });
+  await expect(section.getByRole('listitem')).toHaveCount(1);
+  await expect(section.getByText('1 open', { exact: true })).toBeVisible();
+  await section.getByRole('button', { name: 'All' }).click();
+  await expect(section.getByRole('listitem')).toHaveCount(3);
+  await expect(section.getByText('Fixed', { exact: true })).toHaveCount(2);
+});
+
+test('case reports stay hidden without the reports permission', async ({ page }) => {
+  await admin(page, ALL);
+  await page.goto('/admin');
+  await expect(page.getByRole('heading', { name: 'Admin', level: 1 })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Case reports' })).toHaveCount(0);
+});

@@ -550,6 +550,21 @@ Each professor has one class link (`/join/<code>`) on My class: copy it, make a 
   - 360, 390 (touch), 768 and 1440 px on a radiograph, an MR and a CT with an isolated structure.
   - No sideways page scroll. At 1440 the layout is unchanged.
 
+## 3w. Reporting a problem with a case, and the first case in the funnel (4 November)
+
+- **Report a problem with this case:** a quiet link under the task and at the foot of the Case tab opens a short form.
+  - It asks what looks wrong: an outline or label, the expected answer or explanation, the image, the book link, or something else (which needs a few words).
+  - Details are optional, up to 1,000 characters. The form says what is sent: the case, the task, the slice and the account email.
+  - The server (`server/reports.ts`, `POST /api/report`) checks every field, keeps the newest 500 reports and allows 10 per account an hour. A refusal is shown in the form, which keeps what was typed.
+- **Admin, Case reports:** open reports first, how many are open on the same task, a link that opens the case in Learn mode, the slice, the sender with a mail link, and Mark fixed / Open again.
+  - It needs a new admin permission, "Read case reports and mark them fixed". The owner and `ADMIN_EMAILS` admins have it; others get it on the admin page.
+- **Funnel:** a new step, "Opened a first case", between Accounts created and Answered a first task. It is counted once per account when a case's images are on screen (`POST /api/track/opened`), from 4 November 2026.
+  - The other steps (visits, Start free, accounts, first answer, plans, checkout, paid) were already counted.
+- **Checked:**
+  - Unit tests: filing, validation, the 1,000-character cut, keeping 500, marking fixed, and every one of the library's case and task IDs is accepted.
+  - End-to-end: a report sent from a CT case, including the server refusing one; the Admin list and marking one fixed; the list hidden without the permission.
+  - The form and the Admin list at 1440 and 390 px (touch), with no sideways scroll.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

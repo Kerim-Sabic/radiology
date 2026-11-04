@@ -95,6 +95,10 @@ export default function GuidePage() {
           <li>
             <b>Confidence check</b> — “sure but wrong” answers go to the top of your reviews.
           </li>
+          <li>
+            <b>Report a problem with this case</b> (under the task, and in the Case tab) — say what looks wrong: an outline or label, the expected answer, the image or the
+            book link. It is sent with the case, the task and the slice you are on, and every report is read.
+          </li>
         </ul>
       </section>
       <section className="card stack">

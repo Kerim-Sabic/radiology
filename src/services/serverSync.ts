@@ -51,6 +51,22 @@ export function trackFunnel(event: FunnelEvent, once = false) {
   void fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event, ...(source ? { source } : {}) }), keepalive: true }).catch(() => undefined);
 }
 
+/** A case's images are on screen: the funnel step between the sign-up and the first answer (once per account on the server). */
+export function trackOpened() {
+  try {
+    if (sessionStorage.getItem('rvm.track.opened')) return;
+    sessionStorage.setItem('rvm.track.opened', '1');
+  } catch {
+    /* storage unavailable: send anyway */
+  }
+  try {
+    vercelTrack('opened');
+  } catch {
+    /* analytics is optional */
+  }
+  void fetch('/api/track/opened', { method: 'POST', keepalive: true }).catch(() => undefined);
+}
+
 export interface EmailPrefs {
   streak: boolean;
   weekly: boolean;

@@ -5,8 +5,9 @@ import '../styles/upgrade.css';
 import { AdminPeople, type AdminPermission } from '../components/AdminPeople';
 import { AdminPromos } from '../components/AdminPromos';
 import { CertificateAdmin } from '../components/CertificateAdmin';
+import { AdminReports } from '../components/AdminReports';
 
-type Metric = 'visit' | 'signup_start' | 'signup' | 'studied' | 'plans' | 'checkout' | 'paid';
+type Metric = 'visit' | 'signup_start' | 'signup' | 'opened' | 'studied' | 'plans' | 'checkout' | 'paid';
 interface Stats {
   series: Array<{ day: string } & Record<Metric, number>>;
   totals: Record<Metric, number>;
@@ -21,6 +22,7 @@ const STEPS: Array<[Metric, string]> = [
   ['visit', 'Landing visits'],
   ['signup_start', 'Clicked Start free'],
   ['signup', 'Accounts created'],
+  ['opened', 'Opened a first case'],
   ['studied', 'Answered a first task'],
   ['plans', 'Opened the plans'],
   ['checkout', 'Started checkout'],
@@ -67,7 +69,8 @@ export default function AdminPage() {
       </div>
       {can('people') || can('add') ? <AdminPeople version={version} can={can} /> : null}
       {can('promos') ? <AdminPromos version={version} /> : null}
-      {!['people', 'add', 'promos', 'numbers', 'certificates'].some((p) => can(p as AdminPermission)) ? <p className="muted">There is nothing here for your account yet.</p> : null}
+      {can('reports') ? <AdminReports version={version} /> : null}
+      {!['people', 'add', 'promos', 'numbers', 'certificates', 'reports'].some((p) => can(p as AdminPermission)) ? <p className="muted">There is nothing here for your account yet.</p> : null}
       {error ? <div className="notice bad">{error}</div> : null}
       {!can('numbers') ? null : stats ? (
         <>
@@ -75,8 +78,8 @@ export default function AdminPage() {
             <h2 style={{ margin: 0 }}>Funnel, last 30 days</h2>
             <ol className="funnel">
               {STEPS.map(([m, label], i) => {
-                const v = stats.totals[m];
-                const first = stats.totals.visit || Math.max(...STEPS.map(([k]) => stats.totals[k]), 1);
+                const v = stats.totals[m] ?? 0;
+                const first = stats.totals.visit || Math.max(...STEPS.map(([k]) => stats.totals[k] ?? 0), 1);
                 return (
                   <li key={m}>
                     <span className="funnel-label">{label}</span>
@@ -84,12 +87,12 @@ export default function AdminPage() {
                       <span style={{ width: `${Math.max(2, (v / first) * 100)}%` }} />
                     </span>
                     <b>{v}</b>
-                    <small className="faint">{i ? `${pct(v, stats.totals[STEPS[i - 1][0]])} of the step before` : ''}</small>
+                    <small className="faint">{i ? `${pct(v, stats.totals[STEPS[i - 1][0]] ?? 0)} of the step before` : ''}</small>
                   </li>
                 );
               })}
             </ol>
-            <small className="faint">Landing visits and Start-free clicks are counted once per browser session; accounts by their first sign-in; Paid once per account (free access is not counted).</small>
+            <small className="faint">Landing visits and Start-free clicks are counted once per browser session; accounts by their first sign-in; Opened a first case (counted from 4 November 2026) once per account, when a case's images are on screen; Paid once per account (free access is not counted).</small>
           </section>
           {stats.sources ? (
             <section className="card stack" aria-labelledby="sources-title">

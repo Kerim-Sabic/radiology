@@ -50,7 +50,7 @@ interface People {
 
 /** What an admin may do (mirrors server/roles.ts); "admins", managing admins, is the owner's alone. */
 export type AdminPermission = Grantable | 'admins';
-type Grantable = 'people' | 'payments' | 'add' | 'free' | 'promos' | 'numbers' | 'certificates';
+type Grantable = 'people' | 'payments' | 'add' | 'free' | 'promos' | 'numbers' | 'certificates' | 'reports';
 const GRANTABLE: Array<[Grantable, string]> = [
   ['people', 'See the people list: names, emails, study'],
   ['payments', 'See who pays and on which plan'],
@@ -59,6 +59,7 @@ const GRANTABLE: Array<[Grantable, string]> = [
   ['promos', 'Create, pause and delete promo codes'],
   ['numbers', 'See the sign-up and retention numbers'],
   ['certificates', 'Look up and revoke certificates'],
+  ['reports', 'Read case reports and mark them fixed'],
 ];
 type Can = (p: AdminPermission) => boolean;
 

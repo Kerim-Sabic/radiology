@@ -8,6 +8,7 @@ import { bookGift, memberBook, servesBook } from './book.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
 import { pullAttempts, pushAttempts, resetAttempts } from './progressSync.js';
+import { fileReport, listReports, resolveReport } from './reports.js';
 import { adminStats, cleanSource, count, countOnce, countSource, cronAuthorized, dailyCron, emailPrefs, recordActivity, rememberSource, trackable, unsubscribe, weeklyCron } from './engage.js';
 import { claimCertificate, myCertificates, publicCertificate, revokeCertificate } from './certificates.js';
 import { answerQuestion, finishExam, openQuestion, startExam } from './certificateExam.js';
@@ -186,6 +187,17 @@ export async function handle(request: Request): Promise<Response> {
       const r = await recordActivity(user, await request.json().catch(() => null));
       return r.ok ? json(r) : json({ error: r.error }, 400);
     }
+    // A first case opened with its images shown: counted once per account, between the sign-up and the first answer.
+    if (path === '/api/track/opened' && request.method === 'POST') {
+      if (await rateLimit(`track-opened:${user.userId}`, 20, 3600)) await countOnce('opened', user.userId);
+      return json({ ok: true });
+    }
+    // "Something looks wrong on this case": kept for the admins with the reports permission (server/reports.ts).
+    if (path === '/api/report' && request.method === 'POST') {
+      if (!await rateLimit(`report:${user.userId}`, 10, 3600)) return json({ error: 'You have sent several reports in the last hour. Please try again later.' }, 429);
+      const r = await fileReport(user, await request.json().catch(() => null));
+      return r.ok ? json(r) : json({ error: r.error }, 400);
+    }
     // The learner's own saved study record (server/progressSync.ts): read it a page at a time, add a batch, or delete it.
     if (path === '/api/progress/attempts' && request.method === 'GET') {
       if (!await rateLimit(`progress-read:${user.userId}`, 600, 3600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
@@ -288,6 +300,7 @@ export async function handle(request: Request): Promise<Response> {
         if (path === '/api/admin/stats') return may('numbers') ? json(await adminStats()) : denied();
         if (path === '/api/admin/people') return may('people') ? json(await adminPeople(admin)) : denied();
         if (path === '/api/admin/promos') return may('promos') ? json(await promoRequest(listPromos)) : denied();
+        if (path === '/api/admin/reports') return may('reports') ? json(await listReports()) : denied();
         return json({ error: 'Not found' }, 404);
       }
       if (request.method !== 'POST') return json({ error: 'Not found' }, 404);
@@ -302,6 +315,7 @@ export async function handle(request: Request): Promise<Response> {
         : path === '/api/admin/role' ? await setRole(user.email, body)
         : path === '/api/admin/promos' ? (may('promos') ? await promoRequest(() => createPromo(body)) : 'denied')
         : path === '/api/admin/promos/change' ? (may('promos') ? await promoRequest(() => changePromo(body)) : 'denied')
+        : path === '/api/admin/reports/resolve' ? (may('reports') ? await resolveReport(body) : 'denied')
         : null;
       if (!r) return json({ error: 'Not found' }, 404);
       if (r === 'denied') return denied();

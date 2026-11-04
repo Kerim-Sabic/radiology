@@ -74,6 +74,8 @@ import { structureBase } from '../content/structureNotes';
 import { categoryFor } from '../components/ws/overlayShapes';
 import { landmarks, levelName, mapZ, matchLevels, type Landmark } from '../services/levelSync';
 import { IconButton, ProvenanceChip, Toast, useToast } from '../components/ui';
+import { ReportProblem } from '../components/ReportProblem';
+import { trackOpened } from '../services/serverSync';
 import { SyncBadge } from '../components/SyncBadge';
 import { gradeTask, measureWithinSlab, probeOfMark, type LoadedTarget } from '../grading/spatialGrader';
 import type { GradeResult, LearnerMark } from '../grading/types';
@@ -1083,6 +1085,12 @@ export default function Workstation() {
     const t = setTimeout(() => setToolFlash(null), 1800);
     return () => clearTimeout(t);
   }, [activeTool]);
+  // The funnel's "Opened a first case": the focused view has its images on screen.
+  const focusedState = engine.panelState(focused);
+  const focusedShown = !!focusedState?.ready && !focusedState.error;
+  useEffect(() => {
+    if (focusedShown) trackOpened();
+  }, [focusedShown]);
   if (!catalog) return <div className="vp-status">Loading case catalogue…</div>;
   // A free account opening a members' patient from a link sees what it is and the plans, not an error.
   if (!kase && free) return <LockedCase caseId={caseId ?? ''} />;
@@ -1246,6 +1254,11 @@ export default function Workstation() {
   };
   const closeNavOnPhone = () => {
     if (window.matchMedia('(max-width: 860px)').matches) setLeftOpen(false);
+  };
+  // A report carries the case, the task and the slice of the focused view at the moment it is sent.
+  const reportContext = () => {
+    const st = engine.panelState(focused);
+    return { caseId: kase.id, taskId: task.id, mode, ...(examItem ? { exam: true } : {}), view: st ? { seriesUid: st.seriesUid, kind: st.kind, slice: st.index + 1, of: st.count } : null };
   };
   const focusedImageId = engine.panelState(focused)?.currentImageId ?? null;
   const focusedSop = focusedImageId ? (engine.imageIdInfo(focusedImageId)?.sop ?? null) : null;
@@ -1715,6 +1728,7 @@ export default function Workstation() {
             {free && session.submitted ? (
               <UpgradeCard compact title="Graded on the exact slice." text={`Members get ${fact(LANDING_FACTS.tasks)}+ tasks like this on ${LANDING_FACTS.patients}+ patients, with drills and on-call shifts.`} />
             ) : null}
+            <ReportProblem context={reportContext} onSent={toast.show} />
           </Tabs.Content>
           <Tabs.Content value="book" className="tab-body">
             <BookPanel
@@ -1787,6 +1801,7 @@ export default function Workstation() {
           </Tabs.Content>
           <Tabs.Content value="info" className="tab-body">
             <CaseInfo caseId={kase.id} assessMasked={assessMasked} targets={targets} onOpenBook={openBook} anchorLabel={anchorLabel} engine={engine} panels={panels} />
+            <ReportProblem context={reportContext} onSent={toast.show} />
           </Tabs.Content>
         </Tabs.Root>
       </aside>
