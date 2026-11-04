@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { Link } from 'react-router';
 import { Download, Upload, Trash2 } from 'lucide-react';
 import { useApp } from '../app/AppContext';
@@ -19,7 +19,9 @@ const when = (iso: string | null) =>
   iso ? new Date(iso).toLocaleDateString(undefined, { day: 'numeric', month: 'short', year: 'numeric' }) : '';
 
 export default function ProgressPage() {
-  const { attempts, catalog, progress } = useApp();
+  const { attempts, catalog, progress, sync } = useApp();
+  const saved = useSyncExternalStore(sync.subscribe, sync.getSnapshot);
+  const synced = saved.status !== 'off';
   const [msg, setMsg] = useState<string | null>(null);
   const [allMistakes, setAllMistakes] = useState(false);
   const file = useRef<HTMLInputElement>(null);
@@ -276,7 +278,19 @@ export default function ProgressPage() {
       <section className="card progress-data" aria-labelledby="progress-data-h">
         <div>
           <h2 id="progress-data-h">Your data</h2>
-          <p className="muted">Progress is stored in this browser only. Export a backup to move it to another device or browser, and import it there.</p>
+          {synced ? (
+            <p className="muted">
+              Every answer you submit is saved to your account and appears on any device where you sign in. This browser keeps a copy too, so an answer made offline is
+              kept here and saved to your account once you are back online. Bookmarks, notes and drill schedules stay in this browser; Export a backup to keep everything.
+            </p>
+          ) : (
+            <p className="muted">Progress is stored in this browser only. Export a backup to move it to another device or browser, and import it there.</p>
+          )}
+          {synced && saved.refused ? (
+            <p className="muted">
+              {saved.refused === 1 ? '1 answer is' : `${saved.refused} answers are`} too large to save to your account and {saved.refused === 1 ? 'stays' : 'stay'} in this browser only.
+            </p>
+          ) : null}
           {msg ? (
             <div className="notice info" role="status">
               {msg}
@@ -310,9 +324,16 @@ export default function ProgressPage() {
           <button
             className="btn danger"
             onClick={async () => {
-              if (window.confirm('Delete all attempts, bookmarks, notes and reviews in this browser? Export a backup first if you may need them.')) {
-                await progress.resetAll();
-                setMsg('Progress reset.');
+              const question = synced
+                ? 'Delete all attempts, bookmarks, notes and reviews in this browser, and the answers saved to your account (every device where you sign in)? Export a backup first if you may need them.'
+                : 'Delete all attempts, bookmarks, notes and reviews in this browser? Export a backup first if you may need them.';
+              if (window.confirm(question)) {
+                try {
+                  await sync.resetEverywhere();
+                  setMsg(synced ? 'Progress reset here and in your account.' : 'Progress reset.');
+                } catch (err) {
+                  setMsg(`Nothing was deleted: your account could not be reached (${(err as Error).message}). Try again when you are online.`);
+                }
               }
             }}
           >

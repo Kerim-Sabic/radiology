@@ -1,6 +1,6 @@
 /**
- * The little the server hears about study: the days you studied (for streak reminders, if you ask for them), your
- * email choices, certificates, and anonymous funnel counts. Answers and marks stay in this browser.
+ * Small messages to the server: the days you studied (for streak reminders, if you ask for them), your email
+ * choices, and anonymous funnel counts. Submitted answers are saved to the account by services/progressSync.ts.
  */
 import { track as vercelTrack } from '@vercel/analytics/react';
 import { dayKey } from './activity';

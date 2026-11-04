@@ -7,6 +7,7 @@ import { clerkIdentity } from './clerk.js';
 import { bookGift, memberBook, servesBook } from './book.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
+import { pullAttempts, pushAttempts, resetAttempts } from './progressSync.js';
 import { adminStats, cleanSource, count, countOnce, countSource, cronAuthorized, dailyCron, emailPrefs, recordActivity, rememberSource, trackable, unsubscribe, weeklyCron } from './engage.js';
 import { claimCertificate, myCertificates, publicCertificate, revokeCertificate } from './certificates.js';
 import { answerQuestion, finishExam, openQuestion, startExam } from './certificateExam.js';
@@ -184,6 +185,20 @@ export async function handle(request: Request): Promise<Response> {
       if (!await rateLimit(`activity:${user.userId}`, 60, 3600)) return json({ error: 'Too many updates.' }, 429);
       const r = await recordActivity(user, await request.json().catch(() => null));
       return r.ok ? json(r) : json({ error: r.error }, 400);
+    }
+    // The learner's own saved study record (server/progressSync.ts): read it a page at a time, add a batch, or delete it.
+    if (path === '/api/progress/attempts' && request.method === 'GET') {
+      if (!await rateLimit(`progress-read:${user.userId}`, 600, 3600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
+      return json(await pullAttempts(user.userId, Number(url.searchParams.get('after') ?? 0), url.searchParams.get('gen')));
+    }
+    if (path === '/api/progress/attempts' && request.method === 'POST') {
+      if (!await rateLimit(`progress-write:${user.userId}`, 600, 3600)) return json({ error: 'Too many uploads. Your answers are kept on this device and will be sent shortly.' }, 429);
+      const r = await pushAttempts(user.userId, await request.text());
+      return r.ok ? json(r) : json({ error: r.error }, r.status);
+    }
+    if (path === '/api/progress/reset' && request.method === 'POST') {
+      if (!await rateLimit(`progress-reset:${user.userId}`, 10, 3600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
+      return json(await resetAttempts(user.userId));
     }
     if (path === '/api/email/prefs' && (request.method === 'GET' || request.method === 'POST')) {
       const body = request.method === 'POST' ? await request.json().catch(() => null) : undefined;

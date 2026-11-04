@@ -74,6 +74,7 @@ import { structureBase } from '../content/structureNotes';
 import { categoryFor } from '../components/ws/overlayShapes';
 import { landmarks, levelName, mapZ, matchLevels, type Landmark } from '../services/levelSync';
 import { IconButton, ProvenanceChip, Toast, useToast } from '../components/ui';
+import { SyncBadge } from '../components/SyncBadge';
 import { gradeTask, measureWithinSlab, probeOfMark, type LoadedTarget } from '../grading/spatialGrader';
 import type { GradeResult, LearnerMark } from '../grading/types';
 import type { BookAnchorRef, Series, Task } from '../schema/content';
@@ -171,6 +172,8 @@ export default function Workstation() {
   const [submittedMarks, setSubmittedMarks] = useState<LearnerMark[]>([]);
   const [selfReview, setSelfReview] = useState<Attempt['selfReview']>(null);
   const [attemptId, setAttemptId] = useState<string>(newId());
+  /** The attempt as submitted: a later self-review changes only its verdict, never its answer, grade or submit time. */
+  const committed = useRef<Attempt | null>(null);
   const [targets, setTargets] = useState<Map<string, LoadedTarget>>(new Map());
   const [refToggle, setRefToggle] = useState(true);
   const [refOpacity, setRefOpacity] = useState(0.9);
@@ -260,6 +263,7 @@ export default function Workstation() {
     setSubmittedMarks([]);
     setSelfReview(null);
     setAttemptId(newId());
+    committed.current = null;
     setHighlight(new Set());
     setAnatomyOn(null);
     setAnatomyHighlight(null);
@@ -697,6 +701,7 @@ export default function Workstation() {
     setGrade(g);
     const next = { ...session, submitted: true };
     setSession(next);
+    committed.current = attempt;
     try {
       await progress.saveAttempt(attempt);
     } catch (e) {
@@ -708,7 +713,8 @@ export default function Workstation() {
   useEffect(() => {
     // Persist self-review verdicts on the submitted attempt.
     if (!grade || !session?.submitted || mode === 'review' || !selfReview) return;
-    void progress.saveAttempt({ ...buildAttempt(grade, true), marks: submittedMarks });
+    const base = committed.current ?? { ...buildAttempt(grade, true), marks: submittedMarks };
+    void progress.saveAttempt({ ...base, selfReview, reviewedAt: new Date().toISOString() }).catch((e) => toast.show(String(e.message ?? e)));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selfReview]);
 
@@ -1263,6 +1269,7 @@ export default function Workstation() {
           <strong>{title}</strong>
           <span>{study0?.description ?? ''}</span>
         </div>
+        <SyncBadge />
         {shiftItem ? (
           <span className="chip accent" title="On-call shift: unknown cases, no hints until you submit">
             On call · {shiftIndex + 1}/{shift!.items.length}
@@ -1691,6 +1698,7 @@ export default function Workstation() {
                 setSubmittedMarks([]);
                 setSelfReview(null);
                 setAttemptId(newId());
+                committed.current = null;
                 setHighlight(new Set());
                 if (mode === 'review') setSp({ task: task.id, mode: 'practice' });
                 toast.show('New attempt on the same patient — it will be recorded, but it is not an unseen-patient test.');

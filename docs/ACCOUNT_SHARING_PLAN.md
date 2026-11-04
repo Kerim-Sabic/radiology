@@ -6,6 +6,16 @@ The server allows one active application session per account. Every successful s
 
 This limits simultaneous use. It cannot prove who is using the account, stop someone forwarding an email code, or erase material already downloaded. Tabs in one browser may share a session; that is expected. Switching between a laptop and phone should remain possible.
 
+## One active device, now that progress follows the account
+
+Submitted answers are now saved to the account (`server/progressSync.ts`) and merged on every device, and the sync does not rely on one device at a time: the log is append-only and keeps each attempt id once, so two devices writing together cannot duplicate or lose an answer. The one-session rule is therefore only an account-sharing control, and its cost to honest learners has grown: syncing invites reading on a laptop and reviewing on a phone, and every switch ends the other device's session (answers that device had not uploaded wait in its browser until it signs in again).
+
+Recommendation, not implemented (it changes access rules, so it is the owner's call):
+
+1. Keep one active session for now; nothing in the sync needs it changed.
+2. Next, allow two concurrent sessions per account (a computer and a phone), the oldest ending when a third signs in, together with the device list and "Sign out everywhere" in item 2 below. Two covers the usual personal pattern without making a shared account comfortable.
+3. Before changing it, look at how often sessions are taken over today, and keep the takeover limits in item 3.
+
 ## Recommended next release
 
 1. **Explicit device handover.** Before replacing an active session, say “Continue here and sign out your other device.” Require a fresh email verification challenge for a new browser or a suspiciously frequent handover, even when a Clerk session is still available. Do not silently reconnect the old device from a background session check.

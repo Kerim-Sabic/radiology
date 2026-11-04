@@ -7,6 +7,7 @@ import { useAccount } from '../auth/AccountGate';
 import { freeCaseIds } from '../content/weekly';
 import { dayKey } from '../services/activity';
 import { pingStudied } from '../services/serverSync';
+import { ProgressSync } from '../services/progressSync';
 
 export type Level = 'student' | 'resident';
 
@@ -35,6 +36,8 @@ interface AppState {
   catalogError: string | null;
   curriculum: Curriculum | null;
   progress: ProgressRepository;
+  /** Keeps submitted attempts in step with the signed-in account (status for the reading room). */
+  sync: ProgressSync;
   attempts: Attempt[];
   reviews: TargetReview[];
   settings: Settings;
@@ -49,6 +52,7 @@ interface AppState {
 const Ctx = createContext<AppState | null>(null);
 
 const progress = new ProgressRepository();
+const sync = new ProgressSync(progress);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   const [catalog, setCatalog] = useState<Catalog | null>(null);
@@ -87,6 +91,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
     progress.reviews().then(setReviews);
   }, [progressVersion]);
 
+  // Signed in: submitted attempts are saved to the account and merged from it (local development has no account).
+  const email = account?.account.user?.email ?? null;
+  useEffect(() => {
+    if (!email) return;
+    void sync.start(email);
+    return () => sync.stop();
+  }, [email]);
+
   // Signed in: tell the server you studied today (an answer or a drill), for streak reminders and retention.
   const signedIn = !!account;
   useEffect(() => {
@@ -102,6 +114,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
       catalogError,
       curriculum,
       progress,
+      sync,
       attempts,
       reviews,
       settings,

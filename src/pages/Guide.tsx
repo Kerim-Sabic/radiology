@@ -124,10 +124,11 @@ export default function GuidePage() {
         </p>
       </section>
       <section className="card stack">
-        <h2>Back up progress</h2>
+        <h2>Progress on every device</h2>
         <p className="muted">
-          Progress lives in this browser’s storage and does not sync by itself. Progress → Export backup downloads a JSON file; Import backup restores or merges it in another browser
-          or device.
+          Signed in, every answer you submit is saved to your account and appears on any device where you sign in; the reading room shows Saved, Saving…, Offline or Sync failed.
+          The browser keeps a copy, so an answer submitted while offline is saved once you are back. Bookmarks, notes, drill schedules and book pages stay in the browser: Progress →
+          Export backup downloads all of it as a JSON file, and Import backup restores or merges it in another browser.
         </p>
       </section>
       <section className="card stack">

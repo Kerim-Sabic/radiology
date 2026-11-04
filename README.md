@@ -70,7 +70,8 @@ Members on radiology.monster can open **Book** directly. For local development, 
 | LessonEngine (mode rules, hints, reveals) | `src/services/lessonEngine.ts` |
 | SpatialGrader | `src/grading/spatialGrader.ts`, `src/lib/geometry.ts` |
 | BookRepository | `src/services/curriculum.ts`, `src/book/bookPdf.ts` |
-| ProgressRepository | `src/services/progressRepository.ts` (IndexedDB, export/import) |
+| ProgressRepository | `src/services/progressRepository.ts` (IndexedDB, upload queue, export/import) |
+| Progress sync (answers follow the account) | `src/services/progressSync.ts`, `server/progressSync.ts` (append-only log per account in Redis, idempotent by attempt id), `shared/progressSync.ts` |
 | Content contract | `src/schema/content.ts` (zod, versioned) and [docs/COORDINATES.md](docs/COORDINATES.md) |
 
 Data preparation is offline Python (`scripts/data`, `scripts/vessels`, `scripts/book`, `scripts/lessons`); no GPU or server is needed to study.
