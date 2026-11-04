@@ -6,7 +6,7 @@ Also written: radiology.monster, RadiologyMonster, Radiology.Monster. Official s
 
 ## What it offers
 
-- 350+ real, de-identified patients and 1,000+ image tasks across CT, MRI, X-ray, mammography and ultrasound, from public research collections whose licences allow reuse (Creative Commons, NIH).
+- 600+ real, de-identified patients and 1,700+ image tasks across CT, MRI, X-ray, mammography and ultrasound, from public research collections whose licences allow reuse (Creative Commons, NIH).
 - Learn, Practice, Assess and Review modes; marking tools; deterministic grading against the experts' own outlines and boxes (a mark must land on the finding, on the right slice and side).
 - An anatomy layer naming the organs, vessels, bones and airways on every scan, an anatomy atlas, anatomy drills with spaced repetition, on-call shifts and a search-pattern coach.
 - Certificates in three levels (Foundation, Intermediate, Advanced) for each body area (chest, abdomen and pelvis, neuro, musculoskeletal, breast) and for the whole library (General Radiology). Each level is an exam, taken in order, and each is a real step up: Foundation 15 untimed questions, pass mark 70%; Intermediate 25 questions at 3 minutes each, pass mark 80%, at least half of them marking the finding on the image, no two-answer questions; Advanced 40 questions at 2 minutes each, pass mark 90% with no half points, mostly marked on the image, subtle cases first (the whole library: 30, 50 and 75 questions). No hints, every answer graded against the expert reference, and the result after the last question. Each certificate has a public check page and can be added to LinkedIn under Licenses & certifications.

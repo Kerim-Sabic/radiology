@@ -216,6 +216,60 @@
    "bytes": 58593971,
    "distribution": "repo",
    "note": "11 subjects, 11 studies, 22 series, 22 instances, 22 reference targets; DICOM 58.0 MB. Committed to the repository; rebuild with scripts/data/external_r4.py + build_r4.py; lessons scripts/lessons/round4.py."
+  },
+  {
+   "id": "us-breast-3",
+   "title": "Breast ultrasound: a third set of lesions proven by biopsy or follow-up",
+   "manifest": "us-breast-3/pack.json",
+   "lessons": "us-breast-3/lessons.json",
+   "bytes": 21289541,
+   "distribution": "repo",
+   "note": "112 subjects, 112 studies, 112 series, 112 instances, 112 reference targets; DICOM 15.0 MB. Committed to the repository; rebuild with scripts/data/external_r5.py + build_r5.py; lessons scripts/lessons/round5.py."
+  },
+  {
+   "id": "stroke-mri-3",
+   "title": "Stroke MRI: a third set of ischemic lesions on DWI and ADC with expert-approved masks",
+   "manifest": "stroke-mri-3/pack.json",
+   "lessons": "stroke-mri-3/lessons.json",
+   "bytes": 23420236,
+   "distribution": "repo",
+   "note": "30 subjects, 30 studies, 60 series, 4282 instances, 60 reference targets; DICOM 20.1 MB. Committed to the repository; rebuild with scripts/data/external_r5.py + build_r5.py; lessons scripts/lessons/round5.py."
+  },
+  {
+   "id": "peds-wrist-3",
+   "title": "Children's wrist fractures: a third set of Salter-Harris II, torus/greenstick and complete fractures",
+   "manifest": "peds-wrist-3/pack.json",
+   "lessons": "peds-wrist-3/lessons.json",
+   "bytes": 56941973,
+   "distribution": "repo",
+   "note": "40 subjects, 40 studies, 80 series, 80 instances, 80 reference targets; DICOM 55.0 MB. Committed to the repository; rebuild with scripts/data/external_r5.py + build_r5.py; lessons scripts/lessons/round5.py."
+  },
+  {
+   "id": "mammo-cbis-3",
+   "title": "Mammography: a third set of masses and calcifications on CC and MLO views",
+   "manifest": "mammo-cbis-3/pack.json",
+   "lessons": "mammo-cbis-3/lessons.json",
+   "bytes": 64982913,
+   "distribution": "repo",
+   "note": "13 subjects, 13 studies, 26 series, 26 instances, 26 reference targets; DICOM 64.3 MB. Committed to the repository; rebuild with scripts/data/external_r5.py + build_r5.py; lessons scripts/lessons/round5.py."
+  },
+  {
+   "id": "fx-radiographs-2",
+   "title": "Adult fractures: hands, feet, legs, hips and shoulders",
+   "manifest": "fx-radiographs-2/pack.json",
+   "lessons": "fx-radiographs-2/lessons.json",
+   "bytes": 778926,
+   "distribution": "repo",
+   "note": "12 subjects, 12 studies, 12 series, 12 instances, 12 reference targets; DICOM 0.5 MB. Committed to the repository; rebuild with scripts/data/external_r5.py + build_r5.py; lessons scripts/lessons/round5.py."
+  },
+  {
+   "id": "cxr-findings-3",
+   "title": "Chest radiograph findings: a third set of radiologist-boxed films",
+   "manifest": "cxr-findings-3/pack.json",
+   "lessons": "cxr-findings-3/lessons.json",
+   "bytes": 16667770,
+   "distribution": "repo",
+   "note": "40 subjects, 40 studies, 40 series, 40 instances, 45 reference targets; DICOM 15.1 MB. Committed to the repository; rebuild with scripts/data/external_r5.py + build_r5.py; lessons scripts/lessons/round5.py."
   }
  ]
 }

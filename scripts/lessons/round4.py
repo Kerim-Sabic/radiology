@@ -44,11 +44,16 @@ def _geom(pack: Pack, t: dict) -> dict:
 # ------------------------------------------------------------------ chest radiographs (NIH radiologist boxes)
 # Images with more than one box where the case's finding is not the first box in the dataset's list.
 CXR_MAIN = {"00013391_005": "finding:pneumonia", "00015090_006": "finding:pneumonia"}
-CXR_NAME = {**{k: v["name"] for k, v in CXR.items()}, "finding:infiltrate": "Infiltrate"}
+CXR_NAME = {**{k: v["name"] for k, v in CXR.items()}, "finding:infiltrate": "Lung opacity (dataset label: infiltration)"}
+# How a finding is named in the reference summary, after "around" (the dataset's "infiltration" is not a finding a reader names).
+CXR_AROUND = {**{k: v["name"].lower() for k, v in CXR.items()}, "finding:infiltrate": "a lung opacity labelled infiltration"}
+# How the radiologist's box is named in the "name the finding" explanation; the others read "a <name>. <why>".
+CXR_BOXED = {"finding:atelectasis": "an area of atelectasis", "finding:cardiomegaly": "an enlarged cardiac silhouette (cardiomegaly)",
+             "finding:lung_nodule": "a lung nodule", "finding:pneumonia": "an area of pneumonia"}
 
 
-def cxr_lessons() -> None:
-    pack = Pack("cxr-findings-2")
+def cxr_lessons(pack_id: str = "cxr-findings-2") -> None:
+    pack = Pack(pack_id)
     cases, tasks = [], []
     for subj in pack.manifest["subjects"]:
         se = next(s for s in pack.manifest["series"] if s["subjectKey"] == subj["key"])
@@ -69,7 +74,7 @@ def cxr_lessons() -> None:
             "subjectKey": subj["key"], "studyUids": subj["studyUids"], "primarySeriesUid": se["uid"], "region": ["chest"],
             "clinicalContext": None, "contextSource": None, "difficulty": "typical", "objectiveIds": info["objectives"], "bookAnchors": anc,
             "referenceSummary": (f"One box drawn by a board-certified radiologist around the {info['name'].lower()}"
-                                 + (f", and {len(others)} more around " + ", ".join(CXR_NAME[t['classId']].lower() for t in others) if others else "")
+                                 + (f", and {len(others)} more around " + ", ".join(CXR_AROUND[t['classId']] for t in others) if others else "")
                                  + f" (NIH ChestX-ray14). The labels mined from this film's report are: {nlp} (about 90% accurate, per "
                                  "the dataset authors). Nothing else on the film is outlined."),
             "learnNotes": info["notes"],
@@ -103,7 +108,8 @@ def cxr_lessons() -> None:
                      "why": next(v["why"] for v in CXR.values() if v["option"] == oid)} for oid, text in OPTIONS]},
                 "scoring": "authoritative",
                 "hints": [hint(1, "Use a fixed order: lines and tubes, airway, lungs, pleura, heart and mediastinum, bones, below the diaphragm.")],
-                "explanation": (f"The radiologist boxed a {info['name'].lower()}. {info['why']} The answer comes from the radiologist's box and "
+                "explanation": ((f"The radiologist boxed {CXR_BOXED[main_cls]}: {info['why'][0].lower() + info['why'][1:]}" if main_cls in CXR_BOXED
+                                 else f"The radiologist boxed a {info['name'].lower()}. {info['why']}") + " The answer comes from the radiologist's box and "
                                 "the report labels for this film; other findings may also be present."),
                 "bookAnchors": anc, "objectiveIds": info["objectives"], "skillDimensions": ["interpretation"], "allowUncertain": True,
             })
@@ -131,7 +137,7 @@ def _dx(s: str) -> str:
     (NST) with ductal carcinoma in situ (DCIS)' (the dataset joins the pathology findings of one lesion with '&')."""
     parts = [p.strip() for p in s.split("&")]
     parts = [p[0].lower() + p[1:] if not p[:2].isupper() else p for p in parts]
-    return " with ".join(parts)
+    return parts[0] if len(parts) == 1 else parts[0] + " with " + " and ".join(parts[1:])
 
 
 def _amp(s: str) -> str:
@@ -146,8 +152,8 @@ POST = [("enhancement", "Posterior acoustic enhancement"), ("shadowing", "Poster
         ("combined", "Combined enhancement and shadowing"), ("no", "No posterior features")]
 
 
-def us_lessons() -> None:
-    pack = Pack("us-breast-2")
+def us_lessons(pack_id: str = "us-breast-2") -> None:
+    pack = Pack(pack_id)
     cases, tasks = [], []
     for subj in pack.manifest["subjects"]:
         se = next(s for s in pack.manifest["series"] if s["subjectKey"] == subj["key"])
@@ -170,14 +176,16 @@ def us_lessons() -> None:
             ctx.append("Palpable lump.")
         code = next(CODES)
         margin_txt = d["margin"].replace("not circumscribed - ", "not circumscribed (").replace("&", ", ") + (")" if d["margin"].startswith("not") else "")
-        desc = (f"shape {d['shape']}, margin {margin_txt}, echo pattern {d['echogenicity']}, posterior features {d['posterior features']}, "
+        post_desc = {"no": "no posterior features", "combined": "combined posterior features (enhancement and shadowing)"}.get(
+            d["posterior features"], f"posterior features {d['posterior features']}")
+        desc = (f"shape {d['shape']}, margin {margin_txt}, echo pattern {d['echogenicity']}, {post_desc}, "
                 f"BI-RADS {d['BI-RADS']}")
         outcome = (f"Biopsy: {what} ({d['classification']})" if biopsy else
-                   f"Benign: unchanged on follow-up imaging, without biopsy (the radiologist's impression: {_amp(d['interpretation']).lower()})")
+                   f"Benign: confirmed on follow-up, without biopsy (the radiologist's impression: {_amp(d['interpretation']).lower()})")
         cases.append({
             "id": cid, "packId": pack.id, "neutralTitle": f"Patient {code} · Breast ultrasound",
             "learnTitle": (f"{what[0].upper() + what[1:]} on breast ultrasound (biopsy-proven; radiologist outline)" if biopsy
-                           else "Benign breast lesion on ultrasound (stable on follow-up; radiologist outline)"),
+                           else "Benign breast lesion on ultrasound (confirmed on follow-up; radiologist outline)"),
             "subjectKey": subj["key"], "studyUids": subj["studyUids"], "primarySeriesUid": se["uid"], "region": ["breast"],
             "clinicalContext": " ".join(ctx) or None,
             "contextSource": "Age and clinical signs from the dataset's clinical data." if ctx else None,
@@ -222,7 +230,8 @@ def us_lessons() -> None:
                  "why": f"The radiologist called the margin {margin_txt}." if not circ else "The radiologist called the margin circumscribed."}]},
             "scoring": "authoritative",
             "hints": [hint(1, "Follow the edge all the way round: any part that is blurred, angular, finely lobulated or spiky makes the margin 'not circumscribed'.")],
-            "explanation": (f"The radiologist described this lesion as {d['shape']} with a {margin_txt} margin. An oval, circumscribed mass "
+            "explanation": (f"The radiologist described this lesion as {d['shape']} with "
+                            + ("a circumscribed margin" if circ else f"a margin that is {margin_txt}") + ". An oval, circumscribed mass "
                             "parallel to the skin favors a benign lesion; an irregular shape or a margin that is not circumscribed is a "
                             "suspicious feature. " + outcome + "."),
             "bookAnchors": anc, "objectiveIds": ["ch29-o06"], "skillDimensions": ["interpretation", "reporting"], "allowUncertain": True,
@@ -241,17 +250,24 @@ def us_lessons() -> None:
                 for oid, text, ok in opts]},
             "scoring": "authoritative",
             "hints": [hint(1, "Echo pattern is judged against the subcutaneous fat; posterior features are judged in the tissue directly deep to the lesion.")],
-            "explanation": (f"The radiologist described this lesion as {echo} with posterior features: {post}. Anechoic means no echoes "
+            "explanation": (f"The radiologist described this lesion as {echo.replace('cystic/solid', 'cystic and solid')} with "
+                            + {"no": "no posterior features", "combined": "combined posterior features (enhancement and shadowing)"}.get(post, f"posterior features: {post}")
+                            + ". Anechoic means no echoes "
                             "(fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, "
                             "typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, "
                             "such as a dense fibrotic cancer, calcification or bone."),
             "bookAnchors": anc, "objectiveIds": ["ch18-o01", "ch29-o06"], "skillDimensions": ["interpretation"], "allowUncertain": True,
         })
+        # Not for Assess or the exams where the image cannot settle the outcome: BI-RADS 4B (10-50% chance of cancer by
+        # definition), or an outcome that contradicts the radiologist's own category (4A or lower but malignant, 4C/5 but benign).
+        birads = d["BI-RADS"].lower()
+        b4 = birads == "4b"
+        contradicts = (malignant and birads in ("2", "3", "4a")) or (not malignant and birads in ("4c", "5"))
         tasks.append({
             "id": f"{cid}:outcome", "caseId": cid, "type": "differential", "title": "Benign or malignant?",
             "prompt": ("Weigh the lesion's shape, margin, orientation, echoes and posterior features. This lesion was later "
                        "either biopsied or followed up. Was it benign or malignant?"),
-            "modes": ["learn", "practice", "assess"], "seriesUids": [se["uid"]],
+            "modes": ["learn", "practice"] if b4 or contradicts else ["learn", "practice", "assess"], "seriesUids": [se["uid"]],
             "start": {"seriesUid": se["uid"], "slice": "first", "windowPreset": None}, "targets": [],
             "grading": {"kind": "choice", "multiple": False, "options": [
                 {"id": "benign", "text": "Benign", "correct": not malignant,
@@ -262,7 +278,10 @@ def us_lessons() -> None:
             "hints": [hint(1, "Suspicious features: irregular shape, a margin that is not circumscribed, taller-than-wide orientation, posterior shadowing. None of them proves cancer.")],
             "explanation": (f"{outcome}. The radiologist's descriptors were: {desc}. Imaging grades the suspicion (BI-RADS); only the biopsy, "
                             "or stability over time for a probably benign lesion, settles it, so expect benign lesions that look worrying "
-                            "and the occasional cancer that looks bland."),
+                            "and the occasional cancer that looks bland."
+                            + (" This lesion was given BI-RADS 4B (moderate suspicion: roughly 10 to 50% chance of cancer), so the outcome "
+                               "cannot be told from the image alone; that is why this question is for learning and practice, not for Assess "
+                               "or the exams." if b4 else "")),
             "bookAnchors": anc, "objectiveIds": ["ch29-o06"], "skillDimensions": ["interpretation"], "allowUncertain": True,
         })
     write_lessons(pack, "1.0.0", cases, tasks)
@@ -276,8 +295,8 @@ def _stroke_fields(note: str) -> dict:
             "low": m.group(5) == "yes", "side": m.group(6)}
 
 
-def stroke_lessons() -> None:
-    pack = Pack("stroke-mri-2")
+def stroke_lessons(pack_id: str = "stroke-mri-2") -> None:
+    pack = Pack(pack_id)
     cases, tasks = [], []
     anc = anchors("ch26-o08")
     for subj in pack.manifest["subjects"]:
@@ -292,7 +311,7 @@ def stroke_lessons() -> None:
         code = next(CODES)
         who = {"M": "Man", "F": "Woman"}.get(subj.get("sex") or "", "Adult")
         age = subj.get("ageAtFirstStudy")
-        ctx = f"{who}{f' aged {int(age[:3])}' if age and age[:3].isdigit() else ''} with an ischemic stroke."
+        ctx = f"{who}{f' aged {int(age[:3])}' if age and age[:3].isdigit() else ''} with sudden neurological symptoms."
         size = "large" if f["vol"] >= 50 else "moderate" if f["vol"] >= 10 else "small"
         cases.append({
             "id": cid, "packId": pack.id, "neutralTitle": f"Patient {code} · MRI brain, diffusion",
@@ -308,11 +327,23 @@ def stroke_lessons() -> None:
                                  "by the dataset authors; time since onset is not given."),
             "learnNotes": STROKE_NOTES,
         })
+        ratio = float(f["adcLesion"]) / float(f["adcBrain"])
+        high = not f["low"] and ratio > 1.1  # T2 shine-through
+        same = not f["low"] and not high and ratio >= 0.97
         extra = ("" if f["low"] else
-                 f" In this patient the median ADC inside the outline ({f['adcLesion']}) is not clearly below the rest of the brain "
-                 f"({f['adcBrain']} x10^-6 mm2/s), so rely on the DWI.")
+                 (f" In this patient the ADC inside the outline is higher than in the rest of the brain (median {f['adcLesion']} against "
+                  f"{f['adcBrain']} x10^-6 mm2/s): the DWI brightness here is T2 shine-through, not restricted diffusion, which fits an "
+                  "infarct that is no longer acute (the ADC rises again from about one to two weeks after onset); the time since onset is "
+                  "not given. Find the lesion on the DWI, and check the ADC before calling a DWI lesion acute.") if high else
+                 (f" In this patient the median ADC inside the outline ({f['adcLesion']}) is about the same as in the rest of the brain "
+                  f"({f['adcBrain']} x10^-6 mm2/s), so much of the DWI brightness is not restricted diffusion. Find the lesion on the DWI; "
+                  "the time since onset is not given.") if same else
+                 (f" In this patient the median ADC inside the outline ({f['adcLesion']}) is not clearly below the rest of the brain "
+                  f"({f['adcBrain']} x10^-6 mm2/s), so rely on the DWI. Partial volume in a small or thin lesion on these 2 mm images, or a "
+                  "later stage when the ADC has begun to return towards normal (pseudonormalisation, from about one week after onset), can "
+                  "explain this; the time since onset is not given."))
         tasks.append({
-            "id": f"{cid}:locate", "caseId": cid, "type": "locate_finding", "title": "Find the restricted diffusion",
+            "id": f"{cid}:locate", "caseId": cid, "type": "locate_finding", "title": "Find the restricted diffusion" if f["low"] else "Find the bright lesion on DWI",
             "prompt": "Read the diffusion-weighted images from the skull base to the vertex. Mark the abnormal area (point or box), or state that you find none.",
             "modes": ["learn", "practice", "assess"], "seriesUids": [dwi["uid"], adc["uid"]],
             "start": {"seriesUid": dwi["uid"], "slice": "middle", "windowPreset": None},
@@ -363,8 +394,9 @@ def stroke_lessons() -> None:
                 "scoring": "authoritative",
                 "hints": [hint(1, "Axial images are shown as if you face the patient: the patient's right is on your left. Check the R and L letters.")],
                 "explanation": (f"{_share_text(tdwi)} of the expert mask lies on the patient's {f['side']} side of the brain's midline (median about "
-                                f"{_side_mm(tdwi):.0f} mm from it). Side matters clinically: a left hemisphere stroke in a right-handed patient "
-                                "often affects language, and weakness is on the opposite side of the body."),
+                                f"{_side_mm(tdwi):.0f} mm from it). Side matters clinically: a stroke in one cerebral hemisphere causes "
+                                "weakness, numbness or visual-field loss on the opposite side of the body, and a left hemisphere stroke in a "
+                                "right-handed patient often affects language."),
                 "bookAnchors": anc, "objectiveIds": ["ch26-o08"], "skillDimensions": ["orientation", "finding_localization"], "allowUncertain": True,
             })
     write_lessons(pack, "1.0.0", cases, tasks)
@@ -391,8 +423,8 @@ FX_TYPE = {
 }
 
 
-def wrist_lessons() -> None:
-    pack = Pack("peds-wrist-2")
+def wrist_lessons(pack_id: str = "peds-wrist-2") -> None:
+    pack = Pack(pack_id)
     cases, tasks = [], []
     for subj in pack.manifest["subjects"]:
         sers = sorted((s for s in pack.manifest["series"] if s["subjectKey"] == subj["key"]), key=lambda s: s["number"])
@@ -428,7 +460,7 @@ def wrist_lessons() -> None:
             "grading": {"kind": "findings", "matchRule": "center_in_target", "iouThreshold": 0.3, "slabToleranceMm": 1,
                         "inPlaneToleranceMm": 8, "allowNoFinding": True},
             "scoring": "authoritative",
-            "hints": [hint(1, "Follow both cortices of the distal radius on each view: look for a bulge, a kink, a step or a widened growth plate."),
+            "hints": [hint(1, "Follow both cortices of the radius and the ulna on each view: look for a bulge, a kink, a step or a widened growth plate."),
                       hint(5, "Reveal the reference answer.", {"type": "reveal"})],
             "explanation": PEDS_FX_NOTES + " Pixel spacing here is measured at the detector, so distances are slightly magnified.",
             "bookAnchors": anc, "objectiveIds": objs, "skillDimensions": ["finding_localization", "interpretation"], "allowUncertain": True,
@@ -459,14 +491,17 @@ def wrist_lessons() -> None:
 CALC_FORM = [("PLEOMORPHIC", "Fine pleomorphic (varying shapes and sizes)", "suspicious"),
              ("FINE_LINEAR_BRANCHING", "Fine linear or fine linear branching", "suspicious"),
              ("AMORPHOUS", "Amorphous (too small and hazy to give a shape)", "suspicious"),
-             ("PUNCTATE", "Punctate (tiny round dots)", "usually benign"),
+             ("PUNCTATE", "Punctate (tiny round dots)", "benign (round, smaller than 0.5 mm)"),
              ("LUCENT_CENTER", "Lucent-centered (rim with a dark centre)", "benign"),
              ("COARSE", "Coarse or 'popcorn'", "benign"),
              ("VASCULAR", "Vascular (parallel tracks along a vessel)", "benign")]
 
 
-def mammo_lessons() -> None:
-    pack = Pack("mammo-cbis-2")
+_bwc_why = "CBIS-DDSM records this finding as benign without callback: read as benign and not recalled, so it was not biopsied."
+
+
+def mammo_lessons(pack_id: str = "mammo-cbis-2") -> None:
+    pack = Pack(pack_id)
     cases, tasks = [], []
     for subj in pack.manifest["subjects"]:
         sers = sorted((s for s in pack.manifest["series"] if s["subjectKey"] == subj["key"]), key=lambda s: s["number"])
@@ -481,18 +516,21 @@ def mammo_lessons() -> None:
         what = tgts[0]["label"].split(": ", 1)[1]
         notes = tgts[0]["provenanceDetail"]["note"]
         path = "malignant" if "MALIGNANT" in notes else "benign"
+        bwc = "BENIGN_WITHOUT_CALLBACK" in notes  # read as benign and not recalled: no biopsy, no pathology
+        no_dist = "distribution not given" in what
         birads = re.search(r"BI-RADS assessment (\d)", notes).group(1)
         cid = f"mg-{pid.lower().replace('_', '')}"
         cc = next(s for s in sers if s["acquisition"]["ViewPosition"] == "CC")
         code = next(CODES)
         cases.append({
             "id": cid, "packId": pack.id, "neutralTitle": f"Patient {code} · Mammogram, {side} breast, CC and MLO",
-            "learnTitle": (f"{'Calcifications' if calc else 'Mass'} on CC and MLO mammograms ({path} at pathology; "
-                           f"{'DDSM region outline' if calc else 'mass outline'})"),
+            "learnTitle": (f"{'Calcifications' if calc else 'Mass'} on CC and MLO mammograms ("
+                           + ("benign without callback, not biopsied" if bwc else f"{path} at pathology") + "; "
+                           + f"{'DDSM region outline' if calc else 'mass outline'})"),
             "subjectKey": subj["key"], "studyUids": subj["studyUids"], "primarySeriesUid": cc["uid"], "region": ["breast"],
             "clinicalContext": None, "contextSource": None, "difficulty": "typical", "objectiveIds": objs, "bookAnchors": anc,
             "referenceSummary": (f"{'Calcifications' if calc else 'Mass'} outlined on both views ({what}); BI-RADS assessment {birads} and "
-                                 "pathology as given in the CBIS-DDSM case description. "
+                                 + ("outcome" if bwc else "pathology") + " as given in the CBIS-DDSM case description. "
                                  + ("Calcification outlines are the original DDSM regions, drawn around the group, not around each particle. "
                                     if calc else "Mass outlines were refined in CBIS-DDSM from the original DDSM contours. ")
                                  + "Digitised screen-film mammograms, downsampled 2x2; no pixel spacing, so distances are not measurable."),
@@ -507,7 +545,7 @@ def mammo_lessons() -> None:
             "grading": {"kind": "findings", "matchRule": "center_in_target", "iouThreshold": 0.3, "slabToleranceMm": 1,
                         "inPlaneToleranceMm": 30, "allowNoFinding": True},
             "scoring": "authoritative",
-            "hints": [hint(1, "Read the CC and the MLO quadrant by quadrant; a real finding is seen on both views."),
+            "hints": [hint(1, "Read the CC and the MLO quadrant by quadrant; a real finding is usually seen on both views."),
                       hint(2, "Found it on one view? On the other view it lies at about the same distance from the nipple."),
                       hint(5, "Reveal the reference answer.", {"type": "reveal"})],
             "explanation": MAMMO_NOTES + " These films have no pixel spacing, so the tolerance is counted in pixels.",
@@ -524,8 +562,9 @@ def mammo_lessons() -> None:
                     {"id": k.lower(), "text": text, "correct": k == form, "why": f"Typically {kind}."} for k, text, kind in CALC_FORM]},
                 "scoring": "authoritative",
                 "hints": [hint(1, "Use the magnifier: look at the size, shape and uniformity of the individual particles, not the outline of the group.")],
-                "explanation": (f"The case description gives the calcification type as {what.split(',', 1)[0]} ({path} at pathology, BI-RADS "
-                                f"assessment {birads}). " + MAMMO_NOTES),
+                "explanation": (f"The case description gives the calcification type as {what.split(',', 1)[0]} ("
+                                + ("benign without callback, i.e. read as benign and not recalled for biopsy; " if bwc else f"{path} at pathology, ")
+                                + f"BI-RADS assessment {birads}). " + MAMMO_NOTES),
                 "bookAnchors": anc, "objectiveIds": ["ch29-o05"], "skillDimensions": ["interpretation"], "allowUncertain": True,
             })
         else:
@@ -539,7 +578,7 @@ def mammo_lessons() -> None:
                 "start": {"seriesUid": cc["uid"], "slice": "first", "windowPreset": None}, "targets": [],
                 "grading": {"kind": "choice", "multiple": False, "options": [
                     {"id": m, "text": m.capitalize(), "correct": m == margin, "why": why} for m, why in (
-                        ("circumscribed", "Sharp, well-defined edge over most of the outline: favors a benign lesion."),
+                        ("circumscribed", "Sharp, well-defined edge over at least 75% of the outline (the rest may be obscured): favors a benign lesion."),
                         ("obscured", "Edge hidden by overlapping normal tissue."),
                         ("microlobulated", "Small undulations of the edge."),
                         ("indistinct", "Poorly defined edge, suggesting infiltration."),
@@ -552,17 +591,19 @@ def mammo_lessons() -> None:
             })
         tasks.append({
             "id": f"{cid}:pathology", "caseId": cid, "type": "differential", "title": "Benign or malignant?",
-            "prompt": f"From the {'form and distribution of the calcifications' if calc else 'shape, margin and density of the mass'}, was this finding benign or malignant at pathology?",
+            "prompt": (f"From the {('form of the calcifications' if no_dist else 'form and distribution of the calcifications') if calc else 'shape, margin and density of the mass'}, "
+                       + ("was this finding benign or malignant?" if bwc else "was this finding benign or malignant at pathology?")),
             "modes": ["learn", "practice", "assess"], "seriesUids": [s["uid"] for s in sers],
             "start": {"seriesUid": cc["uid"], "slice": "first", "windowPreset": None}, "targets": [],
             "grading": {"kind": "choice", "multiple": False, "options": [
                 {"id": "benign", "text": "Benign", "correct": path == "benign",
-                 "why": "The CBIS-DDSM pathology for this finding is benign." if path == "benign" else "The CBIS-DDSM pathology for this finding is malignant."},
+                 "why": _bwc_why if bwc else "The CBIS-DDSM pathology for this finding is benign." if path == "benign" else "The CBIS-DDSM pathology for this finding is malignant."},
                 {"id": "malignant", "text": "Malignant", "correct": path == "malignant",
-                 "why": "The CBIS-DDSM pathology for this finding is malignant." if path == "malignant" else "The CBIS-DDSM pathology for this finding is benign."}]},
+                 "why": _bwc_why if bwc else "The CBIS-DDSM pathology for this finding is malignant." if path == "malignant" else "The CBIS-DDSM pathology for this finding is benign."}]},
             "scoring": "authoritative",
-            "hints": [hint(1, "Irregular, spiculated masses and fine pleomorphic or linear branching calcifications are the suspicious patterns.")],
-            "explanation": (f"Pathology {path}, as given in the CBIS-DDSM case description ({what}; BI-RADS assessment {birads}). " + MAMMO_NOTES),
+            "hints": [hint(1, "Irregular, spiculated masses and fine pleomorphic or fine linear branching calcifications are classic suspicious patterns.")],
+            "explanation": (("Benign without callback (read as benign and not recalled, so not biopsied)" if bwc else f"Pathology {path}")
+                            + f", as given in the CBIS-DDSM case description ({what}; BI-RADS assessment {birads}). " + MAMMO_NOTES),
             "bookAnchors": anc, "objectiveIds": objs[:1], "skillDimensions": ["interpretation"], "allowUncertain": True,
         })
     write_lessons(pack, "1.0.0", cases, tasks)

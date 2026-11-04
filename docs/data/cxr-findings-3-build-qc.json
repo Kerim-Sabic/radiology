@@ -1,0 +1,780 @@
+{
+ "packId": "cxr-findings-3",
+ "generatedAt": "2026-11-04T00:50:56Z",
+ "packBytesExcludingLessons": 16430829,
+ "budgetBytes": 60000000,
+ "series": [
+  {
+   "uid": "2.25.250960985810521152633550861384774245059",
+   "short": "dx-898edb92ee",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 422780
+  },
+  {
+   "uid": "2.25.311893169940942371163376113529392745278",
+   "short": "dx-6dcd0524de",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 368164
+  },
+  {
+   "uid": "2.25.111299533943058090521401789282072120438",
+   "short": "dx-ae4b02e65b",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 412590
+  },
+  {
+   "uid": "2.25.88450531750631925587091082394752218275",
+   "short": "dx-c531b86d24",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 284928
+  },
+  {
+   "uid": "2.25.54503632611793503391973206769139632463",
+   "short": "dx-6777afcd52",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 370570
+  },
+  {
+   "uid": "2.25.211284601353974420496400381067367451086",
+   "short": "dx-2f63eafd2a",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 370334
+  },
+  {
+   "uid": "2.25.152198510244447036607497784022846793808",
+   "short": "dx-3ead970d3a",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 336550
+  },
+  {
+   "uid": "2.25.293075601358701940354546237893205551357",
+   "short": "dx-0918b51d3d",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 363742
+  },
+  {
+   "uid": "2.25.128711315755474737465724903105882457410",
+   "short": "dx-575cfff526",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 314746
+  },
+  {
+   "uid": "2.25.336128151621992932877521823341128985290",
+   "short": "dx-421eeafa79",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 349734
+  },
+  {
+   "uid": "2.25.41817821451752898043775699808777552809",
+   "short": "dx-f13061d53b",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 298764
+  },
+  {
+   "uid": "2.25.188577501119803093532913322493470419545",
+   "short": "dx-dcde25bf54",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 425616
+  },
+  {
+   "uid": "2.25.181109981565969466441115178224672336701",
+   "short": "dx-9e94a9442a",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 433408
+  },
+  {
+   "uid": "2.25.144640785919509306540385930048815689762",
+   "short": "dx-fff7bdd28b",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 424280
+  },
+  {
+   "uid": "2.25.63085311220236075820095052847525458006",
+   "short": "dx-82f39e8d4a",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 378870
+  },
+  {
+   "uid": "2.25.215232926406056964593981617633728338997",
+   "short": "dx-c9345daa77",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 400536
+  },
+  {
+   "uid": "2.25.100884175649106425033165451513981496331",
+   "short": "dx-0c16b12a3e",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 388854
+  },
+  {
+   "uid": "2.25.209885222743413825302932958462286185314",
+   "short": "dx-d6f0456327",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 384734
+  },
+  {
+   "uid": "2.25.224031266137334161574187019769281493738",
+   "short": "dx-348c781fd7",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 414572
+  },
+  {
+   "uid": "2.25.247456328694594891160090356467050334879",
+   "short": "dx-bf5df123ce",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 378728
+  },
+  {
+   "uid": "2.25.255916143469026427610302355640802152837",
+   "short": "dx-66b9165522",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 302220
+  },
+  {
+   "uid": "2.25.79111559664914637503228162953686125689",
+   "short": "dx-30523a52de",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 300786
+  },
+  {
+   "uid": "2.25.281139189952230425432894579445897898933",
+   "short": "dx-773ae1ea51",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 326896
+  },
+  {
+   "uid": "2.25.219279623197043071712367984018270858858",
+   "short": "dx-505b43e409",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 290860
+  },
+  {
+   "uid": "2.25.16135036613759817475996925994163087246",
+   "short": "dx-21353eff44",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 331236
+  },
+  {
+   "uid": "2.25.312493434874627143433947863045104846442",
+   "short": "dx-d0007069cd",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 444688
+  },
+  {
+   "uid": "2.25.53849490182801946418506321557645591335",
+   "short": "dx-dce35a7f58",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 395892
+  },
+  {
+   "uid": "2.25.185721112866640600889615454476584288082",
+   "short": "dx-1e5d645b21",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 399350
+  },
+  {
+   "uid": "2.25.17983787872349667055225897250109230336",
+   "short": "dx-9b91926719",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 360230
+  },
+  {
+   "uid": "2.25.330052884111058593155010706768186808815",
+   "short": "dx-e32cc95155",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 391734
+  },
+  {
+   "uid": "2.25.145941917079927923050805558717180118984",
+   "short": "dx-f746265aa4",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 406862
+  },
+  {
+   "uid": "2.25.102953908092089256569860955259632271445",
+   "short": "dx-87da95979b",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 398168
+  },
+  {
+   "uid": "2.25.319030646133021444649676018691514515822",
+   "short": "dx-5c69efd730",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 381714
+  },
+  {
+   "uid": "2.25.143107488285006011504738105528246439032",
+   "short": "dx-4436e8b991",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 440650
+  },
+  {
+   "uid": "2.25.195859691591572639252717461515850770955",
+   "short": "dx-788d464186",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 400606
+  },
+  {
+   "uid": "2.25.174695116851164824490441147745917899195",
+   "short": "dx-1e3c074b11",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 452584
+  },
+  {
+   "uid": "2.25.33939923564745584631109182181668281288",
+   "short": "dx-8976fdf61c",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 342822
+  },
+  {
+   "uid": "2.25.8987907894436375956711794684057958575",
+   "short": "dx-aae5cd69e5",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 407232
+  },
+  {
+   "uid": "2.25.149864574576684915262256175663965836480",
+   "short": "dx-5142f8ff3f",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 416700
+  },
+  {
+   "uid": "2.25.61696017881972303153199662716613753622",
+   "short": "dx-2713161d45",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 365910
+  }
+ ],
+ "targets": [
+  "nih-00000744_006_atelectasis",
+  "nih-00000808_002_atelectasis",
+  "nih-00000830_000_atelectasis",
+  "nih-00000830_000_lung-mass",
+  "nih-00001534_005_cardiomegaly",
+  "nih-00002763_031_cardiomegaly",
+  "nih-00003440_000_atelectasis",
+  "nih-00003440_000_lung-mass",
+  "nih-00004381_021_cardiomegaly",
+  "nih-00004533_014_cardiomegaly",
+  "nih-00006736_000_lung-nodule",
+  "nih-00007037_000_cardiomegaly",
+  "nih-00007629_001_pneumonia",
+  "nih-00008008_027_lung-mass",
+  "nih-00008554_009_atelectasis",
+  "nih-00010575_002_atelectasis",
+  "nih-00010575_002_pleural-effusion",
+  "nih-00011502_001_cardiomegaly",
+  "nih-00012288_000_cardiomegaly",
+  "nih-00013685_000_atelectasis",
+  "nih-00014574_000_cardiomegaly",
+  "nih-00015058_024_pleural-effusion",
+  "nih-00015400_001_cardiomegaly",
+  "nih-00015425_012_cardiomegaly",
+  "nih-00015719_005_cardiomegaly",
+  "nih-00016564_000_cardiomegaly",
+  "nih-00017188_002_pleural-effusion",
+  "nih-00017199_005_lung-nodule",
+  "nih-00017448_000_cardiomegaly",
+  "nih-00017500_002_atelectasis",
+  "nih-00017500_002_pleural-effusion",
+  "nih-00017514_008_cardiomegaly",
+  "nih-00018233_057_cardiomegaly",
+  "nih-00018393_000_infiltrate",
+  "nih-00018393_000_pneumonia",
+  "nih-00018657_003_pleural-effusion",
+  "nih-00019187_000_cardiomegaly",
+  "nih-00019426_000_cardiomegaly",
+  "nih-00021364_001_cardiomegaly",
+  "nih-00022572_063_pleural-effusion",
+  "nih-00022961_008_pneumonia",
+  "nih-00023078_000_lung-nodule",
+  "nih-00023283_005_pneumonia",
+  "nih-00025686_000_pleural-effusion",
+  "nih-00028018_000_cardiomegaly"
+ ],
+ "qcReview": {
+  "tool": "scripts/data/qc_render.py <packId> <outDir> [--crop]: decodes the packed DICOM and draws every reference target on it (contour sets on the image with the largest outlined area), so a shifted, flipped or misplaced outline would show",
+  "selectionRule": "NIH ChestX-ray14 PA films of adults (18-90) with a radiologist box whose label is also in the report labels, one film per patient, no patient of an earlier pack and no film reviewed in rounds 1 or 4.",
+  "review": "Every candidate drawn with its boxes (full film and zoom) and kept only where the boxed finding is clearly visible.",
+  "kept": 40,
+  "dropped": {
+   "00000072_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00000211_010.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00000457_004.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00000468_033.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00000643_002.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00000865_006.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00001320_003.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00001673_016.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00002176_007.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00003787_003.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00004296_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00004968_003.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00006751_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00007557_026.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00008547_001.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00008716_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00009229_007.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00009403_002.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00009889_018.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00010652_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00010936_011.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00011576_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00012045_019.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00012415_002.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00012636_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00012637_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00014198_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00014447_004.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00014626_017.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00014976_003.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00015649_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00015794_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00015831_008.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00017151_003.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00017255_001.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00018419_001.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00019495_004.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00021007_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00021700_010.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00021860_002.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00021862_004.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00022021_002.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00022178_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00025228_007.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00025270_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00025662_006.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00026769_010.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00026810_001.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00027094_003.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00027758_004.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00027927_009.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00028383_002.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00028620_000.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00028628_020.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00030260_005.png": "boxed finding not clearly visible on review of the 1024 px film (full view and zoom); too subtle to teach from here",
+   "00004342_023.png": "heart size borderline by eye (cardiothoracic ratio near 0.5): not a clear example of cardiomegaly",
+   "00011557_003.png": "heart size borderline by eye (cardiothoracic ratio near 0.5): not a clear example of cardiomegaly",
+   "00012793_000.png": "heart size borderline by eye (cardiothoracic ratio near 0.5): not a clear example of cardiomegaly",
+   "00020986_000.png": "heart size borderline by eye (cardiothoracic ratio near 0.5): not a clear example of cardiomegaly",
+   "00022706_001.png": "heart size borderline by eye (cardiothoracic ratio near 0.5): not a clear example of cardiomegaly",
+   "00025747_000.png": "heart size borderline by eye (cardiothoracic ratio near 0.5): not a clear example of cardiomegaly",
+   "00026087_000.png": "heart size borderline by eye (cardiothoracic ratio near 0.5): not a clear example of cardiomegaly",
+   "00027685_003.png": "heart size borderline by eye (cardiothoracic ratio near 0.5): not a clear example of cardiomegaly",
+   "00027797_000.png": "heart size borderline by eye (cardiothoracic ratio near 0.5): not a clear example of cardiomegaly",
+   "00010959_010.png": "not a focal finding to locate: diffuse opacities in both lungs",
+   "00013051_000.png": "not a focal finding to locate: diffuse opacities in both lungs",
+   "00021772_011.png": "the box covers most of a lung or spans both lungs: not a focal finding to locate",
+   "00022084_000.png": "the box covers most of a lung or spans both lungs: not a focal finding to locate",
+   "00028625_000.png": "too subtle on a very low-contrast film",
+   "00029579_005.png": "too subtle on a very low-contrast film",
+   "00000344_003.png": "boxed finding not clearly visible on a low-contrast film with several tubes and a large unboxed opacity",
+   "00001170_046.png": "unexplained air-fluid level next to the finding on a complex post-sternotomy film",
+   "00001248_038.png": "unexplained air-fluid level just below the box; complex film",
+   "00002106_000.png": "expiration film with an air-fluid level inside the box and a large other opacity; complex film",
+   "00002290_001.png": "nodule box over the breast shadow; too subtle",
+   "00004547_003.png": "nodule box over a rib; too subtle",
+   "00004893_085.png": "not a standard upright PA film (AP appearance, low lung volumes)",
+   "00007882_001.png": "the box covers only the edge of a larger opacity, and diffuse unboxed nodules: a correct mark could be graded wrong",
+   "00008386_000.png": "nodule box on a rib margin: could be a rib or cartilage density",
+   "00008841_025.png": "complex film with several tubes and lines and an air-fluid level",
+   "00009342_000.png": "not a standard upright PA film; the opacity extends beyond the box",
+   "00010125_004.png": "mass box on an opacity of about 2 cm over ribs: 'nodule' would be the better answer",
+   "00010770_000.png": "too subtle (could be the normal minor fissure)",
+   "00011831_008.png": "boxed finding not clearly visible on a complex film with a drain and subcutaneous emphysema",
+   "00011857_001.png": "overlapping boxes, with a gastric air-fluid level inside the effusion box",
+   "00012094_040.png": "complex film with many lines, subcutaneous emphysema and a large air-fluid level",
+   "00012376_011.png": "complex film: one lung largely opaque with a drain",
+   "00012670_000.png": "heart borders blurred by basal opacity: heart size cannot be judged",
+   "00013111_069.png": "complex film with a drain, subcutaneous emphysema and lines; the finding is hard to judge",
+   "00013118_008.png": "the boxed finding looks like a small rounded opacity, not recognisable atelectasis: misleading",
+   "00013471_002.png": "basal pneumothorax too subtle on a complex film with tubes and lines",
+   "00013911_000.png": "pleural-based lesion over a rib that could be pleural thickening; complex film",
+   "00013977_005.png": "effusion barely blunting the angle while an unboxed mass dominates the film",
+   "00013991_000.png": "ill-defined opacity of about 3 cm: mass, nodule or infiltrate cannot be decided",
+   "00014095_003.png": "subtle linear atelectasis while a larger unboxed opacity would be marked as the main abnormality",
+   "00014280_000.png": "extensive unboxed disease in the other lung dominates the small boxed nodule",
+   "00014663_013.png": "diffuse nodular opacities in both lungs: not a focal finding to locate",
+   "00014706_007.png": "heart size borderline and its borders poorly defined",
+   "00014778_000.png": "nodule faint over ribs; too subtle",
+   "00014870_004.png": "boxed atelectasis cannot be told from post-operative change at a clipped base",
+   "00015300_000.png": "mass box inside an overlapping atelectasis box on a rotated, hazy film",
+   "00015792_005.png": "the boxed nodule is one of many in both lungs: a correct mark could be graded wrong",
+   "00016009_008.png": "not a standard PA film, with a gastric air-fluid level in the box",
+   "00016587_069.png": "an unboxed hilar mass is more conspicuous than the boxed nodule",
+   "00016606_000.png": "low-volume, probably AP film: heart size cannot be judged",
+   "00016837_002.png": "overlapping effusion and atelectasis boxes; small effusion",
+   "00016964_011.png": "minimal blunting with a gastric air-fluid level beside the box; too subtle",
+   "00016987_022.png": "not a standard PA film (AP, leads, catheter); complex",
+   "00016990_000.png": "low-contrast, low-volume film: heart size cannot be judged",
+   "00017028_000.png": "faint nodule on a rib crossing; too subtle",
+   "00017346_000.png": "tiny density at the lung edge that may not be in the lung; too subtle",
+   "00017582_003.png": "effusion barely visible on a complex film",
+   "00018102_001.png": "large unboxed masses in both lungs dominate the tiny effusion box: misleading",
+   "00018366_000.png": "faint nodule in the breast shadow; too subtle",
+   "00018496_007.png": "apical pleural line cannot be told from rib edges; unboxed effusion and a catheter compete",
+   "00018865_008.png": "pneumothorax not clearly seen on a film with chest tubes and surgical emphysema",
+   "00018980_002.png": "not a standard upright PA film; the boxed finding is not clearly an effusion",
+   "00019013_002.png": "an unboxed hilar mass and other opacities compete with the small boxed nodule",
+   "00019154_002.png": "the boxed band could be scarring or a vessel; a large cardiac silhouette competes",
+   "00019313_000.png": "faint opacity of about 3 cm: too subtle, and mass or nodule cannot be decided",
+   "00019373_036.png": "complex AP film with chest tubes and extensive opacity",
+   "00019706_014.png": "unexplained air-fluid level inside the box, with a chest tube: misleading",
+   "00019767_016.png": "effusion not clearly identifiable among other right-sided changes",
+   "00020332_000.png": "the boxed nodule may be a nipple shadow (a similar density at the same level on the other side)",
+   "00020564_000.png": "subtle effusion while the unboxed enlarged heart dominates",
+   "00020671_010.png": "badly rotated, non-standard film with a collapsed lung and catheters",
+   "00020819_002.png": "heart borders obscured: heart size cannot be judged",
+   "00021024_022.png": "the opacity cannot be told apart from the left heart border; too subtle",
+   "00021458_000.png": "the boxed opacity is not distinct from coarse opacities in both lungs",
+   "00021711_014.png": "too subtle on a complex film (volume loss, pleural thickening, clips)",
+   "00021796_000.png": "the boxed opacity cannot be told apart from the raised right hemidiaphragm; rotated film",
+   "00021840_016.png": "the effusion box overlaps an infiltrate box; small effusion",
+   "00021972_001.png": "air-fluid level at the base next to the finding, with a drain and clips: too complex for a located-finding case",
+   "00022155_008.png": "too subtle on a post-operative film with wires and tubes",
+   "00022237_002.png": "mass box over the right heart border and hilum: the mass cannot be told from them",
+   "00022707_003.png": "too subtle on a complex film",
+   "00022837_005.png": "not a standard upright PA film (badly tilted portable-type film with lines and leads)",
+   "00022977_000.png": "tilted, rotated film; the nodule is faint among surgical clips",
+   "00023089_004.png": "modest boxed opacity while an enlarged heart is neither boxed nor labelled: misleading",
+   "00023168_000.png": "mass box over the dome of the right hemidiaphragm: the mass cannot be told from the diaphragm",
+   "00025368_033.png": "too subtle; bullous emphysema confounds the pneumothorax",
+   "00025521_003.png": "too subtle; unexplained gas under the right hemidiaphragm",
+   "00026196_001.png": "small mass box at the hilum where the mass cannot be told from it; second box just below",
+   "00026398_000.png": "nodule box over ribs; too subtle",
+   "00026586_009.png": "too subtle on a complex film (chest tube, clips, subcutaneous emphysema)",
+   "00026886_004.png": "complex post-operative film with clips and a device over the boxed area",
+   "00026889_000.png": "heart borders hidden by opacities; the box covers much of both lungs",
+   "00026983_001.png": "nodule box over the first rib and costal cartilage (bone pseudo-nodule)",
+   "00028640_008.png": "low-contrast film with heavy breast overlap: the effusion cannot be judged",
+   "00029259_027.png": "too subtle pleural line, with a drain and a fluid level",
+   "00029631_006.png": "complex post-operative film where the finding is not distinct",
+   "00029647_002.png": "very low-contrast film with poor inspiration: heart size cannot be judged",
+   "00029906_000.png": "heart borders hidden by lung opacities; size borderline",
+   "00029909_003.png": "too subtle; the apical lucency could be a bulla",
+   "00030413_003.png": "nodule box over crossing ribs; too subtle",
+   "00030606_006.png": "complex film with chest tubes, subcutaneous emphysema and an air-fluid level"
+  },
+  "leakCheck": "study/series descriptions, role and display notes checked against LEAK (dataset names, diagnoses) at build"
+ }
+}

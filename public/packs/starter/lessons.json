@@ -48,7 +48,7 @@
      "note": "Normal cardiac CT anatomy levels"
     }
    ],
-   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC) for heart, both lungs, esophagus and spinal cord. Only these structures are referenced; nothing else in the study has been reviewed, so the study is not labelled normal or abnormal.",
+   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC) for heart, both lungs, esophagus and spinal cord. Only these structures are referenced; nothing else in the study has been reviewed, so the study is not labelled normal or abnormal. The two rounded grey shadows low in the back of the right lung on some slices are the top of the right diaphragm cut obliquely, not masses: scroll down and they join the diaphragm.",
    "learnNotes": "Axial CT is displayed as if you stand at the patient's feet looking up: the patient's right is on your left, anterior is at the top. Check the side letters at the image edges before naming any left/right structure.\n\nWindow first, then search: the lung window (about W1500/L−600) shows vessels, fissures and airways; the mediastinal window (about W350/L50) shows the heart, great vessels, esophagus and nodes.\n\nThe yellow outlines are radiotherapy planning contours drawn by the dataset's experts. They follow radiotherapy definitions — for example the heart contour can include the pericardium, and the spinal cord contour may follow the canal — so they are excellent for locating structures but are not always the exact anatomical boundary you would trace for a report."
   },
   {
@@ -98,7 +98,7 @@
      "note": "Evaluating the heart on chest radiographs"
     }
    ],
-   "referenceSummary": "No finding-level reference exists for this radiograph. Tasks are about technique and a systematic search, checked against a source-linked checklist (self-review). The patient is from the COVID-19-AR research collection; that cohort label is not a finding on this image.",
+   "referenceSummary": "No finding-level reference exists for this radiograph. Tasks are about technique and a systematic search, checked against a source-linked checklist (self-review). The patient is from the COVID-19-AR research collection; that cohort label is not a finding on this image. Also visible: an ECG electrode over the right mid zone (the small ring), ECG leads along the left chest wall and a small metal object over the trachea at the neck; all lie outside the lungs.",
    "learnNotes": "This patient has a portable AP chest radiograph and, one day later (dates shifted, interval preserved), a CT ('CT PE CHEST') whose 'locator' image is included here. That image is a single 10 mm axial slice the CT scanner acquires to set up the scan; other scanners use a low-dose frontal projection (scout, topogram) instead. Neither is a diagnostic image, and neither should be read as a chest radiograph.\n\nThe radiograph is stored as MONOCHROME1 (higher pixel values display darker); the viewer handles that so bone still appears white. No side marker is recorded in the file header, so the viewer shows 'orientation not recorded' rather than guessing; the 'L' burned into the image itself is the side evidence."
   },
   {
@@ -138,7 +138,7 @@
      "note": "Water: dark on T1, bright on T2"
     }
    ],
-   "referenceSummary": "Source manual zonal segmentation (PROSTATEx-Seg-Zones): peripheral zone, transition zone, prostatic urethra and anterior fibromuscular stroma. No lesion annotation is used here.",
+   "referenceSummary": "Source manual zonal segmentation (PROSTATEx-Seg-Zones): peripheral zone, transition zone, prostatic urethra and anterior fibromuscular stroma. No lesion annotation is used here. Also visible, not outlined: a small very bright cyst in the left transition zone, typical of a benign hyperplasia cyst.",
    "learnNotes": "MR intensities are relative signal, not Hounsfield units — there are no fixed windows; adjust brightness/contrast by eye.\n\nThis axial T2-weighted series (TR 6840 ms, TE 104 ms at 3 T) shows fluid bright, e.g. urine in the bladder. Prostate zonal anatomy is beyond the book's scope; the book is linked for how to recognise T1 versus T2 weighting."
   }
  ],

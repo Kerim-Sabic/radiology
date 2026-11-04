@@ -26284,9 +26284,9 @@
    },
    "windowPresets": [
     {
-     "label": "File preset",
-     "center": -600.0,
-     "width": 1600.0
+     "label": "Auto (p1-p99)",
+     "center": 3212.0,
+     "width": 6406.0
     }
    ],
    "encoding": {
@@ -28339,9 +28339,9 @@
    },
    "windowPresets": [
     {
-     "label": "File: NORMAL",
-     "center": -600.0,
-     "width": 1600.0
+     "label": "Auto (p1-p99)",
+     "center": 6148.5,
+     "width": 12211.0
     }
    ],
    "encoding": {

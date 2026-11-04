@@ -4,10 +4,10 @@
  * the condition list and the curriculum, so a claim can never be larger than what members actually get.
  */
 export const LANDING_FACTS = {
-  /** Distinct real patients (shown as "350+"). */
-  patients: 350,
-  /** Image tasks across all cases (shown as "1,000+"). */
-  tasks: 1000,
+  /** Distinct real patients (shown as "600+"). */
+  patients: 600,
+  /** Image tasks across all cases (shown as "1,700+"). */
+  tasks: 1700,
   /** Conditions in the condition search (shown as "75+"). */
   conditions: 75,
   /** Learning objectives mapped from the book (exact). */

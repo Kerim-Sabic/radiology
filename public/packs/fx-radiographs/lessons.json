@@ -67,7 +67,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One fracture outlined by the FracAtlas annotators (two expert radiologists and an orthopedist). Only one view of this injury is installed, and alignment, joint involvement and soft tissues are not referenced.",
+   "referenceSummary": "One fracture outlined by the FracAtlas annotators (two expert radiologists and an orthopedist). Only one view of this injury is installed, and alignment, joint involvement and soft tissues are not referenced. Also visible, not outlined: two other hands lie in the field, one gripping the forearm at the top edge and one across the fingers, so their bones overlap the radius, ulna and fingers.",
    "learnNotes": "An acute fracture is a break in the cortex: look for a lucent (dark) line, a step or angle in the cortical outline, or a denser band where fragments overlap. Trace the cortex of every bone on the film, including the edges of the image. Then describe it: which bone and where (proximal, shaft, distal, into the joint or not), the direction of the line, the number of fragments, and displacement and angulation of the distal fragment. Nutrient canals, growth plates and overlapping soft-tissue edges mimic fractures; a second view at 90 degrees is standard."
   },
   {

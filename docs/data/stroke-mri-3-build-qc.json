@@ -1,0 +1,798 @@
+{
+ "packId": "stroke-mri-3",
+ "generatedAt": "2026-11-03T16:04:03Z",
+ "packBytesExcludingLessons": 23154280,
+ "budgetBytes": 50000000,
+ "series": [
+  {
+   "uid": "2.25.338453204701571802803343656726788908093",
+   "short": "mr-be78783e7c",
+   "modality": "MR",
+   "instances": 33,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 33
+   },
+   "bytes": 196716
+  },
+  {
+   "uid": "2.25.65892124161803360437609225458415119349",
+   "short": "mr-1c35d4a89f",
+   "modality": "MR",
+   "instances": 33,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 33
+   },
+   "bytes": 261030
+  },
+  {
+   "uid": "2.25.118243075026131631311216543283232257788",
+   "short": "mr-3d0151df14",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 339198
+  },
+  {
+   "uid": "2.25.27184656356306956159782807345524653570",
+   "short": "mr-128efe0ab9",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 395292
+  },
+  {
+   "uid": "2.25.141540731948647504841276382165460530965",
+   "short": "mr-630586920c",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 323140
+  },
+  {
+   "uid": "2.25.270290222641325653623908420559570790429",
+   "short": "mr-addcaad48c",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 384694
+  },
+  {
+   "uid": "2.25.13345413169414743139313705329347666224",
+   "short": "mr-6cfe8643f0",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 301992
+  },
+  {
+   "uid": "2.25.54603444468721572426374562332304195929",
+   "short": "mr-b7ff9abf55",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 357312
+  },
+  {
+   "uid": "2.25.70280791711614721028481275681559510479",
+   "short": "mr-b4341970ca",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 328384
+  },
+  {
+   "uid": "2.25.298673586731245677019961813156879141971",
+   "short": "mr-4610737668",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 384884
+  },
+  {
+   "uid": "2.25.188350925433254846864400189707375732868",
+   "short": "mr-1a55294cc5",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 318498
+  },
+  {
+   "uid": "2.25.106678838250389194611110978505848859349",
+   "short": "mr-1393d28177",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 365586
+  },
+  {
+   "uid": "2.25.29654737203588989838184916089402485027",
+   "short": "mr-1727607ca0",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 322302
+  },
+  {
+   "uid": "2.25.300064425626459833657405548847974762558",
+   "short": "mr-77acf9f1db",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 388868
+  },
+  {
+   "uid": "2.25.323403225150804176878951772211763379108",
+   "short": "mr-d5908afa12",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 312470
+  },
+  {
+   "uid": "2.25.154442637651979503847415388608142829368",
+   "short": "mr-dd9564a755",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 363860
+  },
+  {
+   "uid": "2.25.35119916717327800172455048919255169883",
+   "short": "mr-81dc008782",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 325044
+  },
+  {
+   "uid": "2.25.165137840963839827995737621448914247424",
+   "short": "mr-e7fe00dd84",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 368112
+  },
+  {
+   "uid": "2.25.163336471499670663258351261199981875687",
+   "short": "mr-d5e8d6337f",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 316340
+  },
+  {
+   "uid": "2.25.230386291271488501609378846693511666791",
+   "short": "mr-a53668aa19",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 369564
+  },
+  {
+   "uid": "2.25.120244764017482069776657687204923570644",
+   "short": "mr-a05ce75f42",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 286934
+  },
+  {
+   "uid": "2.25.41107260752368513219037537182978044057",
+   "short": "mr-5c495a7149",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 343322
+  },
+  {
+   "uid": "2.25.227317775038175219109482409785959668136",
+   "short": "mr-cd5940cb52",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 317810
+  },
+  {
+   "uid": "2.25.167075821561902105011327847772430192118",
+   "short": "mr-2343b93d8a",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 370350
+  },
+  {
+   "uid": "2.25.215318204473119106976448762776011837978",
+   "short": "mr-b132ebb7aa",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 285300
+  },
+  {
+   "uid": "2.25.273682601573002063395969276597265743628",
+   "short": "mr-12964f16a1",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 333692
+  },
+  {
+   "uid": "2.25.145845138673517261032976840016813105598",
+   "short": "mr-eae724b301",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 307476
+  },
+  {
+   "uid": "2.25.335972674797075260621753563927152593566",
+   "short": "mr-57ab37315e",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 362598
+  },
+  {
+   "uid": "2.25.44593990765968842384637777796566648709",
+   "short": "mr-2c4a5dfd9c",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 328260
+  },
+  {
+   "uid": "2.25.23420250620992723968781963116662697935",
+   "short": "mr-7deeedfe27",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 384488
+  },
+  {
+   "uid": "2.25.143084654156013243996594597447013868145",
+   "short": "mr-940280e4a0",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 303700
+  },
+  {
+   "uid": "2.25.139401520210082573392166455553585520213",
+   "short": "mr-1dbfde885b",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 363564
+  },
+  {
+   "uid": "2.25.146583670592734083333752428800129726195",
+   "short": "mr-68dd8fd80d",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 299570
+  },
+  {
+   "uid": "2.25.335876973854184600411969901737969938261",
+   "short": "mr-37f8f5924b",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 342218
+  },
+  {
+   "uid": "2.25.227247358630188559065645244546233047292",
+   "short": "mr-60cfa1a021",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 310382
+  },
+  {
+   "uid": "2.25.101078875828327107462633741410998185106",
+   "short": "mr-344ece5627",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 363032
+  },
+  {
+   "uid": "2.25.59147828235642089651925508832197462272",
+   "short": "mr-049b899b44",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 334078
+  },
+  {
+   "uid": "2.25.123719072849775255662587110259489212189",
+   "short": "mr-91316e0c07",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 395804
+  },
+  {
+   "uid": "2.25.157223305998124163537185350128986766148",
+   "short": "mr-7433617b7a",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 315348
+  },
+  {
+   "uid": "2.25.259132138851803130462482930450711734388",
+   "short": "mr-5bd1e1292a",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 370968
+  },
+  {
+   "uid": "2.25.229262281142231167258289139695474576806",
+   "short": "mr-f37c58f047",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 316034
+  },
+  {
+   "uid": "2.25.189313254247729284032073484246943174701",
+   "short": "mr-c790eda765",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 362776
+  },
+  {
+   "uid": "2.25.336730539055664319796804792091974305978",
+   "short": "mr-e872f1b396",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 320370
+  },
+  {
+   "uid": "2.25.15423678237469250854388973405173600531",
+   "short": "mr-39e60b5820",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 378392
+  },
+  {
+   "uid": "2.25.96690373317553412838559650103280879545",
+   "short": "mr-691268cfaa",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 283002
+  },
+  {
+   "uid": "2.25.3269134994400909743921911411524444303",
+   "short": "mr-e16483f562",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 320556
+  },
+  {
+   "uid": "2.25.318156986704615019551060709870738570527",
+   "short": "mr-2dc5edc8b3",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 317230
+  },
+  {
+   "uid": "2.25.279890932750315431293371188357506184459",
+   "short": "mr-b4dfbda30a",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 352222
+  },
+  {
+   "uid": "2.25.181532046150449488081757159652381045738",
+   "short": "mr-4e5c45c926",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 295934
+  },
+  {
+   "uid": "2.25.63807922210791500810451132536159697923",
+   "short": "mr-de196ab411",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 338534
+  },
+  {
+   "uid": "2.25.33001404732409341596698644884379439075",
+   "short": "mr-a254076433",
+   "modality": "MR",
+   "instances": 75,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 75
+   },
+   "bytes": 360552
+  },
+  {
+   "uid": "2.25.206312699763662578509109433005184320747",
+   "short": "mr-cf9e4dc2d3",
+   "modality": "MR",
+   "instances": 75,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 75
+   },
+   "bytes": 437928
+  },
+  {
+   "uid": "2.25.13794287637254385342413227359876913008",
+   "short": "mr-d6b278b5c8",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 302682
+  },
+  {
+   "uid": "2.25.41537309538920605516247986503052987233",
+   "short": "mr-21cc5f09d8",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 344258
+  },
+  {
+   "uid": "2.25.44376116612172051726778577630136077328",
+   "short": "mr-50e4dd58be",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 306544
+  },
+  {
+   "uid": "2.25.122757542350544762866089770957165767401",
+   "short": "mr-9f0a946ce4",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 349184
+  },
+  {
+   "uid": "2.25.10143671560944801139793844576845605639",
+   "short": "mr-201dc46ccf",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 281280
+  },
+  {
+   "uid": "2.25.311751633028959852710120808659705787889",
+   "short": "mr-3aec3b7d3a",
+   "modality": "MR",
+   "instances": 73,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 73
+   },
+   "bytes": 329210
+  },
+  {
+   "uid": "2.25.199949542151625512625379195139001048384",
+   "short": "mr-a1e0d927a0",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 295124
+  },
+  {
+   "uid": "2.25.48978158052584858046590837843879762294",
+   "short": "mr-b58b5e33ad",
+   "modality": "MR",
+   "instances": 72,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 72
+   },
+   "bytes": 332732
+  }
+ ],
+ "targets": [
+  "isles-strokecase0137_dwi_ischemic-stroke",
+  "isles-strokecase0137_adc_ischemic-stroke",
+  "isles-strokecase0143_dwi_ischemic-stroke",
+  "isles-strokecase0143_adc_ischemic-stroke",
+  "isles-strokecase0158_dwi_ischemic-stroke",
+  "isles-strokecase0158_adc_ischemic-stroke",
+  "isles-strokecase0010_dwi_ischemic-stroke",
+  "isles-strokecase0010_adc_ischemic-stroke",
+  "isles-strokecase0026_dwi_ischemic-stroke",
+  "isles-strokecase0026_adc_ischemic-stroke",
+  "isles-strokecase0099_dwi_ischemic-stroke",
+  "isles-strokecase0099_adc_ischemic-stroke",
+  "isles-strokecase0130_dwi_ischemic-stroke",
+  "isles-strokecase0130_adc_ischemic-stroke",
+  "isles-strokecase0049_dwi_ischemic-stroke",
+  "isles-strokecase0049_adc_ischemic-stroke",
+  "isles-strokecase0220_dwi_ischemic-stroke",
+  "isles-strokecase0220_adc_ischemic-stroke",
+  "isles-strokecase0109_dwi_ischemic-stroke",
+  "isles-strokecase0109_adc_ischemic-stroke",
+  "isles-strokecase0118_dwi_ischemic-stroke",
+  "isles-strokecase0118_adc_ischemic-stroke",
+  "isles-strokecase0084_dwi_ischemic-stroke",
+  "isles-strokecase0084_adc_ischemic-stroke",
+  "isles-strokecase0025_dwi_ischemic-stroke",
+  "isles-strokecase0025_adc_ischemic-stroke",
+  "isles-strokecase0038_dwi_ischemic-stroke",
+  "isles-strokecase0038_adc_ischemic-stroke",
+  "isles-strokecase0011_dwi_ischemic-stroke",
+  "isles-strokecase0011_adc_ischemic-stroke",
+  "isles-strokecase0105_dwi_ischemic-stroke",
+  "isles-strokecase0105_adc_ischemic-stroke",
+  "isles-strokecase0204_dwi_ischemic-stroke",
+  "isles-strokecase0204_adc_ischemic-stroke",
+  "isles-strokecase0052_dwi_ischemic-stroke",
+  "isles-strokecase0052_adc_ischemic-stroke",
+  "isles-strokecase0036_dwi_ischemic-stroke",
+  "isles-strokecase0036_adc_ischemic-stroke",
+  "isles-strokecase0024_dwi_ischemic-stroke",
+  "isles-strokecase0024_adc_ischemic-stroke",
+  "isles-strokecase0013_dwi_ischemic-stroke",
+  "isles-strokecase0013_adc_ischemic-stroke",
+  "isles-strokecase0003_dwi_ischemic-stroke",
+  "isles-strokecase0003_adc_ischemic-stroke",
+  "isles-strokecase0244_dwi_ischemic-stroke",
+  "isles-strokecase0244_adc_ischemic-stroke",
+  "isles-strokecase0033_dwi_ischemic-stroke",
+  "isles-strokecase0033_adc_ischemic-stroke",
+  "isles-strokecase0048_dwi_ischemic-stroke",
+  "isles-strokecase0048_adc_ischemic-stroke",
+  "isles-strokecase0092_dwi_ischemic-stroke",
+  "isles-strokecase0092_adc_ischemic-stroke",
+  "isles-strokecase0237_dwi_ischemic-stroke",
+  "isles-strokecase0237_adc_ischemic-stroke",
+  "isles-strokecase0078_dwi_ischemic-stroke",
+  "isles-strokecase0078_adc_ischemic-stroke",
+  "isles-strokecase0116_dwi_ischemic-stroke",
+  "isles-strokecase0116_adc_ischemic-stroke",
+  "isles-strokecase0246_dwi_ischemic-stroke",
+  "isles-strokecase0246_adc_ischemic-stroke"
+ ],
+ "qcReview": {
+  "tool": "scripts/data/qc_render.py <packId> <outDir> [--crop]: decodes the packed DICOM and draws every reference target on it (contour sets on the image with the largest outlined area), so a shifted, flipped or misplaced outline would show",
+  "selectionRule": "ISLES 2022 cases used in no earlier pack with a lesion of at least 2 ml on the 2 mm DWI grid, 30 taken at even steps across the range of lesion volumes.",
+  "review": "Every DWI and ADC outline drawn on the slice with the largest outlined area and checked by eye.",
+  "kept": 30,
+  "dropped": {},
+  "leakCheck": "study/series descriptions, role and display notes checked against LEAK (dataset names, diagnoses) at build"
+ }
+}

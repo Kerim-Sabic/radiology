@@ -106,12 +106,13 @@ def _interp_text(s: str) -> str:
     return " or ".join(p[0].lower() + p[1:] for p in parts)
 
 
-def build_breast_r4() -> tuple[list, list, list, dict]:
+def build_breast_r4(sel_name: str = "selection-r4.json", dropped: dict | None = None, tag: str = "us-breast-2") -> tuple[list, list, list, dict]:
+    dropped = BREAST_R4_DROPPED if dropped is None else dropped
     from PIL import Image
     results, targets, geoms = [], [], []
-    sel = json.loads((RAW / "BrEaST" / "selection-r4.json").read_text(encoding="utf-8"))
+    sel = json.loads((RAW / "BrEaST" / sel_name).read_text(encoding="utf-8"))
     for c in sel["cases"]:
-        if c["case"] in BREAST_R4_DROPPED:
+        if c["case"] in dropped:
             continue
         r = c["row"]
         stem = f"case{int(c['case']):03d}"
@@ -161,7 +162,7 @@ def build_breast_r4() -> tuple[list, list, list, dict]:
         geoms.append(g)
         results.append((sr, skey, {"sourceId": BREAST_SOURCE["id"],
                                    "linkage": f"Case {stem} of Breast-Lesions-USG, which has one scan per patient (256 scans, 256 patients)."}))
-    log(f"[us-breast-2] {len(results)} cases")
+    log(f"[{tag}] {len(results)} cases")
     return results, targets, geoms, {}
 
 
@@ -196,12 +197,13 @@ def _isles_side(mask: np.ndarray, brain: np.ndarray, affine: np.ndarray) -> dict
     return {"leftShare": left, "leftVoxels": nleft if len(xs) else None, "medianMidlineMm": dist, "voxels": int(len(xs))}
 
 
-def build_isles_r4() -> tuple[list, list, list, dict]:
+def build_isles_r4(sel_name: str = "selection-r4.json", dropped: dict | None = None, tag: str = "stroke-mri-2") -> tuple[list, list, list, dict]:
+    dropped = ISLES_R4_DROPPED if dropped is None else dropped
     import nibabel as nib
-    sel = json.loads((RAW / "ISLES-2022" / "selection-r4.json").read_text(encoding="utf-8"))
+    sel = json.loads((RAW / "ISLES-2022" / sel_name).read_text(encoding="utf-8"))
     results, targets, geoms = [], [], []
     for case in sel:
-        if case["case"] in ISLES_R4_DROPPED:
+        if case["case"] in dropped:
             continue
         imgs = {k: nib.load(RAW / case["files"][k]["file"]) for k in ("dwi", "adc", "msk")}
         shapes = {k: v.shape[:3] for k, v in imgs.items()}
@@ -279,7 +281,7 @@ def build_isles_r4() -> tuple[list, list, list, dict]:
                                      f"({adc_brain:.0f} x10^-6 mm2/s), so do not expect it to stand out as dark on the ADC map."))),
             })
             geoms.append({"geometryType": "contour_set", "space": "image_px", "planes": planes})
-        log(f"[stroke-mri-2] {case['case']}: {vol:.1f} ml, {ncomp} part(s), ADC {adc_lesion:.0f}/{adc_brain:.0f} unit {unit:g} low {adc_low}, side {side_txt} {side}")
+        log(f"[{tag}] {case['case']}: {vol:.1f} ml, {ncomp} part(s), ADC {adc_lesion:.0f}/{adc_brain:.0f} unit {unit:g} low {adc_low}, side {side_txt} {side}")
     return results, targets, geoms, {}
 
 
@@ -350,7 +352,8 @@ GRAZ_KIND = {  # AO/OTA pediatric code -> (classId, label, teaching note)
 }
 
 
-def build_graz_r4() -> tuple[list, list, list, dict]:
+def build_graz_r4(sel_name: str = "selection-r4.json", dropped: dict | None = None, tag: str = "peds-wrist-2") -> tuple[list, list, list, dict]:
+    dropped = GRAZ_R4_DROPPED if dropped is None else dropped
     import csv as _csv
     import zipfile
     from PIL import Image
@@ -358,13 +361,13 @@ def build_graz_r4() -> tuple[list, list, list, dict]:
     meta = RAW / "GRAZPEDWRI-DX" / "_meta"
     rows = {r["filestem"]: r for r in _csv.DictReader(open(meta / "dataset.csv", encoding="utf-8-sig"))}
     ann = zipfile.ZipFile(meta / "folder_structure.zip")
-    for c in json.loads((RAW / "GRAZPEDWRI-DX" / "selection-r4.json").read_text(encoding="utf-8")):
+    for c in json.loads((RAW / "GRAZPEDWRI-DX" / sel_name).read_text(encoding="utf-8")):
         stem = c["stem"]
         pid, r = stem[:4], rows[stem]
-        if str(int(pid)) in GRAZ_R4_DROPPED:
+        if str(int(pid)) in dropped:
             continue
         ao = r["ao_classification"]
-        assert ao in GRAZ_R4_CODES and r["fracture_visible"] == "1" and r["initial_exam"] == "1", stem
+        assert ao in GRAZ_KIND and r["fracture_visible"] == "1" and r["initial_exam"] == "1", stem
         cid, lab, teach = GRAZ_KIND[ao]
         a = np.asarray(Image.open(RAW / c["file"]))
         assert a.ndim == 2 and a.dtype == np.uint16, stem
@@ -409,7 +412,7 @@ def build_graz_r4() -> tuple[list, list, list, dict]:
                       "boxes": [{"sopInstanceUid": str(ds.SOPInstanceUID), "frame": 1, "box": [x0 - 0.5, y0 - 0.5, x1 - 0.5, y1 - 0.5]}]})
         results.append((sr, skey, {"sourceId": GRAZ_SOURCE["id"], "ao": ao,
                                    "linkage": f"GRAZPEDWRI-DX patient_id {int(pid)}, study {r['study_number']} (dataset.csv); frontal and lateral views of one study."}))
-    log(f"[peds-wrist-2] {len(results)} radiographs")
+    log(f"[{tag}] {len(results)} radiographs")
     return results, targets, geoms, {}
 
 

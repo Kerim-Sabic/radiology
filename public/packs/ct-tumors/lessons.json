@@ -45,7 +45,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (9 boxes on 9 images of this series (display positions 34-42 of 51)). Histology: adenocarcinoma. Nodes, metastases and other findings are not marked.",
+   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (9 boxes on 9 images of this series (images 10-18 of 51, counted from the top of the stack as the viewer shows it)). Histology: adenocarcinoma. Nodes, metastases and other findings are not marked.",
    "learnNotes": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does."
   },
   {
@@ -90,7 +90,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (14 boxes on 14 images of this series (display positions 27-40 of 50)). Histology: squamous cell carcinoma. Nodes, metastases and other findings are not marked.",
+   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (14 boxes on 14 images of this series (images 11-24 of 50, counted from the top of the stack as the viewer shows it)). Histology: squamous cell carcinoma. Nodes, metastases and other findings are not marked. Also visible: severe emphysema, and a pocket of air without lung markings at the front of the right chest (a small anterior pneumothorax or a large bulla).",
    "learnNotes": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does."
   },
   {
@@ -135,7 +135,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (19 boxes on 19 images of this series (display positions 7-25 of 55)). Histology: small cell carcinoma. Nodes, metastases and other findings are not marked.",
+   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (19 boxes on 19 images of this series (images 31-49 of 55, counted from the top of the stack as the viewer shows it)). Histology: small cell carcinoma. Nodes, metastases and other findings are not marked.",
    "learnNotes": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does."
   },
   {
@@ -180,7 +180,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (13 boxes on 13 images of this series (display positions 30-42 of 55)). Histology: large cell carcinoma. Nodes, metastases and other findings are not marked.",
+   "referenceSummary": "The tumor is boxed on every slice where the dataset's thoracic radiologists marked it (13 boxes on 13 images of this series (images 14-26 of 55, counted from the top of the stack as the viewer shows it)). Histology: large cell carcinoma. Nodes, metastases and other findings are not marked.",
    "learnNotes": "Bronchogenic carcinoma shows itself in several ways: a solitary nodule or mass (often with spiculated or lobulated margins), a central mass with collapse of the lung beyond an obstructed bronchus, hilar or mediastinal enlargement from nodes, or direct invasion of the chest wall, mediastinum or vertebrae. On CT read the lungs on a lung window and the mediastinum on a soft-tissue window; describe the size, the lobe, the margins, contact with the pleura, fissures and vessels, and look for nodes, effusion and bone lesions. Imaging cannot tell the cell type; the biopsy does."
   },
   {

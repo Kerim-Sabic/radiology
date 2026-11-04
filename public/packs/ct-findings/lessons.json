@@ -136,7 +136,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "Expert annotators segmented every mediastinal lymph node they judged abnormal (estimated short axis over 1 cm; 'Fully Annotated' LNQ2023 case). The underlying cancer is not given. Nothing else is outlined.",
+   "referenceSummary": "Expert annotators segmented every mediastinal lymph node they judged abnormal (estimated short axis over 1 cm; 'Fully Annotated' LNQ2023 case). The underlying cancer is not given. Nothing else is outlined. Also visible, not outlined: patchy consolidation and scarring-like strands in the right upper lobe.",
    "learnNotes": "On chest CT a mediastinal lymph node is usually called enlarged when its short axis is more than 1 cm (measured across its narrowest width on an axial slice). Search the stations in order: paratracheal, prevascular (in front of the great vessels), aortopulmonary window, subcarinal, hilar and paraesophageal. Use a mediastinal window, and follow each round structure from slice to slice: vessels connect to other vessels, nodes do not. Size alone does not tell benign from malignant."
   }
  ],

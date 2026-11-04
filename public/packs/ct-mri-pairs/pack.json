@@ -1442,6 +1442,11 @@
    },
    "windowPresets": [
     {
+     "label": "File: middle of the volume",
+     "center": 809.0,
+     "width": 1618.0
+    },
+    {
      "label": "File preset",
      "center": 330.0,
      "width": 660.0
@@ -2060,6 +2065,11 @@
     "hu": false
    },
    "windowPresets": [
+    {
+     "label": "File: middle of the volume",
+     "center": 208.0,
+     "width": 416.0
+    },
     {
      "label": "File preset",
      "center": 67.0,
@@ -2680,6 +2690,11 @@
    },
    "windowPresets": [
     {
+     "label": "File: middle of the volume",
+     "center": 1457.0,
+     "width": 2914.0
+    },
+    {
      "label": "File preset",
      "center": 593.0,
      "width": 1187.0
@@ -3168,6 +3183,11 @@
     "hu": false
    },
    "windowPresets": [
+    {
+     "label": "File: middle of the volume",
+     "center": 2162.0,
+     "width": 4325.0
+    },
     {
      "label": "File preset",
      "center": 1143.0,

@@ -56,8 +56,8 @@ CXR = {
     "finding:atelectasis": {
         "name": "Atelectasis", "objectives": ["ch06-o01", "ch06-o02"], "option": "atel",
         "hint": "Look for signs of lost volume: displaced fissures, a raised hemidiaphragm, shift of the mediastinum or a hilum.",
-        "why": "Increased density with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift).",
-        "notes": ("Atelectasis is loss of lung volume. The airless lung becomes denser, and the signs of volume loss point to it: a displaced "
+        "why": "Increased opacity with signs of volume loss (fissure, hemidiaphragm, hilar or mediastinal shift).",
+        "notes": ("Atelectasis is loss of lung volume. The airless lung becomes more opaque, and the signs of volume loss point to it: a displaced "
                   "fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal "
                   "lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing."),
     },
@@ -82,8 +82,8 @@ CXR = {
     "finding:lung_nodule": {
         "name": "Lung nodule", "objectives": ["ch10-o04"], "option": "nod",
         "hint": "Compare the lungs zone by zone, and look through the heart and below the domes of the diaphragm.",
-        "why": "A round opacity up to 3 cm.",
-        "notes": ("A nodule is a round opacity up to 3 cm. Search zone by zone and compare sides; check that it is really in the lung "
+        "why": "A rounded or irregular opacity up to 3 cm in diameter.",
+        "notes": ("A nodule is a rounded or irregular opacity up to 3 cm in diameter. Search zone by zone and compare sides; check that it is really in the lung "
                   "(nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the "
                   "calcification pattern and CT help to characterise it."),
     },
@@ -369,7 +369,8 @@ VS_NOTES = ("A vestibular schwannoma (acoustic neuroma) arises from the vestibul
 STROKE_NOTES = ("In an acute ischemic stroke the cells swell (cytotoxic edema) within minutes, which restricts the motion of water. "
                 "Diffusion-weighted MRI shows this early as a bright area in an arterial territory, long before CT changes; the ADC map "
                 "confirms true restriction when the same area is dark. Bright on DWI but not dark on ADC is 'T2 shine-through', not "
-                "restriction. Name the territory (anterior, middle or posterior cerebral artery, or a watershed or lacunar pattern) and "
+                "restriction. Symmetrical bright bands in both temporal lobes next to the skull base are artefact from the nearby bone "
+                "and air, not infarct. Name the territory (anterior, middle or posterior cerebral artery; in the posterior fossa the cerebellar arteries or basilar branches; or a watershed or lacunar pattern) and "
                 "look for hemorrhage on the other sequences.")
 
 
@@ -726,14 +727,17 @@ def us_lessons() -> None:
 
 
 # ------------------------------------------------------------------ mammography (round 3): masses and calcifications on CC and MLO
-MAMMO_NOTES = ("A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique (MLO, at an "
-               "angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, chest walls to the "
-               "middle, and compare left with right. A real finding should be found on both views; on the MLO a lesion lies at about "
-               "the same distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin "
-               "(circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and dense favors "
-               "cancer; oval, circumscribed and low density favors a benign lesion. Calcifications are described by form (round, coarse, "
-               "rod-like and vascular are typically benign; fine pleomorphic and fine linear are suspicious) and distribution (diffuse, "
-               "regional, grouped, linear, segmental).")
+MAMMO_NOTES = ("A screening mammogram has two views of each breast: craniocaudal (CC, from above) and mediolateral oblique "
+               "(MLO, at an angle, with the pectoral muscle along the back of the breast). Hang the two breasts mirror-image, "
+               "chest walls to the middle, and compare left with right. A real finding is usually seen on both views (a "
+               "density seen on one view only may be overlapping normal tissue); on the MLO a lesion lies at about the same "
+               "distance from the nipple as on the CC. Describe a mass by its shape (oval, round, irregular), margin "
+               "(circumscribed, obscured, microlobulated, indistinct, spiculated) and density: irregular, spiculated and high "
+               "density favors cancer; oval, circumscribed and low density (or fat-containing) favors a benign lesion. "
+               "Calcifications are described by morphology (skin, vascular, coarse or popcorn, large rod-like, round, rim "
+               "(lucent-centred) and dystrophic are typically benign; amorphous, coarse heterogeneous, fine pleomorphic and "
+               "fine linear or fine-linear branching are suspicious) and distribution (diffuse, regional, grouped, linear, "
+               "segmental).")
 
 
 def mammo_lessons() -> None:

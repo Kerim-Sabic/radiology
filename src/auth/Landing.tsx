@@ -86,7 +86,7 @@ const STEPS: Array<[string, string]> = [
 ];
 
 const FAQ: Array<[string, ReactNode]> = [
-  ['What is Radiology Monster?', 'Radiology Monster (radiology.monster) is a radiology reading workstation in your browser for medical students and residents: real CT, MRI, X-ray, mammography and ultrasound studies from 350+ patients, where you scroll the whole study, mark what you see and are graded against the expert reference on the exact slice.'],
+  ['What is Radiology Monster?', 'Radiology Monster (radiology.monster) is a radiology reading workstation in your browser for medical students and residents: real CT, MRI, X-ray, mammography and ultrasound studies from 600+ patients, where you scroll the whole study, mark what you see and are graded against the expert reference on the exact slice.'],
   ['How much does it cost?', 'A free account opens two sample patients, with grading and no card. Membership is $20 every 30 days or $150 a year ($12.50 a month). An eligible university email gets 30% off: $14 every 30 days or $105 a year.'],
   ['Can professors use it with a class?', 'Yes. A professor gets a class page with one join link to share. Students join after seeing what the professor can follow: their study days, exam results and certificates, never their answers or payments. Students can leave the class at any time.'],
   ['Is there a student discount?', 'Yes. Verify an eligible university email, including .edu, .edu.ba or .ac.uk, and get 30% off: $14 every 30 days or $105 every 365 days, including every renewal. It is applied automatically when you start a new membership. A better recurring promo takes precedence; discounts do not stack. Existing memberships are unchanged.'],

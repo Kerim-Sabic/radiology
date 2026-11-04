@@ -312,6 +312,10 @@ FRAC_HOLDOUT = {"IMG0002302.jpg": "figshare:FracAtlas:IMG00023xx", "IMG0002308.j
 def frac_dataset(c: dict) -> Dataset:
     from PIL import Image
     im = Image.open(RAW / c["file"])
+    if im.mode == "RGB":  # some FracAtlas JPEGs are stored as RGB with three identical channels: grey, without loss
+        rgb = np.asarray(im)
+        assert (rgb[..., 0] == rgb[..., 1]).all() and (rgb[..., 0] == rgb[..., 2]).all(), c["image"]
+        im = Image.fromarray(np.ascontiguousarray(rgb[..., 0]))
     assert im.mode == "L" and im.size == (c["coco_image"]["width"], c["coco_image"]["height"]), c["image"]
     a = np.ascontiguousarray(np.asarray(im, dtype=np.uint8))
     stem = c["image"].rsplit(".", 1)[0]

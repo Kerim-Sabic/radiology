@@ -2720,6 +2720,11 @@
    },
    "windowPresets": [
     {
+     "label": "File: middle of the volume",
+     "center": 604.0,
+     "width": 1167.0
+    },
+    {
      "label": "File: Algo1",
      "center": 210.0,
      "width": 502.0
@@ -4361,6 +4366,11 @@
     "hu": false
    },
    "windowPresets": [
+    {
+     "label": "File: middle of the volume",
+     "center": 665.0,
+     "width": 1408.0
+    },
     {
      "label": "File: Algo1",
      "center": 400.0,
@@ -8818,7 +8828,7 @@
    "provenanceDetail": {
     "source": "tcia:Lung-PET-CT-Dx (A Large-Scale CT and PET/CT Dataset for Lung Cancer Diagnosis (Lung-PET-CT-Dx), doi:10.7937/TCIA.2020.NNC2-0461) - Lung-PET-CT-Dx-Annotations-XML-Files-rev12222020.zip (sha256 74578564508a2c52...)",
     "method": "Bounding boxes drawn in LabelImg by one of five academic thoracic radiologists and verified by the other four (collection description); one PASCAL VOC XML per image named by its SOP Instance UID. Converted from pixel-corner [xmin, ymin, xmax, ymax] to image_px with the pixel-centre convention (-0.5 px).",
-    "note": "9 boxes on 9 images of this series (display positions 34-42 of 51); 3 more boxes of this patient are on other reconstructions and are not used. Histology letter 'A' = adenocarcinoma (patient ID prefix, collection description)."
+    "note": "9 boxes on 9 images of this series (images 10-18 of 51, counted from the top of the stack as the viewer shows it); 3 more boxes of this patient are on other reconstructions and are not used. Histology letter 'A' = adenocarcinoma (patient ID prefix, collection description)."
    },
    "completeness": "target_only",
    "assessedClasses": [
@@ -8844,7 +8854,7 @@
    "provenanceDetail": {
     "source": "tcia:Lung-PET-CT-Dx (A Large-Scale CT and PET/CT Dataset for Lung Cancer Diagnosis (Lung-PET-CT-Dx), doi:10.7937/TCIA.2020.NNC2-0461) - Lung-PET-CT-Dx-Annotations-XML-Files-rev12222020.zip (sha256 74578564508a2c52...)",
     "method": "Bounding boxes drawn in LabelImg by one of five academic thoracic radiologists and verified by the other four (collection description); one PASCAL VOC XML per image named by its SOP Instance UID. Converted from pixel-corner [xmin, ymin, xmax, ymax] to image_px with the pixel-centre convention (-0.5 px).",
-    "note": "14 boxes on 14 images of this series (display positions 27-40 of 50); 11 more boxes of this patient are on other reconstructions and are not used. Histology letter 'G' = squamous cell carcinoma (patient ID prefix, collection description)."
+    "note": "14 boxes on 14 images of this series (images 11-24 of 50, counted from the top of the stack as the viewer shows it); 11 more boxes of this patient are on other reconstructions and are not used. Histology letter 'G' = squamous cell carcinoma (patient ID prefix, collection description)."
    },
    "completeness": "target_only",
    "assessedClasses": [
@@ -8870,7 +8880,7 @@
    "provenanceDetail": {
     "source": "tcia:Lung-PET-CT-Dx (A Large-Scale CT and PET/CT Dataset for Lung Cancer Diagnosis (Lung-PET-CT-Dx), doi:10.7937/TCIA.2020.NNC2-0461) - Lung-PET-CT-Dx-Annotations-XML-Files-rev12222020.zip (sha256 74578564508a2c52...)",
     "method": "Bounding boxes drawn in LabelImg by one of five academic thoracic radiologists and verified by the other four (collection description); one PASCAL VOC XML per image named by its SOP Instance UID. Converted from pixel-corner [xmin, ymin, xmax, ymax] to image_px with the pixel-centre convention (-0.5 px).",
-    "note": "19 boxes on 19 images of this series (display positions 7-25 of 55); 10 more boxes of this patient are on other reconstructions and are not used. Histology letter 'B' = small cell carcinoma (patient ID prefix, collection description)."
+    "note": "19 boxes on 19 images of this series (images 31-49 of 55, counted from the top of the stack as the viewer shows it); 10 more boxes of this patient are on other reconstructions and are not used. Histology letter 'B' = small cell carcinoma (patient ID prefix, collection description)."
    },
    "completeness": "target_only",
    "assessedClasses": [
@@ -8896,7 +8906,7 @@
    "provenanceDetail": {
     "source": "tcia:Lung-PET-CT-Dx (A Large-Scale CT and PET/CT Dataset for Lung Cancer Diagnosis (Lung-PET-CT-Dx), doi:10.7937/TCIA.2020.NNC2-0461) - Lung-PET-CT-Dx-Annotations-XML-Files-rev12222020.zip (sha256 74578564508a2c52...)",
     "method": "Bounding boxes drawn in LabelImg by one of five academic thoracic radiologists and verified by the other four (collection description); one PASCAL VOC XML per image named by its SOP Instance UID. Converted from pixel-corner [xmin, ymin, xmax, ymax] to image_px with the pixel-centre convention (-0.5 px).",
-    "note": "13 boxes on 13 images of this series (display positions 30-42 of 55); 6 more boxes of this patient are on other reconstructions and are not used. Histology letter 'E' = large cell carcinoma (patient ID prefix, collection description)."
+    "note": "13 boxes on 13 images of this series (images 14-26 of 55, counted from the top of the stack as the viewer shows it); 6 more boxes of this patient are on other reconstructions and are not used. Histology letter 'E' = large cell carcinoma (patient ID prefix, collection description)."
    },
    "completeness": "target_only",
    "assessedClasses": [

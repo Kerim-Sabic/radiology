@@ -100,7 +100,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "Expert organ contours from the Pediatric-CT-SEG collection: 25 structures (organs, bowel, glands, femoral heads, all bones). Each listed structure is outlined wherever it appears, but vessels, muscles, lymph nodes and anything not on the list are not, so this is not a reference for everything in the image.",
+   "referenceSummary": "Expert organ contours from the Pediatric-CT-SEG collection: 25 structures (organs, bowel, glands, femoral heads, all bones). Each listed structure is outlined wherever it appears, but vessels, muscles, lymph nodes and anything not on the list are not, so this is not a reference for everything in the image. Also visible, not outlined: a central venous catheter from the left upper chest with its tip at the junction of the superior vena cava and right atrium, and metallic surgical clips beside the aorta in the upper abdomen.",
    "learnNotes": "Turn on Anatomy and click each structure to see it alone; then switch to Practice and find them without labels. Children have less fat, so organs sit closer together than in adults."
   },
   {
@@ -278,7 +278,7 @@
      "note": "Characteristics of airspace disease"
     }
    ],
-   "referenceSummary": "Study-level labels from three independent expert reader groups (RICORD), who agreed on: Moderate Opacities (3-4 lung zones), Typical Appearance. There are no outlines, so position is self-reviewed.",
+   "referenceSummary": "Study-level labels from three independent expert reader groups (RICORD), who agreed on: Moderate Opacities (3-4 lung zones), Typical Appearance. There are no outlines, so position is self-reviewed. Also visible: a central venous catheter from the left neck with its tip in the left upper mediastinum, and ECG electrodes and leads over the chest.",
    "learnNotes": "Describe distribution first (side, zone, central vs peripheral), then classify. The category is a pattern statement, not a diagnosis."
   },
   {
@@ -319,7 +319,7 @@
      "note": "Characteristics of airspace disease"
     }
    ],
-   "referenceSummary": "Study-level labels from three independent expert reader groups (RICORD), who agreed on: Negative for Pneumonia. There are no outlines, so position is self-reviewed.",
+   "referenceSummary": "Study-level labels from three independent expert reader groups (RICORD), who agreed on: Negative for Pneumonia. There are no outlines, so position is self-reviewed. The round ring shadows over the upper chest are ECG electrodes on the skin, not lung findings.",
    "learnNotes": "Describe distribution first (side, zone, central vs peripheral), then classify. The category is a pattern statement, not a diagnosis."
   },
   {
@@ -494,7 +494,7 @@
      "note": "AP vs PA heart magnification"
     }
    ],
-   "referenceSummary": "No finding-level reference — tasks are self-reviewed against checklists, except the contrast-phase question, which is answered from the study description in the source data. Radiograph and CT on the same day.",
+   "referenceSummary": "No finding-level reference — tasks are self-reviewed against checklists, except the contrast-phase question, which is answered from the study description in the source data. Radiograph and CT on the same day. Also visible: ECG electrodes and their wires on the chest, which cross the right lung and the heart shadow.",
    "learnNotes": "Read the radiograph first, then the CT, and say what the CT adds."
   },
   {
@@ -599,7 +599,7 @@
      "note": "AP vs PA heart magnification"
     }
    ],
-   "referenceSummary": "No finding-level reference — tasks are self-reviewed against checklists, except the contrast-phase question, which is answered from the study description in the source data. Radiograph and CT on the same day.",
+   "referenceSummary": "No finding-level reference — tasks are self-reviewed against checklists, except the contrast-phase question, which is answered from the study description in the source data. Radiograph and CT on the same day. Also visible: a nasogastric tube passing below the left hemidiaphragm, ECG electrodes, and loops of external tubing over both lung apices.",
    "learnNotes": "Read the radiograph first, then the CT, and say what the CT adds."
   },
   {
@@ -750,7 +750,7 @@
      "note": "Normal CT anatomy of the lungs; lung windows"
     }
    ],
-   "referenceSummary": "2 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers. Only reader-marked nodules are referenced; unmatched marks are unscored. Radiograph/CT interval unknown (placeholder dates).",
+   "referenceSummary": "2 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers. Only reader-marked nodules are referenced; unmatched marks are unscored. Radiograph/CT interval unknown (placeholder dates). The larger nodule, in the right anterior upper lobe on CT, is also visible on the radiographs as a round opacity in the right mid zone.",
    "learnNotes": "Search both lungs apex to base in a lung window; confirm candidates are round on MPR rather than branching vessels."
   },
   {
@@ -799,7 +799,7 @@
      "note": "Normal CT anatomy of the lungs; lung windows"
     }
    ],
-   "referenceSummary": "4 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers. Only reader-marked nodules are referenced; unmatched marks are unscored. Radiograph/CT interval unknown (placeholder dates).",
+   "referenceSummary": "4 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers. Only reader-marked nodules are referenced; unmatched marks are unscored. Radiograph/CT interval unknown (placeholder dates). Also visible, not outlined: surgical clips in the left axilla from earlier surgery, which cause the streak artefact on CT, and two clips in the right upper abdomen.",
    "learnNotes": "Search both lungs apex to base in a lung window; confirm candidates are round on MPR rather than branching vessels."
   },
   {
@@ -848,7 +848,7 @@
      "note": "Normal CT anatomy of the lungs; lung windows"
     }
    ],
-   "referenceSummary": "3 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers. Only reader-marked nodules are referenced; unmatched marks are unscored. Radiograph/CT interval unknown (placeholder dates).",
+   "referenceSummary": "3 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers. Only reader-marked nodules are referenced; unmatched marks are unscored. Radiograph/CT interval unknown (placeholder dates). Also visible, not referenced: a thin-walled air cyst (bulla) in the posterior right lower lobe; it is air-filled, so it is not a nodule.",
    "learnNotes": "Search both lungs apex to base in a lung window; confirm candidates are round on MPR rather than branching vessels."
   },
   {
@@ -944,7 +944,7 @@
      "note": "Viewing convention for chest CT"
     }
    ],
-   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC): heart, both lungs, esophagus, spinal cord only.",
+   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC): heart, both lungs, esophagus, spinal cord only. Also visible, not outlined: a large round fluid-density mass in the left upper abdomen where the left kidney lies, most likely a large renal cyst, and a 1 cm nodule in the superior segment of the left lower lobe beside the descending aorta (the lung contour is drawn around it).",
    "learnNotes": "Another unseen patient: repeat the anatomy skills without hints first. Contours follow radiotherapy definitions."
   }
  ],

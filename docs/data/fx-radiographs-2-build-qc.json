@@ -1,0 +1,226 @@
+{
+ "packId": "fx-radiographs-2",
+ "generatedAt": "2026-11-03T19:30:56Z",
+ "packBytesExcludingLessons": 707193,
+ "budgetBytes": 90000000,
+ "series": [
+  {
+   "uid": "2.25.262482934477848294700145083959006347940",
+   "short": "dx-7bbe072565",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 30430
+  },
+  {
+   "uid": "2.25.111612242051293263055940886754281648623",
+   "short": "dx-35a309591f",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 30002
+  },
+  {
+   "uid": "2.25.51480664342611881534381251315159330528",
+   "short": "dx-79ca64e986",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 39746
+  },
+  {
+   "uid": "2.25.103150643106035055476115742739308808204",
+   "short": "dx-01095cbc26",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 33572
+  },
+  {
+   "uid": "2.25.205258506674384517822225322402186346902",
+   "short": "dx-b11f2d2e63",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 47294
+  },
+  {
+   "uid": "2.25.245323183739300363920148019192891346938",
+   "short": "dx-d50e7ee977",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 37382
+  },
+  {
+   "uid": "2.25.250351879422809063583658513439011084937",
+   "short": "dx-7f47cf92a6",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 63674
+  },
+  {
+   "uid": "2.25.296792359022628804405613467416674267231",
+   "short": "dx-0807fa43cf",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 26054
+  },
+  {
+   "uid": "2.25.114320164513095687008414842120906917935",
+   "short": "dx-2e20cd3b53",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 49470
+  },
+  {
+   "uid": "2.25.264190532186981350651751908239495971098",
+   "short": "dx-5f4efd49f6",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 28552
+  },
+  {
+   "uid": "2.25.187971724807568618692060482684667070647",
+   "short": "dx-e746722e27",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 29390
+  },
+  {
+   "uid": "2.25.223990785957630739349361640984156960861",
+   "short": "dx-2057c3afcb",
+   "modality": "DX",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 43536
+  }
+ ],
+ "targets": [
+  "fracatlas-img0000600_fracture",
+  "fracatlas-img0001411_fracture",
+  "fracatlas-img0001980_fracture",
+  "fracatlas-img0002020_fracture",
+  "fracatlas-img0002180_fracture",
+  "fracatlas-img0002544_fracture",
+  "fracatlas-img0002701_fracture",
+  "fracatlas-img0003130_fracture",
+  "fracatlas-img0003342_fracture",
+  "fracatlas-img0003458_fracture",
+  "fracatlas-img0003519_fracture",
+  "fracatlas-img0003926_fracture"
+ ],
+ "qcReview": {
+  "tool": "scripts/data/qc_render.py <packId> <outDir> [--crop]: decodes the packed DICOM and draws every reference target on it (contour sets on the image with the largest outlined area), so a shifted, flipped or misplaced outline would show",
+  "selectionRule": "FracAtlas images with one fracture annotation, no hardware, one view, one body region, not part of a multi-scan set; one image per block of 100 image numbers (none from the round-1 blocks), the region least represented so far first.",
+  "review": "Every radiograph drawn with the fracture outline and checked by eye; the body part read on the image.",
+  "kept": 12,
+  "dropped": {
+   "IMG0000206.jpg": "severe erosive or arthritic change of the carpus: the outlined fracture cannot be told apart from it",
+   "IMG0000319.jpg": "low-resolution film: the outlined fracture is not clearly visible",
+   "IMG0000480.jpg": "low-resolution film: the outlined fracture is not clearly visible",
+   "IMG0000599.jpg": "probably the same wrist as IMG0000600 on another view (consecutive numbers across a block boundary): one image per person",
+   "IMG0000702.jpg": "low-resolution film: the outlined fracture is not clearly visible",
+   "IMG0000801.jpg": "low-resolution film: the outlined fracture is not clearly visible",
+   "IMG0001007.jpg": "low-resolution film: the outlined fracture is not clearly visible",
+   "IMG0001191.jpg": "amputation stump: the outline is on the end of the stump with no clear fracture",
+   "IMG0001200.jpg": "skeletally immature, or no fracture distinct from the growth-plate scar",
+   "IMG0001350.jpg": "the outlined fracture is not clearly visible",
+   "IMG0001546.jpg": "child (open growth plates): the pack is for adults",
+   "IMG0001639.jpg": "cast, splint or hardware on the limb",
+   "IMG0001738.jpg": "cast, splint or hardware on the limb",
+   "IMG0001870.jpg": "the outlined fracture is not clearly visible",
+   "IMG0002406.jpg": "child (open growth plates): the pack is for adults",
+   "IMG0002620.jpg": "child (open growth plates): the pack is for adults",
+   "IMG0002840.jpg": "child (open growth plates): the pack is for adults",
+   "IMG0002945.jpg": "child (open growth plates): the pack is for adults",
+   "IMG0003020.jpg": "cast, splint or hardware on the limb",
+   "IMG0003254.jpg": "cast, splint or hardware on the limb",
+   "IMG0003619.jpg": "child (open growth plates): the pack is for adults",
+   "IMG0003703.jpg": "cast, splint or hardware on the limb",
+   "IMG0003803.jpg": "the outlined fracture is not clearly visible",
+   "IMG0004007.jpg": "child (open growth plates): the pack is for adults",
+   "IMG0004116.jpg": "child (open growth plates): the pack is for adults",
+   "IMG0004206.jpg": "the outlined fracture is faint and a dense object over the carpus would mislead",
+   "IMG0004320.jpg": "cast, splint or hardware on the limb"
+  },
+  "leakCheck": "study/series descriptions, role and display notes checked against LEAK (dataset names, diagnoses) at build"
+ }
+}

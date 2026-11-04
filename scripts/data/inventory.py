@@ -171,6 +171,19 @@ def sort_items(items: list[Item]) -> tuple[list[Item], dict]:
     return srt, qc
 
 
+def _pixel_sample(items: list[Item], rescale) -> np.ndarray:
+    vals = []
+    for it in items[:: max(1, len(items) // 24)]:
+        a = it.ds.pixel_array.astype(np.float64)
+        if rescale:
+            a = a * rescale["slope"] + rescale["intercept"]
+        vals.append(a.ravel()[:: max(1, a.size // 200000)])
+    v = np.concatenate(vals)
+    # ignore pixels at the extreme stored values (background / saturation)
+    inner = v[(v > v.min()) & (v < v.max())]
+    return inner if inner.size > 1000 else v
+
+
 def window_presets(modality: str, role: str, region: str | None, items: list[Item], rescale) -> list[dict]:
     ds0 = items[0].ds
     if modality == "CT" and role != "scout" and rescale is not None:
@@ -184,18 +197,24 @@ def window_presets(modality: str, role: str, region: str | None, items: list[Ite
             "head": [("Brain", 40, 80), ("Bone", 400, 1800), ("Soft tissue", 40, 400)],
         }.get(reg, [("Soft tissue", 40, 400), ("Bone", 400, 1800)])
         return [{"label": l, "center": c, "width": w} for l, c, w in presets]
-    # MR / DX / CR / scouts: file values if present, else percentile default
-    wc, ww = ds0.get("WindowCenter"), ds0.get("WindowWidth")
+    # MR / DX / CR / scouts: file values if present, else percentile default. The window is read from the middle image: in a
+    # stack the first image is at the edge of the volume, and its window would wash out the slices that matter.
+    dsm = items[len(items) // 2].ds
+    wc, ww = dsm.get("WindowCenter"), dsm.get("WindowWidth")
     out = []
     if wc is not None and ww is not None:
         wcs = list(wc) if isinstance(wc, pydicom.multival.MultiValue) else [wc]
         wws = list(ww) if isinstance(ww, pydicom.multival.MultiValue) else [ww]
-        expl = ds0.get("WindowCenterWidthExplanation")
+        expl = dsm.get("WindowCenterWidthExplanation")
         expls = list(expl) if isinstance(expl, pydicom.multival.MultiValue) else ([expl] if expl else [])
         for i, (c, w) in enumerate(zip(wcs, wws)):
             if fnum(w) and fnum(w) > 0:
                 lab = f"File: {expls[i]}" if i < len(expls) and expls[i] else ("File preset" if len(wcs) == 1 else f"File preset {i+1}")
                 out.append({"label": lab, "center": round(float(c), 3), "width": round(float(w), 3)})
+    v = _pixel_sample(items, rescale)
+    # A file window that misses the pixel values (e.g. a CT lung window stored in a radiograph header) would open the image
+    # blank: keep only windows that cover at least a fifth of the pixels, else use the percentile default.
+    out = [w for w in out if ((v > w["center"] - w["width"] / 2) & (v < w["center"] + w["width"] / 2)).mean() >= 0.2]
     if out:
         dedup, seen = [], set()
         for w in out:
@@ -205,17 +224,6 @@ def window_presets(modality: str, role: str, region: str | None, items: list[Ite
         if len(dedup) == 1 and len(out) > 1 and dedup[0]["label"].startswith("File preset"):
             dedup[0]["label"] = "File preset"
         return dedup
-    vals = []
-    for it in items[:: max(1, len(items) // 24)]:
-        a = it.ds.pixel_array.astype(np.float64)
-        if rescale:
-            a = a * rescale["slope"] + rescale["intercept"]
-        vals.append(a.ravel()[:: max(1, a.size // 200000)])
-    v = np.concatenate(vals)
-    # ignore pixels at the extreme stored values (background / saturation), then take p1-p99
-    inner = v[(v > v.min()) & (v < v.max())]
-    if inner.size > 1000:
-        v = inner
     lo, hi = np.percentile(v, [1, 99])
     if hi <= lo:
         hi = lo + 1

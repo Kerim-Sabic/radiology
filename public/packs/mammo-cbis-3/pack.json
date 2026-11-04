@@ -1,0 +1,2968 @@
+{
+ "schemaVersion": 1,
+ "packId": "mammo-cbis-3",
+ "version": "1.0.0",
+ "title": "Mammography: a third set of masses and calcifications on CC and MLO views",
+ "description": "Screen-film mammograms (CBIS-DDSM, digitised film): the CC and MLO views of one breast of each woman, with a single abnormality outlined on both views. Spiculated malignant and circumscribed benign masses (the mass outline), and calcifications from fine pleomorphic and fine linear branching (malignant) to lucent-centered and coarse (benign; the region outline), with BI-RADS assessment and pathology as the dataset gives them. Chosen by the round-4 rule (subtlety 4-5, the same descriptors on both views) among women not used before.",
+ "generatedAt": "2026-11-03T19:27:44Z",
+ "generator": "scripts/data/build_external.py (python 3.12.10, pydicom 3.0.1, highdicom 0.27.0, numpy 2.2.6)",
+ "sources": [
+  {
+   "id": "tcia:CBIS-DDSM",
+   "name": "CBIS-DDSM: Curated Breast Imaging Subset of DDSM",
+   "url": "https://doi.org/10.7937/K9/TCIA.2016.7O02S9CY",
+   "doi": "10.7937/K9/TCIA.2016.7O02S9CY",
+   "license": "Creative Commons Attribution 3.0 Unported License",
+   "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+   "citation": "Sawyer Lee R, Gimenez F, Hoogi A, Rubin D. Curated Breast Imaging Subset of DDSM [Data set]. The Cancer Imaging Archive. 2016. doi:10.7937/K9/TCIA.2016.7O02S9CY. Lee RS, Gimenez F, Hoogi A, Miyake KK, Gorovoy M, Rubin DL. A curated mammography data set for use in computer-aided detection and diagnosis research. Sci Data. 2017;4:170177.",
+   "accessNote": "Full mammograms and ROI mask series retrieved anonymously from the TCIA NBIA REST API v1 (getImage); case description CSVs from the collection page."
+  }
+ ],
+ "subjects": [
+  {
+   "key": "tcia:CBIS-DDSM:P_01405",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_01405",
+   "linkageEvidence": "CBIS-DDSM patient P_01405; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_01405",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.247788798318339002379106852995277589925"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_01671",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_01671",
+   "linkageEvidence": "CBIS-DDSM patient P_01671; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_01671",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.87728783600792086542904344437184325184"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_00160",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_00160",
+   "linkageEvidence": "CBIS-DDSM patient P_00160; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_00160",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.295420697364186436160598087458382414641"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_00426",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_00426",
+   "linkageEvidence": "CBIS-DDSM patient P_00426; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_00426",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.260781107628980886567717687268163002644"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_01265",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_01265",
+   "linkageEvidence": "CBIS-DDSM patient P_01265; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_01265",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.159926350436091186296246726207426929091"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_01712",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_01712",
+   "linkageEvidence": "CBIS-DDSM patient P_01712; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_01712",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.312621759964704527338015361951908319152"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_00020",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_00020",
+   "linkageEvidence": "CBIS-DDSM patient P_00020; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_00020",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.232406161334598818579796895027273858588"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_01197",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_01197",
+   "linkageEvidence": "CBIS-DDSM patient P_01197; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_01197",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.316198528633250274920224498268697320487"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_02419",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_02419",
+   "linkageEvidence": "CBIS-DDSM patient P_02419; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_02419",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.232829386440013873787806504566765377083"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_01002",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_01002",
+   "linkageEvidence": "CBIS-DDSM patient P_01002; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_01002",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.206491175004271178957433169456648825328"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_02559",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_02559",
+   "linkageEvidence": "CBIS-DDSM patient P_02559; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_02559",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.138878921848798277049065163121740662986"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_00750",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_00750",
+   "linkageEvidence": "CBIS-DDSM patient P_00750; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_00750",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.247945569125336630264958423328484433258"
+   ]
+  },
+  {
+   "key": "tcia:CBIS-DDSM:P_00519",
+   "sourceId": "tcia:CBIS-DDSM",
+   "sourceSubjectId": "P_00519",
+   "linkageEvidence": "CBIS-DDSM patient P_00519; all views of this woman are one study in this pack.",
+   "holdoutGroup": "tcia:CBIS-DDSM:P_00519",
+   "sex": null,
+   "ageAtFirstStudy": null,
+   "studyUids": [
+    "2.25.319002573797779918104435984631563859219"
+   ]
+  }
+ ],
+ "studies": [
+  {
+   "uid": "2.25.247788798318339002379106852995277589925",
+   "subjectKey": "tcia:CBIS-DDSM:P_01405",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.94472589198502742538775964820316294500",
+    "2.25.216532018619425471728538869219749401519"
+   ]
+  },
+  {
+   "uid": "2.25.87728783600792086542904344437184325184",
+   "subjectKey": "tcia:CBIS-DDSM:P_01671",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.1454923027959830661033515356859501455",
+    "2.25.77675175807803143054712703516344026439"
+   ]
+  },
+  {
+   "uid": "2.25.295420697364186436160598087458382414641",
+   "subjectKey": "tcia:CBIS-DDSM:P_00160",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.88420860869245081687590758373662560482",
+    "2.25.215838704840478285583413059083657366786"
+   ]
+  },
+  {
+   "uid": "2.25.260781107628980886567717687268163002644",
+   "subjectKey": "tcia:CBIS-DDSM:P_00426",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.84159480465541944737687367874714958588",
+    "2.25.771156236941369136091279783732735375"
+   ]
+  },
+  {
+   "uid": "2.25.159926350436091186296246726207426929091",
+   "subjectKey": "tcia:CBIS-DDSM:P_01265",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.138759086283748047275194602808495051776",
+    "2.25.101413566885573462736085936860269352584"
+   ]
+  },
+  {
+   "uid": "2.25.312621759964704527338015361951908319152",
+   "subjectKey": "tcia:CBIS-DDSM:P_01712",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.268417348275141980931571834732341108191",
+    "2.25.170007768971880049239307366151382952435"
+   ]
+  },
+  {
+   "uid": "2.25.232406161334598818579796895027273858588",
+   "subjectKey": "tcia:CBIS-DDSM:P_00020",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.23484625844058937122555484603313988996",
+    "2.25.104930927673214669873568848520544792568"
+   ]
+  },
+  {
+   "uid": "2.25.316198528633250274920224498268697320487",
+   "subjectKey": "tcia:CBIS-DDSM:P_01197",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.304903825235007539804699933953037359181",
+    "2.25.5359184498142583388980013855621429580"
+   ]
+  },
+  {
+   "uid": "2.25.232829386440013873787806504566765377083",
+   "subjectKey": "tcia:CBIS-DDSM:P_02419",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.315214088285325140808435097530048504083",
+    "2.25.34312371862781828348162612794465244263"
+   ]
+  },
+  {
+   "uid": "2.25.206491175004271178957433169456648825328",
+   "subjectKey": "tcia:CBIS-DDSM:P_01002",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.62742011726481344063890665756979722556",
+    "2.25.190068414859524673689722795244325098706"
+   ]
+  },
+  {
+   "uid": "2.25.138878921848798277049065163121740662986",
+   "subjectKey": "tcia:CBIS-DDSM:P_02559",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.126173385915126050537946162634905367837",
+    "2.25.50800905296520238963687102257960606017"
+   ]
+  },
+  {
+   "uid": "2.25.247945569125336630264958423328484433258",
+   "subjectKey": "tcia:CBIS-DDSM:P_00750",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.37292351903307773078590216031593237538",
+    "2.25.13778844065511061001279535480325354317"
+   ]
+  },
+  {
+   "uid": "2.25.319002573797779918104435984631563859219",
+   "subjectKey": "tcia:CBIS-DDSM:P_00519",
+   "description": "Mammography",
+   "modalities": [
+    "MG"
+   ],
+   "date": null,
+   "dateShifted": "unknown",
+   "relativeDays": null,
+   "timingNote": "No study date is distributed with this dataset; timing relative to other studies cannot be derived.",
+   "seriesUids": [
+    "2.25.145119296330221516822380160311768926199",
+    "2.25.171423664298746149192376873749794543146"
+   ]
+  }
+ ],
+ "series": [
+  {
+   "uid": "2.25.94472589198502742538775964820316294500",
+   "studyUid": "2.25.247788798318339002379106852995277589925",
+   "subjectKey": "tcia:CBIS-DDSM:P_01405",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Right CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, right CC view.",
+   "acquisition": {
+    "SeriesDescription": "Right CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "R",
+    "Laterality": "R",
+    "PatientOrientation": "P\\L"
+   },
+   "geometry": {
+    "rows": 2340,
+    "columns": 1396,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 29109.5,
+     "width": 57469.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.286850575790710982317886399460605058614",
+     "file": "dicom/mg-43c3a40c8d/421314e0ede168a1.dcm",
+     "bytes": 1987550,
+     "sha256": "421314e0ede168a1c28df7781dc44b23e973617c281db44e5dbd7d53572fb1b6",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1987550,
+   "thumbnail": "thumbs/mg-43c3a40c8d.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.216532018619425471728538869219749401519",
+   "studyUid": "2.25.247788798318339002379106852995277589925",
+   "subjectKey": "tcia:CBIS-DDSM:P_01405",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 2,
+   "description": "Right MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, right MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Right MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "R",
+    "Laterality": "R",
+    "PatientOrientation": "P\\F"
+   },
+   "geometry": {
+    "rows": 2368,
+    "columns": 1400,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 30997.5,
+     "width": 61257.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.327294468910617447985697148170595425699",
+     "file": "dicom/mg-2b37c0999c/6b465ac9f7aec33f.dcm",
+     "bytes": 2461846,
+     "sha256": "6b465ac9f7aec33fa7812a3a273ac8988d0b2228e5894912c1d71831c4fcab41",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 2461846,
+   "thumbnail": "thumbs/mg-2b37c0999c.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.1454923027959830661033515356859501455",
+   "studyUid": "2.25.87728783600792086542904344437184325184",
+   "subjectKey": "tcia:CBIS-DDSM:P_01671",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 3,
+   "description": "Left CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left CC view.",
+   "acquisition": {
+    "SeriesDescription": "Left CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\R"
+   },
+   "geometry": {
+    "rows": 2360,
+    "columns": 1156,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 27807.5,
+     "width": 55175.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.200362632356006198249512115700634060784",
+     "file": "dicom/mg-fab4c9ed3b/0a16d40d71df700f.dcm",
+     "bytes": 1785476,
+     "sha256": "0a16d40d71df700f1893fc2c0bf4e196d8f4a6f8543576ba54323a5e6adae2e5",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1785476,
+   "thumbnail": "thumbs/mg-fab4c9ed3b.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.77675175807803143054712703516344026439",
+   "studyUid": "2.25.87728783600792086542904344437184325184",
+   "subjectKey": "tcia:CBIS-DDSM:P_01671",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 4,
+   "description": "Left MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Left MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\F"
+   },
+   "geometry": {
+    "rows": 2324,
+    "columns": 1208,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 30061.5,
+     "width": 59649.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.265874584125344480553796424923932057989",
+     "file": "dicom/mg-f0bcf5e93b/2874a16aed32977a.dcm",
+     "bytes": 2403842,
+     "sha256": "2874a16aed32977ad15a7ef881dee84fd5077f95b2faa9e5f0c6d20107399aa8",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 2403842,
+   "thumbnail": "thumbs/mg-f0bcf5e93b.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.88420860869245081687590758373662560482",
+   "studyUid": "2.25.295420697364186436160598087458382414641",
+   "subjectKey": "tcia:CBIS-DDSM:P_00160",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Right CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, right CC view.",
+   "acquisition": {
+    "SeriesDescription": "Right CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "R",
+    "Laterality": "R",
+    "PatientOrientation": "P\\L"
+   },
+   "geometry": {
+    "rows": 2336,
+    "columns": 1448,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 27444.0,
+     "width": 54812.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.185518225987604578145722601840328547252",
+     "file": "dicom/mg-1530466e7b/2ee5d60dcf69ada7.dcm",
+     "bytes": 3465260,
+     "sha256": "2ee5d60dcf69ada747f7125691abab22cbfdfb1728f803883c60c796f84c57e0",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 3465260,
+   "thumbnail": "thumbs/mg-1530466e7b.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.215838704840478285583413059083657366786",
+   "studyUid": "2.25.295420697364186436160598087458382414641",
+   "subjectKey": "tcia:CBIS-DDSM:P_00160",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 2,
+   "description": "Right MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, right MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Right MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "R",
+    "Laterality": "R",
+    "PatientOrientation": "P\\F"
+   },
+   "geometry": {
+    "rows": 2356,
+    "columns": 1440,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 29448.0,
+     "width": 58808.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.140586483202059888070415763818268647705",
+     "file": "dicom/mg-6ae8d17e6a/601f2d841ab038a2.dcm",
+     "bytes": 3637946,
+     "sha256": "601f2d841ab038a2a21fc955aed2b31897078c745089c9d3e4db5285e349ded2",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 3637946,
+   "thumbnail": "thumbs/mg-6ae8d17e6a.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.84159480465541944737687367874714958588",
+   "studyUid": "2.25.260781107628980886567717687268163002644",
+   "subjectKey": "tcia:CBIS-DDSM:P_00426",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Right CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, right CC view.",
+   "acquisition": {
+    "SeriesDescription": "Right CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "R",
+    "Laterality": "R",
+    "PatientOrientation": "P\\L"
+   },
+   "geometry": {
+    "rows": 2244,
+    "columns": 1444,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 26423.5,
+     "width": 52825.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.257660888684257895011022200689844982478",
+     "file": "dicom/mg-4418f83729/e18014db5ed01461.dcm",
+     "bytes": 1436210,
+     "sha256": "e18014db5ed01461f0391957047179623c9fe4a704f2c7ec5fc76d3db34a8d8d",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1436210,
+   "thumbnail": "thumbs/mg-4418f83729.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.771156236941369136091279783732735375",
+   "studyUid": "2.25.260781107628980886567717687268163002644",
+   "subjectKey": "tcia:CBIS-DDSM:P_00426",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 2,
+   "description": "Right MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, right MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Right MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "R",
+    "Laterality": "R",
+    "PatientOrientation": "P\\F"
+   },
+   "geometry": {
+    "rows": 2264,
+    "columns": 1456,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 25614.0,
+     "width": 51196.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.219383840390610777865833895872001442270",
+     "file": "dicom/mg-b3645e6ab5/72beec21759a5f06.dcm",
+     "bytes": 2161500,
+     "sha256": "72beec21759a5f06d6c155af838791c74857374c0ba60ad24a450340feb8c677",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 2161500,
+   "thumbnail": "thumbs/mg-b3645e6ab5.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.138759086283748047275194602808495051776",
+   "studyUid": "2.25.159926350436091186296246726207426929091",
+   "subjectKey": "tcia:CBIS-DDSM:P_01265",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Right CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, right CC view.",
+   "acquisition": {
+    "SeriesDescription": "Right CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "R",
+    "Laterality": "R",
+    "PatientOrientation": "P\\L"
+   },
+   "geometry": {
+    "rows": 2892,
+    "columns": 1864,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 15602.0,
+     "width": 30984.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.195080331757947347725649549749230107799",
+     "file": "dicom/mg-6e482235c1/44b5ee956927c13f.dcm",
+     "bytes": 3597984,
+     "sha256": "44b5ee956927c13fd7f0e0e55f46d50206d93bdf76a3250e8b4864cfcd524fae",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 3597984,
+   "thumbnail": "thumbs/mg-6e482235c1.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.101413566885573462736085936860269352584",
+   "studyUid": "2.25.159926350436091186296246726207426929091",
+   "subjectKey": "tcia:CBIS-DDSM:P_01265",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 2,
+   "description": "Right MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, right MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Right MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "R",
+    "Laterality": "R",
+    "PatientOrientation": "P\\F"
+   },
+   "geometry": {
+    "rows": 2852,
+    "columns": 1864,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 25118.5,
+     "width": 49951.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.70300263468980471579515339884847189217",
+     "file": "dicom/mg-384dbbe061/2ff0bc536a80ec68.dcm",
+     "bytes": 4033276,
+     "sha256": "2ff0bc536a80ec681f5a29f377c252d78b87c28930ac1d9e56c6abfe0bbd1aaa",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 4033276,
+   "thumbnail": "thumbs/mg-384dbbe061.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.268417348275141980931571834732341108191",
+   "studyUid": "2.25.312621759964704527338015361951908319152",
+   "subjectKey": "tcia:CBIS-DDSM:P_01712",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 3,
+   "description": "Left CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left CC view.",
+   "acquisition": {
+    "SeriesDescription": "Left CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\R"
+   },
+   "geometry": {
+    "rows": 2936,
+    "columns": 1736,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 30653.5,
+     "width": 59853.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.270501194375558722271947405982284826819",
+     "file": "dicom/mg-b8dc2a67dd/4bc86f48542c43ac.dcm",
+     "bytes": 4452966,
+     "sha256": "4bc86f48542c43acea9e0cca91d8cf56e5fc265dcb89881711329ef281c97354",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 4452966,
+   "thumbnail": "thumbs/mg-b8dc2a67dd.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.170007768971880049239307366151382952435",
+   "studyUid": "2.25.312621759964704527338015361951908319152",
+   "subjectKey": "tcia:CBIS-DDSM:P_01712",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 4,
+   "description": "Left MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Left MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\F"
+   },
+   "geometry": {
+    "rows": 2916,
+    "columns": 1924,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 29918.5,
+     "width": 58879.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.38405015570456594604005324054907966319",
+     "file": "dicom/mg-ebe938e442/abf61bfc77d72caf.dcm",
+     "bytes": 4599076,
+     "sha256": "abf61bfc77d72cafbf3e5368acd26f9151d8db52be94de95d414bcd56ec5cedc",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 4599076,
+   "thumbnail": "thumbs/mg-ebe938e442.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.23484625844058937122555484603313988996",
+   "studyUid": "2.25.232406161334598818579796895027273858588",
+   "subjectKey": "tcia:CBIS-DDSM:P_00020",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 3,
+   "description": "Left CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left CC view.",
+   "acquisition": {
+    "SeriesDescription": "Left CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\R"
+   },
+   "geometry": {
+    "rows": 2360,
+    "columns": 1208,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 30719.5,
+     "width": 61273.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.337691968863476958771943364819165147322",
+     "file": "dicom/mg-be96b03013/8eb7bcc29b03c0d3.dcm",
+     "bytes": 999874,
+     "sha256": "8eb7bcc29b03c0d3ee0135f311793475ddfaece6859c88a3b471234dfc96c95c",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 999874,
+   "thumbnail": "thumbs/mg-be96b03013.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.104930927673214669873568848520544792568",
+   "studyUid": "2.25.232406161334598818579796895027273858588",
+   "subjectKey": "tcia:CBIS-DDSM:P_00020",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 4,
+   "description": "Left MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Left MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\F"
+   },
+   "geometry": {
+    "rows": 2344,
+    "columns": 1284,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 26910.5,
+     "width": 53589.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.278671028314072373567740856263773601090",
+     "file": "dicom/mg-c5c9a65c9e/200f6ee50b1dfe39.dcm",
+     "bytes": 1576574,
+     "sha256": "200f6ee50b1dfe39352a8616a393be08744dbe6aa733334dbb3e17d468999e64",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1576574,
+   "thumbnail": "thumbs/mg-c5c9a65c9e.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.304903825235007539804699933953037359181",
+   "studyUid": "2.25.316198528633250274920224498268697320487",
+   "subjectKey": "tcia:CBIS-DDSM:P_01197",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 3,
+   "description": "Left CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left CC view.",
+   "acquisition": {
+    "SeriesDescription": "Left CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\R"
+   },
+   "geometry": {
+    "rows": 2633,
+    "columns": 1253,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 32988.5,
+     "width": 65093.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.278845780630825114316996850096105582208",
+     "file": "dicom/mg-ca06c0ffde/60f7ca6fc5fabd11.dcm",
+     "bytes": 1650726,
+     "sha256": "60f7ca6fc5fabd11f154425d52a9780968cbd50b2336032c9c7f01ce2aa4aad6",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1650726,
+   "thumbnail": "thumbs/mg-ca06c0ffde.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.5359184498142583388980013855621429580",
+   "studyUid": "2.25.316198528633250274920224498268697320487",
+   "subjectKey": "tcia:CBIS-DDSM:P_01197",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 4,
+   "description": "Left MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Left MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\F"
+   },
+   "geometry": {
+    "rows": 2378,
+    "columns": 1283,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 33078.0,
+     "width": 64914.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.24616798776858400267455754882664882492",
+     "file": "dicom/mg-22f29897f9/beae626cc4f52111.dcm",
+     "bytes": 2093882,
+     "sha256": "beae626cc4f52111c69eeb061082b05ee199d033a2aaeaa32c102ee11f79a356",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 2093882,
+   "thumbnail": "thumbs/mg-22f29897f9.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.315214088285325140808435097530048504083",
+   "studyUid": "2.25.232829386440013873787806504566765377083",
+   "subjectKey": "tcia:CBIS-DDSM:P_02419",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 3,
+   "description": "Left CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left CC view.",
+   "acquisition": {
+    "SeriesDescription": "Left CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\R"
+   },
+   "geometry": {
+    "rows": 2565,
+    "columns": 1193,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 32889.5,
+     "width": 65291.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.7928734547503791958403117190290927019",
+     "file": "dicom/mg-b409519fb3/3a63dc206036fd41.dcm",
+     "bytes": 1482842,
+     "sha256": "3a63dc206036fd415ee3de1be9f76935db2109681cdb111d15cc3c1fb340f8cd",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1482842,
+   "thumbnail": "thumbs/mg-b409519fb3.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.34312371862781828348162612794465244263",
+   "studyUid": "2.25.232829386440013873787806504566765377083",
+   "subjectKey": "tcia:CBIS-DDSM:P_02419",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 4,
+   "description": "Left MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Left MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\F"
+   },
+   "geometry": {
+    "rows": 2693,
+    "columns": 1290,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 32919.5,
+     "width": 65231.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.38792614680946322501627974622164041606",
+     "file": "dicom/mg-34d5af1ccf/393fbc2d5e0c0f98.dcm",
+     "bytes": 2175122,
+     "sha256": "393fbc2d5e0c0f98a0e8b0727b5bab0bf21f25c7b53397d7a8239ec7c0502d1d",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 2175122,
+   "thumbnail": "thumbs/mg-34d5af1ccf.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.62742011726481344063890665756979722556",
+   "studyUid": "2.25.206491175004271178957433169456648825328",
+   "subjectKey": "tcia:CBIS-DDSM:P_01002",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 3,
+   "description": "Left CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left CC view.",
+   "acquisition": {
+    "SeriesDescription": "Left CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\R"
+   },
+   "geometry": {
+    "rows": 2360,
+    "columns": 1340,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 24761.1,
+     "width": 49356.3
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.158495648757558187197686560677236625866",
+     "file": "dicom/mg-c1e4fc2424/4ea697c9d019ce97.dcm",
+     "bytes": 1725112,
+     "sha256": "4ea697c9d019ce97f33a926b34f1f9ee51e4d595227119169610b210df3cc8c9",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1725112,
+   "thumbnail": "thumbs/mg-c1e4fc2424.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.190068414859524673689722795244325098706",
+   "studyUid": "2.25.206491175004271178957433169456648825328",
+   "subjectKey": "tcia:CBIS-DDSM:P_01002",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 4,
+   "description": "Left MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Left MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\F"
+   },
+   "geometry": {
+    "rows": 2360,
+    "columns": 1348,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 30449.5,
+     "width": 60645.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.158779231938267667896036915253655243059",
+     "file": "dicom/mg-eb4effb6cd/dfa6176ff5ac791b.dcm",
+     "bytes": 2354312,
+     "sha256": "dfa6176ff5ac791b1caa4a94b93129bc614184b03611b6491ebdad81ad8bb5c5",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 2354312,
+   "thumbnail": "thumbs/mg-eb4effb6cd.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.126173385915126050537946162634905367837",
+   "studyUid": "2.25.138878921848798277049065163121740662986",
+   "subjectKey": "tcia:CBIS-DDSM:P_02559",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 1,
+   "description": "Right CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, right CC view.",
+   "acquisition": {
+    "SeriesDescription": "Right CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "R",
+    "Laterality": "R",
+    "PatientOrientation": "P\\L"
+   },
+   "geometry": {
+    "rows": 2595,
+    "columns": 1830,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 29585.0,
+     "width": 58702.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.234914834397444301391690882496823392918",
+     "file": "dicom/mg-410771ad52/6de3a96b2385540c.dcm",
+     "bytes": 3190488,
+     "sha256": "6de3a96b2385540c43cecda8d4530351f65a10c9b3248f30bfb5c646a7711c66",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 3190488,
+   "thumbnail": "thumbs/mg-410771ad52.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.50800905296520238963687102257960606017",
+   "studyUid": "2.25.138878921848798277049065163121740662986",
+   "subjectKey": "tcia:CBIS-DDSM:P_02559",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 2,
+   "description": "Right MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, right MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Right MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "R",
+    "Laterality": "R",
+    "PatientOrientation": "P\\F"
+   },
+   "geometry": {
+    "rows": 2633,
+    "columns": 1958,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 30629.5,
+     "width": 60287.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.264435427302071425394545145343751535898",
+     "file": "dicom/mg-3b2ec1935e/e78de259c9c51982.dcm",
+     "bytes": 4518402,
+     "sha256": "e78de259c9c51982d3148f9cefe62338245b859e7ec75c24f605d0801a6b563c",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 4518402,
+   "thumbnail": "thumbs/mg-3b2ec1935e.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.37292351903307773078590216031593237538",
+   "studyUid": "2.25.247945569125336630264958423328484433258",
+   "subjectKey": "tcia:CBIS-DDSM:P_00750",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 3,
+   "description": "Left CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left CC view.",
+   "acquisition": {
+    "SeriesDescription": "Left CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\R"
+   },
+   "geometry": {
+    "rows": 2288,
+    "columns": 1544,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 30505.0,
+     "width": 60954.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.316135004228314500051890190802835454819",
+     "file": "dicom/mg-a2881af539/f8ea60b3ff0460c0.dcm",
+     "bytes": 1321796,
+     "sha256": "f8ea60b3ff0460c091ab0aa4e01cb68cacdbf5cca5a902aa0460e9af60120c4e",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1321796,
+   "thumbnail": "thumbs/mg-a2881af539.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.13778844065511061001279535480325354317",
+   "studyUid": "2.25.247945569125336630264958423328484433258",
+   "subjectKey": "tcia:CBIS-DDSM:P_00750",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 4,
+   "description": "Left MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Left MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\F"
+   },
+   "geometry": {
+    "rows": 2292,
+    "columns": 1512,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 24791.0,
+     "width": 49450.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.189954882468887355293186430167056593882",
+     "file": "dicom/mg-0ff1828b7c/6df40e4afaffb2af.dcm",
+     "bytes": 1909054,
+     "sha256": "6df40e4afaffb2af67162d14aca57ac6f78a1eee24f587d818ced7924ad5b542",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1909054,
+   "thumbnail": "thumbs/mg-0ff1828b7c.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.145119296330221516822380160311768926199",
+   "studyUid": "2.25.319002573797779918104435984631563859219",
+   "subjectKey": "tcia:CBIS-DDSM:P_00519",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 3,
+   "description": "Left CC",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left CC view.",
+   "acquisition": {
+    "SeriesDescription": "Left CC",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "CC",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\R"
+   },
+   "geometry": {
+    "rows": 2272,
+    "columns": 1524,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 23931.6,
+     "width": 47763.2
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.48583788899471512044505255057740675747",
+     "file": "dicom/mg-cb47743ed9/8a8f1409ebe425c9.dcm",
+     "bytes": 1431772,
+     "sha256": "8a8f1409ebe425c96e9d7354f641671f2a350830d54acf37732e89c53a66f1d4",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1431772,
+   "thumbnail": "thumbs/mg-cb47743ed9.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  },
+  {
+   "uid": "2.25.171423664298746149192376873749794543146",
+   "studyUid": "2.25.319002573797779918104435984631563859219",
+   "subjectKey": "tcia:CBIS-DDSM:P_00519",
+   "modality": "MG",
+   "sopClassUid": "1.2.840.10008.5.1.4.1.1.7",
+   "frameOfReferenceUid": null,
+   "number": 4,
+   "description": "Left MLO",
+   "bodyPart": "BREAST",
+   "role": "diagnostic",
+   "roleNote": "Screening-film mammogram, left MLO view.",
+   "acquisition": {
+    "SeriesDescription": "Left MLO",
+    "StudyDescription": "Mammography",
+    "ImageType": "DERIVED\\SECONDARY",
+    "BodyPartExamined": "BREAST",
+    "ViewPosition": "MLO",
+    "ImageLaterality": "L",
+    "Laterality": "L",
+    "PatientOrientation": "A\\F"
+   },
+   "geometry": {
+    "rows": 2264,
+    "columns": 1496,
+    "pixelSpacing": null,
+    "pixelSpacingSource": "none",
+    "spacingCalibrated": false,
+    "iop": null,
+    "sliceSpacing": null,
+    "sliceSpacingUniform": null,
+    "volumeEligible": false,
+    "volumeIssues": [
+     "projection image (no tomographic slice stack)"
+    ],
+    "photometric": "MONOCHROME2",
+    "bitsStored": 16,
+    "pixelRepresentation": 0,
+    "rescale": null,
+    "hu": false
+   },
+   "windowPresets": [
+    {
+     "label": "File: Default window from the image histogram",
+     "center": 24695.0,
+     "width": 49224.0
+    }
+   ],
+   "encoding": {
+    "transferSyntaxes": [
+     "1.2.840.10008.1.2.4.80"
+    ],
+    "reencodedFrom": [
+     "1.2.840.10008.1.2.1"
+    ],
+    "lossless": true,
+    "note": "Losslessly re-encoded Explicit VR Little Endian -> JPEG-LS Lossless; every instance decoded after encoding and compared pixel-for-pixel with the source (np.array_equal on stored values; gdcm cross-check where supported). Status counts: {'reencoded': 1}. SOP Instance UIDs unchanged."
+   },
+   "instances": [
+    {
+     "sopInstanceUid": "2.25.187163001475283340769207347056930890342",
+     "file": "dicom/mg-7d185c87c0/b5002ca962672d9a.dcm",
+     "bytes": 1811856,
+     "sha256": "b5002ca962672d9a280819fdaff3d028841f10a39976d6aab67cfad9dac8176c",
+     "frames": 1,
+     "instanceNumber": 1,
+     "ipp": null
+    }
+   ],
+   "bytes": 1811856,
+   "thumbnail": "thumbs/mg-7d185c87c0.png",
+   "displayNote": "Digitised screen-film mammogram, downsampled 2x2 for the web. No pixel spacing in the source (distances are not measurable). The burned-in film marker shows the side and view."
+  }
+ ],
+ "spatialLinks": [],
+ "referenceTargets": [
+  {
+   "id": "cbis-p01405-right-cc_mass",
+   "label": "Breast mass: irregular, spiculated margin (malignant; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.94472589198502742538775964820316294500",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01405-right-cc_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01405 RIGHT CC: BI-RADS assessment 5, pathology MALIGNANT, subtlety 5, breast density 1."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p01405-right-mlo_mass",
+   "label": "Breast mass: irregular, spiculated margin (malignant; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.216532018619425471728538869219749401519",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01405-right-mlo_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01405 RIGHT MLO: BI-RADS assessment 5, pathology MALIGNANT, subtlety 5, breast density 1."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p01671-left-cc_mass",
+   "label": "Breast mass: irregular, spiculated margin (malignant; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.1454923027959830661033515356859501455",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01671-left-cc_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01671 LEFT CC: BI-RADS assessment 5, pathology MALIGNANT, subtlety 5, breast density 2."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p01671-left-mlo_mass",
+   "label": "Breast mass: irregular, spiculated margin (malignant; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.77675175807803143054712703516344026439",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01671-left-mlo_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01671 LEFT MLO: BI-RADS assessment 5, pathology MALIGNANT, subtlety 5, breast density 2."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p00160-right-cc_mass",
+   "label": "Breast mass: oval, circumscribed margin (benign; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.88420860869245081687590758373662560482",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p00160-right-cc_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_00160 RIGHT CC: BI-RADS assessment 3, pathology BENIGN, subtlety 5, breast density 1."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p00160-right-mlo_mass",
+   "label": "Breast mass: oval, circumscribed margin (benign; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.215838704840478285583413059083657366786",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p00160-right-mlo_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_00160 RIGHT MLO: BI-RADS assessment 3, pathology BENIGN, subtlety 5, breast density 1."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p00426-right-cc_mass",
+   "label": "Breast mass: oval, circumscribed margin (benign; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.84159480465541944737687367874714958588",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p00426-right-cc_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_00426 RIGHT CC: BI-RADS assessment 4, pathology BENIGN, subtlety 5, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p00426-right-mlo_mass",
+   "label": "Breast mass: oval, circumscribed margin (benign; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.771156236941369136091279783732735375",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p00426-right-mlo_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_00426 RIGHT MLO: BI-RADS assessment 4, pathology BENIGN, subtlety 5, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p01265-right-cc_mass",
+   "label": "Breast mass: oval, circumscribed margin (benign; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.138759086283748047275194602808495051776",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01265-right-cc_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01265 RIGHT CC: BI-RADS assessment 3, pathology BENIGN, subtlety 5, breast density 2."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p01265-right-mlo_mass",
+   "label": "Breast mass: oval, circumscribed margin (benign; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.101413566885573462736085936860269352584",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01265-right-mlo_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01265 RIGHT MLO: BI-RADS assessment 3, pathology BENIGN, subtlety 4, breast density 2."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p01712-left-cc_mass",
+   "label": "Breast mass: oval, circumscribed margin (benign; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.268417348275141980931571834732341108191",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01712-left-cc_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01712 LEFT CC: BI-RADS assessment 4, pathology BENIGN, subtlety 5, breast density 1."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p01712-left-mlo_mass",
+   "label": "Breast mass: oval, circumscribed margin (benign; outline)",
+   "classId": "finding:breast_mass",
+   "seriesUid": "2.25.170007768971880049239307366151382952435",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01712-left-mlo_mass.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (mass_case_description_train_set.csv, ROI mask series)",
+    "method": "Mass outline re-segmented in CBIS-DDSM from the original DDSM contour (level set); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01712 LEFT MLO: BI-RADS assessment 4, pathology BENIGN, subtlety 5, breast density 1."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_mass"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "The mass outline; describe its shape, margin and density, and find it on both views."
+  },
+  {
+   "id": "cbis-p00020-left-cc_calc",
+   "label": "Breast calcifications: pleomorphic, clustered (malignant; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.23484625844058937122555484603313988996",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p00020-left-cc_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_00020 LEFT CC: BI-RADS assessment 4, pathology MALIGNANT, subtlety 4, breast density 2."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p00020-left-mlo_calc",
+   "label": "Breast calcifications: pleomorphic, clustered (malignant; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.104930927673214669873568848520544792568",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p00020-left-mlo_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_00020 LEFT MLO: BI-RADS assessment 4, pathology MALIGNANT, subtlety 4, breast density 2."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p01197-left-cc_calc",
+   "label": "Breast calcifications: pleomorphic, clustered (malignant; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.304903825235007539804699933953037359181",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01197-left-cc_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01197 LEFT CC: BI-RADS assessment 0, pathology MALIGNANT, subtlety 4, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p01197-left-mlo_calc",
+   "label": "Breast calcifications: pleomorphic, clustered (malignant; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.5359184498142583388980013855621429580",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01197-left-mlo_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01197 LEFT MLO: BI-RADS assessment 0, pathology MALIGNANT, subtlety 4, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p02419-left-cc_calc",
+   "label": "Breast calcifications: pleomorphic, clustered (malignant; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.315214088285325140808435097530048504083",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p02419-left-cc_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_02419 LEFT CC: BI-RADS assessment 0, pathology MALIGNANT, subtlety 4, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p02419-left-mlo_calc",
+   "label": "Breast calcifications: pleomorphic, clustered (malignant; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.34312371862781828348162612794465244263",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p02419-left-mlo_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_02419 LEFT MLO: BI-RADS assessment 0, pathology MALIGNANT, subtlety 4, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p01002-left-cc_calc",
+   "label": "Breast calcifications: fine linear branching, regional (malignant; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.62742011726481344063890665756979722556",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01002-left-cc_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01002 LEFT CC: BI-RADS assessment 5, pathology MALIGNANT, subtlety 5, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p01002-left-mlo_calc",
+   "label": "Breast calcifications: fine linear branching, regional (malignant; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.190068414859524673689722795244325098706",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p01002-left-mlo_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_01002 LEFT MLO: BI-RADS assessment 5, pathology MALIGNANT, subtlety 5, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p02559-right-cc_calc",
+   "label": "Breast calcifications: fine linear branching, linear (malignant; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.126173385915126050537946162634905367837",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p02559-right-cc_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_02559 RIGHT CC: BI-RADS assessment 3, pathology MALIGNANT, subtlety 4, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p02559-right-mlo_calc",
+   "label": "Breast calcifications: fine linear branching, linear (malignant; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.50800905296520238963687102257960606017",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p02559-right-mlo_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_02559 RIGHT MLO: BI-RADS assessment 3, pathology MALIGNANT, subtlety 4, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p00750-left-cc_calc",
+   "label": "Breast calcifications: lucent center, distribution not given (benign without callback; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.37292351903307773078590216031593237538",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p00750-left-cc_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_00750 LEFT CC: BI-RADS assessment 2, pathology BENIGN_WITHOUT_CALLBACK, subtlety 4, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p00750-left-mlo_calc",
+   "label": "Breast calcifications: lucent center, distribution not given (benign without callback; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.13778844065511061001279535480325354317",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p00750-left-mlo_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_00750 LEFT MLO: BI-RADS assessment 2, pathology BENIGN_WITHOUT_CALLBACK, subtlety 4, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p00519-left-cc_calc",
+   "label": "Breast calcifications: coarse, distribution not given (benign without callback; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.145119296330221516822380160311768926199",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p00519-left-cc_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_00519 LEFT CC: BI-RADS assessment 2, pathology BENIGN_WITHOUT_CALLBACK, subtlety 5, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  },
+  {
+   "id": "cbis-p00519-left-mlo_calc",
+   "label": "Breast calcifications: coarse, distribution not given (benign without callback; DDSM region outline)",
+   "classId": "finding:breast_calcifications",
+   "seriesUid": "2.25.171423664298746149192376873749794543146",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/cbis-p00519-left-mlo_calc.json",
+   "provenance": "source_manual",
+   "provenanceDetail": {
+    "source": "tcia:CBIS-DDSM (calc_case_description_train_set.csv, ROI mask series)",
+    "method": "Region outline of the calcifications from the original DDSM annotation (not re-segmented in CBIS-DDSM); ROI mask downsampled 2x2 and traced.",
+    "note": "P_00519 LEFT MLO: BI-RADS assessment 2, pathology BENIGN_WITHOUT_CALLBACK, subtlety 5, breast density 3."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "finding:breast_calcifications"
+   ],
+   "unassessedNote": "Only this finding is outlined; the rest of the breast and the other breast are not referenced.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "teachingNote": "Calcifications outlined as a region; look at their form (round, coarse, vascular vs fine pleomorphic or linear) and how they are distributed."
+  }
+ ]
+}

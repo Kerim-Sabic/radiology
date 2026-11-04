@@ -465,6 +465,25 @@ Each professor has one class link (`/join/<code>`) on My class: copy it, make a 
 
 **Tests:** 627 unit tests (`tests/sitemap.test.ts` checks the name everywhere, the offers, the FAQ order, the noscript answers and the sitemap). The membership, certificate and class browser tests pass in Chromium and Firefox.
 
+## 3q. Accuracy audit of every case, and 247 new patients (3-4 November)
+
+**Trigger.** On the free first case (NIH 00003400_003, the pneumothorax in the launch Reel) a right rib looked broken. It is not an acute fracture: a right posterior rib ends squarely where a short segment is missing, and it looks the same on all seven of this patient's NIH films, including the first one, taken before her left lung surgery. It is an old change, most likely from her earlier right lung operation (staples in the right lower lung, clips at the left hilum). The case now says so.
+
+**Files.** `validate_pack.py` on all 23 packs: every one of about 15,700 DICOM files re-read, re-hashed and decoded, every UID, matrix, order and outline checked against the manifest. The two overlay packs (AI anatomy, vessel drafts) point into other packs; all 4,318 + 65 of their outlines resolve to real series and slices.
+
+**Against the source datasets** (scripts kept with the round-5 work): all 90 NIH films (boxes, report labels, age, sex, view, patient, pixels identical to NIH's PNGs), all 104 Breast-Lesions-USG lesions (every answer key, age, descriptors, BI-RADS, outline vs the radiologist's mask), all 68 GRAZPEDWRI-DX images (boxes, AO/OTA code, age, sex, side, pixels; no fracture box left out), all 35 CBIS-DDSM outlines (assessment, pathology, subtlety, density, descriptors; no abnormality left out) and the 5 FracAtlas fractures. No answer key was wrong.
+
+**By eye** (8 reviewers, every one of the 370 cases and 589 images; every flag checked again on the image before anything changed; flags that could not be confirmed were left out):
+- About 100 cases now say what is visible but not outlined: chest drains already in place on 7 pneumothorax films, central lines, ports, pacemakers, sternotomy wires, surgical clips and staples, ECG electrodes that look like nodules, a cervical fusion plate, an aortic stent-graft, a removed breast, an old cerebellar infarct, bleeding inside two infarcts, skin markers and calcified arteries on mammograms, a kidney cyst on a kidney-tumour case, a tumour the lung contour leaves out, and the radiologists' own marks of a pronator quadratus sign or soft-tissue swelling on 11 wrists.
+- Two breast ultrasound keys say "no posterior features" where the image shows shadowing: the question was already Learn/Practice only; it now says what the image shows. Symmetrical bright bands next to the skull base on DWI are explained as artefact in every stroke case.
+- "Find the restricted diffusion" was the title of stroke cases whose ADC is not low: those are now "Find the bright lesion on DWI" (13 published cases and the generator).
+- Four lung cancer CTs gave the boxed slices in storage order ("display positions 34-42"), while the viewer shows head to feet ("images 10-18"): corrected, and `annotations.py` now counts as the viewer does.
+- Three radiographs opened blank white (a CT lung window stored as their default) and six MRI series opened washed out (the first slice's window): all now open readable, their thumbnails were redrawn, and the builder (`inventory.py`) drops a file window that misses the image and reads the window from the middle slice.
+
+**New patients (round 5, `docs/data/round5-data.md`).** The same open, commercially licensed sources and rules as round 4, every patient new: 112 breast ultrasound lesions (3 dropped where the image contradicts the recorded echo pattern), 30 strokes on DWI and ADC, 40 chest films (from 196 radiologist-boxed candidates, the rest too subtle, borderline or cluttered), 40 children's wrists on two views, 12 adult fractures (FracAtlas, one image per block of 100 numbers, children and casts dropped) and 13 women's mammograms (3 mirrored scans dropped). Before any new lesson was written, `scripts/lessons/round4.py` was brought in line with the audited round-4 lessons (it now writes them word for word, apart from the few notes the audit wrote by eye), so the new cases start from the corrected wording. Members now get 611 patients and 1,742 graded tasks (the site says 600+ and 1,700+). Every new case was checked by eye with its outline and answer keys; where a static frame disagrees with the radiologist's recorded descriptor the case says so, and the few shape questions affected left Assess.
+
+**Tests:** `tests/round5Content.test.ts` re-derives every graded answer of the new packs from pack.json; the condition counts grew (strokes 82, mammographic calcifications 14 women, children's wrists 24 Salter-Harris II, 26 torus/greenstick and 24 complete fractures).
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:

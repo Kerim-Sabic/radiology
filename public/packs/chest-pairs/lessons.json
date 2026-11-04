@@ -49,7 +49,7 @@
      "note": "Normal CT anatomy of the lungs; lung windows"
     }
    ],
-   "referenceSummary": "3 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers (each reader's outline kept separately). LIDC references cover reader-marked nodules only — other findings and nodules <3 mm are not referenced, so unmatched marks are not counted as false positives. Reader malignancy ratings are subjective suspicion scores, not diagnoses. The radiograph has no localized reference; the CT annotations do not map onto it automatically. Study dates are de-identified placeholders, so the interval between radiograph and CT is unknown.",
+   "referenceSummary": "3 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers (each reader's outline kept separately). LIDC references cover reader-marked nodules only — other findings and nodules <3 mm are not referenced, so unmatched marks are not counted as false positives. Reader malignancy ratings are subjective suspicion scores, not diagnoses. The radiograph has no localized reference; the CT annotations do not map onto it automatically. Study dates are de-identified placeholders, so the interval between radiograph and CT is unknown. The ring over the left upper zone on the radiograph is an implanted venous port (a chest wall device), not a nodule; it is not on the CT, so the two studies were taken at different times. On the CT a small metal clip lies beside the superior vena cava.",
    "learnNotes": "Search both lungs from apex to base in a lung window and keep going after the first finding. Nodules are round and do not branch; vessels branch and can be followed from slice to slice. Use the MPR layout to check that a 'nodule' is spherical rather than a vessel seen end-on.\n\nThe outlines come from up to four LIDC readers and often disagree at the edges — compare them rather than treating one as exact truth. Then look at the same patient's radiograph: decide whether the CT nodules are visible there at all."
   },
   {
@@ -147,7 +147,7 @@
      "note": "Normal CT anatomy of the lungs; lung windows"
     }
    ],
-   "referenceSummary": "2 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers (each reader's outline kept separately). LIDC references cover reader-marked nodules only — other findings and nodules <3 mm are not referenced, so unmatched marks are not counted as false positives. Reader malignancy ratings are subjective suspicion scores, not diagnoses. The radiograph has no localized reference; the CT annotations do not map onto it automatically. Study dates are de-identified placeholders, so the interval between radiograph and CT is unknown.",
+   "referenceSummary": "2 nodule(s) ≥3 mm outlined by multiple LIDC-IDRI readers (each reader's outline kept separately). LIDC references cover reader-marked nodules only — other findings and nodules <3 mm are not referenced, so unmatched marks are not counted as false positives. Reader malignancy ratings are subjective suspicion scores, not diagnoses. The radiograph has no localized reference; the CT annotations do not map onto it automatically. Study dates are de-identified placeholders, so the interval between radiograph and CT is unknown. The small metal object above the left clavicle on the radiograph lies outside the patient (clothing or jewellery).",
    "learnNotes": "Search both lungs from apex to base in a lung window and keep going after the first finding. Nodules are round and do not branch; vessels branch and can be followed from slice to slice. Use the MPR layout to check that a 'nodule' is spherical rather than a vessel seen end-on.\n\nThe outlines come from up to four LIDC readers and often disagree at the edges — compare them rather than treating one as exact truth. Then look at the same patient's radiograph: decide whether the CT nodules are visible there at all."
   },
   {
@@ -253,7 +253,7 @@
      "note": "The normal frontal chest radiograph"
     }
    ],
-   "referenceSummary": "No finding-level reference is available for these studies — tasks are self-reviewed against source-linked checklists. Radiograph and CT were obtained 3 day(s) apart (de-identified dates, intervals preserved).",
+   "referenceSummary": "No finding-level reference is available for these studies — tasks are self-reviewed against source-linked checklists. Radiograph and CT were obtained 3 day(s) apart (de-identified dates, intervals preserved). Also visible: an abdominal aortic stent-graft (metal mesh in front of the upper lumbar spine) and a row of skin staples on the right lower chest wall.",
    "learnNotes": "Read the radiograph first, then the CT (3 day(s) apart). Describe what is actually there: an image from this cohort may be normal. On the radiograph, describe opacities by side, zone, pattern (airspace vs interstitial) and distribution; on CT, separate ground-glass from consolidation and peripheral from central. Then decide what the CT adds."
   },
   {

@@ -419,7 +419,7 @@
      "sectionId": "ch18-s31"
     }
    ],
-   "referenceSummary": "The ellipse on the outer skull was placed by a trained sonographer (HC18); the head circumference it gives is 87.3 mm. The image carries its true pixel size. Gestational age is not given by the dataset.",
+   "referenceSummary": "The ellipse on the outer skull was placed by a trained sonographer (HC18); the head circumference it gives is 87.3 mm. The image carries its true pixel size. Gestational age is not given by the dataset. This is an early, small head (circumference 87 mm): before about 16 weeks the cavum septi pellucidi is not yet visible, so the plane is judged by a symmetric skull outline and the midline echo.",
    "learnNotes": "Fetal growth is followed with standard measurements on standard planes. The head is measured on an axial plane through the thalami and the cavum septi pellucidi, with the skull outline symmetric and smooth. Bone reflects most of the sound, so the skull is a bright (echogenic) oval; the brain inside is darker. Head circumference is the perimeter of an ellipse placed on the outer edge of the skull: approximately pi x (BPD + OFD) / 2, where BPD (biparietal diameter) and OFD (occipitofrontal diameter) are the short and long axes. Measurements on an ultrasound image are only true distances when the image carries its pixel size, as these images do."
   },
   {

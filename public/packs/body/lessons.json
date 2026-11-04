@@ -40,7 +40,7 @@
      "note": "Normal cardiac CT anatomy levels"
     }
    ],
-   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC) for heart, both lungs, esophagus and spinal cord only. Nothing else has been reviewed. This series is an average-intensity projection of a 4D (respiratory-phase) CT — a radiotherapy planning reconstruction.",
+   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC) for heart, both lungs, esophagus and spinal cord only. Nothing else has been reviewed. This series is an average-intensity projection of a 4D (respiratory-phase) CT — a radiotherapy planning reconstruction. Also visible, not outlined: a large soft-tissue mass with small air pockets in the back of the right upper lobe, most likely the tumour being treated; the right lung contour leaves it out.",
    "learnNotes": "A different patient from the starter CT: repeat the same anatomy skills here without the hints you used before. Contours are radiotherapy definitions, not exact anatomical boundaries. This series is an average-intensity projection of a 4D (respiratory-phase) CT — a radiotherapy planning reconstruction."
   },
   {
@@ -80,7 +80,7 @@
      "note": "Normal cardiac CT anatomy levels"
     }
    ],
-   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC) for heart, both lungs, esophagus and spinal cord only. Nothing else has been reviewed.",
+   "referenceSummary": "Source radiotherapy organ-at-risk contours (LCTSC) for heart, both lungs, esophagus and spinal cord only. Nothing else has been reviewed. Also visible, not outlined: a spiculated mass in the inner part of the left upper lobe next to the aortic arch, largest on the slices just above this level.",
    "learnNotes": "A different patient from the starter CT: repeat the same anatomy skills here without the hints you used before. Contours are radiotherapy definitions, not exact anatomical boundaries."
   },
   {

@@ -134,7 +134,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-E/2.1). Nothing else is referenced.",
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-E/2.1). Nothing else is referenced. The dataset's annotations also mark a pronator quadratus sign on the lateral view (the fat line in front of the distal radius pushed forward or blurred), an indirect sign of a distal forearm fracture.",
    "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
   },
   {
@@ -469,7 +469,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-E/2.1). Nothing else is referenced.",
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-E/2.1). Nothing else is referenced. The dataset's annotations also mark soft-tissue swelling on the frontal view.",
    "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
   },
   {
@@ -536,7 +536,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-E/2.1). Nothing else is referenced.",
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-E/2.1). Nothing else is referenced. The dataset's annotations also mark a pronator quadratus sign on the lateral view (the fat line in front of the distal radius pushed forward or blurred), an indirect sign of a distal forearm fracture.",
    "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
   },
   {
@@ -715,7 +715,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/2.1). Nothing else is referenced.",
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/2.1). Nothing else is referenced. The dataset's annotations also mark a pronator quadratus sign on the lateral view (the fat line in front of the distal radius pushed forward or blurred), an indirect sign of a distal forearm fracture.",
    "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
   },
   {
@@ -1075,7 +1075,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/2.1). Nothing else is referenced.",
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/2.1). Nothing else is referenced. The dataset's annotations also mark a pronator quadratus sign on the lateral view (the fat line in front of the distal radius pushed forward or blurred), an indirect sign of a distal forearm fracture.",
    "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
   },
   {
@@ -1165,7 +1165,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/3.1). Nothing else is referenced.",
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/3.1). Nothing else is referenced. The dataset's annotations also mark a pronator quadratus sign on the lateral view (the fat line in front of the distal radius pushed forward or blurred), an indirect sign of a distal forearm fracture.",
    "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
   },
   {
@@ -1210,7 +1210,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/3.1). Nothing else is referenced.",
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/3.1). Nothing else is referenced. The dataset's annotations also mark a pronator quadratus sign on the lateral view (the fat line in front of the distal radius pushed forward or blurred), an indirect sign of a distal forearm fracture.",
    "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
   },
   {
@@ -1480,7 +1480,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/3.1). Nothing else is referenced.",
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/3.1). Nothing else is referenced. The dataset's annotations also mark soft-tissue swelling on the lateral view.",
    "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
   },
   {
@@ -1525,7 +1525,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/3.1). Nothing else is referenced.",
+   "referenceSummary": "The fracture is boxed on both views in the dataset's annotations, which pediatric radiologists reviewed (GRAZPEDWRI-DX). The fracture type comes from the AO/OTA pediatric code in the dataset (23r-M/3.1). Nothing else is referenced. The dataset's annotations also mark a pronator quadratus sign on the lateral view (the fat line in front of the distal radius pushed forward or blurred), an indirect sign of a distal forearm fracture.",
    "learnNotes": "Children's bones bend and buckle before they break, and the growth plate (physis) is weaker than the ligaments around it. A torus (buckle) fracture is a bulge or kink of the cortex where the metaphysis was compressed; a greenstick fracture breaks one cortex and bends the other. Salter-Harris fractures involve the growth plate: type I runs through the plate alone, type II (the commonest) runs along the plate and out through the metaphysis, leaving a metaphyseal corner fragment; types III and IV cross the epiphysis into the joint, and type V is a crush of the plate. Types I and II usually heal well; the higher types risk early fusion of the plate and growth disturbance. Always read two views."
   },
   {

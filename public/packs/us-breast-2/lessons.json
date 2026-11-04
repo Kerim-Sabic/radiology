@@ -3600,7 +3600,7 @@
      "sectionId": "ch18-s02"
     }
    ],
-   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape irregular, margin not circumscribed (angular), echo pattern anechoic, no posterior features, BI-RADS 4b. Biopsy: benign mammary dysplasia (benign). The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation.",
+   "referenceSummary": "The lesion is outlined freehand by a radiologist experienced in breast ultrasound, who also recorded its BI-RADS descriptors (Breast-Lesions-USG): shape irregular, margin not circumscribed (angular), echo pattern anechoic, no posterior features, BI-RADS 4b. Biopsy: benign mammary dysplasia (benign). The image is the dataset's cropped B-mode frame with its true pixel size; no Doppler, no orientation. Also visible, not outlined: a second irregular dark area to the right of the outlined lesion, at the same depth.",
    "learnNotes": "Breast ultrasound first answers one question: cyst or solid? A simple cyst is anechoic (black, no internal echoes), circumscribed with a thin sharp back wall, and has posterior acoustic enhancement (brighter tissue behind it, because fluid lets the sound through). Anything that fails these criteria is treated as solid or complicated. A solid mass is described like a mammographic one: shape (oval, round, irregular), orientation, margin (circumscribed or not: indistinct, angular, microlobulated, spiculated), echo pattern and posterior features. An oval, circumscribed mass parallel to the skin favors a benign tumor such as a fibroadenoma; an irregular, spiculated or angular hypoechoic mass with posterior shadowing is suspicious for carcinoma. Ultrasound shows the features; the biopsy gives the diagnosis."
   },
   {
@@ -10541,7 +10541,7 @@
      "text": "Echo pattern is judged against the subcutaneous fat; posterior features are judged in the tissue directly deep to the lesion."
     }
    ],
-   "explanation": "The radiologist described this lesion as hypoechoic with no posterior features. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone.",
+   "explanation": "The radiologist described this lesion as hypoechoic with no posterior features. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone. On this image a dark column runs down from the lesion's deep edge (posterior shadowing), although the radiologist recorded no posterior features; the answer key follows the radiologist's descriptor.",
    "bookAnchors": [
     {
      "physical": 411,
@@ -36248,7 +36248,7 @@
      "text": "Echo pattern is judged against the subcutaneous fat; posterior features are judged in the tissue directly deep to the lesion."
     }
    ],
-   "explanation": "The radiologist described this lesion as heterogeneous with no posterior features. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone.",
+   "explanation": "The radiologist described this lesion as heterogeneous with no posterior features. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone. On this image a dark band of posterior acoustic shadowing runs down from the lesion, although the radiologist recorded no posterior features; the answer key follows the radiologist's descriptor.",
    "bookAnchors": [
     {
      "physical": 411,
@@ -47140,7 +47140,7 @@
      "text": "Echo pattern is judged against the subcutaneous fat; posterior features are judged in the tissue directly deep to the lesion."
     }
    ],
-   "explanation": "The radiologist described this lesion as anechoic with posterior features: enhancement. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone.",
+   "explanation": "The radiologist described this lesion as anechoic with posterior features: enhancement. Anechoic means no echoes (fluid). Posterior acoustic enhancement is brighter tissue behind something that lets sound through easily, typical of fluid; posterior shadowing is a dark band behind something that absorbs or reflects the sound, such as a dense fibrotic cancer, calcification or bone. The fluid is anechoic apart from thin curving echogenic strands (septations or fibrin) in its right part; the answer key follows the radiologist's descriptor.",
    "bookAnchors": [
     {
      "physical": 411,

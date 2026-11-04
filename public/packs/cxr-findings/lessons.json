@@ -60,7 +60,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also on this film, not outlined: surgical staples in the right lower lung and surgical clips at the left hilum from earlier lung operations, and a right posterior rib that ends squarely where a short segment is missing. That rib looks the same on this patient's earlier films, so it is an old change (most likely from surgery), not an acute fracture.",
    "learnNotes": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated."
   },
   {
@@ -120,7 +120,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: a chest drain in the right hemithorax, so this pneumothorax is already being treated.",
    "learnNotes": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated."
   },
   {
@@ -180,7 +180,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: two tubes in the left chest, a double-ringed metal device over the left chest wall and a dense calcified lump over the left first rib and clavicle.",
    "learnNotes": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated."
   },
   {
@@ -240,7 +240,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumothorax (NIH ChestX-ray14). The labels mined from this film's report are: Pneumothorax (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: a pigtail chest drain in the right chest and surgical clips at the right hilum from earlier surgery.",
    "learnNotes": "A pneumothorax is air between the lung and the chest wall. Look for the visceral pleural line: a thin white line parallel to the chest wall with no lung markings beyond it. On an upright film air collects at the apex first. Mimics are skin folds (lung markings continue past them and they often run beyond the rib cage) and the medial edge of the scapula. Check the mediastinum: a shift away from the air suggests tension. A chest tube on the film tells you the air was already treated."
   },
   {
@@ -293,7 +293,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the pleural effusion (NIH ChestX-ray14). The labels mined from this film's report are: Effusion (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pleural effusion (NIH ChestX-ray14). The labels mined from this film's report are: Effusion (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: several drainage catheters in the right chest and ECG electrodes with their leads.",
    "learnNotes": "Pleural fluid settles in the lowest part of the pleural space. On an upright PA film the first sign is blunting of the lateral costophrenic angle (the lateral view shows smaller amounts in the posterior sulcus); larger effusions form a meniscus that rises laterally and hide the hemidiaphragm. A large effusion pushes the mediastinum away; if it does not, look for collapse of the lung underneath."
   },
   {
@@ -346,7 +346,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the pleural effusion (NIH ChestX-ray14). The labels mined from this film's report are: Effusion (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pleural effusion (NIH ChestX-ray14). The labels mined from this film's report are: Effusion (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: an implanted venous port with its catheter in the left upper chest.",
    "learnNotes": "Pleural fluid settles in the lowest part of the pleural space. On an upright PA film the first sign is blunting of the lateral costophrenic angle (the lateral view shows smaller amounts in the posterior sulcus); larger effusions form a meniscus that rises laterally and hide the hemidiaphragm. A large effusion pushes the mediastinum away; if it does not, look for collapse of the lung underneath."
   },
   {
@@ -512,7 +512,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the atelectasis (NIH ChestX-ray14). The labels mined from this film's report are: Atelectasis (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the atelectasis (NIH ChestX-ray14). The labels mined from this film's report are: Atelectasis (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: a chest drain in the left chest running up to the apex.",
    "learnNotes": "Atelectasis is loss of lung volume. The airless lung becomes more opaque, and the signs of volume loss point to it: a displaced fissure, a raised hemidiaphragm, shift of the hilum or mediastinum towards the collapse and crowded ribs. Thin horizontal lines at the bases are plate-like (discoid) atelectasis, usually from shallow breathing."
   },
   {
@@ -699,7 +699,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the cardiomegaly (NIH ChestX-ray14). The labels mined from this film's report are: Cardiomegaly (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the cardiomegaly (NIH ChestX-ray14). The labels mined from this film's report are: Cardiomegaly (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: sternotomy wires, temporary pacing wires over the heart and ECG electrodes after heart surgery.",
    "learnNotes": "On a PA film with a good inspiration the cardiothoracic ratio is the widest transverse diameter of the heart divided by the widest inner diameter of the chest; more than 0.5 suggests an enlarged cardiac silhouette. AP and poorly inspired films magnify the heart, so judge size on a PA film. A large silhouette can be chamber enlargement or pericardial fluid; the radiograph alone cannot always tell them apart."
   },
   {
@@ -766,7 +766,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the cardiomegaly (NIH ChestX-ray14). The labels mined from this film's report are: Cardiomegaly (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the cardiomegaly (NIH ChestX-ray14). The labels mined from this film's report are: Cardiomegaly (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: sternotomy wires and surgical clips from earlier heart surgery.",
    "learnNotes": "On a PA film with a good inspiration the cardiothoracic ratio is the widest transverse diameter of the heart divided by the widest inner diameter of the chest; more than 0.5 suggests an enlarged cardiac silhouette. AP and poorly inspired films magnify the heart, so judge size on a PA film. A large silhouette can be chamber enlargement or pericardial fluid; the radiograph alone cannot always tell them apart."
   },
   {
@@ -878,7 +878,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the lung mass (NIH ChestX-ray14). The labels mined from this film's report are: Mass (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the lung mass (NIH ChestX-ray14). The labels mined from this film's report are: Mass (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: a central venous catheter inserted from the right arm with its tip in the superior vena cava.",
    "learnNotes": "A mass is a lung opacity larger than 3 cm (smaller ones are nodules). Describe its size, margins (smooth, lobulated or spiculated), location and any cavitation, and look for what goes with it: hilar or mediastinal enlargement, an effusion, rib destruction or collapse beyond it. In an adult a lung mass must be explained; the radiograph shows it but does not give the diagnosis."
   },
   {
@@ -923,7 +923,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the lung mass (NIH ChestX-ray14). The labels mined from this film's report are: Mass (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the lung mass (NIH ChestX-ray14). The labels mined from this film's report are: Mass (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: skin staples in the left lower neck and a central venous catheter entering from the left neck.",
    "learnNotes": "A mass is a lung opacity larger than 3 cm (smaller ones are nodules). Describe its size, margins (smooth, lobulated or spiculated), location and any cavitation, and look for what goes with it: hilar or mediastinal enlargement, an effusion, rib destruction or collapse beyond it. In an adult a lung mass must be explained; the radiograph shows it but does not give the diagnosis."
   },
   {
@@ -968,7 +968,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the lung mass (NIH ChestX-ray14). The labels mined from this film's report are: Mass (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the lung mass (NIH ChestX-ray14). The labels mined from this film's report are: Mass (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. The small round metal discs over the chest are ECG electrodes, not nodules.",
    "learnNotes": "A mass is a lung opacity larger than 3 cm (smaller ones are nodules). Describe its size, margins (smooth, lobulated or spiculated), location and any cavitation, and look for what goes with it: hilar or mediastinal enlargement, an effusion, rib destruction or collapse beyond it. In an adult a lung mass must be explained; the radiograph shows it but does not give the diagnosis."
   },
   {
@@ -1058,7 +1058,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the lung nodule (NIH ChestX-ray14). The labels mined from this film's report are: Nodule (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the lung nodule (NIH ChestX-ray14). The labels mined from this film's report are: Nodule (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: skin staples in the right side of the neck from recent surgery.",
    "learnNotes": "A nodule is a rounded or irregular opacity up to 3 cm in diameter. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it."
   },
   {
@@ -1103,7 +1103,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the lung nodule (NIH ChestX-ray14). The labels mined from this film's report are: Nodule (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the lung nodule (NIH ChestX-ray14). The labels mined from this film's report are: Nodule (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: surgical clips in the left axilla from earlier surgery.",
    "learnNotes": "A nodule is a rounded or irregular opacity up to 3 cm in diameter. Search zone by zone and compare sides; check that it is really in the lung (nipple shadows, bone islands and skin lesions mimic nodules). Old films tell you whether it is new or stable; the calcification pattern and CT help to characterise it."
   },
   {
@@ -1237,7 +1237,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumonia (NIH ChestX-ray14). The labels mined from this film's report are: Nodule|Pneumonia (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumonia (NIH ChestX-ray14). The labels mined from this film's report are: Nodule|Pneumonia (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: surgical clips at the left hilum from earlier lung surgery; the left chest is smaller than the right and the mediastinum is pulled to the left.",
    "learnNotes": "Pneumonia fills the air spaces: a fluffy or dense opacity with ill-defined edges, often with air bronchograms, filling a segment or lobe. The silhouette sign localises it: a lost right heart border means right middle lobe, a lost left heart border means lingula, a lost hemidiaphragm means a lower lobe. The film cannot tell pneumonia from other material filling the air spaces (fluid, blood, aspiration); the clinical setting does."
   },
   {
@@ -1304,7 +1304,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumonia (NIH ChestX-ray14). The labels mined from this film's report are: Pneumonia (about 90% accurate, per the dataset authors). Nothing else on the film is outlined.",
+   "referenceSummary": "One box drawn by a board-certified radiologist around the pneumonia (NIH ChestX-ray14). The labels mined from this film's report are: Pneumonia (about 90% accurate, per the dataset authors). Nothing else on the film is outlined. Also visible, not outlined: a thin catheter running down the right side of the chest into the abdomen.",
    "learnNotes": "Pneumonia fills the air spaces: a fluffy or dense opacity with ill-defined edges, often with air bronchograms, filling a segment or lobe. The silhouette sign localises it: a lost right heart border means right middle lobe, a lost left heart border means lingula, a lost hemidiaphragm means a lower lobe. The film cannot tell pneumonia from other material filling the air spaces (fluid, blood, aspiration); the clinical setting does."
   }
  ],

@@ -314,7 +314,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "C4KC-KiTS manual kidney and tumour segmentation on the arterial phase; nothing else referenced.",
+   "referenceSummary": "C4KC-KiTS manual kidney and tumour segmentation on the arterial phase; nothing else referenced. Also visible, not referenced: a round low-attenuation lesion in the lateral right kidney that does not enhance, most likely a simple cyst; the graded tumour is the left-sided mass.",
    "learnNotes": "Follow each kidney through its whole length; compare the two sides at each level."
   },
   {
@@ -391,7 +391,7 @@
      "sectionId": null
     }
    ],
-   "referenceSummary": "Source manual vertebra segmentations (15 levels; each outlines the whole vertebra, body and posterior elements). Lesions are not referenced here.",
+   "referenceSummary": "Source manual vertebra segmentations (15 levels; each outlines the whole vertebra, body and posterior elements). Lesions are not referenced here. Also visible, not outlined: the left breast has been removed (mastectomy) with surgical clips in the left axilla, and a ring of surgical staples at the gastro-oesophageal junction causes bright streak artefact on the lower thoracic slices.",
    "learnNotes": "Count from the last rib-bearing vertebra (usually T12) and check on the sagittal MPR."
   },
   {
@@ -2702,7 +2702,7 @@
      }
     }
    ],
-   "explanation": "A different patient with the same skill: contour bulge and abnormal enhancement relative to the cortex.",
+   "explanation": "A different patient with the same skill: contour bulge and abnormal enhancement relative to the cortex. Also visible, not referenced: a round low-attenuation lesion in the lateral right kidney that does not enhance, most likely a simple cyst; the graded tumour is the left-sided mass.",
    "bookAnchors": [
     {
      "physical": 216,

@@ -1,0 +1,266 @@
+{
+ "mg-p01712": {
+  "also": "Also visible, not outlined: two rounded densities high in the breast near the axilla on the MLO; they are not the graded mass."
+ },
+ "mg-p00750": {
+  "also": "Here each outline holds a single small calcification rather than a group.",
+  "notAssess": [
+   "form"
+  ],
+  "explain": {
+   "form": "The lucent centre is hard to resolve on these downsampled digitised films; the descriptor is from the original reading."
+  }
+ },
+ "mg-p02559": {
+  "also": "Also visible, not outlined: a few larger dense calcifications elsewhere in the breast; they are not the graded group."
+ },
+ "fx-img0002544": {
+  "also": "Also visible, not outlined: a ring-shaped radiopaque object projecting over the pelvis."
+ },
+ "fx-img0003458": {
+  "also": "Also visible, not outlined: part of the other leg at the upper edge of the image."
+ },
+ "xr-wrist-child-1464": {
+  "also": "Also visible, not outlined: a splint and bandage along the forearm, seen as thin lines beside the arm on both views."
+ },
+ "xr-wrist-child-4410": {
+  "also": "Also visible, not outlined: splint padding along the forearm, seen as layered lines in the soft tissue on the lateral view."
+ },
+ "mr-diffusion-0010": {
+  "also": "Also visible, not outlined: an old infarct at the back of the left hemisphere (left occipital lobe), dark on DWI and bright on ADC. The round black area in front of the brainstem is where the dataset's skull-stripping removed the skull-base region; it is not a lesion."
+ },
+ "mr-diffusion-0013": {
+  "also": "The centre of the right-sided lesion is dark on both DWI and ADC, signal loss that usually means blood products (haemorrhagic change); a blood-sensitive sequence would confirm it."
+ },
+ "mr-diffusion-0078": {
+  "also": "The swollen left cerebellar hemisphere is larger than the right and the fourth ventricle is effaced: mass effect that can block the flow of CSF and compress the brainstem."
+ },
+ "mr-diffusion-0246": {
+  "also": "The swollen right hemisphere has lost its sulci, which are still visible as CSF on the left: an early sign of mass effect from a large infarct."
+ },
+ "mr-diffusion-0118": {
+  "also": "Also visible, not outlined: enlarged lateral ventricles and widened sulci from generalised loss of brain volume."
+ },
+ "mr-diffusion-0130": {
+  "also": "The lesion lies in the lowest part of the right cerebellar hemisphere, at the bottom of the scanned volume, where only a small piece of brain is in view."
+ },
+ "mr-diffusion-0049": {
+  "also": "Here the darkening on the ADC map is slight (median ADC in the mask about 0.8 of the rest of the brain) and hard to see by eye, so the ADC question is not asked.",
+  "dropTasks": [
+   "adc"
+  ]
+ },
+ "mr-diffusion-0011": {
+  "also": "Here the darkening on the ADC map is slight (median ADC in the mask about 0.8 of the rest of the brain) and hard to see by eye, so the ADC question is not asked.",
+  "dropTasks": [
+   "adc"
+  ]
+ },
+ "cxr-00000744-006": {
+  "also": "Also visible, not outlined: a chest drain in the patient's right hemithorax and surgical clips in the upper abdomen.",
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The patchy right basal opacity could equally be read as pneumonia. The answer follows the dataset label."
+  }
+ },
+ "cxr-00000808-002": {
+  "also": "Also visible, not outlined: sternal wires in the upper midline.",
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The dense left lower zone with loss of the left hemidiaphragm could equally be called pleural effusion. The answer follows the dataset label."
+  }
+ },
+ "cxr-00000830-000": {
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The rounded right perihilar opacity is roughly 2 to 3 cm across, so lung nodule is also defensible. The answer follows the dataset label."
+  }
+ },
+ "cxr-00001534-005": {
+  "also": "Also visible, not outlined: surgical clips in the patient's left axilla."
+ },
+ "cxr-00002763-031": {
+  "also": "Also visible, not outlined: hazy opacity at both lung bases."
+ },
+ "cxr-00003440-000": {
+  "also": "Also visible, not outlined: two round ECG electrodes over the lower chest and upper abdomen.",
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The opacity is ill-defined and about 3 cm, so pneumonia or lung nodule could also be argued. The answer follows the dataset label."
+  }
+ },
+ "cxr-00004533-014": {
+  "also": "Also visible, not outlined: coarse reticular markings throughout both lungs."
+ },
+ "cxr-00006736-000": {
+  "also": "Also visible, not outlined: small dense, probably calcified, spots at both hila."
+ },
+ "cxr-00007037-000": {
+  "also": "Also visible, not outlined: sternotomy wires and a metal prosthetic valve ring over the heart."
+ },
+ "cxr-00007629-001": {
+  "also": "Also visible, not outlined: spinal fixation rods and screws, and a long catheter running down the patient's right chest into the abdomen.",
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The sharp-edged triangular opacity beside the left heart border looks like left lower lobe collapse, so atelectasis is equally defensible. The answer follows the dataset label."
+  }
+ },
+ "cxr-00008008-027": {
+  "also": "Also visible, not outlined: a drainage catheter with a metal connector over the patient's right hemithorax.",
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The round opacity is close to 3 cm, so lung nodule is also defensible. The answer follows the dataset label."
+  }
+ },
+ "cxr-00008554-009": {
+  "also": "Also visible, not outlined: external wires across the upper chest and an ECG lead clip at the patient's left side.",
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The opaque left lower zone with loss of the left hemidiaphragm could equally be read as pleural effusion. The answer follows the dataset label."
+  }
+ },
+ "cxr-00013685-000": {
+  "also": "Also visible, not outlined: surgical clips in the right axilla."
+ },
+ "cxr-00015058-024": {
+  "also": "Also visible, not outlined: sternotomy wires and a line over the right shoulder."
+ },
+ "cxr-00015400-001": {
+  "also": "Also visible, not outlined: ECG electrodes over the chest."
+ },
+ "cxr-00015425-012": {
+  "also": "Also visible, not outlined: a catheter crossing the left upper chest towards the mediastinum."
+ },
+ "cxr-00016564-000": {
+  "also": "Also visible, not outlined: an irregular dense opacity at the left lung apex beside the spine."
+ },
+ "cxr-00017188-002": {
+  "also": "Also visible, not outlined: a line along the right upper arm and lateral chest wall."
+ },
+ "cxr-00017500-002": {
+  "also": "Also visible, not outlined: a catheter with a curled tip in the right chest and a tube in the left upper abdomen."
+ },
+ "cxr-00018393-000": {
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The left retrocardiac lower-lobe opacity could also be read as atelectasis rather than pneumonia. The answer follows the dataset label."
+  }
+ },
+ "cxr-00018657-003": {
+  "also": "Also visible, not outlined: surgical clips in the right upper abdomen.",
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The left lower-zone opacity has patchy parenchymal parts, so pneumonia or atelectasis could also be argued. The answer follows the dataset label."
+  }
+ },
+ "cxr-00019187-000": {
+  "also": "Also visible, not outlined: sternotomy wires."
+ },
+ "cxr-00019426-000": {
+  "also": "Also visible, not outlined: a necklace over the neck."
+ },
+ "cxr-00021364-001": {
+  "also": "Also visible, not outlined: a band of opacity across the patient's right mid zone, and low lung volumes.",
+  "explain": {
+   "locate": "The band-like opacity in the right mid zone is not boxed: the graded finding is the enlarged heart."
+  }
+ },
+ "cxr-00022961-008": {
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The wedge-shaped opacity behind the left heart could equally be read as left lower lobe atelectasis. The answer follows the dataset label."
+  }
+ },
+ "cxr-00023283-005": {
+  "also": "Also visible, not outlined: a thin catheter running down the patient's right chest into the upper abdomen.",
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The dense triangular opacity behind the left heart could equally be read as left lower lobe atelectasis (collapse). The answer follows the dataset label."
+  }
+ },
+ "cxr-00025686-000": {
+  "notAssess": [
+   "name"
+  ],
+  "explain": {
+   "name": "The left basal opacity could also be read as left lower lobe atelectasis. The answer follows the dataset label."
+  }
+ },
+ "us-breast-case187": {
+  "explain": {
+   "echo": "On this image a dark band of posterior shadowing runs down from the lesion, although the radiologist recorded no posterior features; the answer key follows the radiologist's descriptor."
+  }
+ },
+ "us-breast-case238": {
+  "explain": {
+   "echo": "On this image a dark band of posterior shadowing runs down from the lesion, although the radiologist recorded no posterior features; the answer key follows the radiologist's descriptor."
+  }
+ },
+ "us-breast-case201": {
+  "explain": {
+   "echo": "On this image a dark band of posterior shadowing runs down from the lesion, although the radiologist recorded no posterior features; the answer key follows the radiologist's descriptor."
+  }
+ },
+ "us-breast-case104": {
+  "explain": {
+   "echo": "On this image a dark band of posterior shadowing runs down from the lesion, although the radiologist recorded no posterior features; the answer key follows the radiologist's descriptor."
+  }
+ },
+ "us-breast-case116": {
+  "explain": {
+   "echo": "On this image a dark band of posterior shadowing runs down from the lesion, although the radiologist recorded no posterior features; the answer key follows the radiologist's descriptor."
+  }
+ },
+ "us-breast-case110": {
+  "explain": {
+   "echo": "The fluid shows faint internal echoes, as thick fluid does; the answer key follows the radiologist's descriptor (anechoic)."
+  }
+ },
+ "us-breast-case064": {
+  "explain": {
+   "echo": "The fluid holds an internal echogenic septum or debris; the answer key follows the radiologist's descriptor (anechoic)."
+  }
+ },
+ "us-breast-case100": {
+  "notAssess": [
+   "shape"
+  ],
+  "explain": {
+   "shape": "On this frame the outline is irregular and the margin poorly seen, although the radiologist recorded an oval, circumscribed lesion; this question is for learning and practice, not for Assess or the exams."
+  }
+ },
+ "us-breast-case248": {
+  "also": "Bright dots inside the mass are most likely calcifications."
+ },
+ "us-breast-case164": {
+  "also": "Bright dots inside the mass are most likely calcifications."
+ },
+ "us-breast-case244": {
+  "also": "Bright dots inside the mass are most likely calcifications."
+ },
+ "us-breast-case062": {
+  "also": "Also visible, not outlined: a second small dark oval nodule to the right of the lesion."
+ }
+}

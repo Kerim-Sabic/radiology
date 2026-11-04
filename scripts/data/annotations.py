@@ -842,6 +842,10 @@ def convert_voc_boxes(zip_path: Path, zip_meta: dict, geoms: dict[str, "SeriesGe
     histology = VOC_HISTOLOGY[folder[0]]
     tid = f"{ctx['subjectSlug']}_lung-cancer"
     idx = sorted({g.index[b["sopInstanceUid"]] for b in boxes})
+    # Image numbers as the viewer shows them: axial stacks stored towards S are shown head first (caseRepository.ts).
+    n = len(g.sops)
+    head_first = g.normal is not None and abs(g.normal[2]) > 0.7 and g.normal[2] > 0
+    first, last = (n - idx[-1], n - idx[0]) if head_first else (idx[0] + 1, idx[-1] + 1)
     target = {
         "id": tid,
         "label": f"Lung cancer, {histology} (radiologists' box)",
@@ -855,7 +859,7 @@ def convert_voc_boxes(zip_path: Path, zip_meta: dict, geoms: dict[str, "SeriesGe
             "method": ("Bounding boxes drawn in LabelImg by one of five academic thoracic radiologists and verified by the other four "
                        "(collection description); one PASCAL VOC XML per image named by its SOP Instance UID. Converted from pixel-corner "
                        "[xmin, ymin, xmax, ymax] to image_px with the pixel-centre convention (-0.5 px)."),
-            "note": (f"{len(boxes)} boxes on {len(idx)} images of this series (display positions {idx[0] + 1}-{idx[-1] + 1} of {len(g.sops)}); "
+            "note": (f"{len(boxes)} boxes on {len(idx)} images of this series (images {first}-{last} of {n}, counted from the top of the stack as the viewer shows it); "
                      f"{outside} more boxes of this patient are on other reconstructions and are not used. Histology letter '{folder[0]}' "
                      f"= {histology} (patient ID prefix, collection description)."),
         },
