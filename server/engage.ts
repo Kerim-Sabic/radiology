@@ -24,7 +24,7 @@ export interface Profile {
   lastWeeklyMail?: number;
 }
 
-export const METRICS = ['visit', 'signup_start', 'signup', 'opened', 'studied', 'plans', 'checkout', 'paid'] as const;
+export const METRICS = ['visit', 'guest_open', 'guest_answer', 'signup_start', 'signup', 'opened', 'studied', 'plans', 'checkout', 'paid'] as const;
 export type Metric = (typeof METRICS)[number];
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -285,8 +285,8 @@ async function knownSource(source: string) {
   return true;
 }
 
-/** Count a landing visit or a Start free click for a campaign; never fails the request. */
-export async function countSource(metric: 'visit' | 'signup_start', source: string) {
+/** Count a landing visit, a sample case opened without an account or a Start free click for a campaign; never fails the request. */
+export async function countSource(metric: 'visit' | 'signup_start' | 'guest_open', source: string) {
   try {
     if (await knownSource(source)) await db().incrby(`rvm:ms:${metric}:${utcDay()}:${source}`, 1);
   } catch {
@@ -354,20 +354,29 @@ export async function adminStats(now = new Date(), days = 30) {
   const subs = Number((await db().scard('rvm:subscribers')) ?? 0);
   // Visits and Start free clicks per campaign over the window; untagged visits are the rest of the total.
   const tags = (await db().smembers('rvm:sources')) as string[];
-  const tagged = new Map<string, { visits: number; starts: number }>();
+  // Per campaign: landing visits, sample cases tried without an account, Start free clicks.
+  const tagged = new Map<string, { visits: number; tried: number; starts: number }>();
+  const KINDS = ['visit', 'guest_open', 'signup_start'] as const;
   for (const tag of tags) {
-    const v = (await db().mget<Array<number | null>>(...dayList.flatMap((d) => [`rvm:ms:visit:${d}:${tag}`, `rvm:ms:signup_start:${d}:${tag}`]))) as Array<number | string | null>;
-    tagged.set(tag, { visits: v.filter((_, i) => i % 2 === 0).reduce((s: number, x) => s + Number(x ?? 0), 0), starts: v.filter((_, i) => i % 2 === 1).reduce((s: number, x) => s + Number(x ?? 0), 0) });
+    const v = (await db().mget<Array<number | null>>(...dayList.flatMap((d) => KINDS.map((k) => `rvm:ms:${k}:${d}:${tag}`)))) as Array<number | string | null>;
+    const total = (k: number) => v.filter((_, i) => i % KINDS.length === k).reduce((s: number, x) => s + Number(x ?? 0), 0);
+    tagged.set(tag, { visits: total(0), tried: total(1), starts: total(2) });
   }
-  const sum = (k: 'visits' | 'starts') => [...tagged.values()].reduce((s, t) => s + t[k], 0);
+  const sum = (k: 'visits' | 'tried' | 'starts') => [...tagged.values()].reduce((s, t) => s + t[k], 0);
   const sources = [...new Set([...tagged.keys(), ...[...cohort.keys()].filter(Boolean)])]
-    .map((source) => ({ source, ...(tagged.get(source) ?? { visits: 0, starts: 0 }), ...(cohort.get(source) ?? { accounts: 0, studied: 0, paid: 0 }) }))
-    .filter((r) => r.visits || r.starts || r.accounts)
-    .sort((a, b) => b.accounts - a.accounts || b.visits - a.visits);
-  const untagged = { source: '', visits: Math.max(0, totals.visit - sum('visits')), starts: Math.max(0, totals.signup_start - sum('starts')), ...(cohort.get('') ?? { accounts: 0, studied: 0, paid: 0 }) };
+    .map((source) => ({ source, ...(tagged.get(source) ?? { visits: 0, tried: 0, starts: 0 }), ...(cohort.get(source) ?? { accounts: 0, studied: 0, paid: 0 }) }))
+    .filter((r) => r.visits || r.tried || r.starts || r.accounts)
+    .sort((a, b) => b.accounts - a.accounts || b.visits + b.tried - (a.visits + a.tried));
+  const untagged = {
+    source: '',
+    visits: Math.max(0, totals.visit - sum('visits')),
+    tried: Math.max(0, totals.guest_open - sum('tried')),
+    starts: Math.max(0, totals.signup_start - sum('starts')),
+    ...(cohort.get('') ?? { accounts: 0, studied: 0, paid: 0 }),
+  };
   return { series, totals, accounts: users.length, subscribers: subs, retention: { d1: { base: d1Base, back: d1 }, d7: { base: d7Base, back: d7 } }, sources: [...sources, untagged] };
 }
 
 export function trackable(event: unknown): Metric | null {
-  return event === 'visit' || event === 'signup_start' || event === 'plans' ? event : null;
+  return event === 'visit' || event === 'guest_open' || event === 'guest_answer' || event === 'signup_start' || event === 'plans' ? event : null;
 }

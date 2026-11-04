@@ -1,8 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-const fake = vi.hoisted(() => ({ session: vi.fn(), access: vi.fn() }));
+const fake = vi.hoisted(() => ({ session: vi.fn(), access: vi.fn(), rate: vi.fn() }));
 vi.mock('../server/auth', async (original) => ({ ...(await original<typeof import('../server/auth')>()), session: fake.session }));
 vi.mock('../server/billing', () => ({ accessFor: fake.access }));
-import proxy, { cacheControl } from '../proxy';
+vi.mock('../server/store', () => ({ rateLimit: fake.rate, db: () => ({}) }));
+import proxy, { cacheControl, GUEST_FILES_PER_10_MIN } from '../proxy';
+import { FREE_EDITION } from '../server/freeEdition.generated';
 
 // Each test uses its own session token: the proxy remembers a member's yes per session for a minute.
 let n = 0;
@@ -19,6 +21,7 @@ beforeEach(() => {
   vi.stubEnv('KV_REST_API_TOKEN', 'test');
   fake.session.mockResolvedValue({ userId: 'member', email: 'm@example.org', name: 'M', tokenHash: 'x' });
   fake.access.mockResolvedValue({ active: true });
+  fake.rate.mockResolvedValue(true);
 });
 afterEach(() => {
   vi.unstubAllEnvs();
@@ -59,6 +62,21 @@ describe('pack files: access and caching', () => {
     } finally {
       vi.useRealTimers();
     }
+  });
+
+  it('lets a visitor with no account open only the always-free sample patients, limited per address', async () => {
+    const xray = FREE_EDITION.cases['cxr-00003400-003'];
+    const slice = `${xray.prefixes[0]}0123456789abcdef.dcm`;
+    for (const path of [slice, ...xray.files, ...FREE_EDITION.shared.slice(0, 3)]) expect((await proxy(get(path, null))).status, path).not.toBeGreaterThanOrEqual(400);
+    expect(fake.rate).toHaveBeenCalledWith(expect.stringMatching(/^guest-packs:[0-9a-f]{64}$/), GUEST_FILES_PER_10_MIN, 600);
+    // Members-only files, the case of the week, and paths that try to leave a free folder stay closed.
+    const weekly = FREE_EDITION.cases[FREE_EDITION.weekly[0]];
+    for (const path of [DICOM, `${weekly?.prefixes[0] ?? '/packs/pe-cta/dicom/x/'}0123456789abcdef.dcm`, `${xray.prefixes[0]}../../lessons-secret.json`, `${xray.prefixes[0]}deeper/0123456789abcdef.dcm`])
+      expect((await proxy(get(path, null))).status, path).toBe(401);
+    // Past the limit, a visitor with no account waits; an account is never limited here.
+    fake.rate.mockResolvedValue(false);
+    expect((await proxy(get(slice, null))).status).toBe(429);
+    expect((await proxy(get(slice, token()))).status).not.toBeGreaterThanOrEqual(400);
   });
 
   it('lets the browser keep only the content-addressed slice files, and never lets a CDN cache anything', async () => {

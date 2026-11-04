@@ -110,7 +110,7 @@ export async function handle(request: Request): Promise<Response> {
       const source = cleanSource(body?.source);
       if (await rateLimit(`track:${ip()}`, 60, 600)) {
         await count(event);
-        if (source && (event === 'visit' || event === 'signup_start')) await countSource(event, source);
+        if (source && (event === 'visit' || event === 'signup_start' || event === 'guest_open')) await countSource(event, source);
       }
       return json({ ok: true });
     }

@@ -1,9 +1,10 @@
 import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
 import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers, LockOpen, School, ChevronDown, CircleHelp, Settings as SettingsIcon, UsersRound } from 'lucide-react';
 import { DropdownMenu } from 'radix-ui';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { fetchInvitation, pendingJoinCode, type Invitation } from './joinCode';
 import { withoutAccount } from './returnPath';
+import { guestCaseId } from './guest';
 import './account.css';
 import './plans.css';
 import { Landing } from './Landing';
@@ -33,11 +34,17 @@ interface Account { user: { name: string; email: string } | null; access: Access
 interface AccountState {
   account: Account;
   logout: () => void;
-  /** Signed in without a plan: the free edition (the sample patients). */
+  /** Signed in without a plan, or a guest: the free edition (the sample patients). */
   free: boolean;
-  /** Open the plans screen (free accounts). */
+  /** No account: a visitor trying a sample patient from a link. Answers stay on this device until they sign up. */
+  guest: boolean;
+  /** Open the plans screen (free accounts; a guest gets the sign-up form). */
   openPlans: () => void;
+  /** Open the sign-up or sign-in form over the page (guests; does nothing for an account). */
+  startAccount: (mode: 'signup' | 'login') => void;
 }
+const GUEST_ACCOUNT: Account = { user: null, access: { active: false }, billingReady: false };
+const noAccountForm = () => undefined;
 const AccountContext = createContext<AccountState | null>(null);
 
 /** The signed-in account, or null where there is none (local development without the gate). */
@@ -147,6 +154,7 @@ export function AccountGate({ children }: { children: ReactNode }) {
 }
 
 function MembershipGate({ children }: { children: ReactNode }) {
+  const { pathname } = useLocation();
   const [referral] = useState(currentReferral);
   const [account, setAccount] = useState<Account | null>(null);
   const [ready, setReady] = useState<{ auth: boolean; billing: boolean; authProvider?: 'clerk' | 'whop'; clerkPublishableKey?: string } | null>(null);
@@ -307,7 +315,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
     if (!authWindow.current) location.assign('/api/auth/email');
   }
 
-  if (account?.access.active) return <AccountContext.Provider value={{ account, logout, free: false, openPlans }}>{children}</AccountContext.Provider>;
+  if (account?.access.active) return <AccountContext.Provider value={{ account, logout, free: false, guest: false, openPlans, startAccount: noAccountForm }}>{children}</AccountContext.Provider>;
   if (loading) return <div className="membership-loading" role="status"><ScanLine size={30} /><p>Opening your study space…</p></div>;
   const student = account?.studentDiscountEligible === true;
   const checkoutCodeChanged = promoCode.trim().toLowerCase() !== (payment?.enteredPromoCode || '');
@@ -378,15 +386,13 @@ function MembershipGate({ children }: { children: ReactNode }) {
   if (account?.user) {
     // Signed in, no plan: the free edition of the app, with the plans on their own screen when asked for.
     const showPlans = plansOpen || !!payment || returned;
-    return <AccountContext.Provider value={{ account, logout, free: true, openPlans }}>
+    return <AccountContext.Provider value={{ account, logout, free: true, guest: false, openPlans, startAccount: noAccountForm }}>
       {children}
       {showPlans ? <PlansScreen panel={panel} email={account.user.email} onClose={closePlans} onSignOut={() => void logout()} /> : null}
     </AccountContext.Provider>;
   }
-  return <main className="membership-page lp">
-    <InviteBanner onJoin={() => { setAuthMode('signup'); setError(''); trackFunnel('signup_start', true); }} onSignIn={() => setAuthMode('login')} />
-    <Landing panel={panel} signInLabel="Sign in" signInDisabled={!ready?.auth}
-      onSignIn={() => setAuthMode('login')} onStartFree={() => { setAuthMode('signup'); setError(''); trackFunnel('signup_start', true); }} />
+  const startFree = () => { setAuthMode('signup'); setError(''); trackFunnel('signup_start', true); };
+  const authDialog = (
     <dialog className="auth-dialog" ref={dialog} onCancel={() => setAuthMode(null)} onClose={() => setAuthMode(null)} aria-labelledby="auth-title">
       <button className="auth-close" aria-label="Close sign-in" onClick={() => setAuthMode(null)}><X size={20} /></button>
       <div className="auth-icon"><Mail size={25} /></div>
@@ -404,5 +410,20 @@ function MembershipGate({ children }: { children: ReactNode }) {
       <p className="auth-privacy"><ShieldCheck size={15} />{ready?.authProvider === 'clerk' ? 'Your account is protected by Clerk. Sign-in and payment stay on radiology.monster.' : 'Whop securely verifies your email in a separate window. Your payment happens here on radiology.monster.'}</p>
       {error && <p className="membership-message" role="alert">{error}</p>}
     </dialog>
+  );
+  // No account, on a sample patient's page (an ad or a shared link): the reading room opens as a guest. Signing up
+  // from here keeps the page (src/auth/returnPath.ts) and the answers given on it (the first account to sync in a
+  // browser takes the history already there).
+  if (guestCaseId(pathname)) {
+    return <AccountContext.Provider value={{ account: account ?? GUEST_ACCOUNT, logout, free: true, guest: true, openPlans: startFree, startAccount: (mode) => (mode === 'login' ? setAuthMode('login') : startFree()) }}>
+      {children}
+      {authDialog}
+    </AccountContext.Provider>;
+  }
+  return <main className="membership-page lp">
+    <InviteBanner onJoin={startFree} onSignIn={() => setAuthMode('login')} />
+    <Landing panel={panel} signInLabel="Sign in" signInDisabled={!ready?.auth}
+      onSignIn={() => setAuthMode('login')} onStartFree={startFree} />
+    {authDialog}
   </main>;
 }

@@ -59,7 +59,7 @@ import { arrowLabelHook } from '../viewer/csInit';
 import { lookOf, segStyle, withLookAll } from '../viewer/segStyle';
 import { GROUP_ORDER } from '../viewer/anatomyMask';
 import { downloadBlob, shortLicense, slug, viewToPng } from '../lib/viewImage';
-import { LockedCase, UpgradeCard } from '../components/Upgrade';
+import { GuestSaveCard, LockedCase, UpgradeCard } from '../components/Upgrade';
 import { todayPlan } from '../services/learningModel';
 import { fact, LANDING_FACTS } from '../auth/landingFacts';
 import { ViewportPanel, type MarkBadge } from '../components/ws/ViewportPanel';
@@ -75,7 +75,7 @@ import { categoryFor } from '../components/ws/overlayShapes';
 import { landmarks, levelName, mapZ, matchLevels, type Landmark } from '../services/levelSync';
 import { IconButton, ProvenanceChip, Toast, useToast } from '../components/ui';
 import { ReportProblem } from '../components/ReportProblem';
-import { trackOpened } from '../services/serverSync';
+import { trackFunnel, trackOpened } from '../services/serverSync';
 import { SyncBadge } from '../components/SyncBadge';
 import { gradeTask, measureWithinSlab, probeOfMark, type LoadedTarget } from '../grading/spatialGrader';
 import type { GradeResult, LearnerMark } from '../grading/types';
@@ -140,7 +140,7 @@ export default function Workstation() {
   const { caseId = '' } = useParams();
   const [sp, setSp] = useSearchParams();
   const navigate = useNavigate();
-  const { catalog, curriculum, progress, attempts, settings, reviews, free, openPlans } = useApp();
+  const { catalog, curriculum, progress, attempts, settings, reviews, free, guest, openPlans, startAccount } = useApp();
   const engineRef = useRef<ViewerEngine | null>(null);
   if (!engineRef.current) engineRef.current = new ViewerEngine();
   const engine = engineRef.current;
@@ -709,6 +709,7 @@ export default function Workstation() {
     } catch (e) {
       toast.show((e as Error).message);
     }
+    if (guest) trackFunnel('guest_answer', true);
     engine.setMarksVisible(true);
   };
 
@@ -1089,8 +1090,8 @@ export default function Workstation() {
   const focusedState = engine.panelState(focused);
   const focusedShown = !!focusedState?.ready && !focusedState.error;
   useEffect(() => {
-    if (focusedShown) trackOpened();
-  }, [focusedShown]);
+    if (focusedShown) (guest ? trackFunnel('guest_open', true) : trackOpened());
+  }, [focusedShown, guest]);
   if (!catalog) return <div className="vp-status">Loading case catalogue…</div>;
   // A free account opening a members' patient from a link sees what it is and the plans, not an error.
   if (!kase && free) return <LockedCase caseId={caseId ?? ''} />;
@@ -1717,7 +1718,7 @@ export default function Workstation() {
                 toast.show('New attempt on the same patient — it will be recorded, but it is not an unseen-patient test.');
               }}
               onNextTask={nextOnStudy}
-              next={exam || shift ? null : (nextStep ?? (free ? { label: 'See the plans', go: openPlans } : null))}
+              next={exam || shift ? null : (nextStep ?? (guest ? { label: 'Save it: free account', go: () => startAccount('signup') } : free ? { label: 'See the plans', go: openPlans } : null))}
               selfReview={selfReview}
               onSelfReview={setSelfReview}
               independentNote={independentNote}
@@ -1725,10 +1726,12 @@ export default function Workstation() {
               exam={examItem && exam ? { index: examIndex, total: exam.items.length, secondsLeft: examLeft } : null}
             />
             {/* After the learner's own result, never before it. */}
-            {free && session.submitted ? (
+            {guest && session.submitted ? (
+              <GuestSaveCard onStart={() => startAccount('signup')} onSignIn={() => startAccount('login')} />
+            ) : free && session.submitted ? (
               <UpgradeCard compact title="Graded on the exact slice." text={`Members get ${fact(LANDING_FACTS.tasks)}+ tasks like this on ${LANDING_FACTS.patients}+ patients, with drills and on-call shifts.`} />
             ) : null}
-            <ReportProblem context={reportContext} onSent={toast.show} />
+            {guest ? null : <ReportProblem context={reportContext} onSent={toast.show} />}
           </Tabs.Content>
           <Tabs.Content value="book" className="tab-body">
             <BookPanel
@@ -1801,7 +1804,7 @@ export default function Workstation() {
           </Tabs.Content>
           <Tabs.Content value="info" className="tab-body">
             <CaseInfo caseId={kase.id} assessMasked={assessMasked} targets={targets} onOpenBook={openBook} anchorLabel={anchorLabel} engine={engine} panels={panels} />
-            <ReportProblem context={reportContext} onSent={toast.show} />
+            {guest ? null : <ReportProblem context={reportContext} onSent={toast.show} />}
           </Tabs.Content>
         </Tabs.Root>
       </aside>

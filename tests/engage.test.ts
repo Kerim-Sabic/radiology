@@ -141,7 +141,10 @@ describe('funnel numbers for the admin page', () => {
     await countSource('visit', 'instagram:find-it');
     await countSource('visit', 'instagram:find-it');
     await countSource('signup_start', 'instagram:find-it');
+    // Three people from the ad opened the free case without an account; four in all.
+    for (let i = 0; i < 3; i++) await countSource('guest_open', 'instagram:find-it');
     fake.kv.set(`rvm:m:visit:${today}`, 5);
+    fake.kv.set(`rvm:m:guest_open:${today}`, 4);
     fake.kv.set(`rvm:m:signup_start:${today}`, 2);
     // Two accounts from the ad (one answered and paid), one with no tag, and an old account outside the window.
     for (const [id, joined] of [['b', today], ['c', today], ['d', today], ['e', '2020-01-01']] as const) {
@@ -157,8 +160,8 @@ describe('funnel numbers for the admin page', () => {
     fake.kv.set(`rvm:once:paid:${'b'.repeat(64)}`, today);
     const s = await adminStats(new Date(), 30);
     expect(s.sources).toEqual([
-      { source: 'instagram:find-it', visits: 2, starts: 1, accounts: 2, studied: 1, paid: 1 },
-      { source: '', visits: 3, starts: 1, accounts: 1, studied: 0, paid: 0 },
+      { source: 'instagram:find-it', visits: 2, tried: 3, starts: 1, accounts: 2, studied: 1, paid: 1 },
+      { source: '', visits: 3, tried: 1, starts: 1, accounts: 1, studied: 0, paid: 0 },
     ]);
   });
 });

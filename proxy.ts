@@ -4,16 +4,23 @@ import { accessFor } from './server/billing.js';
 import { readiness } from './server/config.js';
 import { freePathAllowed } from './server/free.js';
 import { json } from './server/handler.js';
+import { rateLimit } from './server/store.js';
+
+/** Files a visitor with no account may load per address in 10 minutes: both sample patients several times over. */
+export const GUEST_FILES_PER_10_MIN = 2000;
 
 // Runs before the CDN cache: direct DICOM and curriculum JSON require paid access too. A free account (signed in,
-// no plan) gets only the sample patients and this week's case of the week.
+// no plan) and a visitor with no account (from an ad or a shared link) get only the always-free sample patients.
 export default async function proxy(request: Request) {
   try {
     if (!readiness().auth) return json({ error: 'Access is being configured' }, 503);
     const who = await visitor(request);
-    if (who === 'signed-out') return json({ error: 'Sign in required' }, 401);
     const path = new URL(request.url).pathname;
-    if (who !== 'member' && !freePathAllowed(path)) return json({ error: 'Membership required' }, 402);
+    if (who === 'signed-out') {
+      if (!freePathAllowed(path)) return json({ error: 'Sign in required' }, 401);
+      const address = hash(request.headers.get('x-vercel-forwarded-for') || request.headers.get('x-forwarded-for') || 'unknown');
+      if (!(await rateLimit(`guest-packs:${address}`, GUEST_FILES_PER_10_MIN, 600))) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
+    } else if (who !== 'member' && !freePathAllowed(path)) return json({ error: 'Membership required' }, 402);
     return next({ headers: { 'Cache-Control': cacheControl(path), 'CDN-Cache-Control': 'no-store', Vary: 'Cookie' } });
   } catch { return json({ error: 'Unable to verify access' }, 503); }
 }

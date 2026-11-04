@@ -29,7 +29,8 @@ export function pingStudied(now = new Date()) {
     .catch(() => undefined);
 }
 
-export type FunnelEvent = 'visit' | 'signup_start' | 'plans';
+/** `guest_open` / `guest_answer`: a sample patient opened and answered without an account (from an ad or a link). */
+export type FunnelEvent = 'visit' | 'guest_open' | 'guest_answer' | 'signup_start' | 'plans';
 
 /** Count a step of the sign-up funnel (cookieless: Vercel Web Analytics plus the app's own daily counter). */
 export function trackFunnel(event: FunnelEvent, once = false) {

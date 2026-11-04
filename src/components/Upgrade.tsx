@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
-import { ArrowRight, CalendarDays, Check, Lock, LockOpen } from 'lucide-react';
+import { ArrowRight, CalendarDays, Check, Lock, LockOpen, UserPlus } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { caseOfWeek, FREE_CASES } from '../content/weekly';
 import { LANDING_FACTS } from '../auth/landingFacts';
@@ -77,6 +77,32 @@ export function UpgradeCard({ title, text, compact }: { title: string; text: str
       <button className="btn primary" onClick={openPlans}>
         See plans
       </button>
+    </section>
+  );
+}
+
+/**
+ * After a guest's answer (no account, from a link): the grade is theirs to keep with a free account, which also opens
+ * the other sample patient. Shown under the result, never before it.
+ */
+export function GuestSaveCard({ onStart, onSignIn }: { onStart: () => void; onSignIn: () => void }) {
+  return (
+    <section className="upgrade-card guest-card" aria-label="Save your answer">
+      <span className="upgrade-ico" aria-hidden="true">
+        <UserPlus size={18} />
+      </span>
+      <div>
+        <b>Keep this answer.</b>
+        <p>It is only on this device for now. Create a free account to save it and open the other sample patient. No card.</p>
+        <div className="guest-card-actions">
+          <button className="btn primary" onClick={onStart}>
+            Start free
+          </button>
+          <button className="btn" onClick={onSignIn}>
+            Sign in
+          </button>
+        </div>
+      </div>
     </section>
   );
 }

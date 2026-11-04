@@ -7,7 +7,7 @@ import { AdminPromos } from '../components/AdminPromos';
 import { CertificateAdmin } from '../components/CertificateAdmin';
 import { AdminReports } from '../components/AdminReports';
 
-type Metric = 'visit' | 'signup_start' | 'signup' | 'opened' | 'studied' | 'plans' | 'checkout' | 'paid';
+type Metric = 'visit' | 'guest_open' | 'guest_answer' | 'signup_start' | 'signup' | 'opened' | 'studied' | 'plans' | 'checkout' | 'paid';
 interface Stats {
   series: Array<{ day: string } & Record<Metric, number>>;
   totals: Record<Metric, number>;
@@ -15,7 +15,7 @@ interface Stats {
   subscribers: number;
   retention: { d1: { base: number; back: number }; d7: { base: number; back: number } };
   /** Per campaign tag (utm_source:utm_campaign) over 30 days; the last row, with no tag, is everything untagged. */
-  sources?: Array<{ source: string; visits: number; starts: number; accounts: number; studied: number; paid: number }>;
+  sources?: Array<{ source: string; visits: number; tried?: number; starts: number; accounts: number; studied: number; paid: number }>;
 }
 
 const STEPS: Array<[Metric, string]> = [
@@ -92,7 +92,11 @@ export default function AdminPage() {
                 );
               })}
             </ol>
-            <small className="faint">Landing visits and Start-free clicks are counted once per browser session; accounts by their first sign-in; Opened a first case (counted from 4 November 2026) once per account, when a case's images are on screen; Paid once per account (free access is not counted).</small>
+            <p className="admin-guests" aria-label="Tried a sample patient without an account">
+              <b>Without an account</b> (from an ad or a link to a sample patient): opened a case <b>{stats.totals.guest_open ?? 0}</b> · answered it{' '}
+              <b>{stats.totals.guest_answer ?? 0}</b> <small className="faint">{pct(stats.totals.guest_answer ?? 0, stats.totals.guest_open ?? 0)} of those who opened it</small>
+            </p>
+            <small className="faint">Landing visits, cases opened and answered without an account (counted from 4 November 2026) and Start-free clicks are counted once per browser session; accounts by their first sign-in; Opened a first case (counted from 4 November 2026) once per account, when a case's images are on screen; Paid once per account (free access is not counted).</small>
           </section>
           {stats.sources ? (
             <section className="card stack" aria-labelledby="sources-title">
@@ -107,6 +111,7 @@ export default function AdminPage() {
                   <tr>
                     <th>Campaign</th>
                     <th>Visits</th>
+                    <th>Tried a case</th>
                     <th>Start free</th>
                     <th>Accounts</th>
                     <th>First answer</th>
@@ -118,6 +123,7 @@ export default function AdminPage() {
                     <tr key={r.source || 'untagged'}>
                       <td>{r.source ? <span className="mono">{r.source}</span> : <span className="faint">No tag (direct, search, old links)</span>}</td>
                       <td data-label="Visits">{r.visits}</td>
+                      <td data-label="Tried a case">{r.tried ?? 0}</td>
                       <td data-label="Start free">{r.starts}</td>
                       <td data-label="Accounts">{r.accounts}</td>
                       <td data-label="First answer">

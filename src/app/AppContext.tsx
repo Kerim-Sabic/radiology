@@ -43,10 +43,14 @@ interface AppState {
   settings: Settings;
   setSettings: (s: Partial<Settings>) => void;
   reloadCatalog: () => void;
-  /** Signed in without a plan: the catalog is the free edition (the sample patients). */
+  /** Signed in without a plan, or a guest: the catalog is the free edition (the sample patients). */
   free: boolean;
-  /** Open the plans screen (free accounts; does nothing otherwise). */
+  /** No account: trying a sample patient from a link. Nothing is sent to the server; the answer stays on this device. */
+  guest: boolean;
+  /** Open the plans screen (free accounts; a guest gets the sign-up form; does nothing otherwise). */
   openPlans: () => void;
+  /** Open the sign-up or sign-in form (guests). */
+  startAccount: (mode: 'signup' | 'login') => void;
 }
 
 const Ctx = createContext<AppState | null>(null);
@@ -65,7 +69,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const progressVersion = useSyncExternalStore(progress.subscribe, progress.getVersion);
   const account = useAccount();
   const free = !!account?.free;
+  const guest = !!account?.guest;
   const openPlans = account?.openPlans;
+  const startAccount = account?.startAccount;
 
   useEffect(() => {
     const ac = new AbortController();
@@ -81,10 +87,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     loadCurriculum().then(setCurriculum);
-    // Open the book in the background once the app is idle, so the first page appears instantly later.
+  }, []);
+  // Open the book in the background once the app is idle, so the first page appears instantly later. Not for a guest:
+  // the book is served to an account, and asking the server would only be turned away.
+  useEffect(() => {
+    if (guest) return;
     const t = setTimeout(preloadBook, 1500);
     return () => clearTimeout(t);
-  }, []);
+  }, [guest]);
 
   useEffect(() => {
     progress.attempts().then(setAttempts);
@@ -100,7 +110,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
   }, [email]);
 
   // Signed in: tell the server you studied today (an answer or a drill), for streak reminders and retention.
-  const signedIn = !!account;
+  const signedIn = !!account?.account.user;
   useEffect(() => {
     if (!signedIn) return;
     const today = dayKey(new Date());
@@ -130,9 +140,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
         }),
       reloadCatalog: () => setReloadKey((k) => k + 1),
       free,
+      guest,
       openPlans: openPlans ?? (() => undefined),
+      startAccount: startAccount ?? (() => undefined),
     }),
-    [catalog, catalogError, curriculum, attempts, reviews, settings, free, openPlans],
+    [catalog, catalogError, curriculum, attempts, reviews, settings, free, guest, openPlans, startAccount],
   );
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

@@ -1,5 +1,5 @@
 import { useSyncExternalStore } from 'react';
-import { CloudAlert, CloudCheck, CloudOff, LoaderCircle } from 'lucide-react';
+import { CloudAlert, CloudCheck, CloudOff, LoaderCircle, UserPlus } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import type { SyncSnapshot } from '../services/progressSync';
 
@@ -12,8 +12,21 @@ const SHOWN = {
 
 /** The signed-in learner's save state, in words: Saved, Saving…, Offline or Sync failed (nothing without an account). */
 export function SyncBadge() {
-  const { sync } = useApp();
+  const { sync, guest, startAccount } = useApp();
   const snap: SyncSnapshot = useSyncExternalStore(sync.subscribe, sync.getSnapshot);
+  if (guest)
+    return (
+      <button
+        type="button"
+        className="sync-badge guest"
+        title="Trying this case without an account: your answer stays on this device. Create a free account to keep it."
+        aria-label="Guest: create a free account to save your answer"
+        onClick={() => startAccount('signup')}
+      >
+        <UserPlus size={14} aria-hidden />
+        <span className="sync-badge-text">Save free</span>
+      </button>
+    );
   if (snap.status === 'off') return null;
   const s = SHOWN[snap.status];
   const Icon = s.icon;

@@ -572,6 +572,22 @@ Each professor has one class link (`/join/<code>`) on My class: copy it, make a 
 - **A link to a page survives sign-up.** Clerk used to return every new account to `/?account=verified`, so someone arriving from an ad or post linking to a free case landed on the home page. Clerk now returns to the page they signed up from, and once the session opens only the `account` flag is removed, so the case, its task, its mode and any campaign tag stay (`src/auth/returnPath.ts`). Checked on a phone-sized window: a signed-out visit to `/read/cxr-00003400-003?task=…&utm_campaign=noarrow_a` shows the landing page and keeps the tag; the account opens straight onto "Find the pneumothorax".
 - **Checked:** 720 unit tests, including the new return-path tests; all end-to-end tests in Chromium and Firefox.
 
+## 3y. Try a sample patient before signing up (4 November)
+
+- **Who:** a visitor with no account who opens a link to an always-free sample patient (`/read/cxr-00003400-003` or `/read/starter-ct-chest-01`, for example from the Instagram ad). The reading room opens as a guest instead of the landing page. Every other address, members-only patients included, still shows the landing page.
+- **Server:** the scan-file proxy (`proxy.ts`) lets a request with no session load only the files `freePathAllowed` already allows free accounts (the two sample patients and the shared files), at most 2,000 files per address in 10 minutes (`rateLimit`, key `guest-packs:<hashed address>`). Everything else still answers 401 (no account) or 402 (no plan).
+- **Reading room as a guest:**
+  - Marking, submitting and the grade work as for a free account.
+  - The answer is kept in this browser only: nothing is sent to the account API, and there is no report link.
+  - The header shows a "Save free" badge (icon only on a phone) that opens the sign-up form.
+  - After the answer, a card says "Keep this answer." with Start free and Sign in. The sign-up form opens over the case (`src/auth/AccountGate.tsx`, `src/auth/guest.ts`).
+- **After sign-up:** Clerk returns to the same page (`src/auth/returnPath.ts`), so the case stays open. The new account's first sync uploads the answers already in this browser, the guest's included (`ProgressRepository.bootstrap`). If another account has already synced in this browser, that account keeps them instead.
+- **Funnel:** `guest_open` and `guest_answer` (cookieless, once per browser session) are new steps. Admin shows "Without an account: opened a case · answered it", and the campaign table has a "Tried a case" column (`guest_open` per `utm_source:utm_campaign`), counted from 4 November 2026.
+- **Checked:**
+  - Unit tests: the proxy opens only the free files to a request with no session, stays shut to members-only files, the case of the week and paths leaving a free folder, and applies the rate limit; the guest path rule; the funnel events; the per-campaign "tried" count.
+  - End-to-end (`e2e/guest.spec.ts`): from the ad link a guest marks the X-ray, submits, sees "Correct" and the save card, and opens the sign-up form. After the account opens on the same page, the answer is uploaded. The CT sample opens too, and a members-only patient, `/cases` and `/` show the landing page.
+  - At 390 × 844 there is no sideways scroll.
+
 ## 4. Measured performance (`docs/perf/measurements.json`)
 
 These figures are from a production build on a **local** server. Real hosting adds network time in proportion to the bytes:
