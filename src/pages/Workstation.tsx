@@ -52,6 +52,7 @@ import '../styles/viewer3d.css';
 import { useApp } from '../app/AppContext';
 import { ViewerEngine, type ToolId, type ViewKind } from '../viewer/engine';
 import { PlanesControl } from '../components/ws/MprControls';
+import { ImageAdjust } from '../components/ws/ImageAdjust';
 import { hangMammograms, mammoView } from '../content/mammo';
 import { secondsLeft, shiftUrl, type OncallShift, type ShiftItem } from '../services/oncall';
 
@@ -82,7 +83,7 @@ import { gradeTask, measureWithinSlab, probeOfMark, type LoadedTarget } from '..
 import type { GradeResult, LearnerMark } from '../grading/types';
 import type { BookAnchorRef, Series, Task } from '../schema/content';
 import type { SeriesIndex } from '../grading/seriesIndex';
-import { canSubmit, newSession, reportShown, rules, hintLadder, type SessionState } from '../services/lessonEngine';
+import { canSubmit, newSession, needsMarks, reportShown, rules, hintLadder, type SessionState } from '../services/lessonEngine';
 import { newId, type Attempt, type Mode } from '../services/progressRepository';
 import { anchorLabel as fmtAnchor } from '../services/curriculum';
 import type { ViewSnapshot } from '../viewer/engine';
@@ -103,6 +104,16 @@ interface PanelDef {
   id: string;
   seriesUid: string;
   kind: ViewKind;
+}
+
+/**
+ * A study description as the scanner wrote it ("RT^RCCT_THORAX_8F_High (Adult)", "CT CHEST W CONTRAST") is noise to a
+ * student and can name the protocol: show it only when it is plain words.
+ */
+function plainDescription(d: string | undefined): string {
+  if (!d) return '';
+  if (/[\^_]|\d{2,}/.test(d) || d === d.toUpperCase()) return '';
+  return d;
 }
 
 /** What each tool does with one finger (a pinch always zooms). */
@@ -1088,6 +1099,17 @@ export default function Workstation() {
     const t = setTimeout(() => setToolFlash(null), 1800);
     return () => clearTimeout(t);
   }, [activeTool]);
+  // A tap or click on the finding with a viewing tool does nothing: say how to mark, a few times at most.
+  const markHints = useRef(0);
+  const MARK_HINT = 'To mark the finding, choose Point or Box in the toolbar first';
+  const hintMark = () => {
+    const t = engine.getTool();
+    if (!task || !session || !needsMarks(task) || !rules.canEditMarks(session) || markHints.current >= 3) return;
+    if (t !== 'windowLevel' && t !== 'pan' && t !== 'zoom' && t !== 'scroll') return;
+    markHints.current += 1;
+    setToolFlash(MARK_HINT);
+    window.setTimeout(() => setToolFlash((f) => (f === MARK_HINT ? null : f)), 2600);
+  };
   // The funnel's "Opened a first case": the focused view has its images on screen.
   const focusedState = engine.panelState(focused);
   const focusedShown = !!focusedState?.ready && !focusedState.error;
@@ -1284,7 +1306,7 @@ export default function Workstation() {
         </IconButton>
         <div className="ws-title">
           <strong>{title}</strong>
-          <span>{study0?.description ?? ''}</span>
+          <span>{assessMasked ? '' : plainDescription(study0?.description)}</span>
         </div>
         <SyncBadge />
         {shiftItem ? (
@@ -1346,6 +1368,10 @@ export default function Workstation() {
         </div>
         <div className="ws-bar-tools">
         <span className="sep" />
+        {/* Phones: brightness and contrast as sliders and presets, since dragging on the image also marks and scrolls. */}
+        {focusedPanel && focusedSeries && focusedKind !== '3d' ? (
+          <ImageAdjust engine={engine} panelId={focusedPanel.id} seriesUid={focusedPanel.seriesUid} modality={focusedSeries.modality} presets={focusedSeries.windowPresets} />
+        ) : null}
         <IconButton label="Window / level" shortcut="W" active={tool === 'windowLevel'} onClick={() => engine.setTool('windowLevel')}>
           <SunMoon size={17} />
         </IconButton>
@@ -1405,10 +1431,11 @@ export default function Workstation() {
             </DropdownMenu.Portal>
           </DropdownMenu.Root>
         </span>
-        <span className="sep" />
+        <span className="sep hide-sm" />
         <DropdownMenu.Root>
           <DropdownMenu.Trigger asChild>
-            <button className="btn sm" aria-label="Window presets">
+            {/* On a phone the Brightness button on the image does this with sliders. */}
+            <button className="btn sm hide-sm" aria-label="Window presets">
               <Contrast size={14} /> Window <ChevronDown size={12} />
             </button>
           </DropdownMenu.Trigger>
@@ -1680,6 +1707,7 @@ export default function Workstation() {
                 focused={focused === pd.id}
                 big={big === pd.id}
                 onFocus={() => setFocused(pd.id)}
+                onImageClick={pd.kind === '3d' ? undefined : hintMark}
                 onImageDoubleClick={(c) => {
                   // Marking tools keep double-click for themselves.
                   if (tool === 'windowLevel' || tool === 'pan' || tool === 'zoom' || tool === 'scroll' || tool === 'crosshairs') engine.linkJump(pd.id, c);

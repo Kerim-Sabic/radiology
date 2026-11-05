@@ -191,7 +191,36 @@ export function ViewportPanel(p: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [p.overlay.badges, st?.ready, st?.currentImageId, st?.index, engine.getVersion(), size[0], size[1]]);
 
-  const onMove = (e: React.MouseEvent) => {
+  // Phones: a tap is a touch sequence followed by a copy of it as mouse events. Cornerstone's own guard against that
+  // copy is bound after its mouse listener, so the copy still placed a second Point mark, and the guard then hid it from
+  // this component, so a drill never heard the tap. Taps are read from the touch events (below) and the mouse copy is
+  // dropped before it reaches the image.
+  const touchAt = useRef<[number, number, number] | null>(null);
+  useEffect(() => {
+    const host = wrap.current;
+    if (!host) return;
+    let lastTouch = -Infinity;
+    const onTouch = () => {
+      lastTouch = performance.now();
+    };
+    const onMouse = (e: MouseEvent) => {
+      if (performance.now() - lastTouch < 1000 && el.current?.contains(e.target as Node)) {
+        e.stopImmediatePropagation();
+        e.stopPropagation();
+      }
+    };
+    const mouse = ['mousedown', 'mouseup', 'mousemove'] as const;
+    host.addEventListener('touchstart', onTouch, { capture: true, passive: true });
+    host.addEventListener('touchend', onTouch, { capture: true, passive: true });
+    for (const t of mouse) host.addEventListener(t, onMouse, { capture: true });
+    return () => {
+      host.removeEventListener('touchstart', onTouch, { capture: true });
+      host.removeEventListener('touchend', onTouch, { capture: true });
+      for (const t of mouse) host.removeEventListener(t, onMouse, { capture: true });
+    };
+  }, []);
+
+  const onMove = (e: { clientX: number; clientY: number }) => {
     if (!el.current) return;
     const r = el.current.getBoundingClientRect();
     const c: [number, number] = [e.clientX - r.left, e.clientY - r.top];
@@ -237,7 +266,7 @@ export function ViewportPanel(p: Props) {
   const pct = progress ? Math.round(((progress.done + progress.failed) / Math.max(1, progress.total)) * 100) : 0;
 
   return (
-    <div ref={wrap} className={`vpanel${p.focused ? ' focused' : ''}${p.big ? ' big' : ''}`} onMouseDown={p.onFocus} onFocus={p.onFocus} data-panel={panelId}>
+    <div ref={wrap} className={`vpanel${p.focused ? ' focused' : ''}${p.big ? ' big' : ''}`} onMouseDown={p.onFocus} onTouchStart={p.onFocus} onFocus={p.onFocus} data-panel={panelId}>
       <div
         ref={el}
         className="vp-el"
@@ -252,6 +281,27 @@ export function ViewportPanel(p: Props) {
           if (!d || !click || !el.current || Math.hypot(e.clientX - d[0], e.clientY - d[1]) > 5 || Date.now() - d[2] > 600) return;
           const r = el.current.getBoundingClientRect();
           click([e.clientX - r.left, e.clientY - r.top]);
+        }}
+        onTouchStart={(e) => {
+          const t = e.touches[0];
+          touchAt.current = e.touches.length === 1 ? [t.clientX, t.clientY, Date.now()] : null;
+        }}
+        onTouchMove={(e) => {
+          const d = touchAt.current;
+          const t = e.touches[0];
+          if (d && (e.touches.length > 1 || Math.hypot(t.clientX - d[0], t.clientY - d[1]) > 8)) touchAt.current = null;
+        }}
+        onTouchEnd={(e) => {
+          const d = touchAt.current;
+          touchAt.current = null;
+          const t = e.changedTouches[0];
+          if (!d || !t || e.touches.length || !el.current || Math.hypot(t.clientX - d[0], t.clientY - d[1]) > 8 || Date.now() - d[2] > 600) return;
+          // A tap names the structure under the finger, as the pointer does on a computer, and answers a drill.
+          onMove(t);
+          const click = p.kind === '3d' ? clickRef.current : p.onImageClick;
+          if (!click) return;
+          const r = el.current.getBoundingClientRect();
+          click([t.clientX - r.left, t.clientY - r.top]);
         }}
         onDoubleClick={(e) => {
           if (!p.onImageDoubleClick || !el.current || p.kind === '3d') return;

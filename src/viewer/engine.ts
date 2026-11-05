@@ -186,8 +186,9 @@ export class ViewerEngine {
           // A box, ellipse or outline marks where a finding is: no pixel statistics drawn over the image it marks.
           g.addTool(n, { getTextLines: () => [] });
         } else if (n === TOOL.Probe) {
-          // A point marks a finding: no coordinates or pixel value printed beside it.
-          g.addTool(n, { getTextLines: () => undefined, handleRadius: 9 });
+          // A point marks a finding: no coordinates or pixel value printed beside it. On a phone it lands under the finger
+          // (Cornerstone's default puts a touch point 40 px above it, so a tap on the finding was graded somewhere else).
+          g.addTool(n, { getTextLines: () => undefined, handleRadius: 9, touchCanvasOffset: { x: 0, y: 0 } });
         } else if (n === TOOL.Magnify) {
           // A loupe for radiographs, mammograms and ultrasound: 3× under the cursor while the button is held.
           g.addTool(n, { magnifySize: 3, magnifyWidth: 260, magnifyHeight: 260 });
@@ -600,6 +601,25 @@ export class ViewerEngine {
     if (p.kind === 'stack') vp.setProperties({ invert: !props.invert });
     else vp.setProperties({ invert: !props.invert }, `cornerstoneStreamingImageVolume:${p.source.seriesUid}`);
     vp.render();
+  }
+
+  /** Brightness, contrast and invert back to how the series opened; zoom and position stay. */
+  resetWindow(panelId: string) {
+    const vp = this.viewport(panelId);
+    const p = this.panels.get(panelId);
+    if (!vp || !p || p.kind === '3d') return;
+    if (p.kind === 'stack') vp.resetProperties?.();
+    else vp.setProperties({ invert: false }, `cornerstoneStreamingImageVolume:${p.source.seriesUid}`);
+    if (p.source.defaultWindow) this.setWindow(panelId, p.source.defaultWindow.center, p.source.defaultWindow.width, false);
+    vp.render();
+  }
+
+  isInverted(panelId: string) {
+    const vp = this.viewport(panelId);
+    const p = this.panels.get(panelId);
+    if (!vp || !p || p.kind === '3d') return false;
+    const props = p.kind === 'stack' ? vp.getProperties() : vp.getProperties(`cornerstoneStreamingImageVolume:${p.source.seriesUid}`);
+    return !!props?.invert;
   }
 
   reset(panelId: string) {

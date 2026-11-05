@@ -465,11 +465,14 @@ export default function DrillPage() {
   const answered = q.state === 'answered';
   const showIds = answered ? new Set([q.target.ref.id, ...(q.clickedId ? [q.clickedId] : [])]) : null;
   const badges: MarkBadge[] = q.click ? [{ id: 'click', world: q.click.world, imageId: q.click.imageId, px: null, glyph: q.click.ok ? '✓' : '✗', text: 'you', tone: q.click.ok ? 'ok' : 'bad' }] : [];
+  // A phone has no pointer and no wheel: say tap, and point at the slice bar.
+  const touch = window.matchMedia('(hover: none)').matches;
+  const press = touch ? 'tap' : 'click';
   const prompt =
     q.kind === 'locate'
-      ? `Click the ${inSentence(q.cand.name)}.`
+      ? `${touch ? 'Tap' : 'Click'} the ${inSentence(q.cand.name)}.`
       : q.kind === 'find'
-        ? `Scroll to a slice that shows the ${inSentence(q.cand.name)}, then click it.`
+        ? `Scroll to a slice that shows the ${inSentence(q.cand.name)}, then ${press} it.`
         : q.kind === 'name'
           ? 'Which structure is outlined?'
           : `Which window is best for examining the ${inSentence(q.cand.name)}?`;
@@ -525,7 +528,10 @@ export default function DrillPage() {
         </div>
         <h2 style={{ margin: 0 }}>{prompt}</h2>
         <small className="faint">
-          {kase?.neutralTitle ?? 'Patient'} · {s.modality} · scroll with the wheel or ↑ ↓{q.kind === 'locate' || q.kind === 'find' ? ' · left-drag changes brightness' : ''}
+          {kase?.neutralTitle ?? 'Patient'} · {s.modality}
+          {touch
+            ? `${src.imageIds.length > 1 ? ' · slide the bar on the right to change slice' : ''}${q.kind === 'locate' || q.kind === 'find' ? ' · drag on the image for brightness' : ''}`
+            : ` · scroll with the wheel or ↑ ↓${q.kind === 'locate' || q.kind === 'find' ? ' · left-drag changes brightness' : ''}`}
         </small>
         {q.choices.length ? (
           <div className="stack" style={{ gap: 6 }}>

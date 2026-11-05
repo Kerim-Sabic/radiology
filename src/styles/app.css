@@ -2816,7 +2816,9 @@ kbd {
     display: block;
     flex: none;
     height: 32px;
-    padding: 0 6px;
+    /* Room on the right for the select's chevron, which otherwise sat on the last letter. */
+    padding: 0 26px 0 10px;
+    background-position: right 9px center;
     font-size: 13px;
     font-weight: 500;
   }
@@ -2884,9 +2886,10 @@ kbd {
     max-width: calc(100% - 80px);
   }
 }
+/* The tool name shows at the foot of the image, away from the apex and the top of the film where findings sit. */
 .ws-tool-flash {
   position: absolute;
-  top: 44px;
+  bottom: 16px;
   left: 50%;
   z-index: 8;
   max-width: calc(100% - 32px);
@@ -2904,12 +2907,170 @@ kbd {
 @keyframes ws-flash-in {
   from {
     opacity: 0;
-    transform: translate(-50%, -4px);
+    transform: translate(-50%, 4px);
   }
 }
 @media (prefers-reduced-motion: reduce) {
   .ws-tool-flash {
     animation: none;
+  }
+}
+
+/* ---------- phones: brightness and contrast on the image ---------- */
+.img-adjust-open,
+.img-adjust {
+  display: none;
+}
+@media (max-width: 860px), (pointer: coarse) {
+  /* Above the image's bottom edge labels. */
+  .ws-tool-flash {
+    bottom: 48px;
+  }
+  /* First in the phone toolbar, with its name: the one control a phone user looks for. */
+  .img-adjust-open {
+    display: inline-flex;
+    flex: none;
+    align-items: center;
+    gap: 6px;
+    height: 34px;
+    margin-right: 4px;
+    padding: 0 12px 0 10px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--panel-3);
+    color: var(--text);
+    font: 600 13.5px var(--font);
+    cursor: pointer;
+  }
+  .img-adjust-open.on {
+    background: rgba(64, 156, 255, 0.22);
+    color: var(--accent);
+  }
+  /* Docked over the bottom sheet, not the image: the whole image stays in view while it changes. */
+  .img-adjust {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 40;
+    display: grid;
+    gap: 2px;
+    max-width: 560px;
+    margin: 0 auto;
+    padding: 12px 14px calc(8px + env(safe-area-inset-bottom));
+    border-top: 1px solid var(--line-strong);
+    border-radius: 18px 18px 0 0;
+    background: rgba(28, 28, 30, 0.97);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    backdrop-filter: blur(20px) saturate(1.4);
+    box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.45);
+    animation: img-adjust-in 0.18s ease-out;
+  }
+  @keyframes img-adjust-in {
+    from {
+      transform: translateY(16px);
+      opacity: 0;
+    }
+  }
+  .img-adjust-chips {
+    display: flex;
+    gap: 6px;
+    margin: 0 -12px 4px;
+    padding: 0 12px 2px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .img-adjust-chips::-webkit-scrollbar {
+    display: none;
+  }
+  .img-chip {
+    flex: none;
+    height: 36px;
+    padding: 0 14px;
+    border: 0;
+    border-radius: 999px;
+    background: var(--panel-3);
+    color: var(--text);
+    font: 400 14px var(--font);
+    cursor: pointer;
+  }
+  .img-chip.on {
+    background: #f5f5f7;
+    color: #1d1d1f;
+    font-weight: 600;
+  }
+  .img-slider {
+    display: grid;
+    grid-template-columns: 20px 82px minmax(0, 1fr);
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    color: var(--text-2);
+    font: 400 14px var(--font);
+  }
+  .img-slider-name {
+    color: var(--text);
+  }
+  /* A large thumb on a thin track, with a tick in the middle: the middle is the image as it started. */
+  .img-slider input[type='range'] {
+    width: 100%;
+    height: 44px;
+    margin: 0;
+    background: transparent;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  .img-slider input[type='range']::-webkit-slider-runnable-track {
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--panel-3) calc(50% - 1px), var(--text-3) calc(50% - 1px) calc(50% + 1px), var(--panel-3) calc(50% + 1px));
+  }
+  .img-slider input[type='range']::-webkit-slider-thumb {
+    width: 28px;
+    height: 28px;
+    margin-top: -11px;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .img-slider input[type='range']::-moz-range-track {
+    height: 6px;
+    border-radius: 999px;
+    background: linear-gradient(to right, var(--panel-3) calc(50% - 1px), var(--text-3) calc(50% - 1px) calc(50% + 1px), var(--panel-3) calc(50% + 1px));
+  }
+  .img-slider input[type='range']::-moz-range-thumb {
+    width: 28px;
+    height: 28px;
+    border: 0;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  }
+  .img-slider input[type='range']:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
+  .img-adjust-foot {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 4px;
+  }
+  .img-adjust-reset {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    height: 36px;
+    padding: 0 4px;
+    border: 0;
+    background: none;
+    color: var(--accent);
+    font: 400 14px var(--font);
+    cursor: pointer;
   }
 }
 
