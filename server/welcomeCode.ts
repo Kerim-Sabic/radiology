@@ -2,7 +2,7 @@ import { db } from './store.js';
 
 /**
  * The welcome offer every new account gets by email: a personal Whop code for 40% off the first payment of either plan,
- * usable once and only for 72 hours. Codes start with "welcome-", are kept out of the admin promo list, and checkout
+ * usable once and only for 72 hours. It also works on the regional prices (server/regional.ts) for visitors who get one. Codes start with "welcome-", are kept out of the admin promo list, and checkout
  * honours one only for the account it was made for (server/welcome.ts makes and sends them).
  */
 export const WELCOME_PREFIX = 'welcome-';
@@ -25,6 +25,8 @@ export interface WelcomeRecord {
   reminderAt?: string;
   /** An account made before the welcome email existed, sent it from the admin page. */
   earlier?: boolean;
+  /** The country of the first sign-in (Vercel's IP country): the email quotes that country's price when it has one. */
+  country?: string;
 }
 
 export const welcomeKey = (userId: string) => `rvm:welcome:${userId}`;

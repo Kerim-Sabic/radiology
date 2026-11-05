@@ -10,6 +10,9 @@ const fake = vi.hoisted(() => ({
   byPlan: new Map<string, unknown[]>(),
   variants: new Map<string, unknown>(),
   checkoutCalls: [] as Array<{ body: Record<string, unknown> }>,
+  /** Promo codes in Whop, and which account each welcome code was made for. */
+  promos: [] as Array<{ code: string; plan_ids: string[]; expires_at: string | null; unlimited_stock: boolean; stock: number }>,
+  ownCodes: new Map<string, string>(),
 }));
 vi.mock('../server/clerk', () => ({ clerkIdentity: vi.fn() }));
 vi.mock('../server/store', () => {
@@ -22,9 +25,14 @@ vi.mock('../server/store', () => {
   return { db: () => store, rateLimit: async () => true };
 });
 vi.mock('../server/oauth', () => ({ merchantToken: async () => 'test-token', exchange: vi.fn(), identity: vi.fn(), revoke: vi.fn() }));
-vi.mock('../server/welcomeCode', () => ({ welcomeOffer: async () => null, ownWelcomeCode: async () => false, WELCOME_PREFIX: 'welcome-' }));
+vi.mock('../server/welcomeCode', () => ({
+  welcomeOffer: async () => null,
+  ownWelcomeCode: async (userId: string, code: string) => fake.ownCodes.get(code.toLowerCase()) === userId,
+  WELCOME_PREFIX: 'welcome-',
+  WELCOME_PERCENT: 40,
+}));
 vi.mock('@whop/sdk', () => ({ WhopClient: class {
-  promoCodes = { list: async () => [] };
+  promoCodes = { list: async (q: { plan_ids?: string[] }) => fake.promos.filter((c) => !q.plan_ids || q.plan_ids.some((id) => c.plan_ids.includes(id))) };
   members = { list: async () => ({ async *[Symbol.asyncIterator]() { yield* fake.members; } }) };
   memberships = { list: async () => ({ data: fake.memberships, async *[Symbol.asyncIterator]() { yield* fake.memberships; } }) };
   payments = {
@@ -40,7 +48,7 @@ function standardPlan(id: string) {
 }
 
 import { regionalPlans, type RegionalPlan } from '../server/config';
-import { ruleBlocked, regionalOffer, regionalPlanProblems, regionOf, regionalStatus, setRegionalLive } from '../server/regional';
+import { ruleAmounts, ruleBlocked, regionalOffer, regionalPlanProblems, regionOf, regionalStatus, setRegionalLive, welcomeAmount } from '../server/regional';
 import { accessFor, checkout, membershipAccess, whop } from '../server/billing';
 import { handle } from '../server/handler';
 import { hash } from '../server/auth';
@@ -64,6 +72,7 @@ const goLive = () => fake.records.set('rvm:regional:live', true);
 
 beforeEach(() => {
   fake.records.clear(); fake.members = []; fake.memberships = []; fake.byMembership.clear(); fake.byPlan.clear(); fake.variants.clear(); fake.checkoutCalls = [];
+  fake.promos = []; fake.ownCodes.clear();
   for (const p of [B.monthly, B.yearly, C.monthly, C.yearly]) fake.variants.set(p.id, whopPlan(p));
   for (const [k, v] of Object.entries({ ADMIN_EMAILS: '', OWNER_EMAILS: '', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_YEARLY_PLAN_ID: 'plan_yearly', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test', WELCOME_EMAIL: 'off' })) vi.stubEnv(k, v);
 });
@@ -110,6 +119,12 @@ describe('checking a regional plan in Whop', () => {
 });
 
 describe('the card rule on a payment', () => {
+  it('needs one Whop rule per amount a tier can charge, the welcome-code prices included', () => {
+    // Whop rounds 40% off $9.99 to $5.99 (checked on its checkout, 2026-11-05).
+    expect(welcomeAmount(9.99)).toBe(5.99);
+    expect(ruleAmounts('b')).toEqual([9.99, 5.99, 74.99, 44.99]);
+    expect(ruleAmounts('c')).toEqual([4.99, 2.99, 39.99, 23.99]);
+  });
   it('knows a payment the rule declined', () => {
     expect(ruleBlocked(declined('pay_1'))).toBe(true);
     expect(ruleBlocked(approved('pay_2'))).toBe(false);
@@ -136,6 +151,38 @@ describe('checkout picks the plan on the server', () => {
     await checkout('u2', 'monthly', undefined, undefined, 'US');
     await checkout('u3', 'monthly', 'spring20', undefined, 'BA');
     expect(fake.checkoutCalls.map((c) => c.body.plan_id)).toEqual(['plan_monthly', 'plan_monthly', 'plan_monthly']);
+  });
+  describe('with a welcome code', () => {
+    const code = 'welcome-ana-k7q3m';
+    const welcomeCode = (planIds: string[]) => ({ code, plan_ids: planIds, expires_at: future(2), unlimited_stock: false, stock: 1 });
+    const everyPlan = ['plan_monthly', 'plan_yearly', B.monthly.id, B.yearly.id, C.monthly.id, C.yearly.id];
+    it('keeps the price for the visitor\'s country, and the code takes 40% off it', async () => {
+      goLive();
+      fake.promos = [welcomeCode(everyPlan)];
+      fake.ownCodes.set(code, 'user_ba');
+      const result = await checkout('user_ba', 'monthly', code.toUpperCase(), undefined, 'BA');
+      expect(fake.checkoutCalls[0].body).toMatchObject({ plan_id: B.monthly.id, metadata: { rvm_region: 'b' } });
+      expect(result).toMatchObject({ promoCode: code, welcome: true, studentDiscount: false, regional: { country: 'BA', price: 9.99 } });
+      fake.ownCodes.set(code, 'user_in');
+      await checkout('user_in', 'yearly', code, undefined, 'IN');
+      expect(fake.checkoutCalls[1].body).toMatchObject({ plan_id: C.yearly.id });
+    });
+    it('falls back to the standard price for a code made before it covered the regional plans', async () => {
+      goLive();
+      fake.promos = [welcomeCode(['plan_monthly', 'plan_yearly'])];
+      fake.ownCodes.set(code, 'user_ba');
+      const result = await checkout('user_ba', 'monthly', code, undefined, 'BA');
+      expect(fake.checkoutCalls[0].body.plan_id).toBe('plan_monthly');
+      expect(result).toMatchObject({ promoCode: code, welcome: true });
+      expect(result).not.toHaveProperty('regional');
+    });
+    it('refuses a welcome code made for someone else', async () => {
+      goLive();
+      fake.promos = [welcomeCode(everyPlan)];
+      fake.ownCodes.set(code, 'someone_else');
+      await expect(checkout('user_ba', 'monthly', code, undefined, 'BA')).rejects.toThrow('belongs to another account');
+      expect(fake.checkoutCalls).toHaveLength(0);
+    });
   });
   it('refuses a regional plan that is not set up right in Whop', async () => {
     goLive();

@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { usd, type RegionalPrice } from './regionalPrice';
 
 /** A new account's personal welcome code (server/welcomeCode.ts): 40% off the first payment until `expiresAt`. */
 export interface WelcomeOffer {
@@ -30,8 +31,17 @@ export function useOfferTimeLeft(offer: WelcomeOffer | null | undefined): string
   return offer ? timeLeft(Date.parse(offer.expiresAt) - now) : null;
 }
 
-/** First-payment prices with the welcome code. */
+/** First-payment prices with the welcome code (rounded to the cent as Whop does: 40% off $9.99 is $5.99). */
 export const welcomePrice = (price: number, percent: number) => {
   const v = Math.round(price * (100 - percent)) / 100;
   return `$${Number.isInteger(v) ? v : v.toFixed(2)}`;
 };
+
+/** What the code takes off, at the standard prices or at the price for the visitor's country. */
+export function welcomeTerms(percent: number, regional?: RegionalPrice | null): string {
+  if (!regional) return `Yearly ${welcomePrice(150, percent)} for your first year instead of $150 · Monthly ${welcomePrice(20, percent)} for your first month instead of $20. Renewals at the standard price.`;
+  const { yearly, monthly } = regional;
+  return monthly.pass
+    ? `1-year pass ${welcomePrice(yearly.price, percent)} instead of ${usd(yearly.price)} · 30-day pass ${welcomePrice(monthly.price, percent)} instead of ${usd(monthly.price)}. One payment, nothing renews.`
+    : `Yearly ${welcomePrice(yearly.price, percent)} for your first year instead of ${usd(yearly.price)} · Monthly ${welcomePrice(monthly.price, percent)} for your first month instead of ${usd(monthly.price)}. Renewals at the price for ${regional.countryName}.`;
+}

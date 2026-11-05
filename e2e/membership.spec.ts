@@ -133,6 +133,31 @@ test('a code added after choosing monthly switches offers before payment and can
   expect(await page.evaluate(()=>document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
 });
 
+test('a visitor with a regional price keeps it with the welcome code, which takes 40% off it', async ({page}) => {
+  const code='welcome-ana-k7q3m';
+  const bosnia={country:'BA',countryName:'Bosnia and Herzegovina'};
+  await page.route('**/api/config',route=>route.fulfill({json:{auth:true,billing:true}}));
+  await page.route('**/api/session',route=>route.fulfill({json:{user:{name:'Ana',email:'ana@example.com'},access:{active:false},billingReady:true,
+    welcomeOffer:{code,expiresAt:new Date(Date.now()+48*3600_000).toISOString(),percent:40},
+    regionalPrice:{region:'b',...bosnia,monthly:{price:9.99,pass:false},yearly:{price:74.99,pass:false}}}}));
+  let submitted:{tier:string;promoCode?:string}|undefined;
+  await page.route('**/api/billing/checkout',route=>{submitted=route.request().postDataJSON();return route.fulfill({json:{id:'ch_ba',promoCode:code,welcome:true,studentDiscount:false,returnUrl:'http://localhost:4317/?checkout=returned',regional:{...bosnia,price:9.99,days:30,pass:false}}});});
+  await page.route('**/*whop.com/**',route=>route.abort());
+  await page.goto('/?plans');
+  await expect(page.locator('.regional-price')).toContainText('Your welcome code works on these prices');
+  await expect(page.locator('.welcome-offer')).toContainText('Monthly $5.99 for your first month instead of $9.99');
+  await expect(page.locator('#membership-promo')).toHaveValue(code);
+  const plans=page.locator('.membership-plan');
+  await expect(plans.nth(1)).toContainText('$9.99 billed every 30 days');
+  await page.locator('#plans').screenshot({path:'test-results/regional-welcome-plans.png'});
+  await page.getByRole('button',{name:'Choose monthly'}).click();
+  expect(submitted).toEqual({tier:'monthly',promoCode:code});
+  await expect(page.locator('.welcome-applied')).toContainText('($5.99 instead of $9.99)');
+  await expect(page.locator('.welcome-applied')).toContainText('Renewals are $9.99 USD every 30 days.');
+  await expect(page.locator('.regional-applied')).toContainText('Your welcome code works on this price');
+  await page.locator('#plans').screenshot({path:'test-results/regional-welcome-checkout.png'});
+});
+
 test('members can copy their verified referral link in an accessible phone dialog', async ({page, context, browserName}) => {
   await page.setViewportSize({width:390,height:844});
   // Only Chromium lets a test read the clipboard back.

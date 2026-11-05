@@ -8,6 +8,8 @@ interface RegionalStatus {
   plans: Array<{ id: string; label: string; region: 'b' | 'c'; problems: string[] }>;
   payments: Array<{ id: string; plan: string; status: string | null; amount: number | null; createdAt: string; blocked: boolean }>;
   rulePrefix: string;
+  /** Every amount the tier's plans charge (each price and its welcome-code price), one Whop rule each. */
+  ruleAmounts?: Record<'b' | 'c', number[]>;
   countries: Record<'b' | 'c', string[]>;
   prices: Array<{ label: string; region: 'b' | 'c'; price: number; link: string }>;
 }
@@ -108,6 +110,11 @@ export function AdminRegional() {
               <span>
                 <b>Countries.</b> B (about half price): {status.countries.b.join(', ')}. C (one-time passes): {status.countries.c.join(', ')}.
               </span>
+              {status.ruleAmounts ? (
+                <span>
+                  <b>Whop rules.</b> One per amount, “{status.rulePrefix} $… unless B card” or “… unless C card”: amount is the price and the card country is not one of the tier's countries → Block. B: {status.ruleAmounts.b.map((a) => `$${a}`).join(', ')}. C: {status.ruleAmounts.c.map((a) => `$${a}`).join(', ')}. (The lower amounts are the prices with a 40% welcome code.)
+                </span>
+              ) : null}
               <span>
                 <b>Test.</b> Pay one regional price with a card from that region using its Whop link, check it shows “paid with a card from the region” here, then refund it in Whop:
               </span>

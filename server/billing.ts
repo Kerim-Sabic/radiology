@@ -9,6 +9,7 @@ import { professorRole } from './roles.js';
 import { affiliateCode } from '../shared/referrals.js';
 import { checkoutDiscount } from './studentDiscount.js';
 import { PromoUnavailableError } from './checkoutError.js';
+import { WELCOME_PREFIX } from './welcomeCode.js';
 
 export async function whop() {
   return new WhopClient({ token: await merchantToken(), apiVersionDate: '2026-10-15-1', timeoutInSeconds: 15, maxRetries: 1 });
@@ -150,21 +151,30 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   if (existing.active) throw new Error('You already have access. Manage your existing plan in your account.');
   if (existing.pendingMembership) throw new Error('An existing membership needs attention. Check your payment in Whop before purchasing again.');
   const promo = promoCode?.trim().toLowerCase();
-  // The regional price is the price without a code; a code always goes with the standard price (codes never touch
-  // the regional plans). The server picks the plan; the browser cannot.
-  const regional = promo ? null : await regionalOffer(country);
-  const regionalChoice = regional ? regionalPlans[regional.region][tier] : null;
+  const client = await whop();
+  // The price for the visitor's country goes with no code, or with a welcome code (40% off the first payment; Whop's card
+  // rules cover that amount too, and checkoutDiscount below makes sure the code is the buyer's own). Any other code goes
+  // with the standard price: codes are never put on the regional plans. A welcome code made before 2026-11-05 is on the
+  // standard plans only, so it also falls back to them. The server picks the plan; the browser cannot.
+  const welcomeCode = promo?.startsWith(WELCOME_PREFIX) ? promo : undefined;
+  let regional = promo && !welcomeCode ? null : await regionalOffer(country);
+  let regionalChoice = regional ? regionalPlans[regional.region][tier] : null;
+  if (regionalChoice && welcomeCode && !(await promoLiveFor(client, regionalChoice.id, welcomeCode))) {
+    regional = null;
+    regionalChoice = null;
+  }
   // New purchases, including promotions, always use the current plan.
   // Whop remains authoritative for availability, the final quote, and atomic redemption.
   const planId = regionalChoice?.id ?? required(plans[tier].env);
-  const client = await whop();
   // Monthly passes an entered code on to Whop; yearly takes only a live code made for the yearly plan (from the admin page).
-  if (promo && tier === 'yearly' && !(await promoLiveFor(client, planId, promo))) throw new PromoUnavailableError('This code is not available for the yearly plan. Check the code, or choose monthly.');
+  // (A welcome code on a regional plan was just checked above.)
+  if (promo && tier === 'yearly' && !regionalChoice && !(await promoLiveFor(client, planId, promo))) throw new PromoUnavailableError('This code is not available for the yearly plan. Check the code, or choose monthly.');
   const plan = await client.variants.retrieve({ id: planId });
   if (regionalChoice) {
     if (regionalPlanProblems(plan, regionalChoice).length) throw new Error('Unexpected Whop plan configuration');
   } else validatePlan(plan, tier);
-  const discount = regionalChoice ? {} : await checkoutDiscount(client, userId, tier, planId, promo);
+  // No student price on a regional plan; a welcome code there still goes through checkoutDiscount for its owner check.
+  const discount = regionalChoice && !welcomeCode ? {} : await checkoutDiscount(client, userId, tier, planId, promo);
   let affiliate = affiliateCode(referralCode);
   if (affiliate && (await referralProfile(userId)).code === affiliate) affiliate = undefined;
   const key = `rvm:checkout:${userId}:${planId}:${hash(appOrigin())}${affiliate ? `:${hash(affiliate)}` : ''}`;

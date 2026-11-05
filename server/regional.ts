@@ -1,17 +1,19 @@
 import type { Whop, WhopClient } from '@whop/sdk';
 import { allRegionalPlans, regionalPlans, required, type Region, type RegionalPlan } from './config.js';
 import { db } from './store.js';
+import { WELCOME_PERCENT } from './welcomeCode.js';
 
 /**
  * Regional prices (the plans are in server/config.ts). Three locks keep them for the countries they are meant for:
  *
- * 1. The server picks the plan from Vercel's IP country; the browser never names a plan, and a promo code always goes
- *    with the standard price.
+ * 1. The server picks the plan from Vercel's IP country; the browser never names a plan. The only code that goes with a
+ *    regional price is the buyer's own welcome code (40% off the first payment); any other code means the standard price.
  * 2. Whop payment rules (Whop → Settings → Payment rules) decline a regional price on a card issued anywhere else: one
- *    rule per regional amount, "RVM regional block $9.99 unless B card" = amount is 9.99 and card country is not one
- *    of the tier's countries → block. A VPN changes the IP, not the card. (Tested 2026-11-05 with real cards: a Bosnian
+ *    rule per amount a regional plan can charge, "RVM regional block $9.99 unless B card" = amount is 9.99 and card
+ *    country is not one of the tier's countries → block. Each regional price has a second rule for its welcome amount
+ *    ($9.99 → $5.99; see ruleAmounts). A VPN changes the IP, not the card. (Tested 2026-11-05 with real cards: a Bosnian
  *    card went through, a card Whop reads as foreign was declined. Separate "allow" rules on top of a price-only block
- *    never matched, so the rules are written this way.)
+ *    never matched, so the rules are written this way. Whop's rules can match an amount but not a plan.)
  * 3. The plans take cards, Apple Pay and Google Pay only, so every payment has a card country for the rule to read.
  *
  * Regional prices stay off until an admin turns them on, which needs every plan set up right and one real regional
@@ -45,6 +47,13 @@ export function countryName(code: string): string {
 
 /** The regional rules in Whop are named starting with this. */
 export const RULE_PREFIX = 'RVM regional block';
+
+/** What a regional price charges with a welcome code, as Whop rounds it (checked 2026-11-05: 40% off $9.99 is $5.99). */
+export const welcomeAmount = (price: number) => Math.round(price * (100 - WELCOME_PERCENT)) / 100;
+
+/** Every amount a tier's plans can charge, each needing its own "RVM regional block $… unless … card" rule in Whop. */
+export const ruleAmounts = (region: Region) =>
+  [regionalPlans[region].monthly, regionalPlans[region].yearly].flatMap((p) => [p.price, welcomeAmount(p.price)]);
 const LIVE_KEY = 'rvm:regional:live';
 
 export async function regionalLive(): Promise<boolean> {
@@ -164,6 +173,7 @@ export async function regionalStatus(client: WhopClient) {
     plans,
     payments: payments.slice(0, 20),
     rulePrefix: RULE_PREFIX,
+    ruleAmounts: { b: ruleAmounts('b'), c: ruleAmounts('c') },
     countries: REGION_COUNTRIES,
     prices: allRegionalPlans().map((p) => ({ label: planLabel(p), region: p.region, price: p.price, link: `https://whop.com/checkout/${p.id}` })),
   };

@@ -12,7 +12,7 @@ import { InviteFriends } from './InviteFriends';
 import { currentReferral } from './referralAttribution';
 import { PlansScreen } from './PlansScreen';
 import { trackFunnel } from '../services/serverSync';
-import { useOfferTimeLeft, welcomePrice, type WelcomeOffer } from './welcomeOffer';
+import { useOfferTimeLeft, welcomePrice, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
 import { regionalTerms, usd, yearlyFigures, type RegionalCheckout, type RegionalPrice } from './regionalPrice';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
@@ -54,27 +54,30 @@ export function useAccount(): AccountState | null {
   return useContext(AccountContext);
 }
 
-/** The welcome gift on the plans screen: what it takes off, how long it has left, and whether the code is filled in. */
-function WelcomeOfferNote({ offer, applied, onApply }: { offer: WelcomeOffer; applied: boolean; onApply: () => void }) {
+/**
+ * The welcome gift on the plans screen: what it takes off (at the price for the visitor's country when there is one), how
+ * long it has left, and whether the code is filled in.
+ */
+function WelcomeOfferNote({ offer, regional, applied, onApply }: { offer: WelcomeOffer; regional?: RegionalPrice; applied: boolean; onApply: () => void }) {
   const left = useOfferTimeLeft(offer);
   if (!left) return null;
   return (
     <div className="welcome-offer" role="note">
       <span className="welcome-offer-kicker">Your welcome gift · {left} left</span>
       <strong>{offer.percent}% off your first payment</strong>
-      <span>Yearly {welcomePrice(150, offer.percent)} for your first year instead of $150 · Monthly {welcomePrice(20, offer.percent)} for your first month instead of $20. Renewals at the standard price.</span>
+      <span>{welcomeTerms(offer.percent, regional)}</span>
       {applied ? <span className="welcome-offer-code"><Check size={15} /> Code <code>{offer.code.toUpperCase()}</code> is filled in. Choose a plan.</span> : <button type="button" className="text-button" onClick={onApply}>Use my code {offer.code.toUpperCase()}</button>}
     </div>
   );
 }
 
 /** The price for the visitor's country, and the one condition that comes with it: a card issued there. */
-function RegionalPriceNote({ price }: { price: RegionalPrice }) {
+function RegionalPriceNote({ price, welcome }: { price: RegionalPrice; welcome: boolean }) {
   return (
     <div className="regional-price" role="note">
       <span className="regional-price-kicker">Price for {price.countryName}</span>
       <strong>{price.monthly.pass ? `${usd(price.monthly.price)} for 30 days · ${usd(price.yearly.price)} for a year` : `${usd(price.monthly.price)} a month · ${usd(price.yearly.price)} a year`}</strong>
-      <span>Pay with a card issued in {price.countryName}. Cards from other countries are declined at checkout.{price.monthly.pass ? ' Each payment is one-time and never renews.' : ''} A promo code uses the standard price.</span>
+      <span>Pay with a card issued in {price.countryName}. Cards from other countries are declined at checkout.{price.monthly.pass ? ' Each payment is one-time and never renews.' : ''}{welcome ? ' Your welcome code works on these prices; any other promo code uses the standard price.' : ' A promo code uses the standard price.'}</span>
     </div>
   );
 }
@@ -227,9 +230,9 @@ function MembershipGate({ children }: { children: ReactNode }) {
     setPromoCode(value);
     try { if (value) sessionStorage.setItem(promoKey, value); else sessionStorage.removeItem(promoKey); } catch { /* Optional storage. */ }
   }
-  // A new account's personal welcome code fills the promo field once per tab (removing it is respected after that).
-  // Not where a regional price applies: that price is lower, and a code would replace it with the standard one.
-  const welcomeCode = account?.regionalPrice ? undefined : account?.welcomeOffer?.code;
+  // A new account's personal welcome code fills the promo field once per tab (removing it is respected after that). It
+  // works on the price for the visitor's country too (server/billing.ts checkout).
+  const welcomeCode = account?.welcomeOffer?.code;
   useEffect(() => {
     if (!welcomeCode) return;
     try {
@@ -383,6 +386,10 @@ function MembershipGate({ children }: { children: ReactNode }) {
   if (loading) return <div className="membership-loading" role="status"><ScanLine size={30} /><p>Opening your study space…</p></div>;
   const student = account?.studentDiscountEligible === true;
   const regional = account?.user ? account.regionalPrice : undefined;
+  const welcomeOffer = account?.welcomeOffer;
+  // The plan cards show the price for the visitor's country with no code or with their own welcome code; any other code
+  // means the standard price (server/billing.ts checkout decides the same way).
+  const regionalShown = regional && (!promoCode.trim() || promoCode.trim().toLowerCase() === welcomeOffer?.code) ? regional : undefined;
   const checkoutCodeChanged = promoCode.trim().toLowerCase() !== (payment?.enteredPromoCode || '');
   const panel = <>
     <section className="membership-panel" id="plans" aria-label="Membership">
@@ -391,9 +398,9 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <span className="membership-step">Checkout</span>
         <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
         <p className="checkout-account">{account.user.email}</p>
-        {payment.regional && <p className="student-offer regional-applied" role="status"><strong>Price for {payment.regional.countryName}: {regionalTerms(payment.regional)}</strong><span>Pay with a card issued in {payment.regional.countryName}. Cards from other countries are declined. A promo code switches to the standard price.</span></p>}
+        {payment.regional && <p className="student-offer regional-applied" role="status"><strong>Price for {payment.regional.countryName}: {regionalTerms(payment.regional)}</strong><span>Pay with a card issued in {payment.regional.countryName}. Cards from other countries are declined.{payment.welcome ? ' Your welcome code works on this price; any other code switches to the standard price.' : ' A promo code switches to the standard price.'}</span></p>}
         {payment.studentDiscount && <p className="student-offer" role="status"><strong>30% student discount applied</strong><span>{payment.tier === 'monthly' ? '$14 USD every 30 days' : '$105 USD every 365 days'}, including every renewal. {payment.enteredPromoCode ? 'Your student offer gives a better recurring price than that code.' : 'Your university email is verified.'}</span></p>}
-        {payment.welcome && <p className="student-offer welcome-applied" role="status"><strong>Your welcome gift is applied: {account.welcomeOffer?.percent ?? 40}% off your first payment</strong><span>Renewals are at the standard price.{student ? ' Remove the code to use your 30% student price on every renewal instead.' : ''} Discounts do not stack.</span></p>}
+        {payment.welcome && <p className="student-offer welcome-applied" role="status"><strong>Your welcome gift is applied: {welcomeOffer?.percent ?? 40}% off your first payment{payment.regional ? ` (${welcomePrice(payment.regional.price, welcomeOffer?.percent ?? 40)} instead of ${usd(payment.regional.price)})` : ''}</strong><span>{payment.regional ? (payment.regional.pass ? 'One payment; nothing renews.' : `Renewals are ${regionalTerms(payment.regional)}.`) : 'Renewals are at the standard price.'}{student && !payment.regional ? ' Remove the code to use your 30% student price on every renewal instead.' : ''} Discounts do not stack.</span></p>}
         {student && payment.studentDiscount === false && !payment.welcome && <p className="student-offer">Your promo gives an equal or better recurring discount. Discounts do not stack.</p>}
         <form className="promo-entry checkout-promo" onSubmit={event => { event.preventDefault(); if (!busy && checkoutCodeChanged) void buy(payment.tier); }}>
           <label htmlFor="checkout-promo">Promo code</label>
@@ -408,20 +415,21 @@ function MembershipGate({ children }: { children: ReactNode }) {
       <span className="membership-step">{account?.user ? 'Choose your plan' : 'Membership'}</span>
       <h2>{account?.user ? 'Unlock the whole library.' : 'The whole library, every tool.'}</h2>
       <p>{account?.user ? `Signed in as ${account.user.email}` : 'One membership for every patient, drill and on-call shift, with the book beside you.'}</p>
-      {regional ? <RegionalPriceNote price={regional} /> : <>
-        {account?.welcomeOffer && <WelcomeOfferNote offer={account.welcomeOffer} applied={promoCode.trim().toLowerCase() === account.welcomeOffer.code} onApply={() => updatePromo(account.welcomeOffer!.code)} />}
+      {regional && <RegionalPriceNote price={regional} welcome={!!welcomeOffer} />}
+      {welcomeOffer && <WelcomeOfferNote offer={welcomeOffer} regional={regional} applied={promoCode.trim().toLowerCase() === welcomeOffer.code} onApply={() => updatePromo(welcomeOffer.code)} />}
+      {!regional && <>
         <p className="student-offer"><strong>{student ? 'Your verified university email unlocks 30% off' : '30% off for eligible university email addresses'}</strong><span>{student ? 'Student prices include every renewal. A better recurring promo takes precedence; discounts do not stack.' : 'Verify an eligible email, including .edu, .edu.ba or .ac.uk, for $14 every 30 days or $105 every 365 days. The discount continues on every renewal.'}</span></p>
       </>}
       {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
-      <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>{regional ? 'A code applies to the standard price ($20 a month or $150 a year), not to the price for your country.' : 'Choose a plan below. Your discount will appear in the secure payment form.'}</p></details>
+      <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>{regional ? (welcomeOffer ? 'Your welcome code works on the price for your country. Any other code applies to the standard price ($20 a month or $150 a year).' : 'A code applies to the standard price ($20 a month or $150 a year), not to the price for your country.') : 'Choose a plan below. Your discount will appear in the secure payment form.'}</p></details>
       <div className="membership-plans">
         <article className="membership-plan yearly" aria-labelledby="yearly-plan-title">
           <span className="membership-best">Best value</span>
           <div className="plan-heading"><h3 id="yearly-plan-title">Yearly</h3><span>For a year of steady progress</span></div>
-          {regional && !promoCode.trim() ? <>
-            <div className="membership-price">{yearlyFigures(regional).perMonth}<span>/ month</span></div>
-            <p className="plan-billing"><strong>{usd(regional.yearly.price)} {regional.yearly.pass ? 'for a year' : 'billed yearly'}</strong><span>{regional.yearly.pass ? 'One payment for 365 days. It does not renew.' : 'One payment every 365 days.'}</span></p>
-            <div className="plan-value"><strong>Save {yearlyFigures(regional).saves}</strong><span>vs. 12 {regional.monthly.pass ? 'monthly passes' : 'monthly payments'}</span></div>
+          {regionalShown ? <>
+            <div className="membership-price">{yearlyFigures(regionalShown).perMonth}<span>/ month</span></div>
+            <p className="plan-billing"><strong>{usd(regionalShown.yearly.price)} {regionalShown.yearly.pass ? 'for a year' : 'billed yearly'}</strong><span>{regionalShown.yearly.pass ? 'One payment for 365 days. It does not renew.' : 'One payment every 365 days.'}</span></p>
+            <div className="plan-value"><strong>Save {yearlyFigures(regionalShown).saves}</strong><span>vs. 12 {regionalShown.monthly.pass ? 'monthly passes' : 'monthly payments'}</span></div>
           </> : <>
             <div className="membership-price">{student ? '$8.75' : '$12.50'}<span>/ month</span></div>
             <p className="plan-billing"><strong>{student ? '$105' : '$150'} billed yearly</strong><span>One payment every 365 days.{student ? ' Student price, every renewal.' : ''}</span></p>
@@ -429,20 +437,20 @@ function MembershipGate({ children }: { children: ReactNode }) {
           </>}
           <p className="plan-access">Full access for your whole study year.</p>
           <button aria-describedby="yearly-billing-note" disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('yearly')}>{busy === 'yearly' ? 'Preparing payment…' : 'Start yearly'}<ArrowRight size={17} /></button>
-          <p className="plan-cancel" id="yearly-billing-note">{regional?.yearly.pass && !promoCode.trim() ? 'One payment. Nothing renews.' : 'Billed annually. Cancel future renewals anytime.'}</p>
+          <p className="plan-cancel" id="yearly-billing-note">{regionalShown?.yearly.pass ? 'One payment. Nothing renews.' : 'Billed annually. Cancel future renewals anytime.'}</p>
         </article>
         <article className="membership-plan monthly" aria-labelledby="monthly-plan-title">
           <div className="plan-heading"><h3 id="monthly-plan-title">Monthly</h3><span>For a shorter study stretch</span></div>
-          {regional && !promoCode.trim() ? <>
-            <div className="membership-price">{usd(regional.monthly.price)}<span>{regional.monthly.pass ? '/ 30 days' : '/ month'}</span></div>
-            <p className="plan-billing"><strong>{usd(regional.monthly.price)} {regional.monthly.pass ? 'for 30 days' : 'billed every 30 days'}</strong><span>{regional.monthly.pass ? 'One payment. Buy again when it ends.' : 'A smaller upfront payment.'}</span></p>
+          {regionalShown ? <>
+            <div className="membership-price">{usd(regionalShown.monthly.price)}<span>{regionalShown.monthly.pass ? '/ 30 days' : '/ month'}</span></div>
+            <p className="plan-billing"><strong>{usd(regionalShown.monthly.price)} {regionalShown.monthly.pass ? 'for 30 days' : 'billed every 30 days'}</strong><span>{regionalShown.monthly.pass ? 'One payment. Buy again when it ends.' : 'A smaller upfront payment.'}</span></p>
           </> : <>
             <div className="membership-price">{student ? '$14' : '$20'}<span>/ month</span></div>
             <p className="plan-billing"><strong>{student ? '$14' : '$20'} billed every 30 days</strong><span>{student ? 'Student price, every renewal.' : 'A smaller upfront payment.'}</span></p>
           </>}
           <p className="plan-access">The same full access, one month at a time.</p>
-          <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('monthly')}>{busy === 'monthly' ? 'Preparing payment…' : regional?.monthly.pass && !promoCode.trim() ? 'Get 30 days' : 'Choose monthly'}<ArrowRight size={17} /></button>
-          <p className="plan-cancel">{regional?.monthly.pass && !promoCode.trim() ? 'One payment. Nothing renews.' : 'Cancel future renewals anytime.'}</p>
+          <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('monthly')}>{busy === 'monthly' ? 'Preparing payment…' : regionalShown?.monthly.pass ? 'Get 30 days' : 'Choose monthly'}<ArrowRight size={17} /></button>
+          <p className="plan-cancel">{regionalShown?.monthly.pass ? 'One payment. Nothing renews.' : 'Cancel future renewals anytime.'}</p>
         </article>
       </div>
       <div className="plan-inclusions">

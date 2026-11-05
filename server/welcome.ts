@@ -1,5 +1,6 @@
 import { waitUntil } from '@vercel/functions';
-import { appOrigin, plans, required } from './config.js';
+import { allRegionalPlans, appOrigin, plans, required } from './config.js';
+import { regionalOffer, regionOf, welcomeAmount, type RegionalOffer } from './regional.js';
 import { db } from './store.js';
 import { accessFor, whop } from './billing.js';
 import { studentEligible } from './studentDiscount.js';
@@ -72,17 +73,44 @@ function shell(preheader: string, body: string, footer: string) {
 </table></td></tr></table></body></html>`;
 }
 
-function offerBox(code: string, expiresAt: string, student: boolean, firstLine: string) {
-  const yearly = plans.yearly.price;
-  const monthly = plans.monthly.price;
+/**
+ * The offer's prices: the standard ones, or (`regional`) the price for the country the account signed up from while
+ * regional prices are on there. The code takes the same 40% off either.
+ */
+export function offerPrices(regional?: RegionalOffer | null) {
+  if (!regional) {
+    const yearly = plans.yearly.price;
+    const monthly = plans.monthly.price;
+    return {
+      yearly: { label: 'Yearly', text: `${money(off(yearly))} for your first year instead of ${money(yearly)}. That is ${money(off(yearly) / 12)} a month.` },
+      monthly: { label: 'Monthly', text: `${money(off(monthly))} for your first month instead of ${money(monthly)}.` },
+      after: 'Renewals are at the standard price, and you can cancel future renewals at any time.',
+    };
+  }
+  const { yearly, monthly, countryName } = regional;
+  return regional.monthly.pass
+    ? {
+        yearly: { label: '1-year pass', text: `${money(welcomeAmount(yearly.price))} instead of ${money(yearly.price)}.` },
+        monthly: { label: '30-day pass', text: `${money(welcomeAmount(monthly.price))} instead of ${money(monthly.price)}.` },
+        after: `These are the prices for ${countryName}: pay with a card issued there. A pass is one payment and never renews.`,
+      }
+    : {
+        yearly: { label: 'Yearly', text: `${money(welcomeAmount(yearly.price))} for your first year instead of ${money(yearly.price)}. That is ${money(welcomeAmount(yearly.price) / 12)} a month.` },
+        monthly: { label: 'Monthly', text: `${money(welcomeAmount(monthly.price))} for your first month instead of ${money(monthly.price)}.` },
+        after: `These are the prices for ${countryName}: pay with a card issued there. Renewals are at those prices (${money(monthly.price)} a month or ${money(yearly.price)} a year), and you can cancel future renewals at any time.`,
+      };
+}
+
+function offerBox(code: string, expiresAt: string, student: boolean, firstLine: string, regional?: RegionalOffer | null) {
+  const prices = offerPrices(regional);
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:8px 0 22px;border:2px dashed #2563eb;border-radius:16px;background:#f5f8ff"><tr><td style="padding:22px 22px 18px">
 <p style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#2563eb">${esc(firstLine)}</p>
 <p style="margin:0 0 14px;font-size:24px;line-height:1.25;font-weight:800;color:#111827">${WELCOME_PERCENT}% off your first payment</p>
 <p style="margin:0 0 16px"><span style="display:inline-block;padding:10px 16px;border-radius:10px;background:#111827;color:#ffffff;font:700 19px/1 'SFMono-Regular',Menlo,Consolas,monospace;letter-spacing:.06em">${esc(code.toUpperCase())}</span></p>
-<p style="margin:0 0 6px;font-size:15px;line-height:1.55;color:#3a3a3c"><b>Yearly:</b> ${money(off(yearly))} for your first year instead of ${money(yearly)}. That is ${money(off(yearly) / 12)} a month.</p>
-<p style="margin:0 0 16px;font-size:15px;line-height:1.55;color:#3a3a3c"><b>Monthly:</b> ${money(off(monthly))} for your first month instead of ${money(monthly)}.</p>
+<p style="margin:0 0 6px;font-size:15px;line-height:1.55;color:#3a3a3c"><b>${esc(prices.yearly.label)}:</b> ${esc(prices.yearly.text)}</p>
+<p style="margin:0 0 16px;font-size:15px;line-height:1.55;color:#3a3a3c"><b>${esc(prices.monthly.label)}:</b> ${esc(prices.monthly.text)}</p>
 ${button(`Claim my ${WELCOME_PERCENT}% off`, claimUrl(code))}
-<p style="margin:12px 0 0;font-size:13px;line-height:1.5;color:#6e6e73">Ends ${esc(deadline(expiresAt))}. One use, made only for your account; it is already filled in when you open the plans. Renewals are at the standard price, and you can cancel future renewals at any time.${student ? ' Your university email also gets 30% off every renewal without the code: choose whichever suits you.' : ''}</p>
+<p style="margin:12px 0 0;font-size:13px;line-height:1.5;color:#6e6e73">Ends ${esc(deadline(expiresAt))}. One use, made only for your account; it is already filled in when you open the plans. ${esc(prices.after)}${student && !regional ? ' Your university email also gets 30% off every renewal without the code: choose whichever suits you.' : ''}</p>
 </td></tr></table>`;
 }
 
@@ -93,7 +121,9 @@ function footer(unsubscribe: string, when = 'just') {
   return `You are getting this because you ${when ? `${when} ` : ''}created an account at radiology.monster. <a href="${esc(unsubscribe)}" style="color:#86868b">Stop offer emails</a>.<br>Chest X-ray: NIH ChestX-ray14, NIH Clinical Center. For education only, not for clinical diagnosis.`;
 }
 
-export function welcomeMail(userId: string, r: WelcomeRecord, opts: { student: boolean; replies: boolean }): WelcomeMail {
+/** `opts.regional`: the price for the account's country while regional prices are on there (else the standard price). */
+export function welcomeMail(userId: string, r: WelcomeRecord, opts: { student: boolean; replies: boolean; regional?: RegionalOffer | null }): WelcomeMail {
+  const prices = offerPrices(opts.regional);
   const name = firstName(r.name);
   const unsubscribe = unsubscribeUrl(userId, 'offers');
   const offer = r.code && r.expiresAt ? { code: r.code, expiresAt: r.expiresAt } : null;
@@ -113,7 +143,7 @@ ${p('So here is the best way to start. It takes about five minutes.')}
 ${p('Box what you see, commit, and your mark is graded against the expert reference on the image. Then read why on the exact page of <i>Learning Radiology</i>.')}
 ${button('Read your first scan', caseUrl(), !offer)}
 <div style="height:24px"></div>
-${offer ? `${p('And because you are new here, a welcome gift that is only yours:')}${offerBox(offer.code, offer.expiresAt, opts.student, 'Your welcome gift')}` : ''}
+${offer ? `${p('And because you are new here, a welcome gift that is only yours:')}${offerBox(offer.code, offer.expiresAt, opts.student, 'Your welcome gift', opts.regional)}` : ''}
 ${p('<b>A membership opens everything:</b>', 'margin-bottom:8px')}
 <ul style="margin:0 0 18px;padding-left:20px;font-size:15px;line-height:1.7;color:#3a3a3c">
 <li>600+ real patients across CT, MRI, X-ray, mammography and ultrasound</li>
@@ -135,9 +165,9 @@ ${offer ? `<p style="margin:22px 0 0;padding-top:16px;border-top:1px solid #e5e5
     ...(offer
       ? [
           `Your welcome gift: ${WELCOME_PERCENT}% off your first payment with the code ${offer.code.toUpperCase()}.`,
-          `Yearly: ${money(off(plans.yearly.price))} for your first year instead of ${money(plans.yearly.price)}. Monthly: ${money(off(plans.monthly.price))} for your first month instead of ${money(plans.monthly.price)}.`,
+          `${prices.yearly.label}: ${prices.yearly.text} ${prices.monthly.label}: ${prices.monthly.text}`,
           `Claim it: ${claimUrl(offer.code)}`,
-          `Ends ${deadline(offer.expiresAt)}. One use, only for your account. Renewals are at the standard price; cancel future renewals at any time.${opts.student ? ' Your university email also gets 30% off every renewal without the code.' : ''}`,
+          `Ends ${deadline(offer.expiresAt)}. One use, only for your account. ${prices.after}${opts.student && !opts.regional ? ' Your university email also gets 30% off every renewal without the code.' : ''}`,
           '',
         ]
       : []),
@@ -151,7 +181,8 @@ ${offer ? `<p style="margin:22px 0 0;padding-top:16px;border-top:1px solid #e5e5
   return { to: r.email, subject, html: shell(preheader, body, footer(unsubscribe, r.earlier ? '' : 'just')), text: lines.join('\n'), unsubscribe };
 }
 
-export function reminderMail(userId: string, r: WelcomeRecord, now = Date.now()): WelcomeMail {
+export function reminderMail(userId: string, r: WelcomeRecord, now = Date.now(), regional?: RegionalOffer | null): WelcomeMail {
+  const prices = offerPrices(regional);
   const name = firstName(r.name);
   const unsubscribe = unsubscribeUrl(userId, 'offers');
   const code = r.code!;
@@ -161,14 +192,14 @@ export function reminderMail(userId: string, r: WelcomeRecord, now = Date.now())
   const body = `
 <h1 style="margin:0 0 16px;font-size:26px;line-height:1.2;letter-spacing:-0.02em;color:#111827">${esc(`Your welcome gift ends in ${left}.`)}</h1>
 ${p(`${name ? `${esc(name)}, a` : 'A'} quick reminder before it goes: your personal code still takes ${WELCOME_PERCENT}% off your first payment, and after ${esc(deadline(r.expiresAt!))} it stops working.`)}
-${offerBox(code, r.expiresAt!, false, 'Still yours, for now')}
+${offerBox(code, r.expiresAt!, false, 'Still yours, for now', regional)}
 ${p(`Not sure yet? Read the free chest X-ray first and see how the grading feels: <a href="${esc(caseUrl())}" style="color:#2563eb">open your first case</a>.`)}
 ${p('Radiology Monster', 'margin-bottom:0')}`;
   const text = [
     `Your welcome gift ends in ${left}.`,
     '',
     `Your code ${code.toUpperCase()} takes ${WELCOME_PERCENT}% off your first payment until ${deadline(r.expiresAt!)}.`,
-    `Yearly: ${money(off(plans.yearly.price))} for your first year instead of ${money(plans.yearly.price)}. Monthly: ${money(off(plans.monthly.price))} for your first month instead of ${money(plans.monthly.price)}.`,
+    `${prices.yearly.label}: ${prices.yearly.text} ${prices.monthly.label}: ${prices.monthly.text}`,
     `Claim it: ${claimUrl(code)}`,
     '',
     `Not sure yet? Read the free chest X-ray first: ${caseUrl()}`,
@@ -208,7 +239,10 @@ async function send(mail: WelcomeMail, idempotencyKey: string): Promise<boolean>
   }
 }
 
-/** Make the personal code in Whop: both plans, the first payment only, one use, 72 hours. */
+/**
+ * Make the personal code in Whop: both plans and the regional plans (checkout puts it on a regional plan only for a
+ * visitor who gets that price; Whop's card rules cover the discounted amounts), the first payment only, one use, 72 hours.
+ */
 async function makeCode(userId: string, r: WelcomeRecord, now: number): Promise<{ code: string; promoId: string; expiresAt: string }> {
   const client = await whop();
   const expiresAt = new Date(now + WELCOME_HOURS * HOUR).toISOString();
@@ -219,7 +253,7 @@ async function makeCode(userId: string, r: WelcomeRecord, now: number): Promise<
         {
           account_id: required('WHOP_ACCOUNT_ID'),
           product_id: required('WHOP_PRODUCT_ID'),
-          plan_ids: [required(plans.monthly.env), required(plans.yearly.env)],
+          plan_ids: [required(plans.monthly.env), required(plans.yearly.env), ...allRegionalPlans().map((p) => p.id)],
           code,
           promo_type: 'percentage',
           amount_off: WELCOME_PERCENT,
@@ -247,10 +281,12 @@ async function makeCode(userId: string, r: WelcomeRecord, now: number): Promise<
 }
 
 /** The account's first sign-in: remember it and send the welcome in the background (never awaited by the sign-in). */
-export async function welcomeNewAccount(user: { userId: string; email: string; name: string }) {
+/** `country`: Vercel's IP country of the first sign-in, kept only when it has a regional price. */
+export async function welcomeNewAccount(user: { userId: string; email: string; name: string }, country?: string | null) {
   if (process.env.WELCOME_EMAIL === 'off' || !process.env.RESEND_API_KEY || !process.env.EMAIL_FROM) return;
   try {
-    const record: WelcomeRecord = { email: user.email, name: user.name, joinedAt: new Date().toISOString() };
+    const code = country?.trim().toUpperCase();
+    const record: WelcomeRecord = { email: user.email, name: user.name, joinedAt: new Date().toISOString(), ...(code && regionOf(code) ? { country: code } : {}) };
     if ((await db().set(welcomeKey(user.userId), record, { nx: true, ex: 30 * 86_400 })) !== 'OK') return;
     await db().sadd(QUEUE, user.userId);
     waitUntil(sendWelcome(user.userId).catch(() => undefined));
@@ -301,7 +337,8 @@ export async function sendWelcome(userId: string, now = Date.now()): Promise<'se
       await db().set(welcomeKey(userId), r, { ex: 30 * 86_400 });
     }
     const student = await studentEligible(userId).catch(() => false);
-    const ok = await send(welcomeMail(userId, r, { student, replies: !!process.env.EMAIL_REPLY_TO }), `welcome-${userId}`);
+    const regional = await regionalOffer(r.country);
+    const ok = await send(welcomeMail(userId, r, { student, replies: !!process.env.EMAIL_REPLY_TO, regional }), `welcome-${userId}`);
     if (!ok) return 'later';
     await db().set(welcomeKey(userId), { ...r, sentAt: new Date(now).toISOString() }, { ex: 30 * 86_400 });
     await db().srem(QUEUE, userId);
@@ -344,7 +381,7 @@ export async function welcomeCron(now = Date.now()) {
       await db().srem(OPEN, userId);
       continue;
     }
-    if (await send(reminderMail(userId, r, now), `welcome-reminder-${userId}`)) {
+    if (await send(reminderMail(userId, r, now, await regionalOffer(r.country)), `welcome-reminder-${userId}`)) {
       await db().set(welcomeKey(userId), { ...r, reminderAt: new Date(now).toISOString() }, { ex: 30 * 86_400 });
       await db().srem(OPEN, userId);
       reminded++;

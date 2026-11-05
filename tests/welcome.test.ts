@@ -41,7 +41,8 @@ import { earlierAccounts, firstName, sendWelcome, welcomeCode, welcomeCron, welc
 import { ownWelcomeCode, welcomeKey, welcomeOffer, type WelcomeRecord } from '../server/welcomeCode';
 import { checkoutDiscount } from '../server/studentDiscount';
 import { unsubscribe, unsubscribeUrl } from '../server/engage';
-import { timeLeft } from '../src/auth/welcomeOffer';
+import { timeLeft, welcomeTerms } from '../src/auth/welcomeOffer';
+import { allRegionalPlans } from '../server/config';
 
 const uid = 'b'.repeat(64);
 const other = 'c'.repeat(64);
@@ -101,7 +102,7 @@ describe('the welcome email', () => {
     const r = await joined();
     expect(fake.create).toHaveBeenCalledTimes(1);
     const body = fake.create.mock.calls[0][0];
-    expect(body).toMatchObject({ account_id: 'biz_1', product_id: 'prod_1', plan_ids: ['plan_m', 'plan_y'], promo_type: 'percentage', amount_off: 40, promo_duration_months: 1, one_per_customer: true, unlimited_stock: false, stock: 1 });
+    expect(body).toMatchObject({ account_id: 'biz_1', product_id: 'prod_1', plan_ids: ['plan_m', 'plan_y', ...allRegionalPlans().map((p) => p.id)], promo_type: 'percentage', amount_off: 40, promo_duration_months: 1, one_per_customer: true, unlimited_stock: false, stock: 1 });
     expect(body.code).toMatch(/^welcome-ana-[a-z2-9]{5}$/);
     const ends = Date.parse(body.expires_at);
     expect(ends - before).toBeGreaterThanOrEqual(72 * HOUR - 1000);
@@ -187,6 +188,33 @@ describe('the welcome email', () => {
     expect(fake.create).not.toHaveBeenCalled();
   });
 
+  it('quotes the price for the country the account signed up from, while regional prices are on there', async () => {
+    fake.kv.set('rvm:regional:live', true);
+    await welcomeNewAccount({ ...user, userId: 'd'.repeat(64) }, 'ba');
+    await Promise.all(fake.background);
+    await welcomeNewAccount(user, 'IN');
+    await Promise.all(fake.background);
+    expect((fake.kv.get(welcomeKey(uid)) as WelcomeRecord).country).toBe('IN');
+    const [ba, india] = mails as Array<{ html: string; text: string }>;
+    expect(ba.html).toContain('$5.99 for your first month instead of $9.99');
+    expect(ba.html).toContain('$44.99 for your first year instead of $74.99');
+    expect(ba.html).toContain('prices for Bosnia');
+    expect(ba.text).toContain('$5.99 for your first month instead of $9.99');
+    expect(india.html).toContain('$2.99 instead of $4.99');
+    expect(india.html).toContain('$23.99 instead of $39.99');
+    expect(india.html).toContain('never renews');
+    expect(india.html).not.toContain('$12 for your first month');
+  });
+
+  it('quotes the standard price elsewhere, and while regional prices are off', async () => {
+    await welcomeNewAccount(user, 'BA');
+    await welcomeNewAccount({ ...user, userId: 'd'.repeat(64) }, 'US');
+    await Promise.all(fake.background);
+    expect(mails).toHaveLength(2);
+    for (const m of mails as Array<{ html: string }>) expect(m.html).toContain('$12 for your first month instead of $20');
+    expect((fake.kv.get(welcomeKey('d'.repeat(64))) as WelcomeRecord).country).toBeUndefined();
+  });
+
   it('mentions the student price only to a verified university email', () => {
     const r: WelcomeRecord = { email: 'ana@uni.edu', name: 'Ana', joinedAt: new Date().toISOString(), code: 'welcome-ana-abcde', expiresAt: new Date(Date.now() + 72 * HOUR).toISOString() };
     expect(welcomeMail(uid, r, { student: true, replies: false }).html).toContain('30% off every renewal');
@@ -265,6 +293,15 @@ describe('the offer in the app and at checkout', () => {
     expect(timeLeft(3 * HOUR + 12 * 60_000)).toBe('3 h 12 min');
     expect(timeLeft(2 * 24 * HOUR + 5 * HOUR)).toBe('2 days 5 h');
     expect(timeLeft(24 * HOUR)).toBe('1 day');
+  });
+
+  it('says what the code takes off, at the standard price or at the price for the visitor\'s country', () => {
+    expect(welcomeTerms(40)).toContain('Yearly $90 for your first year instead of $150 · Monthly $12 for your first month instead of $20');
+    const country = { country: 'BA', countryName: 'Bosnia and Herzegovina' };
+    expect(welcomeTerms(40, { ...country, region: 'b', monthly: { price: 9.99, pass: false }, yearly: { price: 74.99, pass: false } }))
+      .toBe('Yearly $44.99 for your first year instead of $74.99 · Monthly $5.99 for your first month instead of $9.99. Renewals at the price for Bosnia and Herzegovina.');
+    expect(welcomeTerms(40, { ...country, region: 'c', monthly: { price: 4.99, pass: true }, yearly: { price: 39.99, pass: true } }))
+      .toBe('1-year pass $23.99 instead of $39.99 · 30-day pass $2.99 instead of $4.99. One payment, nothing renews.');
   });
 });
 
