@@ -10,12 +10,12 @@ export default function GuidePage() {
           </li>
           <li>Orient first: modality, plane, the side letters at the image edges, and the window. Scroll through the whole stack before committing.</li>
           <li>
-            Mark with <span className="kbd">M</span> (point) or <span className="kbd">A</span> (arrow with a name). Hold <span className="kbd">Shift</span> and drag to adjust the window
-            while marking.
+            Mark the finding with <span className="kbd">M</span> (point), <span className="kbd">A</span> (arrow with a name), <span className="kbd">B</span> (box) or{' '}
+            <span className="kbd">O</span> (outline). Your marks are magenta and dashed. Hold <span className="kbd">Shift</span> and drag to adjust the window while marking.
           </li>
           <li>Submit. Feedback separates level, identity, side and position, and shows your mark beside the reference on the exact slice.</li>
           <li>Open the linked page of the book, then “Return to my scan position”.</li>
-          <li>Use “Same skill, different patient” — practising on new patients is what builds skill.</li>
+          <li>Use “Same skill, different patient”: practising on new patients is what builds skill.</li>
         </ol>
         <p className="muted">
           <b>Modes:</b> Learn shows the reference and explanation from the start. Practice hides answers and offers hints (any hint or reveal makes the attempt
@@ -26,10 +26,10 @@ export default function GuidePage() {
         <h2>Study tools</h2>
         <ul className="stack" style={{ gap: 6, paddingLeft: 18, margin: 0 }}>
           <li>
-            <b>Case of the week</b> (members) — every Monday a new real patient is featured on Today. Ask for the Monday email in Settings → Emails.
+            <b>Case of the week</b> (members): every Monday a new real patient is featured on Today. Ask for the Monday email in Settings → Emails.
           </li>
           <li>
-            <b>Certificates</b> (top bar, members) — three levels for each body area and three for the whole library (General Radiology), each an exam,
+            <b>Certificates</b> (top bar, members): three levels for each body area and three for the whole library (General Radiology), each an exam,
             taken in order and each a real step up: Foundation 15 untimed questions, pass mark 70%; Intermediate 25 questions at 3 minutes each, 80%, at least half
             marked on the image and no two-answer questions; Advanced 40 questions at 2 minutes each, 90% with no half points, mostly marked on the image, subtle
             cases first (the whole library: 30, 50 and 75 questions). Press Start the exam: each question opens one real patient; mark the finding or choose the
@@ -38,65 +38,65 @@ export default function GuidePage() {
             my LinkedIn, which posts it with the certificate picture once you allow it), and images for posts and stories.
           </li>
           <li>
-            <b>Quick search</b> — press <span className="kbd">Ctrl</span> + <span className="kbd">K</span> (<span className="kbd">⌘</span> <span className="kbd">K</span> on a Mac) on any
+            <b>Quick search</b>: press <span className="kbd">Ctrl</span> + <span className="kbd">K</span> (<span className="kbd">⌘</span> <span className="kbd">K</span> on a Mac) on any
             page, the reading room included, to jump to a page, a condition, a book chapter or a case. Cases are found by their neutral titles only, so search never gives away a
             diagnosis.
           </li>
           <li>
-            <b>Today</b> — your next scan, a streak and a calendar of the days you studied (answers and drill answers), and <i>Your areas</i>: patients read and how often you
+            <b>Today</b>: your next scan, a streak and a calendar of the days you studied (answers and drill answers), and <i>Your areas</i>: patients read and how often you
             were right in each body area, with a link to practise the area that needs it most on a patient you have not read.
           </li>
           <li>
-            <b>Drills</b> — point to a structure or a finding (pneumothorax, effusion, nodule, embolus, fracture…), find its level, name the outline, best window. Misses
+            <b>Drills</b>: point to a structure or a finding (pneumothorax, effusion, nodule, embolus, fracture…), find its level, name the outline, best window. Misses
             return on a different patient; known ones return after 1, 3, 7, 16 and 35 days.
           </li>
           <li>
-            <b>By modality</b> — <i>MRI</i>: each view names its sequence (T1, T2, FLAIR, DWI, ADC…) and what is bright and dark on it, with the book page.{' '}
+            <b>By modality</b>: <i>MRI</i>: each view names its sequence (T1, T2, FLAIR, DWI, ADC…) and what is bright and dark on it, with the book page.{' '}
             <i>Mammography</i>: Layout → Mammography hangs CC above MLO, right breast on the left, back to back. <i>Radiographs, mammograms, ultrasound</i>: the
             magnifier (Q) shows fine detail such as calcifications. <i>Ultrasound</i>: brightness is echogenicity; orientation follows the probe marker.
           </li>
           <li>
-            <b>On call</b> — a shift of unknown cases (5–20, one per patient, ones you have not read first) in Assess mode with a clock per case, then a scored report with
+            <b>On call</b>: a shift of unknown cases (5–20, one per patient, ones you have not read first) in Assess mode with a clock per case, then a scored report with
             every case to review.
           </li>
           <li>
-            <b>Coach</b> tab — a fixed reading order for chest X-ray, chest CT, abdomen/pelvis CT and brain. <i>Show me</i> outlines each step’s structures together in the
+            <b>Checklist</b> tab: a fixed reading order for chest X-ray, chest CT, abdomen/pelvis CT and brain, so nothing is missed after the first finding. <i>Show me</i> outlines each step’s structures together in the
             right window.
           </li>
           <li>
-            <b>Compare with another patient</b> (two-people button) — a second patient kept at the same anatomical level as you scroll, matched by structures labelled on
+            <b>Compare with another patient</b> (two-people button): a second patient kept at the same anatomical level as you scroll, matched by structures labelled on
             both.
           </li>
           <li>
-            <b>Structure notes</b> — pick any structure in the Anatomy tab or Atlas: how it looks, what it touches, one pitfall, and the chapter.
+            <b>Structure notes</b>: pick any structure in the Anatomy tab or Atlas: how it looks, what it touches, one pitfall, and the chapter.
           </li>
           <li>
-            <b>Colours and fill</b> — in the Anatomy tab each group (arteries, veins, bones…) has a colour swatch and <i>Outline / Filled</i>: make the arteries red and
+            <b>Colours and fill</b>: in the Anatomy tab each group (arteries, veins, bones…) has a colour swatch and <i>Outline / Filled</i>: make the arteries red and
             filled, the veins blue. A structure shown alone can get its own colour. The same colours are used on every slice, the reformatted views and the 3D models, and
             are kept in this browser. <span className="kbd">V</span> fills or outlines everything, <span className="kbd">N</span> shows names, and the colour key on the
             image says what each colour is.
           </li>
           <li>
-            <b>Save image</b> (picture button) — the view as a PNG for your notes, with its outlines, colour key and the image source and licence underneath. In Assess it
+            <b>Save image</b> (in the More menu, ···): the view as a PNG for your notes, with its outlines, colour key and the image source and licence underneath. In Assess it
             waits until you submit.
           </li>
           <li>
-            <b>Conditions</b> (top bar) — type a condition (pneumothorax, nodule, COVID-19…) to see every installed case that shows it, where it is, and the book pages that
+            <b>Conditions</b> (top bar): type a condition (pneumothorax, nodule, COVID-19…) to see every installed case that shows it, where it is, and the book pages that
             teach it.
           </li>
           <li>
-            <b>Linked views</b> (chain button, K) — scrolling one view moves the others of the same patient; coloured lines show where each view cuts the others; double-click a
+            <b>Linked views</b> (chain button, K): scrolling one view moves the others of the same patient; coloured lines show where each view cuts the others; double-click a
             point to show it in every view. <b>Planes</b> sets a thick slab (MIP, MinIP, average, any thickness) and tilts the MPR planes to any angle for oblique structures.
           </li>
           <li>
-            <b>3D</b> (Layout → MPR + 3D) — <i>Cut</i> keeps only part of the body, or cuts at the slice you are reading and follows it as you scroll; <i>Structures</i> shows
+            <b>3D</b> (Layout → MPR + 3D): <i>Cut</i> keeps only part of the body, or cuts at the slice you are reading and follows it as you scroll; <i>Structures</i> shows
             only what you pick (heart, arteries, veins, airways, bones…) as coloured models, names what is under the cursor, and <i>Quiz me</i> asks you to name or find them.
           </li>
           <li>
-            <b>Confidence check</b> — “sure but wrong” answers go to the top of your reviews.
+            <b>Confidence check</b>: “sure but wrong” answers go to the top of your reviews.
           </li>
           <li>
-            <b>Report a problem with this case</b> (under the task, and in the Case tab) — say what looks wrong: an outline or label, the expected answer, the image or the
+            <b>Report a problem with this case</b> (under the task, and in the Case tab): say what looks wrong: an outline or label, the expected answer, the image or the
             book link. It is sent with the case, the task and the slice you are on, and every report is read.
           </li>
         </ul>
@@ -104,7 +104,7 @@ export default function GuidePage() {
       <section className="card stack">
         <h2>What scores mean</h2>
         <p className="muted">
-          Scores come from deterministic geometry against source annotations — never from the AI. If a reference only covers some structures, marks elsewhere are “unscored”, not
+          Scores come from deterministic geometry against source annotations, never from the AI. If a reference only covers some structures, marks elsewhere are “unscored”, not
           wrong. AI outlines (labelled “AI”) are comparison aids only until you review them in Author. Milestones are product heuristics, not certification.
         </p>
       </section>
@@ -138,7 +138,7 @@ export default function GuidePage() {
       <section className="card stack">
         <h2>Limits</h2>
         <p className="muted">
-          Personal educational practice — not a diagnostic tool, not certification, and no guarantee of exam results. Research annotations can disagree; the app shows provenance
+          Personal educational practice: not a diagnostic tool, not certification, and no guarantee of exam results. Research annotations can disagree; the app shows provenance
           rather than false precision.
         </p>
       </section>

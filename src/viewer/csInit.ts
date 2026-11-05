@@ -48,6 +48,26 @@ export function initCornerstone(): Promise<{ gpu: boolean }> {
     cs.volumeLoader.registerVolumeLoader('cornerstoneStreamingImageVolume', cs.cornerstoneStreamingImageVolumeLoader as never);
     await cs.init();
     await cst.init();
+    // The learner's own marks have a colour nothing else on the image uses (magenta, --mine) and a dashed line, so a
+    // mark never reads as the expert's yellow outline, an anatomy colour or a link; labels use the app's font.
+    const style = cst.annotation.config.style;
+    const base = style.getDefaultToolStyles() as { global: Record<string, string | boolean> };
+    style.setDefaultToolStyles({
+      ...base,
+      global: {
+        ...base.global,
+        color: 'rgb(255, 79, 216)',
+        colorHighlighted: 'rgb(255, 160, 234)',
+        colorSelected: 'rgb(255, 160, 234)',
+        textBoxColor: 'rgb(255, 79, 216)',
+        textBoxColorHighlighted: 'rgb(255, 160, 234)',
+        textBoxColorSelected: 'rgb(255, 160, 234)',
+        lineWidth: '2',
+        lineDash: '6,4',
+        textBoxFontFamily: "-apple-system, BlinkMacSystemFont, 'Inter Variable', 'Segoe UI', Helvetica, Arial, sans-serif",
+        textBoxFontSize: '13px',
+      },
+    } as never);
     for (const T of [
       cst.WindowLevelTool,
       cst.PanTool,

@@ -64,7 +64,7 @@ export default function BookFigures() {
         <span className="faint">{figs.length} figures</span>
       </div>
       <small className="muted">
-        Linked to the on-site textbook reader. Book figures carry printed arrows and labels — use them to understand a concept, then practise it on real studies
+        Linked to the on-site textbook reader. Book figures carry printed arrows and labels: use them to understand a concept, then practise it on real studies
         (linked from each chapter in the Course map).
       </small>
       {available === false ? <div className="notice">Import your PDF in Settings → Book (or install it locally) to see the figures.</div> : null}
@@ -72,7 +72,7 @@ export default function BookFigures() {
         <div className="grid-3">
           {figs.map((f) => (
             <Link key={f.id} to={`/book/${f.physical}`} className="case-card" style={{ gap: 6 }}>
-              {f.bbox ? <FigureThumb physical={f.physical} bbox={f.bbox} alt={f.id} /> : <div className="faint">No crop box — open the page</div>}
+              {f.bbox ? <FigureThumb physical={f.physical} bbox={f.bbox} alt={f.id} /> : <div className="faint">No crop box; open the page</div>}
               <b>{f.id}</b>
               <small className="faint">
                 p. {f.printed} · {[f.modality, f.description].filter(Boolean).join(' · ')}

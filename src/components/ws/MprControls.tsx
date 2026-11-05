@@ -44,7 +44,7 @@ function SlabSection({ engine }: { engine: ViewerEngine }) {
   return (
     <>
           <b>Slab</b>
-          <p className="faint">A thick slab shows several millimetres at once — follow a vessel, find nodules, see the airways.</p>
+          <p className="faint">A thick slab shows several millimetres at once: follow a vessel, find nodules, see the airways.</p>
           <div className="seg" role="group" aria-label="Slab projection">
             {BLENDS.map(([b, label, why]) => (
               <button key={b} className={`btn sm${(m?.blend ?? 'thin') === b ? ' on' : ''}`} aria-pressed={(m?.blend ?? 'thin') === b} title={why} onClick={() => set(b)}>
@@ -100,7 +100,7 @@ function TiltSection({ engine, focused, kind }: { engine: ViewerEngine; focused:
                     {k}
                   </span>
                 ))}{' '}
-                planes around the axis of the <b>{kind}</b> view you selected — to lay a plane along an oblique structure (aortic arch, a rib, the long axis of the heart).
+                planes around the axis of the <b>{kind}</b> view you selected, to lay a plane along an oblique structure (aortic arch, a rib, the long axis of the heart).
               </p>
               <label className="mpr-range">
                 <span>Tilt</span>

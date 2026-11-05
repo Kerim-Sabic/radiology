@@ -488,7 +488,8 @@ test.describe('D. assess leakage, deep links', () => {
     await expect(page.getByText(/Book anatomy checklist/)).toBeVisible();
     await page.getByRole('searchbox', { name: 'Find a structure' }).fill('esophagus');
     await page.locator('.atlas-item', { hasText: /^Esophagus/ }).locator('button').click();
-    const entry = page.locator('.atlas-item a[href*="show=lctsc-train-s1-012_esophagus"]');
+    // The structure opens beside the list, with every patient who has it as a tile.
+    const entry = page.locator('.atlas-detail a[href*="show=lctsc-train-s1-012_esophagus"]');
     await expect(entry).toBeVisible();
     await entry.click();
     await expect(page).toHaveURL(/\/read\/starter-ct-chest-01\?mode=learn&show=/);
@@ -700,7 +701,7 @@ test.describe('E. study tools', () => {
   test('search-pattern coach shows a step’s structures together in the right window', async ({ page }) => {
     await page.goto('/read/starter-ct-chest-01?mode=learn');
     await waitPanel(page);
-    await page.getByRole('tab', { name: 'Coach' }).click();
+    await page.getByRole('tab', { name: 'Checklist' }).click();
     const step = page.locator('.coach-step', { hasText: 'Great vessels' });
     await step.getByRole('button', { name: /Show me/ }).click();
     await expect(page.locator('.vp-isolate')).toContainText('Great vessels', { timeout: 15000 });

@@ -455,7 +455,7 @@ export default function Workstation() {
   useEffect(() => {
     if (timeLeft === null || session?.submitted) return;
     if (timeLeft <= 0) {
-      toast.show('Time is up — submit when ready (the timer never discards your work).');
+      toast.show('Time is up. Submit when ready; the timer never discards your work.');
       return;
     }
     const t = setTimeout(() => setTimeLeft((x) => (x === null ? null : x - 1)), 1000);
@@ -672,7 +672,7 @@ export default function Workstation() {
     }
     if (g.outcome === 'not_attempted' && (session.notAssessable || session.uncertain)) {
       g.outcome = g.authoritative ? 'incorrect' : 'self_review';
-      g.messages.push('You reported this as uncertain or not assessable. The reference shows the target on this study — use the explanation to see why.');
+      g.messages.push('You reported this as uncertain or not assessable. The reference shows the target on this study; use the explanation to see why.');
     }
     const attempt: Attempt = { ...buildAttempt(g, true), marks: frozen, position: { seriesUid: pp.seriesUid, sopInstanceUid: cp.sop, worldLps: cp.world }, independent: rules.independent(session) };
     if (exam && examItem) {
@@ -1428,7 +1428,7 @@ export default function Workstation() {
               {focusedSeries?.modality === 'CT' ? null : (
                 <div className="faint" style={{ fontSize: 11, padding: '4px 8px', maxWidth: 240 }}>
                   {focusedSeries?.modality === 'MR'
-                    ? 'MR signal is arbitrary units — there are no Hounsfield presets.'
+                    ? 'MR signal is in arbitrary units, so there are no Hounsfield presets.'
                     : focusedSeries?.modality === 'US'
                       ? 'Ultrasound brightness is echogenicity (how strongly tissue reflects sound), not a calibrated value.'
                       : focusedSeries?.modality === 'MG'
@@ -1721,7 +1721,7 @@ export default function Workstation() {
             <Tabs.Trigger value="task">Task</Tabs.Trigger>
             <Tabs.Trigger value="book">Book</Tabs.Trigger>
             <Tabs.Trigger value="anatomy">Anatomy</Tabs.Trigger>
-            <Tabs.Trigger value="coach">Coach</Tabs.Trigger>
+            <Tabs.Trigger value="coach">Checklist</Tabs.Trigger>
             <Tabs.Trigger value="info">Case</Tabs.Trigger>
           </Tabs.List>
           <Tabs.Content value="task" className="tab-body">
@@ -1753,7 +1753,7 @@ export default function Workstation() {
                 committed.current = null;
                 setHighlight(new Set());
                 if (mode === 'review') setSp({ task: task.id, mode: 'practice' });
-                toast.show('New attempt on the same patient — it will be recorded, but it is not an unseen-patient test.');
+                toast.show('New attempt on the same patient. It is recorded, but it is not an unseen-patient test.');
               }}
               onNextTask={nextOnStudy}
               next={exam || shift ? null : (nextStep ?? (guest ? { label: 'Save it: free account', go: () => startAccount('signup') } : free ? { label: 'See the plans', go: openPlans } : null))}
@@ -2019,26 +2019,27 @@ function CaseInfo({
     <div className="stack">
       <div className="stack" style={{ gap: 4 }}>
         <h3>Patient &amp; source</h3>
-        {/* The subject key and linkage name the source dataset, which can hint at the diagnosis while assessing. */}
-        {!assessMasked ? (
-          <>
-            <small className="muted">
-              Subject <span className="mono">{kase.subjectKey}</span>
-            </small>
-            <small className="muted">{subject?.linkageEvidence}</small>
-          </>
-        ) : null}
         {kase.clinicalContext ? <p>Context: {kase.clinicalContext}</p> : null}
         {source && assessMasked ? (
           <small className="faint">The image source and its licence appear after you submit: a dataset's name can hint at the diagnosis.</small>
         ) : source ? (
-          <small className="faint">
+          <small className="muted">
             {source.name} · {source.license} ·{' '}
             <a href={source.doi ? `https://doi.org/${source.doi.replace(/^https?:\/\/doi\.org\//, '')}` : source.url} target="_blank" rel="noreferrer">
               source
             </a>
-            {source.citation ? <span style={{ display: 'block', marginTop: 2 }}>Cite: {source.citation}</span> : null}
           </small>
+        ) : null}
+        {/* The subject key and linkage name the source dataset, which can hint at the diagnosis while assessing. */}
+        {!assessMasked ? (
+          <details className="case-details">
+            <summary>Data details</summary>
+            <small className="faint">
+              Subject <span className="mono">{kase.subjectKey}</span>
+            </small>
+            {subject?.linkageEvidence ? <small className="faint">{subject.linkageEvidence}</small> : null}
+            {source?.citation ? <small className="faint">Cite: {source.citation}</small> : null}
+          </details>
         ) : null}
         {catalog!.anatomyTargetsForSeries(catalog!.seriesForCase(kase).map((s) => s.uid)).length ? (
           <small className="faint">
@@ -2055,19 +2056,26 @@ function CaseInfo({
           <div className="stack" style={{ gap: 6 }}>
             <h3>Reference coverage</h3>
             <small className="muted">{kase.referenceSummary}</small>
-            {[...targets.values()]
-              .filter((t) => t.ref.geometryType !== 'slice_interval' || true)
-              .slice(0, 30)
-              .map((t) => (
-                <div key={t.ref.id} className="stack" style={{ gap: 2, fontSize: 12.5 }}>
-                  <div className="row wrap">
-                    <span>{cleanLabel(t.ref.label)}</span>
-                    <ProvenanceChip provenance={t.ref.provenance} />
-                    <span className="chip">{t.ref.completeness.replace(/_/g, ' ')}</span>
+            {(() => {
+              // Structures that share a source, a completeness and a note are listed together, with the note said once.
+              const groups = new Map<string, { names: string[]; provenance: string; completeness: string; note?: string }>();
+              for (const t of [...targets.values()].slice(0, 60)) {
+                const key = `${t.ref.provenance}|${t.ref.completeness}|${t.ref.teachingNote ?? ''}`;
+                const g = groups.get(key) ?? { names: [], provenance: t.ref.provenance, completeness: t.ref.completeness, note: t.ref.teachingNote };
+                g.names.push(cleanLabel(t.ref.label));
+                groups.set(key, g);
+              }
+              return [...groups.entries()].map(([key, g]) => (
+                <div key={key} className="ref-group">
+                  <p>{g.names.join(', ')}</p>
+                  <div className="row wrap" style={{ gap: 6 }}>
+                    <ProvenanceChip provenance={g.provenance} />
+                    <span className="chip">{g.completeness.replace(/_/g, ' ')}</span>
                   </div>
-                  {t.ref.teachingNote ? <small className="faint">{t.ref.teachingNote}</small> : null}
+                  {g.note ? <small className="faint">{g.note}</small> : null}
                 </div>
-              ))}
+              ));
+            })()}
           </div>
           {kase.bookAnchors.length ? (
             <div className="stack" style={{ gap: 4 }}>
@@ -2081,10 +2089,10 @@ function CaseInfo({
           ) : null}
           {similar.length ? (
             <div className="stack" style={{ gap: 4 }}>
-              <h3>Similar teaching cases · different patients</h3>
+              <h3>Similar cases, other patients</h3>
               {similar.map((c) => (
                 <Link key={c.id} to={`/read/${c.id}?mode=practice`} className="btn sm" style={{ justifyContent: 'flex-start' }}>
-                  {c.neutralTitle} <span className="chip">Different patient</span>
+                  {c.neutralTitle}
                 </Link>
               ))}
             </div>

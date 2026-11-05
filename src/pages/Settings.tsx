@@ -34,8 +34,8 @@ export default function SettingsPage() {
           <label className="stack" style={{ gap: 4 }}>
             Level
             <select value={settings.level} onChange={(e) => setSettings({ level: e.target.value as 'student' | 'resident' })}>
-              <option value="student">Student — guided descriptions</option>
-              <option value="resident">Resident — full report, differential</option>
+              <option value="student">Student: guided descriptions</option>
+              <option value="resident">Resident: full report and differential</option>
             </select>
           </label>
           <label className="stack" style={{ gap: 4 }}>
@@ -68,13 +68,13 @@ export default function SettingsPage() {
         {haveBook ? (
           <div className="stack" style={{ gap: 4 }}>
             <div>
-              Source: <b>{status.source}</b> {status.name ? `· ${status.name}` : ''} {status.pageCount ? `· ${status.pageCount} pages` : ''}
+              {status.source === 'local' ? 'Your own copy' : 'On the site'}: <b>{status.name ?? 'Learning Radiology'}</b>{status.pageCount ? ` · ${status.pageCount} pages` : ''}
             </div>
             {status.source === 'local' ? (
               status.verified ? (
                 <span className="chip ok">SHA-256 matches the verified 5th-edition copy</span>
               ) : (
-                <span className="chip warn">Different file (hash {status.sha256?.slice(0, 12)}…) — anchors may be offset</span>
+                <span className="chip warn">Different file (hash {status.sha256?.slice(0, 12)}…): page links may be offset</span>
               )
             ) : null}
           </div>
@@ -111,8 +111,14 @@ export default function SettingsPage() {
         {bookMsg ? <small className="muted">{bookMsg}</small> : null}
       </section>
 
-      <section className="card stack">
-        <h2>Data packs</h2>
+      {/* The image collections: a technical list, folded away unless one fails to load. */}
+      <details className="card settings-packs" open={(catalog?.status ?? []).some((x) => x.status !== 'loaded')}>
+        <summary>
+          <h2>Data packs</h2>
+          <span className="faint">
+            {(catalog?.status ?? []).filter((x) => x.status === 'loaded').length} of {(catalog?.status ?? []).length} loaded
+          </span>
+        </summary>
         <small className="faint">
           Served from <span className="mono">{packBaseUrl()}</span>
         </small>
@@ -151,7 +157,7 @@ export default function SettingsPage() {
             </small>
           ) : null}
         </div>
-      </section>
+      </details>
 
     </div>
   );

@@ -80,6 +80,7 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
     { to: '/', label: 'Today', icon: <House size={16} /> },
     { to: '/cases', label: 'Cases', icon: <Library size={16} /> },
     { to: '/conditions', label: 'Conditions', icon: <Stethoscope size={16} /> },
+    { to: '/atlas', label: 'Atlas', icon: <Bone size={16} /> },
     { to: '/course', label: 'Course', icon: <GraduationCap size={16} /> },
     { to: '/progress', label: 'Progress', icon: <ChartColumn size={16} /> },
     { to: '/certificates', label: 'Certificates', icon: <Award size={16} /> },
@@ -88,14 +89,14 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
   const tools = [
     { to: '/drill', label: 'Drills', hint: 'Point and name', icon: <Target size={16} /> },
     { to: '/oncall', label: 'On call', hint: 'Timed unknown cases', icon: <Siren size={16} /> },
-    { to: '/atlas', label: 'Atlas', hint: 'Any structure, alone', icon: <Bone size={16} /> },
     { to: '/book', label: 'Book', hint: 'Read beside your scans', icon: <BookOpen size={16} /> },
     { to: '/import', label: 'Import', hint: 'Your own studies', icon: <FolderOpen size={16} /> },
     { to: '/author', label: 'Author', hint: 'Write your own cases', icon: <NotebookPen size={16} /> },
   ];
   const tabs = main.slice(0, 4);
   // On a phone, More also holds the main sections the tab bar has no room for.
-  const phoneOnly = main.slice(4).map((l) => ({ ...l, hint: l.to === '/progress' ? 'What you have read and learned' : 'Exams and your certificates' }));
+  const PHONE_HINT: Record<string, string> = { '/course': 'The book, chapter by chapter', '/progress': 'What you have read and learned', '/certificates': 'Exams and your certificates' };
+  const phoneOnly = main.slice(4).map((l) => ({ ...l, hint: PHONE_HINT[l.to] ?? '' }));
   const moreItems = (phone: boolean) => (
     <>
       {phone

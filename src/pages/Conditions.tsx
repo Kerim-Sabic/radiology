@@ -217,7 +217,7 @@ function ConditionView(p: {
             })
           )}
           {hits?.some((h) => h.strength === 'collection') ? (
-            <small className="faint">“Not outlined” means the patient comes from a collection of people with this condition, but nothing marks where it is — the images may even look normal.</small>
+            <small className="faint">“Not outlined” means the patient comes from a collection of people with this condition, but nothing marks where it is; the images may even look normal.</small>
           ) : null}
         </section>
 

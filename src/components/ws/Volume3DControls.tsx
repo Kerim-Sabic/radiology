@@ -274,7 +274,7 @@ function AnatomyPane(p: { engine: ViewerEngine; panelId: string; threeD: ThreeDP
   };
 
   let body: React.ReactNode;
-  if (!threeD.allowed) body = <p className="faint">Structure models open in Learn mode, in Review, or after you submit — they would give the answer away.</p>;
+  if (!threeD.allowed) body = <p className="faint">Structure models open in Learn mode, in Review, or after you submit; they would give the answer away.</p>;
   else if (threeD.loading || (threeD.targets.length && !structures.length)) body = <p className="faint">Loading the outlines…</p>;
   else if (!structures.length) body = <p className="faint">No labelled structures on this series, so there is nothing to isolate.</p>;
   else if (quiz) body = <Quiz engine={engine} panelId={panelId} threeD={threeD} clickRef={p.clickRef} structures={structures} onExit={() => setQuiz(false)} />;
@@ -443,7 +443,7 @@ function Quiz(p: { engine: ViewerEngine; panelId: string; threeD: ThreeDProps; c
             if (!hit) return; // a click on empty space is not an answer
             const want = inSentence(plainName(q.target.label));
             const got = model?.label(hit);
-            record(hit === q.target.id, hit === q.target.id ? `Yes — that is the ${want}.` : `That is the ${got ? inSentence(plainName(got)) : 'another structure'}. The ${want} is lit up now.`);
+            record(hit === q.target.id, hit === q.target.id ? `Yes: that is the ${want}.` : `That is the ${got ? inSentence(plainName(got)) : 'another structure'}. The ${want} is lit up now.`);
           }
         : null;
   });
@@ -480,7 +480,7 @@ function Quiz(p: { engine: ViewerEngine; panelId: string; threeD: ThreeDProps; c
                 key={o}
                 className={`btn sm${answer && o === plainName(q.target.label) ? ' ok' : ''}`}
                 disabled={!!answer}
-                onClick={() => record(o === plainName(q.target.label), o === plainName(q.target.label) ? 'Correct.' : `No — it is the ${inSentence(plainName(q.target.label))}.`)}
+                onClick={() => record(o === plainName(q.target.label), o === plainName(q.target.label) ? 'Correct.' : `No, it is the ${inSentence(plainName(q.target.label))}.`)}
                 style={{ justifyContent: 'flex-start' }}
               >
                 {o}

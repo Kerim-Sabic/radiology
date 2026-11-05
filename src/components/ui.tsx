@@ -62,7 +62,7 @@ export function ProvenanceChip({ provenance }: { provenance: string }) {
   const map: Record<string, [string, string]> = {
     source_manual: ['ok', 'Source manual annotation'],
     source_automated: ['warn', 'Source automated label'],
-    ai_draft: ['warn', `${AI_LABEL} — unreviewed`],
+    ai_draft: ['warn', `${AI_LABEL}, unreviewed`],
     human_reviewed: ['accent', 'Reviewed by you'],
   };
   const [cls, text] = map[provenance] ?? ['', provenance];

@@ -49,16 +49,20 @@ export function CoachPanel(p: Props) {
     }
   };
 
-  if (!pattern) return <div className="notice">No search pattern fits this kind of image yet.</div>;
+  if (!pattern) return <div className="notice">No reading checklist fits this kind of image yet.</div>;
   const has = (s: CoachStep) => !!s.show && [...p.keys].some((k) => s.show!.test(k));
+  const checked = done.filter((d) => pattern.steps.some((s) => s.id === d)).length;
 
   return (
-    <div className="stack" style={{ gap: 8 }}>
-      <small className="muted">
-        Read every study in the same order so nothing is skipped — the main cure for “satisfaction of search” (stopping after the first finding). Tick each area as you
-        check it.
-      </small>
-      <div className="row wrap">
+    <div className="coach">
+      <div className="coach-intro">
+        <h3>Read it in order</h3>
+        <p>
+          Radiologists check every scan in the same order, so a second finding is not missed after the first. Go through each step and tick it when done.
+          {pattern.steps.some(has) ? ' “Show me” outlines that step’s structures on the image.' : ''}
+        </p>
+      </div>
+      <div className="coach-head">
         {patterns.length > 1 ? (
           <select value={pattern.id} onChange={(e) => setPid(e.target.value)} aria-label="Search pattern">
             {patterns.map((x) => (
@@ -70,10 +74,12 @@ export function CoachPanel(p: Props) {
         ) : (
           <b>{pattern.title}</b>
         )}
-        <span className="spacer" />
-        <span className={`chip ${done.length === pattern.steps.length ? 'ok' : ''}`}>
-          {done.filter((d) => pattern.steps.some((s) => s.id === d)).length} / {pattern.steps.length} checked
+        <span className={`coach-count${checked === pattern.steps.length ? ' all' : ''}`}>
+          {checked} of {pattern.steps.length} checked
         </span>
+      </div>
+      <div className="coach-bar" aria-hidden>
+        <span style={{ width: `${(100 * checked) / pattern.steps.length}%` }} />
       </div>
       {p.activeStep ? (
         <button className="btn sm" style={{ alignSelf: 'flex-start' }} onClick={p.onClear}>
@@ -88,7 +94,7 @@ export function CoachPanel(p: Props) {
               <input type="checkbox" checked={isDone} onChange={() => toggle(s.id)} aria-label={`Checked: ${s.title}`} />
               <div>
                 <b>
-                  {i + 1}. {s.title}
+                  <span className="coach-n">{i + 1}</span> {s.title}
                 </b>
                 <ul>
                   {s.look.map((l) => (
@@ -116,15 +122,15 @@ export function CoachPanel(p: Props) {
                       <BookOpen size={13} /> Book
                     </button>
                   ) : null}
-                  {isDone ? <Check size={14} color="#6ee7b7" aria-hidden /> : null}
+                  {isDone ? <Check size={14} className="coach-ok" aria-hidden /> : null}
                 </div>
               </div>
             </div>
           );
         })}
       </div>
-      <Link to={`/course/${pattern.unit}`} className="faint" style={{ fontSize: 12 }}>
-        Where the book teaches this approach
+      <Link to={`/course/${pattern.unit}`} className="coach-book">
+        Where the book teaches this order
       </Link>
     </div>
   );

@@ -54,7 +54,7 @@ export function AnatomyPanel(p: Props) {
   }, [p.targets, q, onlyHere, p.presentIds]);
 
   if (!p.allowed)
-    return <div className="notice">Anatomy labels are available in Learn and Review mode, and after you submit in Practice or Assess — so they never give an answer away.</div>;
+    return <div className="notice">Anatomy labels are available in Learn and Review mode, and after you submit in Practice or Assess, so they never give an answer away.</div>;
 
   const expert = p.targets.filter((t) => !isAi(t)).length;
   const ai = p.targets.length - expert;
@@ -100,15 +100,20 @@ export function AnatomyPanel(p: Props) {
         </div>
       )}
       <small className="muted">
-        <b>Click a structure to see only it</b> — the viewer jumps to the slice where it is largest and centres it. {p.targets.length} structures on this series
-        {p.totalOnStudy > p.targets.length ? ` (${p.totalOnStudy} across this patient's series)` : ''}: {expert} expert, {ai} {AI_LABEL}{p.loading ? ' — loading…' : ''}.
+        <b>Click a structure to see only it.</b> The viewer jumps to the slice where it is largest and centres it. {p.targets.length} structures on this series
+        {p.totalOnStudy > p.targets.length ? ` (${p.totalOnStudy} across this patient's series)` : ''}: {expert} expert, {ai} {AI_LABEL}{p.loading ? ', loading…' : ''}.
       </small>
-      <div className="stack" style={{ gap: 2, fontSize: 12 }}>
+      <div className="anat-key">
         <span>
-          <span className="legend-swatch" style={{ borderColor: '#e7ebf0' }} /> solid outline = expert label from the source dataset
+          <span className="legend-swatch" /> Solid: an expert label from the source dataset
         </span>
         <span>
-          <span className="legend-swatch" style={{ borderColor: '#e7ebf0', borderTopStyle: 'dashed' }} /> dashed = {AI_LABEL} (quality-checked, not yet reviewed by a radiologist; edges can be a few mm off).{' '}
+          <span className="legend-swatch dashed" /> Dashed: {AI_LABEL}, quality-checked but not yet reviewed by a radiologist; edges can be a few mm off.
+        </span>
+        <span>
+          <span className="legend-swatch mine" /> Magenta dashed: your own marks.
+        </span>
+        <span className="faint">
           <a href={AI_CREDIT.url} target="_blank" rel="noopener">
             Thanks to {AI_CREDIT.name}
           </a>
@@ -151,7 +156,7 @@ export function AnatomyPanel(p: Props) {
               className={`anat-item${p.presentIds.has(t.ref.id) ? ' here' : ''}`}
               aria-current={p.isolateId === t.ref.id}
               onClick={() => p.onPick(t)}
-              title={p.presentIds.has(t.ref.id) ? 'Visible on the current slice — click to show only this structure' : 'Click to jump to it and show only this structure'}
+              title={p.presentIds.has(t.ref.id) ? 'Visible on the current slice. Click to show only this structure' : 'Click to jump to it and show only this structure'}
             >
               <span className="dot" style={{ background: colorOf(style, keyOf(t), g) }} />
               <span style={{ flex: 1 }}>{clean(t.ref.label)}</span>

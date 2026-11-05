@@ -346,11 +346,11 @@ export default function BookReader() {
             {tasksHere.length ? (
               tasksHere.map((t) => (
                 <Link key={t.id} className="btn sm" style={{ justifyContent: 'flex-start', height: 'auto', padding: '6px 8px', whiteSpace: 'normal', textAlign: 'left' }} to={`/read/${t.caseId}?task=${encodeURIComponent(t.id)}&mode=practice`}>
-                  <BookOpen size={12} style={{ flex: 'none' }} /> {catalog?.cases.get(t.caseId)?.neutralTitle} — {t.title}
+                  <BookOpen size={12} style={{ flex: 'none' }} /> {catalog?.cases.get(t.caseId)?.neutralTitle} · {t.title}
                 </Link>
               ))
             ) : (
-              <small className="faint">{unit ? 'No installed real-scan task links to this page yet — see this chapter in the Course map for its coverage.' : '—'}</small>
+              <small className="faint">{unit ? 'No installed real-scan task links to this page yet. See this chapter in the Course map for its coverage.' : '—'}</small>
             )}
             {unit ? (
               <Link to={`/course/${unit.id}`} className="btn sm ghost" style={{ justifyContent: 'flex-start' }}>

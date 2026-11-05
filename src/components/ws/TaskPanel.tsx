@@ -162,7 +162,7 @@ export function TaskPanel(p: Props) {
       ) : null}
 
       {!s.submitted ? (
-        <div className="stack" style={{ gap: 6 }}>
+        <div className="stack submit-bar" style={{ gap: 6 }}>
           <button className="btn primary lg" disabled={!submittable} onClick={p.onSubmit}>
             <Check size={16} /> Submit
           </button>
@@ -197,7 +197,7 @@ function MarkList(p: Props & { names: string[] }) {
         </button>
       </div>
       {p.marks.length === 0 ? (
-        <p className="faint">Pick Point or Arrow, then click the image.</p>
+        <p className="faint">Pick a tool (point, arrow, box or outline), then click the image.</p>
       ) : (
         p.marks.map((m, i) => (
           <div key={m.id} className="mark-row">
@@ -362,7 +362,7 @@ function Feedback(p: Props) {
             <div key={k} className="target-line">
               {v!.ok ? <Check size={15} color="var(--ok)" aria-label="ok" /> : <X size={15} color="var(--bad)" aria-label="problem" />}
               <span>
-                <b style={{ textTransform: 'capitalize' }}>{k}</b> — {v!.detail}
+                <b style={{ textTransform: 'capitalize' }}>{k}</b>: {v!.detail}
               </span>
             </div>
           ))}

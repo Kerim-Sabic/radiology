@@ -37,7 +37,7 @@ export default function ImportPage() {
       <h1>Open your own DICOM</h1>
       <p className="muted">
         Files are read in this browser and never uploaded. Series are grouped by study, series and orientation, then ordered by slice position (not by file name). Imported
-        studies last for this browser session and have no answer key — they open for free reading with self-review.
+        studies last for this browser session and have no answer key, so they open for free reading with self-review.
       </p>
       <div
         className="card stack"
@@ -65,7 +65,7 @@ export default function ImportPage() {
             <input type="file" hidden accept=".zip,application/zip" disabled={!catalog} onChange={(e) => run([...(e.target.files ?? [])])} />
           </label>
         </div>
-        {!supportsFolder ? <small className="faint">This browser cannot pick folders — select all files instead.</small> : null}
+        {!supportsFolder ? <small className="faint">This browser cannot pick folders; select all the files instead.</small> : null}
       </div>
       {progress && progress.phase !== 'done' ? (
         <div className="card stack">

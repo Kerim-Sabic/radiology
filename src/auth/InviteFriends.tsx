@@ -42,7 +42,7 @@ export function InviteFriends() {
       <div className="referral-icon"><Gift size={26} /></div>
       <p className="referral-eyebrow">BETTER WITH A STUDY PARTNER</p>
       <h2 id="referral-title">Share the practice.<br />Earn <em>20% cash.</em></h2>
-      <p className="referral-intro">Invite a friend to radiology.monster. When they buy through your link, you earn a commission — including on eligible renewals.</p>
+      <p className="referral-intro">Invite a friend to radiology.monster. When they buy through your link, you earn a commission, including on eligible renewals.</p>
       <div className="referral-examples" aria-label="Full-price commission examples">
         <div><strong>$4<span> / monthly payment</span></strong><p>When a friend pays $20</p></div>
         <div><strong>$30<span> / yearly payment</span></strong><p>When a friend pays $150</p></div>

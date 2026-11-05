@@ -257,11 +257,11 @@ export default function DrillPage() {
     const st = engine.panelState('d0');
     const onSlice = mine.length > 0;
     let feedback: string;
-    if (inside) feedback = `Correct — that is the ${inSentence(q.cand.name)}.`;
+    if (inside) feedback = `Correct: that is the ${inSentence(q.cand.name)}.`;
     else if (ok) feedback = `Accepted: on the edge of the ${inSentence(q.cand.name)} (${edgeMm.toFixed(1)} mm).`;
     else if (!onSlice)
       feedback = `The ${inSentence(q.cand.name)} is not on this image. It is on images ${q.range[0] + 1}–${q.range[1] + 1}${clicked ? `; you clicked the ${inSentence(cleanLabel(clicked.label))}` : ''}.`;
-    else feedback = `Not quite — ${clicked ? `you clicked the ${inSentence(cleanLabel(clicked.label))}` : `you were ${edgeMm.toFixed(0)} mm away`}. The ${inSentence(q.cand.name)} is outlined now.`;
+    else feedback = `Not quite: ${clicked ? `you clicked the ${inSentence(cleanLabel(clicked.label))}` : `you were ${edgeMm.toFixed(0)} mm away`}. The ${inSentence(q.cand.name)} is outlined now.`;
     finish(ok, { feedback, clickedId: clicked?.id ?? null, click: { world: w0, imageId: st?.currentImageId ?? null, ok } });
     if (!onSlice && q.bestSop) {
       const src = catalog.seriesSource(q.cand.seriesUid);
@@ -273,7 +273,7 @@ export default function DrillPage() {
   const choose = (c: string) => {
     if (!q || q.state !== 'asking') return;
     const correct = c === q.answer;
-    let feedback = correct ? 'Correct.' : `Not quite — the answer is ${q.answer}.`;
+    let feedback = correct ? 'Correct.' : `Not quite. The answer is ${q.answer}.`;
     if (q.kind === 'window') {
       const w = bestWindow(q.cand);
       applyWindow(w);
@@ -324,7 +324,7 @@ export default function DrillPage() {
             </h2>
             {missed.length ? (
               <>
-                <small className="muted">Missed this time — each one is scheduled to come back soon:</small>
+                <small className="muted">Missed this time. Each one comes back soon:</small>
                 <div className="row wrap">
                   {missed.map((c) => (
                     <Link key={c.key} className="chip warn" to={`/read/${encodeURIComponent(c.caseId)}?mode=learn&show=${encodeURIComponent(c.targetId)}`}>
@@ -576,7 +576,7 @@ export default function DrillPage() {
               </div>
             ) : null}
             <small className="faint">
-              Reference: {ai ? `${AI_LABEL} outline — quality-checked, not yet reviewed by a radiologist; edges can be a few mm off.` : 'expert label from the source dataset.'}
+              Reference: {ai ? `${AI_LABEL} outline, quality-checked but not yet reviewed by a radiologist; edges can be a few mm off.` : 'expert label from the source dataset.'}
             </small>
             <div className="row wrap">
               <button className="btn primary" onClick={() => void next()} autoFocus>

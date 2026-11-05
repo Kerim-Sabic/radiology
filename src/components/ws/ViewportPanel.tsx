@@ -166,11 +166,12 @@ export function ViewportPanel(p: Props) {
 
   // Colour key: the groups drawn on this slice, each with its colours (several when its structures keep atlas colours).
   const legend = useMemo(() => {
-    if (!look.legend || quiz || isolating || !drawnAnatomy.length || size[0] < 420 || size[1] < 300) return [];
+    // Only in the view being worked in: four views do not need four keys over their images.
+    if (!look.legend || !p.focused || quiz || isolating || !drawnAnatomy.length || size[0] < 420 || size[1] < 300) return [];
     const m = new Map<Group3D, Set<string>>();
     for (const sh of drawnAnatomy) m.set(sh.group, (m.get(sh.group) ?? new Set()).add(colorOf(look, sh.key, sh.group)));
     return GROUP_ORDER.filter((g) => m.has(g)).map((g) => ({ g, colors: [...m.get(g)!].slice(0, 4), filled: lookOf(look, g) === 'fill' }));
-  }, [drawnAnatomy, look, quiz, isolating, size]);
+  }, [drawnAnatomy, look, quiz, isolating, size, p.focused]);
 
   const badgePts = useMemo(() => {
     if (!st?.ready) return [];
@@ -296,14 +297,14 @@ export function ViewportPanel(p: Props) {
                 const y0 = size[1] - h - 12;
                 return (
                   <g className="vp-legend">
-                    <rect x={x0} y={y0} width={w} height={h} rx={5} fill="rgba(10,12,15,0.8)" stroke="rgba(255,255,255,0.14)" />
+                    <rect x={x0} y={y0} width={w} height={h} rx={8} fill="rgba(28,28,30,0.72)" />
                     {legend.map((l, i) => (
                       <g key={l.g} transform={`translate(${x0 + 8},${y0 + 6 + i * 16})`}>
                         {l.colors.map((c, j) => (
                           <rect key={c} x={(j * 11) / l.colors.length} y={1} width={11 / l.colors.length} height={11} fill={c} fillOpacity={l.filled ? 0.9 : 0.3} />
                         ))}
                         <rect x={0} y={1} width={11} height={11} fill="none" stroke={l.colors[0]} strokeWidth={1.2} />
-                        <text x={17} y={10.5} fill="#e2e8f0" fontSize={11}>
+                        <text x={17} y={10.5} fill="#d1d1d6" fontSize={11} fontWeight={500}>
                           {GROUP_LABEL[l.g]}
                         </text>
                       </g>
@@ -359,7 +360,7 @@ export function ViewportPanel(p: Props) {
         </div>
       ) : null}
       {!isolating && p.overlay.anatomy?.on && p.overlay.anatomy.showNames && labels.hidden > 0 ? (
-        <div className="vp-hidden-labels">{labels.hidden} more names on hover — zoom in to fit them</div>
+        <div className="vp-hidden-labels">{labels.hidden} more names on hover; zoom in to fit them</div>
       ) : null}
       {hover && !isolating && !quiz ? (
         <div className="vp-hover" style={{ left: Math.min(hover.x + 14, size[0] - 180), top: hover.y + 12 }}>
