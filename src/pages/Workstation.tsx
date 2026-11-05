@@ -38,6 +38,7 @@ import {
   Users,
   SkipForward,
   Link2,
+  MoreHorizontal,
   Link2Off,
   Maximize2,
   Minimize2,
@@ -89,6 +90,7 @@ import { imageToPatient, patientToPlaneMm, polygonArea, polygonCentroid, type Ve
 import { AI_CREDIT, AI_LABEL, cleanLabel, isAiDraft, plainName } from '../lib/provenance';
 import { answerQuestion, examResultUrl, examUrl, finishExam, openQuestion, questionSecondsLeft, type CertExam } from '../services/exam';
 import { CERT_TITLES, levelLabel } from '../services/certificates';
+import { taskTypeLabel } from '../lib/taskTypes';
 
 const centroid3 = (poly: Vec3[]): Vec3 => [
   poly.reduce((a, q) => a + q[0], 0) / poly.length,
@@ -1129,7 +1131,8 @@ export default function Workstation() {
           : taskRefs.some((r) => r.provenance === 'human_reviewed') && taskRefs.every((r) => r.provenance === 'source_manual' || r.provenance === 'human_reviewed')
             ? { text: 'Scored vs your reviewed reference', tone: 'accent', title: 'Includes references you reviewed in Author.' }
             : { text: 'Draft reference · self-review', tone: 'warn', title: `Unreviewed references (${AI_LABEL} outlines or dataset auto-labels): comparison only until you review them.` };
-  const independentNote = rules.independent(session) ? 'Counts as an independent attempt (no hints or reveal so far).' : 'This attempt is recorded as assisted.';
+  // Said only when it matters: an unaided answer is the default and needs no note.
+  const independentNote = rules.independent(session) ? '' : 'This attempt is recorded as assisted.';
   const relNote = (p: PanelDef) => {
     if (compare && p.id === 'p1' && p.seriesUid === compare.seriesUid) {
       const lvl = levelZ !== null ? levelName(levelZ, marksA) : null;
@@ -1373,24 +1376,34 @@ export default function Workstation() {
         </IconButton>
         <span className="sep hide-sm" />
         <span className="hide-sm row" style={{ gap: 2 }}>
-          <IconButton label="Length (calibrated images only)" shortcut="L" active={tool === 'length'} onClick={() => engine.setTool('length')}>
-            <Ruler size={17} />
-          </IconButton>
-          <IconButton label="Angle" shortcut="G" active={tool === 'angle'} onClick={() => engine.setTool('angle')}>
-            <Triangle size={17} />
-          </IconButton>
-          <IconButton label="Ellipse ROI statistics" active={tool === 'ellipse'} onClick={() => engine.setTool('ellipse')}>
-            <Circle size={17} />
-          </IconButton>
-          <IconButton label="Eraser" shortcut="E" active={tool === 'eraser'} onClick={() => engine.setTool('eraser')}>
-            <Eraser size={17} />
-          </IconButton>
-          <IconButton label="Undo" shortcut="Ctrl+Z" onClick={() => engine.undo()}>
-            <Undo2 size={17} />
-          </IconButton>
-          <IconButton label="Redo" shortcut="Ctrl+Y" onClick={() => engine.redo()}>
-            <Redo2 size={17} />
-          </IconButton>
+          {/* Measuring is occasional: one menu keeps the toolbar to the tools used on every case. */}
+          <DropdownMenu.Root>
+            <DropdownMenu.Trigger asChild>
+              <button
+                type="button"
+                className={`icon-btn${tool === 'length' || tool === 'angle' || tool === 'ellipse' ? ' active' : ''}`}
+                aria-label="Measure"
+                title="Measure: length (L), angle (G), ellipse"
+              >
+                <Ruler size={17} />
+              </button>
+            </DropdownMenu.Trigger>
+            <DropdownMenu.Portal>
+              <DropdownMenu.Content className="popover" sideOffset={6}>
+                <DropdownMenu.Item className="menu-item" onSelect={() => engine.setTool('length')}>
+                  <Ruler size={14} /> Length <span className="faint">(calibrated images only)</span>
+                  <span className="kbd" style={{ marginLeft: 'auto' }}>L</span>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="menu-item" onSelect={() => engine.setTool('angle')}>
+                  <Triangle size={14} /> Angle
+                  <span className="kbd" style={{ marginLeft: 'auto' }}>G</span>
+                </DropdownMenu.Item>
+                <DropdownMenu.Item className="menu-item" onSelect={() => engine.setTool('ellipse')}>
+                  <Circle size={14} /> Ellipse ROI statistics
+                </DropdownMenu.Item>
+              </DropdownMenu.Content>
+            </DropdownMenu.Portal>
+          </DropdownMenu.Root>
         </span>
         <span className="sep" />
         <DropdownMenu.Root>
@@ -1526,18 +1539,43 @@ export default function Workstation() {
             <PaintBucket size={17} />
           </IconButton>
         ) : null}
-        <IconButton label={assessMasked ? 'Save image (after you submit)' : 'Save this view as an image'} disabled={assessMasked} onClick={() => void saveImage()}>
-          <ImageDown size={17} />
-        </IconButton>
-        <IconButton label="Bookmark this view" onClick={addBookmark}>
-          <Bookmark size={17} />
-        </IconButton>
         <IconButton label="Full screen" shortcut="F" onClick={toggleFullscreen}>
           <Expand size={17} />
         </IconButton>
-        <IconButton label="Keyboard shortcuts" shortcut="?" onClick={() => setHelpOpen(true)}>
-          <Keyboard size={17} />
-        </IconButton>
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger asChild>
+            <button type="button" className={`icon-btn${tool === 'eraser' ? ' active' : ''}`} aria-label="More" title="Undo, redo, eraser, save image, bookmark, keyboard shortcuts">
+              <MoreHorizontal size={17} />
+            </button>
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Portal>
+            <DropdownMenu.Content className="popover" sideOffset={6} align="end">
+              <DropdownMenu.Item className="menu-item" onSelect={() => engine.undo()}>
+                <Undo2 size={14} /> Undo
+                <span className="kbd" style={{ marginLeft: 'auto' }}>Ctrl Z</span>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item className="menu-item" onSelect={() => engine.redo()}>
+                <Redo2 size={14} /> Redo
+                <span className="kbd" style={{ marginLeft: 'auto' }}>Ctrl Y</span>
+              </DropdownMenu.Item>
+              <DropdownMenu.Item className="menu-item" onSelect={() => engine.setTool('eraser')}>
+                <Eraser size={14} /> Eraser
+                <span className="kbd" style={{ marginLeft: 'auto' }}>E</span>
+              </DropdownMenu.Item>
+              <DropdownMenu.Separator className="nav-sep" />
+              <DropdownMenu.Item className="menu-item" disabled={assessMasked} onSelect={() => void saveImage()}>
+                <ImageDown size={14} /> {assessMasked ? 'Save image (after you submit)' : 'Save this view as an image'}
+              </DropdownMenu.Item>
+              <DropdownMenu.Item className="menu-item" onSelect={addBookmark}>
+                <Bookmark size={14} /> Bookmark this view
+              </DropdownMenu.Item>
+              <DropdownMenu.Item className="menu-item" onSelect={() => setHelpOpen(true)}>
+                <Keyboard size={14} /> Keyboard shortcuts
+                <span className="kbd" style={{ marginLeft: 'auto' }}>?</span>
+              </DropdownMenu.Item>
+            </DropdownMenu.Content>
+          </DropdownMenu.Portal>
+        </DropdownMenu.Root>
         <span className="hide-sm">
           <IconButton label="Learning panel" shortcut="]" active={rightOpen} onClick={() => setRightOpen((v) => !v)}>
             <PanelRight size={17} />
@@ -1604,7 +1642,7 @@ export default function Workstation() {
                   <span className="faint">{done ? '✓' : i + 1}</span>
                   <span className="series-meta">
                     <strong>{mode === 'assess' && t.id !== task.id ? `Task ${i + 1}` : mode === 'assess' && !session.submitted ? `Task ${i + 1}` : t.title}</strong>
-                    <span className="faint">{t.type.replace(/_/g, ' ')}</span>
+                    <span className="faint">{taskTypeLabel(t.type)}</span>
                   </span>
                 </button>
               );

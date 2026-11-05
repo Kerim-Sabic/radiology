@@ -178,7 +178,7 @@ function LockedCaseOfWeek({ caseId, endsAt }: { caseId: string; endsAt: Date }) 
           {t ? `${modalityName(t.modality)} · ${t.tasks} graded task${t.tasks === 1 ? '' : 's'}. ` : ''}Members read a new featured patient every Monday, with an email when it is out, and keep every earlier one.
         </p>
         <button className="btn primary" onClick={openPlans}>
-          Unlock this week’s case
+          See plans
         </button>
       </div>
     </section>
@@ -235,11 +235,12 @@ export function LockedLibrary() {
           <p className="muted">{[...byModality.entries()].map(([m, n]) => `${n} ${m}`).join(' · ')}</p>
         </div>
         <button className="btn primary" onClick={openPlans}>
-          Unlock all
+          See plans
         </button>
       </div>
+      {/* A preview, not the whole catalogue: fifteen patients say what membership opens; the count says the rest. */}
       <ul className="locked-grid">
-        {locked.map((c) => (
+        {locked.slice(0, 15).map((c) => (
           <li key={c.id}>
             <button className="locked-tile" onClick={openPlans} title="Members only">
               <span className="locked-tile-mod">
@@ -255,6 +256,14 @@ export function LockedLibrary() {
           </li>
         ))}
       </ul>
+      {locked.length > 15 ? (
+        <p className="locked-more">
+          And {locked.length - 15} more patients.{' '}
+          <button className="text-button" onClick={openPlans}>
+            See plans
+          </button>
+        </p>
+      ) : null}
     </section>
   );
 }

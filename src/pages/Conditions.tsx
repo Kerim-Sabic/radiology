@@ -1,13 +1,14 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router';
-import { BookOpen, ExternalLink, Search, X } from 'lucide-react';
+import { BookOpen, Search, X } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import { CONDITIONS, CONDITION_BY_ID, MODALITY_LABEL, REGION_LABEL, type Condition, type Region } from '../content/conditions';
-import { findCases, groupByFamily, normalizeQuery, searchConditions, STRENGTH_LABEL, type CaseHit } from '../services/conditionSearch';
+import { findCases, groupByFamily, normalizeQuery, searchConditions, type CaseHit } from '../services/conditionSearch';
 import { anchorLabel } from '../services/curriculum';
 import '../styles/conditions.css';
 
-const STRENGTH_CHIP: Record<CaseHit['strength'], string> = { outlined: 'ok', labelled: 'accent', collection: 'warn' };
+/** What the image itself shows, as a short label on the scan. */
+const STRENGTH_TAG: Record<CaseHit['strength'], string> = { outlined: 'Marked', labelled: 'Reader labels', collection: 'Not outlined' };
 
 export default function ConditionsPage() {
   const { catalog, curriculum } = useApp();
@@ -55,13 +56,13 @@ export default function ConditionsPage() {
   const open = (c: Condition) => setSp({ q: c.name, c: c.id });
 
   return (
-    <div className="page-inner stack" style={{ gap: 16 }}>
-      <div className="stack" style={{ gap: 4 }}>
+    <div className="page-inner cond-page">
+      <header className="lib-head">
         <h1>Conditions</h1>
-        <span className="muted">Type a condition to see where it is in the installed cases and where the book explains it.</span>
-      </div>
-      <div className="cond-search">
-        <Search size={18} aria-hidden className="faint" />
+        <p className="muted">Every patient who has it, where it is on the image, and the book pages that explain it.</p>
+      </header>
+      <div className="lib-search cond-search">
+        <Search size={16} aria-hidden />
         <input
           type="search"
           value={q}
@@ -71,7 +72,7 @@ export default function ConditionsPage() {
           onChange={(e) => setQuery(e.target.value)}
         />
         {q ? (
-          <button className="btn sm ghost" onClick={() => setQuery('')} aria-label="Clear search">
+          <button className="cond-clear" onClick={() => setQuery('')} aria-label="Clear search">
             <X size={14} />
           </button>
         ) : null}
@@ -86,8 +87,8 @@ export default function ConditionsPage() {
       ) : (
         <>
           {matches.length > 1 ? (
-            <div className="row wrap" aria-label="Other matching conditions">
-              <span className="faint">Also matching:</span>
+            <div className="row wrap cond-also" aria-label="Other matching conditions">
+              <span className="faint">Also matching</span>
               {matches
                 .filter((m) => m.condition.id !== shown.id)
                 .slice(0, 8)
@@ -115,44 +116,32 @@ export default function ConditionsPage() {
 }
 
 function Browse({ hitsById, caseCount, open }: { hitsById: Map<string, CaseHit[]> | null; caseCount: (id: string) => number; open: (c: Condition) => void }) {
-  const withCases = CONDITIONS.filter((c) => caseCount(c.id) > 0);
   const regions = [...new Set(CONDITIONS.map((c) => c.region))] as Region[];
   return (
-    <div className="stack" style={{ gap: 16 }}>
-      <div className="card stack" style={{ gap: 8 }}>
-        <h3>In your installed cases</h3>
-        {!hitsById ? (
-          <span className="faint">Looking through the installed cases…</span>
-        ) : withCases.length ? (
-          <div className="row wrap">
-            {withCases.map((c) => (
-              <button key={c.id} className="chip accent" onClick={() => open(c)}>
-                {c.name} · {caseCount(c.id)} {caseCount(c.id) === 1 ? 'patient' : 'patients'}
-              </button>
-            ))}
-          </div>
-        ) : (
-          <span className="faint">No installed case shows a listed condition yet.</span>
-        )}
+    <div className="cond-browse">
+      {!hitsById ? <p className="faint">Looking through the installed cases…</p> : null}
+      <div className="cond-regions">
+        {regions.map((r) => {
+          const list = CONDITIONS.filter((c) => c.region === r).sort((a, b) => Number(caseCount(b.id) > 0) - Number(caseCount(a.id) > 0));
+          return (
+            <section key={r} className="cond-region" aria-label={REGION_LABEL[r]}>
+              <h2>{REGION_LABEL[r]}</h2>
+              <div className="cond-names">
+                {list.map((c) => {
+                  const n = caseCount(c.id);
+                  return (
+                    <button key={c.id} className={`cond-name${n ? '' : ' none'}`} onClick={() => open(c)}>
+                      {c.name}
+                      {n ? <span>{n}</span> : null}
+                    </button>
+                  );
+                })}
+              </div>
+            </section>
+          );
+        })}
       </div>
-      <div className="grid-2">
-        {regions.map((r) => (
-          <div key={r} className="card cond-region">
-            <h3>{REGION_LABEL[r]}</h3>
-            <div className="row wrap">
-              {CONDITIONS.filter((c) => c.region === r).map((c) => (
-                <button key={c.id} className="chip" onClick={() => open(c)}>
-                  {c.name}
-                  {caseCount(c.id) ? <b> · {caseCount(c.id)}</b> : null}
-                </button>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-      <small className="faint">
-        Results name the diagnosis. Use them to learn; Assess mode is fairest on patients you have not looked up here.
-      </small>
+      <p className="faint cond-fine">Numbers are patients in the library. Results name the diagnosis, so use them to learn; Assess mode is fairest on patients you have not looked up here.</p>
     </div>
   );
 }
@@ -178,20 +167,15 @@ function ConditionView(p: {
     <div className="stack" style={{ gap: 16 }}>
       <div className="cond-head">
         <h2>{c.name}</h2>
-        <span className="chip">{REGION_LABEL[c.region]}</span>
-        {c.modalities.map((m) => (
-          <span key={m} className="chip">
-            {MODALITY_LABEL[m]}
-          </span>
-        ))}
-        {p.via ? <span className="faint">matched “{p.via}”</span> : null}
+        <p className="muted">
+          {[REGION_LABEL[c.region], c.modalities.map((m) => MODALITY_LABEL[m]).join(', ')].join(' · ')}
+          {p.via ? <span className="faint"> · matched “{p.via}”</span> : null}
+        </p>
       </div>
 
       <div className="cond-grid">
-        <section className="stack" style={{ gap: 12 }} aria-label="Installed cases">
-          <h3>
-            In your cases{hits && patients ? ` · ${patients} ${patients === 1 ? 'patient' : 'patients'}` : ''}
-          </h3>
+        <section className="cond-cases" aria-label="Installed cases">
+          <h3>{hits && patients ? `${patients} ${patients === 1 ? 'patient' : 'patients'}` : 'Patients'}</h3>
           {!hits ? (
             <span className="faint">Looking through the installed cases…</span>
           ) : !hits.length ? (
@@ -201,7 +185,7 @@ function ConditionView(p: {
                 <div className="row wrap" style={{ marginTop: 8 }}>
                   <span>{relatedWithCases.length ? 'Related conditions you can see in cases:' : `${REGION_LABEL[c.region]} conditions you can see in cases:`}</span>
                   {suggestions.map((r) => (
-                    <button key={r.id} className="chip accent" onClick={() => p.open(r)}>
+                    <button key={r.id} className="chip" onClick={() => p.open(r)}>
                       {r.name} · {p.caseCount(r.id)}
                     </button>
                   ))}
@@ -209,16 +193,28 @@ function ConditionView(p: {
               ) : null}
             </div>
           ) : (
-            groups.map((g) => (
-              <div key={g.family} className="stack" style={{ gap: 8 }}>
-                <h4>
-                  {g.family} <span className="faint">· {g.hits.length}</span>
-                </h4>
-                {g.hits.map((h) => (
-                  <HitCard key={`${h.seriesUid}-${h.strength}`} h={h} />
-                ))}
-              </div>
-            ))
+            groups.map((g) => {
+              // Most groups share one note (the collection and how it marks the finding): said once, not on every tile.
+              const notes = [...new Set(g.hits.map((h) => h.note).filter(Boolean))];
+              return (
+                <div key={g.family} className="cond-group">
+                  <h4>
+                    {g.family} <span className="faint">{g.hits.length}</span>
+                  </h4>
+                  {notes.length ? (
+                    <p className="faint cond-note">
+                      {notes.slice(0, 2).join(' ')}
+                      {notes.length > 2 ? ` And ${notes.length - 2} more sources.` : ''}
+                    </p>
+                  ) : null}
+                  <div className="cond-tiles">
+                    {g.hits.map((h) => (
+                      <HitTile key={`${h.seriesUid}-${h.strength}`} h={h} />
+                    ))}
+                  </div>
+                </div>
+              );
+            })
           )}
           {hits?.some((h) => h.strength === 'collection') ? (
             <small className="faint">“Not outlined” means the patient comes from a collection of people with this condition, but nothing marks where it is — the images may even look normal.</small>
@@ -259,7 +255,7 @@ function ConditionView(p: {
                 <li key={i}>{s}</li>
               ))}
             </ul>
-            <small className="faint">Our short summary — the book pages above explain it fully.</small>
+            <small className="faint">A short summary. The book pages above explain it in full.</small>
           </div>
           {related.length ? (
             <div className="row wrap">
@@ -278,36 +274,23 @@ function ConditionView(p: {
   );
 }
 
-function HitCard({ h }: { h: CaseHit }) {
+function HitTile({ h }: { h: CaseHit }) {
+  const [who, what] = h.patient.includes(' · ') ? [h.patient.slice(0, h.patient.indexOf(' · ')), h.patient.slice(h.patient.indexOf(' · ') + 3)] : [h.patient, ''];
+  const where = h.items.map((it) => it.where).find(Boolean);
+  const detail = h.items.map((it) => `${it.label}${it.where ? ` (${it.where})` : ''}${it.source ? `, ${it.source}` : ''}`).join('; ');
   return (
-    <div className="cond-hit">
-      <span className="cond-thumb" style={h.thumb ? { backgroundImage: `url(${h.thumb})` } : undefined} aria-hidden />
-      <div className="stack" style={{ gap: 6, minWidth: 0 }}>
-        <div className="row wrap" style={{ gap: 6 }}>
-          <b>{h.patient}</b>
-          <span className={`chip ${STRENGTH_CHIP[h.strength]}`}>{STRENGTH_LABEL[h.strength]}</span>
-        </div>
-        <span className="faint" style={{ fontSize: 12.5 }}>
-          {h.modality} · {h.seriesDescription}
+    <Link className="case-card cond-tile" to={h.link} title={detail || undefined}>
+      <span className="case-art" aria-hidden>
+        <span style={h.thumb ? { backgroundImage: `url(${h.thumb})` } : undefined} />
+        <span className="case-tags">
+          <i>{STRENGTH_TAG[h.strength]}</i>
         </span>
-        {h.items.length ? (
-          <ul>
-            {h.items.map((it, i) => (
-              <li key={it.targetId ?? i}>
-                {it.label}
-                {it.where ? <span className="faint"> — {it.where}</span> : null}
-                {it.source ? <span className="faint"> ({it.source})</span> : null}
-              </li>
-            ))}
-          </ul>
-        ) : null}
-        <small className="faint">{h.note}</small>
-        <div>
-          <Link className="btn sm primary" to={h.link}>
-            <ExternalLink size={13} /> Open in the viewer
-          </Link>
-        </div>
-      </div>
-    </div>
+      </span>
+      <span className="case-meta">
+        <b>{who}</b>
+        <small>{[h.seriesDescription || what, where && where !== 'boxed on the image' ? where : null].filter(Boolean).join(' · ')}</small>
+        {detail ? <span className="sr-only">{detail}</span> : null}
+      </span>
+    </Link>
   );
 }

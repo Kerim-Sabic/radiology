@@ -33,6 +33,32 @@ async function shot(name, clip) {
   await page.screenshot({ path: `${OUT}/${name}.png`, clip });
   console.log('  saved', name);
 }
+/** Show or hide the case navigator (left) and the learning panel (right), whatever state the last page left them in. */
+async function panels({ left, right }) {
+  for (const [side, want, label] of [['left', left, 'Case navigator'], ['right', right, 'Learning panel']]) {
+    const shown = await page.evaluate((s) => {
+      const el = document.querySelector(`.ws-${s}`);
+      return !!el && !el.classList.contains('collapsed');
+    }, side);
+    if (shown !== want) await page.getByRole('button', { name: label, exact: true }).first().click();
+  }
+  await settle(800);
+}
+/** The picture without the anatomy legend boxes: only the expert's outline of the finding stays on the image. */
+async function anatomyOff() {
+  const hide = page.getByRole('button', { name: 'Hide anatomy labels', exact: true });
+  if (await hide.count()) await hide.first().click();
+  await settle(800);
+}
+/** The bare scans: no outlines on the 2D views (the 3D view keeps the structures it shows). */
+async function overlaysOff() {
+  await anatomyOff();
+  const hide = page.getByRole('button', { name: 'Hide reference overlay', exact: true });
+  if (await hide.count()) await hide.first().click();
+  await settle(800);
+}
+/** Only the viewer: the images and their overlays, no chrome. */
+const viewer = async () => page.locator('.ws-main').boundingBox();
 const want = (n) => !ONLY || ONLY === n;
 
 // 1. Hero: CT pulmonary angiogram, linked MPR + 3D with the clot shown inside the pulmonary arteries.
@@ -52,6 +78,8 @@ if (want('hero')) {
     return s && !s.building && s.structures.some((x) => x.shown && x.status === 'ready');
   }, null, { timeout: 120_000 });
   await p3.getByRole('button', { name: 'Close' }).click();
+  await overlaysOff();
+  await panels({ left: false, right: true });
   await settle(2500);
   await shot('hero');
 }
@@ -63,7 +91,9 @@ if (want('mammo')) {
   await layout('Mammography: CC and MLO, back to back');
   for (const p of ['p0', 'p1', 'p2', 'p3']) await ready(p);
   await settle(3000);
-  await shot('mammo');
+  await panels({ left: false, right: false });
+  await settle(1500);
+  await shot('mammo', await viewer());
 }
 
 // 3. MRI: diffusion-weighted image with the stroke outlined, and the sequence guide.
@@ -71,7 +101,9 @@ if (want('mri')) {
   await page.goto(`${BASE}/read/stroke-isles-0015?mode=learn&show=isles-strokecase0015_dwi_ischemic-stroke`);
   await ready();
   await settle(3000);
-  await shot('mri');
+  await panels({ left: false, right: false });
+  await settle(1500);
+  await shot('mri', await viewer());
 }
 
 // 4. Ultrasound: breast carcinoma with the radiologist's outline.
@@ -79,7 +111,9 @@ if (want('us')) {
   await page.goto(`${BASE}/read/us-breast-case007?mode=learn&show=breast-usg-case007_mass`);
   await ready();
   await settle(3000);
-  await shot('us');
+  await panels({ left: false, right: false });
+  await settle(1500);
+  await shot('us', await viewer());
 }
 
 // 5. Radiograph: pneumothorax, boxed by the source readers.
@@ -87,7 +121,9 @@ if (want('xray')) {
   await page.goto(`${BASE}/read/cxr-00003400-003?mode=learn&show=nih-00003400_003_pneumothorax`);
   await ready();
   await settle(3000);
-  await shot('xray');
+  await panels({ left: false, right: false });
+  await settle(1500);
+  await shot('xray', await viewer());
 }
 
 // 6. CT with organ outlines in linked MPR (the kidney tumour case).
@@ -97,10 +133,39 @@ if (want('ct')) {
   await layout('MPR: axial / coronal / sagittal');
   for (const p of ['p0', 'p1', 'p2']) await ready(p);
   await settle(4000);
-  await shot('ct');
+  await anatomyOff();
+  await panels({ left: false, right: false });
+  await settle(1500);
+  await shot('ct', await viewer());
 }
 
-// 7. Condition search.
+// 7. Graded: the guest X-ray answered in practice mode, a point inside the radiologists' box, then the feedback.
+if (want('graded')) {
+  await page.goto(`${BASE}/read/cxr-00003400-003?task=cxr-00003400-003%3Alocate&mode=practice`);
+  await ready();
+  await panels({ left: false, right: true });
+  await settle(1500);
+  // The middle of the NIH radiologist box (image pixels 607–849 × 57–285), as the guest e2e test marks it.
+  await page.evaluate(() => window.__rvm.setTool('point'));
+  await page.evaluate(() => {
+    const e = window.__rvm;
+    const id = e.panelState('p0').currentImageId;
+    const c = e.worldToCanvas('p0', e.imagePxToWorld(id, [716, 168]));
+    const el = document.querySelector('[data-panel="p0"] .vp-el');
+    const r = el.getBoundingClientRect();
+    const o = { bubbles: true, cancelable: true, clientX: r.left + c[0], clientY: r.top + c[1], button: 0, view: window };
+    el.dispatchEvent(new MouseEvent('mousemove', { ...o, buttons: 0 }));
+    el.dispatchEvent(new MouseEvent('mousedown', { ...o, buttons: 1 }));
+    document.dispatchEvent(new MouseEvent('mouseup', { ...o, buttons: 0 }));
+  });
+  await page.waitForFunction(() => window.__rvm.collectMarks().length > 0, null, { timeout: 5000 });
+  await page.getByRole('button', { name: /^Submit/ }).first().click();
+  await page.getByText('Correct', { exact: true }).first().waitFor({ timeout: 15_000 });
+  await settle(2500);
+  await shot('graded');
+}
+
+// 8. Condition search.
 if (want('conditions')) {
   await page.goto(`${BASE}/conditions?c=pneumothorax`);
   await page.waitForSelector('.cond-detail, .cond-results, main h1', { timeout: 30_000 });

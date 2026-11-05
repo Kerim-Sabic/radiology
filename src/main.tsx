@@ -4,8 +4,9 @@ import { BrowserRouter } from 'react-router';
 import { Analytics } from '@vercel/analytics/react';
 import { App } from './App';
 import { AppProvider } from './app/AppContext';
-// Brand typeface, self-hosted (no third-party font request).
-import '@fontsource-variable/inter';
+// Brand typeface, self-hosted (no third-party font request). The optical-size axis gives large headings Inter's
+// display cut automatically, the way SF Pro switches from Text to Display.
+import '@fontsource-variable/inter/opsz.css';
 import './styles/app.css';
 import { AccountGate } from './auth/AccountGate';
 

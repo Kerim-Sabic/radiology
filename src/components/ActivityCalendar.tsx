@@ -4,20 +4,26 @@ import '../styles/home.css';
 const level = (n: number) => (n === 0 ? 0 : n <= 2 ? 1 : n <= 5 ? 2 : n <= 9 ? 3 : 4);
 const fmt = new Intl.DateTimeFormat(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
 
-/** Days as a week-by-week grid (a column per week, Monday at the top), shaded by how much you studied. */
-export function ActivityCalendar({ days }: { days: Day[] }) {
-  if (!days.length) return null;
-  const lead = (days[0].date.getDay() + 6) % 7; // Monday = 0
+/**
+ * Days as a week-by-week grid (a column per week, Monday at the top), shaded by how much you studied. Whole weeks only:
+ * the oldest part-week is left out and the rest of this week shows as days to come, so the grid is a clean rectangle.
+ */
+export function ActivityCalendar({ days: all }: { days: Day[] }) {
+  if (!all.length) return null;
+  const lead = (all[0].date.getDay() + 6) % 7; // Monday = 0
+  const days = lead && all.length > 7 ? all.slice(7 - lead) : all;
+  const pad = days === all ? lead : 0;
+  const rest = (7 - ((pad + days.length) % 7)) % 7;
   const active = days.filter((d) => d.total > 0).length;
   return (
     <div className="actcal">
       <div
         className="actcal-grid"
-        style={{ '--weeks': Math.ceil((lead + days.length) / 7) } as React.CSSProperties}
+        style={{ '--weeks': Math.ceil((pad + days.length) / 7) } as React.CSSProperties}
         role="img"
         aria-label={`Study activity over the last ${Math.round(days.length / 7)} weeks: ${active} active days`}
       >
-        {Array.from({ length: lead }, (_, i) => (
+        {Array.from({ length: pad }, (_, i) => (
           <span key={`pad${i}`} className="actcal-pad" />
         ))}
         {days.map((d) => (
@@ -26,6 +32,9 @@ export function ActivityCalendar({ days }: { days: Day[] }) {
             className={`actcal-day l${level(d.total)}`}
             title={`${fmt.format(d.date)}: ${d.total ? [d.answers ? `${d.answers} answer${d.answers > 1 ? 's' : ''}` : '', d.drills ? `${d.drills} drill answer${d.drills > 1 ? 's' : ''}` : ''].filter(Boolean).join(', ') : 'no study'}`}
           />
+        ))}
+        {Array.from({ length: rest }, (_, i) => (
+          <span key={`next${i}`} className="actcal-pad next" />
         ))}
       </div>
       <div className="actcal-legend" aria-hidden="true">

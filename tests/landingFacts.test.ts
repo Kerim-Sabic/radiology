@@ -44,6 +44,6 @@ describe('landing-page claims', () => {
     expect(cur.units.reduce((a: number, u: { objectives: unknown[] }) => a + u.objectives.length, 0)).toBe(LANDING_FACTS.objectives);
   });
   it('has every screenshot the page shows', () => {
-    for (const n of ['hero', 'ct', 'mri', 'xray', 'mammo', 'us', 'conditions']) expect(existsSync(join(__dirname, '..', 'public', 'landing', `${n}.webp`)), n).toBe(true);
+    for (const n of ['hero', 'hero-phone', 'graded', 'graded-phone', 'ct', 'mri', 'xray', 'mammo', 'us', 'conditions']) expect(existsSync(join(__dirname, '..', 'public', 'landing', `${n}.webp`)), n).toBe(true);
   });
 });

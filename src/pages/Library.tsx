@@ -1,19 +1,33 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router';
+import { Check, Search } from 'lucide-react';
 import { useApp } from '../app/AppContext';
-import { Empty, formatBytes, Loading } from '../components/ui';
+import { Empty, Loading } from '../components/ui';
 import { AI_LABEL } from '../lib/provenance';
 import { LockedLibrary } from '../components/Upgrade';
 import { caseOfWeek } from '../content/weekly';
+import { modalityName } from '../services/teaser';
 import type { Series } from '../schema/content';
 
 const PAGE = 48;
+/** The modality pills, in the order a radiology course teaches them. */
+const MODALITY_ORDER = ['CT', 'MRI', 'X-ray', 'Mammography', 'Ultrasound'];
+const REGION_NAME: Record<string, string> = { breast: 'Breast', chest: 'Chest', extremity: 'Arms and legs', head: 'Head and brain', pelvis: 'Pelvis', abdomen: 'Abdomen', spine: 'Spine' };
+const regionName = (r: string) => REGION_NAME[r] ?? r.charAt(0).toUpperCase() + r.slice(1);
+
+/** "Patient J · CT chest" → ["Patient J", "CT chest"]; a title without a patient code stays whole. */
+function splitTitle(title: string): [string, string] {
+  const i = title.indexOf(' · ');
+  return i > 0 && /^Patient /.test(title) ? [title.slice(0, i), title.slice(i + 3)] : ['', title];
+}
 
 interface CaseInfo {
   series: Series[];
-  modalities: string[];
+  /** Plain modality names (CT, MRI, X-ray…), each once. */
+  names: string[];
   labels: { expert: number; ai: number; total: number };
   full: boolean;
+  thumb: string | null;
   /** Lower-case title, modalities and regions, for the text filter. */
   words: string;
 }
@@ -33,33 +47,45 @@ export function LibraryPage() {
     for (const c of cases) {
       const all = catalog.seriesForCase(c);
       const series = all.filter((s) => s.role !== 'scout');
-      const modalities = [...new Set(series.map((s) => s.modality))];
+      const names = [...new Set(series.map((s) => modalityName(s.modality)))];
       const labels = catalog.anatomyCounts(c.id);
       // "Fully labelled": every organ in the field of view outlined (≥20 on cross-sectional studies; the 14-structure set on a radiograph).
       const xrOnly = all.every((s) => s.modality === 'CR' || s.modality === 'DX');
       const full = labels.total >= 20 || (xrOnly && labels.total >= 12);
-      out.set(c.id, { series, modalities, labels, full, words: `${c.neutralTitle} ${modalities.join(' ')} ${c.region.join(' ')}`.toLowerCase() });
+      const thumb = catalog.thumbnailUrl(c.primarySeriesUid) ?? (series[0] ? catalog.thumbnailUrl(series[0].uid) : null);
+      const codes = series.map((s) => s.modality).join(' ');
+      out.set(c.id, { series, names, labels, full, thumb, words: `${c.neutralTitle} ${names.join(' ')} ${codes} ${c.region.join(' ')}`.toLowerCase() });
     }
     return out;
   }, [catalog, cases]);
-  const regions = useMemo(() => [...new Set(cases.flatMap((c) => c.region))].sort(), [cases]);
-  const mods = useMemo(() => [...new Set([...info.values()].flatMap((x) => x.modalities))].sort(), [info]);
+  const regions = useMemo(() => [...new Set(cases.flatMap((c) => c.region))].sort((a, b) => regionName(a).localeCompare(regionName(b))), [cases]);
+  const modalityCounts = useMemo(() => {
+    const n = new Map<string, number>();
+    for (const x of info.values()) for (const m of x.names) n.set(m, (n.get(m) ?? 0) + 1);
+    return [...n.entries()].sort((a, b) => (MODALITY_ORDER.indexOf(a[0]) + 99) % 99 - (MODALITY_ORDER.indexOf(b[0]) + 99) % 99);
+  }, [info]);
   const seen = useMemo(() => new Set(attempts.map((a) => a.holdoutGroup)), [attempts]);
   const weekly = caseOfWeek().caseId;
+  const filtering = text.trim() !== '' || region !== 'all' || modality !== 'all' || pairedOnly || labelledOnly;
+  const featured = !filtering && catalog?.cases.has(weekly) ? catalog.cases.get(weekly)! : null;
 
   const filtered = useMemo(() => {
     const words = text.toLowerCase().split(/\s+/).filter(Boolean);
     const out = cases.filter((c) => {
       const x = info.get(c.id);
       if (!x) return false;
+      if (featured && c.id === featured.id) return false;
       if (labelledOnly && !x.full) return false;
       if (region !== 'all' && !c.region.includes(region)) return false;
-      if (modality !== 'all' && !x.modalities.includes(modality)) return false;
+      if (modality !== 'all' && !x.names.includes(modality)) return false;
       if (pairedOnly && c.studyUids.length < 2) return false;
       return words.every((w) => x.words.includes(w));
     });
-    return labelledOnly ? out.sort((a, b) => (info.get(b.id)?.labels.total ?? 0) - (info.get(a.id)?.labels.total ?? 0)) : out;
-  }, [cases, info, text, region, modality, pairedOnly, labelledOnly]);
+    if (labelledOnly) return out.sort((a, b) => (info.get(b.id)?.labels.total ?? 0) - (info.get(a.id)?.labels.total ?? 0));
+    // Patients you have not read come first; the order is otherwise the library's own.
+    if (!catalog) return out;
+    return out.map((c, i) => [c, i, seen.has(catalog.holdoutGroup(c.id)) ? 1 : 0] as const).sort((a, b) => a[2] - b[2] || a[1] - b[1]).map(([c]) => c);
+  }, [cases, info, text, region, modality, pairedOnly, labelledOnly, featured, seen, catalog]);
 
   // Cards are drawn a page at a time; more are added as the end of the list comes near.
   const [limit, setLimit] = useState(PAGE);
@@ -74,42 +100,50 @@ export function LibraryPage() {
   }, [filtered, limit]);
 
   if (!catalog) return <Loading page label="Loading the case library…" />;
+  const href = (id: string) => (labelledOnly ? `/read/${id}?mode=learn` : `/read/${id}?mode=practice`);
+  const total = cases.length;
   return (
-    <div className="page-inner stack" style={{ gap: 16 }}>
-      <div className="lib-head">
+    <div className="page-inner lib">
+      <header className="lib-head">
         <h1>Cases</h1>
-        <span className="faint">
-          Titles stay neutral so a case never tells you its diagnosis. Looking for one? <Link to="/conditions">Search by condition</Link>.
-        </span>
-      </div>
-      <div className="lib-filters">
-        <input
-          type="search"
-          className="lib-find"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="Patient code or scan, e.g. NW, CT, breast"
-          aria-label="Find a patient or scan"
-        />
-        <select value={region} onChange={(e) => setRegion(e.target.value)} aria-label="Region">
-          <option value="all">All regions</option>
-          {regions.map((r) => (
-            <option key={r}>{r}</option>
-          ))}
-        </select>
-        <select value={modality} onChange={(e) => setModality(e.target.value)} aria-label="Modality">
-          <option value="all">All modalities</option>
-          {mods.map((m) => (
-            <option key={m}>{m}</option>
-          ))}
-        </select>
-        <label className="row" style={{ gap: 6 }}>
-          <input type="checkbox" checked={pairedOnly} onChange={(e) => setPairedOnly(e.target.checked)} /> Same-patient comparisons
+        <p className="muted">
+          {total} patients. Titles never give away the diagnosis; to find one, <Link to="/conditions">search by condition</Link>.
+        </p>
+      </header>
+
+      <div className="lib-controls">
+        <label className="lib-search">
+          <Search size={16} aria-hidden />
+          <input type="search" value={text} onChange={(e) => setText(e.target.value)} placeholder="Search patients and scans" aria-label="Find a patient or scan" />
         </label>
-        <label className="row" style={{ gap: 6 }}>
-          <input type="checkbox" checked={labelledOnly} onChange={(e) => setLabelledOnly(e.target.checked)} /> Fully labelled anatomy
-        </label>
+        <div className="lib-pills" role="group" aria-label="Modality">
+          <button className="lib-pill" aria-pressed={modality === 'all'} onClick={() => setModality('all')}>
+            All
+          </button>
+          {modalityCounts.map(([m, n]) => (
+            <button key={m} className="lib-pill" aria-pressed={modality === m} onClick={() => setModality(modality === m ? 'all' : m)}>
+              {m} <span>{n}</span>
+            </button>
+          ))}
+        </div>
+        <div className="lib-more">
+          <select value={region} onChange={(e) => setRegion(e.target.value)} aria-label="Body area">
+            <option value="all">Every body area</option>
+            {regions.map((r) => (
+              <option key={r} value={r}>
+                {regionName(r)}
+              </option>
+            ))}
+          </select>
+          <button className="chip lib-toggle" aria-pressed={pairedOnly} onClick={() => setPairedOnly((v) => !v)} title="Patients with two exams to compare, such as a radiograph and its CT">
+            Two exams
+          </button>
+          <button className="chip lib-toggle" aria-pressed={labelledOnly} onClick={() => setLabelledOnly((v) => !v)} title="Every organ in view outlined; opens in Learn mode">
+            Fully labelled
+          </button>
+        </div>
       </div>
+
       {catalog.status.some((s) => s.status !== 'loaded') ? (
         <div className="notice">
           Some data packs are not installed:{' '}
@@ -120,59 +154,83 @@ export function LibraryPage() {
           . See <Link to="/settings">Settings → Data packs</Link>.
         </div>
       ) : null}
-      {filtered.length === 0 ? (
-        <Empty title="No cases match">Try another filter, or install more data packs.</Empty>
-      ) : (
-        <>
-        <span className="faint" aria-live="polite">
-          {filtered.length === cases.length ? `${cases.length} patients` : `${filtered.length} of ${cases.length} patients`}
-        </span>
-        <div className="grid-3">
-          {filtered.slice(0, limit).map((c) => {
-            const { series, modalities, labels, full } = info.get(c.id)!;
-            const thumbs = series.slice(0, 3).map((s) => catalog.thumbnailUrl(s.uid));
-            const tasks = catalog.tasksByCase.get(c.id) ?? [];
-            const bytes = series.reduce((a, s) => a + s.bytes, 0);
-            return (
-              <Link key={c.id} className="case-card" to={labelledOnly ? `/read/${c.id}?mode=learn` : `/read/${c.id}?mode=practice`}>
-                <div className="case-thumbs" aria-hidden>
-                  {thumbs.map((t, i) => (
-                    <span key={i} style={t ? { backgroundImage: `url(${t})` } : undefined} />
-                  ))}
-                </div>
-                <b>{c.neutralTitle}</b>
-                <div className="row wrap">
-                  {modalities.map((m) => (
-                    <span key={m} className="chip">
-                      {m}
+
+      {featured ? (
+        <section className="lib-section" aria-labelledby="lib-week">
+          <h2 id="lib-week">This week</h2>
+          <Link className="case-feature" to={href(featured.id)}>
+            <span className="case-feature-art" aria-hidden style={info.get(featured.id)?.thumb ? { backgroundImage: `url(${info.get(featured.id)!.thumb})` } : undefined} />
+            <span className="case-feature-text">
+              <b>{splitTitle(featured.neutralTitle)[1]}</b>
+              <small>
+                {[splitTitle(featured.neutralTitle)[0], info.get(featured.id)?.names.join(' + '), `${(catalog.tasksByCase.get(featured.id) ?? []).length} tasks`].filter(Boolean).join(' · ')}
+              </small>
+              <span className="btn primary">Read it</span>
+            </span>
+          </Link>
+        </section>
+      ) : null}
+
+      <section className="lib-section" aria-labelledby="lib-all">
+        <h2 id="lib-all" className={featured ? '' : 'sr-only'}>
+          All patients
+        </h2>
+        {filtered.length === 0 ? (
+          <Empty title="No cases match">Try another filter or a shorter search.</Empty>
+        ) : (
+          <>
+            {filtering ? (
+              <p className="lib-count" aria-live="polite">
+                {filtered.length} of {total} patients
+              </p>
+            ) : null}
+            <div className="case-grid">
+              {filtered.slice(0, limit).map((c) => {
+                const { names, labels, full, thumb } = info.get(c.id)!;
+                const tasks = catalog.tasksByCase.get(c.id) ?? [];
+                const [who, what] = splitTitle(c.neutralTitle);
+                const read = seen.has(catalog.holdoutGroup(c.id));
+                return (
+                  <Link key={c.id} className="case-card" to={href(c.id)}>
+                    <span className="case-art" aria-hidden>
+                      <span style={thumb ? { backgroundImage: `url(${thumb})` } : undefined} />
+                      <span className="case-tags">
+                        {names.map((m) => (
+                          <i key={m}>{m}</i>
+                        ))}
+                        {c.studyUids.length > 1 ? <i>{c.studyUids.length} exams</i> : null}
+                      </span>
+                      {read ? (
+                        <span className="case-done" title="You have read this patient">
+                          <Check size={13} strokeWidth={3} />
+                        </span>
+                      ) : null}
                     </span>
-                  ))}
-                  {c.id === weekly ? <span className="chip warn">Case of the week</span> : null}
-                  {c.studyUids.length > 1 ? <span className="chip accent">Same patient · {c.studyUids.length} exams</span> : null}
-                  {seen.has(catalog.holdoutGroup(c.id)) ? <span className="chip">Seen</span> : <span className="chip ok">Unseen</span>}
-                  {labels.total ? (
-                    <span className={`chip ${full ? 'accent' : ''}`} title={`${labels.expert} expert-drawn, ${labels.ai} ${AI_LABEL} anatomy outlines`}>
-                      {full ? 'Full anatomy · ' : ''}
-                      {labels.total} labels
+                    <span className="case-meta">
+                      <b>{what}</b>
+                      <small>
+                        {[who, `${tasks.length} task${tasks.length === 1 ? '' : 's'}`].filter(Boolean).join(' · ')}
+                        {full ? (
+                          <span title={`${labels.expert} expert-drawn, ${labels.ai} ${AI_LABEL} anatomy outlines`}> · Fully labelled</span>
+                        ) : null}
+                        {read ? <span className="sr-only"> · read</span> : null}
+                      </small>
                     </span>
-                  ) : null}
-                </div>
-                <small className="faint">
-                  {tasks.length} task(s) · {series.length} series · {formatBytes(bytes)}
-                </small>
-              </Link>
-            );
-          })}
-        </div>
-        {limit < filtered.length ? (
-          <div ref={more} className="row" style={{ justifyContent: 'center' }}>
-            <button className="btn" onClick={() => setLimit((n) => n + PAGE)}>
-              Show more ({filtered.length - limit} left)
-            </button>
-          </div>
-        ) : null}
-        </>
-      )}
+                  </Link>
+                );
+              })}
+            </div>
+            {limit < filtered.length ? (
+              <div ref={more} className="lib-more-row">
+                <button className="btn" onClick={() => setLimit((n) => n + PAGE)}>
+                  Show more ({filtered.length - limit} left)
+                </button>
+              </div>
+            ) : null}
+          </>
+        )}
+      </section>
+
       <LockedLibrary />
       {catalog.invalidCases.length ? (
         <details>

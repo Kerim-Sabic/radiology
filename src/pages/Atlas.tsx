@@ -109,10 +109,13 @@ export default function AtlasPage() {
 
       <section className="stack" style={{ gap: 8 }}>
         <h2>Most completely labelled studies</h2>
-        <div className="row wrap">
+        <div className="atlas-best">
           {best.map(({ k, n }) => (
-            <Link key={k.id} className="chip" to={`/read/${encodeURIComponent(k.id)}?mode=learn`} title={`${n.expert} expert, ${n.ai} ${AI_LABEL}`}>
-              {k.neutralTitle} · <b>{n.total}</b> structures{n.expert >= n.total * 0.9 ? ' · expert' : ''}
+            <Link key={k.id} to={`/read/${encodeURIComponent(k.id)}?mode=learn`} title={`${n.expert} expert, ${n.ai} ${AI_LABEL}`}>
+              <span>{k.neutralTitle}</span>
+              <small>
+                <b>{n.total}</b> structures{n.expert >= n.total * 0.9 ? ' · expert' : ''}
+              </small>
             </Link>
           ))}
         </div>

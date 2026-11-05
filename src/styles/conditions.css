@@ -1,69 +1,168 @@
-/* Condition look-up page. */
+/* Conditions, 5 November 2026: an index by body area, then each condition as a page of its own.
+   Patients are scan tiles like the case library; the book and the signs sit beside them. */
+.cond-page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
 .cond-search {
-  display: flex;
-  gap: 8px;
-  align-items: center;
+  max-width: 560px;
+  height: 42px;
 }
-.cond-search input[type='search'] {
-  flex: 1;
-  min-width: 0;
-  font-size: 15px;
-  padding: 9px 12px;
-  border-radius: var(--radius);
+.cond-search input {
+  font-size: 16px;
 }
-.cond-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 8px 12px;
-}
-.cond-head h2 {
-  font-size: 20px;
-}
-.cond-hit {
+.cond-clear {
   display: grid;
-  grid-template-columns: 72px 1fr;
-  gap: 12px;
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--panel-3);
+  color: var(--text-2);
+  cursor: pointer;
+}
+.cond-also {
+  gap: 6px;
+}
+
+/* Browse: one tile per body area, names as quiet buttons; those with patients first and brighter. */
+.cond-regions {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 16px;
+}
+.cond-region {
+  padding: 20px 22px 22px;
+  border-radius: 18px;
   background: var(--panel);
 }
-.cond-thumb {
-  width: 72px;
-  height: 72px;
-  border-radius: 6px;
-  border: 1px solid var(--line);
-  background: #000 center/cover no-repeat;
+.cond-region h2 {
+  margin-bottom: 12px;
+  font-size: 17px;
 }
-.cond-hit ul,
+.cond-names {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.cond-name {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 30px;
+  padding: 0 11px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--panel-3);
+  color: var(--text);
+  font: 500 13px var(--font);
+  letter-spacing: -0.005em;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.15s var(--ease);
+}
+.cond-name span {
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+.cond-name:hover {
+  background: #3a3a3c;
+}
+.cond-name.none {
+  background: transparent;
+  color: var(--text-3);
+  box-shadow: inset 0 0 0 1px var(--line);
+}
+.cond-name.none:hover {
+  color: var(--text);
+  background: var(--panel-2);
+}
+.cond-fine {
+  margin-top: 4px;
+  font-size: 13px;
+}
+
+/* A condition */
+.cond-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.cond-head h2 {
+  font-size: 28px;
+  letter-spacing: -0.018em;
+}
+.cond-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(300px, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+.cond-cases {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.cond-cases > h3 {
+  font-size: 17px;
+}
+.cond-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.cond-group h4 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+}
+.cond-group h4 .faint {
+  margin-left: 4px;
+  font-weight: 500;
+}
+.cond-note {
+  margin-top: -4px;
+  font-size: 13px;
+}
+.cond-tiles {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 20px 14px;
+}
+.cond-tile .case-art {
+  border-radius: 14px;
+}
+.cond-tile .case-meta b {
+  font-size: 14px;
+}
+.cond-tile .case-meta small {
+  font-size: 12.5px;
+}
 .cond-book,
 .cond-signs {
   margin: 0;
   padding-left: 18px;
 }
-.cond-hit li,
-.cond-book li,
 .cond-signs li {
-  margin: 2px 0;
+  margin: 4px 0;
+  color: var(--text-2);
 }
 .cond-book li {
   list-style: none;
   margin-left: -18px;
-  padding: 6px 0;
+  padding: 10px 0;
   border-bottom: 1px solid var(--line);
+}
+.cond-book li:first-child {
+  padding-top: 2px;
 }
 .cond-book li:last-child {
   border-bottom: 0;
 }
-.cond-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-  gap: 16px;
-  align-items: start;
-}
-.cond-region h3 {
-  margin-bottom: 6px;
+.cond-book a b {
+  font-weight: 600;
 }
 @media (max-width: 860px) {
   .cond-grid {
@@ -71,13 +170,11 @@
   }
 }
 @media (max-width: 600px) {
-  .cond-hit {
-    grid-template-columns: 56px 1fr;
-    gap: 10px;
-    padding: 10px;
+  .cond-regions {
+    grid-template-columns: minmax(0, 1fr);
   }
-  .cond-thumb {
-    width: 56px;
-    height: 56px;
+  .cond-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px 12px;
   }
 }

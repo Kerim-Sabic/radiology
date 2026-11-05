@@ -56,17 +56,13 @@ export function TaskPanel(p: Props) {
   return (
     <div className="stack" style={{ gap: 14 }}>
       {s.submitted && p.grade ? <Result {...p} /> : null}
-      <div className="row wrap">
-        <span className="chip accent">{s.mode === 'learn' ? 'Learn' : s.mode === 'practice' ? 'Practice' : s.mode === 'assess' ? 'Assess' : 'Review'}</span>
-        <span className={`chip ${p.scoringLabel.tone}`} title={p.scoringLabel.title}>
+      {/* One quiet line above the task: the mode, then how the answer is checked. */}
+      <p className="task-eyebrow" title={task.skillDimensions.map((d) => d.replace(/_/g, ' ')).join(', ')}>
+        <span>{s.mode === 'learn' ? 'Learn' : s.mode === 'practice' ? 'Practice' : s.mode === 'assess' ? 'Assess' : 'Review'}</span>
+        <span className={`task-scoring ${p.scoringLabel.tone}`} title={p.scoringLabel.title}>
           {p.scoringLabel.text}
         </span>
-        {task.skillDimensions.slice(0, 2).map((d) => (
-          <span key={d} className="chip">
-            {d.replace(/_/g, ' ')}
-          </span>
-        ))}
-      </div>
+      </p>
       {rules.revealTitle(s) ? <h2>{task.title}</h2> : <h2>Task</h2>}
       <p className="prompt">{task.prompt}</p>
 
@@ -170,7 +166,7 @@ export function TaskPanel(p: Props) {
           <button className="btn primary lg" disabled={!submittable} onClick={p.onSubmit}>
             <Check size={16} /> Submit
           </button>
-          <small className="faint">{p.independentNote}</small>
+          {p.independentNote ? <small className="faint">{p.independentNote}</small> : null}
         </div>
       ) : null}
 
@@ -201,7 +197,7 @@ function MarkList(p: Props & { names: string[] }) {
         </button>
       </div>
       {p.marks.length === 0 ? (
-        <p className="faint">Choose a marking tool, then click on the image. Hold Shift and drag to adjust the window while marking.</p>
+        <p className="faint">Pick Point or Arrow, then click the image.</p>
       ) : (
         p.marks.map((m, i) => (
           <div key={m.id} className="mark-row">

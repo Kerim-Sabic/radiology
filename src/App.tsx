@@ -9,6 +9,7 @@ import { AccountMenu } from './auth/AccountGate';
 import { CommandPalette } from './components/CommandPalette';
 import { FreeBanner, LockedFeature } from './components/Upgrade';
 import { Loading as UiLoading } from './components/ui';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import { useApp } from './app/AppContext';
 import { useAccount } from './auth/AccountGate';
 
@@ -252,6 +253,7 @@ export function App() {
         {reading ? null : <FreeBanner />}
         <CommandPalette open={searching} onClose={() => setSearching(false)} />
         <main className="page" style={fullHeight ? { overflow: 'hidden' } : undefined} id="main">
+          <ErrorBoundary resetKey={loc.pathname}>
           <Suspense fallback={<Loading />}>
             {locked ? <LockedFeature {...LOCKED[locked]} /> : (
             <Routes>
@@ -277,12 +279,37 @@ export function App() {
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/class" element={<ClassPage />} />
               <Route path="/join/:code" element={<JoinPage />} />
-              <Route path="*" element={<div className="page-inner"><h1>Not found</h1><p className="muted">This address does not exist. <NavLink to="/">Go to Today</NavLink>.</p></div>} />
+              <Route path="*" element={<NotFound onSearch={() => setSearching(true)} />} />
             </Routes>
             )}
           </Suspense>
+          </ErrorBoundary>
         </main>
       </div>
     </Tooltip.Provider>
+  );
+}
+
+/** A wrong or old address: say so, and offer the places people usually want. */
+function NotFound({ onSearch }: { onSearch: () => void }) {
+  return (
+    <div className="page-inner page-problem">
+      <h1>This page does not exist</h1>
+      <p className="muted">The link may be old or mistyped. Here is where most people want to go.</p>
+      <div className="row wrap">
+        <Link className="btn primary lg" to="/">
+          <House size={16} /> Today
+        </Link>
+        <Link className="btn lg" to="/cases">
+          <Library size={16} /> Cases
+        </Link>
+        <Link className="btn lg" to="/conditions">
+          <Stethoscope size={16} /> Conditions
+        </Link>
+        <button className="btn lg" onClick={onSearch}>
+          <Search size={16} /> Search <span className="kbd-hint">{MAC ? '⌘' : 'Ctrl'} K</span>
+        </button>
+      </div>
+    </div>
   );
 }

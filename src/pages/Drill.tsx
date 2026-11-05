@@ -338,6 +338,10 @@ export default function DrillPage() {
             )}
           </section>
         ) : null}
+        {/* Before the first drill the numbers would all be zero: the count of structures says enough. */}
+        {sum.practised === 0 ? (
+          <p className="muted">{new Set(pool.map((c) => c.key)).size} structures to drill on.</p>
+        ) : (
         <div className="row wrap" style={{ gap: 28 }}>
           <div className="stat">
             <b>{sum.due}</b>
@@ -356,6 +360,7 @@ export default function DrillPage() {
             <span>structures available</span>
           </div>
         </div>
+        )}
         {focusName ? (
           <section className="card stack" style={{ gap: 8 }}>
             <h2>Drill one structure: {focusName}</h2>

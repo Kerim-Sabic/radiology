@@ -403,7 +403,10 @@ test.describe('D. assess leakage, deep links', () => {
     await page.getByRole('tab', { name: 'Case' }).click();
     await expect(page.getByText(/source and its licence appear after you submit/)).toBeVisible();
     await expect(page.getByText(/Lung CT Segmentation Challenge/)).toHaveCount(0);
-    await expect(page.getByRole('button', { name: 'Save image (after you submit)' })).toBeDisabled();
+    // Saving the view lives in the More menu, and waits for the answer too.
+    await page.getByRole('button', { name: 'More', exact: true }).click();
+    await expect(page.getByRole('menuitem', { name: 'Save image (after you submit)' })).toHaveAttribute('aria-disabled', 'true');
+    await page.keyboard.press('Escape');
   });
 
 
@@ -473,7 +476,7 @@ test.describe('D. assess leakage, deep links', () => {
     await page.keyboard.press('v');
     await expect(page.getByRole('button', { name: 'Outline all' })).toHaveAttribute('aria-pressed', 'true');
     await expect(arteries.locator('input[type="color"]')).toHaveValue('#ff0000');
-    const [file] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Save this view as an image' }).click()]);
+    const [file] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'More', exact: true }).click().then(() => page.getByRole('menuitem', { name: 'Save this view as an image' }).click())]);
     expect(file.suggestedFilename()).toMatch(/^patient-a-ct-chest-.+\.png$/);
     await page.getByRole('button', { name: 'Atlas colours', exact: true }).click();
     await expect(arteries.getByRole('button', { name: /back to atlas colours/ })).toHaveCount(0);
@@ -675,7 +678,9 @@ test.describe('E. study tools', () => {
   test('Today: next scan, streak and areas; a drill answer lights today in the calendar', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('.home-next')).toBeVisible();
-    await expect(page.locator('.home-streak')).toContainText('0 days');
+    // A newcomer is invited to start a streak, with this week and today waiting, not an empty half-year.
+    await expect(page.locator('.home-streak')).toContainText('Your streak starts here');
+    await expect(page.locator('.home-week-day.today')).toBeVisible();
     await expect(page.locator('.home-area').first()).toBeVisible();
     await page.evaluate(async () => {
       const r = indexedDB.open('radiology-visual-mastery');

@@ -8,6 +8,7 @@ import type { Catalog } from '../services/caseRepository';
 import { byObjective, STATE_LABEL, MILESTONE_RULE } from '../services/learningModel';
 import { readingProgress } from '../book/readingProgress';
 import type { BookAnchorRef } from '../schema/content';
+import { taskTypeLabel } from '../lib/taskTypes';
 
 export function unitCoverage(u: Unit, catalog: Catalog | null) {
   const objIds = new Set(u.objectives.map((o) => o.id));
@@ -47,87 +48,87 @@ export default function CoursePage() {
           <Link to="/course" className="row faint">
             <ChevronLeft size={14} /> All units
           </Link>
-          <div>
+          <header className="unit-head">
             <h1>
               {unit.kind === 'chapter' ? `Chapter ${unit.number}` : `Appendix ${unit.number}`} · {unit.title}
             </h1>
-            <small className="faint">
-              Printed pp. {unit.printedRange[0]}–{unit.printedRange[1]} · PDF {unit.physicalRange[0]}–{unit.physicalRange[1]} · Learning Radiology, 5th ed.
-            </small>
-          </div>
-          <div className="row wrap">
-            <Link className="btn sm primary" to={`/book/${unit.physicalRange[0]}`}>
-              <BookOpen size={13} /> Read this {unit.kind === 'chapter' ? 'chapter' : 'appendix'} ({Math.round(readingProgress.fraction(unit.physicalRange) * 100)}% opened)
+            <p className="muted">
+              Pages {unit.printedRange[0]}–{unit.printedRange[1]} of <i>Learning Radiology</i> · {unit.objectives.length} objectives · {cov.covered} practised on real scans ·{' '}
+              {cov.patients} patient{cov.patients === 1 ? '' : 's'}
+            </p>
+          </header>
+          <div className="unit-actions">
+            <Link className="btn primary" to={`/book/${unit.physicalRange[0]}`}>
+              <BookOpen size={15} /> Read the {unit.kind === 'chapter' ? 'chapter' : 'appendix'}
+              {readingProgress.fraction(unit.physicalRange) > 0 ? ` (${Math.round(readingProgress.fraction(unit.physicalRange) * 100)}% read)` : ''}
             </Link>
-            <Link className="btn sm" to={`/book/figures?unit=${unit.id}`}>
+            <Link className="btn" to={`/book/figures?unit=${unit.id}`}>
               Figures ({unit.figureCount ?? 0})
             </Link>
-            <span className="chip">{unit.objectives.length} objectives</span>
-            <span className={`chip ${cov.covered ? 'ok' : 'warn'}`}>{cov.covered} with real-scan tasks</span>
-            <span className="chip">{cov.patients} patients</span>
-            <span className="chip">{cov.scored} reference-scored tasks</span>
             {unit.caseQuiz?.question ? (
-              <button className="chip" onClick={() => setAnchor({ physical: unit.caseQuiz!.question!.physical, printed: unit.caseQuiz!.question!.printed, chapterId: unit.id })}>
-                <BookOpen size={11} /> Chapter case quiz
+              <button className="btn" onClick={() => setAnchor({ physical: unit.caseQuiz!.question!.physical, printed: unit.caseQuiz!.question!.printed, chapterId: unit.id })}>
+                Case quiz
               </button>
             ) : null}
             {unit.takeHome ? (
-              <button className="chip" onClick={() => setAnchor({ physical: unit.takeHome!.physical, printed: unit.takeHome!.printed, chapterId: unit.id })}>
-                <BookOpen size={11} /> Take-home points
+              <button className="btn" onClick={() => setAnchor({ physical: unit.takeHome!.physical, printed: unit.takeHome!.printed, chapterId: unit.id })}>
+                Take-home points
               </button>
             ) : null}
           </div>
-          {cov.uncovered.length ? (
-            <div className="notice">
-              {cov.uncovered.length} objective(s) have no real-scan practice installed yet. They stay visible here as gaps (book learning only) rather than being hidden.
-            </div>
-          ) : null}
-          {unit.objectives.map((o) => {
+          {unit.objectives.map((o, i) => {
             const tasks = cov.tasks.filter((t) => t.objectiveIds.includes(o.id));
+            // One link per patient (to that patient's first task here), not one per task.
+            const byCase = new Map<string, typeof tasks>();
+            for (const t of tasks) byCase.set(t.caseId, [...(byCase.get(t.caseId) ?? []), t]);
             const st = byObjective(attempts, o.id);
             return (
-              <article key={o.id} className="card stack" style={{ gap: 8 }}>
-                <div className="row wrap">
-                  <span className="mono faint">{o.id}</span>
-                  <span className={`chip ${st.state === 'provisional_independent' ? 'ok' : st.state === 'not_started' ? '' : 'accent'}`} title={MILESTONE_RULE}>
-                    {STATE_LABEL[st.state]}
-                  </span>
-                  {o.scanNeed ? <span className={`chip ${o.scanNeed.feasibility === 'open_tcia' ? '' : 'warn'}`}>{o.scanNeed.feasibility.replace(/_/g, ' ')}</span> : null}
+              <article key={o.id} className="unit-obj">
+                <div className="unit-obj-head">
+                  <span className="unit-obj-n">{i + 1}</span>
+                  {st.state === 'not_started' ? null : (
+                    <span className={`chip ${st.state === 'provisional_independent' ? 'ok' : 'accent'}`} title={MILESTONE_RULE}>
+                      {STATE_LABEL[st.state]}
+                    </span>
+                  )}
                 </div>
-                <div className="grid-3" style={{ gap: 10 }}>
+                <div className="unit-obj-cols">
                   <div>
                     <b>See</b>
-                    <p className="muted">{o.see}</p>
+                    <p>{o.see}</p>
                   </div>
                   <div>
                     <b>Show</b>
-                    <p className="muted">{o.show}</p>
+                    <p>{o.show}</p>
                   </div>
                   <div>
                     <b>Explain</b>
-                    <p className="muted">{o.explain}</p>
+                    <p>{o.explain}</p>
                   </div>
                 </div>
-                {o.contrastWith ? <small className="muted">Distinguish from: {o.contrastWith}</small> : null}
-                <div className="row wrap">
-                  {o.anchors.map((a, i) => (
-                    <button key={i} className="chip" onClick={() => setAnchor({ physical: a.physical, printed: a.printed, chapterId: unit.id, figureId: a.figureId ?? null })}>
-                      <BookOpen size={11} /> p. {a.printed ?? '?'}
+                {o.contrastWith ? <p className="unit-obj-contrast">Tell it apart from: {o.contrastWith}</p> : null}
+                <div className="unit-obj-links">
+                  {o.anchors.map((a, j) => (
+                    <button key={j} className="unit-link" onClick={() => setAnchor({ physical: a.physical, printed: a.printed, chapterId: unit.id, figureId: a.figureId ?? null })}>
+                      <BookOpen size={13} aria-hidden /> p. {a.printed ?? '?'}
                       {a.figureId ? ` · ${a.figureId}` : ''}
                     </button>
                   ))}
-                </div>
-                {tasks.length ? (
-                  <div className="row wrap">
-                    {tasks.slice(0, 8).map((t) => (
-                      <Link key={t.id} className="btn sm" to={`/read/${t.caseId}?task=${encodeURIComponent(t.id)}&mode=practice`}>
-                        {catalog?.cases.get(t.caseId)?.neutralTitle} · {t.type.replace(/_/g, ' ')}
+                  {[...byCase.entries()].slice(0, 6).map(([caseId, ts]) => {
+                    const title = catalog?.cases.get(caseId)?.neutralTitle ?? caseId;
+                    return (
+                      <Link
+                        key={caseId}
+                        className="unit-link scan"
+                        to={`/read/${caseId}?task=${encodeURIComponent(ts[0].id)}&mode=practice`}
+                        title={ts.map((t) => taskTypeLabel(t.type)).join(', ')}
+                      >
+                        {title.split(' · ')[0]}
                       </Link>
-                    ))}
-                  </div>
-                ) : (
-                  <small className="faint">No installed real-scan task yet{o.scanNeed?.description ? ` — needs: ${o.scanNeed.description}` : ''}.</small>
-                )}
+                    );
+                  })}
+                  {tasks.length ? null : <span className="faint unit-none">No scan to practise this on yet.</span>}
+                </div>
               </article>
             );
           })}
@@ -154,54 +155,58 @@ export default function CoursePage() {
       <div>
         <h1>Course map</h1>
         <p className="muted">
-          29 chapters and 8 appendices of <i>Learning Radiology: Recognizing the Basics</i>, 5th edition. A unit is never marked mastered from reading or quizzes alone — only from
-          performance on real scans across different patients.
+          The 29 chapters and 8 appendices of <i>Learning Radiology: Recognizing the Basics</i>, 5th edition. A chapter counts as learned only from your answers on real scans
+          of different patients, never from reading alone.
         </p>
       </div>
-      <div className="card" style={{ overflowX: 'auto' }}>
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Unit</th>
-              <th className="cov-cell">Read</th>
-              <th className="cov-cell">Objectives</th>
-              <th className="cov-cell">Figures</th>
-              <th className="cov-cell">Objectives with real-scan tasks</th>
-              <th className="cov-cell">Patients</th>
-              <th className="cov-cell">Scored tasks</th>
-              <th>Gap</th>
-            </tr>
-          </thead>
-          <tbody>
-            {totals.map(({ u, cov }) => (
-              <tr key={u.id}>
-                <td>
-                  <Link to={`/course/${u.id}`}>
-                    {u.kind === 'chapter' ? u.number : `App ${u.number}`} · {u.title}
-                  </Link>
-                </td>
-                <td className="cov-cell">
-                  <Link to={`/book/${u.physicalRange[0]}`}>{Math.round(readingProgress.fraction(u.physicalRange) * 100)}%</Link>
-                </td>
-                <td className="cov-cell">{u.objectives.length}</td>
-                <td className="cov-cell">{u.figureCount ?? '–'}</td>
-                <td className="cov-cell">
-                  {cov.covered}/{u.objectives.length}
-                </td>
-                <td className="cov-cell">{cov.patients}</td>
-                <td className="cov-cell">{cov.scored}</td>
-                <td>
-                  <small className="faint">
-                    {cov.uncovered.length
-                      ? `${cov.uncovered.length} uncovered${cov.feasibility.credentialed ? ` · ${cov.feasibility.credentialed} need credentialed data` : ''}${cov.feasibility.not_dicom || cov.feasibility.book_only ? ` · ${(cov.feasibility.not_dicom ?? 0) + (cov.feasibility.book_only ?? 0)} book-only` : ''}`
-                      : 'covered'}
-                  </small>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {(['chapter', 'appendix'] as const).map((kind) => {
+        const rows = totals.filter(({ u }) => (kind === 'chapter') === (u.kind === 'chapter'));
+        if (!rows.length) return null;
+        return (
+          <section key={kind} className="course-group">
+            <h2>{kind === 'chapter' ? 'Chapters' : 'Appendices'}</h2>
+            <ol className="course-list">
+              {rows.map(({ u, cov }) => {
+                const read = Math.round(readingProgress.fraction(u.physicalRange) * 100);
+                const share = u.objectives.length ? cov.covered / u.objectives.length : 0;
+                const gap = cov.uncovered.length
+                  ? `${cov.uncovered.length} objective${cov.uncovered.length === 1 ? '' : 's'} without a real-scan task yet${cov.feasibility.credentialed ? `, ${cov.feasibility.credentialed} needing credentialed data` : ''}${cov.feasibility.not_dicom || cov.feasibility.book_only ? `, ${(cov.feasibility.not_dicom ?? 0) + (cov.feasibility.book_only ?? 0)} book-only` : ''}`
+                  : 'Every objective has a real-scan task';
+                return (
+                  <li key={u.id} className="course-row">
+                    <Link className="course-main" to={`/course/${u.id}`}>
+                      <span className="course-num" aria-hidden>
+                        {u.number}
+                      </span>
+                      <span className="course-text">
+                        <b>
+                          <span className="sr-only">{u.kind === 'chapter' ? `Chapter ${u.number}: ` : `Appendix ${u.number}: `}</span>
+                          {u.title}
+                        </b>
+                        <small>
+                          {u.objectives.length} objectives · {cov.patients} patient{cov.patients === 1 ? '' : 's'} · {cov.scored} scored task{cov.scored === 1 ? '' : 's'}
+                          {u.figureCount ? ` · ${u.figureCount} figures` : ''}
+                        </small>
+                      </span>
+                    </Link>
+                    <span className="course-cov" title={gap}>
+                      <span className="course-cov-bar" role="img" aria-label={`${cov.covered} of ${u.objectives.length} objectives practised on real scans. ${gap}.`}>
+                        <span style={{ width: `${Math.round(share * 100)}%` }} />
+                      </span>
+                      <small>
+                        {cov.covered}/{u.objectives.length} on real scans
+                      </small>
+                    </span>
+                    <Link className="course-read" to={`/book/${u.physicalRange[0]}`} aria-label={`Read in the book: ${read}% read`}>
+                      {read ? `${read}% read` : 'Read'}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
+        );
+      })}
     </div>
   );
 }

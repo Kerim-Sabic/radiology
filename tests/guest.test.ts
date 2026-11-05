@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { guestCaseId } from '../src/auth/guest';
+import { readFileSync } from 'node:fs';
+import { TRY_CASE, TRY_CASE_URL, guestCaseId } from '../src/auth/guest';
 import { FREE_CASES } from '../src/content/weekly';
 import { FREE_EDITION } from '../server/freeEdition.generated';
 import { trackable } from '../server/engage';
@@ -14,6 +15,15 @@ describe('a visitor with no account', () => {
 
   it('is offered the same patients the server opens without an account', () => {
     expect([...FREE_CASES].sort()).toEqual([...FREE_EDITION.always].sort());
+  });
+
+  it('is offered from the homepage a free patient and a task that exist', () => {
+    expect(FREE_CASES).toContain(TRY_CASE);
+    const url = new URL(TRY_CASE_URL, 'https://www.radiology.monster');
+    expect(guestCaseId(url.pathname)).toBe(TRY_CASE);
+    const lessons = JSON.parse(readFileSync('public/packs/cxr-findings/lessons.json', 'utf8')) as { tasks: Array<{ id: string }> };
+    expect(lessons.tasks.map((t) => t.id)).toContain(url.searchParams.get('task'));
+    expect(url.searchParams.get('mode')).toBe('practice');
   });
 
   it('is counted in the funnel when opening and answering a case', () => {

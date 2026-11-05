@@ -43,12 +43,10 @@ export default function OnCallPage() {
   return (
     <div className="page-inner stack" style={{ gap: 18, maxWidth: 980 }}>
       <div className="stack" style={{ gap: 4 }}>
-        <h1>
-          <Siren size={20} style={{ verticalAlign: -3 }} /> On call
-        </h1>
+        <h1>On call</h1>
         <span className="muted">
           Read a run of unknown cases like a night on call: no hints, no labels and no book until you submit each one, one case per patient, patients you have not read
-          first. The clock is a guide — it never throws away your work. At the end you get a scored report with every case to review.
+          first. The clock is a guide; it never throws away your work. At the end you get a scored report with every case to review.
         </span>
       </div>
 

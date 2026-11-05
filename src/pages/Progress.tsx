@@ -50,6 +50,8 @@ export default function ProgressPage() {
   const calendar = dailyActivity(attempts, log, drill, 182);
   const run = streak(calendar);
   const activeDays = calendar.filter((d) => d.total > 0).length;
+  /** Nothing studied yet: one line and a way in, not six zeros, an empty half-year and an empty table. */
+  const fresh = overall.attempts === 0 && activeDays === 0 && !drillSum.practised;
   const independentShare = overall.independentAttempts ? Math.round((100 * overall.independentCorrect) / overall.independentAttempts) : null;
 
   const doExport = async () => {
@@ -79,6 +81,15 @@ export default function ProgressPage() {
         <p className="muted">What you have read, how it went, and what to go back to.</p>
       </header>
 
+      {fresh ? (
+        <section className="card progress-empty">
+          <h2>Nothing to show yet</h2>
+          <p className="muted">Your numbers, streak and skills start with your first answer.</p>
+          <Link className="btn primary" to="/">
+            Start practice
+          </Link>
+        </section>
+      ) : (
       <section className="progress-stats" aria-label="Totals">
         {tiles.map(([n, label, hint]) => (
           <div key={label} className="stat">
@@ -88,8 +99,10 @@ export default function ProgressPage() {
           </div>
         ))}
       </section>
+      )}
       {overall.attempts > 0 && overall.attempts < 20 ? <div className="notice">Small sample: these numbers describe your attempts so far, not a reliable measure of skill.</div> : null}
 
+      {fresh ? null : (
       <section className="card progress-activity" aria-labelledby="progress-activity-h">
         <div className="progress-activity-main">
           <h2 id="progress-activity-h">Study activity</h2>
@@ -111,9 +124,12 @@ export default function ProgressPage() {
           </div>
         </dl>
       </section>
+      )}
 
       <CertificatesSummary />
 
+      {fresh ? null : (
+      <>
       <section className="card stack" aria-labelledby="progress-skills-h">
         <h2 id="progress-skills-h">Skills</h2>
         <small className="faint">{MILESTONE_RULE}</small>
@@ -198,6 +214,8 @@ export default function ProgressPage() {
           ) : null}
         </section>
       </div>
+      </>
+      )}
 
       <section className="card stack" aria-labelledby="progress-drills-h">
         <div className="row">
@@ -224,7 +242,7 @@ export default function ProgressPage() {
             ) : null}
           </>
         ) : (
-          <p className="muted">No drills yet — point to, find and name structures on real scans.</p>
+          <p className="muted">No drills yet. Drills ask you to point to, find and name structures on real scans.</p>
         )}
       </section>
 

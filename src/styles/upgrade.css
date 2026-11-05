@@ -156,9 +156,9 @@
   display: flex;
   align-items: center;
   gap: 14px;
-  padding: 14px 16px;
-  border-radius: 16px;
-  border: 1px solid var(--line-strong);
+  padding: 18px 20px;
+  border-radius: 22px;
+  border: 0;
   background: var(--panel);
 }
 .upgrade-card > div {
@@ -207,12 +207,12 @@
 /* ---------------------------------------------------------------- case of the week */
 .cow {
   display: grid;
-  grid-template-columns: 200px minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 24px;
   align-items: center;
   padding: 14px;
-  border-radius: 20px;
-  border: 1px solid var(--line);
+  border-radius: 22px;
+  border: 0;
   background: var(--panel);
 }
 .cow-media {
@@ -231,10 +231,10 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
-  letter-spacing: 0.04em;
-  color: #fde68a;
+  letter-spacing: -0.005em;
+  color: #ff9f0a;
 }
 .cow h2 {
   margin: 6px 0 4px;
@@ -294,9 +294,9 @@
   flex-direction: column;
   gap: 2px;
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
+  padding: 12px 14px;
+  border: 0;
+  border-radius: 14px;
   background: var(--panel);
   color: var(--text-2);
   text-align: left;
@@ -304,8 +304,21 @@
   cursor: pointer;
 }
 .locked-tile:hover {
-  border-color: rgba(var(--accent-rgb), 0.55);
+  background: var(--panel-2);
   color: var(--text);
+}
+.locked-more {
+  margin-top: 4px;
+  color: var(--text-2);
+  font-size: 14px;
+}
+.locked-more .text-button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
 }
 .locked-tile b {
   font-size: 13px;
@@ -789,6 +802,8 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
+  border: 0;
+  border-radius: 18px;
 }
 .certs-area-head {
   display: flex;
@@ -823,24 +838,26 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 8px;
+  gap: 0;
 }
+/* The levels are rows inside the area's tile, separated by hairlines: never cards inside a card. */
 .certs-ladder > li {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--panel-2);
+  padding: 14px 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
 }
-.certs-ladder > li.ok {
-  border-color: rgba(79, 209, 139, 0.45);
+.certs-ladder > li:first-child {
+  border-top: 0;
+  padding-top: 4px;
 }
 /* Waiting for the level below, or not enough patients yet. */
 .certs-ladder > li.quiet {
   background: transparent;
-  border-style: dashed;
 }
 .certs-ladder > li.quiet .certs-step-head b,
 .certs-ladder > li.quiet .certs-numbers {
@@ -932,37 +949,28 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 10px;
+  gap: 24px;
 }
 .certs-how li {
   counter-increment: how;
   display: grid;
   gap: 4px;
   align-content: start;
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: 12px;
-  background: var(--panel);
-  font-size: 13px;
+  padding: 14px 0 0;
+  border: 0;
+  border-top: 1px solid var(--line);
+  border-radius: 0;
+  background: transparent;
+  font-size: 13.5px;
   color: var(--text-2);
-  line-height: 1.45;
+  line-height: 1.5;
 }
 .certs-how li b {
   color: var(--text);
   font-size: 14px;
 }
 .certs-how li b::before {
-  content: counter(how);
-  display: inline-grid;
-  place-items: center;
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
-  border-radius: 50%;
-  background: var(--primary);
-  color: var(--primary-ink);
-  font-size: 11.5px;
-  vertical-align: 1px;
+  content: none;
 }
 @media (max-width: 760px) {
   .certs-how {
