@@ -8,7 +8,7 @@ import { mailboxKey } from './mailbox.js';
 import { allGrants, grantActive, grantFor, removeGrant, setGrant, type Grant } from './grants.js';
 import { allAdminRoles, allProfessorRoles, PERMISSIONS, professorRole, removeAdminRole, removeProfessorRole, setAdminRole, setProfessorRole, type Permission } from './roles.js';
 import { classSize, endClassAccess, MAX_STUDENTS, syncClassAccess } from './classes.js';
-import { membershipAccess, whop } from './billing.js';
+import { membershipAccess, membershipOwner, whop } from './billing.js';
 import type { Profile } from './engage.js';
 import { clearSignIns, deviceSummary, signInsKey, type DeviceSummary, type SignIn } from './devices.js';
 
@@ -68,12 +68,17 @@ async function payingMembers() {
     const client = await whop();
     const account = required('WHOP_ACCOUNT_ID');
     const product = required('WHOP_PRODUCT_ID');
+    // By Whop customer, and by the account here a membership was bought from (that one is shown on that account only).
     const paid = new Map<string, { tier: AccessTier; until: string | null }>();
+    const owned = new Map<string, { tier: AccessTier; until: string | null }>();
     const list = await client.memberships.list({ account_id: account, product_ids: [product], plan_ids: membershipPlans().map((p) => p.id), statuses: ['active', 'completed'], first: 100 });
     for await (const m of list) {
       if (!m.user_id || m.product_id !== product) continue;
       const a = membershipAccess(m);
-      if (a.active && paid.get(m.user_id)?.tier !== 'lifetime') paid.set(m.user_id, { tier: a.tier!, until: a.expiresAt ?? null });
+      const owner = membershipOwner(m);
+      const into = owner ? owned : paid;
+      const key = owner ?? m.user_id;
+      if (a.active && into.get(key)?.tier !== 'lifetime') into.set(key, { tier: a.tier!, until: a.expiresAt ?? null });
     }
     const emails = new Map<string, string>();
     const ids = [...paid.keys()];
@@ -81,7 +86,7 @@ async function payingMembers() {
       const members = await client.members.list({ account_id: account, user_ids: ids.slice(i, i + 50), first: 100 });
       for await (const member of members) if (member.account_id === account && member.user?.id && member.email) emails.set(member.user.id, member.email.trim().toLowerCase());
     }
-    return { paid, emails };
+    return { paid, emails, owned };
   } catch {
     console.error('Admin: Whop memberships could not be read');
     return null;
@@ -154,7 +159,7 @@ export async function everyone(now = Date.now()) {
     if (!email) continue;
     const key = mailboxKey(email);
     seenMailboxes.add(key);
-    const paid = (r.whopUser ? whopPaid?.paid.get(r.whopUser) : undefined) ?? paidByMailbox.get(key);
+    const paid = whopPaid?.owned.get(id) ?? (r.whopUser ? whopPaid?.paid.get(r.whopUser) : undefined) ?? paidByMailbox.get(key);
     if (r.whopUser && whopPaid?.paid.has(r.whopUser)) seenWhopUsers.add(r.whopUser);
     const g = grantBy.get(key);
     const days = r.profile?.days ?? [];
@@ -200,16 +205,16 @@ export async function everyone(now = Date.now()) {
 
   const within = (value: string | null, days: number) => !!value && now - Date.parse(value.length === 10 ? `${value}T23:59:59Z` : value) < days * DAY_MS;
   const plans = { monthly: 0, yearly: 0, lifetime: 0 };
-  for (const p of whopPaid?.paid.values() ?? []) plans[p.tier]++;
+  for (const p of [...(whopPaid?.paid.values() ?? []), ...(whopPaid?.owned.values() ?? [])]) plans[p.tier]++;
   const withAccount = people.filter((p) => p.account);
   return {
     counts: {
       accounts: withAccount.length,
       clerkAccounts: total,
       openedApp: withAccount.filter((p) => p.firstVisit).length,
-      paying: whopPaid ? whopPaid.paid.size : null,
-      // Paying on Whop under an email that has no account here (they bought on Whop and never signed in).
-      payingWithoutAccount: whopPaid ? [...whopPaid.paid.keys()].filter((u) => !seenWhopUsers.has(u) && !seenMailboxes.has(mailboxKey(whopPaid.emails.get(u) ?? ''))).length : null,
+      paying: whopPaid ? whopPaid.paid.size + whopPaid.owned.size : null,
+      // Paying on Whop under an email that has no account here (they bought on Whop and never signed in), or bought from an account since deleted.
+      payingWithoutAccount: whopPaid ? [...whopPaid.paid.keys()].filter((u) => !seenWhopUsers.has(u) && !seenMailboxes.has(mailboxKey(whopPaid.emails.get(u) ?? ''))).length + [...whopPaid.owned.keys()].filter((id) => !people.some((p) => p.userId === id)).length : null,
       plans,
       free: grants.filter((g) => grantActive(g, now)).length,
       freeWaiting: people.filter((p) => !p.account && p.access === 'free').length,

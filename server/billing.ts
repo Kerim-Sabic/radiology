@@ -98,34 +98,106 @@ async function grantedAccess(userId: string): Promise<Access | null> {
   return grant && grantActive(grant) ? { active: true, role: 'granted', expiresAt: grant.until } : null;
 }
 
+/** The site account a membership was bought from: Whop copies the checkout's metadata (`rvm_user`, set in checkout below) onto it. */
+export function membershipOwner(m: Pick<Whop.Membership, 'metadata'>): string | undefined {
+  const owner = m.metadata?.rvm_user;
+  return typeof owner === 'string' && owner ? owner : undefined;
+}
+/** The memberships bought from a site account (ids), and the plans it started a checkout for (plan id → when it first did). */
+const ownedKey = (userId: string) => `rvm:owned:${userId}`;
+const startedKey = (userId: string) => `rvm:checkout-started:${userId}`;
+const OWNERS_READ = 'rvm:owners-read';
+
+async function addOwned(userId: string, ids: string[]) {
+  const have = (await db().get<string[]>(ownedKey(userId))) ?? [];
+  const next = [...new Set([...have, ...ids])];
+  if (next.length > have.length) await db().set(ownedKey(userId), next);
+}
+
+/** Every 6 hours, read which account each membership was bought from. This picks up purchases made before checkouts were
+ * recorded (2026-11-05), and any a scan below missed. */
+async function readOwners(client: WhopClient) {
+  if (!(await db().set(OWNERS_READ, Date.now(), { nx: true, ex: 6 * 3600 }))) return;
+  try {
+    const byOwner = new Map<string, string[]>();
+    const list = await client.memberships.list({ account_id: required('WHOP_ACCOUNT_ID'), product_ids: [required('WHOP_PRODUCT_ID')], plan_ids: membershipPlans().map(p => p.id), first: 100 });
+    for await (const m of list) {
+      const owner = membershipOwner(m);
+      if (owner) byOwner.set(owner, [...(byOwner.get(owner) ?? []), m.id]);
+    }
+    for (const [owner, ids] of byOwner) await addOwned(owner, ids);
+  } catch (error) {
+    await db().del(OWNERS_READ);
+    console.error('Whop membership owners could not be read', error);
+  }
+}
+
+/** Memberships bought through this site's checkout from this account, whatever email the Whop customer has. Right after a
+ * checkout, the memberships made since are read until one of them is this account's. */
+async function ownedMemberships(client: WhopClient, userId: string): Promise<Whop.Membership[]> {
+  const started = await db().get<Record<string, string>>(startedKey(userId));
+  const plans = Object.keys(started ?? {});
+  if (plans.length && (await db().set(`rvm:owned-scan:${userId}`, 1, { nx: true, ex: 10 }))) {
+    const since = Math.min(...Object.values(started!).map(t => Date.parse(t))) - 10 * 60_000;
+    const list = await client.memberships.list({ account_id: required('WHOP_ACCOUNT_ID'), plan_ids: plans, created_after: new Date(since).toISOString(), first: 100 });
+    const mine: string[] = [];
+    for await (const m of list) if (membershipOwner(m) === userId) mine.push(m.id);
+    if (mine.length) {
+      await addOwned(userId, mine);
+      await db().del(startedKey(userId));
+    }
+  }
+  await readOwners(client);
+  const ids = (await db().get<string[]>(ownedKey(userId))) ?? [];
+  const found = await Promise.all(ids.map(id => client.memberships.retrieve({ id }).catch((error: unknown) => {
+    if ((error as { statusCode?: number } | null)?.statusCode === 404) return null;
+    throw error;
+  })));
+  return found.filter((m): m is Whop.Membership => !!m && membershipOwner(m) === userId);
+}
+
+/** The Whop customer this account signed in with, or the one whose email is this account's verified email. */
+async function linkedWhopUser(client: WhopClient, userId: string): Promise<string | null> {
+  const linked = await db().get<string>(`rvm:whop-user:${userId}`);
+  if (linked) return linked;
+  const identity = await db().get<{ email: string; emailVerified: boolean; provider?: string }>(`rvm:identity:${userId}`);
+  if (identity?.emailVerified !== true || identity.provider !== 'clerk') return null;
+  // This lookup requires member:email:read. A name/username search match never grants access.
+  const candidates = await client.members.list({ account_id: required('WHOP_ACCOUNT_ID'), query: identity.email, first: 100 });
+  const exact = [];
+  for await (const member of candidates) {
+    if (member.account_id === required('WHOP_ACCOUNT_ID') && member.email?.trim().toLowerCase() === identity.email.trim().toLowerCase() && member.user?.id) exact.push(member.user.id);
+  }
+  const matched = [...new Set(exact)];
+  if (matched.length > 1) throw new Error('Ambiguous payment identity');
+  if (!matched[0]) return null;
+  await db().set(`rvm:whop-user:${userId}`, matched[0]);
+  return matched[0];
+}
+
 async function paidAccess(userId: string, fresh: boolean): Promise<Access> {
   if (!fresh) {
     const cached = await db().get<Access>(`rvm:access:${userId}`);
     if (cached && (!cached.expiresAt || Date.parse(cached.expiresAt) > Date.now())) return cached;
   }
   const client = await whop();
-  let whopUser = await db().get<string>(`rvm:whop-user:${userId}`);
-  if (!whopUser) {
-    const identity = await db().get<{ email: string; emailVerified: boolean; provider?: string }>(`rvm:identity:${userId}`);
-    if (identity?.emailVerified !== true || identity.provider !== 'clerk') return { active: false };
-    // This lookup requires member:email:read. A name/username search match never grants access.
-    const candidates = await client.members.list({ account_id: required('WHOP_ACCOUNT_ID'), query: identity.email, first: 100 });
-    const exact = [];
-    for await (const member of candidates) {
-      if (member.account_id === required('WHOP_ACCOUNT_ID') && member.email?.trim().toLowerCase() === identity.email.trim().toLowerCase() && member.user?.id) exact.push(member.user.id);
+  // A purchase belongs to the account that started its checkout, even when the Whop customer's email is another one.
+  const candidates = new Map<string, Whop.Membership>();
+  for (const m of await ownedMemberships(client, userId)) candidates.set(m.id, m);
+  const whopUser = await linkedWhopUser(client, userId);
+  if (whopUser) {
+    const memberships = await client.memberships.list({ account_id: required('WHOP_ACCOUNT_ID'), user_id: whopUser,
+      plan_ids: membershipPlans().map(plan => plan.id), first: 100 });
+    for await (const m of memberships) {
+      // Not one bought from another account here: one payment opens one account.
+      const owner = membershipOwner(m);
+      if (m.user_id === whopUser && (!owner || owner === userId)) candidates.set(m.id, m);
     }
-    const matched = [...new Set(exact)];
-    if (matched.length > 1) throw new Error('Ambiguous payment identity');
-    whopUser = matched[0] || null;
-    if (!whopUser) return { active: false };
-    await db().set(`rvm:whop-user:${userId}`, whopUser);
   }
-  const memberships = await client.memberships.list({ account_id: required('WHOP_ACCOUNT_ID'), user_id: whopUser,
-    plan_ids: membershipPlans().map(plan => plan.id), first: 100 });
   let result: Access = { active: false };
-  for await (const m of memberships) {
-    if (m.user_id !== whopUser || m.product_id !== required('WHOP_PRODUCT_ID')) continue;
-    if (m.account.id !== required('WHOP_ACCOUNT_ID')) continue;
+  for (const m of candidates.values()) {
+    if (m.product_id !== required('WHOP_PRODUCT_ID') || m.account.id !== required('WHOP_ACCOUNT_ID')) continue;
+    if (!membershipPlans().some(plan => plan.id === m.plan_id)) continue;
     // A one-time pass that has ended is not waiting on anything, so it never blocks buying again.
     const endedPass = !!regionalPlan(m.plan_id)?.pass && !((passEnd(m) ?? 0) > Date.now());
     if (!result.active && !endedPass && ['active', 'past_due', 'trialing'].includes(m.status)) {
@@ -181,6 +253,9 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   // Keep the same idempotency key across retries, including ambiguous network failures.
   await db().set(key, random(), { nx: true, ex: 86400 });
   const orderId = (await db().get<string>(key))!;
+  // So the payment is found for this account even when the buyer's Whop email is another one (ownedMemberships above).
+  const started = (await db().get<Record<string, string>>(startedKey(userId))) ?? {};
+  if (!started[planId]) await db().set(startedKey(userId), { ...started, [planId]: new Date().toISOString() }, { ex: 14 * 86400 });
   const config = await client.checkoutConfigurations.create({
     account_id: required('WHOP_ACCOUNT_ID'), plan_id: planId, mode: 'payment',
     ...(affiliate ? { affiliate_code: affiliate } : {}),

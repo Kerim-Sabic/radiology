@@ -1,7 +1,7 @@
 import { beforeEach, afterAll, describe, expect, it, vi } from 'vitest';
 import type { Whop } from '@whop/sdk';
 
-const fake = vi.hoisted(() => ({ records: new Map<string, unknown>(), members: [] as unknown[], memberships: [] as unknown[], payments: [] as unknown[], checkoutCalls: [] as unknown[], revoke: vi.fn(), exchange: vi.fn(), identity: vi.fn(), clerkIdentity: vi.fn(), promoCreate: vi.fn(), promoRetrieve: vi.fn(), promoList: vi.fn() }));
+const fake = vi.hoisted(() => ({ records: new Map<string, unknown>(), members: [] as unknown[], memberships: [] as unknown[], membershipLists: [] as unknown[], payments: [] as unknown[], checkoutCalls: [] as unknown[], revoke: vi.fn(), exchange: vi.fn(), identity: vi.fn(), clerkIdentity: vi.fn(), promoCreate: vi.fn(), promoRetrieve: vi.fn(), promoList: vi.fn() }));
 vi.mock('../server/clerk', () => ({ clerkIdentity: fake.clerkIdentity }));
 vi.mock('../server/store', () => {
   const store = {
@@ -17,7 +17,18 @@ vi.mock('../server/oauth', () => ({ merchantToken: async () => 'test-token', exc
 vi.mock('@whop/sdk', () => ({ WhopClient: class {
   promoCodes = { create: fake.promoCreate, retrieve: fake.promoRetrieve, list: fake.promoList };
   members = { list: async () => ({ async *[Symbol.asyncIterator]() { yield* fake.members; } }) };
-  memberships = { list: async () => ({ data: fake.memberships, async *[Symbol.asyncIterator]() { yield* fake.memberships; } }) };
+  memberships = {
+    list: async (q: { user_id?: string; plan_ids?: string[]; created_after?: string }) => {
+      fake.membershipLists.push(q);
+      const rows = (fake.memberships as Whop.Membership[]).filter(m => (!q.created_after || !m.created_at || m.created_at > q.created_after) && (!q.plan_ids || q.plan_ids.includes(m.plan_id!)));
+      return { data: rows, async *[Symbol.asyncIterator]() { yield* rows; } };
+    },
+    retrieve: async ({ id }: { id: string }) => {
+      const m = (fake.memberships as Whop.Membership[]).find(row => row.id === id);
+      if (!m) throw Object.assign(new Error('Not found'), { statusCode: 404 });
+      return m;
+    },
+  };
   payments = { list: async () => ({ data: fake.payments }) };
   variants = { retrieve: async ({ id }: { id: string }) => ({ id, account: { id: 'biz_test' }, currency: 'usd', plan_type: 'renewal', billing_period: id === 'plan_yearly' ? 365 : 30, initial_price: 0, renewal_price: id === 'plan_monthly' ? 20 : id === 'plan_legacy_monthly' ? 10 : 150, adaptive_pricing_enabled: false }) };
   checkoutConfigurations = { create: async (body: unknown, options: unknown) => { fake.checkoutCalls.push({ body, options }); return { id: 'ch_test', purchase_url: 'https://whop.com/checkout/ch_test' }; } };
@@ -33,7 +44,7 @@ const future = () => new Date(Date.now() + 86400000).toISOString();
 const member = (changes = {}) => ({ id: 'mem_test', account: { id: 'biz_test' }, plan_id: 'plan_monthly', status: 'active', current_period_end: future(), expires_at: null, manage_url: 'https://whop.com/billing', user_id: 'user_test', product_id: 'prod_test', ...changes }) as Whop.Membership;
 
 beforeEach(() => {
-  fake.records.clear(); fake.members = []; fake.memberships = []; fake.payments = []; fake.checkoutCalls = []; fake.clerkIdentity.mockReset();
+  fake.records.clear(); fake.members = []; fake.memberships = []; fake.membershipLists = []; fake.payments = []; fake.checkoutCalls = []; fake.clerkIdentity.mockReset();
   fake.promoCreate.mockReset(); fake.promoRetrieve.mockReset(); fake.promoList.mockReset();
   for (const [k, v] of Object.entries({ ADMIN_EMAILS: '', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_YEARLY_PLAN_ID: 'plan_yearly', WHOP_LEGACY_MONTHLY_PLAN_ID: 'plan_legacy_monthly', WHOP_LIFETIME_PLAN_ID: 'plan_lifetime', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test' })) vi.stubEnv(k, v);
 });
@@ -183,6 +194,42 @@ describe('paid access policy', () => {
     fake.members = [{ account_id: 'biz_test', email: 'BUYER@example.com', user: { id: 'user_test' } }];
     expect((await accessFor(userId, true)).active).toBe(true);
     expect(fake.records.get(`rvm:whop-user:${userId}`)).toBe('user_test');
+  });
+  it('opens a purchase for the account that started checkout, whatever email the Whop customer has, and for that account only', async () => {
+    await createSession({ sub: 'clerk_buyer', provider: 'clerk', email: 'site@example.com', emailVerified: true });
+    await createSession({ sub: 'clerk_whop_email', provider: 'clerk', email: 'whop@example.com', emailVerified: true });
+    const buyer = hash('clerk:clerk_buyer');
+    const other = hash('clerk:clerk_whop_email');
+    await checkout(buyer, 'monthly');
+    expect(fake.checkoutCalls[0]).toMatchObject({ body: { metadata: { rvm_user: buyer } } });
+    expect(fake.records.get(`rvm:checkout-started:${buyer}`)).toEqual({ plan_monthly: expect.any(String) });
+    // Paid on Whop signed in as whop@example.com: the membership carries the checkout's metadata.
+    fake.members = [{ account_id: 'biz_test', email: 'whop@example.com', user: { id: 'user_whop' } }];
+    fake.memberships = [member({ id: 'mem_bought', user_id: 'user_whop', metadata: { rvm_user: buyer }, created_at: new Date().toISOString() })];
+    fake.payments = [{ status: 'paid', substatus: 'succeeded' }];
+    expect(await accessFor(buyer, true)).toMatchObject({ active: true, tier: 'monthly' });
+    expect(fake.records.get(`rvm:owned:${buyer}`)).toEqual(['mem_bought']);
+    expect(fake.records.has(`rvm:checkout-started:${buyer}`)).toBe(false);
+    // The account with the Whop customer's email does not get the same purchase, and is free to buy its own.
+    expect(await accessFor(other, true)).toEqual({ active: false });
+    await expect(checkout(other, 'monthly')).resolves.toMatchObject({ id: 'ch_test' });
+    // Found again later from the record, and closed by a refund like any purchase.
+    fake.records.delete(`rvm:owned-scan:${buyer}`);
+    expect((await accessFor(buyer, true)).active).toBe(true);
+    fake.payments = [{ status: 'paid', substatus: 'refunded' }];
+    expect((await accessFor(buyer, true)).active).toBe(false);
+  });
+  it('finds purchases made before checkouts were recorded, and trusts only the membership’s own owner', async () => {
+    await createSession({ sub: 'clerk_earlier', provider: 'clerk', email: 'earlier@example.com', emailVerified: true });
+    const buyer = hash('clerk:clerk_earlier');
+    fake.memberships = [member({ id: 'mem_earlier', user_id: 'user_whop', metadata: { rvm_user: buyer } }), member({ id: 'mem_someone', user_id: 'user_else', metadata: { rvm_user: 'someone-else' } })];
+    fake.payments = [{ status: 'paid', substatus: 'succeeded' }];
+    expect((await accessFor(buyer, true)).active).toBe(true);
+    expect(fake.records.get(`rvm:owned:${buyer}`)).toEqual(['mem_earlier']);
+    expect(fake.records.get('rvm:owned:someone-else')).toEqual(['mem_someone']);
+    // A stored id whose membership names another owner, or is gone, opens nothing and breaks nothing.
+    fake.records.set(`rvm:owned:${buyer}`, ['mem_someone', 'mem_gone']);
+    expect(await accessFor(buyer, true)).toEqual({ active: false });
   });
   it('does not select a customer when an email lookup is ambiguous', async () => {
     await createSession({ sub: 'clerk_test', provider: 'clerk', email: 'buyer@example.com', emailVerified: true });

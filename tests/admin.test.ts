@@ -571,8 +571,10 @@ describe('the people list and its counts', () => {
     fake.records.set(`rvm:whop-user:${hash('clerk:clerk_yearly')}`, 'user_yearly');
     const future = new Date(Date.now() + 20 * day).toISOString();
     const m = (user_id: string, plan_id: string) => ({ id: `mem_${user_id}`, account: { id: 'biz_test' }, plan_id, status: 'active', current_period_end: future, expires_at: null, manage_url: null, user_id, product_id: 'prod_test' });
-    fake.memberships = [m('user_payer', 'plan_monthly'), m('user_yearly', 'plan_yearly'), m('user_whop_only', 'plan_monthly')];
+    // Plain bought from their own account while signed in to Whop as gift@example.com: it shows on Plain's account only.
+    fake.memberships = [m('user_payer', 'plan_monthly'), m('user_yearly', 'plan_yearly'), m('user_whop_only', 'plan_monthly'), { ...m('user_shared', 'plan_monthly'), metadata: { rvm_user: hash('clerk:clerk_plain') } }];
     fake.members = [
+      { account_id: 'biz_test', email: 'gift@example.com', user: { id: 'user_shared' } },
       { account_id: 'biz_test', email: 'Payer@example.com', user: { id: 'user_payer' } },
       { account_id: 'biz_test', email: 'yearly-other@example.com', user: { id: 'user_yearly' } },
       { account_id: 'biz_test', email: 'whop-only@example.com', user: { id: 'user_whop_only' } },
@@ -588,9 +590,9 @@ describe('the people list and its counts', () => {
       accounts: 6,
       clerkAccounts: 5,
       openedApp: 3,
-      paying: 3,
+      paying: 4,
       payingWithoutAccount: 1,
-      plans: { monthly: 2, yearly: 1, lifetime: 0 },
+      plans: { monthly: 3, yearly: 1, lifetime: 0 },
       free: 2,
       freeWaiting: 1,
       admins: 1,
@@ -603,7 +605,7 @@ describe('the people list and its counts', () => {
     expect(by['payer@example.com']).toMatchObject({ access: 'paid', plan: 'monthly', paidUntil: future });
     expect(by['yearly@example.com']).toMatchObject({ access: 'paid', plan: 'yearly' });
     expect(by['gift@example.com']).toMatchObject({ access: 'free', grant: { until: null, active: true } });
-    expect(by['plain@example.com']).toMatchObject({ access: 'none', studyDays: 2, lastStudied: new Date().toISOString().slice(0, 10) });
+    expect(by['plain@example.com']).toMatchObject({ access: 'paid', plan: 'monthly', studyDays: 2, lastStudied: new Date().toISOString().slice(0, 10) });
     expect(by['old@example.com']).toMatchObject({ account: 'whop', access: 'none' });
     expect(by['waiting@example.com']).toMatchObject({ account: null, access: 'free' });
     expect(by['ended@example.com']).toMatchObject({ account: null, access: 'none', grant: { active: false } });
