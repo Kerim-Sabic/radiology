@@ -31,6 +31,8 @@ export function AdminRegional() {
       const r = await fetch('/api/admin/regional', { cache: 'no-store' });
       const body = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(body.error || `Could not load regional prices (HTTP ${r.status}).`);
+      // Never let an unexpected answer take the admin page down.
+      if (!Array.isArray(body.plans) || !Array.isArray(body.payments) || !Array.isArray(body.prices) || !body.countries) throw new Error('Could not read the regional prices.');
       setStatus(body);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Could not reach the server.');
