@@ -3949,3 +3949,10 @@ kbd {
 .settings-packs[open] > summary {
   margin-bottom: 4px;
 }
+
+/* The learner's point marks: Cornerstone draws them as plain circles with no dash option, so the dash comes from
+   here. Only the learner's magenta (and its lighter selected tint) is matched; expert outlines are drawn elsewhere. */
+.svg-layer circle[stroke='rgb(255, 79, 216)'],
+.svg-layer circle[stroke='rgb(255, 160, 234)'] {
+  stroke-dasharray: 4 3;
+}

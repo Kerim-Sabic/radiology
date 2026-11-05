@@ -187,7 +187,7 @@ export class ViewerEngine {
           g.addTool(n, { getTextLines: () => [] });
         } else if (n === TOOL.Probe) {
           // A point marks a finding: no coordinates or pixel value printed beside it.
-          g.addTool(n, { getTextLines: () => undefined, handleRadius: 7 });
+          g.addTool(n, { getTextLines: () => undefined, handleRadius: 9 });
         } else if (n === TOOL.Magnify) {
           // A loupe for radiographs, mammograms and ultrasound: 3× under the cursor while the button is held.
           g.addTool(n, { magnifySize: 3, magnifyWidth: 260, magnifyHeight: 260 });
