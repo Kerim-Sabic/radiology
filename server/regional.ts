@@ -7,15 +7,15 @@ import { db } from './store.js';
  *
  * 1. The server picks the plan from Vercel's IP country; the browser never names a plan, and a promo code always goes
  *    with the standard price.
- * 2. Whop payment rules (Whop → Settings → Payment rules) charge a regional price only to a card issued in that region:
- *    a "block" rule for each regional amount, and an "allow" rule (allow wins in Whop) for the same amount when the
- *    card's country is on the list. A VPN changes the IP, not the card; PayPal, crypto and banks have no card country,
- *    so nothing allows them, and the plans take cards only anyway.
- * 3. A regional membership gives access only when Whop recorded one of those allow rules on its first payment. So a
- *    payment that got past a missing or changed rule still opens nothing, and the admin page lists it for a refund.
+ * 2. Whop payment rules (Whop → Settings → Payment rules) decline a regional price on a card issued anywhere else: one
+ *    rule per regional amount, "RVM regional block $9.99 unless B card" = amount is 9.99 and card country is not one
+ *    of the tier's countries → block. A VPN changes the IP, not the card. (Tested 2026-11-05 with real cards: a Bosnian
+ *    card went through, a card Whop reads as foreign was declined. Separate "allow" rules on top of a price-only block
+ *    never matched, so the rules are written this way.)
+ * 3. The plans take cards, Apple Pay and Google Pay only, so every payment has a card country for the rule to read.
  *
- * Regional prices stay off until an admin turns them on, which needs every plan set up right and one real payment the
- * allow rule approved (proof that the rules work).
+ * Regional prices stay off until an admin turns them on, which needs every plan set up right and one real regional
+ * payment that went through (proof that the rules let the region's cards pay).
  */
 
 /** Countries where a regional price applies (ISO 3166-1 alpha-2, as Vercel and Whop report them). */
@@ -43,10 +43,9 @@ export function countryName(code: string): string {
   }
 }
 
-/** The allow rules in Whop are named starting with this; the server recognises them by it on each payment. */
-export const ALLOW_RULE_PREFIX = 'RVM regional allow';
+/** The regional rules in Whop are named starting with this. */
+export const RULE_PREFIX = 'RVM regional block';
 const LIVE_KEY = 'rvm:regional:live';
-const guardedKey = (membershipId: string) => `rvm:regional:guarded:${membershipId}`;
 
 export async function regionalLive(): Promise<boolean> {
   return (await db().get(LIVE_KEY)) === true;
@@ -103,26 +102,11 @@ export function regionalPlanProblems(plan: Whop.Variant, want: RegionalPlan): st
 }
 
 type RuleMatches = { payment_rule_matches?: Array<{ action: string; name: string | null }> | null };
-/** Whether one of the regional allow rules approved this payment (the card was issued in the region). */
-export const guardMatched = (payment: RuleMatches) =>
-  (payment.payment_rule_matches ?? []).some((m) => m.action === 'allow' && (m.name ?? '').startsWith(ALLOW_RULE_PREFIX));
-const ruleBlocked = (payment: RuleMatches) => (payment.payment_rule_matches ?? []).some((m) => m.action === 'block');
+/** Whether a payment rule declined this payment (for a regional price: the card was not from the region). */
+export const ruleBlocked = (payment: RuleMatches) => (payment.payment_rule_matches ?? []).some((m) => m.action === 'block');
 
 async function withRuleMatches(client: WhopClient, payment: Whop.Payment) {
   return Array.isArray(payment.payment_rule_matches) ? payment : await client.payments.retrieve({ id: payment.id });
-}
-
-/** Whether a regional membership's first payment was approved by an allow rule. Remembered once it was. */
-export async function regionalMembershipGuarded(client: WhopClient, membershipId: string): Promise<boolean> {
-  if ((await db().get(guardedKey(membershipId))) === true) return true;
-  const list = await client.payments.list({
-    account_id: required('WHOP_ACCOUNT_ID'), membership_id: membershipId, status: 'paid', order: 'created_at', direction: 'asc', first: 1,
-  });
-  const first = list.data[0];
-  if (!first) return false;
-  const ok = guardMatched(await withRuleMatches(client, first));
-  if (ok) await db().set(guardedKey(membershipId), true);
-  return ok;
 }
 
 /** A payment amount as a number: list items carry a number, full payments a Money object ({ amount: "9.99" }). */
@@ -141,8 +125,7 @@ export interface RegionalPaymentRow {
   status: string | null;
   amount: number | null;
   createdAt: string;
-  /** An allow rule approved it (true), it was not approved (false), or its rules could not be read (null). */
-  approved: boolean | null;
+  /** The card rule declined it (the card was not from the region). */
   blocked: boolean;
 }
 
@@ -163,13 +146,13 @@ export async function regionalStatus(client: WhopClient) {
       const full = await withRuleMatches(client, item).catch(() => null);
       payments.push({
         id: item.id, plan: planLabel(p), status: item.status ?? null, amount: dollars(item.usd_total) ?? dollars(item.total), createdAt: item.created_at,
-        approved: full ? guardMatched(full) : null, blocked: full ? ruleBlocked(full) : false,
+        blocked: full ? ruleBlocked(full) : false,
       });
     }
   }
   payments.sort((a, b) => Date.parse(b.createdAt) - Date.parse(a.createdAt));
   const ready = plans.every((p) => !p.problems.length);
-  const verified = payments.some((p) => p.status === 'paid' && p.approved === true);
+  const verified = payments.some((p) => p.status === 'paid' && !p.blocked);
   return {
     ok: true as const,
     live,
@@ -177,9 +160,7 @@ export async function regionalStatus(client: WhopClient) {
     verified,
     plans,
     payments: payments.slice(0, 20),
-    /** Paid regional payments no allow rule approved: they opened nothing and should be refunded in Whop. */
-    unapproved: payments.filter((p) => p.status === 'paid' && p.approved === false).length,
-    rulePrefix: ALLOW_RULE_PREFIX,
+    rulePrefix: RULE_PREFIX,
     countries: REGION_COUNTRIES,
     prices: allRegionalPlans().map((p) => ({ label: planLabel(p), region: p.region, price: p.price, link: `https://whop.com/checkout/${p.id}` })),
   };
@@ -193,7 +174,7 @@ export async function setRegionalLive(client: WhopClient, live: boolean): Promis
   }
   const status = await regionalStatus(client);
   if (!status.ready) return { ok: false, error: 'A regional plan in Whop is not set up right yet. Fix what the list says first.' };
-  if (!status.verified) return { ok: false, error: 'No payment has been approved by a regional allow rule yet. Make one test payment with a card from the region first.' };
+  if (!status.verified) return { ok: false, error: 'No regional payment has gone through yet. Make one test payment with a card from the region first.' };
   await db().set(LIVE_KEY, true);
   return { ok: true, live: true };
 }

@@ -1,6 +1,6 @@
 import { WhopClient, type Whop } from '@whop/sdk';
 import { appOrigin, plans, readiness, regionalPlan, regionalPlans, required, membershipPlans, type AccessTier, type Tier } from './config.js';
-import { regionalMembershipGuarded, regionalOffer, regionalPlanProblems } from './regional.js';
+import { regionalOffer, regionalPlanProblems } from './regional.js';
 import { db } from './store.js';
 import { hash, isAdmin, random } from './auth.js';
 import { merchantToken } from './oauth.js';
@@ -138,12 +138,6 @@ async function paidAccess(userId: string, fresh: boolean): Promise<Access> {
       status: 'paid', order: 'created_at', direction: 'desc', first: 1 });
     const payment = payments.data[0];
     if (!payment || !paymentGrantsAccess(payment)) continue;
-    // A regional price opens access only if Whop's regional allow rule approved the card (server/regional.ts). One
-    // that was not approved stays "needs attention" (no second purchase) and is listed on the admin page for a refund.
-    if (regionalPlan(m.plan_id) && !(await regionalMembershipGuarded(client, m.id))) {
-      if (!result.active) result = { active: false, pendingMembership: true, manageUrl: safeWhopUrl(m.manage_url) };
-      continue;
-    }
     if (result.tier !== 'lifetime') result = access;
   }
   await db().set(`rvm:access:${userId}`, result, { ex: 30 });

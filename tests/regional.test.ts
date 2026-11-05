@@ -40,7 +40,7 @@ function standardPlan(id: string) {
 }
 
 import { regionalPlans, type RegionalPlan } from '../server/config';
-import { guardMatched, regionalOffer, regionalPlanProblems, regionOf, regionalStatus, setRegionalLive } from '../server/regional';
+import { ruleBlocked, regionalOffer, regionalPlanProblems, regionOf, regionalStatus, setRegionalLive } from '../server/regional';
 import { accessFor, checkout, membershipAccess, whop } from '../server/billing';
 import { handle } from '../server/handler';
 import { hash } from '../server/auth';
@@ -56,7 +56,10 @@ function whopPlan(p: RegionalPlan, changes: Record<string, unknown> = {}) {
     ...changes,
   } as unknown as Whop.Variant;
 }
-const approved = (id: string, changes = {}) => ({ id, status: 'paid', substatus: 'succeeded', created_at: new Date().toISOString(), usd_total: 9.99, payment_rule_matches: [{ id: 'prule_1', action: 'allow', name: 'RVM regional allow B monthly' }, { id: 'prule_2', action: 'block', name: 'RVM regional block $9.99' }], ...changes });
+/** A regional payment that went through (no rule declined it). */
+const approved = (id: string, changes = {}) => ({ id, status: 'paid', substatus: 'succeeded', created_at: new Date().toISOString(), usd_total: 9.99, payment_rule_matches: [], ...changes });
+/** One the card rule declined. */
+const declined = (id: string) => ({ id, status: 'open', substatus: 'failed', created_at: new Date().toISOString(), usd_total: 9.99, payment_rule_matches: [{ id: 'prule_9', action: 'block', name: 'RVM regional block $9.99 unless B card' }] });
 const goLive = () => fake.records.set('rvm:regional:live', true);
 
 beforeEach(() => {
@@ -103,12 +106,10 @@ describe('checking a regional plan in Whop', () => {
 });
 
 describe('the card rule on a payment', () => {
-  it('counts only an allow rule with the regional name', () => {
-    expect(guardMatched(approved('pay_1'))).toBe(true);
-    expect(guardMatched({ payment_rule_matches: [{ action: 'block', name: 'RVM regional block $9.99' }] })).toBe(false);
-    expect(guardMatched({ payment_rule_matches: [{ action: 'allow', name: 'Allow my friends' }] })).toBe(false);
-    expect(guardMatched({ payment_rule_matches: [] })).toBe(false);
-    expect(guardMatched({})).toBe(false);
+  it('knows a payment the rule declined', () => {
+    expect(ruleBlocked(declined('pay_1'))).toBe(true);
+    expect(ruleBlocked(approved('pay_2'))).toBe(false);
+    expect(ruleBlocked({})).toBe(false);
   });
 });
 
@@ -145,15 +146,10 @@ describe('access from a regional payment', () => {
   beforeEach(() => {
     fake.records.set('rvm:whop-user:buyer', 'user_whop');
   });
-  it('opens access when the card rule approved the first payment', async () => {
+  it('opens access for a paid regional membership', async () => {
     fake.memberships = [membership(B.monthly)];
     fake.byMembership.set('mem_r', [approved('pay_1')]);
     expect(await accessFor('buyer', true)).toMatchObject({ active: true, tier: 'monthly' });
-  });
-  it('opens nothing when no allow rule approved it, and blocks buying again', async () => {
-    fake.memberships = [membership(B.monthly)];
-    fake.byMembership.set('mem_r', [approved('pay_1', { payment_rule_matches: [] })]);
-    expect(await accessFor('buyer', true)).toEqual({ active: false, pendingMembership: true, manageUrl: 'https://whop.com/billing' });
   });
   it('gives a pass access until it ends, and nothing after', () => {
     expect(membershipAccess(membership(C.monthly, { current_period_end: null, expires_at: future(10) }))).toMatchObject({ active: true, tier: 'monthly' });
@@ -180,11 +176,16 @@ describe('the admin switch', () => {
     expect(await setRegionalLive(client, false)).toEqual({ ok: true, live: false });
     expect(await regionalOffer('BA')).toBeNull();
   });
-  it('lists paid regional payments no rule approved, for a refund', async () => {
-    fake.byPlan.set(B.yearly.id, [approved('pay_bad', { payment_rule_matches: [], usd_total: { amount: '74.99', currency: 'usd' } })]);
-    const status = await regionalStatus(await whop());
-    expect(status).toMatchObject({ ready: true, verified: false, unapproved: 1 });
-    expect(status.payments[0]).toMatchObject({ id: 'pay_bad', amount: 74.99, approved: false });
+  it('does not count a declined attempt as proof, and lists it as declined', async () => {
+    fake.byPlan.set(B.monthly.id, [declined('pay_declined')]);
+    fake.byPlan.set(B.yearly.id, [approved('pay_ok', { usd_total: { amount: '74.99', currency: 'usd' } })]);
+    const client = await whop();
+    const status = await regionalStatus(client);
+    expect(status).toMatchObject({ ready: true, verified: true });
+    expect(status.payments.find((p) => p.id === 'pay_declined')).toMatchObject({ blocked: true });
+    expect(status.payments.find((p) => p.id === 'pay_ok')).toMatchObject({ amount: 74.99, blocked: false });
+    fake.byPlan.delete(B.yearly.id);
+    expect(await setRegionalLive(client, true)).toMatchObject({ ok: false, error: expect.stringContaining('test payment') });
   });
 });
 

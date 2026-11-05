@@ -6,8 +6,7 @@ interface RegionalStatus {
   ready: boolean;
   verified: boolean;
   plans: Array<{ id: string; label: string; region: 'b' | 'c'; problems: string[] }>;
-  payments: Array<{ id: string; plan: string; status: string | null; amount: number | null; createdAt: string; approved: boolean | null; blocked: boolean }>;
-  unapproved: number;
+  payments: Array<{ id: string; plan: string; status: string | null; amount: number | null; createdAt: string; blocked: boolean }>;
   rulePrefix: string;
   countries: Record<'b' | 'c', string[]>;
   prices: Array<{ label: string; region: 'b' | 'c'; price: number; link: string }>;
@@ -53,14 +52,14 @@ export function AdminRegional() {
       setBusy(false);
     }
   }
-  const blocker = !status ? '' : !status.ready ? 'A plan in Whop needs fixing first (see the list).' : !status.verified ? 'Waiting for one test payment that a regional allow rule approved.' : '';
+  const blocker = !status ? '' : !status.ready ? 'A plan in Whop needs fixing first (see the list).' : !status.verified ? 'Waiting for one test payment from a card of the region that went through.' : '';
   return (
     <div className="notice stack" style={{ gap: 8 }}>
       <b>
         Regional prices · {status ? (status.live ? 'on' : 'off') : '…'}
       </b>
       <span className="muted">
-        Lower prices for cards issued in the countries below. The visitor's country picks the price; Whop's payment rules decline any card from elsewhere, and a regional payment opens nothing unless a rule named “{status?.rulePrefix ?? 'RVM regional allow'}…” approved it.
+        Lower prices for cards issued in the countries below. The visitor's country picks the price, and Whop's payment rules (“{status?.rulePrefix ?? 'RVM regional block'}… unless … card”) decline a regional price on a card from anywhere else.
       </span>
       {error ? <span className="notice bad">{error}</span> : null}
       {status ? (
@@ -73,11 +72,6 @@ export function AdminRegional() {
               </span>
             ))}
           </span>
-          {status.unapproved ? (
-            <span className="notice bad">
-              {status.unapproved} paid regional {status.unapproved === 1 ? 'payment was' : 'payments were'} not approved by a card rule. {status.unapproved === 1 ? 'It' : 'They'} opened nothing; refund {status.unapproved === 1 ? 'it' : 'them'} in Whop.
-            </span>
-          ) : null}
           <span>
             {status.payments.length ? (
               <>
@@ -85,7 +79,7 @@ export function AdminRegional() {
                 <span className="stack" style={{ gap: 2, marginTop: 4 }}>
                   {status.payments.slice(0, 8).map((p) => (
                     <span key={p.id} className="muted">
-                      {when(p.createdAt)} · {p.plan} · {p.amount !== null ? `$${p.amount}` : '—'} · {p.status ?? 'unknown'} · {p.approved ? 'approved by the card rule' : p.blocked ? 'declined by the card rule' : p.approved === false ? 'not approved' : 'rules unknown'}
+                      {when(p.createdAt)} · {p.plan} · {p.amount !== null ? `$${p.amount}` : '—'} · {p.blocked ? 'declined by the card rule (card from elsewhere)' : p.status === 'paid' ? 'paid with a card from the region' : p.status ?? 'unknown'}
                     </span>
                   ))}
                 </span>
@@ -115,7 +109,7 @@ export function AdminRegional() {
                 <b>Countries.</b> B (about half price): {status.countries.b.join(', ')}. C (one-time passes): {status.countries.c.join(', ')}.
               </span>
               <span>
-                <b>Test.</b> Pay one regional price with a card from that region using its Whop link, check it shows “approved by the card rule” here, then refund it in Whop:
+                <b>Test.</b> Pay one regional price with a card from that region using its Whop link, check it shows “paid with a card from the region” here, then refund it in Whop:
               </span>
               <span className="stack" style={{ gap: 2 }}>
                 {status.prices.map((p) => (
