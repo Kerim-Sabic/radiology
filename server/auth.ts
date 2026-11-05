@@ -69,7 +69,11 @@ export async function createSession(profile: { sub: string; email: string; email
   if (provider === 'whop') tx.set(`rvm:whop-user:${user.userId}`, profile.sub);
   tx.set(`rvm:identity:${user.userId}`, { email: profile.email, emailVerified: true, provider });
   await tx.exec();
-  await markJoined(user.userId);
+  // The very first sign-in of an account: the welcome email (server/welcome.ts), sent in the background. Loaded on
+  // demand, so a sign-in never waits for it and never fails because of it.
+  if ((await markJoined(user.userId)) && process.env.WELCOME_EMAIL !== 'off' && process.env.RESEND_API_KEY && process.env.EMAIL_FROM) {
+    await import('./welcome.js').then((m) => m.welcomeNewAccount(user)).catch(() => undefined);
+  }
   return cookie(SESSION_COOKIE, token, SESSION_SECONDS);
 }
 export async function beginSignIn() {

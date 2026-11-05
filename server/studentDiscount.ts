@@ -3,6 +3,7 @@ import { academicEmail, STUDENT_PERCENT, STUDENT_PRICES } from '../shared/studen
 import { hash, random } from './auth.js';
 import { plans, required, type Tier } from './config.js';
 import { db } from './store.js';
+import { ownWelcomeCode, WELCOME_PREFIX } from './welcomeCode.js';
 
 const PREFIX = 'rvmstudent';
 const OFFER_SECONDS = 24 * 60 * 60;
@@ -75,6 +76,12 @@ export async function checkoutDiscount(client: WhopClient, userId: string, tier:
   const promo = requestedCode?.trim().toLowerCase();
   // Generated offers are issued by this server, never accepted as a transferable app promo entry.
   if (promo?.startsWith(PREFIX)) throw new StudentDiscountError('Student offers are applied automatically after verifying an eligible university email. Remove this code and try again.');
+  // A welcome code works only for the account it was made for, and the buyer who brings their own keeps it (40% off
+  // the first payment), even when a student price would also apply: the checkout says which one is used.
+  if (promo?.startsWith(WELCOME_PREFIX)) {
+    if (!(await ownWelcomeCode(userId, promo))) throw new StudentDiscountError('This welcome code belongs to another account. Remove it to continue.');
+    return { promoCode: promo, studentDiscount: false, welcome: true };
+  }
   if (!await studentEligible(userId)) return { ...(promo ? { promoCode: promo } : {}) };
   if (promo) {
     const codes = await client.promoCodes.list({ account_id: required('WHOP_ACCOUNT_ID'), plan_ids: [planId], status: 'active', first: 100 });

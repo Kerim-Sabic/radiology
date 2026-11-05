@@ -21,6 +21,8 @@ import { changePromo, createPromo, listPromos, PromoAccessError } from './promos
 import { addStudents, changeJoinLink, classesOf, classRoster, invitation, joinClass, leaveClass, professorFor, removeStudent, setTeacherName } from './classes.js';
 import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
 import { studentEligible, StudentDiscountError } from './studentDiscount.js';
+import { welcomeCron } from './welcome.js';
+import { welcomeOffer } from './welcomeCode.js';
 import { beginMerchantConnect, finishMerchantConnect, MERCHANT_COOKIE, merchantConnectPage } from './merchantConnect.js';
 
 export function json(value: unknown, status = 200) {
@@ -61,7 +63,7 @@ export async function handle(request: Request): Promise<Response> {
     }
     if (path.startsWith('/api/cron/') && request.method === 'GET') {
       if (!cronAuthorized(request)) return json({ error: 'Not allowed' }, 401);
-      if (path === '/api/cron/daily') return json({ ...await dailyCron(), certificates:await sendCertificateEmails() });
+      if (path === '/api/cron/daily') return json({ ...await dailyCron(), certificates:await sendCertificateEmails(), welcome: await welcomeCron().catch(() => ({ error: true })) });
       if (path === '/api/cron/weekly') return json(await weeklyCron());
       return json({ error: 'Not found' }, 404);
     }
@@ -176,7 +178,9 @@ export async function handle(request: Request): Promise<Response> {
       // A professor sees "My class"; a student sees who can follow their progress, and can leave.
       // Never fails the session: without this information the app works as before.
       const [teaches, classes] = await Promise.all([professorFor(user.userId).then((r) => !!r, () => false), classesOf(user.email).catch(() => [])]);
-      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book, studentDiscountEligible: await studentEligible(user.userId), ...(adminPermissions ? { adminPermissions } : {}), ...(teaches ? { teaches } : {}), ...(classes.length ? { classes } : {}) });
+      // A free account's personal welcome code while it still works: the plans screen fills it in and counts down.
+      const welcome = access.active ? null : await welcomeOffer(user.userId).catch(() => null);
+      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book, studentDiscountEligible: await studentEligible(user.userId), ...(welcome ? { welcomeOffer: welcome } : {}), ...(adminPermissions ? { adminPermissions } : {}), ...(teaches ? { teaches } : {}), ...(classes.length ? { classes } : {}) });
     }
     if (path === '/api/access' && request.method === 'GET') {
       const access = await accessFor(user.userId);

@@ -3,6 +3,7 @@ const fake = vi.hoisted(() => ({ session: vi.fn(), access: vi.fn(), head: vi.fn(
 vi.mock('../server/auth', async original => ({ ...await original<typeof import('../server/auth')>(), session: fake.session }));
 vi.mock('../server/billing', () => ({ accessFor: fake.access, checkout: vi.fn() }));
 vi.mock('../server/studentDiscount', async original => ({ ...await original<typeof import('../server/studentDiscount')>(), studentEligible: async () => false }));
+vi.mock('../server/welcomeCode', async original => ({ ...await original<typeof import('../server/welcomeCode')>(), welcomeOffer: async () => null }));
 vi.mock('../server/classes', async original => ({ ...await original<typeof import('../server/classes')>(), professorFor: async () => null, classesOf: async () => [] }));
 vi.mock('@vercel/blob', () => ({ head: fake.head, get: fake.get }));
 import { handle } from '../server/handler';

@@ -5,6 +5,8 @@ import { useApp } from '../app/AppContext';
 import { caseOfWeek, FREE_CASES } from '../content/weekly';
 import { LANDING_FACTS } from '../auth/landingFacts';
 import { modalityName, useTeaser, type TeaserCase } from '../services/teaser';
+import { useAccount } from '../auth/AccountGate';
+import { useOfferTimeLeft } from '../auth/welcomeOffer';
 import '../styles/upgrade.css';
 
 const readUrl = (caseId: string, taskId: string, mode = 'learn') => `/read/${caseId}?task=${encodeURIComponent(taskId)}&mode=${mode}`;
@@ -12,7 +14,22 @@ const readUrl = (caseId: string, taskId: string, mode = 'learn') => `/read/${cas
 /** A slim line under the top bar for free accounts: what they have, and the way to everything else. */
 export function FreeBanner() {
   const { free, openPlans } = useApp();
+  // A new account's personal welcome code, while it still works: the bar counts it down instead.
+  const offer = useAccount()?.account.welcomeOffer;
+  const left = useOfferTimeLeft(offer);
   if (!free) return null;
+  if (offer && left)
+    return (
+      <div className="free-banner has-gift" role="note">
+        <span className="free-pill">Welcome gift</span>
+        <span className="free-banner-text">
+          {left} left on your {offer.percent}% off.<span className="long"> Your personal code takes it off your first payment and is filled in when you open the plans.</span>
+        </span>
+        <button className="free-banner-cta" onClick={openPlans}>
+          Claim {offer.percent}% off <ArrowRight size={14} />
+        </button>
+      </div>
+    );
   return (
     <div className="free-banner" role="note">
       <span className="free-pill">Free account</span>

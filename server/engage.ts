@@ -119,8 +119,13 @@ export async function emailPrefs(user: Session, body?: unknown) {
 }
 
 // ---------------------------------------------------------------- unsubscribe links
-type MailKind = 'streak' | 'weekly';
+/** `offers`: the welcome offer and its one reminder (server/welcome.ts); stopping them needs no study profile. */
+type MailKind = 'streak' | 'weekly' | 'offers';
 const secret = () => process.env.EMAIL_SECRET || process.env.CRON_SECRET || '';
+const offersKey = (userId: string) => `rvm:no-offers:${userId}`;
+export async function offersStopped(userId: string): Promise<boolean> {
+  return !!(await db().get(offersKey(userId)));
+}
 export function unsubscribeToken(userId: string, kind: MailKind): string {
   return createHmac('sha256', secret()).update(`unsubscribe:${userId}:${kind}`).digest('base64url');
 }
@@ -133,7 +138,11 @@ export async function unsubscribe(url: URL): Promise<boolean> {
   const userId = url.searchParams.get('u') ?? '';
   const kind = url.searchParams.get('k');
   const token = url.searchParams.get('t') ?? '';
-  if (!secret() || !/^[a-f0-9]{64}$/.test(userId) || (kind !== 'streak' && kind !== 'weekly') || !equal(token, unsubscribeToken(userId, kind))) return false;
+  if (!secret() || !/^[a-f0-9]{64}$/.test(userId) || (kind !== 'streak' && kind !== 'weekly' && kind !== 'offers') || !equal(token, unsubscribeToken(userId, kind))) return false;
+  if (kind === 'offers') {
+    await db().set(offersKey(userId), true);
+    return true;
+  }
   const p = await db().get<Profile>(profileKey(userId));
   if (!p) return true;
   const prefs = { ...p.prefs, [kind]: false };

@@ -185,3 +185,59 @@
     display: none;
   }
 }
+
+/* ---------------------------------------------------------------- the welcome gift (a new account's personal code) */
+.welcome-offer {
+  display: grid;
+  gap: 6px;
+  margin: 6px 0 12px;
+  padding: 16px 18px;
+  border: 1.5px dashed #4f83f7;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(37, 99, 235, 0.16), rgba(37, 99, 235, 0.05));
+  color: #dbe6ff;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.welcome-offer strong {
+  font-size: 19px;
+  line-height: 1.25;
+  color: #fff;
+}
+.welcome-offer-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8fb2ff;
+}
+.welcome-offer-code {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #b9f0cf;
+}
+.welcome-offer code {
+  padding: 2px 7px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.welcome-offer .text-button {
+  justify-self: start;
+  font-weight: 600;
+}
+.membership-panel .student-offer.welcome-applied {
+  border-color: #3d5fae;
+  background: #121c33;
+  color: #dbe6ff;
+}
+.membership-panel .student-offer.welcome-applied span {
+  color: #b8c8ec;
+}
+.free-banner.has-gift .free-pill {
+  background: #2563eb;
+  color: #fff;
+}

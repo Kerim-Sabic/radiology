@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { plans, required, type Tier } from './config.js';
 import { hash } from './auth.js';
 import { whop } from './billing.js';
+import { WELCOME_PREFIX } from './welcomeCode.js';
 
 /**
  * Promo codes for the admin page, created and kept in Whop (Whop applies them at checkout and counts their uses).
@@ -61,8 +62,11 @@ export async function listPromos() {
   const [all, monthly, yearly] = await call(() => Promise.all([codesFor(client), codesFor(client, required(plans.monthly.env)), codesFor(client, required(plans.yearly.env))]));
   const on = { monthly: new Set(monthly.map((c) => c.id)), yearly: new Set(yearly.map((c) => c.id)) };
   const studentOffers = all.filter((c) => c.code?.toLowerCase().startsWith(STUDENT_PREFIX));
+  // Personal welcome codes (one per new account, server/welcome.ts) are counted like the student offers, not listed.
+  const welcomeOffers = all.filter((c) => c.code?.toLowerCase().startsWith(WELCOME_PREFIX));
+  const made = (c: Whop.PromoCodeListItem) => c.code?.toLowerCase().startsWith(STUDENT_PREFIX) || c.code?.toLowerCase().startsWith(WELCOME_PREFIX);
   const promos: Promo[] = all
-    .filter((c) => !c.code?.toLowerCase().startsWith(STUDENT_PREFIX) && c.status !== 'archived')
+    .filter((c) => !made(c) && c.status !== 'archived')
     .map((c) => ({
       id: c.id,
       code: c.code ?? '',
@@ -82,7 +86,11 @@ export async function listPromos() {
       createdAt: c.created_at,
     }))
     .sort((a, b) => b.createdAt.localeCompare(a.createdAt));
-  return { promos, studentOffers: { issued: studentOffers.length, used: studentOffers.filter((c) => c.uses > 0).length } };
+  return {
+    promos,
+    studentOffers: { issued: studentOffers.length, used: studentOffers.filter((c) => c.uses > 0).length },
+    welcomeOffers: { issued: welcomeOffers.length, used: welcomeOffers.filter((c) => c.uses > 0).length },
+  };
 }
 
 const CreateBody = z
@@ -110,6 +118,7 @@ export async function createPromo(body: unknown) {
   const d = p.data;
   const code = d.code.toLowerCase();
   if (code.startsWith(STUDENT_PREFIX)) return { ok: false as const, error: 'Codes starting with “rvmstudent” are kept for student offers.' };
+  if (code.startsWith(WELCOME_PREFIX)) return { ok: false as const, error: 'Codes starting with “welcome-” are kept for the personal welcome offers.' };
   const cheapest = Math.min(...d.plans.map((t) => plans[t].price));
   if (d.type === 'percentage' ? d.amountOff > 100 || !Number.isInteger(d.amountOff) : d.amountOff > cheapest)
     return { ok: false as const, error: d.type === 'percentage' ? 'A percentage is a whole number from 1 to 100.' : `A dollar discount can be at most $${cheapest}, the price of the cheapest chosen plan.` };
@@ -155,7 +164,7 @@ export async function changePromo(body: unknown) {
   if (!p.success) return { ok: false as const, error: 'Expected a promo code and pause, resume or delete.' };
   const client = await whop();
   const found = await call(() => client.promoCodes.retrieve({ id: p.data.id }));
-  if (found.account.id !== required('WHOP_ACCOUNT_ID') || found.code?.toLowerCase().startsWith(STUDENT_PREFIX)) return { ok: false as const, error: 'That promo code was not found.' };
+  if (found.account.id !== required('WHOP_ACCOUNT_ID') || found.code?.toLowerCase().startsWith(STUDENT_PREFIX) || found.code?.toLowerCase().startsWith(WELCOME_PREFIX)) return { ok: false as const, error: 'That promo code was not found.' };
   const { id, action } = p.data;
   await call<unknown>(() => (action === 'pause' ? client.promoCodes.deactivate({ id }) : action === 'resume' ? client.promoCodes.activate({ id }) : client.promoCodes.delete({ id })));
   return { ok: true as const, action };

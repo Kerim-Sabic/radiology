@@ -102,7 +102,7 @@ beforeEach(() => {
   fake.promoCreated = [];
   fake.promoForbidden = false;
   vi.stubGlobal('fetch', vi.fn(async (_url: string, init: { body: string }) => (fake.mails.push(JSON.parse(init.body)), new Response('{}'))));
-  for (const [k, v] of Object.entries({ OWNER_EMAILS: 'kerim.sabic@gmail.com', ADMIN_EMAILS: 'kerim.sabic@gmail.com,vercel.admin@example.com', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_YEARLY_PLAN_ID: 'plan_yearly', CLERK_SECRET_KEY: 'sk_test', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test', RESEND_API_KEY: 're_test', EMAIL_FROM: 'radiology.monster <hello@radiology.monster>' })) vi.stubEnv(k, v);
+  for (const [k, v] of Object.entries({ OWNER_EMAILS: 'kerim.sabic@gmail.com', ADMIN_EMAILS: 'kerim.sabic@gmail.com,vercel.admin@example.com', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_YEARLY_PLAN_ID: 'plan_yearly', CLERK_SECRET_KEY: 'sk_test', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test', RESEND_API_KEY: 're_test', EMAIL_FROM: 'radiology.monster <hello@radiology.monster>', WELCOME_EMAIL: 'off' })) vi.stubEnv(k, v); // the new-account welcome email has its own tests (welcome.test.ts)
 });
 afterAll(() => {
   vi.unstubAllEnvs();

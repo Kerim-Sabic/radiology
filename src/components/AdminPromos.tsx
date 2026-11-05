@@ -23,6 +23,8 @@ interface Promo {
 interface Promos {
   promos: Promo[];
   studentOffers: { issued: number; used: number };
+  /** Personal welcome codes, one per new account (40% off the first payment for 72 hours). */
+  welcomeOffers?: { issued: number; used: number };
 }
 
 const PRICE = { monthly: 20, yearly: 150 } as const;
@@ -310,6 +312,11 @@ function PromoList({ data, onChange }: { data: Promos; onChange: () => void }) {
       {data.studentOffers.issued ? (
         <small className="faint">
           Student discounts: {data.studentOffers.issued} single-use offers issued at checkout, {data.studentOffers.used} used (made automatically, not listed).
+        </small>
+      ) : null}
+      {data.welcomeOffers?.issued ? (
+        <small className="faint">
+          Welcome offers: {data.welcomeOffers.issued} personal codes emailed to new accounts (40% off the first payment for 72 hours), {data.welcomeOffers.used} used (made automatically, not listed).
         </small>
       ) : null}
       {message ? (

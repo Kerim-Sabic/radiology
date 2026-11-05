@@ -12,6 +12,7 @@ import { InviteFriends } from './InviteFriends';
 import { currentReferral } from './referralAttribution';
 import { PlansScreen } from './PlansScreen';
 import { trackFunnel } from '../services/serverSync';
+import { useOfferTimeLeft, welcomePrice, type WelcomeOffer } from './welcomeOffer';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
 type Tier = 'monthly' | 'yearly';
@@ -30,7 +31,7 @@ function rememberPlan(tier: Tier | null) { try { if (tier) sessionStorage.setIte
 
 interface Access { active: boolean; role?: 'admin' | 'granted' | 'professor'; tier?: Tier | 'lifetime'; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
 /** `adminPermissions`: what an admin may see and do on the admin page; `teaches`: a professor; `classes`: the classes a student is in. */
-interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; book?: boolean; studentDiscountEligible?: boolean; adminPermissions?: string[]; teaches?: boolean; classes?: Array<{ email: string; name: string }>; }
+interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; book?: boolean; studentDiscountEligible?: boolean; adminPermissions?: string[]; teaches?: boolean; classes?: Array<{ email: string; name: string }>; welcomeOffer?: WelcomeOffer; }
 interface AccountState {
   account: Account;
   logout: () => void;
@@ -50,6 +51,20 @@ const AccountContext = createContext<AccountState | null>(null);
 /** The signed-in account, or null where there is none (local development without the gate). */
 export function useAccount(): AccountState | null {
   return useContext(AccountContext);
+}
+
+/** The welcome gift on the plans screen: what it takes off, how long it has left, and whether the code is filled in. */
+function WelcomeOfferNote({ offer, applied, onApply }: { offer: WelcomeOffer; applied: boolean; onApply: () => void }) {
+  const left = useOfferTimeLeft(offer);
+  if (!left) return null;
+  return (
+    <div className="welcome-offer" role="note">
+      <span className="welcome-offer-kicker">Your welcome gift · {left} left</span>
+      <strong>{offer.percent}% off your first payment</strong>
+      <span>Yearly {welcomePrice(150, offer.percent)} for your first year instead of $150 · Monthly {welcomePrice(20, offer.percent)} for your first month instead of $20. Renewals at the standard price.</span>
+      {applied ? <span className="welcome-offer-code"><Check size={15} /> Code <code>{offer.code.toUpperCase()}</code> is filled in. Choose a plan.</span> : <button type="button" className="text-button" onClick={onApply}>Use my code {offer.code.toUpperCase()}</button>}
+    </div>
+  );
 }
 
 /** A class invitation from a join link, for a visitor who is not signed in yet. */
@@ -178,11 +193,25 @@ function MembershipGate({ children }: { children: ReactNode }) {
     if (q.has('plans') || q.has('checkout')) { q.delete('plans'); q.delete('checkout'); history.replaceState(null, '', `${location.pathname}${q.size ? `?${q}` : ''}`); }
   }
   const [promoCode, setPromoCode] = useState(rememberedPromo);
-  const [payment, setPayment] = useState<{ id: string; returnUrl: string; tier: Tier; promoCode?: string; enteredPromoCode: string; studentDiscount?: boolean } | null>(null);
+  const [payment, setPayment] = useState<{ id: string; returnUrl: string; tier: Tier; promoCode?: string; enteredPromoCode: string; studentDiscount?: boolean; welcome?: boolean } | null>(null);
   function updatePromo(value: string) {
     setPromoCode(value);
     try { if (value) sessionStorage.setItem(promoKey, value); else sessionStorage.removeItem(promoKey); } catch { /* Optional storage. */ }
   }
+  // A new account's personal welcome code fills the promo field once per tab (removing it is respected after that).
+  const welcomeCode = account?.welcomeOffer?.code;
+  useEffect(() => {
+    if (!welcomeCode) return;
+    try {
+      if (sessionStorage.getItem('rvm:welcome-applied') === welcomeCode) return;
+      sessionStorage.setItem('rvm:welcome-applied', welcomeCode);
+    } catch { /* Optional storage. */ }
+    setPromoCode((current) => {
+      if (current.trim()) return current;
+      try { sessionStorage.setItem(promoKey, welcomeCode); } catch { /* Optional storage. */ }
+      return welcomeCode;
+    });
+  }, [welcomeCode]);
   const authWindow = useRef<Window | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const checkoutHeading = useRef<HTMLHeadingElement>(null);
@@ -294,7 +323,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       if (!mounted.current || current !== checkoutGeneration.current) return;
       if (!response.ok) throw new Error(data.error);
       if (!/^ch_[A-Za-z0-9]+$/.test(data.id)) throw new Error('Unable to open the payment form. Please try again.');
-      setPayment({ id: data.id, returnUrl: data.returnUrl, tier, promoCode: data.promoCode, enteredPromoCode, studentDiscount: data.studentDiscount });
+      setPayment({ id: data.id, returnUrl: data.returnUrl, tier, promoCode: data.promoCode, enteredPromoCode, studentDiscount: data.studentDiscount, welcome: data.welcome === true });
       setPlansOpen(true); // "Change plan" goes back to the plans, not to the app
       rememberPlan(null);
     } catch (e) { if (mounted.current && current === checkoutGeneration.current) setError(e instanceof Error ? e.message : 'Checkout is unavailable. Please try again.'); }
@@ -327,7 +356,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
         <p className="checkout-account">{account.user.email}</p>
         {payment.studentDiscount && <p className="student-offer" role="status"><strong>30% student discount applied</strong><span>{payment.tier === 'monthly' ? '$14 USD every 30 days' : '$105 USD every 365 days'}, including every renewal. {payment.enteredPromoCode ? 'Your student offer gives a better recurring price than that code.' : 'Your university email is verified.'}</span></p>}
-        {student && payment.studentDiscount === false && <p className="student-offer">Your promo gives an equal or better recurring discount. Discounts do not stack.</p>}
+        {payment.welcome && <p className="student-offer welcome-applied" role="status"><strong>Your welcome gift is applied: {account.welcomeOffer?.percent ?? 40}% off your first payment</strong><span>Renewals are at the standard price.{student ? ' Remove the code to use your 30% student price on every renewal instead.' : ''} Discounts do not stack.</span></p>}
+        {student && payment.studentDiscount === false && !payment.welcome && <p className="student-offer">Your promo gives an equal or better recurring discount. Discounts do not stack.</p>}
         <form className="promo-entry checkout-promo" onSubmit={event => { event.preventDefault(); if (!busy && checkoutCodeChanged) void buy(payment.tier); }}>
           <label htmlFor="checkout-promo">Promo code</label>
           <div className="checkout-promo-row"><input id="checkout-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} disabled={!!busy} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code" /><button type="submit" className="text-button" disabled={!!busy || !checkoutCodeChanged}>{busy ? 'Updating…' : payment.enteredPromoCode && !promoCode.trim() ? 'Remove code' : 'Apply code'}</button></div>
@@ -341,6 +371,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       <span className="membership-step">{account?.user ? 'Choose your plan' : 'Membership'}</span>
       <h2>{account?.user ? 'Unlock the whole library.' : 'The whole library, every tool.'}</h2>
       <p>{account?.user ? `Signed in as ${account.user.email}` : 'One membership for every patient, drill and on-call shift, with the book beside you.'}</p>
+      {account?.welcomeOffer && <WelcomeOfferNote offer={account.welcomeOffer} applied={promoCode.trim().toLowerCase() === account.welcomeOffer.code} onApply={() => updatePromo(account.welcomeOffer!.code)} />}
       <p className="student-offer"><strong>{student ? 'Your verified university email unlocks 30% off' : '30% off for eligible university email addresses'}</strong><span>{student ? 'Student prices include every renewal. A better recurring promo takes precedence; discounts do not stack.' : 'Verify an eligible email, including .edu, .edu.ba or .ac.uk, for $14 every 30 days or $105 every 365 days. The discount continues on every renewal.'}</span></p>
       {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
       <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>Choose a plan below. Your discount will appear in the secure payment form.</p></details>
