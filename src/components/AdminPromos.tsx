@@ -93,9 +93,97 @@ export function AdminPromos({ version }: { version: number }) {
       </div>
       {needsAccess ? <WhopAccessNotice /> : null}
       {error ? <div className="notice bad">{error}</div> : null}
+      {!needsAccess ? <WelcomeEarlier onDone={load} /> : null}
       {!needsAccess ? <CreatePromo onDone={load} onNeedsAccess={() => setNeedsAccess(true)} /> : null}
       {data ? <PromoList data={data} onChange={load} /> : !needsAccess && !error ? <p className="muted">Loading the promo codes…</p> : null}
     </section>
+  );
+}
+
+/**
+ * The welcome email with a personal 40% code goes to every new account by itself. Accounts made before it existed get
+ * it from here, once, after the count is shown: never to members, admins, professors or free access (the server checks
+ * each one with Whop again before sending), nor to anyone who stopped offer emails.
+ */
+function WelcomeEarlier({ onDone }: { onDone: () => void }) {
+  const [counts, setCounts] = useState<{ waiting: number; welcomed: number; stopped: number; members: number } | null>(null);
+  const [error, setError] = useState('');
+  const [sure, setSure] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [progress, setProgress] = useState<{ sent: number; skipped: number; failed: number } | null>(null);
+  const load = useCallback(async () => {
+    setError('');
+    try {
+      const r = await fetch('/api/admin/welcome', { cache: 'no-store' });
+      const body = await r.json().catch(() => ({}));
+      if (!r.ok) throw new Error(body.error || `Could not count the accounts (HTTP ${r.status}).`);
+      setCounts(body.counts);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Could not reach the server.');
+    }
+  }, []);
+  useEffect(() => void load(), [load]);
+  async function run() {
+    setBusy(true);
+    setError('');
+    const total = { sent: 0, skipped: 0, failed: 0 };
+    try {
+      // Batches of 15, until none are left (or a batch sends nothing new, so it never loops on a failure).
+      for (let round = 0; round < 40; round++) {
+        const r = await send('/api/admin/welcome/send', {});
+        total.sent += r.sent;
+        total.skipped += r.skipped;
+        total.failed += r.failed;
+        setProgress({ ...total });
+        if (!r.left || r.sent + r.skipped === 0) break;
+      }
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Sending stopped.');
+    } finally {
+      setBusy(false);
+      setSure(false);
+      void load();
+      onDone();
+    }
+  }
+  return (
+    <div className="notice stack" style={{ gap: 8 }}>
+      <b>Welcome offer · 40% off the first payment for 72 hours</b>
+      <span className="muted">Every new account gets the welcome email with its own code automatically. Accounts made before it existed can get it once, from here.</span>
+      {counts ? (
+        <span>
+          <b>{counts.waiting}</b> earlier account{counts.waiting === 1 ? '' : 's'} without a plan {counts.waiting === 1 ? 'has' : 'have'} not had it. Never sent to members, admins, professors or free access ({counts.members} now), nor to the {counts.stopped} who stopped offer emails. {counts.welcomed} already had it.
+        </span>
+      ) : !error ? (
+        <span className="muted">Counting the accounts…</span>
+      ) : null}
+      {progress ? (
+        <span role="status">
+          Sent {progress.sent}
+          {progress.skipped ? `, skipped ${progress.skipped} who have a plan now` : ''}
+          {progress.failed ? `, ${progress.failed} will be retried by the daily email run` : ''}.
+        </span>
+      ) : null}
+      {error ? <span className="notice bad">{error}</span> : null}
+      {counts && counts.waiting > 0 ? (
+        <span className="row wrap" style={{ gap: 8 }}>
+          {sure ? (
+            <>
+              <button className="btn primary" disabled={busy} onClick={() => void run()}>
+                {busy ? 'Sending…' : `Yes, email ${counts.waiting} ${counts.waiting === 1 ? 'person' : 'people'} now`}
+              </button>
+              <button className="btn" disabled={busy} onClick={() => setSure(false)}>
+                Cancel
+              </button>
+            </>
+          ) : (
+            <button className="btn" onClick={() => setSure(true)}>
+              Send it to these {counts.waiting}
+            </button>
+          )}
+        </span>
+      ) : null}
+    </div>
   );
 }
 

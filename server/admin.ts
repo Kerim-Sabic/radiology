@@ -39,6 +39,8 @@ export interface Person {
   plan?: AccessTier;
   paidUntil?: string | null;
   grant?: { until: string | null; note?: string; by: string; at: string; active: boolean };
+  /** Internal only (the welcome offer for earlier accounts, server/welcome.ts); removed before the list is sent. */
+  userId?: string;
 }
 
 const iso = (ms: number | null | undefined) => (ms ? new Date(ms).toISOString() : null);
@@ -92,13 +94,15 @@ export async function adminPeople(viewer: AdminAccess, now = Date.now()) {
     if (!payments && out.access === 'paid') out.access = 'member';
     if (!payments) delete out.plan, delete out.paidUntil;
     if (!viewer.owner) delete out.adminSource, delete out.permissions, delete out.professor;
+    delete out.userId;
     return out;
   });
   const counts = payments ? full.counts : { ...full.counts, paying: null, payingWithoutAccount: null, plans: null };
   return { counts, whop: payments ? full.whop : 'hidden', people };
 }
 
-async function everyone(now: number) {
+/** Every account with its access (also used inside the server, where `userId` stays on each person). */
+export async function everyone(now = Date.now()) {
   const [{ users, total }, appUsers, grants, roles, professors, whopPaid] = await Promise.all([clerkUsers(), db().smembers('rvm:users') as Promise<string[]>, allGrants(), allAdminRoles(), allProfessorRoles(), payingMembers()]);
   const professorBy = new Map(professors.map((r) => [mailboxKey(r.email), r]));
   const classSizes = new Map(await Promise.all(professors.map(async (r) => [mailboxKey(r.email), await classSize(r.email)] as const)));
@@ -153,6 +157,7 @@ async function everyone(now: number) {
     const days = r.profile?.days ?? [];
     const source = adminSource(email);
     people.push({
+      userId: id,
       email,
       name: a?.name || r.profile?.name || '',
       account: a ? 'clerk' : 'whop',

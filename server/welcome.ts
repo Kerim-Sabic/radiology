@@ -5,6 +5,7 @@ import { accessFor, whop } from './billing.js';
 import { studentEligible } from './studentDiscount.js';
 import { offersStopped, unsubscribeUrl } from './engage.js';
 import { mailFrom } from './mailbox.js';
+import { everyone } from './admin.js';
 import { WELCOME_HOURS, WELCOME_PERCENT, WELCOME_PREFIX, welcomeCodeKey, welcomeKey, type WelcomeRecord } from './welcomeCode.js';
 
 /**
@@ -89,7 +90,7 @@ const claimUrl = (code: string) => `${appOrigin()}/?plans&promo=${encodeURICompo
 const caseUrl = () => `${appOrigin()}/read/${FIRST_CASE}?task=${encodeURIComponent(`${FIRST_CASE}:locate`)}&mode=practice&utm_source=email&utm_campaign=welcome`;
 
 function footer(unsubscribe: string, when = 'just') {
-  return `You are getting this because you ${when} created an account at radiology.monster. <a href="${esc(unsubscribe)}" style="color:#86868b">Stop offer emails</a>.<br>Chest X-ray: NIH ChestX-ray14, NIH Clinical Center. For education only, not for clinical diagnosis.`;
+  return `You are getting this because you ${when ? `${when} ` : ''}created an account at radiology.monster. <a href="${esc(unsubscribe)}" style="color:#86868b">Stop offer emails</a>.<br>Chest X-ray: NIH ChestX-ray14, NIH Clinical Center. For education only, not for clinical diagnosis.`;
 }
 
 export function welcomeMail(userId: string, r: WelcomeRecord, opts: { student: boolean; replies: boolean }): WelcomeMail {
@@ -147,7 +148,7 @@ ${offer ? `<p style="margin:22px 0 0;padding-top:16px;border-top:1px solid #e5e5
     '',
     `Stop offer emails: ${unsubscribe}`,
   ];
-  return { to: r.email, subject, html: shell(preheader, body, footer(unsubscribe)), text: lines.join('\n'), unsubscribe };
+  return { to: r.email, subject, html: shell(preheader, body, footer(unsubscribe, r.earlier ? '' : 'just')), text: lines.join('\n'), unsubscribe };
 }
 
 export function reminderMail(userId: string, r: WelcomeRecord, now = Date.now()): WelcomeMail {
@@ -270,8 +271,15 @@ export async function sendWelcome(userId: string, now = Date.now()): Promise<'se
     if (!r.code && !r.noOffer) {
       // Members, admins, professors and class invitees with free access have what this email sells (and an admin-made
       // account already got its own welcome from server/admin.ts): no email for them.
-      const access = await accessFor(userId).catch(() => ({ active: false }));
-      if (access.active) {
+      // A fresh check with Whop (not the 30-second cache). A paying member, or one whose membership waits on a payment
+      // or a billing update, never gets the offer; when Whop cannot answer, nothing is sent now (the cron tries later).
+      let access: { active: boolean; pendingMembership?: boolean };
+      try {
+        access = await accessFor(userId, true);
+      } catch {
+        return 'later';
+      }
+      if (access.active || access.pendingMembership || (await db().get(`rvm:once:paid:${userId}`))) {
         await db().set(welcomeKey(userId), { ...r, noOffer: true, sentAt: 'skipped: has access' }, { ex: 30 * 86_400 });
         await db().srem(QUEUE, userId);
         return 'done';
@@ -343,4 +351,54 @@ export async function welcomeCron(now = Date.now()) {
     }
   }
   return { welcomed, reminded };
+}
+
+// ---------------------------------------------------------------- accounts made before the welcome email existed
+/**
+ * Accounts that signed up before the welcome email and never had it: an account with no plan, no admin or professor
+ * role and no free access, no welcome yet, and offer emails not stopped. Refuses when Whop cannot say who pays, so a
+ * paying member is never offered a discount by mistake (and sendWelcome checks each one with Whop again).
+ */
+export async function earlierAccounts(now = Date.now()) {
+  const all = await everyone(now);
+  if (all.whop !== 'ok') return { ok: false as const, error: 'Whop did not answer, so paying members cannot be told apart. Nothing was sent; try again shortly.' };
+  const withAccount = all.people.filter((p) => p.account && p.userId);
+  const candidates = withAccount.filter((p) => p.access === 'none');
+  const ids = candidates.map((p) => p.userId!);
+  const records = ids.length ? ((await db().mget<Array<WelcomeRecord | null>>(...ids.map(welcomeKey))) as Array<WelcomeRecord | null>) : [];
+  const marks = ids.length ? ((await db().mget<unknown[]>(...ids.flatMap((id) => [`rvm:no-offers:${id}`, `rvm:once:paid:${id}`]))) as unknown[]) : [];
+  const stopped = (i: number) => !!marks[i * 2];
+  const paidBefore = (i: number) => !!marks[i * 2 + 1];
+  const waiting = candidates.filter((_, i) => !records[i] && !stopped(i) && !paidBefore(i));
+  return {
+    ok: true as const,
+    waiting: waiting.map((p) => ({ userId: p.userId!, email: p.email, name: p.name })),
+    counts: {
+      waiting: waiting.length,
+      welcomed: records.filter(Boolean).length,
+      stopped: candidates.filter((_, i) => stopped(i)).length,
+      members: withAccount.length - candidates.length + candidates.filter((_, i) => paidBefore(i)).length,
+    },
+  };
+}
+
+/** Send the welcome (with its 72-hour code) to the next earlier accounts; the admin page calls this until none are left. */
+export async function welcomeEarlierAccounts(limit = 15, now = Date.now()) {
+  const found = await earlierAccounts(now);
+  if (!found.ok) return found;
+  let sent = 0;
+  let skipped = 0;
+  let failed = 0;
+  for (const p of found.waiting.slice(0, limit)) {
+    const record: WelcomeRecord = { email: p.email, name: p.name || p.email, joinedAt: new Date(now).toISOString(), earlier: true };
+    if ((await db().set(welcomeKey(p.userId), record, { nx: true, ex: 30 * 86_400 })) !== 'OK') continue;
+    await db().sadd(QUEUE, p.userId);
+    const r = await sendWelcome(p.userId, Date.now()).catch(() => 'later' as const);
+    if (r === 'sent') sent++;
+    else if (r === 'done') skipped++;
+    else failed++;
+    // Resend accepts about two emails a second.
+    if (r === 'sent') await new Promise((resolve) => setTimeout(resolve, 600));
+  }
+  return { ok: true as const, sent, skipped, failed, left: Math.max(0, found.waiting.length - Math.min(limit, found.waiting.length)) };
 }

@@ -21,7 +21,7 @@ import { changePromo, createPromo, listPromos, PromoAccessError } from './promos
 import { addStudents, changeJoinLink, classesOf, classRoster, invitation, joinClass, leaveClass, professorFor, removeStudent, setTeacherName } from './classes.js';
 import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
 import { studentEligible, StudentDiscountError } from './studentDiscount.js';
-import { welcomeCron } from './welcome.js';
+import { earlierAccounts, welcomeCron, welcomeEarlierAccounts } from './welcome.js';
 import { welcomeOffer } from './welcomeCode.js';
 import { beginMerchantConnect, finishMerchantConnect, MERCHANT_COOKIE, merchantConnectPage } from './merchantConnect.js';
 
@@ -304,6 +304,12 @@ export async function handle(request: Request): Promise<Response> {
         if (path === '/api/admin/stats') return may('numbers') ? json(await adminStats()) : denied();
         if (path === '/api/admin/people') return may('people') ? json(await adminPeople(admin)) : denied();
         if (path === '/api/admin/promos') return may('promos') ? json(await promoRequest(listPromos)) : denied();
+        // The welcome offer for accounts made before it existed: how many are waiting (members never count).
+        if (path === '/api/admin/welcome') {
+          if (!may('promos') || !may('people')) return denied();
+          const r = await earlierAccounts();
+          return r.ok ? json({ counts: r.counts }) : json({ error: r.error }, 503);
+        }
         if (path === '/api/admin/reports') return may('reports') ? json(await listReports()) : denied();
         return json({ error: 'Not found' }, 404);
       }
@@ -319,6 +325,7 @@ export async function handle(request: Request): Promise<Response> {
         : path === '/api/admin/role' ? await setRole(user.email, body)
         : path === '/api/admin/promos' ? (may('promos') ? await promoRequest(() => createPromo(body)) : 'denied')
         : path === '/api/admin/promos/change' ? (may('promos') ? await promoRequest(() => changePromo(body)) : 'denied')
+        : path === '/api/admin/welcome/send' ? (may('promos') && may('people') ? await welcomeEarlierAccounts() : 'denied')
         : path === '/api/admin/reports/resolve' ? (may('reports') ? await resolveReport(body) : 'denied')
         : null;
       if (!r) return json({ error: 'Not found' }, 404);

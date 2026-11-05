@@ -5,7 +5,9 @@ const fake = vi.hoisted(() => ({
   kv: new Map<string, unknown>(),
   sets: new Map<string, Set<string>>(),
   background: [] as Promise<unknown>[],
-  access: { active: false } as { active: boolean },
+  access: { active: false } as { active: boolean; pendingMembership?: boolean } | Error,
+  people: [] as Array<Record<string, unknown>>,
+  whop: 'ok' as string,
   create: vi.fn(),
   retrieve: vi.fn(),
 }));
@@ -18,19 +20,24 @@ vi.mock('../server/store', () => {
       return 'OK';
     },
     del: async (k: string) => fake.kv.delete(k),
+    mget: async (...ks: string[]) => ks.map((k) => fake.kv.get(k) ?? null),
     sadd: async (k: string, m: string) => fake.sets.set(k, new Set([...(fake.sets.get(k) ?? []), m])),
     srem: async (k: string, m: string) => fake.sets.get(k)?.delete(m),
     smembers: async (k: string) => [...(fake.sets.get(k) ?? [])],
   };
   return { db: () => store, rateLimit: async () => true };
 });
+vi.mock('../server/admin', () => ({ everyone: async () => ({ whop: fake.whop, people: fake.people }) }));
 vi.mock('../server/billing', () => ({
-  accessFor: async () => fake.access,
+  accessFor: async () => {
+    if (fake.access instanceof Error) throw fake.access;
+    return fake.access;
+  },
   whop: async () => ({ promoCodes: { create: fake.create, retrieve: fake.retrieve } }),
 }));
 vi.mock('@vercel/functions', () => ({ waitUntil: (p: Promise<unknown>) => fake.background.push(p) }));
 
-import { firstName, sendWelcome, welcomeCode, welcomeCron, welcomeMail, welcomeNewAccount } from '../server/welcome';
+import { earlierAccounts, firstName, sendWelcome, welcomeCode, welcomeCron, welcomeEarlierAccounts, welcomeMail, welcomeNewAccount } from '../server/welcome';
 import { ownWelcomeCode, welcomeKey, welcomeOffer, type WelcomeRecord } from '../server/welcomeCode';
 import { checkoutDiscount } from '../server/studentDiscount';
 import { unsubscribe, unsubscribeUrl } from '../server/engage';
@@ -47,6 +54,8 @@ beforeEach(() => {
   fake.sets.clear();
   fake.background = [];
   fake.access = { active: false };
+  fake.people = [];
+  fake.whop = 'ok';
   fake.create.mockReset().mockImplementation(async (body: { code: string }) => ({ id: 'promo_1', code: body.code }));
   fake.retrieve.mockReset().mockResolvedValue({ uses: 0, status: 'active' });
   mails = [];
@@ -256,5 +265,75 @@ describe('the offer in the app and at checkout', () => {
     expect(timeLeft(3 * HOUR + 12 * 60_000)).toBe('3 h 12 min');
     expect(timeLeft(2 * 24 * HOUR + 5 * HOUR)).toBe('2 days 5 h');
     expect(timeLeft(24 * HOUR)).toBe('1 day');
+  });
+});
+
+describe('never to members', () => {
+  it('skips an account whose membership waits on a payment, and waits when Whop cannot answer', async () => {
+    fake.access = { active: false, pendingMembership: true };
+    let r = await joined();
+    expect(r.noOffer).toBe(true);
+    expect(mails).toHaveLength(0);
+    expect(fake.create).not.toHaveBeenCalled();
+
+    fake.kv.clear();
+    fake.sets.clear();
+    fake.access = new Error('Whop is down');
+    r = await joined();
+    expect(r.sentAt).toBeUndefined();
+    expect(mails).toHaveLength(0);
+    expect(fake.create).not.toHaveBeenCalled();
+  });
+});
+
+describe('accounts made before the welcome email', () => {
+  const person = (id: string, email: string, access: string, account: string | null = 'clerk') => ({ userId: id.repeat(64), email, name: 'Lejla Hodžić', account, access });
+
+  it('counts only accounts without a plan that never had it and did not stop offers', async () => {
+    fake.people = [
+      person('1', 'free@example.com', 'none'),
+      person('2', 'paid@example.com', 'paid'),
+      person('3', 'admin@example.com', 'admin'),
+      person('4', 'prof@example.com', 'professor'),
+      person('5', 'gift@example.com', 'free'),
+      person('6', 'stopped@example.com', 'none'),
+      person('7', 'welcomed@example.com', 'none'),
+      person('8', 'paidbefore@example.com', 'none'),
+      person('9', 'noaccount@example.com', 'free', null),
+    ];
+    fake.kv.set(`rvm:no-offers:${'6'.repeat(64)}`, true);
+    fake.kv.set(welcomeKey('7'.repeat(64)), { email: 'welcomed@example.com', name: 'W', joinedAt: '2026-11-05T00:00:00Z', sentAt: '2026-11-05T00:00:00Z' });
+    fake.kv.set(`rvm:once:paid:${'8'.repeat(64)}`, '2026-11-01');
+    const r = await earlierAccounts();
+    expect(r.ok && r.waiting.map((p) => p.email)).toEqual(['free@example.com']);
+    expect(r.ok && r.counts).toEqual({ waiting: 1, welcomed: 1, stopped: 1, members: 5 });
+  });
+
+  it('refuses when Whop cannot say who pays', async () => {
+    fake.whop = 'unavailable';
+    fake.people = [person('1', 'free@example.com', 'none')];
+    expect(await earlierAccounts()).toMatchObject({ ok: false });
+    expect(await welcomeEarlierAccounts()).toMatchObject({ ok: false });
+    expect(mails).toHaveLength(0);
+  });
+
+  it('sends each one once, with its own code, and says why they get it', async () => {
+    fake.people = [person('1', 'one@example.com', 'none'), person('2', 'two@example.com', 'none')];
+    expect(await welcomeEarlierAccounts()).toEqual({ ok: true, sent: 2, skipped: 0, failed: 0, left: 0 });
+    expect(mails.map((m) => (m.to as string[])[0])).toEqual(['one@example.com', 'two@example.com']);
+    const html = (mails[0] as { html: string }).html;
+    expect(html).toContain('Welcome, Lejla.');
+    expect(html).toContain('because you created an account');
+    expect(html).not.toContain('just created');
+    expect(fake.create).toHaveBeenCalledTimes(2);
+    expect(await welcomeEarlierAccounts()).toEqual({ ok: true, sent: 0, skipped: 0, failed: 0, left: 0 });
+    expect(mails).toHaveLength(2);
+  });
+
+  it('skips anyone Whop shows as a member at the moment of sending', async () => {
+    fake.people = [person('1', 'one@example.com', 'none')];
+    fake.access = { active: true };
+    expect(await welcomeEarlierAccounts()).toEqual({ ok: true, sent: 0, skipped: 1, failed: 0, left: 0 });
+    expect(mails).toHaveLength(0);
   });
 });

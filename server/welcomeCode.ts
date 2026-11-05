@@ -23,6 +23,8 @@ export interface WelcomeRecord {
   noOffer?: boolean;
   sentAt?: string;
   reminderAt?: string;
+  /** An account made before the welcome email existed, sent it from the admin page. */
+  earlier?: boolean;
 }
 
 export const welcomeKey = (userId: string) => `rvm:welcome:${userId}`;
