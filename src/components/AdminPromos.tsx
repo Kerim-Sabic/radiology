@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState, type FormEvent } from 'react';
 import { Copy, Pause, Play, TicketPercent, Trash2 } from 'lucide-react';
+import { AdminRegional } from './AdminRegional';
 
 /** Mirrors server/promos.ts. */
 interface Promo {
@@ -94,6 +95,7 @@ export function AdminPromos({ version }: { version: number }) {
       {needsAccess ? <WhopAccessNotice /> : null}
       {error ? <div className="notice bad">{error}</div> : null}
       {!needsAccess ? <WelcomeEarlier onDone={load} /> : null}
+      <AdminRegional />
       {!needsAccess ? <CreatePromo onDone={load} onNeedsAccess={() => setNeedsAccess(true)} /> : null}
       {data ? <PromoList data={data} onChange={load} /> : !needsAccess && !error ? <p className="muted">Loading the promo codes…</p> : null}
     </section>

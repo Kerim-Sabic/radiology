@@ -241,3 +241,37 @@
   background: #2563eb;
   color: #fff;
 }
+
+/* ---------------------------------------------------------------- the price for the visitor's country */
+.regional-price {
+  display: grid;
+  gap: 6px;
+  margin: 6px 0 12px;
+  padding: 16px 18px;
+  border: 1.5px solid #2f8f63;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.14), rgba(34, 197, 94, 0.04));
+  color: #d6f5e3;
+  font-size: 14px;
+  line-height: 1.5;
+}
+.regional-price strong {
+  font-size: 19px;
+  line-height: 1.25;
+  color: #fff;
+}
+.regional-price-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8fe0b4;
+}
+.membership-panel .student-offer.regional-applied {
+  border-color: #2f8f63;
+  background: #10241a;
+  color: #d6f5e3;
+}
+.membership-panel .student-offer.regional-applied span {
+  color: #b5dcc6;
+}

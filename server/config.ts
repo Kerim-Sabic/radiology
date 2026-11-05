@@ -27,11 +27,33 @@ export const plans = {
 export type Tier = keyof typeof plans;
 
 export type AccessTier = Tier | 'lifetime';
-/** Historical plans remain entitled without being offered to new customers. */
-export function membershipPlans(): { id: string; tier: AccessTier }[] {
+
+/**
+ * Regional prices: hidden Whop plans on the same product, for cards issued in the region's countries only (Whop payment
+ * rules decline any other card; server/regional.ts checks the rules matched before giving access). B renews; C is
+ * one-time passes, because recurring card charges fail in much of South Asia. Never attach a promo code to these.
+ */
+export type Region = 'b' | 'c';
+export interface RegionalPlan { id: string; region: Region; tier: Tier; price: number; days: number; pass: boolean }
+export const regionalPlans: Record<Region, Record<Tier, RegionalPlan>> = {
+  b: {
+    monthly: { id: 'plan_b52gijYg4Tn9M', region: 'b', tier: 'monthly', price: 9.99, days: 30, pass: false },
+    yearly: { id: 'plan_nj0Tsdp38ErIP', region: 'b', tier: 'yearly', price: 74.99, days: 365, pass: false },
+  },
+  c: {
+    monthly: { id: 'plan_OvcwelLFspRHH', region: 'c', tier: 'monthly', price: 4.99, days: 30, pass: true },
+    yearly: { id: 'plan_tN0iOTyKQmVUi', region: 'c', tier: 'yearly', price: 39.99, days: 365, pass: true },
+  },
+};
+export const allRegionalPlans = (): RegionalPlan[] => Object.values(regionalPlans).flatMap((r) => Object.values(r));
+export const regionalPlan = (planId: string | null | undefined) => allRegionalPlans().find((p) => p.id === planId) ?? null;
+
+/** Historical plans remain entitled without being offered to new customers; `pass`: one-time access that expires. */
+export function membershipPlans(): { id: string; tier: AccessTier; pass?: boolean }[] {
   return [
     ...Object.entries(plans).map(([tier, plan]) => ({ id: required(plan.env), tier: tier as AccessTier })),
     { id: process.env.WHOP_LEGACY_MONTHLY_PLAN_ID || '', tier: 'monthly' as const },
     { id: process.env.WHOP_LIFETIME_PLAN_ID || '', tier: 'lifetime' as const },
+    ...allRegionalPlans().map((p) => ({ id: p.id, tier: p.tier as AccessTier, pass: p.pass })),
   ].filter(plan => !!plan.id);
 }

@@ -1,5 +1,6 @@
 import { z } from 'zod';
-import { accessFor, checkout, referralProfile } from './billing.js';
+import { accessFor, checkout, referralProfile, whop } from './billing.js';
+import { regionalOffer, regionalStatus, setRegionalLive } from './regional.js';
 import { PromoUnavailableError } from './checkoutError.js';
 import { affiliateCode } from '../shared/referrals.js';
 import { beginSignIn, cookie, createSession, finishSignIn, FLOW_COOKIE, hash, random, session, SESSION_COOKIE } from './auth.js';
@@ -180,7 +181,9 @@ export async function handle(request: Request): Promise<Response> {
       const [teaches, classes] = await Promise.all([professorFor(user.userId).then((r) => !!r, () => false), classesOf(user.email).catch(() => [])]);
       // A free account's personal welcome code while it still works: the plans screen fills it in and counts down.
       const welcome = access.active ? null : await welcomeOffer(user.userId).catch(() => null);
-      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book, studentDiscountEligible: await studentEligible(user.userId), ...(welcome ? { welcomeOffer: welcome } : {}), ...(adminPermissions ? { adminPermissions } : {}), ...(teaches ? { teaches } : {}), ...(classes.length ? { classes } : {}) });
+      // The regional price for the country this request comes from, while regional prices are on (server/regional.ts).
+      const regionalPrice = access.active ? null : await regionalOffer(request.headers.get('x-vercel-ip-country'));
+      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book, studentDiscountEligible: await studentEligible(user.userId), ...(welcome ? { welcomeOffer: welcome } : {}), ...(regionalPrice ? { regionalPrice } : {}), ...(adminPermissions ? { adminPermissions } : {}), ...(teaches ? { teaches } : {}), ...(classes.length ? { classes } : {}) });
     }
     if (path === '/api/access' && request.method === 'GET') {
       const access = await accessFor(user.userId);
@@ -311,6 +314,15 @@ export async function handle(request: Request): Promise<Response> {
           return r.ok ? json({ counts: r.counts }) : json({ error: r.error }, 503);
         }
         if (path === '/api/admin/reports') return may('reports') ? json(await listReports()) : denied();
+        // Regional prices: the plans' set-up, the payments on them and whether the card rules approved each, the switch.
+        if (path === '/api/admin/regional') {
+          if (!may('promos')) return denied();
+          try {
+            return json(await regionalStatus(await whop()));
+          } catch {
+            return json({ error: 'Could not read the regional plans or payments from Whop.' }, 503);
+          }
+        }
         return json({ error: 'Not found' }, 404);
       }
       if (request.method !== 'POST') return json({ error: 'Not found' }, 404);
@@ -326,6 +338,7 @@ export async function handle(request: Request): Promise<Response> {
         : path === '/api/admin/promos' ? (may('promos') ? await promoRequest(() => createPromo(body)) : 'denied')
         : path === '/api/admin/promos/change' ? (may('promos') ? await promoRequest(() => changePromo(body)) : 'denied')
         : path === '/api/admin/welcome/send' ? (may('promos') && may('people') ? await welcomeEarlierAccounts() : 'denied')
+        : path === '/api/admin/regional/live' ? (may('promos') ? await setRegionalLive(await whop(), (body as { live?: unknown } | null)?.live === true) : 'denied')
         : path === '/api/admin/reports/resolve' ? (may('reports') ? await resolveReport(body) : 'denied')
         : null;
       if (!r) return json({ error: 'Not found' }, 404);
@@ -349,7 +362,7 @@ export async function handle(request: Request): Promise<Response> {
       const existing = await accessFor(user.userId, true);
       if (existing.active) return json({ error: 'You already have access. Manage your plan from your account.' }, 409);
       if (existing.pendingMembership) return json({ error: 'You have an existing membership. Open billing in Whop to check its payment before purchasing again.' }, 409);
-      const created = await checkout(user.userId, body.data.tier, body.data.promoCode, body.data.affiliateCode);
+      const created = await checkout(user.userId, body.data.tier, body.data.promoCode, body.data.affiliateCode, request.headers.get('x-vercel-ip-country'));
       await count('checkout');
       return json(created);
     }

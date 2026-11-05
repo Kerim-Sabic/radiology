@@ -1,5 +1,6 @@
 import { WhopClient, type Whop } from '@whop/sdk';
-import { appOrigin, plans, readiness, required, membershipPlans, type AccessTier, type Tier } from './config.js';
+import { appOrigin, plans, readiness, regionalPlan, regionalPlans, required, membershipPlans, type AccessTier, type Tier } from './config.js';
+import { regionalMembershipGuarded, regionalOffer, regionalPlanProblems } from './regional.js';
 import { db } from './store.js';
 import { hash, isAdmin, random } from './auth.js';
 import { merchantToken } from './oauth.js';
@@ -35,10 +36,22 @@ export async function referralProfile(userId: string) {
 /** `role`: an admin, free access an admin or a class gave, or a professor (none is a payment). */
 export interface Access { active: boolean; role?: 'admin' | 'granted' | 'professor'; tier?: AccessTier; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
 
+/** When a one-time regional pass ends (Whop sets expires_at; current_period_end as a fallback), or null. */
+function passEnd(m: Pick<Whop.Membership, 'current_period_end' | 'expires_at'>): number | null {
+  const end = Date.parse(m.expires_at || m.current_period_end || '');
+  return Number.isFinite(end) ? end : null;
+}
+
 export function membershipAccess(m: Pick<Whop.Membership, 'account' | 'plan_id' | 'status' | 'current_period_end' | 'expires_at' | 'manage_url'>, now = Date.now()): Access {
   if (m.account.id !== required('WHOP_ACCOUNT_ID')) return { active: false };
-  const tier = membershipPlans().find(plan => plan.id === m.plan_id)?.tier;
+  const entry = membershipPlans().find(plan => plan.id === m.plan_id);
+  const tier = entry?.tier;
   if (!tier || !['active', 'completed'].includes(m.status)) return { active: false };
+  // A pass is paid once and opens access until it ends: never without an end date.
+  if (entry.pass) {
+    const end = passEnd(m);
+    return end !== null && end > now ? { active: true, tier, expiresAt: new Date(end).toISOString(), manageUrl: safeWhopUrl(m.manage_url) } : { active: false };
+  }
   if (tier !== 'lifetime' && (m.status !== 'active' || !m.current_period_end || Date.parse(m.current_period_end) <= now)) return { active: false };
   if (m.expires_at && (!Number.isFinite(Date.parse(m.expires_at)) || Date.parse(m.expires_at) <= now)) return { active: false };
   if (tier !== 'lifetime' && !Number.isFinite(Date.parse(m.current_period_end!))) return { active: false };
@@ -112,7 +125,9 @@ async function paidAccess(userId: string, fresh: boolean): Promise<Access> {
   for await (const m of memberships) {
     if (m.user_id !== whopUser || m.product_id !== required('WHOP_PRODUCT_ID')) continue;
     if (m.account.id !== required('WHOP_ACCOUNT_ID')) continue;
-    if (!result.active && ['active', 'past_due', 'trialing'].includes(m.status)) {
+    // A one-time pass that has ended is not waiting on anything, so it never blocks buying again.
+    const endedPass = !!regionalPlan(m.plan_id)?.pass && !((passEnd(m) ?? 0) > Date.now());
+    if (!result.active && !endedPass && ['active', 'past_due', 'trialing'].includes(m.status)) {
       result = { active: false, pendingMembership: true, manageUrl: safeWhopUrl(m.manage_url) };
     }
     const access = membershipAccess(m);
@@ -123,26 +138,39 @@ async function paidAccess(userId: string, fresh: boolean): Promise<Access> {
       status: 'paid', order: 'created_at', direction: 'desc', first: 1 });
     const payment = payments.data[0];
     if (!payment || !paymentGrantsAccess(payment)) continue;
+    // A regional price opens access only if Whop's regional allow rule approved the card (server/regional.ts). One
+    // that was not approved stays "needs attention" (no second purchase) and is listed on the admin page for a refund.
+    if (regionalPlan(m.plan_id) && !(await regionalMembershipGuarded(client, m.id))) {
+      if (!result.active) result = { active: false, pendingMembership: true, manageUrl: safeWhopUrl(m.manage_url) };
+      continue;
+    }
     if (result.tier !== 'lifetime') result = access;
   }
   await db().set(`rvm:access:${userId}`, result, { ex: 30 });
   return result;
 }
 
-export async function checkout(userId: string, tier: Tier, promoCode?: string, referralCode?: string) {
+/** `country`: Vercel's IP country of the request, which picks a regional price (server/regional.ts) when one applies. */
+export async function checkout(userId: string, tier: Tier, promoCode?: string, referralCode?: string, country?: string | null) {
   const existing = await accessFor(userId, true);
   if (existing.active) throw new Error('You already have access. Manage your existing plan in your account.');
   if (existing.pendingMembership) throw new Error('An existing membership needs attention. Check your payment in Whop before purchasing again.');
   const promo = promoCode?.trim().toLowerCase();
+  // The regional price is the price without a code; a code always goes with the standard price (codes never touch
+  // the regional plans). The server picks the plan; the browser cannot.
+  const regional = promo ? null : await regionalOffer(country);
+  const regionalChoice = regional ? regionalPlans[regional.region][tier] : null;
   // New purchases, including promotions, always use the current plan.
   // Whop remains authoritative for availability, the final quote, and atomic redemption.
-  const planId = required(plans[tier].env);
+  const planId = regionalChoice?.id ?? required(plans[tier].env);
   const client = await whop();
   // Monthly passes an entered code on to Whop; yearly takes only a live code made for the yearly plan (from the admin page).
   if (promo && tier === 'yearly' && !(await promoLiveFor(client, planId, promo))) throw new PromoUnavailableError('This code is not available for the yearly plan. Check the code, or choose monthly.');
   const plan = await client.variants.retrieve({ id: planId });
-  validatePlan(plan, tier);
-  const discount = await checkoutDiscount(client, userId, tier, planId, promo);
+  if (regionalChoice) {
+    if (regionalPlanProblems(plan, regionalChoice).length) throw new Error('Unexpected Whop plan configuration');
+  } else validatePlan(plan, tier);
+  const discount = regionalChoice ? {} : await checkoutDiscount(client, userId, tier, planId, promo);
   let affiliate = affiliateCode(referralCode);
   if (affiliate && (await referralProfile(userId)).code === affiliate) affiliate = undefined;
   const key = `rvm:checkout:${userId}:${planId}:${hash(appOrigin())}${affiliate ? `:${hash(affiliate)}` : ''}`;
@@ -152,13 +180,16 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   const config = await client.checkoutConfigurations.create({
     account_id: required('WHOP_ACCOUNT_ID'), plan_id: planId, mode: 'payment',
     ...(affiliate ? { affiliate_code: affiliate } : {}),
-    metadata: { rvm_user: userId, rvm_order: orderId },
+    metadata: { rvm_user: userId, rvm_order: orderId, ...(regional ? { rvm_region: regional.region, rvm_country: regional.country } : {}) },
     redirect_url: `${appOrigin()}/?checkout=returned`,
   }, { idempotencyKey: orderId });
   const url = safeWhopUrl(config.purchase_url);
   if (!url) throw new Error('Whop did not return a checkout URL');
   if (!/^ch_[A-Za-z0-9]+$/.test(config.id)) throw new Error('Whop did not return an embedded checkout configuration');
-  return { id: config.id, url, ...discount, returnUrl: `${appOrigin()}/?checkout=returned` };
+  return {
+    id: config.id, url, ...discount, returnUrl: `${appOrigin()}/?checkout=returned`,
+    ...(regional && regionalChoice ? { regional: { country: regional.country, countryName: regional.countryName, price: regionalChoice.price, days: regionalChoice.days, pass: regionalChoice.pass } } : {}),
+  };
 }
 
 /** Whether a code is active, unexpired and not used up on this plan in Whop. */
