@@ -83,7 +83,10 @@ export function regionalPlanProblems(plan: Whop.Variant, want: RegionalPlan): st
   if (plan.visibility !== 'hidden') problems.push('is not hidden from the store page');
   if (plan.trial_period_days) problems.push('has a free trial');
   if (plan.split_pay_required_payments) problems.push('has split pay');
-  if (plan.adaptive_pricing_enabled) problems.push('accepts local currency payments');
+  // Local currency would move the charged amount off the dollar figure the card rule matches. Whop applies it to
+  // one-time payments only: a recurring plan bills in its checkout currency whatever the flag says, the dashboard
+  // greys the switch out for it, and the API still reports `true` on the B plans. So only passes are checked.
+  if (want.pass && plan.adaptive_pricing_enabled) problems.push('accepts local currency payments');
   if (want.pass) {
     if (plan.plan_type !== 'one_time' || plan.initial_price !== want.price || plan.expiration_days !== want.days) {
       problems.push(`should be a one-time $${want.price} pass that expires after ${want.days} days`);

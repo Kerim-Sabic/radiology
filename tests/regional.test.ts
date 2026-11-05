@@ -91,13 +91,17 @@ describe('checking a regional plan in Whop', () => {
     [{ visibility: 'visible' }, 'hidden'],
     [{ renewal_price: 20 }, 'renew at $9.99'],
     [{ trial_period_days: 7 }, 'free trial'],
-    [{ adaptive_pricing_enabled: true }, 'local currency'],
     [{ product: { id: 'prod_other' } }, 'another product'],
     [{ effective_payment_method_configuration: { enabled: ['card', 'paypal'], disabled: [], include_platform_defaults: false } }, 'only card'],
     [{ effective_payment_method_configuration: { enabled: ['card'], disabled: [], include_platform_defaults: true } }, 'only card'],
     [{ effective_payment_method_configuration: null }, 'only card'],
   ])('names what is wrong: %j', (changes, words) => {
     expect(regionalPlanProblems(whopPlan(B.monthly, changes), B.monthly).join('; ')).toContain(words);
+  });
+  it('checks local currency on passes only, since Whop bills recurring plans in the checkout currency', () => {
+    expect(regionalPlanProblems(whopPlan(C.monthly, { adaptive_pricing_enabled: true }), C.monthly).join()).toContain('local currency');
+    expect(regionalPlanProblems(whopPlan(B.monthly, { adaptive_pricing_enabled: true }), B.monthly)).toEqual([]);
+    expect(regionalPlanProblems(whopPlan(B.yearly, { adaptive_pricing_enabled: true }), B.yearly)).toEqual([]);
   });
   it('wants passes to be one-time and to expire', () => {
     expect(regionalPlanProblems(whopPlan(C.monthly, { expiration_days: null }), C.monthly).join()).toContain('one-time $4.99 pass');
