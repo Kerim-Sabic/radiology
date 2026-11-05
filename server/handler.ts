@@ -3,8 +3,9 @@ import { accessFor, checkout, referralProfile, whop } from './billing.js';
 import { regionalOffer, regionalStatus, setRegionalLive } from './regional.js';
 import { PromoUnavailableError } from './checkoutError.js';
 import { affiliateCode } from '../shared/referrals.js';
-import { beginSignIn, cookie, createSession, finishSignIn, FLOW_COOKIE, hash, random, session, SESSION_COOKIE } from './auth.js';
-import { clerkIdentity } from './clerk.js';
+import { beginSignIn, cookie, createSession, endedBy, finishSignIn, FLOW_COOKIE, hash, random, readCookie, session, SESSION_COOKIE } from './auth.js';
+import { clerkIdentity, revokeOtherClerkSessions } from './clerk.js';
+import { DEVICE_COOKIE, DEVICE_COOKIE_SECONDS, DeviceLimitError, newDeviceId, validDeviceId } from './devices.js';
 import { bookGift, memberBook, servesBook } from './book.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
@@ -17,7 +18,7 @@ import { queueCertificateEmail, sendCertificateEmails } from './certificateEmail
 import { certificateImage, certificatePageHtml } from './certificateShare.js';
 import { adminAccess } from './auth.js';
 import type { Permission } from './roles.js';
-import { addPerson, adminPeople, emailSignIn, removeFreeAccess, setFreeAccess, setRole } from './admin.js';
+import { addPerson, adminPeople, emailSignIn, removeFreeAccess, resetDevices, setFreeAccess, setRole } from './admin.js';
 import { changePromo, createPromo, listPromos, PromoAccessError } from './promos.js';
 import { addStudents, changeJoinLink, classesOf, classRoster, invitation, joinClass, leaveClass, professorFor, removeStudent, setTeacherName } from './classes.js';
 import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin.js';
@@ -25,6 +26,13 @@ import { studentEligible, StudentDiscountError } from './studentDiscount.js';
 import { earlierAccounts, welcomeCron, welcomeEarlierAccounts } from './welcome.js';
 import { welcomeOffer } from './welcomeCode.js';
 import { beginMerchantConnect, finishMerchantConnect, MERCHANT_COOKIE, merchantConnectPage } from './merchantConnect.js';
+
+/** This browser's device id (server/devices.ts): its cookie, or a new one to set (`fresh`). */
+function deviceFor(request: Request) {
+  const existing = readCookie(request, DEVICE_COOKIE);
+  const fresh = !validDeviceId(existing);
+  return { device: fresh ? newDeviceId() : existing, fresh, country: request.headers.get('x-vercel-ip-country'), userAgent: request.headers.get('user-agent') };
+}
 
 export function json(value: unknown, status = 200) {
   return Response.json(value, { status, headers: { 'Cache-Control': 'private, no-store', 'CDN-Cache-Control': 'no-store', 'Vary': 'Cookie' } });
@@ -127,10 +135,17 @@ export async function handle(request: Request): Promise<Response> {
         const userId = hash(`${profile.provider}:${profile.sub}`);
         const isNew = !(await db().get(`rvm:once:signup:${userId}`));
         const response = json({ ok: true });
-        response.headers.append('Set-Cookie', await createSession(profile));
+        const device = deviceFor(request);
+        response.headers.append('Set-Cookie', await createSession(profile, device));
+        if (device.fresh) response.headers.append('Set-Cookie', cookie(DEVICE_COOKIE, device.device, DEVICE_COOKIE_SECONDS));
         if (isNew && source) await rememberSource(userId, source);
+        // Every other browser's Clerk sign-in ends too, so it needs a new code from the inbox to come back.
+        try { await revokeOtherClerkSessions(profile.sub, profile.sid); } catch { console.error('Other Clerk sessions were not revoked'); }
         return response;
-      } catch { return json({ error: 'We couldn’t verify this sign-in. Please verify your email and try again.' }, 401); }
+      } catch (error) {
+        if (error instanceof DeviceLimitError) return json({ error: error.message }, 403);
+        return json({ error: 'We couldn’t verify this sign-in. Please verify your email and try again.' }, 401);
+      }
     }
     if (path === '/api/auth/email' && request.method === 'GET') {
       const ip = hash(request.headers.get('x-vercel-forwarded-for') || request.headers.get('x-forwarded-for') || 'unknown');
@@ -149,7 +164,8 @@ export async function handle(request: Request): Promise<Response> {
         response.headers.append('Set-Cookie', cookie(MERCHANT_COOKIE, '', 0));
         return response;
       }
-      try { return authResult(true, [await finishSignIn(request), cookie(FLOW_COOKIE, '', 0)]); }
+      const device = deviceFor(request);
+      try { return authResult(true, [await finishSignIn(request, device), cookie(FLOW_COOKIE, '', 0), ...(device.fresh ? [cookie(DEVICE_COOKIE, device.device, DEVICE_COOKIE_SECONDS)] : [])]); }
       catch { return authResult(false, [cookie(FLOW_COOKIE, '', 0)]); }
     }
     const user = await session(request);
@@ -161,7 +177,11 @@ export async function handle(request: Request): Promise<Response> {
       response.headers.append('Set-Cookie', cookie(SESSION_COOKIE, '', 0));
       return response;
     }
-    if (!user) return json({ user: null, error: 'Please sign in. Signing in on another device ends your previous session.' }, 401);
+    if (!user) {
+      // Signed out because the account was opened elsewhere: say where and when, so an owner notices a sharer.
+      const elsewhere = await endedBy(request).catch(() => null);
+      return json({ user: null, error: 'Please sign in. Signing in on another device ends your previous session.', ...(elsewhere ? { endedBy: elsewhere } : {}) }, 401);
+    }
     if (path === '/api/book') {
       if (!['GET', 'HEAD'].includes(request.method)) return json({ error: 'Use GET or HEAD' }, 405);
       if (!bookGift(user.email) && !(await accessFor(user.userId)).active) return json({ error: 'An active membership is required to read the book.' }, 402);
@@ -334,6 +354,7 @@ export async function handle(request: Request): Promise<Response> {
         : path === '/api/admin/free' ? (may('free') ? await setFreeAccess(user.email, body) : 'denied')
         : path === '/api/admin/free/remove' ? (may('free') ? await removeFreeAccess(body) : 'denied')
         : path === '/api/admin/email-sign-in' ? (may('add') ? await emailSignIn(body) : 'denied')
+        : path === '/api/admin/devices/reset' ? (may('add') ? await resetDevices(body) : 'denied')
         : path === '/api/admin/role' ? await setRole(user.email, body)
         : path === '/api/admin/promos' ? (may('promos') ? await promoRequest(() => createPromo(body)) : 'denied')
         : path === '/api/admin/promos/change' ? (may('promos') ? await promoRequest(() => changePromo(body)) : 'denied')

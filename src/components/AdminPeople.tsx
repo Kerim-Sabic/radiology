@@ -27,6 +27,8 @@ interface Person {
     at: string;
     active: boolean;
   };
+  /** Sign-ins in the last 30 days (server/devices.ts). */
+  devices?: { devices: number; countries: string[]; signIns: number; flagged: boolean };
 }
 interface People {
   counts: {
@@ -440,6 +442,14 @@ function PersonRow({ p, open, toggle, onChange, can }: { p: Person; open: boolea
             <small className="faint">Signed in with Whop</small>
           ) : null}
           {p.grant?.note ? <small className="faint">Note: {p.grant.note}</small> : null}
+          {p.devices?.flagged ? (
+            <small style={{ display: 'block', color: '#ff9b8f', fontWeight: 600 }}>
+              May be shared: {p.devices.devices} device{p.devices.devices === 1 ? '' : 's'}
+              {p.devices.countries.length ? ` · ${p.devices.countries.join(', ')}` : ''} in 30 days
+            </small>
+          ) : p.devices && p.devices.devices > 1 ? (
+            <small className="faint">{p.devices.devices} devices in 30 days</small>
+          ) : null}
         </td>
         <td>
           <AccessCell p={p} />
@@ -505,6 +515,11 @@ function ManagePerson({ p, onChange, can }: { p: Person; onChange: () => void; c
     act(async () => {
       await post('/api/admin/email-sign-in', { email: p.email });
       return `We emailed ${p.email} how to sign in.`;
+    });
+  const resetDevices = () =>
+    act(async () => {
+      await post('/api/admin/devices/reset', { email: p.email });
+      return `Device history cleared. ${p.email} can sign in on any device again.`;
     });
   const create = () =>
     act(async () => {
@@ -641,6 +656,11 @@ function ManagePerson({ p, onChange, can }: { p: Person; onChange: () => void; c
         {p.grant && can('free') ? (
           <button className="btn" disabled={busy} onClick={() => void remove()}>
             Remove free access
+          </button>
+        ) : null}
+        {can('add') && p.account === 'clerk' && p.devices ? (
+          <button className="btn" disabled={busy} onClick={() => void resetDevices()} title={`${p.devices.signIns} sign-ins on ${p.devices.devices} devices in 30 days. Clearing lets them sign in on new devices again.`}>
+            Clear device history
           </button>
         ) : null}
         {!can('add') ? null : p.account === 'clerk' ? (

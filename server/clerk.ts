@@ -12,6 +12,16 @@ export async function clerkIdentity(request: Request) {
   if (session.status !== 'active' || session.userId !== user.id || user.banned || user.locked) throw new Error('Session is no longer active');
   const email = user.emailAddresses.find(e => e.id === user.primaryEmailAddressId);
   if (!email || email.verification?.status !== 'verified') throw new Error('Verify your email first');
-  return { sub: user.id, provider: 'clerk' as const, email: email.emailAddress.trim().toLowerCase(), emailVerified: true as const,
+  return { sub: user.id, sid: session.id, provider: 'clerk' as const, email: email.emailAddress.trim().toLowerCase(), emailVerified: true as const,
     name: [user.firstName, user.lastName].filter(Boolean).join(' ') || email.emailAddress };
+}
+
+/**
+ * Ends every Clerk sign-in of this user except `keep`. Our own session already allows one device at a time, but a
+ * browser Clerk still remembers could get back in with one click; now it needs a fresh code from the account's inbox.
+ */
+export async function revokeOtherClerkSessions(userId: string, keep: string) {
+  const client = createClerkClient({ secretKey: required('CLERK_SECRET_KEY') });
+  const list = await client.sessions.getSessionList({ userId, status: 'active', limit: 100 });
+  await Promise.all(list.data.filter((s) => s.id !== keep).map((s) => client.sessions.revokeSession(s.id)));
 }

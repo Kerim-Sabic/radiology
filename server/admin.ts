@@ -10,6 +10,7 @@ import { allAdminRoles, allProfessorRoles, PERMISSIONS, professorRole, removeAdm
 import { classSize, endClassAccess, MAX_STUDENTS, syncClassAccess } from './classes.js';
 import { membershipAccess, whop } from './billing.js';
 import type { Profile } from './engage.js';
+import { clearSignIns, deviceSummary, signInsKey, type DeviceSummary, type SignIn } from './devices.js';
 
 /**
  * The admin dashboard: every account with its access and study, exact counts, and creating an account (a Clerk user
@@ -39,6 +40,8 @@ export interface Person {
   plan?: AccessTier;
   paidUntil?: string | null;
   grant?: { until: string | null; note?: string; by: string; at: string; active: boolean };
+  /** Sign-ins in the last 30 days (server/devices.ts): different devices, countries, and whether it looks shared. */
+  devices?: DeviceSummary;
   /** Internal only (the welcome offer for earlier accounts, server/welcome.ts); removed before the list is sent. */
   userId?: string;
 }
@@ -122,13 +125,13 @@ export async function everyone(now = Date.now()) {
     accounts.set(hash(`clerk:${u.id}`), { email: email?.trim().toLowerCase() ?? '', name: [u.firstName, u.lastName].filter(Boolean).join(' '), account: 'clerk', createdAt: iso(u.createdAt), lastActiveAt: iso(u.lastActiveAt ?? u.lastSignInAt) });
   }
   const ids = [...new Set([...accounts.keys(), ...appUsers])];
-  const records = new Map<string, { identity: { email: string; provider?: string } | null; joined: string | null; profile: Profile | null; whopUser: string | null }>();
+  const records = new Map<string, { identity: { email: string; provider?: string } | null; joined: string | null; profile: Profile | null; whopUser: string | null; signIns: SignIn[] | null }>();
   for (let i = 0; i < ids.length; i += 100) {
     const chunk = ids.slice(i, i + 100);
-    const values = (await db().mget<unknown[]>(...chunk.flatMap((id) => [`rvm:identity:${id}`, `rvm:once:signup:${id}`, `rvm:profile:${id}`, `rvm:whop-user:${id}`]))) as unknown[];
+    const values = (await db().mget<unknown[]>(...chunk.flatMap((id) => [`rvm:identity:${id}`, `rvm:once:signup:${id}`, `rvm:profile:${id}`, `rvm:whop-user:${id}`, signInsKey(id)]))) as unknown[];
     chunk.forEach((id, j) => {
-      const [identity, joined, profile, whopUser] = values.slice(j * 4, j * 4 + 4) as [{ email: string; provider?: string } | null, string | null, Profile | null, string | null];
-      records.set(id, { identity, joined, profile, whopUser });
+      const [identity, joined, profile, whopUser, signIns] = values.slice(j * 5, j * 5 + 5) as [{ email: string; provider?: string } | null, string | null, Profile | null, string | null, SignIn[] | null];
+      records.set(id, { identity, joined, profile, whopUser, signIns });
     });
   }
 
@@ -156,7 +159,9 @@ export async function everyone(now = Date.now()) {
     const g = grantBy.get(key);
     const days = r.profile?.days ?? [];
     const source = adminSource(email);
+    const devices = deviceSummary(r.signIns, now);
     people.push({
+      ...(devices ? { devices } : {}),
       userId: id,
       email,
       name: a?.name || r.profile?.name || '',
@@ -329,6 +334,16 @@ export async function emailSignIn(body: unknown) {
   if (!found.data.length) return { ok: false as const, error: 'There is no account with this email yet. Create it first.' };
   const emailed = await sendWelcome(p.data.email, found.data[0].firstName ?? undefined, await grantFor(p.data.email));
   return emailed ? { ok: true as const } : { ok: false as const, error: 'The email could not be sent. Try again in a few minutes.' };
+}
+
+/** Clears an account's sign-in history (server/devices.ts), so a person who reached the device limit can sign in again. */
+export async function resetDevices(body: unknown) {
+  const p = EmailBody.safeParse(body);
+  if (!p.success) return { ok: false as const, error: 'Enter a valid email address.' };
+  const found = await clerk().users.getUserList({ emailAddress: [p.data.email], limit: 10 });
+  if (!found.data.length) return { ok: false as const, error: 'There is no account with this email.' };
+  await Promise.all(found.data.map((u) => clearSignIns(hash(`clerk:${u.id}`))));
+  return { ok: true as const };
 }
 
 // ---------------------------------------------------------------- the welcome email

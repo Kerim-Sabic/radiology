@@ -79,6 +79,21 @@ function RegionalPriceNote({ price }: { price: RegionalPrice }) {
   );
 }
 
+/** The sign-in on another device that ended this browser's session (server/devices.ts). */
+interface EndedBy { at: string; country: string | null; label: string }
+function endedByText(e: EndedBy) {
+  let place = '';
+  try { place = e.country ? ` in ${new Intl.DisplayNames(['en'], { type: 'region' }).of(e.country) ?? e.country}` : ''; } catch { place = e.country ? ` in ${e.country}` : ''; }
+  const when = new Date(e.at).toLocaleString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+  return `You were signed out because your account was opened on ${e.label}${place} (${when}). An account is for one person, on one device at a time. If that wasn’t you, sign in again: that device will be signed out.`;
+}
+function EndedByBanner({ endedBy, onSignIn }: { endedBy: EndedBy; onSignIn: () => void }) {
+  return <div className="invite-banner" role="status">
+    <span>{endedByText(endedBy)}</span>
+    <span className="invite-banner-actions"><button className="text-button" onClick={onSignIn}>Sign in</button></span>
+  </div>;
+}
+
 /** A class invitation from a join link, for a visitor who is not signed in yet. */
 function InviteBanner({ onJoin, onSignIn }: { onJoin: () => void; onSignIn: () => void }) {
   const [invite, setInvite] = useState<Invitation | null>(null);
@@ -188,6 +203,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState('');
+  // Signed out because the account was opened on another device: where and when (server/devices.ts).
+  const [endedBy, setEndedBy] = useState<EndedBy | null>(null);
   const [checking, setChecking] = useState(false);
   const [returned, setReturned] = useState(() => new URLSearchParams(location.search).has('checkout'));
   const [authMode, setAuthMode] = useState<'signup' | 'login' | null>(() => {
@@ -239,11 +256,15 @@ function MembershipGate({ children }: { children: ReactNode }) {
       const response = await fetch('/api/session', { cache: 'no-store' });
       if (!mounted.current || current !== generation.current) return;
       if (response.status === 401) {
+        const body = await response.json().catch(() => null) as { endedBy?: EndedBy } | null;
+        if (!mounted.current || current !== generation.current) return;
+        const elsewhere = body?.endedBy && Date.now() - Date.parse(body.endedBy.at) < 7 * 86400000 ? body.endedBy : null;
         setAccount(null);
         setPayment(null);
         setBusy(null);
         checkoutGeneration.current++;
-        if (signedIn.current) setError('Your session ended. If you signed in on another device, that device is now active.');
+        setEndedBy(elsewhere);
+        if (signedIn.current) setError(elsewhere ? endedByText(elsewhere) : 'Your session ended. If you signed in on another device, that device is now active.');
         signedIn.current = false;
         return;
       }
@@ -253,6 +274,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       signedIn.current = !!data.user;
       setAccount(data);
       setError('');
+      if (data.user) setEndedBy(null);
       if (data.user) { setAuthMode(null); setAuthWaiting(false); }
       if (data.user && new URLSearchParams(location.search).has('account')) history.replaceState(null, '', withoutAccount());
       if (data.access.active) {
@@ -480,6 +502,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
     </AccountContext.Provider>;
   }
   return <main className="membership-page lp">
+    {endedBy ? <EndedByBanner endedBy={endedBy} onSignIn={() => setAuthMode('login')} /> : null}
     <InviteBanner onJoin={startFree} onSignIn={() => setAuthMode('login')} />
     <Landing panel={panel} signInLabel="Sign in" signInDisabled={!ready?.auth}
       onSignIn={() => setAuthMode('login')} onStartFree={startFree} />

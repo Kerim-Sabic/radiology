@@ -2,7 +2,8 @@ import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import { appOrigin, required } from './config.js';
 import { db } from './store.js';
 import { markJoined } from './joined.js';
-import { adminRole, PERMISSIONS, type Permission } from './roles.js';
+import { adminRole, PERMISSIONS, professorRole, type Permission } from './roles.js';
+import { DEVICE_COOKIE, latestSignInElsewhere, recordSignIn, type SignInContext } from './devices.js';
 import { exchange, identity, revoke } from './oauth.js';
 
 const SESSION_SECONDS = 30 * 86400;
@@ -31,6 +32,20 @@ export async function session(request: Request): Promise<Session | null> {
   if (await db().get<string>(`rvm:device:${found.userId}`) !== tokenHash) return null;
   return { ...found, tokenHash };
 }
+/**
+ * When this browser's session was ended by a sign-in on another device: that sign-in's time, country and device, so
+ * the page can say so. Null for no session, an expired one, or one this same browser replaced.
+ */
+export async function endedBy(request: Request) {
+  const token = readCookie(request, SESSION_COOKIE);
+  if (!/^[\w-]{43}$/.test(token)) return null;
+  const tokenHash = hash(token);
+  const found = await db().get<Session>(`rvm:session:${tokenHash}`);
+  if (!found) return null;
+  const current = await db().get<string>(`rvm:device:${found.userId}`);
+  if (!current || current === tokenHash) return null;
+  return latestSignInElsewhere(found.userId, readCookie(request, DEVICE_COOKIE) || null);
+}
 const emailList = (name: string) => (process.env[name] || '').split(',').map(v => v.trim().toLowerCase()).filter(Boolean);
 /** The owner (OWNER_EMAILS; without it, everyone in ADMIN_EMAILS): every permission, and the only one who manages admins. */
 export function isOwnerEmail(email: string) {
@@ -57,12 +72,20 @@ export async function adminAccess(userId: string): Promise<AdminAccess | null> {
 export async function isAdmin(userId: string) {
   return !!(await adminAccess(userId));
 }
-export async function createSession(profile: { sub: string; email: string; emailVerified: boolean; name?: string; provider?: 'whop' | 'clerk' }) {
+/**
+ * `device`: the browser's device id, country and user agent (server/devices.ts). The sign-in is logged, and refused
+ * with DeviceLimitError when it is a new device past the limit (admins and professors have none).
+ */
+export async function createSession(profile: { sub: string; email: string; emailVerified: boolean; name?: string; provider?: 'whop' | 'clerk' }, device?: SignInContext) {
   if (profile.emailVerified !== true) throw new Error('Verified email required');
   const token = random();
   const tokenHash = hash(token);
   const provider = profile.provider || 'whop';
   const user: Session = { userId: hash(`${provider}:${profile.sub}`), email: profile.email, name: profile.name || profile.email, tokenHash };
+  if (device) {
+    const unlimited = isAdminEmail(profile.email) || !!(await adminRole(profile.email)) || !!(await professorRole(profile.email));
+    await recordSignIn(user.userId, device, unlimited);
+  }
   const tx = db().multi();
   tx.set(`rvm:session:${tokenHash}`, user, { ex: SESSION_SECONDS });
   tx.set(`rvm:device:${user.userId}`, tokenHash, { ex: SESSION_SECONDS });
@@ -87,13 +110,13 @@ export async function beginSignIn() {
   });
   return { url: `https://api.whop.com/oauth/authorize?${params}`, cookie: cookie(FLOW_COOKIE, state, 600) };
 }
-export async function finishSignIn(request: Request) {
+export async function finishSignIn(request: Request, device?: SignInContext) {
   const url = new URL(request.url), state = url.searchParams.get('state') || '';
   if (!/^[\w-]{43}$/.test(state) || !equal(state, readCookie(request, FLOW_COOKIE))) throw new Error('Invalid OAuth state');
   const flow = await db().getdel<{ nonce: string; verifier: string }>(`rvm:oauth:${hash(state)}`);
   const code = url.searchParams.get('code');
   if (!flow || !code) throw new Error('Expired or canceled sign-in');
   const tokens = await exchange({ grant_type: 'authorization_code', code, code_verifier: flow.verifier, redirect_uri: `${appOrigin()}/api/auth/callback` });
-  try { return await createSession(await identity(tokens, flow.nonce)); }
+  try { return await createSession(await identity(tokens, flow.nonce), device); }
   finally { await revoke(tokens).catch(() => console.error('Temporary OAuth token revocation failed')); }
 }
