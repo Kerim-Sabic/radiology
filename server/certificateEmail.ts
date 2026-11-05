@@ -1,4 +1,5 @@
 import { db } from './store.js';
+import { mailFrom } from './mailbox.js';
 import { appOrigin } from './config.js';
 import { publicCertificate, type Certificate } from './certificates.js';
 import { credentialName } from '../shared/certificateLevels.js';
@@ -41,7 +42,7 @@ export async function sendCertificateEmails(onlyId?: string) {
           'Idempotency-Key': `certificate-${id}`,
         },
         body: JSON.stringify({
-          from: process.env.EMAIL_FROM,
+          from: mailFrom(),
           to: [job.email],
           ...certificateMail(c),
         }),

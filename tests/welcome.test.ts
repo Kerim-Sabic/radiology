@@ -105,6 +105,9 @@ describe('the welcome email', () => {
     expect(mails).toHaveLength(1);
     const m = mails[0] as { to: string[]; subject: string; html: string; text: string; headers: Record<string, string> };
     expect(m.to).toEqual(['ana@example.com']);
+    expect((mails[0] as { from: string }).from).toBe('Radiology Monster <hello@radiology.monster>');
+    expect(m.html).toContain('<b>Radiology Monster</b>');
+    expect(`${m.html}${m.text}`).not.toContain('Kerim');
     expect(m.subject).toBe('Ana, your first scan is ready (and 40% off is yours)');
     expect(m.html).toContain(body.code.toUpperCase());
     expect(m.html).toContain('$90 for your first year instead of $150');
@@ -183,6 +186,18 @@ describe('the welcome email', () => {
   });
 });
 
+describe('the sender', () => {
+  it('is always shown as Radiology Monster, at the configured address', async () => {
+    const { mailFrom } = await import('../server/mailbox');
+    vi.stubEnv('EMAIL_FROM', 'Kerim Sabic <hello@radiology.monster>');
+    expect(mailFrom()).toBe('Radiology Monster <hello@radiology.monster>');
+    vi.stubEnv('EMAIL_FROM', 'hello@radiology.monster');
+    expect(mailFrom()).toBe('Radiology Monster <hello@radiology.monster>');
+    vi.stubEnv('EMAIL_FROM', '');
+    expect(mailFrom()).toBeNull();
+  });
+});
+
 describe('the reminder', () => {
   it('goes once, in the last day, to an unused code', async () => {
     const r = await joined();
@@ -190,8 +205,9 @@ describe('the reminder', () => {
     mails = [];
     expect((await welcomeCron(ends - 30 * HOUR)).reminded).toBe(0);
     expect((await welcomeCron(ends - 10 * HOUR)).reminded).toBe(1);
-    const m = mails[0] as { subject: string; html: string };
+    const m = mails[0] as { subject: string; html: string; text: string };
     expect(m.subject).toBe('Ana, your 40% off ends in 10 hours');
+    expect(`${m.html}${m.text}`).not.toContain('Kerim');
     expect(m.html).toContain(r.code!.toUpperCase());
     expect((await welcomeCron(ends - 5 * HOUR)).reminded).toBe(0);
     expect(mails).toHaveLength(1);

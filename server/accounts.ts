@@ -2,7 +2,7 @@ import { createClerkClient } from '@clerk/backend';
 import { isClerkAPIResponseError } from '@clerk/backend/errors';
 import { appOrigin, required } from './config.js';
 import { rateLimit } from './store.js';
-import { mailboxKey } from './mailbox.js';
+import { mailboxKey, mailFrom } from './mailbox.js';
 
 /** Accounts made for someone else (by an admin or a professor), and the emails that tell them how to sign in. */
 
@@ -45,7 +45,7 @@ ${lines.map((l) => `<p style="margin:0 0 12px;font-size:15px;line-height:1.55;co
 /** Send one account email through Resend (at most three an hour to one mailbox). */
 export async function sendAccountMail(email: string, mail: { subject: string; html: string; text: string }): Promise<boolean> {
   const key = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM;
+  const from = mailFrom();
   if (!key || !from || !(await rateLimit(`welcome:${mailboxKey(email)}`, 3, 3600))) return false;
   try {
     const r = await fetch('https://api.resend.com/emails', {

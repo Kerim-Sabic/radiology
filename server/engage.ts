@@ -5,6 +5,7 @@ import { db } from './store.js';
 import { equal, type Session } from './auth.js';
 import { FREE_EDITION } from './freeEdition.generated.js';
 import { weeklyCase } from './free.js';
+import { mailFrom } from './mailbox.js';
 
 /**
  * Study activity on the server (only which days someone studied, for streak reminders and retention), email
@@ -210,7 +211,7 @@ export function weeklyMail(p: Profile, userId: string, now = new Date()): Mail {
 /** Send through Resend (batches of up to 100). Returns how many were accepted. */
 export async function sendMails(mails: Mail[]): Promise<number> {
   const key = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM;
+  const from = mailFrom();
   if (!key || !from || !mails.length) return 0;
   let sent = 0;
   for (let i = 0; i < mails.length; i += 100) {

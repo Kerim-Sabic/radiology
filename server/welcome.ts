@@ -4,10 +4,11 @@ import { db } from './store.js';
 import { accessFor, whop } from './billing.js';
 import { studentEligible } from './studentDiscount.js';
 import { offersStopped, unsubscribeUrl } from './engage.js';
+import { mailFrom } from './mailbox.js';
 import { WELCOME_HOURS, WELCOME_PERCENT, WELCOME_PREFIX, welcomeCodeKey, welcomeKey, type WelcomeRecord } from './welcomeCode.js';
 
 /**
- * The welcome email every new account gets a few seconds after its first sign-in: a personal note, the free chest X-ray
+ * The welcome email every new account gets a few seconds after its first sign-in, from "Radiology Monster": the free chest X-ray
  * to read first, and a personal code for 40% off the first payment that works for 72 hours. One reminder goes out in the
  * code's last day if it is still unused (from the daily cron). Nothing here ever fails or slows a sign-in.
  */
@@ -103,7 +104,7 @@ export function welcomeMail(userId: string, r: WelcomeRecord, opts: { student: b
     : 'Start with a real chest X-ray, graded on the exact spot you mark.';
   const body = `
 <h1 style="margin:0 0 16px;font-size:28px;line-height:1.2;letter-spacing:-0.02em;color:#111827">${esc(name ? `Welcome, ${name}.` : 'Welcome.')}</h1>
-${p("I’m Kerim, a medical student, and I built Radiology Monster so we could practise the way radiologists actually read: the whole study, no arrows, and a grade on the exact spot you mark.")}
+${p("Radiology Monster is where you practise the way radiologists actually read: the whole study, no arrows, and a grade on the exact spot you mark.")}
 ${p('So here is the best way to start. It takes about five minutes.')}
 <a href="${esc(caseUrl())}" style="display:block;margin:6px 0 14px;text-decoration:none"><img src="${esc(appOrigin())}/email/first-case.jpg" width="504" alt="A frontal chest X-ray from a real patient" style="display:block;width:100%;max-width:504px;height:auto;border-radius:14px;border:0"></a>
 <p style="margin:0 0 4px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#6e6e73">Your first case · free</p>
@@ -119,13 +120,13 @@ ${p('<b>A membership opens everything:</b>', 'margin-bottom:8px')}
 <li>Drills that bring back what you missed, on a different patient</li>
 <li>On-call shifts against the clock, and certificate exams</li>
 </ul>
-${p(opts.replies ? 'If anything is confusing, or a case looks wrong, just reply to this email. I read every one.' : 'If a case ever looks wrong, the “Report a problem” link under every task comes straight to me.')}
-${p('See you in the reading room,<br><b>Kerim</b><br><span style="color:#6e6e73">Radiology Monster</span>', 'margin-bottom:0')}
+${p(opts.replies ? 'If anything is confusing, or a case looks wrong, just reply to this email. We read every one.' : 'If a case ever looks wrong, the “Report a problem” link under every task comes straight to us.')}
+${p('See you in the reading room,<br><b>Radiology Monster</b>', 'margin-bottom:0')}
 ${offer ? `<p style="margin:22px 0 0;padding-top:16px;border-top:1px solid #e5e5ea;font-size:14px;line-height:1.55;color:#6e6e73">P.S. Read the free case first. If it is not for you, you have lost five minutes. If it is, your ${WELCOME_PERCENT}% is waiting until ${esc(deadline(offer.expiresAt))}.</p>` : ''}`;
   const lines = [
     name ? `Welcome, ${name}.` : 'Welcome.',
     '',
-    'I’m Kerim, a medical student, and I built Radiology Monster so we could practise the way radiologists actually read: the whole study, no arrows, and a grade on the exact spot you mark.',
+    'Radiology Monster is where you practise the way radiologists actually read: the whole study, no arrows, and a grade on the exact spot you mark.',
     '',
     'Start here (about five minutes): a real chest X-ray. Find the pneumothorax. Box what you see, commit, and your mark is graded against the expert reference.',
     `Read your first scan: ${caseUrl()}`,
@@ -139,10 +140,10 @@ ${offer ? `<p style="margin:22px 0 0;padding-top:16px;border-top:1px solid #e5e5
           '',
         ]
       : []),
-    opts.replies ? 'If anything is confusing, just reply to this email. I read every one.' : 'If a case ever looks wrong, use “Report a problem” under the task.',
+    opts.replies ? 'If anything is confusing, just reply to this email. We read every one.' : 'If a case ever looks wrong, use “Report a problem” under the task.',
     '',
     'See you in the reading room,',
-    'Kerim',
+    'Radiology Monster',
     '',
     `Stop offer emails: ${unsubscribe}`,
   ];
@@ -161,7 +162,7 @@ export function reminderMail(userId: string, r: WelcomeRecord, now = Date.now())
 ${p(`${name ? `${esc(name)}, a` : 'A'} quick reminder before it goes: your personal code still takes ${WELCOME_PERCENT}% off your first payment, and after ${esc(deadline(r.expiresAt!))} it stops working.`)}
 ${offerBox(code, r.expiresAt!, false, 'Still yours, for now')}
 ${p(`Not sure yet? Read the free chest X-ray first and see how the grading feels: <a href="${esc(caseUrl())}" style="color:#2563eb">open your first case</a>.`)}
-${p('Kerim', 'margin-bottom:0')}`;
+${p('Radiology Monster', 'margin-bottom:0')}`;
   const text = [
     `Your welcome gift ends in ${left}.`,
     '',
@@ -171,7 +172,7 @@ ${p('Kerim', 'margin-bottom:0')}`;
     '',
     `Not sure yet? Read the free chest X-ray first: ${caseUrl()}`,
     '',
-    'Kerim',
+    'Radiology Monster',
     '',
     `Stop offer emails: ${unsubscribe}`,
   ].join('\n');
@@ -181,7 +182,7 @@ ${p('Kerim', 'margin-bottom:0')}`;
 // ---------------------------------------------------------------- sending
 async function send(mail: WelcomeMail, idempotencyKey: string): Promise<boolean> {
   const key = process.env.RESEND_API_KEY;
-  const from = process.env.EMAIL_FROM;
+  const from = mailFrom();
   if (!key || !from) return false;
   const replyTo = process.env.EMAIL_REPLY_TO;
   try {
