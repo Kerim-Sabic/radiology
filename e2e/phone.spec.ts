@@ -32,6 +32,22 @@ test('one tap with Point makes one mark, under the finger', async ({ page }) => 
   expect(Math.hypot(at[0] - tap[0], at[1] - tap[1])).toBeLessThan(3);
 });
 
+test('a one-finger swipe scrolls the slices (the phone starts on Scroll, not Window / level)', async ({ page }) => {
+  await page.goto('/read/starter-ct-chest-01?mode=learn');
+  await ready(page);
+  expect(await page.evaluate(() => (window as any).__rvm.getTool())).toBe('scroll');
+  const before = await page.evaluate(() => ({ index: (window as any).__rvm.panelState('p0').index, win: (window as any).__rvm.getWindow('p0') }));
+  const box = (await page.locator('[data-panel="p0"] .vp-el').boundingBox())!;
+  const x = box.x + box.width / 2;
+  const cdp = await page.context().newCDPSession(page);
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y: box.y + box.height * 0.3 }] });
+  for (let k = 1; k <= 12; k++) await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x, y: box.y + box.height * (0.3 + k * 0.04) }] });
+  await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+  await expect.poll(() => page.evaluate(() => (window as any).__rvm.panelState('p0').index)).not.toBe(before.index);
+  // Brightness is untouched by the swipe.
+  expect(await page.evaluate(() => (window as any).__rvm.getWindow('p0'))).toEqual(before.win);
+});
+
 test('a tap with a viewing tool says how to mark', async ({ page }) => {
   await page.goto(XR);
   await ready(page);

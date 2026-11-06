@@ -1000,6 +1000,18 @@ export default function Workstation() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showId, anatomyTargets, targets, panels.length]);
 
+  // A guest from an ad or a shared link, in Learn mode (where the reference is shown anyway): open at the level where the
+  // task's structure is, not at slice 1, so the first screen matches the post. Practice and Assess keep the task's start.
+  const guestOpened = useRef<string | null>(null);
+  useEffect(() => {
+    if (!guest || mode !== 'learn' || !task || showId || guestOpened.current === task.id) return;
+    const t = task.targets.map((x) => targets.get(x.targetId)).find((x): x is LoadedTarget => !!x);
+    if (!t) return;
+    guestOpened.current = task.id;
+    setTimeout(() => jumpWhenReady(t), 150);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [guest, mode, task, targets, showId]);
+
   // ---------------------------------------------------------------- coach + comparison patient
   const focusedUid = (panels.find((p) => p.id === focused) ?? panels[0])?.seriesUid ?? null;
   const focusedKeys = useMemo(
@@ -1784,7 +1796,9 @@ export default function Workstation() {
                 toast.show('New attempt on the same patient. It is recorded, but it is not an unseen-patient test.');
               }}
               onNextTask={nextOnStudy}
-              next={exam || shift ? null : (nextStep ?? (guest ? { label: 'Save it: free account', go: () => startAccount('signup') } : free ? { label: 'See the plans', go: openPlans } : null))}
+              // A guest's first step after a result is keeping it (a free account, no card); the next task stays one tap away.
+              next={exam || shift ? null : guest ? { label: 'Save it: free account', go: () => startAccount('signup') } : (nextStep ?? (free ? { label: 'See the plans', go: openPlans } : null))}
+              alsoNext={guest && !exam && !shift && nextOnStudy ? { label: 'Next task', go: nextOnStudy } : null}
               selfReview={selfReview}
               onSelfReview={setSelfReview}
               independentNote={independentNote}

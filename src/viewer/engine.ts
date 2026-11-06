@@ -138,13 +138,20 @@ export interface ViewSnapshot {
   window: { center: number; width: number } | null;
 }
 
+/** A touch screen with no hover (a phone or tablet), where one finger is the only way to drag. */
+export function touchFirst(): boolean {
+  return typeof window !== 'undefined' && typeof window.matchMedia === 'function' && window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+}
+
 export class ViewerEngine {
   private re: InstanceType<typeof cs.RenderingEngine> | null = null;
   private panels = new Map<string, Panel>();
   private fetchers = new Map<string, SeriesFetcher>();
   private listeners = new Set<Listener>();
   private version = 0;
-  private activeTool: ToolId = 'windowLevel';
+  // Phones and tablets start on Scroll: a one-finger swipe is how people try to move through a scan, and on Window /
+  // level it washed the image out instead. Brightness has its own sliders there. Mouse screens keep Window / level.
+  private activeTool: ToolId = touchFirst() ? 'scroll' : 'windowLevel';
   private annotationListener: ((e: Event) => void) | null = null;
   private sopBySeriesImageId = new Map<string, { seriesUid: string; sop: string; index: number; projection: boolean }>();
   gpu = true;

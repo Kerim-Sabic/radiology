@@ -85,6 +85,33 @@ test('a visitor with no account answers the free X-ray from an ad, then keeps it
   await expect(page.getByRole('button', { name: 'Guest: create a free account to save your answer' })).toHaveCount(0);
 });
 
+test('the ad’s chest CT in Learn mode opens at the heart, and saving the answer comes first after the result', async ({ page }) => {
+  await visitor(page);
+  await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aheart&mode=learn&utm_source=meta&utm_campaign=131slices&utm_content=a_en');
+  await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
+  // Not slice 1 (the top of the head): the level where the heart is largest.
+  await expect.poll(() => page.evaluate(() => (window as any).__rvm.panelState('p0').index), { timeout: 10_000 }).toBeGreaterThan(40);
+  // The view is centred on the heart: a point in the middle of the image is inside it.
+  await page.waitForTimeout(400);
+  await page.evaluate(() => (window as any).__rvm.setTool('point'));
+  await page.evaluate(() => {
+    const el = document.querySelector('[data-panel="p0"] .vp-el')!;
+    const r = el.getBoundingClientRect();
+    const o = { bubbles: true, cancelable: true, clientX: r.left + r.width / 2, clientY: r.top + r.height / 2, button: 0, view: window };
+    el.dispatchEvent(new MouseEvent('mousemove', { ...o, buttons: 0 }));
+    el.dispatchEvent(new MouseEvent('mousedown', { ...o, buttons: 1 }));
+    document.dispatchEvent(new MouseEvent('mouseup', { ...o, buttons: 0 }));
+  });
+  await page.waitForFunction(() => (window as any).__rvm.collectMarks().length > 0, null, { timeout: 5000 });
+  await page.getByRole('button', { name: /^Submit/ }).first().click();
+  await expect(page.getByText('Correct', { exact: true }).first()).toBeVisible();
+  const result = page.locator('.result-first');
+  await expect(result.getByRole('button', { name: /Save it: free account/ })).toBeVisible();
+  await expect(result.getByRole('button', { name: 'Next task' })).toBeVisible();
+  await result.getByRole('button', { name: /Save it: free account/ }).click();
+  await expect(page.getByRole('dialog', { name: 'Your next chapter starts here.' })).toBeVisible();
+});
+
 test('the other sample patient opens too, and everything else still asks to sign in', async ({ page }) => {
   await visitor(page);
   await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aheart&mode=practice');

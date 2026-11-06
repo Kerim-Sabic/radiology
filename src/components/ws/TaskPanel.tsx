@@ -30,6 +30,8 @@ interface Props {
   onNextTask: (() => void) | null;
   /** The one next step shown with the result: the next task on this study, or the next patient in today's plan. */
   next: { label: string; go: () => void } | null;
+  /** A second, quieter step beside the first (a guest: "Next task" next to saving the answer). */
+  alsoNext?: { label: string; go: () => void } | null;
   selfReview: { checked: string[]; verdict: 'correct' | 'partial' | 'incorrect' | null } | null;
   onSelfReview: (s: { checked: string[]; verdict: 'correct' | 'partial' | 'incorrect' | null }) => void;
   independentNote: string;
@@ -334,10 +336,19 @@ function Result(p: Props) {
         </div>
         <small className="muted">{g.authorityNote}</small>
       </div>
-      {p.next ? (
-        <button className="btn primary" onClick={p.next.go}>
-          {p.next.label} <ArrowRight size={15} />
-        </button>
+      {p.next || p.alsoNext ? (
+        <div className="stack result-actions" style={{ gap: 6, alignItems: 'stretch' }}>
+          {p.next ? (
+            <button className="btn primary" onClick={p.next.go}>
+              {p.next.label} <ArrowRight size={15} />
+            </button>
+          ) : null}
+          {p.alsoNext ? (
+            <button className="btn ghost sm" onClick={p.alsoNext.go}>
+              {p.alsoNext.label}
+            </button>
+          ) : null}
+        </div>
       ) : null}
     </div>
   );
