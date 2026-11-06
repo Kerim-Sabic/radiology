@@ -115,6 +115,10 @@
     {
       "path": "/api/cron/weekly",
       "schedule": "0 7 * * 1"
+    },
+    {
+      "path": "/api/cron/welcome",
+      "schedule": "*/10 * * * *"
     }
   ],
   "functions": {

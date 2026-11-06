@@ -2,16 +2,18 @@ import type { Whop, WhopClient } from '@whop/sdk';
 import { allRegionalPlans, regionalPlans, required, type Region, type RegionalPlan } from './config.js';
 import { db } from './store.js';
 import { WELCOME_PERCENT } from './welcomeCode.js';
+import { STUDENT_PERCENT } from '../shared/studentDiscount.js';
 
 /**
  * Regional prices (the plans are in server/config.ts). Three locks keep them for the countries they are meant for:
  *
- * 1. The server picks the plan from Vercel's IP country; the browser never names a plan. The only code that goes with a
- *    regional price is the buyer's own welcome code (40% off the first payment); any other code means the standard price.
+ * 1. The server picks the plan from Vercel's IP country; the browser never names a plan. The only codes that go with a
+ *    regional price are the buyer's own welcome code (40% off the first payment) and, once an admin turns student prices
+ *    on there, the verified student's own 30% code (every payment); any other code means the standard price.
  * 2. Whop payment rules (Whop → Settings → Payment rules) decline a regional price on a card issued anywhere else: one
  *    rule per amount a regional plan can charge, "RVM regional block $9.99 unless B card" = amount is 9.99 and card
  *    country is not one of the tier's countries → block. Each regional price has a second rule for its welcome amount
- *    ($9.99 → $5.99; see ruleAmounts). A VPN changes the IP, not the card. (Tested 2026-11-05 with real cards: a Bosnian
+ *    ($9.99 → $5.99) and a third for its student amount ($9.99 → $6.99; see ruleAmounts). A VPN changes the IP, not the card. (Tested 2026-11-05 with real cards: a Bosnian
  *    card went through, a card Whop reads as foreign was declined. Separate "allow" rules on top of a price-only block
  *    never matched, so the rules are written this way. Whop's rules can match an amount but not a plan.)
  * 3. The plans take cards, Apple Pay and Google Pay only, so every payment has a card country for the rule to read.
@@ -51,13 +53,42 @@ export const RULE_PREFIX = 'RVM regional block';
 /** What a regional price charges with a welcome code, as Whop rounds it (checked 2026-11-05: 40% off $9.99 is $5.99). */
 export const welcomeAmount = (price: number) => Math.round(price * (100 - WELCOME_PERCENT)) / 100;
 
-/** Every amount a tier's plans can charge, each needing its own "RVM regional block $… unless … card" rule in Whop. */
+/**
+ * What a regional price charges with a verified student's 30% code, on every payment, as Whop rounds it: $9.99 → $6.99,
+ * $74.99 → $52.49, $4.99 → $3.49, $39.99 → $27.99 (checked on Whop's checkout of each plan with a temporary code,
+ * RVMSTUDENTROUND, 2026-11-06, then expired).
+ */
+export const studentAmount = (price: number) => Math.round(price * (100 - STUDENT_PERCENT)) / 100;
+
+/** The student amounts of a tier (monthly, yearly), which need their own Whop rules before student prices go on there. */
+export const studentRuleAmounts = (region: Region) => [regionalPlans[region].monthly, regionalPlans[region].yearly].map((p) => studentAmount(p.price));
+
+/**
+ * Every amount a tier's plans can charge, each needing its own "RVM regional block $… unless … card" rule in Whop: the
+ * price, with the welcome code, and with the student code.
+ */
 export const ruleAmounts = (region: Region) =>
-  [regionalPlans[region].monthly, regionalPlans[region].yearly].flatMap((p) => [p.price, welcomeAmount(p.price)]);
+  [regionalPlans[region].monthly, regionalPlans[region].yearly].flatMap((p) => [p.price, welcomeAmount(p.price), studentAmount(p.price)]);
 const LIVE_KEY = 'rvm:regional:live';
+/**
+ * Student prices on the regional plans. Off until an admin turns them on, which they do only once the four student
+ * amounts have their Whop rules (Whop lets no one read the rules through the API, so the switch is the confirmation).
+ * While off, a student in a regional country pays the regional price without the student code.
+ */
+const STUDENT_LIVE_KEY = 'rvm:regional:student-live';
 
 export async function regionalLive(): Promise<boolean> {
   return (await db().get(LIVE_KEY)) === true;
+}
+
+export async function studentRegionalLive(): Promise<boolean> {
+  return (await db().get(STUDENT_LIVE_KEY)) === true;
+}
+
+export async function setStudentRegionalLive(live: boolean): Promise<{ ok: true; studentLive: boolean }> {
+  if (live) await db().set(STUDENT_LIVE_KEY, true);
+  else await db().del(STUDENT_LIVE_KEY);
+  return { ok: true, studentLive: live };
 }
 
 export interface RegionalOffer {
@@ -66,6 +97,8 @@ export interface RegionalOffer {
   countryName: string;
   monthly: { price: number; pass: boolean };
   yearly: { price: number; pass: boolean };
+  /** A verified student's price there (30% off, every payment), only while student prices are on for regional plans. */
+  student?: { monthly: number; yearly: number };
 }
 
 /** The regional price for a country while regional prices are on; null anywhere else (and if the store is down). */
@@ -74,10 +107,12 @@ export async function regionalOffer(country?: string | null): Promise<RegionalOf
   if (!region || !(await regionalLive().catch(() => false))) return null;
   const code = country!.trim().toUpperCase();
   const p = regionalPlans[region];
+  const student = await studentRegionalLive().catch(() => false);
   return {
     region, country: code, countryName: countryName(code),
     monthly: { price: p.monthly.price, pass: p.monthly.pass },
     yearly: { price: p.yearly.price, pass: p.yearly.pass },
+    ...(student ? { student: { monthly: studentAmount(p.monthly.price), yearly: studentAmount(p.yearly.price) } } : {}),
   };
 }
 
@@ -144,6 +179,7 @@ export interface RegionalPaymentRow {
 /** Everything the admin page shows about regional prices. */
 export async function regionalStatus(client: WhopClient) {
   const live = await regionalLive();
+  const studentLive = await studentRegionalLive();
   const plans = await Promise.all(allRegionalPlans().map(async (p) => {
     try {
       return { id: p.id, label: planLabel(p), region: p.region, problems: regionalPlanProblems(await client.variants.retrieve({ id: p.id }), p) };
@@ -174,6 +210,8 @@ export async function regionalStatus(client: WhopClient) {
     payments: payments.slice(0, 20),
     rulePrefix: RULE_PREFIX,
     ruleAmounts: { b: ruleAmounts('b'), c: ruleAmounts('c') },
+    studentLive,
+    studentAmounts: { b: studentRuleAmounts('b'), c: studentRuleAmounts('c') },
     countries: REGION_COUNTRIES,
     prices: allRegionalPlans().map((p) => ({ label: planLabel(p), region: p.region, price: p.price, link: `https://whop.com/checkout/${p.id}` })),
   };

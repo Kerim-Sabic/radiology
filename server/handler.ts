@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { accessFor, checkout, referralProfile, whop } from './billing.js';
-import { regionalOffer, regionalStatus, setRegionalLive } from './regional.js';
+import { regionalOffer, regionalStatus, setRegionalLive, setStudentRegionalLive } from './regional.js';
 import { PromoUnavailableError } from './checkoutError.js';
 import { affiliateCode } from '../shared/referrals.js';
 import { beginSignIn, cookie, createSession, endedBy, finishSignIn, FLOW_COOKIE, hash, random, readCookie, session, SESSION_COOKIE } from './auth.js';
@@ -76,7 +76,9 @@ export async function handle(request: Request): Promise<Response> {
     }
     if (path.startsWith('/api/cron/') && request.method === 'GET') {
       if (!cronAuthorized(request)) return json({ error: 'Not allowed' }, 401);
-      if (path === '/api/cron/daily') return json({ ...await dailyCron(), certificates:await sendCertificateEmails(), welcome: await welcomeCron().catch(() => ({ error: true })) });
+      if (path === '/api/cron/daily') return json({ ...await dailyCron(), certificates:await sendCertificateEmails() });
+      // Every 10 minutes: welcomes still waiting, the code email 24 hours after sign-up, and the reminder in the code's last day.
+      if (path === '/api/cron/welcome') return json({ welcome: await welcomeCron().catch(() => ({ error: true })) });
       if (path === '/api/cron/weekly') return json(await weeklyCron());
       return json({ error: 'Not found' }, 404);
     }
@@ -364,6 +366,8 @@ export async function handle(request: Request): Promise<Response> {
         : path === '/api/admin/promos/change' ? (may('promos') ? await promoRequest(() => changePromo(body)) : 'denied')
         : path === '/api/admin/welcome/send' ? (may('promos') && may('people') ? await welcomeEarlierAccounts() : 'denied')
         : path === '/api/admin/regional/live' ? (may('promos') ? await setRegionalLive(await whop(), (body as { live?: unknown } | null)?.live === true) : 'denied')
+        // Student prices on the regional plans: turned on only after the four student amounts have their Whop card rules.
+        : path === '/api/admin/regional/student' ? (may('promos') ? await setStudentRegionalLive((body as { live?: unknown } | null)?.live === true) : 'denied')
         : path === '/api/admin/reports/resolve' ? (may('reports') ? await resolveReport(body) : 'denied')
         : null;
       if (!r) return json({ error: 'Not found' }, 404);

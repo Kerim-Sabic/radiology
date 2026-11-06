@@ -7,15 +7,25 @@ import { studentEligible } from './studentDiscount.js';
 import { offersStopped, unsubscribeUrl } from './engage.js';
 import { mailFrom } from './mailbox.js';
 import { everyone } from './admin.js';
-import { WELCOME_HOURS, WELCOME_PERCENT, WELCOME_PREFIX, welcomeCodeKey, welcomeKey, type WelcomeRecord } from './welcomeCode.js';
+import { STUDENT_PRICES } from '../shared/studentDiscount.js';
+import { OFFER_DELAY_HOURS, WELCOME_HOURS, WELCOME_PERCENT, WELCOME_PREFIX, welcomeCodeKey, welcomeKey, type WelcomeRecord } from './welcomeCode.js';
 
 /**
- * The welcome email every new account gets a few seconds after its first sign-in, from "Radiology Monster": the free chest X-ray
- * to read first, and a personal code for 40% off the first payment that works for 72 hours. One reminder goes out in the
- * code's last day if it is still unused (from the daily cron). Nothing here ever fails or slows a sign-in.
+ * Two emails for every new account, from "Radiology Monster":
+ *
+ * 1. The welcome, a few seconds after the first sign-in: the free chest X-ray to read first. No code and no offer.
+ * 2. The welcome gift, one day after sign-up (OFFER_DELAY_HOURS): a personal code for 40% off the first payment. The code
+ *    is made when this email goes out and works for 72 hours from then. It goes only to an account that still has no
+ *    access (a fresh check with Whop) and has not stopped offer emails. Until it has gone out, the app shows no offer.
+ *
+ * One reminder goes out in the code's last day if it is still unused. The welcome cron (/api/cron/welcome, every 10
+ * minutes) sends whatever is due, so the gift goes out 24 hours after sign-up give or take ten minutes. One code per
+ * account, never made again and never extended. Nothing here ever fails or slows a sign-in.
  */
 
 const QUEUE = 'rvm:welcome-queue';
+/** Accounts whose welcome-gift email is waiting for its time (the record's offerDueAt). */
+const DUE = 'rvm:welcome-offer-due';
 const OPEN = 'rvm:welcome-open';
 const FIRST_CASE = 'cxr-00003400-003';
 const HOUR = 3_600_000;
@@ -101,27 +111,53 @@ export function offerPrices(regional?: RegionalOffer | null) {
       };
 }
 
-function offerBox(code: string, expiresAt: string, student: boolean, firstLine: string, regional?: RegionalOffer | null) {
+/**
+ * For a verified student: the student price, which takes 30% off every payment without the code, at the standard price
+ * or (while student prices are on there) at the price for the account's country. Empty for anyone else.
+ */
+export function studentNote(student: boolean, regional?: RegionalOffer | null): string {
+  if (!student) return '';
+  if (!regional) return `Your university email also gets 30% off every renewal without the code ($${STUDENT_PRICES.monthly} a month or $${STUDENT_PRICES.yearly} a year): choose whichever suits you.`;
+  if (!regional.student) return '';
+  const { monthly, yearly } = regional.student;
+  return regional.monthly.pass
+    ? `Your university email also gets 30% off every pass without the code (${money(monthly)} for 30 days or ${money(yearly)} for a year): choose whichever suits you.`
+    : `Your university email also gets 30% off every payment without the code (${money(monthly)} a month or ${money(yearly)} a year): choose whichever suits you.`;
+}
+
+function offerBox(code: string, expiresAt: string, student: boolean, firstLine: string, regional?: RegionalOffer | null, campaign = 'welcome') {
   const prices = offerPrices(regional);
+  const note = studentNote(student, regional);
   return `<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:8px 0 22px;border:2px dashed #2563eb;border-radius:16px;background:#f5f8ff"><tr><td style="padding:22px 22px 18px">
 <p style="margin:0 0 6px;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#2563eb">${esc(firstLine)}</p>
 <p style="margin:0 0 14px;font-size:24px;line-height:1.25;font-weight:800;color:#111827">${WELCOME_PERCENT}% off your first payment</p>
 <p style="margin:0 0 16px"><span style="display:inline-block;padding:10px 16px;border-radius:10px;background:#111827;color:#ffffff;font:700 19px/1 'SFMono-Regular',Menlo,Consolas,monospace;letter-spacing:.06em">${esc(code.toUpperCase())}</span></p>
 <p style="margin:0 0 6px;font-size:15px;line-height:1.55;color:#3a3a3c"><b>${esc(prices.yearly.label)}:</b> ${esc(prices.yearly.text)}</p>
 <p style="margin:0 0 16px;font-size:15px;line-height:1.55;color:#3a3a3c"><b>${esc(prices.monthly.label)}:</b> ${esc(prices.monthly.text)}</p>
-${button(`Claim my ${WELCOME_PERCENT}% off`, claimUrl(code))}
-<p style="margin:12px 0 0;font-size:13px;line-height:1.5;color:#6e6e73">Ends ${esc(deadline(expiresAt))}. One use, made only for your account; it is already filled in when you open the plans. ${esc(prices.after)}${student && !regional ? ' Your university email also gets 30% off every renewal without the code: choose whichever suits you.' : ''}</p>
+${button(`Claim my ${WELCOME_PERCENT}% off`, claimUrl(code, campaign))}
+<p style="margin:12px 0 0;font-size:13px;line-height:1.5;color:#6e6e73">Ends ${esc(deadline(expiresAt))}. One use, made only for your account; it is already filled in when you open the plans. ${esc(prices.after)}${note ? ` ${esc(note)}` : ''}</p>
 </td></tr></table>`;
 }
 
-const claimUrl = (code: string) => `${appOrigin()}/?plans&promo=${encodeURIComponent(code)}&utm_source=email&utm_campaign=welcome`;
-const caseUrl = () => `${appOrigin()}/read/${FIRST_CASE}?task=${encodeURIComponent(`${FIRST_CASE}:locate`)}&mode=practice&utm_source=email&utm_campaign=welcome`;
+const claimUrl = (code: string, campaign = 'welcome') => `${appOrigin()}/?plans&promo=${encodeURIComponent(code)}&utm_source=email&utm_campaign=${campaign}`;
+const caseUrl = (campaign = 'welcome') => `${appOrigin()}/read/${FIRST_CASE}?task=${encodeURIComponent(`${FIRST_CASE}:locate`)}&mode=practice&utm_source=email&utm_campaign=${campaign}`;
+
+const MEMBERSHIP = `<ul style="margin:0 0 18px;padding-left:20px;font-size:15px;line-height:1.7;color:#3a3a3c">
+<li>600+ real patients across CT, MRI, X-ray, mammography and ultrasound</li>
+<li>A new case every Monday, with the expert outline and the book page</li>
+<li>Drills that bring back what you missed, on a different patient</li>
+<li>On-call shifts against the clock, and certificate exams</li>
+</ul>`;
 
 function footer(unsubscribe: string, when = 'just') {
   return `You are getting this because you ${when ? `${when} ` : ''}created an account at radiology.monster. <a href="${esc(unsubscribe)}" style="color:#86868b">Stop offer emails</a>.<br>Chest X-ray: NIH ChestX-ray14, NIH Clinical Center. For education only, not for clinical diagnosis.`;
 }
 
-/** `opts.regional`: the price for the account's country while regional prices are on there (else the standard price). */
+/**
+ * The welcome. A new account's has no offer (its code comes a day later, in offerMail); an account made before the
+ * welcome email existed gets its code in it. `opts.regional`: the price for the account's country while regional prices
+ * are on there (else the standard price).
+ */
 export function welcomeMail(userId: string, r: WelcomeRecord, opts: { student: boolean; replies: boolean; regional?: RegionalOffer | null }): WelcomeMail {
   const prices = offerPrices(opts.regional);
   const name = firstName(r.name);
@@ -145,12 +181,7 @@ ${button('Read your first scan', caseUrl(), !offer)}
 <div style="height:24px"></div>
 ${offer ? `${p('And because you are new here, a welcome gift that is only yours:')}${offerBox(offer.code, offer.expiresAt, opts.student, 'Your welcome gift', opts.regional)}` : ''}
 ${p('<b>A membership opens everything:</b>', 'margin-bottom:8px')}
-<ul style="margin:0 0 18px;padding-left:20px;font-size:15px;line-height:1.7;color:#3a3a3c">
-<li>600+ real patients across CT, MRI, X-ray, mammography and ultrasound</li>
-<li>A new case every Monday, with the expert outline and the book page</li>
-<li>Drills that bring back what you missed, on a different patient</li>
-<li>On-call shifts against the clock, and certificate exams</li>
-</ul>
+${MEMBERSHIP}
 ${p(opts.replies ? 'If anything is confusing, or a case looks wrong, just reply to this email. We read every one.' : 'If a case ever looks wrong, the “Report a problem” link under every task comes straight to us.')}
 ${p('See you in the reading room,<br><b>Radiology Monster</b>', 'margin-bottom:0')}
 ${offer ? `<p style="margin:22px 0 0;padding-top:16px;border-top:1px solid #e5e5ea;font-size:14px;line-height:1.55;color:#6e6e73">P.S. Read the free case first. If it is not for you, you have lost five minutes. If it is, your ${WELCOME_PERCENT}% is waiting until ${esc(deadline(offer.expiresAt))}.</p>` : ''}`;
@@ -167,7 +198,7 @@ ${offer ? `<p style="margin:22px 0 0;padding-top:16px;border-top:1px solid #e5e5
           `Your welcome gift: ${WELCOME_PERCENT}% off your first payment with the code ${offer.code.toUpperCase()}.`,
           `${prices.yearly.label}: ${prices.yearly.text} ${prices.monthly.label}: ${prices.monthly.text}`,
           `Claim it: ${claimUrl(offer.code)}`,
-          `Ends ${deadline(offer.expiresAt)}. One use, only for your account. ${prices.after}${opts.student && !opts.regional ? ' Your university email also gets 30% off every renewal without the code.' : ''}`,
+          `Ends ${deadline(offer.expiresAt)}. One use, only for your account. ${prices.after}${studentNote(opts.student, opts.regional) ? ` ${studentNote(opts.student, opts.regional)}` : ''}`,
           '',
         ]
       : []),
@@ -179,6 +210,45 @@ ${offer ? `<p style="margin:22px 0 0;padding-top:16px;border-top:1px solid #e5e5
     `Stop offer emails: ${unsubscribe}`,
   ];
   return { to: r.email, subject, html: shell(preheader, body, footer(unsubscribe, r.earlier ? '' : 'just')), text: lines.join('\n'), unsubscribe };
+}
+
+/** The welcome gift, a day after sign-up: the personal code, what it takes off, and how long it works. */
+export function offerMail(userId: string, r: WelcomeRecord, opts: { student: boolean; replies: boolean; regional?: RegionalOffer | null }): WelcomeMail {
+  const prices = offerPrices(opts.regional);
+  const name = firstName(r.name);
+  const unsubscribe = unsubscribeUrl(userId, 'offers');
+  const code = r.code!;
+  const ends = r.expiresAt!;
+  const note = studentNote(opts.student, opts.regional);
+  const subject = `${name ? `${name}, a` : 'A'} welcome gift: ${WELCOME_PERCENT}% off your first payment`;
+  const preheader = `A personal code for ${WELCOME_PERCENT}% off your first payment, for the next ${WELCOME_HOURS} hours.`;
+  const body = `
+<h1 style="margin:0 0 16px;font-size:28px;line-height:1.2;letter-spacing:-0.02em;color:#111827">${esc(name ? `${name}, a welcome gift.` : 'A welcome gift for you.')}</h1>
+${p(`You joined Radiology Monster yesterday. To welcome you, here is ${WELCOME_PERCENT}% off your first payment, with a code made only for your account. It works for the next ${WELCOME_HOURS} hours.`)}
+${offerBox(code, ends, opts.student, 'Your welcome gift', opts.regional, 'welcome_gift')}
+${p('<b>A membership opens everything:</b>', 'margin-bottom:8px')}
+${MEMBERSHIP}
+${p(`Not read your free case yet? Start with the chest X-ray and see how the grading feels: <a href="${esc(caseUrl('welcome_gift'))}" style="color:#2563eb">open your first case</a>.`)}
+${p(opts.replies ? 'Questions about the plans? Just reply to this email. We read every one.' : 'See you in the reading room,')}
+${p('<b>Radiology Monster</b>', 'margin-bottom:0')}`;
+  const text = [
+    name ? `${name}, a welcome gift.` : 'A welcome gift for you.',
+    '',
+    `You joined Radiology Monster yesterday. To welcome you, here is ${WELCOME_PERCENT}% off your first payment, with a code made only for your account. It works for the next ${WELCOME_HOURS} hours.`,
+    '',
+    `Your code: ${code.toUpperCase()}`,
+    `${prices.yearly.label}: ${prices.yearly.text} ${prices.monthly.label}: ${prices.monthly.text}`,
+    `Claim it: ${claimUrl(code, 'welcome_gift')}`,
+    `Ends ${deadline(ends)}. One use, only for your account. ${prices.after}${note ? ` ${note}` : ''}`,
+    '',
+    `Not read your free case yet? Start here: ${caseUrl('welcome_gift')}`,
+    '',
+    opts.replies ? 'Questions about the plans? Just reply to this email. We read every one.' : 'See you in the reading room,',
+    'Radiology Monster',
+    '',
+    `Stop offer emails: ${unsubscribe}`,
+  ].join('\n');
+  return { to: r.email, subject, html: shell(preheader, body, footer(unsubscribe, 'recently')), text, unsubscribe };
 }
 
 export function reminderMail(userId: string, r: WelcomeRecord, now = Date.now(), regional?: RegionalOffer | null): WelcomeMail {
@@ -280,22 +350,67 @@ async function makeCode(userId: string, r: WelcomeRecord, now: number): Promise<
   throw new Error('No free welcome code');
 }
 
-/** The account's first sign-in: remember it and send the welcome in the background (never awaited by the sign-in). */
-/** `country`: Vercel's IP country of the first sign-in, kept only when it has a regional price. */
-export async function welcomeNewAccount(user: { userId: string; email: string; name: string }, country?: string | null) {
-  if (process.env.WELCOME_EMAIL === 'off' || !process.env.RESEND_API_KEY || !process.env.EMAIL_FROM) return;
+const KEEP = { ex: 30 * 86_400 };
+const save = (userId: string, r: WelcomeRecord) => db().set(welcomeKey(userId), r, KEEP);
+
+/**
+ * Whether the account already has what the offer sells: a paying member, one whose membership waits on a payment or a
+ * billing update, an admin, a professor or free access from an admin or a class. A fresh check with Whop (not the
+ * 30-second cache); null when Whop cannot answer (nothing is sent then; the cron tries again).
+ */
+async function hasAccess(userId: string): Promise<boolean | null> {
   try {
-    const code = country?.trim().toUpperCase();
-    const record: WelcomeRecord = { email: user.email, name: user.name, joinedAt: new Date().toISOString(), ...(code && regionOf(code) ? { country: code } : {}) };
-    if ((await db().set(welcomeKey(user.userId), record, { nx: true, ex: 30 * 86_400 })) !== 'OK') return;
-    await db().sadd(QUEUE, user.userId);
-    waitUntil(sendWelcome(user.userId).catch(() => undefined));
+    const access = await accessFor(userId, true);
+    return access.active || !!access.pendingMembership || !!(await db().get(`rvm:once:paid:${userId}`));
   } catch {
-    /* the daily cron sends anything left in the queue */
+    return null;
   }
 }
 
-/** Send one account's welcome (with its code when it can have one). Safe to call twice: it sends once. */
+/**
+ * Make the account's one code, now (its 72 hours start now). No promo permission in Whop (it will not come back by
+ * itself) means no offer; other errors wait for the cron, which gives up on the offer a day after it was due.
+ */
+async function issueCode(userId: string, r: WelcomeRecord, now: number): Promise<WelcomeRecord | 'later'> {
+  try {
+    const made = await makeCode(userId, r, now);
+    await db().set(welcomeCodeKey(made.code), userId, KEEP);
+    return { ...r, ...made };
+  } catch (e) {
+    const status = (e as { statusCode?: number }).statusCode;
+    const due = Date.parse(r.offerDueAt ?? r.joinedAt);
+    if (status === 401 || status === 403 || now - due > 24 * HOUR) return { ...r, noOffer: true };
+    return 'later';
+  }
+}
+
+/**
+ * The account's first sign-in: remember it, send the welcome in the background (never awaited by the sign-in), and
+ * set the welcome gift for 24 hours later. `country`: Vercel's IP country of the first sign-in, kept only when it has a
+ * regional price.
+ */
+export async function welcomeNewAccount(user: { userId: string; email: string; name: string }, country?: string | null, now = Date.now()) {
+  if (process.env.WELCOME_EMAIL === 'off' || !process.env.RESEND_API_KEY || !process.env.EMAIL_FROM) return;
+  try {
+    const code = country?.trim().toUpperCase();
+    const record: WelcomeRecord = {
+      email: user.email, name: user.name, joinedAt: new Date(now).toISOString(),
+      offerDueAt: new Date(now + OFFER_DELAY_HOURS * HOUR).toISOString(),
+      ...(code && regionOf(code) ? { country: code } : {}),
+    };
+    if ((await db().set(welcomeKey(user.userId), record, { nx: true, ...KEEP })) !== 'OK') return;
+    await db().sadd(QUEUE, user.userId);
+    await db().sadd(DUE, user.userId);
+    waitUntil(sendWelcome(user.userId).catch(() => undefined));
+  } catch {
+    /* the welcome cron sends anything left in the queue */
+  }
+}
+
+/**
+ * Send one account's welcome. A new account's has no offer (the gift follows a day later, from sendWelcomeOffer); an
+ * account made before the welcome email existed gets its code with it. Safe to call twice: it sends once.
+ */
 export async function sendWelcome(userId: string, now = Date.now()): Promise<'sent' | 'later' | 'done'> {
   if (!(await db().set(`rvm:welcome-lock:${userId}`, '1', { nx: true, ex: 120 }))) return 'later';
   try {
@@ -304,45 +419,83 @@ export async function sendWelcome(userId: string, now = Date.now()): Promise<'se
       await db().srem(QUEUE, userId);
       return 'done';
     }
-    if (!r.code && !r.noOffer) {
-      // Members, admins, professors and class invitees with free access have what this email sells (and an admin-made
-      // account already got its own welcome from server/admin.ts): no email for them.
-      // A fresh check with Whop (not the 30-second cache). A paying member, or one whose membership waits on a payment
-      // or a billing update, never gets the offer; when Whop cannot answer, nothing is sent now (the cron tries later).
-      let access: { active: boolean; pendingMembership?: boolean };
-      try {
-        access = await accessFor(userId, true);
-      } catch {
+    // Members, admins, professors and class invitees with free access have what these emails are for (and an
+    // admin-made account already got its own welcome from server/admin.ts): no welcome and no gift for them.
+    const member = await hasAccess(userId);
+    if (member === null) return 'later';
+    if (member) {
+      await save(userId, { ...r, noOffer: true, sentAt: 'skipped: has access' });
+      await db().srem(QUEUE, userId);
+      await db().srem(DUE, userId);
+      return 'done';
+    }
+    if (r.earlier && !r.code && !r.noOffer) {
+      // An account made before the welcome email: it signed up long ago, so its code comes with the welcome.
+      const issued = await issueCode(userId, r, now);
+      if (issued === 'later') {
+        await save(userId, r);
         return 'later';
       }
-      if (access.active || access.pendingMembership || (await db().get(`rvm:once:paid:${userId}`))) {
-        await db().set(welcomeKey(userId), { ...r, noOffer: true, sentAt: 'skipped: has access' }, { ex: 30 * 86_400 });
-        await db().srem(QUEUE, userId);
-        return 'done';
-      }
-      try {
-        const made = await makeCode(userId, r, now);
-        r = { ...r, ...made };
-        await db().set(welcomeCodeKey(made.code), userId, { ex: 30 * 86_400 });
-      } catch (e) {
-        const status = (e as { statusCode?: number }).statusCode;
-        // No promo permission in Whop (it will not come back by itself): welcome without an offer. Other errors:
-        // try again from the cron, and give up on the offer after a day so the welcome never waits longer.
-        if (status === 401 || status === 403 || now - Date.parse(r.joinedAt) > 24 * HOUR) r = { ...r, noOffer: true };
-        else {
-          await db().set(welcomeKey(userId), r, { ex: 30 * 86_400 });
-          return 'later';
-        }
-      }
-      await db().set(welcomeKey(userId), r, { ex: 30 * 86_400 });
+      r = issued;
+      await save(userId, r);
+    } else if (!r.earlier && !r.offerDueAt && !r.code && !r.noOffer) {
+      // Queued before the gift waited a day (2026-11-06): its gift is due a day after its sign-up.
+      r = { ...r, offerDueAt: new Date(Date.parse(r.joinedAt) + OFFER_DELAY_HOURS * HOUR).toISOString() };
+      await save(userId, r);
+      await db().sadd(DUE, userId);
     }
     const student = await studentEligible(userId).catch(() => false);
     const regional = await regionalOffer(r.country);
     const ok = await send(welcomeMail(userId, r, { student, replies: !!process.env.EMAIL_REPLY_TO, regional }), `welcome-${userId}`);
     if (!ok) return 'later';
-    await db().set(welcomeKey(userId), { ...r, sentAt: new Date(now).toISOString() }, { ex: 30 * 86_400 });
+    const at = new Date(now).toISOString();
+    await save(userId, { ...r, sentAt: at, ...(r.code ? { offerSentAt: at } : {}) });
     await db().srem(QUEUE, userId);
     if (r.code) await db().sadd(OPEN, userId);
+    return 'sent';
+  } finally {
+    await db().del(`rvm:welcome-lock:${userId}`);
+  }
+}
+
+/**
+ * The welcome gift, once it is due (24 hours after sign-up): the code is made now, so its 72 hours start with this
+ * email. Skipped for an account that has access by then, that stopped offer emails, or whose welcome never went out.
+ * Safe to call twice: it sends once and never makes a second code (a send that failed is retried with the same code).
+ */
+export async function sendWelcomeOffer(userId: string, now = Date.now()): Promise<'sent' | 'later' | 'done'> {
+  if (!(await db().set(`rvm:welcome-lock:${userId}`, '1', { nx: true, ex: 120 }))) return 'later';
+  try {
+    let r = await db().get<WelcomeRecord>(welcomeKey(userId));
+    const finished = async (record?: WelcomeRecord) => {
+      if (record) await save(userId, record);
+      await db().srem(DUE, userId);
+      return 'done' as const;
+    };
+    if (!r || r.offerSentAt || r.noOffer || !r.offerDueAt) return await finished();
+    if (Date.parse(r.offerDueAt) > now) return 'later';
+    // The welcome goes first; if it is still waiting on Whop or Resend, so does the gift.
+    if (!r.sentAt) return 'later';
+    // A code made for a send that kept failing is not announced in its last day: the reminder's moment has passed too.
+    if (r.code && r.expiresAt && Date.parse(r.expiresAt) - now < 24 * HOUR) return await finished({ ...r, noOffer: true });
+    if (await offersStopped(userId)) return await finished({ ...r, noOffer: true });
+    const member = await hasAccess(userId);
+    if (member === null) return 'later';
+    if (member) return await finished({ ...r, noOffer: true });
+    if (!r.code) {
+      const issued = await issueCode(userId, r, now);
+      if (issued === 'later') return 'later';
+      if (issued.noOffer) return await finished(issued);
+      r = issued;
+      await save(userId, r);
+    }
+    const student = await studentEligible(userId).catch(() => false);
+    const regional = await regionalOffer(r.country);
+    const ok = await send(offerMail(userId, r, { student, replies: !!process.env.EMAIL_REPLY_TO, regional }), `welcome-gift-${userId}`);
+    if (!ok) return 'later';
+    await save(userId, { ...r, offerSentAt: new Date(now).toISOString() });
+    await db().srem(DUE, userId);
+    await db().sadd(OPEN, userId);
     return 'sent';
   } finally {
     await db().del(`rvm:welcome-lock:${userId}`);
@@ -364,11 +517,21 @@ async function used(userId: string, r: WelcomeRecord): Promise<boolean> {
   return false;
 }
 
-/** Daily: send welcomes still waiting, then one reminder to accounts whose unused code ends within the next day. */
+/**
+ * Every 10 minutes (/api/cron/welcome): welcomes still waiting, gifts that are due, then one reminder to each account
+ * whose unused code ends within the next day.
+ */
 export async function welcomeCron(now = Date.now()) {
   let welcomed = 0;
+  let offered = 0;
   let reminded = 0;
   for (const userId of ((await db().smembers(QUEUE)) as string[]).slice(0, 25)) if ((await sendWelcome(userId, now)) === 'sent') welcomed++;
+  const waiting = (await db().smembers(DUE)) as string[];
+  if (waiting.length) {
+    const records = (await db().mget<Array<WelcomeRecord | null>>(...waiting.map(welcomeKey))) as Array<WelcomeRecord | null>;
+    const due = waiting.filter((_, i) => !records[i]?.offerDueAt || Date.parse(records[i]!.offerDueAt!) <= now);
+    for (const userId of due.slice(0, 25)) if ((await sendWelcomeOffer(userId, now)) === 'sent') offered++;
+  }
   for (const userId of (await db().smembers(OPEN)) as string[]) {
     const r = await db().get<WelcomeRecord>(welcomeKey(userId));
     const ends = r?.expiresAt ? Date.parse(r.expiresAt) : 0;
@@ -382,12 +545,12 @@ export async function welcomeCron(now = Date.now()) {
       continue;
     }
     if (await send(reminderMail(userId, r, now, await regionalOffer(r.country)), `welcome-reminder-${userId}`)) {
-      await db().set(welcomeKey(userId), { ...r, reminderAt: new Date(now).toISOString() }, { ex: 30 * 86_400 });
+      await save(userId, { ...r, reminderAt: new Date(now).toISOString() });
       await db().srem(OPEN, userId);
       reminded++;
     }
   }
-  return { welcomed, reminded };
+  return { welcomed, offered, reminded };
 }
 
 // ---------------------------------------------------------------- accounts made before the welcome email existed

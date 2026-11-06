@@ -94,7 +94,8 @@ test('a drill answers a tap on the structure', async ({ page }) => {
     });
     const box = (await page.locator('.drill .vp-el').boundingBox())!;
     if (target) {
-      await expect(page.locator('.drill-side h2')).toContainText('Tap the');
+      // "Tap the …" (locate), or "Scroll to a slice that shows the …, then tap it." (find; the structure is on this slice).
+      await expect(page.locator('.drill-side h2')).toContainText(/Tap the|then tap it/);
       await page.touchscreen.tap(box.x + target[0], box.y + target[1]);
       await expect(page.locator('.drill-side .notice.ok')).toContainText('Correct');
       checked = true;

@@ -13,6 +13,8 @@ const fake = vi.hoisted(() => ({
   /** Promo codes in Whop, and which account each welcome code was made for. */
   promos: [] as Array<{ code: string; plan_ids: string[]; expires_at: string | null; unlimited_stock: boolean; stock: number }>,
   ownCodes: new Map<string, string>(),
+  /** Codes this server asked Whop to make (the student's 30% code). */
+  created: [] as Array<Record<string, unknown>>,
 }));
 vi.mock('../server/clerk', () => ({ clerkIdentity: vi.fn() }));
 vi.mock('../server/store', () => {
@@ -32,7 +34,16 @@ vi.mock('../server/welcomeCode', () => ({
   WELCOME_PERCENT: 40,
 }));
 vi.mock('@whop/sdk', () => ({ WhopClient: class {
-  promoCodes = { list: async (q: { plan_ids?: string[] }) => fake.promos.filter((c) => !q.plan_ids || q.plan_ids.some((id) => c.plan_ids.includes(id))) };
+  promoCodes = {
+    list: async (q: { plan_ids?: string[] }) => fake.promos.filter((c) => !q.plan_ids || q.plan_ids.some((id) => c.plan_ids.includes(id))),
+    create: async (body: Record<string, unknown>) => { fake.created.push(body); return { id: `promo_${fake.created.length}` }; },
+    // As Whop answers for a code made just now: active, unused, one use left.
+    retrieve: async ({ id }: { id: string }) => {
+      const body = fake.created[Number(id.split('_')[1]) - 1];
+      return { id, account: { id: 'biz_test' }, product: { id: 'prod_test' }, status: 'active', code: body.code, promo_type: 'percentage', amount_off: body.amount_off, duration: body.promo_duration_months === 0 ? 'forever' : 'once',
+        unlimited_stock: false, stock: 1, uses: 0, expires_at: body.expires_at, one_per_customer: true, existing_memberships_only: false, churned_users_only: false, new_users_only: false };
+    },
+  };
   members = { list: async () => ({ async *[Symbol.asyncIterator]() { yield* fake.members; } }) };
   memberships = { list: async () => ({ data: fake.memberships, async *[Symbol.asyncIterator]() { yield* fake.memberships; } }) };
   payments = {
@@ -48,7 +59,9 @@ function standardPlan(id: string) {
 }
 
 import { regionalPlans, type RegionalPlan } from '../server/config';
-import { ruleAmounts, ruleBlocked, regionalOffer, regionalPlanProblems, regionOf, regionalStatus, setRegionalLive, welcomeAmount } from '../server/regional';
+import { ruleAmounts, ruleBlocked, regionalOffer, regionalPlanProblems, regionOf, regionalStatus, setRegionalLive, setStudentRegionalLive, studentAmount, studentRuleAmounts, welcomeAmount } from '../server/regional';
+import { priceAnswers } from '../src/auth/priceAnswers';
+import { studentTerms, withStudentPrices } from '../src/auth/regionalPrice';
 import { accessFor, checkout, membershipAccess, whop } from '../server/billing';
 import { handle } from '../server/handler';
 import { hash } from '../server/auth';
@@ -72,7 +85,7 @@ const goLive = () => fake.records.set('rvm:regional:live', true);
 
 beforeEach(() => {
   fake.records.clear(); fake.members = []; fake.memberships = []; fake.byMembership.clear(); fake.byPlan.clear(); fake.variants.clear(); fake.checkoutCalls = [];
-  fake.promos = []; fake.ownCodes.clear();
+  fake.promos = []; fake.ownCodes.clear(); fake.created = [];
   for (const p of [B.monthly, B.yearly, C.monthly, C.yearly]) fake.variants.set(p.id, whopPlan(p));
   for (const [k, v] of Object.entries({ ADMIN_EMAILS: '', OWNER_EMAILS: '', APP_URL: 'https://radiology.monster', WHOP_APP_ID: 'app_test', WHOP_API_KEY: 'test', WHOP_ACCOUNT_ID: 'biz_test', WHOP_PRODUCT_ID: 'prod_test', WHOP_MONTHLY_PLAN_ID: 'plan_monthly', WHOP_YEARLY_PLAN_ID: 'plan_yearly', KV_REST_API_URL: 'https://example.invalid', KV_REST_API_TOKEN: 'test', WELCOME_EMAIL: 'off' })) vi.stubEnv(k, v);
 });
@@ -119,11 +132,16 @@ describe('checking a regional plan in Whop', () => {
 });
 
 describe('the card rule on a payment', () => {
-  it('needs one Whop rule per amount a tier can charge, the welcome-code prices included', () => {
+  it('needs one Whop rule per amount a tier can charge, the welcome-code and student prices included', () => {
     // Whop rounds 40% off $9.99 to $5.99 (checked on its checkout, 2026-11-05).
     expect(welcomeAmount(9.99)).toBe(5.99);
-    expect(ruleAmounts('b')).toEqual([9.99, 5.99, 74.99, 44.99]);
-    expect(ruleAmounts('c')).toEqual([4.99, 2.99, 39.99, 23.99]);
+    expect(ruleAmounts('b')).toEqual([9.99, 5.99, 6.99, 74.99, 44.99, 52.49]);
+    expect(ruleAmounts('c')).toEqual([4.99, 2.99, 3.49, 39.99, 23.99, 27.99]);
+  });
+  it('takes 30% off the regional prices for a student, rounded to the cent', () => {
+    expect([9.99, 74.99, 4.99, 39.99].map(studentAmount)).toEqual([6.99, 52.49, 3.49, 27.99]);
+    expect(studentRuleAmounts('b')).toEqual([6.99, 52.49]);
+    expect(studentRuleAmounts('c')).toEqual([3.49, 27.99]);
   });
   it('knows a payment the rule declined', () => {
     expect(ruleBlocked(declined('pay_1'))).toBe(true);
@@ -189,6 +207,119 @@ describe('checkout picks the plan on the server', () => {
     fake.variants.set(B.monthly.id, whopPlan(B.monthly, { visibility: 'visible' }));
     await expect(checkout('user_ba', 'monthly', undefined, undefined, 'BA')).rejects.toThrow('Unexpected Whop plan configuration');
     expect(fake.checkoutCalls).toHaveLength(0);
+  });
+});
+
+describe('student prices on the regional plans', () => {
+  const student = (userId: string, email = 'ana@unsa.edu.ba') => {
+    fake.records.set('rvm:student-discount-ready', true);
+    fake.records.set(`rvm:identity:${userId}`, { email, emailVerified: true });
+  };
+  const studentsOn = () => fake.records.set('rvm:regional:student-live', true);
+
+  it('are off until an admin turns them on (after the four Whop rules), and then show with the regional price', async () => {
+    goLive();
+    expect(await regionalOffer('BA')).not.toHaveProperty('student');
+    await setStudentRegionalLive(true);
+    expect(await regionalOffer('BA')).toMatchObject({ monthly: { price: 9.99 }, yearly: { price: 74.99 }, student: { monthly: 6.99, yearly: 52.49 } });
+    expect(await regionalOffer('IN')).toMatchObject({ monthly: { price: 4.99, pass: true }, student: { monthly: 3.49, yearly: 27.99 } });
+    expect(await regionalOffer('US')).toBeNull();
+    await setStudentRegionalLive(false);
+    expect(await regionalOffer('BA')).not.toHaveProperty('student');
+  });
+
+  it('while off, a student in a regional country pays the regional price without a student code', async () => {
+    goLive();
+    student('user_ba');
+    const result = await checkout('user_ba', 'monthly', undefined, undefined, 'BA');
+    expect(fake.checkoutCalls[0].body).toMatchObject({ plan_id: B.monthly.id });
+    expect(result).not.toHaveProperty('promoCode');
+    expect(result.regional).not.toHaveProperty('studentPrice');
+    expect(fake.created).toHaveLength(0);
+  });
+
+  it('while on, a verified student gets their own 30% code on the regional plan, for every payment', async () => {
+    goLive();
+    studentsOn();
+    student('user_ba');
+    const result = await checkout('user_ba', 'yearly', undefined, undefined, 'BA');
+    expect(fake.checkoutCalls[0].body).toMatchObject({ plan_id: B.yearly.id, metadata: { rvm_region: 'b' } });
+    expect(fake.created).toHaveLength(1);
+    expect(fake.created[0]).toMatchObject({ plan_ids: [B.yearly.id], amount_off: 30, promo_duration_months: 0, promo_type: 'percentage', stock: 1, one_per_customer: true });
+    expect(result).toMatchObject({ studentDiscount: true, promoCode: fake.created[0].code, regional: { country: 'BA', price: 74.99, studentPrice: 52.49 } });
+
+    student('user_in', 'arjun@iitb.ac.in');
+    const pass = await checkout('user_in', 'monthly', undefined, undefined, 'IN');
+    expect(fake.checkoutCalls[1].body).toMatchObject({ plan_id: C.monthly.id });
+    expect(fake.created[1]).toMatchObject({ plan_ids: [C.monthly.id], amount_off: 30 });
+    expect(pass).toMatchObject({ studentDiscount: true, regional: { price: 4.99, pass: true, studentPrice: 3.49 } });
+  });
+
+  it('never for someone without a verified university email', async () => {
+    goLive();
+    studentsOn();
+    fake.records.set('rvm:student-discount-ready', true);
+    fake.records.set('rvm:identity:user_ba', { email: 'ana@gmail.com', emailVerified: true });
+    const result = await checkout('user_ba', 'monthly', undefined, undefined, 'BA');
+    expect(result).not.toHaveProperty('promoCode');
+    expect(fake.created).toHaveLength(0);
+  });
+
+  it('does not stack with the welcome code: the buyer\'s own welcome code wins, alone (40% off the first payment)', async () => {
+    goLive();
+    studentsOn();
+    student('user_ba');
+    const code = 'welcome-ana-k7q3m';
+    fake.promos = [{ code, plan_ids: ['plan_monthly', 'plan_yearly', B.monthly.id, B.yearly.id, C.monthly.id, C.yearly.id], expires_at: future(2), unlimited_stock: false, stock: 1 }];
+    fake.ownCodes.set(code, 'user_ba');
+    const result = await checkout('user_ba', 'monthly', code, undefined, 'BA');
+    expect(fake.checkoutCalls[0].body).toMatchObject({ plan_id: B.monthly.id });
+    expect(result).toMatchObject({ promoCode: code, welcome: true, studentDiscount: false, regional: { price: 9.99 } });
+    expect(result.regional).not.toHaveProperty('studentPrice');
+    expect(fake.created).toHaveLength(0);
+  });
+
+  it('any other code still means the standard plan, where the student rules are unchanged', async () => {
+    goLive();
+    studentsOn();
+    student('user_ba');
+    // A 20% code for the first payment: the student's 30% on every renewal is better, so it is used instead (alone).
+    fake.promos = [{ code: 'spring20', plan_ids: ['plan_monthly'], expires_at: future(2), unlimited_stock: true, stock: 0, status: 'active', duration: 'once', promo_type: 'percentage', amount_off: 20 } as never];
+    const result = await checkout('user_ba', 'monthly', 'spring20', undefined, 'BA');
+    expect(fake.checkoutCalls[0].body.plan_id).toBe('plan_monthly');
+    expect(result).not.toHaveProperty('regional');
+    expect(result).toMatchObject({ studentDiscount: true });
+    expect(fake.created).toHaveLength(1);
+    expect(fake.created[0]).toMatchObject({ plan_ids: ['plan_monthly'], amount_off: 30 });
+  });
+
+  it('are in the session and the public config only while on, and listed for the admin with their rules', async () => {
+    goLive();
+    const config = () => handle(new Request('https://radiology.monster/api/config', { headers: { 'x-vercel-ip-country': 'BA' } })).then((r) => r.json());
+    expect((await config()).regionalPrice).not.toHaveProperty('student');
+    studentsOn();
+    expect((await config()).regionalPrice).toMatchObject({ student: { monthly: 6.99, yearly: 52.49 } });
+    const status = await regionalStatus(await whop());
+    expect(status).toMatchObject({ studentLive: true, studentAmounts: { b: [6.99, 52.49], c: [3.49, 27.99] }, ruleAmounts: { b: [9.99, 5.99, 6.99, 74.99, 44.99, 52.49] } });
+  });
+
+  it('show on the landing answers and the plan cards for that country', () => {
+    const ba = { region: 'b' as const, country: 'BA', countryName: 'Bosnia & Herzegovina', monthly: { price: 9.99, pass: false }, yearly: { price: 74.99, pass: false } };
+    const india = { region: 'c' as const, country: 'IN', countryName: 'India', monthly: { price: 4.99, pass: true }, yearly: { price: 39.99, pass: true } };
+    const answer = (r: Parameters<typeof priceAnswers>[0], q: string) => priceAnswers(r).find(([question]) => question.startsWith(q))![1];
+    // Off: the student answer is about the standard price only.
+    expect(answer(ba, 'Is there a student discount?')).toContain('$14 every 30 days or $105 every 365 days');
+    expect(answer(ba, 'Is there a student discount?')).not.toContain('$6.99');
+    const baOn = { ...ba, student: { monthly: 6.99, yearly: 52.49 } };
+    expect(answer(baOn, 'Is there a student discount?')).toContain('30% off the price for Bosnia & Herzegovina: $6.99 every 30 days or $52.49 every 365 days, on every payment');
+    expect(answer(baOn, 'How much does it cost?')).toContain('With an eligible university email, $6.99 every 30 days or $52.49 every 365 days.');
+    const inOn = { ...india, student: { monthly: 3.49, yearly: 27.99 } };
+    expect(answer(inOn, 'Is there a student discount?')).toContain('a 30-day pass is $3.49 and a 1-year pass $27.99, on every pass');
+    for (const r of [baOn, inOn]) expect(priceAnswers(r).map(([, a]) => a).join(' ')).not.toMatch(/welcome|40%/i);
+    expect(studentTerms(baOn)).toBe('$6.99 a month · $52.49 a year');
+    expect(studentTerms(inOn)).toBe('$3.49 for 30 days · $27.99 for a year');
+    expect(withStudentPrices(baOn)).toMatchObject({ monthly: { price: 6.99, pass: false }, yearly: { price: 52.49 } });
+    expect(withStudentPrices(ba)).toBe(ba);
   });
 });
 

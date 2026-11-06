@@ -1,6 +1,6 @@
 import { WhopClient, type Whop } from '@whop/sdk';
 import { appOrigin, plans, readiness, regionalPlan, regionalPlans, required, membershipPlans, type AccessTier, type Tier } from './config.js';
-import { regionalOffer, regionalPlanProblems } from './regional.js';
+import { regionalOffer, regionalPlanProblems, studentAmount } from './regional.js';
 import { db } from './store.js';
 import { hash, isAdmin, random } from './auth.js';
 import { merchantToken } from './oauth.js';
@@ -226,8 +226,9 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   const client = await whop();
   // The price for the visitor's country goes with no code, or with a welcome code (40% off the first payment; Whop's card
   // rules cover that amount too, and checkoutDiscount below makes sure the code is the buyer's own). Any other code goes
-  // with the standard price: codes are never put on the regional plans. A welcome code made before 2026-11-05 is on the
-  // standard plans only, so it also falls back to them. The server picks the plan; the browser cannot.
+  // with the standard price: codes are never put on the regional plans, except the buyer's own welcome code and a verified
+  // student's own 30% code (below). A welcome code made before 2026-11-05 is on the standard plans only, so it also falls
+  // back to them. The server picks the plan; the browser cannot.
   const welcomeCode = promo?.startsWith(WELCOME_PREFIX) ? promo : undefined;
   let regional = promo && !welcomeCode ? null : await regionalOffer(country);
   let regionalChoice = regional ? regionalPlans[regional.region][tier] : null;
@@ -245,8 +246,12 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   if (regionalChoice) {
     if (regionalPlanProblems(plan, regionalChoice).length) throw new Error('Unexpected Whop plan configuration');
   } else validatePlan(plan, tier);
-  // No student price on a regional plan; a welcome code there still goes through checkoutDiscount for its owner check.
-  const discount = regionalChoice && !welcomeCode ? {} : await checkoutDiscount(client, userId, tier, planId, promo);
+  // On a regional plan: a welcome code goes through checkoutDiscount for its owner check (and wins over the student price:
+  // discounts never stack). With no code, a verified student gets their own 30% code on the regional plan, every payment,
+  // once an admin has turned student prices on there (each student amount needs its Whop card rule first).
+  const discount = regionalChoice && !welcomeCode
+    ? (regional?.student ? await checkoutDiscount(client, userId, tier, planId) : {})
+    : await checkoutDiscount(client, userId, tier, planId, promo);
   let affiliate = affiliateCode(referralCode);
   if (affiliate && (await referralProfile(userId)).code === affiliate) affiliate = undefined;
   const key = `rvm:checkout:${userId}:${planId}:${hash(appOrigin())}${affiliate ? `:${hash(affiliate)}` : ''}`;
@@ -267,7 +272,8 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   if (!/^ch_[A-Za-z0-9]+$/.test(config.id)) throw new Error('Whop did not return an embedded checkout configuration');
   return {
     id: config.id, url, ...discount, returnUrl: `${appOrigin()}/?checkout=returned`,
-    ...(regional && regionalChoice ? { regional: { country: regional.country, countryName: regional.countryName, price: regionalChoice.price, days: regionalChoice.days, pass: regionalChoice.pass } } : {}),
+    ...(regional && regionalChoice ? { regional: { country: regional.country, countryName: regional.countryName, price: regionalChoice.price, days: regionalChoice.days, pass: regionalChoice.pass,
+      ...('studentDiscount' in discount && discount.studentDiscount ? { studentPrice: studentAmount(regionalChoice.price) } : {}) } } : {}),
   };
 }
 

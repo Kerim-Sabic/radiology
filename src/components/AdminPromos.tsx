@@ -151,7 +151,7 @@ function WelcomeEarlier({ onDone }: { onDone: () => void }) {
   return (
     <div className="notice stack" style={{ gap: 8 }}>
       <b>Welcome offer · 40% off the first payment for 72 hours</b>
-      <span className="muted">Every new account gets the welcome email with its own code automatically. Accounts made before it existed can get it once, from here.</span>
+      <span className="muted">Every new account gets the welcome email at once (the free case, no code), then its own code by email 24 hours after sign-up, unless it has a plan by then. Accounts made before it existed can get the welcome with their code once, from here.</span>
       {counts ? (
         <span>
           <b>{counts.waiting}</b> earlier account{counts.waiting === 1 ? '' : 's'} without a plan {counts.waiting === 1 ? 'has' : 'have'} not had it. Never sent to members, admins, professors or free access ({counts.members} now), nor to the {counts.stopped} who stopped offer emails. {counts.welcomed} already had it.
@@ -163,7 +163,7 @@ function WelcomeEarlier({ onDone }: { onDone: () => void }) {
         <span role="status">
           Sent {progress.sent}
           {progress.skipped ? `, skipped ${progress.skipped} who have a plan now` : ''}
-          {progress.failed ? `, ${progress.failed} will be retried by the daily email run` : ''}.
+          {progress.failed ? `, ${progress.failed} will be retried by the welcome email run (every 10 minutes)` : ''}.
         </span>
       ) : null}
       {error ? <span className="notice bad">{error}</span> : null}
@@ -406,7 +406,7 @@ function PromoList({ data, onChange }: { data: Promos; onChange: () => void }) {
       ) : null}
       {data.welcomeOffers?.issued ? (
         <small className="faint">
-          Welcome offers: {data.welcomeOffers.issued} personal codes emailed to new accounts (40% off the first payment for 72 hours), {data.welcomeOffers.used} used (made automatically, not listed).
+          Welcome offers: {data.welcomeOffers.issued} personal codes emailed to new accounts a day after sign-up (40% off the first payment for 72 hours), {data.welcomeOffers.used} used (made automatically, not listed).
         </small>
       ) : null}
       {message ? (

@@ -13,7 +13,7 @@ import { currentReferral } from './referralAttribution';
 import { PlansScreen } from './PlansScreen';
 import { trackFunnel } from '../services/serverSync';
 import { useOfferTimeLeft, welcomePrice, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
-import { regionalTerms, usd, yearlyFigures, type RegionalCheckout, type RegionalPrice } from './regionalPrice';
+import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice } from './regionalPrice';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
 type Tier = 'monthly' | 'yearly';
@@ -71,13 +71,13 @@ function WelcomeOfferNote({ offer, regional, applied, onApply }: { offer: Welcom
   );
 }
 
-/** The price for the visitor's country, and the one condition that comes with it: a card issued there. */
+/** The price for the visitor's country, the one condition that comes with it (a card issued there), and the student price there. */
 function RegionalPriceNote({ price, welcome }: { price: RegionalPrice; welcome: boolean }) {
   return (
     <div className="regional-price" role="note">
       <span className="regional-price-kicker">Price for {price.countryName}</span>
       <strong>{price.monthly.pass ? `${usd(price.monthly.price)} for 30 days · ${usd(price.yearly.price)} for a year` : `${usd(price.monthly.price)} a month · ${usd(price.yearly.price)} a year`}</strong>
-      <span>Pay with a card issued in {price.countryName}. Cards from other countries are declined at checkout.{price.monthly.pass ? ' Each payment is one-time and never renews.' : ''}{welcome ? ' Your welcome code works on these prices; any other promo code uses the standard price.' : ' A promo code uses the standard price.'}</span>
+      <span>Pay with a card issued in {price.countryName}. Cards from other countries are declined at checkout.{price.monthly.pass ? ' Each payment is one-time and never renews.' : ''}{price.student ? ` With a verified university email: ${studentTerms(price)}.` : ''}{welcome ? ' Your welcome code works on these prices; any other promo code uses the standard price.' : ' A promo code uses the standard price.'}</span>
     </div>
   );
 }
@@ -392,6 +392,10 @@ function MembershipGate({ children }: { children: ReactNode }) {
   // The plan cards show the price for the visitor's country with no code or with their own welcome code; any other code
   // means the standard price (server/billing.ts checkout decides the same way).
   const regionalShown = regional && (!promoCode.trim() || promoCode.trim().toLowerCase() === welcomeOffer?.code) ? regional : undefined;
+  // A verified student with no code sees the student price for their country (30% off every payment) while student prices
+  // are on there; a welcome code instead takes 40% off the first payment (discounts do not stack).
+  const studentRegional = student && regionalShown?.student && !promoCode.trim() ? withStudentPrices(regionalShown) : undefined;
+  const cardPrice = studentRegional ?? regionalShown;
   const checkoutCodeChanged = promoCode.trim().toLowerCase() !== (payment?.enteredPromoCode || '');
   const panel = <>
     <section className="membership-panel" id="plans" aria-label="Membership">
@@ -401,8 +405,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
         <p className="checkout-account">{account.user.email}</p>
         {payment.regional && <p className="student-offer regional-applied" role="status"><strong>Price for {payment.regional.countryName}: {regionalTerms(payment.regional)}</strong><span>Pay with a card issued in {payment.regional.countryName}. Cards from other countries are declined.{payment.welcome ? ' Your welcome code works on this price; any other code switches to the standard price.' : ' A promo code switches to the standard price.'}</span></p>}
-        {payment.studentDiscount && <p className="student-offer" role="status"><strong>30% student discount applied</strong><span>{payment.tier === 'monthly' ? '$14 USD every 30 days' : '$105 USD every 365 days'}, including every renewal. {payment.enteredPromoCode ? 'Your student offer gives a better recurring price than that code.' : 'Your university email is verified.'}</span></p>}
-        {payment.welcome && <p className="student-offer welcome-applied" role="status"><strong>Your welcome gift is applied: {welcomeOffer?.percent ?? 40}% off your first payment{payment.regional ? ` (${welcomePrice(payment.regional.price, welcomeOffer?.percent ?? 40)} instead of ${usd(payment.regional.price)})` : ''}</strong><span>{payment.regional ? (payment.regional.pass ? 'One payment; nothing renews.' : `Renewals are ${regionalTerms(payment.regional)}.`) : 'Renewals are at the standard price.'}{student && !payment.regional ? ' Remove the code to use your 30% student price on every renewal instead.' : ''} Discounts do not stack.</span></p>}
+        {payment.studentDiscount && <p className="student-offer" role="status"><strong>30% student discount applied</strong><span>{payment.regional?.studentPrice ? `${regionalTerms({ ...payment.regional, price: payment.regional.studentPrice })}${payment.regional.pass ? ', and 30% off every pass you buy' : ', including every renewal'}` : `${payment.tier === 'monthly' ? '$14 USD every 30 days' : '$105 USD every 365 days'}, including every renewal`}. {payment.enteredPromoCode ? 'Your student offer gives a better recurring price than that code.' : 'Your university email is verified.'}</span></p>}
+        {payment.welcome && <p className="student-offer welcome-applied" role="status"><strong>Your welcome gift is applied: {welcomeOffer?.percent ?? 40}% off your first payment{payment.regional ? ` (${welcomePrice(payment.regional.price, welcomeOffer?.percent ?? 40)} instead of ${usd(payment.regional.price)})` : ''}</strong><span>{payment.regional ? (payment.regional.pass ? 'One payment; nothing renews.' : `Renewals are ${regionalTerms(payment.regional)}.`) : 'Renewals are at the standard price.'}{student && (!payment.regional || regional?.student) ? ` Remove the code to use your 30% student price on every ${payment.regional?.pass ? 'pass' : 'renewal'} instead.` : ''} Discounts do not stack.</span></p>}
         {student && payment.studentDiscount === false && !payment.welcome && <p className="student-offer">Your promo gives an equal or better recurring discount. Discounts do not stack.</p>}
         <form className="promo-entry checkout-promo" onSubmit={event => { event.preventDefault(); if (!busy && checkoutCodeChanged) void buy(payment.tier); }}>
           <label htmlFor="checkout-promo">Promo code</label>
@@ -422,16 +426,19 @@ function MembershipGate({ children }: { children: ReactNode }) {
       {!regional && <>
         <p className="student-offer"><strong>{student ? 'Your verified university email unlocks 30% off' : '30% off for eligible university email addresses'}</strong><span>{student ? 'Student prices include every renewal. A better recurring promo takes precedence; discounts do not stack.' : 'Verify an eligible email, including .edu, .edu.ba or .ac.uk, for $14 every 30 days or $105 every 365 days. The discount continues on every renewal.'}</span></p>
       </>}
+      {regional?.student && <p className="student-offer"><strong>{student ? `Your verified university email unlocks 30% off in ${regional.countryName}` : `30% off in ${regional.countryName} for eligible university email addresses`}</strong><span>{student
+        ? `${studentTerms(regional)}, on every ${regional.monthly.pass ? 'pass' : 'payment'}.${welcomeOffer ? ' Your welcome code takes 40% off the first payment instead; discounts do not stack.' : ''}`
+        : `Verify an eligible email, including .edu, .edu.ba or .ac.uk, for ${studentTerms(regional)}. The discount applies to every ${regional.monthly.pass ? 'pass' : 'payment'}.`}</span></p>}
       {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
       <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>{regional ? (welcomeOffer ? 'Your welcome code works on the price for your country. Any other code applies to the standard price ($20 a month or $150 a year).' : 'A code applies to the standard price ($20 a month or $150 a year), not to the price for your country.') : 'Choose a plan below. Your discount will appear in the secure payment form.'}</p></details>
       <div className="membership-plans">
         <article className="membership-plan yearly" aria-labelledby="yearly-plan-title">
           <span className="membership-best">Best value</span>
           <div className="plan-heading"><h3 id="yearly-plan-title">Yearly</h3><span>For a year of steady progress</span></div>
-          {regionalShown ? <>
-            <div className="membership-price">{yearlyFigures(regionalShown).perMonth}<span>/ month</span></div>
-            <p className="plan-billing"><strong>{usd(regionalShown.yearly.price)} {regionalShown.yearly.pass ? 'for a year' : 'billed yearly'}</strong><span>{regionalShown.yearly.pass ? 'One payment for 365 days. It does not renew.' : 'One payment every 365 days.'}</span></p>
-            <div className="plan-value"><strong>Save {yearlyFigures(regionalShown).saves}</strong><span>vs. 12 {regionalShown.monthly.pass ? 'monthly passes' : 'monthly payments'}</span></div>
+          {cardPrice ? <>
+            <div className="membership-price">{yearlyFigures(cardPrice).perMonth}<span>/ month</span></div>
+            <p className="plan-billing"><strong>{usd(cardPrice.yearly.price)} {cardPrice.yearly.pass ? 'for a year' : 'billed yearly'}</strong><span>{cardPrice.yearly.pass ? 'One payment for 365 days. It does not renew.' : 'One payment every 365 days.'}{studentRegional ? ' Student price.' : ''}</span></p>
+            <div className="plan-value"><strong>Save {yearlyFigures(cardPrice).saves}</strong><span>vs. 12 {cardPrice.monthly.pass ? 'monthly passes' : 'monthly payments'}</span></div>
           </> : <>
             <div className="membership-price">{student ? '$8.75' : '$12.50'}<span>/ month</span></div>
             <p className="plan-billing"><strong>{student ? '$105' : '$150'} billed yearly</strong><span>One payment every 365 days.{student ? ' Student price, every renewal.' : ''}</span></p>
@@ -443,9 +450,9 @@ function MembershipGate({ children }: { children: ReactNode }) {
         </article>
         <article className="membership-plan monthly" aria-labelledby="monthly-plan-title">
           <div className="plan-heading"><h3 id="monthly-plan-title">Monthly</h3><span>For a shorter study stretch</span></div>
-          {regionalShown ? <>
-            <div className="membership-price">{usd(regionalShown.monthly.price)}<span>{regionalShown.monthly.pass ? '/ 30 days' : '/ month'}</span></div>
-            <p className="plan-billing"><strong>{usd(regionalShown.monthly.price)} {regionalShown.monthly.pass ? 'for 30 days' : 'billed every 30 days'}</strong><span>{regionalShown.monthly.pass ? 'One payment. Buy again when it ends.' : 'A smaller upfront payment.'}</span></p>
+          {cardPrice ? <>
+            <div className="membership-price">{usd(cardPrice.monthly.price)}<span>{cardPrice.monthly.pass ? '/ 30 days' : '/ month'}</span></div>
+            <p className="plan-billing"><strong>{usd(cardPrice.monthly.price)} {cardPrice.monthly.pass ? 'for 30 days' : 'billed every 30 days'}</strong><span>{cardPrice.monthly.pass ? 'One payment. Buy again when it ends.' : 'A smaller upfront payment.'}{studentRegional ? (cardPrice.monthly.pass ? ' Student price, every pass.' : ' Student price, every renewal.') : ''}</span></p>
           </> : <>
             <div className="membership-price">{student ? '$14' : '$20'}<span>/ month</span></div>
             <p className="plan-billing"><strong>{student ? '$14' : '$20'} billed every 30 days</strong><span>{student ? 'Student price, every renewal.' : 'A smaller upfront payment.'}</span></p>
@@ -495,8 +502,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
       <p>{authMode === 'signup' ? 'Create your account with your email, right here. No Google account needed.' : 'Sign in with the email you used for your membership.'}</p>
       {selectedPlan && <div className="selected-plan"><Check size={16} />{regionalShown
         ? (selectedPlan === 'monthly'
-          ? `Monthly · ${usd(regionalShown.monthly.price)} ${regionalShown.monthly.pass ? 'for 30 days' : '/ month'}`
-          : `Yearly · ${yearlyFigures(regionalShown).perMonth}/month equivalent · ${usd(regionalShown.yearly.price)} ${regionalShown.yearly.pass ? 'for a year' : 'billed yearly'}`)
+          ? `Monthly · ${usd(regionalShown.monthly.price)} ${regionalShown.monthly.pass ? 'for 30 days' : '/ month'}${regionalShown.student ? ` · students ${usd(regionalShown.student.monthly)}` : ''}`
+          : `Yearly · ${yearlyFigures(regionalShown).perMonth}/month equivalent · ${usd(regionalShown.yearly.price)} ${regionalShown.yearly.pass ? 'for a year' : 'billed yearly'}${regionalShown.student ? ` · students ${usd(regionalShown.student.yearly)}` : ''}`)
         : (selectedPlan === 'monthly' ? 'Monthly · $20 / month' : 'Yearly · $12.50/month equivalent · $150 billed yearly')}</div>}
       {authMode && ready?.authProvider === 'clerk' && ready.clerkPublishableKey ? <Suspense fallback={<p className="auth-waiting" role="status">Loading secure sign-in…</p>}>
         <InlineAccount publishableKey={ready.clerkPublishableKey} mode={authMode} onModeChange={setAuthMode} onSuccess={load} />

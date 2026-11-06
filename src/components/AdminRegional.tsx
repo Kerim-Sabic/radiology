@@ -8,8 +8,11 @@ interface RegionalStatus {
   plans: Array<{ id: string; label: string; region: 'b' | 'c'; problems: string[] }>;
   payments: Array<{ id: string; plan: string; status: string | null; amount: number | null; createdAt: string; blocked: boolean }>;
   rulePrefix: string;
-  /** Every amount the tier's plans charge (each price and its welcome-code price), one Whop rule each. */
+  /** Every amount the tier's plans charge (each price, its welcome-code price and its student price), one Whop rule each. */
   ruleAmounts?: Record<'b' | 'c', number[]>;
+  /** Student prices (30% off every payment) on the regional plans, and the amounts that need their own rules first. */
+  studentLive?: boolean;
+  studentAmounts?: Record<'b' | 'c', number[]>;
   countries: Record<'b' | 'c', string[]>;
   prices: Array<{ label: string; region: 'b' | 'c'; price: number; link: string }>;
 }
@@ -40,11 +43,11 @@ export function AdminRegional() {
     }
   }, []);
   useEffect(() => void load(), [load]);
-  async function setLive(live: boolean) {
+  async function setLive(live: boolean, what: 'live' | 'student' = 'live') {
     setBusy(true);
     setError('');
     try {
-      const r = await fetch('/api/admin/regional/live', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ live }) });
+      const r = await fetch(`/api/admin/regional/${what}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ live }) });
       const body = await r.json().catch(() => ({}));
       if (!r.ok) throw new Error(body.error || `The change failed (HTTP ${r.status}).`);
       await load();
@@ -105,6 +108,34 @@ export function AdminRegional() {
             </button>
           </span>
           {!status.live && blocker ? <span className="muted">{blocker}</span> : null}
+          {status.studentAmounts ? (
+            <span className="stack" style={{ gap: 6, marginTop: 4 }}>
+              <span>
+                <b>Student prices here · {status.studentLive ? 'on' : 'off'}.</b>{' '}
+                <span className="muted">
+                  A verified university email gets 30% off the regional price on every payment: B ${status.studentAmounts.b.join(' and $')}, C ${status.studentAmounts.c.join(' and $')}. Turn this on only after these four rules are active in Whop (Settings → Payment rules), each “amount is … and card country is not one of the tier's countries → Block”:{' '}
+                  {[...status.studentAmounts.b.map((a) => `${status.rulePrefix} $${a} unless B card`), ...status.studentAmounts.c.map((a) => `${status.rulePrefix} $${a} unless C card`)].join('; ')}.
+                </span>
+              </span>
+              <span className="row wrap" style={{ gap: 8 }}>
+                {status.studentLive ? (
+                  <button className="btn" disabled={busy} onClick={() => void setLive(false, 'student')}>
+                    {busy ? 'Turning off…' : 'Turn student prices here off'}
+                  </button>
+                ) : (
+                  <button
+                    className="btn"
+                    disabled={busy}
+                    onClick={() => {
+                      if (window.confirm('Are the four student rules active in Whop? Without them, a student price could be paid with a card from anywhere.')) void setLive(true, 'student');
+                    }}
+                  >
+                    {busy ? 'Turning on…' : 'The 4 rules are active: turn student prices here on'}
+                  </button>
+                )}
+              </span>
+            </span>
+          ) : null}
           {open ? (
             <span className="stack" style={{ gap: 6 }}>
               <span>
@@ -112,7 +143,7 @@ export function AdminRegional() {
               </span>
               {status.ruleAmounts ? (
                 <span>
-                  <b>Whop rules.</b> One per amount, “{status.rulePrefix} $… unless B card” or “… unless C card”: amount is the price and the card country is not one of the tier's countries → Block. B: {status.ruleAmounts.b.map((a) => `$${a}`).join(', ')}. C: {status.ruleAmounts.c.map((a) => `$${a}`).join(', ')}. (The lower amounts are the prices with a 40% welcome code.)
+                  <b>Whop rules.</b> One per amount, “{status.rulePrefix} $… unless B card” or “… unless C card”: amount is the price and the card country is not one of the tier's countries → Block. B: {status.ruleAmounts.b.map((a) => `$${a}`).join(', ')}. C: {status.ruleAmounts.c.map((a) => `$${a}`).join(', ')}. (Each price is followed by its amount with a 40% welcome code and with the 30% student price.)
                 </span>
               ) : null}
               <span>
