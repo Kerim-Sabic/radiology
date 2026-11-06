@@ -13,9 +13,10 @@ import { describeError, errorDetails } from '../app/errorReport';
 /** The slices are CC BY: they are credited wherever they show. */
 const CREDIT = 'Real CT · LCTSC (TCIA), CC BY 3.0';
 
-/** First slice number in the strip, and the step between its 6 slices. */
+/** The strip's slices: the first slice number, the step between them, and how many (index.html .rs-slice). */
 const FIRST_IM = 51;
-const IM_STEP = 7;
+const IM_STEP = 5;
+const FRAMES = 8;
 
 /** The gantry: bore, tube, fan beam and detector arc around the slice. `onTurn` fires once per rotation. */
 export function CtScanner({ onTurn }: { onTurn?: () => void }) {
@@ -51,7 +52,7 @@ export const SLOW_AFTER_MS = 20_000;
 /** Something is loading: the gantry spins, a slice is rebuilt per rotation, and the slice number steps with it. */
 export function ScanLoader({ label = 'Opening the reading room…', compact = false }: { label?: string; compact?: boolean }) {
   const [turn, setTurn] = useState(0);
-  const im = FIRST_IM + IM_STEP * (turn % 6);
+  const im = FIRST_IM + IM_STEP * (turn % FRAMES);
   const [slow, setSlow] = useState(false);
   useEffect(() => {
     const t = window.setTimeout(() => setSlow(true), SLOW_AFTER_MS);

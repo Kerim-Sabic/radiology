@@ -77,3 +77,39 @@ export function mayAutoReload(lastReloadAt: string | null, now: number): boolean
   const last = Number(lastReloadAt);
   return !lastReloadAt || !Number.isFinite(last) || now - last > AUTO_RELOAD_WINDOW_MS;
 }
+
+/** Whether an error boundary should reload for this error (a stale code file, no reload in the last minute). */
+export function willReloadFor(error: unknown, storage: Pick<Storage, 'getItem'> | null, now = Date.now()): boolean {
+  if (!storage || !isStaleRelease(errorMessage(error))) return false;
+  try {
+    return mayAutoReload(storage.getItem(AUTO_RELOAD_KEY), now);
+  } catch {
+    return false;
+  }
+}
+
+/** This tab's sessionStorage, or null where the browser blocks it. */
+export function sessionStore(): Storage | null {
+  try {
+    return typeof sessionStorage === 'undefined' ? null : sessionStorage;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * Reload the tab once to pick up a new release's code files. Returns true if it is reloading. Called from Vite's
+ * preload-error event (main.tsx) and from the error boundaries: a chunk without dependencies is a plain `import()`
+ * that never fires that event, so the boundary has to catch the same failure.
+ */
+export function reloadOnceForNewRelease(storage: Pick<Storage, 'getItem' | 'setItem'> | null, reload: () => void, now = Date.now()): boolean {
+  if (!storage) return false;
+  try {
+    if (!mayAutoReload(storage.getItem(AUTO_RELOAD_KEY), now)) return false;
+    storage.setItem(AUTO_RELOAD_KEY, String(now));
+  } catch {
+    return false; // storage blocked: show the error screen rather than risk a reload loop
+  }
+  reload();
+  return true;
+}

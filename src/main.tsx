@@ -11,26 +11,12 @@ import './styles/app.css';
 import { AccountGate } from './auth/AccountGate';
 import { RootErrorBoundary } from './components/RootErrorBoundary';
 import { ScanLoader } from './components/ScanState';
-import { AUTO_RELOAD_KEY, mayAutoReload } from './app/errorReport';
+import { reloadOnceForNewRelease, sessionStore } from './app/errorReport';
 
 // A release replaced the code files this tab was built against (or the connection dropped mid-download): reload once
 // to pick up the new ones. A second failure within a minute goes to the error screen instead of looping.
 window.addEventListener('vite:preloadError', (event) => {
-  let last: string | null = null;
-  try {
-    last = sessionStorage.getItem(AUTO_RELOAD_KEY);
-  } catch {
-    /* storage blocked: fall through to the error screen */
-    return;
-  }
-  if (!mayAutoReload(last, Date.now())) return;
-  try {
-    sessionStorage.setItem(AUTO_RELOAD_KEY, String(Date.now()));
-  } catch {
-    return;
-  }
-  event.preventDefault();
-  window.location.reload();
+  if (reloadOnceForNewRelease(sessionStore(), () => window.location.reload())) event.preventDefault();
 });
 
 // A certificate's public page opens for anyone, without signing in.

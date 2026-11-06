@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { AUTO_RELOAD_WINDOW_MS, describeError, errorDetails, errorMessage, isStaleRelease, mayAutoReload } from '../src/app/errorReport';
+import { AUTO_RELOAD_KEY, AUTO_RELOAD_WINDOW_MS, describeError, errorDetails, errorMessage, isStaleRelease, mayAutoReload, reloadOnceForNewRelease, willReloadFor } from '../src/app/errorReport';
 
 describe('error screen wording', () => {
   it('recognises a code file that failed to download after a release', () => {
@@ -55,5 +55,31 @@ describe('automatic reload after a failed code download', () => {
     expect(mayAutoReload(String(now - 5_000), now)).toBe(false);
     expect(mayAutoReload(String(now - AUTO_RELOAD_WINDOW_MS - 1), now)).toBe(true);
     expect(mayAutoReload('garbage', now)).toBe(true);
+  });
+
+  const store = () => {
+    const m = new Map<string, string>();
+    return { getItem: (k: string) => m.get(k) ?? null, setItem: (k: string, v: string) => void m.set(k, v), m };
+  };
+  const stale = new TypeError('Failed to fetch dynamically imported module: /assets/Course-x.js');
+
+  it('a boundary reloads for a stale code file once, and never for an ordinary crash', () => {
+    const s = store();
+    expect(willReloadFor(stale, s, 1_000)).toBe(true);
+    expect(willReloadFor(new TypeError('x is undefined'), s, 1_000)).toBe(false);
+    expect(willReloadFor(stale, null, 1_000)).toBe(false);
+    let reloads = 0;
+    expect(reloadOnceForNewRelease(s, () => (reloads += 1), 1_000)).toBe(true);
+    expect(s.m.get(AUTO_RELOAD_KEY)).toBe('1000');
+    // The reloaded tab fails again within the minute: the error screen shows instead of another reload.
+    expect(willReloadFor(stale, s, 20_000)).toBe(false);
+    expect(reloadOnceForNewRelease(s, () => (reloads += 1), 20_000)).toBe(false);
+    expect(reloads).toBe(1);
+  });
+
+  it('blocked storage means no automatic reload (no loop risk)', () => {
+    const blocked = { getItem: () => { throw new Error('denied'); }, setItem: () => { throw new Error('denied'); } };
+    expect(willReloadFor(stale, blocked, 1)).toBe(false);
+    expect(reloadOnceForNewRelease(blocked, () => { throw new Error('must not reload'); }, 1)).toBe(false);
   });
 });
