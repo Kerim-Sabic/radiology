@@ -288,6 +288,15 @@
    "bytes": 31199528,
    "distribution": "repo",
    "note": "AI anatomy layer for MRI (unreviewed): 2645 outlines (Circle-of-Willis arteries on MR angiograms, brain structures on brain MRIs) on 103 MR series, automatic QC and a visual check applied. No images; requires brain-mra, neuro-msk, expansion, ct-tumors, stroke-mri, stroke-mri-2, stroke-mri-3."
+  },
+  {
+   "id": "anatomy-atlas-xr",
+   "title": "Anatomy atlas, radiographs (AI)",
+   "manifest": "anatomy-atlas-xr/pack.json",
+   "lessons": null,
+   "bytes": 3506906,
+   "distribution": "repo",
+   "note": "AI anatomy layer for radiographs (unreviewed): 1617 outlines on 126 frontal chest radiographs, automatic QC and a visual check applied. No images; requires cxr-findings, cxr-findings-2, cxr-findings-3."
   }
  ]
 }

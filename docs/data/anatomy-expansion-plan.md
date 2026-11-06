@@ -4,6 +4,60 @@ _Plan written 6 November 2026 before any build; the report at the top is updated
 
 ## Report
 
+### Viewer round (6 November 2026): one view alone, two-view radiographs, chest-film anatomy, angiograms, finding analysis
+
+**1. One view alone (every multi-view layout).** A corner button on each view, a double-click on its title or the U key
+shows that view over the whole image area; Esc (or the button again) goes back. The other views are never resized or
+remounted: they keep their cell, slice, zoom, pan and window, stay invisible but live, and keep following the linked
+planes and crosshairs (tested: a point shown in the axial view alone moves the hidden sagittal plane). A switcher above
+the image (Axial / Coronal / Sagittal / 3D, Frontal / Lateral, R CC …, All) picks the view; on phones it is always
+there and one view at a time is the default, so every view of every layout is reachable (before, phones hid views 3-4
+of Four-up and two of the three MPR planes). The old "enlarge with a strip" mode is replaced.
+
+**2. Radiographs with two views.** A hanging protocol in the viewer (packs untouched): when the study has two or more
+radiograph views, the case opens two-up, frontal left and lateral right. The view comes from ViewPosition, else the
+image's PatientOrientation (rows left-right = frontal, front-back = lateral), else an unambiguous description; when one
+is unknown the stored order is kept. The 6 "PA & LATERAL" series stored as one series now give each image its own panel
+(pinned), so the arrows no longer flip between views; a mark keeps its own image's SOP (tested) and the grader compares
+it only with that image's targets (unit test: a lateral mark is never credited with the PA target at the same pixel). A
+task that names a view ("Open the lateral radiograph") puts the focus on that panel. Phones: Frontal / Lateral in the
+switcher. Try: `chest-pairs-lidc-idri-0217` (PA & lateral in one series), `xr-wrist-child-0040` (wrist frontal +
+lateral), `chest-pairs-covid-19-ar-16406502` task "lateral".
+
+**3. Anatomy on both views, as far as the evidence allows.**
+- Frontal chest films: new layer `anatomy-atlas-xr` (3.5 MB): **1,617 outlines on 126 of the 130 frontal films** of
+  `cxr-findings`, `-2`, `-3` (the same chest-film model and QC as the CT atlas's radiographs; every film looked at, 16
+  sheets). These films' headers do not record the patient's side (no PatientOrientation), so lungs, hila, clavicles and
+  scapulae are named by their place on the image ("Lung, image left") instead of being dropped; heart, aorta,
+  mediastinum, trachea and spine as usual. The model's "diaphragm" covers everything below the domes (liver and stomach
+  included) and is not published; one film with a gas-filled structure in the right lower chest is left out, two hearts
+  and one pair of hila are dropped. 3 films were not read as frontal chests by the model.
+- Lateral chest (7 films) and wrists (151 films, frontal and lateral): **not outlined.** The only open lateral-chest
+  model (CXAS in torchxrayvision; weights CC BY-NC-SA 4.0) was trained on CT projections, is not validated on real
+  laterals and its weights need unrestricted unpickling; no paediatric wrist model exists (the only bone masks for this
+  dataset, DenseSeg, are frontal-only machine labels with no stated licence; FleXray merges the carpals and fails on
+  lateral wrists). See Needs Kerim 6-7.
+- "Find it on the lateral too": the 74 wrist studies with a fracture already require it on both views (both are expert
+  boxes); the two-up hanging now shows both views together. No chest source localises a finding on both views.
+
+**4. Angiograms (`brain-mra`, `pe-cta`).** CT angiograms are recognised (CTA, CTPA, angiography in the series name)
+besides time-of-flight MRA. MPR on an angiogram opens as a MIP slab (20 mm MRA, 10 mm CTA) with a toolbar switch
+(MIP / Thin slice) and a 5-40 mm slider; any marking tool puts the views on the thin slice and the slab returns with a
+viewing tool, so a mark is never placed on a projection. 3D: a Spin button turns the view slowly (one turn in 24 s;
+a click stops it); CTPA opens 3D with the pulmonary-artery rendering. Names: hovering names a structure in 2D and 3D,
+and a click now keeps its name on screen. Isolating one artery works as for the other structures (Anatomy tab, 3D
+Structures). The CTPA cases already carry AI outlines of the pulmonary trunk, right and left pulmonary arteries and
+lobar arteries (CT atlas); segmental arteries: no open model, not drawn. The CTA Circle-of-Willis round stays planned.
+
+**5. Finding analysis (Kerim's request: tumour size and what goes with it, for every case).** Once the reference may be
+seen (Learn, Review, after submitting; never in Assess or an exam before the answer), the Task tab measures every
+finding the dataset's experts outlined on the case: longest diameter × widest extent across it on the image where it is
+largest, how many images it spans and its extent across slices, its volume (cross-sectional series) or its area on the
+film (radiographs, flagged when the pixel size is not corrected for magnification), and where its centre lies in the
+anatomy layer ("in the right frontal lobe; next to the right lateral ventricle (3.2 mm) - from the AI anatomy layer,
+not reviewed"), with a button to its largest image. Applies to gliomas, schwannomas, infarcts, aneurysms, nodules,
+emboli, fractures and every other expert outline. Never used for grading.
+
 ### Round 2 (6 November 2026): brain anatomy on MRI
 
 **Shipped**
@@ -125,6 +179,17 @@ Nothing below blocks the work that is running; each item is a decision or a sign
    - EchoNet-Dynamic / Stanford AIMI ultrasound sets: research-use agreement.
 5. **Disk.** C: has about 20 GB free now (40 GB at the start). Downloads are selective (only the cases built) and model weights are extracted from the
    docker images while streaming, without saving the images. More space would allow more cases per round.
+6. **Lateral chest outlines (decision).** CXAS (Seibold et al., PAX-Ray++; in torchxrayvision as
+   `chestx_anatomy.UNetResNet50`) is the only open model that segments lateral chest radiographs (heart, lungs, trachea,
+   aorta, sternum, spine). Its weights are CC BY-NC-SA 4.0 (non-commercial, share-alike: item 2 applies) and are a
+   pickle that must be loaded with unrestricted unpickling; it is trained on CT projections, not real laterals. With
+   only 7 lateral films in the packs it was not run. If Kerim wants it, it would be run with a visual check of every
+   film and only the robust classes shown.
+7. **Wrist bone outlines (decision / author contact).** No paediatric wrist anatomy model exists. The DenseSeg masks for
+   GRAZPEDWRI-DX (Lübeck; radius, ulna, epiphyses, each carpal, MC I-V; frontal only) have no stated licence: if Kerim
+   asks the authors (github.com/MDL-UzL/DenseSeg) for permission, a frontal model could be trained here on the two GPUs
+   and validated on their 64 radiologist-drawn masks. RAM-W600/H1200 (adult wrists, CC BY-NC-SA) are gated on Hugging
+   Face (account + conditions). Laterals would need hand-corrected labels.
 
 ## Constraints that shaped the plan
 

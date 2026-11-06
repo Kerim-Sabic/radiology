@@ -55,7 +55,10 @@ describe('free edition', () => {
     const free = manifests.flatMap((m) => m.referenceTargets);
     const atlas = free.filter((t) => t.layer === 'atlas');
     expect(atlas.length).toBeGreaterThan(0);
-    expect(atlas.length).toBeLessThanOrEqual(FREE_ANATOMY.length);
+    // A few main structures per sample patient's series (several anatomy layers may outline the same patient).
+    const perSeries = new Map<string, number>();
+    for (const t of atlas) perSeries.set(t.seriesUid, (perSeries.get(t.seriesUid) ?? 0) + 1);
+    for (const [uid, n] of perSeries) expect(n, uid).toBeLessThanOrEqual(FREE_ANATOMY.length);
     for (const t of atlas) expect(FREE_ANATOMY).toContain(t.classId);
     // Task outlines stay, so grading works.
     expect(free.some((t) => t.layer !== 'atlas' && t.classId === 'anatomy:heart')).toBe(true);

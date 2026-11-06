@@ -24,6 +24,10 @@ TOTALSEG_HOME = Path(os.environ.get("TOTALSEG_HOME_DIR", DATA_ROOT / "totalseg-h
 
 # Image packs scanned (in this order). more-ct-xr is picked up automatically once it is built.
 SOURCE_PACKS = ["starter", "chest-pairs", "body", "expansion", "ct-mri-pairs", "neuro-msk", "more-ct-xr", "pe-cta", "ct-findings", "ct-tumors"]
+# A later round on other packs (e.g. the radiograph layer anatomy-atlas-xr) sets RADIOLOGY_ATLAS_PACKS and its own
+# RADIOLOGY_ATLAS_WORK, so the CT atlas above is never rebuilt from them.
+if os.environ.get("RADIOLOGY_ATLAS_PACKS"):
+    SOURCE_PACKS = [p for p in os.environ["RADIOLOGY_ATLAS_PACKS"].split(",") if p]
 
 # Geometry simplification / filtering (shared by CT and CXR)
 DP_TOL_PX = 0.5          # Douglas-Peucker tolerance (skimage.measure.approximate_polygon), image pixels (radiographs)

@@ -70,6 +70,7 @@ export const FREE_EDITION: FreeEdition = {
  ],
  "shared": [
   "/content/curriculum.v1.json",
+  "/packs/anatomy-atlas-xr/pack.free.json",
   "/packs/anatomy-atlas/pack.free.json",
   "/packs/cxr-findings/lessons.free.json",
   "/packs/cxr-findings/pack.free.json",
@@ -105,6 +106,9 @@ export const FREE_EDITION: FreeEdition = {
     "/packs/cxr-findings/dicom/dx-ef3021541f/"
    ],
    "files": [
+    "/packs/anatomy-atlas-xr/targets/atx-3400-cxr-aorta.json",
+    "/packs/anatomy-atlas-xr/targets/atx-3400-cxr-heart.json",
+    "/packs/anatomy-atlas-xr/targets/atx-3400-cxr-trachea.json",
     "/packs/cxr-findings/targets/nih-00003400_003_pneumothorax.json",
     "/packs/cxr-findings/thumbs/dx-ef3021541f.png"
    ]

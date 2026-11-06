@@ -180,3 +180,19 @@ licence, run through its CLI because its Python API hangs on Windows), dilated 2
 | 5 tumour | any structure within 10 mm of a tumour outlined by the dataset's experts (any series of the same frame of reference, outlines in pixels or patient mm) is not shown, on every series of that patient |
 | trace | outline re-rasterised vs mask, Dice ≥ 0.9 (simplification 1.0 px for lobes, 0.35 px otherwise); gyri on 2 mm DWI mostly fail and are not shown |
 | visual | every published series inspected (`brain_visual_check.json`) |
+
+## Radiographs of later packs (→ `public/packs/anatomy-atlas-xr`)
+
+The CT atlas is at its budget and is not rebuilt, so the frontal chest films of later packs get their own layer with
+the same contract. `common.py` takes the packs and the work folder from the environment for this run:
+
+```bash
+export RADIOLOGY_ATLAS_PACKS=cxr-findings,cxr-findings-2,cxr-findings-3 RADIOLOGY_ATLAS_WORK=C:/Users/kerim/radiology-data/work/atlas-xr
+PYTHONIOENCODING=utf-8 $XRV scripts/atlas/cxr_segment.py        # same model, preprocessing, mapping back and QC as above
+$GPU scripts/atlas/xr_render.py                                  # 8 films per sheet -> WORK/cxr_sheets/; record WORK/xr_visual_check.json
+$GPU scripts/atlas/xr_write_pack.py                              # pack, docs/data/anatomy-atlas-xr-report.md, index entry
+```
+
+Films whose header has no PatientOrientation cannot have the patient's side checked: their paired structures are
+published without a side (`anatomy:lung`, `hilum`, `clavicle`, `scapula`), labelled by their place on the image. The
+model's "diaphragm" region (everything below the domes) is not published.
