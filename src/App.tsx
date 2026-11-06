@@ -8,7 +8,7 @@ import { LibraryPage } from './pages/Library';
 import { AccountMenu } from './auth/AccountGate';
 import { CommandPalette } from './components/CommandPalette';
 import { FreeBanner, LockedFeature } from './components/Upgrade';
-import { Loading as UiLoading } from './components/ui';
+import { ScanLoader } from './components/ScanState';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { useApp } from './app/AppContext';
 import { useAccount } from './auth/AccountGate';
@@ -187,12 +187,9 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
   );
 }
 
+/** A page's code is on its way: the reading-room loader, sized to the page area. */
 function Loading() {
-  return (
-    <div className="vp-status" style={{ position: 'static', height: '100%' }}>
-      <UiLoading />
-    </div>
-  );
+  return <ScanLoader label="Loading…" compact />;
 }
 
 const SITE_TITLE = 'Radiology Monster · Real radiology cases for medical students';

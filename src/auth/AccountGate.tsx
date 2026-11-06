@@ -1,5 +1,5 @@
 import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from 'react';
-import { ArrowLeft, ArrowRight, Check, ShieldCheck, ScanLine, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers, LockOpen, School, ChevronDown, CircleHelp, Settings as SettingsIcon, UsersRound } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, ShieldCheck, LogOut, CreditCard, Mail, X, BookOpen, Crosshair, Layers, LockOpen, School, ChevronDown, CircleHelp, Settings as SettingsIcon, UsersRound } from 'lucide-react';
 import { DropdownMenu } from 'radix-ui';
 import { Link, useLocation } from 'react-router';
 import { fetchInvitation, pendingJoinCode, type Invitation } from './joinCode';
@@ -12,6 +12,7 @@ import { InviteFriends } from './InviteFriends';
 import { currentReferral } from './referralAttribution';
 import { PlansScreen } from './PlansScreen';
 import { trackFunnel } from '../services/serverSync';
+import { ScanLoader } from '../components/ScanState';
 import { useOfferTimeLeft, welcomePrice, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
 import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice } from './regionalPrice';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
@@ -384,7 +385,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
   }
 
   if (account?.access.active) return <AccountContext.Provider value={{ account, logout, free: false, guest: false, openPlans, startAccount: noAccountForm }}>{children}</AccountContext.Provider>;
-  if (loading) return <div className="membership-loading" role="status"><ScanLine size={30} /><p>Opening your study space…</p></div>;
+  if (loading) return <ScanLoader label="Opening your study space…" />;
   const student = account?.studentDiscountEligible === true;
   // Signed in: the account's price (none once a member). Signed out: the price for the visitor's country from /api/config.
   const regional = account?.user ? account.regionalPrice : ready?.regionalPrice;
