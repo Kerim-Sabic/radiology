@@ -4,11 +4,14 @@ import { ChevronRight, ShieldCheck } from 'lucide-react';
 import { TRY_CASE_URL } from './guest';
 import { fact, LANDING_CREDITS, LANDING_FACTS } from './landingFacts';
 import { AI_CREDIT } from '../lib/provenance';
+import { usd, yearlyFigures, type RegionalPrice } from './regionalPrice';
 import './landing.css';
 
 interface Props {
   /** The plans and checkout panel (owned by the membership gate). */
   panel: ReactNode;
+  /** The price for the visitor's country, when regional prices apply there (the FAQ then quotes it). */
+  regional?: RegionalPrice;
   signInLabel: string;
   signInDisabled: boolean;
   onSignIn: () => void;
@@ -75,11 +78,33 @@ const FEATURES: Array<[string, string]> = [
   ['Search-pattern coach', 'A step-by-step review for chest films, CT and MRI, so no structure is skipped.'],
 ];
 
-const FAQ: Array<[string, ReactNode]> = [
+/** The price answers, with the visitor's regional price when it applies (the plan cards show the same price). */
+function priceAnswers(r?: RegionalPrice): Array<[string, ReactNode]> {
+  if (!r) {
+    return [
+      ['How much does it cost?', 'A free account opens two sample patients, with grading and no card. Membership is $20 every 30 days, or $150 in one payment every 365 days (equal to $12.50 a month). An eligible university email gets 30% off: $14 every 30 days or $105 every 365 days.'],
+      ['Is there a student discount?', 'Yes. Verify an eligible university email, including .edu, .edu.ba or .ac.uk, and get 30% off: $14 every 30 days or $105 every 365 days, including every renewal. It is applied automatically when you start a new membership. A better recurring promo takes precedence; discounts do not stack. Existing memberships are unchanged.'],
+      ['How do I cancel?', 'Both plans renew, monthly every 30 days and yearly every 365 days, until you cancel future renewals from Billing. Have a promo code? Enter it before you choose a plan.'],
+    ];
+  }
+  const where = r.countryName;
+  const monthly = r.monthly.pass ? `a 30-day pass is ${usd(r.monthly.price)}` : `membership is ${usd(r.monthly.price)} every 30 days`;
+  const yearly = r.yearly.pass
+    ? `a 1-year pass is ${usd(r.yearly.price)} (equal to ${yearlyFigures(r).perMonth} a month)`
+    : `${usd(r.yearly.price)} in one payment every 365 days (equal to ${yearlyFigures(r).perMonth} a month)`;
+  const passes = r.monthly.pass && r.yearly.pass;
+  return [
+    ['How much does it cost?', `A free account opens two sample patients, with grading and no card. In ${where}, ${monthly}${r.monthly.pass ? ' and' : ', or'} ${yearly}${passes ? ': one payment each, and nothing renews' : ''}. Pay with a card issued in ${where}. Everywhere else, membership is $20 every 30 days or $150 every 365 days.`],
+    ['Is there a student discount?', `Yes, on the standard price: an eligible university email (.edu, .edu.ba, .ac.uk and others) gets 30% off, $14 every 30 days or $105 every 365 days. In ${where} the price for your country is lower than that and applies instead; discounts do not stack.`],
+    ['How do I cancel?', passes
+      ? `In ${where} both plans are passes: one payment, nothing renews and there is nothing to cancel. Buy again when it ends. A promo code applies to the standard price, not to the price for ${where}.`
+      : `Both plans renew, monthly every 30 days and yearly every 365 days, until you cancel future renewals from Billing. A promo code applies to the standard price, not to the price for ${where}.`],
+  ];
+}
+
+const faq = (regional?: RegionalPrice): Array<[string, ReactNode]> => [
   ['What is Radiology Monster?', 'Radiology Monster (radiology.monster) is a radiology reading workstation in your browser for medical students and residents: real CT, MRI, X-ray, mammography and ultrasound studies from 600+ patients, where you scroll the whole study, mark what you see and are graded against the expert reference on the exact slice.'],
-  ['How much does it cost?', 'A free account opens two sample patients, with grading and no card. Membership is $20 every 30 days, or $150 in one payment every 365 days (equal to $12.50 a month). An eligible university email gets 30% off: $14 every 30 days or $105 every 365 days.'],
-  ['Is there a student discount?', 'Yes. Verify an eligible university email, including .edu, .edu.ba or .ac.uk, and get 30% off: $14 every 30 days or $105 every 365 days, including every renewal. It is applied automatically when you start a new membership. A better recurring promo takes precedence; discounts do not stack. Existing memberships are unchanged.'],
-  ['How do I cancel?', 'Both plans renew, monthly every 30 days and yearly every 365 days, until you cancel future renewals from Billing. Have a promo code? Enter it before you choose a plan.'],
+  ...priceAnswers(regional),
   ['Can professors use it with a class?', 'Yes. A professor gets a class page with one join link to share. Students join after seeing what the professor can follow: their study days, exam results and certificates, never their answers or payments. Students can leave the class at any time.'],
   ['How do I earn a certificate?', 'Pass an exam. The levels go in order and each is a real step up: Foundation has 15 untimed questions with a 70% pass mark, Intermediate 25 questions at 3 minutes each with 80%, and Advanced 40 questions at 2 minutes each with 90% and no half points. The whole library has three more levels, with 30, 50 and 75 questions. Every question is a real patient with no hints, graded against the expert reference, and the result comes after the last question. Your certificate has its own check page and can go on LinkedIn under Licenses & certifications.'],
   ['Where do the scans come from?', 'From public research collections released for reuse, including commercial use (Creative Commons and NIH terms). They are de-identified, and every case names its source and licence.'],
@@ -125,7 +150,7 @@ function useReveal() {
   }, []);
 }
 
-export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartFree }: Props) {
+export function Landing({ panel, regional, signInLabel, signInDisabled, onSignIn, onStartFree }: Props) {
   const [tab, setTab] = useState(MODALITIES[0].id);
   useEffect(() => trackFunnel('visit', true), []);
   useReveal();
@@ -308,7 +333,7 @@ export function Landing({ panel, signInLabel, signInDisabled, onSignIn, onStartF
             <h2>Questions</h2>
           </div>
           <div className="lp-faq">
-            {FAQ.map(([q, a]) => (
+            {faq(regional).map(([q, a]) => (
               <details key={q}>
                 <summary>{q}</summary>
                 <p>{a}</p>

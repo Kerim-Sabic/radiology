@@ -202,7 +202,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
   const { pathname } = useLocation();
   const [referral] = useState(currentReferral);
   const [account, setAccount] = useState<Account | null>(null);
-  const [ready, setReady] = useState<{ auth: boolean; billing: boolean; authProvider?: 'clerk' | 'whop'; clerkPublishableKey?: string } | null>(null);
+  // regionalPrice: the price for the visitor's country (server/regional.ts), sent before sign-in so the landing page shows it.
+  const [ready, setReady] = useState<{ auth: boolean; billing: boolean; authProvider?: 'clerk' | 'whop'; clerkPublishableKey?: string; regionalPrice?: RegionalPrice } | null>(null);
   const [loading, setLoading] = useState(true);
   const [busy, setBusy] = useState<string | null>(null);
   const [error, setError] = useState('');
@@ -385,7 +386,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
   if (account?.access.active) return <AccountContext.Provider value={{ account, logout, free: false, guest: false, openPlans, startAccount: noAccountForm }}>{children}</AccountContext.Provider>;
   if (loading) return <div className="membership-loading" role="status"><ScanLine size={30} /><p>Opening your study space…</p></div>;
   const student = account?.studentDiscountEligible === true;
-  const regional = account?.user ? account.regionalPrice : undefined;
+  // Signed in: the account's price (none once a member). Signed out: the price for the visitor's country from /api/config.
+  const regional = account?.user ? account.regionalPrice : ready?.regionalPrice;
   const welcomeOffer = account?.welcomeOffer;
   // The plan cards show the price for the visitor's country with no code or with their own welcome code; any other code
   // means the standard price (server/billing.ts checkout decides the same way).
@@ -491,7 +493,11 @@ function MembershipGate({ children }: { children: ReactNode }) {
       </div>
       <h2 id="auth-title">{authMode === 'signup' ? 'Your next chapter starts here.' : 'Welcome back.'}</h2>
       <p>{authMode === 'signup' ? 'Create your account with your email, right here. No Google account needed.' : 'Sign in with the email you used for your membership.'}</p>
-      {selectedPlan && <div className="selected-plan"><Check size={16} />{selectedPlan === 'monthly' ? 'Monthly · $20 / month' : 'Yearly · $12.50/month equivalent · $150 billed yearly'}</div>}
+      {selectedPlan && <div className="selected-plan"><Check size={16} />{regionalShown
+        ? (selectedPlan === 'monthly'
+          ? `Monthly · ${usd(regionalShown.monthly.price)} ${regionalShown.monthly.pass ? 'for 30 days' : '/ month'}`
+          : `Yearly · ${yearlyFigures(regionalShown).perMonth}/month equivalent · ${usd(regionalShown.yearly.price)} ${regionalShown.yearly.pass ? 'for a year' : 'billed yearly'}`)
+        : (selectedPlan === 'monthly' ? 'Monthly · $20 / month' : 'Yearly · $12.50/month equivalent · $150 billed yearly')}</div>}
       {authMode && ready?.authProvider === 'clerk' && ready.clerkPublishableKey ? <Suspense fallback={<p className="auth-waiting" role="status">Loading secure sign-in…</p>}>
         <InlineAccount publishableKey={ready.clerkPublishableKey} mode={authMode} onModeChange={setAuthMode} onSuccess={load} />
       </Suspense> : <button className="email-signin" onClick={startSignIn} disabled={!ready?.auth}><Mail size={18} />{authWaiting ? 'Reopen sign-in window' : 'Continue with email'}<ArrowRight size={18} /></button>}
@@ -512,7 +518,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
   return <main className="membership-page lp">
     {endedBy ? <EndedByBanner endedBy={endedBy} onSignIn={() => setAuthMode('login')} /> : null}
     <InviteBanner onJoin={startFree} onSignIn={() => setAuthMode('login')} />
-    <Landing panel={panel} signInLabel="Sign in" signInDisabled={!ready?.auth}
+    <Landing panel={panel} regional={regional} signInLabel="Sign in" signInDisabled={!ready?.auth}
       onSignIn={() => setAuthMode('login')} onStartFree={startFree} />
     {authDialog}
   </main>;

@@ -251,3 +251,19 @@ describe('the session', () => {
     expect(await (await handle(request('US'))).json()).not.toHaveProperty('regionalPrice');
   });
 });
+
+describe('the public config', () => {
+  const config = (country?: string) => new Request('https://radiology.monster/api/config', { headers: country ? { 'x-vercel-ip-country': country } : {} });
+  it('carries the regional price before sign-in, so the landing page shows it', async () => {
+    goLive();
+    expect(await (await handle(config('BA'))).json()).toMatchObject({ regionalPrice: { region: 'b', country: 'BA', monthly: { price: 9.99, pass: false }, yearly: { price: 74.99 } } });
+    expect(await (await handle(config('IN'))).json()).toMatchObject({ regionalPrice: { region: 'c', monthly: { price: 4.99, pass: true }, yearly: { price: 39.99, pass: true } } });
+  });
+  it('has no regional price elsewhere, without a country, or while regional prices are off', async () => {
+    goLive();
+    expect(await (await handle(config('US'))).json()).not.toHaveProperty('regionalPrice');
+    expect(await (await handle(config())).json()).not.toHaveProperty('regionalPrice');
+    fake.records.delete('rvm:regional:live');
+    expect(await (await handle(config('BA'))).json()).not.toHaveProperty('regionalPrice');
+  });
+});

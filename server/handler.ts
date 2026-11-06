@@ -61,7 +61,11 @@ async function promoRequest<T>(fn: () => Promise<T>): Promise<T | { ok: false; e
 export async function handle(request: Request): Promise<Response> {
   const path = new URL(request.url).pathname.replace(/\/$/, '');
   try {
-    if (path === '/api/config' && request.method === 'GET') return json(readiness());
+    if (path === '/api/config' && request.method === 'GET') {
+      // The price for the request's country (server/regional.ts), so the landing page and the plans show it before sign-in.
+      const regionalPrice = await regionalOffer(request.headers.get('x-vercel-ip-country')).catch(() => null);
+      return json({ ...readiness(), ...(regionalPrice ? { regionalPrice } : {}) });
+    }
     if (!readiness().auth) return json({ error: 'Sign-in is being configured. Please try again shortly.' }, 503);
     const url = new URL(request.url);
     const ip = () => hash(request.headers.get('x-vercel-forwarded-for') || request.headers.get('x-forwarded-for') || 'unknown');
