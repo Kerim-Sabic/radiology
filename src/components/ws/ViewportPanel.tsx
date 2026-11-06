@@ -28,8 +28,9 @@ const smoothRing = (r: Vec2[]) => {
   for (let i = 0; i < n; i++) d += `Q${r[i][0]},${r[i][1]} ${mid(r[i], r[(i + 1) % n])}`;
   return `${d}Z`;
 };
-/** Zoom from which the anatomy outlines are drawn as smooth curves. */
-const SMOOTH_FROM_ZOOM = 1.5;
+/** Screen pixels per image pixel from which the anatomy outlines are drawn as smooth curves (a coarse 2 mm diffusion
+ *  image already needs it at its normal size; a 512-pixel CT once zoomed in). */
+const SMOOTH_FROM_SCALE = 2.5;
 
 export interface MarkBadge {
   id: string;
@@ -358,7 +359,7 @@ export function ViewportPanel(p: Props) {
             };
             if (sh.kind === 'seg') return <line key={i} x1={sh.pts[0][0]} y1={sh.pts[0][1]} x2={sh.pts[1][0]} y2={sh.pts[1][1]} style={style} />;
             if (sh.kind === 'circle') return <circle key={i} cx={sh.pts[0][0]} cy={sh.pts[0][1]} r={5} style={style} />;
-            if ((st?.zoom ?? 1) >= SMOOTH_FROM_ZOOM)
+            if (Math.min(size[0] / s.geometry.columns, size[1] / s.geometry.rows) * (st?.zoom ?? 1) >= SMOOTH_FROM_SCALE)
               return <path key={i} d={[sh.pts, ...(sh.holes ?? [])].map(smoothRing).join(' ')} fillRule="evenodd" style={style} />;
             if (sh.holes?.length) return <path key={i} d={ringsPath([sh.pts, ...sh.holes])} fillRule="evenodd" style={style} />;
             return <polygon key={i} points={sh.pts.map((q) => q.join(',')).join(' ')} style={style} />;
