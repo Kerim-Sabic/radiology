@@ -17,6 +17,14 @@ describe('MRI sequence guide', () => {
     expect(id('t2_ci3d_tra_1.5mm_v1', { ContrastBolusAgent: 'DOTAREM' })).toBe('T2');
   });
 
+  it('recognises time-of-flight angiography before the short TR/TE could pass it off as T1', () => {
+    expect(id('3D time-of-flight MR angiography', { RepetitionTime: 22, EchoTime: 3.95 })).toBe('TOF');
+    expect(id('TOF_3D_multi-slab')).toBe('TOF');
+    expect(id('series 9', { SequenceVariant: 'TOF\\SP', RepetitionTime: 22, EchoTime: 3.9 })).toBe('TOF');
+    expect(classifySequence('3D time-of-flight MR angiography', {})!.bright).toMatch(/arter/);
+    expect(id('3D_AX_T1_postcontrast')).toBe('T1C');
+  });
+
   it('marks T1 as post-contrast only when the series says so', () => {
     expect(id('AX T1', { ContrastBolusAgent: 'GADAVIST' })).toBe('T1C');
     expect(id('T1 SE post gad')).toBe('T1C');

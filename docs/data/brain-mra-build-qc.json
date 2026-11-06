@@ -1,0 +1,333 @@
+{
+ "packId": "brain-mra",
+ "generatedAt": "2026-11-06T13:08:43Z",
+ "packBytesExcludingLessons": 211488426,
+ "budgetBytes": 230000000,
+ "series": [
+  {
+   "uid": "2.25.191070949771363958985588844168686450414",
+   "short": "mr-5bafaaff68",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 10128832
+  },
+  {
+   "uid": "2.25.30796788666926515254396591250742411767",
+   "short": "mr-2e88c8c0af",
+   "modality": "MR",
+   "instances": 130,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 130
+   },
+   "bytes": 8011552
+  },
+  {
+   "uid": "2.25.45400501019139130763925694317893919673",
+   "short": "mr-ca04c879aa",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 9610102
+  },
+  {
+   "uid": "2.25.217474764116115756193517590123979401899",
+   "short": "mr-bf6ea44495",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 9906828
+  },
+  {
+   "uid": "2.25.29696034216394389625627651967367606091",
+   "short": "mr-d94c48d213",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 11777578
+  },
+  {
+   "uid": "2.25.290233178823466612624072102522013465968",
+   "short": "mr-a28670b61f",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 9948446
+  },
+  {
+   "uid": "2.25.2752819710985890651480519086131021279",
+   "short": "mr-ca9132cbcb",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 10328126
+  },
+  {
+   "uid": "2.25.241031680516959995714799843351971309348",
+   "short": "mr-420d58d60b",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 11813310
+  },
+  {
+   "uid": "2.25.228062519311102043298757806513545487081",
+   "short": "mr-82fb309829",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 11021654
+  },
+  {
+   "uid": "2.25.285375340449793626660508561226935347575",
+   "short": "mr-f688a24df9",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 13610164
+  },
+  {
+   "uid": "2.25.42918764204308849959758709781126708019",
+   "short": "mr-ddfc8173aa",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 9564784
+  },
+  {
+   "uid": "2.25.163952985423622658319374412139442424337",
+   "short": "mr-be031e8767",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 11996332
+  },
+  {
+   "uid": "2.25.56208855823528059965424179618530669967",
+   "short": "mr-94b9a4b478",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 8970118
+  },
+  {
+   "uid": "2.25.16968293684116654109649155647463200454",
+   "short": "mr-5d0dcfa947",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 13538698
+  },
+  {
+   "uid": "2.25.336896837765288248928796135880508990027",
+   "short": "mr-0b37d8db01",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 14115266
+  },
+  {
+   "uid": "2.25.170811377292455319669458700358817479942",
+   "short": "mr-06d0909d21",
+   "modality": "MR",
+   "instances": 144,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 144
+   },
+   "bytes": 12312548
+  },
+  {
+   "uid": "2.25.183596115778026457584779344750787467355",
+   "short": "mr-f3412526ab",
+   "modality": "MR",
+   "instances": 160,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 160
+   },
+   "bytes": 12777184
+  },
+  {
+   "uid": "2.25.27346905013886905233253364365331666901",
+   "short": "mr-30c3c16622",
+   "modality": "MR",
+   "instances": 100,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 100
+   },
+   "bytes": 9776164
+  },
+  {
+   "uid": "2.25.75694238146797549166827785016958038209",
+   "short": "mr-4c977634de",
+   "modality": "MR",
+   "instances": 100,
+   "sortMethod": "ascending projection of ImagePositionPatient on n = rowDir x colDir (from ImageOrientationPatient)",
+   "issues": [],
+   "encodeStatus": {
+    "reencoded": 100
+   },
+   "bytes": 9977920
+  }
+ ],
+ "targets": [
+  "ltof-454_aneurysm-1",
+  "ltof-458_aneurysm-1",
+  "ltof-458_aneurysm-2",
+  "ltof-466_aneurysm-1",
+  "ltof-470_aneurysm-1",
+  "ltof-472_aneurysm-1",
+  "ltof-473_aneurysm-1",
+  "ltof-476_aneurysm-1",
+  "ltof-480_aneurysm-1",
+  "ltof-480_aneurysm-2",
+  "ltof-484_aneurysm-1",
+  "ltof-485_aneurysm-1",
+  "ltof-486_aneurysm-1",
+  "ltof-486_aneurysm-2",
+  "ltof-488_aneurysm-1",
+  "ltof-489_aneurysm-1",
+  "topcow-sub-002_basilar-artery",
+  "topcow-sub-002_posterior-cerebral-artery-right",
+  "topcow-sub-002_posterior-cerebral-artery-left",
+  "topcow-sub-002_internal-carotid-artery-right",
+  "topcow-sub-002_middle-cerebral-artery-right",
+  "topcow-sub-002_internal-carotid-artery-left",
+  "topcow-sub-002_middle-cerebral-artery-left",
+  "topcow-sub-002_posterior-communicating-artery-right",
+  "topcow-sub-002_posterior-communicating-artery-left",
+  "topcow-sub-002_anterior-communicating-artery",
+  "topcow-sub-002_anterior-cerebral-artery-right",
+  "topcow-sub-002_anterior-cerebral-artery-left",
+  "topcow-sub-000_basilar-artery",
+  "topcow-sub-000_posterior-cerebral-artery-right",
+  "topcow-sub-000_posterior-cerebral-artery-left",
+  "topcow-sub-000_internal-carotid-artery-right",
+  "topcow-sub-000_middle-cerebral-artery-right",
+  "topcow-sub-000_internal-carotid-artery-left",
+  "topcow-sub-000_middle-cerebral-artery-left",
+  "topcow-sub-000_posterior-communicating-artery-right",
+  "topcow-sub-000_anterior-communicating-artery",
+  "topcow-sub-000_anterior-cerebral-artery-right",
+  "topcow-sub-000_anterior-cerebral-artery-left",
+  "topcow-sub-000_third-a2",
+  "topcow-sub-345_basilar-artery",
+  "topcow-sub-345_posterior-cerebral-artery-right",
+  "topcow-sub-345_posterior-cerebral-artery-left",
+  "topcow-sub-345_internal-carotid-artery-right",
+  "topcow-sub-345_middle-cerebral-artery-right",
+  "topcow-sub-345_internal-carotid-artery-left",
+  "topcow-sub-345_middle-cerebral-artery-left",
+  "topcow-sub-345_posterior-communicating-artery-right",
+  "topcow-sub-345_posterior-communicating-artery-left",
+  "topcow-sub-345_anterior-communicating-artery",
+  "topcow-sub-345_anterior-cerebral-artery-right",
+  "topcow-sub-345_anterior-cerebral-artery-left",
+  "topcow-sub-033_basilar-artery",
+  "topcow-sub-033_posterior-cerebral-artery-right",
+  "topcow-sub-033_posterior-cerebral-artery-left",
+  "topcow-sub-033_internal-carotid-artery-right",
+  "topcow-sub-033_middle-cerebral-artery-right",
+  "topcow-sub-033_internal-carotid-artery-left",
+  "topcow-sub-033_middle-cerebral-artery-left",
+  "topcow-sub-033_posterior-communicating-artery-right",
+  "topcow-sub-033_posterior-communicating-artery-left",
+  "topcow-sub-033_anterior-cerebral-artery-right",
+  "topcow-sub-033_anterior-cerebral-artery-left",
+  "topcow-ixi012_basilar-artery",
+  "topcow-ixi012_posterior-cerebral-artery-right",
+  "topcow-ixi012_posterior-cerebral-artery-left",
+  "topcow-ixi012_internal-carotid-artery-right",
+  "topcow-ixi012_middle-cerebral-artery-right",
+  "topcow-ixi012_internal-carotid-artery-left",
+  "topcow-ixi012_middle-cerebral-artery-left",
+  "topcow-ixi012_posterior-communicating-artery-right",
+  "topcow-ixi012_posterior-communicating-artery-left",
+  "topcow-ixi012_anterior-communicating-artery",
+  "topcow-ixi012_anterior-cerebral-artery-right",
+  "topcow-ixi012_anterior-cerebral-artery-left",
+  "topcow-ixi013_basilar-artery",
+  "topcow-ixi013_posterior-cerebral-artery-right",
+  "topcow-ixi013_posterior-cerebral-artery-left",
+  "topcow-ixi013_internal-carotid-artery-right",
+  "topcow-ixi013_middle-cerebral-artery-right",
+  "topcow-ixi013_internal-carotid-artery-left",
+  "topcow-ixi013_middle-cerebral-artery-left",
+  "topcow-ixi013_posterior-communicating-artery-right",
+  "topcow-ixi013_posterior-communicating-artery-left",
+  "topcow-ixi013_anterior-communicating-artery",
+  "topcow-ixi013_anterior-cerebral-artery-right",
+  "topcow-ixi013_anterior-cerebral-artery-left"
+ ],
+ "qcReview": {
+  "tool": "C:/Users/kerim/radiology-data/scripts-expansion/review_aneurysms.py (axial slice, 20 mm axial and coronal MIPs and a whole-head MIP with the outline, from the NIfTI) and scripts/atlas/mr_render_cow.py (axial and coronal MIPs from the pack's DICOM with every outline)",
+  "selectionRule": "Aneurysm patients: every subject of the Lausanne release with voxel-wise (not spherical) aneurysm masks and a native 0.47-0.55 mm TOF grid (13 of the 36 voxel-wise subjects; the others were reconstructed at 0.23-0.29 mm and would need resampling). Controls: from the 40 TopCoW-labelled MRAs, two complete circles (one per site) and one of each variant the expert edge labels record (fetal-type PCA on each side, Acom not seen, left A1 not seen).",
+  "review": "Every aneurysm outline drawn on the slice, the MIPs and the whole-head MIP and checked by eye to sit on a vascular outpouching; every control's artery labels drawn on MIPs. Nothing dropped.",
+  "kept": 19,
+  "dropped": {},
+  "leakCheck": "series/study descriptions, role and display notes and PatientID checked against LEAK (dataset names, diagnoses) at build"
+ }
+}

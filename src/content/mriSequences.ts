@@ -3,7 +3,7 @@
  * bright and dark on it — the questions Learning Radiology (ch. 20, "How to Identify a T1-Weighted or T2-Weighted
  * Image", printed p. 238) teaches you to ask first. Conservative: unknown stays unknown.
  */
-export type SequenceId = 'T1' | 'T1C' | 'T2' | 'FLAIR' | 'STIR' | 'PD' | 'DWI' | 'ADC' | 'GRE';
+export type SequenceId = 'T1' | 'T1C' | 'T2' | 'FLAIR' | 'STIR' | 'PD' | 'DWI' | 'ADC' | 'GRE' | 'TOF';
 
 export interface SequenceInfo {
   id: SequenceId;
@@ -91,6 +91,14 @@ export const SEQUENCES: Record<SequenceId, SequenceInfo> = {
     dark: 'Blood products (hemosiderin, deoxyhemoglobin), calcium and metal "bloom" larger than they are.',
     tip: 'Looks for old or small hemorrhage (microbleeds) and calcification.',
   },
+  TOF: {
+    id: 'TOF',
+    label: 'Time-of-flight MR angiography',
+    short: 'flowing arterial blood bright',
+    bright: 'Blood flowing into the slab: the arteries of the Circle of Willis and their branches; also fat and subacute blood (short T1).',
+    dark: 'Stationary tissue (brain, muscle) is suppressed; slow flow, turbulence and veins (saturated) lose signal.',
+    tip: 'Read the thin slices and a thick-slab MIP: follow each artery from the carotids and basilar artery around the circle, and look for an outpouching (aneurysm).',
+  },
 };
 
 type Acq = Record<string, string | number | string[] | null | undefined>;
@@ -101,6 +109,9 @@ export function classifySequence(description: string, acq: Acq): SequenceInfo | 
   const d = `${description} ${String(acq.SequenceName ?? '')} ${String(acq.SeriesDescription ?? '')}`.toLowerCase();
   const it = String(Array.isArray(acq.ImageType) ? acq.ImageType.join('\\') : (acq.ImageType ?? '')).toLowerCase();
   const contrast = !!acq.ContrastBolusAgent || /\b(post|gad|gd|contrast|\+c|c\+|ce)\b|post[-_ ]?contrast|postgad/.test(d);
+  // Time-of-flight angiography first: its short TR/TE would otherwise read as T1 below.
+  if (/time[- ]of[- ]flight|\btof\b|_tof|tof_|\bmra\b|\bangio(graphy)?\b/.test(d) || /\btof\b/.test(String(acq.SequenceVariant ?? '').toLowerCase()))
+    return SEQUENCES.TOF;
   if (/\badc\b|apparent diffusion/.test(d) || /\badc\b/.test(it)) return SEQUENCES.ADC;
   if (/\bdwi\b|diffusion|\btrace\b|\bb[ =_-]?(800|1000|1500)\b|ep2d_diff/.test(d)) return SEQUENCES.DWI;
   if (/flair|\bdark[ -]?fluid\b/.test(d)) return SEQUENCES.FLAIR;

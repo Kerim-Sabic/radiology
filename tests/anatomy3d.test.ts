@@ -44,6 +44,19 @@ describe('3D anatomy groups and colours', () => {
     expect(red(colorFor('heart_ventricle_right'))).toBe(false);
     expect(colorFor('pulmonary_vein')).not.toBe(colorFor('superior_vena_cava'));
     expect(opacityFor('lung_left')).toBeLessThan(0.5);
+  });
+
+  it('gives each artery of the Circle of Willis its own colour, never a vein colour', () => {
+    const cow = ['basilar_artery', 'internal_carotid_artery_left', 'middle_cerebral_artery_m1_left', 'middle_cerebral_artery_m2_left',
+      'anterior_cerebral_artery_a1_left', 'anterior_cerebral_artery_a2_left', 'anterior_communicating_artery', 'third_a2',
+      'posterior_cerebral_artery_p1_left', 'posterior_cerebral_artery_p2_left', 'posterior_communicating_artery_left'];
+    for (const k of cow) {
+      expect(groupFor(k), k).toBe('arteries');
+      expect(colorFor(k), k).not.toBe(colorFor('superior_vena_cava'));
+      expect(colorFor(k), k).not.toBe(colorFor('finding:x'));
+    }
+    expect(new Set(cow.map(colorFor)).size).toBe(cow.length);
+    expect(colorFor('anterior_cerebral_artery_left')).toBe(colorFor('anterior_cerebral_artery_right'));
     expect(opacityFor('aorta')).toBe(1);
   });
 });

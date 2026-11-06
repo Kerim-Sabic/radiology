@@ -270,6 +270,24 @@
    "bytes": 16667770,
    "distribution": "repo",
    "note": "40 subjects, 40 studies, 40 series, 40 instances, 45 reference targets; DICOM 15.1 MB. Committed to the repository; rebuild with scripts/data/external_r5.py + build_r5.py; lessons scripts/lessons/round5.py."
+  },
+  {
+   "id": "brain-mra",
+   "title": "Brain MR angiography: the Circle of Willis and intracranial aneurysms",
+   "manifest": "brain-mra/pack.json",
+   "lessons": "brain-mra/lessons.json",
+   "bytes": 211664607,
+   "distribution": "repo",
+   "note": "19 subjects, 19 studies, 19 series, 2874 instances, 87 reference targets; DICOM 209.2 MB. Committed to the repository; rebuild with scripts/data/brain_mra.py; lessons scripts/lessons/brain_mra.py."
+  },
+  {
+   "id": "anatomy-atlas-mr",
+   "title": "Anatomy atlas, MRI (AI)",
+   "manifest": "anatomy-atlas-mr/pack.json",
+   "lessons": null,
+   "bytes": 946139,
+   "distribution": "repo",
+   "note": "AI anatomy layer for MRI (unreviewed): 148 artery outlines on 13 MR angiography series, automatic QC and a visual check applied. No images; requires brain-mra."
   }
  ]
 }

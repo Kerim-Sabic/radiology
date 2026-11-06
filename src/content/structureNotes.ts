@@ -406,6 +406,117 @@ const N: Array<[RegExp, StructureNote]> = [
       window: 'Soft tissue',
     },
   ],
+  // ------------------------------------------------------------- brain arteries (Circle of Willis)
+  [
+    /^basilar_artery$/,
+    {
+      look: 'Single midline artery, bright on MR angiography, running up the front of the pons in the prepontine cistern.',
+      near: 'Formed by the two vertebral arteries at the lower border of the pons; it ends above the dorsum sellae by dividing into the two posterior cerebral arteries.',
+      pitfall: 'The basilar tip is a classic site for an aneurysm: look at it on every angiogram. A tortuous basilar artery in older people is normal.',
+      unit: 'ch26',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^internal_carotid_artery$/,
+    {
+      look: 'On MR angiography inside the skull: an S-shaped curve (the siphon) beside the sella in the cavernous sinus, then up through the dura to its end below the anterior perforated substance.',
+      near: 'Ends by dividing into the anterior and middle cerebral arteries; the ophthalmic and posterior communicating arteries leave it just before that.',
+      pitfall: 'Aneurysms at the origin of the posterior communicating artery are common; the funnel-shaped origin of a normal Pcom (an infundibulum, under 3 mm, with the artery leaving its tip) is not an aneurysm.',
+      unit: 'ch26',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^middle_cerebral_artery(_m1)?$/,
+    {
+      look: 'The largest branch of the internal carotid artery. M1 runs laterally from the carotid end to its division, usually into two (sometimes three) M2 trunks.',
+      near: 'M1 lies in front of the temporal lobe; the M2 branches turn up into the Sylvian fissure over the insula.',
+      pitfall: 'The division of the middle cerebral artery is a common aneurysm site; follow each M2 branch from its origin on both sides.',
+      unit: 'ch26',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^middle_cerebral_artery_m2$/,
+    {
+      look: 'The trunks beyond the division of the middle cerebral artery, running up and back in the Sylvian fissure over the insula.',
+      near: 'They supply most of the lateral surface of the frontal, parietal and temporal lobes.',
+      pitfall: 'A blocked M2 branch causes a cortical stroke that can look small on diffusion MRI.',
+      unit: 'ch26',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^anterior_cerebral_artery(_a1)?$/,
+    {
+      look: 'A1 runs medially and forwards from the carotid end above the optic chiasm; at the anterior communicating artery the A2 segment turns up between the hemispheres.',
+      near: 'The two A1 segments are joined by the anterior communicating artery; the A2s run side by side in the interhemispheric fissure.',
+      pitfall: 'One A1 is often small or not seen: both anterior cerebral arteries then fill from the other side through the anterior communicating artery.',
+      unit: 'ch26',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^anterior_cerebral_artery_a2$/,
+    {
+      look: 'The part of the anterior cerebral artery beyond the anterior communicating artery, running up in front of the corpus callosum.',
+      near: 'The two A2 segments lie side by side in the interhemispheric fissure.',
+      pitfall: 'Aneurysms further along the anterior cerebral artery (the pericallosal artery) are uncommon and easy to miss on axial images.',
+      unit: 'ch26',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^anterior_communicating_artery$/,
+    {
+      look: 'A short midline artery, a few millimetres long, joining the two anterior cerebral arteries above the optic chiasm.',
+      near: 'Lies where the two A1 segments meet and the A2 segments start.',
+      pitfall: 'The commonest site of intracranial aneurysms. It can be absent, doubled or too small to see on MR angiography.',
+      unit: 'ch26',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^posterior_communicating_artery$/,
+    {
+      look: 'A thin artery running backwards from the internal carotid artery to the posterior cerebral artery, beside the optic tract.',
+      near: 'Joins the front (carotid) and back (basilar) halves of the circle on each side; the oculomotor nerve runs just below it.',
+      pitfall: 'Often too small to see. When it is as large as the posterior cerebral artery and the P1 segment is small or absent, the PCA is "fetal-type" and fills from the carotid.',
+      unit: 'ch26',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^posterior_cerebral_artery(_p1)?$/,
+    {
+      look: 'From the basilar tip, P1 runs laterally to the posterior communicating artery; beyond it P2 curves back around the midbrain.',
+      near: 'Lies above the superior cerebellar artery, separated from it by the oculomotor nerve.',
+      pitfall: 'A small or missing P1 with a large posterior communicating artery is a common normal variant (fetal-type posterior cerebral artery).',
+      unit: 'ch26',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^posterior_cerebral_artery_p2$/,
+    {
+      look: 'The part of the posterior cerebral artery beyond the posterior communicating artery, curving around the midbrain towards the occipital lobe.',
+      near: 'Runs in the ambient cistern beside the midbrain, above the tentorium.',
+      pitfall: 'Its branches supply the occipital lobe: a blocked posterior cerebral artery causes a visual field defect.',
+      unit: 'ch26',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^third_a2$/,
+    {
+      look: 'A third, midline artery running up between the two A2 segments from the anterior communicating artery (median artery of the corpus callosum).',
+      near: 'Lies between the right and left A2 segments in the interhemispheric fissure.',
+      pitfall: 'A normal variant; do not mistake it for a duplicated or displaced anterior cerebral artery.',
+      unit: 'ch26',
+      window: 'Soft tissue',
+    },
+  ],
   [
     /^portal_vein_and_splenic_vein$|^portal_vein$|^splenic_vein$/,
     {

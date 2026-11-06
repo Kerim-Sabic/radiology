@@ -43,7 +43,7 @@ export const GROUP_COLOR: Record<Group3D, string> = {
 export function groupFor(key: string): Group3D {
   if (/^finding:/.test(key)) return 'findings';
   if (/^heart|^atrial_appendage/.test(key)) return 'heart';
-  if (/^aorta|artery|arteries|^pulmonary_trunk|^brachiocephalic_trunk/.test(key)) return 'arteries';
+  if (/^aorta|artery|arteries|^pulmonary_trunk|^brachiocephalic_trunk|^third_a2/.test(key)) return 'arteries';
   if (/vein|vena|^portal/.test(key)) return 'veins';
   if (/^trachea|bronch/.test(key)) return 'airways';
   if (/^lung/.test(key)) return 'lungs';
@@ -71,6 +71,22 @@ export function colorFor(key: string): string {
     [/^pulmonary_(trunk|arter)/, '#6366f1'],
     [/^pulmonary_vein/, '#f472b6'],
     [/^portal/, '#a855f7'],
+    // Circle of Willis: one hue per artery (lighter for the proximal segment), so the circle reads at a glance on a MIP
+    // or in 3D; none of them vein-blue. Both sides share a colour (position tells them apart).
+    [/^basilar_artery|^vertebral_artery/, '#ef4444'],
+    [/^internal_carotid_artery/, '#be123c'],
+    [/^middle_cerebral_artery_m1/, '#fb923c'],
+    [/^middle_cerebral_artery_m2/, '#c2410c'],
+    [/^middle_cerebral_artery/, '#f97316'],
+    [/^anterior_cerebral_artery_a1/, '#34d399'],
+    [/^anterior_cerebral_artery_a2/, '#047857'],
+    [/^anterior_cerebral_artery/, '#10b981'],
+    [/^anterior_communicating_artery/, '#84cc16'],
+    [/^third_a2/, '#0d9488'],
+    [/^posterior_cerebral_artery_p1/, '#c084fc'],
+    [/^posterior_cerebral_artery_p2/, '#7e22ce'],
+    [/^posterior_cerebral_artery/, '#a855f7'],
+    [/^posterior_communicating_artery/, '#ec4899'],
     [/^aorta|artery|^brachiocephalic_trunk/, '#dc2626'],
     [/vein|vena/, '#3b82f6'],
     [/^trachea|bronch/, '#67e8f9'],

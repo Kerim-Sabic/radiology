@@ -55,6 +55,9 @@ describe('anatomy keys and groups', () => {
     expect(find('Lumbar vertebrae (L1–L5)').match.test(canonicalAnatomyKey('anatomy:vertebrae_L3'))).toBe(true);
     expect(find('Adrenal glands').match.test(canonicalAnatomyKey('anatomy:adrenal_gland_right'))).toBe(true);
     expect(find('Ribs, numbered').match.test('rib_right_12')).toBe(true);
+    expect(find('Anterior cerebral arteries (A1, A2)').match.test(canonicalAnatomyKey('anatomy:anterior_cerebral_artery_a1_left'))).toBe(true);
+    expect(find('Anterior cerebral arteries (A1, A2)').match.test('anterior_communicating_artery')).toBe(false);
+    expect(find('Posterior cerebral arteries (P1, P2)').match.test('posterior_communicating_artery_left')).toBe(false);
     expect(imageFamily('DX')).toBe('XR');
     expect(imageFamily('CR')).toBe('XR');
   });

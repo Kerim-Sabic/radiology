@@ -121,6 +121,19 @@ export const BOOK_ANATOMY: ChecklistGroup[] = [
     ],
   },
   {
+    unitId: 'ch26',
+    title: 'Brain arteries on MR angiography (Circle of Willis)',
+    items: [
+      { name: 'Basilar artery', match: /^basilar_artery$/, on: 'MR' },
+      { name: 'Internal carotid arteries', match: /^internal_carotid_artery_/, on: 'MR' },
+      { name: 'Middle cerebral arteries (M1, M2)', match: /^middle_cerebral_artery_/, on: 'MR' },
+      { name: 'Anterior cerebral arteries (A1, A2)', match: /^anterior_cerebral_artery_/, on: 'MR' },
+      { name: 'Anterior communicating artery', match: /^anterior_communicating_artery$/, on: 'MR' },
+      { name: 'Posterior communicating arteries', match: /^posterior_communicating_artery_/, on: 'MR' },
+      { name: 'Posterior cerebral arteries (P1, P2)', match: /^posterior_cerebral_artery_/, on: 'MR' },
+    ],
+  },
+  {
     unitId: 'ch20',
     title: 'MRI anatomy',
     items: [

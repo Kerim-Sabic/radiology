@@ -1,0 +1,89 @@
+{
+ "sub-002": {
+  "variant": "complete"
+ },
+ "sub-000": {
+  "variant": "fetal-right"
+ },
+ "sub-345": {
+  "variant": "fetal-left"
+ },
+ "sub-033": {
+  "variant": "no-acom"
+ },
+ "IXI012": {
+  "variant": "no-left-a1"
+ },
+ "IXI013": {
+  "variant": "complete"
+ },
+ "sub-454": {
+  "where": {
+   "ltof-454_aneurysm-1": "the aneurysm arises at the anterior communicating artery, where the two A1 segments meet"
+  }
+ },
+ "sub-458": {
+  "where": {
+   "ltof-458_aneurysm-1": "one aneurysm sits on the tip of the basilar artery, between the two posterior cerebral arteries",
+   "ltof-458_aneurysm-2": "a second, small one is on the inner (medial) side of the right internal carotid artery at the siphon"
+  }
+ },
+ "sub-466": {
+  "where": {
+   "ltof-466_aneurysm-1": "the aneurysm is on the left internal carotid artery at the front bend of the siphon, just below the anterior clinoid level (paraclinoid region)"
+  }
+ },
+ "sub-470": {
+  "where": {
+   "ltof-470_aneurysm-1": "a small aneurysm is on the inner (medial) side of the left internal carotid artery at the siphon"
+  }
+ },
+ "sub-472": {
+  "where": {
+   "ltof-472_aneurysm-1": "a giant aneurysm, about 3 cm across, of the left internal carotid artery at the level of the cavernous sinus; its less bright parts are clot inside the sac, so the true size is larger than the bright lumen"
+  },
+  "also": "The sac is partly filled with clot (thrombus), which is less bright than flowing blood on this sequence."
+ },
+ "sub-473": {
+  "where": {
+   "ltof-473_aneurysm-1": "the aneurysm is on the anterior cerebral artery far from the circle, in front of the corpus callosum (pericallosal artery) - easy to miss when only the circle is checked"
+  }
+ },
+ "sub-476": {
+  "where": {
+   "ltof-476_aneurysm-1": "the aneurysm is on the inner (medial) side of the left internal carotid artery at the siphon"
+  }
+ },
+ "sub-480": {
+  "where": {
+   "ltof-480_aneurysm-1": "one aneurysm is at the division of the right middle cerebral artery",
+   "ltof-480_aneurysm-2": "a second one sits on the top of a tortuous basilar artery"
+  }
+ },
+ "sub-484": {
+  "where": {
+   "ltof-484_aneurysm-1": "the aneurysm arises at the anterior communicating artery"
+  }
+ },
+ "sub-485": {
+  "where": {
+   "ltof-485_aneurysm-1": "the aneurysm arises at the anterior communicating artery"
+  }
+ },
+ "sub-486": {
+  "where": {
+   "ltof-486_aneurysm-1": "one aneurysm is at the division of the right middle cerebral artery, far out in the Sylvian fissure",
+   "ltof-486_aneurysm-2": "a second, small one is on the left internal carotid artery just below its end"
+  }
+ },
+ "sub-488": {
+  "where": {
+   "ltof-488_aneurysm-1": "a small aneurysm sits at the end of the left internal carotid artery, where it divides into the anterior and middle cerebral arteries"
+  }
+ },
+ "sub-489": {
+  "where": {
+   "ltof-489_aneurysm-1": "the aneurysm is on the anterior cerebral artery far from the circle, in front of the corpus callosum (pericallosal artery) - easy to miss when only the circle is checked"
+  }
+ }
+}

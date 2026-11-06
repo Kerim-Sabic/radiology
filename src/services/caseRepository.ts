@@ -18,6 +18,7 @@ import {
 } from '../schema/content';
 import { SeriesIndex } from '../grading/seriesIndex';
 import { sliceNormal } from '../lib/geometry';
+import { classifySequence } from '../content/mriSequences';
 import type { LoadedTarget } from '../grading/spatialGrader';
 import type { SeriesSource } from '../viewer/engine';
 
@@ -265,6 +266,7 @@ export class Catalog {
         hasPatientGeometry: !!s.geometry.iop && s.instances.every((i) => i.ipp),
         patientOrientation: typeof s.acquisition['PatientOrientation'] === 'string' ? String(s.acquisition['PatientOrientation']).split('\\') : null,
         volumeEligible: s.geometry.volumeEligible,
+        angiography: isAngiography(s),
         defaultWindow: preset ? { center: preset.center, width: preset.width } : null,
         ...linkGeometry(s, s.instances),
       };
@@ -290,6 +292,7 @@ export class Catalog {
       hasPatientGeometry: !!s.geometry.iop && s.instances.every((i) => i.ipp),
       patientOrientation: Array.isArray(po) ? po : typeof po === 'string' ? po.split('\\') : null,
       volumeEligible: s.geometry.volumeEligible,
+      angiography: isAngiography(s),
       defaultWindow: preset ? { center: preset.center, width: preset.width } : null,
       ...linkGeometry(s, instances),
     };
@@ -430,4 +433,9 @@ function linkGeometry(s: Series, instances: Series['instances']): Pick<SeriesSou
     // Multi-frame instances carry one position for all frames, so they cannot be linked slice by slice.
     positions: instances.flatMap((i) => Array.from({ length: i.frames }, () => (i.frames === 1 && i.ipp ? i.ipp : null))),
   };
+}
+
+/** A time-of-flight MR angiogram (by its description and sequence), so the 3D view can open with the angiography rendering. */
+function isAngiography(s: Series): boolean {
+  return s.modality === 'MR' && classifySequence(s.description, s.acquisition)?.id === 'TOF';
 }

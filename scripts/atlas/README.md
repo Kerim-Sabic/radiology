@@ -96,3 +96,57 @@ never written by these scripts.
   `aorta_descending_thoracic`, `aorta_abdominal`, `colon_ascending`, `colon_transverse`, `colon_descending`,
   `colon_sigmoid`, `rectum`; radiograph classes `lung_left`, `clavicula_left`, `scapula_left`, `hilum_left`, `heart`,
   `aorta`, `diaphragm`, `mediastinum`, `trachea`, `spine`).
+
+## MRI (→ `public/packs/anatomy-atlas-mr`)
+
+The CT atlas is at its 80 MB budget, so MRI outlines are a separate pack with the same contract (layer `atlas`,
+`ai_draft`, `unreviewed`, `target_only`, source "Horalix"). Image packs scanned: `MR_SOURCE_PACKS` in `mr_common.py`
+(round 1: `brain-mra`). Work folder `C:/Users/kerim/radiology-data/work/atlas-mr` (`RADIOLOGY_ATLAS_MR_WORK`).
+
+### GPU environment
+
+```bash
+C:/Users/kerim/AppData/Local/Programs/Python/Python312/python.exe -m venv C:/Users/kerim/radiology-data/venv-gpu
+GPU=C:/Users/kerim/radiology-data/venv-gpu/Scripts/python.exe
+$GPU -m pip install --index-url https://download.pytorch.org/whl/cu128 torch torchvision     # 2.11.0+cu128, sm_120 (RTX 5080)
+$GPU -m pip install --index-url https://pypi.org/simple TotalSegmentator==2.18.0 pydicom==3.0.2 python-gdcm scikit-image==0.26.0 nibabel==5.4.2 SimpleITK==2.5.6 scipy==1.18.1 monai
+$GPU -c "import torch; print(torch.cuda.is_available(), torch.cuda.device_count())"         # True 2
+```
+
+One queue per GPU: `CUDA_VISIBLE_DEVICES=0` / `1` and `--shard=0/2` / `--shard=1/2`. For TotalSegmentator queues each GPU
+also gets its own `TOTALSEG_HOME_DIR` with the shared `TOTALSEG_WEIGHTS_PATH` (as for the CPU queues).
+
+### Circle-of-Willis weights
+
+The TopCoW 2024 winning model (team CLAIM) is published only inside the organisers' docker images (Zenodo record
+15665435). `scripts/vessels/docker_weights.py <url> <out dir>` streams `Team_CLAIM_topcow_seg.tar.gz` and
+extracts the model folder without Docker and without saving the 8 GB image; the result lives in
+`C:/Users/kerim/radiology-data/weights/topcow-claim/resources` (`RADIOLOGY_COW_WEIGHTS`): `plans.json`, `dataset.json`,
+`fold_0..4/checkpoint_{best,final}.pth`. Checkpoints are loaded with `torch.load(weights_only=True)` (numpy scalar and
+dtype constructors allow-listed); the team's YOLO locator is not used because its weights need unrestricted unpickling.
+
+### Run (from `scripts/atlas`)
+
+| step | command | notes |
+|---|---|---|
+| MR-1 | `$GPU mr_convert.py [case ...]` | every diagnostic MR series → `WORK_MR/<case>/mr.nii.gz` on the original grid (oblique kept), `slices.json`, `info.json`; rejects varying IOP/spacing/matrix, non-uniform spacing, shear |
+| MR-2a | `CUDA_VISIBLE_DEVICES=0 $GPU mr_run_cow.py --shard=0/2` and `CUDA_VISIBLE_DEVICES=1 $GPU mr_run_cow.py --shard=1/2` | Circle-of-Willis arteries on every TOF series (`scripts/vessels/cow_segment.py`, ~1 min per case per GPU) → `seg_cow_raw.nii.gz` |
+| check | `CUDA_VISIBLE_DEVICES= $GPU mr_run_cow.py <case> --device=cpu --out=seg_cow_cpu.nii.gz` | the same code on the CPU for the CPU/GPU spot check (`cpu_gpu_check.json`) |
+| MR-3 | `$GPU mr_contours.py [case ...]` | post-processing and QC (`scripts/vessels/cow_post.py`), A1/A2, P1/P2, M1/M2, per-SOP contours, outline-vs-mask Dice |
+| check | `$GPU mr_render_cow.py [case ...]` | axial + coronal MIPs with every outline → `WORK_MR/<case>/cow_png/cow.png`; record the result in `WORK_MR/cow_visual_check.json` |
+| validate | `scripts/vessels/cow_validate.py run ... --shard=i/2` then `analyse` | the 40 TopCoW expert-labelled MRAs; summary → `work/cow-validate/validation-summary.json` |
+| pack | `$GPU mr_write_pack.py` | writes `pack.json` + `targets/`, the report `docs/data/anatomy-atlas-mr-report.md`, and the index entry |
+| zod | `node --experimental-strip-types --no-warnings ../data/zod_check.mjs ../../public/packs/anatomy-atlas-mr ../../public/packs/index.json` | contract check |
+
+### MRI QC rules (`mr_contours.py`, `cow_post.py`)
+
+| rule | MRI (TOF angiography) |
+|---|---|
+| 0 mapping | segmentation grid = NIfTI from the pack DICOM; NIfTI affine vs DICOM IPP/IOP/PixelSpacing for sampled voxels < 0.5 mm (oblique grids); published outline re-rasterised vs mask, Dice ≥ 0.9 |
+| 1 fragments | only inside the teaching box around the circle's landmarks; largest 26-connected part per artery; < 3 mm³ or < 2 slices → drop |
+| 2 signal | instead of HU: TOF score q = (median in artery − head median) / (head 99.5th pct − head median) ≥ 0.80 (main arteries) / 0.40 (Acom, Pcom, third A2), calibrated on the expert masks (lowest expert values 1.03 / 0.57) |
+| 4 side / contacts | lateral arteries on their side of the midline (centroid and ≥ 90 % of voxels; 75 % for PCA and Pcom), right ACA right of the left; each artery joins the ones it must, else it is not shown |
+| parts | A1/A2 at the Acom junction, P1/P2 at the Pcom junction, M1/M2 at the first division into two ≥ 6 mm branches (geodesic distances); no junction → whole artery |
+| visual | every case inspected on MIPs; anything wrong is dropped through `cow_visual_check.json` |
+
+Series that carry expert artery labels in their own pack (the TopCoW controls of `brain-mra`) get no AI artery outlines.

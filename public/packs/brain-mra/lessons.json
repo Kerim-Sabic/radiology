@@ -1,0 +1,4351 @@
+{
+ "schemaVersion": 1,
+ "packId": "brain-mra",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "mra-aneurysm-454",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XJ · MR angiography, head",
+   "learnTitle": "Intracranial aneurysm on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-454",
+   "studyUids": [
+    "2.25.104216076076899704018625817279162016456"
+   ],
+   "primarySeriesUid": "2.25.191070949771363958985588844168686450414",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-458",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XK · MR angiography, head",
+   "learnTitle": "Two intracranial aneurysms on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-458",
+   "studyUids": [
+    "2.25.289494981901735255096132480900381490505"
+   ],
+   "primarySeriesUid": "2.25.30796788666926515254396591250742411767",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Each aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-466",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XL · MR angiography, head",
+   "learnTitle": "Intracranial aneurysm on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-466",
+   "studyUids": [
+    "2.25.340161399179891665857730543301369935050"
+   ],
+   "primarySeriesUid": "2.25.45400501019139130763925694317893919673",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-470",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XM · MR angiography, head",
+   "learnTitle": "Intracranial aneurysm on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-470",
+   "studyUids": [
+    "2.25.236612020636126123753488046897497056277"
+   ],
+   "primarySeriesUid": "2.25.217474764116115756193517590123979401899",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-472",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XN · MR angiography, head",
+   "learnTitle": "Intracranial aneurysm on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-472",
+   "studyUids": [
+    "2.25.130308017573951056630091454261045303719"
+   ],
+   "primarySeriesUid": "2.25.29696034216394389625627651967367606091",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from. The sac is partly filled with clot (thrombus), which is less bright than flowing blood on this sequence.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-473",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XO · MR angiography, head",
+   "learnTitle": "Intracranial aneurysm on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-473",
+   "studyUids": [
+    "2.25.9653434695378290257160772363776366984"
+   ],
+   "primarySeriesUid": "2.25.290233178823466612624072102522013465968",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-476",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XP · MR angiography, head",
+   "learnTitle": "Intracranial aneurysm on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-476",
+   "studyUids": [
+    "2.25.285998072612557598707117513246109621792"
+   ],
+   "primarySeriesUid": "2.25.2752819710985890651480519086131021279",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-480",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XQ · MR angiography, head",
+   "learnTitle": "Two intracranial aneurysms on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-480",
+   "studyUids": [
+    "2.25.137244997785312176718972914584978915983"
+   ],
+   "primarySeriesUid": "2.25.241031680516959995714799843351971309348",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Each aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-484",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XR · MR angiography, head",
+   "learnTitle": "Intracranial aneurysm on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-484",
+   "studyUids": [
+    "2.25.80988226003519698230142319893396965711"
+   ],
+   "primarySeriesUid": "2.25.228062519311102043298757806513545487081",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-485",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XS · MR angiography, head",
+   "learnTitle": "Intracranial aneurysm on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-485",
+   "studyUids": [
+    "2.25.77558372452716360415264377276880628645"
+   ],
+   "primarySeriesUid": "2.25.285375340449793626660508561226935347575",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-486",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XT · MR angiography, head",
+   "learnTitle": "Two intracranial aneurysms on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-486",
+   "studyUids": [
+    "2.25.124858484145915961647178915799483191391"
+   ],
+   "primarySeriesUid": "2.25.42918764204308849959758709781126708019",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Each aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-488",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XU · MR angiography, head",
+   "learnTitle": "Intracranial aneurysm on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-488",
+   "studyUids": [
+    "2.25.327105767485071128701568018326470108781"
+   ],
+   "primarySeriesUid": "2.25.163952985423622658319374412139442424337",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "subtle",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-aneurysm-489",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XV · MR angiography, head",
+   "learnTitle": "Intracranial aneurysm on time-of-flight MR angiography (expert outline)",
+   "subjectKey": "openneuro:ds003949:sub-489",
+   "studyUids": [
+    "2.25.10144575551643705125626232644055997205"
+   ],
+   "primarySeriesUid": "2.25.56208855823528059965424179618530669967",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult referred for MR angiography of the head.",
+   "contextSource": "Dataset description (time-of-flight MR angiography at a university hospital); no clinical history is distributed.",
+   "difficulty": "typical",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The aneurysm was outlined voxel by voxel on the axial images by a radiologist with two years of neuroimaging experience and double-checked by a senior neuroradiologist (over 15 years). Ruptured, treated and fully thrombosed aneurysms were not part of the cohort. The arteries are not outlined by the dataset, and it does not record which artery the aneurysm arises from.",
+   "learnNotes": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26)."
+  },
+  {
+   "id": "mra-cow-sub-002",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XW · MR angiography, head",
+   "learnTitle": "Complete Circle of Willis on MR angiography (expert labels)",
+   "subjectKey": "zenodo:TopCoW-external-MRA:sub-002",
+   "studyUids": [
+    "2.25.34576964603369683816863200786739405237"
+   ],
+   "primarySeriesUid": "2.25.16968293684116654109649155647463200454",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult; MR angiography of the head.",
+   "contextSource": "Dataset description (people without an aneurysm); no clinical history is distributed.",
+   "difficulty": "normal_comparison",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Each artery of the Circle of Willis is labelled by the TopCoW challenge annotators (research staff trained by clinical experts, uncertain cases decided with neuroradiologists), who also recorded which communicating segments are seen. The labels cover the circle and the first part of each artery; veins and branches beyond are not labelled.",
+   "learnNotes": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'."
+  },
+  {
+   "id": "mra-cow-sub-000",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XX · MR angiography, head",
+   "learnTitle": "Circle of Willis: fetal-type right posterior cerebral artery (expert labels)",
+   "subjectKey": "zenodo:TopCoW-external-MRA:sub-000",
+   "studyUids": [
+    "2.25.317254759408269328055453981987520777903"
+   ],
+   "primarySeriesUid": "2.25.336896837765288248928796135880508990027",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult; MR angiography of the head.",
+   "contextSource": "Dataset description (people without an aneurysm); no clinical history is distributed.",
+   "difficulty": "normal_comparison",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Each artery of the Circle of Willis is labelled by the TopCoW challenge annotators (research staff trained by clinical experts, uncertain cases decided with neuroradiologists), who also recorded which communicating segments are seen. The labels cover the circle and the first part of each artery; veins and branches beyond are not labelled.",
+   "learnNotes": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'."
+  },
+  {
+   "id": "mra-cow-sub-345",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XY · MR angiography, head",
+   "learnTitle": "Circle of Willis: fetal-type left posterior cerebral artery (expert labels)",
+   "subjectKey": "zenodo:TopCoW-external-MRA:sub-345",
+   "studyUids": [
+    "2.25.53073949297889002787692703986544132548"
+   ],
+   "primarySeriesUid": "2.25.170811377292455319669458700358817479942",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult; MR angiography of the head.",
+   "contextSource": "Dataset description (people without an aneurysm); no clinical history is distributed.",
+   "difficulty": "normal_comparison",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Each artery of the Circle of Willis is labelled by the TopCoW challenge annotators (research staff trained by clinical experts, uncertain cases decided with neuroradiologists), who also recorded which communicating segments are seen. The labels cover the circle and the first part of each artery; veins and branches beyond are not labelled.",
+   "learnNotes": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'."
+  },
+  {
+   "id": "mra-cow-sub-033",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient XZ · MR angiography, head",
+   "learnTitle": "Circle of Willis: anterior communicating artery not seen (expert labels)",
+   "subjectKey": "zenodo:TopCoW-external-MRA:sub-033",
+   "studyUids": [
+    "2.25.40949994069236717011875854755229657430"
+   ],
+   "primarySeriesUid": "2.25.183596115778026457584779344750787467355",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult; MR angiography of the head.",
+   "contextSource": "Dataset description (people without an aneurysm); no clinical history is distributed.",
+   "difficulty": "normal_comparison",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Each artery of the Circle of Willis is labelled by the TopCoW challenge annotators (research staff trained by clinical experts, uncertain cases decided with neuroradiologists), who also recorded which communicating segments are seen. The labels cover the circle and the first part of each artery; veins and branches beyond are not labelled.",
+   "learnNotes": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'."
+  },
+  {
+   "id": "mra-cow-ixi012",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient YA · MR angiography, head",
+   "learnTitle": "Circle of Willis: left A1 segment not seen (expert labels)",
+   "subjectKey": "zenodo:TopCoW-external-MRA:IXI012",
+   "studyUids": [
+    "2.25.67364445154904806354830528996058947229"
+   ],
+   "primarySeriesUid": "2.25.27346905013886905233253364365331666901",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult; MR angiography of the head.",
+   "contextSource": "Dataset description (people without an aneurysm); no clinical history is distributed.",
+   "difficulty": "normal_comparison",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Each artery of the Circle of Willis is labelled by the TopCoW challenge annotators (research staff trained by clinical experts, uncertain cases decided with neuroradiologists), who also recorded which communicating segments are seen. The labels cover the circle and the first part of each artery; veins and branches beyond are not labelled.",
+   "learnNotes": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'."
+  },
+  {
+   "id": "mra-cow-ixi013",
+   "packId": "brain-mra",
+   "neutralTitle": "Patient YB · MR angiography, head",
+   "learnTitle": "Complete Circle of Willis on MR angiography (expert labels)",
+   "subjectKey": "zenodo:TopCoW-external-MRA:IXI013",
+   "studyUids": [
+    "2.25.234920052147215330517217641655402734499"
+   ],
+   "primarySeriesUid": "2.25.75694238146797549166827785016958038209",
+   "region": [
+    "head"
+   ],
+   "clinicalContext": "Adult; MR angiography of the head.",
+   "contextSource": "Dataset description (people without an aneurysm); no clinical history is distributed.",
+   "difficulty": "normal_comparison",
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "Each artery of the Circle of Willis is labelled by the TopCoW challenge annotators (research staff trained by clinical experts, uncertain cases decided with neuroradiologists), who also recorded which communicating segments are seen. The labels cover the circle and the first part of each artery; veins and branches beyond are not labelled.",
+   "learnNotes": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'."
+  }
+ ],
+ "tasks": [
+  {
+   "id": "mra-aneurysm-454:locate",
+   "caseId": "mra-aneurysm-454",
+   "type": "locate_finding",
+   "title": "Find the aneurysm",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.191070949771363958985588844168686450414"
+   ],
+   "start": {
+    "seriesUid": "2.25.191070949771363958985588844168686450414",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-454_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-454_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: the aneurysm arises at the anterior communicating artery, where the two A1 segments meet (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-454:size",
+   "caseId": "mra-aneurysm-454",
+   "type": "describe_finding",
+   "title": "How large is the aneurysm?",
+   "prompt": "Measure the aneurysm at its widest (use the ruler on the slice and the MIP). Which size group is it in?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.191070949771363958985588844168686450414"
+   ],
+   "start": {
+    "seriesUid": "2.25.191070949771363958985588844168686450414",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "small",
+      "text": "Under 5 mm",
+      "correct": false,
+      "why": "The expert outline measures 8.4 mm at its widest."
+     },
+     {
+      "id": "medium",
+      "text": "5 to 10 mm",
+      "correct": true,
+      "why": "The expert outline measures 8.4 mm at its widest."
+     },
+     {
+      "id": "large",
+      "text": "Over 10 mm",
+      "correct": false,
+      "why": "The expert outline measures 8.4 mm at its widest."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the sac itself, from the neck to the dome, in the plane where it looks widest."
+    }
+   ],
+   "explanation": "The expert outline is 8.4 mm across at its widest (measured between the outline's farthest points in 3D, so it includes the neck). Size is one of the strongest predictors of rupture (with site, growth and the patient's history), and it decides between follow-up imaging and treatment. A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-458:locate",
+   "caseId": "mra-aneurysm-458",
+   "type": "locate_finding",
+   "title": "Find the aneurysms",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.30796788666926515254396591250742411767"
+   ],
+   "start": {
+    "seriesUid": "2.25.30796788666926515254396591250742411767",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-458_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    },
+    {
+     "targetId": "ltof-458_aneurysm-2",
+     "name": "Aneurysm",
+     "required": false
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-458_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: one aneurysm sits on the tip of the basilar artery, between the two posterior cerebral arteries a second, small one is on the inner (medial) side of the right internal carotid artery at the siphon (read on the images when this pack was reviewed; the dataset records only the outline). The smaller aneurysm is under 4 mm and is not required, but finding it counts.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-458:count",
+   "caseId": "mra-aneurysm-458",
+   "type": "describe_finding",
+   "title": "How many aneurysms?",
+   "prompt": "After reading the whole angiogram: how many aneurysms does this patient have?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.30796788666926515254396591250742411767"
+   ],
+   "start": {
+    "seriesUid": "2.25.30796788666926515254396591250742411767",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "1",
+      "text": "1",
+      "correct": false,
+      "why": "The radiologists outlined 2 aneurysms on this angiogram."
+     },
+     {
+      "id": "2",
+      "text": "2",
+      "correct": true,
+      "why": "The radiologists outlined 2 aneurysms on this angiogram."
+     },
+     {
+      "id": "3",
+      "text": "3 or more",
+      "correct": false,
+      "why": "The radiologists outlined 2 aneurysms on this angiogram."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Once you have found one aneurysm, keep looking: about one patient in five with an aneurysm has more than one."
+    }
+   ],
+   "explanation": "Multiple aneurysms are common (roughly 20% of patients), so finding one should not end the search (satisfaction of search). A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-466:locate",
+   "caseId": "mra-aneurysm-466",
+   "type": "locate_finding",
+   "title": "Find the aneurysm",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.45400501019139130763925694317893919673"
+   ],
+   "start": {
+    "seriesUid": "2.25.45400501019139130763925694317893919673",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-466_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-466_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: the aneurysm is on the left internal carotid artery at the front bend of the siphon, just below the anterior clinoid level (paraclinoid region) (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-466:size",
+   "caseId": "mra-aneurysm-466",
+   "type": "describe_finding",
+   "title": "How large is the aneurysm?",
+   "prompt": "Measure the aneurysm at its widest (use the ruler on the slice and the MIP). Which size group is it in?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.45400501019139130763925694317893919673"
+   ],
+   "start": {
+    "seriesUid": "2.25.45400501019139130763925694317893919673",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "small",
+      "text": "Under 5 mm",
+      "correct": false,
+      "why": "The expert outline measures 7.7 mm at its widest."
+     },
+     {
+      "id": "medium",
+      "text": "5 to 10 mm",
+      "correct": true,
+      "why": "The expert outline measures 7.7 mm at its widest."
+     },
+     {
+      "id": "large",
+      "text": "Over 10 mm",
+      "correct": false,
+      "why": "The expert outline measures 7.7 mm at its widest."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the sac itself, from the neck to the dome, in the plane where it looks widest."
+    }
+   ],
+   "explanation": "The expert outline is 7.7 mm across at its widest (measured between the outline's farthest points in 3D, so it includes the neck). Size is one of the strongest predictors of rupture (with site, growth and the patient's history), and it decides between follow-up imaging and treatment. A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-470:locate",
+   "caseId": "mra-aneurysm-470",
+   "type": "locate_finding",
+   "title": "Find the aneurysm",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.217474764116115756193517590123979401899"
+   ],
+   "start": {
+    "seriesUid": "2.25.217474764116115756193517590123979401899",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-470_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-470_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: a small aneurysm is on the inner (medial) side of the left internal carotid artery at the siphon (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-472:locate",
+   "caseId": "mra-aneurysm-472",
+   "type": "locate_finding",
+   "title": "Find the aneurysm",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.29696034216394389625627651967367606091"
+   ],
+   "start": {
+    "seriesUid": "2.25.29696034216394389625627651967367606091",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-472_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-472_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: a giant aneurysm, about 3 cm across, of the left internal carotid artery at the level of the cavernous sinus; its less bright parts are clot inside the sac, so the true size is larger than the bright lumen (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-472:size",
+   "caseId": "mra-aneurysm-472",
+   "type": "describe_finding",
+   "title": "How large is the aneurysm?",
+   "prompt": "Measure the aneurysm at its widest (use the ruler on the slice and the MIP). Which size group is it in?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.29696034216394389625627651967367606091"
+   ],
+   "start": {
+    "seriesUid": "2.25.29696034216394389625627651967367606091",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "small",
+      "text": "Under 5 mm",
+      "correct": false,
+      "why": "The expert outline measures 35.6 mm at its widest."
+     },
+     {
+      "id": "medium",
+      "text": "5 to 10 mm",
+      "correct": false,
+      "why": "The expert outline measures 35.6 mm at its widest."
+     },
+     {
+      "id": "large",
+      "text": "Over 10 mm",
+      "correct": true,
+      "why": "The expert outline measures 35.6 mm at its widest."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the sac itself, from the neck to the dome, in the plane where it looks widest."
+    }
+   ],
+   "explanation": "The expert outline is 35.6 mm across at its widest (measured between the outline's farthest points in 3D, so it includes the neck). Size is one of the strongest predictors of rupture (with site, growth and the patient's history), and it decides between follow-up imaging and treatment. A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-473:locate",
+   "caseId": "mra-aneurysm-473",
+   "type": "locate_finding",
+   "title": "Find the aneurysm",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.290233178823466612624072102522013465968"
+   ],
+   "start": {
+    "seriesUid": "2.25.290233178823466612624072102522013465968",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-473_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-473_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: the aneurysm is on the anterior cerebral artery far from the circle, in front of the corpus callosum (pericallosal artery) - easy to miss when only the circle is checked (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-473:size",
+   "caseId": "mra-aneurysm-473",
+   "type": "describe_finding",
+   "title": "How large is the aneurysm?",
+   "prompt": "Measure the aneurysm at its widest (use the ruler on the slice and the MIP). Which size group is it in?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.290233178823466612624072102522013465968"
+   ],
+   "start": {
+    "seriesUid": "2.25.290233178823466612624072102522013465968",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "small",
+      "text": "Under 5 mm",
+      "correct": false,
+      "why": "The expert outline measures 8.9 mm at its widest."
+     },
+     {
+      "id": "medium",
+      "text": "5 to 10 mm",
+      "correct": true,
+      "why": "The expert outline measures 8.9 mm at its widest."
+     },
+     {
+      "id": "large",
+      "text": "Over 10 mm",
+      "correct": false,
+      "why": "The expert outline measures 8.9 mm at its widest."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the sac itself, from the neck to the dome, in the plane where it looks widest."
+    }
+   ],
+   "explanation": "The expert outline is 8.9 mm across at its widest (measured between the outline's farthest points in 3D, so it includes the neck). Size is one of the strongest predictors of rupture (with site, growth and the patient's history), and it decides between follow-up imaging and treatment. A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-476:locate",
+   "caseId": "mra-aneurysm-476",
+   "type": "locate_finding",
+   "title": "Find the aneurysm",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.2752819710985890651480519086131021279"
+   ],
+   "start": {
+    "seriesUid": "2.25.2752819710985890651480519086131021279",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-476_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-476_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: the aneurysm is on the inner (medial) side of the left internal carotid artery at the siphon (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-476:size",
+   "caseId": "mra-aneurysm-476",
+   "type": "describe_finding",
+   "title": "How large is the aneurysm?",
+   "prompt": "Measure the aneurysm at its widest (use the ruler on the slice and the MIP). Which size group is it in?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.2752819710985890651480519086131021279"
+   ],
+   "start": {
+    "seriesUid": "2.25.2752819710985890651480519086131021279",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "small",
+      "text": "Under 5 mm",
+      "correct": false,
+      "why": "The expert outline measures 6.2 mm at its widest."
+     },
+     {
+      "id": "medium",
+      "text": "5 to 10 mm",
+      "correct": true,
+      "why": "The expert outline measures 6.2 mm at its widest."
+     },
+     {
+      "id": "large",
+      "text": "Over 10 mm",
+      "correct": false,
+      "why": "The expert outline measures 6.2 mm at its widest."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the sac itself, from the neck to the dome, in the plane where it looks widest."
+    }
+   ],
+   "explanation": "The expert outline is 6.2 mm across at its widest (measured between the outline's farthest points in 3D, so it includes the neck). Size is one of the strongest predictors of rupture (with site, growth and the patient's history), and it decides between follow-up imaging and treatment. A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-480:locate",
+   "caseId": "mra-aneurysm-480",
+   "type": "locate_finding",
+   "title": "Find the aneurysms",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.241031680516959995714799843351971309348"
+   ],
+   "start": {
+    "seriesUid": "2.25.241031680516959995714799843351971309348",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-480_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    },
+    {
+     "targetId": "ltof-480_aneurysm-2",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-480_aneurysm-2"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: one aneurysm is at the division of the right middle cerebral artery a second one sits on the top of a tortuous basilar artery (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-480:count",
+   "caseId": "mra-aneurysm-480",
+   "type": "describe_finding",
+   "title": "How many aneurysms?",
+   "prompt": "After reading the whole angiogram: how many aneurysms does this patient have?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.241031680516959995714799843351971309348"
+   ],
+   "start": {
+    "seriesUid": "2.25.241031680516959995714799843351971309348",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "1",
+      "text": "1",
+      "correct": false,
+      "why": "The radiologists outlined 2 aneurysms on this angiogram."
+     },
+     {
+      "id": "2",
+      "text": "2",
+      "correct": true,
+      "why": "The radiologists outlined 2 aneurysms on this angiogram."
+     },
+     {
+      "id": "3",
+      "text": "3 or more",
+      "correct": false,
+      "why": "The radiologists outlined 2 aneurysms on this angiogram."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Once you have found one aneurysm, keep looking: about one patient in five with an aneurysm has more than one."
+    }
+   ],
+   "explanation": "Multiple aneurysms are common (roughly 20% of patients), so finding one should not end the search (satisfaction of search). A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-484:locate",
+   "caseId": "mra-aneurysm-484",
+   "type": "locate_finding",
+   "title": "Find the aneurysm",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.228062519311102043298757806513545487081"
+   ],
+   "start": {
+    "seriesUid": "2.25.228062519311102043298757806513545487081",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-484_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-484_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: the aneurysm arises at the anterior communicating artery (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-485:locate",
+   "caseId": "mra-aneurysm-485",
+   "type": "locate_finding",
+   "title": "Find the aneurysm",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.285375340449793626660508561226935347575"
+   ],
+   "start": {
+    "seriesUid": "2.25.285375340449793626660508561226935347575",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-485_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-485_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: the aneurysm arises at the anterior communicating artery (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-486:locate",
+   "caseId": "mra-aneurysm-486",
+   "type": "locate_finding",
+   "title": "Find the aneurysms",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.42918764204308849959758709781126708019"
+   ],
+   "start": {
+    "seriesUid": "2.25.42918764204308849959758709781126708019",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-486_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    },
+    {
+     "targetId": "ltof-486_aneurysm-2",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-486_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: one aneurysm is at the division of the right middle cerebral artery, far out in the Sylvian fissure a second, small one is on the left internal carotid artery just below its end (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-486:count",
+   "caseId": "mra-aneurysm-486",
+   "type": "describe_finding",
+   "title": "How many aneurysms?",
+   "prompt": "After reading the whole angiogram: how many aneurysms does this patient have?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.42918764204308849959758709781126708019"
+   ],
+   "start": {
+    "seriesUid": "2.25.42918764204308849959758709781126708019",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "1",
+      "text": "1",
+      "correct": false,
+      "why": "The radiologists outlined 2 aneurysms on this angiogram."
+     },
+     {
+      "id": "2",
+      "text": "2",
+      "correct": true,
+      "why": "The radiologists outlined 2 aneurysms on this angiogram."
+     },
+     {
+      "id": "3",
+      "text": "3 or more",
+      "correct": false,
+      "why": "The radiologists outlined 2 aneurysms on this angiogram."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Once you have found one aneurysm, keep looking: about one patient in five with an aneurysm has more than one."
+    }
+   ],
+   "explanation": "Multiple aneurysms are common (roughly 20% of patients), so finding one should not end the search (satisfaction of search). A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-488:locate",
+   "caseId": "mra-aneurysm-488",
+   "type": "locate_finding",
+   "title": "Find the aneurysm",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.163952985423622658319374412139442424337"
+   ],
+   "start": {
+    "seriesUid": "2.25.163952985423622658319374412139442424337",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-488_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-488_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: a small aneurysm sits at the end of the left internal carotid artery, where it divides into the anterior and middle cerebral arteries (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-488:size",
+   "caseId": "mra-aneurysm-488",
+   "type": "describe_finding",
+   "title": "How large is the aneurysm?",
+   "prompt": "Measure the aneurysm at its widest (use the ruler on the slice and the MIP). Which size group is it in?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.163952985423622658319374412139442424337"
+   ],
+   "start": {
+    "seriesUid": "2.25.163952985423622658319374412139442424337",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "small",
+      "text": "Under 5 mm",
+      "correct": true,
+      "why": "The expert outline measures 3.5 mm at its widest."
+     },
+     {
+      "id": "medium",
+      "text": "5 to 10 mm",
+      "correct": false,
+      "why": "The expert outline measures 3.5 mm at its widest."
+     },
+     {
+      "id": "large",
+      "text": "Over 10 mm",
+      "correct": false,
+      "why": "The expert outline measures 3.5 mm at its widest."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Measure the sac itself, from the neck to the dome, in the plane where it looks widest."
+    }
+   ],
+   "explanation": "The expert outline is 3.5 mm across at its widest (measured between the outline's farthest points in 3D, so it includes the neck). Size is one of the strongest predictors of rupture (with site, growth and the patient's history), and it decides between follow-up imaging and treatment. A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "interpretation",
+    "reporting"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-aneurysm-489:locate",
+   "caseId": "mra-aneurysm-489",
+   "type": "locate_finding",
+   "title": "Find the aneurysm",
+   "prompt": "Read this MR angiogram of the head: the source images and a thick-slab MIP. Mark every aneurysm you find (point or box), or state that you find none.",
+   "modes": [
+    "learn",
+    "practice",
+    "assess"
+   ],
+   "seriesUids": [
+    "2.25.56208855823528059965424179618530669967"
+   ],
+   "start": {
+    "seriesUid": "2.25.56208855823528059965424179618530669967",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "ltof-489_aneurysm-1",
+     "name": "Aneurysm",
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "findings",
+    "matchRule": "center_in_target",
+    "iouThreshold": 0.3,
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 2.0,
+    "allowNoFinding": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Check each branching point of the Circle of Willis on both sides: the anterior communicating artery, each internal carotid artery at the posterior communicating origin and its end, each middle cerebral artery division, and the tip of the basilar artery."
+    },
+    {
+     "level": 2,
+     "text": "A 20-30 mm MIP slab through the circle shows the arteries as on a catheter angiogram; scroll it up and down so overlapping arteries separate."
+    },
+    {
+     "level": 3,
+     "text": "Jumping to a slice with the reference.",
+     "action": {
+      "type": "jumpToTarget",
+      "targetId": "ltof-489_aneurysm-1"
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "A saccular (berry) aneurysm is a rounded outpouching of an artery wall, usually at a branching point of the Circle of Willis: the anterior communicating artery, the internal carotid artery at the origin of the posterior communicating artery, the middle cerebral artery bifurcation and the tip of the basilar artery. On time-of-flight MR angiography flowing blood is bright, so an aneurysm is a bright bulge attached to an artery. Scroll the thin source images first, then use a thick-slab MIP or the 3D view and check each branching point on both sides: a small aneurysm hides behind overlapping arteries on a single projection. Do not call a vessel loop or the funnel-shaped origin of a posterior communicating artery (an infundibulum, under 3 mm, with the artery leaving its apex) an aneurysm. Size and site decide the risk of rupture, and a ruptured aneurysm is the usual cause of non-traumatic subarachnoid haemorrhage (Learning Radiology, Ch. 26). In this patient: the aneurysm is on the anterior cerebral artery far from the circle, in front of the corpus callosum (pericallosal artery) - easy to miss when only the circle is checked (read on the images when this pack was reviewed; the dataset records only the outline).",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "finding_localization",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-sub-002:arteries",
+   "caseId": "mra-cow-sub-002",
+   "type": "find_structure",
+   "title": "Name the arteries of the Circle of Willis",
+   "prompt": "Place a named mark in each of: the basilar artery, and on both sides the internal carotid, middle cerebral, anterior cerebral and posterior cerebral arteries. Mark the communicating arteries too if you can see them.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.16968293684116654109649155647463200454"
+   ],
+   "start": {
+    "seriesUid": "2.25.16968293684116654109649155647463200454",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "topcow-sub-002_basilar-artery",
+     "name": "Basilar artery",
+     "acceptedNames": [
+      "Basilar artery",
+      "Basilar",
+      "BA"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-002_internal-carotid-artery-right",
+     "name": "Right internal carotid artery",
+     "acceptedNames": [
+      "Right internal carotid artery",
+      "Right ICA",
+      "R ICA",
+      "Right internal carotid",
+      "Right carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-002_internal-carotid-artery-left",
+     "name": "Left internal carotid artery",
+     "acceptedNames": [
+      "Left internal carotid artery",
+      "Left ICA",
+      "L ICA",
+      "Left internal carotid",
+      "Left carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-002_middle-cerebral-artery-right",
+     "name": "Right middle cerebral artery",
+     "acceptedNames": [
+      "Right middle cerebral artery",
+      "Right MCA",
+      "R MCA",
+      "Right M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-002_middle-cerebral-artery-left",
+     "name": "Left middle cerebral artery",
+     "acceptedNames": [
+      "Left middle cerebral artery",
+      "Left MCA",
+      "L MCA",
+      "Left M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-002_anterior-cerebral-artery-right",
+     "name": "Right anterior cerebral artery",
+     "acceptedNames": [
+      "Right anterior cerebral artery",
+      "Right ACA",
+      "R ACA",
+      "Right A1",
+      "Right A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-002_anterior-cerebral-artery-left",
+     "name": "Left anterior cerebral artery",
+     "acceptedNames": [
+      "Left anterior cerebral artery",
+      "Left ACA",
+      "L ACA",
+      "Left A1",
+      "Left A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-002_posterior-cerebral-artery-right",
+     "name": "Right posterior cerebral artery",
+     "acceptedNames": [
+      "Right posterior cerebral artery",
+      "Right PCA",
+      "R PCA",
+      "Right P1",
+      "Right P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-002_posterior-cerebral-artery-left",
+     "name": "Left posterior cerebral artery",
+     "acceptedNames": [
+      "Left posterior cerebral artery",
+      "Left PCA",
+      "L PCA",
+      "Left P1",
+      "Left P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-002_anterior-communicating-artery",
+     "name": "Anterior communicating artery",
+     "acceptedNames": [
+      "Anterior communicating artery",
+      "Acom",
+      "ACoA",
+      "AComm"
+     ],
+     "required": false
+    },
+    {
+     "targetId": "topcow-sub-002_posterior-communicating-artery-right",
+     "name": "Right posterior communicating artery",
+     "acceptedNames": [
+      "Right posterior communicating artery",
+      "Right Pcom",
+      "R Pcom",
+      "Right PCoA"
+     ],
+     "required": false
+    },
+    {
+     "targetId": "topcow-sub-002_posterior-communicating-artery-left",
+     "name": "Left posterior communicating artery",
+     "acceptedNames": [
+      "Left posterior communicating artery",
+      "Left Pcom",
+      "L Pcom",
+      "Left PCoA"
+     ],
+     "required": false
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 1.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the basilar artery in front of the brainstem, then follow it up to where it divides into the two posterior cerebral arteries."
+    },
+    {
+     "level": 2,
+     "text": "Each internal carotid artery climbs beside the sella and divides into a middle cerebral artery (lateral) and an anterior cerebral artery (medial, forwards)."
+    },
+    {
+     "level": 3,
+     "text": "Showing the labelled arteries.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "topcow-sub-002_basilar-artery",
+       "topcow-sub-002_internal-carotid-artery-right",
+       "topcow-sub-002_internal-carotid-artery-left",
+       "topcow-sub-002_middle-cerebral-artery-right",
+       "topcow-sub-002_middle-cerebral-artery-left",
+       "topcow-sub-002_anterior-cerebral-artery-right",
+       "topcow-sub-002_anterior-cerebral-artery-left",
+       "topcow-sub-002_posterior-cerebral-artery-right",
+       "topcow-sub-002_posterior-cerebral-artery-left",
+       "topcow-sub-002_anterior-communicating-artery",
+       "topcow-sub-002_posterior-communicating-artery-right",
+       "topcow-sub-002_posterior-communicating-artery-left"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-sub-002:variant",
+   "caseId": "mra-cow-sub-002",
+   "type": "describe_finding",
+   "title": "Is this Circle of Willis complete?",
+   "prompt": "Check each segment of the circle: both A1s, the anterior communicating artery, both posterior communicating arteries and both P1s.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.16968293684116654109649155647463200454"
+   ],
+   "start": {
+    "seriesUid": "2.25.16968293684116654109649155647463200454",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "complete",
+      "text": "Yes: every segment is seen",
+      "correct": true,
+      "why": "The expert labels record both A1s, the anterior communicating artery, both posterior communicating arteries and both P1s."
+     },
+     {
+      "id": "nopcom",
+      "text": "No: the posterior communicating arteries are not seen",
+      "correct": false,
+      "why": "Both posterior communicating arteries are labelled on this angiogram."
+     },
+     {
+      "id": "noacom",
+      "text": "No: the anterior communicating artery is not seen",
+      "correct": false,
+      "why": "The anterior communicating artery is labelled on this angiogram."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a thick MIP slab through the circle and follow each artery from its origin."
+    }
+   ],
+   "explanation": "A complete circle, with every communicating segment seen, is found in only a minority of people. The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-sub-000:arteries",
+   "caseId": "mra-cow-sub-000",
+   "type": "find_structure",
+   "title": "Name the arteries of the Circle of Willis",
+   "prompt": "Place a named mark in each of: the basilar artery, and on both sides the internal carotid, middle cerebral, anterior cerebral and posterior cerebral arteries. Mark the communicating arteries too if you can see them.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.336896837765288248928796135880508990027"
+   ],
+   "start": {
+    "seriesUid": "2.25.336896837765288248928796135880508990027",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "topcow-sub-000_basilar-artery",
+     "name": "Basilar artery",
+     "acceptedNames": [
+      "Basilar artery",
+      "Basilar",
+      "BA"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-000_internal-carotid-artery-right",
+     "name": "Right internal carotid artery",
+     "acceptedNames": [
+      "Right internal carotid artery",
+      "Right ICA",
+      "R ICA",
+      "Right internal carotid",
+      "Right carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-000_internal-carotid-artery-left",
+     "name": "Left internal carotid artery",
+     "acceptedNames": [
+      "Left internal carotid artery",
+      "Left ICA",
+      "L ICA",
+      "Left internal carotid",
+      "Left carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-000_middle-cerebral-artery-right",
+     "name": "Right middle cerebral artery",
+     "acceptedNames": [
+      "Right middle cerebral artery",
+      "Right MCA",
+      "R MCA",
+      "Right M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-000_middle-cerebral-artery-left",
+     "name": "Left middle cerebral artery",
+     "acceptedNames": [
+      "Left middle cerebral artery",
+      "Left MCA",
+      "L MCA",
+      "Left M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-000_anterior-cerebral-artery-right",
+     "name": "Right anterior cerebral artery",
+     "acceptedNames": [
+      "Right anterior cerebral artery",
+      "Right ACA",
+      "R ACA",
+      "Right A1",
+      "Right A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-000_anterior-cerebral-artery-left",
+     "name": "Left anterior cerebral artery",
+     "acceptedNames": [
+      "Left anterior cerebral artery",
+      "Left ACA",
+      "L ACA",
+      "Left A1",
+      "Left A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-000_posterior-cerebral-artery-right",
+     "name": "Right posterior cerebral artery",
+     "acceptedNames": [
+      "Right posterior cerebral artery",
+      "Right PCA",
+      "R PCA",
+      "Right P1",
+      "Right P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-000_posterior-cerebral-artery-left",
+     "name": "Left posterior cerebral artery",
+     "acceptedNames": [
+      "Left posterior cerebral artery",
+      "Left PCA",
+      "L PCA",
+      "Left P1",
+      "Left P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-000_anterior-communicating-artery",
+     "name": "Anterior communicating artery",
+     "acceptedNames": [
+      "Anterior communicating artery",
+      "Acom",
+      "ACoA",
+      "AComm"
+     ],
+     "required": false
+    },
+    {
+     "targetId": "topcow-sub-000_posterior-communicating-artery-right",
+     "name": "Right posterior communicating artery",
+     "acceptedNames": [
+      "Right posterior communicating artery",
+      "Right Pcom",
+      "R Pcom",
+      "Right PCoA"
+     ],
+     "required": false
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 1.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the basilar artery in front of the brainstem, then follow it up to where it divides into the two posterior cerebral arteries."
+    },
+    {
+     "level": 2,
+     "text": "Each internal carotid artery climbs beside the sella and divides into a middle cerebral artery (lateral) and an anterior cerebral artery (medial, forwards)."
+    },
+    {
+     "level": 3,
+     "text": "Showing the labelled arteries.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "topcow-sub-000_basilar-artery",
+       "topcow-sub-000_internal-carotid-artery-right",
+       "topcow-sub-000_internal-carotid-artery-left",
+       "topcow-sub-000_middle-cerebral-artery-right",
+       "topcow-sub-000_middle-cerebral-artery-left",
+       "topcow-sub-000_anterior-cerebral-artery-right",
+       "topcow-sub-000_anterior-cerebral-artery-left",
+       "topcow-sub-000_posterior-cerebral-artery-right",
+       "topcow-sub-000_posterior-cerebral-artery-left",
+       "topcow-sub-000_anterior-communicating-artery",
+       "topcow-sub-000_posterior-communicating-artery-right"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-sub-000:variant",
+   "caseId": "mra-cow-sub-000",
+   "type": "describe_finding",
+   "title": "Where does the right posterior cerebral artery fill from?",
+   "prompt": "Follow the right posterior cerebral artery back from behind the midbrain. Where does its blood come from?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.336896837765288248928796135880508990027"
+   ],
+   "start": {
+    "seriesUid": "2.25.336896837765288248928796135880508990027",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "fetal",
+      "text": "From the right internal carotid artery, through a large posterior communicating artery",
+      "correct": true,
+      "why": "The right P1 segment is not seen and the right posterior communicating artery is: a fetal-type posterior cerebral artery."
+     },
+     {
+      "id": "basilar",
+      "text": "From the basilar artery, through its P1 segment",
+      "correct": false,
+      "why": "The expert labels record no right P1 segment on this angiogram."
+     },
+     {
+      "id": "both",
+      "text": "Equally from both",
+      "correct": false,
+      "why": "Only the posterior communicating route is seen on the right."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a thick MIP slab through the circle and follow each artery from its origin."
+    }
+   ],
+   "explanation": "Fetal-type posterior cerebral artery: the right PCA fills from the internal carotid artery through a posterior communicating artery as large as the PCA, and the P1 segment from the basilar artery is absent or too small to see. It is a common normal variant (about one person in five on one side); it matters because a carotid occlusion or a carotid procedure then also affects that occipital lobe. The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-sub-345:arteries",
+   "caseId": "mra-cow-sub-345",
+   "type": "find_structure",
+   "title": "Name the arteries of the Circle of Willis",
+   "prompt": "Place a named mark in each of: the basilar artery, and on both sides the internal carotid, middle cerebral, anterior cerebral and posterior cerebral arteries. Mark the communicating arteries too if you can see them.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.170811377292455319669458700358817479942"
+   ],
+   "start": {
+    "seriesUid": "2.25.170811377292455319669458700358817479942",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "topcow-sub-345_basilar-artery",
+     "name": "Basilar artery",
+     "acceptedNames": [
+      "Basilar artery",
+      "Basilar",
+      "BA"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-345_internal-carotid-artery-right",
+     "name": "Right internal carotid artery",
+     "acceptedNames": [
+      "Right internal carotid artery",
+      "Right ICA",
+      "R ICA",
+      "Right internal carotid",
+      "Right carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-345_internal-carotid-artery-left",
+     "name": "Left internal carotid artery",
+     "acceptedNames": [
+      "Left internal carotid artery",
+      "Left ICA",
+      "L ICA",
+      "Left internal carotid",
+      "Left carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-345_middle-cerebral-artery-right",
+     "name": "Right middle cerebral artery",
+     "acceptedNames": [
+      "Right middle cerebral artery",
+      "Right MCA",
+      "R MCA",
+      "Right M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-345_middle-cerebral-artery-left",
+     "name": "Left middle cerebral artery",
+     "acceptedNames": [
+      "Left middle cerebral artery",
+      "Left MCA",
+      "L MCA",
+      "Left M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-345_anterior-cerebral-artery-right",
+     "name": "Right anterior cerebral artery",
+     "acceptedNames": [
+      "Right anterior cerebral artery",
+      "Right ACA",
+      "R ACA",
+      "Right A1",
+      "Right A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-345_anterior-cerebral-artery-left",
+     "name": "Left anterior cerebral artery",
+     "acceptedNames": [
+      "Left anterior cerebral artery",
+      "Left ACA",
+      "L ACA",
+      "Left A1",
+      "Left A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-345_posterior-cerebral-artery-right",
+     "name": "Right posterior cerebral artery",
+     "acceptedNames": [
+      "Right posterior cerebral artery",
+      "Right PCA",
+      "R PCA",
+      "Right P1",
+      "Right P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-345_posterior-cerebral-artery-left",
+     "name": "Left posterior cerebral artery",
+     "acceptedNames": [
+      "Left posterior cerebral artery",
+      "Left PCA",
+      "L PCA",
+      "Left P1",
+      "Left P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-345_anterior-communicating-artery",
+     "name": "Anterior communicating artery",
+     "acceptedNames": [
+      "Anterior communicating artery",
+      "Acom",
+      "ACoA",
+      "AComm"
+     ],
+     "required": false
+    },
+    {
+     "targetId": "topcow-sub-345_posterior-communicating-artery-right",
+     "name": "Right posterior communicating artery",
+     "acceptedNames": [
+      "Right posterior communicating artery",
+      "Right Pcom",
+      "R Pcom",
+      "Right PCoA"
+     ],
+     "required": false
+    },
+    {
+     "targetId": "topcow-sub-345_posterior-communicating-artery-left",
+     "name": "Left posterior communicating artery",
+     "acceptedNames": [
+      "Left posterior communicating artery",
+      "Left Pcom",
+      "L Pcom",
+      "Left PCoA"
+     ],
+     "required": false
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 1.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the basilar artery in front of the brainstem, then follow it up to where it divides into the two posterior cerebral arteries."
+    },
+    {
+     "level": 2,
+     "text": "Each internal carotid artery climbs beside the sella and divides into a middle cerebral artery (lateral) and an anterior cerebral artery (medial, forwards)."
+    },
+    {
+     "level": 3,
+     "text": "Showing the labelled arteries.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "topcow-sub-345_basilar-artery",
+       "topcow-sub-345_internal-carotid-artery-right",
+       "topcow-sub-345_internal-carotid-artery-left",
+       "topcow-sub-345_middle-cerebral-artery-right",
+       "topcow-sub-345_middle-cerebral-artery-left",
+       "topcow-sub-345_anterior-cerebral-artery-right",
+       "topcow-sub-345_anterior-cerebral-artery-left",
+       "topcow-sub-345_posterior-cerebral-artery-right",
+       "topcow-sub-345_posterior-cerebral-artery-left",
+       "topcow-sub-345_anterior-communicating-artery",
+       "topcow-sub-345_posterior-communicating-artery-right",
+       "topcow-sub-345_posterior-communicating-artery-left"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-sub-345:variant",
+   "caseId": "mra-cow-sub-345",
+   "type": "describe_finding",
+   "title": "Where does the left posterior cerebral artery fill from?",
+   "prompt": "Follow the left posterior cerebral artery back from behind the midbrain. Where does its blood come from?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.170811377292455319669458700358817479942"
+   ],
+   "start": {
+    "seriesUid": "2.25.170811377292455319669458700358817479942",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "fetal",
+      "text": "From the left internal carotid artery, through a large posterior communicating artery",
+      "correct": true,
+      "why": "The left P1 segment is not seen and the left posterior communicating artery is: a fetal-type posterior cerebral artery."
+     },
+     {
+      "id": "basilar",
+      "text": "From the basilar artery, through its P1 segment",
+      "correct": false,
+      "why": "The expert labels record no left P1 segment on this angiogram."
+     },
+     {
+      "id": "both",
+      "text": "Equally from both",
+      "correct": false,
+      "why": "Only the posterior communicating route is seen on the left."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a thick MIP slab through the circle and follow each artery from its origin."
+    }
+   ],
+   "explanation": "Fetal-type posterior cerebral artery: the left PCA fills from the internal carotid artery through a posterior communicating artery as large as the PCA, and the P1 segment from the basilar artery is absent or too small to see. It is a common normal variant (about one person in five on one side); it matters because a carotid occlusion or a carotid procedure then also affects that occipital lobe. The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-sub-033:arteries",
+   "caseId": "mra-cow-sub-033",
+   "type": "find_structure",
+   "title": "Name the arteries of the Circle of Willis",
+   "prompt": "Place a named mark in each of: the basilar artery, and on both sides the internal carotid, middle cerebral, anterior cerebral and posterior cerebral arteries. Mark the communicating arteries too if you can see them.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.183596115778026457584779344750787467355"
+   ],
+   "start": {
+    "seriesUid": "2.25.183596115778026457584779344750787467355",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "topcow-sub-033_basilar-artery",
+     "name": "Basilar artery",
+     "acceptedNames": [
+      "Basilar artery",
+      "Basilar",
+      "BA"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-033_internal-carotid-artery-right",
+     "name": "Right internal carotid artery",
+     "acceptedNames": [
+      "Right internal carotid artery",
+      "Right ICA",
+      "R ICA",
+      "Right internal carotid",
+      "Right carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-033_internal-carotid-artery-left",
+     "name": "Left internal carotid artery",
+     "acceptedNames": [
+      "Left internal carotid artery",
+      "Left ICA",
+      "L ICA",
+      "Left internal carotid",
+      "Left carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-033_middle-cerebral-artery-right",
+     "name": "Right middle cerebral artery",
+     "acceptedNames": [
+      "Right middle cerebral artery",
+      "Right MCA",
+      "R MCA",
+      "Right M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-033_middle-cerebral-artery-left",
+     "name": "Left middle cerebral artery",
+     "acceptedNames": [
+      "Left middle cerebral artery",
+      "Left MCA",
+      "L MCA",
+      "Left M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-033_anterior-cerebral-artery-right",
+     "name": "Right anterior cerebral artery",
+     "acceptedNames": [
+      "Right anterior cerebral artery",
+      "Right ACA",
+      "R ACA",
+      "Right A1",
+      "Right A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-033_anterior-cerebral-artery-left",
+     "name": "Left anterior cerebral artery",
+     "acceptedNames": [
+      "Left anterior cerebral artery",
+      "Left ACA",
+      "L ACA",
+      "Left A1",
+      "Left A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-033_posterior-cerebral-artery-right",
+     "name": "Right posterior cerebral artery",
+     "acceptedNames": [
+      "Right posterior cerebral artery",
+      "Right PCA",
+      "R PCA",
+      "Right P1",
+      "Right P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-033_posterior-cerebral-artery-left",
+     "name": "Left posterior cerebral artery",
+     "acceptedNames": [
+      "Left posterior cerebral artery",
+      "Left PCA",
+      "L PCA",
+      "Left P1",
+      "Left P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-sub-033_posterior-communicating-artery-right",
+     "name": "Right posterior communicating artery",
+     "acceptedNames": [
+      "Right posterior communicating artery",
+      "Right Pcom",
+      "R Pcom",
+      "Right PCoA"
+     ],
+     "required": false
+    },
+    {
+     "targetId": "topcow-sub-033_posterior-communicating-artery-left",
+     "name": "Left posterior communicating artery",
+     "acceptedNames": [
+      "Left posterior communicating artery",
+      "Left Pcom",
+      "L Pcom",
+      "Left PCoA"
+     ],
+     "required": false
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 1.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the basilar artery in front of the brainstem, then follow it up to where it divides into the two posterior cerebral arteries."
+    },
+    {
+     "level": 2,
+     "text": "Each internal carotid artery climbs beside the sella and divides into a middle cerebral artery (lateral) and an anterior cerebral artery (medial, forwards)."
+    },
+    {
+     "level": 3,
+     "text": "Showing the labelled arteries.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "topcow-sub-033_basilar-artery",
+       "topcow-sub-033_internal-carotid-artery-right",
+       "topcow-sub-033_internal-carotid-artery-left",
+       "topcow-sub-033_middle-cerebral-artery-right",
+       "topcow-sub-033_middle-cerebral-artery-left",
+       "topcow-sub-033_anterior-cerebral-artery-right",
+       "topcow-sub-033_anterior-cerebral-artery-left",
+       "topcow-sub-033_posterior-cerebral-artery-right",
+       "topcow-sub-033_posterior-cerebral-artery-left",
+       "topcow-sub-033_posterior-communicating-artery-right",
+       "topcow-sub-033_posterior-communicating-artery-left"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-sub-033:variant",
+   "caseId": "mra-cow-sub-033",
+   "type": "describe_finding",
+   "title": "Is there an anterior communicating artery?",
+   "prompt": "Look between the two A1 segments, just above the optic chiasm. Is an anterior communicating artery seen?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.183596115778026457584779344750787467355"
+   ],
+   "start": {
+    "seriesUid": "2.25.183596115778026457584779344750787467355",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "no",
+      "text": "Not seen on this MRA (absent, or too small for the angiogram to show)",
+      "correct": true,
+      "why": "The expert labels record no anterior communicating artery on this angiogram."
+     },
+     {
+      "id": "yes",
+      "text": "Yes, it joins the two anterior cerebral arteries",
+      "correct": false,
+      "why": "No vessel joining the two ACAs is seen here."
+     },
+     {
+      "id": "double",
+      "text": "There are two of them",
+      "correct": false,
+      "why": "No communicating artery is seen here."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a thick MIP slab through the circle and follow each artery from its origin."
+    }
+   ],
+   "explanation": "A missing or hypoplastic anterior communicating artery is a common variant; without it the two anterior circulations cannot support each other if one internal carotid artery is narrowed or blocked. The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-ixi012:arteries",
+   "caseId": "mra-cow-ixi012",
+   "type": "find_structure",
+   "title": "Name the arteries of the Circle of Willis",
+   "prompt": "Place a named mark in each of: the basilar artery, and on both sides the internal carotid, middle cerebral, anterior cerebral and posterior cerebral arteries. Mark the communicating arteries too if you can see them.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.27346905013886905233253364365331666901"
+   ],
+   "start": {
+    "seriesUid": "2.25.27346905013886905233253364365331666901",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "topcow-ixi012_basilar-artery",
+     "name": "Basilar artery",
+     "acceptedNames": [
+      "Basilar artery",
+      "Basilar",
+      "BA"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi012_internal-carotid-artery-right",
+     "name": "Right internal carotid artery",
+     "acceptedNames": [
+      "Right internal carotid artery",
+      "Right ICA",
+      "R ICA",
+      "Right internal carotid",
+      "Right carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi012_internal-carotid-artery-left",
+     "name": "Left internal carotid artery",
+     "acceptedNames": [
+      "Left internal carotid artery",
+      "Left ICA",
+      "L ICA",
+      "Left internal carotid",
+      "Left carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi012_middle-cerebral-artery-right",
+     "name": "Right middle cerebral artery",
+     "acceptedNames": [
+      "Right middle cerebral artery",
+      "Right MCA",
+      "R MCA",
+      "Right M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi012_middle-cerebral-artery-left",
+     "name": "Left middle cerebral artery",
+     "acceptedNames": [
+      "Left middle cerebral artery",
+      "Left MCA",
+      "L MCA",
+      "Left M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi012_anterior-cerebral-artery-right",
+     "name": "Right anterior cerebral artery",
+     "acceptedNames": [
+      "Right anterior cerebral artery",
+      "Right ACA",
+      "R ACA",
+      "Right A1",
+      "Right A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi012_anterior-cerebral-artery-left",
+     "name": "Left anterior cerebral artery",
+     "acceptedNames": [
+      "Left anterior cerebral artery",
+      "Left ACA",
+      "L ACA",
+      "Left A1",
+      "Left A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi012_posterior-cerebral-artery-right",
+     "name": "Right posterior cerebral artery",
+     "acceptedNames": [
+      "Right posterior cerebral artery",
+      "Right PCA",
+      "R PCA",
+      "Right P1",
+      "Right P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi012_posterior-cerebral-artery-left",
+     "name": "Left posterior cerebral artery",
+     "acceptedNames": [
+      "Left posterior cerebral artery",
+      "Left PCA",
+      "L PCA",
+      "Left P1",
+      "Left P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi012_anterior-communicating-artery",
+     "name": "Anterior communicating artery",
+     "acceptedNames": [
+      "Anterior communicating artery",
+      "Acom",
+      "ACoA",
+      "AComm"
+     ],
+     "required": false
+    },
+    {
+     "targetId": "topcow-ixi012_posterior-communicating-artery-right",
+     "name": "Right posterior communicating artery",
+     "acceptedNames": [
+      "Right posterior communicating artery",
+      "Right Pcom",
+      "R Pcom",
+      "Right PCoA"
+     ],
+     "required": false
+    },
+    {
+     "targetId": "topcow-ixi012_posterior-communicating-artery-left",
+     "name": "Left posterior communicating artery",
+     "acceptedNames": [
+      "Left posterior communicating artery",
+      "Left Pcom",
+      "L Pcom",
+      "Left PCoA"
+     ],
+     "required": false
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 1.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the basilar artery in front of the brainstem, then follow it up to where it divides into the two posterior cerebral arteries."
+    },
+    {
+     "level": 2,
+     "text": "Each internal carotid artery climbs beside the sella and divides into a middle cerebral artery (lateral) and an anterior cerebral artery (medial, forwards)."
+    },
+    {
+     "level": 3,
+     "text": "Showing the labelled arteries.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "topcow-ixi012_basilar-artery",
+       "topcow-ixi012_internal-carotid-artery-right",
+       "topcow-ixi012_internal-carotid-artery-left",
+       "topcow-ixi012_middle-cerebral-artery-right",
+       "topcow-ixi012_middle-cerebral-artery-left",
+       "topcow-ixi012_anterior-cerebral-artery-right",
+       "topcow-ixi012_anterior-cerebral-artery-left",
+       "topcow-ixi012_posterior-cerebral-artery-right",
+       "topcow-ixi012_posterior-cerebral-artery-left",
+       "topcow-ixi012_anterior-communicating-artery",
+       "topcow-ixi012_posterior-communicating-artery-right",
+       "topcow-ixi012_posterior-communicating-artery-left"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-ixi012:variant",
+   "caseId": "mra-cow-ixi012",
+   "type": "describe_finding",
+   "title": "Follow both anterior cerebral arteries back",
+   "prompt": "Follow both anterior cerebral arteries down from between the hemispheres to their origins. What do you find?",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.27346905013886905233253364365331666901"
+   ],
+   "start": {
+    "seriesUid": "2.25.27346905013886905233253364365331666901",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "noleft",
+      "text": "The left A1 is not seen: both A2 segments fill from the right A1 through the anterior communicating artery",
+      "correct": true,
+      "why": "The expert labels record no left A1 segment, with a right A1 and an anterior communicating artery."
+     },
+     {
+      "id": "noright",
+      "text": "The right A1 is not seen",
+      "correct": false,
+      "why": "The right A1 segment is labelled by the experts."
+     },
+     {
+      "id": "both",
+      "text": "Both A1 segments are present and similar",
+      "correct": false,
+      "why": "The left A1 segment is not seen."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a thick MIP slab through the circle and follow each artery from its origin."
+    }
+   ],
+   "explanation": "An absent or hypoplastic A1 is a common variant. Both anterior cerebral territories then depend on one internal carotid artery, and the anterior communicating artery carries more flow - one reason aneurysms form there more often in this anatomy. The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-ixi013:arteries",
+   "caseId": "mra-cow-ixi013",
+   "type": "find_structure",
+   "title": "Name the arteries of the Circle of Willis",
+   "prompt": "Place a named mark in each of: the basilar artery, and on both sides the internal carotid, middle cerebral, anterior cerebral and posterior cerebral arteries. Mark the communicating arteries too if you can see them.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.75694238146797549166827785016958038209"
+   ],
+   "start": {
+    "seriesUid": "2.25.75694238146797549166827785016958038209",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [
+    {
+     "targetId": "topcow-ixi013_basilar-artery",
+     "name": "Basilar artery",
+     "acceptedNames": [
+      "Basilar artery",
+      "Basilar",
+      "BA"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi013_internal-carotid-artery-right",
+     "name": "Right internal carotid artery",
+     "acceptedNames": [
+      "Right internal carotid artery",
+      "Right ICA",
+      "R ICA",
+      "Right internal carotid",
+      "Right carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi013_internal-carotid-artery-left",
+     "name": "Left internal carotid artery",
+     "acceptedNames": [
+      "Left internal carotid artery",
+      "Left ICA",
+      "L ICA",
+      "Left internal carotid",
+      "Left carotid"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi013_middle-cerebral-artery-right",
+     "name": "Right middle cerebral artery",
+     "acceptedNames": [
+      "Right middle cerebral artery",
+      "Right MCA",
+      "R MCA",
+      "Right M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi013_middle-cerebral-artery-left",
+     "name": "Left middle cerebral artery",
+     "acceptedNames": [
+      "Left middle cerebral artery",
+      "Left MCA",
+      "L MCA",
+      "Left M1"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi013_anterior-cerebral-artery-right",
+     "name": "Right anterior cerebral artery",
+     "acceptedNames": [
+      "Right anterior cerebral artery",
+      "Right ACA",
+      "R ACA",
+      "Right A1",
+      "Right A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi013_anterior-cerebral-artery-left",
+     "name": "Left anterior cerebral artery",
+     "acceptedNames": [
+      "Left anterior cerebral artery",
+      "Left ACA",
+      "L ACA",
+      "Left A1",
+      "Left A2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi013_posterior-cerebral-artery-right",
+     "name": "Right posterior cerebral artery",
+     "acceptedNames": [
+      "Right posterior cerebral artery",
+      "Right PCA",
+      "R PCA",
+      "Right P1",
+      "Right P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi013_posterior-cerebral-artery-left",
+     "name": "Left posterior cerebral artery",
+     "acceptedNames": [
+      "Left posterior cerebral artery",
+      "Left PCA",
+      "L PCA",
+      "Left P1",
+      "Left P2"
+     ],
+     "required": true
+    },
+    {
+     "targetId": "topcow-ixi013_anterior-communicating-artery",
+     "name": "Anterior communicating artery",
+     "acceptedNames": [
+      "Anterior communicating artery",
+      "Acom",
+      "ACoA",
+      "AComm"
+     ],
+     "required": false
+    },
+    {
+     "targetId": "topcow-ixi013_posterior-communicating-artery-right",
+     "name": "Right posterior communicating artery",
+     "acceptedNames": [
+      "Right posterior communicating artery",
+      "Right Pcom",
+      "R Pcom",
+      "Right PCoA"
+     ],
+     "required": false
+    },
+    {
+     "targetId": "topcow-ixi013_posterior-communicating-artery-left",
+     "name": "Left posterior communicating artery",
+     "acceptedNames": [
+      "Left posterior communicating artery",
+      "Left Pcom",
+      "L Pcom",
+      "Left PCoA"
+     ],
+     "required": false
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 1.5,
+    "inPlaneToleranceMm": 1.5,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the basilar artery in front of the brainstem, then follow it up to where it divides into the two posterior cerebral arteries."
+    },
+    {
+     "level": 2,
+     "text": "Each internal carotid artery climbs beside the sella and divides into a middle cerebral artery (lateral) and an anterior cerebral artery (medial, forwards)."
+    },
+    {
+     "level": 3,
+     "text": "Showing the labelled arteries.",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "topcow-ixi013_basilar-artery",
+       "topcow-ixi013_internal-carotid-artery-right",
+       "topcow-ixi013_internal-carotid-artery-left",
+       "topcow-ixi013_middle-cerebral-artery-right",
+       "topcow-ixi013_middle-cerebral-artery-left",
+       "topcow-ixi013_anterior-cerebral-artery-right",
+       "topcow-ixi013_anterior-cerebral-artery-left",
+       "topcow-ixi013_posterior-cerebral-artery-right",
+       "topcow-ixi013_posterior-cerebral-artery-left",
+       "topcow-ixi013_anterior-communicating-artery",
+       "topcow-ixi013_posterior-communicating-artery-right",
+       "topcow-ixi013_posterior-communicating-artery-left"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ],
+   "allowUncertain": true
+  },
+  {
+   "id": "mra-cow-ixi013:variant",
+   "caseId": "mra-cow-ixi013",
+   "type": "describe_finding",
+   "title": "Is this Circle of Willis complete?",
+   "prompt": "Check each segment of the circle: both A1s, the anterior communicating artery, both posterior communicating arteries and both P1s.",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.75694238146797549166827785016958038209"
+   ],
+   "start": {
+    "seriesUid": "2.25.75694238146797549166827785016958038209",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "complete",
+      "text": "Yes: every segment is seen",
+      "correct": true,
+      "why": "The expert labels record both A1s, the anterior communicating artery, both posterior communicating arteries and both P1s."
+     },
+     {
+      "id": "nopcom",
+      "text": "No: the posterior communicating arteries are not seen",
+      "correct": false,
+      "why": "Both posterior communicating arteries are labelled on this angiogram."
+     },
+     {
+      "id": "noacom",
+      "text": "No: the anterior communicating artery is not seen",
+      "correct": false,
+      "why": "The anterior communicating artery is labelled on this angiogram."
+     }
+    ]
+   },
+   "scoring": "authoritative",
+   "hints": [
+    {
+     "level": 1,
+     "text": "Use a thick MIP slab through the circle and follow each artery from its origin."
+    }
+   ],
+   "explanation": "A complete circle, with every communicating segment seen, is found in only a minority of people. The Circle of Willis joins the two internal carotid arteries (front) and the basilar artery (back). Each internal carotid artery ends by dividing into the anterior cerebral artery (its first part, A1, runs medially to the anterior communicating artery; A2 runs up between the hemispheres) and the middle cerebral artery (M1 runs laterally to its division into M2 branches in the Sylvian fissure). The basilar artery ends by dividing into the two posterior cerebral arteries (P1 up to the posterior communicating artery, P2 beyond it, around the midbrain). The posterior communicating arteries link each internal carotid artery to its posterior cerebral artery. A complete circle is found in only a minority of people: a communicating artery or an A1/P1 segment is often too small to see. On a time-of-flight MRA a segment that is not seen may be absent or simply too small (slow flow), so call it 'not seen' rather than 'absent'.",
+   "bookAnchors": [
+    {
+     "physical": 358,
+     "printed": "338",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.22",
+     "sectionId": null
+    },
+    {
+     "physical": 357,
+     "printed": "337",
+     "chapterId": "ch26",
+     "figureId": "Fig 26.21",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch26-o09"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "interpretation"
+   ],
+   "allowUncertain": true
+  }
+ ]
+}

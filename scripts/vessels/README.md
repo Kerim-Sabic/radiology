@@ -75,3 +75,19 @@ From the repo root, always with the venv interpreter (`PY=C:/Users/kerim/radiolo
   excluded). Coverage requires ≥ 15 mm above the arch top and ≥ 1 such slice.
 * Aortic-arch level (only if robust): from the top slice with ≥ 10 mm² aorta down to just before the aorta splits into
   two components ≥ 100 mm² (ascending + descending); needs a slice spanning the tracheal midline and ≤ 45 mm length.
+
+## Circle of Willis on TOF MR angiography (`cow_*.py`, used by the MRI atlas)
+
+Brain arteries for `public/packs/anatomy-atlas-mr` (steps in `scripts/atlas/README.md`, section MRI). GPU venv
+`C:/Users/kerim/radiology-data/venv-gpu` (torch 2.11.0+cu128, nnU-Net 2.8.1), one queue per RTX 5080.
+
+| script | what it does |
+|---|---|
+| `docker_weights.py <url> <out>` | streams a `docker save` tar.gz and extracts the algorithm files without Docker or saving the image (used once for `Team_CLAIM_topcow_seg.tar.gz`, Zenodo 15665435) |
+| `cow_segment.py <in.nii.gz> <out.nii.gz>` | the TopCoW 2024 winning model (team CLAIM: nnU-Net ResEnc-M + Skeleton Recall, 5 folds x best/final checkpoints) on an LPS-reoriented TOF; locates the circle with one fold, accepts a crop only when the basilar and both ICAs come out; checkpoints read with `weights_only=True` |
+| `cow_post.py` | vessel tree, landmarks, teaching box, largest piece, side and contact rules, A1/A2 P1/P2 M1/M2 (docstring) |
+| `cow_validate.py run/analyse` | the 40 TopCoW external-test MRAs with expert labels: Dice in the expert ROI, label confusion, communicating-artery presence, TOF signal calibration; cases inside the model's training folds reported apart |
+
+Licences: model trained on TopCoW data ("Open use. Must provide the source. Use for commercial purposes requires permission
+of the data owner."); nnU-Net Apache-2.0; TopCoW labels and the Lausanne (CC0) / IXI (CC BY-SA 3.0) images as recorded in
+`public/packs/brain-mra/pack.json`. Results and QC: `docs/data/anatomy-atlas-mr-report.md`.

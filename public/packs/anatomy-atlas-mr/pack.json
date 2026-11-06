@@ -1,0 +1,4042 @@
+{
+ "schemaVersion": 1,
+ "packId": "anatomy-atlas-mr",
+ "version": "0.1.0",
+ "title": "Anatomy atlas, MRI (AI)",
+ "description": "Anatomy outlines for the Learn-mode anatomy layer (layer 'atlas') on MRI series: the arteries of the Circle of Willis on the time-of-flight MR angiograms of brain-mra, with A1/A2, P1/P2 and M1/M2 segments where the junction is seen, after automatic QC and a visual check of every case. Not reviewed by a radiologist; never used for grading. No images: targets reference those packs' series and SOP UIDs.",
+ "generatedAt": "2026-11-06T15:01:05Z",
+ "generator": "scripts/atlas/mr_write_pack.py",
+ "sources": [
+  {
+   "id": "horalix",
+   "name": "Horalix (horalix.com)",
+   "url": "https://horalix.com",
+   "doi": null,
+   "license": "AI-generated drafts for this app; the segmentation tools and their licences are listed in docs/data/anatomy-atlas-mr-report.md",
+   "citation": "Thanks to Horalix.com, every structure in the anatomy layer is marked. The outlines are AI, not reviewed by a radiologist.",
+   "accessNote": "Unreviewed AI drafts; never used for grading."
+  },
+  {
+   "id": "openneuro:ds003949",
+   "name": "Lausanne TOF-MRA Aneurysm Cohort (Lausanne University Hospital, CHUV)",
+   "url": "https://openneuro.org/datasets/ds003949",
+   "doi": "10.18112/openneuro.ds003949.v1.0.0",
+   "license": "CC0 1.0 (public domain dedication)",
+   "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+   "citation": "Di Noto T, Marie G, Tourbier S, Aleman-Gomez Y, Esteban O, Saliou G, Bach Cuadra M, Hagmann P, Richiardi J. Towards automated brain aneurysm detection in TOF-MRA: open data, weak labels, and anatomical knowledge. Neuroinformatics. 2023;21:21-34. doi:10.1007/s12021-022-09597-0. Data: OpenNeuro doi:10.18112/openneuro.ds003949.v1.0.0",
+   "accessNote": "TOF-MRA (anat/*_angio.nii.gz + JSON sidecar) and derivatives/manual_masks/*_desc-Lesion_*_mask.nii.gz of the selected subjects downloaded anonymously from the public OpenNeuro S3 bucket (s3://openneuro.org/ds003949, version 1.0.0)."
+  },
+  {
+   "id": "zenodo:TopCoW-external-MRA",
+   "name": "TopCoW challenge: Circle of Willis annotations of external MRA test sets (Lausanne controls and IXI-HH)",
+   "url": "https://doi.org/10.5281/zenodo.15692630",
+   "doi": "10.5281/zenodo.15692630",
+   "license": "Circle-of-Willis labels: TopCoW data terms, as defined by OpenData Swiss: \"Open use. Must provide the source. Use for commercial purposes requires permission of the data owner.\" Images: CC0 1.0 (Lausanne cohort) and CC BY-SA 3.0 (IXI; the derived DICOM is shared under the same licence).",
+   "licenseUrl": "https://opendata.swiss/en/terms-of-use",
+   "citation": "Yang K, Musio F, Ma Y, Juchler N, Paetzold JC, Al-Maskari R, et al., Menze B. Benchmarking the CoW with the TopCoW challenge: topology-aware anatomical segmentation of the Circle of Willis for CTA and MRA. arXiv:2312.17670. Data: Zenodo doi:10.5281/zenodo.15692630. Images: Di Noto T et al., Neuroinformatics 2023 (Lausanne, CC0); IXI dataset, brain-development.org (CC BY-SA 3.0).",
+   "accessNote": "MRA_Lausanne.zip and MRA_IXI_HH.zip downloaded from the open Zenodo record 15692630 (MD5 checked against the record): raw/raw_imgs (images as distributed by the original datasets), raw/cow_seg_labels_for_raw_imgs (the challenge's masks mapped back to those images by the organisers) and antpos_edges_labelsTr (presence of each segment)."
+  }
+ ],
+ "subjects": [],
+ "studies": [],
+ "series": [],
+ "spatialLinks": [],
+ "referenceTargets": [
+  {
+   "id": "atmr-sub-454-basilar-artery",
+   "label": "Basilar artery",
+   "classId": "anatomy:basilar_artery",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-basilar-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (939 voxels, 197 mm3); bright flowing-blood signal (score 2.59, minimum 0.80); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:basilar_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-posterior-cerebral-artery-p1-right",
+   "label": "Right posterior cerebral artery, P1 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p1_right",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-posterior-cerebral-artery-p1-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (79 voxels, 16 mm3); bright flowing-blood signal (score 2.28, minimum 0.80); on the right of the midline; P1 split at the posterior communicating artery (5 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p1_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-posterior-cerebral-artery-p2-right",
+   "label": "Right posterior cerebral artery, P2 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p2_right",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-posterior-cerebral-artery-p2-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (377 voxels, 79 mm3); bright flowing-blood signal (score 1.76, minimum 0.80); on the right of the midline; P2 split at the posterior communicating artery (5 mm from the origin); outline matches the mask (Dice 0.996); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p2_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-posterior-cerebral-artery-p1-left",
+   "label": "Left posterior cerebral artery, P1 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p1_left",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-posterior-cerebral-artery-p1-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (45 voxels, 9 mm3); bright flowing-blood signal (score 2.00, minimum 0.80); on the left of the midline; P1 split at the posterior communicating artery (4 mm from the origin); outline matches the mask (Dice 0.989); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p1_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-posterior-cerebral-artery-p2-left",
+   "label": "Left posterior cerebral artery, P2 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p2_left",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-posterior-cerebral-artery-p2-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (319 voxels, 67 mm3); bright flowing-blood signal (score 1.84, minimum 0.80); on the left of the midline; P2 split at the posterior communicating artery (4 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p2_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (3051 voxels, 639 mm3); bright flowing-blood signal (score 2.88, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (223 voxels, 47 mm3); bright flowing-blood signal (score 2.69, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1620 voxels, 339 mm3); bright flowing-blood signal (score 2.77, minimum 0.80); on the left of the midline; outline matches the mask (Dice 0.997); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (223 voxels, 47 mm3); bright flowing-blood signal (score 2.72, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-posterior-communicating-artery-right",
+   "label": "Right posterior communicating artery",
+   "classId": "anatomy:posterior_communicating_artery_right",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-posterior-communicating-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (153 voxels, 32 mm3); bright flowing-blood signal (score 1.59, minimum 0.40); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_communicating_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-posterior-communicating-artery-left",
+   "label": "Left posterior communicating artery",
+   "classId": "anatomy:posterior_communicating_artery_left",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-posterior-communicating-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (171 voxels, 36 mm3); bright flowing-blood signal (score 1.90, minimum 0.40); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_communicating_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-anterior-cerebral-artery-a1-right",
+   "label": "Right anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_right",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-anterior-cerebral-artery-a1-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (153 voxels, 32 mm3); bright flowing-blood signal (score 2.47, minimum 0.80); on the right of the midline; A1 split at the anterior communicating artery (6 mm from the origin); the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-anterior-cerebral-artery-a2-right",
+   "label": "Right anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_right",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-anterior-cerebral-artery-a2-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (525 voxels, 110 mm3); bright flowing-blood signal (score 1.94, minimum 0.80); on the right of the midline; A2 split at the anterior communicating artery (6 mm from the origin); the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-454-anterior-cerebral-artery-left",
+   "label": "Left anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_left",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-454-anterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (488 voxels, 102 mm3); bright flowing-blood signal (score 1.51, minimum 0.80); on the left of the midline; the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-basilar-artery",
+   "label": "Basilar artery",
+   "classId": "anatomy:basilar_artery",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-basilar-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1471 voxels, 308 mm3); bright flowing-blood signal (score 2.17, minimum 0.80); the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:basilar_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-posterior-cerebral-artery-right",
+   "label": "Right posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_right",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-posterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (315 voxels, 66 mm3); bright flowing-blood signal (score 1.10, minimum 0.80); on the right of the midline; the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 0.997); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-posterior-cerebral-artery-left",
+   "label": "Left posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_left",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-posterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (482 voxels, 101 mm3); bright flowing-blood signal (score 1.15, minimum 0.80); on the left of the midline; outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (2396 voxels, 502 mm3); bright flowing-blood signal (score 1.75, minimum 0.80); on the right of the midline; the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 0.996); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (200 voxels, 42 mm3); bright flowing-blood signal (score 1.66, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (2200 voxels, 461 mm3); bright flowing-blood signal (score 1.70, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (227 voxels, 48 mm3); bright flowing-blood signal (score 1.52, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-anterior-communicating-artery",
+   "label": "Anterior communicating artery",
+   "classId": "anatomy:anterior_communicating_artery",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-anterior-communicating-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (38 voxels, 8 mm3); bright flowing-blood signal (score 0.77, minimum 0.40); outline matches the mask (Dice 0.973); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_communicating_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-anterior-cerebral-artery-a1-right",
+   "label": "Right anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_right",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-anterior-cerebral-artery-a1-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (297 voxels, 62 mm3); bright flowing-blood signal (score 1.21, minimum 0.80); on the right of the midline; A1 split at the anterior communicating artery (14 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-anterior-cerebral-artery-a2-right",
+   "label": "Right anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_right",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-anterior-cerebral-artery-a2-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (585 voxels, 122 mm3); bright flowing-blood signal (score 1.15, minimum 0.80); on the right of the midline; A2 split at the anterior communicating artery (14 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-anterior-cerebral-artery-a1-left",
+   "label": "Left anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_left",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-anterior-cerebral-artery-a1-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (195 voxels, 41 mm3); bright flowing-blood signal (score 1.05, minimum 0.80); on the left of the midline; A1 split at the anterior communicating artery (14 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-458-anterior-cerebral-artery-a2-left",
+   "label": "Left anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_left",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-458-anterior-cerebral-artery-a2-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (763 voxels, 160 mm3); bright flowing-blood signal (score 1.17, minimum 0.80); on the left of the midline; A2 split at the anterior communicating artery (14 mm from the origin); outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-466-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.45400501019139130763925694317893919673",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-466-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (3077 voxels, 644 mm3); bright flowing-blood signal (score 2.21, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-466-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.45400501019139130763925694317893919673",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-466-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (248 voxels, 52 mm3); bright flowing-blood signal (score 1.99, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-466-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.45400501019139130763925694317893919673",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-466-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (4172 voxels, 873 mm3); bright flowing-blood signal (score 2.39, minimum 0.80); on the left of the midline; the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-466-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.45400501019139130763925694317893919673",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-466-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (308 voxels, 64 mm3); bright flowing-blood signal (score 1.80, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-466-anterior-communicating-artery",
+   "label": "Anterior communicating artery",
+   "classId": "anatomy:anterior_communicating_artery",
+   "seriesUid": "2.25.45400501019139130763925694317893919673",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-466-anterior-communicating-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (37 voxels, 8 mm3); bright flowing-blood signal (score 1.06, minimum 0.40); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_communicating_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-466-anterior-cerebral-artery-a1-right",
+   "label": "Right anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_right",
+   "seriesUid": "2.25.45400501019139130763925694317893919673",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-466-anterior-cerebral-artery-a1-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (186 voxels, 39 mm3); bright flowing-blood signal (score 1.41, minimum 0.80); on the right of the midline; A1 split at the anterior communicating artery (14 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-466-anterior-cerebral-artery-a2-right",
+   "label": "Right anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_right",
+   "seriesUid": "2.25.45400501019139130763925694317893919673",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-466-anterior-cerebral-artery-a2-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (351 voxels, 74 mm3); bright flowing-blood signal (score 1.90, minimum 0.80); on the right of the midline; A2 split at the anterior communicating artery (14 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-466-anterior-cerebral-artery-a1-left",
+   "label": "Left anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_left",
+   "seriesUid": "2.25.45400501019139130763925694317893919673",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-466-anterior-cerebral-artery-a1-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (227 voxels, 48 mm3); bright flowing-blood signal (score 1.66, minimum 0.80); on the left of the midline; A1 split at the anterior communicating artery (11 mm from the origin); outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-466-anterior-cerebral-artery-a2-left",
+   "label": "Left anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_left",
+   "seriesUid": "2.25.45400501019139130763925694317893919673",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-466-anterior-cerebral-artery-a2-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (628 voxels, 132 mm3); bright flowing-blood signal (score 2.04, minimum 0.80); on the left of the midline; A2 split at the anterior communicating artery (11 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-basilar-artery",
+   "label": "Basilar artery",
+   "classId": "anatomy:basilar_artery",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-basilar-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1013 voxels, 212 mm3); bright flowing-blood signal (score 2.90, minimum 0.80); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:basilar_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-posterior-cerebral-artery-right",
+   "label": "Right posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_right",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-posterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (505 voxels, 106 mm3); bright flowing-blood signal (score 2.12, minimum 0.80); on the right of the midline; outline matches the mask (Dice 0.996); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-posterior-cerebral-artery-p1-left",
+   "label": "Left posterior cerebral artery, P1 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p1_left",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-posterior-cerebral-artery-p1-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (102 voxels, 21 mm3); bright flowing-blood signal (score 2.50, minimum 0.80); on the left of the midline; P1 split at the posterior communicating artery (5 mm from the origin); outline matches the mask (Dice 0.980); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p1_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-posterior-cerebral-artery-p2-left",
+   "label": "Left posterior cerebral artery, P2 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p2_left",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-posterior-cerebral-artery-p2-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (394 voxels, 82 mm3); bright flowing-blood signal (score 1.96, minimum 0.80); on the left of the midline; P2 split at the posterior communicating artery (5 mm from the origin); outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p2_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (3224 voxels, 675 mm3); bright flowing-blood signal (score 2.64, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (215 voxels, 45 mm3); bright flowing-blood signal (score 2.42, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (3158 voxels, 661 mm3); bright flowing-blood signal (score 2.79, minimum 0.80); on the left of the midline; the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 0.997); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (408 voxels, 85 mm3); bright flowing-blood signal (score 2.37, minimum 0.80); on the left of the midline; outline matches the mask (Dice 0.995); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-posterior-communicating-artery-left",
+   "label": "Left posterior communicating artery",
+   "classId": "anatomy:posterior_communicating_artery_left",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-posterior-communicating-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (36 voxels, 8 mm3); bright flowing-blood signal (score 0.44, minimum 0.40); on the left of the midline; outline matches the mask (Dice 0.986); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_communicating_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-anterior-communicating-artery",
+   "label": "Anterior communicating artery",
+   "classId": "anatomy:anterior_communicating_artery",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-anterior-communicating-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (32 voxels, 7 mm3); bright flowing-blood signal (score 1.57, minimum 0.40); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_communicating_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-anterior-cerebral-artery-a1-right",
+   "label": "Right anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_right",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-anterior-cerebral-artery-a1-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (227 voxels, 48 mm3); bright flowing-blood signal (score 2.03, minimum 0.80); on the right of the midline; A1 split at the anterior communicating artery (12 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-anterior-cerebral-artery-a2-right",
+   "label": "Right anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_right",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-anterior-cerebral-artery-a2-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (623 voxels, 130 mm3); bright flowing-blood signal (score 1.97, minimum 0.80); on the right of the midline; A2 split at the anterior communicating artery (12 mm from the origin); outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-anterior-cerebral-artery-a1-left",
+   "label": "Left anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_left",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-anterior-cerebral-artery-a1-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (259 voxels, 54 mm3); bright flowing-blood signal (score 2.08, minimum 0.80); on the left of the midline; A1 split at the anterior communicating artery (10 mm from the origin); outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-470-anterior-cerebral-artery-a2-left",
+   "label": "Left anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_left",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-470-anterior-cerebral-artery-a2-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (651 voxels, 136 mm3); bright flowing-blood signal (score 2.04, minimum 0.80); on the left of the midline; A2 split at the anterior communicating artery (10 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-basilar-artery",
+   "label": "Basilar artery",
+   "classId": "anatomy:basilar_artery",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-basilar-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (2382 voxels, 499 mm3); bright flowing-blood signal (score 2.76, minimum 0.80); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:basilar_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-posterior-cerebral-artery-right",
+   "label": "Right posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_right",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-posterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (798 voxels, 167 mm3); bright flowing-blood signal (score 1.56, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-posterior-cerebral-artery-left",
+   "label": "Left posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_left",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-posterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (909 voxels, 190 mm3); bright flowing-blood signal (score 1.61, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (7860 voxels, 1645 mm3); bright flowing-blood signal (score 1.69, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (681 voxels, 143 mm3); bright flowing-blood signal (score 2.20, minimum 0.80); on the right of the midline; outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (7306 voxels, 1529 mm3); bright flowing-blood signal (score 1.63, minimum 0.80); on the left of the midline; the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-middle-cerebral-artery-m1-left",
+   "label": "Left middle cerebral artery, M1 segment",
+   "classId": "anatomy:middle_cerebral_artery_m1_left",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-middle-cerebral-artery-m1-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (522 voxels, 109 mm3); bright flowing-blood signal (score 1.48, minimum 0.80); on the left of the midline; M1 split at the first division of the artery (10 mm from the origin); outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_m1_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-middle-cerebral-artery-m2-left",
+   "label": "Left middle cerebral artery, M2 branches",
+   "classId": "anatomy:middle_cerebral_artery_m2_left",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-middle-cerebral-artery-m2-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (237 voxels, 50 mm3); bright flowing-blood signal (score 0.95, minimum 0.80); on the left of the midline; M2 split at the first division of the artery (10 mm from the origin); outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_m2_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-anterior-communicating-artery",
+   "label": "Anterior communicating artery",
+   "classId": "anatomy:anterior_communicating_artery",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-anterior-communicating-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (33 voxels, 7 mm3); bright flowing-blood signal (score 1.03, minimum 0.40); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_communicating_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-anterior-cerebral-artery-a1-right",
+   "label": "Right anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_right",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-anterior-cerebral-artery-a1-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (421 voxels, 88 mm3); bright flowing-blood signal (score 1.83, minimum 0.80); on the right of the midline; A1 split at the anterior communicating artery (16 mm from the origin); outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-anterior-cerebral-artery-a2-right",
+   "label": "Right anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_right",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-anterior-cerebral-artery-a2-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (741 voxels, 155 mm3); bright flowing-blood signal (score 1.44, minimum 0.80); on the right of the midline; A2 split at the anterior communicating artery (16 mm from the origin); outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-anterior-cerebral-artery-a1-left",
+   "label": "Left anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_left",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-anterior-cerebral-artery-a1-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (365 voxels, 76 mm3); bright flowing-blood signal (score 1.80, minimum 0.80); on the left of the midline; A1 split at the anterior communicating artery (13 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-472-anterior-cerebral-artery-a2-left",
+   "label": "Left anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_left",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-472-anterior-cerebral-artery-a2-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (747 voxels, 156 mm3); bright flowing-blood signal (score 1.80, minimum 0.80); on the left of the midline; A2 split at the anterior communicating artery (13 mm from the origin); outline matches the mask (Dice 0.997); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-basilar-artery",
+   "label": "Basilar artery",
+   "classId": "anatomy:basilar_artery",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-basilar-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (925 voxels, 194 mm3); bright flowing-blood signal (score 2.30, minimum 0.80); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:basilar_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-posterior-cerebral-artery-p1-right",
+   "label": "Right posterior cerebral artery, P1 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p1_right",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-posterior-cerebral-artery-p1-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (71 voxels, 15 mm3); bright flowing-blood signal (score 1.48, minimum 0.80); on the right of the midline; P1 split at the posterior communicating artery (5 mm from the origin); outline matches the mask (Dice 0.993); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p1_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-posterior-cerebral-artery-p2-right",
+   "label": "Right posterior cerebral artery, P2 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p2_right",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-posterior-cerebral-artery-p2-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (234 voxels, 49 mm3); bright flowing-blood signal (score 1.10, minimum 0.80); on the right of the midline; P2 split at the posterior communicating artery (5 mm from the origin); outline matches the mask (Dice 0.929); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p2_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-posterior-cerebral-artery-p1-left",
+   "label": "Left posterior cerebral artery, P1 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p1_left",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-posterior-cerebral-artery-p1-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (59 voxels, 12 mm3); bright flowing-blood signal (score 1.47, minimum 0.80); on the left of the midline; P1 split at the posterior communicating artery (3 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p1_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-posterior-cerebral-artery-p2-left",
+   "label": "Left posterior cerebral artery, P2 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p2_left",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-posterior-cerebral-artery-p2-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (328 voxels, 69 mm3); bright flowing-blood signal (score 1.17, minimum 0.80); on the left of the midline; P2 split at the posterior communicating artery (3 mm from the origin); outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p2_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (3690 voxels, 772 mm3); bright flowing-blood signal (score 1.97, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (286 voxels, 60 mm3); bright flowing-blood signal (score 2.05, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (3708 voxels, 776 mm3); bright flowing-blood signal (score 2.09, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (374 voxels, 78 mm3); bright flowing-blood signal (score 1.81, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-posterior-communicating-artery-right",
+   "label": "Right posterior communicating artery",
+   "classId": "anatomy:posterior_communicating_artery_right",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-posterior-communicating-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (101 voxels, 21 mm3); bright flowing-blood signal (score 0.78, minimum 0.40); on the right of the midline; outline matches the mask (Dice 0.990); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_communicating_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-posterior-communicating-artery-left",
+   "label": "Left posterior communicating artery",
+   "classId": "anatomy:posterior_communicating_artery_left",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-posterior-communicating-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (66 voxels, 14 mm3); bright flowing-blood signal (score 0.59, minimum 0.40); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_communicating_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-anterior-cerebral-artery-right",
+   "label": "Right anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_right",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-anterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (756 voxels, 158 mm3); bright flowing-blood signal (score 1.45, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-473-anterior-cerebral-artery-left",
+   "label": "Left anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_left",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-473-anterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (954 voxels, 200 mm3); bright flowing-blood signal (score 1.47, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-basilar-artery",
+   "label": "Basilar artery",
+   "classId": "anatomy:basilar_artery",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-basilar-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1423 voxels, 298 mm3); bright flowing-blood signal (score 2.42, minimum 0.80); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:basilar_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-posterior-cerebral-artery-right",
+   "label": "Right posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_right",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-posterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (403 voxels, 84 mm3); bright flowing-blood signal (score 1.53, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-posterior-cerebral-artery-left",
+   "label": "Left posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_left",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-posterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (633 voxels, 132 mm3); bright flowing-blood signal (score 1.34, minimum 0.80); on the left of the midline; outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (2532 voxels, 530 mm3); bright flowing-blood signal (score 2.06, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (262 voxels, 55 mm3); bright flowing-blood signal (score 2.14, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (2365 voxels, 495 mm3); bright flowing-blood signal (score 2.30, minimum 0.80); on the left of the midline; the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (558 voxels, 117 mm3); bright flowing-blood signal (score 1.72, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-anterior-communicating-artery",
+   "label": "Anterior communicating artery",
+   "classId": "anatomy:anterior_communicating_artery",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-anterior-communicating-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (24 voxels, 5 mm3); bright flowing-blood signal (score 1.00, minimum 0.40); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_communicating_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-anterior-cerebral-artery-a1-right",
+   "label": "Right anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_right",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-anterior-cerebral-artery-a1-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (231 voxels, 48 mm3); bright flowing-blood signal (score 1.63, minimum 0.80); on the right of the midline; A1 split at the anterior communicating artery (11 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-anterior-cerebral-artery-a2-right",
+   "label": "Right anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_right",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-anterior-cerebral-artery-a2-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (659 voxels, 138 mm3); bright flowing-blood signal (score 1.85, minimum 0.80); on the right of the midline; A2 split at the anterior communicating artery (11 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-anterior-cerebral-artery-a1-left",
+   "label": "Left anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_left",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-anterior-cerebral-artery-a1-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (245 voxels, 51 mm3); bright flowing-blood signal (score 1.78, minimum 0.80); on the left of the midline; A1 split at the anterior communicating artery (11 mm from the origin); outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-476-anterior-cerebral-artery-a2-left",
+   "label": "Left anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_left",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-476-anterior-cerebral-artery-a2-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (843 voxels, 176 mm3); bright flowing-blood signal (score 1.62, minimum 0.80); on the left of the midline; A2 split at the anterior communicating artery (11 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-480-posterior-cerebral-artery-right",
+   "label": "Right posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_right",
+   "seriesUid": "2.25.241031680516959995714799843351971309348",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-480-posterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (837 voxels, 129 mm3); bright flowing-blood signal (score 1.38, minimum 0.80); on the right of the midline; outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-480-posterior-cerebral-artery-left",
+   "label": "Left posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_left",
+   "seriesUid": "2.25.241031680516959995714799843351971309348",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-480-posterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (927 voxels, 143 mm3); bright flowing-blood signal (score 1.28, minimum 0.80); on the left of the midline; outline matches the mask (Dice 0.997); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-480-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.241031680516959995714799843351971309348",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-480-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (6287 voxels, 967 mm3); bright flowing-blood signal (score 1.83, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-480-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.241031680516959995714799843351971309348",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-480-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (591 voxels, 91 mm3); bright flowing-blood signal (score 1.96, minimum 0.80); on the right of the midline; the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-480-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.241031680516959995714799843351971309348",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-480-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (8264 voxels, 1271 mm3); bright flowing-blood signal (score 2.00, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-480-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.241031680516959995714799843351971309348",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-480-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (714 voxels, 110 mm3); bright flowing-blood signal (score 1.60, minimum 0.80); on the left of the midline; outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-480-posterior-communicating-artery-right",
+   "label": "Right posterior communicating artery",
+   "classId": "anatomy:posterior_communicating_artery_right",
+   "seriesUid": "2.25.241031680516959995714799843351971309348",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-480-posterior-communicating-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (233 voxels, 36 mm3); bright flowing-blood signal (score 1.28, minimum 0.40); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_communicating_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-480-posterior-communicating-artery-left",
+   "label": "Left posterior communicating artery",
+   "classId": "anatomy:posterior_communicating_artery_left",
+   "seriesUid": "2.25.241031680516959995714799843351971309348",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-480-posterior-communicating-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (270 voxels, 42 mm3); bright flowing-blood signal (score 1.43, minimum 0.40); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_communicating_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-480-anterior-cerebral-artery-right",
+   "label": "Right anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_right",
+   "seriesUid": "2.25.241031680516959995714799843351971309348",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-480-anterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1015 voxels, 156 mm3); bright flowing-blood signal (score 1.31, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-480-anterior-cerebral-artery-left",
+   "label": "Left anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_left",
+   "seriesUid": "2.25.241031680516959995714799843351971309348",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-480-anterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1201 voxels, 185 mm3); bright flowing-blood signal (score 1.56, minimum 0.80); on the left of the midline; outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-484-basilar-artery",
+   "label": "Basilar artery",
+   "classId": "anatomy:basilar_artery",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-484-basilar-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1085 voxels, 227 mm3); bright flowing-blood signal (score 3.06, minimum 0.80); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:basilar_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-484-posterior-cerebral-artery-right",
+   "label": "Right posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_right",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-484-posterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (615 voxels, 129 mm3); bright flowing-blood signal (score 2.04, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-484-posterior-cerebral-artery-left",
+   "label": "Left posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_left",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-484-posterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (562 voxels, 118 mm3); bright flowing-blood signal (score 2.15, minimum 0.80); on the left of the midline; outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-484-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-484-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (2448 voxels, 512 mm3); bright flowing-blood signal (score 2.48, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-484-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-484-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (517 voxels, 108 mm3); bright flowing-blood signal (score 2.33, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-484-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-484-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (4124 voxels, 863 mm3); bright flowing-blood signal (score 2.76, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-484-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-484-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (481 voxels, 101 mm3); bright flowing-blood signal (score 2.31, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-484-anterior-communicating-artery",
+   "label": "Anterior communicating artery",
+   "classId": "anatomy:anterior_communicating_artery",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-484-anterior-communicating-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (27 voxels, 6 mm3); bright flowing-blood signal (score 2.07, minimum 0.40); the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_communicating_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-484-anterior-cerebral-artery-right",
+   "label": "Right anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_right",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-484-anterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (509 voxels, 107 mm3); bright flowing-blood signal (score 1.84, minimum 0.80); on the right of the midline; outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-484-anterior-cerebral-artery-a1-left",
+   "label": "Left anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_left",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-484-anterior-cerebral-artery-a1-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (277 voxels, 58 mm3); bright flowing-blood signal (score 2.29, minimum 0.80); on the left of the midline; A1 split at the anterior communicating artery (11 mm from the origin); the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-484-anterior-cerebral-artery-a2-left",
+   "label": "Left anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_left",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-484-anterior-cerebral-artery-a2-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (472 voxels, 99 mm3); bright flowing-blood signal (score 1.86, minimum 0.80); on the left of the midline; A2 split at the anterior communicating artery (11 mm from the origin); the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-basilar-artery",
+   "label": "Basilar artery",
+   "classId": "anatomy:basilar_artery",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-basilar-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1053 voxels, 162 mm3); bright flowing-blood signal (score 2.41, minimum 0.80); outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:basilar_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-posterior-cerebral-artery-right",
+   "label": "Right posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_right",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-posterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (609 voxels, 94 mm3); bright flowing-blood signal (score 1.81, minimum 0.80); on the right of the midline; outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (2767 voxels, 426 mm3); bright flowing-blood signal (score 2.14, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (336 voxels, 52 mm3); bright flowing-blood signal (score 2.08, minimum 0.80); on the right of the midline; outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (5892 voxels, 906 mm3); bright flowing-blood signal (score 2.17, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (647 voxels, 100 mm3); bright flowing-blood signal (score 2.18, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-posterior-communicating-artery-right",
+   "label": "Right posterior communicating artery",
+   "classId": "anatomy:posterior_communicating_artery_right",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-posterior-communicating-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (211 voxels, 32 mm3); bright flowing-blood signal (score 1.57, minimum 0.40); on the right of the midline; outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_communicating_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-anterior-communicating-artery",
+   "label": "Anterior communicating artery",
+   "classId": "anatomy:anterior_communicating_artery",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-anterior-communicating-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (19 voxels, 3 mm3); bright flowing-blood signal (score 1.94, minimum 0.40); the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_communicating_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-anterior-cerebral-artery-a1-right",
+   "label": "Right anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_right",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-anterior-cerebral-artery-a1-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (282 voxels, 43 mm3); bright flowing-blood signal (score 1.40, minimum 0.80); on the right of the midline; A1 split at the anterior communicating artery (17 mm from the origin); outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-anterior-cerebral-artery-a2-right",
+   "label": "Right anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_right",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-anterior-cerebral-artery-a2-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (801 voxels, 123 mm3); bright flowing-blood signal (score 1.68, minimum 0.80); on the right of the midline; A2 split at the anterior communicating artery (17 mm from the origin); outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-anterior-cerebral-artery-a1-left",
+   "label": "Left anterior cerebral artery, A1 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a1_left",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-anterior-cerebral-artery-a1-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (489 voxels, 75 mm3); bright flowing-blood signal (score 2.02, minimum 0.80); on the left of the midline; A1 split at the anterior communicating artery (13 mm from the origin); the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a1_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-485-anterior-cerebral-artery-a2-left",
+   "label": "Left anterior cerebral artery, A2 segment",
+   "classId": "anatomy:anterior_cerebral_artery_a2_left",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-485-anterior-cerebral-artery-a2-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (902 voxels, 139 mm3); bright flowing-blood signal (score 1.54, minimum 0.80); on the left of the midline; A2 split at the anterior communicating artery (13 mm from the origin); the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_a2_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-486-posterior-cerebral-artery-right",
+   "label": "Right posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_right",
+   "seriesUid": "2.25.42918764204308849959758709781126708019",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-486-posterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (345 voxels, 72 mm3); bright flowing-blood signal (score 1.62, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-486-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.42918764204308849959758709781126708019",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-486-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (2430 voxels, 509 mm3); bright flowing-blood signal (score 2.56, minimum 0.80); on the right of the midline; outline matches the mask (Dice 0.997); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-486-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.42918764204308849959758709781126708019",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-486-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (243 voxels, 51 mm3); bright flowing-blood signal (score 1.96, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-486-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.42918764204308849959758709781126708019",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-486-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (2727 voxels, 571 mm3); bright flowing-blood signal (score 2.63, minimum 0.80); on the left of the midline; the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-486-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.42918764204308849959758709781126708019",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-486-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (461 voxels, 96 mm3); bright flowing-blood signal (score 2.15, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-486-posterior-communicating-artery-right",
+   "label": "Right posterior communicating artery",
+   "classId": "anatomy:posterior_communicating_artery_right",
+   "seriesUid": "2.25.42918764204308849959758709781126708019",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-486-posterior-communicating-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (173 voxels, 36 mm3); bright flowing-blood signal (score 1.76, minimum 0.40); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_communicating_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-486-anterior-cerebral-artery-right",
+   "label": "Right anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_right",
+   "seriesUid": "2.25.42918764204308849959758709781126708019",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-486-anterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (622 voxels, 130 mm3); bright flowing-blood signal (score 1.84, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-486-anterior-cerebral-artery-left",
+   "label": "Left anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_left",
+   "seriesUid": "2.25.42918764204308849959758709781126708019",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-486-anterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (646 voxels, 135 mm3); bright flowing-blood signal (score 1.98, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-488-basilar-artery",
+   "label": "Basilar artery",
+   "classId": "anatomy:basilar_artery",
+   "seriesUid": "2.25.163952985423622658319374412139442424337",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-488-basilar-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1528 voxels, 235 mm3); bright flowing-blood signal (score 3.34, minimum 0.80); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:basilar_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-488-posterior-cerebral-artery-right",
+   "label": "Right posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_right",
+   "seriesUid": "2.25.163952985423622658319374412139442424337",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-488-posterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (935 voxels, 144 mm3); bright flowing-blood signal (score 2.54, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-488-posterior-cerebral-artery-left",
+   "label": "Left posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_left",
+   "seriesUid": "2.25.163952985423622658319374412139442424337",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-488-posterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1010 voxels, 155 mm3); bright flowing-blood signal (score 2.41, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-488-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.163952985423622658319374412139442424337",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-488-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (3311 voxels, 509 mm3); bright flowing-blood signal (score 2.52, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-488-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.163952985423622658319374412139442424337",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-488-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (532 voxels, 82 mm3); bright flowing-blood signal (score 2.74, minimum 0.80); on the right of the midline; outline matches the mask (Dice 0.988); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-488-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.163952985423622658319374412139442424337",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-488-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (4411 voxels, 678 mm3); bright flowing-blood signal (score 2.49, minimum 0.80); on the left of the midline; the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-488-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.163952985423622658319374412139442424337",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-488-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (810 voxels, 125 mm3); bright flowing-blood signal (score 2.40, minimum 0.80); on the left of the midline; outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-488-anterior-cerebral-artery-right",
+   "label": "Right anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_right",
+   "seriesUid": "2.25.163952985423622658319374412139442424337",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-488-anterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1209 voxels, 186 mm3); bright flowing-blood signal (score 2.26, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-488-anterior-cerebral-artery-left",
+   "label": "Left anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_left",
+   "seriesUid": "2.25.163952985423622658319374412139442424337",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-488-anterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (1392 voxels, 214 mm3); bright flowing-blood signal (score 2.10, minimum 0.80); on the left of the midline; the aneurysm outlined by the experts is left out of this artery; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-489-basilar-artery",
+   "label": "Basilar artery",
+   "classId": "anatomy:basilar_artery",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-489-basilar-artery.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (718 voxels, 150 mm3); bright flowing-blood signal (score 2.59, minimum 0.80); outline matches the mask (Dice 0.999); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:basilar_artery"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-489-posterior-cerebral-artery-p1-right",
+   "label": "Right posterior cerebral artery, P1 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p1_right",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-489-posterior-cerebral-artery-p1-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (144 voxels, 30 mm3); bright flowing-blood signal (score 1.39, minimum 0.80); on the right of the midline; P1 split at the posterior communicating artery (8 mm from the origin); outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p1_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-489-posterior-cerebral-artery-p2-right",
+   "label": "Right posterior cerebral artery, P2 segment",
+   "classId": "anatomy:posterior_cerebral_artery_p2_right",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-489-posterior-cerebral-artery-p2-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (147 voxels, 31 mm3); bright flowing-blood signal (score 1.23, minimum 0.80); on the right of the midline; P2 split at the posterior communicating artery (8 mm from the origin); outline matches the mask (Dice 0.957); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_p2_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-489-posterior-cerebral-artery-left",
+   "label": "Left posterior cerebral artery",
+   "classId": "anatomy:posterior_cerebral_artery_left",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-489-posterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (214 voxels, 45 mm3); bright flowing-blood signal (score 1.60, minimum 0.80); on the left of the midline; outline matches the mask (Dice 0.995); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-489-internal-carotid-artery-right",
+   "label": "Right internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_right",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-489-internal-carotid-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (3819 voxels, 800 mm3); bright flowing-blood signal (score 2.00, minimum 0.80); on the right of the midline; outline matches the mask (Dice 0.985); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-489-middle-cerebral-artery-right",
+   "label": "Right middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_right",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-489-middle-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (273 voxels, 57 mm3); bright flowing-blood signal (score 1.32, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-489-internal-carotid-artery-left",
+   "label": "Left internal carotid artery (intracranial)",
+   "classId": "anatomy:internal_carotid_artery_left",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-489-internal-carotid-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (4452 voxels, 932 mm3); bright flowing-blood signal (score 1.87, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:internal_carotid_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-489-middle-cerebral-artery-left",
+   "label": "Left middle cerebral artery",
+   "classId": "anatomy:middle_cerebral_artery_left",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-489-middle-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (239 voxels, 50 mm3); bright flowing-blood signal (score 1.17, minimum 0.80); on the left of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:middle_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-489-posterior-communicating-artery-right",
+   "label": "Right posterior communicating artery",
+   "classId": "anatomy:posterior_communicating_artery_right",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-489-posterior-communicating-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (93 voxels, 20 mm3); bright flowing-blood signal (score 0.86, minimum 0.40); on the right of the midline; outline matches the mask (Dice 0.978); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:posterior_communicating_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-489-anterior-cerebral-artery-right",
+   "label": "Right anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_right",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-489-anterior-cerebral-artery-right.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (772 voxels, 162 mm3); bright flowing-blood signal (score 1.61, minimum 0.80); on the right of the midline; outline matches the mask (Dice 1.000); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_right"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  },
+  {
+   "id": "atmr-sub-489-anterior-cerebral-artery-left",
+   "label": "Left anterior cerebral artery",
+   "classId": "anatomy:anterior_cerebral_artery_left",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "geometryType": "contour_set",
+   "geometryFile": "targets/atmr-sub-489-anterior-cerebral-artery-left.json",
+   "provenance": "ai_draft",
+   "provenanceDetail": {
+    "source": "Horalix",
+    "method": "AI — automatic segmentation, not reviewed by a radiologist",
+    "note": "Unreviewed AI proposal. QC passed: largest connected part kept (629 voxels, 132 mm3); bright flowing-blood signal (score 1.47, minimum 0.80); on the left of the midline; outline matches the mask (Dice 0.998); shown within the Circle-of-Willis region (about 3 cm around it)."
+   },
+   "completeness": "target_only",
+   "assessedClasses": [
+    "anatomy:anterior_cerebral_artery_left"
+   ],
+   "unassessedNote": "Atlas outline of this artery only, near the Circle of Willis; not reviewed; never used for grading.",
+   "review": {
+    "status": "unreviewed",
+    "reviewer": null,
+    "at": null,
+    "note": null
+   },
+   "layer": "atlas",
+   "category": "vessel"
+  }
+ ]
+}

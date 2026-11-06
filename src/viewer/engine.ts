@@ -6,6 +6,7 @@
 import vtkPlane from '@kitware/vtk.js/Common/DataModel/Plane';
 import { cs, cst, initCornerstone, TOOL, MARK_TOOLS, MEASURE_TOOLS, arrowLabelHook } from './csInit';
 import { SeriesFetcher, type FetchProgress } from './seriesFetcher';
+import { default3DPreset } from './presets3d';
 import { add, cross, csToContract, dot, normalize, orientationLetters, edgeLabelsFromPatientOrientation, sub, type Vec2, type Vec3 } from '../lib/geometry';
 import type { LearnerMark } from '../grading/types';
 import { Anatomy3D, type Anatomy3DState } from './anatomy3d';
@@ -84,6 +85,8 @@ export interface SeriesSource {
   hasPatientGeometry: boolean; // true for CT/MR with IOP/IPP; false for projection radiographs
   patientOrientation: string[] | null; // radiograph PatientOrientation (0020,0020)
   volumeEligible: boolean;
+  /** An MR angiogram (time-of-flight): the 3D view opens with the angiography rendering. */
+  angiography?: boolean;
   defaultWindow: { center: number; width: number } | null;
   /** Views of one frame of reference (same patient, same scan session) can be linked by position. */
   frameOfReferenceUid?: string | null;
@@ -305,7 +308,7 @@ export class ViewerEngine {
           await cs.setVolumesForViewports(re, [{ volumeId }], [viewportId]);
           if (stale()) return;
           const vp = re.getViewport(viewportId) as InstanceType<typeof cs.VolumeViewport3D>;
-          const preset = source.modality === 'CT' ? 'CT-Bone' : 'MR-Default';
+          const preset = default3DPreset(source.modality, source.angiography);
           vp.setProperties({ preset });
           this.presets.set(panelId, preset);
           // Start facing the patient (anterior view, head up) rather than looking along the scanner axis.

@@ -1,27 +1,27 @@
 # Content inventory
 
-_Generated 2026-10-30 by `scripts/report/content-report.mjs` from the installed files. Counts are distinct real patients/studies/series — not slices, not repeated questions, not planned sources._
+_Generated 2026-11-06 by `scripts/report/content-report.mjs` from the installed files. Counts are distinct real patients/studies/series — not slices, not repeated questions, not planned sources._
 
 ## Totals
 
 | | count |
 |---|---|
-| Distinct patients with usable cases | **370** |
-| Teaching cases | 370 |
-| Image-based tasks | **1060** |
-| Studies | 390 |
-| Series (all packs) | 505 |
-| DICOM instances | 15696 |
-| Reference targets | 5097 |
+| Distinct patients with usable cases | **636** |
+| Teaching cases | 636 |
+| Image-based tasks | **1793** |
+| Studies | 656 |
+| Series (all packs) | 854 |
+| DICOM instances | 23122 |
+| Reference targets | 5667 |
 
 ### Tasks by scoring basis
 
 | basis | tasks |
 |---|---|
-| auto-checked choice | 525 |
+| auto-checked choice | 992 |
 | self-review (checklist) | 120 |
 | spatial · AI outline / dataset auto-label reference (self-review until user review) | 15 |
-| spatial · source manual reference | 400 |
+| spatial · source manual reference | 666 |
 
 ### Tasks by type
 
@@ -30,10 +30,10 @@ _Generated 2026-10-30 by `scripts/report/content-report.mjs` from the installed 
 | choose window | 7 |
 | compare appearances | 12 |
 | correlate modalities | 12 |
-| describe finding | 301 |
-| differential | 277 |
-| find structure | 90 |
-| locate finding | 321 |
+| describe finding | 568 |
+| differential | 477 |
+| find structure | 96 |
+| locate finding | 581 |
 | navigate level | 27 |
 | whole study | 13 |
 
@@ -41,9 +41,9 @@ _Generated 2026-10-30 by `scripts/report/content-report.mjs` from the installed 
 
 | provenance | targets |
 |---|---|
-| ai_draft | 4383 |
+| ai_draft | 4531 |
 | source_automated | 3 |
-| source_manual | 711 |
+| source_manual | 1133 |
 
 ## Packs
 
@@ -73,6 +73,14 @@ _Generated 2026-10-30 by `scripts/report/content-report.mjs` from the installed 
 | cxr-findings-2 | repo | yes | 67 | 67 | 67 | 27.2 MB | 67 | 106 |
 | stroke-mri-2 | repo | yes | 50 | 100 | 7240 | 37.1 MB | 50 | 106 |
 | mammo-cbis-2 | repo | yes | 11 | 22 | 22 | 55.9 MB | 11 | 33 |
+| us-breast-3 | repo | yes | 112 | 112 | 112 | 20.3 MB | 112 | 448 |
+| stroke-mri-3 | repo | yes | 30 | 60 | 4282 | 22.3 MB | 30 | 67 |
+| peds-wrist-3 | repo | yes | 40 | 80 | 80 | 54.3 MB | 40 | 80 |
+| mammo-cbis-3 | repo | yes | 13 | 26 | 26 | 62.0 MB | 13 | 39 |
+| fx-radiographs-2 | repo | yes | 12 | 12 | 12 | 0.7 MB | 12 | 12 |
+| cxr-findings-3 | repo | yes | 40 | 40 | 40 | 15.9 MB | 40 | 53 |
+| brain-mra | repo | yes | 19 | 19 | 2874 | 201.9 MB | 19 | 34 |
+| anatomy-atlas-mr | repo | yes | 0 | 0 | 0 | 0.9 MB | 0 | 0 |
 
 ## Patients and cases
 
@@ -448,6 +456,272 @@ _Generated 2026-10-30 by `scripts/report/content-report.mjs` from the installed 
 | `mg-p00992` | Patient NT · Mammogram, right breast, CC and MLO | `tcia:CBIS-DDSM:P_00992` | MG | 3 |
 | `mg-p00506` | Patient NU · Mammogram, right breast, CC and MLO | `tcia:CBIS-DDSM:P_00506` | MG | 3 |
 | `mg-p00456` | Patient NV · Mammogram, right breast, CC and MLO | `tcia:CBIS-DDSM:P_00456` | MG | 3 |
+| `us-breast-case020` | Patient NW · Breast ultrasound | `tcia:Breast-Lesions-USG:case020` | US | 4 |
+| `us-breast-case039` | Patient NX · Breast ultrasound | `tcia:Breast-Lesions-USG:case039` | US | 4 |
+| `us-breast-case040` | Patient NY · Breast ultrasound | `tcia:Breast-Lesions-USG:case040` | US | 4 |
+| `us-breast-case043` | Patient NZ · Breast ultrasound | `tcia:Breast-Lesions-USG:case043` | US | 4 |
+| `us-breast-case054` | Patient OA · Breast ultrasound | `tcia:Breast-Lesions-USG:case054` | US | 4 |
+| `us-breast-case060` | Patient OB · Breast ultrasound | `tcia:Breast-Lesions-USG:case060` | US | 4 |
+| `us-breast-case062` | Patient OC · Breast ultrasound | `tcia:Breast-Lesions-USG:case062` | US | 4 |
+| `us-breast-case064` | Patient OD · Breast ultrasound | `tcia:Breast-Lesions-USG:case064` | US | 4 |
+| `us-breast-case066` | Patient OE · Breast ultrasound | `tcia:Breast-Lesions-USG:case066` | US | 4 |
+| `us-breast-case070` | Patient OF · Breast ultrasound | `tcia:Breast-Lesions-USG:case070` | US | 4 |
+| `us-breast-case076` | Patient OG · Breast ultrasound | `tcia:Breast-Lesions-USG:case076` | US | 4 |
+| `us-breast-case080` | Patient OH · Breast ultrasound | `tcia:Breast-Lesions-USG:case080` | US | 4 |
+| `us-breast-case083` | Patient OI · Breast ultrasound | `tcia:Breast-Lesions-USG:case083` | US | 4 |
+| `us-breast-case084` | Patient OJ · Breast ultrasound | `tcia:Breast-Lesions-USG:case084` | US | 4 |
+| `us-breast-case086` | Patient OK · Breast ultrasound | `tcia:Breast-Lesions-USG:case086` | US | 4 |
+| `us-breast-case089` | Patient OL · Breast ultrasound | `tcia:Breast-Lesions-USG:case089` | US | 4 |
+| `us-breast-case090` | Patient OM · Breast ultrasound | `tcia:Breast-Lesions-USG:case090` | US | 4 |
+| `us-breast-case095` | Patient ON · Breast ultrasound | `tcia:Breast-Lesions-USG:case095` | US | 4 |
+| `us-breast-case098` | Patient OO · Breast ultrasound | `tcia:Breast-Lesions-USG:case098` | US | 4 |
+| `us-breast-case099` | Patient OP · Breast ultrasound | `tcia:Breast-Lesions-USG:case099` | US | 4 |
+| `us-breast-case100` | Patient OQ · Breast ultrasound | `tcia:Breast-Lesions-USG:case100` | US | 4 |
+| `us-breast-case103` | Patient OR · Breast ultrasound | `tcia:Breast-Lesions-USG:case103` | US | 4 |
+| `us-breast-case104` | Patient OS · Breast ultrasound | `tcia:Breast-Lesions-USG:case104` | US | 4 |
+| `us-breast-case105` | Patient OT · Breast ultrasound | `tcia:Breast-Lesions-USG:case105` | US | 4 |
+| `us-breast-case107` | Patient OU · Breast ultrasound | `tcia:Breast-Lesions-USG:case107` | US | 4 |
+| `us-breast-case110` | Patient OV · Breast ultrasound | `tcia:Breast-Lesions-USG:case110` | US | 4 |
+| `us-breast-case114` | Patient OW · Breast ultrasound | `tcia:Breast-Lesions-USG:case114` | US | 4 |
+| `us-breast-case116` | Patient OX · Breast ultrasound | `tcia:Breast-Lesions-USG:case116` | US | 4 |
+| `us-breast-case121` | Patient OY · Breast ultrasound | `tcia:Breast-Lesions-USG:case121` | US | 4 |
+| `us-breast-case122` | Patient OZ · Breast ultrasound | `tcia:Breast-Lesions-USG:case122` | US | 4 |
+| `us-breast-case124` | Patient PA · Breast ultrasound | `tcia:Breast-Lesions-USG:case124` | US | 4 |
+| `us-breast-case126` | Patient PB · Breast ultrasound | `tcia:Breast-Lesions-USG:case126` | US | 4 |
+| `us-breast-case127` | Patient PC · Breast ultrasound | `tcia:Breast-Lesions-USG:case127` | US | 4 |
+| `us-breast-case128` | Patient PD · Breast ultrasound | `tcia:Breast-Lesions-USG:case128` | US | 4 |
+| `us-breast-case130` | Patient PE · Breast ultrasound | `tcia:Breast-Lesions-USG:case130` | US | 4 |
+| `us-breast-case131` | Patient PF · Breast ultrasound | `tcia:Breast-Lesions-USG:case131` | US | 4 |
+| `us-breast-case134` | Patient PG · Breast ultrasound | `tcia:Breast-Lesions-USG:case134` | US | 4 |
+| `us-breast-case135` | Patient PH · Breast ultrasound | `tcia:Breast-Lesions-USG:case135` | US | 4 |
+| `us-breast-case137` | Patient PI · Breast ultrasound | `tcia:Breast-Lesions-USG:case137` | US | 4 |
+| `us-breast-case139` | Patient PJ · Breast ultrasound | `tcia:Breast-Lesions-USG:case139` | US | 4 |
+| `us-breast-case144` | Patient PK · Breast ultrasound | `tcia:Breast-Lesions-USG:case144` | US | 4 |
+| `us-breast-case145` | Patient PL · Breast ultrasound | `tcia:Breast-Lesions-USG:case145` | US | 4 |
+| `us-breast-case146` | Patient PM · Breast ultrasound | `tcia:Breast-Lesions-USG:case146` | US | 4 |
+| `us-breast-case147` | Patient PN · Breast ultrasound | `tcia:Breast-Lesions-USG:case147` | US | 4 |
+| `us-breast-case148` | Patient PO · Breast ultrasound | `tcia:Breast-Lesions-USG:case148` | US | 4 |
+| `us-breast-case149` | Patient PP · Breast ultrasound | `tcia:Breast-Lesions-USG:case149` | US | 4 |
+| `us-breast-case153` | Patient PQ · Breast ultrasound | `tcia:Breast-Lesions-USG:case153` | US | 4 |
+| `us-breast-case154` | Patient PR · Breast ultrasound | `tcia:Breast-Lesions-USG:case154` | US | 4 |
+| `us-breast-case155` | Patient PS · Breast ultrasound | `tcia:Breast-Lesions-USG:case155` | US | 4 |
+| `us-breast-case156` | Patient PT · Breast ultrasound | `tcia:Breast-Lesions-USG:case156` | US | 4 |
+| `us-breast-case158` | Patient PU · Breast ultrasound | `tcia:Breast-Lesions-USG:case158` | US | 4 |
+| `us-breast-case159` | Patient PV · Breast ultrasound | `tcia:Breast-Lesions-USG:case159` | US | 4 |
+| `us-breast-case160` | Patient PW · Breast ultrasound | `tcia:Breast-Lesions-USG:case160` | US | 4 |
+| `us-breast-case161` | Patient PX · Breast ultrasound | `tcia:Breast-Lesions-USG:case161` | US | 4 |
+| `us-breast-case163` | Patient PY · Breast ultrasound | `tcia:Breast-Lesions-USG:case163` | US | 4 |
+| `us-breast-case164` | Patient PZ · Breast ultrasound | `tcia:Breast-Lesions-USG:case164` | US | 4 |
+| `us-breast-case165` | Patient QA · Breast ultrasound | `tcia:Breast-Lesions-USG:case165` | US | 4 |
+| `us-breast-case166` | Patient QB · Breast ultrasound | `tcia:Breast-Lesions-USG:case166` | US | 4 |
+| `us-breast-case169` | Patient QC · Breast ultrasound | `tcia:Breast-Lesions-USG:case169` | US | 4 |
+| `us-breast-case170` | Patient QD · Breast ultrasound | `tcia:Breast-Lesions-USG:case170` | US | 4 |
+| `us-breast-case171` | Patient QE · Breast ultrasound | `tcia:Breast-Lesions-USG:case171` | US | 4 |
+| `us-breast-case173` | Patient QF · Breast ultrasound | `tcia:Breast-Lesions-USG:case173` | US | 4 |
+| `us-breast-case174` | Patient QG · Breast ultrasound | `tcia:Breast-Lesions-USG:case174` | US | 4 |
+| `us-breast-case177` | Patient QH · Breast ultrasound | `tcia:Breast-Lesions-USG:case177` | US | 4 |
+| `us-breast-case178` | Patient QI · Breast ultrasound | `tcia:Breast-Lesions-USG:case178` | US | 4 |
+| `us-breast-case180` | Patient QJ · Breast ultrasound | `tcia:Breast-Lesions-USG:case180` | US | 4 |
+| `us-breast-case181` | Patient QK · Breast ultrasound | `tcia:Breast-Lesions-USG:case181` | US | 4 |
+| `us-breast-case183` | Patient QL · Breast ultrasound | `tcia:Breast-Lesions-USG:case183` | US | 4 |
+| `us-breast-case184` | Patient QM · Breast ultrasound | `tcia:Breast-Lesions-USG:case184` | US | 4 |
+| `us-breast-case185` | Patient QN · Breast ultrasound | `tcia:Breast-Lesions-USG:case185` | US | 4 |
+| `us-breast-case187` | Patient QO · Breast ultrasound | `tcia:Breast-Lesions-USG:case187` | US | 4 |
+| `us-breast-case188` | Patient QP · Breast ultrasound | `tcia:Breast-Lesions-USG:case188` | US | 4 |
+| `us-breast-case189` | Patient QQ · Breast ultrasound | `tcia:Breast-Lesions-USG:case189` | US | 4 |
+| `us-breast-case190` | Patient QR · Breast ultrasound | `tcia:Breast-Lesions-USG:case190` | US | 4 |
+| `us-breast-case192` | Patient QS · Breast ultrasound | `tcia:Breast-Lesions-USG:case192` | US | 4 |
+| `us-breast-case195` | Patient QT · Breast ultrasound | `tcia:Breast-Lesions-USG:case195` | US | 4 |
+| `us-breast-case197` | Patient QU · Breast ultrasound | `tcia:Breast-Lesions-USG:case197` | US | 4 |
+| `us-breast-case198` | Patient QV · Breast ultrasound | `tcia:Breast-Lesions-USG:case198` | US | 4 |
+| `us-breast-case200` | Patient QW · Breast ultrasound | `tcia:Breast-Lesions-USG:case200` | US | 4 |
+| `us-breast-case201` | Patient QX · Breast ultrasound | `tcia:Breast-Lesions-USG:case201` | US | 4 |
+| `us-breast-case202` | Patient QY · Breast ultrasound | `tcia:Breast-Lesions-USG:case202` | US | 4 |
+| `us-breast-case203` | Patient QZ · Breast ultrasound | `tcia:Breast-Lesions-USG:case203` | US | 4 |
+| `us-breast-case205` | Patient RA · Breast ultrasound | `tcia:Breast-Lesions-USG:case205` | US | 4 |
+| `us-breast-case207` | Patient RB · Breast ultrasound | `tcia:Breast-Lesions-USG:case207` | US | 4 |
+| `us-breast-case208` | Patient RC · Breast ultrasound | `tcia:Breast-Lesions-USG:case208` | US | 4 |
+| `us-breast-case210` | Patient RD · Breast ultrasound | `tcia:Breast-Lesions-USG:case210` | US | 4 |
+| `us-breast-case211` | Patient RE · Breast ultrasound | `tcia:Breast-Lesions-USG:case211` | US | 4 |
+| `us-breast-case215` | Patient RF · Breast ultrasound | `tcia:Breast-Lesions-USG:case215` | US | 4 |
+| `us-breast-case217` | Patient RG · Breast ultrasound | `tcia:Breast-Lesions-USG:case217` | US | 4 |
+| `us-breast-case218` | Patient RH · Breast ultrasound | `tcia:Breast-Lesions-USG:case218` | US | 4 |
+| `us-breast-case219` | Patient RI · Breast ultrasound | `tcia:Breast-Lesions-USG:case219` | US | 4 |
+| `us-breast-case221` | Patient RJ · Breast ultrasound | `tcia:Breast-Lesions-USG:case221` | US | 4 |
+| `us-breast-case223` | Patient RK · Breast ultrasound | `tcia:Breast-Lesions-USG:case223` | US | 4 |
+| `us-breast-case224` | Patient RL · Breast ultrasound | `tcia:Breast-Lesions-USG:case224` | US | 4 |
+| `us-breast-case226` | Patient RM · Breast ultrasound | `tcia:Breast-Lesions-USG:case226` | US | 4 |
+| `us-breast-case227` | Patient RN · Breast ultrasound | `tcia:Breast-Lesions-USG:case227` | US | 4 |
+| `us-breast-case231` | Patient RO · Breast ultrasound | `tcia:Breast-Lesions-USG:case231` | US | 4 |
+| `us-breast-case232` | Patient RP · Breast ultrasound | `tcia:Breast-Lesions-USG:case232` | US | 4 |
+| `us-breast-case233` | Patient RQ · Breast ultrasound | `tcia:Breast-Lesions-USG:case233` | US | 4 |
+| `us-breast-case236` | Patient RR · Breast ultrasound | `tcia:Breast-Lesions-USG:case236` | US | 4 |
+| `us-breast-case238` | Patient RS · Breast ultrasound | `tcia:Breast-Lesions-USG:case238` | US | 4 |
+| `us-breast-case239` | Patient RT · Breast ultrasound | `tcia:Breast-Lesions-USG:case239` | US | 4 |
+| `us-breast-case243` | Patient RU · Breast ultrasound | `tcia:Breast-Lesions-USG:case243` | US | 4 |
+| `us-breast-case244` | Patient RV · Breast ultrasound | `tcia:Breast-Lesions-USG:case244` | US | 4 |
+| `us-breast-case245` | Patient RW · Breast ultrasound | `tcia:Breast-Lesions-USG:case245` | US | 4 |
+| `us-breast-case246` | Patient RX · Breast ultrasound | `tcia:Breast-Lesions-USG:case246` | US | 4 |
+| `us-breast-case247` | Patient RY · Breast ultrasound | `tcia:Breast-Lesions-USG:case247` | US | 4 |
+| `us-breast-case248` | Patient RZ · Breast ultrasound | `tcia:Breast-Lesions-USG:case248` | US | 4 |
+| `us-breast-case250` | Patient SA · Breast ultrasound | `tcia:Breast-Lesions-USG:case250` | US | 4 |
+| `us-breast-case251` | Patient SB · Breast ultrasound | `tcia:Breast-Lesions-USG:case251` | US | 4 |
+| `us-breast-case252` | Patient SC · Breast ultrasound | `tcia:Breast-Lesions-USG:case252` | US | 4 |
+| `us-breast-case256` | Patient SD · Breast ultrasound | `tcia:Breast-Lesions-USG:case256` | US | 4 |
+| `mr-diffusion-0137` | Patient SE · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0137` | MR | 3 |
+| `mr-diffusion-0143` | Patient SF · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0143` | MR | 1 |
+| `mr-diffusion-0158` | Patient SG · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0158` | MR | 2 |
+| `mr-diffusion-0010` | Patient SH · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0010` | MR | 2 |
+| `mr-diffusion-0026` | Patient SI · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0026` | MR | 2 |
+| `mr-diffusion-0099` | Patient SJ · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0099` | MR | 2 |
+| `mr-diffusion-0130` | Patient SK · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0130` | MR | 2 |
+| `mr-diffusion-0049` | Patient SL · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0049` | MR | 1 |
+| `mr-diffusion-0220` | Patient SM · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0220` | MR | 2 |
+| `mr-diffusion-0109` | Patient SN · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0109` | MR | 3 |
+| `mr-diffusion-0118` | Patient SO · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0118` | MR | 2 |
+| `mr-diffusion-0084` | Patient SP · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0084` | MR | 3 |
+| `mr-diffusion-0025` | Patient SQ · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0025` | MR | 2 |
+| `mr-diffusion-0038` | Patient SR · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0038` | MR | 3 |
+| `mr-diffusion-0011` | Patient SS · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0011` | MR | 2 |
+| `mr-diffusion-0105` | Patient ST · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0105` | MR | 2 |
+| `mr-diffusion-0204` | Patient SU · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0204` | MR | 2 |
+| `mr-diffusion-0052` | Patient SV · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0052` | MR | 3 |
+| `mr-diffusion-0036` | Patient SW · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0036` | MR | 2 |
+| `mr-diffusion-0024` | Patient SX · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0024` | MR | 3 |
+| `mr-diffusion-0013` | Patient SY · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0013` | MR | 3 |
+| `mr-diffusion-0003` | Patient SZ · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0003` | MR | 3 |
+| `mr-diffusion-0244` | Patient TA · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0244` | MR | 2 |
+| `mr-diffusion-0033` | Patient TB · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0033` | MR | 3 |
+| `mr-diffusion-0048` | Patient TC · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0048` | MR | 2 |
+| `mr-diffusion-0092` | Patient TD · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0092` | MR | 1 |
+| `mr-diffusion-0237` | Patient TE · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0237` | MR | 3 |
+| `mr-diffusion-0078` | Patient TF · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0078` | MR | 2 |
+| `mr-diffusion-0116` | Patient TG · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0116` | MR | 1 |
+| `mr-diffusion-0246` | Patient TH · MRI brain, diffusion | `zenodo:ISLES-2022:sub-strokecase0246` | MR | 3 |
+| `xr-wrist-child-0321` | Patient UW · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:321` | DX | 2 |
+| `xr-wrist-child-0598` | Patient UX · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:598` | DX | 2 |
+| `xr-wrist-child-1149` | Patient UY · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:1149` | DX | 2 |
+| `xr-wrist-child-1853` | Patient UZ · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:1853` | DX | 2 |
+| `xr-wrist-child-2566` | Patient VA · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:2566` | DX | 2 |
+| `xr-wrist-child-2991` | Patient VB · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:2991` | DX | 2 |
+| `xr-wrist-child-3237` | Patient VC · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:3237` | DX | 2 |
+| `xr-wrist-child-3992` | Patient VD · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:3992` | DX | 2 |
+| `xr-wrist-child-4308` | Patient VE · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:4308` | DX | 2 |
+| `xr-wrist-child-4614` | Patient VF · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:4614` | DX | 2 |
+| `xr-wrist-child-5822` | Patient VG · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:5822` | DX | 2 |
+| `xr-wrist-child-5898` | Patient VH · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:5898` | DX | 2 |
+| `xr-wrist-child-0008` | Patient VI · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:8` | DX | 2 |
+| `xr-wrist-child-0607` | Patient VJ · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:607` | DX | 2 |
+| `xr-wrist-child-1042` | Patient VK · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:1042` | DX | 2 |
+| `xr-wrist-child-1470` | Patient VL · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:1470` | DX | 2 |
+| `xr-wrist-child-1983` | Patient VM · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:1983` | DX | 2 |
+| `xr-wrist-child-2491` | Patient VN · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:2491` | DX | 2 |
+| `xr-wrist-child-2926` | Patient VO · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:2926` | DX | 2 |
+| `xr-wrist-child-3310` | Patient VP · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:3310` | DX | 2 |
+| `xr-wrist-child-3739` | Patient VQ · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:3739` | DX | 2 |
+| `xr-wrist-child-4170` | Patient VR · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:4170` | DX | 2 |
+| `xr-wrist-child-4671` | Patient VS · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:4671` | DX | 2 |
+| `xr-wrist-child-5134` | Patient VT · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:5134` | DX | 2 |
+| `xr-wrist-child-5604` | Patient VU · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:5604` | DX | 2 |
+| `xr-wrist-child-6073` | Patient VV · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:6073` | DX | 2 |
+| `xr-wrist-child-0338` | Patient VW · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:338` | DX | 2 |
+| `xr-wrist-child-0827` | Patient VX · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:827` | DX | 2 |
+| `xr-wrist-child-1464` | Patient VY · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:1464` | DX | 2 |
+| `xr-wrist-child-1694` | Patient VZ · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:1694` | DX | 2 |
+| `xr-wrist-child-2056` | Patient WA · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:2056` | DX | 2 |
+| `xr-wrist-child-2478` | Patient WB · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:2478` | DX | 2 |
+| `xr-wrist-child-3143` | Patient WC · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:3143` | DX | 2 |
+| `xr-wrist-child-3510` | Patient WD · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:3510` | DX | 2 |
+| `xr-wrist-child-3827` | Patient WE · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:3827` | DX | 2 |
+| `xr-wrist-child-4410` | Patient WF · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:4410` | DX | 2 |
+| `xr-wrist-child-4813` | Patient WG · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:4813` | DX | 2 |
+| `xr-wrist-child-5175` | Patient WH · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:5175` | DX | 2 |
+| `xr-wrist-child-5549` | Patient WI · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:5549` | DX | 2 |
+| `xr-wrist-child-5904` | Patient WJ · Wrist radiographs, child | `figshare:GRAZPEDWRI-DX:5904` | DX | 2 |
+| `mg-p01405` | Patient WW · Mammogram, right breast, CC and MLO | `tcia:CBIS-DDSM:P_01405` | MG | 3 |
+| `mg-p01671` | Patient WX · Mammogram, left breast, CC and MLO | `tcia:CBIS-DDSM:P_01671` | MG | 3 |
+| `mg-p00160` | Patient WY · Mammogram, right breast, CC and MLO | `tcia:CBIS-DDSM:P_00160` | MG | 3 |
+| `mg-p00426` | Patient WZ · Mammogram, right breast, CC and MLO | `tcia:CBIS-DDSM:P_00426` | MG | 3 |
+| `mg-p01265` | Patient XA · Mammogram, right breast, CC and MLO | `tcia:CBIS-DDSM:P_01265` | MG | 3 |
+| `mg-p01712` | Patient XB · Mammogram, left breast, CC and MLO | `tcia:CBIS-DDSM:P_01712` | MG | 3 |
+| `mg-p00020` | Patient XC · Mammogram, left breast, CC and MLO | `tcia:CBIS-DDSM:P_00020` | MG | 3 |
+| `mg-p01197` | Patient XD · Mammogram, left breast, CC and MLO | `tcia:CBIS-DDSM:P_01197` | MG | 3 |
+| `mg-p02419` | Patient XE · Mammogram, left breast, CC and MLO | `tcia:CBIS-DDSM:P_02419` | MG | 3 |
+| `mg-p01002` | Patient XF · Mammogram, left breast, CC and MLO | `tcia:CBIS-DDSM:P_01002` | MG | 3 |
+| `mg-p02559` | Patient XG · Mammogram, right breast, CC and MLO | `tcia:CBIS-DDSM:P_02559` | MG | 3 |
+| `mg-p00750` | Patient XH · Mammogram, left breast, CC and MLO | `tcia:CBIS-DDSM:P_00750` | MG | 3 |
+| `mg-p00519` | Patient XI · Mammogram, left breast, CC and MLO | `tcia:CBIS-DDSM:P_00519` | MG | 3 |
+| `fx-img0000600` | Patient WK · Radiograph, wrist and forearm | `figshare:FracAtlas:IMG00006xx` | DX | 1 |
+| `fx-img0001411` | Patient WL · Radiograph, wrist and hand | `figshare:FracAtlas:IMG00014xx` | DX | 1 |
+| `fx-img0001980` | Patient WM · Radiograph, foot | `figshare:FracAtlas:IMG00019xx` | DX | 1 |
+| `fx-img0002020` | Patient WN · Radiograph, wrist and hand | `figshare:FracAtlas:IMG00020xx` | DX | 1 |
+| `fx-img0002180` | Patient WO · Radiograph, pelvis | `figshare:FracAtlas:IMG00021xx` | DX | 1 |
+| `fx-img0002544` | Patient WP · Radiograph, pelvis | `figshare:FracAtlas:IMG00025xx` | DX | 1 |
+| `fx-img0002701` | Patient WQ · Radiograph, pelvis | `figshare:FracAtlas:IMG00027xx` | DX | 1 |
+| `fx-img0003130` | Patient WR · Radiograph, lower leg | `figshare:FracAtlas:IMG00031xx` | DX | 1 |
+| `fx-img0003342` | Patient WS · Radiograph, hip and proximal femur | `figshare:FracAtlas:IMG00033xx` | DX | 1 |
+| `fx-img0003458` | Patient WT · Radiograph, lower leg and ankle | `figshare:FracAtlas:IMG00034xx` | DX | 1 |
+| `fx-img0003519` | Patient WU · Radiograph, ankle | `figshare:FracAtlas:IMG00035xx` | DX | 1 |
+| `fx-img0003926` | Patient WV · Radiograph, wrist and hand | `figshare:FracAtlas:IMG00039xx` | DX | 1 |
+| `cxr-00000744-006` | Patient TI · Chest radiograph PA | `nih:ChestX-ray14:744` | DX | 1 |
+| `cxr-00000808-002` | Patient TJ · Chest radiograph PA | `nih:ChestX-ray14:808` | DX | 1 |
+| `cxr-00000830-000` | Patient TK · Chest radiograph PA | `nih:ChestX-ray14:830` | DX | 1 |
+| `cxr-00001534-005` | Patient TL · Chest radiograph PA | `nih:ChestX-ray14:1534` | DX | 1 |
+| `cxr-00002763-031` | Patient TM · Chest radiograph PA | `nih:ChestX-ray14:2763` | DX | 1 |
+| `cxr-00003440-000` | Patient TN · Chest radiograph PA | `nih:ChestX-ray14:3440` | DX | 1 |
+| `cxr-00004381-021` | Patient TO · Chest radiograph PA | `nih:ChestX-ray14:4381` | DX | 1 |
+| `cxr-00004533-014` | Patient TP · Chest radiograph PA | `nih:ChestX-ray14:4533` | DX | 1 |
+| `cxr-00006736-000` | Patient TQ · Chest radiograph PA | `nih:ChestX-ray14:6736` | DX | 2 |
+| `cxr-00007037-000` | Patient TR · Chest radiograph PA | `nih:ChestX-ray14:7037` | DX | 2 |
+| `cxr-00007629-001` | Patient TS · Chest radiograph PA | `nih:ChestX-ray14:7629` | DX | 1 |
+| `cxr-00008008-027` | Patient TT · Chest radiograph PA | `nih:ChestX-ray14:8008` | DX | 1 |
+| `cxr-00008554-009` | Patient TU · Chest radiograph PA | `nih:ChestX-ray14:8554` | DX | 1 |
+| `cxr-00010575-002` | Patient TV · Chest radiograph PA | `nih:ChestX-ray14:10575` | DX | 1 |
+| `cxr-00011502-001` | Patient TW · Chest radiograph PA | `nih:ChestX-ray14:11502` | DX | 2 |
+| `cxr-00012288-000` | Patient TX · Chest radiograph PA | `nih:ChestX-ray14:12288` | DX | 2 |
+| `cxr-00013685-000` | Patient TY · Chest radiograph PA | `nih:ChestX-ray14:13685` | DX | 1 |
+| `cxr-00014574-000` | Patient TZ · Chest radiograph PA | `nih:ChestX-ray14:14574` | DX | 2 |
+| `cxr-00015058-024` | Patient UA · Chest radiograph PA | `nih:ChestX-ray14:15058` | DX | 1 |
+| `cxr-00015400-001` | Patient UB · Chest radiograph PA | `nih:ChestX-ray14:15400` | DX | 2 |
+| `cxr-00015425-012` | Patient UC · Chest radiograph PA | `nih:ChestX-ray14:15425` | DX | 2 |
+| `cxr-00015719-005` | Patient UD · Chest radiograph PA | `nih:ChestX-ray14:15719` | DX | 2 |
+| `cxr-00016564-000` | Patient UE · Chest radiograph PA | `nih:ChestX-ray14:16564` | DX | 1 |
+| `cxr-00017188-002` | Patient UF · Chest radiograph PA | `nih:ChestX-ray14:17188` | DX | 1 |
+| `cxr-00017199-005` | Patient UG · Chest radiograph PA | `nih:ChestX-ray14:17199` | DX | 2 |
+| `cxr-00017448-000` | Patient UH · Chest radiograph PA | `nih:ChestX-ray14:17448` | DX | 1 |
+| `cxr-00017500-002` | Patient UI · Chest radiograph PA | `nih:ChestX-ray14:17500` | DX | 1 |
+| `cxr-00017514-008` | Patient UJ · Chest radiograph PA | `nih:ChestX-ray14:17514` | DX | 1 |
+| `cxr-00018233-057` | Patient UK · Chest radiograph PA | `nih:ChestX-ray14:18233` | DX | 2 |
+| `cxr-00018393-000` | Patient UL · Chest radiograph PA | `nih:ChestX-ray14:18393` | DX | 1 |
+| `cxr-00018657-003` | Patient UM · Chest radiograph PA | `nih:ChestX-ray14:18657` | DX | 2 |
+| `cxr-00019187-000` | Patient UN · Chest radiograph PA | `nih:ChestX-ray14:19187` | DX | 1 |
+| `cxr-00019426-000` | Patient UO · Chest radiograph PA | `nih:ChestX-ray14:19426` | DX | 2 |
+| `cxr-00021364-001` | Patient UP · Chest radiograph PA | `nih:ChestX-ray14:21364` | DX | 1 |
+| `cxr-00022572-063` | Patient UQ · Chest radiograph PA | `nih:ChestX-ray14:22572` | DX | 1 |
+| `cxr-00022961-008` | Patient UR · Chest radiograph PA | `nih:ChestX-ray14:22961` | DX | 1 |
+| `cxr-00023078-000` | Patient US · Chest radiograph PA | `nih:ChestX-ray14:23078` | DX | 1 |
+| `cxr-00023283-005` | Patient UT · Chest radiograph PA | `nih:ChestX-ray14:23283` | DX | 1 |
+| `cxr-00025686-000` | Patient UU · Chest radiograph PA | `nih:ChestX-ray14:25686` | DX | 1 |
+| `cxr-00028018-000` | Patient UV · Chest radiograph PA | `nih:ChestX-ray14:28018` | DX | 2 |
+| `mra-aneurysm-454` | Patient XJ · MR angiography, head | `openneuro:ds003949:sub-454` | MR | 2 |
+| `mra-aneurysm-458` | Patient XK · MR angiography, head | `openneuro:ds003949:sub-458` | MR | 2 |
+| `mra-aneurysm-466` | Patient XL · MR angiography, head | `openneuro:ds003949:sub-466` | MR | 2 |
+| `mra-aneurysm-470` | Patient XM · MR angiography, head | `openneuro:ds003949:sub-470` | MR | 1 |
+| `mra-aneurysm-472` | Patient XN · MR angiography, head | `openneuro:ds003949:sub-472` | MR | 2 |
+| `mra-aneurysm-473` | Patient XO · MR angiography, head | `openneuro:ds003949:sub-473` | MR | 2 |
+| `mra-aneurysm-476` | Patient XP · MR angiography, head | `openneuro:ds003949:sub-476` | MR | 2 |
+| `mra-aneurysm-480` | Patient XQ · MR angiography, head | `openneuro:ds003949:sub-480` | MR | 2 |
+| `mra-aneurysm-484` | Patient XR · MR angiography, head | `openneuro:ds003949:sub-484` | MR | 1 |
+| `mra-aneurysm-485` | Patient XS · MR angiography, head | `openneuro:ds003949:sub-485` | MR | 1 |
+| `mra-aneurysm-486` | Patient XT · MR angiography, head | `openneuro:ds003949:sub-486` | MR | 2 |
+| `mra-aneurysm-488` | Patient XU · MR angiography, head | `openneuro:ds003949:sub-488` | MR | 2 |
+| `mra-aneurysm-489` | Patient XV · MR angiography, head | `openneuro:ds003949:sub-489` | MR | 1 |
+| `mra-cow-sub-002` | Patient XW · MR angiography, head | `zenodo:TopCoW-external-MRA:sub-002` | MR | 2 |
+| `mra-cow-sub-000` | Patient XX · MR angiography, head | `zenodo:TopCoW-external-MRA:sub-000` | MR | 2 |
+| `mra-cow-sub-345` | Patient XY · MR angiography, head | `zenodo:TopCoW-external-MRA:sub-345` | MR | 2 |
+| `mra-cow-sub-033` | Patient XZ · MR angiography, head | `zenodo:TopCoW-external-MRA:sub-033` | MR | 2 |
+| `mra-cow-ixi012` | Patient YA · MR angiography, head | `zenodo:TopCoW-external-MRA:IXI012` | MR | 2 |
+| `mra-cow-ixi013` | Patient YB · MR angiography, head | `zenodo:TopCoW-external-MRA:IXI013` | MR | 2 |
 
 ## Same-patient multimodality comparisons
 
@@ -478,10 +752,10 @@ Only series from one source subject are combined; links are `independent` unless
 
 ## Transfer syntaxes present
 
-- `1.2.840.10008.1.2.4.80`: 490 series
+- `1.2.840.10008.1.2.4.80`: 839 series
 - `1.2.840.10008.1.2`: 5 series
 - `1.2.840.10008.1.2.4.90`: 3 series
 - `1.2.840.10008.1.2.5`: 1 series
 - `1.2.840.10008.1.2.4.70`: 6 series
 
-MONOCHROME1 series: 1. Volume (MPR) eligible series: 169. Scouts/localizers: 3.
+MONOCHROME1 series: 1. Volume (MPR) eligible series: 248. Scouts/localizers: 3.

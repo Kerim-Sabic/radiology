@@ -1,0 +1,375 @@
+{
+ "aneurysm": {
+  "sub-454": {
+   "session": "ses-20141123",
+   "seriesUid": "2.25.191070949771363958985588844168686450414",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-454_aneurysm-1",
+     "volumeMl": 0.1321,
+     "extentMm": 7.7,
+     "parts": 1
+    }
+   ]
+  },
+  "sub-458": {
+   "session": "ses-20140915",
+   "seriesUid": "2.25.30796788666926515254396591250742411767",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-458_aneurysm-1",
+     "volumeMl": 0.0448,
+     "extentMm": 4.9,
+     "parts": 1
+    },
+    {
+     "n": 2,
+     "targetId": "ltof-458_aneurysm-2",
+     "volumeMl": 0.01,
+     "extentMm": 3.5,
+     "parts": 1
+    }
+   ]
+  },
+  "sub-466": {
+   "session": "ses-20140901",
+   "seriesUid": "2.25.45400501019139130763925694317893919673",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-466_aneurysm-1",
+     "volumeMl": 0.0781,
+     "extentMm": 6.6,
+     "parts": 1
+    }
+   ]
+  },
+  "sub-470": {
+   "session": "ses-20140807",
+   "seriesUid": "2.25.217474764116115756193517590123979401899",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-470_aneurysm-1",
+     "volumeMl": 0.0138,
+     "extentMm": 3.3,
+     "parts": 1
+    }
+   ]
+  },
+  "sub-472": {
+   "session": "ses-20140705",
+   "seriesUid": "2.25.29696034216394389625627651967367606091",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-472_aneurysm-1",
+     "volumeMl": 7.5626,
+     "extentMm": 30.6,
+     "parts": 2
+    }
+   ]
+  },
+  "sub-473": {
+   "session": "ses-20140701",
+   "seriesUid": "2.25.290233178823466612624072102522013465968",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-473_aneurysm-1",
+     "volumeMl": 0.1453,
+     "extentMm": 7.7,
+     "parts": 1
+    }
+   ]
+  },
+  "sub-476": {
+   "session": "ses-20140519",
+   "seriesUid": "2.25.2752819710985890651480519086131021279",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-476_aneurysm-1",
+     "volumeMl": 0.0404,
+     "extentMm": 6.0,
+     "parts": 1
+    }
+   ]
+  },
+  "sub-480": {
+   "session": "ses-20140208",
+   "seriesUid": "2.25.241031680516959995714799843351971309348",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-480_aneurysm-1",
+     "volumeMl": 0.0492,
+     "extentMm": 5.2,
+     "parts": 1
+    },
+    {
+     "n": 2,
+     "targetId": "ltof-480_aneurysm-2",
+     "volumeMl": 0.0575,
+     "extentMm": 5.6,
+     "parts": 1
+    }
+   ]
+  },
+  "sub-484": {
+   "session": "ses-20140116",
+   "seriesUid": "2.25.228062519311102043298757806513545487081",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-484_aneurysm-1",
+     "volumeMl": 0.0251,
+     "extentMm": 4.9,
+     "parts": 1
+    }
+   ]
+  },
+  "sub-485": {
+   "session": "ses-20140131",
+   "seriesUid": "2.25.285375340449793626660508561226935347575",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-485_aneurysm-1",
+     "volumeMl": 0.0168,
+     "extentMm": 4.2,
+     "parts": 1
+    }
+   ]
+  },
+  "sub-486": {
+   "session": "ses-20140121",
+   "seriesUid": "2.25.42918764204308849959758709781126708019",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-486_aneurysm-1",
+     "volumeMl": 0.0243,
+     "extentMm": 5.5,
+     "parts": 1
+    },
+    {
+     "n": 2,
+     "targetId": "ltof-486_aneurysm-2",
+     "volumeMl": 0.0096,
+     "extentMm": 3.8,
+     "parts": 1
+    }
+   ]
+  },
+  "sub-488": {
+   "session": "ses-20140107",
+   "seriesUid": "2.25.163952985423622658319374412139442424337",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-488_aneurysm-1",
+     "volumeMl": 0.0095,
+     "extentMm": 3.5,
+     "parts": 1
+    }
+   ]
+  },
+  "sub-489": {
+   "session": "ses-20151226",
+   "seriesUid": "2.25.56208855823528059965424179618530669967",
+   "lesions": [
+    {
+     "n": 1,
+     "targetId": "ltof-489_aneurysm-1",
+     "volumeMl": 0.0383,
+     "extentMm": 4.9,
+     "parts": 1
+    }
+   ]
+  }
+ },
+ "controls": {
+  "sub-002": {
+   "site": "Lausanne",
+   "stem": "sub-002_ses-20110127",
+   "why": "complete circle",
+   "seriesUid": "2.25.16968293684116654109649155647463200454",
+   "edges": {
+    "L-A1": 1,
+    "Acom": 1,
+    "3rd-A2": 0,
+    "R-A1": 1,
+    "L-Pcom": 1,
+    "L-P1": 1,
+    "R-P1": 1,
+    "R-Pcom": 1
+   },
+   "targets": {
+    "basilar_artery": "topcow-sub-002_basilar-artery",
+    "posterior_cerebral_artery_right": "topcow-sub-002_posterior-cerebral-artery-right",
+    "posterior_cerebral_artery_left": "topcow-sub-002_posterior-cerebral-artery-left",
+    "internal_carotid_artery_right": "topcow-sub-002_internal-carotid-artery-right",
+    "middle_cerebral_artery_right": "topcow-sub-002_middle-cerebral-artery-right",
+    "internal_carotid_artery_left": "topcow-sub-002_internal-carotid-artery-left",
+    "middle_cerebral_artery_left": "topcow-sub-002_middle-cerebral-artery-left",
+    "posterior_communicating_artery_right": "topcow-sub-002_posterior-communicating-artery-right",
+    "posterior_communicating_artery_left": "topcow-sub-002_posterior-communicating-artery-left",
+    "anterior_communicating_artery": "topcow-sub-002_anterior-communicating-artery",
+    "anterior_cerebral_artery_right": "topcow-sub-002_anterior-cerebral-artery-right",
+    "anterior_cerebral_artery_left": "topcow-sub-002_anterior-cerebral-artery-left"
+   }
+  },
+  "sub-000": {
+   "site": "Lausanne",
+   "stem": "sub-000_ses-20110101",
+   "why": "right P1 not seen with a right Pcom (fetal-type right PCA); third A2",
+   "seriesUid": "2.25.336896837765288248928796135880508990027",
+   "edges": {
+    "L-A1": 1,
+    "Acom": 1,
+    "3rd-A2": 1,
+    "R-A1": 1,
+    "L-Pcom": 0,
+    "L-P1": 1,
+    "R-P1": 0,
+    "R-Pcom": 1
+   },
+   "targets": {
+    "basilar_artery": "topcow-sub-000_basilar-artery",
+    "posterior_cerebral_artery_right": "topcow-sub-000_posterior-cerebral-artery-right",
+    "posterior_cerebral_artery_left": "topcow-sub-000_posterior-cerebral-artery-left",
+    "internal_carotid_artery_right": "topcow-sub-000_internal-carotid-artery-right",
+    "middle_cerebral_artery_right": "topcow-sub-000_middle-cerebral-artery-right",
+    "internal_carotid_artery_left": "topcow-sub-000_internal-carotid-artery-left",
+    "middle_cerebral_artery_left": "topcow-sub-000_middle-cerebral-artery-left",
+    "posterior_communicating_artery_right": "topcow-sub-000_posterior-communicating-artery-right",
+    "anterior_communicating_artery": "topcow-sub-000_anterior-communicating-artery",
+    "anterior_cerebral_artery_right": "topcow-sub-000_anterior-cerebral-artery-right",
+    "anterior_cerebral_artery_left": "topcow-sub-000_anterior-cerebral-artery-left",
+    "third_a2": "topcow-sub-000_third-a2"
+   }
+  },
+  "sub-345": {
+   "site": "Lausanne",
+   "stem": "sub-345_ses-20121218",
+   "why": "left P1 not seen with a left Pcom (fetal-type left PCA)",
+   "seriesUid": "2.25.170811377292455319669458700358817479942",
+   "edges": {
+    "L-A1": 1,
+    "Acom": 1,
+    "3rd-A2": 0,
+    "R-A1": 1,
+    "L-Pcom": 1,
+    "L-P1": 0,
+    "R-P1": 1,
+    "R-Pcom": 1
+   },
+   "targets": {
+    "basilar_artery": "topcow-sub-345_basilar-artery",
+    "posterior_cerebral_artery_right": "topcow-sub-345_posterior-cerebral-artery-right",
+    "posterior_cerebral_artery_left": "topcow-sub-345_posterior-cerebral-artery-left",
+    "internal_carotid_artery_right": "topcow-sub-345_internal-carotid-artery-right",
+    "middle_cerebral_artery_right": "topcow-sub-345_middle-cerebral-artery-right",
+    "internal_carotid_artery_left": "topcow-sub-345_internal-carotid-artery-left",
+    "middle_cerebral_artery_left": "topcow-sub-345_middle-cerebral-artery-left",
+    "posterior_communicating_artery_right": "topcow-sub-345_posterior-communicating-artery-right",
+    "posterior_communicating_artery_left": "topcow-sub-345_posterior-communicating-artery-left",
+    "anterior_communicating_artery": "topcow-sub-345_anterior-communicating-artery",
+    "anterior_cerebral_artery_right": "topcow-sub-345_anterior-cerebral-artery-right",
+    "anterior_cerebral_artery_left": "topcow-sub-345_anterior-cerebral-artery-left"
+   }
+  },
+  "sub-033": {
+   "site": "Lausanne",
+   "stem": "sub-033_ses-20101021",
+   "why": "Acom not seen",
+   "seriesUid": "2.25.183596115778026457584779344750787467355",
+   "edges": {
+    "L-A1": 1,
+    "Acom": 0,
+    "3rd-A2": 0,
+    "R-A1": 1,
+    "L-Pcom": 1,
+    "L-P1": 1,
+    "R-P1": 1,
+    "R-Pcom": 1
+   },
+   "targets": {
+    "basilar_artery": "topcow-sub-033_basilar-artery",
+    "posterior_cerebral_artery_right": "topcow-sub-033_posterior-cerebral-artery-right",
+    "posterior_cerebral_artery_left": "topcow-sub-033_posterior-cerebral-artery-left",
+    "internal_carotid_artery_right": "topcow-sub-033_internal-carotid-artery-right",
+    "middle_cerebral_artery_right": "topcow-sub-033_middle-cerebral-artery-right",
+    "internal_carotid_artery_left": "topcow-sub-033_internal-carotid-artery-left",
+    "middle_cerebral_artery_left": "topcow-sub-033_middle-cerebral-artery-left",
+    "posterior_communicating_artery_right": "topcow-sub-033_posterior-communicating-artery-right",
+    "posterior_communicating_artery_left": "topcow-sub-033_posterior-communicating-artery-left",
+    "anterior_cerebral_artery_right": "topcow-sub-033_anterior-cerebral-artery-right",
+    "anterior_cerebral_artery_left": "topcow-sub-033_anterior-cerebral-artery-left"
+   }
+  },
+  "IXI012": {
+   "site": "IXI_HH",
+   "stem": "IXI012-HH-1211",
+   "why": "left A1 not seen",
+   "seriesUid": "2.25.27346905013886905233253364365331666901",
+   "edges": {
+    "L-A1": 0,
+    "Acom": 1,
+    "3rd-A2": 0,
+    "R-A1": 1,
+    "L-Pcom": 1,
+    "L-P1": 1,
+    "R-P1": 1,
+    "R-Pcom": 1
+   },
+   "targets": {
+    "basilar_artery": "topcow-ixi012_basilar-artery",
+    "posterior_cerebral_artery_right": "topcow-ixi012_posterior-cerebral-artery-right",
+    "posterior_cerebral_artery_left": "topcow-ixi012_posterior-cerebral-artery-left",
+    "internal_carotid_artery_right": "topcow-ixi012_internal-carotid-artery-right",
+    "middle_cerebral_artery_right": "topcow-ixi012_middle-cerebral-artery-right",
+    "internal_carotid_artery_left": "topcow-ixi012_internal-carotid-artery-left",
+    "middle_cerebral_artery_left": "topcow-ixi012_middle-cerebral-artery-left",
+    "posterior_communicating_artery_right": "topcow-ixi012_posterior-communicating-artery-right",
+    "posterior_communicating_artery_left": "topcow-ixi012_posterior-communicating-artery-left",
+    "anterior_communicating_artery": "topcow-ixi012_anterior-communicating-artery",
+    "anterior_cerebral_artery_right": "topcow-ixi012_anterior-cerebral-artery-right",
+    "anterior_cerebral_artery_left": "topcow-ixi012_anterior-cerebral-artery-left"
+   }
+  },
+  "IXI013": {
+   "site": "IXI_HH",
+   "stem": "IXI013-HH-1212",
+   "why": "complete circle",
+   "seriesUid": "2.25.75694238146797549166827785016958038209",
+   "edges": {
+    "L-A1": 1,
+    "Acom": 1,
+    "3rd-A2": 0,
+    "R-A1": 1,
+    "L-Pcom": 1,
+    "L-P1": 1,
+    "R-P1": 1,
+    "R-Pcom": 1
+   },
+   "targets": {
+    "basilar_artery": "topcow-ixi013_basilar-artery",
+    "posterior_cerebral_artery_right": "topcow-ixi013_posterior-cerebral-artery-right",
+    "posterior_cerebral_artery_left": "topcow-ixi013_posterior-cerebral-artery-left",
+    "internal_carotid_artery_right": "topcow-ixi013_internal-carotid-artery-right",
+    "middle_cerebral_artery_right": "topcow-ixi013_middle-cerebral-artery-right",
+    "internal_carotid_artery_left": "topcow-ixi013_internal-carotid-artery-left",
+    "middle_cerebral_artery_left": "topcow-ixi013_middle-cerebral-artery-left",
+    "posterior_communicating_artery_right": "topcow-ixi013_posterior-communicating-artery-right",
+    "posterior_communicating_artery_left": "topcow-ixi013_posterior-communicating-artery-left",
+    "anterior_communicating_artery": "topcow-ixi013_anterior-communicating-artery",
+    "anterior_cerebral_artery_right": "topcow-ixi013_anterior-cerebral-artery-right",
+    "anterior_cerebral_artery_left": "topcow-ixi013_anterior-cerebral-artery-left"
+   }
+  }
+ }
+}
