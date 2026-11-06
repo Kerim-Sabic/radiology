@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
-import { RotateCcw } from 'lucide-react';
+import { Maximize2, Minimize2, RotateCcw } from 'lucide-react';
 import { PLANE_COLORS, type ViewerEngine, type SeriesSource, type ViewKind } from '../../viewer/engine';
 import { Volume3DControls, type ThreeDProps } from './Volume3DControls';
 import type { Series } from '../../schema/content';
@@ -18,6 +18,18 @@ import { mammoView } from '../../content/mammo';
 
 /** SVG path of several closed rings (an outline and its holes), drawn with the even-odd rule. */
 const ringsPath = (rings: Vec2[][]) => rings.map((r) => `M${r.map((q) => q.join(',')).join('L')}Z`).join(' ');
+/** A ring drawn as a smooth closed curve through the midpoints of its edges (quadratic corners): a traced outline looks
+ *  stepped when zoomed in; the curve stays within half an edge of it. Hover and grading still use the polygon. */
+const smoothRing = (r: Vec2[]) => {
+  const n = r.length;
+  if (n < 4) return `M${r.map((q) => q.join(',')).join('L')}Z`;
+  const mid = (a: Vec2, b: Vec2) => `${(a[0] + b[0]) / 2},${(a[1] + b[1]) / 2}`;
+  let d = `M${mid(r[n - 1], r[0])}`;
+  for (let i = 0; i < n; i++) d += `Q${r[i][0]},${r[i][1]} ${mid(r[i], r[(i + 1) % n])}`;
+  return `${d}Z`;
+};
+/** Zoom from which the anatomy outlines are drawn as smooth curves. */
+const SMOOTH_FROM_ZOOM = 1.5;
 
 export interface MarkBadge {
   id: string;
@@ -68,8 +80,14 @@ interface Props {
   kind: ViewKind;
   startIndex: number;
   focused: boolean;
-  /** Enlarged in the grid (the others sit in a strip beside it). */
-  big?: boolean;
+  /** Shown alone over the whole image area (one-up); the other views stay mounted, hidden. */
+  solo?: boolean;
+  /** Show this view alone / back to all the views (corner button, double-click on the title). Absent with one view. */
+  onToggleSolo?: () => void;
+  /** Name of this view in a multi-view layout (Axial, Lateral, R CC…), said by the corner button. */
+  viewName?: string;
+  /** Radiographic view of a hung radiograph (Frontal / Lateral), shown under the series name. */
+  viewTag?: string;
   onFocus: () => void;
   overlay: PanelOverlayProps;
   seriesOptions: Array<{ uid: string; label: string }>;
@@ -105,7 +123,7 @@ export function ViewportPanel(p: Props) {
     void engine.mount(panelId, el.current, p.source, p.kind, p.startIndex);
     return () => engine.unmount(panelId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [engine, panelId, p.source.seriesUid, p.kind]);
+  }, [engine, panelId, p.source.seriesUid, p.source.pinnedIndex, p.kind]);
 
   useEffect(() => {
     if (!wrap.current) return;
@@ -139,6 +157,9 @@ export function ViewportPanel(p: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [engine, panelId, p.overlay.anatomy, p.seriesIndex, st?.index, st?.currentImageId, st?.zoom, st?.ready, engine.getVersion(), size[0], size[1]]);
   const [hover, setHover] = useState<{ id: string; label: string; x: number; y: number; tag: string } | null>(null);
+  /** The structure clicked on keeps its name on screen (until another click, or another image). */
+  const [pinned, setPinned] = useState<{ id: string; label: string; x: number; y: number; tag: string } | null>(null);
+  useEffect(() => setPinned(null), [st?.currentImageId]);
   const isolateId = p.overlay.anatomy?.isolateId ?? null;
   const isolateSet = p.overlay.anatomy?.isolateSet ?? null;
   const quiz = !!p.overlay.anatomy?.quiz;
@@ -266,7 +287,7 @@ export function ViewportPanel(p: Props) {
   const pct = progress ? Math.round(((progress.done + progress.failed) / Math.max(1, progress.total)) * 100) : 0;
 
   return (
-    <div ref={wrap} className={`vpanel${p.focused ? ' focused' : ''}${p.big ? ' big' : ''}`} onMouseDown={p.onFocus} onTouchStart={p.onFocus} onFocus={p.onFocus} data-panel={panelId}>
+    <div ref={wrap} className={`vpanel${p.focused ? ' focused' : ''}${p.solo ? ' solo' : ''}`} onMouseDown={p.onFocus} onTouchStart={p.onFocus} onFocus={p.onFocus} data-panel={panelId}>
       <div
         ref={el}
         className="vp-el"
@@ -278,6 +299,7 @@ export function ViewportPanel(p: Props) {
           const d = downAt.current;
           downAt.current = null;
           const click = p.kind === '3d' ? clickRef.current : p.onImageClick;
+          if (d && Math.hypot(e.clientX - d[0], e.clientY - d[1]) <= 5 && Date.now() - d[2] <= 600) setPinned(hover && !quiz ? hover : null);
           if (!d || !click || !el.current || Math.hypot(e.clientX - d[0], e.clientY - d[1]) > 5 || Date.now() - d[2] > 600) return;
           const r = el.current.getBoundingClientRect();
           click([e.clientX - r.left, e.clientY - r.top]);
@@ -324,7 +346,7 @@ export function ViewportPanel(p: Props) {
             // A drill question keeps one neutral colour: the atlas colour of an artery or a vein would hint at the answer.
             const color = quiz ? QUIZ_COLOR : colorOf(look, sh.key, sh.group);
             const filled = lookOf(look, sh.group) === 'fill';
-            const strong = isolating || p.overlay.anatomy!.highlightId === sh.targetId || hover?.id === sh.targetId;
+            const strong = isolating || p.overlay.anatomy!.highlightId === sh.targetId || hover?.id === sh.targetId || pinned?.id === sh.targetId;
             const style = {
               stroke: color,
               strokeWidth: look.line + (isolating ? 0.8 : strong ? 0.6 : 0),
@@ -336,6 +358,8 @@ export function ViewportPanel(p: Props) {
             };
             if (sh.kind === 'seg') return <line key={i} x1={sh.pts[0][0]} y1={sh.pts[0][1]} x2={sh.pts[1][0]} y2={sh.pts[1][1]} style={style} />;
             if (sh.kind === 'circle') return <circle key={i} cx={sh.pts[0][0]} cy={sh.pts[0][1]} r={5} style={style} />;
+            if ((st?.zoom ?? 1) >= SMOOTH_FROM_ZOOM)
+              return <path key={i} d={[sh.pts, ...(sh.holes ?? [])].map(smoothRing).join(' ')} fillRule="evenodd" style={style} />;
             if (sh.holes?.length) return <path key={i} d={ringsPath([sh.pts, ...sh.holes])} fillRule="evenodd" style={style} />;
             return <polygon key={i} points={sh.pts.map((q) => q.join(',')).join(' ')} style={style} />;
           })}
@@ -412,10 +436,10 @@ export function ViewportPanel(p: Props) {
       {!isolating && p.overlay.anatomy?.on && p.overlay.anatomy.showNames && labels.hidden > 0 ? (
         <div className="vp-hidden-labels">{labels.hidden} more names on hover; zoom in to fit them</div>
       ) : null}
-      {hover && !isolating && !quiz ? (
-        <div className="vp-hover" style={{ left: Math.min(hover.x + 14, size[0] - 180), top: hover.y + 12 }}>
-          {cleanName(hover.label)}
-          <span className="faint"> · {hover.tag}</span>
+      {(hover ?? pinned) && !isolating && !quiz ? (
+        <div className={`vp-hover${!hover ? ' pinned' : ''}`} style={{ left: Math.min((hover ?? pinned)!.x + 14, size[0] - 180), top: (hover ?? pinned)!.y + 12 }} role={!hover ? 'status' : undefined}>
+          {cleanName((hover ?? pinned)!.label)}
+          <span className="faint"> · {(hover ?? pinned)!.tag}</span>
         </div>
       ) : null}
       {refLines.length ? (
@@ -475,12 +499,22 @@ export function ViewportPanel(p: Props) {
       ) : null}
       <div className="vp-overlay">
         <div className="vp-corner tl">
-          <div>
+          <div
+            className={p.onToggleSolo ? 'vp-title' : undefined}
+            onDoubleClick={p.onToggleSolo}
+            title={p.onToggleSolo ? (p.solo ? 'Double-click: back to all the views' : 'Double-click: show this view alone') : undefined}
+          >
             <b>{s.modality}</b> {p.kind === 'stack' ? '' : `· ${p.kind.toUpperCase()}`}
             {planeColor ? <span className="plane-dot" style={{ background: planeColor }} title="Colour of this plane's line in the other views" /> : null}
             {st?.obliqueDeg ? <span className="vp-tag info" style={{ marginLeft: 6 }}>oblique {st.obliqueDeg}°</span> : null}
           </div>
           <div>{s.description || 'Series'}</div>
+          {p.viewTag ? (
+            <span className="vp-tag info" title="Radiographic view, from the image's DICOM header or the series name">
+              {p.viewTag}
+              {p.source.pinnedIndex !== undefined ? ` · image ${p.source.pinnedIndex + 1} of ${s.instances.length}` : ''}
+            </span>
+          ) : null}
           {acq.SequenceName || acq.ScanningSequence ? <div className="faint">{[acq.ScanningSequence, acq.SequenceVariant, acq.SequenceName].filter(Boolean).join(' / ')}</div> : null}
           {mg && (mg.side || mg.view) ? (
             <span className="vp-tag info" title="Breast side and mammographic view">
@@ -580,6 +614,20 @@ export function ViewportPanel(p: Props) {
       ) : null}
       {p.kind === '3d' && st?.ready && p.threeD ? (
         <Volume3DControls engine={engine} panelId={panelId} seriesUid={s.uid} modality={s.modality} threeD={p.threeD} clickRef={clickRef} />
+      ) : null}
+      {p.onToggleSolo ? (
+        <button
+          type="button"
+          className="vp-max"
+          onClick={(e) => {
+            e.stopPropagation();
+            p.onToggleSolo!();
+          }}
+          aria-label={p.solo ? 'Back to all the views' : `Show the ${p.viewName ?? 'view'} alone`}
+          title={p.solo ? 'Back to all the views (Esc)' : 'Show this view alone (U, or double-click its title)'}
+        >
+          {p.solo ? <Minimize2 size={15} /> : <Maximize2 size={15} />}
+        </button>
       ) : null}
       {p.seriesOptions.length > 1 && p.onPickSeries ? (
         <div className="vp-picker">

@@ -93,6 +93,28 @@ export interface SeriesSource {
   /** Slice normal and the position of every image (same order as imageIds; null when unknown). */
   normal?: Vec3 | null;
   positions?: Array<Vec3 | null>;
+  /** A panel pinned to one image of the series (e.g. the lateral of a "PA & LATERAL" radiograph series): the source holds
+   *  that image only, and this is its index in the full series (marks keep the image's true SOP and index). */
+  pinnedIndex?: number;
+}
+
+/** The fetcher of a source: one per series, and one per pinned image (it holds that image only). */
+export function fetchKey(src: Pick<SeriesSource, 'seriesUid' | 'pinnedIndex'>): string {
+  return src.pinnedIndex === undefined ? src.seriesUid : `${src.seriesUid}#${src.pinnedIndex}`;
+}
+
+/** The source of one image of a series, for a panel pinned to it. */
+export function pinnedSource(src: SeriesSource, index: number): SeriesSource {
+  const i = Math.max(0, Math.min(index, src.imageIds.length - 1));
+  return {
+    ...src,
+    imageIds: [src.imageIds[i]],
+    urls: [src.urls[i] ?? ''],
+    sopUids: [src.sopUids[i]],
+    positions: src.positions ? [src.positions[i] ?? null] : src.positions,
+    volumeEligible: false,
+    pinnedIndex: i,
+  };
 }
 
 export interface PanelState {
@@ -131,6 +153,8 @@ const STACK_GROUP = 'tg-stack';
 const MPR_GROUP = 'tg-mpr';
 const VR_GROUP = 'tg-3d';
 const ENGINE_ID = 'rvm-engine';
+/** One full turn of the 3D spin, in seconds (slow enough to read the arteries as they pass). */
+const SPIN_SECONDS = 24;
 
 export interface ViewSnapshot {
   seriesUid: string;
@@ -167,6 +191,8 @@ export class ViewerEngine {
   private slab: SlabMode = null;
   private cuts = new Map<string, Cut3D>();
   private presets = new Map<string, string>();
+  /** 3D views turning slowly on their own (animation frame id per panel). */
+  private spins = new Map<string, number>();
   private anatomy = new Map<string, Anatomy3D>();
   private spacingCache = new WeakMap<SeriesSource, number>();
   /** Straight (non-oblique) camera direction of each MPR view, and the tilt applied from each view (degrees). */
@@ -235,14 +261,35 @@ export class ViewerEngine {
 
   // ------------------------------------------------------------ data
   fetcherFor(src: SeriesSource): SeriesFetcher {
-    let f = this.fetchers.get(src.seriesUid);
+    const key = fetchKey(src);
+    let f = this.fetchers.get(key);
     if (!f || f.aborted) {
       f = new SeriesFetcher(src.imageIds, src.urls);
-      this.fetchers.set(src.seriesUid, f);
+      this.fetchers.set(key, f);
       f.onProgress(() => this.bump());
     }
-    src.imageIds.forEach((id, index) => this.sopBySeriesImageId.set(id, { seriesUid: src.seriesUid, sop: src.sopUids[index], index, projection: !src.hasPatientGeometry }));
+    const offset = src.pinnedIndex ?? 0;
+    src.imageIds.forEach((id, index) =>
+      this.sopBySeriesImageId.set(id, { seriesUid: src.seriesUid, sop: src.sopUids[index], index: offset + index, projection: !src.hasPatientGeometry }),
+    );
     return f;
+  }
+
+  /** ViewPosition and PatientOrientation of every image of a (small) series, from each image's own DICOM header: loads
+   *  the images (a two-view radiograph series holds two). Used to hang a "PA & LATERAL" series as two panels. */
+  async imageViews(src: SeriesSource): Promise<Array<{ viewPosition: unknown; patientOrientation: unknown }>> {
+    await this.init();
+    const f = this.fetcherFor(src);
+    f.start(0);
+    await f.whenAllSettled();
+    return src.imageIds.map((id) => {
+      try {
+        const nat = cs.metaData.get('naturalized', id) as Record<string, unknown> | undefined;
+        return { viewPosition: nat?.ViewPosition, patientOrientation: nat?.PatientOrientation };
+      } catch {
+        return { viewPosition: undefined, patientOrientation: undefined };
+      }
+    });
   }
 
   // ------------------------------------------------------------ mounting
@@ -357,6 +404,7 @@ export class ViewerEngine {
     const p = this.panels.get(panelId);
     if (!p) return;
     this.stopPlay(panelId);
+    this.setSpin(panelId, false);
     p.cleanup.forEach((c) => c());
     this.anatomy.get(panelId)?.dispose();
     this.anatomy.delete(panelId);
@@ -377,12 +425,13 @@ export class ViewerEngine {
 
   /** Release fetchers/volumes for series no longer shown (case switch). */
   releaseUnused(keepSeries: Set<string>) {
-    for (const [uid, f] of this.fetchers) {
+    for (const [key, f] of this.fetchers) {
+      const uid = key.split('#')[0];
       if (keepSeries.has(uid)) continue;
       f.abort();
-      this.fetchers.delete(uid);
+      this.fetchers.delete(key);
       const volumeId = `cornerstoneStreamingImageVolume:${uid}`;
-      if (cs.cache.getVolume(volumeId)) cs.cache.removeVolumeLoadObject(volumeId);
+      if (key === uid && cs.cache.getVolume(volumeId)) cs.cache.removeVolumeLoadObject(volumeId);
     }
   }
 
@@ -481,14 +530,14 @@ export class ViewerEngine {
   retry(panelId: string) {
     const p = this.panels.get(panelId);
     if (!p) return;
-    this.fetchers.get(p.source.seriesUid)?.retryFailed();
+    this.fetchers.get(fetchKey(p.source))?.retryFailed();
     void this.mount(panelId, p.element, p.source, p.kind, 0);
   }
 
   panelState(panelId: string): PanelState | null {
     const p = this.panels.get(panelId);
     if (!p) return null;
-    const f = this.fetchers.get(p.source.seriesUid);
+    const f = this.fetchers.get(fetchKey(p.source));
     const base: PanelState = {
       panelId,
       kind: p.kind,
@@ -569,7 +618,7 @@ export class ViewerEngine {
     if (!p || !vp) return;
     if (p.kind === 'stack') {
       const i = Math.max(0, Math.min(index, p.source.imageIds.length - 1));
-      this.fetchers.get(p.source.seriesUid)?.prioritize(i);
+      this.fetchers.get(fetchKey(p.source))?.prioritize(i);
       vp.setImageIdIndex(i);
     } else if (p.kind !== '3d') {
       const info = cs.utilities.getVolumeViewportScrollInfo(vp as never, `cornerstoneStreamingImageVolume:${p.source.seriesUid}`);
@@ -661,6 +710,48 @@ export class ViewerEngine {
   }
   get3DPreset(panelId: string) {
     return this.presets.get(panelId) ?? null;
+  }
+
+  /** A slow turntable spin of a 3D view around its vertical screen axis (one turn in SPIN_SECONDS); a click or drag on
+   *  the view stops it. */
+  setSpin(panelId: string, on: boolean) {
+    const id = this.spins.get(panelId);
+    if (!on) {
+      if (id !== undefined) {
+        cancelAnimationFrame(id);
+        this.spins.delete(panelId);
+        this.bump();
+      }
+      return;
+    }
+    const p = this.panels.get(panelId);
+    if (!p || p.kind !== '3d' || !p.ready || id !== undefined) return;
+    let last = performance.now();
+    const step = (t: number) => {
+      const vp = this.viewport(panelId);
+      if (!vp || !this.spins.has(panelId)) return;
+      const a = (((t - last) / 1000) * 2 * Math.PI) / SPIN_SECONDS;
+      last = t;
+      const cam = vp.getCamera();
+      const f = cam.focalPoint as Vec3;
+      const k = normalize(cam.viewUp as Vec3);
+      const v = sub(cam.position as Vec3, f);
+      // Rodrigues: v cos a + (k x v) sin a + k (k.v)(1 - cos a)
+      const kv = cross(k, v);
+      const kd = dot(k, v) * (1 - Math.cos(a));
+      const r: Vec3 = [0, 1, 2].map((i) => v[i] * Math.cos(a) + kv[i] * Math.sin(a) + k[i] * kd) as Vec3;
+      vp.setCamera({ position: add(f, r) });
+      vp.render();
+      this.spins.set(panelId, requestAnimationFrame(step));
+    };
+    this.spins.set(panelId, requestAnimationFrame(step));
+    const stop = () => this.setSpin(panelId, false);
+    p.element.addEventListener('pointerdown', stop, { once: true });
+    p.cleanup.push(() => p.element.removeEventListener('pointerdown', stop));
+    this.bump();
+  }
+  isSpinning(panelId: string) {
+    return this.spins.has(panelId);
   }
 
   /** Turn the 3D view to look at the patient from one side (head up; from above or below, front up). */

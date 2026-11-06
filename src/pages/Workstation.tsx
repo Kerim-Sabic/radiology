@@ -47,13 +47,17 @@ import {
   Search as SearchIcon,
   PaintBucket,
   ImageDown,
+  LayoutGrid,
 } from 'lucide-react';
 import '../styles/viewer3d.css';
 import { useApp } from '../app/AppContext';
-import { ViewerEngine, type ToolId, type ViewKind } from '../viewer/engine';
-import { PlanesControl } from '../components/ws/MprControls';
+import { ViewerEngine, pinnedSource, type ToolId, type ViewKind } from '../viewer/engine';
+import { AngioSlabControl, PlanesControl } from '../components/ws/MprControls';
+import { FindingAnalysis } from '../components/ws/FindingAnalysis';
 import { ImageAdjust } from '../components/ws/ImageAdjust';
 import { hangMammograms, mammoView } from '../content/mammo';
+import { hangRadiographs, isRadiograph, radiographView, viewNamedIn, type XrView } from '../content/radiographViews';
+import { defaultAngioSlabMm } from '../viewer/presets3d';
 import { secondsLeft, shiftUrl, type OncallShift, type ShiftItem } from '../services/oncall';
 
 const MARK_TOOLS = new Set<ToolId>(['point', 'arrow', 'box', 'outline', 'eraser']);
@@ -104,6 +108,8 @@ interface PanelDef {
   id: string;
   seriesUid: string;
   kind: ViewKind;
+  /** Pinned to one image of the series (the PA or the lateral of a two-image radiograph series). */
+  pin?: number;
 }
 
 /**
@@ -173,10 +179,28 @@ export default function Workstation() {
   const task: Task | null = availableTasks.find((t) => t.id === sp.get('task')) ?? availableTasks[0] ?? tasks.find((t) => t.id === sp.get('task')) ?? null;
 
   const [layout, setLayout] = useState<Layout>('1');
-  /** One view enlarged with the others in a strip beside it (they stay live and linked). */
-  const [bigPanel, setBigPanel] = useState<string | null>(null);
+  /** One view alone over the whole image area (one-up). The other views stay mounted at their size, hidden, so their
+   *  slice, zoom, pan and window are unchanged on return and linked views keep following. */
+  const [soloPanel, setSoloPanel] = useState<string | null>(null);
+  /** Phones show one view at a time by default, with a switcher between the views of the layout. */
+  const [isPhone, setIsPhone] = useState(() => window.matchMedia('(max-width: 860px)').matches);
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 860px)');
+    const on = () => setIsPhone(mq.matches);
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, []);
   const [panels, setPanels] = useState<PanelDef[]>([]);
+  /** Radiographs hung frontal | lateral: the view shown in each panel (from the DICOM tags or the description). */
+  const [xrViews, setXrViews] = useState<Map<string, XrView>>(new Map());
   const [focused, setFocused] = useState('p0');
+  const solo = panels.length > 1 && soloPanel && panels.some((x) => x.id === soloPanel) ? soloPanel : null;
+  const toggleSolo = (id: string) => {
+    if (panels.length < 2) return;
+    if (solo) return setSoloPanel(null);
+    setSoloPanel(id);
+    setFocused(id);
+  };
   const [leftOpen, setLeftOpen] = useState(() => window.innerWidth > 860);
   const [rightOpen, setRightOpen] = useState(true);
   /** On a phone the learning panel sits under the image: half the screen, or most of it. */
@@ -286,7 +310,8 @@ export default function Workstation() {
     setFocusSet(null);
     setCompare(null);
     setLayout('1');
-    setBigPanel(null);
+    setSoloPanel(null);
+    setXrViews(new Map());
     setPanels([{ id: 'p0', seriesUid: task.start.seriesUid, kind: 'stack' }]);
     setFocused('p0');
     setTab('task');
@@ -313,6 +338,46 @@ export default function Workstation() {
     const preset = s?.windowPresets.find((w) => w.label === task.start.windowPreset);
     if (preset) engine.setWindow('p0', preset.center, preset.width);
   }, [p0Ready, task, catalog, engine]);
+
+  // Hanging protocol for radiographs with two or more views (frontal left, lateral right): separate series of the study, or
+  // the images of one "PA & LATERAL" series, each pinned to its own panel. The view comes from each image's own DICOM tags,
+  // else an unambiguous description; when one is unknown the stored order is kept. The panel a task names gets the focus.
+  const hungFor = useRef<string | null>(null);
+  useEffect(() => {
+    if (!task || !kase || !catalog) return;
+    const key = `${kase.id}|${task.id}|${mode}`;
+    if (hungFor.current === key) return;
+    hungFor.current = key;
+    const start = catalog.series.get(task.start.seriesUid);
+    if (!start || !isRadiograph(start.modality)) return;
+    const views = caseSeries.filter((x) => x.studyUid === start.studyUid && isRadiograph(x.modality) && x.role !== 'scout');
+    let cancelled = false;
+    const hang = (items: Array<{ panel: PanelDef; view: XrView | null }>) => {
+      if (cancelled || hungFor.current !== key || items.length < 2) return;
+      const hung = hangRadiographs(items).slice(0, 4).map((x, i) => ({ ...x, panel: { ...x.panel, id: `p${i}` } }));
+      setLayout(hung.length > 2 ? '4' : '2');
+      setPanels(hung.map((x) => x.panel));
+      setXrViews(new Map(hung.filter((x) => x.view).map((x) => [x.panel.id, x.view!])));
+      const named = viewNamedIn(`${task.title} ${task.prompt}`);
+      const target = (named && hung.find((x) => x.view === named)?.panel.id) || hung.find((x) => x.panel.seriesUid === task.start.seriesUid && x.panel.pin === undefined)?.panel.id || 'p0';
+      setFocused(target);
+      setSoloPanel(window.matchMedia('(max-width: 860px)').matches ? target : null);
+    };
+    if (views.length >= 2) {
+      hang(views.map((x) => ({ panel: { id: '', seriesUid: x.uid, kind: 'stack' as ViewKind }, view: radiographView(x.acquisition.ViewPosition, x.acquisition.PatientOrientation, x.description) })));
+    } else if (start.instances.length >= 2 && start.instances.length <= 4) {
+      const src = catalog.seriesSource(start.uid);
+      if (src)
+        void engine.imageViews(src).then((v) =>
+          hang(v.map((x, i) => ({ panel: { id: '', seriesUid: start.uid, kind: 'stack' as ViewKind, pin: i }, view: radiographView(x.viewPosition, x.patientOrientation, null) }))),
+        );
+    }
+    return () => {
+      cancelled = true;
+      if (hungFor.current === key) hungFor.current = null;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [task?.id, kase?.id, mode, catalog]);
 
   // ---------------------------------------------------------------- on-call shift
   const shiftId = sp.get('shift');
@@ -511,7 +576,9 @@ export default function Workstation() {
       return;
     }
     setLayout(l);
-    setBigPanel(null);
+    // A phone shows one view at a time (the switcher above the image picks it); a computer shows the grid.
+    setSoloPanel(isPhone && l !== '1' ? 'p0' : null);
+    setXrViews(new Map());
     setCompare(null);
     // Prefer other diagnostic series; fall back to scouts (clearly labelled) when nothing else exists.
     const others = [...caseSeries.filter((x) => x.uid !== primary && x.role !== 'scout'), ...caseSeries.filter((x) => x.uid !== primary && x.role === 'scout')];
@@ -524,6 +591,11 @@ export default function Workstation() {
         { id: 'p1', seriesUid: primary, kind: 'coronal' },
         { id: 'p2', seriesUid: primary, kind: 'sagittal' },
       ]);
+    // Angiograms: the MPR views open as a MIP slab, so a vessel is followed over several millimetres (switch in the toolbar).
+    if (l === 'mpr' || l === 'mpr3d') {
+      const src0 = catalog?.seriesSource(primary);
+      engine.setSlab(src0?.angiography ? { mm: defaultAngioSlabMm(src0.modality), blend: 'mip' } : null);
+    }
     if (l === 'mpr3d')
       setPanels([
         { id: 'p0', seriesUid: primary, kind: 'axial' },
@@ -953,6 +1025,8 @@ export default function Workstation() {
         e.preventDefault();
         engine.togglePlay(focused);
       }
+      else if (k === 'u' && panels.length > 1) toggleSolo(focused);
+      else if (k === 'Escape' && solo && !isPhone && !document.querySelector('[role="dialog"], [role="menu"]')) setSoloPanel(null);
       else if (k === 'r') engine.reset(focused);
       else if (k === 'i') engine.invert(focused);
       else if (k === 'f') toggleFullscreen();
@@ -1111,6 +1185,20 @@ export default function Workstation() {
     const t = setTimeout(() => setToolFlash(null), 1800);
     return () => clearTimeout(t);
   }, [activeTool]);
+  // Marks land on the true thin slice: a thick slab is set aside while a marking tool is in use and comes back after.
+  const slabBeforeMarking = useRef<ReturnType<ViewerEngine['getSlab']>>(null);
+  useEffect(() => {
+    const marking = MARK_TOOLS.has(activeTool) && activeTool !== 'eraser';
+    if (marking && engine.getSlab() && panels.some((x) => x.kind !== 'stack' && x.kind !== '3d')) {
+      slabBeforeMarking.current = engine.getSlab();
+      engine.setSlab(null);
+      toast.show('Marking on the thin slice: the MIP slab is back when you pick a viewing tool.');
+    } else if (!marking && slabBeforeMarking.current) {
+      engine.setSlab(slabBeforeMarking.current);
+      slabBeforeMarking.current = null;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTool]);
   // A tap or click on the finding with a viewing tool does nothing: say how to mark, a few times at most.
   const markHints = useRef(0);
   const MARK_HINT = 'To mark the finding, choose Point or Box in the toolbar first';
@@ -1144,7 +1232,6 @@ export default function Workstation() {
   }
 
   const tool = engine.getTool();
-  const big = bigPanel && panels.some((x) => x.id === bigPanel) ? bigPanel : null;
   const focusedKind = panels.find((x) => x.id === focused)?.kind ?? null;
   const focusedPanel = panels.find((p) => p.id === focused) ?? panels[0];
   const focusedSeries = focusedPanel ? catalog.series.get(focusedPanel.seriesUid) : undefined;
@@ -1167,13 +1254,28 @@ export default function Workstation() {
             : { text: 'Draft reference · self-review', tone: 'warn', title: `Unreviewed references (${AI_LABEL} outlines or dataset auto-labels): comparison only until you review them.` };
   // Said only when it matters: an unaided answer is the default and needs no note.
   const independentNote = rules.independent(session) ? '' : 'This attempt is recorded as assisted.';
+  /** Short name of a view for the switcher and the panel title: the plane, the radiographic view, or the series. */
+  const panelName = (pd: PanelDef, i: number): string => {
+    if (pd.kind !== 'stack') return pd.kind === '3d' ? '3D' : pd.kind[0].toUpperCase() + pd.kind.slice(1);
+    if (compare && pd.id === 'p1') return 'Other patient';
+    const xv = xrViews.get(pd.id);
+    if (xv) return xv === 'frontal' ? 'Frontal' : 'Lateral';
+    if (pd.pin !== undefined) return `Image ${pd.pin + 1}`;
+    const s = catalog.series.get(pd.seriesUid);
+    if (s?.modality === 'MG') {
+      const v = mammoView(s.description, s.acquisition);
+      if (v.side || v.view) return `${v.side ?? ''} ${v.view ?? ''}`.trim();
+    }
+    const d = (s?.description ?? '').trim();
+    return d ? (d.length > 16 ? `${d.slice(0, 15)}…` : d) : `View ${i + 1}`;
+  };
   const relNote = (p: PanelDef) => {
     if (compare && p.id === 'p1' && p.seriesUid === compare.seriesUid) {
       const lvl = levelZ !== null ? levelName(levelZ, marksA) : null;
       const how = syncPairs.length ? `level-matched by ${syncPairs.length} labelled structures${lvl ? ` · ≈ ${lvl}` : ''}` : 'not level-matched (scroll it yourself)';
       return `Different patient ${compare.rank + 1}/${compare.total}${compare.noFindings ? ' · no findings annotated' : ' · has annotated findings'} · ${how}`;
     }
-    if (p.id === panels[0]?.id || panels.length < 2) return null;
+    if (p.id === panels[0]?.id || panels.length < 2 || p.pin !== undefined || xrViews.has(p.id)) return null;
     const r = catalog.relationship(panels[0].seriesUid, p.seriesUid);
     if (p.seriesUid === panels[0].seriesUid) return p.kind === '3d' ? 'Same volume · 3D rendering' : 'Same volume · shared patient-space crosshair';
     if (r.kind === 'same_volume' || r.kind === 'common_frame') return 'Same frame of reference';
@@ -1276,7 +1378,7 @@ export default function Workstation() {
     }
     const c = list[rank % list.length];
     setLayout('2');
-    setBigPanel(null);
+    setSoloPanel(isPhone ? 'p0' : null);
     setPanels([
       { id: 'p0', seriesUid: primary, kind: 'stack' },
       { id: 'p1', seriesUid: c.seriesUid, kind: 'stack' },
@@ -1532,12 +1634,20 @@ export default function Workstation() {
             {engine.isLinked ? <Link2 size={17} /> : <Link2Off size={17} />}
           </IconButton>
         ) : null}
+        {(layout === 'mpr' || layout === 'mpr3d') && catalog.seriesSource(panels[0]?.seriesUid ?? '')?.angiography ? (
+          <AngioSlabControl engine={engine} modality={catalog.series.get(panels[0].seriesUid)?.modality ?? 'CT'} />
+        ) : null}
         {panels.some((x) => x.kind === 'axial' || x.kind === 'coronal' || x.kind === 'sagittal') ? (
           <PlanesControl engine={engine} focused={focused} kind={focusedKind === 'axial' || focusedKind === 'coronal' || focusedKind === 'sagittal' ? focusedKind : null} />
         ) : null}
         {panels.length > 1 ? (
-          <IconButton label={big ? 'Back to the grid' : 'Enlarge the selected view (the others stay live beside it)'} active={!!big} onClick={() => setBigPanel(big ? null : focused)}>
-            {big ? <Minimize2 size={17} /> : <Maximize2 size={17} />}
+          <IconButton
+            label={solo ? 'Back to all the views (Esc)' : 'Show the selected view alone (double-click its title)'}
+            shortcut="U"
+            active={!!solo}
+            onClick={() => toggleSolo(focused)}
+          >
+            {solo ? <Minimize2 size={17} /> : <Maximize2 size={17} />}
           </IconButton>
         ) : null}
         <span className="spacer" />
@@ -1698,26 +1808,53 @@ export default function Workstation() {
             {toolFlash}
           </div>
         ) : null}
+        {panels.length > 1 && (solo || isPhone) ? (
+          <div className="vswitch" role="tablist" aria-label="Views of this layout">
+            {panels.map((pd, i) => (
+              <button
+                key={pd.id}
+                role="tab"
+                aria-selected={solo === pd.id}
+                className={solo === pd.id ? 'on' : ''}
+                onClick={() => {
+                  setSoloPanel(pd.id);
+                  setFocused(pd.id);
+                }}
+              >
+                {panelName(pd, i)}
+              </button>
+            ))}
+            <button role="tab" aria-selected={!solo} className={!solo ? 'on' : ''} onClick={() => setSoloPanel(null)} title="All the views together">
+              <LayoutGrid size={14} aria-hidden /> <span className="vswitch-all">All</span>
+            </button>
+          </div>
+        ) : null}
         <div
-          className={`vgrid ${layout === '1' ? 'l1' : layout === '2' ? 'l2' : layout === 'mpr' ? 'l3mpr' : layout === 'mpr3d' ? 'l4 mpr3d' : layout === 'mg' ? (panels.length > 2 ? 'l4' : 'l2') : 'l4'}${big ? ' big' : ''}`}
-          style={big ? { gridTemplateRows: `repeat(${panels.length - 1}, 1fr)` } : undefined}
+          className={`vgrid ${layout === '1' ? 'l1' : layout === '2' ? 'l2' : layout === 'mpr' ? 'l3mpr' : layout === 'mpr3d' ? 'l4 mpr3d' : layout === 'mg' ? (panels.length > 2 ? 'l4' : 'l2') : 'l4'}${solo ? ' solo' : ''}${panels.length > 1 && isPhone ? ' switched' : ''}`}
         >
-          {panels.map((pd) => {
-            const src = catalog.seriesSource(pd.seriesUid);
+          {panels.flatMap((pd, i) => {
+            const full = catalog.seriesSource(pd.seriesUid);
+            const src = full && pd.pin !== undefined ? pinnedSource(full, pd.pin) : full;
             const s = catalog.series.get(pd.seriesUid);
-            if (!src || !s) return <div key={pd.id} className="vpanel"><div className="vp-status">Series unavailable.</div></div>;
-            return (
+            // The view shown alone leaves its grid cell to a placeholder, so the hidden views keep their cells and sizes.
+            const slot = solo === pd.id ? [<div key={`slot-${pd.id}`} className="vslot" aria-hidden />] : [];
+            if (!src || !s) return [...slot, <div key={pd.id} className={`vpanel${solo === pd.id ? ' solo' : ''}`}><div className="vp-status">Series unavailable.</div></div>];
+            return [
+              ...slot,
               <ViewportPanel
-                key={`${pd.id}-${pd.seriesUid}-${pd.kind}`}
+                key={`${pd.id}-${pd.seriesUid}-${pd.kind}-${pd.pin ?? ''}`}
                 engine={engine}
                 panelId={pd.id}
                 source={src}
                 series={s}
                 seriesIndex={catalog.seriesIndex(pd.seriesUid)}
                 kind={pd.kind}
-                startIndex={startIndexFor(pd.seriesUid, task)}
+                startIndex={pd.pin !== undefined ? 0 : startIndexFor(pd.seriesUid, task)}
+                viewTag={xrViews.get(pd.id) === 'frontal' ? 'Frontal' : xrViews.get(pd.id) === 'lateral' ? 'Lateral' : undefined}
                 focused={focused === pd.id}
-                big={big === pd.id}
+                solo={solo === pd.id}
+                onToggleSolo={panels.length > 1 ? () => toggleSolo(pd.id) : undefined}
+                viewName={panels.length > 1 ? panelName(pd, i) : undefined}
                 onFocus={() => setFocused(pd.id)}
                 onImageClick={pd.kind === '3d' ? undefined : hintMark}
                 onImageDoubleClick={(c) => {
@@ -1740,8 +1877,8 @@ export default function Workstation() {
                 onPickSeries={(u) => pickSeries(pd.id, u)}
                 relationNote={relNote(pd)}
                 assessMasked={assessMasked}
-              />
-            );
+              />,
+            ];
           })}
         </div>
       </section>
@@ -1805,6 +1942,32 @@ export default function Workstation() {
               scoringLabel={scoringLabel}
               exam={examItem && exam ? { index: examIndex, total: exam.items.length, secondsLeft: examLeft } : null}
             />
+            {/* Size, extent, volume and place of each expert-outlined finding: only once the reference may be seen. */}
+            {refAllowed && !exam ? (
+              <FindingAnalysis
+                findings={[...targets.values()].filter((t) => t.ref.classId.startsWith('finding:') && (t.ref.provenance === 'source_manual' || t.ref.provenance === 'human_reviewed') && caseSeries.some((x) => x.uid === t.ref.seriesUid)).slice(0, 8)}
+                anatomy={anatomyTargets}
+                seriesIndex={(uid) => catalog.seriesIndex(uid)}
+                imageOf={(uid, sop) => {
+                  const src = catalog.seriesSource(uid);
+                  const i = src ? src.sopUids.indexOf(sop) : -1;
+                  return i >= 0 && src ? { index: i, count: src.sopUids.length } : null;
+                }}
+                onGoTo={(t, sop) => {
+                  const pd = panels.find((x) => x.seriesUid === t.ref.seriesUid && x.kind === 'stack' && x.pin === undefined) ?? null;
+                  if (!pd) pickSeries(panels[0].id, t.ref.seriesUid);
+                  const id = pd?.id ?? panels[0].id;
+                  setHighlight(new Set([t.ref.id]));
+                  const go = (tries = 20) => {
+                    const src = catalog.seriesSource(t.ref.seriesUid);
+                    const i = src ? src.sopUids.indexOf(sop) : -1;
+                    if (i >= 0 && engine.panelState(id)?.ready && engine.panelState(id)?.seriesUid === t.ref.seriesUid) engine.setIndex(id, i);
+                    else if (tries > 0) setTimeout(() => go(tries - 1), 150);
+                  };
+                  go();
+                }}
+              />
+            ) : null}
             {/* After the learner's own result, never before it. */}
             {guest && session.submitted ? (
               <GuestSaveCard onStart={() => startAccount('signup')} onSignIn={() => startAccount('login')} />
@@ -1948,6 +2111,7 @@ export default function Workstation() {
                   ['L G E', 'Length, Angle, Eraser'],
                   ['1–6', 'Window presets for this series'],
                   ['I  R  F', 'Invert, Reset, Full screen'],
+                  ['U  /  Esc', 'Show the selected view alone (or double-click its title) / back to all the views'],
                   ['V  N', 'Filled or outlined structures, names on the image (Learn, Review, after submitting)'],
                   ['X', 'Crosshairs: click to move all MPR planes'],
                   ['K', 'Link / unlink views (scroll together, reference lines)'],

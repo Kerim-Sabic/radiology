@@ -1,28 +1,103 @@
 /* Linked views, enlarged view and the 3D panel controls (cut, structures, quiz). */
 
-/* ---------------------------------------------------------------- enlarged view */
-.vgrid.big {
-  grid-template-columns: minmax(0, 1fr) minmax(160px, 24%);
+/* ---------------------------------------------------------------- one view alone (one-up) */
+/* The chosen view covers the whole grid; its cell keeps a placeholder (.vslot), so every other view keeps its cell and
+   size (no resize: slice, zoom, pan and window stay as they were) and stays live and linked, only invisible. */
+.vgrid.solo > .vpanel.solo {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
 }
-.vgrid.big > .vpanel {
-  grid-column: 2;
+.vgrid.solo > .vpanel:not(.solo) {
+  visibility: hidden;
 }
-.vgrid.big > .vpanel.big {
-  grid-column: 1;
-  grid-row: 1 / -1;
-  order: -1;
+.vslot {
+  min-width: 0;
+  min-height: 0;
 }
-@media (max-width: 860px) {
-  .vgrid.big {
-    grid-template: 1fr / 1fr !important;
+/* View switcher: one button per view of the layout, and All; above the image so it never covers it. */
+.vswitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 0 8px;
+  background: #0d0f12;
+  border-bottom: 1px solid var(--line);
+  overflow-x: auto;
+  scrollbar-width: none;
+  z-index: 4;
+}
+.vswitch button {
+  flex: none;
+  height: 26px;
+  padding: 0 12px;
+  border-radius: 13px;
+  border: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--text-2);
+  font: 500 12.5px var(--font);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.vswitch button.on {
+  background: rgba(var(--accent-rgb), 0.18);
+  border-color: rgba(var(--accent-rgb), 0.7);
+  color: var(--text);
+}
+/* Phones: the switcher is always there with several views, so the grid sits below it for good. On a computer it appears
+   only with a view shown alone: it covers the top of the hidden grid (the hidden views are not resized) and the view
+   shown alone starts below it. */
+.vgrid.switched {
+  top: 36px;
+}
+.vgrid.solo:not(.switched) > .vpanel.solo {
+  top: 36px;
+}
+/* The corner button that shows a view alone. */
+.vp-max {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(18, 21, 26, 0.72);
+  color: #dfe6ee;
+  opacity: 0.75;
+  cursor: pointer;
+  z-index: 3;
+}
+.vp-max:hover,
+.vp-max:focus-visible {
+  opacity: 1;
+}
+.vpanel:has(.vp-max) .vp-corner.tr {
+  padding-right: 34px;
+}
+.vp-title {
+  pointer-events: auto;
+  cursor: default;
+  user-select: none;
+}
+@media (pointer: coarse) {
+  .vp-max {
+    width: 32px;
+    height: 32px;
   }
-  .vgrid.big > .vpanel {
-    display: none;
-  }
-  .vgrid.big > .vpanel.big {
-    display: block;
-    grid-column: 1;
-    grid-row: 1;
+  .vpanel:has(.vp-max) .vp-corner.tr {
+    padding-right: 40px;
   }
 }
 
@@ -333,12 +408,65 @@
   }
 }
 
-/* Phones: MPR + 3D shows the axial view and the 3D view (the other planes stay live, linked and off-screen). */
-@media (max-width: 860px) {
-  .vgrid.l4.mpr3d > :nth-child(n + 2) {
-    display: none;
+/* Phones: every view of a layout is reachable through the view switcher (one at a time by default). */
+
+/* Angiograms in MPR: MIP slab switch and thickness in the toolbar. */
+.angio-slab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.angio-slab input[type='range'] {
+  width: 84px;
+}
+@media (max-width: 600px) {
+  .angio-slab input[type='range'] {
+    width: 64px;
   }
-  .vgrid.l4.mpr3d > :nth-child(4) {
-    display: block;
-  }
+}
+
+/* The name of a clicked structure stays on screen (brighter edge than the passing hover name). */
+.vp-hover.pinned {
+  border-color: rgba(var(--accent-rgb), 0.8);
+}
+
+/* Finding analysis (Task tab, once the reference may be seen). */
+.finding-analysis {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.finding-analysis h3 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 14px;
+}
+.finding-analysis p {
+  margin: 0;
+}
+.fa-item {
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.fa-item dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 3px 10px;
+  margin: 0;
+  font-size: 13px;
+}
+.fa-item dt {
+  color: var(--text-3);
+}
+.fa-item dd {
+  margin: 0;
+}
+.fa-item .btn {
+  align-self: flex-start;
 }

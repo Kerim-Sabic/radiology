@@ -1840,20 +1840,17 @@ button.chip[aria-pressed='true'] {
     padding: 0 6px;
     height: 40px;
   }
-  .vgrid.l4 {
-    grid-template: 1fr 1fr / 1fr;
-  }
-  .vgrid.l4 > :nth-child(n + 3) {
-    display: none;
-  }
+  /* No view is ever display:none (a collapsed view loses its camera): the switcher shows one at a time, All shows them
+     together. */
   .vgrid.l2 {
     grid-template: 1fr 1fr / 1fr;
   }
   .vgrid.l3mpr {
-    grid-template: 1fr / 1fr;
+    grid-template: 1.2fr 1fr / 1fr 1fr;
   }
-  .vgrid.l3mpr > :nth-child(n + 2) {
-    display: none;
+  .vgrid.l3mpr > :first-child {
+    grid-row: auto;
+    grid-column: span 2;
   }
   .hide-sm {
     display: none !important;

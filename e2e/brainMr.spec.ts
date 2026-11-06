@@ -23,5 +23,17 @@ test.describe('Brain anatomy on MRI', () => {
     await thalamus.click();
     await expect(page.locator('.vp-isolate')).toContainText('Left thalamus');
     await expect(page.locator('.vp-svg polygon, .vp-svg path').first()).toBeVisible();
+    // Back to all structures: a click on the thalamus keeps its name on screen.
+    await page.locator('.vp-isolate').getByRole('button', { name: 'Show all' }).click();
+    const c = await page.evaluate(() => {
+      const thal = [...document.querySelectorAll('[data-panel="p0"] .vp-svg polygon')].find((el) => getComputedStyle(el).stroke === 'rgb(45, 212, 191)');
+      if (!thal) return null;
+      const b = thal.getBoundingClientRect();
+      return [b.left + b.width / 2, b.top + b.height / 2];
+    });
+    expect(c).not.toBeNull();
+    await page.mouse.click(c![0], c![1]);
+    await page.mouse.move(5, 5);
+    await expect(page.locator('[data-panel="p0"] .vp-hover.pinned')).toContainText(/thalamus/i);
   });
 });

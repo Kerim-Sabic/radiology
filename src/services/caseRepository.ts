@@ -435,7 +435,9 @@ function linkGeometry(s: Series, instances: Series['instances']): Pick<SeriesSou
   };
 }
 
-/** A time-of-flight MR angiogram (by its description and sequence), so the 3D view can open with the angiography rendering. */
-function isAngiography(s: Series): boolean {
-  return s.modality === 'MR' && classifySequence(s.description, s.acquisition)?.id === 'TOF';
+/** An angiogram: a time-of-flight MR angiogram (by its description and sequence) or a CT angiogram named as one (CTA,
+ *  CTPA, angiography). The 3D view opens with a vessel rendering and the MPR views with a MIP slab. */
+export function isAngiography(s: Pick<Series, 'modality' | 'description' | 'acquisition'>): boolean {
+  if (s.modality === 'MR') return classifySequence(s.description, s.acquisition)?.id === 'TOF';
+  return s.modality === 'CT' && /\b(CTA|CTPA|angio(gram|graphy)?)\b/i.test(s.description ?? '');
 }

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react';
-import { ChevronDown, ChevronRight, HeartPulse, RotateCcw, Scissors, X } from 'lucide-react';
+import { ChevronDown, ChevronRight, HeartPulse, Pause, RotateCcw, Rotate3d, Scissors, X } from 'lucide-react';
 import { NO_CUT, PLANE_COLORS, type Cut3D, type PlaneKind, type Side, type ViewerEngine } from '../../viewer/engine';
 import type { LoadedTarget } from '../../grading/spatialGrader';
 import { GROUP_LABEL, GROUP_ORDER, type Group3D } from '../../viewer/anatomyMask';
@@ -124,6 +124,15 @@ export function Volume3DControls(p: {
         </button>
         <button className={`btn sm${pane === 'anatomy' || shownCount ? ' on' : ''}`} onClick={() => setPane(pane === 'anatomy' ? null : 'anatomy')} aria-expanded={pane === 'anatomy'} aria-label={shownCount ? `Structures (${shownCount} shown)` : "Structures"} title="Show only chosen structures (heart, arteries, veins…)">
           <HeartPulse size={13} /> <span className="v3d-label">Structures</span>{shownCount ? ` ${shownCount}` : ''}
+        </button>
+        <button
+          className={`btn sm${engine.isSpinning(panelId) ? ' on' : ''}`}
+          aria-pressed={engine.isSpinning(panelId)}
+          aria-label={engine.isSpinning(panelId) ? 'Stop turning' : 'Turn slowly'}
+          title={engine.isSpinning(panelId) ? 'Stop turning (or click the view)' : 'Turn the 3D view slowly around, one turn in 24 seconds'}
+          onClick={() => engine.setSpin(panelId, !engine.isSpinning(panelId))}
+        >
+          {engine.isSpinning(panelId) ? <Pause size={13} /> : <Rotate3d size={13} />} <span className="v3d-label">Spin</span>
         </button>
         <button className="btn sm ghost" title="Reset the 3D view (turn, zoom and cut)" aria-label="Reset the 3D view" onClick={() => {
           engine.set3DCut(panelId, null);

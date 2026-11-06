@@ -125,3 +125,37 @@ function TiltSection({ engine, focused, kind }: { engine: ViewerEngine; focused:
     </>
   );
 }
+
+/**
+ * Angiograms in MPR: the MIP slab on or off and its thickness (5-40 mm), always in view in the toolbar. Marking tools
+ * put the views on the thin slice while they are in use (the workstation does that), so a mark is never placed on a
+ * projection.
+ */
+export function AngioSlabControl({ engine, modality }: { engine: ViewerEngine; modality: string }) {
+  const m = engine.getSlab();
+  const on = m?.blend === 'mip';
+  const mm = on ? m!.mm : modality === 'MR' ? 20 : 10;
+  return (
+    <span className="angio-slab" role="group" aria-label="Vessel MIP slab">
+      <button
+        className={`btn sm${on ? ' on' : ''}`}
+        aria-pressed={on}
+        title={on ? `Showing a ${mm} mm maximum-intensity slab (vessels followed through it). Click for the thin slice.` : 'Showing the thin slice. Click for a maximum-intensity slab that follows the vessels.'}
+        onClick={() => engine.setSlab(on ? null : { mm, blend: 'mip' })}
+      >
+        {on ? `MIP ${mm} mm` : 'Thin slice'}
+      </button>
+      <input
+        type="range"
+        min={5}
+        max={40}
+        step={1}
+        value={mm}
+        disabled={!on}
+        onChange={(e) => engine.setSlab({ mm: Number(e.target.value), blend: 'mip' })}
+        aria-label="MIP slab thickness in millimetres"
+        title="Slab thickness, 5-40 mm"
+      />
+    </span>
+  );
+}
