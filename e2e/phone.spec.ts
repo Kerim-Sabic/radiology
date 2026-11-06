@@ -87,7 +87,8 @@ test('a drill answers a tap on the structure', async ({ page }) => {
       if (await choice.count()) await choice.tap();
       else await page.touchscreen.tap(box.x + 8, box.y + 8);
       await expect.poll(() => page.evaluate(() => (window as any).__rvmDrill?.state)).toBe('answered');
-      await page.getByRole('button', { name: /^Next/ }).first().tap();
+      // The question's Next, not the image's "Next structure" (the label strip on the drill image has one too).
+      await page.getByRole('complementary', { name: 'Question' }).getByRole('button', { name: /^Next/ }).tap();
     }
   }
   expect(checked).toBe(true);
