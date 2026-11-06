@@ -4,6 +4,53 @@ _Plan written 6 November 2026 before any build; the report at the top is updated
 
 ## Report
 
+### Round 2 (6 November 2026): brain anatomy on MRI
+
+**Shipped**
+- The MRI anatomy layer (`anatomy-atlas-mr`, now 31.2 MB) adds **2,497 brain-structure outlines on 90 brain MRI series**
+  of 85 patients: 82 diffusion studies (ISLES 2022, `stroke-mri*`), 6 glioma series (ReMIND, `expansion` and `neuro-msk`:
+  T1 after contrast, T2, FLAIR) and 2 vestibular-schwannoma series (`ct-tumors`: T1 after contrast, T2). Frontal,
+  parietal, temporal and occipital lobes, insula, cingulate gyrus, precentral/postcentral (the central sulcus between
+  them) and superior temporal gyri, lateral ventricles with temporal horns, third and fourth ventricles, caudate,
+  putamen, globus pallidus, thalamus, hippocampus, amygdala, brainstem and cerebellar hemispheres. All unreviewed AI
+  drafts in the atlas layer, credited to Horalix, never graded.
+- Model: GOUHFI 2.0 (Apache-2.0), contrast- and resolution-agnostic, run on the two RTX 5080s; images that are not
+  skull-stripped were masked first with the brain class of TotalSegmentator `total_mr` (open, no key).
+- **Accuracy** on 20 brains labelled by hand (OASIS-TRT-20 of Mindboggle-101: DKT cortex by hand, CC BY 4.0;
+  subcortical structures by hand by Neuromorphometrics, CC BY-NC-ND 4.0, used only to measure; the model's authors kept
+  these brains for testing only). Median Dice at 1 mm: lobes (cortex) 0.86-0.93, insula 0.89, cingulate 0.84, precentral
+  0.88, postcentral 0.84, superior temporal 0.88, thalamus 0.88, caudate 0.86, putamen 0.87, pallidum 0.84, hippocampus
+  0.81, amygdala 0.69, lateral ventricle 0.81, third ventricle 0.70, fourth 0.80, brainstem 0.88, cerebellum 0.93; no left/
+  right swap in 20 brains. With the T1 taken to 2 mm first (as the diffusion grids) most structures keep 89-97 % of the
+  Dice the grid itself allows (the manual labels taken to 2 mm and back): e.g. thalamus 0.84, putamen 0.82, cerebellum
+  0.90, brainstem 0.86.
+- QC: CSF signal by sequence (ventricles dark on T1/FLAIR/DWI, bright on T2/ADC), side of a midline plane fitted to the
+  third ventricle, anatomical order, size and fragments, outline-vs-mask Dice >= 0.9; **tumour rule**: nothing within
+  10 mm of a tumour outlined by the dataset's experts is shown, on every series of that patient (glioma: 12-24 of 37
+  structures removed; schwannoma: left temporal lobe, hippocampus, cerebellum and brainstem removed); **validation
+  rule**: on grids coarser than 1.5 mm, structures below Dice 0.65 or below 85 % of the grid's ceiling at 2 mm are not
+  shown (third ventricle, amygdala, postcentral gyrus on the diffusion series). Every published series was looked at
+  (4 views each; the large infarcts, the rotated head and the tumour series again at higher resolution); one old infarct
+  cavity's ragged right parietal and occipital lobes were dropped.
+- GPU and CPU agree: the brain model on one case differs in 128 of 179,950 voxels (Dice per label >= 0.99) with the same
+  QC outcome; the brain mask in 76 of 915,054 voxels.
+- Viewer: one colour per lobe and nucleus, notes for every structure (what it looks like, what is next to it, the
+  pitfall), Ch 20 checklist items for the MRI brain; unit tests and a Playwright test on a diffusion MRI.
+- A bug found on the way: the tumour rule read the schwannoma outlines (stored in patient millimetres) as pixels; fixed
+  before anything was published.
+
+**Dropped or not done, and why**
+- SynthSeg 2.0: its weights ship only inside FreeSurfer, whose licence is accepted by downloading (Needs Kerim 4).
+- ADC maps: the outlines are on the DWI of the same acquisition (same grid); both would exceed the 45 MB budget.
+- Thin gyri on 2 mm diffusion grids: most fail the outline check and are not shown there.
+- `total_mr` on the thigh, prostate and other body MRIs: not in this round (next).
+- The lobes' white matter is assigned to the nearest lobe cortex; the validation measures the cortex part only (the
+  manual maps have no white-matter label).
+
+**Licences:** GOUHFI 2.0 Apache-2.0 (Fortin et al., arXiv:2601.09006); TotalSegmentator `total_mr` Apache-2.0
+(Wasserthal et al.); Mindboggle-101 cortex labels CC BY 4.0 and OASIS-TRT-20 whole-brain labels CC BY-NC-ND 4.0 (Klein &
+Tourville 2012), used for validation only and not redistributed.
+
 ### Round 1 (6 November 2026): brain MR angiography, the Circle of Willis and aneurysms
 
 **Shipped**
@@ -72,6 +119,9 @@ Nothing below blocks the work that is running; each item is a decision or a sign
      (CT: lobes, deep nuclei, ventricles, **venous sinuses** as one class), `thigh_shoulder_muscles_mr`,
      `appendicular_bones_mr`. Request at https://backend.totalsegmentator.com/license-academic/ (or the commercial form).
    - Open Kidney Ultrasound Data Set (514 images, two expert sonographers, CC BY-NC-SA): Qualtrics request form.
+   - SynthSeg 2.0 weights: the link in its README is dead; they now ship only inside FreeSurfer, whose licence says that
+     downloading it constitutes acceptance of the FreeSurfer Software License Agreement. Not downloaded; round 2 uses
+     GOUHFI 2.0 (Apache-2.0) instead. If Kerim accepts the FreeSurfer licence, SynthSeg can be compared.
    - EchoNet-Dynamic / Stanford AIMI ultrasound sets: research-use agreement.
 5. **Disk.** C: has about 20 GB free now (40 GB at the start). Downloads are selective (only the cases built) and model weights are extracted from the
    docker images while streaming, without saving the images. More space would allow more cases per round.

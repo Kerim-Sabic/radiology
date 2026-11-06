@@ -57,7 +57,7 @@ def head_mask(sig: np.ndarray) -> np.ndarray:
     return m
 
 
-def trace_slice(m2: np.ndarray) -> tuple[list, list]:
+def trace_slice(m2: np.ndarray, tol: float = DP_TOL_PX) -> tuple[list, list]:
     lab, n = ndi.label(m2, structure=np.ones((3, 3), bool))
     polys, holes = [], []
     for c in range(1, n + 1):
@@ -79,7 +79,7 @@ def trace_slice(m2: np.ndarray) -> tuple[list, list]:
                 cc = max(cs, key=len) - 1.0
                 if not np.allclose(cc[0], cc[-1]):
                     cc = np.vstack([cc, cc[:1]])
-                s = measure.approximate_polygon(cc, tolerance=DP_TOL_PX)
+                s = measure.approximate_polygon(cc, tolerance=tol)
                 if len(s) < 4:
                     continue
                 ring = [[round(float(p[1]), 2), round(float(p[0]), 2)] for p in s]

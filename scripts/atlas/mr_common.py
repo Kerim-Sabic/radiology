@@ -16,8 +16,8 @@ OUT_PACK_MR = PACKS_DIR / "anatomy-atlas-mr"
 REPORT_MR = REPO / "docs" / "data" / "anatomy-atlas-mr-report.md"
 VENV_GPU = Path(os.environ.get("RADIOLOGY_GPU_VENV", DATA_ROOT / "venv-gpu"))
 
-# Image packs whose MRI series get outlines (round 1: the TOF angiograms; round 2 adds the brain and body MRIs).
-MR_SOURCE_PACKS = ["brain-mra"]
+# Image packs whose MRI series get outlines (round 1: the TOF angiograms; round 2: the brain MRIs).
+MR_SOURCE_PACKS = ["brain-mra", "neuro-msk", "expansion", "ct-tumors", "stroke-mri", "stroke-mri-2", "stroke-mri-3"]
 
 # Arteries of the Circle of Willis (cow_post names -> class id and label). Sub-segments replace their whole artery.
 COW_LABEL = {
@@ -57,7 +57,11 @@ def case_ids():
     for _, _, se in rows:
         k = subject_short(se["subjectKey"])
         count[k] = count.get(k, 0) + 1
-    return [((k := subject_short(se["subjectKey"])) if count[k] == 1 else f"{k}-{se['uid'][-6:]}", pid, root, se) for pid, root, se in rows]
+    out = []
+    for pid, root, se in rows:
+        k = subject_short(se["subjectKey"])
+        out.append((k if count[k] == 1 else f"{k}-{se['uid'][-6:]}", pid, root, se))
+    return out
 
 
 def is_tof(se: dict) -> bool:

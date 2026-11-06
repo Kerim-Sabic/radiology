@@ -101,7 +101,8 @@ never written by these scripts.
 
 The CT atlas is at its 80 MB budget, so MRI outlines are a separate pack with the same contract (layer `atlas`,
 `ai_draft`, `unreviewed`, `target_only`, source "Horalix"). Image packs scanned: `MR_SOURCE_PACKS` in `mr_common.py`
-(round 1: `brain-mra`). Work folder `C:/Users/kerim/radiology-data/work/atlas-mr` (`RADIOLOGY_ATLAS_MR_WORK`).
+(round 1: `brain-mra`; round 2 adds the brain MRIs of `neuro-msk`, `expansion`, `ct-tumors` and the three `stroke-mri*` packs).
+Work folder `C:/Users/kerim/radiology-data/work/atlas-mr` (`RADIOLOGY_ATLAS_MR_WORK`).
 
 ### GPU environment
 
@@ -150,3 +151,32 @@ dtype constructors allow-listed); the team's YOLO locator is not used because it
 | visual | every case inspected on MIPs; anything wrong is dropped through `cow_visual_check.json` |
 
 Series that carry expert artery labels in their own pack (the TopCoW controls of `brain-mra`) get no AI artery outlines.
+
+## MRI brain anatomy (round 2)
+
+Lobes, insula, cingulate, precentral/postcentral/superior temporal gyri, lateral/third/fourth ventricles, caudate,
+putamen, globus pallidus, thalamus, hippocampus, amygdala, brainstem and cerebellum on every brain MRI of the image packs.
+
+Model: GOUHFI 2.0 (Fortin et al., arXiv:2601.09006; Apache-2.0; Zenodo 17920473), contrast- and resolution-agnostic
+(trained on synthetic images): segmentation model `Dataset020_gouhfi_2p0n2` (35 labels) and DKT parcellation model
+`Dataset024_gouhfi_parc` (62 gyri), fold 0, in `C:/Users/kerim/radiology-data/weights/gouhfi` (`RADIOLOGY_GOUHFI_WEIGHTS`).
+Series that are not skull-stripped get a brain mask first from TotalSegmentator `total_mr` (`--roi_subset brain`, open
+licence, run through its CLI because its Python API hangs on Windows), dilated 2 mm.
+
+| step | command | notes |
+|---|---|---|
+| B-1 | `CUDA_VISIBLE_DEVICES=0 $GPU mr_run_brain.py --shard=0/2` and `CUDA_VISIBLE_DEVICES=1 $GPU mr_run_brain.py --shard=1/2` | one segmentation per subject and grid (ISLES: on the ADC map, shared with its DWI through `brain_from.json`); non-stripped series masked first (`--stripped-only` / `--unstripped-only` to split the work) → `seg_brain.nii.gz`, `seg_parc.nii.gz` |
+| B-2 | `$GPU mr_brain_contours.py [case ...]` | structures, QC rules 1-5 below, per-SOP outlines on every series of the grid → `brain_structures.json`, `brain_geom/` |
+| check | `$GPU mr_render_brain.py --sheets` (or `[--dpi=130] case ...`) | 4 views per series (basal ganglia, high axial, posterior fossa, coronal thalami) from the traced outlines; record the result per segmented series in `WORK_MR/brain_visual_check.json` (`verdict`, `drop`, `why`) |
+| check | `$GPU brain_segment.py <mr.nii.gz> <out> --device=cpu` | CPU/GPU spot check of the brain model (one case) |
+| pack | `$GPU mr_write_pack.py` | brain series are published only when the visual check has their segmented series |
+
+| rule | brain MRI |
+|---|---|
+| 1 size | largest 26-connected part; < 0.3 ml (0.1 ml for small nuclei) or < 2 slices → dropped |
+| 2 signal | lateral ventricles darker than white matter where CSF is dark (T1, T1 after contrast, FLAIR, DWI) and brighter where it is bright (T2, ADC), else the series' ventricles are dropped |
+| 3 partial | a structure on the first or last slice (≥ 10 % of its largest area) or touching the image edge is labelled "(partially imaged)" |
+| 4 side / order | midline plane fitted to the third ventricle; a lateral structure keeps ≥ 90 % of its voxels on its side (60 % for cingulate, lateral ventricle, frontal/parietal/occipital lobes, cerebellum, thalamus) and its centroid on its side; thalamus above brainstem, ventricle above thalamus, cerebellum behind the brainstem, frontal in front of occipital, temporal below parietal, left left of right |
+| 5 tumour | any structure within 10 mm of a tumour outlined by the dataset's experts (any series of the same frame of reference, outlines in pixels or patient mm) is not shown, on every series of that patient |
+| trace | outline re-rasterised vs mask, Dice ≥ 0.9 (simplification 1.0 px for lobes, 0.35 px otherwise); gyri on 2 mm DWI mostly fail and are not shown |
+| visual | every published series inspected (`brain_visual_check.json`) |

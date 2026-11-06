@@ -1087,7 +1087,33 @@ const N: Array<[RegExp, StructureNote]> = [
       window: 'Soft tissue',
     },
   ],
+  // ------------------------------------------------------------- brain (MRI)
+  ...brainNote(/^frontal_lobe$/, 'The largest lobe, in front of the central sulcus and above the Sylvian fissure.', 'Behind it the parietal lobe (across the central sulcus), below and behind it the temporal lobe (across the Sylvian fissure).', 'Frontal lesions may cause personality change and, on the dominant side, expressive aphasia; the motor strip is its back edge.'),
+  ...brainNote(/^parietal_lobe$/, 'Between the central sulcus in front and the parieto-occipital sulcus behind, above the temporal lobe.', 'The postcentral gyrus (sensory cortex) is its front edge.', 'On axial images the central sulcus is found by its "hand knob" bend in the precentral gyrus just in front of it.'),
+  ...brainNote(/^temporal_lobe$/, 'Below the Sylvian fissure, in the middle cranial fossa, with the hippocampus along its inner side.', 'Above it the frontal and parietal lobes; behind it the occipital lobe.', 'Herpes encephalitis and post-traumatic contusions favour the temporal lobes.'),
+  ...brainNote(/^occipital_lobe$/, 'The back of each hemisphere, above the tentorium, with the visual cortex along the calcarine sulcus.', 'In front of it the parietal and temporal lobes; below it, across the tentorium, the cerebellum.', 'A posterior cerebral artery infarct affects it and causes a visual field defect.'),
+  ...brainNote(/^insula$/, 'Cortex folded deep inside the Sylvian fissure, covered by the frontal, parietal and temporal opercula.', 'The middle cerebral artery branches run over it; the claustrum and putamen lie deep to it.', 'Loss of the insular ribbon (grey and white matter becoming the same density) is an early CT sign of a middle cerebral artery infarct.'),
+  ...brainNote(/^cingulate_gyrus$/, 'The gyrus on the inner (medial) surface of each hemisphere that curves around the corpus callosum.', 'The pericallosal branch of the anterior cerebral artery runs between it and the corpus callosum.', 'Subfalcine herniation pushes the cingulate gyrus under the falx to the other side.'),
+  ...brainNote(/^precentral_gyrus$/, 'The motor cortex: the gyrus just in front of the central sulcus.', 'Behind it, across the central sulcus, the postcentral gyrus.', 'On high axial slices its "hand knob" (an inverted omega) marks the motor area of the hand.'),
+  ...brainNote(/^postcentral_gyrus$/, 'The primary sensory cortex: the gyrus just behind the central sulcus.', 'In front of it, across the central sulcus, the precentral gyrus.', 'It is usually thinner than the precentral gyrus on axial images.'),
+  ...brainNote(/^superior_temporal_gyrus$/, 'The top gyrus of the temporal lobe, forming the lower lip of the Sylvian fissure.', 'The transverse temporal gyri (hearing cortex) lie on its upper surface.', 'On the dominant side its back part is Wernicke’s area (receptive language).'),
+  ...brainNote(/^lateral_ventricle$/, 'CSF-filled chambers in each hemisphere: dark on T1 and FLAIR, bright on T2 and on the ADC map.', 'The caudate nucleus forms the side wall of the frontal horn; the temporal horn runs along the hippocampus.', 'Enlarged ventricles with normal sulci suggest hydrocephalus; with large sulci, atrophy. Slight asymmetry is normal.'),
+  ...brainNote(/^third_ventricle$/, 'A thin midline slit of CSF between the two thalami.', 'Connected to the lateral ventricles by the foramina of Monro and to the fourth ventricle by the cerebral aqueduct.', 'It widens early in hydrocephalus; its walls are the thalami.'),
+  ...brainNote(/^fourth_ventricle$/, 'A tent-shaped CSF space behind the pons and medulla, in front of the cerebellum.', 'The aqueduct enters from above; it drains into the cisterns around the brainstem.', 'Effacement by a swollen cerebellum (infarct, haemorrhage) can block the CSF and cause acute hydrocephalus.'),
+  ...brainNote(/^caudate_nucleus$/, 'Grey matter that bulges into the frontal horn of the lateral ventricle (its head) and tapers back along it (body and tail).', 'The anterior limb of the internal capsule separates it from the putamen.', 'Its head shrinks in Huntington disease, widening the frontal horns.'),
+  ...brainNote(/^putamen$/, 'The outer part of the lentiform nucleus, lateral to the internal capsule.', 'Lateral to it the external capsule, claustrum and insula; medial to it the globus pallidus.', 'The commonest site of hypertensive haemorrhage.'),
+  ...brainNote(/^globus_pallidus$/, 'The inner, paler part of the lentiform nucleus, medial to the putamen.', 'The internal capsule runs medial to it.', 'It is damaged symmetrically in carbon monoxide poisoning; it may calcify with age.'),
+  ...brainNote(/^thalamus$/, 'Paired grey-matter masses either side of the third ventricle.', 'The posterior limb of the internal capsule lies lateral to it; the midbrain below it.', 'A small infarct here causes a pure sensory stroke; thalamic haemorrhage is a hypertensive bleed.'),
+  ...brainNote(/^hippocampus$/, 'A curled strip of grey matter along the floor of the temporal horn of the lateral ventricle.', 'The amygdala lies just in front of it.', 'Shrinkage with a widened temporal horn suggests Alzheimer disease or mesial temporal sclerosis.'),
+  ...brainNote(/^amygdala$/, 'An almond-shaped grey-matter nucleus at the front of the medial temporal lobe.', 'Just in front of the hippocampus and the tip of the temporal horn.', 'It is hard to separate from the hippocampus on thick slices.'),
+  ...brainNote(/^brainstem$/, 'Midbrain, pons and medulla in the midline, in front of the fourth ventricle and cerebellum.', 'The basilar artery runs on the front of the pons; the cerebellum lies behind.', 'Small brainstem infarcts are easy to miss on CT and are best seen on diffusion MRI.'),
+  ...brainNote(/^cerebellum$/, 'The two cerebellar hemispheres in the posterior fossa, below the tentorium, with a finely folded (foliated) cortex.', 'In front of it the fourth ventricle and brainstem; above it, across the tentorium, the occipital lobes.', 'A swollen cerebellar infarct can compress the fourth ventricle and brainstem within hours.'),
 ];
+
+/** A brain-structure note (MRI and CT, Learning Radiology ch. 26). */
+function brainNote(match: RegExp, look: string, near: string, pitfall: string): Array<[RegExp, StructureNote]> {
+  return [[match, { look, near, pitfall, unit: 'ch26', window: 'Soft tissue' }]];
+}
 
 /** Teaching note for a label's class id (or canonical key); `family` picks the X-ray wording. */
 export function noteFor(classIdOrKey: string, family?: string): StructureNote | null {

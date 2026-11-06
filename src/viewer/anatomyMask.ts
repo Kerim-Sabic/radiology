@@ -47,7 +47,8 @@ export function groupFor(key: string): Group3D {
   if (/vein|vena|^portal/.test(key)) return 'veins';
   if (/^trachea|bronch/.test(key)) return 'airways';
   if (/^lung/.test(key)) return 'lungs';
-  if (/^(brain|cerebr|cerebell|spinal_cord|spinal_canal)/.test(key)) return 'brain';
+  if (/^(brain|cerebr|cerebell|spinal_cord|spinal_canal|frontal_lobe|parietal_lobe|temporal_lobe|occipital_lobe|insula|cingulate|precentral|postcentral|superior_temporal|lateral_ventricle|third_ventricle|fourth_ventricle|caudate|putamen|globus_pallidus|thalamus|hippocampus|amygdala)/.test(key))
+    return 'brain';
   if (/rib|vertebra|^sacrum|^femur|^femoral_head|^humerus|^scapula|^clavicle|^sternum|^hip|^skull|^spine|costal|^bones?$/.test(key)) return 'bones';
   if (/^(thyroid|thymus|adrenal|breast|gonad|prostat)/.test(key)) return 'glands';
   if (/^(liver|gallbladder|spleen|pancreas|kidney|stomach|duodenum|small_bowel|colon|rectum|bladder|uterus|esophagus)/.test(key)) return 'abdomen';
@@ -107,7 +108,25 @@ export function colorFor(key: string): string {
     [/^(prostat|thyroid)/, '#34d399'],
     [/^spinal_cord/, '#fef08a'],
     [/^spinal_canal/, '#fde68a'],
-    [/^brain_ventricles/, '#38bdf8'],
+    [/^brain_ventricles|^(lateral|third|fourth)_ventricle/, '#38bdf8'],
+    // Brain on MRI: one colour per lobe, the gyri of the central sulcus apart, deep grey nuclei distinct
+    [/^frontal_lobe/, '#fda4af'],
+    [/^parietal_lobe/, '#fcd34d'],
+    [/^temporal_lobe/, '#86efac'],
+    [/^occipital_lobe/, '#a5b4fc'],
+    [/^insula/, '#c4b5fd'],
+    [/^cingulate/, '#f0abfc'],
+    [/^precentral/, '#f43f5e'],
+    [/^postcentral/, '#f59e0b'],
+    [/^superior_temporal/, '#22c55e'],
+    [/^caudate/, '#a78bfa'],
+    [/^putamen/, '#fb7185'],
+    [/^globus_pallidus/, '#d9f99d'],
+    [/^thalamus/, '#2dd4bf'],
+    [/^hippocampus/, '#fde68a'],
+    [/^amygdala/, '#fdba74'],
+    [/^brainstem/, '#e879f9'],
+    [/^cerebellum/, '#93c5fd'],
     [/^(brain|cerebr|cerebell)/, '#f5d0fe'],
     [/^thymus/, '#a3e635'],
     [/^breast/, '#fbcfe8'],

@@ -57,6 +57,20 @@ describe('3D anatomy groups and colours', () => {
     }
     expect(new Set(cow.map(colorFor)).size).toBe(cow.length);
     expect(colorFor('anterior_cerebral_artery_left')).toBe(colorFor('anterior_cerebral_artery_right'));
+  });
+
+  it('puts the brain structures of the MRI atlas in the brain group, lobes and nuclei in their own colours', () => {
+    const brain = ['frontal_lobe_left', 'parietal_lobe_right', 'temporal_lobe_left', 'occipital_lobe_left', 'insula_left', 'cingulate_gyrus_left',
+      'precentral_gyrus_left', 'postcentral_gyrus_right', 'superior_temporal_gyrus_left', 'lateral_ventricle_left', 'third_ventricle',
+      'fourth_ventricle', 'caudate_nucleus_left', 'putamen_left', 'globus_pallidus_left', 'thalamus_left', 'hippocampus_left', 'amygdala_left',
+      'brainstem', 'cerebellum_left'];
+    for (const k of brain) expect(groupFor(k), k).toBe('brain');
+    expect(groupFor('lung_upper_lobe_left')).toBe('lungs');
+    expect(groupFor('heart_ventricle_left')).toBe('heart');
+    const lobes = ['frontal_lobe_left', 'parietal_lobe_left', 'temporal_lobe_left', 'occipital_lobe_left'].map(colorFor);
+    expect(new Set(lobes).size).toBe(4);
+    expect(colorFor('lateral_ventricle_left')).toBe(colorFor('third_ventricle'));
+    expect(colorFor('thalamus_left')).not.toBe(colorFor('putamen_left'));
     expect(opacityFor('aorta')).toBe(1);
   });
 });

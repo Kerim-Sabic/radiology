@@ -285,9 +285,9 @@
    "title": "Anatomy atlas, MRI (AI)",
    "manifest": "anatomy-atlas-mr/pack.json",
    "lessons": null,
-   "bytes": 946139,
+   "bytes": 31199528,
    "distribution": "repo",
-   "note": "AI anatomy layer for MRI (unreviewed): 148 artery outlines on 13 MR angiography series, automatic QC and a visual check applied. No images; requires brain-mra."
+   "note": "AI anatomy layer for MRI (unreviewed): 2645 outlines (Circle-of-Willis arteries on MR angiograms, brain structures on brain MRIs) on 103 MR series, automatic QC and a visual check applied. No images; requires brain-mra, neuro-msk, expansion, ct-tumors, stroke-mri, stroke-mri-2, stroke-mri-3."
   }
  ]
 }

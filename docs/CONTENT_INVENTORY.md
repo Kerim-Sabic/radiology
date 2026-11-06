@@ -12,7 +12,7 @@ _Generated 2026-11-06 by `scripts/report/content-report.mjs` from the installed 
 | Studies | 656 |
 | Series (all packs) | 854 |
 | DICOM instances | 23122 |
-| Reference targets | 5667 |
+| Reference targets | 8164 |
 
 ### Tasks by scoring basis
 
@@ -41,7 +41,7 @@ _Generated 2026-11-06 by `scripts/report/content-report.mjs` from the installed 
 
 | provenance | targets |
 |---|---|
-| ai_draft | 4531 |
+| ai_draft | 7028 |
 | source_automated | 3 |
 | source_manual | 1133 |
 
@@ -80,7 +80,7 @@ _Generated 2026-11-06 by `scripts/report/content-report.mjs` from the installed 
 | fx-radiographs-2 | repo | yes | 12 | 12 | 12 | 0.7 MB | 12 | 12 |
 | cxr-findings-3 | repo | yes | 40 | 40 | 40 | 15.9 MB | 40 | 53 |
 | brain-mra | repo | yes | 19 | 19 | 2874 | 201.9 MB | 19 | 34 |
-| anatomy-atlas-mr | repo | yes | 0 | 0 | 0 | 0.9 MB | 0 | 0 |
+| anatomy-atlas-mr | repo | yes | 0 | 0 | 0 | 29.8 MB | 0 | 0 |
 
 ## Patients and cases
 

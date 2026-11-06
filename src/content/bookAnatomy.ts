@@ -139,7 +139,13 @@ export const BOOK_ANATOMY: ChecklistGroup[] = [
     items: [
       { name: 'Prostate zones', match: /^prostate_(peripheral|transition)_zone$/, on: 'MR' },
       { name: 'Brain (cerebrum)', match: /^cerebrum$/, on: 'MR' },
-      { name: 'Ventricles', match: /ventricles?$/, on: 'MR' },
+      { name: 'Ventricles', match: /ventricles?$|^(lateral|third|fourth)_ventricle/, on: 'MR' },
+      { name: 'Frontal, parietal, temporal and occipital lobes', match: /^(frontal|parietal|temporal|occipital)_lobe_/, on: 'MR' },
+      { name: 'Central sulcus: precentral and postcentral gyri', match: /^(precentral|postcentral)_gyrus_/, on: 'MR' },
+      { name: 'Insula and cingulate gyrus', match: /^(insula|cingulate_gyrus)_/, on: 'MR' },
+      { name: 'Deep grey matter: caudate, putamen, globus pallidus, thalamus', match: /^(caudate_nucleus|putamen|globus_pallidus|thalamus)_/, on: 'MR' },
+      { name: 'Hippocampus and amygdala', match: /^(hippocampus|amygdala)_/, on: 'MR' },
+      { name: 'Brainstem and cerebellum', match: /^(brainstem|cerebellum)/, on: 'MR' },
     ],
   },
 ];
