@@ -616,7 +616,11 @@ export default function Workstation() {
   /** Mammography layout: which edge each panel's chest wall must face (applied once its image is loaded). */
   const mgFacing = useRef(new Map<string, 'left' | 'right' | null>());
 
-  const pickSeries = (panelId: string, uid: string) => setPanels((ps) => ps.map((p) => (p.id === panelId ? { ...p, seriesUid: uid, kind: 'stack' } : p)));
+  const pickSeries = (panelId: string, uid: string) => {
+    // Another series in a panel: it shows that series whole (no pinned image) and is no longer a hung radiograph view.
+    setPanels((ps) => ps.map((p) => (p.id === panelId ? { id: p.id, seriesUid: uid, kind: 'stack' } : p)));
+    setXrViews((m) => (m.has(panelId) ? new Map([...m].filter(([k]) => k !== panelId)) : m));
+  };
 
   // ---------------------------------------------------------------- reference visibility
   const taskTargetIds = useMemo(() => new Set(task?.targets.map((t) => t.targetId) ?? []), [task]);
@@ -1873,7 +1877,7 @@ export default function Workstation() {
                   badges,
                   anatomy: anatomyFor(pd),
                 }}
-                seriesOptions={layout === 'mpr' || layout === 'mpr3d' || (compare && pd.id === 'p1') ? [] : seriesOptions}
+                seriesOptions={layout === 'mpr' || layout === 'mpr3d' || (compare && pd.id === 'p1') || pd.pin !== undefined || xrViews.has(pd.id) ? [] : seriesOptions}
                 onPickSeries={(u) => pickSeries(pd.id, u)}
                 relationNote={relNote(pd)}
                 assessMasked={assessMasked}
