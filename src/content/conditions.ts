@@ -240,7 +240,14 @@ export const CONDITIONS: Condition[] = [
       { physical: 51, chapterId: 'ch04', heading: 'Some Causes of Airspace Disease' },
     ],
     related: ['pneumonia', 'congestive_heart_failure', 'interstitial_lung_disease', 'covid19'],
-    evidence: [{ kind: 'reader_labels', labels: RICORD_OPACITIES, note: 'Lung opacities graded by expert readers' }],
+    evidence: [
+      { kind: 'reader_labels', labels: RICORD_OPACITIES, note: 'Lung opacities graded by expert readers' },
+      {
+        kind: 'finding',
+        classIds: ['finding:infiltrate'],
+        note: 'An "infiltration" (an ill-defined lung opacity) boxed by a radiologist on a chest radiograph (NIH ChestX-ray14; the side is not recorded in the file)',
+      },
+    ],
   },
   {
     id: 'interstitial_lung_disease',
@@ -1074,7 +1081,28 @@ export const CONDITIONS: Condition[] = [
       { physical: 347, chapterId: 'ch26', heading: 'Intracranial Hemorrhage' },
       { physical: 357, chapterId: 'ch26', heading: 'Ruptured Aneurysms' },
     ],
-    related: ['intracerebral_hemorrhage', 'subdural_hematoma'],
+    related: ['intracerebral_hemorrhage', 'subdural_hematoma', 'intracranial_aneurysm'],
+  },
+  {
+    id: 'intracranial_aneurysm',
+    name: 'Intracranial aneurysm (unruptured)',
+    synonyms: ['berry aneurysm', 'saccular aneurysm', 'cerebral aneurysm', 'brain aneurysm', 'circle of willis aneurysm'],
+    region: 'neuro',
+    modalities: ['MR', 'CT'],
+    signs: [
+      'A rounded outpouching at a branching point of the Circle of Willis, bright on time-of-flight MR angiography.',
+      'Check every branch point on both sides, on the thin source images and on a thick-slab MIP: a small one hides behind overlapping arteries.',
+      'A funnel-shaped origin of a posterior communicating artery under 3 mm, with the artery leaving its apex, is an infundibulum, not an aneurysm.',
+    ],
+    book: [{ physical: 357, chapterId: 'ch26', heading: 'Ruptured Aneurysms' }],
+    related: ['subarachnoid_hemorrhage'],
+    evidence: [
+      {
+        kind: 'finding',
+        classIds: ['finding:intracranial_aneurysm'],
+        note: 'Unruptured aneurysms outlined voxel by voxel by a radiologist and checked by a senior neuroradiologist on time-of-flight MR angiography (Lausanne cohort)',
+      },
+    ],
   },
   {
     id: 'intracerebral_hemorrhage',
