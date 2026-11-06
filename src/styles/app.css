@@ -955,9 +955,12 @@ button.chip[aria-pressed='true'] {
     font-size: 12.5px;
   }
 }
+/* Positioned, so absolute children (the .sr-only labels) scroll inside the page. Without it they are placed against the
+   window and stretch it, and the window gets a second scrollbar next to the page's (the Course page did). */
 .page {
   flex: 1;
   overflow: auto;
+  position: relative;
 }
 .page-inner {
   max-width: 1180px;
