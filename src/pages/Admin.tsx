@@ -14,7 +14,7 @@ interface Stats {
   accounts: number;
   subscribers: number;
   retention: { d1: { base: number; back: number }; d7: { base: number; back: number } };
-  /** Per campaign tag (utm_source:utm_campaign) over 30 days; the last row, with no tag, is everything untagged. */
+  /** Per campaign tag (utm_source:utm_campaign, plus :utm_content when the link has one) over 30 days; the last row, with no tag, is everything untagged. */
   sources?: Array<{ source: string; visits: number; tried?: number; starts: number; accounts: number; studied: number; paid: number }>;
 }
 
@@ -104,7 +104,7 @@ export default function AdminPage() {
                 Where sign-ups come from, last 30 days
               </h2>
               <small className="faint">
-                Tag every ad and post link, for example <span className="mono">https://www.radiology.monster/?utm_source=instagram&amp;utm_campaign=find-it</span>. Accounts are counted by the tag they arrived with, and First answer and Paid are of those accounts.
+                Tag every ad and post link, for example <span className="mono">https://www.radiology.monster/?utm_source=instagram&amp;utm_campaign=find-it</span>; add <span className="mono">&amp;utm_content=a</span>, <span className="mono">b</span>… to tell ads of one campaign apart. Accounts are counted by the tag they arrived with, and First answer and Paid are of those accounts.
               </small>
               <table className="table admin-table">
                 <thead>
