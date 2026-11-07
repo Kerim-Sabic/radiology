@@ -198,6 +198,20 @@ export class ViewerEngine {
   /** Straight (non-oblique) camera direction of each MPR view, and the tilt applied from each view (degrees). */
   private baseOrientation = new Map<string, { normal: Vec3; up: Vec3 }>();
   private tilts = new Map<string, number>();
+  /** Slice a stack view of this series should open at, asked for while its first image was still on the way (kept a
+   *  minute: a request nobody opened in time must not move a later visit to the same series). */
+  private openAtAsked = new Map<string, { index: number; at: number }>();
+  private openAt = {
+    get: (uid: string) => {
+      const o = this.openAtAsked.get(uid);
+      return o && Date.now() - o.at < 60_000 ? o.index : undefined;
+    },
+    set: (uid: string, index: number) => void this.openAtAsked.set(uid, { index, at: Date.now() }),
+    delete: (uid: string) => void this.openAtAsked.delete(uid),
+  };
+  /** Resolves once any view has its first image on screen (outlines the task doesn't need wait for it). */
+  private firstImageShown: () => void = () => undefined;
+  readonly firstImage = new Promise<void>((res) => (this.firstImageShown = res));
   /** Panels playing as a cine loop. */
   private playing = new Set<string>();
 
@@ -306,11 +320,22 @@ export class ViewerEngine {
     const re = this.re!;
     try {
       if (kind === 'stack') {
-        const idx = Math.max(0, Math.min(startIndex, source.imageIds.length - 1));
+        const clampIdx = (i: number) => Math.max(0, Math.min(i, source.imageIds.length - 1));
+        const wanted = () => (source.pinnedIndex === undefined ? this.openAt.get(source.seriesUid) : undefined);
+        let idx = clampIdx(wanted() ?? startIndex);
         fetcher.start(idx);
         const ok = await fetcher.whenReady(idx);
         if (stale()) return;
         if (!ok) throw new Error(fetcher.errors.get(idx) ?? 'First image failed to load');
+        // The task asked for another slice while this one loaded (a free case opening at its structure): show that
+        // slice first, once it is here, rather than the top of the scan with the structure's outline drawn over it.
+        const w = wanted();
+        if (w !== undefined && clampIdx(w) !== idx) {
+          fetcher.prioritize(clampIdx(w));
+          if (await fetcher.whenReady(clampIdx(w))) idx = clampIdx(w);
+          if (stale()) return;
+        }
+        this.openAt.delete(source.seriesUid);
         await waitForLayout(element);
         if (stale()) return;
         re.enableElement({ viewportId, element, type: cs.Enums.ViewportType.STACK, defaultOptions: { background: [0, 0, 0] } });
@@ -392,6 +417,7 @@ export class ViewerEngine {
         }
       }
       panel.ready = true;
+      this.firstImageShown();
       this.applyTool(this.activeTool);
     } catch (e) {
       if (stale()) return;
@@ -624,6 +650,62 @@ export class ViewerEngine {
       const info = cs.utilities.getVolumeViewportScrollInfo(vp as never, `cornerstoneStreamingImageVolume:${p.source.seriesUid}`);
       cs.utilities.scroll(vp as never, { delta: index - info.currentStepIndex });
     }
+  }
+
+  /**
+   * Go to a slice of a stack view once its image is here (prioritised now). Until then the view keeps the slice it
+   * shows: setting the index first would draw that slice's outlines and marks over the previous picture, and a mark
+   * placed there would belong to an image whose geometry has not arrived. Before the view has opened, the slice
+   * becomes the one it opens at. Resolves true once the view is there.
+   */
+  async goToSliceWhenLoaded(panelId: string, seriesUid: string, index: number): Promise<boolean> {
+    const p = this.panels.get(panelId);
+    if (!p || p.kind !== 'stack' || p.source.seriesUid !== seriesUid) {
+      this.openAt.set(seriesUid, index);
+      return false;
+    }
+    if (!p.ready) {
+      this.openAt.set(seriesUid, index);
+      this.fetchers.get(fetchKey(p.source))?.prioritize(Math.max(0, Math.min(index, p.source.imageIds.length - 1)));
+      return false;
+    }
+    const i = Math.max(0, Math.min(index, p.source.imageIds.length - 1));
+    const f = this.fetchers.get(fetchKey(p.source));
+    if (f) {
+      f.prioritize(i);
+      if (!(await f.whenReady(i))) return false;
+    }
+    if (this.panels.get(panelId) !== p) return false;
+    this.setIndex(panelId, i);
+    return true;
+  }
+
+  /** Tells a view that a series will open at `index` (before its panel mounts or while its first image loads). */
+  preferOpenAt(seriesUid: string, index: number) {
+    this.openAt.set(seriesUid, index);
+    for (const p of this.panels.values())
+      if (p.kind === 'stack' && !p.ready && p.source.seriesUid === seriesUid) this.fetchers.get(fetchKey(p.source))?.prioritize(index);
+  }
+
+  /**
+   * A Point mark where the finger tapped, made the way the Point tool makes one (same tool, same annotation), while the
+   * active tool stays Scroll so a swipe still moves through the slices. (Touch screens ignore synthetic mouse events.)
+   */
+  placePointAt(panelId: string, canvas: Vec2): boolean {
+    const p = this.panels.get(panelId);
+    const vp = this.viewport(panelId);
+    if (!p || !p.ready || p.kind === '3d' || !vp) return false;
+    try {
+      const world = vp.canvasToWorld(canvas);
+      const tool = cst.ProbeTool as unknown as { createAnnotationForViewport: (v: unknown, a: unknown) => cst.Types.Annotation };
+      const ann = tool.createAnnotationForViewport(vp, { data: { handles: { points: [[...world]] } } });
+      cst.annotation.state.addAnnotation(ann, p.element);
+      cst.utilities.triggerAnnotationRenderForViewportIds([p.viewportId]);
+    } catch {
+      return false;
+    }
+    this.bump();
+    return true;
   }
 
   scroll(panelId: string, delta: number) {
@@ -1301,12 +1383,16 @@ export class ViewerEngine {
       let handles: Vec3[] = pts;
       if (tool === 'outline') handles = ((a.data as { contour?: { polyline?: Vec3[] } }).contour?.polyline ?? pts) as Vec3[];
       if (tool === 'box' && pts.length >= 4) handles = [pts[0], pts[3]];
-      const imagePx = refImageId
-        ? handles.map((w) => {
-            const ic = cs.utilities.worldToImageCoords(refImageId, w as never) as Vec2;
-            return csToContract(ic);
-          })
-        : null;
+      // An image whose header has not arrived yet (a very slow connection) has no geometry here: the mark keeps its
+      // patient position and the grader places it on the slice from the case's own geometry.
+      let imagePx: Vec2[] | null = null;
+      if (refImageId) {
+        try {
+          imagePx = handles.map((w) => csToContract(cs.utilities.worldToImageCoords(refImageId, w as never) as Vec2));
+        } catch {
+          imagePx = null;
+        }
+      }
       const projection = meta?.projection ?? false;
       const viewKind = viewportPanel?.kind && viewportPanel.kind !== '3d' ? viewportPanel.kind : 'stack';
       out.push({

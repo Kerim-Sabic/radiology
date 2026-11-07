@@ -107,7 +107,8 @@ test('the ad’s chest CT in Learn mode opens at the heart, and saving the answe
   await expect(page.getByText('Correct', { exact: true }).first()).toBeVisible();
   const result = page.locator('.result-first');
   await expect(result.getByRole('button', { name: /Save it: free account/ })).toBeVisible();
-  await expect(result.getByRole('button', { name: 'Next task' })).toBeVisible();
+  // The next step is the same one-tap kind of task, now without the outline.
+  await expect(result.getByRole('button', { name: 'Next: find the esophagus, no outline' })).toBeVisible();
   await result.getByRole('button', { name: /Save it: free account/ }).click();
   await expect(page.getByRole('dialog', { name: 'Your next chapter starts here.' })).toBeVisible();
 });
@@ -123,4 +124,66 @@ test('the other sample patient opens too, and everything else still asks to sign
     await expect(page.getByRole('heading', { name: /Learn to read/ }), path).toBeVisible();
     await expect(page.locator('[data-panel="p0"]'), path).toHaveCount(0);
   }
+});
+
+test.describe('the ad visitor on a phone', () => {
+  test.use({ viewport: { width: 412, height: 915 }, hasTouch: true, isMobile: true });
+  test.skip(({ browserName }) => browserName !== 'chromium', 'Touch emulation needs Chromium');
+
+  test('one tap on the heart marks it (a second tap moves the point, a swipe still scrolls), and the answer is graded', async ({ page }) => {
+    await visitor(page);
+    await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aheart&mode=learn&utm_source=meta&utm_campaign=131slices&utm_content=b_inpkph');
+    await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
+    await expect.poll(() => page.evaluate(() => (window as any).__rvm.panelState('p0').index), { timeout: 10_000 }).toBeGreaterThan(40);
+    expect(await page.evaluate(() => (window as any).__rvm.getTool())).toBe('scroll');
+    await page.waitForTimeout(400);
+    const box = (await page.locator('[data-panel="p0"] .vp-el').boundingBox())!;
+    const tapAt = async (fx: number, fy: number) => {
+      const tap: [number, number] = [Math.round(box.width * fx), Math.round(box.height * fy)];
+      await page.touchscreen.tap(box.x + tap[0], box.y + tap[1]);
+      await expect.poll(() => page.evaluate(() => (window as any).__rvm.collectMarks().length)).toBe(1);
+      await page.waitForTimeout(700); // the mouse events the browser sends after a tap must not add a second mark
+      expect(await page.evaluate(() => (window as any).__rvm.collectMarks().length)).toBe(1);
+      const at = await page.evaluate(() => {
+        const e = (window as any).__rvm;
+        return e.worldToCanvas('p0', e.collectMarks()[0].worldLps[0]);
+      });
+      expect(Math.hypot(at[0] - tap[0], at[1] - tap[1])).toBeLessThan(3);
+    };
+    await tapAt(0.3, 0.3);
+    await tapAt(0.5, 0.5); // moved to the middle of the view, inside the heart
+    await expect(page.locator('.ws-tool-flash')).toHaveCount(0);
+    expect(await page.evaluate(() => (window as any).__rvm.getTool())).toBe('scroll');
+    await page.getByRole('button', { name: /^Submit/ }).first().tap();
+    await expect(page.getByText('Correct', { exact: true }).first()).toBeVisible();
+  });
+
+  test('on a slow connection the case opens straight at the heart, and an answer given at once is graded, not a crash', async ({ page }) => {
+    await visitor(page);
+    // Every slice takes a while, as on a slow phone connection; the outlines arrive first.
+    await page.route('**/packs/starter/dicom/**', async (r) => {
+      await new Promise((res) => setTimeout(res, 400));
+      return r.fallback();
+    });
+    const shown: number[] = [];
+    await page.exposeFunction('__shown', (i: number) => shown.push(i));
+    await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aheart&mode=learn');
+    await page.waitForFunction(
+      () => {
+        const s = (window as any).__rvm?.panelState('p0');
+        if (s?.ready) (window as any).__shown(s.index);
+        return s?.ready === true;
+      },
+      null,
+      { timeout: 90_000, polling: 50 },
+    );
+    // The first picture is the heart's slice, not slice 1 of the scan with the heart's outline drawn over it.
+    expect(shown[0]).toBeGreaterThan(40);
+    const box = (await page.locator('[data-panel="p0"] .vp-el').boundingBox())!;
+    await page.touchscreen.tap(box.x + box.width / 2, box.y + box.height / 2);
+    await expect.poll(() => page.evaluate(() => (window as any).__rvm.collectMarks().length)).toBe(1);
+    await page.getByRole('button', { name: /^Submit/ }).first().tap();
+    await expect(page.getByText('Correct', { exact: true }).first()).toBeVisible();
+    await expect(page.getByText('This page hit a problem')).toHaveCount(0);
+  });
 });

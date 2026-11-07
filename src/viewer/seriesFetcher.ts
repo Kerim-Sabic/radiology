@@ -121,7 +121,10 @@ export class SeriesFetcher {
   }
 
   private pump() {
-    while (this.inFlight.size < this.concurrency && this.queue.length && !this.aborted) {
+    // The first image travels alone: on a slow phone connection six parallel slices would each arrive six times later,
+    // and the learner looks at a loading bar instead of the patient. Once one image is in, the rest load in parallel.
+    const limit = this.status.some((s) => s === 'done') ? this.concurrency : 1;
+    while (this.inFlight.size < limit && this.queue.length && !this.aborted) {
       const i = this.queue.shift()!;
       if (this.status[i] !== 'pending' && this.status[i] !== 'failed') continue;
       this.load(i);

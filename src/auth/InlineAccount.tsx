@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ClerkFailed, ClerkLoading, ClerkProvider, SignIn, SignUp, useAuth, useClerk, useUser } from '@clerk/react';
 import { adSource } from '../services/source';
+import { trackFunnel } from '../services/serverSync';
 import { withAccount } from './returnPath';
 
 type Mode = 'signup' | 'login';
@@ -19,6 +20,16 @@ function AccountForm({ mode, complete, onSuccess }: { mode: Mode; complete: bool
   const hasShownForm = useRef(false);
   const exchanging = useRef(false);
   if (isLoaded && !isSignedIn) hasShownForm.current = true;
+  // The sign-up form moved on to "enter the code we emailed": the funnel's "code sent" step.
+  useEffect(() => {
+    if (mode !== 'signup') return;
+    const check = () => {
+      if (/verify-email-address|verify/.test(location.hash)) trackFunnel('code_sent', true);
+    };
+    check();
+    window.addEventListener('hashchange', check);
+    return () => window.removeEventListener('hashchange', check);
+  }, [mode]);
 
   const continueSession = useCallback(async () => {
     if (exchanging.current) return;

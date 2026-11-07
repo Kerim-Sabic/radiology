@@ -81,7 +81,7 @@ import { categoryFor } from '../components/ws/overlayShapes';
 import { landmarks, levelName, mapZ, matchLevels, type Landmark } from '../services/levelSync';
 import { IconButton, ProvenanceChip, Toast, useToast } from '../components/ui';
 import { ReportProblem } from '../components/ReportProblem';
-import { trackFunnel, trackOpened } from '../services/serverSync';
+import { trackFunnel, trackOpened, WARM_ACCOUNT_EVENT } from '../services/serverSync';
 import { SyncBadge } from '../components/SyncBadge';
 import { gradeTask, measureWithinSlab, probeOfMark, type LoadedTarget } from '../grading/spatialGrader';
 import type { GradeResult, LearnerMark } from '../grading/types';
@@ -260,7 +260,7 @@ export default function Workstation() {
     // Task-layer targets, plus any atlas-layer (expert) outline a task of this case grades against.
     const taskIds = (catalog.tasksByCase.get(kase.id) ?? []).flatMap((t) => t.targets.map((x) => x.targetId));
     const ids = [...new Set([...catalog.targetsForSeries(caseSeries.map((s) => s.uid)), ...taskIds])];
-    catalog.loadTargets(ids).then((m) => {
+    const show = (m: Map<string, LoadedTarget>) => {
       if (cancelled) return; // a later case (or review change) owns the targets now
       // Apply the learner's own review records (never invented): reviewed drafts become human_reviewed.
       for (const r of reviews) {
@@ -269,7 +269,16 @@ export default function Workstation() {
           m.set(r.targetId, { ...t, ref: { ...t.ref, provenance: 'human_reviewed', review: { status: 'reviewed_by_user', reviewer: r.reviewer, at: r.at, note: r.note } } });
       }
       setTargets(m);
-    });
+    };
+    // The open task's outlines first; the case's other outlines once the first image is on screen, so on a slow phone
+    // connection they don't hold up the picture (the free chest CT carries ~400 KB of them).
+    const first = new Set((task && task.caseId === kase.id ? task.targets.map((x) => x.targetId) : []).filter((id) => ids.includes(id)));
+    if (!first.size) catalog.loadTargets(ids).then(show);
+    else
+      catalog.loadTargets([...first]).then((m) => {
+        show(new Map(m));
+        void Promise.race([engine.firstImage, new Promise((r) => setTimeout(r, 15_000))]).then(() => catalog.loadTargets(ids).then(show));
+      });
     return () => {
       cancelled = true;
     };
@@ -550,6 +559,18 @@ export default function Workstation() {
   }, []);
 
   const marks = useMemo(() => engine.collectMarks(), [engine, engine.getVersion()]); // eslint-disable-line react-hooks/exhaustive-deps
+  // A guest's first mark, with how long they looked at the picture before it (the funnel's "time to first mark").
+  const shownAt = useRef<number | null>(null);
+  const guestTasks = useRef(new Set<string>());
+  useEffect(() => {
+    if (guest && marks.length && shownAt.current !== null) trackFunnel('guest_mark', true, (performance.now() - shownAt.current) / 1000);
+  }, [guest, marks.length]);
+  // A guest who opens a second task (the step after the first grade).
+  useEffect(() => {
+    if (!guest || !task) return;
+    guestTasks.current.add(task.id);
+    if (guestTasks.current.size === 2) trackFunnel('guest_second', true);
+  }, [guest, task?.id]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Autosave draft attempt after meaningful changes (debounced).
   useEffect(() => {
@@ -798,7 +819,10 @@ export default function Workstation() {
     } catch (e) {
       toast.show((e as Error).message);
     }
-    if (guest) trackFunnel('guest_answer', true);
+    if (guest) {
+      trackFunnel('guest_answer', true);
+      window.dispatchEvent(new Event(WARM_ACCOUNT_EVENT));
+    }
     engine.setMarksVisible(true);
   };
 
@@ -833,13 +857,11 @@ export default function Workstation() {
   };
 
   /** Show a loaded target; returns false while its series is not yet on screen and ready (caller may retry). */
-  const jumpToLoaded = (t: LoadedTarget): boolean => {
-    if (!catalog) return false;
+  /** Where a target is best seen: the slice where it is largest (its index in the series) and the point to centre on. */
+  const targetView = (t: LoadedTarget): { sop: string | null; index: number; world: Vec3 | null } | null => {
+    if (!catalog) return null;
     const idx = catalog.seriesIndex(t.ref.seriesUid);
-    const pid = panels.find((p) => p.seriesUid === t.ref.seriesUid)?.id;
-    if (!pid || !idx) return false;
-    const ready = engine.panelState(pid);
-    if (!ready || ready.seriesUid !== t.ref.seriesUid || !ready.ready) return false;
+    if (!idx) return null;
     const g = t.geom;
     let sop: string | null = null;
     let centre: { px?: Vec2; world?: Vec3 } | null = null;
@@ -872,14 +894,25 @@ export default function Workstation() {
     const plane = sop ? idx.bySop.get(sop)?.plane : undefined;
     if (!world && centre?.px && plane) world = imageToPatient(plane, centre.px);
     if (!world && centre?.px && imageId) world = engine.imagePxToWorld(imageId, centre.px);
-    const st = engine.panelState(pid);
-    if (st?.kind === 'stack' && sop) {
-      const i = src?.sopUids.indexOf(sop) ?? -1;
-      if (i >= 0) engine.setIndex(pid, i);
-      if (world) {
-        const w = world;
-        setTimeout(() => engine.centerOn(pid, w), 120);
-      }
+    return { sop, index: sop && src ? src.sopUids.indexOf(sop) : -1, world };
+  };
+  const jumpToLoaded = (t: LoadedTarget): boolean => {
+    const pid = panels.find((p) => p.seriesUid === t.ref.seriesUid)?.id;
+    if (!pid) return false;
+    const view = targetView(t);
+    if (!view) return false;
+    const ready = engine.panelState(pid);
+    if (!ready || ready.seriesUid !== t.ref.seriesUid || !ready.ready) {
+      // Still loading its first image: open there instead (the slice is fetched next), then centre once ready.
+      if (view.index >= 0) engine.preferOpenAt(t.ref.seriesUid, view.index);
+      return false;
+    }
+    const { index, world } = view;
+    if (ready.kind === 'stack' && index >= 0) {
+      // Go there once that slice has arrived, so its outline is never drawn over another slice's picture.
+      void engine.goToSliceWhenLoaded(pid, t.ref.seriesUid, index).then((ok) => {
+        if (ok && world) setTimeout(() => engine.centerOn(pid, world), 120);
+      });
     } else if (world) engine.jumpToWorld(pid, world);
     return true;
   };
@@ -919,6 +952,17 @@ export default function Workstation() {
     return p ? catalog?.tasks.get(p.taskId) : undefined;
   }, [attempts, catalog, settings.minutesPerDay, kase?.id]);
   const nextStep = nextOnStudy ? { label: 'Next task', go: nextOnStudy } : nextPatient ? { label: 'Next patient', go: () => goTask(nextPatient, 'practice') } : null;
+  // A guest (from an ad, often on a phone) keeps going with the same one-tap kind of task, now without the outline
+  // (Practice): a harder try right after the first grade, rather than a two-arrow naming task.
+  const guestNext = (() => {
+    if (!guest || !task) return null;
+    const tried = new Set(attempts.map((a) => a.taskId));
+    const oneTap = (t: Task) => t.grading.kind === 'point_in_target' && t.targets.filter((x) => x.required).length <= 1 && t.modes.includes('practice');
+    const n = availableTasks.find((t) => t.id !== task.id && oneTap(t) && !tried.has(t.id));
+    if (!n) return nextOnStudy ? { label: 'Next task', go: nextOnStudy } : null;
+    const label = /^find /i.test(n.title) ? `Next: ${n.title[0].toLowerCase()}${n.title.slice(1)}, no outline` : `Next: ${n.title}`;
+    return { label, go: () => setSp({ task: n.id, mode: 'practice' }) };
+  })();
 
   const openBook = (a: BookAnchorRef) => {
     const snap = engine.snapshot(focused);
@@ -1086,7 +1130,11 @@ export default function Workstation() {
     const t = task.targets.map((x) => targets.get(x.targetId)).find((x): x is LoadedTarget => !!x);
     if (!t) return;
     guestOpened.current = task.id;
-    setTimeout(() => jumpWhenReady(t), 150);
+    // Ask for the structure's slice now, so a slow phone connection fetches it right after (or instead of) slice 1,
+    // and keep trying for up to a minute while the first image arrives.
+    const v = targetView(t);
+    if (v && v.index >= 0) engine.preferOpenAt(t.ref.seriesUid, v.index);
+    setTimeout(() => jumpWhenReady(t, 400), 150);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [guest, mode, task, targets, showId]);
 
@@ -1203,13 +1251,29 @@ export default function Workstation() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTool]);
-  // A tap or click on the finding with a viewing tool does nothing: say how to mark, a few times at most.
+  // A tap or click on the finding with a viewing tool does nothing: say how to mark, a few times at most. On a phone
+  // (Scroll is its default, so a swipe moves through the slices), a tap on a one-point task places the point there,
+  // and another tap moves it: the ad's "tap the heart" works without finding the Point tool first.
   const markHints = useRef(0);
+  const tappedAt = useRef(0);
   const MARK_HINT = 'To mark the finding, choose Point or Box in the toolbar first';
-  const hintMark = () => {
+  const hintMark = (canvas: Vec2, panelId: string, touch = false) => {
     const t = engine.getTool();
-    if (!task || !session || !needsMarks(task) || !rules.canEditMarks(session) || markHints.current >= 3) return;
+    if (!task || !session || !needsMarks(task) || !rules.canEditMarks(session)) return;
     if (t !== 'windowLevel' && t !== 'pan' && t !== 'zoom' && t !== 'scroll') return;
+    const onePoint = task.grading.kind === 'point_in_target' && task.targets.filter((x) => x.required).length <= 1;
+    if (onePoint && t === 'scroll') {
+      if (!touch) {
+        if (Date.now() - tappedAt.current < 1000) return; // the mouse events a browser sends after the same tap
+      } else {
+        for (const m of engine.collectMarks()) if (m.tool === 'point') engine.removeMark(m.id);
+        if (engine.placePointAt(panelId, canvas)) {
+          tappedAt.current = Date.now();
+          return;
+        }
+      }
+    }
+    if (markHints.current >= 3) return;
     markHints.current += 1;
     setToolFlash(MARK_HINT);
     window.setTimeout(() => setToolFlash((f) => (f === MARK_HINT ? null : f)), 2600);
@@ -1218,6 +1282,7 @@ export default function Workstation() {
   const focusedState = engine.panelState(focused);
   const focusedShown = !!focusedState?.ready && !focusedState.error;
   useEffect(() => {
+    if (focusedShown && shownAt.current === null) shownAt.current = performance.now();
     if (focusedShown) (guest ? trackFunnel('guest_open', true) : trackOpened());
   }, [focusedShown, guest]);
   if (!catalog) return <div className="vp-status">Loading case catalogue…</div>;
@@ -1860,7 +1925,7 @@ export default function Workstation() {
                 onToggleSolo={panels.length > 1 ? () => toggleSolo(pd.id) : undefined}
                 viewName={panels.length > 1 ? panelName(pd, i) : undefined}
                 onFocus={() => setFocused(pd.id)}
-                onImageClick={pd.kind === '3d' ? undefined : hintMark}
+                onImageClick={pd.kind === '3d' ? undefined : (c, touch) => hintMark(c, pd.id, touch)}
                 onImageDoubleClick={(c) => {
                   // Marking tools keep double-click for themselves.
                   if (tool === 'windowLevel' || tool === 'pan' || tool === 'zoom' || tool === 'scroll' || tool === 'crosshairs') engine.linkJump(pd.id, c);
@@ -1939,7 +2004,7 @@ export default function Workstation() {
               onNextTask={nextOnStudy}
               // A guest's first step after a result is keeping it (a free account, no card); the next task stays one tap away.
               next={exam || shift ? null : guest ? { label: 'Save it: free account', go: () => startAccount('signup') } : (nextStep ?? (free ? { label: 'See the plans', go: openPlans } : null))}
-              alsoNext={guest && !exam && !shift && nextOnStudy ? { label: 'Next task', go: nextOnStudy } : null}
+              alsoNext={guest && !exam && !shift ? guestNext : null}
               selfReview={selfReview}
               onSelfReview={setSelfReview}
               independentNote={independentNote}

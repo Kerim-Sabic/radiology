@@ -95,8 +95,8 @@ interface Props {
   onPickSeries?: (uid: string) => void;
   relationNote?: string | null;
   assessMasked?: boolean;
-  /** A plain click (not a drag) on the image, in canvas pixels. */
-  onImageClick?: (canvas: Vec2) => void;
+  /** A plain click or tap (not a drag) on the image, in canvas pixels; `touch` when a finger tapped. */
+  onImageClick?: (canvas: Vec2, touch?: boolean) => void;
   /** Double-click on the image (the workstation shows that point in every linked view). */
   onImageDoubleClick?: (canvas: Vec2) => void;
   /** 3D panel: rendering controls, cut and structure models. */
@@ -321,10 +321,10 @@ export function ViewportPanel(p: Props) {
           if (!d || !t || e.touches.length || !el.current || Math.hypot(t.clientX - d[0], t.clientY - d[1]) > 8 || Date.now() - d[2] > 600) return;
           // A tap names the structure under the finger, as the pointer does on a computer, and answers a drill.
           onMove(t);
-          const click = p.kind === '3d' ? clickRef.current : p.onImageClick;
-          if (!click) return;
           const r = el.current.getBoundingClientRect();
-          click([t.clientX - r.left, t.clientY - r.top]);
+          const at: Vec2 = [t.clientX - r.left, t.clientY - r.top];
+          if (p.kind === '3d') clickRef.current?.(at);
+          else p.onImageClick?.(at, true);
         }}
         onDoubleClick={(e) => {
           if (!p.onImageDoubleClick || !el.current || p.kind === '3d') return;

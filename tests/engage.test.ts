@@ -143,6 +143,12 @@ describe('funnel numbers for the admin page', () => {
     await countSource('signup_start', 'instagram:find-it');
     // Three people from the ad opened the free case without an account; four in all.
     for (let i = 0; i < 3; i++) await countSource('guest_open', 'instagram:find-it');
+    // Of them, two marked it, two answered, one opened a second task, and one email code went out.
+    for (const m of ['guest_mark', 'guest_mark', 'guest_answer', 'guest_answer', 'guest_second', 'code_sent'] as const) await countSource(m, 'instagram:find-it');
+    fake.kv.set(`rvm:m:guest_mark:${today}`, 3);
+    fake.kv.set(`rvm:m:guest_answer:${today}`, 2);
+    fake.kv.set(`rvm:m:guest_second:${today}`, 1);
+    fake.kv.set(`rvm:m:code_sent:${today}`, 2);
     fake.kv.set(`rvm:m:visit:${today}`, 5);
     fake.kv.set(`rvm:m:guest_open:${today}`, 4);
     fake.kv.set(`rvm:m:signup_start:${today}`, 2);
@@ -160,8 +166,8 @@ describe('funnel numbers for the admin page', () => {
     fake.kv.set(`rvm:once:paid:${'b'.repeat(64)}`, today);
     const s = await adminStats(new Date(), 30);
     expect(s.sources).toEqual([
-      { source: 'instagram:find-it', visits: 2, tried: 3, starts: 1, accounts: 2, studied: 1, paid: 1 },
-      { source: '', visits: 3, tried: 1, starts: 1, accounts: 1, studied: 0, paid: 0 },
+      { source: 'instagram:find-it', visits: 2, tried: 3, marked: 2, answered: 2, second: 1, starts: 1, codes: 1, accounts: 2, studied: 1, paid: 1 },
+      { source: '', visits: 3, tried: 1, marked: 1, answered: 0, second: 0, starts: 1, codes: 1, accounts: 1, studied: 0, paid: 0 },
     ]);
   });
 });

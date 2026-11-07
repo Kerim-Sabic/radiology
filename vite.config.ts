@@ -12,18 +12,25 @@ const FREE_SCHEDULE = { epoch: WEEKLY_EPOCH, always: FREE_CASES, weekly: WEEKLY_
 
 // The owner's textbook PDF may sit in public/book for private local use.
 // Published builds always exclude it.
-const neverShipTheBook = (): Plugin => ({
-  name: 'never-ship-the-book',
-  apply: 'build',
-  closeBundle() {
-    // Paid deployments never distribute the owner's textbook, even if a local legacy flag is set.
-    rmSync(resolve(__dirname, 'dist', 'book'), { recursive: true, force: true });
-    prepareCommercialContent(resolve(__dirname, 'dist'));
-    // The free edition (sample patients, cases of the week, teaser list) is cut from the commercial packs.
-    writeFreeEdition(resolve(__dirname, 'dist', 'packs'), FREE_SCHEDULE);
-    writeCertificateData(resolve(__dirname, 'dist', 'packs'), resolve(__dirname, 'server/certificate-data.json.gz'));
-  },
-});
+const neverShipTheBook = (): Plugin => {
+  // The build's own output folder (`vite build --outDir <dir>` builds a copy elsewhere, e.g. to verify a commit).
+  let out = resolve(__dirname, 'dist');
+  return {
+    name: 'never-ship-the-book',
+    apply: 'build',
+    configResolved(config) {
+      out = resolve(config.root, config.build.outDir);
+    },
+    closeBundle() {
+      // Paid deployments never distribute the owner's textbook, even if a local legacy flag is set.
+      rmSync(resolve(out, 'book'), { recursive: true, force: true });
+      prepareCommercialContent(out);
+      // The free edition (sample patients, cases of the week, teaser list) is cut from the commercial packs.
+      writeFreeEdition(resolve(out, 'packs'), FREE_SCHEDULE);
+      writeCertificateData(resolve(out, 'packs'), resolve(__dirname, 'server/certificate-data.json.gz'));
+    },
+  };
+};
 
 // In `vite` (dev) the free-edition files are computed from public/packs on request, so free mode can be tried locally.
 const freeEditionDev = (): Plugin => ({

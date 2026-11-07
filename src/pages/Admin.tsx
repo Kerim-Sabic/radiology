@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
-import { ExternalLink, RefreshCw } from 'lucide-react';
+import { Download, ExternalLink, RefreshCw } from 'lucide-react';
 import { useAccount } from '../auth/AccountGate';
 import '../styles/upgrade.css';
 import { AdminPeople, type AdminPermission } from '../components/AdminPeople';
@@ -7,7 +7,36 @@ import { AdminPromos } from '../components/AdminPromos';
 import { CertificateAdmin } from '../components/CertificateAdmin';
 import { AdminReports } from '../components/AdminReports';
 
-type Metric = 'visit' | 'guest_open' | 'guest_answer' | 'signup_start' | 'signup' | 'opened' | 'studied' | 'plans' | 'checkout' | 'paid';
+type Metric =
+  | 'visit'
+  | 'guest_open'
+  | 'guest_mark'
+  | 'guest_mark_s'
+  | 'guest_answer'
+  | 'guest_second'
+  | 'signup_start'
+  | 'code_sent'
+  | 'signup'
+  | 'opened'
+  | 'studied'
+  | 'plans'
+  | 'checkout'
+  | 'checkout_ready'
+  | 'checkout_error'
+  | 'paid';
+interface SourceRow {
+  source: string;
+  visits: number;
+  tried?: number;
+  marked?: number;
+  answered?: number;
+  second?: number;
+  starts: number;
+  codes?: number;
+  accounts: number;
+  studied: number;
+  paid: number;
+}
 interface Stats {
   series: Array<{ day: string } & Record<Metric, number>>;
   totals: Record<Metric, number>;
@@ -15,19 +44,45 @@ interface Stats {
   subscribers: number;
   retention: { d1: { base: number; back: number }; d7: { base: number; back: number } };
   /** Per campaign tag (utm_source:utm_campaign, plus :utm_content when the link has one) over 30 days; the last row, with no tag, is everything untagged. */
-  sources?: Array<{ source: string; visits: number; tried?: number; starts: number; accounts: number; studied: number; paid: number }>;
+  sources?: SourceRow[];
 }
 
 const STEPS: Array<[Metric, string]> = [
   ['visit', 'Landing visits'],
   ['signup_start', 'Clicked Start free'],
+  ['code_sent', 'Email code sent'],
   ['signup', 'Accounts created'],
   ['opened', 'Opened a first case'],
   ['studied', 'Answered a first task'],
   ['plans', 'Opened the plans'],
   ['checkout', 'Started checkout'],
+  ['checkout_ready', 'Saw the payment form'],
   ['paid', 'Paid'],
 ];
+
+/** Everything on this page as one CSV (per-day counts, then the campaigns), for a spreadsheet. */
+function statsCsv(stats: Stats): string {
+  const cell = (v: unknown) => (/[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : String(v));
+  const metrics = Object.keys(stats.totals) as Metric[];
+  const lines = [['day', ...metrics].join(',')];
+  for (const d of stats.series) lines.push([d.day, ...metrics.map((m) => d[m] ?? 0)].map(cell).join(','));
+  lines.push(['total', ...metrics.map((m) => stats.totals[m] ?? 0)].map(cell).join(','));
+  lines.push('');
+  const cols: Array<keyof SourceRow> = ['source', 'visits', 'tried', 'marked', 'answered', 'second', 'starts', 'codes', 'accounts', 'studied', 'paid'];
+  lines.push(cols.join(','));
+  for (const r of stats.sources ?? []) lines.push(cols.map((c) => cell(c === 'source' ? r.source || '(no tag)' : (r[c] ?? 0))).join(','));
+  return lines.join('\n') + '\n';
+}
+
+
+function downloadCsv(stats: Stats) {
+  const url = URL.createObjectURL(new Blob([statsCsv(stats)], { type: 'text/csv' }));
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `radiology-monster-funnel-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
 const pct = (a: number, b: number) => (b ? `${Math.round((a / b) * 100)}%` : '–');
 
 /** The owner's dashboard: accounts and free access, the sign-up funnel and retention, certificates (admin accounts only). */
@@ -63,6 +118,11 @@ export default function AdminPage() {
         >
           <RefreshCw size={14} /> Refresh
         </button>
+        {stats ? (
+          <button className="btn" onClick={() => downloadCsv(stats)}>
+            <Download size={14} /> Download CSV
+          </button>
+        ) : null}
         <a className="btn" href="https://vercel.com/dashboard" target="_blank" rel="noopener noreferrer">
           Web Analytics <ExternalLink size={13} />
         </a>
@@ -93,8 +153,19 @@ export default function AdminPage() {
               })}
             </ol>
             <p className="admin-guests" aria-label="Tried a sample patient without an account">
-              <b>Without an account</b> (from an ad or a link to a sample patient): opened a case <b>{stats.totals.guest_open ?? 0}</b> · answered it{' '}
-              <b>{stats.totals.guest_answer ?? 0}</b> <small className="faint">{pct(stats.totals.guest_answer ?? 0, stats.totals.guest_open ?? 0)} of those who opened it</small>
+              <b>Without an account</b> (from an ad or a link to a sample patient): opened a case <b>{stats.totals.guest_open ?? 0}</b> · marked it{' '}
+              <b>{stats.totals.guest_mark ?? 0}</b>{' '}
+              <small className="faint">
+                {stats.totals.guest_mark ? `after ${Math.round((stats.totals.guest_mark_s ?? 0) / stats.totals.guest_mark)} s on average` : ''}
+              </small>{' '}
+              · answered it <b>{stats.totals.guest_answer ?? 0}</b> <small className="faint">{pct(stats.totals.guest_answer ?? 0, stats.totals.guest_open ?? 0)} of those who opened it</small> · opened a second
+              task <b>{stats.totals.guest_second ?? 0}</b> <small className="faint">{pct(stats.totals.guest_second ?? 0, stats.totals.guest_answer ?? 0)} of those who answered</small>
+              {stats.totals.checkout_error ? (
+                <>
+                  {' '}
+                  · payment form failed to load <b>{stats.totals.checkout_error}</b>
+                </>
+              ) : null}
             </p>
             <small className="faint">Landing visits, cases opened and answered without an account (counted from 4 November 2026) and Start-free clicks are counted once per browser session; accounts by their first sign-in; Opened a first case (counted from 4 November 2026) once per account, when a case's images are on screen; Paid once per account (free access is not counted).</small>
           </section>
@@ -112,7 +183,11 @@ export default function AdminPage() {
                     <th>Campaign</th>
                     <th>Visits</th>
                     <th>Tried a case</th>
+                    <th>Marked</th>
+                    <th>Answered</th>
+                    <th>2nd task</th>
                     <th>Start free</th>
+                    <th>Code sent</th>
                     <th>Accounts</th>
                     <th>First answer</th>
                     <th>Paid</th>
@@ -124,7 +199,11 @@ export default function AdminPage() {
                       <td>{r.source ? <span className="mono">{r.source}</span> : <span className="faint">No tag (direct, search, old links)</span>}</td>
                       <td data-label="Visits">{r.visits}</td>
                       <td data-label="Tried a case">{r.tried ?? 0}</td>
+                      <td data-label="Marked">{r.marked ?? 0}</td>
+                      <td data-label="Answered">{r.answered ?? 0}</td>
+                      <td data-label="2nd task">{r.second ?? 0}</td>
                       <td data-label="Start free">{r.starts}</td>
+                      <td data-label="Code sent">{r.codes ?? 0}</td>
                       <td data-label="Accounts">{r.accounts}</td>
                       <td data-label="First answer">
                         {r.studied} <small className="faint">{pct(r.studied, r.accounts)}</small>

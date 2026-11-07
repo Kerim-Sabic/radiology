@@ -11,7 +11,7 @@ import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
 import { pullAttempts, pushAttempts, resetAttempts } from './progressSync.js';
 import { fileReport, listReports, resolveReport } from './reports.js';
-import { adminStats, cleanSource, count, countOnce, countSource, cronAuthorized, dailyCron, emailPrefs, recordActivity, rememberSource, trackable, unsubscribe, weeklyCron } from './engage.js';
+import { adminStats, cleanSource, count, countOnce, countSource, cronAuthorized, dailyCron, emailPrefs, markSeconds, recordActivity, rememberSource, sourceCounted, trackable, unsubscribe, weeklyCron } from './engage.js';
 import { claimCertificate, myCertificates, publicCertificate, revokeCertificate } from './certificates.js';
 import { answerQuestion, finishExam, openQuestion, startExam } from './certificateExam.js';
 import { queueCertificateEmail, sendCertificateEmails } from './certificateEmail.js';
@@ -127,7 +127,9 @@ export async function handle(request: Request): Promise<Response> {
       const source = cleanSource(body?.source);
       if (await rateLimit(`track:${ip()}`, 60, 600)) {
         await count(event);
-        if (source && (event === 'visit' || event === 'signup_start' || event === 'guest_open')) await countSource(event, source);
+        const seconds = event === 'guest_mark' ? markSeconds(body?.seconds) : null;
+        if (seconds !== null) await count('guest_mark_s', seconds);
+        if (source && sourceCounted(event)) await countSource(event, source);
       }
       return json({ ok: true });
     }

@@ -29,11 +29,31 @@ export function pingStudied(now = new Date()) {
     .catch(() => undefined);
 }
 
-/** `guest_open` / `guest_answer`: a sample patient opened and answered without an account (from an ad or a link). */
-export type FunnelEvent = 'visit' | 'guest_open' | 'guest_answer' | 'signup_start' | 'plans';
+/**
+ * `guest_open` / `guest_mark` / `guest_answer` / `guest_second`: a sample patient opened, marked, answered, and a second
+ * task opened without an account (from an ad or a link). `code_sent`: the sign-up form sent its email code.
+ * `checkout_ready` / `checkout_error`: the payment form appeared, or failed to load.
+ */
+export type FunnelEvent =
+  | 'visit'
+  | 'guest_open'
+  | 'guest_mark'
+  | 'guest_answer'
+  | 'guest_second'
+  | 'signup_start'
+  | 'code_sent'
+  | 'plans'
+  | 'checkout_ready'
+  | 'checkout_error';
 
-/** Count a step of the sign-up funnel (cookieless: Vercel Web Analytics plus the app's own daily counter). */
-export function trackFunnel(event: FunnelEvent, once = false) {
+/** Sent when a guest's answer is graded: the account form, the next step offered, starts loading in the background. */
+export const WARM_ACCOUNT_EVENT = 'rvm:warm-account';
+
+/**
+ * Count a step of the sign-up funnel (cookieless: Vercel Web Analytics plus the app's own daily counter). `seconds` goes
+ * with `guest_mark`: how long the visitor looked before marking. Nothing about the person is sent.
+ */
+export function trackFunnel(event: FunnelEvent, once = false, seconds?: number) {
   if (once) {
     try {
       const k = `rvm.track.${event}`;
@@ -49,7 +69,8 @@ export function trackFunnel(event: FunnelEvent, once = false) {
     /* analytics is optional */
   }
   const source = adSource();
-  void fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ event, ...(source ? { source } : {}) }), keepalive: true }).catch(() => undefined);
+  const body = { event, ...(source ? { source } : {}), ...(seconds !== undefined && Number.isFinite(seconds) ? { seconds: Math.round(seconds) } : {}) };
+  void fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), keepalive: true }).catch(() => undefined);
 }
 
 /** A case's images are on screen: the funnel step between the sign-up and the first answer (once per account on the server). */

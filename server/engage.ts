@@ -25,7 +25,15 @@ export interface Profile {
   lastWeeklyMail?: number;
 }
 
-export const METRICS = ['visit', 'guest_open', 'guest_answer', 'signup_start', 'signup', 'opened', 'studied', 'plans', 'checkout', 'paid'] as const;
+export const METRICS = [
+  'visit', 'guest_open', 'guest_mark', 'guest_answer', 'guest_second', 'signup_start', 'code_sent', 'signup', 'opened', 'studied', 'plans', 'checkout',
+  'checkout_ready', 'checkout_error', 'paid',
+  // Seconds from a guest's first picture to their first mark, summed (divide by guest_mark for the average).
+  'guest_mark_s',
+] as const;
+/** Steps a campaign tag is counted for (the admin's "Where sign-ups come from"). */
+export const SOURCE_METRICS = ['visit', 'guest_open', 'guest_mark', 'guest_answer', 'guest_second', 'signup_start', 'code_sent'] as const;
+export type SourceMetric = (typeof SOURCE_METRICS)[number];
 export type Metric = (typeof METRICS)[number];
 const DAY = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -295,8 +303,8 @@ async function knownSource(source: string) {
   return true;
 }
 
-/** Count a landing visit, a sample case opened without an account or a Start free click for a campaign; never fails the request. */
-export async function countSource(metric: 'visit' | 'signup_start' | 'guest_open', source: string) {
+/** Count a funnel step (landing visit, guest case opened / marked / answered / second task, Start free, code sent) for a campaign; never fails the request. */
+export async function countSource(metric: SourceMetric, source: string) {
   try {
     if (await knownSource(source)) await db().incrby(`rvm:ms:${metric}:${utcDay()}:${source}`, 1);
   } catch {
@@ -364,29 +372,49 @@ export async function adminStats(now = new Date(), days = 30) {
   const subs = Number((await db().scard('rvm:subscribers')) ?? 0);
   // Visits and Start free clicks per campaign over the window; untagged visits are the rest of the total.
   const tags = (await db().smembers('rvm:sources')) as string[];
-  // Per campaign: landing visits, sample cases tried without an account, Start free clicks.
-  const tagged = new Map<string, { visits: number; tried: number; starts: number }>();
-  const KINDS = ['visit', 'guest_open', 'signup_start'] as const;
+  // Per campaign: landing visits, sample cases tried / marked / answered / a second task without an account, Start free
+  // clicks and email codes sent.
+  type Tagged = { visits: number; tried: number; marked: number; answered: number; second: number; starts: number; codes: number };
+  const ZERO: Tagged = { visits: 0, tried: 0, marked: 0, answered: 0, second: 0, starts: 0, codes: 0 };
+  const FIELD: Record<SourceMetric, keyof Tagged> = { visit: 'visits', guest_open: 'tried', guest_mark: 'marked', guest_answer: 'answered', guest_second: 'second', signup_start: 'starts', code_sent: 'codes' };
+  const tagged = new Map<string, Tagged>();
   for (const tag of tags) {
-    const v = (await db().mget<Array<number | null>>(...dayList.flatMap((d) => KINDS.map((k) => `rvm:ms:${k}:${d}:${tag}`)))) as Array<number | string | null>;
-    const total = (k: number) => v.filter((_, i) => i % KINDS.length === k).reduce((s: number, x) => s + Number(x ?? 0), 0);
-    tagged.set(tag, { visits: total(0), tried: total(1), starts: total(2) });
+    const v = (await db().mget<Array<number | null>>(...dayList.flatMap((d) => SOURCE_METRICS.map((k) => `rvm:ms:${k}:${d}:${tag}`)))) as Array<number | string | null>;
+    const row = { ...ZERO };
+    v.forEach((x, i) => (row[FIELD[SOURCE_METRICS[i % SOURCE_METRICS.length]]] += Number(x ?? 0)));
+    tagged.set(tag, row);
   }
-  const sum = (k: 'visits' | 'tried' | 'starts') => [...tagged.values()].reduce((s, t) => s + t[k], 0);
+  const sum = (k: keyof Tagged) => [...tagged.values()].reduce((s, t) => s + t[k], 0);
   const sources = [...new Set([...tagged.keys(), ...[...cohort.keys()].filter(Boolean)])]
-    .map((source) => ({ source, ...(tagged.get(source) ?? { visits: 0, tried: 0, starts: 0 }), ...(cohort.get(source) ?? { accounts: 0, studied: 0, paid: 0 }) }))
+    .map((source) => ({ source, ...(tagged.get(source) ?? ZERO), ...(cohort.get(source) ?? { accounts: 0, studied: 0, paid: 0 }) }))
     .filter((r) => r.visits || r.tried || r.starts || r.accounts)
     .sort((a, b) => b.accounts - a.accounts || b.visits + b.tried - (a.visits + a.tried));
   const untagged = {
     source: '',
     visits: Math.max(0, totals.visit - sum('visits')),
     tried: Math.max(0, totals.guest_open - sum('tried')),
+    marked: Math.max(0, totals.guest_mark - sum('marked')),
+    answered: Math.max(0, totals.guest_answer - sum('answered')),
+    second: Math.max(0, totals.guest_second - sum('second')),
     starts: Math.max(0, totals.signup_start - sum('starts')),
+    codes: Math.max(0, totals.code_sent - sum('codes')),
     ...(cohort.get('') ?? { accounts: 0, studied: 0, paid: 0 }),
   };
   return { series, totals, accounts: users.length, subscribers: subs, retention: { d1: { base: d1Base, back: d1 }, d7: { base: d7Base, back: d7 } }, sources: [...sources, untagged] };
 }
 
+/** Events the browser may count (accounts, first answers, checkouts and payments are counted by the server itself). */
+const BROWSER_EVENTS = new Set<string>(['visit', 'guest_open', 'guest_mark', 'guest_answer', 'guest_second', 'signup_start', 'code_sent', 'plans', 'checkout_ready', 'checkout_error']);
 export function trackable(event: unknown): Metric | null {
-  return event === 'visit' || event === 'guest_open' || event === 'guest_answer' || event === 'signup_start' || event === 'plans' ? event : null;
+  return typeof event === 'string' && BROWSER_EVENTS.has(event) ? (event as Metric) : null;
+}
+
+/** Seconds to a guest's first mark, as sent by the browser: a whole number of seconds, at most 10 minutes. */
+export function markSeconds(value: unknown): number | null {
+  return typeof value === 'number' && Number.isFinite(value) && value >= 0 ? Math.min(600, Math.round(value)) : null;
+}
+
+/** A campaign is counted for these steps. */
+export function sourceCounted(event: Metric): event is SourceMetric {
+  return (SOURCE_METRICS as readonly string[]).includes(event);
 }

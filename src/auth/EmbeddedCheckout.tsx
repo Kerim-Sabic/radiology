@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { loadWhop } from '@whop/elements';
 import { Checkout, CheckoutElement, WhopElements } from '@whop/elements-react';
 import { LockKeyhole } from 'lucide-react';
+import { trackFunnel } from '../services/serverSync';
 
 const elements = loadWhop();
 export default function EmbeddedCheckout({ id, returnUrl, email, promoCode, onComplete }: { id: string; returnUrl: string; email: string; promoCode?: string; onComplete: () => void }) {
@@ -13,9 +14,9 @@ export default function EmbeddedCheckout({ id, returnUrl, email, promoCode, onCo
     {error && <div className="membership-message" role="alert">The payment form couldn’t load. Check your connection and try again.
       <button className="text-button" onClick={() => { setError(false); if (retryLoader.current) { retryLoader.current(); retryLoader.current = null; } else setAttempt(n => n + 1); }}>Reload payment form</button>
     </div>}
-    <WhopElements key={attempt} elements={elements} appearance={{ theme: { appearance: 'dark', accentColor: 'blue', grayColor: 'slate' } }} onLoadError={(_error, retry) => { retryLoader.current = retry; setError(true); }}>
+    <WhopElements key={attempt} elements={elements} appearance={{ theme: { appearance: 'dark', accentColor: 'blue', grayColor: 'slate' } }} onLoadError={(_error, retry) => { retryLoader.current = retry; setError(true); trackFunnel('checkout_error'); }}>
       <Checkout promoCode={promoCode} checkoutConfiguration={id} returnUrl={returnUrl} onComplete={onComplete} fallback={<p className="checkout-loading" role="status">Loading secure payment form…</p>}>
-        <CheckoutElement buyerEmail={email} lockBuyerEmail onError={() => setError(true)} />
+        <CheckoutElement buyerEmail={email} lockBuyerEmail onReady={() => trackFunnel('checkout_ready', true)} onError={() => { setError(true); trackFunnel('checkout_error'); }} />
       </Checkout>
     </WhopElements>
   </div>;
