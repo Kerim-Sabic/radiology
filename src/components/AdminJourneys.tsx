@@ -92,7 +92,13 @@ export function AdminJourneys() {
     setBusy(true);
     setError('');
     fetch(`/api/admin/journeys?${query()}`, { cache: 'no-store' })
-      .then(async (res) => (res.ok ? setR(await res.json()) : setError(res.status === 403 ? 'Admin accounts only.' : `Could not load the journeys (HTTP ${res.status}).`)))
+      .then(async (res) => {
+        if (!res.ok) return setError(res.status === 403 ? 'Admin accounts only.' : `Could not load the journeys (HTTP ${res.status}).`);
+        const data = (await res.json()) as Partial<Report>;
+        // A reply without the report's shape (an old server, a proxy page) must not take the whole Admin page down.
+        if (!Array.isArray(data.funnel) || !data.daily?.yesterday || !data.speed || !data.payment || !data.paywall || !data.email) return setError('The journeys reply was not readable.');
+        setR(data as Report);
+      })
       .catch(() => setError('Could not reach the server.'))
       .finally(() => setBusy(false));
   };
