@@ -132,7 +132,8 @@ test('on a slow or data-saving connection only the slices near the one shown are
   await page.addInitScript(() => Object.defineProperty(navigator, 'connection', { value: { effectiveType: '3g', saveData: true, downlink: 0.8 } }));
   const fetched = new Set<string>();
   page.on('request', (r) => {
-    if (/\/packs\/starter\/dicom\/[^/]+\/[0-9a-f]+\.dcm$/.test(r.url())) fetched.add(r.url());
+    // GETs only: the catalog checks each pack's files are on the host with one HEAD request (no body, no data).
+    if (r.method() === 'GET' && /\/packs\/starter\/dicom\/[^/]+\/[0-9a-f]+\.dcm$/.test(r.url())) fetched.add(r.url());
   });
   await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aheart&mode=learn');
   await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
