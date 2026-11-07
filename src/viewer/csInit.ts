@@ -3,7 +3,7 @@
  * Imported only from lazily-loaded viewer code so the app shell stays small.
  */
 import * as cs from '@cornerstonejs/core';
-import * as cst from '@cornerstonejs/tools';
+import * as cst from './cstUsed';
 import dicomImageLoader from '@cornerstonejs/dicom-image-loader';
 import { registerDefaultProviders } from '@cornerstonejs/metadata';
 
@@ -96,4 +96,5 @@ export function initCornerstone(): Promise<{ gpu: boolean }> {
 export { cs, cst, dicomImageLoader };
 
 // Inspection handle for automated acceptance tests.
-(window as unknown as { __cs: unknown }).__cs = { cs, cst };
+// For tests and debugging: only what they read (exposing whole namespaces would keep every unused tool in the bundle).
+(window as unknown as { __cs: unknown }).__cs = { cs: { cache: cs.cache, metaData: cs.metaData }, cst: { ToolGroupManager: cst.ToolGroupManager } };

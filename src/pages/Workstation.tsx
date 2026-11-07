@@ -66,6 +66,8 @@ import { lookOf, segStyle, withLookAll } from '../viewer/segStyle';
 import { GROUP_ORDER } from '../viewer/anatomyMask';
 import { downloadBlob, shortLicense, slug, viewToPng } from '../lib/viewImage';
 import { GuestSaveCard, LockedCase, UpgradeCard } from '../components/Upgrade';
+import { posterUrl } from '../components/RoomPreview';
+import { hasBook, preloadBook, prerenderPage } from '../book/bookPdf';
 import { todayPlan } from '../services/learningModel';
 import { fact, LANDING_FACTS } from '../auth/landingFacts';
 import { ViewportPanel, type MarkBadge } from '../components/ws/ViewportPanel';
@@ -202,6 +204,32 @@ export default function Workstation() {
     setSoloPanel(id);
     setFocused(id);
   };
+  // One view on the whole screen (e.g. the 3D view of MPR + 3D): that view alone, and the viewer area full screen. Where
+  // the browser can't go full screen (iPhone), the viewer area covers the page instead. Esc or the button returns.
+  const [fullView, setFullView] = useState<string | null>(null);
+  const toggleFullView = (id: string) => {
+    if (fullView) {
+      setFullView(null);
+      setSoloPanel(null);
+      if (document.fullscreenElement) void document.exitFullscreen().catch(() => undefined);
+      return;
+    }
+    if (panels.length > 1) setSoloPanel(id);
+    setFocused(id);
+    setFullView(id);
+    const el = document.querySelector('.ws-main') as HTMLElement | null;
+    if (document.fullscreenEnabled && el?.requestFullscreen && !document.fullscreenElement) void el.requestFullscreen().catch(() => undefined);
+  };
+  useEffect(() => {
+    const left = () => {
+      if (!document.fullscreenElement && fullView && document.fullscreenEnabled) {
+        setFullView(null);
+        setSoloPanel(null);
+      }
+    };
+    document.addEventListener('fullscreenchange', left);
+    return () => document.removeEventListener('fullscreenchange', left);
+  }, [fullView]);
   const [leftOpen, setLeftOpen] = useState(() => window.innerWidth > 860);
   const [rightOpen, setRightOpen] = useState(true);
   /** On a phone the learning panel sits under the image: half the screen, or most of it. */
@@ -1086,6 +1114,7 @@ export default function Workstation() {
         engine.togglePlay(focused);
       }
       else if (k === 'u' && panels.length > 1) toggleSolo(focused);
+      else if (k === 'Escape' && fullView && !document.fullscreenElement) toggleFullView(fullView);
       else if (k === 'Escape' && solo && !isPhone && !document.querySelector('[role="dialog"], [role="menu"]')) setSoloPanel(null);
       else if (k === 'r') engine.reset(focused);
       else if (k === 'i') engine.invert(focused);
@@ -1315,6 +1344,27 @@ export default function Workstation() {
   useEffect(() => {
     if (kase && task) ev('case_shell', { case: kase.id, task: task.id, ms: Math.round(performance.now()) }, true);
   }, [kase?.id, task?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  // Once the scan is on screen and the phone is idle: open the book and draw this task's page, so the Book tab shows it
+  // at once (the scan is never kept waiting for the book). Accounts only: a guest has no book.
+  const bookPage = task?.bookAnchors?.[0]?.physical;
+  useEffect(() => {
+    if (guest || !focusedShown || !bookPage) return;
+    let idle = 0;
+    const run = () =>
+      void hasBook()
+        .then((has) => {
+          if (!has) return;
+          preloadBook();
+          const side = document.querySelector('.ws-side, .task-panel');
+          return prerenderPage(bookPage, Math.max(280, (side?.clientWidth ?? 380) - 40));
+        })
+        .catch(() => undefined);
+    idle = typeof requestIdleCallback === 'function' ? requestIdleCallback(run, { timeout: 6000 }) : window.setTimeout(run, 1500);
+    return () => {
+      if (typeof cancelIdleCallback === 'function') cancelIdleCallback(idle);
+      else clearTimeout(idle);
+    };
+  }, [guest, focusedShown, bookPage]);
   useEffect(() => {
     const err = focusedState?.error;
     if (err) ev('image_error', { case: kase?.id ?? '', status: Number(/HTTP (\d{3})/.exec(err)?.[1] ?? 0) }, true);
@@ -1917,7 +1967,7 @@ export default function Workstation() {
       {leftOpen ? <button className="ws-scrim" tabIndex={-1} aria-label="Close the case navigator" onClick={() => setLeftOpen(false)} /> : null}
 
       {/* ------------------------------------------------ viewports */}
-      <section className="ws-main" aria-label="Image viewports">
+      <section className={`ws-main${fullView ? ' full-view' : ''}`} aria-label="Image viewports">
         {toolFlash ? (
           <div className="ws-tool-flash" role="status">
             {toolFlash}
@@ -1969,10 +2019,13 @@ export default function Workstation() {
                 seriesIndex={catalog.seriesIndex(pd.seriesUid)}
                 kind={pd.kind}
                 startIndex={pd.pin !== undefined ? 0 : startIndexFor(pd.seriesUid, task)}
+                poster={i === 0 && task && pd.seriesUid === task.start.seriesUid && pd.pin === undefined && ((guest && (mode === 'learn' || mode === 'practice')) || task.targets.length === 0) ? posterUrl(kase?.id, task.id) : null}
                 viewTag={xrViews.get(pd.id) === 'frontal' ? 'Frontal' : xrViews.get(pd.id) === 'lateral' ? 'Lateral' : undefined}
                 focused={focused === pd.id}
                 solo={solo === pd.id}
                 onToggleSolo={panels.length > 1 ? () => toggleSolo(pd.id) : undefined}
+                onToggleFullView={() => toggleFullView(pd.id)}
+                fullView={fullView === pd.id}
                 viewName={panels.length > 1 ? panelName(pd, i) : undefined}
                 onFocus={() => setFocused(pd.id)}
                 onImageClick={pd.kind === '3d' ? undefined : (c, touch) => hintMark(c, pd.id, touch)}

@@ -195,8 +195,36 @@ export async function hasBook(): Promise<boolean> {
   return !!(import.meta.env.VITE_BOOK_URL as string | undefined)?.trim();
 }
 
-/** Render one physical page into `canvas` at `cssWidth`. Returns a cancel function. */
-export function renderPage(physical: number, canvas: HTMLCanvasElement, cssWidth: number): { done: Promise<{ width: number; height: number }>; cancel: () => void } {
+/**
+ * Pages drawn ahead of time (the open task's page, once its scan is on screen), so the Book tab shows them at once.
+ * Kept for the last few pages only: a page at phone width and 2× pixels is ~3 MB of canvas.
+ */
+const prerendered = new Map<number, { canvas: HTMLCanvasElement; cssWidth: number; width: number; height: number }>();
+const PRERENDER_KEEP = 3;
+const PRERENDER_SLACK_PX = 24;
+
+/** Draw a page in the background at about the width the Book tab will use. */
+export async function prerenderPage(physical: number, cssWidth: number): Promise<void> {
+  const hit = prerendered.get(physical);
+  if (hit && Math.abs(hit.cssWidth - cssWidth) <= PRERENDER_SLACK_PX) return;
+  const canvas = document.createElement('canvas');
+  const job = renderPage(physical, canvas, cssWidth, false);
+  const dims = await job.done;
+  prerendered.delete(physical);
+  prerendered.set(physical, { canvas, cssWidth, ...dims });
+  while (prerendered.size > PRERENDER_KEEP) prerendered.delete(prerendered.keys().next().value!);
+}
+
+/** Render one physical page into `canvas` at `cssWidth` (from the background drawing when it has one). */
+export function renderPage(physical: number, canvas: HTMLCanvasElement, cssWidth: number, useCache = true): { done: Promise<{ width: number; height: number }>; cancel: () => void } {
+  const hit = useCache ? prerendered.get(physical) : undefined;
+  if (hit && Math.abs(hit.cssWidth - cssWidth) <= PRERENDER_SLACK_PX) {
+    canvas.width = hit.canvas.width;
+    canvas.height = hit.canvas.height;
+    canvas.getContext('2d')?.drawImage(hit.canvas, 0, 0);
+    const k = cssWidth / hit.cssWidth;
+    return { done: Promise.resolve({ width: hit.width * k, height: hit.height * k }), cancel: () => undefined };
+  }
   let task: RenderTask | null = null;
   let cancelled = false;
   const done = (async () => {

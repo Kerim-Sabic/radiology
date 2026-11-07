@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
-import { Maximize2, Minimize2, RotateCcw } from 'lucide-react';
+import { Expand, Maximize2, Minimize2, RotateCcw, Shrink } from 'lucide-react';
 import { PLANE_COLORS, type ViewerEngine, type SeriesSource, type ViewKind } from '../../viewer/engine';
 import { Volume3DControls, type ThreeDProps } from './Volume3DControls';
 import type { Series } from '../../schema/content';
@@ -85,6 +85,9 @@ interface Props {
   solo?: boolean;
   /** Show this view alone / back to all the views (corner button, double-click on the title). Absent with one view. */
   onToggleSolo?: () => void;
+  /** This view alone on the whole screen (the 3D view in MPR + 3D, for example), and back. */
+  onToggleFullView?: () => void;
+  fullView?: boolean;
   /** Name of this view in a multi-view layout (Axial, Lateral, R CC…), said by the corner button. */
   viewName?: string;
   /** Radiographic view of a hung radiograph (Frontal / Lateral), shown under the series name. */
@@ -95,6 +98,8 @@ interface Props {
   onPickSeries?: (uid: string) => void;
   relationNote?: string | null;
   assessMasked?: boolean;
+  /** The first picture of a free task (scripts/build/posters.py), shown until the first image is drawn. */
+  poster?: string | null;
   /** A plain click or tap (not a drag) on the image, in canvas pixels; `touch` when a finger tapped. */
   onImageClick?: (canvas: Vec2, touch?: boolean) => void;
   /** Double-click on the image (the workstation shows that point in every linked view). */
@@ -616,7 +621,21 @@ export function ViewportPanel(p: Props) {
       {p.kind === '3d' && st?.ready && p.threeD ? (
         <Volume3DControls engine={engine} panelId={panelId} seriesUid={s.uid} modality={s.modality} threeD={p.threeD} clickRef={clickRef} />
       ) : null}
-      {p.onToggleSolo ? (
+      {p.onToggleFullView ? (
+        <button
+          type="button"
+          className="vp-full"
+          onClick={(e) => {
+            e.stopPropagation();
+            p.onToggleFullView!();
+          }}
+          aria-label={p.fullView ? 'Leave full screen' : `Show the ${p.viewName ?? 'view'} full screen`}
+          title={p.fullView ? 'Leave full screen (Esc)' : 'This view alone, full screen'}
+        >
+          {p.fullView ? <Shrink size={15} /> : <Expand size={15} />}
+        </button>
+      ) : null}
+      {p.onToggleSolo && !p.fullView ? (
         <button
           type="button"
           className="vp-max"
@@ -641,8 +660,9 @@ export function ViewportPanel(p: Props) {
           </select>
         </div>
       ) : null}
+      {loading && p.poster && p.kind === 'stack' ? <img className="vp-poster" src={p.poster} alt="" aria-hidden="true" /> : null}
       {loading ? (
-        <div className="vp-status" role="status" aria-live="polite">
+        <div className={`vp-status${p.poster && p.kind === 'stack' ? ' over-poster' : ''}`} role="status" aria-live="polite">
           <div>{p.kind === 'stack' ? 'Loading first image…' : 'Loading the full series for reformatting…'}</div>
           <div className="progress-bar">
             <span style={{ width: `${pct}%` }} />

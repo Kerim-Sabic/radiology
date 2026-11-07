@@ -232,7 +232,11 @@ function MembershipGate({ children }: { children: ReactNode }) {
   // Once a guest has been graded, fetch the account form's own code in the background (it is the next step offered).
   // Clerk's script itself loads when the form opens: a second, hidden Clerk instance would keep the wrong settings.
   useEffect(() => {
-    const warm = () => void import('./InlineAccount').catch(() => undefined);
+    const warm = () => {
+      void import('./InlineAccount').catch(() => undefined);
+      // Open the connection to the sign-in service now: on slow 4G its DNS and TLS cost ~0.5 s when "Save it" is pressed.
+      preconnect(clerkFrontendHost(clerkKeyRef.current));
+    };
     window.addEventListener(WARM_ACCOUNT_EVENT, warm);
     return () => window.removeEventListener(WARM_ACCOUNT_EVENT, warm);
   }, []);
@@ -269,6 +273,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
   // The price a plan button stands for, read by `buy` through a ref: `buy` is memoised and may be created in a render
   // that returns early (still loading), before the prices are worked out.
   const planAmountRef = useRef<(tier: Tier) => number>(() => 0);
+  const clerkKeyRef = useRef<string | undefined>(undefined);
   const mounted = useRef(true);
   const signedIn = useRef(false);
   const generation = useRef(0);
@@ -425,8 +430,12 @@ function MembershipGate({ children }: { children: ReactNode }) {
   const cardPrice = studentRegional ?? regionalShown;
   const planAmount = (tier: Tier) => (cardPrice ? (tier === 'monthly' ? cardPrice.monthly.price : cardPrice.yearly.price) : tier === 'monthly' ? 20 : 150);
   planAmountRef.current = planAmount;
+  clerkKeyRef.current = ready?.clerkPublishableKey;
   // The plans were on screen: what was shown, from where (signed in: the plans screen; signed out: the home page).
-  const seenPlans = () =>
+  const seenPlans = () => {
+    // The payment form loads from Whop: connect while the visitor reads the plans.
+    preconnect('https://cdn.whop.com');
+    preconnect('https://api.whop.com');
     ev('plans_view', {
       from: account?.user ? 'account' : 'home',
       currency: 'USD',
@@ -437,6 +446,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       monthly: planAmount('monthly'),
       yearly: planAmount('yearly'),
     }, true);
+  };
   const checkoutCodeChanged = promoCode.trim().toLowerCase() !== (payment?.enteredPromoCode || '');
   const panel = <>
     <section className="membership-panel" id="plans" aria-label="Membership">
@@ -604,4 +614,26 @@ function SeenOnce({ onSeen }: { onSeen: () => void }) {
     return () => io.disconnect();
   }, []);
   return <span ref={ref} aria-hidden="true" />;
+}
+
+/** The Clerk frontend host in a publishable key ("pk_live_" + base64 of "clerk.example.com$"), or null. */
+export function clerkFrontendHost(key: string | undefined | null): string | null {
+  const b64 = /^pk_(?:live|test)_([A-Za-z0-9+/=]+)$/.exec(key ?? '')?.[1];
+  if (!b64) return null;
+  try {
+    const host = atob(b64).replace(/\$$/, '');
+    return /^[a-z0-9.-]+\.[a-z]{2,}$/i.test(host) ? `https://${host}` : null;
+  } catch {
+    return null;
+  }
+}
+
+/** A <link rel="preconnect"> for an origin, once (a no-op for null or one already added). */
+export function preconnect(origin: string | null) {
+  if (!origin || typeof document === 'undefined' || document.querySelector(`link[rel="preconnect"][href="${origin}"]`)) return;
+  const link = document.createElement('link');
+  link.rel = 'preconnect';
+  link.href = origin;
+  link.crossOrigin = 'anonymous';
+  document.head.appendChild(link);
 }

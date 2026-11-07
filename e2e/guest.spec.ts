@@ -174,6 +174,35 @@ test.describe('the ad visitor on a phone', () => {
     expect(await page.evaluate(() => (window as any).__rvm.collectMarks().length)).toBe(0);
   });
 
+  test('while the reading room downloads, the question and its first picture are already on screen', async ({ page }) => {
+    await visitor(page);
+    // The reading room's code arrives late, as on a slow phone connection; the app shell and the poster don't.
+    await page.route(/\/assets\/Workstation-[^/]+\.js$/, async (r) => {
+      await new Promise((res) => setTimeout(res, 4000));
+      return r.fallback();
+    });
+    await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aesophagus&mode=practice&utm_source=meta&utm_campaign=reel002');
+    const preview = page.getByRole('status', { name: 'Opening the case' });
+    await expect(preview.getByRole('heading', { name: 'Find the esophagus' })).toBeVisible({ timeout: 3500 });
+    await expect(preview.locator('img')).toHaveAttribute('src', '/landing/posters/starter-ct-chest-01--esophagus.webp');
+    expect(await preview.locator('img').evaluate((img: HTMLImageElement) => img.naturalWidth)).toBeGreaterThan(300);
+    // Then the reading room takes over, at the same slice.
+    await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
+    await expect(preview).toHaveCount(0);
+  });
+
+  test('the first picture stays in the viewer until the first slice is drawn', async ({ page }) => {
+    await visitor(page);
+    await page.route('**/packs/starter/dicom/**', async (r) => {
+      await new Promise((res) => setTimeout(res, 2500));
+      return r.fallback();
+    });
+    await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aheart&mode=learn');
+    await expect(page.locator('[data-panel="p0"] .vp-poster')).toBeVisible({ timeout: 30_000 });
+    await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
+    await expect(page.locator('[data-panel="p0"] .vp-poster')).toHaveCount(0);
+  });
+
   test('on a slow connection the case opens straight at the heart, and an answer given at once is graded, not a crash', async ({ page }) => {
     await visitor(page);
     // Every slice takes a while, as on a slow phone connection; the outlines arrive first.

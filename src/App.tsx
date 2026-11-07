@@ -10,6 +10,7 @@ import { AccountMenu } from './auth/AccountGate';
 import { CommandPalette } from './components/CommandPalette';
 import { FreeBanner, LockedFeature } from './components/Upgrade';
 import { ScanLoader } from './components/ScanState';
+import { RoomPreview } from './components/RoomPreview';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { useApp } from './app/AppContext';
 import { useAccount } from './auth/AccountGate';
@@ -266,7 +267,7 @@ export function App() {
               <Route path="/atlas" element={<AtlasPage />} />
               <Route path="/drill" element={<DrillPage />} />
               <Route path="/oncall" element={<OnCallPage />} />
-              <Route path="/read/:caseId" element={<Workstation />} />
+              <Route path="/read/:caseId" element={<Suspense fallback={<RoomPreview />}><Workstation /></Suspense>} />
               <Route path="/book" element={<BookReader />} />
               <Route path="/book/figures" element={<BookFigures />} />
               <Route path="/book/:physical" element={<BookReader />} />

@@ -25,6 +25,33 @@ function viewOf(page: Page, panel: string) {
 }
 const box = (page: Page, panel: string) => page.locator(`[data-panel="${panel}"]`).boundingBox();
 
+test.describe('One view full screen', () => {
+  test('in MPR + 3D the 3D view goes full screen with its own button, which its 3D bar no longer covers, and comes back', async ({ page }) => {
+    await page.goto(CT);
+    await waitPanel(page);
+    await chooseLayout(page, 'MPR + 3D');
+    const p3 = page.locator('[data-panel="p3"]');
+    await expect(p3.locator('.v3d-bar').first()).toBeVisible({ timeout: 90_000 });
+    // The view's two corner buttons are clear of the 3D bar.
+    const bar = (await p3.locator('.v3d-bar').first().boundingBox())!;
+    for (const sel of ['.vp-full', '.vp-max']) {
+      const b = (await p3.locator(sel).boundingBox())!;
+      const overlap = b.x < bar.x + bar.width && bar.x < b.x + b.width && b.y < bar.y + bar.height && bar.y < b.y + b.height;
+      expect(overlap, sel).toBe(false);
+    }
+    await p3.screenshot({ path: 'test-results/mpr3d-3d-corner.png' });
+    await p3.getByRole('button', { name: /full screen$/ }).click();
+    await expect(page.locator('.ws-main')).toHaveClass(/full-view/);
+    // Only the 3D view, over the whole screen.
+    const vp = page.viewportSize()!;
+    await expect.poll(async () => (await p3.boundingBox())!.width).toBeGreaterThan(vp.width * 0.9);
+    await page.screenshot({ path: 'test-results/mpr3d-3d-full.png' });
+    await p3.getByRole('button', { name: 'Leave full screen' }).click();
+    await expect(page.locator('.ws-main')).not.toHaveClass(/full-view/);
+    await expect.poll(async () => (await p3.boundingBox())!.width).toBeLessThan(vp.width * 0.6);
+  });
+});
+
 test.describe('One view alone', () => {
   test('the corner button shows one MPR view over the whole image area and Esc restores every view unchanged', async ({ page }) => {
     await page.goto(CT);

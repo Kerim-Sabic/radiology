@@ -470,3 +470,71 @@
 .fa-item .btn {
   align-self: flex-start;
 }
+
+/* One view full screen (src/pages/Workstation.tsx toggleFullView): the viewer area covers the page where the browser
+   cannot go full screen (iPhone), and fills the screen where it can. */
+.ws-main.full-view {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: #000;
+}
+.ws-main:fullscreen {
+  background: #000;
+}
+.vp-full {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+  width: 26px;
+  height: 26px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(18, 21, 26, 0.72);
+  color: #dfe6ee;
+  cursor: pointer;
+  z-index: 5;
+  opacity: 0.8;
+}
+.vp-full:hover,
+.vp-full:focus-visible {
+  opacity: 1;
+}
+/* Both buttons: full screen at the corner, "alone" just left of it. */
+.vpanel:has(.vp-full) .vp-max {
+  right: 34px;
+}
+.vpanel:has(.vp-full) .vp-corner.tr {
+  padding-right: 34px;
+}
+.vpanel:has(.vp-full):has(.vp-max) .vp-corner.tr {
+  padding-right: 64px;
+}
+/* The 3D panel's own bar sits left of the buttons instead of over them. */
+.vp-max {
+  z-index: 5;
+}
+.vpanel:has(.vp-full) .v3d-ui {
+  right: 36px;
+}
+.vpanel:has(.vp-full):has(.vp-max) .v3d-ui {
+  right: 66px;
+}
+@media (pointer: coarse) {
+  .vp-full {
+    width: 32px;
+    height: 32px;
+  }
+  .vpanel:has(.vp-full) .vp-max {
+    right: 40px;
+  }
+  .vpanel:has(.vp-full) .v3d-ui {
+    right: 42px;
+  }
+  .vpanel:has(.vp-full):has(.vp-max) .v3d-ui {
+    right: 78px;
+  }
+}

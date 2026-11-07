@@ -89,11 +89,18 @@ export function AppProvider({ children }: { children: ReactNode }) {
     loadCurriculum().then(setCurriculum);
   }, []);
   // Open the book in the background once the app is idle, so the first page appears instantly later. Not for a guest:
-  // the book is served to an account, and asking the server would only be turned away.
+  // the book is served to an account, and asking the server would only be turned away. Not on a case's page either:
+  // there the reading room opens it after the first image is on screen (the scan comes first on a slow connection).
   useEffect(() => {
-    if (guest) return;
-    const t = setTimeout(preloadBook, 1500);
-    return () => clearTimeout(t);
+    if (guest || location.pathname.startsWith('/read/')) return;
+    let idle = 0;
+    const t = setTimeout(() => {
+      idle = typeof requestIdleCallback === 'function' ? requestIdleCallback(preloadBook, { timeout: 8000 }) : window.setTimeout(preloadBook, 0);
+    }, 4000);
+    return () => {
+      clearTimeout(t);
+      if (idle && typeof cancelIdleCallback === 'function') cancelIdleCallback(idle);
+    };
   }, [guest]);
 
   useEffect(() => {
