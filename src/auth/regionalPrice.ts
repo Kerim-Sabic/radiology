@@ -50,5 +50,8 @@ export function yearlyFigures(r: RegionalPrice) {
 }
 
 /** One line for the checkout: "$9.99 USD every 30 days" or "$4.99 USD for 30 days, one payment". */
-export const regionalTerms = (c: Pick<RegionalCheckout, 'price' | 'days' | 'pass'>) =>
-  c.pass ? `${usd(c.price)} USD for ${c.days} days, one payment that does not renew` : `${usd(c.price)} USD every ${c.days} days`;
+export const regionalTerms = (c: Pick<RegionalCheckout, 'price' | 'days' | 'pass'> & Partial<Pick<RegionalCheckout, 'rupees' | 'method'>>) => {
+  // A UPI pass is charged in rupees.
+  const amount = c.method === 'upi' && c.rupees ? rupees(c.rupees) : `${usd(c.price)} USD`;
+  return c.pass ? `${amount} for ${c.days} days, one payment that does not renew` : `${amount} every ${c.days} days`;
+};

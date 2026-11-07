@@ -310,6 +310,14 @@ async function send(mail: WelcomeMail, idempotencyKey: string): Promise<boolean>
 }
 
 /**
+ * Whether a welcome code may include India's rupee UPI passes. The code is a percentage, so the currency shouldn't matter,
+ * but Whop hasn't been seen to take a dollar-based code on a rupee plan yet. If it refuses, the same code is made on the
+ * card plans alone and later codes skip the UPI passes (an Indian buyer with such a code pays by card, or by UPI without
+ * it). Reset with each cold start; exported for the tests.
+ */
+export const welcomeCodeUpi = { on: true };
+
+/**
  * Make the personal code in Whop: both plans and the regional plans (checkout puts it on a regional plan only for a
  * visitor who gets that price; Whop's card rules cover the discounted amounts), the first payment only, one use, 72 hours.
  */
@@ -318,12 +326,14 @@ async function makeCode(userId: string, r: WelcomeRecord, now: number): Promise<
   const expiresAt = new Date(now + WELCOME_HOURS * HOUR).toISOString();
   for (let attempt = 0; attempt < 3; attempt++) {
     const code = welcomeCode(r.name);
-    try {
+    // Codes are unique per business: if the same code is refused with the UPI passes and taken without them, they were the
+    // reason. If both are refused, the code itself is taken and the next attempt tries a new one.
+    for (const upi of welcomeCodeUpi.on ? [true, false] : [false]) try {
       const created = await client.promoCodes.create(
         {
           account_id: required('WHOP_ACCOUNT_ID'),
           product_id: required('WHOP_PRODUCT_ID'),
-          plan_ids: [required(plans.monthly.env), required(plans.yearly.env), ...welcomeCodePlanIds()],
+          plan_ids: [required(plans.monthly.env), required(plans.yearly.env), ...welcomeCodePlanIds(upi)],
           code,
           promo_type: 'percentage',
           amount_off: WELCOME_PERCENT,
@@ -338,8 +348,12 @@ async function makeCode(userId: string, r: WelcomeRecord, now: number): Promise<
           stock: 1,
           expires_at: expiresAt,
         },
-        { idempotencyKey: `welcome-${userId}-${attempt}` },
+        { idempotencyKey: `welcome-${userId}-${attempt}${upi ? '' : '-card'}` },
       );
+      if (!upi && welcomeCodeUpi.on) {
+        welcomeCodeUpi.on = false;
+        console.warn('Whop refused the UPI passes in a welcome code: welcome codes are made on the card plans only');
+      }
       return { code, promoId: created.id, expiresAt };
     } catch (e) {
       const status = (e as { statusCode?: number }).statusCode;

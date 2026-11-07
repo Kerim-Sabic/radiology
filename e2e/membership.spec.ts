@@ -178,6 +178,43 @@ test('an Indian visitor can pay the pass by UPI in rupees, and switch back to a 
   await expect(page.locator('.upi-switch')).toContainText('Pay by UPI instead');
   expect(bodies.at(-1)).toEqual({tier:'yearly'});
 });
+
+test('an Indian visitor with a welcome code pays its 40% off by UPI, or, where the code is card only, can pay by UPI without it', async ({page}) => {
+  const code='welcome-ravi-k7q3m';
+  const india={country:'IN',countryName:'India'};
+  await page.route('**/api/config',route=>route.fulfill({json:{auth:true,billing:true}}));
+  await page.route('**/api/session',route=>route.fulfill({json:{user:{name:'Ravi',email:'ravi@example.com'},access:{active:false},billingReady:true,
+    welcomeOffer:{code,expiresAt:new Date(Date.now()+48*3600_000).toISOString(),percent:40},
+    regionalPrice:{region:'c',...india,monthly:{price:4.99,pass:true},yearly:{price:39.99,pass:true},upi:{monthly:469,yearly:3749}}}}));
+  // First the code is on the UPI pass; then (a code made before the UPI passes) it is not, and the server keeps the card form.
+  let codeOnUpi=true;
+  const bodies:Array<Record<string,unknown>>=[];
+  await page.route('**/api/billing/checkout',route=>{const b=route.request().postDataJSON();bodies.push(b);
+    const upi=b.method==='upi'&&(codeOnUpi||!b.promoCode);
+    return route.fulfill({json:{id:upi?'ch_upi':'ch_card',returnUrl:'http://localhost:4317/?checkout=returned',...(b.promoCode?{promoCode:code,welcome:true}:{}),
+      regional:{...india,price:4.99,days:30,pass:true,...(upi?{rupees:469,method:'upi'}:{})}}});});
+  await page.route('**/*whop.com/**',route=>route.abort());
+  await page.goto('/?plans');
+  await page.getByRole('button',{name:'Get 30 days'}).click();
+  await expect(page.locator('.welcome-applied')).toContainText('($2.99 instead of $4.99)');
+  await page.locator('.upi-switch').getByRole('button',{name:'Pay by UPI'}).click();
+  await expect(page.locator('.upi-switch')).toContainText('Paying ₹281.40 by UPI');
+  await expect(page.locator('.welcome-applied')).toContainText('(₹281.40 instead of ₹469)');
+  await expect(page.locator('.regional-applied')).toContainText('Price for India: ₹469 for 30 days');
+  await expect(page.locator('.regional-applied')).not.toContainText('Pay with a card');
+  expect(bodies).toEqual([{tier:'monthly',promoCode:code},{tier:'monthly',promoCode:code,method:'upi'}]);
+
+  codeOnUpi=false;
+  await page.locator('.upi-switch').getByRole('button',{name:'Pay by card instead'}).click();
+  await expect(page.locator('.upi-switch')).toContainText('Pay by UPI instead: ₹469');
+  await page.locator('.upi-switch').getByRole('button',{name:'Pay by UPI'}).click();
+  await expect(page.locator('.upi-switch')).toContainText('Your welcome code works on card payments only');
+  await expect(page.locator('.regional-applied')).toContainText('Pay with a card issued in India');
+  await page.locator('.upi-switch').getByRole('button',{name:'Pay ₹469 by UPI'}).click();
+  await expect(page.locator('.upi-switch')).toContainText('Paying ₹469 by UPI');
+  await expect(page.locator('.welcome-applied')).toHaveCount(0);
+  expect(bodies.slice(2)).toEqual([{tier:'monthly',promoCode:code},{tier:'monthly',promoCode:code,method:'upi'},{tier:'monthly',method:'upi'}]);
+});
 test('a free account is asked one question on the plans, once: what would make it worth paying for', async ({page}) => {
   await account(page, true);
   const answers:unknown[]=[];

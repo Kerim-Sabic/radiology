@@ -37,6 +37,12 @@ export const welcomePrice = (price: number, percent: number) => {
   return `$${Number.isInteger(v) ? v : v.toFixed(2)}`;
 };
 
+/** The same in rupees, for a UPI pass (to the paisa: 40% off ₹469 is ₹281.40). */
+export const welcomeRupees = (rupees: number, percent: number) => {
+  const v = Math.round(rupees * (100 - percent)) / 100;
+  return `₹${v.toLocaleString('en-IN', { minimumFractionDigits: Number.isInteger(v) ? 0 : 2, maximumFractionDigits: 2 })}`;
+};
+
 /** What the code takes off, at the standard prices or at the price for the visitor's country. */
 export function welcomeTerms(percent: number, regional?: RegionalPrice | null): string {
   if (!regional) return `Yearly ${welcomePrice(150, percent)} for your first year instead of $150 · Monthly ${welcomePrice(20, percent)} for your first month instead of $20. Renewals at the standard price.`;

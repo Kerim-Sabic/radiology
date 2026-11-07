@@ -137,8 +137,9 @@ test('on a slow or data-saving connection only the slices near the one shown are
   await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aheart&mode=learn');
   await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
   await page.waitForTimeout(3000);
-  // 12 slices each side of the one shown (plus slice 1, asked for before the task's slice was known).
-  expect(fetched.size).toBeLessThanOrEqual(27);
+  // 12 slices each side of the one shown, plus slice 1 and at most the 3 after it when slice 1 arrives before the task's
+  // slice is known (a race only a local server loses: on a slow link the task, a small file, is there first).
+  expect(fetched.size).toBeLessThanOrEqual(29);
   expect(fetched.size).toBeGreaterThan(5);
   const before = fetched.size;
   await page.evaluate(() => (window as any).__rvm.setIndex('p0', 10));

@@ -58,10 +58,10 @@ function standardPlan(id: string) {
   return { id, account: { id: 'biz_test' }, currency: 'usd', plan_type: 'renewal', billing_period: id === 'plan_yearly' ? 365 : 30, initial_price: 0, renewal_price: id === 'plan_yearly' ? 150 : 20, adaptive_pricing_enabled: false };
 }
 
-import { membershipPlans, regionalPlan, regionalPlans, upiPlans, welcomeCodePlanIds, type RegionalPlan } from '../server/config';
+import { allRegionalPlans, membershipPlans, regionalPlan, regionalPlans, upiPlans, welcomeCodePlanIds, type RegionalPlan } from '../server/config';
 import { upiOffered, upiPlanProblems, ruleAmounts, ruleBlocked, regionalOffer, regionalPlanProblems, regionOf, regionalStatus, setRegionalLive, setStudentRegionalLive, studentAmount, studentRuleAmounts, welcomeAmount } from '../server/regional';
 import { priceAnswers } from '../src/auth/priceAnswers';
-import { studentTerms, withStudentPrices } from '../src/auth/regionalPrice';
+import { regionalTerms, studentTerms, withStudentPrices } from '../src/auth/regionalPrice';
 import { accessFor, checkout, membershipAccess, whop } from '../server/billing';
 import { handle } from '../server/handler';
 import { hash } from '../server/auth';
@@ -400,7 +400,8 @@ describe('the public config', () => {
 });
 
 describe('UPI for India', () => {
-  // The two UPI passes exist in Whop once their ids are filled in (server/config.ts); here they are set for the test.
+  // The two UPI passes account 1 made in Whop (server/config.ts); the tests use stand-in ids and put the real ones back.
+  const real = { monthly: upiPlans.monthly.id, yearly: upiPlans.yearly.id };
   const ids = { monthly: 'plan_upiMonthly1', yearly: 'plan_upiYearly1' };
   const upiPlan = (p: (typeof upiPlans)['monthly'], changes: Record<string, unknown> = {}) =>
     ({
@@ -415,12 +416,20 @@ describe('UPI for India', () => {
     for (const p of Object.values(upiPlans)) fake.variants.set(p.id, upiPlan(p));
   };
   afterEach(() => {
-    upiPlans.monthly.id = '';
-    upiPlans.yearly.id = '';
+    upiPlans.monthly.id = real.monthly;
+    upiPlans.yearly.id = real.yearly;
+  });
+
+  it('is on: both UPI passes are filled in, each a Whop plan id', () => {
+    expect(real.monthly).toMatch(/^plan_[A-Za-z0-9]+$/);
+    expect(real.yearly).toMatch(/^plan_[A-Za-z0-9]+$/);
+    expect(real.monthly).not.toBe(real.yearly);
+    expect([real.monthly, real.yearly].some((id) => allRegionalPlans().some((p) => p.id === id))).toBe(false);
   });
 
   it('is off until both UPI plans exist, and is offered only in India', async () => {
     goLive();
+    upiPlans.monthly.id = '';
     expect(upiOffered('IN')).toBe(false);
     expect((await regionalOffer('IN'))?.upi).toBeUndefined();
     withUpi();
@@ -475,5 +484,13 @@ describe('UPI for India', () => {
     ]);
     expect(regionalPlan(ids.yearly)).toMatchObject({ pass: true, days: 365 });
     expect(welcomeCodePlanIds()).toEqual(expect.arrayContaining([ids.monthly, ids.yearly]));
+    expect(welcomeCodePlanIds(false)).toEqual(allRegionalPlans().map((p) => p.id));
+  });
+
+  it('names a UPI pass in rupees at checkout, and a card pass or a student price in dollars', () => {
+    const india = { price: 4.99, days: 30, pass: true, rupees: 469 };
+    expect(regionalTerms({ ...india, method: 'upi' })).toBe('₹469 for 30 days, one payment that does not renew');
+    expect(regionalTerms(india)).toBe('$4.99 USD for 30 days, one payment that does not renew');
+    expect(regionalTerms({ ...india, method: 'upi', price: 3.49, rupees: undefined })).toBe('$3.49 USD for 30 days, one payment that does not renew');
   });
 });

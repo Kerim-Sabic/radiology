@@ -24,6 +24,16 @@ function viewOf(page: Page, panel: string) {
   }, panel);
 }
 const box = (page: Page, panel: string) => page.locator(`[data-panel="${panel}"]`).boundingBox();
+/**
+ * An element's layout box, read in the page. Playwright's boundingBox waits for a rendered frame, and headless Chromium
+ * renders a full-screen 3D volume on the CPU: with several tests at once one frame takes seconds and the check times out
+ * although the layout is long right.
+ */
+const rect = (page: Page, selector: string) =>
+  page.evaluate((s) => {
+    const r = document.querySelector(s)!.getBoundingClientRect();
+    return { x: r.x, y: r.y, width: r.width, height: r.height };
+  }, selector);
 
 test.describe('One view full screen', () => {
   test('in MPR + 3D the 3D view goes full screen with its own button, which its 3D bar no longer covers, and comes back', async ({ page }) => {
@@ -34,9 +44,9 @@ test.describe('One view full screen', () => {
     const p3 = page.locator('[data-panel="p3"]');
     await expect(p3.locator('.v3d-bar').first()).toBeVisible({ timeout: 90_000 });
     // The view's two corner buttons are clear of the 3D bar.
-    const bar = (await p3.locator('.v3d-bar').first().boundingBox())!;
+    const bar = await rect(page, '[data-panel="p3"] .v3d-bar');
     for (const sel of ['.vp-full', '.vp-max']) {
-      const b = (await p3.locator(sel).boundingBox())!;
+      const b = await rect(page, `[data-panel="p3"] ${sel}`);
       const overlap = b.x < bar.x + bar.width && bar.x < b.x + b.width && b.y < bar.y + bar.height && bar.y < b.y + b.height;
       expect(overlap, sel).toBe(false);
     }
@@ -44,10 +54,10 @@ test.describe('One view full screen', () => {
     await expect(page.locator('.ws-main')).toHaveClass(/full-view/);
     // Only the 3D view, over the whole screen.
     const vp = page.viewportSize()!;
-    await expect.poll(async () => (await p3.boundingBox())!.width).toBeGreaterThan(vp.width * 0.9);
-    await p3.getByRole('button', { name: 'Leave full screen' }).click();
+    await expect.poll(async () => (await rect(page, '[data-panel="p3"]')).width).toBeGreaterThan(vp.width * 0.9);
+    await p3.getByRole('button', { name: 'Leave full screen' }).click({ timeout: 90_000 });
     await expect(page.locator('.ws-main')).not.toHaveClass(/full-view/);
-    await expect.poll(async () => (await p3.boundingBox())!.width).toBeLessThan(vp.width * 0.6);
+    await expect.poll(async () => (await rect(page, '[data-panel="p3"]')).width).toBeLessThan(vp.width * 0.6);
   });
 });
 

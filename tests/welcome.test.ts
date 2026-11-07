@@ -42,7 +42,9 @@ import { ownWelcomeCode, welcomeKey, welcomeOffer, type WelcomeRecord } from '..
 import { checkoutDiscount } from '../server/studentDiscount';
 import { unsubscribe, unsubscribeUrl } from '../server/engage';
 import { timeLeft, welcomeTerms } from '../src/auth/welcomeOffer';
-import { allRegionalPlans } from '../server/config';
+import { welcomeCodePlanIds } from '../server/config';
+import { welcomeCodeUpi } from '../server/welcome';
+import { welcomeRupees } from '../src/auth/welcomeOffer';
 
 const uid = 'b'.repeat(64);
 const other = 'c'.repeat(64);
@@ -172,7 +174,7 @@ describe('the welcome gift, 24 hours after sign-up', () => {
     expect(await welcomeCron(sentAt)).toEqual({ welcomed: 0, offered: 1, reminded: 0 });
     expect(fake.create).toHaveBeenCalledTimes(1);
     const body = fake.create.mock.calls[0][0];
-    expect(body).toMatchObject({ account_id: 'biz_1', product_id: 'prod_1', plan_ids: ['plan_m', 'plan_y', ...allRegionalPlans().map((p) => p.id)], promo_type: 'percentage', amount_off: 40, promo_duration_months: 1, one_per_customer: true, unlimited_stock: false, stock: 1 });
+    expect(body).toMatchObject({ account_id: 'biz_1', product_id: 'prod_1', plan_ids: ['plan_m', 'plan_y', ...welcomeCodePlanIds()], promo_type: 'percentage', amount_off: 40, promo_duration_months: 1, one_per_customer: true, unlimited_stock: false, stock: 1 });
     expect(body.code).toMatch(/^welcome-ana-[a-z2-9]{5}$/);
     // The 72 hours start with this email, not at sign-up.
     expect(Date.parse(body.expires_at)).toBe(sentAt + 72 * HOUR);
@@ -284,10 +286,46 @@ describe('the welcome gift, 24 hours after sign-up', () => {
 
   it('tries a new code when Whop refuses one that is taken', async () => {
     const r = await joined();
+    // Taken: refused with the UPI passes and without them.
+    fake.create.mockRejectedValueOnce(Object.assign(new Error('taken'), { statusCode: 422 }));
     fake.create.mockRejectedValueOnce(Object.assign(new Error('taken'), { statusCode: 422 }));
     await welcomeCron(after(r, 24));
-    expect(fake.create).toHaveBeenCalledTimes(2);
-    expect((fake.kv.get(welcomeKey(uid)) as WelcomeRecord).code).toBe(fake.create.mock.calls[1][0].code);
+    expect(fake.create).toHaveBeenCalledTimes(3);
+    const [first, second, third] = fake.create.mock.calls.map((c) => c[0]);
+    expect(second.code).toBe(first.code);
+    expect(third.code).not.toBe(first.code);
+    expect(third.plan_ids).toEqual(['plan_m', 'plan_y', ...welcomeCodePlanIds()]);
+    expect((fake.kv.get(welcomeKey(uid)) as WelcomeRecord).code).toBe(third.code);
+    expect(welcomeCodeUpi.on).toBe(true);
+  });
+
+  it("makes the code on the card plans alone if Whop won't put a dollar code on the rupee UPI passes, and keeps doing so", async () => {
+    try {
+      const r = await joined();
+      expect(welcomeCodePlanIds()).not.toEqual(welcomeCodePlanIds(false)); // the UPI passes are filled in
+      fake.create.mockRejectedValueOnce(Object.assign(new Error('currency'), { statusCode: 422 }));
+      await welcomeCron(after(r, 24));
+      expect(fake.create).toHaveBeenCalledTimes(2);
+      const [withUpi, cardOnly] = fake.create.mock.calls.map((c) => c[0]);
+      expect(withUpi.plan_ids).toEqual(['plan_m', 'plan_y', ...welcomeCodePlanIds()]);
+      expect(cardOnly).toMatchObject({ code: withUpi.code, plan_ids: ['plan_m', 'plan_y', ...welcomeCodePlanIds(false)] });
+      expect(fake.create.mock.calls[1][1].idempotencyKey).not.toBe(fake.create.mock.calls[0][1].idempotencyKey);
+      expect((fake.kv.get(welcomeKey(uid)) as WelcomeRecord).code).toBe(withUpi.code);
+      expect(welcomeCodeUpi.on).toBe(false);
+      // The next account's code goes straight to the card plans.
+      fake.create.mockClear();
+      await gifted({ ...user, userId: 'e'.repeat(64) }, 'IN');
+      expect(fake.create).toHaveBeenCalledTimes(1);
+      expect(fake.create.mock.calls[0][0].plan_ids).toEqual(['plan_m', 'plan_y', ...welcomeCodePlanIds(false)]);
+    } finally {
+      welcomeCodeUpi.on = true;
+    }
+  });
+
+  it('shows the welcome price of a UPI pass to the paisa', () => {
+    expect(welcomeRupees(469, 40)).toBe('₹281.40');
+    expect(welcomeRupees(3749, 40)).toBe('₹2,249.40');
+    expect(welcomeRupees(500, 40)).toBe('₹300');
   });
 
   it('quotes the price for the country the account signed up from, while regional prices are on there', async () => {

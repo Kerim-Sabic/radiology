@@ -14,7 +14,7 @@ import { PlansScreen } from './PlansScreen';
 import { trackFunnel, WARM_ACCOUNT_EVENT } from '../services/serverSync';
 import { ev, evFired } from '../services/ev';
 import { ScanLoader } from '../components/ScanState';
-import { useOfferTimeLeft, welcomePrice, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
+import { useOfferTimeLeft, welcomePrice, welcomeRupees, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
 import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice, rupees, aboutLocal } from './regionalPrice';
 import { WorthSurvey } from './WorthSurvey';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
@@ -248,7 +248,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
     if (q.has('plans') || q.has('checkout')) { q.delete('plans'); q.delete('checkout'); history.replaceState(null, '', `${location.pathname}${q.size ? `?${q}` : ''}`); }
   }
   const [promoCode, setPromoCode] = useState(rememberedPromo);
-  const [payment, setPayment] = useState<{ id: string; returnUrl: string; tier: Tier; promoCode?: string; enteredPromoCode: string; studentDiscount?: boolean; welcome?: boolean; regional?: RegionalCheckout } | null>(null);
+  // upiAsked: the visitor chose UPI (a code that isn't on the UPI pass leaves them on the card form, which then says why).
+  const [payment, setPayment] = useState<{ id: string; returnUrl: string; tier: Tier; promoCode?: string; enteredPromoCode: string; studentDiscount?: boolean; welcome?: boolean; regional?: RegionalCheckout; upiAsked?: boolean } | null>(null);
   function updatePromo(value: string) {
     setPromoCode(value);
     try { if (value) sessionStorage.setItem(promoKey, value); else sessionStorage.removeItem(promoKey); } catch { /* Optional storage. */ }
@@ -377,7 +378,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
       setError('');
     } catch { setError('Sign-out failed. Please try again.'); }
   }
-  const buy = useCallback(async (tier: Tier, method: 'card' | 'upi' = 'card') => {
+  // `code`: the promo code to send instead of the one in the field ('' sends none).
+  const buy = useCallback(async (tier: Tier, method: 'card' | 'upi' = 'card', code?: string) => {
     const current = ++checkoutGeneration.current;
     setBusy(tier); setError('');
     // A plan button pressed (the funnel step between "Opened the plans" and "Saw the payment form").
@@ -385,13 +387,13 @@ function MembershipGate({ children }: { children: ReactNode }) {
     ev('plan_click', { period: tier, amount: planAmountRef.current(tier) });
     try {
       const affiliate = currentReferral() || referral;
-      const enteredPromoCode = promoCode.trim().toLowerCase();
+      const enteredPromoCode = (code ?? promoCode).trim().toLowerCase();
       const response = await fetch('/api/billing/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tier, ...(enteredPromoCode ? { promoCode: enteredPromoCode } : {}), ...(affiliate ? { affiliateCode: affiliate } : {}), ...(method === 'upi' ? { method } : {}) }) });
       const data = await response.json();
       if (!mounted.current || current !== checkoutGeneration.current) return;
       if (!response.ok) throw new CheckoutHttpError(data.error, response.status);
       if (!/^ch_[A-Za-z0-9]+$/.test(data.id)) throw new Error('Unable to open the payment form. Please try again.');
-      setPayment({ id: data.id, returnUrl: data.returnUrl, tier, promoCode: data.promoCode, enteredPromoCode, studentDiscount: data.studentDiscount, welcome: data.welcome === true, ...(data.regional ? { regional: data.regional } : {}) });
+      setPayment({ id: data.id, returnUrl: data.returnUrl, tier, promoCode: data.promoCode, enteredPromoCode, studentDiscount: data.studentDiscount, welcome: data.welcome === true, ...(data.regional ? { regional: data.regional } : {}), ...(method === 'upi' ? { upiAsked: true } : {}) });
       setPlansOpen(true); // "Change plan" goes back to the plans, not to the app
       rememberPlan(null);
     } catch (e) {
@@ -458,14 +460,21 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
         <p className="checkout-account">{account.user.email}</p>
         {payment.regional && regional?.upi && !payment.studentDiscount && <p className="student-offer upi-switch" role="status">
-          <strong>{payment.regional.method === 'upi' ? `Paying ${rupees(payment.regional.rupees ?? 0)} by UPI` : `Pay by UPI instead: ${rupees(regional.upi[payment.tier])}`}</strong>
-          <span>{payment.regional.method === 'upi' ? 'Approve it in your UPI app (Google Pay, PhonePe, Paytm or your bank’s). ' : 'No card needed: approve it in your UPI app. '}
-            <button className="text-button" disabled={!!busy} onClick={() => void buy(payment.tier, payment.regional?.method === 'upi' ? 'card' : 'upi')}>{payment.regional.method === 'upi' ? 'Pay by card instead' : 'Pay by UPI'}</button>
-          </span>
+          {payment.regional.method === 'upi' ? <>
+            <strong>Paying {payment.welcome ? welcomeRupees(payment.regional.rupees ?? 0, welcomeOffer?.percent ?? 40) : rupees(payment.regional.rupees ?? 0)} by UPI</strong>
+            <span>Approve it in your UPI app (Google Pay, PhonePe, Paytm or your bank’s). <button className="text-button" disabled={!!busy} onClick={() => void buy(payment.tier, 'card')}>Pay by card instead</button></span>
+          </> : payment.upiAsked && payment.enteredPromoCode ? <>
+            {/* The welcome code isn't on the UPI pass (made before it, or Whop refused it there): the server kept the card form. */}
+            <strong>Your welcome code works on card payments only</strong>
+            <span>Keep it and pay by card below, or pay the full {rupees(regional.upi[payment.tier])} by UPI without it. <button className="text-button" disabled={!!busy} onClick={() => { updatePromo(''); void buy(payment.tier, 'upi', ''); }}>Pay {rupees(regional.upi[payment.tier])} by UPI</button></span>
+          </> : <>
+            <strong>Pay by UPI instead: {rupees(regional.upi[payment.tier])}</strong>
+            <span>No card needed: approve it in your UPI app. <button className="text-button" disabled={!!busy} onClick={() => void buy(payment.tier, 'upi')}>Pay by UPI</button></span>
+          </>}
         </p>}
-        {payment.regional && <p className="student-offer regional-applied" role="status"><strong>Price for {payment.regional.countryName}: {regionalTerms(payment.regional)}</strong><span>Pay with a card issued in {payment.regional.countryName}. Cards from other countries are declined.{payment.regional.pass ? CARD_TIP : ''}{payment.welcome ? ' Your welcome code works on this price; any other code switches to the standard price.' : ' A promo code switches to the standard price.'}</span></p>}
-        {payment.studentDiscount && <p className="student-offer" role="status"><strong>30% student discount applied</strong><span>{payment.regional?.studentPrice ? `${regionalTerms({ ...payment.regional, price: payment.regional.studentPrice })}${payment.regional.pass ? ', and 30% off every pass you buy' : ', including every renewal'}` : `${payment.tier === 'monthly' ? '$14 USD every 30 days' : '$105 USD every 365 days'}, including every renewal`}. {payment.enteredPromoCode ? 'Your student offer gives a better recurring price than that code.' : 'Your university email is verified.'}</span></p>}
-        {payment.welcome && <p className="student-offer welcome-applied" role="status"><strong>Your welcome gift is applied: {welcomeOffer?.percent ?? 40}% off your first payment{payment.regional ? ` (${welcomePrice(payment.regional.price, welcomeOffer?.percent ?? 40)} instead of ${usd(payment.regional.price)})` : ''}</strong><span>{payment.regional ? (payment.regional.pass ? 'One payment; nothing renews.' : `Renewals are ${regionalTerms(payment.regional)}.`) : 'Renewals are at the standard price.'}{student && (!payment.regional || regional?.student) ? ` Remove the code to use your 30% student price on every ${payment.regional?.pass ? 'pass' : 'renewal'} instead.` : ''} Discounts do not stack.</span></p>}
+        {payment.regional && <p className="student-offer regional-applied" role="status"><strong>Price for {payment.regional.countryName}: {regionalTerms(payment.regional)}</strong><span>{payment.regional.method === 'upi' ? '' : `Pay with a card issued in ${payment.regional.countryName}. Cards from other countries are declined.${payment.regional.pass ? CARD_TIP : ''} `}{payment.welcome ? 'Your welcome code works on this price; any other code switches to the standard price.' : 'A promo code switches to the standard price.'}</span></p>}
+        {payment.studentDiscount && <p className="student-offer" role="status"><strong>30% student discount applied</strong><span>{payment.regional?.studentPrice ? `${regionalTerms({ ...payment.regional, price: payment.regional.studentPrice, method: undefined })}${payment.regional.pass ? ', and 30% off every pass you buy' : ', including every renewal'}` : `${payment.tier === 'monthly' ? '$14 USD every 30 days' : '$105 USD every 365 days'}, including every renewal`}. {payment.enteredPromoCode ? 'Your student offer gives a better recurring price than that code.' : 'Your university email is verified.'}</span></p>}
+        {payment.welcome && <p className="student-offer welcome-applied" role="status"><strong>Your welcome gift is applied: {welcomeOffer?.percent ?? 40}% off your first payment{payment.regional ? payment.regional.method === 'upi' && payment.regional.rupees ? ` (${welcomeRupees(payment.regional.rupees, welcomeOffer?.percent ?? 40)} instead of ${rupees(payment.regional.rupees)})` : ` (${welcomePrice(payment.regional.price, welcomeOffer?.percent ?? 40)} instead of ${usd(payment.regional.price)})` : ''}</strong><span>{payment.regional ? (payment.regional.pass ? 'One payment; nothing renews.' : `Renewals are ${regionalTerms(payment.regional)}.`) : 'Renewals are at the standard price.'}{student && (!payment.regional || regional?.student) ? ` Remove the code to use your 30% student price on every ${payment.regional?.pass ? 'pass' : 'renewal'} instead.` : ''} Discounts do not stack.</span></p>}
         {student && payment.studentDiscount === false && !payment.welcome && <p className="student-offer">Your promo gives an equal or better recurring discount. Discounts do not stack.</p>}
         <form className="promo-entry checkout-promo" onSubmit={event => { event.preventDefault(); if (!busy && checkoutCodeChanged) void buy(payment.tier); }}>
           <label htmlFor="checkout-promo">Promo code</label>

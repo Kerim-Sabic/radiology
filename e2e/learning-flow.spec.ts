@@ -533,7 +533,9 @@ test.describe('E. study tools', () => {
     expect(target).not.toBeNull();
     const box = (await page.locator('.drill .vp-el').boundingBox())!;
     await page.mouse.click(box.x + target![0], box.y + target![1]);
-    await expect(page.locator('.drill-side .notice.ok')).toContainText('Correct');
+    // Graded correct (.ok). A finding a few pixels across can put the middle of its widest row on the outline itself,
+    // which reads "Accepted: on the edge" instead of "Correct".
+    await expect(page.locator('.drill-side .notice.ok')).toContainText(/^(Correct|Accepted: on the edge)/);
     await expect(page.locator('.drill-side')).toContainText('what to look for');
     await expect(page.locator('.drill-side').getByRole('link', { name: 'More cases and the book pages' })).toHaveAttribute('href', /\/conditions\?c=/);
   });

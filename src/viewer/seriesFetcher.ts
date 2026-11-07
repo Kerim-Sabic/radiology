@@ -36,6 +36,11 @@ export function slowConnection(): boolean {
 }
 /** Slices fetched ahead on each side of the one shown, on a slow connection. */
 export const SLOW_WINDOW = 12;
+/**
+ * Parallel fetches on a slow connection. There the bandwidth, not the round trip, is the limit: six at once only split
+ * it six ways, so the slice the learner looks at (or scrolls to) arrives later. Three keep the link busy.
+ */
+export const SLOW_CONCURRENCY = 3;
 
 export class SeriesFetcher {
   private queue: number[] = [];
@@ -58,6 +63,7 @@ export class SeriesFetcher {
     private concurrency = 6,
   ) {
     this.status = imageIds.map((id) => (isRegistered(id) ? 'done' : 'pending'));
+    if (slowConnection()) this.concurrency = Math.min(this.concurrency, SLOW_CONCURRENCY);
   }
 
   get progress(): FetchProgress {
