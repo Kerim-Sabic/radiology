@@ -44,7 +44,28 @@ const promos = (needsWhopAccess = false) =>
         ],
         studentOffers: { issued: 3, used: 1 },
       };
-async function admin(page: Page, adminPermissions = ALL, view: () => object = people, promoView: () => object = promos) {
+/** A Journeys report as the server sends it (server/journeys.ts), small but complete. */
+function journeysReport() {
+  const day = (d: string, visitors: number) => ({ day: d, visitors, sawImage: visitors - 2, answered: 3, newAccounts: 1, sawPlans: 1, pressedPlan: 0, paid: 0, firstImageP50: 8200 });
+  const steps = ['land', 'first_image', 'mark', 'answer', 'grade_seen', 'save_click', 'form_shown', 'code_sent', 'account', 'plans_view', 'plan_click', 'checkout_created', 'checkout_ready', 'paid'];
+  return {
+    filter: { from: '2026-11-01', to: '2026-11-07', humans: true },
+    visitors: 40,
+    sessions: 44,
+    events: 310,
+    funnel: steps.map((step, i) => ({ step, visitors: Math.max(0, 40 - i * 4), ofPrevious: i ? 80 : null, medianS: i ? i * 6 : null, p75S: i ? i * 9 : null })),
+    leaves: [['/read/starter-ct-chest-01 · after first_image', 12]],
+    lastSteps: [['first_image', 14]],
+    cohorts: [{ day: '2026-11-07', accounts: 2, studiedDay1: 1, returned2to7: 0, plans7: 1, paid7: 0 }],
+    paywall: { hits: [['case · pe-pat005', 3]], next: [['plans_view', 1]] },
+    payment: { plansView: 4, planClick: 1, checkoutCreated: 1, checkoutReady: 1, paid: 0, declined: [], refused: [] },
+    email: { campaigns: [{ campaign: 'welcome', visits: 2, paid: 0 }], codesRedeemed: 0 },
+    speed: { firstImage: { n: 30, p50: 8200, p75: 21000 }, byCountry: [{ key: 'IN', n: 20, p50: 9000, p75: 23000 }], byConnection: [{ key: '4g', n: 25, p50: 7000, p75: 15000 }], imageErrorSessions: 1, caseSessions: 31, jsErrorSessions: 0, sessions: 44, slow: [['first_image', 6]] },
+    daily: { yesterday: day('2026-11-06', 25), dayBefore: day('2026-11-05', 20), today: day('2026-11-07', 9) },
+  };
+}
+
+async function admin(page: Page, adminPermissions = ALL, view: () => object = people, promoView: () => object = promos, journeys: () => object = journeysReport) {
   const posts: Array<{ path: string; body: Record<string, unknown> }> = [];
   await page.route('**/api/config', (r) => r.fulfill({ json: { auth: true, billing: true } }));
   await page.route('**/api/session', (r) => r.fulfill({ json: { user: { name: 'Kerim', email: 'kerim.sabic@gmail.com' }, access: { active: true, role: 'admin', expiresAt: null }, billingReady: true, adminPermissions } }));
@@ -52,6 +73,7 @@ async function admin(page: Page, adminPermissions = ALL, view: () => object = pe
   await page.route('**/api/admin/**', async (r) => {
     const path = new URL(r.request().url()).pathname;
     if (path === '/api/admin/stats') return r.fallback();
+    if (path === '/api/admin/journeys') return r.fulfill({ json: journeys() });
     if (r.request().method() === 'GET') return r.fulfill({ json: path === '/api/admin/promos' ? promoView() : view() });
     const body = r.request().postDataJSON();
     posts.push({ path, body });
@@ -287,3 +309,29 @@ test('case reports stay hidden without the reports permission', async ({ page })
   await expect(page.getByRole('heading', { name: 'Admin', level: 1 })).toBeVisible();
   await expect(page.getByRole('region', { name: 'Case reports' })).toHaveCount(0);
 });
+
+test('Journeys: Kerim’s daily view, the funnel with times, and the exports', async ({ page }) => {
+  await admin(page);
+  await page.goto('/admin');
+  const j = page.getByRole('region', { name: 'Journeys' });
+  await expect(j.getByRole('heading', { name: 'Yesterday vs the day before' })).toBeVisible();
+  await expect(j.getByRole('row', { name: /^Visitors 25 20 9$/ })).toBeVisible();
+  await expect(j.getByRole('row', { name: /^Saw the first image 36 80% 6 s 9 s$/ })).toBeVisible();
+  await expect(j.getByText('/read/starter-ct-chest-01 · after first_image')).toBeVisible();
+  await expect(j.getByRole('link', { name: 'Events CSV' })).toHaveAttribute('href', /\/api\/admin\/journeys\.csv\?kind=events&from=\d{4}-\d{2}-\d{2}&to=/);
+  // Filters go to the server.
+  const asked = page.waitForRequest((r) => r.url().includes('/api/admin/journeys?') && r.url().includes('country=IN') && r.url().includes('tag=meta%3Areel002'));
+  await j.getByLabel('Country').fill('IN');
+  await j.getByLabel('Ad tag').fill('meta:reel002');
+  await j.getByRole('button', { name: 'Show' }).click();
+  await asked;
+});
+
+test('Journeys: a reply that is not a report shows a message, and the rest of Admin keeps working', async ({ page }) => {
+  await admin(page, ALL, people, promos, () => ({ accounts: [] }));
+  await page.goto('/admin');
+  await expect(page.getByRole('region', { name: 'Journeys' }).getByText('The journeys reply was not readable.')).toBeVisible();
+  await expect(page.getByLabel('Accounts at a glance')).toBeVisible();
+  await expect(page.getByText('This page hit a problem')).toHaveCount(0);
+});
+
