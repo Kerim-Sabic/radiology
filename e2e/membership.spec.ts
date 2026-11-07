@@ -162,21 +162,36 @@ test('an Indian visitor can pay the pass by UPI in rupees, and switch back to a 
   const india={country:'IN',countryName:'India'};
   await page.route('**/api/config',route=>route.fulfill({json:{auth:true,billing:true}}));
   await page.route('**/api/session',route=>route.fulfill({json:{user:{name:'Ravi',email:'ravi@example.com'},access:{active:false},billingReady:true,
-    regionalPrice:{region:'c',...india,monthly:{price:4.99,pass:true},yearly:{price:39.99,pass:true},upi:{monthly:449,yearly:3499}}}}));
+    regionalPrice:{region:'c',...india,monthly:{price:4.99,pass:true},yearly:{price:39.99,pass:true},upi:{monthly:469,yearly:3749}}}}));
   const bodies:Array<Record<string,unknown>>=[];
   await page.route('**/api/billing/checkout',route=>{const b=route.request().postDataJSON();bodies.push(b);const upi=b.method==='upi';
-    return route.fulfill({json:{id:upi?'ch_upi':'ch_card',returnUrl:'http://localhost:4317/?checkout=returned',regional:{...india,price:39.99,days:365,pass:true,...(upi?{rupees:3499,method:'upi'}:{})}}});});
+    return route.fulfill({json:{id:upi?'ch_upi':'ch_card',returnUrl:'http://localhost:4317/?checkout=returned',regional:{...india,price:39.99,days:365,pass:true,...(upi?{rupees:3749,method:'upi'}:{})}}});});
   await page.route('**/*whop.com/**',route=>route.abort());
   await page.goto('/?plans');
-  await expect(page.locator('.regional-price')).toContainText('Pay by UPI (₹449 for 30 days · ₹3,499 for a year) or by card.');
+  await expect(page.locator('.regional-price')).toContainText('Pay by UPI (₹469 for 30 days · ₹3,749 for a year) or by card.');
   await page.getByRole('button',{name:'Start yearly'}).click();
-  await expect(page.locator('.upi-switch')).toContainText('Pay by UPI instead: ₹3,499');
+  await expect(page.locator('.upi-switch')).toContainText('Pay by UPI instead: ₹3,749');
   await page.locator('.upi-switch').getByRole('button',{name:'Pay by UPI'}).click();
-  await expect(page.locator('.upi-switch')).toContainText('Paying ₹3,499 by UPI');
+  await expect(page.locator('.upi-switch')).toContainText('Paying ₹3,749 by UPI');
   expect(bodies).toEqual([{tier:'yearly'},{tier:'yearly',method:'upi'}]);
   await page.locator('.upi-switch').getByRole('button',{name:'Pay by card instead'}).click();
   await expect(page.locator('.upi-switch')).toContainText('Pay by UPI instead');
   expect(bodies.at(-1)).toEqual({tier:'yearly'});
+});
+test('a free account is asked one question on the plans, once: what would make it worth paying for', async ({page}) => {
+  await account(page, true);
+  const answers:unknown[]=[];
+  await page.route('**/api/ev',route=>{answers.push(...(route.request().postDataJSON().ev as unknown[][]).filter((e)=>e[1]==='survey'));return route.fulfill({status:204,body:''});});
+  await page.goto('/?plans');
+  const q=page.getByRole('region',{name:'One question'});
+  await expect(q).toContainText('what would make it worth paying for?');
+  await q.getByRole('button',{name:'Paying without a card (UPI…)'}).click();
+  await expect(q).toContainText('Thank you');
+  await expect.poll(()=>answers.length,{timeout:12000}).toBe(1);
+  expect((answers[0] as unknown[])[2]).toEqual({q:'plans_worth',a:'upi'});
+  await page.reload();
+  await expect(page.getByRole('button',{name:'Choose monthly'})).toBeVisible();
+  await expect(page.getByRole('region',{name:'One question'})).toHaveCount(0);
 });
 test('members can copy their verified referral link in an accessible phone dialog', async ({page, context, browserName}) => {
   await page.setViewportSize({width:390,height:844});

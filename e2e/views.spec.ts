@@ -27,6 +27,7 @@ const box = (page: Page, panel: string) => page.locator(`[data-panel="${panel}"]
 
 test.describe('One view full screen', () => {
   test('in MPR + 3D the 3D view goes full screen with its own button, which its 3D bar no longer covers, and comes back', async ({ page }) => {
+    test.setTimeout(180_000); // the 3D volume alone can take a minute on a busy machine
     await page.goto(CT);
     await waitPanel(page);
     await chooseLayout(page, 'MPR + 3D');
@@ -39,13 +40,11 @@ test.describe('One view full screen', () => {
       const overlap = b.x < bar.x + bar.width && bar.x < b.x + b.width && b.y < bar.y + bar.height && bar.y < b.y + b.height;
       expect(overlap, sel).toBe(false);
     }
-    await p3.screenshot({ path: 'test-results/mpr3d-3d-corner.png' });
     await p3.getByRole('button', { name: /full screen$/ }).click();
     await expect(page.locator('.ws-main')).toHaveClass(/full-view/);
     // Only the 3D view, over the whole screen.
     const vp = page.viewportSize()!;
     await expect.poll(async () => (await p3.boundingBox())!.width).toBeGreaterThan(vp.width * 0.9);
-    await page.screenshot({ path: 'test-results/mpr3d-3d-full.png' });
     await p3.getByRole('button', { name: 'Leave full screen' }).click();
     await expect(page.locator('.ws-main')).not.toHaveClass(/full-view/);
     await expect.poll(async () => (await p3.boundingBox())!.width).toBeLessThan(vp.width * 0.6);

@@ -56,8 +56,8 @@ export const allRegionalPlans = (): RegionalPlan[] => Object.values(regionalPlan
 export interface UpiPlan extends RegionalPlan { currency: 'inr'; rupees: number }
 export const UPI_COUNTRIES = ['IN'] as const;
 export const upiPlans: Record<Tier, UpiPlan> = {
-  monthly: { id: '', region: 'c', tier: 'monthly', price: 4.99, days: 30, pass: true, currency: 'inr', rupees: 449 },
-  yearly: { id: '', region: 'c', tier: 'yearly', price: 39.99, days: 365, pass: true, currency: 'inr', rupees: 3499 },
+  monthly: { id: '', region: 'c', tier: 'monthly', price: 4.99, days: 30, pass: true, currency: 'inr', rupees: 469 },
+  yearly: { id: '', region: 'c', tier: 'yearly', price: 39.99, days: 365, pass: true, currency: 'inr', rupees: 3749 },
 };
 /** Whether both UPI passes exist (their ids are filled in). */
 export const upiReady = () => Object.values(upiPlans).every((p) => /^plan_\w+$/.test(p.id));

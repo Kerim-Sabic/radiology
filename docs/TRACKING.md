@@ -105,6 +105,7 @@ Brief: `C:\Helix\Lab\Marketing\radiology-monster-instagram\PROMPT-TRACKING.md` (
 | `api_error` | An API call that matters failed | route, status | Server errors on the path to paying |
 | `slow` | A step took over 10 s (first image, payment form) | step, ms | Who waits too long |
 | `exposure` | A visitor was shown an experiment's arm (once per experiment) | exp, arm | Who saw which version |
+| `survey` | The one question on the plans, answered (once) | q (`plans_worth`), a (price, exam, upi, cases, looking) | **What would make it worth paying for** |
 
 ## Admin → Journeys: how to read it
 All views take the filters: dates (up to 31 days), ad tag (prefix, e.g. `meta:reel002`), country (`IN`), device, connection, and **People only**. People only, on by default, keeps visitors who touched, typed or scrolled.

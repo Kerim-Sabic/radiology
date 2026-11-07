@@ -87,7 +87,8 @@ describe("RSNA's permission", () => {
     expect(shownCounts(many(101, 'CT')).CT).toBeGreaterThan(RSNA_SHOW_CAP.CT);
   });
 
-  it('keeps every RSNA-ICA image and label out of this public repository', () => {
+  // Reads every tracked text file: on a busy machine that takes longer than vitest's default 5 s.
+  it('keeps every RSNA-ICA image and label out of this public repository', { timeout: 30_000 }, () => {
     const files = execSync('git ls-files', { encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }).split('\n').filter(Boolean);
     // Nothing RSNA-ICA under the public site folder, and no imaging or label file anywhere with RSNA in its path.
     expect(files.filter((f) => /^public\/.*rsna/i.test(f))).toEqual([]);

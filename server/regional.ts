@@ -1,6 +1,7 @@
 import type { Whop, WhopClient } from '@whop/sdk';
 import { allRegionalPlans, regionalPlans, required, upiPlans, upiReady, UPI_COUNTRIES, type Region, type RegionalPlan, type UpiPlan } from './config.js';
 import { db } from './store.js';
+import { localMoney } from './fx.js';
 import { WELCOME_PERCENT } from './welcomeCode.js';
 import { STUDENT_PERCENT } from '../shared/studentDiscount.js';
 
@@ -101,6 +102,8 @@ export interface RegionalOffer {
   student?: { monthly: number; yearly: number };
   /** India: the same passes payable by UPI, in rupees, once the UPI plans exist (server/config.ts upiPlans). */
   upi?: { monthly: number; yearly: number };
+  /** About how much a dollar is in the visitor's money today (ECB rate), to read the prices; never what is charged. */
+  local?: { currency: string; perUsd: number; date: string };
 }
 
 /** The regional price for a country while regional prices are on; null anywhere else (and if the store is down). */
@@ -116,6 +119,7 @@ export async function regionalOffer(country?: string | null): Promise<RegionalOf
     yearly: { price: p.yearly.price, pass: p.yearly.pass },
     ...(student ? { student: { monthly: studentAmount(p.monthly.price), yearly: studentAmount(p.yearly.price) } } : {}),
     ...(upiOffered(code) ? { upi: { monthly: upiPlans.monthly.rupees, yearly: upiPlans.yearly.rupees } } : {}),
+    ...(await localMoney(code).then((local) => (local ? { local } : {})).catch(() => ({}))),
   };
 }
 

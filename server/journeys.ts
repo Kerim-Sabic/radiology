@@ -170,6 +170,8 @@ export function journeys(events: Ev[], now = Date.now()) {
     paid: [...emailVids].filter(([v, c]) => c === campaign && byVid.get(v)?.some((e) => e.n === 'paid')).length,
   }));
   const codesRedeemed = events.filter((e) => e.n === 'code_redeemed').length;
+  // The one question on the plans: what would make it worth paying for.
+  const survey = count(events.filter((e) => e.n === 'survey').map((e) => String(e.p.a ?? '?')));
 
   // Speed: time to the first image, by country and by connection; image and script errors per session.
   const firstImage = events.filter((e) => e.n === 'first_image' && typeof e.p.ms === 'number');
@@ -223,6 +225,7 @@ export function journeys(events: Ev[], now = Date.now()) {
     paywall: { hits: paywallHits, next: afterPaywall },
     payment,
     email: { campaigns: email, codesRedeemed },
+    survey,
     speed,
     daily: { yesterday: dayStats(yesterday), dayBefore: dayStats(dayBefore), today: dayStats(today) },
   };

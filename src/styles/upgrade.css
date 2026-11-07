@@ -1167,3 +1167,20 @@
   margin: 10px 0 4px;
   font-size: 15px;
 }
+
+/* The one question on the plans (src/auth/WorthSurvey.tsx). */
+.worth-survey {
+  margin: 14px 0 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.worth-survey p {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+.worth-answers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

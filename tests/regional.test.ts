@@ -425,7 +425,7 @@ describe('UPI for India', () => {
     expect((await regionalOffer('IN'))?.upi).toBeUndefined();
     withUpi();
     expect(upiOffered('IN')).toBe(true);
-    expect(await regionalOffer('IN')).toMatchObject({ upi: { monthly: 449, yearly: 3499 } });
+    expect(await regionalOffer('IN')).toMatchObject({ upi: { monthly: 469, yearly: 3749 } });
     for (const country of ['PK', 'BD', 'BA', 'US']) expect((await regionalOffer(country))?.upi, country).toBeUndefined();
   });
 
@@ -436,7 +436,7 @@ describe('UPI for India', () => {
     expect(bad({ effective_payment_method_configuration: { enabled: ['upi', 'card'], disabled: [], include_platform_defaults: false } })).toContain('UPI and nothing else');
     expect(bad({ effective_payment_method_configuration: { enabled: ['upi'], disabled: [], include_platform_defaults: true } })).toContain('UPI and nothing else');
     expect(bad({ currency: 'usd' })).toContain('Indian rupees');
-    expect(bad({ initial_price: 3000 })).toContain('one-time ₹3499 pass');
+    expect(bad({ initial_price: 3000 })).toContain('one-time ₹3749 pass');
     expect(bad({ visibility: 'visible' })).toContain('hidden');
   });
 
@@ -445,7 +445,7 @@ describe('UPI for India', () => {
     withUpi();
     const r = await checkout('user_in', 'yearly', undefined, undefined, 'IN', 'upi');
     expect(fake.checkoutCalls[0].body).toMatchObject({ plan_id: ids.yearly, metadata: { rvm_region: 'c', rvm_country: 'IN', rvm_method: 'upi' } });
-    expect(r).toMatchObject({ regional: { country: 'IN', price: 39.99, rupees: 3499, method: 'upi' } });
+    expect(r).toMatchObject({ regional: { country: 'IN', price: 39.99, rupees: 3749, method: 'upi' } });
     await checkout('user_in2', 'yearly', undefined, undefined, 'IN'); // card by default
     await checkout('user_pk', 'yearly', undefined, undefined, 'PK', 'upi'); // UPI is India only
     await checkout('user_ba', 'monthly', undefined, undefined, 'BA', 'upi'); // not tier C

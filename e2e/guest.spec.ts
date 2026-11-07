@@ -126,6 +126,31 @@ test('the other sample patient opens too, and everything else still asks to sign
   }
 });
 
+test('on a slow or data-saving connection only the slices near the one shown are fetched, and the window follows the scroll', async ({ page }) => {
+  await visitor(page);
+  // What the browser reports on a 3G connection with data saver on.
+  await page.addInitScript(() => Object.defineProperty(navigator, 'connection', { value: { effectiveType: '3g', saveData: true, downlink: 0.8 } }));
+  const fetched = new Set<string>();
+  page.on('request', (r) => {
+    if (/\/packs\/starter\/dicom\/[^/]+\/[0-9a-f]+\.dcm$/.test(r.url())) fetched.add(r.url());
+  });
+  await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aheart&mode=learn');
+  await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
+  await page.waitForTimeout(3000);
+  // 12 slices each side of the one shown (plus slice 1, asked for before the task's slice was known).
+  expect(fetched.size).toBeLessThanOrEqual(27);
+  expect(fetched.size).toBeGreaterThan(5);
+  const before = fetched.size;
+  await page.evaluate(() => (window as any).__rvm.setIndex('p0', 10));
+  await expect.poll(() => fetched.size, { timeout: 15_000 }).toBeGreaterThan(before + 10);
+  expect(fetched.size).toBeLessThan(131);
+  // Reformatting needs every slice: MPR still fetches the whole series.
+  await page.getByRole('button', { name: 'Layout' }).click();
+  await page.getByRole('menuitem', { name: 'MPR: axial / coronal / sagittal' }).click();
+  await page.waitForFunction(() => (window as any).__rvm?.panelState('p1')?.ready === true, null, { timeout: 90_000 });
+  expect(fetched.size).toBe(131);
+});
+
 test.describe('the ad visitor on a phone', () => {
   test.use({ viewport: { width: 412, height: 915 }, hasTouch: true, isMobile: true });
   test.skip(({ browserName }) => browserName !== 'chromium', 'Touch emulation needs Chromium');

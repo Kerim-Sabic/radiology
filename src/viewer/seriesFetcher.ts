@@ -24,8 +24,24 @@ export function isRegistered(imageId: string): boolean {
   }
 }
 
+/**
+ * A slow or data-saving connection (the browser's own estimate): there a stack fetches only the slices near the one shown
+ * and moves that window as the learner scrolls, instead of the whole series (~20 MB for a chest CT) in the background,
+ * which used prepaid data and slowed the sign-up form loading over the same connection.
+ */
+export function slowConnection(): boolean {
+  const c = (typeof navigator !== 'undefined' ? (navigator as Navigator & { connection?: { saveData?: boolean; effectiveType?: string; downlink?: number } }).connection : undefined) ?? undefined;
+  if (!c) return false;
+  return !!c.saveData || ['slow-2g', '2g', '3g'].includes(c.effectiveType ?? '') || (typeof c.downlink === 'number' && c.downlink > 0 && c.downlink < 2);
+}
+/** Slices fetched ahead on each side of the one shown, on a slow connection. */
+export const SLOW_WINDOW = 12;
+
 export class SeriesFetcher {
   private queue: number[] = [];
+  /** Fetch only this many slices on each side of `center` (null: the whole series). */
+  private window: number | null = slowConnection() ? SLOW_WINDOW : null;
+  private center = 0;
   private inFlight = new Set<number>();
   private status: Array<'pending' | 'loading' | 'done' | 'failed'>;
   private controller = new AbortController();
@@ -68,8 +84,10 @@ export class SeriesFetcher {
   /** Re-centre the queue on `index` (e.g. when the learner scrolls far away). */
   prioritize(index: number) {
     const n = this.imageIds.length;
+    this.center = index;
+    const reach = this.window ?? n;
     const order: number[] = [];
-    for (let d = 0; d < n; d++) {
+    for (let d = 0; d < n && d <= reach; d++) {
       const a = index + d;
       const b = index - d;
       if (a < n && !order.includes(a)) order.push(a);
@@ -77,6 +95,12 @@ export class SeriesFetcher {
     }
     this.queue = order.filter((i) => this.status[i] === 'pending' || this.status[i] === 'failed');
     this.pump();
+  }
+
+  /** The whole series, whatever the connection (reformatting and 3D need every slice). */
+  fetchAll(startIndex = this.center) {
+    this.window = null;
+    this.start(startIndex);
   }
 
   whenReady(index: number): Promise<boolean> {

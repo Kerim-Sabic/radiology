@@ -18,6 +18,7 @@ interface Report {
   paywall: { hits: Pairs; next: Pairs };
   payment: { plansView: number; planClick: number; checkoutCreated: number; checkoutReady: number; paid: number; declined: Pairs; refused: Pairs };
   email: { campaigns: Array<{ campaign: string; visits: number; paid: number }>; codesRedeemed: number };
+  survey?: Pairs;
   speed: {
     firstImage: { n: number; p50: number | null; p75: number | null };
     byCountry: Array<{ key: string; n: number; p50: number | null; p75: number | null }>;
@@ -293,6 +294,11 @@ export function AdminJourneys() {
               ) : (
                 <p className="faint">No visits from email links yet.</p>
               )}
+            </div>
+            <div>
+              <h3>What would make it worth paying for</h3>
+              <small className="faint">The one question on the plans (free accounts)</small>
+              <List rows={r.survey ?? []} empty="No answers yet." />
             </div>
             <div>
               <h3>Speed and errors</h3>

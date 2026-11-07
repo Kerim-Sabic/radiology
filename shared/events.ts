@@ -50,6 +50,8 @@ export const CLIENT_EVENTS = {
   slow: { step: 's', ms: 'n' },
   // Experiments
   exposure: { exp: 's', arm: 's' },
+  // The one question on the plans (src/auth/WorthSurvey.tsx): one of a few fixed answers, never free text.
+  survey: { q: 's', a: 's' },
 } as const satisfies Record<string, Spec>;
 
 /** Logged by the server only (a browser can't fake a checkout or a payment). */

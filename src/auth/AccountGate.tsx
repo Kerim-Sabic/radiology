@@ -15,7 +15,8 @@ import { trackFunnel, WARM_ACCOUNT_EVENT } from '../services/serverSync';
 import { ev, evFired } from '../services/ev';
 import { ScanLoader } from '../components/ScanState';
 import { useOfferTimeLeft, welcomePrice, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
-import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice, rupees } from './regionalPrice';
+import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice, rupees, aboutLocal } from './regionalPrice';
+import { WorthSurvey } from './WorthSurvey';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
 type Tier = 'monthly' | 'yearly';
@@ -86,6 +87,7 @@ function RegionalPriceNote({ price, welcome }: { price: RegionalPrice; welcome: 
     <div className="regional-price" role="note">
       <span className="regional-price-kicker">Price for {price.countryName}</span>
       <strong>{price.monthly.pass ? `${usd(price.monthly.price)} for 30 days · ${usd(price.yearly.price)} for a year` : `${usd(price.monthly.price)} a month · ${usd(price.yearly.price)} a year`}</strong>
+      {price.local ? <span className="local-money">That is {aboutLocal(price.monthly.price, price.local)} · {aboutLocal(price.yearly.price, price.local)} at today’s rate; your bank converts.</span> : null}
       <span>Pay with a card issued in {price.countryName}. Cards from other countries are declined at checkout.{price.monthly.pass ? ` Each payment is one-time and never renews.${price.upi ? ` Pay by UPI (${rupees(price.upi.monthly)} for 30 days · ${rupees(price.upi.yearly)} for a year) or by card.` : ''}${CARD_TIP}` : ''}{price.student ? ` With a verified university email: ${studentTerms(price)}.` : ''}{welcome ? ' Your welcome code works on these prices; any other promo code uses the standard price.' : ' A promo code uses the standard price.'}</span>
     </div>
   );
@@ -495,7 +497,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
           <div className="plan-heading"><h3 id="yearly-plan-title">Yearly</h3><span>For a year of steady progress</span></div>
           {cardPrice ? <>
             <div className="membership-price">{yearlyFigures(cardPrice).perMonth}<span>/ month</span></div>
-            <p className="plan-billing"><strong>{usd(cardPrice.yearly.price)} {cardPrice.yearly.pass ? 'for a year' : 'billed yearly'}</strong><span>{cardPrice.yearly.pass ? 'One payment for 365 days. It does not renew.' : 'One payment every 365 days.'}{studentRegional ? ' Student price.' : ''}</span></p>
+            <p className="plan-billing"><strong>{usd(cardPrice.yearly.price)} {cardPrice.yearly.pass ? 'for a year' : 'billed yearly'}</strong><span>{aboutLocal(cardPrice.yearly.price, cardPrice.local) ? `${aboutLocal(cardPrice.yearly.price, cardPrice.local)}. ` : ''}{cardPrice.yearly.pass ? 'One payment for 365 days. It does not renew.' : 'One payment every 365 days.'}{studentRegional ? ' Student price.' : ''}</span></p>
             <div className="plan-value"><strong>Save {yearlyFigures(cardPrice).saves}</strong><span>vs. 12 {cardPrice.monthly.pass ? 'monthly passes' : 'monthly payments'}</span></div>
           </> : <>
             <div className="membership-price">{student ? '$8.75' : '$12.50'}<span>/ month</span></div>
@@ -510,7 +512,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
           <div className="plan-heading"><h3 id="monthly-plan-title">Monthly</h3><span>For a shorter study stretch</span></div>
           {cardPrice ? <>
             <div className="membership-price">{usd(cardPrice.monthly.price)}<span>{cardPrice.monthly.pass ? '/ 30 days' : '/ month'}</span></div>
-            <p className="plan-billing"><strong>{usd(cardPrice.monthly.price)} {cardPrice.monthly.pass ? 'for 30 days' : 'billed every 30 days'}</strong><span>{cardPrice.monthly.pass ? 'One payment. Buy again when it ends.' : 'A smaller upfront payment.'}{studentRegional ? (cardPrice.monthly.pass ? ' Student price, every pass.' : ' Student price, every renewal.') : ''}</span></p>
+            <p className="plan-billing"><strong>{usd(cardPrice.monthly.price)} {cardPrice.monthly.pass ? 'for 30 days' : 'billed every 30 days'}</strong><span>{aboutLocal(cardPrice.monthly.price, cardPrice.local) ? `${aboutLocal(cardPrice.monthly.price, cardPrice.local)}. ` : ''}{cardPrice.monthly.pass ? 'One payment. Buy again when it ends.' : 'A smaller upfront payment.'}{studentRegional ? (cardPrice.monthly.pass ? ' Student price, every pass.' : ' Student price, every renewal.') : ''}</span></p>
           </> : <>
             <div className="membership-price">{student ? '$14' : '$20'}<span>/ month</span></div>
             <p className="plan-billing"><strong>{student ? '$14' : '$20'} billed every 30 days</strong><span>{student ? 'Student price, every renewal.' : 'A smaller upfront payment.'}</span></p>
@@ -533,6 +535,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       </>}
       {account?.access.pendingMembership && <p className="membership-message">You already have a membership awaiting payment confirmation or a billing update. {account.access.manageUrl && <a href={account.access.manageUrl} target="_blank" rel="noopener noreferrer">Open billing in Whop</a>} to check it before purchasing again.</p>}
       {!payment && <p className="membership-fine">Book links open your own copy of the book (included for SSST students). Prices in USD; applicable tax is shown at checkout. ¹Wallet availability depends on your device and payment setup. Payments powered by Whop.</p>}
+      {account?.user && !payment && <WorthSurvey />}
       {account?.user && !payment && <InviteFriends />}
       {account?.user && <div className="membership-restore"><button disabled={checking} onClick={() => void refreshPayment()}>{checking ? 'Checking with Whop…' : 'Already paid? Check access'}</button>{!account.billingReady && <p>Payments are being configured. Checkout will open once it’s ready.</p>}</div>}
       {(error || new URLSearchParams(location.search).get('signin') === 'failed') && <p className="membership-message" role="alert">{error || 'Email sign-in was canceled or expired. Please try again.'}</p>}

@@ -9,13 +9,28 @@ export interface RegionalPrice {
   student?: { monthly: number; yearly: number };
   /** India: the same passes payable by UPI, in rupees (once the UPI plans exist). */
   upi?: { monthly: number; yearly: number };
+  /** About how much a dollar is in the visitor's money today, to read the prices (the bank converts). */
+  local?: { currency: string; perUsd: number; date: string };
+}
+
+/** "about ₹442": a dollar amount in the visitor's money, rounded the way prices are read (never what is charged). */
+export function aboutLocal(usdAmount: number, local: RegionalPrice['local']): string | null {
+  if (!local || !(local.perUsd > 0)) return null;
+  const v = usdAmount * local.perUsd;
+  const step = v >= 10_000 ? 100 : v >= 1_000 ? 10 : v >= 100 ? 1 : 0.1;
+  const rounded = Math.round(v / step) * step;
+  try {
+    return `about ${new Intl.NumberFormat('en-IN', { style: 'currency', currency: local.currency, maximumFractionDigits: step < 1 ? 1 : 0, minimumFractionDigits: 0 }).format(rounded)}`;
+  } catch {
+    return null;
+  }
 }
 
 /** What the checkout answered for a regional price; `studentPrice` when the student's 30% code is on it; `method: 'upi'`
  *  with the rupee amount when the pass is paid by UPI. */
 export interface RegionalCheckout { country: string; countryName: string; price: number; days: number; pass: boolean; studentPrice?: number; rupees?: number; method?: 'upi' }
 
-/** "₹3,499": a rupee amount as shown in India. */
+/** "₹3,749": a rupee amount as shown in India. */
 export const rupees = (n: number) => `₹${n.toLocaleString('en-IN')}`;
 
 /** The regional price with the student's 30% off in place of the price, for the plan cards. */

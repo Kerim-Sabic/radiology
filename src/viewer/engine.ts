@@ -294,7 +294,7 @@ export class ViewerEngine {
   async imageViews(src: SeriesSource): Promise<Array<{ viewPosition: unknown; patientOrientation: unknown }>> {
     await this.init();
     const f = this.fetcherFor(src);
-    f.start(0);
+    f.fetchAll(0);
     await f.whenAllSettled();
     return src.imageIds.map((id) => {
       try {
@@ -361,7 +361,7 @@ export class ViewerEngine {
         panel.cleanup.push(() => element.removeEventListener(cs.Enums.Events.STACK_NEW_IMAGE, onImage));
       } else {
         if (!source.volumeEligible) throw new Error('This series is not a valid volume (irregular or mixed geometry). Use the stack view — reformatting it would distort anatomy.');
-        fetcher.start(Math.floor(source.imageIds.length / 2));
+        fetcher.fetchAll(Math.floor(source.imageIds.length / 2));
         await fetcher.whenAllSettled();
         if (stale()) return;
         if (fetcher.progress.failed) throw new Error(`${fetcher.progress.failed} slice(s) failed to load; volume views need the complete series.`);
