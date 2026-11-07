@@ -7,6 +7,7 @@ import { beginSignIn, cookie, createSession, endedBy, finishSignIn, FLOW_COOKIE,
 import { clerkIdentity, revokeOtherClerkSessions } from './clerk.js';
 import { DEVICE_COOKIE, DEVICE_COOKIE_SECONDS, DeviceLimitError, newDeviceId, validDeviceId } from './devices.js';
 import { bookGift, memberBook, servesBook } from './book.js';
+import { rsnaFile, rsnaMember } from './rsna.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
 import { pullAttempts, pushAttempts, resetAttempts } from './progressSync.js';
@@ -184,6 +185,11 @@ export async function handle(request: Request): Promise<Response> {
       const response = json({ ok: true });
       response.headers.append('Set-Cookie', cookie(SESSION_COOKIE, '', 0));
       return response;
+    }
+    // RSNA-ICA teaching cases: private storage, members only, never cached by the CDN (server/rsna.ts).
+    if (path.startsWith('/api/rsna/')) {
+      if (!await rateLimit(`rsna:${user ? user.userId : ip()}`, 3000, 600)) return json({ error: 'Too many requests. Try again in a few minutes.' }, 429);
+      return await rsnaFile(request, !user ? 'signed-out' : (await rsnaMember(user.userId, async () => (await accessFor(user.userId)).active)) ? 'member' : 'signed-in');
     }
     if (!user) {
       // Signed out because the account was opened elsewhere: say where and when, so an owner notices a sharer.

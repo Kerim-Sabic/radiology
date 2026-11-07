@@ -4,6 +4,87 @@ _Plan written 6 November 2026 before any build; the report at the top is updated
 
 ## Report
 
+### RSNA aneurysm round (7 November 2026): set up, waiting for data access
+
+**Status: nothing trained or shown yet.** The data needs Kerim's MIRA sign-in, and its licence text needs checking (below). Everything that needs no data is built.
+
+**What Kerim decided.**
+- Use the RSNA Intracranial Aneurysm Detection set (RSNA-ICA).
+- Kerim reports written permission from RSNA to show **100 MR and 100 CT series** in the product. The date and exact terms will be copied here from his private note (`C:\Helix\Lab\Data\RSNA-permission.md`, asked in REQUESTS R-2).
+- His reading of the MIRA agreement's clause 1: "use of the data for research to produce or manufacture products for sale is allowed. Any other commercial use, sale, or other monetization is prohibited."
+
+**Licence check before training (Needs Kerim item 8).** RSNA's public summary of the same agreement says something stricter:
+- "personal, non-commercial research only";
+- "Commercial use, sale or other monetization is prohibited";
+- "You may not modify, reverse engineer, decompile, or create derivative works from the dataset".
+
+Source: the RSNA-ICA v2.0 dataset card, github.com/RSNA/AI-Challenge-Data/wiki, read 2026-11-07. The full text appears only at sign-in. Kaggle's competition rules are non-commercial too, so the Kaggle copy is not used. **Training starts once** Kerim's saved copy of the agreement shows clause 1 as quoted, or RSNA's email confirms that training a model for the product is covered.
+
+**Citation.**
+- The DOI in the brief, 10.1148/dataset.ica.2025, does not resolve.
+- The dataset card and doi.org give **10.1148/dataset.ica.2026** (version 2.0, 5,041 series, released 2026-10-30).
+- Credit line on every case and model output: "RSNA Intracranial Aneurysm Detection (RSNA-ICA) Dataset, used with permission. doi:10.1148/dataset.ica.2026".
+
+**The data, from the dataset card and the top write-ups.** Full notes with sources: `research_notes/RSNA-ICA top solutions.md`, git-excluded.
+- v2.0 on MIRA: 5,041 series, about 356 GB as one uncompressed Zip64 file behind a personal download link.
+- The Kaggle training set inside it: 1,808 CTA, 1,251 MRA, 305 MRI T1 post-contrast, 982 MRI T2.
+- Labels:
+  - `dataset.csv`: 13 locations + "Aneurysm Present", plus `PatientGroupID` for patient-grouped folds;
+  - `dataset_localizers.csv`: one point per aneurysm on a named slice, with `size_grade`;
+  - vessel masks for 178 series.
+- The 695 series from three new sites (SITE_19–21) were never in the competition. They are the clean held-out test.
+
+**What transfers from the winners.**
+- **1st place** (private leaderboard 0.879):
+  - nnU-Net vessel segmentation → crop around the vessels → a classifier built on that segmentation network;
+  - features pooled per vessel region, plus an auxiliary sphere head at each localizer point.
+- **Biggest gains:** pretraining on vessel segmentation, +0.11; the auxiliary head, +0.03.
+- **Fits on 2 × RTX 5080:**
+  - fine-tune our TopCoW model (nnU-Net ResEnc-M) on the 178 RSNA vessel masks, without left/right mirroring;
+  - then the classifier at 96 × 192 × 192, bf16, five patient-grouped folds;
+  - about 3–4 days of GPU time in all.
+- **Not ported:** the 2nd place's 53 GB multi-task model and the large 2.5D ensembles.
+
+**Ship gate, set now, before any training.** Nothing ships if any line fails.
+
+| Check | Threshold | On |
+|---|---|---|
+| Weighted AUC (presence ×13, each location ×1), patient-grouped out-of-fold | ≥ 0.86 | all series |
+| Weighted AUC | ≥ 0.82 | held-out SITE_19–21 |
+| Presence AUC | ≥ 0.88 | CTA, MRA |
+| Presence AUC | ≥ 0.80 (else labelled "low confidence") | MRI T1 post, T2 |
+| Per-location AUC | ≥ 0.75 for each of the 13 | all series |
+| Sensitivity at 2 false positives per scan | ≥ 0.80 | CTA, MRA |
+| Median localisation error | ≤ 5 mm | detected aneurysms |
+| Left/right confusion | 0 location swaps beyond chance (paired L/R AUC check) | all series |
+| External sensitivity | ≥ 0.75 at the internal operating point | Lausanne TOF-MRA (16 aneurysms; never trained on) |
+| Calibration | ECE ≤ 0.05 for presence; reliability plot in the report | all series |
+
+Where the thresholds come from:
+- **Weighted AUC:** top teams reported CV 0.88–0.92, which fell 0.03–0.08 on the private leaderboard. Their folds were series-level and leaky; ours group by patient.
+- **External test:**
+  - TopCoW is **not** used: our TopCoW weights were trained on all 125 TopCoW cases and 23 Lausanne controls.
+  - Lausanne is scored on its aneurysm patients only, which were not in that training set.
+- **Error gallery:** the report adds the 30 worst errors.
+
+**Built now (no data needed).**
+- **Members-only route:** `server/rsna.ts` serves `/api/rsna/<pack>/…` from the private Blob store under `rsna-ica/`.
+  - The session and the membership are checked first. Guests get 401 and free accounts 402, before storage is touched.
+  - Responses are private: the CDN never keeps a copy.
+  - Only slices of series on `server/rsnaShown.ts` are served. That list holds opaque hashes and modality, nothing else.
+- **Tests (`tests/rsna.test.ts`):**
+  - 401 / 402 / 404 / 503 answers;
+  - at most 100 MR and 100 CT shown series (fails at 101);
+  - no RSNA path in the free edition;
+  - a scan of every tracked file: no RSNA image or label file, and no copy of the label tables.
+
+**Next, when access arrives (in order).**
+1. Range-read the zip's directory. Extract one batch at a time to `C:\Users\kerim\radiology-data\rsna-ica\raw\` and run the TopCoW model to find the Circle of Willis. Crop to it as float16 NIfTI (about 2–5 MB), then delete the raw batch.
+2. Pick phase 1: about 10 MR + 10 CT teaching cases covering all 13 locations, small and large aneurysms, and normals. Each gets a de-identification check: no burned-in text, no PHI tags, PatientID never copied.
+3. Upload them to the private store, after Kerim's storage yes (R-3), and list them in `rsnaShown.ts`.
+4. Tasks: "Is there an aneurysm?", "Find the aneurysm" (localizer point, sensible radius in mm), "Which artery does it arise from?" (13 locations), and "How many?". Each with the book page (ch. 26).
+5. Train in the background on both GPUs. Report against the gate above. Ship the "AI second read" on our own licensed aneurysm cases only if it passes.
+
 ### Viewer round (6 November 2026): one view alone, two-view radiographs, chest-film anatomy, angiograms, finding analysis
 
 **1. One view alone (every multi-view layout).** A corner button on each view, a double-click on its title or the U key
@@ -190,6 +271,11 @@ Nothing below blocks the work that is running; each item is a decision or a sign
    asks the authors (github.com/MDL-UzL/DenseSeg) for permission, a frontal model could be trained here on the two GPUs
    and validated on their 64 radiologist-drawn masks. RAM-W600/H1200 (adult wrists, CC BY-NC-SA) are gated on Hugging
    Face (account + conditions). Laterals would need hand-corrected labels.
+
+8. **RSNA-ICA: the agreement text and the permission email (blocks training and the teaching cases).**
+   - **Access.** Sign in at mira.rsna.org/dataset/7, accept the agreement, and give this machine a download route (REQUESTS R-1).
+   - **Licence text.** Save the agreement as shown to you, plus RSNA's permission email with its date and terms, in `C:\Helix\Lab\Data\RSNA-permission.md` (R-2). RSNA's public summary says "personal, non-commercial research only" and forbids derivative works. Clause 1 as you quoted it allows research toward a product for sale. Training waits until one of the two documents settles it.
+   - **Storage.** Teaching-case files go in the existing private Blob store (the book's) under `rsna-ica/`: about $0.10 a month for phase 1, about $1 a month for 200 series, plus transfer (R-3).
 
 ## Constraints that shaped the plan
 
