@@ -1,5 +1,5 @@
 import { waitUntil } from '@vercel/functions';
-import { allRegionalPlans, appOrigin, plans, required } from './config.js';
+import { appOrigin, plans, required, welcomeCodePlanIds } from './config.js';
 import { regionalOffer, regionOf, welcomeAmount, type RegionalOffer } from './regional.js';
 import { db } from './store.js';
 import { accessFor, whop } from './billing.js';
@@ -323,7 +323,7 @@ async function makeCode(userId: string, r: WelcomeRecord, now: number): Promise<
         {
           account_id: required('WHOP_ACCOUNT_ID'),
           product_id: required('WHOP_PRODUCT_ID'),
-          plan_ids: [required(plans.monthly.env), required(plans.yearly.env), ...allRegionalPlans().map((p) => p.id)],
+          plan_ids: [required(plans.monthly.env), required(plans.yearly.env), ...welcomeCodePlanIds()],
           code,
           promo_type: 'percentage',
           amount_off: WELCOME_PERCENT,

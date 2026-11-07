@@ -421,7 +421,7 @@ export async function handle(request: Request): Promise<Response> {
     }
     if (path === '/api/billing/checkout' && request.method === 'POST') {
       if (!await rateLimit(`checkout:${user.userId}`, 10, 60)) return json({ error: 'Please wait a moment before trying again.' }, 429);
-      const body = z.object({ tier: z.enum(['monthly', 'yearly']), promoCode: z.string().trim().max(40).optional(), affiliateCode: z.string().max(100).refine(value => !!affiliateCode(value)).optional() }).strict().safeParse(await request.json());
+      const body = z.object({ tier: z.enum(['monthly', 'yearly']), promoCode: z.string().trim().max(40).optional(), affiliateCode: z.string().max(100).refine(value => !!affiliateCode(value)).optional(), method: z.enum(['card', 'upi']).optional() }).strict().safeParse(await request.json());
       if (!body.success) return json({ error: 'Choose monthly or yearly access.' }, 400);
       const existing = await accessFor(user.userId, true);
       if (existing.active || existing.pendingMembership) await logServerEvent('checkout_refused', user.userId, { status: 409 }, request);
@@ -429,7 +429,7 @@ export async function handle(request: Request): Promise<Response> {
       if (existing.pendingMembership) return json({ error: 'You have an existing membership. Open billing in Whop to check its payment before purchasing again.' }, 409);
       let created: Awaited<ReturnType<typeof checkout>>;
       try {
-        created = await checkout(user.userId, body.data.tier, body.data.promoCode, body.data.affiliateCode, request.headers.get('x-vercel-ip-country'));
+        created = await checkout(user.userId, body.data.tier, body.data.promoCode, body.data.affiliateCode, request.headers.get('x-vercel-ip-country'), body.data.method);
       } catch (error) {
         await logServerEvent('checkout_refused', user.userId, { status: error instanceof StudentDiscountError || error instanceof PromoUnavailableError ? 400 : 503 }, request);
         throw error;

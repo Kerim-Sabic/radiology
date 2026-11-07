@@ -15,7 +15,7 @@ import { trackFunnel, WARM_ACCOUNT_EVENT } from '../services/serverSync';
 import { ev, evFired } from '../services/ev';
 import { ScanLoader } from '../components/ScanState';
 import { useOfferTimeLeft, welcomePrice, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
-import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice } from './regionalPrice';
+import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice, rupees } from './regionalPrice';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
 type Tier = 'monthly' | 'yearly';
@@ -86,7 +86,7 @@ function RegionalPriceNote({ price, welcome }: { price: RegionalPrice; welcome: 
     <div className="regional-price" role="note">
       <span className="regional-price-kicker">Price for {price.countryName}</span>
       <strong>{price.monthly.pass ? `${usd(price.monthly.price)} for 30 days · ${usd(price.yearly.price)} for a year` : `${usd(price.monthly.price)} a month · ${usd(price.yearly.price)} a year`}</strong>
-      <span>Pay with a card issued in {price.countryName}. Cards from other countries are declined at checkout.{price.monthly.pass ? ` Each payment is one-time and never renews.${CARD_TIP}` : ''}{price.student ? ` With a verified university email: ${studentTerms(price)}.` : ''}{welcome ? ' Your welcome code works on these prices; any other promo code uses the standard price.' : ' A promo code uses the standard price.'}</span>
+      <span>Pay with a card issued in {price.countryName}. Cards from other countries are declined at checkout.{price.monthly.pass ? ` Each payment is one-time and never renews.${price.upi ? ` Pay by UPI (${rupees(price.upi.monthly)} for 30 days · ${rupees(price.upi.yearly)} for a year) or by card.` : ''}${CARD_TIP}` : ''}{price.student ? ` With a verified university email: ${studentTerms(price)}.` : ''}{welcome ? ' Your welcome code works on these prices; any other promo code uses the standard price.' : ' A promo code uses the standard price.'}</span>
     </div>
   );
 }
@@ -370,7 +370,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       setError('');
     } catch { setError('Sign-out failed. Please try again.'); }
   }
-  const buy = useCallback(async (tier: Tier) => {
+  const buy = useCallback(async (tier: Tier, method: 'card' | 'upi' = 'card') => {
     const current = ++checkoutGeneration.current;
     setBusy(tier); setError('');
     // A plan button pressed (the funnel step between "Opened the plans" and "Saw the payment form").
@@ -379,7 +379,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
     try {
       const affiliate = currentReferral() || referral;
       const enteredPromoCode = promoCode.trim().toLowerCase();
-      const response = await fetch('/api/billing/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tier, ...(enteredPromoCode ? { promoCode: enteredPromoCode } : {}), ...(affiliate ? { affiliateCode: affiliate } : {}) }) });
+      const response = await fetch('/api/billing/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tier, ...(enteredPromoCode ? { promoCode: enteredPromoCode } : {}), ...(affiliate ? { affiliateCode: affiliate } : {}), ...(method === 'upi' ? { method } : {}) }) });
       const data = await response.json();
       if (!mounted.current || current !== checkoutGeneration.current) return;
       if (!response.ok) throw new CheckoutHttpError(data.error, response.status);
@@ -445,6 +445,12 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <span className="membership-step">Checkout</span>
         <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
         <p className="checkout-account">{account.user.email}</p>
+        {payment.regional && regional?.upi && !payment.studentDiscount && <p className="student-offer upi-switch" role="status">
+          <strong>{payment.regional.method === 'upi' ? `Paying ${rupees(payment.regional.rupees ?? 0)} by UPI` : `Pay by UPI instead: ${rupees(regional.upi[payment.tier])}`}</strong>
+          <span>{payment.regional.method === 'upi' ? 'Approve it in your UPI app (Google Pay, PhonePe, Paytm or your bank’s). ' : 'No card needed: approve it in your UPI app. '}
+            <button className="text-button" disabled={!!busy} onClick={() => void buy(payment.tier, payment.regional?.method === 'upi' ? 'card' : 'upi')}>{payment.regional.method === 'upi' ? 'Pay by card instead' : 'Pay by UPI'}</button>
+          </span>
+        </p>}
         {payment.regional && <p className="student-offer regional-applied" role="status"><strong>Price for {payment.regional.countryName}: {regionalTerms(payment.regional)}</strong><span>Pay with a card issued in {payment.regional.countryName}. Cards from other countries are declined.{payment.regional.pass ? CARD_TIP : ''}{payment.welcome ? ' Your welcome code works on this price; any other code switches to the standard price.' : ' A promo code switches to the standard price.'}</span></p>}
         {payment.studentDiscount && <p className="student-offer" role="status"><strong>30% student discount applied</strong><span>{payment.regional?.studentPrice ? `${regionalTerms({ ...payment.regional, price: payment.regional.studentPrice })}${payment.regional.pass ? ', and 30% off every pass you buy' : ', including every renewal'}` : `${payment.tier === 'monthly' ? '$14 USD every 30 days' : '$105 USD every 365 days'}, including every renewal`}. {payment.enteredPromoCode ? 'Your student offer gives a better recurring price than that code.' : 'Your university email is verified.'}</span></p>}
         {payment.welcome && <p className="student-offer welcome-applied" role="status"><strong>Your welcome gift is applied: {welcomeOffer?.percent ?? 40}% off your first payment{payment.regional ? ` (${welcomePrice(payment.regional.price, welcomeOffer?.percent ?? 40)} instead of ${usd(payment.regional.price)})` : ''}</strong><span>{payment.regional ? (payment.regional.pass ? 'One payment; nothing renews.' : `Renewals are ${regionalTerms(payment.regional)}.`) : 'Renewals are at the standard price.'}{student && (!payment.regional || regional?.student) ? ` Remove the code to use your 30% student price on every ${payment.regional?.pass ? 'pass' : 'renewal'} instead.` : ''} Discounts do not stack.</span></p>}

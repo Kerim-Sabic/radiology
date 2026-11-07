@@ -1,4 +1,4 @@
-import { afterAll, beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import type { Whop } from '@whop/sdk';
 
 const fake = vi.hoisted(() => ({
@@ -58,8 +58,8 @@ function standardPlan(id: string) {
   return { id, account: { id: 'biz_test' }, currency: 'usd', plan_type: 'renewal', billing_period: id === 'plan_yearly' ? 365 : 30, initial_price: 0, renewal_price: id === 'plan_yearly' ? 150 : 20, adaptive_pricing_enabled: false };
 }
 
-import { regionalPlans, type RegionalPlan } from '../server/config';
-import { ruleAmounts, ruleBlocked, regionalOffer, regionalPlanProblems, regionOf, regionalStatus, setRegionalLive, setStudentRegionalLive, studentAmount, studentRuleAmounts, welcomeAmount } from '../server/regional';
+import { membershipPlans, regionalPlan, regionalPlans, upiPlans, welcomeCodePlanIds, type RegionalPlan } from '../server/config';
+import { upiOffered, upiPlanProblems, ruleAmounts, ruleBlocked, regionalOffer, regionalPlanProblems, regionOf, regionalStatus, setRegionalLive, setStudentRegionalLive, studentAmount, studentRuleAmounts, welcomeAmount } from '../server/regional';
 import { priceAnswers } from '../src/auth/priceAnswers';
 import { studentTerms, withStudentPrices } from '../src/auth/regionalPrice';
 import { accessFor, checkout, membershipAccess, whop } from '../server/billing';
@@ -396,5 +396,84 @@ describe('the public config', () => {
     expect(await (await handle(config())).json()).not.toHaveProperty('regionalPrice');
     fake.records.delete('rvm:regional:live');
     expect(await (await handle(config('BA'))).json()).not.toHaveProperty('regionalPrice');
+  });
+});
+
+describe('UPI for India', () => {
+  // The two UPI passes exist in Whop once their ids are filled in (server/config.ts); here they are set for the test.
+  const ids = { monthly: 'plan_upiMonthly1', yearly: 'plan_upiYearly1' };
+  const upiPlan = (p: (typeof upiPlans)['monthly'], changes: Record<string, unknown> = {}) =>
+    ({
+      id: p.id, account: { id: 'biz_test' }, product: { id: 'prod_test' }, currency: 'inr', visibility: 'hidden', trial_period_days: null, split_pay_required_payments: null,
+      plan_type: 'one_time', initial_price: p.rupees, renewal_price: 0, billing_period: null, expiration_days: p.days,
+      effective_payment_method_configuration: { enabled: ['upi'], disabled: [], include_platform_defaults: false },
+      ...changes,
+    }) as unknown as Whop.Variant;
+  const withUpi = () => {
+    upiPlans.monthly.id = ids.monthly;
+    upiPlans.yearly.id = ids.yearly;
+    for (const p of Object.values(upiPlans)) fake.variants.set(p.id, upiPlan(p));
+  };
+  afterEach(() => {
+    upiPlans.monthly.id = '';
+    upiPlans.yearly.id = '';
+  });
+
+  it('is off until both UPI plans exist, and is offered only in India', async () => {
+    goLive();
+    expect(upiOffered('IN')).toBe(false);
+    expect((await regionalOffer('IN'))?.upi).toBeUndefined();
+    withUpi();
+    expect(upiOffered('IN')).toBe(true);
+    expect(await regionalOffer('IN')).toMatchObject({ upi: { monthly: 449, yearly: 3499 } });
+    for (const country of ['PK', 'BD', 'BA', 'US']) expect((await regionalOffer(country))?.upi, country).toBeUndefined();
+  });
+
+  it('wants a hidden one-time rupee pass that takes UPI and nothing else (a card could pay it from anywhere)', () => {
+    withUpi();
+    expect(upiPlanProblems(upiPlan(upiPlans.monthly), upiPlans.monthly)).toEqual([]);
+    const bad = (changes: Record<string, unknown>) => upiPlanProblems(upiPlan(upiPlans.yearly, changes), upiPlans.yearly).join('; ');
+    expect(bad({ effective_payment_method_configuration: { enabled: ['upi', 'card'], disabled: [], include_platform_defaults: false } })).toContain('UPI and nothing else');
+    expect(bad({ effective_payment_method_configuration: { enabled: ['upi'], disabled: [], include_platform_defaults: true } })).toContain('UPI and nothing else');
+    expect(bad({ currency: 'usd' })).toContain('Indian rupees');
+    expect(bad({ initial_price: 3000 })).toContain('one-time ₹3499 pass');
+    expect(bad({ visibility: 'visible' })).toContain('hidden');
+  });
+
+  it('gives an Indian visitor who asks for UPI the rupee pass, and everyone else the card plan', async () => {
+    goLive();
+    withUpi();
+    const r = await checkout('user_in', 'yearly', undefined, undefined, 'IN', 'upi');
+    expect(fake.checkoutCalls[0].body).toMatchObject({ plan_id: ids.yearly, metadata: { rvm_region: 'c', rvm_country: 'IN', rvm_method: 'upi' } });
+    expect(r).toMatchObject({ regional: { country: 'IN', price: 39.99, rupees: 3499, method: 'upi' } });
+    await checkout('user_in2', 'yearly', undefined, undefined, 'IN'); // card by default
+    await checkout('user_pk', 'yearly', undefined, undefined, 'PK', 'upi'); // UPI is India only
+    await checkout('user_ba', 'monthly', undefined, undefined, 'BA', 'upi'); // not tier C
+    expect(fake.checkoutCalls.slice(1).map((c) => c.body.plan_id)).toEqual([C.yearly.id, C.yearly.id, B.monthly.id]);
+  });
+
+  it('keeps a welcome code made before the UPI plans on the card pass, with its 40 %', async () => {
+    goLive();
+    withUpi();
+    const code = 'welcome-ravi-x1y2z';
+    fake.promos = [{ code, plan_ids: ['plan_monthly', 'plan_yearly', C.monthly.id, C.yearly.id], expires_at: future(2), unlimited_stock: false, stock: 1 }];
+    fake.ownCodes.set(code, 'user_in');
+    const r = await checkout('user_in', 'monthly', code, undefined, 'IN', 'upi');
+    expect(fake.checkoutCalls[0].body.plan_id).toBe(C.monthly.id);
+    expect(r).toMatchObject({ promoCode: code, welcome: true, regional: { country: 'IN', price: 4.99 } });
+    expect(r.regional).not.toHaveProperty('method');
+  });
+
+  it('refuses a UPI plan that is not set up right, and grants access for a paid UPI pass like any pass', async () => {
+    goLive();
+    withUpi();
+    fake.variants.set(ids.monthly, upiPlan(upiPlans.monthly, { effective_payment_method_configuration: { enabled: ['card', 'upi'], disabled: [], include_platform_defaults: false } }));
+    await expect(checkout('user_in', 'monthly', undefined, undefined, 'IN', 'upi')).rejects.toThrow('Unexpected Whop plan configuration');
+    expect(membershipPlans().filter((p) => Object.values(ids).includes(p.id))).toEqual([
+      { id: ids.monthly, tier: 'monthly', pass: true },
+      { id: ids.yearly, tier: 'yearly', pass: true },
+    ]);
+    expect(regionalPlan(ids.yearly)).toMatchObject({ pass: true, days: 365 });
+    expect(welcomeCodePlanIds()).toEqual(expect.arrayContaining([ids.monthly, ids.yearly]));
   });
 });

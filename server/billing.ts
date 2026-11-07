@@ -1,6 +1,6 @@
 import { WhopClient, type Whop } from '@whop/sdk';
-import { appOrigin, plans, readiness, regionalPlan, regionalPlans, required, membershipPlans, type AccessTier, type Tier } from './config.js';
-import { regionalOffer, regionalPlanProblems, studentAmount } from './regional.js';
+import { appOrigin, plans, readiness, regionalPlan, regionalPlans, required, membershipPlans, upiPlans, type AccessTier, type Tier } from './config.js';
+import { regionalOffer, regionalPlanProblems, studentAmount, upiOffered, upiPlanProblems } from './regional.js';
 import { db } from './store.js';
 import { hash, isAdmin, random } from './auth.js';
 import { merchantToken } from './oauth.js';
@@ -217,8 +217,12 @@ async function paidAccess(userId: string, fresh: boolean): Promise<Access> {
   return result;
 }
 
-/** `country`: Vercel's IP country of the request, which picks a regional price (server/regional.ts) when one applies. */
-export async function checkout(userId: string, tier: Tier, promoCode?: string, referralCode?: string, country?: string | null) {
+/**
+ * `country`: Vercel's IP country of the request, which picks a regional price (server/regional.ts) when one applies.
+ * `method`: 'upi' asks for the rupee pass on a UPI-only plan; it is used only for a visitor in India while those plans
+ * exist (anything else gets the card plan).
+ */
+export async function checkout(userId: string, tier: Tier, promoCode?: string, referralCode?: string, country?: string | null, method: 'card' | 'upi' = 'card') {
   const existing = await accessFor(userId, true);
   if (existing.active) throw new Error('You already have access. Manage your existing plan in your account.');
   if (existing.pendingMembership) throw new Error('An existing membership needs attention. Check your payment in Whop before purchasing again.');
@@ -236,14 +240,20 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
     regional = null;
     regionalChoice = null;
   }
+  // UPI (India): the same pass in rupees. A welcome code made before the UPI plans existed isn't on them: that buyer keeps
+  // the 40% on the card pass instead.
+  let upi = method === 'upi' && regional?.region === 'c' && upiOffered(country) ? upiPlans[tier] : null;
+  if (upi && welcomeCode && !(await promoLiveFor(client, upi.id, welcomeCode))) upi = null;
   // New purchases, including promotions, always use the current plan.
   // Whop remains authoritative for availability, the final quote, and atomic redemption.
-  const planId = regionalChoice?.id ?? required(plans[tier].env);
+  const planId = upi?.id ?? regionalChoice?.id ?? required(plans[tier].env);
   // Monthly passes an entered code on to Whop; yearly takes only a live code made for the yearly plan (from the admin page).
   // (A welcome code on a regional plan was just checked above.)
   if (promo && tier === 'yearly' && !regionalChoice && !(await promoLiveFor(client, planId, promo))) throw new PromoUnavailableError('This code is not available for the yearly plan. Check the code, or choose monthly.');
   const plan = await client.variants.retrieve({ id: planId });
-  if (regionalChoice) {
+  if (upi) {
+    if (upiPlanProblems(plan, upi).length) throw new Error('Unexpected Whop plan configuration');
+  } else if (regionalChoice) {
     if (regionalPlanProblems(plan, regionalChoice).length) throw new Error('Unexpected Whop plan configuration');
   } else validatePlan(plan, tier);
   // On a regional plan: a welcome code goes through checkoutDiscount for its owner check (and wins over the student price:
@@ -264,7 +274,7 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   const config = await client.checkoutConfigurations.create({
     account_id: required('WHOP_ACCOUNT_ID'), plan_id: planId, mode: 'payment',
     ...(affiliate ? { affiliate_code: affiliate } : {}),
-    metadata: { rvm_user: userId, rvm_order: orderId, ...(regional ? { rvm_region: regional.region, rvm_country: regional.country } : {}) },
+    metadata: { rvm_user: userId, rvm_order: orderId, ...(regional ? { rvm_region: regional.region, rvm_country: regional.country } : {}), ...(upi ? { rvm_method: 'upi' } : {}) },
     redirect_url: `${appOrigin()}/?checkout=returned`,
   }, { idempotencyKey: orderId });
   const url = safeWhopUrl(config.purchase_url);
@@ -273,7 +283,8 @@ export async function checkout(userId: string, tier: Tier, promoCode?: string, r
   return {
     id: config.id, url, ...discount, returnUrl: `${appOrigin()}/?checkout=returned`,
     ...(regional && regionalChoice ? { regional: { country: regional.country, countryName: regional.countryName, price: regionalChoice.price, days: regionalChoice.days, pass: regionalChoice.pass,
-      ...('studentDiscount' in discount && discount.studentDiscount ? { studentPrice: studentAmount(regionalChoice.price) } : {}) } } : {}),
+      ...('studentDiscount' in discount && discount.studentDiscount ? { studentPrice: studentAmount(regionalChoice.price) } : {}),
+      ...(upi ? { rupees: upi.rupees, method: 'upi' as const } : {}) } } : {}),
   };
 }
 

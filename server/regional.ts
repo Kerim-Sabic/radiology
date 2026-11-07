@@ -1,5 +1,5 @@
 import type { Whop, WhopClient } from '@whop/sdk';
-import { allRegionalPlans, regionalPlans, required, type Region, type RegionalPlan } from './config.js';
+import { allRegionalPlans, regionalPlans, required, upiPlans, upiReady, UPI_COUNTRIES, type Region, type RegionalPlan, type UpiPlan } from './config.js';
 import { db } from './store.js';
 import { WELCOME_PERCENT } from './welcomeCode.js';
 import { STUDENT_PERCENT } from '../shared/studentDiscount.js';
@@ -99,6 +99,8 @@ export interface RegionalOffer {
   yearly: { price: number; pass: boolean };
   /** A verified student's price there (30% off, every payment), only while student prices are on for regional plans. */
   student?: { monthly: number; yearly: number };
+  /** India: the same passes payable by UPI, in rupees, once the UPI plans exist (server/config.ts upiPlans). */
+  upi?: { monthly: number; yearly: number };
 }
 
 /** The regional price for a country while regional prices are on; null anywhere else (and if the store is down). */
@@ -113,7 +115,34 @@ export async function regionalOffer(country?: string | null): Promise<RegionalOf
     monthly: { price: p.monthly.price, pass: p.monthly.pass },
     yearly: { price: p.yearly.price, pass: p.yearly.pass },
     ...(student ? { student: { monthly: studentAmount(p.monthly.price), yearly: studentAmount(p.yearly.price) } } : {}),
+    ...(upiOffered(code) ? { upi: { monthly: upiPlans.monthly.rupees, yearly: upiPlans.yearly.rupees } } : {}),
   };
+}
+
+/** Whether a visitor from this country may pay the C pass by UPI (India, once both UPI plans exist). */
+export function upiOffered(country?: string | null): boolean {
+  return upiReady() && (UPI_COUNTRIES as readonly string[]).includes((country ?? '').trim().toUpperCase());
+}
+
+/**
+ * What is wrong with a UPI pass in Whop, in plain words; empty when it is right. It must take UPI and nothing else: a card
+ * could otherwise pay the rupee price from any country, since these plans have no card-country rule.
+ */
+export function upiPlanProblems(plan: Whop.Variant, want: UpiPlan): string[] {
+  const problems: string[] = [];
+  if (plan.account?.id !== required('WHOP_ACCOUNT_ID')) problems.push('belongs to another Whop business');
+  if ((plan.product as { id?: string } | null)?.id !== required('WHOP_PRODUCT_ID')) problems.push('is on another product');
+  if (plan.currency !== want.currency) problems.push('is not in Indian rupees');
+  if (plan.visibility !== 'hidden') problems.push('is not hidden from the store page');
+  if (plan.trial_period_days) problems.push('has a free trial');
+  if (plan.split_pay_required_payments) problems.push('has split pay');
+  if (plan.plan_type !== 'one_time' || plan.initial_price !== want.rupees || plan.expiration_days !== want.days) {
+    problems.push(`should be a one-time ₹${want.rupees} pass that expires after ${want.days} days`);
+  }
+  const methods = plan.effective_payment_method_configuration;
+  const offered = methods && !methods.include_platform_defaults ? methods.enabled.filter((m) => !methods.disabled.includes(m)) : null;
+  if (!offered || offered.length !== 1 || offered[0] !== 'upi') problems.push('should take UPI and nothing else');
+  return problems;
 }
 
 const CARD_METHODS = new Set(['card', 'apple_pay', 'google_pay']);

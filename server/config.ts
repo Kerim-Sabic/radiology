@@ -46,7 +46,26 @@ export const regionalPlans: Record<Region, Record<Tier, RegionalPlan>> = {
   },
 };
 export const allRegionalPlans = (): RegionalPlan[] => Object.values(regionalPlans).flatMap((r) => Object.values(r));
-export const regionalPlan = (planId: string | null | undefined) => allRegionalPlans().find((p) => p.id === planId) ?? null;
+
+/**
+ * UPI for India: the C passes again, charged in rupees, on hidden Whop plans that accept **UPI only**. No card can pay
+ * them, so they need no card-country rule: a UPI payment comes from an Indian bank account, and the server offers these
+ * plans only to visitors whose IP country is India. Off while an id is empty: account 1 creates the two plans in Whop
+ * (one-time, INR, hidden, payment methods: UPI only), and the ids are filled in after one real ₹ test payment.
+ */
+export interface UpiPlan extends RegionalPlan { currency: 'inr'; rupees: number }
+export const UPI_COUNTRIES = ['IN'] as const;
+export const upiPlans: Record<Tier, UpiPlan> = {
+  monthly: { id: '', region: 'c', tier: 'monthly', price: 4.99, days: 30, pass: true, currency: 'inr', rupees: 449 },
+  yearly: { id: '', region: 'c', tier: 'yearly', price: 39.99, days: 365, pass: true, currency: 'inr', rupees: 3499 },
+};
+/** Whether both UPI passes exist (their ids are filled in). */
+export const upiReady = () => Object.values(upiPlans).every((p) => /^plan_\w+$/.test(p.id));
+const upiPlanList = () => Object.values(upiPlans).filter((p) => !!p.id);
+/** A regional plan (card or UPI) by id: a pass ends after its days, whichever way it was paid. */
+export const regionalPlan = (planId: string | null | undefined) => [...allRegionalPlans(), ...upiPlanList()].find((p) => p.id === planId) ?? null;
+/** Plans a welcome code is made for: every plan a new buyer may be offered. */
+export const welcomeCodePlanIds = () => [...allRegionalPlans(), ...upiPlanList()].map((p) => p.id);
 
 /** Historical plans remain entitled without being offered to new customers; `pass`: one-time access that expires. */
 export function membershipPlans(): { id: string; tier: AccessTier; pass?: boolean }[] {
@@ -55,5 +74,6 @@ export function membershipPlans(): { id: string; tier: AccessTier; pass?: boolea
     { id: process.env.WHOP_LEGACY_MONTHLY_PLAN_ID || '', tier: 'monthly' as const },
     { id: process.env.WHOP_LIFETIME_PLAN_ID || '', tier: 'lifetime' as const },
     ...allRegionalPlans().map((p) => ({ id: p.id, tier: p.tier as AccessTier, pass: p.pass })),
+    ...upiPlanList().map((p) => ({ id: p.id, tier: p.tier as AccessTier, pass: true })),
   ].filter(plan => !!plan.id);
 }

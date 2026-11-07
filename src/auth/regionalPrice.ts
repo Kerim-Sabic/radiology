@@ -7,10 +7,16 @@ export interface RegionalPrice {
   yearly: { price: number; pass: boolean };
   /** A verified student's price there (30% off every payment), only while student prices are on for regional plans. */
   student?: { monthly: number; yearly: number };
+  /** India: the same passes payable by UPI, in rupees (once the UPI plans exist). */
+  upi?: { monthly: number; yearly: number };
 }
 
-/** What the checkout answered for a regional price; `studentPrice` when the student's 30% code is on it. */
-export interface RegionalCheckout { country: string; countryName: string; price: number; days: number; pass: boolean; studentPrice?: number }
+/** What the checkout answered for a regional price; `studentPrice` when the student's 30% code is on it; `method: 'upi'`
+ *  with the rupee amount when the pass is paid by UPI. */
+export interface RegionalCheckout { country: string; countryName: string; price: number; days: number; pass: boolean; studentPrice?: number; rupees?: number; method?: 'upi' }
+
+/** "₹3,499": a rupee amount as shown in India. */
+export const rupees = (n: number) => `₹${n.toLocaleString('en-IN')}`;
 
 /** The regional price with the student's 30% off in place of the price, for the plan cards. */
 export const withStudentPrices = (r: RegionalPrice): RegionalPrice =>
