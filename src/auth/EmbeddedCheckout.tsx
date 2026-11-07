@@ -3,12 +3,14 @@ import { loadWhop } from '@whop/elements';
 import { Checkout, CheckoutElement, WhopElements } from '@whop/elements-react';
 import { LockKeyhole } from 'lucide-react';
 import { trackFunnel } from '../services/serverSync';
+import { ev } from '../services/ev';
 
 const elements = loadWhop();
 export default function EmbeddedCheckout({ id, returnUrl, email, promoCode, onComplete }: { id: string; returnUrl: string; email: string; promoCode?: string; onComplete: () => void }) {
   const [error, setError] = useState(false);
   const [attempt, setAttempt] = useState(0);
   const retryLoader = useRef<(() => void) | null>(null);
+  const mountedAt = useRef(performance.now());
   return <div className="embedded-checkout">
     <p className="checkout-security"><LockKeyhole size={14} /> Secure payment powered by Whop</p>
     {error && <div className="membership-message" role="alert">The payment form couldn’t load. Check your connection and try again.
@@ -16,7 +18,7 @@ export default function EmbeddedCheckout({ id, returnUrl, email, promoCode, onCo
     </div>}
     <WhopElements key={attempt} elements={elements} appearance={{ theme: { appearance: 'dark', accentColor: 'blue', grayColor: 'slate' } }} onLoadError={(_error, retry) => { retryLoader.current = retry; setError(true); trackFunnel('checkout_error'); }}>
       <Checkout promoCode={promoCode} checkoutConfiguration={id} returnUrl={returnUrl} onComplete={onComplete} fallback={<p className="checkout-loading" role="status">Loading secure payment form…</p>}>
-        <CheckoutElement buyerEmail={email} lockBuyerEmail onReady={() => trackFunnel('checkout_ready', true)} onError={() => { setError(true); trackFunnel('checkout_error'); }} />
+        <CheckoutElement buyerEmail={email} lockBuyerEmail onReady={() => { trackFunnel('checkout_ready', true); const ms = Math.round(performance.now() - mountedAt.current); ev('checkout_ready', { ms }, true); if (ms > 10_000) ev('slow', { step: 'checkout_ready', ms }, true); }} onError={() => { setError(true); trackFunnel('checkout_error'); }} />
       </Checkout>
     </WhopElements>
   </div>;

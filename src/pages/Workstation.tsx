@@ -82,6 +82,7 @@ import { landmarks, levelName, mapZ, matchLevels, type Landmark } from '../servi
 import { IconButton, ProvenanceChip, Toast, useToast } from '../components/ui';
 import { ReportProblem } from '../components/ReportProblem';
 import { trackFunnel, trackOpened, WARM_ACCOUNT_EVENT } from '../services/serverSync';
+import { ev, evFired } from '../services/ev';
 import { SyncBadge } from '../components/SyncBadge';
 import { gradeTask, measureWithinSlab, probeOfMark, type LoadedTarget } from '../grading/spatialGrader';
 import type { GradeResult, LearnerMark } from '../grading/types';
@@ -564,7 +565,8 @@ export default function Workstation() {
   const guestTasks = useRef(new Set<string>());
   useEffect(() => {
     if (guest && marks.length && shownAt.current !== null) trackFunnel('guest_mark', true, (performance.now() - shownAt.current) / 1000);
-  }, [guest, marks.length]);
+    if (marks.length && task) ev('mark', { task: task.id, tool: marks[0].tool, secs: shownAt.current === null ? -1 : Math.round((performance.now() - shownAt.current) / 1000) }, true);
+  }, [guest, marks.length]); // eslint-disable-line react-hooks/exhaustive-deps
   // A guest who opens a second task (the step after the first grade).
   useEffect(() => {
     if (!guest || !task) return;
@@ -783,6 +785,10 @@ export default function Workstation() {
       g.messages.push('You reported this as uncertain or not assessable. The reference shows the target on this study; use the explanation to see why.');
     }
     const attempt: Attempt = { ...buildAttempt(g, true), marks: frozen, position: { seriesUid: pp.seriesUid, sopInstanceUid: cp.sop, worldLps: cp.world }, independent: rules.independent(session) };
+    // Logged as soon as it is graded (before the grade is drawn and saved), so the log reads answer → grade_seen.
+    const graded = { task: attempt.taskId, mode, correct: attempt.grade?.outcome === 'correct', score: Math.round((attempt.grade?.score ?? 0) * 100) / 100, assisted: !attempt.independent, secs: Math.round(attempt.durationMs / 1000) };
+    if (evFired('answer')) ev('second_answer', { task: graded.task, correct: graded.correct }, true);
+    ev('answer', graded);
     if (exam && examItem) {
       // Exam: the server grades the answer as given; save it here too and go on, without showing the result.
       try {
@@ -961,7 +967,13 @@ export default function Workstation() {
     const n = availableTasks.find((t) => t.id !== task.id && oneTap(t) && !tried.has(t.id));
     if (!n) return nextOnStudy ? { label: 'Next task', go: nextOnStudy } : null;
     const label = /^find /i.test(n.title) ? `Next: ${n.title[0].toLowerCase()}${n.title.slice(1)}, no outline` : `Next: ${n.title}`;
-    return { label, go: () => setSp({ task: n.id, mode: 'practice' }) };
+    return {
+      label,
+      go: () => {
+        ev('next_task', { task: n.id });
+        setSp({ task: n.id, mode: 'practice' });
+      },
+    };
   })();
 
   const openBook = (a: BookAnchorRef) => {
@@ -1276,6 +1288,7 @@ export default function Workstation() {
     }
     if (markHints.current >= 3) return;
     markHints.current += 1;
+    ev('tap_no_mark', { why: t });
     setToolFlash(MARK_HINT);
     window.setTimeout(() => setToolFlash((f) => (f === MARK_HINT ? null : f)), 2600);
   };
@@ -1300,7 +1313,22 @@ export default function Workstation() {
   const focusedState = engine.panelState(focused);
   const focusedShown = !!focusedState?.ready && !focusedState.error;
   useEffect(() => {
-    if (focusedShown && shownAt.current === null) shownAt.current = performance.now();
+    if (kase && task) ev('case_shell', { case: kase.id, task: task.id, ms: Math.round(performance.now()) }, true);
+  }, [kase?.id, task?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    const err = focusedState?.error;
+    if (err) ev('image_error', { case: kase?.id ?? '', status: Number(/HTTP (\d{3})/.exec(err)?.[1] ?? 0) }, true);
+  }, [focusedState?.error]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (session?.submitted && task) ev('grade_seen', { task: task.id });
+  }, [session?.submitted, task?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+  useEffect(() => {
+    if (focusedShown && shownAt.current === null) {
+      shownAt.current = performance.now();
+      const ms = Math.round(performance.now());
+      ev('first_image', { case: kase?.id ?? '', ms }, true);
+      if (ms > 10_000) ev('slow', { step: 'first_image', ms }, true);
+    }
     if (focusedShown) (guest ? trackFunnel('guest_open', true) : trackOpened());
   }, [focusedShown, guest]);
   if (!catalog) return <div className="vp-status">Loading case catalogue…</div>;

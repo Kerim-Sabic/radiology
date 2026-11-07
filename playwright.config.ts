@@ -9,7 +9,8 @@ export default defineConfig({
   fullyParallel: false,
   workers: 1,
   reporter: [['list'], ['json', { outputFile: 'test-results/e2e-results.json' }]],
-  use: { baseURL: 'http://localhost:4317', viewport: { width: 1440, height: 900 }, trace: 'retain-on-failure' },
+  // x-rvm-test: the anonymous event log drops every request of the suite, even one that reached a real server.
+  use: { baseURL: 'http://localhost:4317', viewport: { width: 1440, height: 900 }, trace: 'retain-on-failure', extraHTTPHeaders: { 'x-rvm-test': '1' } },
   webServer: { command: 'npx vite preview --port 4317 --strictPort', url: 'http://localhost:4317', reuseExistingServer: false, timeout: 60_000 },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } },

@@ -6,6 +6,7 @@ import { AdminPeople, type AdminPermission } from '../components/AdminPeople';
 import { AdminPromos } from '../components/AdminPromos';
 import { CertificateAdmin } from '../components/CertificateAdmin';
 import { AdminReports } from '../components/AdminReports';
+import { AdminJourneys } from '../components/AdminJourneys';
 
 type Metric =
   | 'visit'
@@ -132,6 +133,7 @@ export default function AdminPage() {
       {can('people') || can('add') ? <AdminPeople version={version} can={can} /> : null}
       {can('promos') ? <AdminPromos version={version} /> : null}
       {can('reports') ? <AdminReports version={version} /> : null}
+      {can('numbers') ? <AdminJourneys /> : null}
       {!['people', 'add', 'promos', 'numbers', 'certificates', 'reports'].some((p) => can(p as AdminPermission)) ? <p className="muted">There is nothing here for your account yet.</p> : null}
       {error ? <div className="notice bad">{error}</div> : null}
       {!can('numbers') ? null : stats ? (

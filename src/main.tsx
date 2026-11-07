@@ -12,6 +12,10 @@ import { AccountGate } from './auth/AccountGate';
 import { RootErrorBoundary } from './components/RootErrorBoundary';
 import { ScanLoader } from './components/ScanState';
 import { reloadOnceForNewRelease, sessionStore } from './app/errorReport';
+import { startEv } from './services/ev';
+
+// The anonymous event log (docs/TRACKING.md): the arrival, the first interaction, errors and leaving.
+startEv();
 
 // A release replaced the code files this tab was built against (or the connection dropped mid-download): reload once
 // to pick up the new ones. A second failure within a minute goes to the error screen instead of looping.

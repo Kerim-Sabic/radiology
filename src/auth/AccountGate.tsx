@@ -12,6 +12,7 @@ import { InviteFriends } from './InviteFriends';
 import { currentReferral } from './referralAttribution';
 import { PlansScreen } from './PlansScreen';
 import { trackFunnel, WARM_ACCOUNT_EVENT } from '../services/serverSync';
+import { ev, evFired } from '../services/ev';
 import { ScanLoader } from '../components/ScanState';
 import { useOfferTimeLeft, welcomePrice, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
 import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice } from './regionalPrice';
@@ -371,13 +372,14 @@ function MembershipGate({ children }: { children: ReactNode }) {
     setBusy(tier); setError('');
     // A plan button pressed (the funnel step between "Opened the plans" and "Saw the payment form").
     trackFunnel('checkout_start');
+    ev('plan_click', { period: tier, amount: planAmount(tier) });
     try {
       const affiliate = currentReferral() || referral;
       const enteredPromoCode = promoCode.trim().toLowerCase();
       const response = await fetch('/api/billing/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ tier, ...(enteredPromoCode ? { promoCode: enteredPromoCode } : {}), ...(affiliate ? { affiliateCode: affiliate } : {}) }) });
       const data = await response.json();
       if (!mounted.current || current !== checkoutGeneration.current) return;
-      if (!response.ok) throw new Error(data.error);
+      if (!response.ok) throw new CheckoutHttpError(data.error, response.status);
       if (!/^ch_[A-Za-z0-9]+$/.test(data.id)) throw new Error('Unable to open the payment form. Please try again.');
       setPayment({ id: data.id, returnUrl: data.returnUrl, tier, promoCode: data.promoCode, enteredPromoCode, studentDiscount: data.studentDiscount, welcome: data.welcome === true, ...(data.regional ? { regional: data.regional } : {}) });
       setPlansOpen(true); // "Change plan" goes back to the plans, not to the app
@@ -385,6 +387,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
     } catch (e) {
       // The payment form never appeared: the server refused or failed (counted, so a broken checkout shows in the funnel).
       trackFunnel('checkout_error');
+      ev('api_error', { route: '/api/billing/checkout', status: e instanceof CheckoutHttpError ? e.status : 0 });
       if (mounted.current && current === checkoutGeneration.current) setError(e instanceof Error ? e.message : 'Checkout is unavailable. Please try again.');
     }
     finally { if (mounted.current && current === checkoutGeneration.current) setBusy(null); }
@@ -417,6 +420,19 @@ function MembershipGate({ children }: { children: ReactNode }) {
   // are on there; a welcome code instead takes 40% off the first payment (discounts do not stack).
   const studentRegional = student && regionalShown?.student && !promoCode.trim() ? withStudentPrices(regionalShown) : undefined;
   const cardPrice = studentRegional ?? regionalShown;
+  const planAmount = (tier: Tier) => (cardPrice ? (tier === 'monthly' ? cardPrice.monthly.price : cardPrice.yearly.price) : tier === 'monthly' ? 20 : 150);
+  // The plans were on screen: what was shown, from where (signed in: the plans screen; signed out: the home page).
+  const seenPlans = () =>
+    ev('plans_view', {
+      from: account?.user ? 'account' : 'home',
+      currency: 'USD',
+      regional: !!regional,
+      pass: !!cardPrice?.monthly.pass,
+      student: !!studentRegional || student,
+      code: !!promoCode.trim(),
+      monthly: planAmount('monthly'),
+      yearly: planAmount('yearly'),
+    }, true);
   const checkoutCodeChanged = promoCode.trim().toLowerCase() !== (payment?.enteredPromoCode || '');
   const panel = <>
     <section className="membership-panel" id="plans" aria-label="Membership">
@@ -439,6 +455,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
         </Suspense>}
         <p className="membership-fine">{payment.promoCode ? 'Your code is prefilled in the payment form. Review the discounted recurring total before paying; Whop confirms whether it is still available.' : payment.regional ? `Regional price: ${regionalTerms(payment.regional)}.` : payment.tier === 'monthly' ? 'Standard price: $20 USD every 30 days.' : 'Standard price: $150 USD every 365 days.'} Discounts and any applicable tax are shown in the payment form. {payment.regional?.pass ? 'Nothing renews.' : 'Cancel future renewals from Billing.'} Access opens after payment is verified.</p>
       </> : <>
+      <SeenOnce onSeen={seenPlans} />
       <span className="membership-step">{account?.user ? 'Choose your plan' : 'Membership'}</span>
       <h2>{account?.user ? 'Unlock the whole library.' : 'The whole library, every tool.'}</h2>
       <p>{account?.user ? `Signed in as ${account.user.email}` : 'One membership for every patient, drill and on-call shift, with the book beside you.'}</p>
@@ -510,9 +527,9 @@ function MembershipGate({ children }: { children: ReactNode }) {
       {showPlans ? <PlansScreen panel={panel} email={account.user.email} onClose={closePlans} onSignOut={() => void logout()} /> : null}
     </AccountContext.Provider>;
   }
-  const startFree = () => { setAuthMode('signup'); setError(''); trackFunnel('signup_start', true); };
+  const startFree = (where = 'home') => { setAuthMode('signup'); setError(''); trackFunnel('signup_start', true); ev('save_click', { where }); };
   const authDialog = (
-    <dialog className="auth-dialog" ref={dialog} onCancel={() => setAuthMode(null)} onClose={() => setAuthMode(null)} aria-labelledby="auth-title">
+    <dialog className="auth-dialog" ref={dialog} onCancel={() => setAuthMode(null)} onClose={() => { if (!account?.user && authMode === 'signup') ev('account_abandon', { step: evFired('code_sent') ? 'code_sent' : evFired('email_focus') ? 'email_focus' : evFired('form_shown') ? 'form_shown' : 'opened' }); setAuthMode(null); }} aria-labelledby="auth-title">
       <button className="auth-close" aria-label="Close sign-in" onClick={() => setAuthMode(null)}><X size={20} /></button>
       <div className="auth-icon"><Mail size={25} /></div>
       <div className="auth-tabs" role="tablist" aria-label="Account options">
@@ -538,16 +555,43 @@ function MembershipGate({ children }: { children: ReactNode }) {
   // from here keeps the page (src/auth/returnPath.ts) and the answers given on it (the first account to sync in a
   // browser takes the history already there).
   if (guestCaseId(pathname)) {
-    return <AccountContext.Provider value={{ account: account ?? GUEST_ACCOUNT, logout, free: true, guest: true, openPlans: startFree, startAccount: (mode) => (mode === 'login' ? setAuthMode('login') : startFree()) }}>
+    return <AccountContext.Provider value={{ account: account ?? GUEST_ACCOUNT, logout, free: true, guest: true, openPlans: () => startFree('plans'), startAccount: (mode) => (mode === 'login' ? setAuthMode('login') : startFree('case')) }}>
       {children}
       {authDialog}
     </AccountContext.Provider>;
   }
   return <main className="membership-page lp">
     {endedBy ? <EndedByBanner endedBy={endedBy} onSignIn={() => setAuthMode('login')} /> : null}
-    <InviteBanner onJoin={startFree} onSignIn={() => setAuthMode('login')} />
+    <InviteBanner onJoin={() => startFree('invite')} onSignIn={() => setAuthMode('login')} />
     <Landing panel={panel} regional={regional} signInLabel="Sign in" signInDisabled={!ready?.auth}
-      onSignIn={() => setAuthMode('login')} onStartFree={startFree} />
+      onSignIn={() => setAuthMode('login')} onStartFree={() => startFree('home')} />
     {authDialog}
   </main>;
+}
+
+/** The checkout request failed with this HTTP status (logged as an api_error). */
+class CheckoutHttpError extends Error {
+  constructor(message: string, readonly status: number) {
+    super(message);
+  }
+}
+
+/** Calls `onSeen` once, the first time this point of the page is on screen. */
+function SeenOnce({ onSeen }: { onSeen: () => void }) {
+  const ref = useRef<HTMLSpanElement>(null);
+  const seen = useRef(onSeen);
+  seen.current = onSeen;
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || typeof IntersectionObserver !== 'function') return void seen.current();
+    const io = new IntersectionObserver((entries) => {
+      if (entries.some((e) => e.isIntersecting)) {
+        seen.current();
+        io.disconnect();
+      }
+    });
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
+  return <span ref={ref} aria-hidden="true" />;
 }

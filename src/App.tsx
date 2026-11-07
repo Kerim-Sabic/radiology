@@ -1,5 +1,6 @@
-import { lazy, Suspense, useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState, useRef } from 'react';
 import { Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router';
+import { evPage } from './services/ev';
 import { pendingJoinCode } from './auth/joinCode';
 import { DropdownMenu, Tooltip } from 'radix-ui';
 import { Award, BookOpen, Bone, ChartColumn, ChevronDown, FolderOpen, GraduationCap, House, LayoutGrid, Library, Lock, Search, NotebookPen, Siren, Stethoscope, Target } from 'lucide-react';
@@ -213,6 +214,8 @@ const PAGE_TITLES: Array<[RegExp, string]> = [
 ];
 
 export function App() {
+  // The arrival is the log's `land`; later route changes are `page` events.
+  const evPathRef = useRef<string | null>(null);
   const loc = useLocation();
   const navigate = useNavigate();
   // Signed up from a class join link: go back to its invitation once.
@@ -222,6 +225,8 @@ export function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
+    if (evPathRef.current !== null && evPathRef.current !== loc.pathname) evPage(loc.pathname);
+    evPathRef.current = loc.pathname;
     if (loc.pathname.startsWith('/conditions')) return; // titled by the condition shown
     const t = PAGE_TITLES.find(([re]) => re.test(loc.pathname))?.[1];
     document.title = t ? `${t} · Radiology Monster` : SITE_TITLE;

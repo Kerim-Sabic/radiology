@@ -8,6 +8,8 @@ import { clerkIdentity, revokeOtherClerkSessions } from './clerk.js';
 import { DEVICE_COOKIE, DEVICE_COOKIE_SECONDS, DeviceLimitError, newDeviceId, validDeviceId } from './devices.js';
 import { bookGift, memberBook, servesBook } from './book.js';
 import { rsnaFile, rsnaMember } from './rsna.js';
+import { ingestEvents, logServerEvent, type Who } from './events.js';
+import { eventsCsv, funnelCsv, journeyReport, journeys, loadEvents, type JourneyFilter } from './journeys.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
 import { pullAttempts, pushAttempts, resetAttempts } from './progressSync.js';
@@ -18,7 +20,7 @@ import { answerQuestion, finishExam, openQuestion, startExam } from './certifica
 import { queueCertificateEmail, sendCertificateEmails } from './certificateEmail.js';
 import { certificateImage, certificatePageHtml } from './certificateShare.js';
 import { adminAccess } from './auth.js';
-import type { Permission } from './roles.js';
+import { professorRole, type Permission } from './roles.js';
 import { addPerson, adminPeople, emailSignIn, removeFreeAccess, resetDevices, setFreeAccess, setRole } from './admin.js';
 import { changePromo, createPromo, listPromos, PromoAccessError } from './promos.js';
 import { addStudents, changeJoinLink, classesOf, classRoster, invitation, joinClass, leaveClass, professorFor, removeStudent, setTeacherName } from './classes.js';
@@ -143,7 +145,7 @@ export async function handle(request: Request): Promise<Response> {
         // A new account keeps the campaign it arrived with (for the admin page's "where sign-ups come from").
         const userId = hash(`${profile.provider}:${profile.sub}`);
         const isNew = !(await db().get(`rvm:once:signup:${userId}`));
-        const response = json({ ok: true });
+        const response = json({ ok: true, new: isNew });
         const device = deviceFor(request);
         response.headers.append('Set-Cookie', await createSession(profile, device));
         if (device.fresh) response.headers.append('Set-Cookie', cookie(DEVICE_COOKIE, device.device, DEVICE_COOKIE_SECONDS));
@@ -178,6 +180,19 @@ export async function handle(request: Request): Promise<Response> {
       catch { return authResult(false, [cookie(FLOW_COOKIE, '', 0)]); }
     }
     const user = await session(request);
+    // The anonymous event log (server/events.ts): always 204, whether the batch was kept or filtered.
+    if (path === '/api/ev' && request.method === 'POST') {
+      const text = await request.text().catch(() => '');
+      if (text.length > 24_000) return new Response(null, { status: 413 });
+      let body: unknown = null;
+      try {
+        body = JSON.parse(text);
+      } catch {
+        /* invalid: dropped */
+      }
+      await ingestEvents(request, body, user ? await eventWho(user.userId, user.email) : 'visitor', user?.userId).catch(() => undefined);
+      return new Response(null, { status: 204, headers: { 'Cache-Control': 'no-store' } });
+    }
     // Back from LinkedIn after "Post it for me" (a page visit, so it answers with a redirect, signed in or not).
     if (path === '/api/linkedin/callback' && request.method === 'GET') return redirect(`${appOrigin()}${await finishLinkedInPost(url, user)}`);
     if (path === '/api/logout' && request.method === 'POST') {
@@ -204,7 +219,10 @@ export async function handle(request: Request): Promise<Response> {
     }
     if (path === '/api/session' && request.method === 'GET') {
       const access = await accessFor(user.userId);
-      if (access.active && !access.role) await countOnce('paid', user.userId);
+      if (access.active && !access.role) {
+        await countOnce('paid', user.userId);
+        if ((await db().set(`rvm:once:evpaid:${user.userId}`, 1, { nx: true })) === 'OK') await logServerEvent('paid', user.userId, {}, request);
+      }
       // Whether the book is served to this account now (named accounts get it without a plan).
       const book = bookGift(user.email) || (access.active && servesBook(user.email));
       // What this admin may do on the admin page ("admins": manage admins, the owner's alone).
@@ -339,6 +357,15 @@ export async function handle(request: Request): Promise<Response> {
       if (path === '/api/admin/role' && !admin.owner) return json({ error: 'Not found' }, 404);
       if (request.method === 'GET') {
         if (path === '/api/admin/stats') return may('numbers') ? json(await adminStats()) : denied();
+        // Journeys over the anonymous event log, and its exports (server/journeys.ts).
+        if (path === '/api/admin/journeys' || path === '/api/admin/journeys.csv') {
+          if (!may('numbers')) return denied();
+          const f = journeyFilter(url);
+          if (path === '/api/admin/journeys') return json(await journeyReport(f));
+          const kind = url.searchParams.get('kind') === 'events' ? 'events' : 'funnel';
+          const csv = kind === 'events' ? await eventsCsv(f) : funnelCsv(journeys(await loadEvents(f)));
+          return new Response(csv, { headers: { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': `attachment; filename="radiology-monster-${kind}-${f.from}-${f.to}.csv"`, 'Cache-Control': 'no-store' } });
+        }
         if (path === '/api/admin/people') return may('people') ? json(await adminPeople(admin)) : denied();
         if (path === '/api/admin/promos') return may('promos') ? json(await promoRequest(listPromos)) : denied();
         // The welcome offer for accounts made before it existed: how many are waiting (members never count).
@@ -397,10 +424,18 @@ export async function handle(request: Request): Promise<Response> {
       const body = z.object({ tier: z.enum(['monthly', 'yearly']), promoCode: z.string().trim().max(40).optional(), affiliateCode: z.string().max(100).refine(value => !!affiliateCode(value)).optional() }).strict().safeParse(await request.json());
       if (!body.success) return json({ error: 'Choose monthly or yearly access.' }, 400);
       const existing = await accessFor(user.userId, true);
+      if (existing.active || existing.pendingMembership) await logServerEvent('checkout_refused', user.userId, { status: 409 }, request);
       if (existing.active) return json({ error: 'You already have access. Manage your plan from your account.' }, 409);
       if (existing.pendingMembership) return json({ error: 'You have an existing membership. Open billing in Whop to check its payment before purchasing again.' }, 409);
-      const created = await checkout(user.userId, body.data.tier, body.data.promoCode, body.data.affiliateCode, request.headers.get('x-vercel-ip-country'));
+      let created: Awaited<ReturnType<typeof checkout>>;
+      try {
+        created = await checkout(user.userId, body.data.tier, body.data.promoCode, body.data.affiliateCode, request.headers.get('x-vercel-ip-country'));
+      } catch (error) {
+        await logServerEvent('checkout_refused', user.userId, { status: error instanceof StudentDiscountError || error instanceof PromoUnavailableError ? 400 : 503 }, request);
+        throw error;
+      }
       await count('checkout');
+      await logServerEvent('checkout_created', user.userId, { tier: body.data.tier, regional: !!(created as { regional?: unknown }).regional }, request);
       return json(created);
     }
     return json({ error: 'Not found' }, 404);
@@ -411,3 +446,37 @@ export async function handle(request: Request): Promise<Response> {
     return json({ error: 'We could not verify your account or payment. Please try again shortly. You have not been given access yet.' }, 503);
   }
 }
+
+/**
+ * Whose events these are: admins, the owner and professors (Kerim and the team) are never logged. Kept a few minutes
+ * per account on a warm instance, so a busy page does not repeat the lookups.
+ */
+const whoCache = new Map<string, { who: Who; until: number }>();
+async function eventWho(userId: string, email: string): Promise<Who> {
+  const hit = whoCache.get(userId);
+  if (hit && hit.until > Date.now()) return hit.who;
+  const internal = !!(await adminAccess(userId).catch(() => null)) || !!(await professorRole(email).catch(() => null));
+  const who: Who = internal ? 'internal' : 'account';
+  if (whoCache.size > 5000) whoCache.clear();
+  whoCache.set(userId, { who, until: Date.now() + 5 * 60_000 });
+  return who;
+}
+
+/** The Journeys filters from the query string; the range defaults to the last 7 days (UTC) and is capped at 31. */
+function journeyFilter(url: URL): JourneyFilter {
+  const q = url.searchParams;
+  const today = new Date().toISOString().slice(0, 10);
+  const weekAgo = new Date(Date.now() - 6 * 86_400_000).toISOString().slice(0, 10);
+  const day = (v: string | null, d: string) => (v && /^\d{4}-\d{2}-\d{2}$/.test(v) ? v : d);
+  const short = (v: string | null) => (v && /^[\w:.-]{1,60}$/.test(v) ? v : undefined);
+  return {
+    from: day(q.get('from'), weekAgo),
+    to: day(q.get('to'), today),
+    tag: short(q.get('tag')),
+    country: short(q.get('country'))?.toUpperCase(),
+    device: short(q.get('device')),
+    conn: short(q.get('conn')),
+    humans: q.get('humans') !== '0',
+  };
+}
+

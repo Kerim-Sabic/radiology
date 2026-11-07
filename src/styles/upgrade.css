@@ -1150,3 +1150,20 @@
     margin: 10px 12px 0;
   }
 }
+
+/* Admin → Journeys */
+.journeys-filters label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+.journeys-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 18px;
+}
+.admin-journeys h3 {
+  margin: 10px 0 4px;
+  font-size: 15px;
+}

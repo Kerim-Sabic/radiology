@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { ClerkFailed, ClerkLoading, ClerkProvider, SignIn, SignUp, useAuth, useClerk, useUser } from '@clerk/react';
 import { adSource } from '../services/source';
 import { trackFunnel } from '../services/serverSync';
+import { ev } from '../services/ev';
 import { withAccount } from './returnPath';
 
 type Mode = 'signup' | 'login';
@@ -20,7 +21,39 @@ function AccountForm({ mode, complete, onSuccess }: { mode: Mode; complete: bool
   const hasShownForm = useRef(false);
   const exchanging = useRef(false);
   if (isLoaded && !isSignedIn) hasShownForm.current = true;
-  // The sign-up form moved on to "enter the code we emailed": the funnel's "code sent" step.
+  // The form's steps, from Clerk's own state (and the address bar as a fallback): shown, email typed into, code sent,
+  // a wrong code, a new code.
+  const openedAt = useRef(performance.now());
+  useEffect(() => {
+    if (isLoaded && !isSignedIn) ev('form_shown', { ms: Math.round(performance.now() - openedAt.current), mode }, true);
+  }, [isLoaded, isSignedIn, mode]);
+  useEffect(() => {
+    if (!isLoaded) return;
+    const focus = (e: FocusEvent) => {
+      if ((e.target as HTMLInputElement | null)?.name === 'emailAddress') ev('email_focus', {}, true);
+    };
+    document.addEventListener('focusin', focus);
+    let expires = 0;
+    let attempts = 0;
+    const off = clerk.addListener(({ client }) => {
+      const v = (client?.signUp as unknown as { verifications?: { emailAddress?: { status?: string; expireAt?: Date | null; attempts?: number | null; error?: { code?: string } | null } } } | undefined)?.verifications?.emailAddress;
+      if (!v) return;
+      const exp = v.expireAt ? new Date(v.expireAt).getTime() : 0;
+      if (v.status === 'unverified' && exp) {
+        if (!expires) {
+          ev('code_sent', {}, true);
+          trackFunnel('code_sent', true);
+        } else if (exp !== expires) ev('code_resend');
+        expires = exp;
+      }
+      if ((v.attempts ?? 0) > attempts && v.status !== 'verified') ev('code_wrong');
+      attempts = v.attempts ?? attempts;
+    });
+    return () => {
+      document.removeEventListener('focusin', focus);
+      off?.();
+    };
+  }, [isLoaded, clerk]);
   useEffect(() => {
     if (mode !== 'signup') return;
     const check = () => {
@@ -42,6 +75,7 @@ function AccountForm({ mode, complete, onSuccess }: { mode: Mode; complete: bool
       const response = await fetch('/api/auth/session', { method: 'POST', headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json' }, body: JSON.stringify(source ? { source } : {}) });
       const result = await response.json();
       if (!response.ok) throw new Error(result.error || 'Sign-in could not be completed. Please try again.');
+      ev('account', { new: result.new === true });
       await onSuccess();
     } catch (e) { setError(e instanceof Error ? e.message : 'Unable to complete sign-in.'); }
     finally { exchanging.current = false; setBusy(false); }
@@ -55,7 +89,7 @@ function AccountForm({ mode, complete, onSuccess }: { mode: Mode; complete: bool
 
   return <>
     <ClerkLoading><p className="auth-waiting" role="status">Loading secure sign-in…</p></ClerkLoading>
-    <ClerkFailed><p className="membership-message" role="alert">Sign-in couldn’t load. Check your connection, then close and reopen this form.</p></ClerkFailed>
+    <ClerkFailed><ClerkLoadFailed /><p className="membership-message" role="alert">Sign-in couldn’t load. Check your connection, then close and reopen this form.</p></ClerkFailed>
     {isLoaded && !isSignedIn && (mode === 'signup'
       ? <SignUp routing="hash" forceRedirectUrl={withAccount('verified')} signInUrl={withAccount('login')} />
       : <SignIn routing="hash" withSignUp forceRedirectUrl={withAccount('verified')} signUpForceRedirectUrl={withAccount('verified')} signUpUrl={withAccount('signup')} />)}
@@ -81,4 +115,10 @@ export default function InlineAccount({ publishableKey, mode, onModeChange, onSu
     signInUrl="/?account=login" signUpUrl="/?account=signup" afterSignOutUrl="/">
     <AccountForm mode={mode} complete={complete} onSuccess={onSuccess} />
   </ClerkProvider>;
+}
+
+/** Clerk's script failed to load: logged once. */
+function ClerkLoadFailed() {
+  useEffect(() => ev('clerk_error', { code: 'load' }, true), []);
+  return null;
 }

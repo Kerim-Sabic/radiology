@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { ev } from '../services/ev';
 import type { ReactNode } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight, CalendarDays, Check, Lock, LockOpen, UserPlus } from 'lucide-react';
@@ -45,6 +47,7 @@ export function FreeBanner() {
 
 /** Full-page placeholder for a members-only area, saying what it is and what membership adds. */
 export function LockedFeature({ icon, title, text, points }: { icon: ReactNode; title: string; text: string; points: string[] }) {
+  usePaywall(`feature:${title}`.slice(0, 60));
   const { openPlans } = useApp();
   return (
     <div className="page-inner locked-page">
@@ -159,6 +162,7 @@ export function CaseOfWeekCard() {
 }
 
 function LockedCaseOfWeek({ caseId, endsAt }: { caseId: string; endsAt: Date }) {
+  usePaywall('case_of_week', caseId);
   const { openPlans } = useApp();
   const t = useTeaser(true).find((c) => c.id === caseId);
   const daysLeft = Math.max(1, Math.ceil((endsAt.getTime() - Date.now()) / 86_400_000));
@@ -187,6 +191,7 @@ function LockedCaseOfWeek({ caseId, endsAt }: { caseId: string; endsAt: Date }) 
 
 /** A members-only patient opened from a link: what it is, and the plans. */
 export function LockedCase({ caseId }: { caseId: string }) {
+  usePaywall('case', caseId);
   const { openPlans } = useApp();
   const teaser = useTeaser(true);
   const t: TeaserCase | undefined = teaser.find((c) => c.id === caseId);
@@ -216,6 +221,7 @@ export function LockedCase({ caseId }: { caseId: string }) {
 
 /** The rest of the library for a free account: every patient by neutral title, locked. */
 export function LockedLibrary() {
+  usePaywall('library');
   const { free, catalog, openPlans } = useApp();
   const teaser = useTeaser(free);
   if (!free || !teaser.length) return null;
@@ -266,4 +272,18 @@ export function LockedLibrary() {
       ) : null}
     </section>
   );
+}
+
+/** A locked page was shown (the paywall): which, and the how-manyth time in this tab session. */
+function usePaywall(what: string, caseId = '') {
+  useEffect(() => {
+    let nth = 1;
+    try {
+      nth = Number(sessionStorage.getItem('rvm.paywalls') ?? 0) + 1;
+      sessionStorage.setItem('rvm.paywalls', String(nth));
+    } catch {
+      /* storage blocked */
+    }
+    ev('paywall', { what, case: caseId, nth });
+  }, [what, caseId]);
 }

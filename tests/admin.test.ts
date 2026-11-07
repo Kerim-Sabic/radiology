@@ -122,6 +122,20 @@ describe('admin dashboard boundaries', () => {
     expect((await handle(request(admin, '/api/admin/people', 'POST', { email: 'x@example.com', sendEmail: false }, 'https://evil.test'))).status).toBe(403);
     expect((await handle(request(admin, '/api/admin/people'))).status).toBe(200);
   });
+
+  it('shows the Journeys and their exports to an admin only', async () => {
+    const paths = ['/api/admin/journeys', '/api/admin/journeys.csv?kind=funnel', '/api/admin/journeys.csv?kind=events'];
+    for (const path of paths) expect((await handle(request('', path))).status, path).toBe(401);
+    const learner = await createSession({ sub: 'clerk_learner2', provider: 'clerk', email: 'learner2@example.com', emailVerified: true });
+    for (const path of paths) expect((await handle(request(learner, path))).status, path).toBe(403);
+    const admin = await owner();
+    const r = await handle(request(admin, '/api/admin/journeys?from=2026-11-01&to=2026-11-07'));
+    expect(r.status).toBe(200);
+    expect(await r.json()).toMatchObject({ funnel: expect.any(Array), daily: expect.any(Object) });
+    const csv = await handle(request(admin, '/api/admin/journeys.csv?kind=events&from=2026-11-01&to=2026-11-07'));
+    expect(csv.headers.get('Content-Type')).toMatch(/text\/csv/);
+    expect(await csv.text()).toMatch(/^time_utc,visitor,session,account_hash,country/);
+  });
 });
 
 describe('the owner, admins and their permissions', () => {
