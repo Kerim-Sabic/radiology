@@ -266,6 +266,9 @@ function MembershipGate({ children }: { children: ReactNode }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const checkoutHeading = useRef<HTMLHeadingElement>(null);
   const checkoutGeneration = useRef(0);
+  // The price a plan button stands for, read by `buy` through a ref: `buy` is memoised and may be created in a render
+  // that returns early (still loading), before the prices are worked out.
+  const planAmountRef = useRef<(tier: Tier) => number>(() => 0);
   const mounted = useRef(true);
   const signedIn = useRef(false);
   const generation = useRef(0);
@@ -372,7 +375,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
     setBusy(tier); setError('');
     // A plan button pressed (the funnel step between "Opened the plans" and "Saw the payment form").
     trackFunnel('checkout_start');
-    ev('plan_click', { period: tier, amount: planAmount(tier) });
+    ev('plan_click', { period: tier, amount: planAmountRef.current(tier) });
     try {
       const affiliate = currentReferral() || referral;
       const enteredPromoCode = promoCode.trim().toLowerCase();
@@ -421,6 +424,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
   const studentRegional = student && regionalShown?.student && !promoCode.trim() ? withStudentPrices(regionalShown) : undefined;
   const cardPrice = studentRegional ?? regionalShown;
   const planAmount = (tier: Tier) => (cardPrice ? (tier === 'monthly' ? cardPrice.monthly.price : cardPrice.yearly.price) : tier === 'monthly' ? 20 : 150);
+  planAmountRef.current = planAmount;
   // The plans were on screen: what was shown, from where (signed in: the plans screen; signed out: the home page).
   const seenPlans = () =>
     ev('plans_view', {
