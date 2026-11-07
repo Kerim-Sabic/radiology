@@ -2904,6 +2904,13 @@ kbd {
   pointer-events: none;
   animation: ws-flash-in 0.15s ease-out;
 }
+/* The guest's first instruction, on the image: larger, and it stays until the first tap. */
+.ws-tap-hint {
+  padding: 9px 16px;
+  border-color: rgba(10, 132, 255, 0.55);
+  font-size: 15px;
+  font-weight: 600;
+}
 @keyframes ws-flash-in {
   from {
     opacity: 0;

@@ -26,8 +26,8 @@ export interface Profile {
 }
 
 export const METRICS = [
-  'visit', 'guest_open', 'guest_mark', 'guest_answer', 'guest_second', 'signup_start', 'code_sent', 'signup', 'opened', 'studied', 'plans', 'checkout',
-  'checkout_ready', 'checkout_error', 'paid',
+  'visit', 'guest_open', 'guest_mark', 'guest_answer', 'guest_second', 'signup_start', 'code_sent', 'signup', 'opened', 'studied', 'plans',
+  'checkout_start', 'checkout', 'checkout_ready', 'checkout_error', 'paid',
   // Seconds from a guest's first picture to their first mark, summed (divide by guest_mark for the average).
   'guest_mark_s',
 ] as const;
@@ -404,7 +404,7 @@ export async function adminStats(now = new Date(), days = 30) {
 }
 
 /** Events the browser may count (accounts, first answers, checkouts and payments are counted by the server itself). */
-const BROWSER_EVENTS = new Set<string>(['visit', 'guest_open', 'guest_mark', 'guest_answer', 'guest_second', 'signup_start', 'code_sent', 'plans', 'checkout_ready', 'checkout_error']);
+const BROWSER_EVENTS = new Set<string>(['visit', 'guest_open', 'guest_mark', 'guest_answer', 'guest_second', 'signup_start', 'code_sent', 'plans', 'checkout_start', 'checkout_ready', 'checkout_error']);
 export function trackable(event: unknown): Metric | null {
   return typeof event === 'string' && BROWSER_EVENTS.has(event) ? (event as Metric) : null;
 }

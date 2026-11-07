@@ -1122,11 +1122,12 @@ export default function Workstation() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [showId, anatomyTargets, targets, panels.length]);
 
-  // A guest from an ad or a shared link, in Learn mode (where the reference is shown anyway): open at the level where the
-  // task's structure is, not at slice 1, so the first screen matches the post. Practice and Assess keep the task's start.
+  // A guest from an ad or a shared link opens at the level where the task's structure is, not at slice 1, so the first
+  // screen is the one the reel or post showed and one tap answers it. In Learn the reference is shown anyway; in Practice
+  // only the level is given, the outline stays hidden until the answer. Assess (and every account) keeps the task's start.
   const guestOpened = useRef<string | null>(null);
   useEffect(() => {
-    if (!guest || mode !== 'learn' || !task || showId || guestOpened.current === task.id) return;
+    if (!guest || (mode !== 'learn' && mode !== 'practice') || !task || showId || guestOpened.current === task.id) return;
     const t = task.targets.map((x) => targets.get(x.targetId)).find((x): x is LoadedTarget => !!x);
     if (!t) return;
     guestOpened.current = task.id;
@@ -1278,6 +1279,23 @@ export default function Workstation() {
     setToolFlash(MARK_HINT);
     window.setTimeout(() => setToolFlash((f) => (f === MARK_HINT ? null : f)), 2600);
   };
+  // A guest on a phone (from an ad or a link) is told on the image itself what one tap does, until their first mark:
+  // three in four guests saw the image and left without touching it (Vercel, 7 Nov).
+  const tapHintTarget = task?.targets.find((x) => x.required)?.name ?? task?.targets[0]?.name;
+  const tapHint =
+    guest &&
+    task &&
+    session &&
+    !session.submitted &&
+    marks.length === 0 &&
+    task.grading.kind === 'point_in_target' &&
+    task.targets.filter((x) => x.required).length <= 1 &&
+    tapHintTarget &&
+    engine.getTool() === 'scroll' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(pointer: coarse)').matches
+      ? `Tap the ${tapHintTarget.toLowerCase()}`
+      : null;
   // The funnel's "Opened a first case": the focused view has its images on screen.
   const focusedState = engine.panelState(focused);
   const focusedShown = !!focusedState?.ready && !focusedState.error;
@@ -1875,6 +1893,10 @@ export default function Workstation() {
         {toolFlash ? (
           <div className="ws-tool-flash" role="status">
             {toolFlash}
+          </div>
+        ) : tapHint ? (
+          <div className="ws-tool-flash ws-tap-hint" role="status">
+            {tapHint}
           </div>
         ) : null}
         {panels.length > 1 && (solo || isPhone) ? (

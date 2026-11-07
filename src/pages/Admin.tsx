@@ -20,6 +20,7 @@ type Metric =
   | 'opened'
   | 'studied'
   | 'plans'
+  | 'checkout_start'
   | 'checkout'
   | 'checkout_ready'
   | 'checkout_error'
@@ -55,6 +56,7 @@ const STEPS: Array<[Metric, string]> = [
   ['opened', 'Opened a first case'],
   ['studied', 'Answered a first task'],
   ['plans', 'Opened the plans'],
+  ['checkout_start', 'Pressed a plan'],
   ['checkout', 'Started checkout'],
   ['checkout_ready', 'Saw the payment form'],
   ['paid', 'Paid'],

@@ -32,7 +32,8 @@ export function pingStudied(now = new Date()) {
 /**
  * `guest_open` / `guest_mark` / `guest_answer` / `guest_second`: a sample patient opened, marked, answered, and a second
  * task opened without an account (from an ad or a link). `code_sent`: the sign-up form sent its email code.
- * `checkout_ready` / `checkout_error`: the payment form appeared, or failed to load.
+ * `checkout_start` / `checkout_ready` / `checkout_error`: a plan button pressed, the payment form appeared, or it failed to
+ * appear (the server refused the checkout or the form failed to load).
  */
 export type FunnelEvent =
   | 'visit'
@@ -43,6 +44,7 @@ export type FunnelEvent =
   | 'signup_start'
   | 'code_sent'
   | 'plans'
+  | 'checkout_start'
   | 'checkout_ready'
   | 'checkout_error';
 

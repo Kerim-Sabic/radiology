@@ -369,6 +369,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
   const buy = useCallback(async (tier: Tier) => {
     const current = ++checkoutGeneration.current;
     setBusy(tier); setError('');
+    // A plan button pressed (the funnel step between "Opened the plans" and "Saw the payment form").
+    trackFunnel('checkout_start');
     try {
       const affiliate = currentReferral() || referral;
       const enteredPromoCode = promoCode.trim().toLowerCase();
@@ -380,7 +382,11 @@ function MembershipGate({ children }: { children: ReactNode }) {
       setPayment({ id: data.id, returnUrl: data.returnUrl, tier, promoCode: data.promoCode, enteredPromoCode, studentDiscount: data.studentDiscount, welcome: data.welcome === true, ...(data.regional ? { regional: data.regional } : {}) });
       setPlansOpen(true); // "Change plan" goes back to the plans, not to the app
       rememberPlan(null);
-    } catch (e) { if (mounted.current && current === checkoutGeneration.current) setError(e instanceof Error ? e.message : 'Checkout is unavailable. Please try again.'); }
+    } catch (e) {
+      // The payment form never appeared: the server refused or failed (counted, so a broken checkout shows in the funnel).
+      trackFunnel('checkout_error');
+      if (mounted.current && current === checkoutGeneration.current) setError(e instanceof Error ? e.message : 'Checkout is unavailable. Please try again.');
+    }
     finally { if (mounted.current && current === checkoutGeneration.current) setBusy(null); }
   }, [promoCode, referral]);
   useEffect(() => {

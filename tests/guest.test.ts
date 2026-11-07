@@ -33,7 +33,7 @@ describe('a visitor with no account', () => {
   });
 
   it('counts the steps between: first mark (with the seconds before it), a second task, the email code, the payment form', () => {
-    for (const e of ['guest_mark', 'guest_second', 'code_sent', 'checkout_ready', 'checkout_error'] as const) expect(trackable(e)).toBe(e);
+    for (const e of ['guest_mark', 'guest_second', 'code_sent', 'checkout_start', 'checkout_ready', 'checkout_error'] as const) expect(trackable(e)).toBe(e);
     // The server counts accounts, first answers, checkouts and payments itself; a browser can't add to them, nor to the seconds total.
     for (const e of ['signup', 'studied', 'checkout', 'paid', 'guest_mark_s', 'opened']) expect(trackable(e)).toBeNull();
     expect(markSeconds(12.4)).toBe(12);

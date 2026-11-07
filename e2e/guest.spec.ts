@@ -136,6 +136,8 @@ test.describe('the ad visitor on a phone', () => {
     await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
     await expect.poll(() => page.evaluate(() => (window as any).__rvm.panelState('p0').index), { timeout: 10_000 }).toBeGreaterThan(40);
     expect(await page.evaluate(() => (window as any).__rvm.getTool())).toBe('scroll');
+    // The image says what one tap does, until the first tap.
+    await expect(page.locator('.ws-tap-hint')).toHaveText('Tap the heart');
     await page.waitForTimeout(400);
     const box = (await page.locator('[data-panel="p0"] .vp-el').boundingBox())!;
     const tapAt = async (fx: number, fy: number) => {
@@ -151,11 +153,25 @@ test.describe('the ad visitor on a phone', () => {
       expect(Math.hypot(at[0] - tap[0], at[1] - tap[1])).toBeLessThan(3);
     };
     await tapAt(0.3, 0.3);
+    await expect(page.locator('.ws-tap-hint')).toHaveCount(0);
     await tapAt(0.5, 0.5); // moved to the middle of the view, inside the heart
     await expect(page.locator('.ws-tool-flash')).toHaveCount(0);
     expect(await page.evaluate(() => (window as any).__rvm.getTool())).toBe('scroll');
     await page.getByRole('button', { name: /^Submit/ }).first().tap();
     await expect(page.getByText('Correct', { exact: true }).first()).toBeVisible();
+  });
+
+  test('the reel\u2019s question lands as the first task: Practice opens at the esophagus with its outline hidden, one tap answers it', async ({ page }) => {
+    await visitor(page);
+    await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aesophagus&mode=practice&utm_source=meta&utm_campaign=reel002');
+    await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
+    await expect(page.getByRole('heading', { name: 'Find the esophagus' })).toBeVisible();
+    // At the level where the esophagus is largest (the heart's level), not at slice 1.
+    await expect.poll(() => page.evaluate(() => (window as any).__rvm.panelState('p0').index), { timeout: 10_000 }).toBeGreaterThan(40);
+    await expect(page.locator('.ws-tap-hint')).toHaveText('Tap the esophagus');
+    // Practice: the image names nothing before the answer (no reference outline label, no anatomy names).
+    await expect(page.locator('[data-panel="p0"]').getByText(/esophagus/i)).toHaveCount(0);
+    expect(await page.evaluate(() => (window as any).__rvm.collectMarks().length)).toBe(0);
   });
 
   test('on a slow connection the case opens straight at the heart, and an answer given at once is graded, not a crash', async ({ page }) => {
