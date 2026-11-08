@@ -869,6 +869,35 @@
   margin-bottom: 14px;
   border-bottom: 1px solid var(--lp-line);
 }
+/* Radiology Monster first, then a quiet "Made by Horalix.com": smaller and greyer than the brand beside it. */
+.lp-footer-brand {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+}
+.lp .lp-madeby {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 32px;
+  color: var(--lp-text-3);
+  font-size: 12px;
+  text-decoration: none;
+}
+.lp .lp-madeby img {
+  width: auto;
+  height: 13px;
+  opacity: 0.85;
+}
+.lp .lp-madeby span:last-child {
+  color: var(--lp-text-2);
+}
+.lp .lp-madeby:hover,
+.lp .lp-madeby:hover span:last-child {
+  color: var(--lp-text);
+  text-decoration: none;
+}
 .lp-safe {
   display: inline-flex;
   align-items: center;

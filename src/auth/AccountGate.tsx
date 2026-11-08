@@ -17,6 +17,7 @@ import { ScanLoader } from '../components/ScanState';
 import { useOfferTimeLeft, welcomePrice, welcomeRupees, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
 import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice, rupees, aboutLocal } from './regionalPrice';
 import { WorthSurvey } from './WorthSurvey';
+import { MAKER } from '../lib/provenance';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
 type Tier = 'monthly' | 'yearly';
@@ -192,6 +193,10 @@ export function AccountMenu() {
             <DropdownMenu.Separator className="nav-sep" />
             <DropdownMenu.Item className="acct-item" onSelect={context.logout}><LogOut size={16} /><span>Sign out</span></DropdownMenu.Item>
           </> : null}
+          <DropdownMenu.Separator className="nav-sep" />
+          <DropdownMenu.Item asChild>
+            <a className="acct-item acct-madeby" href={MAKER.url} target="_blank" rel="noopener"><img src={MAKER.logoOnDark} alt="" width={11} height={15} /><span>Made by {MAKER.site}</span></a>
+          </DropdownMenu.Item>
         </DropdownMenu.Content>
       </DropdownMenu.Portal>
     </DropdownMenu.Root>

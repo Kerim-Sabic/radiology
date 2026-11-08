@@ -4,6 +4,7 @@ import { ChevronRight, ShieldCheck } from 'lucide-react';
 import { TRY_CASE_URL } from './guest';
 import { fact, LANDING_CREDITS, LANDING_FACTS } from './landingFacts';
 import { AI_CREDIT } from '../lib/provenance';
+import { MadeBy, MakerLine } from '../components/MadeBy';
 import type { RegionalPrice } from './regionalPrice';
 import { priceAnswers } from './priceAnswers';
 import './landing.css';
@@ -81,6 +82,13 @@ const FEATURES: Array<[string, string]> = [
 
 const faq = (regional?: RegionalPrice): Array<[string, ReactNode]> => [
   ['What is Radiology Monster?', 'Radiology Monster (radiology.monster) is a radiology reading workstation in your browser for medical students and residents: real CT, MRI, X-ray, mammography and ultrasound studies from 600+ patients, where you scroll the whole study, mark what you see and are graded against the expert reference on the exact slice.'],
+  [
+    'Who makes Radiology Monster?',
+    <>
+      <MakerLine /> Horalix builds AI for medical imaging. Radiology Monster is for education and practice, not diagnosis.{' '}
+      <a href="/about">More about who makes it and where the cases come from</a>.
+    </>,
+  ],
   ...priceAnswers(regional),
   ['Can professors use it with a class?', 'Yes. A professor gets a class page with one join link to share. Students join after seeing what the professor can follow: their study days, exam results and certificates, never their answers or payments. Students can leave the class at any time.'],
   ['How do I earn a certificate?', 'Pass an exam. The levels go in order and each is a real step up: Foundation has 15 untimed questions with a 70% pass mark, Intermediate 25 questions at 3 minutes each with 80%, and Advanced 40 questions at 2 minutes each with 90% and no half points. The whole library has three more levels, with 30, 50 and 75 questions. Every question is a real patient with no hints, graded against the expert reference, and the result comes after the last question. Your certificate has its own check page and can go on LinkedIn under Licenses & certifications.'],
@@ -89,8 +97,8 @@ const faq = (regional?: RegionalPrice): Array<[string, ReactNode]> => [
     'Who marked the findings and the anatomy?',
     <>
       Findings come from the reference annotations published with each collection, made by its radiologists and clinicians or under their supervision, and only those
-      references grade your answers. Each case names its source. The anatomy layer, the
-      organs, vessels, bones and airways named on every scan, is drawn by AI and labelled AI wherever it appears.{' '}
+      references grade your case answers and exams. Each case names its source. The anatomy layer, the
+      organs, vessels, bones and airways named on every scan, is drawn by AI and labelled AI wherever it appears; anatomy drills use it too, marked AI.{' '}
       <a href={AI_CREDIT.url} target="_blank" rel="noopener">
         Thanks to {AI_CREDIT.name}
       </a>
@@ -336,9 +344,12 @@ export function Landing({ panel, regional, signInLabel, signInDisabled, onSignIn
       <footer className="lp-footer">
         <div className="lp-wrap">
           <div className="lp-footer-top">
-            <span className="lp-brand small">
-              <img src="/logo-mark.svg" alt="" width={18} height={19} />
-              Radiology Monster
+            <span className="lp-footer-brand">
+              <span className="lp-brand small">
+                <img src="/logo-mark.svg" alt="" width={18} height={19} />
+                Radiology Monster
+              </span>
+              <MadeBy className="lp-madeby" />
             </span>
             <span className="lp-safe">
               <ShieldCheck size={14} /> For education and practice. Not for clinical diagnosis.
@@ -352,7 +363,8 @@ export function Landing({ panel, regional, signInLabel, signInDisabled, onSignIn
             <a href={AI_CREDIT.url} target="_blank" rel="noopener">
               Thanks to {AI_CREDIT.name}
             </a>
-            , we managed to mark every structure in the anatomy layer.
+            , the company that makes Radiology Monster, every structure in the anatomy layer is marked.{' '}
+            <a href="/about">About Radiology Monster</a>
           </p>
           <p className="lp-credits">
             Images on this page are screenshots of the app showing public research data, with outlines drawn by the app from each collection’s own annotations:{' '}

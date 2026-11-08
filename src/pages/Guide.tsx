@@ -1,3 +1,5 @@
+import { AboutCard } from '../components/MadeBy';
+
 export default function GuidePage() {
   return (
     <div className="page-inner stack" style={{ gap: 18, maxWidth: 820 }}>
@@ -142,6 +144,7 @@ export default function GuidePage() {
           rather than false precision.
         </p>
       </section>
+      <AboutCard />
     </div>
   );
 }

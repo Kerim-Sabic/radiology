@@ -6,6 +6,7 @@ import { formatBytes } from '../components/ui';
 import { packBaseUrl } from '../services/caseRepository';
 import { EmailChoices } from '../components/EmailChoices';
 import { ClassNotice } from '../components/ClassNotice';
+import { AboutCard } from '../components/MadeBy';
 
 export default function SettingsPage() {
   const { settings, setSettings, catalog, progress, reloadCatalog } = useApp();
@@ -159,6 +160,7 @@ export default function SettingsPage() {
         </div>
       </details>
 
+      <AboutCard />
     </div>
   );
 }

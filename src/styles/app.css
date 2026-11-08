@@ -713,6 +713,34 @@ button.chip[aria-pressed='true'] {
   flex: none;
   color: var(--text-3);
 }
+/* "Made by Horalix.com" at the foot of the account menu: the quietest line in it. */
+.acct-madeby {
+  font-size: 12px;
+  color: var(--text-3);
+}
+.acct-madeby > img {
+  flex: none;
+  width: auto;
+  height: 13px;
+  margin: 0 2px 0 3px;
+  opacity: 0.8;
+}
+/* The same credit on Settings and the guide. */
+.made-by {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-2);
+  text-decoration: none;
+}
+.made-by > img {
+  width: auto;
+  height: 14px;
+  opacity: 0.85;
+}
+.made-by:hover {
+  color: var(--text);
+}
 .nav-menu-item[data-highlighted],
 .acct-item[data-highlighted] {
   background: rgba(255, 255, 255, 0.07);
