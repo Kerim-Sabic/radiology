@@ -1,7 +1,9 @@
-import { useSyncExternalStore } from 'react';
+import { useEffect, useState, useSyncExternalStore } from 'react';
 import { CloudAlert, CloudCheck, CloudOff, LoaderCircle, UserPlus } from 'lucide-react';
 import { useApp } from '../app/AppContext';
 import type { SyncSnapshot } from '../services/progressSync';
+import { WARM_ACCOUNT_EVENT } from '../services/serverSync';
+import { guestAnswered } from '../auth/guest';
 
 const SHOWN = {
   saved: { label: 'Saved', icon: CloudCheck, title: 'Your submitted answers are saved to your account.' },
@@ -14,6 +16,16 @@ const SHOWN = {
 export function SyncBadge() {
   const { sync, guest, startAccount } = useApp();
   const snap: SyncSnapshot = useSyncExternalStore(sync.subscribe, sync.getSnapshot);
+  // A guest sees "Save free" once there is an answer to save: before the first try it only pulled ad visitors away
+  // from the case into a sign-up form (CONVERSION-PLAN.md).
+  const [answered, setAnswered] = useState(guestAnswered);
+  useEffect(() => {
+    if (!guest || answered) return;
+    const on = () => setAnswered(true);
+    window.addEventListener(WARM_ACCOUNT_EVENT, on);
+    return () => window.removeEventListener(WARM_ACCOUNT_EVENT, on);
+  }, [guest, answered]);
+  if (guest && !answered) return null;
   if (guest)
     return (
       <button

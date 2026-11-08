@@ -9,6 +9,15 @@ import { FREE_CASES } from '../content/weekly';
 export const TRY_CASE = 'cxr-00003400-003';
 export const TRY_CASE_URL = `/read/${TRY_CASE}?task=${encodeURIComponent(`${TRY_CASE}:locate`)}&mode=practice`;
 
+/** This browser tab's guest has submitted an answer (the funnel's once-per-session `guest_answer` mark). */
+export function guestAnswered(): boolean {
+  try {
+    return !!sessionStorage.getItem('rvm.track.guest_answer');
+  } catch {
+    return false;
+  }
+}
+
 export function guestCaseId(pathname: string): string | null {
   const m = /^\/read\/([^/?#]+)\/?$/.exec(pathname);
   if (!m) return null;

@@ -54,7 +54,8 @@ test('a visitor with no account answers the free X-ray from an ad, then keeps it
   await page.goto(AD);
   await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
   await expect(page.getByRole('heading', { name: 'Find the pneumothorax' })).toBeVisible();
-  await expect(page.getByRole('button', { name: 'Guest: create a free account to save your answer' })).toBeVisible();
+  // "Save free" waits until there is an answer to save.
+  await expect(page.getByRole('button', { name: 'Guest: create a free account to save your answer' })).toHaveCount(0);
   // No report link and no account calls for a guest.
   await expect(page.getByRole('button', { name: 'Report a problem with this case' })).toHaveCount(0);
 
@@ -70,7 +71,7 @@ test('a visitor with no account answers the free X-ray from an ad, then keeps it
 
   // Start free opens the sign-up form over the case.
   await card.getByRole('button', { name: 'Start free' }).click();
-  const dialog = page.getByRole('dialog', { name: 'Your next chapter starts here.' });
+  const dialog = page.getByRole('dialog', { name: 'Keep your answer and your score.' });
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole('tab', { name: 'Create account' })).toHaveAttribute('aria-selected', 'true');
 
@@ -109,8 +110,9 @@ test('the ad’s chest CT in Learn mode opens at the heart, and saving the answe
   await expect(result.getByRole('button', { name: /Save it: free account/ })).toBeVisible();
   // The next step is the same one-tap kind of task, now without the outline.
   await expect(result.getByRole('button', { name: 'Next: find the esophagus, no outline' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Guest: create a free account to save your answer' })).toBeVisible();
   await result.getByRole('button', { name: /Save it: free account/ }).click();
-  await expect(page.getByRole('dialog', { name: 'Your next chapter starts here.' })).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Keep your answer and your score.' })).toBeVisible();
 });
 
 test('the other sample patient opens too, and everything else still asks to sign in', async ({ page }) => {

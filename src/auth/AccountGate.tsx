@@ -4,7 +4,7 @@ import { DropdownMenu } from 'radix-ui';
 import { Link, useLocation } from 'react-router';
 import { fetchInvitation, pendingJoinCode, type Invitation } from './joinCode';
 import { withoutAccount } from './returnPath';
-import { guestCaseId } from './guest';
+import { guestAnswered, guestCaseId } from './guest';
 import './account.css';
 import './plans.css';
 import { Landing } from './Landing';
@@ -573,8 +573,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <button role="tab" aria-selected={authMode === 'signup'} onClick={() => setAuthMode('signup')}>Create account</button>
         <button role="tab" aria-selected={authMode === 'login'} onClick={() => setAuthMode('login')}>Sign in</button>
       </div>
-      <h2 id="auth-title">{authMode === 'signup' ? 'Your next chapter starts here.' : 'Welcome back.'}</h2>
-      <p>{authMode === 'signup' ? 'Create your account with your email, right here. No Google account needed.' : 'Sign in with the email you used for your membership.'}</p>
+      <h2 id="auth-title">{authMode === 'signup' ? (guestAnswered() ? 'Keep your answer and your score.' : 'Create your free account.') : 'Welcome back.'}</h2>
+      <p>{authMode === 'signup' ? 'Enter your email and we send you a code. No password, no card.' : 'Sign in with the email you used for your membership.'}</p>
       {selectedPlan && <div className="selected-plan"><Check size={16} />{regionalShown
         ? (selectedPlan === 'monthly'
           ? `Monthly · ${usd(regionalShown.monthly.price)} ${regionalShown.monthly.pass ? 'for 30 days' : '/ month'}${regionalShown.student ? ` · students ${usd(regionalShown.student.monthly)}` : ''}`
