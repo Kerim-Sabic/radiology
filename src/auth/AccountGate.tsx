@@ -14,7 +14,7 @@ import { PlansScreen } from './PlansScreen';
 import { trackFunnel, WARM_ACCOUNT_EVENT } from '../services/serverSync';
 import { ev, evFired } from '../services/ev';
 import { ScanLoader } from '../components/ScanState';
-import { isWelcomeCode, useOfferTimeLeft, welcomePrice, welcomeRupees, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
+import { isWelcomeCode, useOfferTimeLeft, WELCOME_GIFT, welcomePrice, welcomeRupees, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
 import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice, rupees, aboutLocal } from './regionalPrice';
 import { WorthSurvey } from './WorthSurvey';
 import { MAKER } from '../lib/provenance';
@@ -579,8 +579,17 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <button role="tab" aria-selected={authMode === 'signup'} onClick={() => setAuthMode('signup')}>Create account</button>
         <button role="tab" aria-selected={authMode === 'login'} onClick={() => setAuthMode('login')}>Sign in</button>
       </div>
-      <h2 id="auth-title">{authMode === 'signup' ? (guestAnswered() ? 'Keep your answer and your score.' : 'Create your free account.') : 'Welcome back.'}</h2>
-      <p>{authMode === 'signup' ? 'Enter your email and we send you a code. No password, no card.' : welcomeLink ? 'Sign in with the email your welcome code was sent to.' : 'Sign in with the email you used for your membership.'}</p>
+      <h2 id="auth-title">{authMode === 'signup' ? (guestAnswered() ? 'Save your answer, free.' : 'Create your free account.') : 'Welcome back.'}</h2>
+      {/* After a guest's graded answer: what the free account gets, each item true in the code (the uploaded answer:
+          src/auth/returnPath.ts; FREE_CASES; the streak email in EmailChoices; the gift: server/welcome.ts). Short enough
+          that Continue stays on screen at 390×544, a phone with its keyboard open. */}
+      {authMode === 'signup' && guestAnswered() ? <ul className="auth-gets">
+        <li><Check size={14} aria-hidden />Your answer and score, saved to your account</li>
+        <li><Check size={14} aria-hidden />Both free patients: a chest X-ray and a CT</li>
+        <li><Check size={14} aria-hidden />A streak reminder by email, if you want one</li>
+        <li><Check size={14} aria-hidden />{WELCOME_GIFT.percent}% off your first payment: we email you a code a day after you join, good for {WELCOME_GIFT.hours} hours</li>
+      </ul> : null}
+      <p>{authMode === 'signup' ? (ready?.authProvider === 'clerk' ? 'We email you a 6-digit code to sign in. No password, no card.' : 'We email you a code to sign in. No password, no card.') : welcomeLink ?'Sign in with the email your welcome code was sent to.' : 'Sign in with the email you used for your membership.'}</p>
       {selectedPlan && <div className="selected-plan"><Check size={16} />{regionalShown
         ? (selectedPlan === 'monthly'
           ? `Monthly · ${usd(regionalShown.monthly.price)} ${regionalShown.monthly.pass ? 'for 30 days' : '/ month'}${regionalShown.student ? ` · students ${usd(regionalShown.student.monthly)}` : ''}`

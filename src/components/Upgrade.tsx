@@ -8,7 +8,7 @@ import { caseOfWeek, FREE_CASES } from '../content/weekly';
 import { LANDING_FACTS } from '../auth/landingFacts';
 import { modalityName, useTeaser, type TeaserCase } from '../services/teaser';
 import { useAccount } from '../auth/AccountGate';
-import { useOfferTimeLeft } from '../auth/welcomeOffer';
+import { useOfferTimeLeft, WELCOME_GIFT } from '../auth/welcomeOffer';
 import '../styles/upgrade.css';
 
 const readUrl = (caseId: string, taskId: string, mode = 'learn') => `/read/${caseId}?task=${encodeURIComponent(taskId)}&mode=${mode}`;
@@ -102,8 +102,9 @@ export function UpgradeCard({ title, text, compact }: { title: string; text: str
 }
 
 /**
- * After a guest's answer (no account, from a link): the grade is theirs to keep with a free account, which also opens
- * the other sample patient. Shown under the result, never before it.
+ * After a guest's answer (no account, from a link): what a free account gets, each part true in the code (the answer
+ * uploads on sign-up, both sample patients in the library, the welcome gift of server/welcome.ts). Shown under the
+ * result, never before it.
  */
 export function GuestSaveCard({ onStart, onSignIn }: { onStart: () => void; onSignIn: () => void }) {
   return (
@@ -113,7 +114,10 @@ export function GuestSaveCard({ onStart, onSignIn }: { onStart: () => void; onSi
       </span>
       <div>
         <b>Keep this answer.</b>
-        <p>It is only on this device for now. Create a free account to save it and open the other sample patient. No card.</p>
+        <p>
+          It is only on this device for now. A free account saves it with your score and keeps both free patients in your library. A day after you join, we
+          email you a code for {WELCOME_GIFT.percent}% off your first payment, good for {WELCOME_GIFT.hours} hours. No password, no card.
+        </p>
         <div className="guest-card-actions">
           <button className="btn primary" onClick={onStart}>
             Start free

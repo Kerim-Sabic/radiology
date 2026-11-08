@@ -15,6 +15,13 @@ export interface WelcomeOffer {
  */
 export const isWelcomeCode = (code: string) => code.trim().toLowerCase().startsWith('welcome-');
 
+/**
+ * What a new account is told about its welcome gift before it signs up: the email with the code goes out a day after
+ * sign-up and the code takes 40% off the first payment for 72 hours (server/welcomeCode.ts; tests/welcomeCopy.test.ts
+ * keeps these equal).
+ */
+export const WELCOME_GIFT = { percent: 40, afterHours: 24, hours: 72 } as const;
+
 /** "2 days 5 h", "5 h 12 min", "12 min"; null once it has ended. */
 export function timeLeft(ms: number): string | null {
   if (ms <= 0) return null;

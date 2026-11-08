@@ -64,6 +64,8 @@ test('a visitor with no account answers the free X-ray from an ad, then keeps it
   await expect(page.getByText('Correct', { exact: true }).first()).toBeVisible();
   const card = page.getByRole('region', { name: 'Save your answer' });
   await expect(card).toContainText('Keep this answer.');
+  // What a free account gets, said before the form: the score kept, both free patients, the welcome gift.
+  await expect(card).toContainText('we email you a code for 40% off your first payment, good for 72 hours. No password, no card.');
   await expect.poll(() => state.track.map((t) => t.event)).toEqual(expect.arrayContaining(['guest_open', 'guest_answer']));
   expect(state.track.find((t) => t.event === 'guest_open')?.source).toBe('meta:noarrow_a');
   expect(state.accountCalls.filter((p) => !p.startsWith('/api/progress'))).toEqual([]);
@@ -71,8 +73,15 @@ test('a visitor with no account answers the free X-ray from an ad, then keeps it
 
   // Start free opens the sign-up form over the case.
   await card.getByRole('button', { name: 'Start free' }).click();
-  const dialog = page.getByRole('dialog', { name: 'Keep your answer and your score.' });
+  const dialog = page.getByRole('dialog', { name: 'Save your answer, free.' });
   await expect(dialog).toBeVisible();
+  await expect(dialog.getByRole('listitem')).toHaveText([
+    'Your answer and score, saved to your account',
+    'Both free patients: a chest X-ray and a CT',
+    'A streak reminder by email, if you want one',
+    '40% off your first payment: we email you a code a day after you join, good for 72 hours',
+  ]);
+  await expect(dialog).toContainText('We email you a code to sign in. No password, no card.');
   await expect(dialog.getByRole('tab', { name: 'Create account' })).toHaveAttribute('aria-selected', 'true');
 
   // The account is made and comes back to this page (src/auth/returnPath.ts): the case is still open and the
@@ -112,7 +121,7 @@ test('the ad’s chest CT in Learn mode opens at the heart, and saving the answe
   await expect(result.getByRole('button', { name: 'Next: find the esophagus, no outline' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Guest: create a free account to save your answer' })).toBeVisible();
   await result.getByRole('button', { name: /Save it: free account/ }).click();
-  await expect(page.getByRole('dialog', { name: 'Keep your answer and your score.' })).toBeVisible();
+  await expect(page.getByRole('dialog', { name: 'Save your answer, free.' })).toBeVisible();
 });
 
 test('the other sample patient opens too, and everything else still asks to sign in', async ({ page }) => {
