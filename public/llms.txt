@@ -1,8 +1,15 @@
 # Radiology Monster (radiology.monster)
 
-> Real cases. Deeper understanding. Radiology Monster, at radiology.monster, is a radiology reading workstation in the browser for medical students and residents: real CT, MRI, X-ray, mammography and ultrasound studies, where you scroll the whole study, mark what you see and are graded against the expert reference on the exact slice, with each task linked to the page of Learning Radiology (Herring, 5th ed.) that explains it.
+> Radiology Monster (radiology.monster) is made by Horalix (https://horalix.com), a medical AI company in Sarajevo. Real cases. Deeper understanding. Radiology Monster is a radiology reading workstation in the browser for medical students and residents: real CT, MRI, X-ray, mammography and ultrasound studies, where you scroll the whole study, mark what you see and are graded against the expert reference on the exact slice, with each task linked to the page of Learning Radiology (Herring, 5th ed.) that explains it.
 
 Also written: radiology.monster, RadiologyMonster, Radiology.Monster. Official site: https://www.radiology.monster/
+
+## Who makes it
+
+- Radiology Monster is made by Horalix (https://horalix.com), a medical AI company in Sarajevo, Bosnia and Herzegovina. Horalix builds AI for medical imaging, including an AI-assisted echocardiography workflow for clinician review.
+- Horalix's AI drew the anatomy layer in Radiology Monster, labelled AI wherever it appears. The findings that grade answers come from each image collection's own experts.
+- About page, with the image collections and their licences: https://www.radiology.monster/about
+- Contact: support@horalix.com, or @radiology.monster on Instagram.
 
 ## What it offers
 
@@ -23,13 +30,14 @@ Also written: radiology.monster, RadiologyMonster, Radiology.Monster. Official s
 
 ## Credits
 
-- Anatomy outlines: AI. Thanks to Horalix.com (https://horalix.com), we managed to mark every structure in the anatomy layer. Horalix is a medical AI company from Sarajevo building an AI-assisted echocardiography workflow.
+- Anatomy outlines: AI, by Horalix, the company that makes Radiology Monster. Thanks to Horalix.com (https://horalix.com), every structure in the anatomy layer is marked. It has not been reviewed by a radiologist. Only the collections' expert references grade case answers and exams; anatomy drills also use the AI outlines, marked AI.
 - Findings: the reference annotations published with each image collection, made by its radiologists and clinicians or under their supervision; every case names its source and licence.
 - Radiology Monster is not affiliated with or endorsed by the publisher or authors of Learning Radiology.
 
 ## Links
 
 - Home: https://www.radiology.monster/
+- About (who makes it, where the cases come from, how grading works): https://www.radiology.monster/about
 - Example certificate: https://www.radiology.monster/verify/example
 - Store page on Whop: https://whop.com/radiology-monster/
-- Horalix: https://horalix.com
+- Made by Horalix: https://horalix.com

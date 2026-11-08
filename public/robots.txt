@@ -1,6 +1,11 @@
 # radiology.monster is public. Personal pages (your progress, imports, settings, authoring) and the
 # book reader (the book itself is not on this site) are left out; data files are fetched by pages but
 # marked noindex in the response headers.
+#
+# This one group covers every crawler, search engines and AI crawlers alike (GPTBot, OAI-SearchBot,
+# ChatGPT-User, PerplexityBot, ClaudeBot, Claude-SearchBot, Google-Extended, Applebot-Extended, CCBot):
+# they may read the public pages (/, /about, /llms.txt, the example certificate) and stay out of the
+# private ones, the members-only study files and the API.
 User-agent: *
 Disallow: /progress
 Disallow: /import
@@ -11,5 +16,9 @@ Disallow: /book
 Disallow: /admin
 Disallow: /class
 Disallow: /join/
+# Members-only study files (served after an access check) and the API.
+Disallow: /packs/
+Disallow: /content/
+Disallow: /api/
 
 Sitemap: https://www.radiology.monster/sitemap.xml

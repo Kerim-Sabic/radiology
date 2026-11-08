@@ -12,6 +12,8 @@ const today = new Date().toISOString().slice(0, 10);
 
 const urls = [
   ['/', '1.0'],
+  // Who makes it (Horalix), where the cases come from, how grading works: a static page crawlers read without JS.
+  ['/about', '0.8'],
   // The example certificate: a public, server-rendered page with its own title and canonical.
   ['/verify/example', '0.5'],
 ];

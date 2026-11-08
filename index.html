@@ -6,6 +6,7 @@
     <meta name="theme-color" content="#020617" />
     <meta name="description" content="Radiology Monster: read 600+ real CT, MRI, X-ray, mammography and ultrasound cases, mark the finding and get graded on the exact slice. Free, no card." />
     <meta name="application-name" content="Radiology Monster" />
+    <meta name="author" content="Horalix" />
     <meta name="apple-mobile-web-app-title" content="Radiology Monster" />
     <!-- Google shows the icon beside the result: a 48 px multiple, at a fixed address, with /favicon.ico as the fallback. -->
     <link rel="icon" href="/favicon.ico" sizes="48x48" />
@@ -133,7 +134,9 @@
             "url": "https://www.radiology.monster/",
             "inLanguage": "en",
             "description": "Radiology reading practice on real CT, MRI, X-ray, mammography and ultrasound, graded on the exact slice.",
-            "publisher": { "@id": "https://www.radiology.monster/#organization" }
+            "creator": { "@id": "https://horalix.com/#organization" },
+            "publisher": { "@id": "https://horalix.com/#organization" },
+            "provider": { "@id": "https://horalix.com/#organization" }
           },
           {
             "@type": "Organization",
@@ -148,8 +151,9 @@
               "height": 512
             },
             "image": "https://www.radiology.monster/og.png",
-            "description": "Radiology Monster (radiology.monster) makes a web app where medical students and residents learn to read real CT, MRI, X-ray, mammography and ultrasound scans, graded against expert outlines on the exact slice.",
-            "sameAs": ["https://whop.com/radiology-monster/"]
+            "description": "Radiology Monster (radiology.monster), made by Horalix, is a web app where medical students and residents learn to read real CT, MRI, X-ray, mammography and ultrasound scans, graded against expert outlines on the exact slice.",
+            "parentOrganization": { "@id": "https://horalix.com/#organization" },
+            "sameAs": ["https://whop.com/radiology-monster/", "https://www.instagram.com/radiology.monster/"]
           },
           {
             "@type": "WebApplication",
@@ -163,7 +167,7 @@
               "@type": "EducationalAudience",
               "educationalRole": "medical students and radiology residents"
             },
-            "description": "Real cases, deeper understanding: a radiology reading workstation with 600+ real patients and 1,700+ image tasks across CT, MRI, X-ray, mammography and ultrasound, graded against expert annotations, with certification exams in three levels. Anatomy outlines are drawn by AI; thanks to Horalix.com, every structure in the anatomy layer is marked.",
+            "description": "Real cases, deeper understanding: a radiology reading workstation with 600+ real patients and 1,700+ image tasks across CT, MRI, X-ray, mammography and ultrasound, graded against expert annotations, with certification exams in three levels. Made by Horalix, a medical AI company in Sarajevo. Anatomy outlines are drawn by AI; thanks to Horalix.com, every structure in the anatomy layer is marked.",
             "featureList": [
               "600+ real, de-identified patients and 1,700+ graded image tasks",
               "CT, MRI, X-ray, mammography and ultrasound in a full reading workstation",
@@ -177,10 +181,9 @@
               { "@type": "Offer", "name": "Monthly", "price": "20", "priceCurrency": "USD", "description": "Every patient, drill, on-call shift and certificate exam; renews every 30 days. 30% off with an eligible university email ($14)." },
               { "@type": "Offer", "name": "Yearly", "price": "150", "priceCurrency": "USD", "description": "Everything in Monthly, one payment every 365 days ($12.50 a month). 30% off with an eligible university email ($105)." }
             ],
-            "publisher": { "@id": "https://www.radiology.monster/#organization" },
-            "contributor": {
-              "@id": "https://horalix.com/#organization"
-            },
+            "creator": { "@id": "https://horalix.com/#organization" },
+            "publisher": { "@id": "https://horalix.com/#organization" },
+            "provider": { "@id": "https://horalix.com/#organization" },
             "isPartOf": {
               "@id": "https://www.radiology.monster/#website"
             }
@@ -189,8 +192,23 @@
             "@type": "Organization",
             "@id": "https://horalix.com/#organization",
             "name": "Horalix",
+            "alternateName": "Horalix d.o.o.",
             "url": "https://horalix.com",
-            "description": "Medical AI company from Sarajevo building an AI-assisted echocardiography workflow. Thanks to Horalix.com, every structure in the Radiology Monster anatomy layer is marked."
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://horalix.com/brand/horalix-icon-512.png",
+              "width": 512,
+              "height": 512
+            },
+            "description": "Medical AI company in Sarajevo, Bosnia and Herzegovina. It makes Radiology Monster (radiology.monster) and develops an AI-assisted echocardiography workflow built around clinician review.",
+            "foundingDate": "2024",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Sarajevo",
+              "addressCountry": "BA"
+            },
+            "sameAs": ["https://www.linkedin.com/company/horalix/"],
+            "brand": { "@id": "https://www.radiology.monster/#organization" }
           },
           {
             "@type": "FAQPage",
@@ -202,6 +220,14 @@
                 "acceptedAnswer": {
                   "@type": "Answer",
                   "text": "Radiology Monster (radiology.monster) is a radiology reading workstation in the browser for medical students and residents: real CT, MRI, X-ray, mammography and ultrasound studies, where you scroll the whole study, mark what you see and are graded against the expert reference on the exact slice, with each task linked to the page of Learning Radiology (5th ed.) that explains it."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Who makes Radiology Monster?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Radiology Monster is made by Horalix, a medical AI company in Sarajevo. Horalix builds AI for medical imaging. Radiology Monster is for education and practice, not diagnosis."
                 }
               },
               {
@@ -225,7 +251,7 @@
                 "name": "Who marked the findings and the anatomy?",
                 "acceptedAnswer": {
                   "@type": "Answer",
-                  "text": "Findings come from the reference annotations published with each collection, made by its radiologists and clinicians or under their supervision, and only those references grade answers. Each case names its source. The anatomy layer (organs, vessels, bones and airways named on every scan) is drawn by AI and labelled AI wherever it appears. Thanks to Horalix.com, every structure in it is marked."
+                  "text": "Findings come from the reference annotations published with each collection, made by its radiologists and clinicians or under their supervision, and only those references grade case answers and exams. Each case names its source. The anatomy layer (organs, vessels, bones and airways named on every scan) is drawn by AI and labelled AI wherever it appears; anatomy drills use it too, marked AI. Thanks to Horalix.com, every structure in it is marked."
                 }
               },
               {
@@ -324,12 +350,14 @@
         <dl>
         <dt>What is Radiology Monster?</dt>
         <dd>Radiology Monster (radiology.monster) is a radiology reading workstation in the browser for medical students and residents: real CT, MRI, X-ray, mammography and ultrasound studies, where you scroll the whole study, mark what you see and are graded against the expert reference on the exact slice, with each task linked to the page of Learning Radiology (5th ed.) that explains it.</dd>
+        <dt>Who makes Radiology Monster?</dt>
+        <dd>Radiology Monster is made by Horalix (https://horalix.com), a medical AI company in Sarajevo. Horalix builds AI for medical imaging. Radiology Monster is for education and practice, not diagnosis. <a href="/about">About Radiology Monster</a>.</dd>
         <dt>How much does it cost?</dt>
         <dd>A free account opens two sample patients in the full workstation, with grading and no card. Membership is $20 every 30 days or $150 every 365 days (equal to $12.50 a month); an eligible university email gets 30% off: $14 every 30 days or $105 every 365 days.</dd>
         <dt>Can professors use it with a class?</dt>
         <dd>Yes. A professor gets a class page with one join link to share. Students join after seeing what the professor can follow: their study days, exam results and certificates, never their answers or payments.</dd>
         <dt>Who marked the findings and the anatomy?</dt>
-        <dd>Findings come from the reference annotations published with each collection, made by its radiologists and clinicians or under their supervision, and only those references grade answers. Each case names its source. The anatomy layer (organs, vessels, bones and airways named on every scan) is drawn by AI and labelled AI wherever it appears. Thanks to Horalix.com, every structure in it is marked.</dd>
+        <dd>Findings come from the reference annotations published with each collection, made by its radiologists and clinicians or under their supervision, and only those references grade case answers and exams. Each case names its source. The anatomy layer (organs, vessels, bones and airways named on every scan) is drawn by AI and labelled AI wherever it appears; anatomy drills use it too, marked AI. Thanks to Horalix.com, every structure in it is marked.</dd>
         <dt>How do I earn a certificate?</dt>
         <dd>Pass an exam. The levels go in order, and each is a real step up: Foundation has 15 untimed questions with a pass mark of 70%; Intermediate 25 questions at 3 minutes each, 80%, at least half marked on the image; Advanced 40 questions at 2 minutes each, 90% with no half points, mostly marked on the image, subtle cases first. Each question shows a real patient and is graded against the expert reference, with no hints; the result comes after the last question. A passed exam gives a certificate with its own check page that can be added to LinkedIn under Licenses &amp; certifications.</dd>
         <dt>Where do the scans come from?</dt>
@@ -340,7 +368,7 @@
         <dd>No. Radiology Monster is for education and practice only. It is not a medical device and must not be used for clinical decisions.</dd>
         </dl>
         <p><a href="https://www.radiology.monster/verify/example">See an example certificate</a> · <a href="/llms.txt">Radiology Monster for language models</a></p>
-        <p>Anatomy outlines: AI. <a href="https://horalix.com">Thanks to Horalix.com</a>, we managed to mark every structure in the anatomy layer.</p>
+        <p>Made by <a href="https://horalix.com">Horalix</a>, a medical AI company in Sarajevo. Anatomy outlines: AI. Thanks to Horalix.com, every structure in the anatomy layer is marked.</p>
       </main>
     </noscript>
     <script type="module" src="/src/main.tsx"></script>

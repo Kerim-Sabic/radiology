@@ -21,6 +21,10 @@
       "destination": "/api/index?__rvm_path=:path*"
     },
     {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
       "source": "/((?!api/|_vercel/|assets/|packs/|content/|favicon|\\.well-known/).*)",
       "destination": "/index.html"
     }
