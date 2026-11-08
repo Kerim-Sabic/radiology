@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useParams, useSearchParams } from 'react-router';
 import { useApp } from '../app/AppContext';
 import { FREE_CASES } from '../content/weekly';
+import { FREE_TASK_TEXT } from '../content/freeTasks.generated';
 import { ScanLoader } from './ScanState';
 
 /**
@@ -30,17 +31,21 @@ export function RoomPreview() {
   const poster = opensAtStructure || (task && task.targets.length === 0) ? posterUrl(caseId, taskId) : null;
   const [posterOk, setPosterOk] = useState(true);
   if (!poster || !posterOk) return <ScanLoader label="Opening the reading room…" compact />;
+  // The question comes with the app, not with the catalogue: on a slow phone the catalogue arrives after the picture,
+  // and a picture with no question gave the visitor from an ad nothing to do (Nov 7–8: 1 mark from 34 visitors).
+  const text = task ? { title: task.title, prompt: task.prompt, tap: null } : taskId ? FREE_TASK_TEXT[taskId] : undefined;
+  const tap = taskId && opensAtStructure ? FREE_TASK_TEXT[taskId]?.tap : null;
   return (
     <div className="room-preview" role="status" aria-live="polite" aria-label="Opening the case">
       <div className="room-preview-image">
         <img src={poster} alt="" onError={() => setPosterOk(false)} />
-        <span className="room-preview-chip">Opening the viewer…</span>
+        <span className="room-preview-chip">{tap ? `Loading the scan · then ${tap[0].toLowerCase()}${tap.slice(1)}` : 'Opening the viewer…'}</span>
       </div>
       <div className="room-preview-task">
-        {task && sp.get('mode') !== 'assess' ? (
+        {text && sp.get('mode') !== 'assess' ? (
           <>
-            <h1>{task.title}</h1>
-            <p>{task.prompt}</p>
+            <h1>{text.title}</h1>
+            <p>{text.prompt}</p>
           </>
         ) : (
           <p className="faint">Opening the case…</p>

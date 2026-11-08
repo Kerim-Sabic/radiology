@@ -218,6 +218,28 @@ test.describe('the ad visitor on a phone', () => {
     await expect(preview).toHaveCount(0);
   });
 
+  test('on a slow phone the question is on the first picture before the catalogue arrives, and "Tap the …" waits until a tap works', async ({ page }) => {
+    await visitor(page);
+    // As measured on a slow phone (Nov 8): the reading room's code, the catalogue and the slices all arrive late.
+    const late = (ms: number) => async (r: import('@playwright/test').Route) => {
+      await new Promise((res) => setTimeout(res, ms));
+      return r.fallback();
+    };
+    await page.route(/\/assets\/Workstation-[^/]+\.js$/, late(3000));
+    await page.route(/\/packs\/(index(\.free)?\.json|.*\/lessons(\.free)?\.json)(\?.*)?$/, late(6000));
+    await page.route('**/packs/starter/dicom/**', late(1500));
+    await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aesophagus&mode=practice&utm_source=meta&utm_campaign=reel002');
+    const preview = page.getByRole('status', { name: 'Opening the case' });
+    await expect(preview.getByRole('heading', { name: 'Find the esophagus' })).toBeVisible({ timeout: 2500 });
+    await expect(preview.getByText('Loading the scan · then tap the esophagus')).toBeVisible();
+    // While the slice still loads over its picture, the view says so instead of asking for a tap that can't mark yet.
+    await expect(page.locator('[data-panel="p0"] .vp-status.over-poster')).toBeVisible({ timeout: 60_000 });
+    await expect(page.locator('.ws-tap-hint')).toBeHidden();
+    await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 90_000 });
+    await expect(page.locator('.ws-tap-hint')).toHaveText('Tap the esophagus');
+    await expect(page.locator('.ws-tap-hint')).toBeVisible();
+  });
+
   test('the first picture stays in the viewer until the first slice is drawn', async ({ page }) => {
     await visitor(page);
     await page.route('**/packs/starter/dicom/**', async (r) => {
