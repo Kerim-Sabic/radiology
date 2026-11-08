@@ -8,7 +8,7 @@ import { clerkIdentity, revokeOtherClerkSessions } from './clerk.js';
 import { DEVICE_COOKIE, DEVICE_COOKIE_SECONDS, DeviceLimitError, newDeviceId, validDeviceId } from './devices.js';
 import { bookGift, memberBook, servesBook } from './book.js';
 import { rsnaFile, rsnaMember } from './rsna.js';
-import { ingestEvents, logServerEvent, type Who } from './events.js';
+import { dropReason, ingestEvents, logServerEvent, type Who } from './events.js';
 import { eventsCsv, funnelCsv, journeyReport, journeys, loadEvents, type JourneyFilter } from './journeys.js';
 import { appOrigin, readiness } from './config.js';
 import { db, rateLimit } from './store.js';
@@ -123,19 +123,6 @@ export async function handle(request: Request): Promise<Response> {
       const flow = await beginMerchantConnect();
       return redirect(flow.url, [flow.cookie]);
     }
-    if (path === '/api/track' && request.method === 'POST') {
-      const body = await request.json().catch(() => null);
-      const event = trackable(body?.event);
-      if (!event) return json({ error: 'Unknown event' }, 400);
-      const source = cleanSource(body?.source);
-      if (await rateLimit(`track:${ip()}`, 60, 600)) {
-        await count(event);
-        const seconds = event === 'guest_mark' ? markSeconds(body?.seconds) : null;
-        if (seconds !== null) await count('guest_mark_s', seconds);
-        if (source && sourceCounted(event)) await countSource(event, source);
-      }
-      return json({ ok: true });
-    }
     if (path === '/api/auth/session' && request.method === 'POST') {
       const ip = hash(request.headers.get('x-vercel-forwarded-for') || request.headers.get('x-forwarded-for') || 'unknown');
       if (!await rateLimit(`account-session:${ip}`, 30, 600)) return json({ error: 'Too many sign-in attempts. Try again in a few minutes.' }, 429);
@@ -193,6 +180,23 @@ export async function handle(request: Request): Promise<Response> {
       await ingestEvents(request, body, user ? await eventWho(user.userId, user.email) : 'visitor', user?.userId).catch(() => undefined);
       return new Response(null, { status: 204, headers: { 'Cache-Control': 'no-store' } });
     }
+    // The funnel counters (server/engage.ts) leave out the same traffic as the event log (server/events.ts dropReason):
+    // previews and localhost, the e2e suite (x-rvm-test), automated browsers (`wd`), bots and the team. The answer is
+    // the same either way.
+    if (path === '/api/track' && request.method === 'POST') {
+      const body = await request.json().catch(() => null);
+      const event = trackable(body?.event);
+      if (!event) return json({ error: 'Unknown event' }, 400);
+      if (dropReason(request, { wd: body?.wd === true }, user ? await eventWho(user.userId, user.email) : 'visitor')) return json({ ok: true });
+      const source = cleanSource(body?.source);
+      if (await rateLimit(`track:${ip()}`, 60, 600)) {
+        await count(event);
+        const seconds = event === 'guest_mark' ? markSeconds(body?.seconds) : null;
+        if (seconds !== null) await count('guest_mark_s', seconds);
+        if (source && sourceCounted(event)) await countSource(event, source);
+      }
+      return json({ ok: true });
+    }
     // Back from LinkedIn after "Post it for me" (a page visit, so it answers with a redirect, signed in or not).
     if (path === '/api/linkedin/callback' && request.method === 'GET') return redirect(`${appOrigin()}${await finishLinkedInPost(url, user)}`);
     if (path === '/api/logout' && request.method === 'POST') {
@@ -248,7 +252,8 @@ export async function handle(request: Request): Promise<Response> {
     }
     // A first case opened with its images shown: counted once per account, between the sign-up and the first answer.
     if (path === '/api/track/opened' && request.method === 'POST') {
-      if (await rateLimit(`track-opened:${user.userId}`, 20, 3600)) await countOnce('opened', user.userId);
+      const body = await request.json().catch(() => null);
+      if (!dropReason(request, { wd: body?.wd === true }, await eventWho(user.userId, user.email)) && await rateLimit(`track-opened:${user.userId}`, 20, 3600)) await countOnce('opened', user.userId);
       return json({ ok: true });
     }
     // "Something looks wrong on this case": kept for the admins with the reports permission (server/reports.ts).

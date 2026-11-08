@@ -5,6 +5,7 @@
 import { track as vercelTrack } from '@vercel/analytics/react';
 import { dayKey } from './activity';
 import { adSource } from './source';
+import { evOff } from './ev';
 
 const SENT_KEY = 'rvm.activity.sent';
 
@@ -70,8 +71,10 @@ export function trackFunnel(event: FunnelEvent, once = false, seconds?: number) 
   } catch {
     /* analytics is optional */
   }
+  // The server leaves out the same traffic as the event log's (server/events.ts): `wd` marks an automated browser.
+  if (evOff()) return;
   const source = adSource();
-  const body = { event, ...(source ? { source } : {}), ...(seconds !== undefined && Number.isFinite(seconds) ? { seconds: Math.round(seconds) } : {}) };
+  const body = { event, ...(source ? { source } : {}), ...(seconds !== undefined && Number.isFinite(seconds) ? { seconds: Math.round(seconds) } : {}), ...(navigator.webdriver ? { wd: true } : {}) };
   void fetch('/api/track', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body), keepalive: true }).catch(() => undefined);
 }
 
@@ -88,7 +91,8 @@ export function trackOpened() {
   } catch {
     /* analytics is optional */
   }
-  void fetch('/api/track/opened', { method: 'POST', keepalive: true }).catch(() => undefined);
+  if (evOff()) return;
+  void fetch('/api/track/opened', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(navigator.webdriver ? { wd: true } : {}), keepalive: true }).catch(() => undefined);
 }
 
 export interface EmailPrefs {

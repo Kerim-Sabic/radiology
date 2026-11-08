@@ -28,6 +28,9 @@ function id(store: Storage, key: string, days: number) {
   }
 }
 
+/** This browser is one of the team's (`?internal=1`): the funnel counters are not sent from it either (serverSync.ts). */
+export const evOff = () => off;
+
 /** Log an event; with `once`, at most once per tab session. */
 export function ev<E extends ClientEvent>(name: E, props?: PropsOf<E>, once = false) {
   if (off || (once && fired.has(name))) return;

@@ -33,7 +33,7 @@ Brief: `C:\Helix\Lab\Marketing\radiology-monster-instagram\PROMPT-TRACKING.md` (
 - **Never blocks the first image:**
   - events queue in memory and leave in one batch every 5 s, at 30 events, or when the tab is hidden or closed (`sendBeacon`, else `fetch` with `keepalive`);
   - the batch goes to the same origin, `POST /api/ev`, which always answers 204.
-- **The existing day counters** (`/api/track`, Admin's funnel and "Where sign-ups come from") keep running unchanged beside the log.
+- **The existing day counters** (`/api/track`, `/api/track/opened`, Admin's funnel and "Where sign-ups come from") keep running beside the log. Since 8 November 2026 they leave out the same traffic as the log (previews and localhost, the e2e suite, automated browsers, bots, the team, and browsers marked `?internal=1`), so both count the same visitors.
 
 ## The dictionary
 "Once" means at most once per tab session. Times in `ms` are from the page's navigation start unless said otherwise.
