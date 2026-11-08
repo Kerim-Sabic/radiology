@@ -215,6 +215,32 @@ test('an Indian visitor with a welcome code pays its 40% off by UPI, or, where t
   await expect(page.locator('.welcome-applied')).toHaveCount(0);
   expect(bodies.slice(2)).toEqual([{tier:'monthly',promoCode:code},{tier:'monthly',promoCode:code,method:'upi'},{tier:'monthly',method:'upi'}]);
 });
+test('the welcome email’s link, opened signed out, keeps the price for the visitor’s country and asks to sign in', async ({page}) => {
+  // The 24-hour welcome email links to /?plans&promo=welcome-…; it usually opens outside Instagram's browser, signed out.
+  await page.route('**/api/config',route=>route.fulfill({json:{auth:true,billing:true,
+    regionalPrice:{region:'c',country:'IN',countryName:'India',monthly:{price:4.99,pass:true},yearly:{price:39.99,pass:true},upi:{monthly:469,yearly:3749}}}}));
+  await page.route('**/api/session',route=>route.fulfill({status:401,json:{user:null}}));
+  const checkouts:unknown[]=[];
+  await page.route('**/api/billing/checkout',route=>{checkouts.push(route.request().postDataJSON());return route.fulfill({status:401,json:{error:'Please sign in.'}});});
+  await page.goto('/?plans&promo=welcome-TEST');
+  const panel=page.locator('#plans');
+  const plans=page.locator('.membership-plan');
+  await expect(plans.nth(1)).toContainText('$4.99 for 30 days');
+  await expect(plans.first()).toContainText('$39.99 for a year');
+  await expect(panel).not.toContainText('$20 billed every 30 days');
+  await expect(panel).not.toContainText('$20 a month or $150 a year');
+  await expect(page.locator('.regional-price')).toContainText('Your welcome code works on these prices');
+  await expect(page.locator('.promo-entry')).toContainText('This is the welcome code from your email. It works once you sign in with the email it was sent to.');
+  await expect(page.locator('#membership-promo')).toHaveValue('welcome-TEST');
+  await page.setViewportSize({width:390,height:844});
+  await panel.screenshot({path:'test-results/welcome-link-signed-out.png'});
+  await page.getByRole('button',{name:'Get 30 days'}).click();
+  const dialog=page.getByRole('dialog',{name:'Welcome back.'});
+  await expect(dialog.getByRole('tab',{name:'Sign in'})).toHaveAttribute('aria-selected','true');
+  await expect(dialog).toContainText('Sign in with the email your welcome code was sent to.');
+  await expect(dialog).toContainText('Monthly · $4.99 for 30 days');
+  expect(checkouts).toEqual([]);
+});
 test('a free account is asked one question on the plans, once: what would make it worth paying for', async ({page}) => {
   await account(page, true);
   const answers:unknown[]=[];

@@ -14,7 +14,7 @@ import { PlansScreen } from './PlansScreen';
 import { trackFunnel, WARM_ACCOUNT_EVENT } from '../services/serverSync';
 import { ev, evFired } from '../services/ev';
 import { ScanLoader } from '../components/ScanState';
-import { useOfferTimeLeft, welcomePrice, welcomeRupees, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
+import { isWelcomeCode, useOfferTimeLeft, welcomePrice, welcomeRupees, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
 import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice, rupees, aboutLocal } from './regionalPrice';
 import { WorthSurvey } from './WorthSurvey';
 import { MAKER } from '../lib/provenance';
@@ -416,7 +416,10 @@ function MembershipGate({ children }: { children: ReactNode }) {
   }, [selectedPlan, account, buy]);
   function choose(tier: Tier) {
     if (account?.user) { void buy(tier); return; }
-    setSelectedPlan(tier); rememberPlan(tier); setAuthMode('signup'); setError(''); trackFunnel('signup_start', true);
+    setSelectedPlan(tier); rememberPlan(tier); setError('');
+    // A welcome code belongs to an account that already exists: its link asks to sign in, not to create one.
+    if (isWelcomeCode(promoCode)) { setAuthMode('login'); return; }
+    setAuthMode('signup'); trackFunnel('signup_start', true);
   }
   function startSignIn() {
     setAuthWaiting(true); setError('');
@@ -430,9 +433,12 @@ function MembershipGate({ children }: { children: ReactNode }) {
   // Signed in: the account's price (none once a member). Signed out: the price for the visitor's country from /api/config.
   const regional = account?.user ? account.regionalPrice : ready?.regionalPrice;
   const welcomeOffer = account?.welcomeOffer;
+  // Signed out with a welcome code (the email's "Claim" link): the code is checked once they sign in, so until then the
+  // page shows what any signed-out visitor from their country sees, and the plan buttons open Sign in.
+  const welcomeLink = !account?.user && isWelcomeCode(promoCode);
   // The plan cards show the price for the visitor's country with no code or with their own welcome code; any other code
   // means the standard price (server/billing.ts checkout decides the same way).
-  const regionalShown = regional && (!promoCode.trim() || promoCode.trim().toLowerCase() === welcomeOffer?.code) ? regional : undefined;
+  const regionalShown = regional && (!promoCode.trim() || welcomeLink || promoCode.trim().toLowerCase() === welcomeOffer?.code) ? regional : undefined;
   // A verified student with no code sees the student price for their country (30% off every payment) while student prices
   // are on there; a welcome code instead takes 40% off the first payment (discounts do not stack).
   const studentRegional = student && regionalShown?.student && !promoCode.trim() ? withStudentPrices(regionalShown) : undefined;
@@ -495,7 +501,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       <span className="membership-step">{account?.user ? 'Choose your plan' : 'Membership'}</span>
       <h2>{account?.user ? 'Unlock the whole library.' : 'The whole library, every tool.'}</h2>
       <p>{account?.user ? `Signed in as ${account.user.email}` : 'One membership for every patient, drill and on-call shift, with the book beside you.'}</p>
-      {regional && <RegionalPriceNote price={regional} welcome={!!welcomeOffer} />}
+      {regional && <RegionalPriceNote price={regional} welcome={!!welcomeOffer || welcomeLink} />}
       {welcomeOffer && <WelcomeOfferNote offer={welcomeOffer} regional={regional} applied={promoCode.trim().toLowerCase() === welcomeOffer.code} onApply={() => updatePromo(welcomeOffer.code)} />}
       {!regional && <>
         <p className="student-offer"><strong>{student ? 'Your verified university email unlocks 30% off' : '30% off for eligible university email addresses'}</strong><span>{student ? 'Student prices include every renewal. A better recurring promo takes precedence; discounts do not stack.' : 'Verify an eligible email, including .edu, .edu.ba or .ac.uk, for $14 every 30 days or $105 every 365 days. The discount continues on every renewal.'}</span></p>
@@ -504,7 +510,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
         ? `${studentTerms(regional)}, on every ${regional.monthly.pass ? 'pass' : 'payment'}.${welcomeOffer ? ' Your welcome code takes 40% off the first payment instead; discounts do not stack.' : ''}`
         : `Verify an eligible email, including .edu, .edu.ba or .ac.uk, for ${studentTerms(regional)}. The discount applies to every ${regional.monthly.pass ? 'pass' : 'payment'}.`}</span></p>}
       {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
-      <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>{regional ? (welcomeOffer ? 'Your welcome code works on the price for your country. Any other code applies to the standard price ($20 a month or $150 a year).' : 'A code applies to the standard price ($20 a month or $150 a year), not to the price for your country.') : 'Choose a plan below. Your discount will appear in the secure payment form.'}</p></details>
+      <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>{welcomeLink ? 'This is the welcome code from your email. It works once you sign in with the email it was sent to.' : regional ? (welcomeOffer ? 'Your welcome code works on the price for your country. Any other code applies to the standard price ($20 a month or $150 a year).' : 'A code applies to the standard price ($20 a month or $150 a year), not to the price for your country.') : 'Choose a plan below. Your discount will appear in the secure payment form.'}</p></details>
       <div className="membership-plans">
         <article className="membership-plan yearly" aria-labelledby="yearly-plan-title">
           <span className="membership-best">Best value</span>
@@ -574,7 +580,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
         <button role="tab" aria-selected={authMode === 'login'} onClick={() => setAuthMode('login')}>Sign in</button>
       </div>
       <h2 id="auth-title">{authMode === 'signup' ? (guestAnswered() ? 'Keep your answer and your score.' : 'Create your free account.') : 'Welcome back.'}</h2>
-      <p>{authMode === 'signup' ? 'Enter your email and we send you a code. No password, no card.' : 'Sign in with the email you used for your membership.'}</p>
+      <p>{authMode === 'signup' ? 'Enter your email and we send you a code. No password, no card.' : welcomeLink ? 'Sign in with the email your welcome code was sent to.' : 'Sign in with the email you used for your membership.'}</p>
       {selectedPlan && <div className="selected-plan"><Check size={16} />{regionalShown
         ? (selectedPlan === 'monthly'
           ? `Monthly · ${usd(regionalShown.monthly.price)} ${regionalShown.monthly.pass ? 'for 30 days' : '/ month'}${regionalShown.student ? ` · students ${usd(regionalShown.student.monthly)}` : ''}`

@@ -8,6 +8,13 @@ export interface WelcomeOffer {
   percent: number;
 }
 
+/**
+ * A personal welcome code ("welcome-ana-k7q3m", server/welcomeCode.ts WELCOME_PREFIX). The email's link brings one to a
+ * visitor who is often signed out (the email opens outside Instagram's browser); checkout honours it only for the
+ * account it was sent to.
+ */
+export const isWelcomeCode = (code: string) => code.trim().toLowerCase().startsWith('welcome-');
+
 /** "2 days 5 h", "5 h 12 min", "12 min"; null once it has ended. */
 export function timeLeft(ms: number): string | null {
   if (ms <= 0) return null;
