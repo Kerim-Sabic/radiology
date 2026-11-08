@@ -236,13 +236,14 @@ function MembershipGate({ children }: { children: ReactNode }) {
   // Free accounts use the app; the plans open as their own screen (from Upgrade, a locked feature, or ?plans).
   const [plansOpen, setPlansOpen] = useState(() => new URLSearchParams(location.search).has('plans') || !!rememberedPlan());
   const openPlans = useCallback(() => { setPlansOpen(true); setError(''); trackFunnel('plans', true); }, []);
-  // Once a guest has been graded, fetch the account form's own code in the background (it is the next step offered).
-  // Clerk's script itself loads when the form opens: a second, hidden Clerk instance would keep the wrong settings.
+  // Once a guest has been graded, fetch the account form's own code in the background (it is the next step offered),
+  // and Clerk's files with it (downloaded, not run: a second, hidden Clerk instance would keep the wrong settings).
   useEffect(() => {
     const warm = () => {
-      void import('./InlineAccount').catch(() => undefined);
+      const host = clerkFrontendHost(clerkKeyRef.current);
+      void import('./InlineAccount').then((m) => m.warmClerk(host)).catch(() => undefined);
       // Open the connection to the sign-in service now: on slow 4G its DNS and TLS cost ~0.5 s when "Save it" is pressed.
-      preconnect(clerkFrontendHost(clerkKeyRef.current));
+      preconnect(host);
     };
     window.addEventListener(WARM_ACCOUNT_EVENT, warm);
     return () => window.removeEventListener(WARM_ACCOUNT_EVENT, warm);
