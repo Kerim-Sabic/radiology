@@ -235,6 +235,10 @@ test.describe('the ad visitor on a phone', () => {
     // While the slice still loads over its picture, the view says so instead of asking for a tap that can't mark yet.
     await expect(page.locator('[data-panel="p0"] .vp-status.over-poster')).toBeVisible({ timeout: 60_000 });
     await expect(page.locator('.ws-tap-hint')).toBeHidden();
+    // An early tap gets no wrong advice ("choose Point or Box in the toolbar first"): once drawn, a tap marks.
+    const early = (await page.locator('[data-panel="p0"] .vp-el').boundingBox())!;
+    await page.touchscreen.tap(early.x + early.width / 2, early.y + early.height / 2);
+    await expect(page.getByText('choose Point or Box in the toolbar first')).toBeHidden();
     await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 90_000 });
     await expect(page.locator('.ws-tap-hint')).toHaveText('Tap the esophagus');
     await expect(page.locator('.ws-tap-hint')).toBeVisible();

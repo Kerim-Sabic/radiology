@@ -2940,9 +2940,10 @@ kbd {
   font-weight: 600;
 }
 /* While the first slice is still loading over its picture, a tap can't mark yet (measured on a slow phone: a tap at
-   11.5 s did nothing, the slice drew at 15.6 s). So the view shows its loading status, and "Tap the …" appears when a
-   tap works. The case preview before it already showed the question. */
-.ws-main:has(.vp-status.over-poster) .ws-tap-hint {
+   11.5 s did nothing, the slice drew at 15.6 s). So the view shows its loading status: "Tap the …" appears when a tap
+   works, and an early tap no longer flashes "choose Point or Box in the toolbar first", which is wrong for a guest
+   (once the slice is drawn a tap marks with no tool to choose). The case preview before it already showed the question. */
+.ws-main:has(.vp-status.over-poster) .ws-tool-flash {
   display: none;
 }
 @keyframes ws-flash-in {
