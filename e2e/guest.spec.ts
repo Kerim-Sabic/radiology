@@ -199,6 +199,48 @@ test.describe('the ad visitor on a phone', () => {
     await expect(page.getByText('Correct', { exact: true }).first()).toBeVisible();
   });
 
+  /** The middle of the X-ray's NIH radiologist box (image pixels 607–849 × 57–285), on screen. */
+  const boxCentre = (page: Page) =>
+    page.evaluate(() => {
+      const e = (window as any).__rvm;
+      const id = e.panelState('p0').currentImageId;
+      const c = e.worldToCanvas('p0', e.imagePxToWorld(id, [728, 171]));
+      const r = document.querySelector('[data-panel="p0"] .vp-el')!.getBoundingClientRect();
+      return { x: Math.round(r.left + c[0]), y: Math.round(r.top + c[1]) };
+    });
+
+  test('one tap on the free X-ray marks the pneumothorax with a point, and Submit grades it correct', async ({ page }) => {
+    await visitor(page);
+    await page.goto(AD);
+    await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
+    await expect(page.getByRole('heading', { name: 'Find the pneumothorax' })).toBeVisible();
+    expect(await page.evaluate(() => (window as any).__rvm.getTool())).toBe('scroll');
+    await page.waitForTimeout(400);
+    const at = await boxCentre(page);
+    await page.touchscreen.tap(at.x, at.y);
+    await expect.poll(() => page.evaluate(() => (window as any).__rvm.collectMarks().length)).toBe(1);
+    await page.waitForTimeout(700); // the mouse events after a tap add no second mark
+    expect(await page.evaluate(() => (window as any).__rvm.collectMarks().map((m: { tool: string }) => m.tool))).toEqual(['point']);
+    await expect(page.getByText('choose Point or Box in the toolbar first')).toHaveCount(0);
+    expect(await page.evaluate(() => (window as any).__rvm.getTool())).toBe('scroll');
+    await page.getByRole('button', { name: /^Submit/ }).first().tap();
+    await expect(page.locator('.result-first')).toContainText('Correct');
+    await expect(page.locator('.result-first')).toContainText('100%');
+  });
+
+  test('on the X-ray, a signed-in account’s tap is unchanged: it still asks for Point or Box', async ({ page }) => {
+    const state = await visitor(page);
+    state.signedIn = true;
+    await page.goto(AD);
+    await page.waitForFunction(() => (window as any).__rvm?.panelState('p0')?.ready === true, null, { timeout: 60_000 });
+    expect(await page.evaluate(() => (window as any).__rvm.getTool())).toBe('scroll');
+    await page.waitForTimeout(400);
+    const at = await boxCentre(page);
+    await page.touchscreen.tap(at.x, at.y);
+    await expect(page.getByText('To mark the finding, choose Point or Box in the toolbar first')).toBeVisible();
+    expect(await page.evaluate(() => (window as any).__rvm.collectMarks().length)).toBe(0);
+  });
+
   test('the reel\u2019s question lands as the first task: Practice opens at the esophagus with its outline hidden, one tap answers it', async ({ page }) => {
     await visitor(page);
     await page.goto('/read/starter-ct-chest-01?task=starter-ct-chest-01%3Aesophagus&mode=practice&utm_source=meta&utm_campaign=reel002');

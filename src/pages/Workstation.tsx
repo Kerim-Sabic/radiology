@@ -1303,7 +1303,11 @@ export default function Workstation() {
     const t = engine.getTool();
     if (!task || !session || !needsMarks(task) || !rules.canEditMarks(session)) return;
     if (t !== 'windowLevel' && t !== 'pan' && t !== 'zoom' && t !== 'scroll') return;
-    const onePoint = task.grading.kind === 'point_in_target' && task.targets.filter((x) => x.required).length <= 1;
+    // A guest's tap also answers a task with one reference finding that a point inside it detects (center_in_target,
+    // as the free chest X-ray), never one graded on box overlap.
+    const onePoint =
+      (task.grading.kind === 'point_in_target' && task.targets.filter((x) => x.required).length <= 1) ||
+      (guest && task.grading.kind === 'findings' && task.grading.matchRule === 'center_in_target' && task.targets.length === 1);
     if (onePoint && t === 'scroll') {
       if (!touch) {
         if (Date.now() - tappedAt.current < 1000) return; // the mouse events a browser sends after the same tap
