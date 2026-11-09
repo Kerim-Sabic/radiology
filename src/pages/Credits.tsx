@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { MAKER } from '../lib/provenance';
 import '../styles/credits.css';
+// Bundled with the page (not fetched from /content/, which needs an account): the list is public.
+import creditsData from '../../public/content/credits.json';
 
 type Link = { label: string; url: string };
 type Credit = {
@@ -62,18 +64,9 @@ function CreditEntry({ c }: { c: Credit }) {
 
 /** Public page: every data source and tool the app uses, with owner, licence, link and citation (public/content/credits.json). */
 export default function CreditsPage() {
-  const [groups, setGroups] = useState<Group[] | null>(null);
-  const [failed, setFailed] = useState(false);
+  const groups = (creditsData as { groups: Group[] }).groups;
   useEffect(() => {
     document.title = 'Sources and credits · Radiology Monster';
-    let live = true;
-    fetch('/content/credits.json')
-      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status)))))
-      .then((d: { groups: Group[] }) => live && setGroups(d.groups))
-      .catch(() => live && setFailed(true));
-    return () => {
-      live = false;
-    };
   }, []);
   return (
     <div className="credits-page">
@@ -87,9 +80,7 @@ export default function CreditsPage() {
           The cases and images in Radiology Monster come from the public and licensed datasets below. The datasets and their processing are presented by{' '}
           <a href={MAKER.url} target="_blank" rel="noopener">{MAKER.site}</a>. Every dataset remains the work and property of its owners and is used under the licence or permission named here. AI outlines are marked as AI drafts.
         </p>
-        {failed && <p role="alert">The list could not be loaded. Please try again.</p>}
-        {!groups && !failed && <p role="status" className="credits-intro">Loading…</p>}
-        {groups?.map((g) => (
+        {groups.map((g) => (
           <section key={g.kind} aria-labelledby={`credits-${g.kind}`}>
             <h2 id={`credits-${g.kind}`}>{g.title}</h2>
             <ul className="credits-list">
