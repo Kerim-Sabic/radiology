@@ -306,6 +306,15 @@
    "bytes": 11276047,
    "distribution": "repo",
    "note": "60 subjects, 60 studies, 60 series, 60 instances, 400 reference targets; DICOM 6.9 MB. Committed to the repository; rebuild with scripts/data/arcade_xca.py; lessons scripts/lessons/arcade_xca.py."
+  },
+  {
+   "id": "cadica-xca",
+   "title": "Coronary angiography: find the narrowing, with and without one",
+   "manifest": "cadica-xca/pack.json",
+   "lessons": "cadica-xca/lessons.json",
+   "bytes": 8085014,
+   "distribution": "repo",
+   "note": "58 subjects, 58 studies, 58 series, 58 instances, 79 reference targets; DICOM 5.3 MB. Committed to the repository; rebuild with scripts/data/cadica.py; lessons scripts/lessons/cadica.py."
   }
  ]
 }
