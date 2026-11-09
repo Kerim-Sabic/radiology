@@ -53,6 +53,13 @@ function meanLeft(series: Series, geom: ReturnType<typeof TargetGeometry.parse>)
 for (const [id, pack] of packs) {
   const lateral = pack.referenceTargets.filter((t) => t.geometryType === 'contour_set' && SIDE.test(t.classId.replace(/^anatomy:/, '')));
   if (!lateral.length) continue;
+  // A pack with a one-sided structure only (the left atrium alone) has no left/right pair to compare.
+  const sides = new Map<string, Set<string>>();
+  for (const t of lateral) {
+    const k = `${t.seriesUid}|${t.classId.replace(SIDE, '$1X')}`;
+    sides.set(k, (sides.get(k) ?? new Set()).add(SIDE.exec(t.classId.replace(/^anatomy:/, ''))![2]));
+  }
+  if (![...sides.values()].some((s) => s.size === 2)) continue;
   describe(`laterality · ${id}`, () => {
     const bySeries = new Map<string, Map<string, { left?: (typeof lateral)[number]; right?: (typeof lateral)[number] }>>();
     for (const t of lateral) {

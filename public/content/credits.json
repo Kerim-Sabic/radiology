@@ -454,7 +454,9 @@
      "doi": "10.1038/s41467-022-30695-9",
      "links": [],
      "citation": "Antonelli M, Reinke A, Bakas S, et al. The Medical Segmentation Decathlon. Nature Communications. 2022;13:4128. doi:10.1038/s41467-022-30695-9",
-     "packs": []
+     "packs": [
+      "msd-heart-mri"
+     ]
     },
     {
      "id": "tcia:MIDRC-RICORD-1C",

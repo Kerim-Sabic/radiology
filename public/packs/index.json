@@ -324,6 +324,15 @@
    "bytes": 101510978,
    "distribution": "repo",
    "note": "36 subjects, 36 studies, 36 series, 2466 instances, 547 reference targets; DICOM 89.0 MB. Committed to the repository; rebuild with scripts/data/heart_ct.py + heart_ct_build.py; lessons scripts/lessons/heart_ct.py."
+  },
+  {
+   "id": "msd-heart-mri",
+   "title": "Cardiac MRI: the left atrium on 3D whole-heart MRI",
+   "manifest": "msd-heart-mri/pack.json",
+   "lessons": "msd-heart-mri/lessons.json",
+   "bytes": 22725466,
+   "distribution": "repo",
+   "note": "19 subjects, 19 studies, 19 series, 929 instances, 19 reference targets; DICOM 21.4 MB. Committed to the repository; rebuild with scripts/data/msd_heart.py; lessons scripts/lessons/msd_heart.py."
   }
  ]
 }

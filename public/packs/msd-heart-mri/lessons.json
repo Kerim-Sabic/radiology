@@ -1,0 +1,3999 @@
+{
+ "schemaVersion": 1,
+ "packId": "msd-heart-mri",
+ "version": "1.0.0",
+ "cases": [
+  {
+   "id": "msdh-la-003",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ABU · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_003",
+   "studyUids": [
+    "2.25.216316224401516499391942804414040295030"
+   ],
+   "primarySeriesUid": "2.25.308308009059708200714464267870434067723",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-004",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ABV · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_004",
+   "studyUids": [
+    "2.25.86468995066129729229751246077439721955"
+   ],
+   "primarySeriesUid": "2.25.194258903770176945523558798052160755516",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-005",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ABW · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_005",
+   "studyUids": [
+    "2.25.193565834180897251724690857418114639281"
+   ],
+   "primarySeriesUid": "2.25.13639941264657392748759460160133995314",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-007",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ABX · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_007",
+   "studyUids": [
+    "2.25.17476426384906978358215595959909268205"
+   ],
+   "primarySeriesUid": "2.25.29470290166304405638752202280945825402",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-009",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ABY · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_009",
+   "studyUids": [
+    "2.25.189143123752568700887897204304307547558"
+   ],
+   "primarySeriesUid": "2.25.248342452787784809005642585934590226364",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-010",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ABZ · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_010",
+   "studyUids": [
+    "2.25.300327793711457194420873859533478708970"
+   ],
+   "primarySeriesUid": "2.25.315815131589929671251989780373061897483",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-011",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACA · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_011",
+   "studyUids": [
+    "2.25.127522899595269360721617829020030771949"
+   ],
+   "primarySeriesUid": "2.25.188280144806899430989014585714322492031",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-014",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACB · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_014",
+   "studyUids": [
+    "2.25.33971124023847617684289646093755017467"
+   ],
+   "primarySeriesUid": "2.25.142511814769469437025155346516601263611",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-016",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACC · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_016",
+   "studyUids": [
+    "2.25.83591998649964829046082818430885990267"
+   ],
+   "primarySeriesUid": "2.25.138742437324062603332987860841289732059",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-017",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACD · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_017",
+   "studyUids": [
+    "2.25.240691992851626969499057402793246301238"
+   ],
+   "primarySeriesUid": "2.25.38334620069880263345292781465062466706",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-018",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACE · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_018",
+   "studyUids": [
+    "2.25.93376808909886420439132874383925024863"
+   ],
+   "primarySeriesUid": "2.25.191628630870404749547309224843522644890",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-019",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACF · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_019",
+   "studyUids": [
+    "2.25.212269488094768959068837174463782006695"
+   ],
+   "primarySeriesUid": "2.25.82948545402135542506048413364216484637",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-020",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACG · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_020",
+   "studyUids": [
+    "2.25.305721716331524718159117668891455326547"
+   ],
+   "primarySeriesUid": "2.25.257025676050157307007569423029892416243",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-021",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACH · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_021",
+   "studyUids": [
+    "2.25.268035141012861995091341105543689303705"
+   ],
+   "primarySeriesUid": "2.25.297238267749281513231896818800525815954",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-022",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACI · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_022",
+   "studyUids": [
+    "2.25.241879106027152908322330004830200084005"
+   ],
+   "primarySeriesUid": "2.25.136185391259641567117371323659804221531",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-023",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACJ · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_023",
+   "studyUids": [
+    "2.25.141214808965254528752078159885660239169"
+   ],
+   "primarySeriesUid": "2.25.307083194719176119407236237044276462904",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-024",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACK · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_024",
+   "studyUids": [
+    "2.25.27015375876551364797045090701425407841"
+   ],
+   "primarySeriesUid": "2.25.206560049719084026583025282461298446861",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-029",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACL · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_029",
+   "studyUids": [
+    "2.25.7743394313441520986318613134940710575"
+   ],
+   "primarySeriesUid": "2.25.102248578676018652364667594418989780402",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  },
+  {
+   "id": "msdh-la-030",
+   "packId": "msd-heart-mri",
+   "neutralTitle": "Patient ACM · Cardiac MRI",
+   "learnTitle": "Cardiac MRI: the left atrium behind the aortic root",
+   "subjectKey": "msd:Task02_Heart:la_030",
+   "studyUids": [
+    "2.25.284532024120911784780605083524811220913"
+   ],
+   "primarySeriesUid": "2.25.20584977610620106388332125228709839346",
+   "region": [
+    "chest"
+   ],
+   "clinicalContext": "Adult; 3D whole-heart MRI.",
+   "contextSource": "Dataset description (whole-heart MRI of adults at a university hospital); no clinical history, age or sex is distributed.",
+   "difficulty": "intro",
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "referenceSummary": "The left atrium is outlined by the dataset (King's College London, Medical Segmentation Decathlon): an expert segmented the left atrium, its appendage, the mitral plane and the pulmonary vein end points with an automated tool and then corrected the result by hand. It is semi-automatic and expert-corrected, not drawn from scratch, and has not been re-reviewed here. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border. The other chambers and vessels are not outlined. Scanner: 1.5 T, free breathing with ECG and respiratory gating, one cardiac phase; images acquired at 1.25 mm and shown as axial slices every 2.5 mm.",
+   "learnNotes": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3)."
+  }
+ ],
+ "tasks": [
+  {
+   "caseId": "msdh-la-003",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.308308009059708200714464267870434067723"
+   ],
+   "start": {
+    "seriesUid": "2.25.308308009059708200714464267870434067723",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-003:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_003-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_003-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-003",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.308308009059708200714464267870434067723"
+   ],
+   "start": {
+    "seriesUid": "2.25.308308009059708200714464267870434067723",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-003:in-front",
+   "type": "describe_finding",
+   "title": "What lies directly in front of the left atrium at the level of the aortic root",
+   "prompt": "What lies directly in front of the left atrium at the level of the aortic root?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "root",
+      "text": "The aortic root",
+      "correct": true,
+      "why": "The aortic root sits in the middle of the heart directly in front of the left atrium."
+     },
+     {
+      "id": "spine",
+      "text": "The spine",
+      "correct": false,
+      "why": "The spine is behind the left atrium, separated from it by the esophagus and the descending aorta."
+     },
+     {
+      "id": "liver",
+      "text": "The liver",
+      "correct": false,
+      "why": "The liver lies below the heart; it is not in contact with the left atrium."
+     },
+     {
+      "id": "lung",
+      "text": "The right lung",
+      "correct": false,
+      "why": "The right lung lies beside the heart, not in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "At the level of the aortic root, the left atrium lies directly behind the aorta; it is the most posterior chamber. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-004",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.194258903770176945523558798052160755516"
+   ],
+   "start": {
+    "seriesUid": "2.25.194258903770176945523558798052160755516",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-004:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_004-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_004-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-004",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.194258903770176945523558798052160755516"
+   ],
+   "start": {
+    "seriesUid": "2.25.194258903770176945523558798052160755516",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-004:enter",
+   "type": "describe_finding",
+   "title": "Which vessels drain into the left atrium",
+   "prompt": "Which vessels drain into the left atrium?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "pv",
+      "text": "The pulmonary veins (usually four)",
+      "correct": true,
+      "why": "Oxygenated blood comes back from the lungs through the pulmonary veins into the left atrium."
+     },
+     {
+      "id": "pa",
+      "text": "The pulmonary arteries",
+      "correct": false,
+      "why": "The pulmonary arteries leave the right ventricle and carry blood to the lungs."
+     },
+     {
+      "id": "cava",
+      "text": "The superior and inferior venae cavae",
+      "correct": false,
+      "why": "The venae cavae drain into the right atrium."
+     },
+     {
+      "id": "ao",
+      "text": "The aorta",
+      "correct": false,
+      "why": "The aorta leaves the left ventricle; it does not drain into the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium receives oxygenated blood from the lungs through the pulmonary veins, which enter at its back corners. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-005",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.13639941264657392748759460160133995314"
+   ],
+   "start": {
+    "seriesUid": "2.25.13639941264657392748759460160133995314",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-005:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_005-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_005-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-005",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.13639941264657392748759460160133995314"
+   ],
+   "start": {
+    "seriesUid": "2.25.13639941264657392748759460160133995314",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-005:posterior",
+   "type": "describe_finding",
+   "title": "Which of the four chambers is the most posterior, closest to the esophagus and the spine",
+   "prompt": "Which of the four chambers is the most posterior, closest to the esophagus and the spine?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "la",
+      "text": "The left atrium",
+      "correct": true,
+      "why": "The left atrium lies behind the other chambers, in front of the esophagus."
+     },
+     {
+      "id": "ra",
+      "text": "The right atrium",
+      "correct": false,
+      "why": "The right atrium forms the right border of the heart."
+     },
+     {
+      "id": "rv",
+      "text": "The right ventricle",
+      "correct": false,
+      "why": "The right ventricle is the most anterior chamber, behind the sternum."
+     },
+     {
+      "id": "lv",
+      "text": "The left ventricle",
+      "correct": false,
+      "why": "The left ventricle lies to the left and in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber, which is why a large left atrium can indent the esophagus. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-007",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.29470290166304405638752202280945825402"
+   ],
+   "start": {
+    "seriesUid": "2.25.29470290166304405638752202280945825402",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-007:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_007-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_007-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-007",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.29470290166304405638752202280945825402"
+   ],
+   "start": {
+    "seriesUid": "2.25.29470290166304405638752202280945825402",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-007:in-front",
+   "type": "describe_finding",
+   "title": "What lies directly in front of the left atrium at the level of the aortic root",
+   "prompt": "What lies directly in front of the left atrium at the level of the aortic root?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "root",
+      "text": "The aortic root",
+      "correct": true,
+      "why": "The aortic root sits in the middle of the heart directly in front of the left atrium."
+     },
+     {
+      "id": "spine",
+      "text": "The spine",
+      "correct": false,
+      "why": "The spine is behind the left atrium, separated from it by the esophagus and the descending aorta."
+     },
+     {
+      "id": "liver",
+      "text": "The liver",
+      "correct": false,
+      "why": "The liver lies below the heart; it is not in contact with the left atrium."
+     },
+     {
+      "id": "lung",
+      "text": "The right lung",
+      "correct": false,
+      "why": "The right lung lies beside the heart, not in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "At the level of the aortic root, the left atrium lies directly behind the aorta; it is the most posterior chamber. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-009",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.248342452787784809005642585934590226364"
+   ],
+   "start": {
+    "seriesUid": "2.25.248342452787784809005642585934590226364",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-009:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_009-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_009-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-009",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.248342452787784809005642585934590226364"
+   ],
+   "start": {
+    "seriesUid": "2.25.248342452787784809005642585934590226364",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-009:enter",
+   "type": "describe_finding",
+   "title": "Which vessels drain into the left atrium",
+   "prompt": "Which vessels drain into the left atrium?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "pv",
+      "text": "The pulmonary veins (usually four)",
+      "correct": true,
+      "why": "Oxygenated blood comes back from the lungs through the pulmonary veins into the left atrium."
+     },
+     {
+      "id": "pa",
+      "text": "The pulmonary arteries",
+      "correct": false,
+      "why": "The pulmonary arteries leave the right ventricle and carry blood to the lungs."
+     },
+     {
+      "id": "cava",
+      "text": "The superior and inferior venae cavae",
+      "correct": false,
+      "why": "The venae cavae drain into the right atrium."
+     },
+     {
+      "id": "ao",
+      "text": "The aorta",
+      "correct": false,
+      "why": "The aorta leaves the left ventricle; it does not drain into the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium receives oxygenated blood from the lungs through the pulmonary veins, which enter at its back corners. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-010",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.315815131589929671251989780373061897483"
+   ],
+   "start": {
+    "seriesUid": "2.25.315815131589929671251989780373061897483",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-010:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_010-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_010-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-010",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.315815131589929671251989780373061897483"
+   ],
+   "start": {
+    "seriesUid": "2.25.315815131589929671251989780373061897483",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-010:posterior",
+   "type": "describe_finding",
+   "title": "Which of the four chambers is the most posterior, closest to the esophagus and the spine",
+   "prompt": "Which of the four chambers is the most posterior, closest to the esophagus and the spine?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "la",
+      "text": "The left atrium",
+      "correct": true,
+      "why": "The left atrium lies behind the other chambers, in front of the esophagus."
+     },
+     {
+      "id": "ra",
+      "text": "The right atrium",
+      "correct": false,
+      "why": "The right atrium forms the right border of the heart."
+     },
+     {
+      "id": "rv",
+      "text": "The right ventricle",
+      "correct": false,
+      "why": "The right ventricle is the most anterior chamber, behind the sternum."
+     },
+     {
+      "id": "lv",
+      "text": "The left ventricle",
+      "correct": false,
+      "why": "The left ventricle lies to the left and in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber, which is why a large left atrium can indent the esophagus. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-011",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.188280144806899430989014585714322492031"
+   ],
+   "start": {
+    "seriesUid": "2.25.188280144806899430989014585714322492031",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-011:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_011-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_011-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-011",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.188280144806899430989014585714322492031"
+   ],
+   "start": {
+    "seriesUid": "2.25.188280144806899430989014585714322492031",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-011:in-front",
+   "type": "describe_finding",
+   "title": "What lies directly in front of the left atrium at the level of the aortic root",
+   "prompt": "What lies directly in front of the left atrium at the level of the aortic root?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "root",
+      "text": "The aortic root",
+      "correct": true,
+      "why": "The aortic root sits in the middle of the heart directly in front of the left atrium."
+     },
+     {
+      "id": "spine",
+      "text": "The spine",
+      "correct": false,
+      "why": "The spine is behind the left atrium, separated from it by the esophagus and the descending aorta."
+     },
+     {
+      "id": "liver",
+      "text": "The liver",
+      "correct": false,
+      "why": "The liver lies below the heart; it is not in contact with the left atrium."
+     },
+     {
+      "id": "lung",
+      "text": "The right lung",
+      "correct": false,
+      "why": "The right lung lies beside the heart, not in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "At the level of the aortic root, the left atrium lies directly behind the aorta; it is the most posterior chamber. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-014",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.142511814769469437025155346516601263611"
+   ],
+   "start": {
+    "seriesUid": "2.25.142511814769469437025155346516601263611",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-014:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_014-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_014-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-014",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.142511814769469437025155346516601263611"
+   ],
+   "start": {
+    "seriesUid": "2.25.142511814769469437025155346516601263611",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-014:enter",
+   "type": "describe_finding",
+   "title": "Which vessels drain into the left atrium",
+   "prompt": "Which vessels drain into the left atrium?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "pv",
+      "text": "The pulmonary veins (usually four)",
+      "correct": true,
+      "why": "Oxygenated blood comes back from the lungs through the pulmonary veins into the left atrium."
+     },
+     {
+      "id": "pa",
+      "text": "The pulmonary arteries",
+      "correct": false,
+      "why": "The pulmonary arteries leave the right ventricle and carry blood to the lungs."
+     },
+     {
+      "id": "cava",
+      "text": "The superior and inferior venae cavae",
+      "correct": false,
+      "why": "The venae cavae drain into the right atrium."
+     },
+     {
+      "id": "ao",
+      "text": "The aorta",
+      "correct": false,
+      "why": "The aorta leaves the left ventricle; it does not drain into the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium receives oxygenated blood from the lungs through the pulmonary veins, which enter at its back corners. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-016",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.138742437324062603332987860841289732059"
+   ],
+   "start": {
+    "seriesUid": "2.25.138742437324062603332987860841289732059",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-016:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_016-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_016-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-016",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.138742437324062603332987860841289732059"
+   ],
+   "start": {
+    "seriesUid": "2.25.138742437324062603332987860841289732059",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-016:posterior",
+   "type": "describe_finding",
+   "title": "Which of the four chambers is the most posterior, closest to the esophagus and the spine",
+   "prompt": "Which of the four chambers is the most posterior, closest to the esophagus and the spine?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "la",
+      "text": "The left atrium",
+      "correct": true,
+      "why": "The left atrium lies behind the other chambers, in front of the esophagus."
+     },
+     {
+      "id": "ra",
+      "text": "The right atrium",
+      "correct": false,
+      "why": "The right atrium forms the right border of the heart."
+     },
+     {
+      "id": "rv",
+      "text": "The right ventricle",
+      "correct": false,
+      "why": "The right ventricle is the most anterior chamber, behind the sternum."
+     },
+     {
+      "id": "lv",
+      "text": "The left ventricle",
+      "correct": false,
+      "why": "The left ventricle lies to the left and in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber, which is why a large left atrium can indent the esophagus. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-017",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.38334620069880263345292781465062466706"
+   ],
+   "start": {
+    "seriesUid": "2.25.38334620069880263345292781465062466706",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-017:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_017-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_017-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-017",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.38334620069880263345292781465062466706"
+   ],
+   "start": {
+    "seriesUid": "2.25.38334620069880263345292781465062466706",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-017:in-front",
+   "type": "describe_finding",
+   "title": "What lies directly in front of the left atrium at the level of the aortic root",
+   "prompt": "What lies directly in front of the left atrium at the level of the aortic root?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "root",
+      "text": "The aortic root",
+      "correct": true,
+      "why": "The aortic root sits in the middle of the heart directly in front of the left atrium."
+     },
+     {
+      "id": "spine",
+      "text": "The spine",
+      "correct": false,
+      "why": "The spine is behind the left atrium, separated from it by the esophagus and the descending aorta."
+     },
+     {
+      "id": "liver",
+      "text": "The liver",
+      "correct": false,
+      "why": "The liver lies below the heart; it is not in contact with the left atrium."
+     },
+     {
+      "id": "lung",
+      "text": "The right lung",
+      "correct": false,
+      "why": "The right lung lies beside the heart, not in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "At the level of the aortic root, the left atrium lies directly behind the aorta; it is the most posterior chamber. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-018",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.191628630870404749547309224843522644890"
+   ],
+   "start": {
+    "seriesUid": "2.25.191628630870404749547309224843522644890",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-018:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_018-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_018-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-018",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.191628630870404749547309224843522644890"
+   ],
+   "start": {
+    "seriesUid": "2.25.191628630870404749547309224843522644890",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-018:enter",
+   "type": "describe_finding",
+   "title": "Which vessels drain into the left atrium",
+   "prompt": "Which vessels drain into the left atrium?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "pv",
+      "text": "The pulmonary veins (usually four)",
+      "correct": true,
+      "why": "Oxygenated blood comes back from the lungs through the pulmonary veins into the left atrium."
+     },
+     {
+      "id": "pa",
+      "text": "The pulmonary arteries",
+      "correct": false,
+      "why": "The pulmonary arteries leave the right ventricle and carry blood to the lungs."
+     },
+     {
+      "id": "cava",
+      "text": "The superior and inferior venae cavae",
+      "correct": false,
+      "why": "The venae cavae drain into the right atrium."
+     },
+     {
+      "id": "ao",
+      "text": "The aorta",
+      "correct": false,
+      "why": "The aorta leaves the left ventricle; it does not drain into the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium receives oxygenated blood from the lungs through the pulmonary veins, which enter at its back corners. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-019",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.82948545402135542506048413364216484637"
+   ],
+   "start": {
+    "seriesUid": "2.25.82948545402135542506048413364216484637",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-019:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_019-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_019-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-019",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.82948545402135542506048413364216484637"
+   ],
+   "start": {
+    "seriesUid": "2.25.82948545402135542506048413364216484637",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-019:posterior",
+   "type": "describe_finding",
+   "title": "Which of the four chambers is the most posterior, closest to the esophagus and the spine",
+   "prompt": "Which of the four chambers is the most posterior, closest to the esophagus and the spine?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "la",
+      "text": "The left atrium",
+      "correct": true,
+      "why": "The left atrium lies behind the other chambers, in front of the esophagus."
+     },
+     {
+      "id": "ra",
+      "text": "The right atrium",
+      "correct": false,
+      "why": "The right atrium forms the right border of the heart."
+     },
+     {
+      "id": "rv",
+      "text": "The right ventricle",
+      "correct": false,
+      "why": "The right ventricle is the most anterior chamber, behind the sternum."
+     },
+     {
+      "id": "lv",
+      "text": "The left ventricle",
+      "correct": false,
+      "why": "The left ventricle lies to the left and in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber, which is why a large left atrium can indent the esophagus. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-020",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.257025676050157307007569423029892416243"
+   ],
+   "start": {
+    "seriesUid": "2.25.257025676050157307007569423029892416243",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-020:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_020-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_020-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-020",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.257025676050157307007569423029892416243"
+   ],
+   "start": {
+    "seriesUid": "2.25.257025676050157307007569423029892416243",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-020:in-front",
+   "type": "describe_finding",
+   "title": "What lies directly in front of the left atrium at the level of the aortic root",
+   "prompt": "What lies directly in front of the left atrium at the level of the aortic root?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "root",
+      "text": "The aortic root",
+      "correct": true,
+      "why": "The aortic root sits in the middle of the heart directly in front of the left atrium."
+     },
+     {
+      "id": "spine",
+      "text": "The spine",
+      "correct": false,
+      "why": "The spine is behind the left atrium, separated from it by the esophagus and the descending aorta."
+     },
+     {
+      "id": "liver",
+      "text": "The liver",
+      "correct": false,
+      "why": "The liver lies below the heart; it is not in contact with the left atrium."
+     },
+     {
+      "id": "lung",
+      "text": "The right lung",
+      "correct": false,
+      "why": "The right lung lies beside the heart, not in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "At the level of the aortic root, the left atrium lies directly behind the aorta; it is the most posterior chamber. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-021",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.297238267749281513231896818800525815954"
+   ],
+   "start": {
+    "seriesUid": "2.25.297238267749281513231896818800525815954",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-021:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_021-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_021-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-021",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.297238267749281513231896818800525815954"
+   ],
+   "start": {
+    "seriesUid": "2.25.297238267749281513231896818800525815954",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-021:enter",
+   "type": "describe_finding",
+   "title": "Which vessels drain into the left atrium",
+   "prompt": "Which vessels drain into the left atrium?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "pv",
+      "text": "The pulmonary veins (usually four)",
+      "correct": true,
+      "why": "Oxygenated blood comes back from the lungs through the pulmonary veins into the left atrium."
+     },
+     {
+      "id": "pa",
+      "text": "The pulmonary arteries",
+      "correct": false,
+      "why": "The pulmonary arteries leave the right ventricle and carry blood to the lungs."
+     },
+     {
+      "id": "cava",
+      "text": "The superior and inferior venae cavae",
+      "correct": false,
+      "why": "The venae cavae drain into the right atrium."
+     },
+     {
+      "id": "ao",
+      "text": "The aorta",
+      "correct": false,
+      "why": "The aorta leaves the left ventricle; it does not drain into the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium receives oxygenated blood from the lungs through the pulmonary veins, which enter at its back corners. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-022",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.136185391259641567117371323659804221531"
+   ],
+   "start": {
+    "seriesUid": "2.25.136185391259641567117371323659804221531",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-022:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_022-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_022-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-022",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.136185391259641567117371323659804221531"
+   ],
+   "start": {
+    "seriesUid": "2.25.136185391259641567117371323659804221531",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-022:posterior",
+   "type": "describe_finding",
+   "title": "Which of the four chambers is the most posterior, closest to the esophagus and the spine",
+   "prompt": "Which of the four chambers is the most posterior, closest to the esophagus and the spine?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "la",
+      "text": "The left atrium",
+      "correct": true,
+      "why": "The left atrium lies behind the other chambers, in front of the esophagus."
+     },
+     {
+      "id": "ra",
+      "text": "The right atrium",
+      "correct": false,
+      "why": "The right atrium forms the right border of the heart."
+     },
+     {
+      "id": "rv",
+      "text": "The right ventricle",
+      "correct": false,
+      "why": "The right ventricle is the most anterior chamber, behind the sternum."
+     },
+     {
+      "id": "lv",
+      "text": "The left ventricle",
+      "correct": false,
+      "why": "The left ventricle lies to the left and in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber, which is why a large left atrium can indent the esophagus. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-023",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.307083194719176119407236237044276462904"
+   ],
+   "start": {
+    "seriesUid": "2.25.307083194719176119407236237044276462904",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-023:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_023-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_023-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-023",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.307083194719176119407236237044276462904"
+   ],
+   "start": {
+    "seriesUid": "2.25.307083194719176119407236237044276462904",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-023:in-front",
+   "type": "describe_finding",
+   "title": "What lies directly in front of the left atrium at the level of the aortic root",
+   "prompt": "What lies directly in front of the left atrium at the level of the aortic root?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "root",
+      "text": "The aortic root",
+      "correct": true,
+      "why": "The aortic root sits in the middle of the heart directly in front of the left atrium."
+     },
+     {
+      "id": "spine",
+      "text": "The spine",
+      "correct": false,
+      "why": "The spine is behind the left atrium, separated from it by the esophagus and the descending aorta."
+     },
+     {
+      "id": "liver",
+      "text": "The liver",
+      "correct": false,
+      "why": "The liver lies below the heart; it is not in contact with the left atrium."
+     },
+     {
+      "id": "lung",
+      "text": "The right lung",
+      "correct": false,
+      "why": "The right lung lies beside the heart, not in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "At the level of the aortic root, the left atrium lies directly behind the aorta; it is the most posterior chamber. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-024",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.206560049719084026583025282461298446861"
+   ],
+   "start": {
+    "seriesUid": "2.25.206560049719084026583025282461298446861",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-024:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_024-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_024-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-024",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.206560049719084026583025282461298446861"
+   ],
+   "start": {
+    "seriesUid": "2.25.206560049719084026583025282461298446861",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-024:enter",
+   "type": "describe_finding",
+   "title": "Which vessels drain into the left atrium",
+   "prompt": "Which vessels drain into the left atrium?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "pv",
+      "text": "The pulmonary veins (usually four)",
+      "correct": true,
+      "why": "Oxygenated blood comes back from the lungs through the pulmonary veins into the left atrium."
+     },
+     {
+      "id": "pa",
+      "text": "The pulmonary arteries",
+      "correct": false,
+      "why": "The pulmonary arteries leave the right ventricle and carry blood to the lungs."
+     },
+     {
+      "id": "cava",
+      "text": "The superior and inferior venae cavae",
+      "correct": false,
+      "why": "The venae cavae drain into the right atrium."
+     },
+     {
+      "id": "ao",
+      "text": "The aorta",
+      "correct": false,
+      "why": "The aorta leaves the left ventricle; it does not drain into the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium receives oxygenated blood from the lungs through the pulmonary veins, which enter at its back corners. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-029",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.102248578676018652364667594418989780402"
+   ],
+   "start": {
+    "seriesUid": "2.25.102248578676018652364667594418989780402",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-029:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_029-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_029-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-029",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.102248578676018652364667594418989780402"
+   ],
+   "start": {
+    "seriesUid": "2.25.102248578676018652364667594418989780402",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-029:posterior",
+   "type": "describe_finding",
+   "title": "Which of the four chambers is the most posterior, closest to the esophagus and the spine",
+   "prompt": "Which of the four chambers is the most posterior, closest to the esophagus and the spine?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "la",
+      "text": "The left atrium",
+      "correct": true,
+      "why": "The left atrium lies behind the other chambers, in front of the esophagus."
+     },
+     {
+      "id": "ra",
+      "text": "The right atrium",
+      "correct": false,
+      "why": "The right atrium forms the right border of the heart."
+     },
+     {
+      "id": "rv",
+      "text": "The right ventricle",
+      "correct": false,
+      "why": "The right ventricle is the most anterior chamber, behind the sternum."
+     },
+     {
+      "id": "lv",
+      "text": "The left ventricle",
+      "correct": false,
+      "why": "The left ventricle lies to the left and in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber, which is why a large left atrium can indent the esophagus. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  },
+  {
+   "caseId": "msdh-la-030",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.20584977610620106388332125228709839346"
+   ],
+   "start": {
+    "seriesUid": "2.25.20584977610620106388332125228709839346",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-030:left-atrium",
+   "type": "find_structure",
+   "title": "Find the left atrium",
+   "prompt": "Scroll the axial images from the aortic root down to the four-chamber level and place a named mark in the left atrium.",
+   "targets": [
+    {
+     "targetId": "msdh-la_030-left-atrium",
+     "name": "Left atrium",
+     "acceptedNames": [
+      "Left atrium",
+      "LA",
+      "L atrium"
+     ],
+     "required": true
+    }
+   ],
+   "grading": {
+    "kind": "labelled_points",
+    "slabToleranceMm": 3.0,
+    "inPlaneToleranceMm": 2.0,
+    "levelTargetId": null,
+    "requireLabels": true
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Find the round aortic root in the middle of the heart; the left atrium is the large bright chamber directly behind it."
+    },
+    {
+     "level": 2,
+     "text": "Behind the left atrium lie the descending aorta (round, left of the spine) and the esophagus. The pulmonary veins enter its back corners."
+    },
+    {
+     "level": 4,
+     "text": "Showing the dataset's outline of the left atrium (semi-automatic, corrected by an expert).",
+     "action": {
+      "type": "showRegion",
+      "targetIds": [
+       "msdh-la_030-left-atrium"
+      ]
+     }
+    },
+    {
+     "level": 5,
+     "text": "Reveal the reference answer.",
+     "action": {
+      "type": "reveal"
+     }
+    }
+   ],
+   "explanation": "The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3). The mark is compared with the dataset's outline, which is semi-automatic and expert-corrected, so treat the result as a guide, not a score. The dataset's outline contains the blood pool of the atrium with its appendage and the stumps of the pulmonary veins; the atrial wall is not separated and the mitral valve plane is the lower border.",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy",
+    "navigation_windowing"
+   ]
+  },
+  {
+   "caseId": "msdh-la-030",
+   "modes": [
+    "learn",
+    "practice"
+   ],
+   "seriesUids": [
+    "2.25.20584977610620106388332125228709839346"
+   ],
+   "start": {
+    "seriesUid": "2.25.20584977610620106388332125228709839346",
+    "slice": "middle",
+    "windowPreset": null
+   },
+   "scoring": "exploratory_self_review",
+   "allowUncertain": true,
+   "id": "msdh-la-030:in-front",
+   "type": "describe_finding",
+   "title": "What lies directly in front of the left atrium at the level of the aortic root",
+   "prompt": "What lies directly in front of the left atrium at the level of the aortic root?",
+   "targets": [],
+   "grading": {
+    "kind": "choice",
+    "multiple": false,
+    "options": [
+     {
+      "id": "root",
+      "text": "The aortic root",
+      "correct": true,
+      "why": "The aortic root sits in the middle of the heart directly in front of the left atrium."
+     },
+     {
+      "id": "spine",
+      "text": "The spine",
+      "correct": false,
+      "why": "The spine is behind the left atrium, separated from it by the esophagus and the descending aorta."
+     },
+     {
+      "id": "liver",
+      "text": "The liver",
+      "correct": false,
+      "why": "The liver lies below the heart; it is not in contact with the left atrium."
+     },
+     {
+      "id": "lung",
+      "text": "The right lung",
+      "correct": false,
+      "why": "The right lung lies beside the heart, not in front of the left atrium."
+     }
+    ]
+   },
+   "hints": [
+    {
+     "level": 1,
+     "text": "Scroll to the level of the aortic root and look at what is in front of and behind the large bright chamber at the back of the heart."
+    }
+   ],
+   "explanation": "At the level of the aortic root, the left atrium lies directly behind the aorta; it is the most posterior chamber. The left atrium is the most posterior chamber of the heart. On an axial slice at the level of the aortic root it lies in the middle, directly behind the aortic root and in front of the descending aorta, the esophagus and the spine. Pulmonary veins enter it at its back corners: the two right veins pass behind the right atrium, the two left veins run in front of the descending aorta. The left atrial appendage is a small ear-shaped pouch that curves forward beside the pulmonary trunk on the left, and the mitral valve opens from the lower front of the atrium into the left ventricle. On this 3D whole-heart MRI the blood is bright, the heart muscle grey and the lungs dark, so scroll from the aortic root down to the four-chamber level and follow the bright pool behind the aorta (Learning Radiology, Ch. 3).",
+   "bookAnchors": [
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.9",
+     "sectionId": null
+    },
+    {
+     "physical": 42,
+     "printed": "27",
+     "chapterId": "ch03",
+     "figureId": "Fig 3.10",
+     "sectionId": null
+    }
+   ],
+   "objectiveIds": [
+    "ch03-o06"
+   ],
+   "skillDimensions": [
+    "anatomy"
+   ]
+  }
+ ]
+}
