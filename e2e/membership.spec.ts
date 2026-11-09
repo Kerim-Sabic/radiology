@@ -421,8 +421,8 @@ test('a book-only account reads the book without a plan; the rest stays the free
   await expect(page.locator('.free-banner')).toContainText('Free account');
   await expect(page.getByRole('heading',{name:'The book, page by page'})).toHaveCount(0);
   await page.getByRole('button',{name:'More sections'}).click();
-  await expect(page.getByRole('menuitem',{name:/^Book/})).toBeVisible();
-  await expect(page.getByRole('menuitem',{name:/^Book/}).locator('.nav-lock')).toHaveCount(0);
+  await expect(page.getByRole('menuitem',{name:/^Book(?! exams)/})).toBeVisible();
+  await expect(page.getByRole('menuitem',{name:/^Book(?! exams)/}).locator('.nav-lock')).toHaveCount(0);
   await expect(page.getByRole('menuitem',{name:/^Drills/}).locator('.nav-lock')).toHaveCount(1);
   await page.keyboard.press('Escape');
   await page.goto('/drill');
