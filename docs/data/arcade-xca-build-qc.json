@@ -1,0 +1,1280 @@
+{
+ "packId": "arcade-xca",
+ "generatedAt": "2026-11-09T17:14:28Z",
+ "packBytesExcludingLessons": 10242197,
+ "budgetBytes": 60000000,
+ "series": [
+  {
+   "uid": "2.25.42890310654850523837846891993040652026",
+   "short": "xa-675733fb75",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 117676
+  },
+  {
+   "uid": "2.25.4497572672426966303217258959065852665",
+   "short": "xa-359cc5a6dd",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 116984
+  },
+  {
+   "uid": "2.25.327389015436538740684106104639572817141",
+   "short": "xa-6ec422138b",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 104096
+  },
+  {
+   "uid": "2.25.173109577735210720630045189093895256153",
+   "short": "xa-d8d741f63e",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 137430
+  },
+  {
+   "uid": "2.25.199503104442899493088193745354036147860",
+   "short": "xa-d375d59392",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 92100
+  },
+  {
+   "uid": "2.25.224704554106514409432070048103331579640",
+   "short": "xa-92f25cc6ea",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 116326
+  },
+  {
+   "uid": "2.25.130920902836078223076325309221841748010",
+   "short": "xa-9a464f4a0d",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 76184
+  },
+  {
+   "uid": "2.25.273259107927460316413696005146166348760",
+   "short": "xa-d188514fc2",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 133996
+  },
+  {
+   "uid": "2.25.250133744880718717315463102025291905646",
+   "short": "xa-797a5bc809",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 133430
+  },
+  {
+   "uid": "2.25.10873567867411167826348648721989895532",
+   "short": "xa-9f47b512a4",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 121922
+  },
+  {
+   "uid": "2.25.238003171484472203082117854377629410820",
+   "short": "xa-925c098f04",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 103332
+  },
+  {
+   "uid": "2.25.188138050423796741511162121942421330029",
+   "short": "xa-ab992e69c6",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 109718
+  },
+  {
+   "uid": "2.25.263954239048791550232934994986439135252",
+   "short": "xa-857f2b6aae",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 104166
+  },
+  {
+   "uid": "2.25.153376366442625039626523515768747743467",
+   "short": "xa-9052cc61eb",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 105836
+  },
+  {
+   "uid": "2.25.244528806381285160494883007898324938986",
+   "short": "xa-ef1252e689",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 134516
+  },
+  {
+   "uid": "2.25.245174968194294314771575083446889178033",
+   "short": "xa-778a0d781f",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 110974
+  },
+  {
+   "uid": "2.25.208041261187359133228913008314671164827",
+   "short": "xa-2cb84ab3d4",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 130334
+  },
+  {
+   "uid": "2.25.33743387408848862582959053074334940656",
+   "short": "xa-7fcbad1bb9",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 116754
+  },
+  {
+   "uid": "2.25.112371678317990179217552697074033944184",
+   "short": "xa-917f455ea0",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 102954
+  },
+  {
+   "uid": "2.25.238839630959869843433898781539565868989",
+   "short": "xa-474e06c478",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 122776
+  },
+  {
+   "uid": "2.25.192924772833960379103062312286973382285",
+   "short": "xa-49bc99bec2",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 108212
+  },
+  {
+   "uid": "2.25.194013894050700041740231978740457781370",
+   "short": "xa-778872f458",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 102678
+  },
+  {
+   "uid": "2.25.11659638811915870803193075746085708928",
+   "short": "xa-385a16e735",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 111438
+  },
+  {
+   "uid": "2.25.9978951477972527249905527972327713666",
+   "short": "xa-b58c0ea5ec",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 144080
+  },
+  {
+   "uid": "2.25.12733439336941431013476572853042654649",
+   "short": "xa-b9e33bd296",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 107492
+  },
+  {
+   "uid": "2.25.39632570373644393584408969065375023334",
+   "short": "xa-a55670df2b",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 111268
+  },
+  {
+   "uid": "2.25.24925819175127807396264144487355297770",
+   "short": "xa-6c0eddeb02",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 115008
+  },
+  {
+   "uid": "2.25.255542337262602162319988468926639662839",
+   "short": "xa-ed11475226",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 134754
+  },
+  {
+   "uid": "2.25.503915241032840887636528041915268761",
+   "short": "xa-37afa0dbbf",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 97842
+  },
+  {
+   "uid": "2.25.173478128616831336243546248029304477385",
+   "short": "xa-4f3e841ada",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 151178
+  },
+  {
+   "uid": "2.25.53047479392836225459717986252075605677",
+   "short": "xa-9fe8d865f4",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 128706
+  },
+  {
+   "uid": "2.25.102104045158724613029167007544719124120",
+   "short": "xa-bcb63d88e0",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 121016
+  },
+  {
+   "uid": "2.25.147577166094705288816734150982825784431",
+   "short": "xa-8d91923f95",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 112100
+  },
+  {
+   "uid": "2.25.167547684668529674895681468419908175041",
+   "short": "xa-977f256a62",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 104768
+  },
+  {
+   "uid": "2.25.322231472067183888571048722922008627787",
+   "short": "xa-389841fb89",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 109294
+  },
+  {
+   "uid": "2.25.10925352457635953462477162455262506627",
+   "short": "xa-394b467678",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 102718
+  },
+  {
+   "uid": "2.25.39792191242968933756484309667704135982",
+   "short": "xa-825effe44c",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 110270
+  },
+  {
+   "uid": "2.25.263504499648135516756592395795946638356",
+   "short": "xa-783f231db3",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 108120
+  },
+  {
+   "uid": "2.25.229187294044056316275009634641822637000",
+   "short": "xa-f6100ce38a",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 116120
+  },
+  {
+   "uid": "2.25.177506328671925960122572904127756924057",
+   "short": "xa-c80f74e89d",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 115736
+  },
+  {
+   "uid": "2.25.294760437150991291943774272290125670344",
+   "short": "xa-7a700fa580",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 110414
+  },
+  {
+   "uid": "2.25.105885058430795349744344932362732530249",
+   "short": "xa-ce252961b9",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 126900
+  },
+  {
+   "uid": "2.25.149976739697363742135947760943842988222",
+   "short": "xa-803f683b73",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 106334
+  },
+  {
+   "uid": "2.25.307687877761386833325254623767487922663",
+   "short": "xa-1af02e378b",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 107430
+  },
+  {
+   "uid": "2.25.221738392749742644020707097672467919895",
+   "short": "xa-531cebdaf1",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 114060
+  },
+  {
+   "uid": "2.25.300847466682780394961578974499048160646",
+   "short": "xa-7ebf930489",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 96082
+  },
+  {
+   "uid": "2.25.21605655133227854191649959482035003300",
+   "short": "xa-9a883dd13e",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 108566
+  },
+  {
+   "uid": "2.25.309096542567709238244628588105133721734",
+   "short": "xa-767765151c",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 121788
+  },
+  {
+   "uid": "2.25.1268486037498997914849979168422220686",
+   "short": "xa-350ef76f27",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 117548
+  },
+  {
+   "uid": "2.25.4336578526025252576135687533859917229",
+   "short": "xa-ec7fb98264",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 115008
+  },
+  {
+   "uid": "2.25.15458350554451188690854882495290811711",
+   "short": "xa-d693af51de",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 114460
+  },
+  {
+   "uid": "2.25.288415347737436912797060711621727668378",
+   "short": "xa-cb2a444071",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 124008
+  },
+  {
+   "uid": "2.25.75966275672693766488502858389502271918",
+   "short": "xa-d5024f8d5d",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 119454
+  },
+  {
+   "uid": "2.25.85598820819015149320646091044719117589",
+   "short": "xa-dcdb510fd4",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 117016
+  },
+  {
+   "uid": "2.25.41792933184324461767268762439607428230",
+   "short": "xa-40b39baf73",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 110032
+  },
+  {
+   "uid": "2.25.210518586500276211266230372451340385403",
+   "short": "xa-9b5784a31b",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 136314
+  },
+  {
+   "uid": "2.25.32060721099612287371977174016150060358",
+   "short": "xa-918ee914ea",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 103314
+  },
+  {
+   "uid": "2.25.132898755925394670472841070851702017537",
+   "short": "xa-df2c19eb62",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 114198
+  },
+  {
+   "uid": "2.25.175868127260745436629927963273536531641",
+   "short": "xa-ad556434dd",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 92452
+  },
+  {
+   "uid": "2.25.148369533448899709204865040042668105521",
+   "short": "xa-69de47f022",
+   "modality": "XA",
+   "instances": 1,
+   "sortMethod": "no ImagePositionPatient/ImageOrientationPatient: ordered by InstanceNumber (no geometric meaning)",
+   "issues": [
+    "projection image (no tomographic slice stack)"
+   ],
+   "encodeStatus": {
+    "reencoded": 1
+   },
+   "bytes": 109050
+  }
+ ],
+ "targets": [
+  "arcade-036647f2b5_seg-4",
+  "arcade-036647f2b5_seg-16",
+  "arcade-036647f2b5_seg-1",
+  "arcade-036647f2b5_seg-2",
+  "arcade-036647f2b5_seg-3",
+  "arcade-036647f2b5_stenosis-1",
+  "arcade-036647f2b5_stenosis-2",
+  "arcade-036647f2b5_stenosis-3",
+  "arcade-08239ca1fc_seg-5",
+  "arcade-08239ca1fc_seg-6",
+  "arcade-08239ca1fc_seg-12b",
+  "arcade-08239ca1fc_seg-11",
+  "arcade-08239ca1fc_stenosis-1",
+  "arcade-0cf436342e_seg-8",
+  "arcade-0cf436342e_seg-6",
+  "arcade-0cf436342e_seg-9",
+  "arcade-0cf436342e_seg-7",
+  "arcade-0cf436342e_seg-5",
+  "arcade-0cf436342e_stenosis-1",
+  "arcade-0cfe6673b7_seg-3",
+  "arcade-0cfe6673b7_seg-16",
+  "arcade-0cfe6673b7_seg-1",
+  "arcade-0cfe6673b7_seg-2",
+  "arcade-0cfe6673b7_stenosis-1",
+  "arcade-10fa5a2881_seg-11",
+  "arcade-10fa5a2881_seg-6",
+  "arcade-10fa5a2881_seg-14",
+  "arcade-10fa5a2881_seg-13",
+  "arcade-10fa5a2881_seg-9",
+  "arcade-10fa5a2881_seg-5",
+  "arcade-10fa5a2881_stenosis-1",
+  "arcade-10fa5a2881_stenosis-2",
+  "arcade-1bc693803f_seg-8",
+  "arcade-1bc693803f_seg-9",
+  "arcade-1bc693803f_seg-9a",
+  "arcade-1bc693803f_seg-6",
+  "arcade-1bc693803f_seg-7",
+  "arcade-1bc693803f_seg-5",
+  "arcade-1bc693803f_stenosis-1",
+  "arcade-1bc693803f_stenosis-2",
+  "arcade-210faf755b_seg-3",
+  "arcade-210faf755b_seg-4",
+  "arcade-210faf755b_seg-1",
+  "arcade-210faf755b_seg-16",
+  "arcade-210faf755b_seg-2",
+  "arcade-210faf755b_stenosis-1",
+  "arcade-21a114f50b_seg-8",
+  "arcade-21a114f50b_seg-7",
+  "arcade-21a114f50b_seg-5",
+  "arcade-21a114f50b_seg-9a",
+  "arcade-21a114f50b_seg-6",
+  "arcade-21a114f50b_stenosis-1",
+  "arcade-27ce1f53c9_seg-6",
+  "arcade-27ce1f53c9_seg-5",
+  "arcade-27ce1f53c9_seg-8",
+  "arcade-27ce1f53c9_seg-9",
+  "arcade-27ce1f53c9_seg-7",
+  "arcade-27ce1f53c9_stenosis-1",
+  "arcade-30d2b18600_seg-5",
+  "arcade-30d2b18600_seg-7",
+  "arcade-30d2b18600_seg-8",
+  "arcade-30d2b18600_seg-9a",
+  "arcade-30d2b18600_seg-6",
+  "arcade-30d2b18600_seg-9",
+  "arcade-30d2b18600_stenosis-1",
+  "arcade-34c7940ccf_seg-7",
+  "arcade-34c7940ccf_seg-6",
+  "arcade-34c7940ccf_seg-10",
+  "arcade-34c7940ccf_seg-9a",
+  "arcade-34c7940ccf_seg-9",
+  "arcade-34c7940ccf_seg-8",
+  "arcade-34c7940ccf_seg-5",
+  "arcade-34c7940ccf_stenosis-1",
+  "arcade-39a2d3fa66_seg-3",
+  "arcade-39a2d3fa66_seg-4",
+  "arcade-39a2d3fa66_seg-16",
+  "arcade-39a2d3fa66_seg-16b",
+  "arcade-39a2d3fa66_seg-1",
+  "arcade-39a2d3fa66_seg-2",
+  "arcade-39a2d3fa66_stenosis-1",
+  "arcade-41f7fd1921_seg-14",
+  "arcade-41f7fd1921_seg-5",
+  "arcade-41f7fd1921_seg-13",
+  "arcade-41f7fd1921_seg-6",
+  "arcade-41f7fd1921_seg-11",
+  "arcade-41f7fd1921_seg-14b",
+  "arcade-41f7fd1921_stenosis-1",
+  "arcade-43c6083aa5_seg-14a",
+  "arcade-43c6083aa5_seg-6",
+  "arcade-43c6083aa5_seg-5",
+  "arcade-43c6083aa5_seg-12b",
+  "arcade-43c6083aa5_seg-13",
+  "arcade-43c6083aa5_seg-11",
+  "arcade-43c6083aa5_stenosis-1",
+  "arcade-47eef697a9_seg-13",
+  "arcade-47eef697a9_seg-14b",
+  "arcade-47eef697a9_seg-14",
+  "arcade-47eef697a9_seg-5",
+  "arcade-47eef697a9_seg-6",
+  "arcade-47eef697a9_seg-12a",
+  "arcade-47eef697a9_seg-12b",
+  "arcade-47eef697a9_seg-11",
+  "arcade-47eef697a9_stenosis-1",
+  "arcade-47eef697a9_stenosis-2",
+  "arcade-47eef697a9_stenosis-3",
+  "arcade-4ebf23e598_seg-1",
+  "arcade-4ebf23e598_seg-3",
+  "arcade-4ebf23e598_seg-16c",
+  "arcade-4ebf23e598_seg-16a",
+  "arcade-4ebf23e598_seg-16",
+  "arcade-4ebf23e598_seg-4",
+  "arcade-4ebf23e598_seg-2",
+  "arcade-4ebf23e598_stenosis-1",
+  "arcade-4f7c22c7de_seg-11",
+  "arcade-4f7c22c7de_seg-14",
+  "arcade-4f7c22c7de_seg-6",
+  "arcade-4f7c22c7de_seg-13",
+  "arcade-4f7c22c7de_seg-5",
+  "arcade-4f7c22c7de_seg-12a",
+  "arcade-4f7c22c7de_stenosis-1",
+  "arcade-62de73ced4_seg-4",
+  "arcade-62de73ced4_seg-2",
+  "arcade-62de73ced4_seg-3",
+  "arcade-62de73ced4_seg-16",
+  "arcade-62de73ced4_seg-1",
+  "arcade-62de73ced4_stenosis-1",
+  "arcade-6a6ec27ab4_seg-6",
+  "arcade-6a6ec27ab4_seg-5",
+  "arcade-6a6ec27ab4_seg-8",
+  "arcade-6a6ec27ab4_seg-7",
+  "arcade-6a6ec27ab4_stenosis-1",
+  "arcade-6f385cecf1_seg-11",
+  "arcade-6f385cecf1_seg-12b",
+  "arcade-6f385cecf1_seg-5",
+  "arcade-6f385cecf1_seg-6",
+  "arcade-6f385cecf1_stenosis-1",
+  "arcade-7017956c7d_seg-16a",
+  "arcade-7017956c7d_seg-16c",
+  "arcade-7017956c7d_seg-1",
+  "arcade-7017956c7d_seg-4",
+  "arcade-7017956c7d_seg-16",
+  "arcade-7017956c7d_seg-3",
+  "arcade-7017956c7d_seg-16b",
+  "arcade-7017956c7d_seg-2",
+  "arcade-7017956c7d_stenosis-1",
+  "arcade-73bfc3922e_seg-11",
+  "arcade-73bfc3922e_seg-12b",
+  "arcade-73bfc3922e_seg-5",
+  "arcade-73bfc3922e_seg-14",
+  "arcade-73bfc3922e_seg-6",
+  "arcade-73bfc3922e_seg-13",
+  "arcade-73bfc3922e_stenosis-1",
+  "arcade-762e2f77d4_seg-3",
+  "arcade-762e2f77d4_seg-4",
+  "arcade-762e2f77d4_seg-16",
+  "arcade-762e2f77d4_seg-2",
+  "arcade-762e2f77d4_seg-1",
+  "arcade-762e2f77d4_stenosis-1",
+  "arcade-762e2f77d4_stenosis-2",
+  "arcade-78bb2124da_seg-14",
+  "arcade-78bb2124da_seg-13",
+  "arcade-78bb2124da_seg-6",
+  "arcade-78bb2124da_seg-5",
+  "arcade-78bb2124da_seg-11",
+  "arcade-78bb2124da_stenosis-1",
+  "arcade-7f908736a5_seg-2",
+  "arcade-7f908736a5_seg-3",
+  "arcade-7f908736a5_seg-16",
+  "arcade-7f908736a5_seg-16c",
+  "arcade-7f908736a5_seg-1",
+  "arcade-7f908736a5_seg-4",
+  "arcade-7f908736a5_stenosis-1",
+  "arcade-8564016f80_seg-6",
+  "arcade-8564016f80_seg-7",
+  "arcade-8564016f80_seg-9",
+  "arcade-8564016f80_seg-10",
+  "arcade-8564016f80_seg-8",
+  "arcade-8564016f80_seg-5",
+  "arcade-8564016f80_stenosis-1",
+  "arcade-8723f1d6a6_seg-6",
+  "arcade-8723f1d6a6_seg-7",
+  "arcade-8723f1d6a6_seg-5",
+  "arcade-8723f1d6a6_seg-8",
+  "arcade-8723f1d6a6_stenosis-1",
+  "arcade-93b6a2692f_seg-9",
+  "arcade-93b6a2692f_seg-6",
+  "arcade-93b6a2692f_seg-5",
+  "arcade-93b6a2692f_seg-8",
+  "arcade-93b6a2692f_seg-7",
+  "arcade-93b6a2692f_stenosis-1",
+  "arcade-996691d986_seg-3",
+  "arcade-996691d986_seg-1",
+  "arcade-996691d986_seg-2",
+  "arcade-996691d986_stenosis-1",
+  "arcade-9a292e534a_seg-16",
+  "arcade-9a292e534a_seg-3",
+  "arcade-9a292e534a_seg-4",
+  "arcade-9a292e534a_seg-2",
+  "arcade-9a292e534a_seg-1",
+  "arcade-9a292e534a_seg-16a",
+  "arcade-9a292e534a_stenosis-1",
+  "arcade-9b252cf377_seg-2",
+  "arcade-9b252cf377_seg-1",
+  "arcade-9b252cf377_seg-4",
+  "arcade-9b252cf377_seg-16",
+  "arcade-9b252cf377_seg-3",
+  "arcade-9b252cf377_stenosis-1",
+  "arcade-9b252cf377_stenosis-2",
+  "arcade-a2062c7881_seg-14a",
+  "arcade-a2062c7881_seg-5",
+  "arcade-a2062c7881_seg-11",
+  "arcade-a2062c7881_seg-13",
+  "arcade-a2062c7881_seg-6",
+  "arcade-a2062c7881_seg-12b",
+  "arcade-a2062c7881_seg-15",
+  "arcade-a2062c7881_stenosis-1",
+  "arcade-aa05de30a1_seg-6",
+  "arcade-aa05de30a1_seg-9a",
+  "arcade-aa05de30a1_seg-8",
+  "arcade-aa05de30a1_seg-7",
+  "arcade-aa05de30a1_seg-5",
+  "arcade-aa05de30a1_stenosis-1",
+  "arcade-b05229d9b8_seg-2",
+  "arcade-b05229d9b8_seg-4",
+  "arcade-b05229d9b8_seg-1",
+  "arcade-b05229d9b8_seg-3",
+  "arcade-b05229d9b8_seg-16",
+  "arcade-b05229d9b8_seg-16a",
+  "arcade-b05229d9b8_seg-16c",
+  "arcade-b05229d9b8_stenosis-1",
+  "arcade-b185d45e8f_seg-3",
+  "arcade-b185d45e8f_seg-2",
+  "arcade-b185d45e8f_seg-1",
+  "arcade-b185d45e8f_seg-16",
+  "arcade-b185d45e8f_seg-4",
+  "arcade-b185d45e8f_stenosis-1",
+  "arcade-b185d45e8f_stenosis-2",
+  "arcade-b29d5702b7_seg-6",
+  "arcade-b29d5702b7_seg-12",
+  "arcade-b29d5702b7_seg-13",
+  "arcade-b29d5702b7_seg-12a",
+  "arcade-b29d5702b7_seg-5",
+  "arcade-b29d5702b7_seg-11",
+  "arcade-b29d5702b7_stenosis-1",
+  "arcade-b649b4c74b_seg-2",
+  "arcade-b649b4c74b_seg-3",
+  "arcade-b649b4c74b_seg-1",
+  "arcade-b649b4c74b_stenosis-1",
+  "arcade-b66bdd550a_seg-3",
+  "arcade-b66bdd550a_seg-16",
+  "arcade-b66bdd550a_seg-1",
+  "arcade-b66bdd550a_seg-4",
+  "arcade-b66bdd550a_seg-2",
+  "arcade-b66bdd550a_stenosis-1",
+  "arcade-b71743b417_seg-1",
+  "arcade-b71743b417_seg-3",
+  "arcade-b71743b417_seg-16",
+  "arcade-b71743b417_seg-2",
+  "arcade-b71743b417_seg-4",
+  "arcade-b71743b417_stenosis-1",
+  "arcade-b92607d48c_seg-7",
+  "arcade-b92607d48c_seg-8",
+  "arcade-b92607d48c_seg-5",
+  "arcade-b92607d48c_seg-6",
+  "arcade-b92607d48c_seg-9",
+  "arcade-b92607d48c_stenosis-1",
+  "arcade-be14876569_seg-3",
+  "arcade-be14876569_seg-2",
+  "arcade-be14876569_seg-16",
+  "arcade-be14876569_seg-4",
+  "arcade-be14876569_seg-1",
+  "arcade-be14876569_stenosis-1",
+  "arcade-bf05259e6e_seg-3",
+  "arcade-bf05259e6e_seg-2",
+  "arcade-bf05259e6e_seg-16",
+  "arcade-bf05259e6e_seg-1",
+  "arcade-bf05259e6e_seg-4",
+  "arcade-bf05259e6e_stenosis-1",
+  "arcade-bf05259e6e_stenosis-2",
+  "arcade-c4019e42b1_seg-8",
+  "arcade-c4019e42b1_seg-7",
+  "arcade-c4019e42b1_seg-6",
+  "arcade-c4019e42b1_seg-5",
+  "arcade-c4019e42b1_seg-9a",
+  "arcade-c4019e42b1_seg-9",
+  "arcade-c4019e42b1_stenosis-1",
+  "arcade-c6555b4236_seg-13",
+  "arcade-c6555b4236_seg-11",
+  "arcade-c6555b4236_seg-6",
+  "arcade-c6555b4236_seg-14",
+  "arcade-c6555b4236_seg-5",
+  "arcade-c6555b4236_seg-14a",
+  "arcade-c6555b4236_seg-12b",
+  "arcade-c6555b4236_stenosis-1",
+  "arcade-c82f0732d1_seg-5",
+  "arcade-c82f0732d1_seg-14b",
+  "arcade-c82f0732d1_seg-12b",
+  "arcade-c82f0732d1_seg-12a",
+  "arcade-c82f0732d1_seg-13",
+  "arcade-c82f0732d1_seg-11",
+  "arcade-c82f0732d1_seg-14",
+  "arcade-c82f0732d1_stenosis-1",
+  "arcade-ce825952f8_seg-6",
+  "arcade-ce825952f8_seg-5",
+  "arcade-ce825952f8_seg-7",
+  "arcade-ce825952f8_seg-8",
+  "arcade-ce825952f8_stenosis-1",
+  "arcade-d1fca707e6_seg-2",
+  "arcade-d1fca707e6_seg-3",
+  "arcade-d1fca707e6_seg-4",
+  "arcade-d1fca707e6_seg-16",
+  "arcade-d1fca707e6_seg-1",
+  "arcade-d1fca707e6_stenosis-1",
+  "arcade-d1fca707e6_stenosis-2",
+  "arcade-d8a5818ece_seg-3",
+  "arcade-d8a5818ece_seg-2",
+  "arcade-d8a5818ece_seg-4",
+  "arcade-d8a5818ece_seg-1",
+  "arcade-d8a5818ece_seg-16",
+  "arcade-d8a5818ece_stenosis-1",
+  "arcade-db6005e0fc_seg-6",
+  "arcade-db6005e0fc_seg-5",
+  "arcade-db6005e0fc_seg-9a",
+  "arcade-db6005e0fc_seg-9",
+  "arcade-db6005e0fc_seg-7",
+  "arcade-db6005e0fc_seg-8",
+  "arcade-db6005e0fc_stenosis-1",
+  "arcade-dce633087f_seg-5",
+  "arcade-dce633087f_seg-15",
+  "arcade-dce633087f_seg-14",
+  "arcade-dce633087f_seg-13",
+  "arcade-dce633087f_seg-11",
+  "arcade-dce633087f_stenosis-1",
+  "arcade-e09b9f54b4_seg-8",
+  "arcade-e09b9f54b4_seg-7",
+  "arcade-e09b9f54b4_seg-5",
+  "arcade-e09b9f54b4_seg-6",
+  "arcade-e09b9f54b4_seg-9",
+  "arcade-e09b9f54b4_stenosis-1",
+  "arcade-e1b69f97cc_seg-4",
+  "arcade-e1b69f97cc_seg-1",
+  "arcade-e1b69f97cc_seg-2",
+  "arcade-e1b69f97cc_seg-3",
+  "arcade-e1b69f97cc_seg-16",
+  "arcade-e1b69f97cc_seg-16c",
+  "arcade-e1b69f97cc_stenosis-1",
+  "arcade-e605dd535a_seg-5",
+  "arcade-e605dd535a_seg-7",
+  "arcade-e605dd535a_seg-6",
+  "arcade-e605dd535a_seg-8",
+  "arcade-e605dd535a_seg-9a",
+  "arcade-e605dd535a_stenosis-1",
+  "arcade-f166711b60_seg-16",
+  "arcade-f166711b60_seg-2",
+  "arcade-f166711b60_seg-3",
+  "arcade-f166711b60_seg-1",
+  "arcade-f166711b60_seg-4",
+  "arcade-f166711b60_stenosis-1",
+  "arcade-f16e61f82f_seg-5",
+  "arcade-f16e61f82f_seg-12b",
+  "arcade-f16e61f82f_seg-6",
+  "arcade-f16e61f82f_seg-14a",
+  "arcade-f16e61f82f_seg-12a",
+  "arcade-f16e61f82f_seg-13",
+  "arcade-f16e61f82f_seg-11",
+  "arcade-f16e61f82f_stenosis-1",
+  "arcade-f16e61f82f_stenosis-2",
+  "arcade-f31e6ece59_seg-3",
+  "arcade-f31e6ece59_seg-2",
+  "arcade-f31e6ece59_seg-1",
+  "arcade-f31e6ece59_seg-4",
+  "arcade-f31e6ece59_stenosis-1",
+  "arcade-f9b0ea472b_seg-6",
+  "arcade-f9b0ea472b_seg-14b",
+  "arcade-f9b0ea472b_seg-14a",
+  "arcade-f9b0ea472b_seg-13",
+  "arcade-f9b0ea472b_seg-11",
+  "arcade-f9b0ea472b_seg-5",
+  "arcade-f9b0ea472b_stenosis-1",
+  "arcade-fcea7e8033_seg-6",
+  "arcade-fcea7e8033_seg-14a",
+  "arcade-fcea7e8033_seg-11",
+  "arcade-fcea7e8033_seg-13",
+  "arcade-fcea7e8033_seg-15",
+  "arcade-fcea7e8033_seg-12b",
+  "arcade-fcea7e8033_seg-5",
+  "arcade-fcea7e8033_stenosis-1",
+  "arcade-ff72670b74_seg-3",
+  "arcade-ff72670b74_seg-1",
+  "arcade-ff72670b74_seg-2",
+  "arcade-ff72670b74_seg-4",
+  "arcade-ff72670b74_seg-16",
+  "arcade-ff72670b74_stenosis-1",
+  "arcade-ff772f828c_seg-16a",
+  "arcade-ff772f828c_seg-4",
+  "arcade-ff772f828c_seg-3",
+  "arcade-ff772f828c_seg-2",
+  "arcade-ff772f828c_seg-1",
+  "arcade-ff772f828c_seg-16",
+  "arcade-ff772f828c_stenosis-1"
+ ],
+ "qcReview": {
+  "tool": "scripts/data/qc_render.py arcade-xca <outDir> (decodes the packed DICOM and draws every target) plus the pre-build overlay sheets of both annotations",
+  "selectionRule": "ARCADE frames present in BOTH tasks (same image content under two file names; the only frames with segment outlines and stenosis regions together; 123 distinct frames, all in the test split), every one drawn and reviewed (102 kept after review); 26 right-coronary and 34 left-coronary frames taken at even steps through the md5-ordered pool to keep the pack within its file budget.",
+  "review": "Every candidate drawn with its segment outlines and stenosis regions on the frame and checked by eye.",
+  "kept": 60,
+  "dropped": {
+   "0768f61c1f16": "stenosis region sits beside the vessel, not on it",
+   "15010fd0bef6": "very low contrast: segments cannot be followed by eye",
+   "1a9f8e359bf0": "very low contrast, overexposed corner: segments cannot be followed by eye",
+   "2aa24fd98583": "left main bifurcation drawn over itself on a tilted view; segment boundaries ambiguous",
+   "329fc7d596f9": "stenosis region offset from the vessel",
+   "72aea66c71f7": "stenosis region offset from the vessel",
+   "803db52b1af4": "vessel segments do not match the visible anatomy (labels cannot be told apart)",
+   "862b948daf7e": "very small, low-contrast branches; segments not distinct",
+   "8f5b792470d1": "second stenosis region lies off the vessel",
+   "9903dab50fca": "sternal wires over the left coronary tree make the segments hard to follow",
+   "9ac1af86ccd0": "left main and proximal vessels overlap, boundaries unclear",
+   "9af050d8b1c0": "stenosis regions float away from the vessels",
+   "9d4789f1ab73": "sternal wires and clutter over the right coronary artery",
+   "a585fed4064f": "stenosis region offset from the vessel",
+   "a6bf1228aa8e": "stenosis regions not on a visible vessel",
+   "b1f1d2a040c2": "outlines do not follow a clear vessel",
+   "c6ef19e5edb0": "left main trifurcation overlaps itself; segment boundaries ambiguous",
+   "cd24c996eb0d": "stenosis region spans the left main and an unlabelled area",
+   "d75188a4e813": "extra stenosis region off the vessel",
+   "dde6e91d0860": "overlapping left main outlines on a very small tree",
+   "de1993e28e00": "stenosis region on a vessel with no segment outline"
+  },
+  "leakCheck": "study/series descriptions, role and display notes and PatientID checked against LEAK (dataset names, diagnoses) at build"
+ }
+}

@@ -297,6 +297,15 @@
    "bytes": 3506906,
    "distribution": "repo",
    "note": "AI anatomy layer for radiographs (unreviewed): 1617 outlines on 126 frontal chest radiographs, automatic QC and a visual check applied. No images; requires cxr-findings, cxr-findings-2, cxr-findings-3."
+  },
+  {
+   "id": "arcade-xca",
+   "title": "Coronary angiography: vessel segments and narrowings marked by cardiologists",
+   "manifest": "arcade-xca/pack.json",
+   "lessons": "arcade-xca/lessons.json",
+   "bytes": 11276047,
+   "distribution": "repo",
+   "note": "60 subjects, 60 studies, 60 series, 60 instances, 400 reference targets; DICOM 6.9 MB. Committed to the repository; rebuild with scripts/data/arcade_xca.py; lessons scripts/lessons/arcade_xca.py."
   }
  ]
 }

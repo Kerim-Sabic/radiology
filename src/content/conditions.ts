@@ -529,6 +529,33 @@ export const CONDITIONS: Condition[] = [
     evidence: [{ kind: 'finding', classIds: ['finding:pulmonary_embolism'], note: 'Emboli outlined by radiologists on CT pulmonary angiography (FUMPE)' }],
   },
   {
+    id: 'coronary_artery_stenosis',
+    name: 'Coronary artery stenosis (narrowed coronary arteries)',
+    synonyms: ['cad', 'coronary artery disease', 'coronary stenosis', 'coronary atherosclerosis', 'narrowed coronary artery', 'coronary angiogram', 'syntax segments'],
+    region: 'heart_vessels',
+    modalities: ['XR', 'CT'],
+    signs: [
+      'On an invasive coronary angiogram only the lumen is seen, filled with contrast: a stenosis is a place where the bright column is narrower than the normal vessel beside it (a short pinch, a long taper or an irregular edge).',
+      'Its degree is the percentage loss of diameter compared with the normal reference segment; a narrowing of 50% or more is the usual threshold for a lesion to be reported.',
+      'Each artery is viewed in several projections, because a vessel seen end-on or overlapped by another one hides or imitates a narrowing.',
+      'Cardiologists name the place by SYNTAX segment: 1-4 and 16 on the right coronary artery, 5 for the left main, 6-10 on the left anterior descending artery and its diagonals, 11-15 on the circumflex artery and its branches.',
+    ],
+    book: [
+      { physical: 145, chapterId: 'ch11', heading: 'Coronary Artery Disease', note: 'The disease; the book shows it on the chest radiograph and CT, not on an invasive angiogram' },
+      { physical: 43, chapterId: 'ch03', heading: 'Coronary CT Angiography: Normal Anatomy', note: 'Normal coronary arteries on CT angiography' },
+      { physical: 45, chapterId: 'ch03', heading: 'Coronary Artery Dominance', note: 'Which artery gives the posterior descending branch' },
+    ],
+    related: [],
+    evidence: [
+      {
+        kind: 'finding',
+        classIds: ['finding:coronary_stenosis'],
+        note: 'Regions with a narrowing of 50% or more marked by interventional cardiologists on invasive coronary angiograms (ARCADE)',
+        names: { 'finding:coronary_stenosis': 'Coronary artery narrowing' },
+      },
+    ],
+  },
+  {
     id: 'congestive_heart_failure',
     name: 'Congestive heart failure and pulmonary edema',
     synonyms: ['chf', 'heart failure', 'pulmonary edema', 'pulmonary oedema', 'cardiogenic edema', 'fluid overload', 'kerley b lines', 'bat wing', 'batwing'],

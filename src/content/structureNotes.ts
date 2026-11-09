@@ -406,6 +406,107 @@ const N: Array<[RegExp, StructureNote]> = [
       window: 'Soft tissue',
     },
   ],
+  // ------------------------------------------------------------- coronary arteries (invasive angiography, SYNTAX segments)
+  [
+    /^coronary_rca_(proximal|mid|distal)$/,
+    {
+      look: 'A contrast-filled tube that leaves the right side of the aortic root and runs down the groove between the right atrium and right ventricle, then curves round the lower border of the heart. The SYNTAX score splits it into proximal (1), mid (2) and distal (3) parts: the mid part ends at the sharp bend over the lower right border of the heart (the acute margin) and the distal part ends at the crux.',
+      near: 'Its first branches go to the sinus node and the right ventricle; at the crux it gives off the posterior descending artery (segment 4) and the posterolateral branch (segment 16) when the circulation is right-dominant.',
+      pitfall: 'The mid part is a classic place for a long narrowing. A catheter lying in the vessel mouth or the spine and ribs crossing the artery can hide a lumen change, so follow the lumen edge in more than one view.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^coronary_pda_(rca|lcx)$/,
+    {
+      look: 'A thin vessel that runs forward in the groove between the two ventricles on the underside of the heart, towards the apex, and feeds the lower part of the septum.',
+      near: 'It leaves the right coronary artery at the crux (segment 4) in most people, or the left circumflex artery (segment 15) when the circulation is left-dominant; the side that supplies it decides which artery is called dominant.',
+      pitfall: 'On a single view it overlaps the posterolateral branches and the diaphragm. Do not call a vessel missing because it is faint: small branches fill poorly.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^coronary_rca_posterolateral(_[abc])?$/,
+    {
+      look: 'One or several vessels that continue beyond the crux behind the left ventricle, fanning out from the end of the right coronary artery towards the back wall (SYNTAX segments 16, 16a, 16b, 16c).',
+      near: 'They lie next to the posterior descending artery and, in left-dominant hearts, are replaced by branches of the circumflex artery.',
+      pitfall: 'These small branches often overlap each other and the posterior descending artery, so the numbering of the side branches is the least certain part of a segment map.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^coronary_main_stem$/,
+    {
+      look: 'A short, wide trunk that leaves the left side of the aortic root and runs a few centimetres behind the pulmonary trunk before it divides, usually into the left anterior descending and left circumflex arteries (SYNTAX segment 5).',
+      near: 'Its end divides into the left anterior descending artery (segment 6) and the circumflex artery (segment 11), sometimes with an intermediate branch between them.',
+      pitfall: 'It is short and seen end-on in many views, so a narrowing can hide behind the catheter tip or the spine; a stenosis here puts a large part of the left ventricle at risk, which is why it is looked for on every left injection.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^coronary_lad_(proximal|mid|apical)$/,
+    {
+      look: 'The artery that runs forward in the groove between the two ventricles (the interventricular groove) from the left main bifurcation to the apex, split into proximal (6), mid (7) and distal or apical (8) parts; the borders between them are drawn by convention near the first large septal branch and the second diagonal branch.',
+      near: 'Diagonal branches leave it towards the left, septal branches go deep into the septum; beyond the apex it may wrap round to meet the posterior descending artery.',
+      pitfall: 'In a view straight from the front the artery overlaps the spine and its branches foreshorten. The borders between the segments sit at branches that are hard to see, so expect a few millimetres of disagreement there.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^coronary_diagonal_(1|2)a?$/,
+    {
+      look: 'A branch that leaves the left anterior descending artery at an angle and runs over the front-left surface of the left ventricle (SYNTAX segments 9 and 10; the letter a marks a side branch of it).',
+      near: 'It runs beside and lateral to the left anterior descending artery and can look like a second parallel vessel.',
+      pitfall: 'A large diagonal can look like the LAD itself. Follow each vessel back to where it starts before you name it.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^coronary_lcx_(proximal|distal)$/,
+    {
+      look: 'The branch of the left main artery that curves backwards and to the left in the groove between the left atrium and the left ventricle, split into proximal (segment 11) and distal (segment 13) parts at the origin of the first obtuse marginal branch.',
+      near: 'Obtuse marginal branches (12a, 12b) leave it towards the lateral wall; in left-dominant hearts it ends as the posterior descending artery.',
+      pitfall: "In many views it overlaps the left anterior descending artery and its branches, so it is easy to confuse with a marginal branch; follow the vessel back to the left main bifurcation.",
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^coronary_intermediate$/,
+    {
+      look: 'An extra branch that leaves the bifurcation of the left main artery between the left anterior descending and the circumflex arteries and runs over the front-left wall (SYNTAX segment 12, the intermediate or anterolateral branch).',
+      near: 'It lies between the left anterior descending artery and the first obtuse marginal branch.',
+      pitfall: 'It is present in only a minority of people; when it is there the left main divides into three, which is easy to mistake for a diagonal or marginal branch.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^coronary_marginal_(1|2)$/,
+    {
+      look: 'A branch of the left circumflex artery that runs down the lateral wall of the left ventricle (SYNTAX segments 12a and 12b, the obtuse marginals).',
+      near: 'It leaves the circumflex artery between its proximal and distal parts and runs parallel to the diagonal branches on the other side of the heart.',
+      pitfall: 'Small obtuse marginals vary a lot in number and size, and they can be mistaken for diagonals in a view where the two groups overlap.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
+    /^coronary_lcx_posterolateral(_[ab])?$/,
+    {
+      look: 'One or more branches at the end of the circumflex artery that run behind the left ventricle towards its lower back wall (SYNTAX segments 14, 14a, 14b).',
+      near: 'They lie next to the distal circumflex artery (segment 13) and, in left-dominant hearts, the posterior descending artery (segment 15).',
+      pitfall: 'The end of the circumflex artery is thin and often fills late; do not assume an artery is blocked because its tip is faint.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
   // ------------------------------------------------------------- brain arteries (Circle of Willis)
   [
     /^basilar_artery$/,
