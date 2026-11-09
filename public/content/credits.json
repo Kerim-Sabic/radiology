@@ -1,0 +1,937 @@
+{
+ "groups": [
+  {
+   "kind": "images",
+   "title": "Images and datasets",
+   "entries": [
+    {
+     "id": "tcia:Lung-PET-CT-Dx",
+     "ids": [
+      "tcia:Lung-PET-CT-Dx"
+     ],
+     "kind": "images",
+     "name": "A Large-Scale CT and PET/CT Dataset for Lung Cancer Diagnosis (Lung-PET-CT-Dx)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Li et al.",
+     "license": "Creative Commons Attribution 4.0 International License",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/TCIA.2020.NNC2-0461",
+     "doi": "10.7937/TCIA.2020.NNC2-0461",
+     "links": [],
+     "citation": "Li, P., Wang, S., Li, T., Lu, J., HuangFu, Y., & Wang, D. (2020). A Large-Scale CT and PET/CT Dataset for Lung Cancer Diagnosis (Lung-PET-CT-Dx) [Data set]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.2020.NNC2-0461",
+     "packs": [
+      "anatomy-atlas",
+      "anatomy-atlas-mr",
+      "ct-tumors"
+     ]
+    },
+    {
+     "id": "tcia:Soft-tissue-Sarcoma",
+     "ids": [
+      "tcia:Soft-tissue-Sarcoma"
+     ],
+     "kind": "images",
+     "name": "A radiomics model from joint FDG-PET and MRI texture features for the prediction of lung metastases in soft-tissue sarcomas of the extremities (Soft-tissue-Sarcoma)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Vallières et al.",
+     "license": "Creative Commons Attribution 3.0 Unported License",
+     "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/K9/TCIA.2015.7GO2GSKS",
+     "doi": "10.7937/K9/TCIA.2015.7GO2GSKS",
+     "links": [],
+     "citation": "Vallières, M., Freeman, C. R., Skamene, S. R., & El Naqa, I. (2015). A radiomics model from joint FDG-PET and MRI texture features for the prediction of lung metastases in soft-tissue sarcomas of the extremities (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/K9/TCIA.2015.7GO2GSKS",
+     "packs": [
+      "anatomy-atlas",
+      "ct-mri-pairs"
+     ]
+    },
+    {
+     "id": "zenodo:ARCADE",
+     "ids": [
+      "zenodo:ARCADE"
+     ],
+     "kind": "images",
+     "name": "ARCADE: x-ray angiography images with SYNTAX vessel-segment and stenosis annotations (Research Institute of Cardiology and Internal Diseases, Almaty)",
+     "what": "",
+     "usage": "Invasive coronary angiograms with the dataset's expert vessel-segment and stenosis annotations are used as cases.",
+     "owner": "Research Institute of Cardiology and Internal Diseases, Almaty, Kazakhstan (Popov M, et al.)",
+     "license": "CC0 1.0 (public domain dedication)",
+     "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+     "permission": false,
+     "url": "https://zenodo.org/records/10390295",
+     "doi": "10.5281/zenodo.10390295",
+     "links": [],
+     "citation": "Popov M, Amanturdieva A, Zhaksylyk N, Alkanov A, Saniyazbekov A, Aimyshev T, Ismailov E, Bulegenov A, Kuzhukeyev A, Kulanbayeva A, Kalzhanov A, Temirgaliyev N, Kuzhukeyeva A, Zhakenov A, Ruziyev G, Moldagaliyev D, Tleulesov B, Kussainov I, Moldagulova A, Zhumabayev A. Dataset for Automatic Region-based Coronary Artery Disease Diagnostics Using X-Ray Angiography Images. Scientific Data 11, 20 (2024). doi:10.1038/s41597-023-02871-z. Data: Zenodo doi:10.5281/zenodo.10390295.",
+     "packs": [
+      "arcade-xca"
+     ]
+    },
+    {
+     "id": "tcia:Breast-Lesions-USG",
+     "ids": [
+      "tcia:Breast-Lesions-USG"
+     ],
+     "kind": "images",
+     "name": "Breast-Lesions-USG (BrEaST): a curated breast ultrasound dataset with benign, malignant and normal cases",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Pawłowska A et al.",
+     "license": "CC BY 4.0",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/9wkk-q141",
+     "doi": "10.7937/9wkk-q141",
+     "links": [],
+     "citation": "Pawłowska A, Ćwierz-Pieńkowska A, Domalik A, et al. Curated benchmark dataset for ultrasound based breast lesion analysis. Sci Data. 2024;11:148. doi:10.1038/s41597-024-02984-z. Data: The Cancer Imaging Archive, doi:10.7937/9wkk-q141",
+     "packs": [
+      "us-breast-2",
+      "us-breast-3",
+      "us-cases"
+     ]
+    },
+    {
+     "id": "tcia:C4KC-KiTS",
+     "ids": [
+      "tcia:C4KC-KiTS"
+     ],
+     "kind": "images",
+     "name": "C4KC KiTS Challenge Kidney Tumor Segmentation Dataset (C4KC-KiTS)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Heller et al.",
+     "license": "Creative Commons Attribution 3.0 Unported License",
+     "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/TCIA.2019.IX49E8NX",
+     "doi": "10.7937/TCIA.2019.IX49E8NX",
+     "links": [],
+     "citation": "Heller, N., Sathianathen, N., Kalapara, A., Walczak, E., Moore, K., Kaluzniak, H., Rosenberg, J., Blake, P., Rengel, Z., Oestreich, M., Dean, J., Tradewell, M., Shah, A., Tejpaul, R., Edgerton, Z., Peterson, M., Raza, S., Regmi, S., Papanikolopoulos, N., & Weight, C. (2019). C4KC KiTS Challenge Kidney Tumor Segmentation Dataset (C4KC-KiTS) (Version 3) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.2019.IX49E8NX",
+     "packs": [
+      "anatomy-atlas",
+      "anatomy-atlas-mr",
+      "body",
+      "expansion"
+     ]
+    },
+    {
+     "id": "mendeley:CADICA",
+     "ids": [
+      "mendeley:CADICA"
+     ],
+     "kind": "images",
+     "name": "CADICA: a new dataset for coronary artery disease",
+     "what": "Invasive coronary angiography videos with lesion annotations, from a hospital in Malaga, Spain.",
+     "usage": "Coronary angiogram frames with the dataset's lesion annotations are used as cases.",
+     "owner": "Universidad de Malaga (Jimenez-Partinen A, Molina-Cabello MA, Thurnhofer-Hemsi K, Palomo E, Rodriguez-Capitan J, Molina-Ramos AI, Jimenez-Navarro M)",
+     "license": "CC BY 4.0",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://data.mendeley.com/datasets/p9bpx9ctcv/2",
+     "doi": "10.17632/p9bpx9ctcv.2",
+     "links": [],
+     "citation": "Jimenez-Partinen A, Molina-Cabello MA, Thurnhofer-Hemsi K, Palomo E, Rodriguez-Capitan J, Molina-Ramos AI, Jimenez-Navarro M. CADICA: a new dataset for coronary artery disease. Mendeley Data, V2, 2024. doi:10.17632/p9bpx9ctcv.2",
+     "packs": []
+    },
+    {
+     "id": "tcia:COVID-19-AR",
+     "ids": [
+      "tcia:COVID-19-AR"
+     ],
+     "kind": "images",
+     "name": "Chest Imaging with Clinical and Genomic Correlates Representing a Rural COVID-19 Positive Population (COVID-19-AR)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Desai et al.",
+     "license": "Creative Commons Attribution 4.0 International License",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/tcia.2020.py71-5978",
+     "doi": "10.7937/tcia.2020.py71-5978",
+     "links": [],
+     "citation": "Desai, S., Baghal, A., Wongsurawat, T., Al-Shukri, S., Gates, K., Farmer, P., Rutherford, M., Blake, G. D., Nolan, T., Powell, T., Sexton, K., Bennett, W., & Prior, F. (2020). Chest Imaging with Clinical and Genomic Correlates Representing a Rural COVID-19 Positive Population (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.2020.PY71-5978",
+     "packs": [
+      "anatomy-atlas",
+      "body",
+      "chest-pairs",
+      "more-ct-xr",
+      "starter",
+      "vessel-drafts"
+     ]
+    },
+    {
+     "id": "tcia:CBIS-DDSM",
+     "ids": [
+      "tcia:CBIS-DDSM"
+     ],
+     "kind": "images",
+     "name": "Curated Breast Imaging Subset of Digital Database for Screening Mammography (CBIS-DDSM)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Sawyer-Lee et al.",
+     "license": "Creative Commons Attribution 3.0 Unported License",
+     "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/K9/TCIA.2016.7O02S9CY",
+     "doi": "10.7937/K9/TCIA.2016.7O02S9CY",
+     "links": [],
+     "citation": "Sawyer-Lee, R., Gimenez, F., Hoogi, A., & Rubin, D. (2016). Curated Breast Imaging Subset of Digital Database for Screening Mammography (CBIS-DDSM) (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/K9/TCIA.2016.7O02S9CY",
+     "packs": [
+      "anatomy-atlas-mr",
+      "mammo-cbis",
+      "mammo-cbis-2",
+      "mammo-cbis-3",
+      "neuro-msk"
+     ]
+    },
+    {
+     "id": "mendeley:Digital-Knee-X-ray",
+     "ids": [
+      "mendeley:Digital-Knee-X-ray"
+     ],
+     "kind": "images",
+     "name": "Digital Knee X-ray Images (Kellgren-Lawrence grades by two medical experts)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Gornale S, Patravali P",
+     "license": "CC BY 4.0",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.17632/t9ndx37v5h.1",
+     "doi": "10.17632/t9ndx37v5h.1",
+     "links": [],
+     "citation": "Gornale S, Patravali P. Digital Knee X-ray Images. Mendeley Data, V1, 2020. doi:10.17632/t9ndx37v5h.1",
+     "packs": [
+      "peds-msk"
+     ]
+    },
+    {
+     "id": "figshare:FracAtlas",
+     "ids": [
+      "figshare:FracAtlas"
+     ],
+     "kind": "images",
+     "name": "FracAtlas: musculoskeletal radiographs with fracture annotations",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Abedeen I et al.",
+     "license": "CC BY 4.0",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.6084/m9.figshare.22363012.v7",
+     "doi": "10.6084/m9.figshare.22363012.v7",
+     "links": [],
+     "citation": "Abedeen I, Rahman MA, Prottyasha FZ, Ahmed T, Chowdhury TM, Shatabda S. FracAtlas: A Dataset for Fracture Classification, Localization and Segmentation of Musculoskeletal Radiographs. Sci Data. 2023;10:521. doi:10.1038/s41597-023-02432-4. Data: figshare doi:10.6084/m9.figshare.22363012.v7",
+     "packs": [
+      "fx-radiographs",
+      "fx-radiographs-2"
+     ]
+    },
+    {
+     "id": "figshare:FUMPE",
+     "ids": [
+      "figshare:FUMPE"
+     ],
+     "kind": "images",
+     "name": "FUMPE: Ferdowsi University of Mashhad's PE dataset (CT pulmonary angiography with PE masks)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Masoudi M et al.",
+     "license": "CC BY 4.0",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.6084/m9.figshare.c.4107803.v1",
+     "doi": "10.6084/m9.figshare.c.4107803.v1",
+     "links": [],
+     "citation": "Masoudi M, Pourreza HR, Saadatmand-Tarzjan M, Eftekhari N, Zargar FS, Rad MP. A new dataset of computed-tomography angiography images for computer-aided detection of pulmonary embolism. Sci Data. 2018;5:180180. doi:10.1038/sdata.2018.180. Data: figshare collection doi:10.6084/m9.figshare.c.4107803.v1",
+     "packs": [
+      "anatomy-atlas",
+      "pe-cta"
+     ]
+    },
+    {
+     "id": "figshare:GRAZPEDWRI-DX",
+     "ids": [
+      "figshare:GRAZPEDWRI-DX"
+     ],
+     "kind": "images",
+     "name": "GRAZPEDWRI-DX: a pediatric wrist trauma X-ray dataset",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Nagy E et al.",
+     "license": "CC BY 4.0",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.6084/m9.figshare.14825193.v2",
+     "doi": "10.6084/m9.figshare.14825193.v2",
+     "links": [],
+     "citation": "Nagy E, Janisch M, Hržić F, Sorantin E, Tschauner S. A pediatric wrist trauma X-ray dataset (GRAZPEDWRI-DX) for machine learning. Sci Data. 2022;9:222. doi:10.1038/s41597-022-01328-z. Data: figshare doi:10.6084/m9.figshare.14825193.v2",
+     "packs": [
+      "peds-msk",
+      "peds-wrist-2",
+      "peds-wrist-3"
+     ]
+    },
+    {
+     "id": "zenodo:HC18",
+     "ids": [
+      "zenodo:HC18"
+     ],
+     "kind": "images",
+     "name": "HC18: automated measurement of fetal head circumference using 2D ultrasound images",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "van den Heuvel TLA et al.",
+     "license": "CC BY 4.0",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.5281/zenodo.1327317",
+     "doi": "10.5281/zenodo.1327317",
+     "links": [],
+     "citation": "van den Heuvel TLA, de Bruijn D, de Korte CL, van Ginneken B. Automated measurement of fetal head circumference using 2D ultrasound images. PLoS One. 2018;13(8):e0200412. doi:10.1371/journal.pone.0200412. Data: Zenodo doi:10.5281/zenodo.1327317 (v2)",
+     "packs": [
+      "us-cases"
+     ]
+    },
+    {
+     "id": "zenodo:ISLES-2022",
+     "ids": [
+      "zenodo:ISLES-2022"
+     ],
+     "kind": "images",
+     "name": "ISLES 2022: a multi-center magnetic resonance imaging stroke lesion segmentation dataset",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Hernandez Petzsche MR et al.",
+     "license": "CC BY 4.0",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.5281/zenodo.7153326",
+     "doi": "10.5281/zenodo.7153326",
+     "links": [],
+     "citation": "Hernandez Petzsche MR, de la Rosa E, Hanning U, et al. ISLES 2022: A multi-center magnetic resonance imaging stroke lesion segmentation dataset. Sci Data. 2022;9:762. doi:10.1038/s41597-022-01875-5. Data: Zenodo doi:10.5281/zenodo.7153326",
+     "packs": [
+      "anatomy-atlas-mr",
+      "stroke-mri",
+      "stroke-mri-2",
+      "stroke-mri-3"
+     ]
+    },
+    {
+     "id": "ixi:IXI",
+     "ids": [
+      "ixi:IXI"
+     ],
+     "kind": "images",
+     "name": "IXI dataset (Information eXtraction from Images)",
+     "what": "Brain MRI of healthy volunteers from three London hospitals; the IXI Hammersmith Hospital angiograms appear in the TopCoW test set.",
+     "usage": "IXI brain MRA scans (as released with the TopCoW test set) are used as cases.",
+     "owner": "Biomedical Image Analysis Group, Imperial College London (EPSRC GR/S21533/02)",
+     "license": "CC BY-SA 3.0",
+     "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+     "permission": true,
+     "url": "https://brain-development.org/ixi-dataset/",
+     "doi": null,
+     "links": [],
+     "citation": "IXI dataset, Biomedical Image Analysis Group, Imperial College London. https://brain-development.org/ixi-dataset/ (please acknowledge the source of the IXI data).",
+     "packs": []
+    },
+    {
+     "id": "openneuro:ds003949",
+     "ids": [
+      "openneuro:ds003949"
+     ],
+     "kind": "images",
+     "name": "Lausanne TOF-MRA Aneurysm Cohort (Lausanne University Hospital, CHUV)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Lausanne University Hospital (CHUV)",
+     "license": "CC0 1.0 (public domain dedication)",
+     "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+     "permission": false,
+     "url": "https://openneuro.org/datasets/ds003949",
+     "doi": "10.18112/openneuro.ds003949.v1.0.0",
+     "links": [],
+     "citation": "Di Noto T, Marie G, Tourbier S, Aleman-Gomez Y, Esteban O, Saliou G, Bach Cuadra M, Hagmann P, Richiardi J. Towards automated brain aneurysm detection in TOF-MRA: open data, weak labels, and anatomical knowledge. Neuroinformatics. 2023;21:21-34. doi:10.1007/s12021-022-09597-0. Data: OpenNeuro doi:10.18112/openneuro.ds003949.v1.0.0",
+     "packs": [
+      "anatomy-atlas-mr",
+      "brain-mra"
+     ]
+    },
+    {
+     "id": "tcia:LCTSC",
+     "ids": [
+      "tcia:LCTSC"
+     ],
+     "kind": "images",
+     "name": "Lung CT Segmentation Challenge 2017 (LCTSC)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Yang et al.",
+     "license": "Creative Commons Attribution 3.0 Unported License",
+     "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/K9/TCIA.2017.3r3fvz08",
+     "doi": "10.7937/K9/TCIA.2017.3r3fvz08",
+     "links": [],
+     "citation": "Yang, J., Sharp, G., Veeraraghavan, H., Van Elmpt, W., Dekker, A., Lustberg, T., & Gooding, M. (2017). Data from Lung CT Segmentation Challenge 2017 (LCTSC) (Version 3) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/K9/TCIA.2017.3R3FVZ08",
+     "packs": [
+      "anatomy-atlas",
+      "anatomy-atlas-mr",
+      "body",
+      "expansion",
+      "more-ct-xr",
+      "starter"
+     ]
+    },
+    {
+     "id": "tcia:LIDC-IDRI",
+     "ids": [
+      "tcia:LIDC-IDRI"
+     ],
+     "kind": "images",
+     "name": "Lung Image Database Consortium and Image Database Resource Initiative (LIDC-IDRI)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Armato III, S",
+     "license": "Creative Commons Attribution 3.0 Unported License",
+     "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/K9/TCIA.2015.LO9QL9SX",
+     "doi": "10.7937/K9/TCIA.2015.LO9QL9SX",
+     "links": [],
+     "citation": "Armato III, S. G., McLennan, G., Bidaut, L., McNitt-Gray, M. F., Meyer, C. R., Reeves, A. P., Zhao, B., Aberle, D. R., Henschke, C. I., Hoffman, E. A., Kazerooni, E. A., MacMahon, H., Van Beek, E. J. R., Yankelevitz, D., Biancardi, A. M., Bland, P. H., Brown, M. S., Engelmann, R. M., Laderach, G. E., … Clarke, L. P. (2015). Data From LIDC-IDRI (Version 4) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/K9/TCIA.2015.LO9QL9SX",
+     "packs": [
+      "anatomy-atlas",
+      "anatomy-atlas-mr",
+      "chest-pairs",
+      "expansion",
+      "more-ct-xr",
+      "vessel-drafts"
+     ]
+    },
+    {
+     "id": "tcia:Mediastinal-Lymph-Node-SEG",
+     "ids": [
+      "tcia:Mediastinal-Lymph-Node-SEG"
+     ],
+     "kind": "images",
+     "name": "Mediastinal Lymph Node Quantification (LNQ): Segmentation of Heterogeneous CT Data (Mediastinal-Lymph-Node-SEG)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Idris et al.",
+     "license": "Creative Commons Attribution 4.0 International License",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/QVAZ-JA09",
+     "doi": "10.7937/QVAZ-JA09",
+     "links": [],
+     "citation": "Idris, T., Somarouthu, S., Jacene, H., LaCasce, A., Ziegler, E., Pieper, S., Khajavi, R., Dorent, R., Pujol, S., Kikinis, R., & Harris, G. (2024). Mediastinal Lymph Node Quantification (LNQ): Segmentation of Heterogeneous CT Data (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/QVAZ-JA09",
+     "packs": [
+      "anatomy-atlas",
+      "ct-findings"
+     ]
+    },
+    {
+     "id": "msd:Task02_Heart",
+     "ids": [
+      "msd:Task02_Heart"
+     ],
+     "kind": "images",
+     "name": "Medical Segmentation Decathlon, Task 02 Heart",
+     "what": "Cardiac MRI of the left atrium with expert outlines, one of the ten tasks of the Medical Segmentation Decathlon.",
+     "usage": "Heart scans and the left-atrium outlines are used as cases.",
+     "owner": "Medical Segmentation Decathlon organisers (Antonelli M, et al.); the heart images come from King's College London",
+     "license": "CC BY-SA 4.0 (as stated by the Decathlon; see the source page)",
+     "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+     "permission": false,
+     "url": "http://medicaldecathlon.com/",
+     "doi": "10.1038/s41467-022-30695-9",
+     "links": [],
+     "citation": "Antonelli M, Reinke A, Bakas S, et al. The Medical Segmentation Decathlon. Nature Communications. 2022;13:4128. doi:10.1038/s41467-022-30695-9",
+     "packs": []
+    },
+    {
+     "id": "tcia:MIDRC-RICORD-1C",
+     "ids": [
+      "tcia:MIDRC-RICORD-1C"
+     ],
+     "kind": "images",
+     "name": "MIDRC - RSNA International COVID Radiology Database (RICORD) Release 1c - Chest x-ray, Covid+ (MIDRC-RICORD-1C)",
+     "what": "",
+     "usage": "Chest radiographs of COVID-19 patients with expert annotations are used as cases.",
+     "owner": "Radiological Society of North America and the Medical Imaging and Data Resource Center, via The Cancer Imaging Archive",
+     "license": "Creative Commons Attribution-NonCommercial 4.0 International License",
+     "licenseUrl": "https://creativecommons.org/licenses/by-nc/4.0/",
+     "permission": true,
+     "url": "https://doi.org/10.7937/91ah-v663",
+     "doi": "10.7937/91ah-v663",
+     "links": [],
+     "citation": "Tsai, E., Simpson, S., Lungren, M. P., Hershman, M., Roshkovan, L., Colak, E., Erickson, B. J., Shih, G., Stein, A., Kalpathy-Cramer, J., Shen, J., Hafez, M. A. F., John, S., Rajiah, P., Pogatchnik, B. P., Mongan, J. T., Altinmakas, E., Ranschaert, E., Kitamura, F. C., ... Wu, C. (2021). Medical Imaging Data Resource Center (MIDRC) - RSNA International COVID Radiology Database (RICORD) Release 1c - Chest x-ray, Covid+ (MIDRC-RICORD-1C) (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/91AH-V663",
+     "packs": [
+      "anatomy-atlas",
+      "more-ct-xr"
+     ]
+    },
+    {
+     "id": "tcia:HCC-TACE-Seg",
+     "ids": [
+      "tcia:HCC-TACE-Seg"
+     ],
+     "kind": "images",
+     "name": "Multimodality annotated HCC cases with and without advanced imaging segmentation (HCC-TACE-Seg)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Moawad, A",
+     "license": "Creative Commons Attribution 4.0 International License",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/TCIA.5FNA-0924",
+     "doi": "10.7937/TCIA.5FNA-0924",
+     "links": [],
+     "citation": "Moawad, A. W., Fuentes, D., Morshid, A., Khalaf, A. M., Elmohr, M. M., Abusaif, A., Hazle, J. D., Kaseb, A. O., Hassan, M., Mahvash, A., Szklaruk, J., Qayyum, A., & Elsayes, K. (2021). Multimodality annotated HCC cases with and without advanced imaging segmentation [Data set]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.5FNA-0924",
+     "packs": [
+      "anatomy-atlas",
+      "anatomy-atlas-mr",
+      "ct-tumors"
+     ]
+    },
+    {
+     "id": "nih:ChestX-ray14",
+     "ids": [
+      "nih:ChestX-ray14"
+     ],
+     "kind": "images",
+     "name": "NIH ChestX-ray14 (ChestX-ray8), NIH Clinical Center",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "NIH Clinical Center",
+     "license": "Unrestricted use; link to the original download site, acknowledge the NIH Clinical Center and cite the CVPR 2017 paper (dataset FAQ, Q04)",
+     "licenseUrl": "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+     "permission": false,
+     "url": "https://nihcc.app.box.com/v/ChestXray-NIHCC",
+     "doi": null,
+     "links": [],
+     "citation": "Wang X, Peng Y, Lu L, Lu Z, Bagheri M, Summers RM. ChestX-ray8: Hospital-scale Chest X-ray Database and Benchmarks on Weakly-Supervised Classification and Localization of Common Thorax Diseases. IEEE CVPR 2017:2097-2106. Images courtesy of the NIH Clinical Center.",
+     "packs": [
+      "anatomy-atlas-xr",
+      "cxr-findings",
+      "cxr-findings-2",
+      "cxr-findings-3"
+     ]
+    },
+    {
+     "id": "tcia:Pediatric-CT-SEG",
+     "ids": [
+      "tcia:Pediatric-CT-SEG"
+     ],
+     "kind": "images",
+     "name": "Pediatric Chest/Abdomen/Pelvic CT Exams with Expert Organ Contours (Pediatric-CT-SEG)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Jordan et al.",
+     "license": "Creative Commons Attribution 4.0 International License",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/tcia.x0h0-1706",
+     "doi": "10.7937/tcia.x0h0-1706",
+     "links": [],
+     "citation": "Jordan, P., Adamson, P. M., Bhattbhatt, V., Beriwal, S., Shen, S., Radermecker, O., Bose, S., Strain, L. S., Offe, M., Fraley, D., Principi, S., Ye, D. H., Wang, A. S., Van Heteren, J., Vo, N.-J., & Schmidt, T. G. (2021). Pediatric Chest/Abdomen/Pelvic CT Exams with Expert Organ Contours (Pediatric-CT-SEG) (Version 2) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.X0H0-1706",
+     "packs": [
+      "anatomy-atlas",
+      "more-ct-xr"
+     ]
+    },
+    {
+     "id": "tcia:Colorectal-Liver-Metastases",
+     "ids": [
+      "tcia:Colorectal-Liver-Metastases"
+     ],
+     "kind": "images",
+     "name": "Preoperative CT and Survival Data for Patients Undergoing Resection of Colorectal Liver Metastases (Colorectal-Liver-Metastases)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Simpson, A",
+     "license": "Creative Commons Attribution 4.0 International License",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/QXK2-QG03",
+     "doi": "10.7937/QXK2-QG03",
+     "links": [],
+     "citation": "Simpson, A. L., Peoples, J., Creasy, J. M., Fichtinger, G., Gangai, N., Lasso, A., Keshava Murthy, K. N., Shia, J., D'Angelica, M. I., & Do, R. K. G. (2023). Preoperative CT and Survival Data for Patients Undergoing Resection of Colorectal Liver Metastases (Colorectal-Liver-Metastases) (Version 2) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/QXK2-QG03",
+     "packs": [
+      "anatomy-atlas",
+      "ct-findings"
+     ]
+    },
+    {
+     "id": "tcia:PROSTATEx-Zone-Segmentations",
+     "ids": [
+      "tcia:PROSTATEx-Zone-Segmentations"
+     ],
+     "kind": "images",
+     "name": "PROSTATEx Zone Segmentations (PROSTATEx-Seg-Zones; DICOM SEG analysis result within NBIA collection PROSTATEx)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Meyer et al.",
+     "license": "Creative Commons Attribution 3.0 Unported License",
+     "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/TCIA.NBB4-4655",
+     "doi": "10.7937/TCIA.NBB4-4655",
+     "links": [],
+     "citation": "Meyer, A., Schindele, D., von Reibnitz, D., Rak, M., Schostak, M., & Hansen, C. (2020). PROSTATEx Zone Segmentations (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.NBB4-4655",
+     "packs": [
+      "starter"
+     ]
+    },
+    {
+     "id": "tcia:Vestibular-Schwannoma-SEG",
+     "ids": [
+      "tcia:Vestibular-Schwannoma-SEG"
+     ],
+     "kind": "images",
+     "name": "Segmentation of Vestibular Schwannoma from Magnetic Resonance Imaging: An Open Annotated Dataset and Baseline Algorithm (Vestibular-Schwannoma-SEG)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Shapey et al.",
+     "license": "Creative Commons Attribution 4.0 International License",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/TCIA.9YTJ-5Q73",
+     "doi": "10.7937/TCIA.9YTJ-5Q73",
+     "links": [],
+     "citation": "Shapey, J., Kujawa, A., Dorent, R., Wang, G., Bisdas, S., Dimitriadis, A., Grishchuck, D., Paddick, I., Kitchen, N., Bradford, R., Saeed, S. R., Ourselin, S., & Vercauteren, T. (2021). Segmentation of Vestibular Schwannoma from Magnetic Resonance Imaging: An Open Annotated Dataset and Baseline Algorithm (version 2) [Data set]. The Cancer Imaging Archive. https://doi.org/10.7937/TCIA.9YTJ-5Q73",
+     "packs": [
+      "anatomy-atlas-mr",
+      "ct-tumors"
+     ]
+    },
+    {
+     "id": "tcia:PROSTATEx",
+     "ids": [
+      "tcia:PROSTATEx"
+     ],
+     "kind": "images",
+     "name": "SPIE-AAPM PROSTATEx Challenge Data (PROSTATEx)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Litjens et al.",
+     "license": "Creative Commons Attribution 3.0 Unported License",
+     "licenseUrl": "http://creativecommons.org/licenses/by/3.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/K9TCIA.2017.MURS5CL",
+     "doi": "10.7937/K9TCIA.2017.MURS5CL",
+     "links": [],
+     "citation": "Litjens, G., Debats, O., Barentsz, J., Karssemeijer, N., & Huisman, H. (2017). SPIE-AAPM PROSTATEx Challenge Data (Version 2) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/K9TCIA.2017.MURS5CL",
+     "packs": [
+      "starter"
+     ]
+    },
+    {
+     "id": "tcia:Spine-Mets-CT-SEG",
+     "ids": [
+      "tcia:Spine-Mets-CT-SEG"
+     ],
+     "kind": "images",
+     "name": "Spine metastatic bone cancer: pre and post radiotherapy CT (Spine-Mets-CT-SEG)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Pieper et al.",
+     "license": "Creative Commons Attribution 4.0 International License",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/kh36-ds04",
+     "doi": "10.7937/kh36-ds04",
+     "links": [],
+     "citation": "Pieper, S., Haouchine, N., Hackney, D., Wells, W., Sanhinova, M., Balboni, T., Spektor, A., Huynh, M., Tanguturi, S., Kim, E., Guenette, J., Kozono, D., Czajkowski, B., Caplan, S., Doyle, P., Kang, H., & Alkalay, R. (2024). Spine metastatic bone cancer: pre and post radiotherapy CT (Spine-Mets-CT-SEG) (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/KH36-DS04",
+     "packs": [
+      "anatomy-atlas",
+      "anatomy-atlas-mr",
+      "expansion",
+      "neuro-msk"
+     ]
+    },
+    {
+     "id": "tcia:ReMIND",
+     "ids": [
+      "tcia:ReMIND"
+     ],
+     "kind": "images",
+     "name": "The Brain Resection Multimodal Imaging Database (ReMIND)",
+     "what": "",
+     "usage": "Studies and images from this collection are shown as de-identified cases, with the collection's own labels where it provides them.",
+     "owner": "Juvekar et al.",
+     "license": "Creative Commons Attribution 4.0 International License",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://doi.org/10.7937/3RAG-D070",
+     "doi": "10.7937/3RAG-D070",
+     "links": [],
+     "citation": "Juvekar, P., Dorent, R., Kögl, F., Torio, E., Barr, C., Rigolo, L., Galvin, C., Jowkar, N., Kazi, A., Haouchine, N., Cheema, H., Navab, N., Pieper, S., Wells, W. M., Bi, W. L., Golby, A., Frisken, S., & Kapur, T. (2023). The Brain Resection Multimodal Imaging Database (ReMIND) (Version 1) [Dataset]. The Cancer Imaging Archive. https://doi.org/10.7937/3RAG-D070",
+     "packs": [
+      "anatomy-atlas-mr",
+      "expansion",
+      "neuro-msk"
+     ]
+    },
+    {
+     "id": "zenodo:TopCoW-external-MRA",
+     "ids": [
+      "zenodo:TopCoW-external-MRA"
+     ],
+     "kind": "images",
+     "name": "TopCoW challenge: Circle of Willis annotations of external MRA test sets (Lausanne controls and IXI-HH)",
+     "what": "",
+     "usage": "Brain MRA scans with expert Circle of Willis labels are used as cases; the circle's arteries are also outlined on other scans by an AI model trained on this challenge's data.",
+     "owner": "TopCoW challenge organisers (Yang K, et al.); images from Lausanne University Hospital and the IXI project",
+     "license": "TopCoW data terms (OpenData Swiss: open use, source must be given, commercial use needs the owner's permission); images CC0 1.0 (Lausanne) and CC BY-SA 3.0 (IXI)",
+     "licenseUrl": "https://opendata.swiss/en/terms-of-use",
+     "permission": true,
+     "url": "https://doi.org/10.5281/zenodo.15692630",
+     "doi": "10.5281/zenodo.15692630",
+     "links": [],
+     "citation": "Yang K, Musio F, Ma Y, Juchler N, Paetzold JC, Al-Maskari R, et al., Menze B. Benchmarking the CoW with the TopCoW challenge: topology-aware anatomical segmentation of the Circle of Willis for CTA and MRA. arXiv:2312.17670. Data: Zenodo doi:10.5281/zenodo.15692630. Images: Di Noto T et al., Neuroinformatics 2023 (Lausanne, CC0); IXI dataset, brain-development.org (CC BY-SA 3.0).",
+     "packs": [
+      "anatomy-atlas-mr",
+      "brain-mra"
+     ]
+    },
+    {
+     "id": "zenodo:TotalSegmentator-CT-v3",
+     "ids": [
+      "zenodo:TotalSegmentator-CT-v3"
+     ],
+     "kind": "images",
+     "name": "TotalSegmentator CT dataset (version 3, with version 2)",
+     "what": "CT scans of 1,939 patients (version 3) with 117 anatomical structures outlined: the training data of the TotalSegmentator model.",
+     "usage": "CT cases and their structure outlines are used as cases and as the reference for the anatomy layer, including the heart. Version 2 (1,228 scans) is the earlier release.",
+     "owner": "Jakob Wasserthal, University Hospital Basel",
+     "license": "CC BY 4.0",
+     "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+     "permission": false,
+     "url": "https://zenodo.org/records/22688904",
+     "doi": "10.5281/zenodo.22688904",
+     "links": [
+      {
+       "label": "Version 2 (Zenodo 10047292)",
+       "url": "https://zenodo.org/records/10047292"
+      }
+     ],
+     "citation": "Wasserthal J, Breit HC, Meyer MT, et al. TotalSegmentator: robust segmentation of 104 anatomic structures in CT images. Radiology: Artificial Intelligence. 2023;5(5):e230024. doi:10.1148/ryai.230024. Data: Zenodo doi:10.5281/zenodo.22688904 (v3) and doi:10.5281/zenodo.10047292 (v2).",
+     "packs": []
+    }
+   ]
+  },
+  {
+   "kind": "ai_tools",
+   "title": "AI tools",
+   "entries": [
+    {
+     "id": "tool:GOUHFI",
+     "ids": [
+      "tool:GOUHFI"
+     ],
+     "kind": "ai_tools",
+     "name": "GOUHFI 2.0",
+     "what": "A brain segmentation model that works across MRI contrasts and resolutions.",
+     "usage": "Outlines brain structures and cortical regions on MRI; marked as AI drafts.",
+     "owner": "Fortin et al.",
+     "license": "Apache-2.0 (code and weights)",
+     "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0",
+     "permission": false,
+     "url": "https://zenodo.org/records/17920473",
+     "doi": "10.5281/zenodo.17920473",
+     "links": [],
+     "citation": "Fortin et al. GOUHFI 2.0. arXiv:2601.09006. Code and weights: Zenodo doi:10.5281/zenodo.17920473",
+     "packs": []
+    },
+    {
+     "id": "tool:MONAI-wholeBody-bundle",
+     "ids": [
+      "tool:MONAI-wholeBody-bundle"
+     ],
+     "kind": "ai_tools",
+     "name": "MONAI model zoo: wholeBody_ct_segmentation",
+     "what": "A pretrained whole-body CT segmentation model (SegResNet), trained on the TotalSegmentator dataset.",
+     "usage": "Outlines the four heart chambers and the heart muscle on contrast-enhanced CT; each outline is marked as an AI draft.",
+     "owner": "Project MONAI",
+     "license": "Apache-2.0",
+     "licenseUrl": "https://github.com/Project-MONAI/model-zoo/blob/dev/LICENSE",
+     "permission": false,
+     "url": "https://github.com/Project-MONAI/model-zoo",
+     "doi": null,
+     "links": [],
+     "citation": "MONAI model zoo, bundle wholeBody_ct_segmentation v0.1.9. Trained on the TotalSegmentator dataset (Wasserthal J, et al., Radiology: Artificial Intelligence 2023).",
+     "packs": []
+    },
+    {
+     "id": "tool:nnU-Net",
+     "ids": [
+      "tool:nnU-Net"
+     ],
+     "kind": "ai_tools",
+     "name": "nnU-Net",
+     "what": "The self-configuring segmentation framework that TotalSegmentator and the brain and Circle of Willis models run on.",
+     "usage": "Runs the segmentation models behind the AI outlines.",
+     "owner": "Division of Medical Image Computing, German Cancer Research Center (DKFZ)",
+     "license": "Apache-2.0",
+     "licenseUrl": "https://github.com/MIC-DKFZ/nnUNet/blob/master/LICENSE",
+     "permission": false,
+     "url": "https://github.com/MIC-DKFZ/nnUNet",
+     "doi": "10.1038/s41592-020-01008-z",
+     "links": [],
+     "citation": "Isensee F, Jaeger PF, Kohl SAA, Petersen J, Maier-Hein KH. nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation. Nature Methods. 2021;18:203-211. doi:10.1038/s41592-020-01008-z",
+     "packs": []
+    },
+    {
+     "id": "tool:TopCoW-CLAIM",
+     "ids": [
+      "tool:TopCoW-CLAIM"
+     ],
+     "kind": "ai_tools",
+     "name": "TopCoW 2024 challenge winning model (team CLAIM)",
+     "what": "A model that labels the arteries of the Circle of Willis on brain MRA.",
+     "usage": "Draws the AI outlines of the Circle of Willis arteries on brain MRA; marked as AI drafts.",
+     "owner": "Team CLAIM, Charite Berlin, and the TopCoW challenge organisers",
+     "license": "Trained on TopCoW data; see the TopCoW terms. The nnU-Net code is Apache-2.0.",
+     "licenseUrl": "https://opendata.swiss/en/terms-of-use",
+     "permission": true,
+     "url": "https://zenodo.org/records/15665435",
+     "doi": "10.5281/zenodo.15665435",
+     "links": [],
+     "citation": "Yang K, et al. Benchmarking the CoW with the TopCoW challenge. arXiv:2312.17670.",
+     "packs": []
+    },
+    {
+     "id": "tool:torchxrayvision",
+     "ids": [
+      "tool:torchxrayvision"
+     ],
+     "kind": "ai_tools",
+     "name": "TorchXRayVision (ChestX-Det PSPNet)",
+     "what": "A library of chest X-ray models; its ChestX-Det model outlines 14 chest structures.",
+     "usage": "Draws the AI outlines of structures on chest radiographs; marked as AI drafts.",
+     "owner": "Joseph Paul Cohen and contributors",
+     "license": "Apache-2.0 for the library; for the model weights see the source page",
+     "licenseUrl": "https://github.com/mlmed/torchxrayvision/blob/master/LICENSE",
+     "permission": false,
+     "url": "https://github.com/mlmed/torchxrayvision",
+     "doi": null,
+     "links": [],
+     "citation": "Cohen JP, Viviano JD, Bertin P, et al. TorchXRayVision: a library of chest X-ray datasets and models. MIDL 2022.",
+     "packs": []
+    },
+    {
+     "id": "tool:TotalSegmentator",
+     "ids": [
+      "tool:TotalSegmentator"
+     ],
+     "kind": "ai_tools",
+     "name": "TotalSegmentator",
+     "what": "A segmentation tool for CT and MR that outlines anatomical structures automatically.",
+     "usage": "Draws the AI outlines of organs, vessels and bones in the anatomy layer and the heart chambers; the outlines are marked as AI drafts. The licensed heart tasks (heartchambers_highres, coronary_arteries) are used with the owners' permission.",
+     "owner": "Jakob Wasserthal, University Hospital Basel",
+     "license": "Apache-2.0 for the code and the open tasks; the heart tasks are licensed by the owner",
+     "licenseUrl": "https://github.com/wasserth/TotalSegmentator",
+     "permission": true,
+     "url": "https://github.com/wasserth/TotalSegmentator",
+     "doi": "10.1148/ryai.230024",
+     "links": [],
+     "citation": "Wasserthal J, Breit HC, Meyer MT, et al. TotalSegmentator: robust segmentation of 104 anatomic structures in CT images. Radiology: Artificial Intelligence. 2023;5(5):e230024. doi:10.1148/ryai.230024",
+     "packs": []
+    }
+   ]
+  },
+  {
+   "kind": "other",
+   "title": "Other credits",
+   "entries": [
+    {
+     "id": "tool:cornerstone3d",
+     "ids": [
+      "tool:cornerstone3d"
+     ],
+     "kind": "other",
+     "name": "Cornerstone3D",
+     "what": "Open-source medical image viewing libraries.",
+     "usage": "Shows the studies in the reading room.",
+     "owner": "Cornerstone.js contributors",
+     "license": "MIT",
+     "licenseUrl": "https://github.com/cornerstonejs/cornerstone3D/blob/main/LICENSE",
+     "permission": false,
+     "url": "https://www.cornerstonejs.org",
+     "doi": null,
+     "links": [],
+     "citation": "Cornerstone3D, cornerstonejs.org.",
+     "packs": []
+    },
+    {
+     "id": "tool:dicom-parser",
+     "ids": [
+      "tool:dicom-parser"
+     ],
+     "kind": "other",
+     "name": "dicom-parser",
+     "what": "A JavaScript parser for DICOM files.",
+     "usage": "Reads the DICOM images of the cases.",
+     "owner": "Chris Hafey and contributors",
+     "license": "MIT",
+     "licenseUrl": "https://github.com/cornerstonejs/dicomParser/blob/master/LICENSE",
+     "permission": false,
+     "url": "https://github.com/cornerstonejs/dicomParser",
+     "doi": null,
+     "links": [],
+     "citation": "dicom-parser, github.com/cornerstonejs/dicomParser.",
+     "packs": []
+    },
+    {
+     "id": "horalix",
+     "ids": [
+      "horalix"
+     ],
+     "kind": "other",
+     "name": "Horalix (horalix.com)",
+     "what": "A medical AI company in Sarajevo. It makes Radiology Monster and presents the datasets and their processing in this app.",
+     "usage": "Horalix prepared the cases and drew the AI outlines of the anatomy layer, each marked as an AI draft. The outlines are not reviewed by a radiologist and are never used for grading.",
+     "owner": "Horalix",
+     "license": "AI outlines are drafts made for this app and are always marked as AI",
+     "licenseUrl": null,
+     "permission": false,
+     "url": "https://horalix.com",
+     "doi": null,
+     "links": [],
+     "citation": "Anatomy outlines: AI drafts by Horalix.com, not reviewed by a radiologist.",
+     "packs": [
+      "anatomy-atlas",
+      "anatomy-atlas-mr",
+      "anatomy-atlas-xr",
+      "vessel-drafts"
+     ]
+    },
+    {
+     "id": "tool:vtk.js",
+     "ids": [
+      "tool:vtk.js"
+     ],
+     "kind": "other",
+     "name": "vtk.js",
+     "what": "A JavaScript library for 3D and volume rendering from Kitware.",
+     "usage": "Draws the 3D and volume views.",
+     "owner": "Kitware, Inc.",
+     "license": "BSD-3-Clause",
+     "licenseUrl": "https://github.com/Kitware/vtk-js/blob/master/LICENSE",
+     "permission": false,
+     "url": "https://kitware.github.io/vtk-js/",
+     "doi": null,
+     "links": [],
+     "citation": "vtk.js, Kitware, Inc.",
+     "packs": []
+    }
+   ]
+  }
+ ]
+}

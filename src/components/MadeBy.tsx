@@ -25,6 +25,7 @@ export function AboutCard() {
       <div className="row" style={{ gap: 16, flexWrap: 'wrap' }}>
         <MadeBy />
         <a href="/about">About Radiology Monster</a>
+        <a href="/credits">Sources and credits</a>
       </div>
     </section>
   );

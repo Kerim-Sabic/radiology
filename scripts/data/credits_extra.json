@@ -1,0 +1,222 @@
+{
+  "_note": "Hand-written credits that merge with the sources in public/packs/*/pack.json (scripts/data/credits.py). An entry matches a pack source by id, by DOI or by URL; the fields given here override the pack's. An entry that matches no pack source stands on its own (datasets and tools not yet in a pack, and every AI tool). kind: images | ai_tools | other. permission: true = shown as 'used with the owners' permission'.",
+  "entries": [
+    {
+      "id": "zenodo:TotalSegmentator-CT-v3",
+      "match": ["10.5281/zenodo.22688904", "10.5281/zenodo.10047292"],
+      "kind": "images",
+      "name": "TotalSegmentator CT dataset (version 3, with version 2)",
+      "what": "CT scans of 1,939 patients (version 3) with 117 anatomical structures outlined: the training data of the TotalSegmentator model.",
+      "usage": "CT cases and their structure outlines are used as cases and as the reference for the anatomy layer, including the heart. Version 2 (1,228 scans) is the earlier release.",
+      "owner": "Jakob Wasserthal, University Hospital Basel",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://zenodo.org/records/22688904",
+      "doi": "10.5281/zenodo.22688904",
+      "links": [{"label": "Version 2 (Zenodo 10047292)", "url": "https://zenodo.org/records/10047292"}],
+      "citation": "Wasserthal J, Breit HC, Meyer MT, et al. TotalSegmentator: robust segmentation of 104 anatomic structures in CT images. Radiology: Artificial Intelligence. 2023;5(5):e230024. doi:10.1148/ryai.230024. Data: Zenodo doi:10.5281/zenodo.22688904 (v3) and doi:10.5281/zenodo.10047292 (v2)."
+    },
+    {
+      "id": "zenodo:ARCADE",
+      "kind": "images",
+      "usage": "Invasive coronary angiograms with the dataset's expert vessel-segment and stenosis annotations are used as cases.",
+      "owner": "Research Institute of Cardiology and Internal Diseases, Almaty, Kazakhstan (Popov M, et al.)"
+    },
+    {
+      "id": "mendeley:CADICA",
+      "match": ["10.17632/p9bpx9ctcv.2", "10.17632/p9bpx9ctcv.1", "10.17632/p9bpx9ctcv"],
+      "kind": "images",
+      "name": "CADICA: a new dataset for coronary artery disease",
+      "what": "Invasive coronary angiography videos with lesion annotations, from a hospital in Malaga, Spain.",
+      "usage": "Coronary angiogram frames with the dataset's lesion annotations are used as cases.",
+      "owner": "Universidad de Malaga (Jimenez-Partinen A, Molina-Cabello MA, Thurnhofer-Hemsi K, Palomo E, Rodriguez-Capitan J, Molina-Ramos AI, Jimenez-Navarro M)",
+      "license": "CC BY 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
+      "url": "https://data.mendeley.com/datasets/p9bpx9ctcv/2",
+      "doi": "10.17632/p9bpx9ctcv.2",
+      "citation": "Jimenez-Partinen A, Molina-Cabello MA, Thurnhofer-Hemsi K, Palomo E, Rodriguez-Capitan J, Molina-Ramos AI, Jimenez-Navarro M. CADICA: a new dataset for coronary artery disease. Mendeley Data, V2, 2024. doi:10.17632/p9bpx9ctcv.2"
+    },
+    {
+      "id": "msd:Task02_Heart",
+      "match": ["10.1038/s41467-022-30695-9", "medicaldecathlon.com"],
+      "kind": "images",
+      "name": "Medical Segmentation Decathlon, Task 02 Heart",
+      "what": "Cardiac MRI of the left atrium with expert outlines, one of the ten tasks of the Medical Segmentation Decathlon.",
+      "usage": "Heart scans and the left-atrium outlines are used as cases.",
+      "owner": "Medical Segmentation Decathlon organisers (Antonelli M, et al.); the heart images come from King's College London",
+      "license": "CC BY-SA 4.0 (as stated by the Decathlon; see the source page)",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "url": "http://medicaldecathlon.com/",
+      "doi": "10.1038/s41467-022-30695-9",
+      "citation": "Antonelli M, Reinke A, Bakas S, et al. The Medical Segmentation Decathlon. Nature Communications. 2022;13:4128. doi:10.1038/s41467-022-30695-9"
+    },
+    {
+      "id": "zenodo:TopCoW-external-MRA",
+      "kind": "images",
+      "permission": true,
+      "usage": "Brain MRA scans with expert Circle of Willis labels are used as cases; the circle's arteries are also outlined on other scans by an AI model trained on this challenge's data.",
+      "owner": "TopCoW challenge organisers (Yang K, et al.); images from Lausanne University Hospital and the IXI project",
+      "license": "TopCoW data terms (OpenData Swiss: open use, source must be given, commercial use needs the owner's permission); images CC0 1.0 (Lausanne) and CC BY-SA 3.0 (IXI)"
+    },
+    {
+      "id": "ixi:IXI",
+      "match": ["brain-development.org/ixi-dataset"],
+      "kind": "images",
+      "permission": true,
+      "name": "IXI dataset (Information eXtraction from Images)",
+      "what": "Brain MRI of healthy volunteers from three London hospitals; the IXI Hammersmith Hospital angiograms appear in the TopCoW test set.",
+      "usage": "IXI brain MRA scans (as released with the TopCoW test set) are used as cases.",
+      "owner": "Biomedical Image Analysis Group, Imperial College London (EPSRC GR/S21533/02)",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "url": "https://brain-development.org/ixi-dataset/",
+      "doi": null,
+      "citation": "IXI dataset, Biomedical Image Analysis Group, Imperial College London. https://brain-development.org/ixi-dataset/ (please acknowledge the source of the IXI data)."
+    },
+    {
+      "id": "tcia:MIDRC-RICORD-1C",
+      "kind": "images",
+      "permission": true,
+      "usage": "Chest radiographs of COVID-19 patients with expert annotations are used as cases.",
+      "owner": "Radiological Society of North America and the Medical Imaging and Data Resource Center, via The Cancer Imaging Archive"
+    },
+    {
+      "id": "nih:ChestX-ray14",
+      "owner": "NIH Clinical Center"
+    },
+    {
+      "id": "openneuro:ds003949",
+      "owner": "Lausanne University Hospital (CHUV)"
+    },
+    {
+      "id": "horalix",
+      "kind": "other",
+      "name": "Horalix (horalix.com)",
+      "what": "A medical AI company in Sarajevo. It makes Radiology Monster and presents the datasets and their processing in this app.",
+      "usage": "Horalix prepared the cases and drew the AI outlines of the anatomy layer, each marked as an AI draft. The outlines are not reviewed by a radiologist and are never used for grading.",
+      "owner": "Horalix",
+      "license": "AI outlines are drafts made for this app and are always marked as AI",
+      "licenseUrl": null,
+      "citation": "Anatomy outlines: AI drafts by Horalix.com, not reviewed by a radiologist."
+    },
+    {
+      "id": "tool:TotalSegmentator",
+      "kind": "ai_tools",
+      "name": "TotalSegmentator",
+      "what": "A segmentation tool for CT and MR that outlines anatomical structures automatically.",
+      "usage": "Draws the AI outlines of organs, vessels and bones in the anatomy layer and the heart chambers; the outlines are marked as AI drafts. The licensed heart tasks (heartchambers_highres, coronary_arteries) are used with the owners' permission.",
+      "owner": "Jakob Wasserthal, University Hospital Basel",
+      "license": "Apache-2.0 for the code and the open tasks; the heart tasks are licensed by the owner",
+      "licenseUrl": "https://github.com/wasserth/TotalSegmentator",
+      "permission": true,
+      "url": "https://github.com/wasserth/TotalSegmentator",
+      "doi": "10.1148/ryai.230024",
+      "citation": "Wasserthal J, Breit HC, Meyer MT, et al. TotalSegmentator: robust segmentation of 104 anatomic structures in CT images. Radiology: Artificial Intelligence. 2023;5(5):e230024. doi:10.1148/ryai.230024"
+    },
+    {
+      "id": "tool:nnU-Net",
+      "kind": "ai_tools",
+      "name": "nnU-Net",
+      "what": "The self-configuring segmentation framework that TotalSegmentator and the brain and Circle of Willis models run on.",
+      "usage": "Runs the segmentation models behind the AI outlines.",
+      "owner": "Division of Medical Image Computing, German Cancer Research Center (DKFZ)",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/MIC-DKFZ/nnUNet/blob/master/LICENSE",
+      "url": "https://github.com/MIC-DKFZ/nnUNet",
+      "doi": "10.1038/s41592-020-01008-z",
+      "citation": "Isensee F, Jaeger PF, Kohl SAA, Petersen J, Maier-Hein KH. nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation. Nature Methods. 2021;18:203-211. doi:10.1038/s41592-020-01008-z"
+    },
+    {
+      "id": "tool:MONAI-wholeBody-bundle",
+      "kind": "ai_tools",
+      "name": "MONAI model zoo: wholeBody_ct_segmentation",
+      "what": "A pretrained whole-body CT segmentation model (SegResNet), trained on the TotalSegmentator dataset.",
+      "usage": "Outlines the four heart chambers and the heart muscle on contrast-enhanced CT; each outline is marked as an AI draft.",
+      "owner": "Project MONAI",
+      "license": "Apache-2.0",
+      "licenseUrl": "https://github.com/Project-MONAI/model-zoo/blob/dev/LICENSE",
+      "url": "https://github.com/Project-MONAI/model-zoo",
+      "doi": null,
+      "citation": "MONAI model zoo, bundle wholeBody_ct_segmentation v0.1.9. Trained on the TotalSegmentator dataset (Wasserthal J, et al., Radiology: Artificial Intelligence 2023)."
+    },
+    {
+      "id": "tool:GOUHFI",
+      "kind": "ai_tools",
+      "name": "GOUHFI 2.0",
+      "what": "A brain segmentation model that works across MRI contrasts and resolutions.",
+      "usage": "Outlines brain structures and cortical regions on MRI; marked as AI drafts.",
+      "owner": "Fortin et al.",
+      "license": "Apache-2.0 (code and weights)",
+      "licenseUrl": "https://www.apache.org/licenses/LICENSE-2.0",
+      "url": "https://zenodo.org/records/17920473",
+      "doi": "10.5281/zenodo.17920473",
+      "citation": "Fortin et al. GOUHFI 2.0. arXiv:2601.09006. Code and weights: Zenodo doi:10.5281/zenodo.17920473"
+    },
+    {
+      "id": "tool:TopCoW-CLAIM",
+      "kind": "ai_tools",
+      "name": "TopCoW 2024 challenge winning model (team CLAIM)",
+      "what": "A model that labels the arteries of the Circle of Willis on brain MRA.",
+      "usage": "Draws the AI outlines of the Circle of Willis arteries on brain MRA; marked as AI drafts.",
+      "owner": "Team CLAIM, Charite Berlin, and the TopCoW challenge organisers",
+      "license": "Trained on TopCoW data; see the TopCoW terms. The nnU-Net code is Apache-2.0.",
+      "licenseUrl": "https://opendata.swiss/en/terms-of-use",
+      "permission": true,
+      "url": "https://zenodo.org/records/15665435",
+      "doi": "10.5281/zenodo.15665435",
+      "citation": "Yang K, et al. Benchmarking the CoW with the TopCoW challenge. arXiv:2312.17670."
+    },
+    {
+      "id": "tool:torchxrayvision",
+      "kind": "ai_tools",
+      "name": "TorchXRayVision (ChestX-Det PSPNet)",
+      "what": "A library of chest X-ray models; its ChestX-Det model outlines 14 chest structures.",
+      "usage": "Draws the AI outlines of structures on chest radiographs; marked as AI drafts.",
+      "owner": "Joseph Paul Cohen and contributors",
+      "license": "Apache-2.0 for the library; for the model weights see the source page",
+      "licenseUrl": "https://github.com/mlmed/torchxrayvision/blob/master/LICENSE",
+      "url": "https://github.com/mlmed/torchxrayvision",
+      "doi": null,
+      "citation": "Cohen JP, Viviano JD, Bertin P, et al. TorchXRayVision: a library of chest X-ray datasets and models. MIDL 2022."
+    },
+    {
+      "id": "tool:cornerstone3d",
+      "kind": "other",
+      "name": "Cornerstone3D",
+      "what": "Open-source medical image viewing libraries.",
+      "usage": "Shows the studies in the reading room.",
+      "owner": "Cornerstone.js contributors",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/cornerstonejs/cornerstone3D/blob/main/LICENSE",
+      "url": "https://www.cornerstonejs.org",
+      "doi": null,
+      "citation": "Cornerstone3D, cornerstonejs.org."
+    },
+    {
+      "id": "tool:vtk.js",
+      "kind": "other",
+      "name": "vtk.js",
+      "what": "A JavaScript library for 3D and volume rendering from Kitware.",
+      "usage": "Draws the 3D and volume views.",
+      "owner": "Kitware, Inc.",
+      "license": "BSD-3-Clause",
+      "licenseUrl": "https://github.com/Kitware/vtk-js/blob/master/LICENSE",
+      "url": "https://kitware.github.io/vtk-js/",
+      "doi": null,
+      "citation": "vtk.js, Kitware, Inc."
+    },
+    {
+      "id": "tool:dicom-parser",
+      "kind": "other",
+      "name": "dicom-parser",
+      "what": "A JavaScript parser for DICOM files.",
+      "usage": "Reads the DICOM images of the cases.",
+      "owner": "Chris Hafey and contributors",
+      "license": "MIT",
+      "licenseUrl": "https://github.com/cornerstonejs/dicomParser/blob/master/LICENSE",
+      "url": "https://github.com/cornerstonejs/dicomParser",
+      "doi": null,
+      "citation": "dicom-parser, github.com/cornerstonejs/dicomParser."
+    }
+  ]
+}

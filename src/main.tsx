@@ -27,12 +27,19 @@ window.addEventListener('vite:preloadError', (event) => {
 // A certificate's public page opens for anyone, without signing in.
 const CertificatePage = lazy(() => import('./pages/CertificatePage'));
 const publicCertificate = /^\/(certificate|verify)\//.test(location.pathname);
+// The sources and credits page opens for anyone, signed in or not, without the account gate or the app shell.
+const CreditsPage = lazy(() => import('./pages/Credits'));
+const publicCredits = /^\/credits\/?$/.test(location.pathname);
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
       <RootErrorBoundary>
-        {publicCertificate ? (
+        {publicCredits ? (
+          <Suspense fallback={<ScanLoader label="Opening the credits…" />}>
+            <CreditsPage />
+          </Suspense>
+        ) : publicCertificate ? (
           <Suspense fallback={<ScanLoader label="Opening the certificate…" />}>
             <CertificatePage />
           </Suspense>
@@ -43,7 +50,7 @@ createRoot(document.getElementById('root')!).render(
         )}
       </RootErrorBoundary>
       {/* Ad measurement: nothing loads until the visitor says yes; never on a case (src/services/metaPixel.ts). */}
-      {publicCertificate ? null : <><AdConsentBar /><MetaMeasurement /></>}
+      {publicCertificate || publicCredits ? null : <><AdConsentBar /><MetaMeasurement /></>}
       {/* Cookieless page views (query strings dropped: they can hold task ids or codes). */}
       <Analytics beforeSend={(e) => ({ ...e, url: e.url.split('?')[0] })} />
     </BrowserRouter>

@@ -350,6 +350,7 @@ export function Landing({ panel, regional, signInLabel, signInDisabled, onSignIn
                 Radiology Monster
               </span>
               <MadeBy className="lp-madeby" />
+              <a className="lp-madeby" href="/credits">Sources and credits</a>
             </span>
             <span className="lp-safe">
               <ShieldCheck size={14} /> For education and practice. Not for clinical diagnosis.
