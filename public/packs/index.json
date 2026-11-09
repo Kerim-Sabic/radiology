@@ -315,6 +315,15 @@
    "bytes": 8085014,
    "distribution": "repo",
    "note": "58 subjects, 58 studies, 58 series, 58 instances, 79 reference targets; DICOM 5.3 MB. Committed to the repository; rebuild with scripts/data/cadica.py; lessons scripts/lessons/cadica.py."
+  },
+  {
+   "id": "heart-ct",
+   "title": "Heart and great vessels on chest CT: heart, aorta, pulmonary veins and vena cavae",
+   "manifest": "heart-ct/pack.json",
+   "lessons": null,
+   "bytes": 101510978,
+   "distribution": "repo",
+   "note": "36 subjects, 36 studies, 36 series, 2466 instances, 547 reference targets; DICOM 89.0 MB. Committed to the repository; rebuild with scripts/data/heart_ct.py + heart_ct_build.py; lessons scripts/lessons/heart_ct.py."
   }
  ]
 }

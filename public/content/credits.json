@@ -724,7 +724,9 @@
       }
      ],
      "citation": "Wasserthal J, Breit HC, Meyer MT, et al. TotalSegmentator: robust segmentation of 104 anatomic structures in CT images. Radiology: Artificial Intelligence. 2023;5(5):e230024. doi:10.1148/ryai.230024. Data: Zenodo doi:10.5281/zenodo.22688904 (v3) and doi:10.5281/zenodo.10047292 (v2).",
-     "packs": []
+     "packs": [
+      "heart-ct"
+     ]
     }
    ]
   },
@@ -911,6 +913,7 @@
       "anatomy-atlas",
       "anatomy-atlas-mr",
       "anatomy-atlas-xr",
+      "heart-ct",
       "vessel-drafts"
      ]
     },
