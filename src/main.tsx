@@ -13,6 +13,7 @@ import { RootErrorBoundary } from './components/RootErrorBoundary';
 import { ScanLoader } from './components/ScanState';
 import { reloadOnceForNewRelease, sessionStore } from './app/errorReport';
 import { startEv } from './services/ev';
+import { AdConsentBar, MetaMeasurement } from './components/AdConsent';
 
 // The anonymous event log (docs/TRACKING.md): the arrival, the first interaction, errors and leaving.
 startEv();
@@ -41,6 +42,8 @@ createRoot(document.getElementById('root')!).render(
           </AppProvider></AccountGate>
         )}
       </RootErrorBoundary>
+      {/* Ad measurement: nothing loads until the visitor says yes; never on a case (src/services/metaPixel.ts). */}
+      {publicCertificate ? null : <><AdConsentBar /><MetaMeasurement /></>}
       {/* Cookieless page views (query strings dropped: they can hold task ids or codes). */}
       <Analytics beforeSend={(e) => ({ ...e, url: e.url.split('?')[0] })} />
     </BrowserRouter>

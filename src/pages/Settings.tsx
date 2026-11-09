@@ -6,6 +6,7 @@ import { formatBytes } from '../components/ui';
 import { packBaseUrl } from '../services/caseRepository';
 import { EmailChoices } from '../components/EmailChoices';
 import { ClassNotice } from '../components/ClassNotice';
+import { AdMeasurementSetting } from '../components/AdConsent';
 import { AboutCard } from '../components/MadeBy';
 
 export default function SettingsPage() {
@@ -28,6 +29,7 @@ export default function SettingsPage() {
       <h1>Settings</h1>
       <ClassNotice />
       <EmailChoices />
+      <AdMeasurementSetting />
 
       <section className="card stack">
         <h2>Study</h2>

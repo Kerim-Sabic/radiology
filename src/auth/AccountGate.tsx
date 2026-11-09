@@ -17,6 +17,7 @@ import { ScanLoader } from '../components/ScanState';
 import { isWelcomeCode, useOfferTimeLeft, WELCOME_GIFT, welcomePrice, welcomeRupees, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
 import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice, rupees, aboutLocal } from './regionalPrice';
 import { WorthSurvey } from './WorthSurvey';
+import { reportPurchase, syncAdConsent } from '../services/metaPixel';
 import { MAKER } from '../lib/provenance';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
@@ -36,7 +37,7 @@ function rememberPlan(tier: Tier | null) { try { if (tier) sessionStorage.setIte
 
 interface Access { active: boolean; role?: 'admin' | 'granted' | 'professor'; tier?: Tier | 'lifetime'; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
 /** `adminPermissions`: what an admin may see and do on the admin page; `teaches`: a professor; `classes`: the classes a student is in. */
-interface Account { user: { name: string; email: string } | null; access: Access; billingReady: boolean; book?: boolean; studentDiscountEligible?: boolean; adminPermissions?: string[]; teaches?: boolean; classes?: Array<{ email: string; name: string }>; welcomeOffer?: WelcomeOffer; regionalPrice?: RegionalPrice; }
+interface Account { user: { name: string; email: string } | null; metaPurchase?: { id: string; value: number; currency: string }; access: Access; billingReady: boolean; book?: boolean; studentDiscountEligible?: boolean; adminPermissions?: string[]; teaches?: boolean; classes?: Array<{ email: string; name: string }>; welcomeOffer?: WelcomeOffer; regionalPrice?: RegionalPrice; }
 interface AccountState {
   account: Account;
   logout: () => void;
@@ -310,6 +311,11 @@ function MembershipGate({ children }: { children: ReactNode }) {
       if (!mounted.current || current !== generation.current) return;
       signedIn.current = !!data.user;
       setAccount(data);
+      // Ad measurement: the visitor's choice goes to the account, and a confirmed payment is reported to the Pixel once.
+      if (data.user) {
+        void syncAdConsent(data.user.email);
+        if (data.metaPurchase) reportPurchase(data.metaPurchase);
+      }
       setError('');
       if (data.user) setEndedBy(null);
       if (data.user) { setAuthMode(null); setAuthWaiting(false); }

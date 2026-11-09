@@ -26,7 +26,7 @@ Brief: `C:\Helix\Lab\Marketing\radiology-monster-instagram\PROMPT-TRACKING.md` (
   - any browser that opened `?internal=1` once. Kerim: open `https://www.radiology.monster/?internal=1` on each of your devices; `?internal=0` undoes it.
 - **On the site:** the landing page's questions say this in one paragraph ("What do you measure about visits?").
 
-**Cost.** None beyond the Redis already in use: about 1–5k events a day, a few commands per batch. Nothing here sets a cookie or loads a third-party script. Anything that would (Meta Pixel, Clarity, Resend tracking) waits for Kerim's yes (REQUESTS.md).
+**Cost.** None beyond the Redis already in use: about 1–5k events a day, a few commands per batch. The event log itself sets no cookie and loads no third-party script. The one exception is **ad measurement**, which is off until a visitor says yes (section below). Anything that would (Meta Pixel, Clarity, Resend tracking) waits for Kerim's yes (REQUESTS.md).
 
 ## How it is sent (performance)
 - **Size:** `src/services/ev.ts`, 2.2 KB minified and 1.2 KB compressed on the wire.
@@ -90,6 +90,7 @@ Brief: `C:\Helix\Lab\Marketing\radiology-monster-instagram\PROMPT-TRACKING.md` (
 | `checkout_ready` | Whop's payment form appeared (once) | ms (after it started loading) | How long the payment form takes |
 | `checkout_close` | (reserved) the payment form closed without paying | step | — |
 | `paid` | *Server:* the account became a paying member (once) | — | Payments, joined to the journey |
+| `purchase` | *Server:* a confirmed payment as the ad measurement saw it (`server/metaAds.ts`) | value, currency, capi (sent to Meta), browser (Pixel copy queued), why (`sent`, `no_consent`, `no_token`, `capi_failed`), test (Meta's test code was on) | Whether each payment reached Meta, and why not |
 | `pay_declined` | *Server:* a declined payment (needs Whop's webhook; not yet connected) | reason, country | Why cards fail, by country |
 
 ### Email
@@ -152,3 +153,17 @@ All views take the filters: dates (up to 31 days), ad tag (prefix, e.g. `meta:re
 3. **Resend open/click tracking** on makeborne.com. It's domain-wide: Makeborne mail would be tracked too. The `utm` tags on email links already work without it.
 4. **A one-question exit survey** on the plans page and after a paywall: four choices + other, stored as counts only.
 5. **Whop webhook** (`payment.failed`, `payment.succeeded`) to an endpoint we add, for decline reasons by country. Needs Kerim to create the webhook in Whop and share its secret.
+
+## Ad measurement: Meta Pixel and Conversions API (built 9 Nov 2026)
+Dataset: *Radiology Monster | Website purchases*, Pixel id `2330256791086004` (public). Code: `server/metaAds.ts`, `src/services/metaPixel.ts`, `src/components/AdConsent.tsx`; tests in `tests/metaAds.test.ts`.
+- **Consent first.** The Pixel script is **not loaded** until the visitor presses "Allow" (a bar at the bottom of pages that are not a case, after 2.5 s; the same choice inside the plans screen; changeable in Settings → Ad measurement). "No thanks" loads nothing and clears Meta's cookies. The choice is kept in this browser (`rvm.adconsent`) and, once signed in, with the account (`rvm:meta:<user>`) so the server may report a payment.
+- **What Meta can see after a yes:**
+  - a PageView on `/`, `/about` and `/cases` only, and only when the address holds nothing but campaign tags (`utm_*`, `fbclid`, `src`, `checkout`);
+  - one **Purchase** per confirmed payment: the paid amount (`total`, after any code) and its ISO currency, with the payment's id as the event id.
+  - The server copy (Conversions API) adds a SHA-256 hash of the email address, a hash of the account id, Meta's `_fbp` and click id when the browser had them, and `https://www.radiology.monster/` as the source address.
+- **Never sent:** a case, a task, an answer, a scan, a diagnosis, a name, a plain email, an IP address, a code. The Pixel never runs on `/read/…` or any page whose address can hold them; Meta's automatic events (buttons, forms, history changes) are switched off.
+- **When a Purchase counts.** Only when Whop's own record, read by the server (`paidAccess` in `server/billing.ts`), shows a payment that is `paid` and `succeeded`, with a positive amount, paid in the last 72 hours. A pricing view, checkout click, sign-up, free access, a welcome code made free, or a failed or cancelled payment never makes one.
+- **No duplicates.** The payment id is a once-only key (`rvm:once:metapurchase:<id>`) and the event id of both copies, so a refresh, a second session check or a replay makes no second Purchase, and Meta merges the browser and server copies. Old or test payments are not backfilled (72 h limit).
+- **Secrets.** `META_CAPI_TOKEN` (Conversions API access token) exists only as a Vercel environment variable. `META_TEST_EVENT_CODE` (Events Manager → Test events) marks every event as a test while it is set; the log's `purchase` event records `test`. `META_PIXEL_ID` overrides the dataset id.
+- **Campaign attribution.** The ad tags the site already keeps (`src/services/source.ts`) stay on the account; `fbclid` is kept for the server copy after a yes.
+- **Checking it** (needs Kerim): Events Manager → Datasets → Test events: set `META_TEST_EVENT_CODE`, make a test payment, see exactly one Purchase with the right value and currency, and none for an abandoned checkout. Admin → Journeys shows the `purchase` event per account.

@@ -59,6 +59,9 @@ export const SERVER_EVENTS = {
   checkout_created: { tier: 's', regional: 'b' },
   checkout_refused: { status: 'n' },
   paid: { tier: 's' },
+  // A confirmed payment as the ad measurement saw it (server/metaAds.ts): the paid value, whether the Conversions API and
+  // the browser copy went out, why not, and whether Meta's test code was on. Never the person.
+  purchase: { value: 'n', currency: 's', capi: 'b', browser: 'b', why: 's', test: 'b' },
   pay_declined: { reason: 's', country: 's' },
   code_redeemed: { kind: 's' },
 } as const satisfies Record<string, Spec>;

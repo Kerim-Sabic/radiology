@@ -28,6 +28,7 @@ import { finishLinkedInPost, linkedinReady, startLinkedInPost } from './linkedin
 import { studentEligible, StudentDiscountError } from './studentDiscount.js';
 import { earlierAccounts, welcomeCron, welcomeEarlierAccounts } from './welcome.js';
 import { welcomeOffer } from './welcomeCode.js';
+import { pendingBrowserPurchase, saveConsent } from './metaAds.js';
 import { beginMerchantConnect, finishMerchantConnect, MERCHANT_COOKIE, merchantConnectPage } from './merchantConnect.js';
 
 /** This browser's device id (server/devices.ts): its cookie, or a new one to set (`fresh`). */
@@ -239,7 +240,14 @@ export async function handle(request: Request): Promise<Response> {
       const welcome = access.active ? null : await welcomeOffer(user.userId).catch(() => null);
       // The regional price for the country this request comes from, while regional prices are on (server/regional.ts).
       const regionalPrice = access.active ? null : await regionalOffer(request.headers.get('x-vercel-ip-country'));
-      return json({ user: { name: user.name, email: user.email }, access, billingReady: readiness().billing, book, studentDiscountEligible: await studentEligible(user.userId), ...(welcome ? { welcomeOffer: welcome } : {}), ...(regionalPrice ? { regionalPrice } : {}), ...(adminPermissions ? { adminPermissions } : {}), ...(teaches ? { teaches } : {}), ...(classes.length ? { classes } : {}) });
+      // A confirmed payment the visitor allowed ad measurement for: the page reports it to the Pixel once (server/metaAds.ts).
+      const metaPurchase = access.active && !access.role ? await pendingBrowserPurchase(user.userId) : null;
+      return json({ user: { name: user.name, email: user.email }, ...(metaPurchase ? { metaPurchase } : {}), access, billingReady: readiness().billing, book, studentDiscountEligible: await studentEligible(user.userId), ...(welcome ? { welcomeOffer: welcome } : {}), ...(regionalPrice ? { regionalPrice } : {}), ...(adminPermissions ? { adminPermissions } : {}), ...(teaches ? { teaches } : {}), ...(classes.length ? { classes } : {}) });
+    }
+    // The visitor's choice about ad measurement (the consent prompt), kept with the account so a payment can be reported.
+    if (path === '/api/consent' && request.method === 'POST') {
+      if (!await rateLimit(`consent:${user.userId}`, 30, 3600)) return json({ error: 'Too many updates.' }, 429);
+      return await saveConsent(user.userId, await request.json().catch(() => null)) ? json({ ok: true }) : json({ error: 'Invalid choice.' }, 400);
     }
     if (path === '/api/access' && request.method === 'GET') {
       const access = await accessFor(user.userId);

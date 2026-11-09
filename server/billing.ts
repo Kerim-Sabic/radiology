@@ -10,6 +10,7 @@ import { affiliateCode } from '../shared/referrals.js';
 import { checkoutDiscount } from './studentDiscount.js';
 import { PromoUnavailableError } from './checkoutError.js';
 import { WELCOME_PREFIX } from './welcomeCode.js';
+import { recordPurchase } from './metaAds.js';
 
 export async function whop() {
   return new WhopClient({ token: await merchantToken(), apiVersionDate: '2026-10-15-1', timeoutInSeconds: 15, maxRetries: 1 });
@@ -211,6 +212,8 @@ async function paidAccess(userId: string, fresh: boolean): Promise<Access> {
       status: 'paid', order: 'created_at', direction: 'desc', first: 1 });
     const payment = payments.data[0];
     if (!payment || !paymentGrantsAccess(payment)) continue;
+    // A confirmed, paid payment: the ad measurement may report it once (server/metaAds.ts decides; it never throws).
+    await recordPurchase(userId, payment, m.plan_id);
     if (result.tier !== 'lifetime') result = access;
   }
   await db().set(`rvm:access:${userId}`, result, { ex: 30 });

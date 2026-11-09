@@ -1,6 +1,7 @@
 import { useEffect, useRef, type ReactNode } from 'react';
 import { ArrowLeft, Award, BookOpen, CalendarDays, Check, Layers, LogOut, Repeat, Siren } from 'lucide-react';
 import { fact, LANDING_FACTS } from './landingFacts';
+import { AdConsentLine } from '../components/AdConsent';
 
 const UNLOCKS: Array<{ icon: ReactNode; title: string; text: string }> = [
   {
@@ -92,7 +93,7 @@ export function PlansScreen({ panel, email, onClose, onSignOut }: { panel: React
             ))}
           </ul>
         </section>
-        <div className="plans-panel">{panel}</div>
+        <div className="plans-panel">{panel}<AdConsentLine /></div>
       </div>
     </div>
   );
