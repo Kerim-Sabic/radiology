@@ -3,7 +3,7 @@ import { Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-ro
 import { evPage } from './services/ev';
 import { pendingJoinCode } from './auth/joinCode';
 import { DropdownMenu, Tooltip } from 'radix-ui';
-import { Award, BookOpen, Bone, ChartColumn, ChevronDown, FolderOpen, GraduationCap, House, LayoutGrid, Library, Lock, Search, NotebookPen, Siren, Stethoscope, Target } from 'lucide-react';
+import { Award, BookOpen, Bone, ChartColumn, ChevronDown, FolderOpen, GraduationCap, House, LayoutGrid, Library, Lock, Search, NotebookPen, Ruler, Siren, Stethoscope, Target } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 import { AccountMenu } from './auth/AccountGate';
@@ -35,6 +35,7 @@ const ClassPage = lazy(() => import('./pages/Class'));
 const JoinPage = lazy(() => import('./pages/Join'));
 const CertificatesPage = lazy(() => import('./pages/Certificates'));
 const ExamResultPage = lazy(() => import('./pages/ExamResult'));
+const MeasurePage = lazy(() => import('./pages/Measure'));
 
 /** Members-only areas: a free account sees what each one is, and the plans. */
 const LOCKED: Record<string, { icon: React.ReactNode; title: string; text: string; points: string[] }> = {
@@ -43,6 +44,12 @@ const LOCKED: Record<string, { icon: React.ReactNode; title: string; text: strin
     title: 'Drills that remember',
     text: 'Point to a structure or a finding on a patient you have not seen, then name it. What you miss comes back later, on a different patient, until you know it.',
     points: ['Anatomy and findings, on every patient', 'Spaced repetition: back after 1, 3, 7, 16 and 35 days', 'Pick a region, or review what is due'],
+  },
+  '/measure': {
+    icon: <Ruler />,
+    title: 'Measure on real films',
+    text: 'Measure the heart–chest ratio on real chest X-rays: tap the heart’s edges and the inside of the chest, then see your ratio against a reference outline.',
+    points: ['Guided taps, on a phone or a computer', 'Your ratio, the normal range and where you went wrong', 'More measurements on the way'],
   },
   '/oncall': {
     icon: <Siren />,
@@ -91,6 +98,7 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
   const tools = [
     { to: '/drill', label: 'Drills', hint: 'Point and name', icon: <Target size={16} /> },
     { to: '/oncall', label: 'On call', hint: 'Timed unknown cases', icon: <Siren size={16} /> },
+    { to: '/measure', label: 'Measure', hint: 'Heart–chest ratio on X-rays', icon: <Ruler size={16} /> },
     { to: '/book', label: 'Book', hint: 'Read beside your scans', icon: <BookOpen size={16} /> },
     { to: '/import', label: 'Import', hint: 'Your own studies', icon: <FolderOpen size={16} /> },
     { to: '/author', label: 'Author', hint: 'Write your own cases', icon: <NotebookPen size={16} /> },
@@ -201,6 +209,7 @@ const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/atlas/, 'Anatomy atlas'],
   [/^\/drill/, 'Drills'],
   [/^\/oncall/, 'On call'],
+  [/^\/measure/, 'Measure'],
   [/^\/course/, 'Course'],
   [/^\/book/, 'Book'],
   [/^\/progress/, 'Progress'],
@@ -267,6 +276,7 @@ export function App() {
               <Route path="/atlas" element={<AtlasPage />} />
               <Route path="/drill" element={<DrillPage />} />
               <Route path="/oncall" element={<OnCallPage />} />
+              <Route path="/measure" element={<Suspense fallback={<div className="vp-status">Loading…</div>}><MeasurePage /></Suspense>} />
               <Route path="/read/:caseId" element={<Suspense fallback={<RoomPreview />}><Workstation /></Suspense>} />
               <Route path="/book" element={<BookReader />} />
               <Route path="/book/figures" element={<BookFigures />} />
