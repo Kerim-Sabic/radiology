@@ -3,7 +3,7 @@ import { Link, NavLink, Route, Routes, useLocation, useNavigate } from 'react-ro
 import { evPage } from './services/ev';
 import { pendingJoinCode } from './auth/joinCode';
 import { DropdownMenu, Tooltip } from 'radix-ui';
-import { Award, BookOpen, Bone, ChartColumn, ChevronDown, FolderOpen, GraduationCap, House, LayoutGrid, Library, Lock, Search, NotebookPen, Ruler, Siren, Stethoscope, Target } from 'lucide-react';
+import { Award, BookCheck, BookOpen, Bone, ChartColumn, ChevronDown, FolderOpen, GraduationCap, House, LayoutGrid, Library, Lock, Search, NotebookPen, Ruler, Siren, Stethoscope, Target } from 'lucide-react';
 import { HomePage } from './pages/Home';
 import { LibraryPage } from './pages/Library';
 import { AccountMenu } from './auth/AccountGate';
@@ -36,6 +36,7 @@ const JoinPage = lazy(() => import('./pages/Join'));
 const CertificatesPage = lazy(() => import('./pages/Certificates'));
 const ExamResultPage = lazy(() => import('./pages/ExamResult'));
 const MeasurePage = lazy(() => import('./pages/Measure'));
+const BookExamsPage = lazy(() => import('./pages/BookExams'));
 
 /** Members-only areas: a free account sees what each one is, and the plans. */
 const LOCKED: Record<string, { icon: React.ReactNode; title: string; text: string; points: string[] }> = {
@@ -62,6 +63,12 @@ const LOCKED: Record<string, { icon: React.ReactNode; title: string; text: strin
     title: 'Anatomy atlas',
     text: 'Every labelled structure on every patient. Pick a rib, a lobe or a vessel and see it alone on a real scan.',
     points: ['Hundreds of structures on CT, X-ray and MRI', 'The book’s anatomy checklist, chapter by chapter', 'Drill any structure on other patients'],
+  },
+  '/book-exams': {
+    icon: <BookCheck />,
+    title: 'Book exams',
+    text: 'One exam for each chapter of Learning Radiology: multiple-choice questions and short essays on real images, marked on the server, with an explanation and the page to re-read for every question.',
+    points: ['Chapters 1 to 13, each with its own exam', 'Essays on 5 or 6 real images, with a rubric and a model answer', 'For members who have the book (SSST students and named accounts)'],
   },
   '/book': {
     icon: <BookOpen />,
@@ -100,6 +107,7 @@ function TopNav({ onSearch }: { onSearch: () => void }) {
     { to: '/oncall', label: 'On call', hint: 'Timed unknown cases', icon: <Siren size={16} /> },
     { to: '/measure', label: 'Measure', hint: 'Heart–chest ratio on X-rays', icon: <Ruler size={16} /> },
     { to: '/book', label: 'Book', hint: 'Read beside your scans', icon: <BookOpen size={16} /> },
+    { to: '/book-exams', label: 'Book exams', hint: 'Chapters 1–13, with essays', icon: <BookCheck size={16} /> },
     { to: '/import', label: 'Import', hint: 'Your own studies', icon: <FolderOpen size={16} /> },
     { to: '/author', label: 'Author', hint: 'Write your own cases', icon: <NotebookPen size={16} /> },
   ];
@@ -211,6 +219,7 @@ const PAGE_TITLES: Array<[RegExp, string]> = [
   [/^\/oncall/, 'On call'],
   [/^\/measure/, 'Measure'],
   [/^\/course/, 'Course'],
+  [/^\/book-exams/, 'Book exams'],
   [/^\/book/, 'Book'],
   [/^\/progress/, 'Progress'],
   [/^\/certificates/, 'Certificates'],
@@ -278,6 +287,7 @@ export function App() {
               <Route path="/oncall" element={<OnCallPage />} />
               <Route path="/measure" element={<Suspense fallback={<div className="vp-status">Loading…</div>}><MeasurePage /></Suspense>} />
               <Route path="/read/:caseId" element={<Suspense fallback={<RoomPreview />}><Workstation /></Suspense>} />
+              <Route path="/book-exams/*" element={<BookExamsPage />} />
               <Route path="/book" element={<BookReader />} />
               <Route path="/book/figures" element={<BookFigures />} />
               <Route path="/book/:physical" element={<BookReader />} />
