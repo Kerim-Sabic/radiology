@@ -1,0 +1,971 @@
+{
+ "chapter": 7,
+ "title": "Recognizing a Pleural Effusion",
+ "blurb": "Pleural anatomy and fluid, causes and sides, subpulmonic, loculated, laminar and fissural collections, positioning and hydropneumothorax.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Pleural anatomy: parietal pleura lines the thoracic cage, visceral pleura covers the lung and forms the fissures (major and minor on the right, only major on the left); the pleural space is a potential space with about 2 to 5 mL"
+  },
+  {
+   "id": "t02",
+   "label": "Normal physiology: several hundred mL produced and reabsorbed daily; formed mainly at the parietal pleura, resorbed at the visceral pleura and by lymphatics through the parietal pleura"
+  },
+  {
+   "id": "t03",
+   "label": "Modalities: radiography is the first step; CT and ultrasound both sensitive for small amounts; CT best for underlying disease or a fully opacified hemithorax; ultrasound helps guide removal of fluid; appearances are fundamentally similar"
+  },
+  {
+   "id": "t04",
+   "label": "Causes: fluid forms faster than it is cleared; increased formation (hydrostatic pressure as in left-heart failure, low colloid osmotic pressure as in hypoproteinemia, capillary permeability as in pneumonia or hypersensitivity)"
+  },
+  {
+   "id": "t05",
+   "label": "Causes: decreased resorption (lymphatic block, lymphangitic carcinomatosis, raised venous pressure; lowered pleural pressure from atelectasis due to bronchial obstruction) and transport of peritoneal fluid (ascites)"
+  },
+  {
+   "id": "t06",
+   "label": "Transudate vs exudate by protein, specific gravity and LDH; transudates usually bilateral (congestive heart failure the commonest, hypoalbuminemia, cirrhosis, nephrotic syndrome)"
+  },
+  {
+   "id": "t07",
+   "label": "Exudates usually unilateral (inflammation, connective tissue disease, malignancy the commonest); empyema = exudate with pus; hemothorax = fluid hematocrit above 50% of blood; chylothorax = raised triglycerides or cholesterol"
+  },
+  {
+   "id": "t08",
+   "label": "Bilateral effusions: heart failure gives about equal amounts (sometimes slightly more on the right), a marked difference suggests parapneumonic effusion or malignancy on the larger side; lupus is bilateral, and when unilateral usually left"
+  },
+  {
+   "id": "t09",
+   "label": "Either side but usually unilateral: tuberculosis and other infectious exudates, pulmonary thromboembolism, trauma"
+  },
+  {
+   "id": "t10",
+   "label": "Usually left-sided only: pancreatitis, distal thoracic duct obstruction, Dressler syndrome"
+  },
+  {
+   "id": "t11",
+   "label": "Mostly right-sided: liver or ovarian disease (Meigs syndrome), rheumatoid arthritis (can stay unchanged for years), proximal thoracic duct obstruction"
+  },
+  {
+   "id": "t12",
+   "label": "Dressler syndrome: 2 to 3 weeks after transmural infarct or cardiac surgery; fever, chest pain, left effusion, pericardial effusion, patchy left-base airspace disease; responds to aspirin or steroids"
+  },
+  {
+   "id": "t13",
+   "label": "Appearance depends on patient position, gravity, amount of fluid and elastic recoil of the lung; descriptions assume the upright patient"
+  },
+  {
+   "id": "t14",
+   "label": "Subpulmonic effusion: where almost all effusions first collect; looks like an altered hemidiaphragm contour (really the fluid-lung interface); usually free-flowing, subpulmonic does not mean loculated"
+  },
+  {
+   "id": "t15",
+   "label": "Right subpulmonic effusion: apparent hemidiaphragm peaks too far laterally, posterior arc then flat anterior drop at the major fissure; harder to see because liver and fluid have the same density"
+  },
+  {
+   "id": "t16",
+   "label": "Left subpulmonic effusion: more than about 1 cm between stomach bubble and apparent hemidiaphragm, peak displaced laterally, flat anterior contour on the lateral view"
+  },
+  {
+   "id": "t17",
+   "label": "Blunting thresholds: about 75 mL blunts the posterior costophrenic sulcus (lateral view); about 300 mL (200 to 300) blunts the lateral sulcus (frontal view)"
+  },
+  {
+   "id": "t18",
+   "label": "Pitfall: pleural scarring also blunts the angle, with a ski-slope rather than meniscoid shape, and does not move with position"
+  },
+  {
+   "id": "t19",
+   "label": "Meniscus sign: elastic recoil makes fluid higher laterally than medially on the frontal view (U-shaped on the lateral); a meniscoid density strongly suggests effusion"
+  },
+  {
+   "id": "t20",
+   "label": "Positioning: upright fluid falls to the base; supine fluid layers posteriorly as a homogeneous haze over the hemithorax; change in appearance may be position not volume, so keep portable films in the same position"
+  },
+  {
+   "id": "t21",
+   "label": "Decubitus view: patient lies on a side, horizontal beam; free fluid forms a band along the dependent side; now used infrequently"
+  },
+  {
+   "id": "t22",
+   "label": "Opacified hemithorax (about 2 L): passive atelectasis, mass effect pushes heart and trachea away from the side; CT shows the lung and pleura hidden behind the fluid (e.g. pleural metastases)"
+  },
+  {
+   "id": "t23",
+   "label": "Loculated effusion: adhesions (old infection, hemothorax) fix the fluid; unusual shape or location, defies gravity; hard to drain with a single tube"
+  },
+  {
+   "id": "t24",
+   "label": "Fissural pseudotumor: lenticular, pointed ends (lemon), mostly minor fissure (75%), transudate in heart failure, not free-flowing, vanishes with treatment and recurs in the same place"
+  },
+  {
+   "id": "t25",
+   "label": "Laminar effusion: thin band along the lateral chest wall, costophrenic angle stays acute; raised left atrial pressure (heart failure or lymphangitic carcinomatosis); not free-flowing"
+  },
+  {
+   "id": "t26",
+   "label": "Hydropneumothorax: air plus fluid; straight air-fluid level with horizontal beam instead of a meniscus; causes trauma, surgery, thoracentesis, bronchopleural fistula"
+  },
+  {
+   "id": "t27",
+   "label": "Radiography cannot tell blood from other fluid (hemopneumothorax in the case quiz); CT may be needed to tell hydropneumothorax from a large lung abscess"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c07-m01",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "Which description of normal pleural anatomy is correct?",
+   "options": [
+    "The parietal pleura covers the lung surface and folds into the fissures; the pleural space is a potential space with only about 2 to 5 mL of fluid",
+    "The visceral pleura covers the lung and folds into the fissures, with both a major and a minor fissure in each lung; the pleural space holds a few mL",
+    "The visceral pleura covers the lung and folds into the fissures (major and minor on the right, major only on the left); the pleural space is a potential space with only about 2 to 5 mL of fluid",
+    "The visceral pleura covers the lung and folds into the fissures; the pleural space normally holds about 100 to 200 mL of fluid"
+   ],
+   "answer": 2,
+   "explanation": "The parietal layer lines the inside of the thoracic cage, the visceral layer sticks to the lung and its enfolds make the interlobar fissures. Only the right lung has a minor fissure. The space between the layers is only potential and contains just a few mL, so one distractor swaps the layers, one gives a second minor fissure, one gives a volume that is far too large.",
+   "book": "Chapter 7, Normal anatomy and physiology of the pleural space",
+   "covers": [
+    "t01"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c07-m02",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "Radiography is usually the first test for a pleural effusion. Which statement about the other modalities is correct?",
+   "options": [
+    "A plain radiograph is more sensitive than CT or ultrasound for small amounts of fluid",
+    "CT and ultrasound both detect small amounts of fluid; CT is best for the disease underlying an effusion or a fully opacified hemithorax, and ultrasound helps guide removal of the fluid",
+    "Ultrasound is the best test for the lung hidden behind a completely opaque hemithorax, and CT is mainly used to guide drainage",
+    "The appearance of an effusion on CT is so different from the radiograph that the same signs cannot be applied"
+   ],
+   "answer": 1,
+   "explanation": "CT and ultrasound are both more sensitive than the radiograph. CT is the choice when you need to see what lies behind a large effusion, and ultrasound is handy for guiding needle removal of fluid. The fundamental look of an effusion (fluid in a dependent, meniscoid distribution) is similar in every modality, so the first distractor reverses sensitivity, the second swaps the roles and the third contradicts the similarity of appearance.",
+   "book": "Chapter 7, Modalities for detecting pleural effusions",
+   "covers": [
+    "t03"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c07-m03",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "Several hundred mL of pleural fluid are produced and reabsorbed each day. Which description of that turnover matches the book?",
+   "options": [
+    "Fluid is formed mainly at the parietal pleura and resorbed at the visceral pleura and by lymphatics draining through the parietal pleura",
+    "Fluid is formed mainly at the visceral pleura and removed only by lymphatics through the parietal pleura",
+    "Almost no fluid turns over: the 2 to 5 mL in the space stays fixed until disease develops",
+    "Fluid is formed by the alveoli and removed through the bronchi"
+   ],
+   "answer": 0,
+   "explanation": "Normal fluid dynamics: production is mainly parietal, removal is by the visceral pleura plus parietal lymphatics. That matters because disease that raises production or blocks removal makes an effusion. The first distractor reverses the production site, the second ignores the large daily turnover, and the third invents an airway route.",
+   "book": "Chapter 7, Normal anatomy and physiology of the pleural space",
+   "covers": [
+    "t02"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c07-m04",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "Which cause produces a pleural effusion mainly by decreasing the resorption of fluid, rather than by increasing its formation?",
+   "options": [
+    "Hypoproteinemia lowering the colloid osmotic pressure",
+    "Toxic injury to the capillary membrane in pneumonia",
+    "A hypersensitivity reaction increasing capillary permeability",
+    "Lymphangitic carcinomatosis blocking lymphatic drainage"
+   ],
+   "answer": 3,
+   "explanation": "Fluid collects when its formation exceeds its clearance. Hypoproteinemia, capillary injury in pneumonia and hypersensitivity reactions all increase formation (by lowering osmotic pressure or by raising capillary permeability, while left-heart failure raises hydrostatic pressure). Lymphatic obstruction, raised venous pressure and lowered pleural pressure from atelectasis reduce clearance. Ascites adds a third route, peritoneal fluid passing through the diaphragm.",
+   "book": "Chapter 7, Causes of pleural effusions (Table 7.1)",
+   "covers": [
+    "t04",
+    "t05"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c07-m05",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "A man with leg swelling and breathlessness has bilateral pleural effusions. The fluid has a low protein and a low LDH concentration. What type of fluid is this and what is the commonest cause?",
+   "options": [
+    "An exudate, most commonly due to malignancy",
+    "A transudate, most commonly due to pancreatitis",
+    "A transudate, most commonly due to congestive heart failure",
+    "An exudate containing pus, due to an empyema"
+   ],
+   "answer": 2,
+   "explanation": "Transudates have lower protein, lower specific gravity and lower LDH than exudates; they form when hydrostatic pressure rises or osmotic pressure falls and are usually bilateral. Congestive heart failure (mainly left-heart failure) is the commonest cause, with hypoalbuminemia, cirrhosis and the nephrotic syndrome as others. Exudates come from inflammation, connective tissue disease and malignancy, are usually unilateral and have higher protein and LDH.",
+   "book": "Chapter 7, Types of pleural effusions",
+   "covers": [
+    "t06"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c07-m06",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "Which definition of a type of pleural fluid is correct?",
+   "options": [
+    "Chylothorax: pleural fluid with a hematocrit greater than 50% of the blood hematocrit",
+    "Hemothorax: pleural fluid with a hematocrit greater than 50% of the blood hematocrit",
+    "Empyema: a transudate that contains pus",
+    "Transudate: fluid with a higher protein and LDH than an exudate"
+   ],
+   "answer": 1,
+   "explanation": "A hemothorax is defined by the hematocrit of the fluid; a chylothorax by increased triglycerides or cholesterol; an empyema is an exudate (not a transudate) containing pus. The most common cause of an exudate is malignancy, whereas transudates have the lower protein and LDH.",
+   "book": "Chapter 7, Types of pleural effusions",
+   "covers": [
+    "t07"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c07-m07",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "A patient with heart failure has bilateral effusions, but the right effusion is far larger than the left. What does the book teach you to suspect?",
+   "options": [
+    "A parapneumonic effusion or malignancy on the side with the markedly greater volume",
+    "Nothing unusual: heart failure normally gives a far larger effusion on the right",
+    "Lupus erythematosus, which usually produces a larger right-sided effusion",
+    "Dressler syndrome, which usually produces right-sided effusions"
+   ],
+   "answer": 0,
+   "explanation": "Heart failure usually produces about the same amount in each hemithorax, sometimes slightly more on the right. A markedly different volume should make you look for a second process on the larger side, such as a parapneumonic effusion or malignancy. Lupus is usually bilateral and, when unilateral, left-sided; Dressler syndrome gives a left effusion.",
+   "book": "Chapter 7, Side-specificity of pleural effusions",
+   "covers": [
+    "t08"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c07-m08",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "Which matching of cause and usual side of the effusion is correct?",
+   "options": [
+    "Pancreatitis: right-sided; liver or ovarian disease (Meigs syndrome): left-sided",
+    "Distal thoracic duct obstruction: right-sided; proximal thoracic duct obstruction: left-sided",
+    "Rheumatoid arthritis: left-sided effusion that clears within days",
+    "Pancreatitis: left-sided; liver or ovarian disease (Meigs syndrome): right-sided"
+   ],
+   "answer": 3,
+   "explanation": "Pancreatitis, distal thoracic duct obstruction and Dressler syndrome usually give left-sided effusions. Liver or ovarian disease (some ovarian tumours with ascites and a right effusion form Meigs syndrome), proximal thoracic duct obstruction and rheumatoid arthritis are mostly right-sided, and the rheumatoid effusion can stay unchanged for years. Tuberculosis, pulmonary thromboembolism and trauma can affect either side, usually one only.",
+   "book": "Chapter 7, Side-specificity of pleural effusions",
+   "covers": [
+    "t10",
+    "t11"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c07-m09",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "A 58-year-old man had a heart attack through the full thickness of the heart wall three weeks ago. He now has fever, chest pain, a left pleural effusion, a pericardial effusion and patchy airspace disease at the left base. What is the diagnosis and the usual response to treatment?",
+   "options": [
+    "Meigs syndrome; it resolves after removal of the ovarian tumour",
+    "A fissural pseudotumor; it disappears when the heart failure is treated",
+    "Dressler syndrome; it usually responds to high-dose aspirin or steroids",
+    "Lymphangitic carcinomatosis; it responds to diuretics"
+   ],
+   "answer": 2,
+   "explanation": "The timing (2 to 3 weeks after a transmural infarct or cardiac surgery) and the combination of fever, chest pain, left effusion, pericardial effusion and left-base airspace disease define Dressler syndrome, also called the postpericardiotomy or postmyocardial infarction syndrome. Meigs syndrome is a right effusion with ovarian tumour and ascites; pseudotumors are fissural collections in heart failure.",
+   "book": "Chapter 7, Side-specificity of pleural effusions (Box 7.1, Dressler syndrome)",
+   "covers": [
+    "t12",
+    "t10"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c07-m10",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "On an upright frontal film a free effusion rises higher at the chest wall than near the mediastinum. What mainly produces this shape, and what does such a meniscoid density suggest?",
+   "options": [
+    "Gravity pulling the fluid toward the chest wall; it suggests pleural thickening",
+    "The elastic recoil of the lung; a meniscoid abnormal density is strongly suggestive of a pleural effusion",
+    "Pressure from the heart pushing fluid laterally; it suggests a pericardial effusion",
+    "Adhesions between the pleural layers; it suggests a loculated effusion"
+   ],
+   "answer": 1,
+   "explanation": "Gravity brings pleural fluid to the base, whereas the natural elastic recoil of the lung pulls the lung away from the chest wall so the fluid appears higher laterally and lower in the middle. On the lateral view the fluid is U-shaped. Scarring does not look like this, it makes a ski-slope. Loculated fluid does not follow this free-flowing pattern.",
+   "book": "Chapter 7, The meniscus sign",
+   "covers": [
+    "t13",
+    "t19"
+   ],
+   "level": "recall",
+   "lesson": "cxr-00003072-028"
+  },
+  {
+   "id": "c07-m11",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "In an upright patient, where does most pleural fluid first collect?",
+   "options": [
+    "Beneath the lung, between the diaphragm and the base of the lower lobe (subpulmonic)",
+    "Between the layers of the minor fissure",
+    "As a thin band along the lateral chest wall",
+    "At the top of the pleural space over the apex"
+   ],
+   "answer": 0,
+   "explanation": "Almost all effusions begin subpulmonic. If they stay there, only the contour of what looks like the hemidiaphragm changes. Subpulmonic does not mean loculated; most flow freely when the patient changes position. Fissural fluid and thin lateral bands are special forms (pseudotumor, laminar effusion), and gravity does not take fluid to the apex.",
+   "book": "Chapter 7, Subpulmonic effusions",
+   "covers": [
+    "t14"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c07-m12",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "On an upright PA film the right hemidiaphragm looks raised with its highest point too far lateral. On the lateral film the posterior costophrenic sulcus is blunted, and the dome is rounded behind but flat in front, dropping steeply to the anterior chest wall. What is the best explanation?",
+   "options": [
+    "A true elevation of the right hemidiaphragm",
+    "Right lower lobe atelectasis",
+    "A laminar effusion with a preserved costophrenic angle",
+    "A right subpulmonic effusion: the apparent hemidiaphragm is the fluid-lung interface"
+   ],
+   "answer": 3,
+   "explanation": "The edge you see is where fluid meets the base of the aerated lung, the real diaphragm is hidden. The flat anterior drop occurs where the fluid meets the major fissure. On the right this is harder to recognise than on the left because the liver below has the same density as the fluid above. A laminar effusion keeps the angle acute, and a true raised diaphragm would not blunt the posterior sulcus this way.",
+   "book": "Chapter 7, Subpulmonic effusions (Table 7.2, Fig. 7.2)",
+   "covers": [
+    "t15"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c07-m13",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "On a frontal film, what finding suggests a left subpulmonic effusion?",
+   "options": [
+    "Normally about 1 cm, and a distance below that suggests an effusion",
+    "A stomach bubble that is displaced up into the left lower lobe",
+    "More than about 1 cm between the stomach bubble and the top of the apparent left hemidiaphragm",
+    "No clue is available on the left because the stomach has the same density as fluid"
+   ],
+   "answer": 2,
+   "explanation": "The distance from the top of the stomach gas to the bottom of the aerated left lower lobe is normally only about 1 cm; more than that points to fluid beneath the lung, along with a displaced peak and a flat anterior contour on the lateral view. The left is the easier side. On the right it is the liver, which has fluid density, that makes recognition difficult.",
+   "book": "Chapter 7, Subpulmonic effusions (Table 7.2, Fig. 7.3)",
+   "covers": [
+    "t16"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c07-m14",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "Both posterior costophrenic sulci are blunted on the lateral film, but the lateral costophrenic angles on the frontal film are still sharp. What is the best estimate of the fluid on each side?",
+   "options": [
+    "No effusion: this is normal, since several hundred mL are normally present",
+    "A small effusion: at least about 75 mL, but less than the 200 to 300 mL needed to blunt the lateral angle",
+    "About 2 litres on each side",
+    "More than 500 mL on each side"
+   ],
+   "answer": 1,
+   "explanation": "The posterior sulcus on the lateral view is blunted first, at about 75 mL. The lateral sulcus on the frontal view needs about 300 mL (the take-home points give 200 to 300). About 2 L opacifies the whole hemithorax of an adult. Normally only about 2 to 5 mL is present. Hence the lateral film is the more sensitive view for a small effusion.",
+   "book": "Chapter 7, Blunting of the costophrenic angles",
+   "covers": [
+    "t17"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c07-m15",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "A film shows blunting of the left costophrenic angle with a ski-slope profile. It looks the same on films taken in different positions. What is the most likely cause?",
+   "options": [
+    "Pleural scarring (thickening) from earlier infection, hemorrhage or surgery",
+    "A free-flowing pleural effusion",
+    "A subpulmonic effusion",
+    "A laminar effusion"
+   ],
+   "answer": 0,
+   "explanation": "Scarring can mimic blunting, but its characteristic ski-slope profile differs from the meniscoid shape of an effusion, and it does not change with the position of the patient, as a free effusion does. A laminar effusion would keep the angle acute.",
+   "book": "Chapter 7, Diagnostic pitfalls: scarring versus effusion",
+   "covers": [
+    "t18"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c07-m16",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "A portable film shows a hazy increase in density over the whole right hemithorax, most dense at the base, with vessels still visible. A few minutes later the patient is sat up and the film shows fluid at the base with a clearer upper lung. What does the change mean?",
+   "options": [
+    "The effusion has resolved",
+    "A new pneumothorax has developed",
+    "The effusion has enlarged by 2 litres",
+    "The same free effusion has redistributed with the patient position; its volume has not necessarily changed"
+   ],
+   "answer": 3,
+   "explanation": "When recumbent, free fluid layers posteriorly and produces a homogeneous haze over the whole hemithorax; upright, it falls to the base and the upper lung looks clearer. That can mimic a change in size. Try to obtain each portable film in the same position.",
+   "book": "Chapter 7, Effect of patient positioning on the appearance of pleural fluid",
+   "covers": [
+    "t20"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c07-m17",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "Which description of a lateral decubitus chest view is correct?",
+   "options": [
+    "The patient lies on one side and the beam is vertical; fluid collects at the apex",
+    "The patient stands and the beam is angled upward; fluid collects at the apex",
+    "The patient lies on one side and the beam is horizontal; free fluid forms a band along the dependent chest wall",
+    "The patient lies on the back; air collects along the posterior chest wall"
+   ],
+   "answer": 2,
+   "explanation": "In a decubitus view the patient is lying on the right or left side with the beam parallel to the floor, so free pleural fluid layers as a band along the dependent side. It is used very infrequently now, since CT evaluates the underlying lung better.",
+   "book": "Chapter 7, Effect of patient positioning on the appearance of pleural fluid (Fig. 7.9)",
+   "covers": [
+    "t21"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c07-m18",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "A man with a known bronchogenic carcinoma has a completely white left hemithorax, with the trachea and heart pushed away from the white side. What explains this, and what is the most useful next imaging step?",
+   "options": [
+    "Complete collapse of the left lung pulling the mediastinum toward the opacity; CT to see the lung",
+    "A very large pleural effusion (about 2 L) acting like a mass; CT to see the lung and pleura behind the fluid",
+    "A very large effusion; a lateral decubitus view to see the underlying lung",
+    "Whole-lung lobar pneumonia pushing the mediastinum away; a repeat film after antibiotics"
+   ],
+   "answer": 1,
+   "explanation": "About 2 L of fluid opacifies an adult hemithorax. The lung beneath undergoes passive atelectasis and the fluid pushes mobile mediastinal structures away, like a mass. Because the fluid hides the underlying lung, CT is the modality used, and may show nodular pleural implants of metastatic tumour. Collapse pulls structures toward the white side. A decubitus view does not show the lung behind the fluid.",
+   "book": "Chapter 7, Opacified hemithorax",
+   "covers": [
+    "t22"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c07-m19",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "Bilateral collections of pleural fluid with unusual shapes sit in the nondependent parts of the chest and stay in the same place whatever position the patient takes. What is the explanation and the practical consequence?",
+   "options": [
+    "Loculated effusions trapped by adhesions; the separate pockets are hard to drain with a single pleural tube",
+    "Subpulmonic effusions; one drainage tube easily empties them",
+    "Fissural pseudotumors; they disappear with diuretic treatment",
+    "Laminar effusions; they indicate raised left atrial pressure"
+   ],
+   "answer": 0,
+   "explanation": "Adhesions, usually from old infection or hemothorax, keep the fluid in the same place and give it unusual shapes and locations that seem to defy gravity. Such noncommunicating pockets are traversed by adhesions, so one tube may not drain them. Subpulmonic fluid flows freely. Pseudotumors lie in the fissures, and a laminar effusion is a thin band along the chest wall.",
+   "book": "Chapter 7, Loculated effusions",
+   "covers": [
+    "t23"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c07-m20",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "A woman with heart failure has a sharply marginated, lens-shaped opacity with pointed ends along the minor fissure. What is it and what should you expect after diuretic treatment?",
+   "options": [
+    "A bronchogenic carcinoma; it will shrink only after chemotherapy",
+    "A laminar effusion; it will persist unchanged",
+    "A round pneumonia; it will move to another lobe",
+    "A fissural pseudotumor (loculated transudate); it clears with treatment but tends to recur in the same place when the failure recurs"
+   ],
+   "answer": 3,
+   "explanation": "A pseudotumor (vanishing tumour) is fluid in or just beneath a fissure, most often the minor fissure (about 75%), lemon-shaped, a transudate of heart failure, not freely mobile. It disappears when the failure is treated and recurs at the same site. Its position along a fissure and its shape help separate it from a true tumour.",
+   "book": "Chapter 7, Fissural pseudotumors",
+   "covers": [
+    "t24"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c07-m21",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "A frontal film shows a thin band of density paralleling the lateral chest wall, just above the costophrenic angle, which stays acute and sharp. Which is correct?",
+   "options": [
+    "A subpulmonic effusion, most often due to cirrhosis",
+    "Pleural scarring, which would move with the position of the patient",
+    "A laminar effusion, most often from raised left atrial pressure as in heart failure or lymphangitic carcinomatosis",
+    "A hydropneumothorax seen with a vertical beam"
+   ],
+   "answer": 2,
+   "explanation": "Laminar fluid forms a thin band along the chest wall and, unlike a usual effusion, the lateral costophrenic angle stays acute. It is mostly caused by raised left atrial pressure (heart failure, lymphangitic carcinomatosis) and is usually not free-flowing. Scarring does not change with position either way, and a hydropneumothorax has a straight air-fluid level.",
+   "book": "Chapter 7, Laminar effusions",
+   "covers": [
+    "t25"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c07-m22",
+   "type": "mcq",
+   "topic": "ch07",
+   "prompt": "After a stab wound to the right chest, an upright film with a horizontal beam shows a straight horizontal edge at the right base, sharp with air above and fluid below, plus a white visceral pleural line. What is the finding, and what does the radiograph not tell you?",
+   "options": [
+    "A simple pleural effusion with a meniscus; the radiograph can tell blood from other fluid",
+    "A hydropneumothorax (here with blood); the radiograph cannot tell blood from any other pleural fluid",
+    "A large lung abscess; the radiograph cannot tell blood from other fluid",
+    "A subpulmonic effusion; the radiograph can tell blood from other fluid"
+   ],
+   "answer": 1,
+   "explanation": "Fluid alone gives a meniscus shaped by the lung recoil, whereas fluid plus air gives a straight edge. Trauma, surgery and thoracentesis are common causes, and a bronchopleural fistula can also give air and fluid. Conventional radiography cannot tell blood from other fluid, and CT is frequently needed to separate a hydropneumothorax from a large lung abscess.",
+   "book": "Chapter 7, Hydropneumothorax and Case quiz 7 answer",
+   "covers": [
+    "t26",
+    "t27"
+   ],
+   "level": "image",
+   "lesson": "cxr-00020000-000"
+  },
+  {
+   "id": "c07-e01",
+   "type": "essay",
+   "topic": "ch07",
+   "prompt": "These six upright frontal chest radiographs were each marked by a radiologist for a pleural effusion. In two to four sentences, describe the signs you would look for on an upright frontal film from the smallest to the largest amounts of fluid, and say what the lateral view adds.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00021181-002",
+     "thumb": "cxr-findings-2/thumbs/dx-7998817011.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00003072-028",
+     "thumb": "cxr-findings-2/thumbs/dx-d4c8e03772.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00027875-005",
+     "thumb": "cxr-findings-2/thumbs/dx-3d2e6e4e00.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00015078-013",
+     "thumb": "cxr-findings-2/thumbs/dx-c5b369c400.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00026753-008",
+     "thumb": "cxr-findings-2/thumbs/dx-7ee4b450a8.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00022572-063",
+     "thumb": "cxr-findings-3/thumbs/dx-788d464186.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Blunting of the costophrenic angle is the first frontal sign",
+     "points": 1,
+     "terms": [
+      "blunt",
+      "costophrenic",
+      "angle",
+      "sulcus"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "A meniscus: fluid rises higher at the chest wall than in the middle",
+     "points": 1,
+     "terms": [
+      "menisc",
+      "concave",
+      "higher at the",
+      "higher laterally",
+      "u-shaped",
+      "u shaped",
+      "curved"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "About 200 to 300 mL is needed to blunt the lateral angle on the frontal film",
+     "points": 1,
+     "terms": [
+      "200",
+      "300",
+      "250",
+      "ml",
+      "millilit"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "The lateral view shows blunting of the posterior costophrenic sulcus first, at about 75 mL",
+     "points": 2,
+     "terms": [
+      "posterior",
+      "lateral view",
+      "lateral film",
+      "75",
+      "earlier",
+      "more sensitive"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "A very large effusion (about 2 L) opacifies the hemithorax and can push the heart and trachea away",
+     "points": 1,
+     "terms": [
+      "opacif",
+      "2 l",
+      "litre",
+      "liter",
+      "whiteout",
+      "white-out",
+      "complete",
+      "shift",
+      "push",
+      "mass effect",
+      "away"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "The lung behind a large effusion is hidden, so CT is used",
+     "points": 1,
+     "terms": [
+      "ct",
+      "hidden",
+      "underlying",
+      "behind"
+     ]
+    }
+   ],
+   "model": "On the upright frontal film the earliest sign is blunting of the lateral costophrenic angle (about 200 to 300 mL), then a meniscus, higher at the chest wall than in the middle. The lateral view is more sensitive: the posterior costophrenic sulcus blunts at about 75 mL. About 2 L opacifies the hemithorax and, like a mass, pushes the heart and trachea away; CT is then needed to see the lung and pleura behind the fluid.",
+   "book": "Chapter 7, Blunting of the costophrenic angles; The meniscus sign; Opacified hemithorax",
+   "covers": [
+    "t17",
+    "t19",
+    "t22",
+    "t13"
+   ]
+  },
+  {
+   "id": "c07-e02",
+   "type": "essay",
+   "topic": "ch07",
+   "prompt": "These six chest radiographs were each marked by a radiologist for a pleural effusion; the effusions differ in side and in size. In two to four sentences, explain how the side and symmetry of effusions help to narrow the cause, and how pleural fluid is divided into types.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00015078-013",
+     "thumb": "cxr-findings-2/thumbs/dx-c5b369c400.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00023093-007",
+     "thumb": "cxr-findings-2/thumbs/dx-21202d7809.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00017188-002",
+     "thumb": "cxr-findings-3/thumbs/dx-505b43e409.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00014015-003",
+     "thumb": "cxr-findings-2/thumbs/dx-f6814f440e.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00018657-003",
+     "thumb": "cxr-findings-3/thumbs/dx-f746265aa4.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00014738-000",
+     "thumb": "cxr-findings-2/thumbs/dx-7b502a37d9.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Fluid is divided into transudate and exudate by its protein and LDH (and specific gravity)",
+     "points": 1,
+     "terms": [
+      "protein",
+      "ldh",
+      "lactate",
+      "specific gravity"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Transudates are usually bilateral and mostly due to congestive heart failure (also cirrhosis, nephrotic syndrome, hypoalbuminemia)",
+     "points": 2,
+     "terms": [
+      "transudat",
+      "heart failure",
+      "chf",
+      "cardiac",
+      "cirrhosis",
+      "nephrotic",
+      "hypoalbumin",
+      "bilateral"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Exudates are usually unilateral (inflammation, connective tissue disease, malignancy the commonest)",
+     "points": 1,
+     "terms": [
+      "exudat",
+      "malignan",
+      "cancer",
+      "tumor",
+      "tumour",
+      "inflamm",
+      "unilateral"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "In heart failure the amounts are about equal; a marked difference suggests a parapneumonic effusion or malignancy",
+     "points": 1,
+     "terms": [
+      "parapneumonic",
+      "pneumonia",
+      "malignan",
+      "markedly",
+      "different",
+      "unequal",
+      "larger side"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Left-sided causes: pancreatitis, Dressler syndrome, distal thoracic duct obstruction",
+     "points": 1,
+     "terms": [
+      "pancreatitis",
+      "dressler",
+      "thoracic duct",
+      "left-sided",
+      "left sided"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Right-sided causes: liver or ovarian disease (Meigs), rheumatoid arthritis",
+     "points": 1,
+     "terms": [
+      "meigs",
+      "liver",
+      "ovar",
+      "rheumatoid",
+      "ascites"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "Either side but usually one: tuberculosis or infection, pulmonary embolism, trauma",
+     "points": 1,
+     "terms": [
+      "tubercul",
+      "tb",
+      "embol",
+      "trauma",
+      "infect"
+     ]
+    }
+   ],
+   "model": "Effusions are transudates or exudates according to protein and LDH. Transudates (congestive heart failure above all, also cirrhosis, nephrotic syndrome, hypoalbuminemia) are usually bilateral; exudates (inflammation, connective tissue disease, and above all malignancy) are usually unilateral. Heart failure gives about equal fluid on each side, so a markedly larger side suggests a parapneumonic effusion or malignancy. Pancreatitis and Dressler syndrome favour the left, liver or ovarian disease (Meigs) and rheumatoid arthritis the right; tuberculosis, pulmonary embolism and trauma can occur on either side.",
+   "book": "Chapter 7, Types of pleural effusions; Side-specificity of pleural effusions",
+   "covers": [
+    "t06",
+    "t07",
+    "t08",
+    "t09",
+    "t10",
+    "t11",
+    "t04",
+    "t05"
+   ]
+  },
+  {
+   "id": "c07-e03",
+   "type": "essay",
+   "topic": "ch07",
+   "prompt": "These six radiographs come from patients with pleural fluid (one is also marked for a pneumothorax). In two to four sentences, name the special forms and pitfalls that can make pleural fluid hard to recognise or interpret on a radiograph, and say how you would clarify them.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00020000-000",
+     "thumb": "cxr-findings-2/thumbs/dx-0f2edfa224.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00001437-012",
+     "thumb": "cxr-findings/thumbs/dx-396c752237.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00020405-041",
+     "thumb": "cxr-findings-2/thumbs/dx-c853303065.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00017500-002",
+     "thumb": "cxr-findings-3/thumbs/dx-dce35a7f58.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00013337-000",
+     "thumb": "cxr-findings/thumbs/dx-6356f62568.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00029894-000",
+     "thumb": "cxr-findings/thumbs/dx-70c8ac10b6.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "A subpulmonic effusion mimics a raised hemidiaphragm",
+     "points": 1,
+     "terms": [
+      "subpulmonic",
+      "apparent hemidiaphragm",
+      "raised",
+      "elevated"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Position changes appearance: supine fluid layers as a haze; free fluid moves, so use a decubitus view or keep the same position",
+     "points": 1,
+     "terms": [
+      "position",
+      "supine",
+      "decubitus",
+      "free",
+      "layer",
+      "gravity",
+      "moves"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Scarring causes ski-slope blunting that does not move",
+     "points": 1,
+     "terms": [
+      "scar",
+      "ski",
+      "thickening"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Loculated fluid is held by adhesions, has an unusual shape or location and defies gravity",
+     "points": 1,
+     "terms": [
+      "loculat",
+      "adhesion",
+      "defies",
+      "unusual"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "A pseudotumor lies in a fissure (lemon shape, heart failure) and vanishes with treatment",
+     "points": 1,
+     "terms": [
+      "pseudotumo",
+      "fissure",
+      "lemon",
+      "vanishing",
+      "lenticular"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "A laminar effusion is a thin band with a preserved angle (raised left atrial pressure)",
+     "points": 1,
+     "terms": [
+      "laminar",
+      "thin band",
+      "left atrial",
+      "preserved",
+      "acute"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "Air plus fluid gives a straight air-fluid level (hydropneumothorax)",
+     "points": 1,
+     "terms": [
+      "hydropneumothorax",
+      "air-fluid",
+      "air fluid",
+      "straight"
+     ]
+    },
+    {
+     "id": "r8",
+     "label": "CT or ultrasound can clarify the fluid and the underlying lung",
+     "points": 1,
+     "terms": [
+      "ct",
+      "ultrasound",
+      "us "
+     ]
+    }
+   ],
+   "model": "A subpulmonic effusion can look like a raised hemidiaphragm. Free fluid changes with position (haze when supine, a band on a decubitus view), whereas scarring gives a ski-slope blunting that does not move. Loculated fluid is fixed by adhesions, with an unusual shape that defies gravity; a pseudotumor is a lens-shaped fissural collection of heart failure that vanishes with treatment; a laminar effusion is a thin band with a preserved angle. Air plus fluid shows as a straight air-fluid level, a hydropneumothorax. CT or ultrasound clarify the rest.",
+   "book": "Chapter 7, Recognizing the different appearances of pleural effusions",
+   "covers": [
+    "t14",
+    "t18",
+    "t20",
+    "t23",
+    "t24",
+    "t25",
+    "t26"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,975 @@
+{
+ "chapter": 8,
+ "title": "Recognizing Pneumonia",
+ "blurb": "Definition and patterns, organisms, aspiration, COVID-19, localizing with the silhouette and spine signs, and resolution.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Definition: pneumonia is consolidation of the lung produced by inflammatory exudate, usually from an infectious agent; most are airspace disease (lobar or segmental), others interstitial, some both"
+  },
+  {
+   "id": "t02",
+   "label": "Spread: most organisms reach the lungs through the tracheobronchial tree (inhalation or aspiration), some by the bloodstream, few by direct extension"
+  },
+  {
+   "id": "t03",
+   "label": "The organism cannot be identified with certainty from the radiograph alone, though some patterns are suggestive; \"infiltrate\" is not a synonym for pneumonia"
+  },
+  {
+   "id": "t04",
+   "label": "Table 8.1 patterns: upper lobe cavitary pneumonia spreading to the opposite lower lobe (TB), perihilar interstitial or airspace disease (Pneumocystis), spherical mass in a thin-walled upper lobe cavity (aspergilloma), bilateral peripheral lower lobe ground-glass (SARS-CoV-2)"
+  },
+  {
+   "id": "t05",
+   "label": "General signs: pneumonia is denser than normal lung, homogeneous, fluffy indistinct margins except where it abuts a pleural surface (sharp); air bronchograms (more visible centrally, not specific for pneumonia)"
+  },
+  {
+   "id": "t06",
+   "label": "Interstitial pneumonia gives reticular prominence; pneumonias may be associated with atelectasis (Box 8.1 key signs)"
+  },
+  {
+   "id": "t07",
+   "label": "Patterns (lobar, segmental, interstitial, round, cavitary) describe distribution and are not diagnostic of pneumonia"
+  },
+  {
+   "id": "t08",
+   "label": "Lobar pneumonia: pneumococcus is the prototype; fills most or all of a lobe; sharp margin at a fissure; silhouette sign against heart, aorta or diaphragm; central air bronchograms"
+  },
+  {
+   "id": "t09",
+   "label": "Segmental pneumonia (bronchopneumonia): Staphylococcus aureus prototype, also Pseudomonas and gram-negatives; spreads centrifugally to many foci; all margins indistinct; no air bronchograms because bronchi are filled; volume loss; staph in children, hospitalized, debilitated, after influenza"
+  },
+  {
+   "id": "t10",
+   "label": "Interstitial pneumonia: prototypes viral, Mycoplasma and Pneumocystis; involves airway walls and septa; fine reticular pattern early, later airspace disease that hides the interstitial nature"
+  },
+  {
+   "id": "t11",
+   "label": "Pneumocystis pneumonia: commonest clinically recognized infection in AIDS; perihilar reticular or edema-like airspace disease; usually no effusions and no hilar adenopathy; CD4 count under 200"
+  },
+  {
+   "id": "t12",
+   "label": "Round pneumonia: mostly children, posterior lower lobes, Haemophilus, Streptococcus, Pneumococcus; mimics a mass but childhood tumors are uncommon and symptoms of infection are present"
+  },
+  {
+   "id": "t13",
+   "label": "Cavitary pneumonia: tuberculosis is the prototype; postprimary TB has upper lobe, bilateral, thin-walled cavities with smooth inner margin and no air-fluid level; cavitation is rare in primary TB; transbronchial spread to the opposite lower lobe or another lobe suggests TB"
+  },
+  {
+   "id": "t14",
+   "label": "Other cavitating pneumonias: staphylococcal (thin-walled pneumatoceles), streptococcal, Klebsiella, coccidiomycosis"
+  },
+  {
+   "id": "t15",
+   "label": "Aspiration: predisposing causes (neurologic disease, altered mental status, reflux, head and neck surgery); affects the most dependent lung (lower lobes upright; superior segments of lower lobes and posterior segments of upper lobes supine)"
+  },
+  {
+   "id": "t16",
+   "label": "Bland aspiration (neutralized juice or water) is not a pneumonia and clears in a day or two; infected aspirate (anaerobes such as Bacteroides, in the debilitated, elderly or immunocompromised) gives lower lobe disease that often cavitates and takes months"
+  },
+  {
+   "id": "t17",
+   "label": "Aspiration of unneutralized stomach acid (Mendelson syndrome): chemical pneumonitis appearing within hours, dependent airspace disease or diffuse edema, clears over days or longer, prone to secondary infection"
+  },
+  {
+   "id": "t18",
+   "label": "COVID-19 imaging: SARS-CoV-2; radiograph shows patchy or diffuse airspace disease, effusions uncommon; CT shows bilateral, posterior, lower lobe ground-glass opacities, nonspecific, usually without contrast"
+  },
+  {
+   "id": "t19",
+   "label": "Ground-glass opacity: increased attenuation with preserved bronchial and vascular markings (nonspecific); crazy-paving: ground-glass with superimposed septal thickening"
+  },
+  {
+   "id": "t20",
+   "label": "Imaging can be normal early or in asymptomatic infection (up to 18%; under 10% normal CT once symptomatic); imaging is advised for clinical worsening or complications (ARDS, pulmonary embolism, superimposed pneumonia, heart failure)"
+  },
+  {
+   "id": "t21",
+   "label": "Localizing: location gives clues (upper lobes think TB, lower lobes think recurrent aspiration); use two orthogonal views (frontal and lateral); CT adds localization and associated effusions or small cavities"
+  },
+  {
+   "id": "t22",
+   "label": "Silhouette sign: two objects of the same radiographic density in contact lose their shared edge"
+  },
+  {
+   "id": "t23",
+   "label": "Frontal-film localization on the right: right upper lobe hides the ascending aorta with a sharp minor-fissure margin; right middle lobe hides the right heart border; right lower lobe hides the right hemidiaphragm but spares the heart border"
+  },
+  {
+   "id": "t24",
+   "label": "Frontal-film localization on the left: left upper lobe hides the aortic knob; lingula hides the left heart border but spares the left hemidiaphragm; left lower lobe hides the left hemidiaphragm but spares the left heart border"
+  },
+  {
+   "id": "t25",
+   "label": "Spine sign: on the lateral view the spine should get blacker toward the diaphragm; posterior lower lobe disease keeps it white; may be the only sign of lower lobe pneumonia"
+  },
+  {
+   "id": "t26",
+   "label": "Resolution: 2 to 3 days if the organism is sensitive (especially pneumococcus); usually resolves from within (vacuolizes), patchily over days or weeks"
+  },
+  {
+   "id": "t27",
+   "label": "A pneumonia that does not resolve in several weeks: consider an obstructing lesion such as a neoplasm; CT can show it"
+  },
+  {
+   "id": "t28",
+   "label": "Case quiz: aspirated barium during a swallowing study is inert and dense, gravitates to lower lobe bronchi, does not cause pneumonia and is reabsorbed"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c08-m01",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "How is pneumonia defined?",
+   "options": [
+    "Any opacity in the lung, whatever its cause",
+    "Inflammation confined to the interstitium of the lung",
+    "Collapse of a lobe with loss of volume after bronchial obstruction",
+    "Consolidation of the lung produced by inflammatory exudate, usually because of an infectious agent"
+   ],
+   "answer": 3,
+   "explanation": "Pneumonia is consolidation caused by inflammatory exudate, usually infectious. Most pneumonias are airspace disease (lobar or segmental); others are interstitial and some involve both. An opacity of any cause is not pneumonia, and collapse (atelectasis) is a different process, although it can accompany pneumonia.",
+   "book": "Chapter 8, General considerations",
+   "covers": [
+    "t01"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c08-m02",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "How do most pneumonia-causing microorganisms reach the lungs, and is \"infiltrate\" a synonym for pneumonia?",
+   "options": [
+    "Mostly through the bloodstream; yes, infiltrate means pneumonia",
+    "Mostly by direct extension from the pleura; no, infiltrate means something different",
+    "Through the tracheobronchial tree by inhalation or aspiration; no, because many other diseases such as amyloid or fibrosis can infiltrate the lung",
+    "Through the tracheobronchial tree by inhalation or aspiration; yes, infiltrate is a synonym for pneumonia"
+   ],
+   "answer": 2,
+   "explanation": "Most organisms are inhaled or aspirated down the airways; spread through the blood and by direct extension are less common. Some people use infiltrate as another word for pneumonia, but because many diseases can infiltrate the lung, the word is not specific. Each distractor gets one of the two statements wrong.",
+   "book": "Chapter 8, General considerations",
+   "covers": [
+    "t02",
+    "t03"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c08-m03",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "A radiograph or CT shows a spherical soft-tissue mass inside a thin-walled upper lobe cavity. Which organism does Table 8.1 link with this pattern?",
+   "options": [
+    "Pneumocystis jirovecii",
+    "Aspergillus (an aspergilloma)",
+    "Klebsiella pneumoniae",
+    "SARS-CoV-2"
+   ],
+   "answer": 1,
+   "explanation": "The table lists patterns that are suggestive of particular organisms: a ball of soft tissue in a thin-walled upper lobe cavity suggests an aspergilloma. Pneumocystis is linked with perihilar interstitial or airspace disease, and SARS-CoV-2 with bilateral, peripheral lower lobe ground-glass opacities. Remember that many organisms look alike, so the pattern only suggests, and does not prove, the cause.",
+   "book": "Chapter 8, General considerations (Table 8.1)",
+   "covers": [
+    "t04",
+    "t03"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c08-m04",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "Which set of findings lists the key signs of pneumonia on a chest radiograph?",
+   "options": [
+    "More opaque than normal lung and usually homogeneous, with fluffy margins except where it abuts a pleural surface, possible air bronchograms and possible associated atelectasis",
+    "Increased lucency of the affected lung with margins that are sharp everywhere",
+    "Heterogeneous density, sharp margins throughout and air bronchograms never present",
+    "An opacity that always expands the lobe and shifts the mediastinum away from it"
+   ],
+   "answer": 0,
+   "explanation": "Pneumonia fills airspaces or interstitium with fluid or exudate, so it is whiter than aerated lung. Airspace disease has fluffy, indistinct margins, but where it abuts a fissure or the chest wall the margin is sharp. Air bronchograms may be present, especially centrally, and some pneumonias, notably bronchopneumonia, are associated with atelectasis; interstitial ones can show a reticular pattern.",
+   "book": "Chapter 8, General characteristics of pneumonia (Box 8.1)",
+   "covers": [
+    "t05",
+    "t06"
+   ],
+   "level": "recall",
+   "lesson": "cxr-00013391-005"
+  },
+  {
+   "id": "c08-m05",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "A frontal film shows a dense, homogeneous opacity occupying the whole right upper lobe, with a sharp lower margin at the minor fissure and air bronchograms centrally. The border of the ascending aorta is lost. Which pattern and prototype organism fit?",
+   "options": [
+    "Segmental bronchopneumonia, typically Staphylococcus aureus",
+    "Interstitial pneumonia, typically Mycoplasma pneumoniae",
+    "Round pneumonia, typically Haemophilus influenzae",
+    "Lobar pneumonia, typically pneumococcal (Streptococcus pneumoniae); the lost aortic border is the silhouette sign"
+   ],
+   "answer": 3,
+   "explanation": "The classic lobar pneumonia fills most or all of a lobe, is sharp where it meets a fissure and shows air bronchograms in the central lung. Because the pneumonia and the ascending aorta have the same density in contact, the aortic edge vanishes (silhouette sign). Staphylococcal bronchopneumonia is patchy and multifocal without air bronchograms, interstitial pneumonia is reticular, and round pneumonia is a spherical mass mostly in children.",
+   "book": "Chapter 8, Patterns of pneumonia: Lobar pneumonia",
+   "covers": [
+    "t08",
+    "t22"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c08-m06",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "A hospitalized, debilitated patient who recently had influenza shows multiple irregular patches of airspace disease in both lungs. All the margins are fluffy, no air bronchograms are seen and there is some volume loss. Which pattern and organism fit best?",
+   "options": [
+    "Lobar pneumonia, prototype Streptococcus pneumoniae",
+    "Interstitial pneumonia, prototype Mycoplasma pneumoniae",
+    "Segmental bronchopneumonia, prototype Staphylococcus aureus",
+    "Cavitary pneumonia, prototype Mycobacterium tuberculosis"
+   ],
+   "answer": 2,
+   "explanation": "Bronchopneumonia spreads centrifugally through the airways to many foci at once, so several segments are involved. Segments are not bounded by fissures, so every margin is indistinct. The bronchi are filled with exudate, which explains the lack of air bronchograms and the volume loss. Staphylococcal pneumonia is commoner in children, hospital patients and debilitated adults, and can follow influenza; Pseudomonas and other gram-negatives can give the same picture.",
+   "book": "Chapter 8, Patterns of pneumonia: Segmental pneumonia (bronchopneumonia)",
+   "covers": [
+    "t09"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c08-m07",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "A man with AIDS and a CD4 count under 200 has diffuse, bilateral, perihilar reticular opacities. There are no pleural effusions and no hilar lymph node enlargement. What is the most likely diagnosis?",
+   "options": [
+    "Pulmonary interstitial edema",
+    "Pneumocystis jirovecii pneumonia, an interstitial pneumonia",
+    "Sarcoidosis",
+    "Lobar pneumococcal pneumonia"
+   ],
+   "answer": 1,
+   "explanation": "Pneumocystis pneumonia is the commonest clinically recognized infection in AIDS and classically shows a perihilar reticular pattern, or airspace disease that can mimic edema. Interstitial edema usually comes with pleural effusions, and sarcoidosis with hilar adenopathy, neither of which is present here. The prototypes of interstitial pneumonia are viral pneumonia, Mycoplasma and Pneumocystis; early they give a fine reticular pattern and later they spread to airspaces.",
+   "book": "Chapter 8, Patterns of pneumonia: Interstitial pneumonia (Fig. 8.5)",
+   "covers": [
+    "t10",
+    "t11"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c08-m08",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "A 2-year-old with cough and fever has a round, soft-tissue density in the posterior right lung on a chest radiograph. What is the best interpretation?",
+   "options": [
+    "Round pneumonia: tumors are uncommon in children and there are symptoms of infection",
+    "A primary lung tumor, which is the commonest cause of a round lesion in a child",
+    "Cavitary tuberculosis",
+    "A fissural pseudotumor from heart failure"
+   ],
+   "answer": 0,
+   "explanation": "Round pneumonia is a spherical pneumonia seen mostly in children, usually posterior and in the lower lobes, caused by agents such as Haemophilus influenzae, Streptococcus and pneumococcus. It can be mistaken for a mass, but lung tumors are uncommon in children and infection symptoms are present. It is rare after the age of 12. It is a descriptive pattern, so the final answer still depends on the child and follow-up.",
+   "book": "Chapter 8, Patterns of pneumonia: Round pneumonia",
+   "covers": [
+    "t12"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c08-m09",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "Which finding is typical of cavitation in postprimary (reactivation) tuberculosis?",
+   "options": [
+    "Thick, irregular cavities in the lower lobes with an air-fluid level",
+    "Cavities that are common in primary tuberculosis and rare in the postprimary form",
+    "A homogeneous lobar consolidation without cavities",
+    "Thin-walled cavities in the upper lobes, often bilateral, with a smooth inner margin and no air-fluid level"
+   ],
+   "answer": 3,
+   "explanation": "Tuberculosis is the prototype of cavitary pneumonia. Cavitation is common in postprimary TB, rare in primary TB, and the cavities are in the upper lobes, bilateral, thin-walled, smooth-lined and without air-fluid levels. Transbronchial spread from one upper lobe to the opposite lower lobe, or to another lobe on the same side, also suggests TB. An upper lobe cavitary pneumonia is presumed TB until proven otherwise.",
+   "book": "Chapter 8, Patterns of pneumonia: Cavitary pneumonia (Fig. 8.7)",
+   "covers": [
+    "t13"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c08-m10",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "Which statement about cavitation in pneumonia is correct?",
+   "options": [
+    "Cavitation is typical of primary tuberculosis",
+    "Lobar pneumococcal pneumonia always cavitates",
+    "Staphylococcal pneumonia can cavitate and produce thin-walled pneumatoceles",
+    "Viral interstitial pneumonia is the prototype of cavitary pneumonia"
+   ],
+   "answer": 2,
+   "explanation": "Staphylococcal pneumonia can cavitate with pneumatoceles; so can streptococcal and Klebsiella pneumonia and coccidiomycosis. Tuberculosis is the prototype, but cavitation is rare in the primary form. Pneumococcal lobar pneumonia is homogeneous with air bronchograms, and viral pneumonia is the prototype of the interstitial pattern.",
+   "book": "Chapter 8, Patterns of pneumonia: Cavitary pneumonia",
+   "covers": [
+    "t14"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c08-m11",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "Which statement about the distribution of aspiration is correct?",
+   "options": [
+    "It affects the upper lobes in an upright patient and the anterior segments when supine",
+    "It affects the most dependent lung: the lower lobes in an upright patient, and the superior segments of the lower lobes plus the posterior segments of the upper lobes in a supine patient",
+    "It always involves the right middle lobe and lingula regardless of position",
+    "It affects the lower lobes in a supine patient and the apices when upright"
+   ],
+   "answer": 1,
+   "explanation": "Aspirated material goes to the most dependent portions at the time of aspiration, so position decides the distribution. Common predisposing conditions are neurologic disease (stroke, head injury), altered mental status (anesthesia, overdose), reflux and head and neck surgery. Lower lobe disease, especially recurrent, should make you think of aspiration, upper lobe disease of TB.",
+   "book": "Chapter 8, Aspiration (Fig. 8.8)",
+   "covers": [
+    "t15"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c08-m12",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "A patient who aspirated a large volume of unneutralized stomach acid under anesthesia develops dependent airspace disease within hours. Which statement fits?",
+   "options": [
+    "This is a chemical pneumonitis; it clears slowly and frequently becomes secondarily infected",
+    "This is not a pneumonia; it clears within a day or two like edema fluid",
+    "This is an anaerobic aspiration pneumonia that appears after days, cavitates and takes months to clear",
+    "There is no radiographic change because gastric acid is neutralized in the airway"
+   ],
+   "answer": 0,
+   "explanation": "Large amounts of unneutralized acid (Mendelson syndrome) cause chemical pneumonitis that appears almost at once, with dependent airspace disease or diffuse edema, taking days or longer to clear and prone to secondary infection. Bland (neutralized) juice or water is not a pneumonia and clears in a day or two. Infected aspirate, usually from anaerobes such as Bacteroides in debilitated, elderly or immunocompromised patients, gives lower-lobe disease that frequently cavitates and may take months to resolve.",
+   "book": "Chapter 8, Aspiration (Table 8.3)",
+   "covers": [
+    "t16",
+    "t17"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c08-m13",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "Which is the typical CT pattern of COVID-19 in symptomatic patients who have imaging?",
+   "options": [
+    "A single dense lobar consolidation with air bronchograms and a pleural effusion",
+    "Thin-walled upper lobe cavities with spread to the opposite lower lobe",
+    "Perihilar reticular opacities with no peripheral disease",
+    "Bilateral, peripheral, mainly posterior and lower lobe ground-glass opacities"
+   ],
+   "answer": 3,
+   "explanation": "The common CT findings are ground-glass opacities, often bilateral, posterior and in the lower lobes, sometimes with vascular enlargement; they are not specific for COVID-19. The radiograph may show patchy or diffuse airspace disease, and effusions are uncommon. CT, when required, is usually done without intravenous contrast. The distractors describe lobar pneumococcal, tuberculous and Pneumocystis-type patterns.",
+   "book": "Chapter 8, COVID-19",
+   "covers": [
+    "t18"
+   ],
+   "level": "recall",
+   "lesson": "more-covid-19-ar-16445122"
+  },
+  {
+   "id": "c08-m14",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "On high-resolution CT, areas of ground-glass opacity with a superimposed network of thickened septa are described by which term, and what does ground-glass density mean?",
+   "options": [
+    "An air bronchogram; ground-glass is increased attenuation that hides the vessels",
+    "The spine sign; ground-glass is a very dense, calcified opacity",
+    "Crazy-paving; ground-glass is increased attenuation with preserved bronchial and vascular markings, a nonspecific sign",
+    "Vacuolization; ground-glass is complete air-trapping of the lung"
+   ],
+   "answer": 2,
+   "explanation": "Ground-glass opacities are areas of increased attenuation in which the bronchial and vascular markings are still visible. With a network of septal thickening on top, the pattern is called crazy-paving. Both are nonspecific. An air bronchogram is a lucent bronchus within consolidation, the spine sign is a lateral-view localizing sign, and vacuolization is the patchy re-aeration of a resolving pneumonia.",
+   "book": "Chapter 8, COVID-19 (Fig. 8.10); How pneumonia resolves",
+   "covers": [
+    "t19"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c08-m15",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "A patient with mild symptoms and proven SARS-CoV-2 infection has a normal chest radiograph. How do you interpret this, and when is chest imaging advised?",
+   "options": [
+    "A normal film excludes COVID-19, so no further imaging is needed even if the patient worsens",
+    "Imaging can be normal early in the disease; imaging is advised if the patient worsens clinically or a complication such as ARDS, pulmonary embolism, superimposed pneumonia or heart failure is suspected",
+    "Normal imaging is practically never seen, so a normal film means the diagnosis is wrong",
+    "Normal imaging is possible, but imaging should be done only after the patient has recovered"
+   ],
+   "answer": 1,
+   "explanation": "In the study quoted, up to 18% of early cases had a normal film or CT, and asymptomatic patients with known infection often have a normal CT; once symptomatic fewer than 10% have a normal CT. Imaging is therefore reserved for clinical deterioration or for complications, including ARDS, pulmonary embolism, a superimposed pneumonia or heart failure.",
+   "book": "Chapter 8, COVID-19",
+   "covers": [
+    "t20"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c08-m16",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "What is the best way to localize a pneumonia on conventional radiographs, and why does the location matter?",
+   "options": [
+    "Use two views at 90 degrees to each other (frontal and lateral); the location gives clues, such as TB for the upper lobes and recurrent aspiration for the lower lobes",
+    "A single frontal view is enough, because an antibiotic reaches every lobe, so the location has no value",
+    "Two frontal views taken one after the other; the location only matters for surgical planning",
+    "A fluoroscopic study; the location shows which organism is present with certainty"
+   ],
+   "answer": 0,
+   "explanation": "Although an antibiotic reaches every lobe, the site can suggest the organism (upper lobes: TB) and associated disease (lower lobes: recurrent aspiration). On radiographs, orthogonal views are best (frontal and lateral). CT adds localization and shows associated effusions or cavities too small for the radiograph.",
+   "book": "Chapter 8, Localizing pneumonia",
+   "covers": [
+    "t21"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c08-m17",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "Which pairing of the site of a lobar pneumonia and its frontal-film sign is correct?",
+   "options": [
+    "Right lower lobe: the right heart border is silhouetted, but the right hemidiaphragm is spared",
+    "Lingula: the left hemidiaphragm is silhouetted, but the left heart border is spared",
+    "Left upper lobe: the right heart border is silhouetted",
+    "Right middle lobe: the right heart border is silhouetted, with a sharp margin at the minor fissure"
+   ],
+   "answer": 3,
+   "explanation": "Touching lobes erase the edge of the structure they contact. Right upper lobe: ascending aorta; right middle lobe: right heart border; right lower lobe: right hemidiaphragm, sparing the heart border. Left upper lobe: aortic knob; lingula: left heart border, sparing the left hemidiaphragm; left lower lobe: left hemidiaphragm, sparing the left heart border.",
+   "book": "Chapter 8, Localizing pneumonia (Figs. 8.11 and 8.13)",
+   "covers": [
+    "t22",
+    "t23",
+    "t24"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c08-m18",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "A frontal film shows only a doubtful change at the right base. On the lateral view, the lower thoracic spine, which normally gets blacker toward the diaphragm, looks whiter just above the diaphragm. What does this mean?",
+   "options": [
+    "A normal finding, because the spine is always whiter lower down",
+    "A fissural pseudotumor in the minor fissure",
+    "The spine sign: dense disease such as pneumonia in the posterior lower lobe, which may be invisible on the frontal view",
+    "A compression fracture of a vertebral body"
+   ],
+   "answer": 2,
+   "explanation": "The x-ray beam normally crosses more tissue near the shoulders than just above the diaphragm, so the spine looks darker lower down. Fluid-density disease in the posterior lower lobe absorbs the beam and the spine stays or turns whiter, the spine sign. It may be the only indicator of lower lobe pneumonia that is hidden in the posterior costophrenic sulcus on the frontal view.",
+   "book": "Chapter 8, Localizing pneumonia (the spine sign)",
+   "covers": [
+    "t25"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c08-m19",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "How do most pneumonias resolve on serial radiographs?",
+   "options": [
+    "They disappear completely within 24 hours",
+    "From within, as patchy newly aerated areas appear inside the original opacity (vacuolization), over days or weeks",
+    "They shrink evenly from the edges toward the center as a smaller homogeneous opacity",
+    "They always remain unchanged for months"
+   ],
+   "answer": 1,
+   "explanation": "Pneumonias typically resolve from within, with patchy areas of aerated lung developing inside the original opacity. If the organism is sensitive to the antibiotic, especially pneumococcus, it can resolve in 2 to 3 days; most need days to weeks.",
+   "book": "Chapter 8, How pneumonia resolves",
+   "covers": [
+    "t26"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c08-m20",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "A pneumonia in the same area has not resolved after several weeks of treatment. What should be considered and what is a useful next step?",
+   "options": [
+    "An underlying obstructing lesion, such as a neoplasm, preventing drainage; a chest CT",
+    "This is normal, because all pneumonias take at least three months; repeat the film",
+    "Aspiration of bland water; no further imaging",
+    "Antibiotic resistance only; repeat the same radiograph"
+   ],
+   "answer": 0,
+   "explanation": "Failure to resolve in several weeks should make you suspect that something blocks drainage of that part of the lung, for example a tumor. CT can show the obstructing lesion. Only some forms of aspiration pneumonia take months, and bland aspiration clears in a day or two.",
+   "book": "Chapter 8, How pneumonia resolves (Important points)",
+   "covers": [
+    "t27"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c08-m21",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "A radiograph taken right after a swallowing study shows very dense, branching white opacities in both lower lobe bronchi in an asymptomatic man standing for the study. What is the best explanation?",
+   "options": [
+    "Chemical pneumonitis from unneutralized stomach acid, which needs urgent treatment",
+    "Bilateral lower lobe pneumococcal pneumonia",
+    "Calcified granulomas from old tuberculosis",
+    "He aspirated inert, dense barium, which gravitated to the lower lobe bronchi; barium does not itself cause pneumonia and is reabsorbed over time"
+   ],
+   "answer": 3,
+   "explanation": "Barium is a high-density contrast agent and chemically inert. Standing patients aspirate into the dependent lower lobe bronchi. The patient had no symptoms, and the barium will be resorbed. It illustrates how aspiration follows gravity and how contrast density differs from soft-tissue density.",
+   "book": "Chapter 8, Case quiz 8 answer",
+   "covers": [
+    "t28"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c08-m22",
+   "type": "mcq",
+   "topic": "ch08",
+   "prompt": "What do the terms lobar, segmental, interstitial, round and cavitary describe?",
+   "options": [
+    "Specific organisms, so each pattern identifies one causative agent",
+    "Successive stages in the resolution of the same pneumonia",
+    "The distribution of disease in the lung; they are not diagnostic of pneumonia because other diseases can produce the same patterns",
+    "The route by which the organism reaches the lung"
+   ],
+   "answer": 2,
+   "explanation": "These are descriptive patterns of appearance and distribution. They do not prove pneumonia and do not identify the organism, although prototypes exist (pneumococcus for lobar, staphylococcus for segmental, viruses, Mycoplasma and Pneumocystis for interstitial, Haemophilus for round, TB for cavitary).",
+   "book": "Chapter 8, Patterns of pneumonia (Table 8.2)",
+   "covers": [
+    "t07"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c08-e01",
+   "type": "essay",
+   "topic": "ch08",
+   "prompt": "These six frontal chest radiographs were each marked by a radiologist for pneumonia. In two to four sentences, describe the radiographic signs of pneumonia and how the three main patterns (lobar, segmental, interstitial) differ, and say what the patterns can and cannot tell you.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00013391-005",
+     "thumb": "cxr-findings-2/thumbs/dx-aec82543ca.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00017952-008",
+     "thumb": "cxr-findings-2/thumbs/dx-908b67094d.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00021818-026",
+     "thumb": "cxr-findings-2/thumbs/dx-59e48819a2.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00012576-004",
+     "thumb": "cxr-findings-2/thumbs/dx-450e43411b.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00003894-005",
+     "thumb": "cxr-findings/thumbs/dx-0cc43597fd.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00003064-035",
+     "thumb": "cxr-findings-2/thumbs/dx-b9bbe33a06.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Pneumonia is denser (whiter) and usually homogeneous",
+     "points": 1,
+     "terms": [
+      "dense",
+      "denser",
+      "opaque",
+      "white",
+      "homogeneous",
+      "consolidat",
+      "opacity"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Air bronchograms may be seen, but they are not specific",
+     "points": 1,
+     "terms": [
+      "air bronchogram"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Airspace disease has fluffy, indistinct margins, sharp only where it abuts a pleural surface or fissure",
+     "points": 1,
+     "terms": [
+      "fluffy",
+      "indistinct",
+      "ill-defined",
+      "poorly",
+      "fissure",
+      "sharp",
+      "pleura"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Lobar: fills a lobe (pneumococcus), air bronchograms, silhouette sign",
+     "points": 1,
+     "terms": [
+      "lobar",
+      "pneumococc",
+      "pneumoniae",
+      "silhouette"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Segmental (bronchopneumonia): patchy, multifocal, no air bronchograms, may have volume loss (staphylococcus)",
+     "points": 1,
+     "terms": [
+      "segmental",
+      "bronchopneumonia",
+      "patchy",
+      "multifocal",
+      "staph",
+      "atelectasis",
+      "volume loss"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Interstitial: reticular pattern (viral, Mycoplasma, Pneumocystis)",
+     "points": 1,
+     "terms": [
+      "interstitial",
+      "reticular",
+      "viral",
+      "virus",
+      "mycoplasma",
+      "pneumocystis",
+      "pcp"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "The patterns are descriptive, not diagnostic: the organism cannot be identified with certainty from the radiograph",
+     "points": 1,
+     "terms": [
+      "descriptive",
+      "not diagnostic",
+      "cannot",
+      "overlap",
+      "certain",
+      "many",
+      "other disease"
+     ]
+    }
+   ],
+   "model": "Pneumonia is denser than aerated lung and usually homogeneous, with air bronchograms (not specific) and fluffy, indistinct margins except where it abuts a fissure or the pleura. Lobar pneumonia (pneumococcus) fills a lobe, is sharp at a fissure, silhouettes adjacent structures and shows central air bronchograms; segmental bronchopneumonia (staphylococcus) is patchy and multifocal, without air bronchograms and often with volume loss; interstitial pneumonia (viruses, Mycoplasma, Pneumocystis) gives a reticular pattern. These terms only describe distribution: many organisms look alike and other diseases mimic them.",
+   "book": "Chapter 8, General characteristics of pneumonia; Patterns of pneumonia",
+   "covers": [
+    "t05",
+    "t06",
+    "t07",
+    "t08",
+    "t09",
+    "t10",
+    "t03"
+   ]
+  },
+  {
+   "id": "c08-e02",
+   "type": "essay",
+   "topic": "ch08",
+   "prompt": "These six frontal radiographs were each marked by a radiologist for pneumonia in different parts of the lungs. In two to four sentences, explain how you would work out which lobe is involved, using the silhouette sign, the lateral view and the spine sign, and what CT adds.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00010610-003",
+     "thumb": "cxr-findings-2/thumbs/dx-bd91cee065.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00011583-000",
+     "thumb": "cxr-findings-2/thumbs/dx-2286f44378.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00015090-006",
+     "thumb": "cxr-findings-2/thumbs/dx-63d4f2dc7d.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00009507-004",
+     "thumb": "cxr-findings-2/thumbs/dx-26ecb250db.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00011136-002",
+     "thumb": "cxr-findings-2/thumbs/dx-a434e1f93c.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00007629-001",
+     "thumb": "cxr-findings-3/thumbs/dx-f13061d53b.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Silhouette sign: structures of the same density in contact lose their edge",
+     "points": 1,
+     "terms": [
+      "silhouette",
+      "same density",
+      "edge",
+      "border",
+      "disappear"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Right middle lobe hides the right heart border; right lower lobe hides the right hemidiaphragm and spares the heart border",
+     "points": 1,
+     "terms": [
+      "right middle",
+      "right heart border",
+      "right hemidiaphragm",
+      "right lower",
+      "spares"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Left side: upper lobe hides the aortic knob, lingula the left heart border, lower lobe the left hemidiaphragm",
+     "points": 1,
+     "terms": [
+      "aortic knob",
+      "lingula",
+      "left heart border",
+      "left hemidiaphragm",
+      "left lower",
+      "left upper"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Right upper lobe hides the ascending aorta with a sharp minor-fissure margin",
+     "points": 1,
+     "terms": [
+      "ascending aorta",
+      "minor fissure",
+      "right upper"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Use a frontal and a lateral view (two views at 90 degrees)",
+     "points": 1,
+     "terms": [
+      "lateral",
+      "two views",
+      "orthogonal",
+      "90"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Spine sign: the spine looks whiter just above the diaphragm on the lateral view in lower lobe disease",
+     "points": 2,
+     "terms": [
+      "spine",
+      "whiter",
+      "denser",
+      "vertebra"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "CT further localizes and shows effusions or small cavities",
+     "points": 1,
+     "terms": [
+      "ct",
+      "effusion",
+      "cavit"
+     ]
+    }
+   ],
+   "model": "The silhouette sign tells you which structure is touched by the disease: a lost right heart border means the right middle lobe, a lost right hemidiaphragm with a spared heart border the right lower lobe, a lost ascending aorta with a sharp minor fissure margin the right upper lobe; on the left the aortic knob points to the upper lobe, the left heart border to the lingula, the left hemidiaphragm to the lower lobe. A lateral view confirms the site, and the spine sign (spine whiter just above the diaphragm) reveals lower lobe disease that may be hidden on the frontal film. CT adds further localization and effusions or cavities.",
+   "book": "Chapter 8, Localizing pneumonia",
+   "covers": [
+    "t21",
+    "t22",
+    "t23",
+    "t24",
+    "t25"
+   ]
+  },
+  {
+   "id": "c08-e03",
+   "type": "essay",
+   "topic": "ch08",
+   "prompt": "These six chest radiographs belong to patients with COVID-19. In two to four sentences, describe the typical radiographic and CT findings, whether they are specific, and when imaging is useful, including what a normal examination means.",
+   "images": [
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-covid-19-ar-16445122",
+     "thumb": "more-ct-xr/thumbs/dx-85eed985e2.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-covid-19-ar-16445138",
+     "thumb": "more-ct-xr/thumbs/dx-15cfc40bd8.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-covid-19-ar-16424076",
+     "thumb": "more-ct-xr/thumbs/dx-1b8b3591d3.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-covid-19-ar-16434369",
+     "thumb": "more-ct-xr/thumbs/dx-4aede1715f.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "chest-pairs",
+     "caseId": "chest-pairs-covid-19-ar-16434363",
+     "thumb": "chest-pairs/thumbs/dx-ff70566980.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "chest-pairs",
+     "caseId": "chest-pairs-covid-19-ar-16406502",
+     "thumb": "chest-pairs/thumbs/dx-3b7ec8ecab.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "The disease is bilateral and peripheral",
+     "points": 1,
+     "terms": [
+      "bilateral",
+      "both lungs",
+      "peripheral",
+      "subpleural",
+      "periphery"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "It is mainly in the lower lobes (bases) and posterior",
+     "points": 1,
+     "terms": [
+      "lower lobe",
+      "lower zone",
+      "bases",
+      "basal",
+      "posterior"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "The radiograph shows patchy or diffuse airspace disease; pleural effusions are uncommon",
+     "points": 1,
+     "terms": [
+      "patchy",
+      "diffuse",
+      "airspace",
+      "effusion",
+      "uncommon"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "CT shows ground-glass opacities (increased attenuation with preserved vessels and bronchi)",
+     "points": 1,
+     "terms": [
+      "ground-glass",
+      "ground glass",
+      "preserved",
+      "attenuation"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Crazy-paving is ground-glass with septal thickening",
+     "points": 1,
+     "terms": [
+      "crazy",
+      "septal"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "The findings are nonspecific and resemble other coronavirus or viral pneumonias",
+     "points": 1,
+     "terms": [
+      "nonspecific",
+      "non-specific",
+      "not specific",
+      "other coronavirus",
+      "other virus",
+      "similar"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "Early or asymptomatic disease can have normal imaging",
+     "points": 1,
+     "terms": [
+      "normal",
+      "early",
+      "asymptomatic"
+     ]
+    },
+    {
+     "id": "r8",
+     "label": "Imaging is advised for clinical worsening or complications (ARDS, pulmonary embolism, superimposed pneumonia, heart failure)",
+     "points": 1,
+     "terms": [
+      "worsen",
+      "deteriorat",
+      "complication",
+      "ards",
+      "embol",
+      "superimposed",
+      "heart failure"
+     ]
+    }
+   ],
+   "model": "COVID-19 typically shows bilateral, peripheral, lower-lobe (posterior) disease: patchy or diffuse airspace opacities on the radiograph, with effusions uncommon, and on CT ground-glass opacities with preserved vessels, sometimes crazy-paving. The findings are not specific and resemble other viral pneumonias. Imaging can be normal early or in asymptomatic patients, and is mainly advised for clinical worsening or complications such as ARDS, pulmonary embolism, superimposed pneumonia or heart failure.",
+   "book": "Chapter 8, COVID-19",
+   "covers": [
+    "t18",
+    "t19",
+    "t20"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,1136 @@
+{
+ "chapter": 9,
+ "title": "Recognizing the Correct Placement of Lines and Tubes and Their Potential Complications: Critical Care Radiology",
+ "blurb": "Endotracheal and tracheostomy tubes, central venous, PICC, pulmonary artery and dialysis catheters, chest tubes, pacemakers, AICDs, balloon pumps, nasogastric and feeding tubes: purpose, ideal position and complications.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Purpose: portable ICU films check device position and cardiopulmonary status; a film is taken after insertion to check position and rule out unintended consequences"
+  },
+  {
+   "id": "t02",
+   "label": "For each device the book asks: why it is used, where it belongs, how it can be malpositioned and what complications follow"
+  },
+  {
+   "id": "t03",
+   "label": "Box 9.1 warning signs after a tube/line entering the thorax: new or larger pleural effusion, pneumothorax, pneumomediastinum, widened mediastinum; after an abdominal device: pneumoperitoneum"
+  },
+  {
+   "id": "t04",
+   "label": "Endotracheal tube (ETT) uses: assist ventilation, airway control, prevent gastric distension, suctioning, medication"
+  },
+  {
+   "id": "t05",
+   "label": "ETT appearance: wide-bore (about 1 cm), radiopaque marker stripe, no side-holes, diagonal tip, usually a cuff"
+  },
+  {
+   "id": "t06",
+   "label": "ETT position: head neutral (mandible at C5-C6), tip 3 to 5 cm above the carina, about half way between the medial clavicles and the carina"
+  },
+  {
+   "id": "t07",
+   "label": "ETT size and cuff: tube 1/2 to 2/3 of tracheal width; cuff fills but must not distend the trachea (overinflation: necrosis, tracheal stenosis)"
+  },
+  {
+   "id": "t08",
+   "label": "Finding the carina: follow the main bronchi back to where they meet; projects over T5-T7 in 95% of people"
+  },
+  {
+   "id": "t09",
+   "label": "Neck movement: flexion moves the ETT tip down about 2 cm, extension up about 2 cm (reason for the 3-5 cm margin); \"tip of the hose follows the tip of the nose\""
+  },
+  {
+   "id": "t10",
+   "label": "Most common ETT malposition: right main bronchus/bronchus intermedius (shallower angle, wider); atelectasis (left lung, nonaerated RUL), right tension pneumothorax"
+  },
+  {
+   "id": "t11",
+   "label": "ETT in the esophagus gives a dilated stomach"
+  },
+  {
+   "id": "t12",
+   "label": "ETT too high (larynx/pharynx): vocal cord damage by the cuff, aspiration"
+  },
+  {
+   "id": "t13",
+   "label": "Tracheostomy tube uses: obstruction at or above the larynx, long-term intubation (>21 days), sleep apnea, paralysis of swallowing/respiratory muscles"
+  },
+  {
+   "id": "t14",
+   "label": "Tracheostomy tube position: tip half way between stoma and carina, width about 2/3 of trachea, not moved by head flexion/extension; check for pneumomediastinum, pneumothorax, subcutaneous emphysema after insertion"
+  },
+  {
+   "id": "t15",
+   "label": "Tracheostomy late complication: tracheal stenosis, most common late, most often at the stoma (also at cuff or tip)"
+  },
+  {
+   "id": "t16",
+   "label": "Central venous catheter (CVC) uses: chemotherapy and hyperosmolar drugs, central venous pressure, monitoring blood volume"
+  },
+  {
+   "id": "t17",
+   "label": "CVC appearance: small (3 mm), uniformly opaque, no marker stripe"
+  },
+  {
+   "id": "t18",
+   "label": "CVC position: path behind the medial clavicle then descends to the right of the spine; tip in the SVC at the junction with the right atrium (T5-T6, about 2 vertebral bodies below the carina); IJ and subclavian veins join to brachiocephalic veins then SVC"
+  },
+  {
+   "id": "t19",
+   "label": "CVC malposition: tip in the right atrium (arrhythmias) or internal jugular vein; wrong central venous pressure readings"
+  },
+  {
+   "id": "t20",
+   "label": "CVC complications: pneumothorax in up to 5% (more by subclavian route); kinks suggest perforation; arterial placement (pulsatile blood, follows aortic arch, does not descend right of spine)"
+  },
+  {
+   "id": "t21",
+   "label": "After a failed CVC attempt obtain a chest film before trying the other side (avoid bilateral pneumothoraces)"
+  },
+  {
+   "id": "t22",
+   "label": "PICC uses: long-term access (months), chemotherapy/antibiotics, frequent sampling; inserted via antecubital vein"
+  },
+  {
+   "id": "t23",
+   "label": "PICC position: tip in the SVC (may be axillary vein); small, hard to see; tips migrate over time; thrombosis from small lumen"
+  },
+  {
+   "id": "t24",
+   "label": "Pulmonary artery (Swan-Ganz) catheter uses: hemodynamics, cardiac versus noncardiac pulmonary edema; looks like a CVC but longer"
+  },
+  {
+   "id": "t25",
+   "label": "PA catheter position: tip in proximal right or left pulmonary artery within 2 cm of the hila; balloon inflated only for measurements; wedge pressure reflects left atrial pressure"
+  },
+  {
+   "id": "t26",
+   "label": "PA catheter complications: pulmonary infarction (most common significant), peripheral tip raises risk, pseudoaneurysm (new consolidation/mass at tip with hemoptysis)"
+  },
+  {
+   "id": "t27",
+   "label": "Hemodialysis (multiple lumen) catheter: large-bore, central stripe, at least two lumens, arterial (withdrawal) port proximal to venous port to limit recirculation; tip SVC and/or right atrium; right IJ route lowest clotting; infection and thrombosis late"
+  },
+  {
+   "id": "t28",
+   "label": "Chest tube: removes air or fluid; wide bore, marker stripe broken at side-hole; inserted at upper rib margin (nerve and vessels run under the rib); anterosuperior for pneumothorax, posteroinferior for effusion, usually works anywhere"
+  },
+  {
+   "id": "t29",
+   "label": "Chest tube malposition: side-hole outside the chest wall causes air leak and subcutaneous emphysema; tube in a fissure drains poorly; kinks"
+  },
+  {
+   "id": "t30",
+   "label": "Chest tube serious complications: intercostal artery bleeding, liver or spleen laceration, re-expansion pulmonary edema"
+  },
+  {
+   "id": "t31",
+   "label": "Pacemaker: indications; generator subcutaneous in left anterior chest wall plus lead(s) via subclavian vein"
+  },
+  {
+   "id": "t32",
+   "label": "Pacemaker leads: one tip at the right ventricular apex (left of spine on frontal, anterior on lateral); dual: right atrium and RV; triple adds coronary sinus; smooth curves, no kinks"
+  },
+  {
+   "id": "t33",
+   "label": "Pacemaker/AICD complications: pneumothorax infrequent, lead fracture (generator, venous access site, tip), perforation with tamponade, Twiddler syndrome, ectopic lead (hepatic vein), migration"
+  },
+  {
+   "id": "t34",
+   "label": "AICD: prevents sudden death (VF/VT); thicker, more opaque coil segment distinguishes it; one lead in SVC/brachiocephalic vein, another in RV apex; complications: dislodgement, fracture"
+  },
+  {
+   "id": "t35",
+   "label": "Intra-aortic balloon pump: uses; balloon inflates in diastole, deflates in systole; tip marker in proximal descending aorta distal to left subclavian origin (about 2 cm below top of arch); too proximal: stroke; too distal: less effective; dissection"
+  },
+  {
+   "id": "t36",
+   "label": "Nasogastric tube: uses; wide (1 cm) with stripe broken at side-hole about 10 cm from tip; tip and side-holes about 10 cm into stomach past the EG junction; EG junction near left hemidiaphragm/spine junction"
+  },
+  {
+   "id": "t37",
+   "label": "NGT malposition: most commonly malpositioned tube; coiling in esophagus most common; trachea/bronchus; rare perforation (cervical esophagus); reflux esophagitis/stricture; confirm by film before use"
+  },
+  {
+   "id": "t38",
+   "label": "Feeding (Dobbhoff) tube: nutrition; ideal tip postpyloric (duodenum/jejunum) though stomach is common; weighted metallic tip; airway placement; guidewire not reinserted; confirm before feeding"
+  },
+  {
+   "id": "t39",
+   "label": "Case quiz: left subclavian CVC wandered into the left IJ; ETT tip less than 2 cm from carina, withdraw slightly"
+  },
+  {
+   "id": "t40",
+   "label": "Online valve replacements: aortic valve above, mitral below the line from carina to anterior cardiophrenic sulcus; mitral left of spine/posterior; tricuspid vertical/anterior; pulmonic more superior"
+  },
+  {
+   "id": "t41",
+   "label": "Online devices: LVAD (continuous flow, no pulse; inflow in LV apex, outflow to ascending aorta) and Impella (femoral, across aortic valve into LV, temporary)"
+  },
+  {
+   "id": "t42",
+   "label": "Online devices: left atrial appendage clip (over 90% of AF thrombi), implantable loop recorder, coronary stent (MRI check), tissue expander, PEG tube (contrast in or outside lumen)"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c09-m01",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "Which description of an endotracheal tube (ETT) on a chest film, with the head in the neutral position, is correct?",
+   "options": [
+    "A wide-bore tube (about 1 cm) with a marker stripe and no side-holes, used to assist ventilation and control the airway, whose tip lies 3 to 5 cm above the carina, about half way between the medial clavicles and the carina",
+    "A thin, uniformly opaque tube without a stripe, used for ventilation, whose tip lies at the carina so that both main bronchi are ventilated equally",
+    "A wide-bore tube with a stripe and several side-holes, used to drain the stomach, whose tip lies 1 to 2 cm above the carina",
+    "A wide-bore tube with a stripe and no side-holes, used for ventilation, whose tip lies at the medial ends of the clavicles, just below the vocal cords"
+   ],
+   "answer": 0,
+   "explanation": "An ETT assists ventilation, gives control of the airway, prevents gastric distension and allows suction and drug delivery. It is about 1 cm wide with a radiopaque stripe, no side-holes and a diagonal tip. The tip should stop 3 to 5 cm above the carina. If the carina is hard to see, follow the two main bronchi back until they meet; in 95% of people it lies over T5, T6 or T7. A tip at the carina or 1-2 cm above it is too deep because neck flexion pushes it lower; one at the clavicles is dangerously high.",
+   "book": "Chapter 9, Endotracheal and Tracheostomy Tubes, correct placement of an ETT",
+   "covers": [
+    "t04",
+    "t05",
+    "t06",
+    "t08"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c09-m02",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "On a portable film the patient's neck is flexed, chin on chest. Compared with a neutral position, what happens to the tip of the ETT, and why does the book want a 3 to 5 cm gap above the carina?",
+   "options": [
+    "The tip rises about 2 cm toward the larynx, so the margin protects the vocal cords",
+    "The tip does not move, because the inflated cuff anchors it to the tracheal wall",
+    "The tip descends about 10 cm and always enters the right main bronchus",
+    "The tip descends about 2 cm toward the carina, so the margin leaves room for this movement"
+   ],
+   "answer": 3,
+   "explanation": "The tube moves with the head: flexion pushes the tip down (about 2 cm) and extension pulls it up (about 2 cm), summed up by \"the tip of the hose follows the tip of the nose\". The cuff does not anchor it, and a 2 cm change, not 10 cm, is the figure to remember. The gap above the carina allows for the downward movement. A tracheostomy tube, in contrast, is not affected by flexion or extension.",
+   "book": "Chapter 9, Endotracheal and Tracheostomy Tubes, movement of tip with flexion and extension",
+   "covers": [
+    "t09"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c09-m03",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "After emergency intubation the portable film shows the whole left hemithorax airless, the mediastinum shifted to the left, and the ETT tip projecting over the right main bronchus. What is the best explanation?",
+   "options": [
+    "The tube is in the esophagus, and the left lung has filled with fluid",
+    "The tube lies in the left main bronchus, the commonest malposition, and the right lung has collapsed",
+    "The tube has slid into the right main bronchus, so the left lung is not ventilated and has collapsed",
+    "The tube is too high in the pharynx, and aspiration has collapsed the left lung"
+   ],
+   "answer": 2,
+   "explanation": "The right main bronchus is wider and runs at a shallower angle, so the tube tends to enter it, which is the commonest ETT malposition. Only the right lung is ventilated, the left lung (and an unventilated right upper lobe) can collapse, and over-inflation of the ventilated lung can end in a right tension pneumothorax. The left bronchus is rarely entered. Withdraw the tube until the tip is above the carina.",
+   "book": "Chapter 9, Endotracheal and Tracheostomy Tubes, incorrect positioning of an ETT",
+   "covers": [
+    "t10"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c09-m04",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "The first film after intubation shows an ETT tip about 1.5 cm above the carina in a patient with a neutral head position. What is the right next step?",
+   "options": [
+    "Leave it, because any tip above the carina is acceptable",
+    "Withdraw the tube slightly, so that the tip lies 3 to 5 cm above the carina",
+    "Advance it a little, so that both main bronchi are ventilated",
+    "Inflate the cuff further, so that the tube cannot move"
+   ],
+   "answer": 1,
+   "explanation": "The accepted gap is 3 to 5 cm, and a tip under 2 cm from the carina (the book's Case Quiz 9) should be withdrawn slightly, since neck flexion can push it down another 2 cm and into a bronchus. Advancing makes it worse. An overinflated cuff must not distend the trachea; it risks wall necrosis and stenosis and does not fix the position.",
+   "book": "Chapter 9, Case Quiz 9 Answer; correct placement of an ETT",
+   "covers": [
+    "t06",
+    "t39"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c09-m05",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "Which set of statements about endotracheal tubes is entirely correct?",
+   "options": [
+    "A tube in the esophagus gives a gas-filled dilated stomach; a tip in the larynx or pharynx can damage the vocal cords and favors aspiration; an overdistended cuff can lead to tracheal necrosis and stenosis",
+    "A tube in the esophagus gives right upper lobe collapse; a tip in the larynx favors tension pneumothorax; an overdistended cuff only loses the seal",
+    "A tube in the esophagus is recognised by a dilated stomach; a tip in the pharynx is the safest position; an overdistended cuff is the ideal way to seal the airway",
+    "A tube in the esophagus gives pneumomediastinum; a tip in the larynx damages the carina; the cuff should always distend the trachea so air cannot leak past"
+   ],
+   "answer": 0,
+   "explanation": "Each wrong set breaks the book's rules. Esophageal intubation fills the stomach with air (it does not cause lobar collapse; collapse comes from a tube in a main bronchus). The tip should never be in the larynx or pharynx because the cuff can injure the vocal cords and high placement predisposes to aspiration. The cuff should fill but not distend the trachea; prolonged pressure on the wall can cause necrosis and later tracheal stenosis. Ideal tube width is one-half to two-thirds of the trachea.",
+   "book": "Chapter 9, Endotracheal and Tracheostomy Tubes, incorrect positioning and complications of an ETT",
+   "covers": [
+    "t07",
+    "t11",
+    "t12"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c09-m06",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "Which statement about a tracheostomy tube is correct?",
+   "options": [
+    "It is used only for short ventilation of a few hours, its tip lies 3 to 5 cm above the carina, and it moves with neck flexion like an ETT",
+    "It is used for long-term ventilation, its tip belongs in the right main bronchus, and its most frequent late complication is pneumothorax",
+    "It is used for obstruction below the carina, its tip lies at the stoma, and its most frequent late complication is tracheal stenosis, mostly at the tip",
+    "It is used for long-term ventilation (over about 21 days) or obstruction at or above the larynx, its tip lies half way between stoma and carina, and its most frequent late complication is tracheal stenosis, mostly at the stoma"
+   ],
+   "answer": 3,
+   "explanation": "Tracheostomies serve patients with obstruction at or above the larynx, prolonged intubation (over 21 days), sleep apnea or paralysis of swallowing or breathing muscles. The tip sits about half way between the stoma and the carina and, unlike an ETT, is not moved by head flexion or extension. Straight after insertion check for pneumomediastinum, pneumothorax and subcutaneous emphysema. The late complication is tracheal stenosis, most common at the stoma, but also possible at the cuff or tip.",
+   "book": "Chapter 9, Endotracheal and Tracheostomy Tubes, Tracheostomy Tubes",
+   "covers": [
+    "t13",
+    "t14",
+    "t15"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c09-m07",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "A patient on chemotherapy has a thin (about 3 mm), uniformly opaque catheter without a marker stripe, inserted through the left subclavian vein. Which frontal film appearance shows a correct position?",
+   "options": [
+    "It passes behind the medial end of the clavicle and descends to the left of the spine, ending over the aortic knob",
+    "It ends in the right atrium, about four vertebral bodies below the carina",
+    "It passes behind the medial end of the clavicle, descends to the right of the spine and ends in the SVC at its junction with the right atrium",
+    "It continues upward from the clavicle and ends in the internal jugular vein"
+   ],
+   "answer": 2,
+   "explanation": "This is a central venous catheter, small and uniformly opaque with no stripe (unlike the wide ETT, NG and chest tubes), used among other things for chemotherapy and hyperosmolar drugs and to measure central venous pressure. The subclavian and internal jugular veins form the brachiocephalic veins, which merge into the SVC on the right of the spine. The tip belongs at the SVC-right atrial junction, near T5-T6 or about two vertebral bodies below the carina. A tip in the atrium can cause arrhythmias; one in the internal jugular vein or following the aortic arch is malpositioned.",
+   "book": "Chapter 9, Intravascular Catheters, Central Venous Catheters",
+   "covers": [
+    "t16",
+    "t17",
+    "t18"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c09-m08",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "A film after left subclavian line insertion shows the catheter tip projecting over the left side of the neck, and the ETT tip is 1.5 cm above the carina. Which description is best?",
+   "options": [
+    "The CVC is correctly placed in the superior vena cava, and the ETT is too high",
+    "The CVC has entered the left internal jugular vein and needs repositioning, and the ETT should be withdrawn slightly",
+    "The CVC lies in the right atrium, and the ETT is in the esophagus",
+    "The CVC is in the subclavian artery, and the ETT is satisfactory"
+   ],
+   "answer": 1,
+   "explanation": "This is Case Quiz 9: instead of crossing behind the clavicular head into the SVC, the catheter wandered into the left internal jugular vein, and the ETT tip, less than 2 cm from the carina, should be pulled back a little. Catheters are most often malpositioned in the right atrium (where they can cause arrhythmias and give false pressure readings) or an internal jugular vein. An arterial catheter would descend along the aortic arch rather than rise into the neck.",
+   "book": "Chapter 9, Case Quiz 9 Answer",
+   "covers": [
+    "t19",
+    "t39"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c09-m09",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "During subclavian CVC insertion the blood return is pulsatile. On the film the catheter does not descend to the right of the spine, and its tip crosses the midline over the aorta. What is the most likely situation?",
+   "options": [
+    "The catheter lies in the subclavian artery and not the vein",
+    "The catheter is correctly placed in the superior vena cava",
+    "The catheter has perforated the vein, and its tip lies in the pleural space",
+    "The catheter has passed into the right atrium"
+   ],
+   "answer": 0,
+   "explanation": "Arterial placement is suspected when the blood return is pulsatile and the course follows the aortic arch or fails to descend on the right of the spine. The SVC lies to the right of the spine. A venous perforation is suggested by sharp bends or kinks, and an atrial tip would be seen below the SVC on the right, not over the aorta.",
+   "book": "Chapter 9, Intravascular Catheters, incorrect placement and complications of central venous catheters",
+   "covers": [
+    "t20"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c09-m10",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "A first attempt to insert a right subclavian CVC fails and the operator plans to try the left side. What is customary first?",
+   "options": [
+    "Proceed at once, because pneumothorax is impossible with the subclavian route",
+    "Obtain an abdominal film to look for free air",
+    "Wait 21 days to let the lung re-expand",
+    "Obtain a chest radiograph, to avoid producing bilateral pneumothoraces"
+   ],
+   "answer": 3,
+   "explanation": "Pneumothorax occurs in up to 5% of CVC insertions and more often by the subclavian than by the internal jugular route. A film after the failed first attempt shows whether a pneumothorax has already been produced, so that a second one is not added on the other side. Free air in the abdomen (pneumoperitoneum) concerns abdominal devices, not CVCs.",
+   "book": "Chapter 9, Intravascular Catheters, important points: two or more attempts at inserting a CVC",
+   "covers": [
+    "t20",
+    "t21"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c09-m11",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "Which of the following is NOT one of the book's warning signs to look for after a tube or line that enters or passes through the thorax?",
+   "options": [
+    "Appearance or increase of a pleural effusion",
+    "Widening of the mediastinal shadow",
+    "Free air under the diaphragm (pneumoperitoneum)",
+    "Pneumomediastinum"
+   ],
+   "answer": 2,
+   "explanation": "After a device that enters or passes through the thorax look for a new or larger pleural effusion, pneumothorax, pneumomediastinum and mediastinal widening. Pneumoperitoneum is the warning sign for devices inserted into the abdomen (for instance a gastrostomy), not for thoracic ones.",
+   "book": "Chapter 9, Box 9.1 Postprocedure Warning Signs",
+   "covers": [
+    "t03"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c09-m12",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "A patient needs intravenous antibiotics for several months and frequent blood tests. A catheter is inserted through an antecubital vein. Which statement about it is correct?",
+   "options": [
+    "It is a PICC, whose tip should lie in the right ventricle; it is easy to see because of its large bore",
+    "It is a PICC, whose tip should lie in the SVC (an axillary tip is also accepted); it may be hard to see, its tip can move over time, and its small lumen can thrombose",
+    "It is a hemodialysis catheter, whose tip should lie in the SVC and whose large bore rarely clots",
+    "It is a Swan-Ganz catheter, whose tip should lie in the proximal pulmonary artery"
+   ],
+   "answer": 1,
+   "explanation": "A peripherally inserted central catheter is meant for long-term access (months), chemotherapy or antibiotics and frequent sampling, introduced through a vein in the arm and passed through the axillary vein. The tip belongs in the SVC. Because it is thin it can be hard to see, tips may migrate later rather than at insertion, and the narrow lumen predisposes to thrombosis. Dialysis catheters are large-bore; a pulmonary artery catheter is longer and floated into the pulmonary artery.",
+   "book": "Chapter 9, Intravascular Catheters, Peripherally Inserted Central Catheters",
+   "covers": [
+    "t22",
+    "t23"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c09-m13",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "Where should the tip of a pulmonary artery (Swan-Ganz) catheter lie, and what does the wedge pressure show when the balloon is inflated with a normal mitral valve?",
+   "options": [
+    "In the proximal right or left pulmonary artery, within about 2 cm of the hila; the wedge pressure reflects left atrial pressure",
+    "In the SVC at the junction with the right atrium; the wedge pressure reflects right atrial pressure",
+    "In a distal peripheral artery near the pleura; the wedge pressure reflects aortic pressure",
+    "In the right ventricular apex; the wedge pressure reflects pulmonary vein oxygen content"
+   ],
+   "answer": 0,
+   "explanation": "The catheter looks like a CVC but is longer and is floated out into a proximal pulmonary artery. A small balloon at the tip is inflated only while measurements are taken. If wedged in a small vessel it records the pulmonary capillary wedge pressure, which with a normal mitral valve mirrors left atrial pressure and helps tell cardiac from noncardiac pulmonary edema. A tip near the periphery is too far.",
+   "book": "Chapter 9, Intravascular Catheters, Pulmonary Artery Catheters",
+   "covers": [
+    "t24",
+    "t25"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c09-m14",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "In a critically ill patient with a pulmonary artery catheter, a new focal consolidation or mass appears at the catheter tip in the periphery of the lung, and the patient coughs up blood. What is the likely cause?",
+   "options": [
+    "A tension pneumothorax from the balloon",
+    "Aspiration from the feeding tube",
+    "Normal expected change after catheter placement",
+    "A pseudoaneurysm (a confined perforation of a pulmonary vessel) from a tip lying too far out"
+   ],
+   "answer": 3,
+   "explanation": "A tip in a peripheral branch is hazardous: it can occlude the artery (pulmonary infarction is the most common significant complication) or perforate it locally, forming a pseudoaneurysm that shows as a new consolidation or mass at the tip with hemoptysis. The catheter should be withdrawn so the tip lies within about 2 cm of the hilum. Serious complications overall are uncommon.",
+   "book": "Chapter 9, Intravascular Catheters, incorrect placement and complications of pulmonary artery catheters",
+   "covers": [
+    "t26"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c09-m15",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "Which statement about a double-lumen hemodialysis catheter is correct?",
+   "options": [
+    "It is thin and without a stripe, and the return port lies proximal to the withdrawal port",
+    "It is large-bore, and its tips must lie in the right ventricle to avoid clotting",
+    "It is large-bore with a central stripe, and the port drawing blood from the patient lies proximal to the port returning blood, which limits recirculation",
+    "It is large-bore, and the left subclavian route is the one most used because of the lowest clotting rate"
+   ],
+   "answer": 2,
+   "explanation": "Dialysis catheters have at least two lumens in one sheath, are wide, and carry a central stripe. The \"arterial\" port that withdraws blood sits proximal to the \"venous\" port that returns it, so freshly cleaned blood is not drawn straight back. Tips lie in the SVC and/or right atrium, and the right internal jugular route is most used with the lowest incidence of clotting. Late complications are infection and venous or catheter thrombosis.",
+   "book": "Chapter 9, Intravascular Catheters, Multiple Lumen Catheters (Hemodialysis Catheters)",
+   "covers": [
+    "t27"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c09-m16",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "Where are chest tubes inserted through the chest wall, and where is the ideal tip position for a pneumothorax and for an effusion?",
+   "options": [
+    "Just below a rib to avoid the lung; posteroinferior for a pneumothorax, anterosuperior for an effusion",
+    "Just above a rib (upper margin) to avoid the nerve and vessels under the rib; anterosuperior for a pneumothorax, posteroinferior for an effusion",
+    "Just above a rib; apex of the chest for both, because anywhere else will fail",
+    "Just below a rib; in a fissure for both, which gives the best drainage"
+   ],
+   "answer": 1,
+   "explanation": "The intercostal nerves and vessels run along the lower border of each rib, so the tube goes in at the upper margin. Air rises, so anterosuperior is ideal for pneumothorax, and fluid sinks, so posteroinferior suits an effusion, although tubes usually work in any position. Chest tubes are wide-bore with a marker stripe interrupted at the side-hole. A tube in an interlobar fissure is a malposition that drains badly.",
+   "book": "Chapter 9, Pleural Drainage Tubes, correct placement of pleural drainage tubes",
+   "covers": [
+    "t28"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c09-m17",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "A chest tube was placed for a pleural effusion, but the effusion persists and the patient has new swelling of the chest wall that crackles on palpation. The film shows the marker stripe interrupted at a side-hole outside the rib cage and a kink at the entry. What is the most likely explanation?",
+   "options": [
+    "A side-hole lies outside the thorax, causing an air leak and subcutaneous emphysema, with poor drainage",
+    "The tube lies in the right atrium, causing arrhythmia",
+    "A pneumothorax is being drained correctly",
+    "Re-expansion pulmonary edema from rapid fluid removal"
+   ],
+   "answer": 0,
+   "explanation": "All side-holes must be inside the chest wall. An outside hole lets air be drawn in, so subcutaneous emphysema appears and drainage is inefficient; a kink reduces drainage further. Most chest tube malpositions (including a tube lying in a fissure) cause poor drainage rather than serious harm. Serious but uncommon events are intercostal artery bleeding, laceration of the liver or spleen and re-expansion pulmonary edema after rapid re-expansion of a collapsed lung.",
+   "book": "Chapter 9, Pleural Drainage Tubes, incorrect placement and complications of pleural drainage tubes",
+   "covers": [
+    "t29",
+    "t30"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c09-m18",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "What do the generator and the leads of a normal dual-lead pacemaker look like on a frontal chest film?",
+   "options": [
+    "A generator in the right upper abdomen with both leads ending in the left atrium",
+    "A generator in the left chest wall with both leads ending in the superior vena cava",
+    "A generator in the left chest wall with one lead ending in the left ventricle and another in the hepatic vein",
+    "A generator in the left anterior chest wall with one lead curling upward in the right atrium and another ending at the right ventricular apex, to the left of the spine"
+   ],
+   "answer": 3,
+   "explanation": "Pacemakers have a subcutaneous pulse generator, usually in the left anterior chest, and leads placed through the subclavian vein. One lead tip is almost always at the right ventricular apex, which on the frontal film lies to the left of the spine and on the lateral film is anterior. An atrial lead curls upward in the right atrium. Three-lead devices add a lead in the coronary sinus. Leads should curve smoothly without sharp kinks.",
+   "book": "Chapter 9, Cardiac Devices, Pacemakers",
+   "covers": [
+    "t31",
+    "t32"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c09-m19",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "A patient with a pacemaker, who admits constantly fiddling with the generator under the skin, now has loss of capture. The film shows the leads wound around the generator and a lead tip pulled back to the superior vena cava. What is this?",
+   "options": [
+    "A lead fracture at the venous access site",
+    "Lead perforation of the heart causing tamponade",
+    "Twiddler syndrome, in which the rotated generator retracts the lead from the ventricular wall",
+    "A normal variant of a triple-lead pacemaker"
+   ],
+   "answer": 2,
+   "explanation": "Twiddler syndrome comes from twisting the generator on its axis, curling the leads around it and retracting the tips. Lead fracture would show a break in the wire (at the generator, the venous access site or the tip), and perforation shows a sharp bend of the lead with possible tamponade. Pneumothorax is an infrequent complication of insertion, and leads can also be ectopic (for instance in the hepatic vein).",
+   "book": "Chapter 9, Cardiac Devices, incorrect placement and complications of cardiac pacemakers",
+   "covers": [
+    "t33"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c09-m20",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "How can an automatic implantable cardiac defibrillator (AICD) usually be told apart from a pacemaker on a chest film?",
+   "options": [
+    "Its generator sits in the abdomen instead of the chest wall",
+    "At least one electrode has a wider, more opaque segment (the shock coil), and one lead runs in the SVC or brachiocephalic vein",
+    "All its leads are thinner than pacemaker leads",
+    "Its leads end in the left atrium and left ventricle"
+   ],
+   "answer": 1,
+   "explanation": "AICDs prevent sudden death from ventricular fibrillation or tachycardia and have a thicker, denser coil segment. One electrode is placed in the SVC or brachiocephalic vein; the other lies at the apex of the right ventricle, and sometimes a third passes into the coronary sinus. The generator lies in the pectoral subcutaneous tissue. Leads can migrate or fracture, and bends should be smooth.",
+   "book": "Chapter 9, Cardiac Devices, Automatic Implantable Cardiac Defibrillators",
+   "covers": [
+    "t34"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c09-m21",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "Where does the tip of an intra-aortic balloon pump belong, and what happens if it lies too proximally?",
+   "options": [
+    "In the proximal descending aorta distal to the left subclavian artery (about 2 cm below the top of the arch); a tip too proximal can occlude arch vessels and cause stroke",
+    "In the ascending aorta just above the valve; too proximal means loss of effect on the heart",
+    "In the abdominal aorta at the renal arteries; too proximal means arrhythmia",
+    "In the right atrium; too proximal means pneumothorax"
+   ],
+   "answer": 0,
+   "explanation": "The balloon is inflated in diastole to increase coronary flow and deflated in systole to reduce afterload. Its tip is marked by a small linear metallic marker, which should lie just beyond the origin of the left subclavian artery so that it does not block it. A tip that is too high can compromise the great vessels and cause stroke; too low reduces effectiveness. Aortic dissection and perforation are uncommon complications.",
+   "book": "Chapter 9, Cardiac Devices, Intra-aortic Balloon Pump (IABP)",
+   "covers": [
+    "t35"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c09-m22",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "A nasogastric tube (NGT) is wide with a stripe that is broken at a side-hole about 10 cm from the tip. How far should its tip extend into the stomach, and where can you find the esophagogastric (EG) junction on a chest film?",
+   "options": [
+    "About 2 cm beyond the EG junction, which lies at the carina",
+    "About 10 cm beyond the EG junction, which lies at the right hemidiaphragm",
+    "At the EG junction only, which lies near the gastric fundus bubble",
+    "About 10 cm beyond the EG junction, which lies near the junction of the left hemidiaphragm and the thoracic spine"
+   ],
+   "answer": 3,
+   "explanation": "The tip and side-holes should lie about 10 cm below the EG junction so that aspiration from esophageal feeding is avoided. The junction projects near the point where the left hemidiaphragm meets the left side of the spine, which serves as a landmark. On a good film the tube follows the greater curvature toward the pylorus.",
+   "book": "Chapter 9, Gastrointestinal Tubes, Nasogastric Tubes",
+   "covers": [
+    "t36"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c09-m23",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "A portable film shows an NGT that follows the trachea past the carina and ends in the right lower lobe bronchus. What should be done, and which statement about NG tubes is correct?",
+   "options": [
+    "Start the feed slowly and watch for cough, since small bronchial placement is tolerated; coiling is rare",
+    "Leave the tube and check the position again after the feed; coiling is rare",
+    "Do not feed or give medication; the tube must be removed and repositioned. NGTs are the most commonly malpositioned tubes, esophageal coiling being the commonest error",
+    "Advance it further; bronchial tubes are normal in elderly patients"
+   ],
+   "answer": 2,
+   "explanation": "An NGT may be inserted into the trachea and a bronchus, where feeding would flood the lung, so a confirmatory radiograph must be obtained before any feed or medicine. NG tubes are the most commonly malpositioned of all tubes and lines, most often by coiling in the esophagus. Perforation is rare (cervical esophagus), and a long-term tube can lead to reflux and esophagitis or stricture.",
+   "book": "Chapter 9, Gastrointestinal Tubes, incorrect placement and complications of nasogastric tubes",
+   "covers": [
+    "t37"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c09-m24",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "Which statement about a Dobbhoff feeding tube is correct?",
+   "options": [
+    "It has no radiopaque tip, ideally lies in the esophagus, and its guidewire is reinserted to unkink it",
+    "Its tip is weighted and metallic, ideally lies in the duodenum or jejunum (though the stomach is common), and the guidewire is never reinserted once removed",
+    "Its tip is weighted, ideally lies in the stomach fundus, and it can safely be given feed before any film",
+    "It is wide with a stripe, ideally lies in the right main bronchus, and is named after one physician"
+   ],
+   "answer": 1,
+   "explanation": "Feeding tubes are for nutrition and have a weighted, metallic linear tip. The ideal tip is postpyloric (duodenum or jejunum) to lower aspiration risk, but placement in the stomach is very common in practice. The tube can enter the trachea and the lung, so a film must confirm position before feeding. The guidewire can perforate the esophagus and is not reinserted. The name comes from two physicians, Dobbie and Hoffmeister.",
+   "book": "Chapter 9, Gastrointestinal Tubes, Feeding Tubes (Dobbhoff Tubes)",
+   "covers": [
+    "t38"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c09-m25",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "Which statement about prosthetic heart valves on the chest film is correct?",
+   "options": [
+    "A line from the carina to the anterior cardiophrenic sulcus separates them: the aortic valve is usually above the line and the mitral valve below it",
+    "The mitral valve is above that line and the aortic valve below it",
+    "The mitral valve lies to the right of the spine on the frontal view and anteriorly on the lateral",
+    "The tricuspid valve lies obliquely to the left of the spine, and the pulmonic valve is the lowest valve"
+   ],
+   "answer": 0,
+   "explanation": "On the frontal film, the aortic valve is usually above a line joining the carina to the anterior cardiophrenic sulcus and the mitral valve below it. The mitral valve lies to the left of the spine (posterior on the lateral view), the tricuspid valve is oriented almost vertically on the frontal view and anteriorly on the lateral, and the pulmonic valve is more superior than the others.",
+   "book": "Chapter 9, Online material, e-Fig. 9.1 to 9.3 (valve replacements)",
+   "covers": [
+    "t40"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c09-m26",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "A patient with severe refractory heart failure has a permanent continuous-flow pump with an inflow cannula in the left ventricular apex and an outflow cannula to the ascending aorta. What is true?",
+   "options": [
+    "It is an Impella pump, inserted through the femoral artery as a permanent alternative to transplantation",
+    "It is an intra-aortic balloon pump, and the patient has a strong pulsatile pulse",
+    "It is an implantable loop recorder, which stores ECG data",
+    "It is a left ventricular assist device (LVAD), and the patient will have no palpable pulse"
+   ],
+   "answer": 3,
+   "explanation": "An LVAD (such as the HeartMate) is a surgically implanted pump with inflow from the left ventricular apex and outflow to the ascending aorta; because the flow is continuous the patient has no palpable pulse. An Impella is a catheter pump that goes via the femoral artery across the aortic valve for temporary support after cardiac surgery or in cardiogenic shock. A loop recorder is a small subcutaneous ECG monitor for unexplained syncope or palpitations.",
+   "book": "Chapter 9, Online material, e-Fig. 9.4 to 9.5 (LVAD and Impella)",
+   "covers": [
+    "t41"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c09-m27",
+   "type": "mcq",
+   "topic": "ch09",
+   "prompt": "Which statement about other devices shown in the online figures is correct?",
+   "options": [
+    "A left atrial appendage clip is placed inside the left ventricle because most thrombi form there; a PEG tube should show contrast in the peritoneal cavity",
+    "A tissue expander is a permanent breast implant that is never removed; coronary stents are always MRI-incompatible",
+    "A left atrial appendage clip is applied outside the appendage to occlude its opening because over 90% of the thrombi of atrial fibrillation form there; a PEG tube injected with water-soluble contrast should show contrast inside the stomach",
+    "An implantable loop recorder is a pacemaker that paces the ventricle; a PEG tube is for short-term parenteral nutrition"
+   ],
+   "answer": 2,
+   "explanation": "The atrial appendage is the source of more than 90% of thrombi in atrial fibrillation, and the surgically applied clip occludes its base. Contrast injected through a PEG tube should stay within the stomach and pass into the duodenum; extraluminal contrast outlining bowel in the peritoneum means a wrong position. A tissue expander is temporary and later replaced, a loop recorder only monitors the ECG, and most newer coronary stents are MRI-compatible, though this should be checked before MRI.",
+   "book": "Chapter 9, Online material, e-Fig. 9.6 to 9.10",
+   "covers": [
+    "t42"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c09-e01",
+   "type": "essay",
+   "topic": "ch09",
+   "prompt": "These six frontal chest films come from hospital patients with tubes, lines or monitoring leads (nasogastric tubes, central venous catheters and ECG electrodes are among them). In two to four sentences, say why a film is taken after such a device is inserted, where the tip of an endotracheal tube, a central venous catheter and a nasogastric tube belong, and which complications you look for.",
+   "images": [
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-covid-19-ar-16424076",
+     "thumb": "more-ct-xr/thumbs/dx-1b8b3591d3.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00026136-002",
+     "thumb": "cxr-findings-2/thumbs/dx-6f3aaf87a5.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00016414-000",
+     "thumb": "cxr-findings-2/thumbs/dx-f6d3fcd160.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00008399-007",
+     "thumb": "cxr-findings-2/thumbs/dx-b8198dc43b.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00001075-024",
+     "thumb": "cxr-findings/thumbs/dx-23a6d6ebe1.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00004344-013",
+     "thumb": "cxr-findings-2/thumbs/dx-526e509288.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Purpose: confirm the position of the device and exclude unintended complications after insertion",
+     "points": 1,
+     "terms": [
+      "position",
+      "placement",
+      "malposition",
+      "complication",
+      "check",
+      "confirm"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Endotracheal tube tip: 3 to 5 cm above the carina (about half way between the clavicles and the carina) with the head neutral",
+     "points": 1,
+     "terms": [
+      "carina",
+      "3 to 5",
+      "3-5",
+      "3 5 cm",
+      "half way",
+      "halfway",
+      "above the carina"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Central venous catheter tip: in the superior vena cava, at the junction with the right atrium",
+     "points": 1,
+     "terms": [
+      "superior vena cava",
+      "svc",
+      "cavoatrial",
+      "junction with the right atrium",
+      "atrial junction",
+      "vena cava"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Nasogastric tube: tip and side-holes about 10 cm into the stomach, below the diaphragm past the esophagogastric junction",
+     "points": 1,
+     "terms": [
+      "stomach",
+      "10 cm",
+      "ten cm",
+      "below the diaphragm",
+      "below the left hemidiaphragm",
+      "esophagogastric",
+      "oesophagogastric",
+      "eg junction"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Check for pneumothorax (also effusion, pneumomediastinum, mediastinal widening) after a thoracic line",
+     "points": 2,
+     "terms": [
+      "pneumothorax",
+      "pneumomediastinum",
+      "effusion",
+      "widen"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Obtain a confirmatory film before feeding through an NGT, since a tube in a bronchus would feed the lung",
+     "points": 1,
+     "terms": [
+      "before feeding",
+      "before use",
+      "before any feed",
+      "confirm",
+      "bronchus",
+      "airway",
+      "trachea",
+      "aspirat"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "Look for malposition, e.g. catheter tip in the right atrium (arrhythmia) or internal jugular vein, or a kinked or arterial catheter",
+     "points": 1,
+     "terms": [
+      "right atrium",
+      "jugular",
+      "kink",
+      "artery",
+      "arterial",
+      "arrhythmia",
+      "perforat",
+      "malposition"
+     ]
+    }
+   ],
+   "model": "A film is taken after insertion to confirm the device position and exclude complications. The ETT tip should lie 3 to 5 cm above the carina (head neutral), the CVC tip in the superior vena cava at the junction with the right atrium, and the NGT tip and side-holes about 10 cm into the stomach past the EG junction, below the diaphragm. After any thoracic line look for pneumothorax, effusion, pneumomediastinum and a widened mediastinum; malpositions include a CVC in the right atrium or internal jugular vein, and an NGT must be confirmed on film before feeding.",
+   "book": "Chapter 9, Introduction and Take Home Points",
+   "covers": [
+    "t01",
+    "t02",
+    "t03",
+    "t06",
+    "t18",
+    "t36",
+    "t37"
+   ]
+  },
+  {
+   "id": "c09-e02",
+   "type": "essay",
+   "topic": "ch09",
+   "prompt": "Each of these six frontal films shows one or more chest tubes (drains) in the pleural space, most inserted for air or fluid. In two to four sentences, explain how a chest tube is recognised, where its tip ideally lies for a pneumothorax and for an effusion, and what malpositions and complications you look for on the follow-up film.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00007471-003",
+     "thumb": "cxr-findings-2/thumbs/dx-a4c3fe8dce.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00013209-018",
+     "thumb": "cxr-findings/thumbs/dx-c66472edc1.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00001437-012",
+     "thumb": "cxr-findings/thumbs/dx-396c752237.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00019124-006",
+     "thumb": "cxr-findings-2/thumbs/dx-1b227d5bbd.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00011355-011",
+     "thumb": "cxr-findings/thumbs/dx-4a1320a481.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00010767-016",
+     "thumb": "cxr-findings/thumbs/dx-8524724c7b.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Recognition: wide-bore tube with a radiopaque marker stripe that is interrupted at a side-hole",
+     "points": 1,
+     "terms": [
+      "wide",
+      "marker",
+      "stripe",
+      "side-hole",
+      "side hole",
+      "sidehole",
+      "radiopaque",
+      "radio-opaque"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Ideal position: anterosuperior for a pneumothorax, posteroinferior for an effusion, though tubes usually work wherever placed",
+     "points": 2,
+     "terms": [
+      "anterosuperior",
+      "anterior and superior",
+      "antero",
+      "posteroinferior",
+      "posterior and inferior",
+      "postero",
+      "apex",
+      "base",
+      "dependent"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "All side-holes must lie inside the chest wall; a hole outside leaks air, causes subcutaneous emphysema and poor drainage",
+     "points": 2,
+     "terms": [
+      "outside",
+      "subcutaneous emphysema",
+      "air leak",
+      "leak",
+      "side-hole",
+      "side hole",
+      "sidehole",
+      "chest wall"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "A tube lying in a fissure, or kinked, drains inefficiently (most malpositions cause poor drainage)",
+     "points": 1,
+     "terms": [
+      "fissure",
+      "kink",
+      "inadequate drainage",
+      "poor drainage",
+      "inefficient",
+      "ineffective"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Serious complications: bleeding from an intercostal artery, laceration of liver or spleen, re-expansion pulmonary edema",
+     "points": 1,
+     "terms": [
+      "intercostal",
+      "bleed",
+      "haemorrhage",
+      "hemorrhage",
+      "liver",
+      "spleen",
+      "re-expansion",
+      "reexpansion",
+      "edema",
+      "oedema"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Check the effect on the pneumothorax or effusion and for new problems on the follow-up film",
+     "points": 1,
+     "terms": [
+      "pneumothorax",
+      "effusion",
+      "resolved",
+      "evacuated",
+      "residual",
+      "persist",
+      "follow-up",
+      "follow up"
+     ]
+    }
+   ],
+   "model": "Chest tubes are wide-bore tubes with a radiopaque stripe broken at the side-hole. The tip is ideally anterosuperior for a pneumothorax and posteroinferior for an effusion, but most tubes work anywhere. Every side-hole must be inside the chest wall; one outside gives an air leak and subcutaneous emphysema, and a tube in a fissure or a kinked tube drains poorly. Serious complications are intercostal artery bleeding, liver or spleen laceration and re-expansion pulmonary edema.",
+   "book": "Chapter 9, Pleural Drainage Tubes",
+   "covers": [
+    "t28",
+    "t29",
+    "t30",
+    "t03"
+   ]
+  },
+  {
+   "id": "c09-e03",
+   "type": "essay",
+   "topic": "ch09",
+   "prompt": "These six frontal chest films show implanted or inserted devices in the chest: a pacemaker with its generator in the upper left chest, temporary pacing wires, venous ports and central catheters. In two to four sentences, say where a pacemaker generator and its lead tips belong, how an AICD differs, and which complications of leads and catheters you look for.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00009745-000",
+     "thumb": "cxr-findings-2/thumbs/dx-c53ac060dc.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00000377-004",
+     "thumb": "cxr-findings/thumbs/dx-e97a536ec0.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00020810-003",
+     "thumb": "cxr-findings-2/thumbs/dx-099cc3a300.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00013337-000",
+     "thumb": "cxr-findings/thumbs/dx-6356f62568.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00008399-007",
+     "thumb": "cxr-findings-2/thumbs/dx-b8198dc43b.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00016414-000",
+     "thumb": "cxr-findings-2/thumbs/dx-f6d3fcd160.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Generator lies subcutaneously in the left anterior chest wall; leads pass through the subclavian vein",
+     "points": 1,
+     "terms": [
+      "generator",
+      "left chest",
+      "subcutaneous",
+      "anterior chest wall",
+      "subclavian",
+      "pulse generator"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "One lead tip is at the apex of the right ventricle (left of the spine on the frontal view, anterior on the lateral); other leads in right atrium or coronary sinus",
+     "points": 2,
+     "terms": [
+      "apex",
+      "right ventricle",
+      "right atrium",
+      "coronary sinus",
+      "left of the spine",
+      "anterior"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "AICD: thicker, more opaque coil segment on a lead, one lead in the SVC and one in the right ventricle",
+     "points": 1,
+     "terms": [
+      "thick",
+      "opaque",
+      "coil",
+      "defibrillat",
+      "aicd",
+      "icd",
+      "shock"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Leads should be smooth curves; look for sharp kinks, which suggest perforation (tamponade) or a bad course",
+     "points": 1,
+     "terms": [
+      "smooth",
+      "kink",
+      "sharp",
+      "bend",
+      "perforat",
+      "tamponade"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Lead fracture (generator, venous access site or tip), Twiddler syndrome with lead retraction, migration or ectopic lead",
+     "points": 2,
+     "terms": [
+      "fracture",
+      "break",
+      "twiddler",
+      "retract",
+      "migrat",
+      "dislodg",
+      "ectopic",
+      "hepatic vein"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "After insertion check for pneumothorax; for a catheter the tip belongs in the SVC",
+     "points": 1,
+     "terms": [
+      "pneumothorax",
+      "superior vena cava",
+      "svc"
+     ]
+    }
+   ],
+   "model": "A pacemaker has a pulse generator under the skin of the left anterior chest wall and leads inserted through the subclavian vein. One lead tip is almost always at the right ventricular apex (left of the spine on the frontal view, anterior on the lateral), with a second in the right atrium or a third in the coronary sinus. An AICD has a thicker, more opaque coil segment, with one lead in the SVC and another in the right ventricle. Leads should curve smoothly: look for sharp kinks (perforation, tamponade), fracture at the generator, venous access site or tip, retraction from Twiddler syndrome, migration, ectopic position, and pneumothorax.",
+   "book": "Chapter 9, Cardiac Devices",
+   "covers": [
+    "t31",
+    "t32",
+    "t33",
+    "t34"
+   ]
+  }
+ ]
+}

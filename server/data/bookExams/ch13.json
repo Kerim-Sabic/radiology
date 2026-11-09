@@ -1,0 +1,969 @@
+{
+ "chapter": 13,
+ "title": "Recognizing the Normal Abdomen and Pelvis: Computed Tomography",
+ "blurb": "Intravenous and oral contrast, reactions and preparation, comparing modalities, and the normal CT appearance of the liver, spleen, pancreas, kidneys, bowel and bladder.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "CT in abdominal pain (about 10% of emergency visits); exploratory surgery now rare; guiding principle: maximize density differences with intravenous and oral contrast"
+  },
+  {
+   "id": "t02",
+   "label": "Intravenous contrast: enhanced scans give more information; parameters tailored (e.g. vessels vs parenchyma); nonionic low-osmolar iodine, opacifies high-flow tissue, looks white, excreted by the kidneys"
+  },
+  {
+   "id": "t03",
+   "label": "Contrast reactions: mild (warmth, nausea, local itching or hives) need no treatment; idiosyncratic allergic-like reactions; severe in about 0.01-0.04% (death 1 in 200,000-300,000)"
+  },
+  {
+   "id": "t04",
+   "label": "Higher risk (asthma, severe allergies, prior reaction): steroids, diphenhydramine, cimetidine; shellfish allergy is unrelated; oral contrast safe after a prior reaction"
+  },
+  {
+   "id": "t05",
+   "label": "Renal function: eGFR under 30 or creatinine 1.5 or more, not on dialysis: intravenous saline may reduce contrast-associated acute kidney injury"
+  },
+  {
+   "id": "t06",
+   "label": "Oral contrast: defines the bowel; use has diminished; not routine in chest CT; divided doses; not used for trauma, the stone search or vascular studies"
+  },
+  {
+   "id": "t07",
+   "label": "Oral contrast agents: dilute barium sulfate (most used); water-soluble iodine-based (Gastrografin) if perforation is a concern; rectal contrast; Foley catheter for the bladder"
+  },
+  {
+   "id": "t08",
+   "label": "Table 13.1: IV contrast for CT-PA, mass and staging, trauma, abdominal pain, aneurysm or dissection; no IV contrast for calcium scoring, stone search; oral contrast for most nontraumatic pain, IBD, abscess, perforation or fistula; radiologist tailors the study"
+  },
+  {
+   "id": "t09",
+   "label": "Patient preparation (Table 13.2): renal function check before contrast; fasting for upper abdominal US; full bladder for pelvic US; MRI safety history (pacemaker, clips, implants, claustrophobia); barium bowel preparation; sip of water for oral medications"
+  },
+  {
+   "id": "t10",
+   "label": "Modalities compared (Table 13.3): radiography, ultrasound (gallbladder, aortic aneurysm screening, female pelvis, ascites; operator dependent), CT (modality of choice, radiation, contrast issues), MRI (soft-tissue contrast, cost, availability, devices)"
+  },
+  {
+   "id": "t11",
+   "label": "Radiation dose of CT depends on equipment, x-ray energy and patient size; dose-reduction measures; benefit must outweigh risk; history and examination guide the choice of study"
+  },
+  {
+   "id": "t12",
+   "label": "Viewing convention: patient's right on your left; supine patient with anterior at the top of the image"
+  },
+  {
+   "id": "t13",
+   "label": "Liver blood supply: 80% portal vein, 20% hepatic artery; enhances mostly in the portal venous phase; hepatic veins drain to the IVC"
+  },
+  {
+   "id": "t14",
+   "label": "Liver lobes by external appearance: right (anterior, posterior), left (medial, lateral), caudate; fissure with falciform ligament and ligamentum teres separates medial and lateral left segments"
+  },
+  {
+   "id": "t15",
+   "label": "Couinaud: eight functional segments, each with its own portal branch, artery, bile duct and hepatic vein drainage; basis for segmental resection; not the same as the lobes"
+  },
+  {
+   "id": "t16",
+   "label": "Normal liver on CT: smooth and homogeneous, at least as dense as the spleen without contrast; 15 cm or less in height (not through a Riedel lobe); transverse 20-26 cm; volume about 1500 cm3"
+  },
+  {
+   "id": "t17",
+   "label": "Bare area of the liver: no peritoneal covering, attached to the diaphragm; ascites cannot pass between liver and lung (separates ascites from pleural effusion)"
+  },
+  {
+   "id": "t18",
+   "label": "Spleen: about 12 cm, not below the 12th rib, size of the left kidney; patchy early enhancement is normal; lobulations are not lacerations"
+  },
+  {
+   "id": "t19",
+   "label": "Pancreas: retroperitoneal and oblique; head 3 cm, body 2.5, tail 2; length 12-15 cm; duct 3-4 mm; fatty infiltration with age; relations to splenic vessels and SMV"
+  },
+  {
+   "id": "t20",
+   "label": "Kidneys: retroperitoneal, perirenal space and fasciae; about 11 cm, left minimally larger; right renal artery behind the IVC; left renal vein in front of the aorta; veins anterior to arteries"
+  },
+  {
+   "id": "t21",
+   "label": "Renal phases: corticomedullary 30-70 s, nephrographic 80-100 s, excretory 5-10 min; what each shows"
+  },
+  {
+   "id": "t22",
+   "label": "Kidneys excrete contrast; urine becomes opacified (delayed imaging); vicarious excretion if the kidneys fail"
+  },
+  {
+   "id": "t23",
+   "label": "Bowel on CT: distension and opacification needed; small bowel 2.5 cm or less, wall under 3 mm; colon wall under 3 mm distended and under 5 mm collapsed; cecum identified by terminal ileum and ileocecal valve"
+  },
+  {
+   "id": "t24",
+   "label": "Urinary bladder: extraperitoneal; relations to prostate, rectum, vagina and uterus; ureters enter at the trigone; wall 5 mm or less when distended"
+  },
+  {
+   "id": "t25",
+   "label": "Case quiz: pulsatile abdominal mass: ultrasound first; noncontrast CT if unsuitable; CT or MR angiography for definitive diagnosis"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c13-m01",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "What guiding principle underlies the use of intravenous and oral contrast in abdominal and pelvic CT?",
+   "options": [
+    "To maximize the differences in density between tissues so that their anatomy is shown best",
+    "To lower the radiation dose, because contrast lets the scanner use fewer x-rays for every slice",
+    "To make every organ enhance to the same degree so that the images look uniform and easy to read",
+    "To replace the history and examination, because enhanced images answer every clinical question"
+   ],
+   "answer": 0,
+   "explanation": "CT, like other imaging, works best when tissues differ in density, and contrast agents increase those differences. Enhanced scans usually give more diagnostic information that is easier to detect, and the timing of the scan can be chosen to show vessels or the organ tissue. Contrast does not reduce dose, does not make organs look alike, and does not replace a good history and examination, which remain essential.",
+   "book": "Chapter 13, Introduction to Abdominal and Pelvic CT",
+   "covers": [
+    "t01"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c13-m02",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Which description fits the intravenous contrast used for CT today?",
+   "options": [
+    "A high-osmolar ionic iodine solution that is taken up by hepatocytes and excreted mainly in the bile",
+    "A dilute barium sulfate suspension that is absorbed by the bowel and excreted slowly through the lungs",
+    "A gadolinium-based agent that makes well-perfused tissue look dark and is cleared by the spleen",
+    "A nonionic, low-osmolar iodine solution that opacifies well-perfused tissue, looks white and is excreted by the kidneys"
+   ],
+   "answer": 3,
+   "explanation": "Intravenous CT contrast is a nonionic, low-osmolar solution with a high concentration of iodine. It passes through the blood, opacifies tissues with high blood flow, absorbs x-rays and therefore looks white, and is finally excreted in the urine. Barium is an oral or rectal agent; gadolinium belongs to MRI; ionic high-osmolar agents are no longer the ones used today.",
+   "book": "Chapter 13, Box 13.1 Contrast Reactions",
+   "covers": [
+    "t02"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c13-m03",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Which statement about reactions to iodinated intravenous contrast is correct?",
+   "options": [
+    "Every reaction needs urgent treatment, and severe reactions occur in about 4 to 10% of all patients",
+    "Mild effects such as warmth or nausea mean the patient is allergic and must never again have contrast",
+    "Warmth, nausea or itching are common mild effects needing no treatment; severe ones occur in about 0.01 to 0.04%",
+    "Severe reactions with bronchospasm or circulatory collapse occur in about 1% and death is common"
+   ],
+   "answer": 2,
+   "explanation": "Mild effects (a feeling of warmth, nausea and vomiting, itching or hives at the injection site) usually need no treatment. Occasional idiosyncratic, allergic-like reactions can include itching, hives and laryngeal irritation. Severe reactions with bronchospasm, laryngeal edema or circulatory collapse affect roughly 0.01 to 0.04% of patients, and death is very rare, about 1 in 200,000 to 300,000.",
+   "book": "Chapter 13, Box 13.1 Contrast Reactions",
+   "covers": [
+    "t03"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c13-m04",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "A patient with asthma and a shellfish allergy needs a contrast-enhanced CT. Which statement is correct?",
+   "options": [
+    "Shellfish allergy is the main predictor of a contrast reaction, so all iodinated contrast must be avoided",
+    "Shellfish allergy is unrelated to contrast reactions; asthma raises the risk slightly, so steroid premedication may help",
+    "Asthma is an absolute contraindication to iodinated contrast, whatever premedication is given",
+    "Premedication never helps, and oral contrast must also be withheld after any prior contrast reaction"
+   ],
+   "answer": 1,
+   "explanation": "Asthma, severe allergies or an earlier reaction make a reaction somewhat more likely, though still very unlikely, and steroids, diphenhydramine and cimetidine given before or after the injection may help. The book is explicit that a shellfish allergy has no relationship to reactions to iodinated contrast, and that oral contrast can be given safely, without premedication, to patients who reacted to intravenous contrast.",
+   "book": "Chapter 13, Box 13.1 Contrast Reactions",
+   "covers": [
+    "t04"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c13-m05",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "A patient who is not on dialysis has an eGFR of 25 mL/min/1.73 m2 and needs a contrast-enhanced CT. Which step does the book mention?",
+   "options": [
+    "Prophylaxis with intravenous normal saline may reduce the risk of contrast-associated acute kidney injury",
+    "Withhold all fluids before the scan so that the contrast stays concentrated in the kidneys",
+    "Give steroids and diphenhydramine, which prevent contrast-associated kidney injury altogether",
+    "No step is needed, because iodinated contrast never harms the kidneys of any patient"
+   ],
+   "answer": 0,
+   "explanation": "An eGFR under 30 or a serum creatinine of 1.5 mg/dL or more suggests compromised renal function, and in such patients not on maintenance dialysis intravenous saline may reduce the risk of contrast-associated acute kidney injury. The injury is usually reversible, but kidney function can worsen permanently in a few patients with underlying insufficiency. Steroids and antihistamines address allergic-like reactions, not kidney injury.",
+   "book": "Chapter 13, Box 13.1 Contrast Reactions",
+   "covers": [
+    "t05"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c13-m06",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "For which abdominal CT is oral contrast usually NOT given?",
+   "options": [
+    "Most cases of nontraumatic abdominal pain, where the bowel needs to be defined",
+    "Inflammatory bowel disease, where the bowel wall and loops need to be seen",
+    "Suspected abdominal or pelvic abscess, which must be told apart from bowel loops",
+    "Trauma, the stone search study, and studies directed at the aorta or other vessels"
+   ],
+   "answer": 3,
+   "explanation": "Oral contrast defines the bowel and is used for many abdominal CTs, but not for trauma, the stone search or studies aimed at vascular structures. It is used for most nontraumatic abdominal pain, inflammatory bowel disease, abscess and to locate a perforation or fistula. It is usually not used in chest CT, unless there is a question about the esophagus. The doses are often divided over time so that the colon and stomach are both opacified.",
+   "book": "Chapter 13, Oral Contrast in CT Scanning / Table 13.1",
+   "covers": [
+    "t06",
+    "t08"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c13-m07",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Bowel perforation is a concern and oral contrast is needed to show a leak. Which agent is sometimes used?",
+   "options": [
+    "Dilute barium sulfate, which is the safest choice when contrast may leave the bowel lumen",
+    "Plain water only, because any contrast agent would make a perforation worse",
+    "A water-soluble iodine-based agent (such as Gastrografin) instead of the usual dilute barium",
+    "A gadolinium agent given by mouth, because it is cleared harmlessly in the urine"
+   ],
+   "answer": 2,
+   "explanation": "The most widely used oral agent is dilute barium sulfate. If a perforation is suspected and contrast might escape from the lumen, an iodine-based water-soluble agent is sometimes used instead. Contrast may also be given rectally, to opacify the distal colon quickly, or through a Foley catheter to opacify the bladder. The radiologist usually tailors the study, which is why clinical information on the request matters.",
+   "book": "Chapter 13, Oral Contrast in CT Scanning",
+   "covers": [
+    "t07"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c13-m08",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Which examination is performed without intravenous contrast?",
+   "options": [
+    "CT pulmonary angiogram for suspected pulmonary embolism",
+    "A search for a ureteral calculus (the stone search study)",
+    "Evaluation of a suspected aortic dissection",
+    "Staging of a known abdominal malignancy"
+   ],
+   "answer": 1,
+   "explanation": "Table 13.1 lists studies done without intravenous contrast, among them calcium scoring, detection of pneumothorax, confirmation of a lung nodule, CT colonography (unless staging a cancer), the stone search and patients with known contrast allergy or renal failure. Pulmonary angiography, aortic dissection or aneurysm studies and the staging of malignancy all need intravenous contrast.",
+   "book": "Chapter 13, Table 13.1 CT Scans: When Contrast Is Used",
+   "covers": [
+    "t08"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c13-m09",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "What preparation is usually asked for before a pelvic or lower abdominal ultrasound?",
+   "options": [
+    "Drink a prescribed amount of water 1 to 2 hours before and do not empty the bladder",
+    "Nothing to eat or drink for 12 hours, and empty the bladder just before the scan",
+    "Take a laxative the evening before and have an enema on the morning of the scan",
+    "Stop thyroid medication and avoid foods rich in iodine for several days beforehand"
+   ],
+   "answer": 0,
+   "explanation": "A full bladder acts as an acoustic window for pelvic ultrasound. Upper abdominal ultrasound needs fasting for several hours instead. Other examples in Table 13.2: MRI needs a screening history (pacemaker, aneurysm clips, cochlear implants, metal fragments, pregnancy, claustrophobia); barium enema needs bowel preparation; thyroid studies need thyroid drugs and iodine foods stopped. Oral medicines may be taken with a small sip of water.",
+   "book": "Chapter 13, Table 13.2 Preparations for Imaging Studies",
+   "covers": [
+    "t09"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c13-m10",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Which pairing of modality and feature given in the book is correct?",
+   "options": [
+    "CT: uses no ionizing radiation and is the primary study for the gallbladder and the female pelvis",
+    "MRI: the cheapest and most widely available study, with short scan times and no limits for implants",
+    "Conventional radiography: the highest sensitivity for abdominal disease, so it is used for diagnosis",
+    "Ultrasound: primary study for the gallbladder and female pelvis; no ionizing radiation but operator dependent"
+   ],
+   "answer": 3,
+   "explanation": "Ultrasound is the primary study for the gallbladder and biliary tree, aortic aneurysm screening and the female pelvis; it is cheap and portable and uses no radiation, but depends on the operator. CT is the modality of choice for most abdominal abnormalities (it uses radiation and may need contrast). MRI has the best soft-tissue contrast but is costly, slower, less available and incompatible with some devices. Radiographs have lower sensitivity.",
+   "book": "Chapter 13, Table 13.3 Imaging of the Abdomen and Pelvis Modalities Compared",
+   "covers": [
+    "t10"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c13-m11",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "What does the radiation dose of a CT study depend on, and what is done to limit it?",
+   "options": [
+    "Only the volume of intravenous contrast; the dose is limited by giving oral contrast as well as intravenous contrast",
+    "Only the total scan duration; the dose is limited by repeating each scan both with and without contrast",
+    "Equipment, x-ray energy and patient size; optimized settings, fewer repeat scans and weighing benefit against risk",
+    "Patient size only; the dose is limited by always scanning twice at a lower x-ray energy"
+   ],
+   "answer": 2,
+   "explanation": "Dose depends on the type of equipment, the energy of the x-rays and the size of the patient. Measures include optimized CT settings, lower x-ray energy, limiting repeat scans and making sure that the expected benefit outweighs the risk. Dual-energy techniques may allow contrast to be subtracted digitally, avoiding a second scan. A good history and examination help decide which study, if any, is needed.",
+   "book": "Chapter 13, Abdominal CT: General Considerations",
+   "covers": [
+    "t11"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c13-m12",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "A supine patient is viewed on an axial abdominal CT. Which description of the orientation is correct?",
+   "options": [
+    "Anterior is at the top and the patient's right is on the viewer's right, so the liver lies on the right of the image",
+    "Anterior is at the top and the patient's right is on the viewer's left, so the liver lies on the left of the image",
+    "Posterior is at the top and the patient's right is on the viewer's left, so the liver lies on the left of the image",
+    "Posterior is at the top and the patient's right is on the viewer's right, so the liver lies on the right of the image"
+   ],
+   "answer": 1,
+   "explanation": "By convention a CT is viewed as if from the patient's feet: the patient's right is on your left. For a supine patient the front of the body is at the top of the image and the back at the bottom, resting on the table. The large organ on the left of the image is therefore the liver, with the spleen on the right of the image.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Liver)",
+   "covers": [
+    "t12"
+   ],
+   "level": "image",
+   "lesson": "body-kits-00015"
+  },
+  {
+   "id": "c13-m13",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "What is the usual blood supply of the normal liver, and in which contrast phase does it enhance most?",
+   "options": [
+    "About 80% from the portal vein and 20% from the hepatic artery; it enhances mostly in the portal venous phase",
+    "About 80% from the hepatic artery and 20% from the portal vein; it enhances mostly in the arterial phase",
+    "About half from the portal vein and half from the hepatic artery; it enhances equally in every phase",
+    "Entirely from the hepatic veins, which drain to the IVC; it enhances mostly in the excretory phase"
+   ],
+   "answer": 0,
+   "explanation": "The liver has a double supply, but 80% of the blood comes from the portal vein and 20% from the hepatic arteries, so the parenchyma enhances mainly in the portal venous phase. The hepatic veins carry blood out, to the inferior vena cava. Scan timing and injection rate can be set to opacify hepatic vessels or the parenchyma.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Liver)",
+   "covers": [
+    "t13"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c13-m14",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Which structure separates the medial and lateral segments of the left lobe of the liver?",
+   "options": [
+    "The caudate lobe, which lies between the two segments of the left lobe",
+    "The gallbladder fossa together with the inferior vena cava, which split the left lobe",
+    "The bare area, a triangular patch attached to the undersurface of the diaphragm",
+    "A fat-filled fissure containing the falciform ligament and the ligamentum teres"
+   ],
+   "answer": 3,
+   "explanation": "By external appearance the liver has right, left and caudate lobes; the right lobe has anterior and posterior segments, and the left lobe has medial and lateral segments, separated by a prominent fat-filled fissure holding the falciform ligament and the ligamentum teres (the remnant of the umbilical vein). This morphological division is not very useful for surgery, which depends on vascular anatomy.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Liver)",
+   "covers": [
+    "t14"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c13-m15",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Which statement about the functional (Couinaud) classification of the liver is correct?",
+   "options": [
+    "Four segments, each with its own hepatic artery but all draining into one common hepatic vein",
+    "Eight segments defined by the external appearance of the liver, which is why they guide surgery best",
+    "Eight independent segments, each with its own portal vein branch, hepatic artery, bile duct and hepatic vein drainage",
+    "Six segments separated by the falciform ligament, so that the left lobe can be removed alone"
+   ],
+   "answer": 2,
+   "explanation": "The Couinaud classification divides the liver into eight functionally independent segments (also called sectors), each supplied by its own branch of the portal vein and hepatic artery and drained by its own bile duct and hepatic vein branch. It lets a surgeon remove diseased segments and spare normal ones, and lets CT or MRI localize a lesion to a segment. Segment 1 is the caudate lobe. The lobes defined by external appearance are not the surgical guide.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Liver)",
+   "covers": [
+    "t15"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c13-m16",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Which finding is normal for the liver on CT?",
+   "options": [
+    "Density clearly lower than the spleen on noncontrast scans, with a smooth surface and height up to 15 cm",
+    "Density equal to or greater than the spleen on noncontrast scans, a smooth surface and a height of 15 cm or less",
+    "Density equal to the spleen, with a lobulated outer surface and a coronal height of up to 25 cm",
+    "Density equal to the spleen, with a smooth surface and a height of up to 15 cm measured through a Riedel lobe"
+   ],
+   "answer": 1,
+   "explanation": "The normal liver is smooth and homogeneous and on noncontrast CT is at least as dense as the spleen. Its maximum height on coronal images is about 15 cm or less, and the greatest transverse measurement is 20 to 26 cm; the length must not be measured at a Riedel lobe, which is a normal inferior projection of the right lobe, mainly in women. Adult liver volume is about 1500 cm3.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Liver)",
+   "covers": [
+    "t16"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c13-m17",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "What is the importance of the bare area of the liver on axial CT?",
+   "options": [
+    "It lies directly against the diaphragm, so ascitic fluid cannot pass between liver and lung, unlike pleural fluid",
+    "It is the area covered by the most peritoneum, where ascites always collects first and most",
+    "It is the region where the hepatic veins enter the liver, so it enhances first in the arterial phase",
+    "It is the fissure for the ligamentum teres, where pleural fluid tracks down into the abdomen"
+   ],
+   "answer": 0,
+   "explanation": "The bare area has no peritoneal covering and is attached by connective tissue straight to the diaphragm. Peritoneal fluid therefore cannot insert itself between the liver and the lung there, whereas pleural fluid can lie behind the liver. This helps to tell ascites from a pleural effusion on axial CT (discussed further in Chapter 17).",
+   "book": "Chapter 13, Abdominal CT: By Organ (Liver), Fig. 13.3",
+   "covers": [
+    "t17"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c13-m18",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Which statement about the normal spleen on CT is correct?",
+   "options": [
+    "About 6 cm long, half the size of the left kidney; patchy early enhancement means lacerations",
+    "About 12 cm long; patchy early enhancement persists on delayed images and indicates infarction",
+    "About 20 cm long, nearly as large as the liver; normal lobulations should be reported as lacerations",
+    "About 12 cm long, similar to the left kidney; patchy early enhancement is normal and clears within minutes"
+   ],
+   "answer": 3,
+   "explanation": "The adult spleen is about 12 cm, does not project substantially below the 12th rib and is about the size of the left kidney. On early contrast scans it may be inhomogeneous, but this disappears over the next minutes. It may also have normal lobulations, which must not be confused with lacerations. The splenic artery and vein enter and leave at the hilum.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Spleen)",
+   "covers": [
+    "t18"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c13-m19",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Which statement about the normal pancreas on CT is correct?",
+   "options": [
+    "It is intraperitoneal and transverse, so one axial slice shows it all; the head is up to 3 cm and the duct 3 to 4 mm",
+    "It is retroperitoneal and oblique; the tail is the thickest part, up to 3 cm, and the duct is up to 1 cm wide",
+    "It is retroperitoneal and oblique, so no single axial slice shows it all; the head is up to 3 cm and the duct 3 to 4 mm",
+    "It is retroperitoneal and oblique; it grows thicker with age as fatty infiltration gives it a feathery look"
+   ],
+   "answer": 2,
+   "explanation": "The pancreas lies obliquely in the retroperitoneum, with the tail highest, in the splenic hilum, and the head lowest in the duodenal loop. The head measures up to 3 cm, the body 2.5 cm and the tail 2 cm; the gland is 12 to 15 cm long and the duct 3 to 4 mm. With age it may undergo fatty infiltration that makes it look feathery, not thicker. The splenic vein runs along its back and the neck lies in front of the superior mesenteric vessels.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Pancreas)",
+   "covers": [
+    "t19"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c13-m20",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "On an axial CT through the renal hila, which vascular relationships are normal?",
+   "options": [
+    "The right renal artery passes in front of the IVC; the left renal vein passes behind the aorta",
+    "The right renal artery passes behind the IVC; the left renal vein passes in front of the aorta",
+    "The right renal vein passes behind the IVC; the left renal artery passes in front of the aorta",
+    "Both renal arteries pass in front of the IVC; both renal veins pass behind the aorta on the film"
+   ],
+   "answer": 1,
+   "explanation": "The right renal artery passes behind the inferior vena cava, and the longer left renal vein passes in front of the aorta on its way to the IVC. In general the renal veins lie in front of the arteries. The kidneys are retroperitoneal, each about 11 cm (the left minimally larger), with the upper poles lying more posteriorly and tilted toward the spine; the hilum holds the pelvis, artery and vein.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Kidneys)",
+   "covers": [
+    "t20"
+   ],
+   "level": "image",
+   "lesson": "body-kits-00015"
+  },
+  {
+   "id": "c13-m21",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "A contrast-enhanced CT of the kidney shows a bright outer cortex and a darker medulla. Which phase is this, and what is it useful for?",
+   "options": [
+    "Corticomedullary phase, about 30 to 70 seconds after injection; it shows renal vasculature and perfusion",
+    "Nephrographic phase, about 80 to 100 seconds; it shows homogeneous parenchyma and is best for tumours",
+    "Excretory phase, about 5 to 10 minutes; it opacifies the collecting system and the ureter",
+    "Corticomedullary phase, about 5 to 10 minutes; it shows urothelial tumours and ureteric strictures"
+   ],
+   "answer": 0,
+   "explanation": "In the corticomedullary phase (30 to 70 s) the cortex is brighter than the medulla, which gives information about renal vessels and perfusion. The nephrographic phase (80 to 100 s) opacifies the whole kidney homogeneously and is best for parenchymal tumours, scarring and inflammation. The excretory phase (5 to 10 min) fills the collecting system and ureter and can show urothelial tumours, papillary necrosis and ureteric stricture.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Kidneys), Fig. 13.7",
+   "covers": [
+    "t21"
+   ],
+   "level": "image",
+   "lesson": "exp-kits-00204"
+  },
+  {
+   "id": "c13-m22",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Why is delayed imaging sometimes added to a CT of the urinary tract, and what happens if the kidneys do not work properly?",
+   "options": [
+    "To show cortex and medulla separately at 5 to 10 minutes; failing kidneys then take up more contrast than normal",
+    "To show the arteries at 5 to 10 minutes; failing kidneys excrete the contrast through the lungs instead",
+    "To show homogeneous nephrographic enhancement at 5 to 10 minutes; failing kidneys excrete contrast only in the stool",
+    "To opacify the collecting system and ureter at 5 to 10 minutes; failing kidneys excrete contrast via bile or bowel"
+   ],
+   "answer": 3,
+   "explanation": "Functioning kidneys are the main route of excretion, so they enhance whenever intravenous contrast is given and urine becomes steadily more opaque, which may call for delayed images. If the kidneys fail, the contrast leaves by alternative pathways such as the bile and bowel, which is called vicarious excretion. Corticomedullary and nephrographic images are obtained much earlier.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Kidneys)",
+   "covers": [
+    "t22"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c13-m23",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "How thick is a normal bowel wall on CT, and what can falsely suggest wall thickening?",
+   "options": [
+    "Under 10 mm in the small bowel and distended colon; distension of the lumen can look falsely thick",
+    "Under 3 mm in the small bowel only; the colon wall is normally 10 mm, and oral contrast makes it look thick",
+    "Under 3 mm in the small bowel and distended colon (under 5 mm if collapsed); a collapsed lumen can look falsely thick",
+    "Under 5 mm in every segment, whether distended or collapsed; opacification makes the wall look thick"
+   ],
+   "answer": 2,
+   "explanation": "Opacifying and distending the lumen is needed to judge the wall, because a collapsed bowel looks artificially thick. Small bowel is normally 2.5 cm or less in diameter with a wall under 3 mm; the colonic wall is under 3 mm when distended and under 5 mm when collapsed. The cecum is recognized by the terminal ileum and ileocecal valve; the transverse and sigmoid colon vary in position.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Small and Large Bowel)",
+   "covers": [
+    "t23"
+   ],
+   "level": "image",
+   "lesson": "more-pediatric-ct-seg-9d907991"
+  },
+  {
+   "id": "c13-m24",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "Which description of the normal urinary bladder on CT is correct?",
+   "options": [
+    "An intraperitoneal organ with a wall of up to 15 mm when distended; the ureters enter at the dome",
+    "An extraperitoneal organ with a wall of 5 mm or less when distended; the ureters enter posterolaterally at the trigone",
+    "An extraperitoneal organ with a wall of 5 mm or less when collapsed; the ureters enter at the dome",
+    "An extraperitoneal organ lying behind the rectum, with a wall that is thicker at the dome than elsewhere"
+   ],
+   "answer": 1,
+   "explanation": "The bladder is extraperitoneal; only its dome is covered by the lower reflection of the peritoneum. It lies above the prostate and in front of the rectum in men, and in front of the vagina and below-and-in front of the uterus in women. The ureters enter the posterolateral wall at the trigone. It is best judged when distended, when the wall is 5 mm or less and of equal thickness all round.",
+   "book": "Chapter 13, Abdominal CT: By Organ (Urinary Bladder)",
+   "covers": [
+    "t24"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c13-m25",
+   "type": "mcq",
+   "topic": "ch13",
+   "prompt": "A 66-year-old man has what may be a pulsatile abdominal mass. Which examination is the appropriate initial study?",
+   "options": [
+    "Abdominal ultrasound, with noncontrast CT if the patient is unsuited to it (for example, morbid obesity)",
+    "MRI of the abdomen, because it gives the highest soft-tissue contrast and uses no radiation at all",
+    "Conventional radiograph of the abdomen, because it is the cheapest and quickest first step available",
+    "Abdominal angiogram, because it is the definitive test and should always come first in every patient"
+   ],
+   "answer": 0,
+   "explanation": "Ultrasound of the abdominal aorta is the initial study when an aneurysm is suspected: it is available, cheap and uses no radiation. If ultrasound is not suitable, noncontrast CT can substitute. For the definitive diagnosis and planning before intervention, CT angiography or MR angiography is recommended.",
+   "book": "Chapter 13, Case Quiz 13 (Answer)",
+   "covers": [
+    "t25"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c13-e01",
+   "type": "essay",
+   "topic": "ch13",
+   "prompt": "Images 1 to 3 are arterial-phase CT slices through the kidneys; images 4 to 6 are CT slices through the liver. In 2 to 4 sentences: say how the kidney looks in the corticomedullary, nephrographic and excretory phases and when each is obtained, how the liver is supplied and which phase enhances it most, and how contrast leaves the body.",
+   "images": [
+    {
+     "packId": "body",
+     "caseId": "body-kits-00015",
+     "thumb": "body/thumbs/ct-db85e27f7e.png",
+     "caption": "Image 1 · CT with contrast, axial"
+    },
+    {
+     "packId": "expansion",
+     "caseId": "exp-kits-00204",
+     "thumb": "expansion/thumbs/ct-8ae5c1dfaf.png",
+     "caption": "Image 2 · CT with contrast, axial"
+    },
+    {
+     "packId": "expansion",
+     "caseId": "exp-kits-00045",
+     "thumb": "expansion/thumbs/ct-6987d6bc5b.png",
+     "caption": "Image 3 · CT with contrast, axial"
+    },
+    {
+     "packId": "ct-tumors",
+     "caseId": "hcc-003",
+     "thumb": "ct-tumors/thumbs/ct-4d8318ca48.png",
+     "caption": "Image 4 · CT with contrast, axial"
+    },
+    {
+     "packId": "ct-tumors",
+     "caseId": "hcc-010",
+     "thumb": "ct-tumors/thumbs/ct-7e9d58b8f1.png",
+     "caption": "Image 5 · CT with contrast, axial"
+    },
+    {
+     "packId": "ct-findings",
+     "caseId": "ct-crlm-1140",
+     "thumb": "ct-findings/thumbs/ct-2ec235e0b6.png",
+     "caption": "Image 6 · CT, axial"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Corticomedullary phase (30 to 70 s): cortex brighter than the medulla, shows renal vessels and perfusion",
+     "points": 2,
+     "terms": [
+      "corticomedullary",
+      "cortex",
+      "cortical",
+      "30 to 70",
+      "30-70"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Nephrographic phase (80 to 100 s): homogeneous kidney, best for tumours and parenchymal disease",
+     "points": 1,
+     "terms": [
+      "nephrographic",
+      "homogeneous",
+      "homogenous",
+      "80 to 100",
+      "80-100"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Excretory phase (5 to 10 min): collecting system and ureter opacified",
+     "points": 1,
+     "terms": [
+      "excretory",
+      "delayed",
+      "5 to 10",
+      "5-10",
+      "collecting system",
+      "ureter"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "The liver gets 80% of its blood from the portal vein (20% hepatic artery) and enhances mostly in the portal venous phase",
+     "points": 2,
+     "terms": [
+      "portal",
+      "80%",
+      "80 %"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Contrast is excreted by the kidneys into the urine; if they fail it leaves by other routes (vicarious excretion)",
+     "points": 1,
+     "terms": [
+      "excret",
+      "vicarious",
+      "urine",
+      "bile"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "The radiologist chooses injection rate and timing to show vessels or parenchyma",
+     "points": 1,
+     "terms": [
+      "timing",
+      "rate of",
+      "vessels",
+      "radiologist",
+      "protocol",
+      "tailor"
+     ]
+    }
+   ],
+   "model": "In the corticomedullary phase (about 30 to 70 s) the renal cortex is brighter than the medulla, showing vessels and perfusion; in the nephrographic phase (80 to 100 s) the whole kidney enhances homogeneously, which is best for tumours; in the excretory phase (5 to 10 min) the collecting system and ureter are opacified. The liver is supplied 80% by the portal vein and 20% by the hepatic artery, so it enhances mostly in the portal venous phase. Contrast is excreted by the kidneys into the urine, and by the bile and bowel if they fail (vicarious excretion).",
+   "book": "Chapter 13, Intravenous Contrast in CT Scanning / Abdominal CT: By Organ",
+   "covers": [
+    "t02",
+    "t13",
+    "t21",
+    "t22"
+   ]
+  },
+  {
+   "id": "c13-e02",
+   "type": "essay",
+   "topic": "ch13",
+   "prompt": "Images 1 to 4 are CT slices of children's abdomen and pelvis; images 5 and 6 are CT slices of adult livers. In 2 to 4 sentences: say why oral contrast is given and for which studies it is not, which two oral agents exist and when each is used, how wide and thick normal small bowel is, and what other routes can be used to give contrast.",
+   "images": [
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-pediatric-ct-seg-40fefef6",
+     "thumb": "more-ct-xr/thumbs/ct-5ca1805576.png",
+     "caption": "Image 1 · CT, axial"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-pediatric-ct-seg-9d907991",
+     "thumb": "more-ct-xr/thumbs/ct-04f5e53d56.png",
+     "caption": "Image 2 · CT, axial"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-pediatric-ct-seg-397",
+     "thumb": "more-ct-xr/thumbs/ct-d0b2745223.png",
+     "caption": "Image 3 · CT, axial"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-pediatric-ct-seg-3555a98f",
+     "thumb": "more-ct-xr/thumbs/ct-6c55955d47.png",
+     "caption": "Image 4 · CT, axial"
+    },
+    {
+     "packId": "ct-tumors",
+     "caseId": "hcc-010",
+     "thumb": "ct-tumors/thumbs/ct-7e9d58b8f1.png",
+     "caption": "Image 5 · CT with contrast, axial"
+    },
+    {
+     "packId": "ct-tumors",
+     "caseId": "hcc-003",
+     "thumb": "ct-tumors/thumbs/ct-4d8318ca48.png",
+     "caption": "Image 6 · CT with contrast, axial"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Oral contrast defines and distends the bowel so that loops are not mistaken for masses, nodes or fluid collections",
+     "points": 1,
+     "terms": [
+      "define",
+      "outline",
+      "opacif",
+      "distinguish",
+      "differentiat",
+      "lymph node",
+      "abscess",
+      "distend"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Dilute barium sulfate is the most widely used oral agent",
+     "points": 1,
+     "terms": [
+      "barium"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "A water-soluble iodine-based agent (Gastrografin) is used if perforation is a concern",
+     "points": 2,
+     "terms": [
+      "water-soluble",
+      "water soluble",
+      "gastrografin",
+      "iodine-based",
+      "iodinated oral",
+      "perforat"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Oral contrast is usually not used for trauma, the stone search or vascular studies",
+     "points": 1,
+     "terms": [
+      "trauma",
+      "stone",
+      "vascular",
+      "aorta",
+      "calcul"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Normal small bowel is 2.5 cm or less in diameter with a wall under 3 mm",
+     "points": 1,
+     "terms": [
+      "2.5",
+      "3 mm",
+      "25 mm"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Contrast can also be given rectally, or through a Foley catheter into the bladder",
+     "points": 1,
+     "terms": [
+      "rectal",
+      "foley",
+      "enema",
+      "bladder"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "Clinical information lets the radiologist tailor the study",
+     "points": 1,
+     "terms": [
+      "clinical",
+      "history",
+      "tailor",
+      "information"
+     ]
+    }
+   ],
+   "model": "Oral contrast outlines and distends the bowel so that loops are not mistaken for masses, lymph nodes or abscesses; it is not used for trauma, the stone search or vascular studies. Dilute barium sulfate is the most widely used agent, and a water-soluble iodine-based agent (Gastrografin) is used if perforation is a concern. Contrast can also be given rectally, or through a Foley catheter to opacify the bladder. Normal small bowel is 2.5 cm or less in diameter with a wall under 3 mm, and clinical information helps the radiologist tailor the examination.",
+   "book": "Chapter 13, Oral Contrast in CT Scanning / Small and Large Bowel",
+   "covers": [
+    "t06",
+    "t07",
+    "t08",
+    "t23"
+   ]
+  },
+  {
+   "id": "c13-e03",
+   "type": "essay",
+   "topic": "ch13",
+   "prompt": "These are axial CT slices through the upper abdomen. In 2 to 4 sentences: say how the image is oriented, how the normal liver compares with the spleen in density and what its maximum height is, how big the spleen is, how the right renal artery and left renal vein run, and how big the head of the pancreas and its duct are.",
+   "images": [
+    {
+     "packId": "ct-tumors",
+     "caseId": "hcc-010",
+     "thumb": "ct-tumors/thumbs/ct-7e9d58b8f1.png",
+     "caption": "Image 1 · CT with contrast, axial"
+    },
+    {
+     "packId": "ct-tumors",
+     "caseId": "hcc-003",
+     "thumb": "ct-tumors/thumbs/ct-4d8318ca48.png",
+     "caption": "Image 2 · CT with contrast, axial"
+    },
+    {
+     "packId": "body",
+     "caseId": "body-kits-00015",
+     "thumb": "body/thumbs/ct-db85e27f7e.png",
+     "caption": "Image 3 · CT with contrast, axial"
+    },
+    {
+     "packId": "expansion",
+     "caseId": "exp-kits-00204",
+     "thumb": "expansion/thumbs/ct-8ae5c1dfaf.png",
+     "caption": "Image 4 · CT with contrast, axial"
+    },
+    {
+     "packId": "ct-findings",
+     "caseId": "ct-crlm-1140",
+     "thumb": "ct-findings/thumbs/ct-2ec235e0b6.png",
+     "caption": "Image 5 · CT, axial"
+    },
+    {
+     "packId": "expansion",
+     "caseId": "exp-kits-00045",
+     "thumb": "expansion/thumbs/ct-6987d6bc5b.png",
+     "caption": "Image 6 · CT with contrast, axial"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Orientation: patient's right is on your left; anterior at the top for a supine patient",
+     "points": 1,
+     "terms": [
+      "right on your left",
+      "patient's right",
+      "patients right",
+      "left of the image",
+      "anterior",
+      "top of the image",
+      "supine"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "The normal liver is at least as dense as the spleen without contrast, and 15 cm or less in height",
+     "points": 1,
+     "terms": [
+      "denser than",
+      "equal to the spleen",
+      "greater than the spleen",
+      "as dense as",
+      "15 cm",
+      "smooth"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "The spleen is about 12 cm, similar to the left kidney, and does not extend below the 12th rib",
+     "points": 1,
+     "terms": [
+      "12 cm",
+      "left kidney",
+      "11 cm",
+      "12th rib"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "The right renal artery passes behind the IVC and the left renal vein in front of the aorta",
+     "points": 2,
+     "terms": [
+      "behind the ivc",
+      "posterior to the ivc",
+      "behind the inferior",
+      "posterior to the inferior",
+      "anterior to the aorta",
+      "in front of the aorta",
+      "passes anterior",
+      "passes in front"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "The pancreatic head is up to 3 cm (body 2.5, tail 2) and the duct 3 to 4 mm",
+     "points": 2,
+     "terms": [
+      "3 cm",
+      "2.5 cm",
+      "3 to 4 mm",
+      "3-4 mm",
+      "4 mm",
+      "duct"
+     ]
+    }
+   ],
+   "model": "The image is viewed with the patient's right on your left and, for a supine patient, anterior at the top. Without contrast the normal liver is at least as dense as the spleen, smooth, and about 15 cm or less in height; the spleen is about 12 cm, similar to the left kidney, and does not extend far below the 12th rib. The right renal artery passes behind the inferior vena cava, and the left renal vein passes in front of the aorta. The pancreatic head is up to 3 cm (body 2.5 cm, tail 2 cm) and the pancreatic duct measures 3 to 4 mm.",
+   "book": "Chapter 13, Abdominal CT: By Organ",
+   "covers": [
+    "t12",
+    "t16",
+    "t18",
+    "t19",
+    "t20"
+   ]
+  }
+ ]
+}

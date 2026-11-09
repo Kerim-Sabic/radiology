@@ -1,0 +1,950 @@
+{
+ "chapter": 2,
+ "title": "Recognizing Normal Pulmonary Anatomy",
+ "blurb": "Technical adequacy of the chest film, frontal and lateral anatomy, and normal CT anatomy of the lungs and airways.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Purpose: learn normal anatomy and technical adequacy first so that abnormal can be told from normal; you only see what you look for and only look for what you know"
+  },
+  {
+   "id": "t02",
+   "label": "Lung markings: virtually all branching white lines are blood vessels, branching and tapering gradually from hila to periphery; arteries and veins cannot be told apart; bronchi are normally invisible (thin-walled, air-filled, surrounded by air)"
+  },
+  {
+   "id": "t03",
+   "label": "Pleura: outer parietal and inner visceral layer with pleural space between; visceral pleura adheres to lung and forms the major and minor fissures; a few mL of fluid but no air; invisible except as pencil-thin fissure lines"
+  },
+  {
+   "id": "t04",
+   "label": "Normal vasculature upright: vessels at the bases larger in size (not number) than at the apices because of gravity; all taper gradually"
+  },
+  {
+   "id": "t05",
+   "label": "Frontal landmarks: left hilum slightly higher than right; sharp acute costophrenic angles; minor fissure on the right only; hemidiaphragms; spine faintly seen through the heart"
+  },
+  {
+   "id": "t06",
+   "label": "Five technical parameters: penetration, inspiration, rotation, magnification, angulation"
+  },
+  {
+   "id": "t07",
+   "label": "Penetration: spine and left hemidiaphragm seen through the heart; underpenetrated (too light) obscures left base and accentuates markings; overpenetrated (too dark) mimics emphysema or pneumothorax"
+  },
+  {
+   "id": "t08",
+   "label": "Inspiration: at least 8 to 9 (almost 10) posterior ribs above the diaphragm; poor inspiration crowds basal markings (mimics aspiration or pneumonia), makes the heart look larger; lateral view helps"
+  },
+  {
+   "id": "t09",
+   "label": "Rotation: spinous process midway between the medial ends (heads) of the clavicles; rotation distorts heart, hila and diaphragm; Case Quiz 2 (rotated patient, heart seems on the wrong side)"
+  },
+  {
+   "id": "t10",
+   "label": "Magnification and angulation: AP (portable) films magnify the heart versus PA; medial clavicle should overlie the anterior first rib; apical lordotic view (semi-recumbent portable) puts clavicles above the first ribs, distorts the heart, obscures left hemidiaphragm"
+  },
+  {
+   "id": "t11",
+   "label": "Anterior versus posterior ribs: posterior ribs more distinct and horizontal, attach to vertebrae; anterior ribs less distinct, angle downward, attach by cartilage (visible only if calcified)"
+  },
+  {
+   "id": "t12",
+   "label": "Lateral view: standard two-view study = upright frontal plus upright left lateral (left side against the detector); reasons (localise, confirm, reveal disease not seen on frontal)"
+  },
+  {
+   "id": "t13",
+   "label": "Normal lateral chest: clear retrosternal space, no discrete hilar shadow, vertebral bodies of equal height with parallel end plates, sharp posterior costophrenic angles, spine gets blacker toward the diaphragm; spine sign (lower lobe airspace disease makes it whiter)"
+  },
+  {
+   "id": "t14",
+   "label": "Five key areas on the lateral: retrosternal clear space, hilar region, fissures, thoracic spine, diaphragm and costophrenic sulci"
+  },
+  {
+   "id": "t15",
+   "label": "Retrosternal clear space fills in with an anterior mediastinal mass (adenopathy such as lymphoma is the commonest; thymoma, teratoma, substernal thyroid); pitfall: arms (identify the humeri)"
+  },
+  {
+   "id": "t16",
+   "label": "Hilar region: mostly pulmonary arteries; no discrete mass should show on the lateral; lobulated hilar masses = adenopathy (e.g. sarcoidosis) or tumor; lateral helps when both hila are enlarged"
+  },
+  {
+   "id": "t17",
+   "label": "Fissures: major and minor both visible on lateral as fine lines (1 to 2 mm); major from about T5 to anterior diaphragm 2 cm behind sternum; minor at the 4th anterior rib level, right only, the only fissure usually seen on the frontal; thickening by fluid (with Kerley B lines, effusions) versus fibrosis (no other fluid signs)"
+  },
+  {
+   "id": "t18",
+   "label": "Thoracic spine on the lateral: rectangular bodies, parallel end plates, disk spaces the same or taller going down; osteoporotic compression fracture (loss of height, superior endplate first); degenerative disk disease (narrowing, osteophytes); clue to systemic disorders"
+  },
+  {
+   "id": "t19",
+   "label": "Diaphragm: only the upper border is seen; right hemidiaphragm slightly higher and seen in full on the lateral; left silhouetted anteriorly by the heart; stomach or splenic flexure gas under the left, liver under the right"
+  },
+  {
+   "id": "t20",
+   "label": "Costophrenic sulci: lowest point of the pleural space when upright; sharp and acute; effusion blunts them; about 75 mL blunts the posterior angle on the lateral, 250 to 300 mL the lateral angle on the frontal"
+  },
+  {
+   "id": "t21",
+   "label": "CT viewing: patient's right on the viewer's left; supine patient has anterior at the top of the image"
+  },
+  {
+   "id": "t22",
+   "label": "CT windows: lung, mediastinal and bone windows are manipulations of the same data (lungs black on mediastinal window, mediastinum white on lung window); no rescanning"
+  },
+  {
+   "id": "t23",
+   "label": "CT of lungs: vessels seen from hilum to pleura; bronchus normally smaller than its accompanying artery (reversed in bronchiectasis); trachea oval, about 2 cm; MIP post-processing"
+  },
+  {
+   "id": "t24",
+   "label": "Aortopulmonary window: space below the aortic arch and above the pulmonary artery (bounded by arch, left pulmonary artery, trachea, left lung); favorite site for enlarged lymph nodes; not the congenital lesion of the same name"
+  },
+  {
+   "id": "t25",
+   "label": "Carina and bronchi on CT: trachea bifurcates at or just below the AP window; right main bronchus circular then tubular at the right upper lobe bronchus; bronchus intermedius; only aerated lung posterior to it (soft tissue = tumor or adenopathy); left main bronchus circular"
+  },
+  {
+   "id": "t26",
+   "label": "Fissures on CT: thin white lines or avascular bands up to 2 cm; major separates lower from upper lobe (left) and lower from upper and middle lobes (right); minor separates right upper and middle lobes and lies in the axial plane (seen on sagittal and coronal, not axial); lingula = middle lobe analog"
+  },
+  {
+   "id": "t27",
+   "label": "Approach to a chest film: no single best system as long as everything on all views is examined (including the lateral); gestalt of experts; checklist technical adequacy, soft tissues, bones, heart, lungs, diaphragm"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c02-m01",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "What makes up virtually all of the branching white lines you see in the lungs on a normal chest radiograph?",
+   "options": [
+    "The walls of the bronchi, which are thick and outlined by air",
+    "Blood vessels, which branch and taper gradually from the hila to the periphery",
+    "Lymphatic channels running to the hila",
+    "Thickened interlobular septa"
+   ],
+   "answer": 1,
+   "explanation": "Almost every linear marking in the lung is a pulmonary vessel, and on a plain film you cannot tell arteries from veins. Normal bronchi are thin-walled, air-filled and surrounded by air, so they are mostly invisible. Lymphatics and septa are not normally seen.",
+   "book": "Chapter 2, The Normal Frontal Chest Radiograph: Vessels and Bronchi",
+   "covers": [
+    "t02"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c02-m02",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "Which statement about the normal pleura is correct?",
+   "options": [
+    "The visceral layer adheres to the lung and folds into the fissures; the space holds a few mL of fluid but no air, and the pleura shows only as a fissure.",
+    "The parietal layer adheres to the lung and forms the fissures, and the space normally holds a small amount of air and no fluid.",
+    "The space between the layers normally holds a few milliliters of air and no fluid, and both layers are routinely visible.",
+    "Both layers are normally seen as thick white lines along the inner chest wall, and the space is always empty."
+   ],
+   "answer": 0,
+   "explanation": "The pleura has an outer parietal layer lining the chest wall and an inner visceral layer on the lung; the visceral layer enfolds to make the major and minor fissures. Normally there is a small amount of fluid and never air, so air in the space is abnormal. The pleura is not visible on a radiograph except as the fissure, a line no thicker than a sharp pencil point.",
+   "book": "Chapter 2, Pleura: Normal Anatomy",
+   "covers": [
+    "t03"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c02-m03",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "On an upright PA chest film the vessels in the lower zones are larger than the vessels in the upper zones, and all taper smoothly outward. How should this be interpreted?",
+   "options": [
+    "It is abnormal, because there should be more vessels in the lower lobes than in the upper lobes.",
+    "It is normal only because the film is overpenetrated.",
+    "It is abnormal and means the bronchi have become larger than their arteries.",
+    "It is normal: gravity sends more blood to the bases, so the lower vessels are larger in size, not more numerous."
+   ],
+   "answer": 3,
+   "explanation": "In an upright person the base receives more flow, so the basal vessels are larger in size, not in number, and every vessel narrows gradually from center to periphery. Changes in pressure or flow can alter this relationship, which is taken up in a later chapter. The bronchus and artery comparison is made on CT, not on this observation.",
+   "book": "Chapter 2, Normal Pulmonary Vasculature",
+   "covers": [
+    "t04"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c02-m04",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "Which statement about a normal frontal chest radiograph is correct?",
+   "options": [
+    "The right hilum is normally slightly higher than the left, and both major fissures are usually visible.",
+    "The hila are normally at exactly the same height, and a minor fissure is visible on both sides.",
+    "The left hilum is normally slightly higher than the right, and only the right-sided minor (horizontal) fissure is usually visible.",
+    "The left hilum is normally lower than the right, and a minor fissure is visible only on the left."
+   ],
+   "answer": 2,
+   "explanation": "The left pulmonary artery makes the left hilum normally a little higher. The minor fissure, roughly at the level of the 4th anterior rib, exists only on the right, and the major fissures run obliquely so they are not usually seen on the frontal film. The costophrenic angles should also be sharp and acute.",
+   "book": "Chapter 2, The Normal Frontal Chest Radiograph (Fig. 2.1)",
+   "covers": [
+    "t05"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c02-m05",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "On a frontal chest film the spine cannot be seen through the heart and the left hemidiaphragm is not visible. Which statement is correct?",
+   "options": [
+    "The film is overpenetrated (too dark): it hides the left base and can mimic pneumonia or aspiration there.",
+    "The film is underpenetrated (too light): left-base disease may be hidden and markings accentuated; overpenetration mimics emphysema or pneumothorax.",
+    "The patient is rotated, which is why the spine is hidden and the left hemidiaphragm disappears behind the heart.",
+    "The film is adequate, because the spine and the diaphragm are normally hidden behind the heart shadow."
+   ],
+   "answer": 1,
+   "explanation": "On an adequately penetrated film the vertebrae are faintly visible through the heart and the left hemidiaphragm is seen through it. Underpenetration hides the left lung base, makes it impossible to separate disease from non-visualization and spuriously accentuates the markings; a lateral view helps. Overpenetration is the opposite and can mimic emphysema or pneumothorax.",
+   "book": "Chapter 2, The Normal Frontal Chest Radiograph (Fig. 2.2)",
+   "covers": [
+    "t07"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c02-m06",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "Which set lists the parameters by which the technical adequacy of a chest radiograph is judged?",
+   "options": [
+    "Penetration, inspiration, rotation, magnification and angulation",
+    "Penetration, collimation, grid, contrast and dose",
+    "Inspiration, expiration, rotation, density and grid",
+    "Rotation, magnification, shielding, dose and processing time"
+   ],
+   "answer": 0,
+   "explanation": "These five (penetration, inspiration, rotation, magnification and angulation) are the measures of adequacy. Recognizing their effects keeps you from calling an artifact of technique a disease.",
+   "book": "Chapter 2, The Normal Frontal Chest Radiograph (Fig. 2.2) and Take Home Points",
+   "covers": [
+    "t06"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c02-m07",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "A frontal chest film shows only eight posterior ribs above the diaphragm, crowded basal markings and a heart that seems large. What is the best interpretation and next step?",
+   "options": [
+    "Diagnose bilateral basal pneumonia and cardiomegaly, because a heart that looks large always is large.",
+    "The film is overpenetrated, so repeat it with a lower exposure and then interpret the bases.",
+    "The patient is rotated to the right, so the heart is on the wrong side and the film is useless.",
+    "Poor inspiration can imitate basal disease and enlarge the heart, so use a lateral view to confirm or exclude basal airspace disease."
+   ],
+   "answer": 3,
+   "explanation": "A good inspiration shows at least eight to nine, almost ten, posterior ribs. A shallow breath crowds the vessels at the bases, which may mimic aspiration or pneumonia, and makes the heart look larger. The lateral view helps to confirm or rule out basal disease. Nothing in the findings points to over-penetration or rotation.",
+   "book": "Chapter 2, The Normal Frontal Chest Radiograph (Fig. 2.2)",
+   "covers": [
+    "t08"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c02-m08",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "A 52-year-old man's frontal chest film appears to show the heart on the right although the L marker is in the correct place. Both clavicular ends project over the right hemithorax. What is the explanation?",
+   "options": [
+    "Congenital dextrocardia, in which the heart really lies on the right side of the chest.",
+    "Underpenetration of the film, which makes the heart appear to shift toward the right.",
+    "Marked rotation to the patient's right, projecting the heart over the right hemithorax.",
+    "Poor inspiration, which pulls the heart toward the side of the shallower breath."
+   ],
+   "answer": 2,
+   "explanation": "This is the chapter's opening case. The key is the position of the spinous process relative to the clavicular heads; a rotated film shows the clavicle ends unequally placed and distorts the heart, hila and diaphragm. Dextrocardia would not be accompanied by displaced clavicle ends, and penetration and inspiration affect other features.",
+   "book": "Chapter 2, The Normal Frontal Chest Radiograph (Case Quiz 2; Fig. 2.2)",
+   "covers": [
+    "t09"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c02-m09",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "Which statement about magnification and angulation of a chest film is correct?",
+   "options": [
+    "PA films magnify the heart more than portable AP films, and in a lordotic view the clavicles overlie the first ribs.",
+    "Portable AP films magnify the heart slightly compared with PA films; in an apical lordotic view the clavicles lie above the first ribs.",
+    "AP films make the heart look smaller than PA films, and a lordotic view makes both hemidiaphragms clearer.",
+    "Magnification is the same in every projection, and a lordotic view alters only the appearance of the ribs."
+   ],
+   "answer": 1,
+   "explanation": "On an AP film the heart lies farther from the detector and appears larger. When the medial clavicle overlies the anterior first rib there is no angulation. Semi-recumbent bedridden patients often produce an unintended apical lordotic view, which straightens the clavicles, distorts the heart and can falsely obscure the left hemidiaphragm.",
+   "book": "Chapter 2, The Normal Frontal Chest Radiograph (Fig. 2.2) and Take Home Points",
+   "covers": [
+    "t10"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c02-m10",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "How can you tell the anterior ribs from the posterior ribs on a frontal chest film?",
+   "options": [
+    "Posterior ribs are more distinct and horizontal; anterior ribs are fainter, angle downward and join the sternum by cartilage.",
+    "Anterior ribs are more distinct and run horizontally, whereas the posterior ribs are fainter and angle downward.",
+    "Posterior ribs attach to the sternum by cartilage, whereas anterior ribs attach to the thoracic vertebral bodies.",
+    "Anterior and posterior ribs look identical on a frontal film, so only the number of ribs visible matters."
+   ],
+   "answer": 0,
+   "explanation": "Posterior ribs are easier to see and are horizontal; each pair joins a thoracic vertebra. Anterior ribs run obliquely downward, are less distinct and join the sternum or one another by cartilage, which is seen only if it calcifies later in life. This distinction is what lets you count posterior ribs to judge inspiration.",
+   "book": "Chapter 2, The Normal Frontal Chest Radiograph (Fig. 2.2B)",
+   "covers": [
+    "t11"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c02-m11",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "What is the standard two-view chest examination?",
+   "options": [
+    "An upright frontal view and an upright right lateral view, with the patient's right side against the detector",
+    "A supine frontal view and a supine cross-table lateral view obtained at the bedside",
+    "Two frontal views, one taken in full inspiration and the other in full expiration",
+    "An upright frontal view and an upright left lateral view, with the patient's left side against the detector"
+   ],
+   "answer": 3,
+   "explanation": "The lateral view is of great diagnostic value but is neglected by beginners. It helps place disease already seen on the frontal film, confirms suspected disease such as a mass or pneumonia, and can show disease the frontal image does not.",
+   "book": "Chapter 2, The Normal Lateral Chest Radiograph (Box 2.1)",
+   "covers": [
+    "t12"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c02-m12",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "On a lateral chest radiograph the lower thoracic spine looks whiter, not blacker, just above the diaphragm. Which interpretation is correct?",
+   "options": [
+    "A normal finding, because the spine normally becomes whiter toward the diaphragm.",
+    "An osteoporotic compression fracture of the lower thoracic vertebral bodies.",
+    "Lower lobe airspace disease, such as pneumonia, lying over the spine (the spine sign).",
+    "Anterior mediastinal adenopathy filling in the retrosternal clear space."
+   ],
+   "answer": 2,
+   "explanation": "Normally the spine looks progressively blacker from the shoulders to the diaphragm because less dense tissue lies in front of and behind it. Airspace disease in the lower lobe adds density over the lower spine, which is the spine sign, and may be hard to see on the frontal film, for example behind the heart. A compression fracture shows loss of vertebral height instead.",
+   "book": "Chapter 2, The Normal Lateral Chest Radiograph (Fig. 2.5 and Fig. 2.6)",
+   "covers": [
+    "t12",
+    "t13"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c02-m13",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "On a left lateral chest film soft tissue fills the clear space behind the upper sternum. Which statement about the cause and the pitfall is correct?",
+   "options": [
+    "Thymoma is by far the commonest cause, and the arms never overlie the retrosternal space on a lateral film.",
+    "Anterior mediastinal adenopathy, e.g. lymphoma, is probably the commonest cause; first check that the soft tissue is not the patient's arms (humeri visible).",
+    "A pleural effusion is the commonest cause, and the pitfall to exclude first is a poor inspiratory effort.",
+    "Normal pulmonary arteries fill this space, and the pitfall to exclude first is rotation of the patient."
+   ],
+   "answer": 1,
+   "explanation": "The retrosternal clear space normally lets the lung show behind the upper sternum. Adenopathy, most often in lymphoma, fills it; thymoma, teratoma and substernal thyroid also form anterior masses but do not usually look exactly like this. Weak patients often cannot raise their arms, and their soft tissue can fill the space, so look for the humeri before calling a mass.",
+   "book": "Chapter 2, The Normal Lateral Chest Radiograph: Five Key Areas (Retrosternal Clear Space)",
+   "covers": [
+    "t14",
+    "t15"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c02-m14",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "On a lateral chest film both hila cast distinct, lobulated soft tissue shadows. What does this suggest?",
+   "options": [
+    "Hilar masses, such as enlarged lymph nodes (e.g. sarcoidosis) or a hilar tumor; normal hila show no discrete mass.",
+    "Normal pulmonary arteries, which are normally lobulated and discrete on the lateral view.",
+    "Fluid thickening both major fissures, as seen in congestive heart failure with Kerley B lines.",
+    "An anterior mediastinal mass filling the retrosternal clear space on the lateral view."
+   ],
+   "answer": 0,
+   "explanation": "Most of the normal hilar density is pulmonary artery, but no discrete mass should be seen on the lateral view. Lobulated shadows point to adenopathy, as in sarcoidosis, or to a hilar tumor. The lateral view helps most when both hila are slightly enlarged and the frontal film offers no normal side to compare.",
+   "book": "Chapter 2, The Normal Lateral Chest Radiograph: The Hilar Region",
+   "covers": [
+    "t16"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c02-m15",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "On a lateral film both major fissures are thickened. Which finding would you look for next to decide that the thickening is due to fluid rather than fibrosis?",
+   "options": [
+    "A discrete, lobulated mass in the hilum on the lateral view",
+    "Loss of height of a vertebral body, especially at the superior endplate",
+    "Soft tissue filling in the retrosternal clear space behind the sternum",
+    "Other signs of fluid in the chest, such as Kerley B lines and pleural effusions"
+   ],
+   "answer": 3,
+   "explanation": "Normal fissures are fine, uniform lines about the thickness of a sharp pencil point. Thickening from fluid, as in congestive heart failure, almost always comes with other signs such as Kerley B lines and effusions. If there are no other signs of fluid, fibrosis from a chronic process is the more likely cause. The other findings are signs of different problems.",
+   "book": "Chapter 2, The Normal Lateral Chest Radiograph: The Fissures",
+   "covers": [
+    "t17"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c02-m16",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "Which pairing for the thoracic spine on a lateral chest film is correct?",
+   "options": [
+    "Osteoporotic compression fracture: widened disk spaces and tall vertebral bodies; degenerative disk disease: loss of vertebral body height.",
+    "Osteoporotic compression fracture: a whiter lower spine; degenerative disk disease: end plates that stay parallel with normal disks.",
+    "Osteoporotic compression fracture: the body loses height, often at the superior endplate; degenerative disk disease: narrowed disk space and small osteophytes.",
+    "Normal spine: vertebral bodies become smaller from top to bottom and the disk spaces narrow progressively down the spine."
+   ],
+   "answer": 2,
+   "explanation": "Normal vertebral bodies are roughly rectangular with end plates parallel to their neighbors, and each disk space stays the same or grows slightly. A compression fracture, often from osteoporosis, depresses the superior endplate first and reduces height; degeneration narrows the disk and produces osteophytes. The spine on the lateral film can hint at systemic disease.",
+   "book": "Chapter 2, The Normal Lateral Chest Radiograph: The Thoracic Spine (Fig. 2.12)",
+   "covers": [
+    "t18"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c02-m17",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "On a lateral chest radiograph, how can the left hemidiaphragm be recognized?",
+   "options": [
+    "It is seen in full from front to back, with the liver lying below it.",
+    "Its anterior part is obscured by the heart, and stomach or splenic flexure gas lies just beneath it.",
+    "It is the higher hemidiaphragm, with bowel gas lying between it and the liver.",
+    "It is visible only anteriorly, where it touches the back of the sternum."
+   ],
+   "answer": 1,
+   "explanation": "Only the upper surface of the diaphragm is visible, where it abuts the aerated lung. The heart and the left hemidiaphragm are both soft tissue, so the anterior left edge disappears. The right one is usually higher, is seen along its entire length and has the liver beneath it, without bowel gas between them.",
+   "book": "Chapter 2, The Normal Lateral Chest Radiograph: The Diaphragm",
+   "covers": [
+    "t19"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c02-m18",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "In an upright patient a small pleural effusion blunts the posterior costophrenic angle on the lateral film, yet the lateral angles look sharp on the frontal film. Which explanation is correct?",
+   "options": [
+    "The lateral view shows blunting with about 75 mL or less; about 250 to 300 mL is needed to blunt the lateral angles on the frontal view.",
+    "The frontal view needs only about 75 mL, whereas the lateral view needs about 250 to 300 mL to blunt the angles.",
+    "The posterior sulcus is the highest point of the pleural space in an upright patient, so fluid reaches it last.",
+    "The frontal film magnifies the costophrenic angles and so hides small amounts of fluid completely."
+   ],
+   "answer": 0,
+   "explanation": "The costophrenic sulcus is the lowest part of the pleural space in an upright patient, so fluid collects there first and fills in its normally sharp, acute angle (blunting). The posterior sulcus on the lateral view is the more sensitive place, which is why a lateral view should be obtained when an effusion is suspected.",
+   "book": "Chapter 2, The Normal Lateral Chest Radiograph: The Posterior Costophrenic Angles",
+   "covers": [
+    "t20"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c02-m19",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "What is the aortopulmonary window, and why is it important on chest CT?",
+   "options": [
+    "The space behind the sternum on the lateral film that fills in when an anterior mediastinal mass is present.",
+    "An abnormal opening between the aorta and the pulmonary artery, the usual explanation for an enlarged heart.",
+    "The space behind the bronchus intermedius where only aerated lung should be seen on axial CT.",
+    "The space below the aortic arch and above the pulmonary artery, bounded by trachea and left lung; a favorite site for enlarged nodes."
+   ],
+   "answer": 3,
+   "explanation": "The window is bordered above by the aortic arch, below by the left pulmonary artery, medially by the trachea and laterally by the left lung. Enlarged lymph nodes appear there. Do not confuse the name with the very rare congenital heart disease also called aortopulmonary window. The other options describe the retrosternal clear space and the area behind the bronchus intermedius.",
+   "book": "Chapter 2, Normal CT Anatomy of the Lungs (Fig. 2.16)",
+   "covers": [
+    "t24"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c02-m20",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "On an axial CT through the bronchus intermedius, a soft tissue density lies directly behind it. What is the correct interpretation?",
+   "options": [
+    "It is normal, because the esophagus lies directly behind the bronchus intermedius on CT.",
+    "It is normal, because the posterior wall of the bronchus intermedius is normally about 1 cm thick.",
+    "Suspicious for tumor or enlarged nodes, because only aerated lung normally lies behind the bronchus intermedius.",
+    "It is a normal fissure, which is always seen as a thick band in this position on axial CT."
+   ],
+   "answer": 2,
+   "explanation": "At and below the carina the right main bronchus gives off the right upper lobe bronchus and continues as the short bronchus intermedius, which later divides into the middle and lower lobe bronchi. Only lung tissue should be seen behind it (even the posterior wall of the right upper lobe bronchus is only 2 to 3 mm thick), so soft tissue here is suspicious for tumor or adenopathy. The left main bronchus appears as a round air-filled lumen on the left.",
+   "book": "Chapter 2, Normal CT Anatomy of the Lungs (Figs. 2.17 and 2.18)",
+   "covers": [
+    "t25"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c02-m21",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "Which statement about the fissures on CT is correct?",
+   "options": [
+    "The minor fissure is seen best on axial slices, and on the right the major fissure separates the upper lobe from the middle lobe.",
+    "The minor fissure lies in the axial plane, so it shows on sagittal or coronal views but not on axial slices; the right major fissure separates lower from upper and middle lobes.",
+    "The left lung has a minor fissure, and the lingula is part of the left lower lobe, below the major fissure.",
+    "Fissures are visible only as thin white lines, never as avascular bands, whatever the slice thickness."
+   ],
+   "answer": 1,
+   "explanation": "Depending on slice thickness and orientation a fissure appears as a thin white line or as an avascular band up to 2 cm thick. The major fissure divides the lower lobe from the upper lobe on the left, and the lower lobe from the upper and middle lobes on the right. The minor fissure separates the right upper from the right middle lobe. The lingula is the analog of the middle lobe in the left upper lobe.",
+   "book": "Chapter 2, Normal CT Anatomy of the Lungs: The Fissures (Figs. 2.19 and 2.20)",
+   "covers": [
+    "t26"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c02-m22",
+   "type": "mcq",
+   "topic": "ch02",
+   "prompt": "Which approach to interpreting a chest radiograph does the book recommend?",
+   "options": [
+    "Any system that makes you look at everything on all the views, built on knowing what normal looks like.",
+    "Always use one fixed mnemonic, since experienced radiologists rely on it for every film.",
+    "Rely on a first gestalt impression from the very start, as experts do, and skip a checklist.",
+    "Look carefully at the frontal view only, because the lateral view adds little to the study."
+   ],
+   "answer": 0,
+   "explanation": "The book says it does not matter which system you use as long as you look at everything, including every available view. Experts often use gestalt, but that comes with experience. The axiom is that you see only what you look for and look only for what you know. A simple checklist is technical adequacy, soft tissues, bones, heart, lungs, diaphragm.",
+   "book": "Chapter 2, Which System Works Best",
+   "covers": [
+    "t01",
+    "t27"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c02-e01",
+   "type": "essay",
+   "topic": "ch02",
+   "prompt": "These are six frontal chest radiographs (one is a portable film). Before you interpret any such film you check its technique. In two to four sentences, name at least three technical factors, say how you judge each on the film, and explain how poor technique could mislead you.",
+   "images": [
+    {
+     "packId": "starter",
+     "caseId": "starter-cxr-01",
+     "thumb": "starter/thumbs/cr-e62044dc29.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00015078-013",
+     "thumb": "cxr-findings-2/thumbs/dx-c5b369c400.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00022572-063",
+     "thumb": "cxr-findings-3/thumbs/dx-788d464186.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00023058-004",
+     "thumb": "cxr-findings/thumbs/dx-b9562a3a27.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00011583-000",
+     "thumb": "cxr-findings-2/thumbs/dx-2286f44378.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00009507-004",
+     "thumb": "cxr-findings-2/thumbs/dx-26ecb250db.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Inspiration: count the posterior ribs above the diaphragm (at least 8 to 9, almost 10)",
+     "points": 1,
+     "terms": [
+      "inspirat",
+      "posterior rib",
+      "ribs above",
+      "breath",
+      "lung volume"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Rotation: the spinous process lies midway between the medial ends of the clavicles",
+     "points": 1,
+     "terms": [
+      "rotat",
+      "clavicle",
+      "spinous",
+      "symmetr"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Penetration: the spine (and left hemidiaphragm) can be seen through the heart",
+     "points": 1,
+     "terms": [
+      "penetrat",
+      "exposure",
+      "overexpos",
+      "underexpos",
+      "vertebra",
+      "spine",
+      "too dark",
+      "too light",
+      "too white"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Projection and angulation: AP portable films magnify the heart, lordotic views raise the clavicles above the first ribs",
+     "points": 1,
+     "terms": [
+      "projection",
+      "ap film",
+      "ap view",
+      "ap chest",
+      "pa film",
+      "pa view",
+      "portable",
+      "magnif",
+      "lordotic",
+      "angulat",
+      "supine",
+      "first rib"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Poor technique can mimic disease, for example crowded basal markings that look like pneumonia, a falsely large heart, or a hidden left base",
+     "points": 2,
+     "terms": [
+      "mimic",
+      "mislead",
+      "simulat",
+      "imitat",
+      "pseudo",
+      "false",
+      "appear larger",
+      "look larger",
+      "looks larger",
+      "crowd",
+      "spurious",
+      "artefact",
+      "artifact",
+      "pneumonia",
+      "aspiration"
+     ]
+    }
+   ],
+   "model": "Check inspiration (at least 8 to 9, almost 10, posterior ribs above the diaphragm), rotation (the spinous process midway between the medial clavicular ends), penetration (the spine and the left hemidiaphragm just seen through the heart) and projection and angulation (AP portable films magnify the heart; a lordotic view puts the clavicles above the first ribs). Poor technique can imitate disease: shallow inspiration crowds basal vessels like aspiration or pneumonia and enlarges the heart, underpenetration hides the left base, overpenetration can mimic emphysema or pneumothorax, and rotation distorts heart and hila.",
+   "book": "Chapter 2, The Normal Frontal Chest Radiograph",
+   "covers": [
+    "t06",
+    "t07",
+    "t08",
+    "t09",
+    "t10"
+   ]
+  },
+  {
+   "id": "c02-e02",
+   "type": "essay",
+   "topic": "ch02",
+   "prompt": "These are six axial chest CT slices in a soft-tissue window, patient supine. In two to four sentences: say which side of the picture is the patient's right, what happens to the trachea at the carina, what the aortopulmonary window is, how a normal bronchus compares with its artery, and what normally lies behind the bronchus intermedius.",
+   "images": [
+    {
+     "packId": "expansion",
+     "caseId": "exp-lctsc-train-s1-008",
+     "thumb": "expansion/thumbs/ct-acb8cb25bd.png",
+     "caption": "Image 1 · CT, axial"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-lctsc-train-s2-004",
+     "thumb": "more-ct-xr/thumbs/ct-c9f476e7ea.png",
+     "caption": "Image 2 · CT, axial"
+    },
+    {
+     "packId": "body",
+     "caseId": "body-lctsc-train-s2-003",
+     "thumb": "body/thumbs/ct-e2c64f283c.png",
+     "caption": "Image 3 · CT, axial"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-lctsc-train-s1-007",
+     "thumb": "more-ct-xr/thumbs/ct-c375775881.png",
+     "caption": "Image 4 · CT, axial"
+    },
+    {
+     "packId": "expansion",
+     "caseId": "exp-lctsc-test-s2-202",
+     "thumb": "expansion/thumbs/ct-d9b78a8076.png",
+     "caption": "Image 5 · CT, axial"
+    },
+    {
+     "packId": "starter",
+     "caseId": "starter-ct-chest-01",
+     "thumb": "starter/thumbs/ct-5d36abbb61.png",
+     "caption": "Image 6 · CT, axial"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "The patient's right is on the viewer's left (anterior at the top for a supine patient)",
+     "points": 1,
+     "terms": [
+      "right on the left",
+      "right is on the left",
+      "right side is on the left",
+      "right on viewer",
+      "left of the image is the patient",
+      "left side of the image is the patient",
+      "left of the picture is the patient",
+      "left side of the picture is the patient",
+      "from the feet",
+      "patient's right is on the left",
+      "patient's right on the left",
+      "patients right is on the left"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "The trachea divides into the right and left main bronchi at the carina",
+     "points": 1,
+     "terms": [
+      "carina",
+      "main bronch",
+      "bifurcat",
+      "divides",
+      "splits"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "The aortopulmonary window is the space under the aortic arch above the pulmonary artery, where enlarged lymph nodes appear",
+     "points": 2,
+     "terms": [
+      "aortopulmonary",
+      "aorto-pulmonary",
+      "ap window",
+      "under the arch",
+      "below the arch",
+      "beneath the arch",
+      "lymph node",
+      "adenopath"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "A normal bronchus is smaller than its accompanying artery (reversed in bronchiectasis)",
+     "points": 1,
+     "terms": [
+      "smaller than",
+      "narrower than",
+      "smaller diameter",
+      "bronchiectasis",
+      "artery is larger",
+      "artery larger",
+      "larger than the bronch"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Only aerated lung lies behind the bronchus intermedius; soft tissue there is suspicious (tumor or adenopathy)",
+     "points": 1,
+     "terms": [
+      "aerated lung",
+      "only lung",
+      "only air",
+      "soft tissue behind",
+      "soft tissue posterior",
+      "soft tissue in this",
+      "tumor",
+      "tumour",
+      "adenopath",
+      "nodes"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Fissures need a lung window; the minor fissure is seen on sagittal or coronal views, not on axial slices",
+     "points": 1,
+     "terms": [
+      "lung window",
+      "wide window",
+      "minor fissure",
+      "sagittal",
+      "coronal",
+      "fissure"
+     ]
+    }
+   ],
+   "model": "The patient's right is on the left of the picture and anterior is at the top. At the carina the trachea divides into the right and left main bronchi. The aortopulmonary window is the space below the aortic arch and above the pulmonary artery, bounded by the trachea medially and the left lung laterally, and is a favorite site for enlarged lymph nodes. A normal bronchus is smaller than its accompanying artery (a bronchus larger than the artery suggests bronchiectasis). Behind the bronchus intermedius there should be only aerated lung, so soft tissue there suggests tumor or adenopathy. A lung window shows fissures; the minor fissure lies in the axial plane and is seen on sagittal or coronal reformats.",
+   "book": "Chapter 2, Normal CT Anatomy of the Lungs",
+   "covers": [
+    "t21",
+    "t22",
+    "t23",
+    "t24",
+    "t25",
+    "t26"
+   ]
+  },
+  {
+   "id": "c02-e03",
+   "type": "essay",
+   "topic": "ch02",
+   "prompt": "These are six frontal chest radiographs; some may show abnormalities. In two to four sentences, describe how the following look on a normal film: the costophrenic angles, the hemidiaphragms, the hila and the lung vessels from apex to base. Then say how much fluid blunts the angle on the frontal view versus the lateral view and why a lateral view should be added.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00015078-013",
+     "thumb": "cxr-findings-2/thumbs/dx-c5b369c400.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00021181-002",
+     "thumb": "cxr-findings-2/thumbs/dx-7998817011.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00027875-005",
+     "thumb": "cxr-findings-2/thumbs/dx-3d2e6e4e00.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00015058-024",
+     "thumb": "cxr-findings-3/thumbs/dx-348c781fd7.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00022572-063",
+     "thumb": "cxr-findings-3/thumbs/dx-788d464186.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00009507-004",
+     "thumb": "cxr-findings-2/thumbs/dx-26ecb250db.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "The costophrenic angles are sharp and acute; an effusion blunts them",
+     "points": 1,
+     "terms": [
+      "sharp",
+      "acute",
+      "blunt",
+      "costophrenic"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "The right hemidiaphragm is slightly higher than the left (liver on the right, stomach gas on the left)",
+     "points": 1,
+     "terms": [
+      "right hemidiaphragm",
+      "right diaphragm",
+      "right is higher",
+      "right side is higher",
+      "liver"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "The left hilum is slightly higher than the right",
+     "points": 1,
+     "terms": [
+      "left hilum",
+      "left hilar",
+      "hilum is higher",
+      "hila higher",
+      "left is higher"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Vessels at the bases are larger than at the apices and all taper gradually",
+     "points": 1,
+     "terms": [
+      "base",
+      "lower",
+      "apex",
+      "apices",
+      "upper",
+      "taper",
+      "gravity"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "About 250 to 300 mL blunts the lateral angle on the frontal view, but only about 75 mL the posterior angle on the lateral view",
+     "points": 2,
+     "terms": [
+      "250",
+      "300",
+      "75",
+      "more sensitive",
+      "smaller amount",
+      "less fluid",
+      "small amount"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "The lateral view locates disease, confirms uncertain findings and shows disease hidden on the frontal film",
+     "points": 1,
+     "terms": [
+      "lateral",
+      "locat",
+      "confirm",
+      "hidden",
+      "not visible",
+      "behind the heart"
+     ]
+    }
+   ],
+   "model": "On a normal frontal film the costophrenic angles are sharp and acute; pleural fluid fills them in (blunting). The right hemidiaphragm is slightly higher than the left. The left hilum is slightly higher than the right. In an upright patient the vessels at the bases are larger than at the apices and all taper gradually toward the periphery. About 250 to 300 mL of fluid is needed to blunt the lateral costophrenic angle on the frontal view, while only about 75 mL blunts the posterior angle on the lateral view, which is also needed to locate disease, confirm doubtful findings and show disease the frontal image hides.",
+   "book": "Chapter 2, The Normal Frontal and Lateral Chest Radiograph",
+   "covers": [
+    "t04",
+    "t05",
+    "t12",
+    "t19",
+    "t20"
+   ]
+  }
+ ]
+}

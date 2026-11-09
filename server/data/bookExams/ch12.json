@@ -1,0 +1,891 @@
+{
+ "chapter": 12,
+ "title": "Recognizing the Normal Abdomen and Pelvis: Conventional Radiographs",
+ "blurb": "A systematic approach to the abdominal plain film: normal gas, air-fluid levels, large versus small bowel, the acute abdominal series, calcifications and organomegaly.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Four-step approach to the abdominal film: overall gas pattern, extraluminal air, abnormal calcifications, soft-tissue masses"
+  },
+  {
+   "id": "t02",
+   "label": "Bowel gas is swallowed air (little from fermentation); distended loops (air fills the lumen) are normal, dilated loops (beyond normal size) are abnormal"
+  },
+  {
+   "id": "t03",
+   "label": "Stomach almost always contains air, unless recent vomiting or a nasogastric tube on suction"
+  },
+  {
+   "id": "t04",
+   "label": "Small bowel: air in two or three nondilated loops; normal under 2.5 cm; maximal dilatation about 5 cm; large bowel can dilate to several times that"
+  },
+  {
+   "id": "t05",
+   "label": "Large bowel: air in the rectum or sigmoid almost always; colon distends to about barium-enema size; stool recognised as small gas bubbles in soft-tissue density"
+  },
+  {
+   "id": "t06",
+   "label": "Aerophagia: swallowed air, belching and bloating; many polygonal air-filled loops, none dilated"
+  },
+  {
+   "id": "t07",
+   "label": "Normal air-fluid levels (Table 12.1): stomach yes; small bowel two or three; colon none or very few; many colonic levels after an enema or with anticholinergic drugs"
+  },
+  {
+   "id": "t08",
+   "label": "Large vs small bowel: large bowel peripheral with haustra that do not cross the lumen and are widely spaced; small bowel central with valvulae that cross the lumen and are close together"
+  },
+  {
+   "id": "t09",
+   "label": "Acute abdominal series: supine abdomen, prone abdomen (or lateral rectum), upright abdomen (or left lateral decubitus), upright chest (or supine chest); what each looks for (Table 12.2)"
+  },
+  {
+   "id": "t10",
+   "label": "Supine view (scout): gas pattern, calcifications and masses; vertical beam; no view substitutes for it"
+  },
+  {
+   "id": "t11",
+   "label": "Prone or lateral rectum view: gas in rectosigmoid and the posterior ascending and descending colon; no rectal gas can be a clue to mechanical obstruction"
+  },
+  {
+   "id": "t12",
+   "label": "Upright abdomen: free air and air-fluid levels; horizontal beam; left lateral decubitus substitute (left side down, free air over the liver on the right); right decubitus pitfall"
+  },
+  {
+   "id": "t13",
+   "label": "Upright or supine chest in the series: free air under the diaphragm, basal pneumonia that mimics an acute abdomen, pleural effusions (pancreatitis left, subphrenic abscess right, ovarian tumours); supine chest may miss small free air"
+  },
+  {
+   "id": "t14",
+   "label": "Air-fluid level needs air, fluid and a horizontal beam; not seen on vertical-beam (supine) films"
+  },
+  {
+   "id": "t15",
+   "label": "Phleboliths: calcified venous thrombi in the pelvis, older women, lucent centre, mimic ureteral calculi"
+  },
+  {
+   "id": "t16",
+   "label": "Calcified rib cartilage: amorphous speckled arc, more common in women, over 35, can mimic renal or biliary stones"
+  },
+  {
+   "id": "t17",
+   "label": "Soft-tissue organs and masses: recognised directly (borders outlined by fat or air) or indirectly (displacement of air-filled bowel)"
+  },
+  {
+   "id": "t18",
+   "label": "Liver: displaces gas from the right upper quadrant; Riedel lobe is a normal variant; hepatomegaly shown by bowel displaced to the iliac crest and across the midline"
+  },
+  {
+   "id": "t19",
+   "label": "Spleen: about 12 cm, not below the 12th rib, about the size of the left kidney; enlarged if well below the 12th rib or if it pushes the stomach bubble toward or across the midline"
+  },
+  {
+   "id": "t20",
+   "label": "Kidneys: outlined by perirenal fat; about four lumbar vertebral bodies (10-14 cm); the right is lower because of the liver; only very large kidneys or masses show"
+  },
+  {
+   "id": "t21",
+   "label": "Urinary bladder: dome outlined by fat; oval, base above the symphysis; enlargement displaces bowel upward; bladder outlet obstruction (prostate) makes a pelvic mass more likely a bladder in men"
+  },
+  {
+   "id": "t22",
+   "label": "Uterus: atop the bladder dome with a fat lucency between; about 8 x 4 x 6 cm; ultrasound is best; psoas muscles may be seen and their absence is not a reliable sign"
+  },
+  {
+   "id": "t23",
+   "label": "Case quiz: leukemia with hepatosplenomegaly shown by displaced stomach bubble, depressed splenic and hepatic flexures; bowel displacement suggests organomegaly"
+  },
+  {
+   "id": "t24",
+   "label": "CT, ultrasound and MRI have essentially replaced plain films for organomegaly and masses; plain films remain the easy first study"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c12-m01",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "In what order does the book suggest you assess a plain film of the abdomen?",
+   "options": [
+    "Calcifications first, then the gas pattern, then soft-tissue masses, and finally extraluminal air",
+    "Soft-tissue masses first, then calcifications, then extraluminal air, and finally the gas pattern",
+    "Extraluminal air first, then soft-tissue masses, then the gas pattern, and finally calcifications",
+    "Overall gas pattern, then extraluminal air, then abnormal calcifications, then soft-tissue masses"
+   ],
+   "answer": 3,
+   "explanation": "The book gives four steps in a fixed order: look at the overall gas pattern first (the pattern, not every single bubble), then check for air outside the bowel, then look for abnormal calcifications, and finally look for soft-tissue masses. The other orders rearrange these steps. Learning the normal appearance first is what allows you to recognise the abnormal.",
+   "book": "Chapter 12, What to Look For",
+   "covers": [
+    "t01"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c12-m02",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "Where does virtually all bowel gas come from, and when is air normally absent from the stomach?",
+   "options": [
+    "Bacterial fermentation of food; the stomach lacks air whenever the patient has eaten in the last hour",
+    "Swallowed air; the stomach lacks air in every patient who is lying supine for the film",
+    "Swallowed air; the stomach may lack air after recent vomiting or when a nasogastric tube is on suction",
+    "Bacterial fermentation of food; the stomach lacks air after recent vomiting or with a tube on suction"
+   ],
+   "answer": 2,
+   "explanation": "Almost all intestinal gas is swallowed air; only a small part comes from bacterial fermentation. The stomach almost always contains air, with two exceptions: the patient has just vomited, or a nasogastric tube is attached to suction. Position and recent meals do not remove stomach air. In the chapter the words gas and air are used interchangeably.",
+   "book": "Chapter 12, Normal Bowel Gas Pattern",
+   "covers": [
+    "t02",
+    "t03"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c12-m03",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "A patient who belches and feels bloated has a film with numerous irregular, polygonal air-filled loops, none of them dilated. What does it show, and how do \"distended\" and \"dilated\" differ?",
+   "options": [
+    "Aerophagia; distended loops are abnormal, while dilated loops are a normal finding in swallowed-air states",
+    "Aerophagia; distended loops (air fills the lumen) are normal, dilated loops (beyond normal size) are abnormal",
+    "Small bowel obstruction; both distended and dilated loops mean that the bowel is blocked at some point",
+    "Generalized adynamic ileus; polygonal loops are typical of it, and every loop of bowel is dilated"
+   ],
+   "answer": 1,
+   "explanation": "Swallowing a lot of air (aerophagia) produces many irregular or polygonal gas-filled loops that overlap but stay within normal size. The book separates the words: distended means the lumen is full of air, which is normal; dilated means filled beyond normal size, which is abnormal. With obstruction or ileus the loops are dilated, which is not the case here.",
+   "book": "Chapter 12, Normal Bowel Gas Pattern (Aerophagia)",
+   "covers": [
+    "t02",
+    "t06"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c12-m04",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "What are the normal and the maximal dilated diameters of the small bowel on a plain film, and how does the large bowel compare?",
+   "options": [
+    "Normal under 2.5 cm (about a US quarter); maximal about 5 cm; the large bowel can dilate to several times that",
+    "Normal under 4 cm; maximal about 8 cm; the large bowel cannot dilate beyond about twice that size",
+    "Normal under 1 cm; maximal about 2.5 cm; the large bowel dilates less than the small bowel does",
+    "Normal under 2.5 cm; maximal about 10 cm; the large bowel dilates less than the small bowel does"
+   ],
+   "answer": 0,
+   "explanation": "Small bowel is normal up to 2.5 cm, roughly the width of a United States quarter, and can reach about 5 cm when maximally dilated; the large bowel can enlarge to several times that. Normally there is a little air in two or three nondilated small-bowel loops. The other options change the numbers or understate how far the colon can distend.",
+   "book": "Chapter 12, Normal Bowel Gas Pattern (Small and Large Bowel)",
+   "covers": [
+    "t04"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c12-m05",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "How is stool recognised on a plain abdominal film, and why is that useful?",
+   "options": [
+    "As one large gas bubble with a sharp level; it marks where the stomach and duodenum lie",
+    "As a thin black crescent of gas under the diaphragm; it marks where free peritoneal air lies",
+    "As smooth, dense calcification with a lucent centre; it marks where the pelvic veins lie",
+    "As soft-tissue density mottled by many small gas bubbles; it marks where the large bowel lies"
+   ],
+   "answer": 3,
+   "explanation": "Stool shows as a semisolid soft-tissue mass with numerous tiny gas bubbles, most often in the ascending colon, and helps you identify individual large-bowel loops. A large bubble with a level is typical of the stomach, a crescent under the diaphragm is free air, and a round calcification with a lucent centre is a phlebolith.",
+   "book": "Chapter 12, Normal Bowel Gas Pattern (Large Bowel)",
+   "covers": [
+    "t05"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c12-m06",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "Which distribution of air-fluid levels on an upright abdominal film is normal?",
+   "options": [
+    "Several levels in the colon, with none in the stomach and none in the small bowel loops",
+    "No levels anywhere, because normal bowel contains only gas and never any fluid at all",
+    "A level in the stomach, two or three in nondilated small bowel, and few or none in the colon",
+    "Four or five levels in dilated small bowel, and a level in the stomach and in the colon"
+   ],
+   "answer": 2,
+   "explanation": "The stomach nearly always holds air and fluid, so a level is expected there. Two or three short levels may be seen in nondilated small bowel. The colon removes fluid, so it normally has no levels or very few (Table 12.1). Many levels in dilated small bowel are abnormal, and levels in the colon are the exception rather than the rule.",
+   "book": "Chapter 12, Normal Gastrointestinal Tract Air-Fluid Levels",
+   "covers": [
+    "t07"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c12-m07",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "An upright film in a patient with no obstruction shows many air-fluid levels in the colon. Which circumstances explain this?",
+   "options": [
+    "Aerophagia with belching, or a nasogastric tube that has been put on suction",
+    "A recent enema, or medication with a strong anticholinergic, antiperistaltic effect",
+    "Recent vomiting, or a prone film taken instead of the upright view",
+    "Phleboliths in the pelvis, or calcified rib cartilages over the upper abdomen"
+   ],
+   "answer": 1,
+   "explanation": "The colon normally shows few or no levels because it absorbs fluid. The book names two innocent reasons for many levels: a recent enema, and drugs with a strong anticholinergic, antiperistaltic action. Aerophagia gives distended but not fluid-filled loops, vomiting affects the stomach, and calcifications have nothing to do with levels.",
+   "book": "Chapter 12, Normal Gastrointestinal Tract Air-Fluid Levels (Important Points)",
+   "covers": [
+    "t07"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c12-m08",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "Why can an air-fluid level not be seen on a supine abdominal film?",
+   "options": [
+    "The beam is vertical; a level needs air, fluid and a horizontal beam parallel to the floor",
+    "In the supine position all gas leaves the bowel, so no air remains in the bowel to form a level",
+    "In the supine position the fluid is too thin to show; it needs an upright patient with a vertical beam",
+    "The supine film uses too low an exposure to show gas-fluid interfaces, whatever the beam direction"
+   ],
+   "answer": 0,
+   "explanation": "Three ingredients make an air-fluid level visible: air, fluid and an x-ray beam parallel to the floor. Supine films use a vertical beam, so the interface is not seen even if levels exist. That is why the upright abdomen, the decubitus view or the upright chest are used. Gas does not leave the bowel when the patient lies down, and exposure is not the problem.",
+   "book": "Chapter 12, Box 12.1",
+   "covers": [
+    "t14"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c12-m09",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "A gas-filled loop lies centrally in the abdomen, with thin folds that run across the entire lumen and are spaced closely together. Which bowel is it?",
+   "options": [
+    "Large bowel: haustral folds cross the whole lumen and are spaced closely together",
+    "Large bowel: it normally lies centrally, and its folds are widely spaced and incomplete on the film",
+    "Small bowel: the folds are widely spaced and only partly cross the lumen of the loop",
+    "Small bowel: valvulae conniventes cross the whole lumen, spaced closer than haustra"
+   ],
+   "answer": 3,
+   "explanation": "Small bowel lies centrally and its valvulae conniventes usually span the lumen from wall to wall, closely spaced, even when the loop is dilated. Large bowel lies around the periphery of the abdomen (the right upper quadrant is occupied by the liver); its haustral markings generally do not span the whole lumen and are more widely spaced.",
+   "book": "Chapter 12, Differentiating Large from Small Bowel",
+   "covers": [
+    "t08"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c12-m10",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "Which views usually make up the acute abdominal series, with the substitutes for patients who cannot position?",
+   "options": [
+    "Supine abdomen; prone abdomen (right lateral decubitus); upright abdomen (lateral rectum); upright chest (supine chest)",
+    "Supine abdomen only; the prone, upright and chest views are optional extras with no substitutes",
+    "Supine abdomen; prone abdomen (lateral rectum); upright abdomen (left lateral decubitus); upright chest (supine chest)",
+    "Upright abdomen; prone abdomen (lateral rectum); right lateral decubitus (supine abdomen); upright chest"
+   ],
+   "answer": 2,
+   "explanation": "The series is a supine abdomen, a prone abdomen (replaced by a lateral rectum view), an upright abdomen (replaced by a left lateral decubitus) and an upright chest (replaced by a supine chest). The supine film is the scout: it shows the gas pattern, calcifications and masses, almost every patient can have it, and nothing substitutes for it. Prone, upright and chest views each answer a particular question.",
+   "book": "Chapter 12, Acute Abdominal Series",
+   "covers": [
+    "t09",
+    "t10"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c12-m11",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "A patient with acute pain cannot sit up. How is the left lateral decubitus view of the abdomen taken, and where does free air collect?",
+   "options": [
+    "Lying on the right side with a horizontal beam; free air collects over the liver, on the patient's right",
+    "Lying on the left side with a horizontal beam; free air collects over the liver, on the patient's right",
+    "Lying on the left side with a horizontal beam; free air collects at the stomach bubble, on the patient's left",
+    "Lying on the left side with a vertical beam; free air collects over the liver, on the patient's right"
+   ],
+   "answer": 1,
+   "explanation": "With the left side down, free air rises to the highest point, along the patient's right side over the liver, where there is normally no bowel gas, and the beam must be horizontal. A right lateral decubitus would send air to the left, where the stomach bubble and splenic flexure gas can be mistaken for it. A vertical beam cannot show the collection.",
+   "book": "Chapter 12, Upright View of Abdomen (Substitute View)",
+   "covers": [
+    "t12"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c12-m12",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "What is the prone (or lateral rectum) view for, and what could absent rectal gas suggest?",
+   "options": [
+    "It shows gas in the rectosigmoid; absent rectal gas can be a clue to mechanical obstruction",
+    "It shows free peritoneal air best; absent rectal gas means that a perforation is certainly present",
+    "It shows air-fluid levels in the colon; absent rectal gas is the normal finding in most adults",
+    "It shows renal and ureteric stones best; absent rectal gas simply means that the patient is constipated"
+   ],
+   "answer": 0,
+   "explanation": "In the prone position the rectosigmoid and the ascending and descending colon, all posterior, are the highest parts of the large bowel, so air collects there. Early in a mechanical obstruction peristalsis keeps clearing gas beyond the blockage, and the rectum lies beyond every possible blockage, so no rectal gas may be an important clue. Patients who cannot lie prone have the lateral rectum view instead.",
+   "book": "Chapter 12, Prone View / Substitute View",
+   "covers": [
+    "t11"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c12-m13",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "Which pairing of a pleural effusion and an abdominal problem does the book give?",
+   "options": [
+    "A right pleural effusion with pancreatitis, and a left pleural effusion with a subphrenic abscess",
+    "Bilateral effusions with pancreatitis, and never an effusion with a subphrenic abscess",
+    "A left pleural effusion with a subphrenic abscess, and no effusion with ovarian tumours",
+    "A left pleural effusion with pancreatitis, and a right pleural effusion with a subphrenic abscess"
+   ],
+   "answer": 3,
+   "explanation": "The chest film in the series can hint at the abdominal problem: pancreatitis may come with a left pleural effusion, an abscess under the right hemidiaphragm with a right effusion, and some ovarian tumours with right-sided or bilateral effusions. The upright chest also shows free air under the diaphragm and basal pneumonia that can mimic an acute abdomen. A supine chest may miss small amounts of free air.",
+   "book": "Chapter 12, Upright (or Supine) View of Chest",
+   "covers": [
+    "t13"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c12-m14",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "On the film of a 70-year-old woman there are several small round pelvic calcifications, some with a lucent centre. What are they most likely?",
+   "options": [
+    "Ureteral calculi: they classically have a lucent centre, which separates them from phleboliths",
+    "Calcified mesenteric lymph nodes, which should always be regarded as abnormal and investigated further",
+    "Phleboliths: calcified venous thrombi, usually incidental and a classic mimic of ureteral calculi",
+    "Calcified rib cartilages, which commonly lie in the pelvis in older women and look speckled"
+   ],
+   "answer": 2,
+   "explanation": "Phleboliths are calcified thrombi in pelvic veins, most often in older women, and typically have a lucent centre; that feature helps to separate them from ureteral stones, which they resemble in position and size. They are almost always incidental. Rib cartilage calcification is amorphous and speckled and follows the arc of the costal cartilages, not the pelvis.",
+   "book": "Chapter 12, Recognizing Abnormal Calcifications and Their Causes",
+   "covers": [
+    "t15"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c12-m15",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "A speckled, amorphous calcification arches over the right upper abdomen of a woman and seems to overlie the kidney. What is it most likely?",
+   "options": [
+    "A staghorn renal calculus, because renal stones are always speckled and arc-shaped like this",
+    "Calcified costal cartilage, which can mimic renal or biliary calculi when it overlies the kidney or gallbladder",
+    "A phlebolith, because these calcified thrombi occur in the upper abdomen in older men",
+    "Gallstones, because calcified gallstones are amorphous and follow the line of the rib cartilages"
+   ],
+   "answer": 1,
+   "explanation": "Rib-cartilage calcification increases with age, is more common in women and rare under 35, and shows as amorphous speckled density in an arc that follows the anterior rib cartilage toward the sternum. It is not a true abdominal calcification but can be mistaken for renal or biliary stones. Phleboliths are small round pelvic calcifications with a lucent centre.",
+   "book": "Chapter 12, Recognizing Abnormal Calcifications and Their Causes",
+   "covers": [
+    "t16"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c12-m16",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "Which two ways does the book give for recognising a mass or an enlarged organ on a plain abdominal film?",
+   "options": [
+    "Direct view of its borders when fat or air surrounds it, or displacement of air-filled bowel from its usual place",
+    "Direct view of its borders whenever it is dense, or a rise in the amount of gas inside the mass itself",
+    "Calcification inside every mass, or loss of the psoas outline on the side where the mass lies",
+    "Gas inside the organ itself, or widening of the diaphragm shadow on the affected side of the film"
+   ],
+   "answer": 0,
+   "explanation": "Soft-tissue organs and masses have the same density as their neighbours, so a border is visible only when something of different density, such as fat or gas, outlines it. Otherwise the mass is inferred indirectly from pathological displacement of gas-filled bowel. CT, ultrasound and MRI have essentially replaced plain films for this purpose, although plain films are still easy to obtain.",
+   "book": "Chapter 12, Recognizing Organomegaly (Important Points)",
+   "covers": [
+    "t17",
+    "t24"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c12-m17",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "A tongue-like projection of the right lobe of the liver reaches down to the iliac crest in a woman. What is it, and what would suggest true hepatomegaly on a plain film?",
+   "options": [
+    "A Riedel lobe, which means hepatomegaly; the liver is large whenever it reaches the iliac crest",
+    "A hepatic mass, which should be biopsied; hepatomegaly is judged from the position of the stomach bubble",
+    "A normal variant called the bare area; true hepatomegaly shows as gas in the right upper quadrant",
+    "A Riedel lobe, a normal variant; true hepatomegaly pushes bowel from the right upper quadrant to the pelvis"
+   ],
+   "answer": 3,
+   "explanation": "A Riedel lobe is a normal tongue-like projection of the right lobe, particularly in females, that may mimic a palpable mass. Normally the liver displaces all bowel gas from the right upper quadrant. If the liver is so big that it pushes all bowel loops from there down to the iliac crest and across the midline, hepatomegaly is highly suggested. Plain films are poor for liver size; CT, MRI or ultrasound are better.",
+   "book": "Chapter 12, Recognizing Organomegaly: Liver",
+   "covers": [
+    "t18"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c12-m18",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "On the upright film of a man with leukemia, the stomach bubble is displaced toward the midline, the splenic flexure is pushed down, an edge projects below the 12th rib on the left, and the hepatic flexure is depressed almost to the pelvis. What is the interpretation?",
+   "options": [
+    "Bilateral renal enlargement, because large kidneys displace the stomach bubble toward the midline",
+    "Ascites with a distended bladder, because fluid pushes the bowel loops upward and inward",
+    "Hepatosplenomegaly, inferred from the displacement of gas-filled bowel by the enlarged organs",
+    "Generalized adynamic ileus, because many loops of large and small bowel are abnormal"
+   ],
+   "answer": 2,
+   "explanation": "A normal spleen is about 12 cm long and does not project below the 12th rib. When it pushes the stomach bubble toward or across the midline and the splenic flexure down, it is probably enlarged, and an enlarged liver depresses the hepatic flexure. Leukemia fits. The bowel displacement, not a visible organ border, is the clue; CT or ultrasound would confirm the size.",
+   "book": "Chapter 12, Case Quiz 12 (Answer) / Recognizing Organomegaly: Spleen",
+   "covers": [
+    "t19",
+    "t23"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c12-m19",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "Which statement about the kidneys on a plain abdominal film is correct?",
+   "options": [
+    "Their length is about two lumbar vertebral bodies (5 to 7 cm), and the left one lies lower because the spleen pushes it down",
+    "Their length is about four lumbar vertebral bodies (10 to 14 cm), and the right one lies lower because the liver pushes it down",
+    "Their length is about four lumbar vertebral bodies (10 to 14 cm), and the left one lies lower because the stomach pushes it down",
+    "Their length is about six lumbar vertebral bodies (18 to 20 cm), and both kidneys lie at exactly the same level"
+   ],
+   "answer": 1,
+   "explanation": "The outlines may show if there is enough perirenal fat. An adult kidney is about the height of four lumbar vertebral bodies, 10 to 14 cm, similar to the spleen on the left. The liver depresses the right kidney, so it normally lies lower than the left. Usually only very large kidneys or renal masses are recognised on plain films, through bowel displacement.",
+   "book": "Chapter 12, Recognizing Organomegaly: Kidneys",
+   "covers": [
+    "t20"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c12-m20",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "A 72-year-old man has a rounded soft-tissue mass rising out of the pelvis that pushes bowel upward into the mid-abdomen. What is the most likely cause?",
+   "options": [
+    "A distended bladder from outlet obstruction, usually prostatic enlargement, likelier in a man than in a woman",
+    "An enlarged prostate gland itself, which is outlined as a mass by the pelvic fat on every film",
+    "A Riedel lobe of the liver that has extended down from the right upper quadrant into the pelvis",
+    "Enlarged psoas muscles, which are reliably shown by loss of the normal psoas outlines on the film"
+   ],
+   "answer": 0,
+   "explanation": "A normal bladder is oval, with its base just above the symphysis and its dome often outlined by fat. When distended it rises out of the pelvis as a soft-tissue mass and displaces bowel upward. Outlet obstruction from prostatic enlargement is much commoner in men, so a pelvic mass in a man is more likely a distended bladder. The enlarged prostate is the cause of the obstruction, not the mass you see; a uterus lies on top of the bladder with a fat plane between.",
+   "book": "Chapter 12, Urinary Bladder",
+   "covers": [
+    "t21"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c12-m21",
+   "type": "mcq",
+   "topic": "ch12",
+   "prompt": "Which statement about the uterus and the psoas muscles on plain films is correct?",
+   "options": [
+    "The uterus sits behind the rectum on the film; absent psoas outlines reliably show retroperitoneal disease in every patient",
+    "The uterus sits atop the bladder dome with a fat lucency between; absent psoas outlines reliably show retroperitoneal disease",
+    "Plain films are the best way to measure the uterus and ovaries; the psoas outlines are always visible",
+    "The uterus sits atop the bladder dome with a fat lucency between; absent psoas outlines do not reliably show retroperitoneal disease"
+   ],
+   "answer": 3,
+   "explanation": "The normal uterus (about 8 x 4 x 6 cm) usually sits on the dome of the bladder, often with a lucent band of fat between them, but ultrasound is the best tool for uterus and ovaries. The psoas outlines show only when there is enough extraperitoneal fat, so their absence on one or both sides is not a reliable sign of disease behind the peritoneum.",
+   "book": "Chapter 12, Uterus / Psoas Muscles",
+   "covers": [
+    "t22"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c12-e01",
+   "type": "essay",
+   "topic": "ch12",
+   "prompt": "The lower edge of these upright chest films shows part of the upper abdomen. In 2 to 4 sentences: say what gas and what air-fluid level you expect in the stomach and why a level can be seen, where free air would collect and how it looks, and what the chest film adds to an acute abdominal series.",
+   "images": [
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00000744-006",
+     "thumb": "cxr-findings-3/thumbs/dx-898edb92ee.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00021818-026",
+     "thumb": "cxr-findings-2/thumbs/dx-59e48819a2.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00017500-002",
+     "thumb": "cxr-findings-3/thumbs/dx-dce35a7f58.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00004344-013",
+     "thumb": "cxr-findings-2/thumbs/dx-526e509288.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00011322-002",
+     "thumb": "cxr-findings-2/thumbs/dx-991abc4f37.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00013391-005",
+     "thumb": "cxr-findings-2/thumbs/dx-aec82543ca.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "The stomach almost always contains air and fluid, so a gastric air-fluid level is normal",
+     "points": 1,
+     "terms": [
+      "stomach",
+      "gastric",
+      "fundus"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "A level is seen because the beam is horizontal (parallel to the floor) with the patient upright",
+     "points": 2,
+     "terms": [
+      "horizontal beam",
+      "horizontal x-ray",
+      "beam is horizontal",
+      "beam horizontal",
+      "parallel to the floor",
+      "parallel to floor",
+      "horizontally",
+      "upright"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Free air rises to the highest point, a black crescent under the diaphragm (easier to see on the right)",
+     "points": 2,
+     "terms": [
+      "free air",
+      "extraluminal",
+      "pneumoperitoneum",
+      "under the diaphragm",
+      "beneath the diaphragm",
+      "below the diaphragm",
+      "under the right",
+      "crescent",
+      "subdiaphragmatic"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "The chest film shows basal pneumonia and pleural effusions that may explain or mimic an acute abdomen",
+     "points": 1,
+     "terms": [
+      "pneumonia",
+      "effusion",
+      "pleural"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "If the patient cannot stand, a supine chest or a left lateral decubitus view is substituted (small free air may be missed supine)",
+     "points": 1,
+     "terms": [
+      "decubitus",
+      "supine",
+      "cannot stand",
+      "unable to stand",
+      "cannot sit",
+      "substitute"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "A few small-bowel levels may be normal; the colon has few or none",
+     "points": 1,
+     "terms": [
+      "small bowel",
+      "small-bowel",
+      "colon",
+      "large bowel"
+     ]
+    }
+   ],
+   "model": "In an upright patient the stomach normally holds gas and fluid, so a gastric air-fluid level is expected; two or three levels in nondilated small bowel may be normal, but the colon has few or none. A level is visible because the x-ray beam is horizontal. Free air rises to the highest part, seen as a black crescent under the diaphragm, easier on the right. The chest film also shows basal pneumonia and pleural effusions that can explain or mimic abdominal symptoms; a supine chest or a left lateral decubitus view substitutes if the patient cannot stand.",
+   "book": "Chapter 12, Normal Gastrointestinal Tract Air-Fluid Levels / Acute Abdominal Series",
+   "covers": [
+    "t03",
+    "t07",
+    "t09",
+    "t12",
+    "t13",
+    "t14"
+   ]
+  },
+  {
+   "id": "c12-e02",
+   "type": "essay",
+   "topic": "ch12",
+   "prompt": "These frontal radiographs show the pelvis. There are no abdominal plain films in this set, so answer from the book. In 2 to 4 sentences: say how you recognise stool and where the large bowel lies, how a phlebolith differs from a ureteral stone, and how the bladder and uterus are recognised in the pelvis.",
+   "images": [
+    {
+     "packId": "fx-radiographs-2",
+     "caseId": "fx-img0002180",
+     "thumb": "fx-radiographs-2/thumbs/dx-b11f2d2e63.png",
+     "caption": "Image 1 · Pelvis, frontal"
+    },
+    {
+     "packId": "fx-radiographs-2",
+     "caseId": "fx-img0002544",
+     "thumb": "fx-radiographs-2/thumbs/dx-d50e7ee977.png",
+     "caption": "Image 2 · Pelvis, frontal"
+    },
+    {
+     "packId": "fx-radiographs-2",
+     "caseId": "fx-img0002701",
+     "thumb": "fx-radiographs-2/thumbs/dx-7f47cf92a6.png",
+     "caption": "Image 3 · Pelvis, frontal"
+    },
+    {
+     "packId": "fx-radiographs",
+     "caseId": "fx-img0002337",
+     "thumb": "fx-radiographs/thumbs/dx-af34e497ea.png",
+     "caption": "Image 4 · Pelvis and hip, frontal"
+    },
+    {
+     "packId": "fx-radiographs-2",
+     "caseId": "fx-img0003342",
+     "thumb": "fx-radiographs-2/thumbs/dx-2e20cd3b53.png",
+     "caption": "Image 5 · Pelvis and hip, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Stool: soft-tissue density mottled by many small gas bubbles, marking the large bowel",
+     "points": 2,
+     "terms": [
+      "bubble",
+      "mottled",
+      "speckled",
+      "gas within",
+      "gas mixed",
+      "soft-tissue density",
+      "soft tissue density"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "The large bowel lies around the periphery; air is almost always present in the rectum or sigmoid",
+     "points": 1,
+     "terms": [
+      "periphery",
+      "peripheral",
+      "around the",
+      "rectosigmoid",
+      "sigmoid",
+      "rectum"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "A phlebolith is a calcified venous thrombus, usually in older women, with a lucent centre; it mimics a ureteral stone",
+     "points": 2,
+     "terms": [
+      "phlebolith",
+      "lucent",
+      "venous",
+      "thrombus",
+      "central lucency"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "The bladder dome is outlined by perivesical fat as an oval structure above the symphysis",
+     "points": 1,
+     "terms": [
+      "bladder",
+      "dome",
+      "perivesical",
+      "oval"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "The uterus sits atop the bladder dome with a fat plane between them",
+     "points": 1,
+     "terms": [
+      "uterus",
+      "fat plane",
+      "fat lucency"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "A distended bladder displaces bowel upward; in men prostatic obstruction is the usual cause",
+     "points": 1,
+     "terms": [
+      "displace",
+      "upward",
+      "outlet",
+      "prostat",
+      "bph"
+     ]
+    }
+   ],
+   "model": "Stool shows as soft-tissue density mottled by many small gas bubbles and marks the large bowel, which lies around the periphery of the abdomen; there is almost always gas in the rectum or sigmoid. A phlebolith is a calcified pelvic venous thrombus, usually in older women, with a lucent centre, and can be mistaken for a ureteral stone. The bladder is an oval structure outlined by perivesical fat above the symphysis; the uterus sits atop its dome with a fat plane between, and a distended bladder, most often from prostatic obstruction in men, displaces bowel upward. (These are bone films of the pelvis, so the answer rests on what the book teaches.)",
+   "book": "Chapter 12, Normal Bowel Gas Pattern / Calcifications / Recognizing Organomegaly",
+   "covers": [
+    "t05",
+    "t15",
+    "t21",
+    "t22"
+   ]
+  },
+  {
+   "id": "c12-e03",
+   "type": "essay",
+   "topic": "ch12",
+   "prompt": "These are abdominal CT slices of organs that plain films evaluate poorly. In 2 to 4 sentences: say how a large liver, spleen or renal mass is suspected on a plain film, how big a normal spleen and kidney are and where the spleen ends, and why CT, ultrasound or MRI have largely replaced plain films for this.",
+   "images": [
+    {
+     "packId": "body",
+     "caseId": "body-kits-00015",
+     "thumb": "body/thumbs/ct-db85e27f7e.png",
+     "caption": "Image 1 · CT with contrast, axial"
+    },
+    {
+     "packId": "expansion",
+     "caseId": "exp-kits-00045",
+     "thumb": "expansion/thumbs/ct-6987d6bc5b.png",
+     "caption": "Image 2 · CT with contrast, axial"
+    },
+    {
+     "packId": "expansion",
+     "caseId": "exp-kits-00204",
+     "thumb": "expansion/thumbs/ct-8ae5c1dfaf.png",
+     "caption": "Image 3 · CT with contrast, axial"
+    },
+    {
+     "packId": "ct-tumors",
+     "caseId": "hcc-003",
+     "thumb": "ct-tumors/thumbs/ct-4d8318ca48.png",
+     "caption": "Image 4 · CT with contrast, axial"
+    },
+    {
+     "packId": "ct-tumors",
+     "caseId": "hcc-010",
+     "thumb": "ct-tumors/thumbs/ct-7e9d58b8f1.png",
+     "caption": "Image 5 · CT with contrast, axial"
+    },
+    {
+     "packId": "ct-findings",
+     "caseId": "ct-crlm-1140",
+     "thumb": "ct-findings/thumbs/ct-2ec235e0b6.png",
+     "caption": "Image 6 · CT with contrast, axial"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Two ways: direct view of the borders when fat or air outlines them, or displacement of gas-filled bowel",
+     "points": 2,
+     "terms": [
+      "displace",
+      "fat or air",
+      "outlined by fat",
+      "borders",
+      "indirect",
+      "direct"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Enlarged liver: bowel pushed from the right upper quadrant to the iliac crest and across the midline",
+     "points": 1,
+     "terms": [
+      "iliac crest",
+      "across the midline",
+      "right upper quadrant",
+      "riedel"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Enlarged spleen: projects well below the 12th rib and/or pushes the stomach bubble toward or across the midline",
+     "points": 1,
+     "terms": [
+      "12th rib",
+      "twelfth rib",
+      "stomach bubble",
+      "gastric bubble",
+      "splenic flexure"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Normal sizes: spleen about 12 cm (like the left kidney); kidney about four vertebral bodies, 10 to 14 cm",
+     "points": 1,
+     "terms": [
+      "12 cm",
+      "10 to 14",
+      "10-14",
+      "four lumbar",
+      "four vertebra",
+      "11 cm",
+      "4 vertebra"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Soft-tissue organs are surrounded by tissue of similar density, so plain films are limited",
+     "points": 1,
+     "terms": [
+      "similar density",
+      "same density",
+      "soft tissue",
+      "soft-tissue",
+      "limited",
+      "poor"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "CT, ultrasound and MRI have essentially replaced plain films for organomegaly and masses",
+     "points": 1,
+     "terms": [
+      "ultrasound",
+      "mri",
+      "ct scan",
+      "ct and",
+      "replaced",
+      "computed tomography"
+     ]
+    }
+   ],
+   "model": "On a plain film a mass or organ is seen directly only when fat or gas outlines its edge; otherwise it is suspected from displacement of gas-filled bowel. A large liver pushes bowel from the right upper quadrant to the iliac crest and across the midline; an enlarged spleen projects well below the 12th rib and/or pushes the stomach bubble toward or across the midline. The spleen is about 12 cm, similar to the left kidney (10 to 14 cm, about four lumbar vertebral bodies). Because these soft-tissue organs have densities similar to their surroundings, CT, ultrasound and MRI have essentially replaced plain films for this task.",
+   "book": "Chapter 12, Recognizing Organomegaly",
+   "covers": [
+    "t17",
+    "t18",
+    "t19",
+    "t20",
+    "t24"
+   ]
+  }
+ ]
+}

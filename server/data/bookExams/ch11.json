@@ -1,0 +1,1099 @@
+{
+ "chapter": 11,
+ "title": "Recognizing Adult Heart Disease",
+ "blurb": "Heart size and its pitfalls, pericardial effusion, heart failure and pulmonary edema, valve disease, cardiomyopathies, the aorta and coronary disease.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Three reasons the heart shadow looks big: pericardial effusion, extracardiac factors, true cardiomegaly"
+  },
+  {
+   "id": "t02",
+   "label": "Pericardial effusion: normal 15-50 cc; fluid collects in the dependent part (behind the left ventricle when supine), then along the right heart border, then surrounds the heart"
+  },
+  {
+   "id": "t03",
+   "label": "Plain films are poor for pericardial effusion (cannot tell fluid from heart); ultrasound is the first choice, CT shows small effusions; flask or water-bottle shape"
+  },
+  {
+   "id": "t04",
+   "label": "Causes of pericardial effusion (Box 11.1): heart failure, infection, metastases, uremia, lupus, trauma, postpericardiotomy"
+  },
+  {
+   "id": "t05",
+   "label": "Extracardiac causes of apparent cardiomegaly (Table 11.1): portable supine AP film is the most common; poor inspiration (8-9 posterior ribs = adequate); obesity, pregnancy, ascites; pectus excavatum; rotation"
+  },
+  {
+   "id": "t06",
+   "label": "Cardiothoracic ratio: normal under 50%; the heart looks slightly larger on AP than on PA"
+  },
+  {
+   "id": "t07",
+   "label": "Portable AP films: borderline = normal, significantly enlarged = enlarged, touching the left lateral chest wall = definitely enlarged"
+  },
+  {
+   "id": "t08",
+   "label": "Lateral film: posterior heart border overlapping the thoracic spine is a confirmatory sign of an enlarged silhouette"
+  },
+  {
+   "id": "t09",
+   "label": "Congestive heart failure: common; most frequent causes are coronary artery disease and hypertension; other causes"
+  },
+  {
+   "id": "t10",
+   "label": "Two radiographic patterns of heart failure: interstitial edema and alveolar edema (they overlap)"
+  },
+  {
+   "id": "t11",
+   "label": "Four key signs of interstitial edema (Box 11.2): septal thickening (Kerley lines), peribronchial cuffing, fluid in the fissures, pleural effusions"
+  },
+  {
+   "id": "t12",
+   "label": "Kerley B lines: short, thin, horizontal lines at the bases abutting the pleura; thickened interlobular septa at wedge pressure about 15 mm Hg; chronic B lines after fibrosis"
+  },
+  {
+   "id": "t13",
+   "label": "Kerley A lines run out from the hila and do not reach the periphery; C lines doubtful"
+  },
+  {
+   "id": "t14",
+   "label": "Peribronchial cuffing: thickened bronchial walls seen on-end as small doughnut rings"
+  },
+  {
+   "id": "t15",
+   "label": "Fluid in the fissures: normally pencil-thin or invisible; thick and irregular in edema; may stay thick after repeated failure"
+  },
+  {
+   "id": "t16",
+   "label": "Pleural effusion in heart failure (wedge pressure about 20 mm Hg): usually bilateral; if unilateral usually right; isolated left effusion suggests other causes; laminar effusion"
+  },
+  {
+   "id": "t17",
+   "label": "Alveolar edema (wedge pressure about 25 mm Hg): fluffy patchy airspace shadows, bat-wing/butterfly pattern sparing the outer third, effusions; rapid failure such as myocardial infarction"
+  },
+  {
+   "id": "t18",
+   "label": "Cardiomegaly is not a sensitive sign of failure; cephalization is meaningful only on an upright film; edema clears in hours to days (periphery to centre) and the film lags behind the patient"
+  },
+  {
+   "id": "t19",
+   "label": "Noncardiogenic edema causes: increased capillary permeability (ARDS: sepsis, uremia, DIC, smoke, near-drowning), volume overload, lymphangitic carcinomatosis, high altitude, neurogenic, reexpansion, drug overdose"
+  },
+  {
+   "id": "t20",
+   "label": "ARDS course: films normal for 24-36 hours, then edema; stable at 5-7 days, improving at about 2 weeks, clearing may take months; severe hypoxia"
+  },
+  {
+   "id": "t21",
+   "label": "Cardiogenic vs noncardiogenic edema (Table 11.3): effusions, Kerley B lines and enlarged heart are common in cardiogenic; normal heart and normal wedge pressure (under 12) favour noncardiogenic"
+  },
+  {
+   "id": "t22",
+   "label": "Reexpansion pulmonary edema: unilateral, after overly rapid expansion of a chronically collapsed lung; other causes of unilateral edema"
+  },
+  {
+   "id": "t23",
+   "label": "Hypertensive heart disease: 90% essential; left ventricular hypertrophy at the expense of the lumen, heart normal or slightly large early; aorta uncoils; complications"
+  },
+  {
+   "id": "t24",
+   "label": "Mitral stenosis: rheumatic, symptoms of left failure, valve area under one third of normal, left atrial enlargement, cephalization, pulmonary arterial hypertension and right failure"
+  },
+  {
+   "id": "t25",
+   "label": "Pulmonary arterial hypertension: normal mean pressure about 15 mm Hg; idiopathic or secondary (emphysema, mitral stenosis, emboli); pruning; main pulmonary artery over 3 cm and larger than the aorta"
+  },
+  {
+   "id": "t26",
+   "label": "Aortic stenosis: chest pain, heart failure, syncope; bicuspid, degenerative or rheumatic; heart normal early (hypertrophy); poststenotic dilatation of the ascending aorta; valve calcification on CT"
+  },
+  {
+   "id": "t27",
+   "label": "Cardiomyopathy definition (excludes ischemic and valvular causes); dilated type: ejection fraction under 40%, 90% of cases, large heart, echo, MRI most accurate"
+  },
+  {
+   "id": "t28",
+   "label": "Hypertrophic cardiomyopathy: familial 50%, leading cause of sudden death in the young and athletes, asymmetric or concentric LV thickening, obstruction with systolic anterior motion, echo or gated MRI"
+  },
+  {
+   "id": "t29",
+   "label": "Restrictive cardiomyopathy: least common, stiff myocardium, infiltrative causes (amyloid, sarcoid, radiation), heart not enlarged, signs of congestive failure"
+  },
+  {
+   "id": "t30",
+   "label": "Restrictive cardiomyopathy vs constrictive pericarditis: pericardium normal (under 4 mm) vs thickened or calcified; constrictive pericarditis is surgically curable"
+  },
+  {
+   "id": "t31",
+   "label": "Aortic aneurysm: over 50% enlargement; thoracic aorta over 4 cm; normal ascending under 3.5 cm and descending under 3 cm; atherosclerosis most common in descending; often asymptomatic"
+  },
+  {
+   "id": "t32",
+   "label": "Aneurysm management and imaging: 5-6 cm risks rupture, growth over 1 cm per year; appearance by site; fusiform or saccular; wall calcification and clot; contrast CT"
+  },
+  {
+   "id": "t33",
+   "label": "Aortic dissection: Stanford type A (ascending) and B (descending); tear and dissection through the media; predisposing conditions; abrupt ripping pain"
+  },
+  {
+   "id": "t34",
+   "label": "Radiographic signs of dissection (unreliable alone): widened mediastinum (overread on supine films, present in only about 1 in 4), left apical cap, loss of aortic knob, trachea/esophagus pushed right, left pleural effusion"
+  },
+  {
+   "id": "t35",
+   "label": "Dissection on CT/MRI: intimal flap separates true (smaller) and false lumen; type A surgical, type B medical; transesophageal ultrasound also used"
+  },
+  {
+   "id": "t36",
+   "label": "Coronary artery disease: leading cause of death worldwide; plaque, calcium, rupture, spasm, emboli; coronary angiography is the gold standard"
+  },
+  {
+   "id": "t37",
+   "label": "Imaging coronary disease: cardiac CT (high negative predictive value, calcium score without contrast), MRI (scar, contractility), SPECT (stress/rest ischemia), CT complications of infarction"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c11-m01",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "Fluid is slowly building up in the pericardial space of a patient lying supine. Where does it collect first, and what happens as the amount grows?",
+   "options": [
+    "First along the right heart border; later it settles behind the left ventricle and finally encircles the heart",
+    "First around the great vessels at the top of the sac; later it spreads downward but never reaches the right border",
+    "First in the dependent part, behind the left ventricle; later along the right heart border, until it surrounds the heart",
+    "First at the cardiac apex; it then stays localised there and does not extend along the right heart border"
+   ],
+   "answer": 2,
+   "explanation": "Fluid follows gravity, and the lowest part of the pericardial sac in a supine patient is behind the left ventricle. As the effusion grows it shows more along the right heart border and eventually encircles the heart. The first distractor reverses the order, and the others name places the pericardium does not fill. Remember that only 15 to 50 cc is normal in this space.",
+   "book": "Chapter 11, Pericardial Effusion",
+   "covers": [
+    "t02"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c11-m02",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "A 47-year-old woman with systemic lupus has chest discomfort and muffled heart sounds. Her chest film shows a flask-shaped (\"water-bottle\") heart, much wider at the bottom than at the top. Most likely diagnosis and best next test?",
+   "options": [
+    "Dilated cardiomyopathy; a radionuclide study to measure the ejection fraction",
+    "Large pericardial effusion; echocardiography (ultrasound) is usually the first choice",
+    "Mitral stenosis with a dilated left atrium; coronary angiography",
+    "Pulmonary arterial hypertension; a ventilation-perfusion scan"
+   ],
+   "answer": 1,
+   "explanation": "Lupus is one of the listed causes of pericardial effusion (others: heart failure, TB or viral infection, metastases, uremia, trauma, postpericardiotomy). Muffled heart sounds fit, and a big effusion gives a flask shape. A plain film cannot tell fluid from a large heart muscle, so ultrasound is the usual first test; CT also shows small effusions. Dilated cardiomyopathy can look similar on the film, but the clinical picture points to fluid. Mitral stenosis and pulmonary hypertension change particular chambers or vessels, not the whole outline.",
+   "book": "Chapter 11, Pericardial Effusion (and Case Quiz 11)",
+   "covers": [
+    "t03",
+    "t04"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c11-m03",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "Which statement about an apparently enlarged heart that is really normal in size is correct?",
+   "options": [
+    "The portable supine AP film is the commonest cause (magnification); adequate inspiration shows eight to nine posterior ribs",
+    "Poor inspiration is the commonest cause; an adequate breath shows only five to six posterior ribs on the film",
+    "Pectus excavatum is the commonest cause, because the sunken sternum pulls the heart forward and enlarges it",
+    "Pregnancy and ascites are the commonest causes, because they make a deep inspiration easier to achieve"
+   ],
+   "answer": 0,
+   "explanation": "Magnification on an AP, supine, portable examination is the commonest reason for a falsely large heart. Poor inspiration also matters: in expiration the raised diaphragm squeezes the heart, and eight to nine posterior ribs mean the breath was adequate. Pectus excavatum compresses the heart between sternum and spine (it does not pull it forward) and is not the commonest cause. Obesity, pregnancy and ascites make a full breath harder, not easier. Rotation can also mislead.",
+   "book": "Chapter 11, Extracardiac Causes of Apparent Cardiac Enlargement",
+   "covers": [
+    "t05"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c11-m04",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "How do you judge heart size on a chest film?",
+   "options": [
+    "Normal ratio under about 65% on PA; on a good portable film any heart wider than half of the chest is definitely enlarged",
+    "Normal ratio under about 50% on PA (slightly larger on AP); a borderline-large heart on a good portable film means true cardiomegaly",
+    "Normal ratio over about 50% on PA, with a heart that looks larger on PA than on AP because it is nearer the tube",
+    "Normal ratio under about 50% on PA (slightly larger on AP); a heart touching the left chest wall on a good portable film is enlarged"
+   ],
+   "answer": 3,
+   "explanation": "The ratio is the widest heart diameter divided by the widest inner rib-cage diameter; under about 50% is normal on a PA film. On a PA film the heart is closer to the detector, so it looks slightly smaller than on AP. For well-inspired portable films the rule is: borderline large is probably normal, clearly large is enlarged, and a heart touching or nearly touching the left lateral chest wall is definitely enlarged.",
+   "book": "Chapter 11, Identifying Cardiac Enlargement on an AP Chest Radiograph",
+   "covers": [
+    "t06",
+    "t07"
+   ],
+   "level": "next",
+   "lesson": "cxr-00015719-005"
+  },
+  {
+   "id": "c11-m05",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "On a lateral chest film, the posterior border of the heart overlaps the thoracic spine at the level of the diaphragm. What does this indicate?",
+   "options": [
+    "Nothing: the normal heart usually overlaps the spine on the lateral view at that level",
+    "Pericardial effusion only, since true cardiomegaly never extends back as far as the spine",
+    "An enlarged cardiac silhouette (cardiomegaly or pericardial effusion), a helpful confirmatory sign",
+    "Left atrial enlargement only, because the left atrium forms the posterior border of the heart"
+   ],
+   "answer": 2,
+   "explanation": "In most normal people the back of the heart stops short of the spine on the lateral film. When the silhouette is enlarged, from big chambers or from fluid, the posterior border reaches or overlaps the spine. The sign cannot say which cause is present, so it is only confirmatory, and the frontal film remains the main view for heart size.",
+   "book": "Chapter 11, Recognizing Cardiomegaly on the Lateral Chest Radiograph",
+   "covers": [
+    "t08"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c11-m06",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "In the United States, which two conditions are the most common causes of congestive heart failure?",
+   "options": [
+    "Alcohol cardiomyopathy and aortic stenosis",
+    "Coronary artery disease and hypertension",
+    "Arrhythmias and hyperthyroidism",
+    "Severe anemia and left-to-right shunts"
+   ],
+   "answer": 1,
+   "explanation": "Coronary artery disease and hypertension head the list. The distractors are all genuine but less frequent causes: cardiomyopathy (for example alcohol-related), valve lesions such as aortic and mitral stenosis, arrhythmias, hyperthyroidism, severe anemia and left-to-right shunts.",
+   "book": "Chapter 11, Congestive Heart Failure",
+   "covers": [
+    "t09",
+    "t10"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c11-m07",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "Which finding belongs to pulmonary ALVEOLAR edema rather than to the four key signs of pulmonary INTERSTITIAL edema?",
+   "options": [
+    "Bat-wing (butterfly) airspace shadowing that spares the outer part of the lungs",
+    "Thickened interlobular septa, seen as Kerley B lines at the lung bases",
+    "Peribronchial cuffing: thick bronchial walls seen end-on as small rings",
+    "Fluid in the fissures, making them thick and irregular on the lateral film"
+   ],
+   "answer": 0,
+   "explanation": "The four key signs of interstitial edema are septal thickening (Kerley B and A lines), peribronchial cuffing, fluid in the fissures and pleural effusions. When the pressure rises further the fluid spills into the airspaces and gives fluffy, patchy, central shadowing in a bat-wing or butterfly pattern. The two patterns overlap, so not every sign is present every time.",
+   "book": "Chapter 11, Pulmonary Interstitial Edema / Pulmonary Alveolar Edema",
+   "covers": [
+    "t10",
+    "t11"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c11-m08",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "A frontal film of a dyspnoeic patient shows many thin, horizontal white lines 1 to 2 cm long at the lung bases, abutting the pleura near the costophrenic angles. What are they and what do they reflect?",
+   "options": [
+    "Kerley A lines: fluid around the bronchovascular sheaths, radiating from the hila toward the lung",
+    "Peribronchial cuffing: thickened bronchial walls seen on-end as small rings near the hila",
+    "Kerley B lines: alveolar fluid, seen only once the wedge pressure reaches about 25 mm Hg",
+    "Kerley B lines: fluid-thickened interlobular septa, seen at a wedge pressure of about 15 mm Hg"
+   ],
+   "answer": 3,
+   "explanation": "Short, thin, horizontal lines that reach the pleura at the bases are Kerley B lines, caused by fluid in the interlobular septa at a wedge pressure of about 15 mm Hg. Kerley A lines are longer, run outward from the hila and do not reach the periphery. Cuffing gives small rings, not lines. About 25 mm Hg is the level at which alveolar edema appears. B lines can persist as chronic lines after fibrosis, even without failure.",
+   "book": "Chapter 11, Thickening of the Interlobular Septa: Kerley B Lines",
+   "covers": [
+    "t12",
+    "t13"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c11-m09",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "In heart failure, bronchi seen end-on near the hila look like small doughnut-shaped rings, and the fissures on the lateral film are thick and irregular. Which explanation is correct?",
+   "options": [
+    "Alveolar fluid filling the airspaces; both signs always disappear completely after treatment, whatever the history",
+    "Air trapped in the bronchi and the fissures, which is the pattern of emphysema with hyperinflation",
+    "Interstitial fluid in the bronchial walls and fissures; repeated failure can leave the fissures permanently thick",
+    "A pleural tumour that has spread along the bronchial walls and the fissures on both sides"
+   ],
+   "answer": 2,
+   "explanation": "Fluid in the tissue around a bronchus thickens its wall (peribronchial cuffing) and shows as rings when the bronchus is seen end-on. Normal fissures are thinner than a pencil-point line, but fluid between the pleural layers makes them thick and irregular. They return to normal after treatment unless repeated bouts have caused fibrosis. Alveolar fluid, emphysema and tumour do not explain this pair.",
+   "book": "Chapter 11, Peribronchial Cuffing / Fluid in the Fissures",
+   "covers": [
+    "t14",
+    "t15"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c11-m10",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "A patient with known congestive heart failure has a large pleural effusion on the left only; the right pleural space is clear. What is the best interpretation?",
+   "options": [
+    "Typical of left heart failure, because the left ventricle is the failing chamber; no further work-up",
+    "Unusual for heart failure; look for other causes such as metastases, tuberculosis or pulmonary thromboembolism",
+    "Heart failure effusions are always bilateral, so this film must have been labelled with the wrong side",
+    "It proves the fluid is a transudate caused by raised venous pressure, so no sampling is needed"
+   ],
+   "answer": 1,
+   "explanation": "Effusions in heart failure usually occur at a wedge pressure of about 20 mm Hg and are usually bilateral; when only one side is involved it is almost always the right. A left effusion can occur in about 15% of cases, but a large isolated left effusion should prompt a search for another cause. Saying they are always bilateral is wrong, and the film alone cannot prove the fluid type.",
+   "book": "Chapter 11, Pleural Effusion (Important Points)",
+   "covers": [
+    "t16"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c11-m11",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "After a large myocardial infarction a patient has fluffy, indistinct airspace shadows around both hila that spare the outer third of the lungs, with small effusions. Which statement is correct?",
+   "options": [
+    "A bat-wing pattern suggesting cardiogenic alveolar edema rather than pneumonia, seen at a pressure of about 25 mm Hg",
+    "Interstitial edema, seen at about 25 mm Hg, which would show Kerley B lines but no airspace shadowing",
+    "Pneumonia, because a central bat-wing pattern that spares the periphery is typical of it and argues against edema",
+    "Noncardiogenic edema, because bat-wing shadowing with small effusions goes with a normal wedge pressure"
+   ],
+   "answer": 0,
+   "explanation": "Fluffy central airspace disease sparing the periphery is the bat-wing (angel-wing, butterfly) pattern and suggests pulmonary edema rather than other airspace diseases such as pneumonia. It follows rapid failure, for example a massive infarct. Alveolar edema appears at about 25 mm Hg; interstitial edema, with Kerley lines, comes earlier at lower pressure. Effusions point toward a cardiogenic cause.",
+   "book": "Chapter 11, Pulmonary Alveolar Edema",
+   "covers": [
+    "t17"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c11-m12",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "Which statement about heart size, cephalization and clearing in pulmonary edema is correct?",
+   "options": [
+    "A normal heart size rules out heart failure, and cephalization is easy to judge on supine portable films",
+    "Cephalization is the most reliable sign on supine portable films, and edema usually takes weeks to clear",
+    "Most patients with a big heart are in failure, and edema typically clears from the centre outward over weeks",
+    "Cardiomegaly is a poor guide to failure, cephalization counts only on upright films, and edema clears in hours to days"
+   ],
+   "answer": 3,
+   "explanation": "Most patients in failure have a big heart, but most people with a big heart are not in failure, so heart size is a poor guide either way. Upper-zone vessel redistribution (cephalization) needs an upright patient, and many suspected patients are supine, so it is rarely useful. Edema comes and goes quickly, usually starting to clear at the periphery, though the film can lag behind clinical improvement, especially with large effusions.",
+   "book": "Chapter 11, What About Cardiomegaly and Cephalization? / How Pulmonary Edema Resolves",
+   "covers": [
+    "t18"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c11-m13",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "A man with sepsis becomes severely hypoxic and tachypnoeic. Which course on his chest films is typical of ARDS?",
+   "options": [
+    "Abnormal from the first hour, with complete clearing within a few days, as in cardiogenic edema",
+    "Normal for the first 5 days, then rapid clearing within hours of giving a diuretic, like cardiac edema",
+    "Normal for 24 to 36 hours, then edema; stable at 5 to 7 days, improving at about 2 weeks, clearing may take months",
+    "Dense lobar consolidation on day 1 that then stays unchanged on every film for several months"
+   ],
+   "answer": 2,
+   "explanation": "Early on ARDS may leave the film normal for 24 to 36 hours after the insult (sepsis, aspiration and so on). Interstitial or patchy and then alveolar edema follows; it stabilises after 5 to 7 days, improves from about 2 weeks and complete clearing may take months. That slow course is unlike the hours to days of cardiogenic edema. The clinical picture is severe hypoxia, cyanosis, tachypnoea and dyspnoea.",
+   "book": "Chapter 11, Noncardiogenic Pulmonary Edema: Imaging Findings",
+   "covers": [
+    "t20"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c11-m14",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "A young man smoked crack cocaine. His film shows central airspace disease on both sides, a normal-sized heart and no effusions, Kerley B lines or fissure fluid. What is most likely, and what wedge pressure is expected?",
+   "options": [
+    "Cardiogenic edema from left heart failure, with a raised wedge pressure above 20 mm Hg",
+    "Noncardiogenic (ARDS-type) edema, with a normal wedge pressure below about 12 mm Hg",
+    "Interstitial edema from mitral stenosis, with a wedge pressure of about 15 mm Hg",
+    "Pneumonia, because a central distribution on both sides is typical of it and edema is unlikely"
+   ],
+   "answer": 1,
+   "explanation": "Effusions, Kerley B lines and an enlarged heart are common in cardiogenic edema, and the wedge pressure is raised. A normal heart, no effusions or septal lines and a normal wedge pressure favour noncardiogenic edema, here from drug inhalation. Other noncardiogenic causes include sepsis, uremia, DIC, smoke inhalation, near-drowning, volume overload and lymphangitic carcinomatosis. The patterns overlap, so the clinical history decides.",
+   "book": "Chapter 11, Differentiating Cardiac from Noncardiac Pulmonary Edema",
+   "covers": [
+    "t19",
+    "t21"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c11-m15",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "A chest tube is placed to drain a large chronic pleural effusion. The next film shows airspace disease filling the whole lung on the tube side and nothing on the other side. What is the best explanation?",
+   "options": [
+    "Reexpansion pulmonary edema, from overly rapid expansion of a long-collapsed lung",
+    "Cardiogenic edema from left failure, which is nearly always confined to one lung",
+    "Typical ARDS, which characteristically stays confined to the lung that was drained",
+    "Pulmonary venous hypertension from mitral stenosis, which affects one lung at a time"
+   ],
+   "answer": 0,
+   "explanation": "Reexpansion edema follows too rapid re-inflation of a chronically collapsed lung (large effusion or pneumothorax); its exact cause is unknown. Cardiogenic edema is usually bilateral, ARDS is usually bilateral too, and mitral stenosis affects both lungs. Other unilateral edemas arise when the affected side stays dependent for long or a large embolus blocks flow to the opposite lung.",
+   "book": "Chapter 11, Noncardiogenic Pulmonary Edema (Reexpansion Pulmonary Edema)",
+   "covers": [
+    "t22"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c11-m16",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "What does chronic systemic hypertension do to the heart and aorta on a chest film?",
+   "options": [
+    "The heart is huge from the start, because the ventricular lumen enlarges; the aorta becomes narrow and straight",
+    "The heart becomes small and shrunken, and hypertension seldom leads to heart failure or arrhythmias",
+    "The heart is normal; the aorta shrinks as it pivots inward around the aortic valve and the diaphragm",
+    "Early on the heart is normal or slightly large (the wall thickens inward); the aorta uncoils and becomes more prominent"
+   ],
+   "answer": 3,
+   "explanation": "About 90% of hypertension is essential. In about 20% (more than twice as often in the obese) the left ventricle hypertrophies inward, so the outline is normal or only slightly larger until the muscle fails and the heart enlarges dramatically. Under the higher pressure the aorta pivots outward about its two anchor points and uncoils, so both ascending and descending parts look more prominent. Failure, coronary disease and arrhythmias are common complications.",
+   "book": "Chapter 11, Hypertensive Cardiovascular Disease",
+   "covers": [
+    "t23"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c11-m17",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "Which sequence describes the consequences of untreated mitral stenosis?",
+   "options": [
+    "Left ventricular hypertrophy, then dilatation of the ascending aorta, then pulmonary pruning and right failure",
+    "Right atrial enlargement first, then left atrial enlargement, then raised systemic blood pressure",
+    "Left atrial enlargement, then pulmonary venous hypertension, then pulmonary arterial hypertension and right-sided failure",
+    "Pulmonary arterial hypertension first, then left atrial enlargement, then cephalization of the vessels"
+   ],
+   "answer": 2,
+   "explanation": "A stenosed mitral valve (usually rheumatic; symptomatic when the valve area falls below one third of normal) obstructs outflow from the left atrium. The atrium enlarges and the pressure passes backward to the pulmonary veins (upper-lobe vessels become as large as the lower ones), then to the pulmonary arteries with rising vascular resistance, and finally the right heart fails. The other lists reverse the order or describe aortic stenosis.",
+   "book": "Chapter 11, Mitral Stenosis",
+   "covers": [
+    "t24"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c11-m18",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "What is the imaging hallmark of pulmonary arterial hypertension?",
+   "options": [
+    "Central and peripheral vessels of equal size, with a main pulmonary artery smaller than the ascending aorta on CT",
+    "Large central pulmonary arteries that taper abruptly in the periphery (\"pruning\"); on CT the main artery exceeds 3 cm and the aorta",
+    "Kerley B lines, peribronchial cuffing and fluid in the fissures, with a small main pulmonary artery",
+    "Upper-lobe vessels as large as or larger than the lower-lobe vessels, with a normal main pulmonary artery"
+   ],
+   "answer": 1,
+   "explanation": "Normally the main pulmonary artery is about as wide as the ascending aorta. In pulmonary arterial hypertension the central arteries are big and the peripheral ones shrink abruptly (pruning), and the main pulmonary artery passes 3 cm and exceeds the aorta. It may be idiopathic or secondary to emphysema, mitral stenosis or recurrent emboli. Interstitial edema signs and cephalization point to venous, not arterial, hypertension.",
+   "book": "Chapter 11, Pulmonary Arterial Hypertension",
+   "covers": [
+    "t25"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c11-m19",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "A chest film shows a normal-sized heart with an unusually prominent ascending aorta. CT shows dense calcification of the aortic valve and a thick left ventricular wall. What is the diagnosis, and why is the heart not enlarged?",
+   "options": [
+    "Aortic stenosis; the ventricle thickens against the obstruction and the aortic widening is poststenotic",
+    "Aortic dissection; the intimal flap and the false lumen make the left ventricular wall thick",
+    "Mitral stenosis; a dilated left atrium pushes the ascending aorta outward and masks the ventricle",
+    "Dilated cardiomyopathy; the ascending aorta enlarges because the ejection fraction is low"
+   ],
+   "answer": 0,
+   "explanation": "In aortic stenosis the ventricle responds to the obstruction by hypertrophy, so the heart is usually normal in size early on. Turbulent flow beyond the narrowed valve raises the pressure in the first centimetres of the aorta (poststenotic dilatation). Valve calcification is easy to see on CT. The classic clinical triad is chest pain, heart failure and syncope. The heart enlarges only once it decompensates.",
+   "book": "Chapter 11, Aortic Stenosis",
+   "covers": [
+    "t26"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c11-m20",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "Which description defines dilated cardiomyopathy?",
+   "options": [
+    "Asymmetric thickening of the septum, with obstruction to left ventricular outflow in many patients",
+    "A stiff myocardium that impairs diastolic filling, in a heart that is usually of normal size",
+    "Enlarged ventricles with a normal or increased ejection fraction above 55%",
+    "Larger systolic and diastolic ventricular volumes with an ejection fraction below 40%"
+   ],
+   "answer": 3,
+   "explanation": "Dilated cardiomyopathy (about 90% of cardiomyopathies) means dilated ventricles with weak contraction, usually a big heart often with signs of failure; alcohol is a classic cause. The first distractor is hypertrophic cardiomyopathy, the second is restrictive cardiomyopathy, and in current definitions cardiomyopathy excludes dysfunction caused by ischemic or valvular disease. Echocardiography usually makes the diagnosis; cine MRI measures ejection fraction most accurately.",
+   "book": "Chapter 11, Cardiomyopathy: Dilated Cardiomyopathy",
+   "covers": [
+    "t27"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c11-m21",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "Which cardiomyopathy is the leading cause of sudden cardiac death in children, adolescents and young athletes, and how is it shown?",
+   "options": [
+    "Dilated cardiomyopathy: a thick septum with an ejection fraction above 60%, shown best on a plain chest film",
+    "Restrictive cardiomyopathy: a thickened and calcified pericardium, shown best on CT of the chest",
+    "Hypertrophic cardiomyopathy: asymmetric or concentric left ventricular thickening, shown by echocardiography or gated MRI",
+    "Hypertensive heart disease: left ventricular thickening with an uncoiled aorta, seen on a plain film"
+   ],
+   "answer": 2,
+   "explanation": "Hypertrophic cardiomyopathy is familial in about half of cases (autosomal dominant). The wall thickens asymmetrically (septum) or concentrically, and obstruction of the outflow tract can arise from systolic anterior motion of the mitral leaflet. Many patients have no symptoms and the first event may be fatal ventricular tachycardia or fibrillation. The other options describe other conditions: a calcified pericardium means constrictive pericarditis.",
+   "book": "Chapter 11, Hypertrophic Cardiomyopathy (HCM)",
+   "covers": [
+    "t28"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c11-m22",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "A patient has heart failure symptoms and a normal-sized heart; CT shows a thickened, calcified pericardium. Which diagnosis is supported, and why does it matter?",
+   "options": [
+    "Restrictive cardiomyopathy, which can be cured surgically by removing the pericardium",
+    "Constrictive pericarditis, which excludes restrictive cardiomyopathy and may be cured by pericardiectomy",
+    "Restrictive cardiomyopathy, because a stiff myocardium also calcifies the pericardium",
+    "Constrictive pericarditis, which has a poor prognosis because the myocardium is stiff"
+   ],
+   "answer": 1,
+   "explanation": "The two conditions share clinical findings, but in restrictive cardiomyopathy (stiff myocardium from amyloid, sarcoid, autoimmune disease or radiation) the pericardium stays normal, under 4 mm. A thick or calcified pericardium therefore means constrictive pericarditis, which can be cured by pericardiectomy, whereas restrictive cardiomyopathy has a relatively poor prognosis. Neither usually enlarges the heart; both can show pulmonary congestion. MRI measures pericardial thickness.",
+   "book": "Chapter 11, Restrictive Cardiomyopathy (Important Points)",
+   "covers": [
+    "t29",
+    "t30"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c11-m23",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "A thoracic aortic aneurysm is found on CT. Which statement is correct?",
+   "options": [
+    "Persistent enlargement above 4 cm; rupture risk at 5 to 6 cm calls for surgery, and growth over 1 cm per year also favours repair",
+    "Persistent enlargement above 3 cm; surgery is reserved for aneurysms above 8 cm, whatever the growth rate",
+    "Persistent enlargement above 4 cm, but the rate of growth plays no part in the decision to operate",
+    "Enlargement above 6 cm; the normal ascending aorta measures under 5 cm and the descending aorta under 4 cm"
+   ],
+   "answer": 0,
+   "explanation": "In general an aneurysm is more than 50% enlargement of the vessel; in the thoracic aorta this means a persistent size over 4 cm (normal ascending under 3.5 cm, descending under 3 cm). Sizes of 5 to 6 cm are at risk of rupture and need intervention, and growth of 1 cm per year or more is a further reason to consider resection. Atherosclerosis is the commonest cause of descending aneurysms.",
+   "book": "Chapter 11, Aortic Aneurysms",
+   "covers": [
+    "t31",
+    "t32"
+   ],
+   "level": "hard",
+   "lesson": "hct-s1133"
+  },
+  {
+   "id": "c11-m24",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "A hypertensive 60-year-old man has abrupt, ripping chest pain. His film shows a widened mediastinum, a left pleural effusion, loss of the aortic knob contour and a left apical cap. Which statement is right?",
+   "options": [
+    "A widened mediastinum alone is a reliable sign and is present in nearly every dissection, so CT is optional",
+    "These signs make the diagnosis on the plain film, so no further imaging is needed before treatment",
+    "The trachea and esophagus are typically pushed to the left, and the film confirms the diagnosis",
+    "The signs raise suspicion but cannot make the diagnosis; confirm with contrast CT (or MRI or transesophageal ultrasound)"
+   ],
+   "answer": 3,
+   "explanation": "Radiographs are not sensitive enough to rely on, but suggestive findings in the right setting should prompt urgent imaging: left apical cap, loss of the aortic knob, deviation of the trachea or esophagus to the right and a left pleural effusion. Mediastinal widening is overread on portable supine films and appears in only about 1 in 4 dissections. Contrast CT and MRI are about equally accurate, so the choice depends on stability and availability.",
+   "book": "Chapter 11, Thoracic Aortic Dissection",
+   "covers": [
+    "t33",
+    "t34"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c11-m25",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "Contrast CT shows an intimal flap in the ascending aorta separating a smaller lumen from a larger one. Which statement is correct?",
+   "options": [
+    "Stanford type B, usually treated medically; the smaller lumen is the false lumen formed by the dissection",
+    "Stanford type A, usually treated medically with blood-pressure control, like type B dissections",
+    "Stanford type A, usually treated surgically; the smaller lumen is usually the true (original) lumen",
+    "Stanford type A, usually treated surgically; the larger lumen is the true (original) lumen"
+   ],
+   "answer": 2,
+   "explanation": "A dissection involving the ascending aorta is Stanford type A and is generally treated surgically, whereas type B, confined to the descending aorta, is generally treated medically. The intimal flap is the key finding on CT and MRI: it separates the true (original) lumen, usually the smaller, from the false lumen, a channel formed when blood dissects along the media. Most dissections begin in the ascending aorta.",
+   "book": "Chapter 11, Thoracic Aortic Dissection (Important Points)",
+   "covers": [
+    "t35"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c11-m26",
+   "type": "mcq",
+   "topic": "ch11",
+   "prompt": "Which statement about imaging coronary artery disease is correct?",
+   "options": [
+    "Calcium scoring needs intravenous iodinated contrast, and a higher score means a lower risk of cardiac events",
+    "Cardiac CT has a very high negative predictive value, calcium scoring needs no contrast, and coronary angiography is the gold standard",
+    "A negative cardiac CT cannot exclude coronary disease, and SPECT is the gold standard for detecting stenosis",
+    "MRI is the gold standard for stenosis, and calcium scoring is used only in patients who have symptoms"
+   ],
+   "answer": 1,
+   "explanation": "A negative cardiac CT virtually rules out coronary disease, and calcium scoring is done without contrast, even in people without symptoms; a higher score means more extensive disease and higher risk. Coronary angiography is still the gold standard for stenosis. MRI shows infarct scar and contractility; SPECT with stress and rest shows ischemia; CT can show complications such as ventricular aneurysm and clot.",
+   "book": "Chapter 11, Coronary Artery Disease",
+   "covers": [
+    "t36",
+    "t37"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c11-e01",
+   "type": "essay",
+   "topic": "ch11",
+   "prompt": "Images 1 to 6 are PA chest films in which radiologists marked cardiomegaly. In 2 to 4 sentences: name the three reasons a heart shadow can look enlarged, say how you judge heart size and what technical factors can mislead you, and say what a plain film cannot tell you and which test comes next.",
+   "images": [
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00015719-005",
+     "thumb": "cxr-findings-3/thumbs/dx-30523a52de.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00016414-000",
+     "thumb": "cxr-findings-2/thumbs/dx-f6d3fcd160.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00011322-002",
+     "thumb": "cxr-findings-2/thumbs/dx-991abc4f37.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00000661-000",
+     "thumb": "cxr-findings/thumbs/dx-930abc73f3.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00007043-000",
+     "thumb": "cxr-findings-2/thumbs/dx-a4202c4aff.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00004344-013",
+     "thumb": "cxr-findings-2/thumbs/dx-526e509288.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Extracardiac or technical causes: portable AP/supine projection, poor inspiration, rotation, chest deformity, obesity",
+     "points": 1,
+     "terms": [
+      "antero",
+      "a-p",
+      "ap film",
+      "ap view",
+      "ap projection",
+      "portable",
+      "supine",
+      "magnif",
+      "inspirat",
+      "rotat",
+      "pectus",
+      "obes",
+      "pregnan",
+      "ascites",
+      "projection",
+      "extracardiac"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Pericardial effusion can mimic an enlarged heart",
+     "points": 1,
+     "terms": [
+      "pericardial",
+      "effusion",
+      "water-bottle",
+      "water bottle",
+      "flask",
+      "fluid around"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Cardiothoracic ratio: more than about 50% on a PA film is enlarged",
+     "points": 2,
+     "terms": [
+      "cardiothoracic",
+      "ctr",
+      "50%",
+      "50 %",
+      "fifty",
+      "half the",
+      "ratio"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "On a portable film a heart touching the left lateral chest wall is definitely enlarged; borderline is usually normal",
+     "points": 1,
+     "terms": [
+      "touching",
+      "lateral chest wall",
+      "borderline",
+      "almost touching",
+      "left chest wall"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "On the lateral view the heart overlapping the spine confirms enlargement",
+     "points": 1,
+     "terms": [
+      "lateral",
+      "spine",
+      "vertebra"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "A plain film cannot separate pericardial fluid from a large heart muscle",
+     "points": 1,
+     "terms": [
+      "cannot",
+      "can't",
+      "unable",
+      "not distinguish",
+      "not differentiate",
+      "not tell",
+      "same appearance",
+      "look the same",
+      "looks the same",
+      "indistinguishable",
+      "poor at",
+      "poorly"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "Echocardiography (ultrasound) is the next test; CT or MRI can also show it",
+     "points": 1,
+     "terms": [
+      "echo",
+      "ultrasound",
+      "sonograph",
+      "ct scan",
+      "cardiac ct",
+      "ct of",
+      "mri",
+      "magnetic",
+      "computed tomography"
+     ]
+    }
+   ],
+   "model": "A big-looking heart has three possible reasons: pericardial effusion, an extracardiac cause (portable supine AP film, poor inspiration with fewer than eight to nine posterior ribs, rotation, obesity, pectus excavatum) or true cardiomegaly. On a well-inspired PA film a cardiothoracic ratio over about 50% is enlarged; on a portable film a heart touching the left lateral chest wall is definitely enlarged, and on the lateral view the heart overlapping the spine confirms it. A plain film cannot separate pericardial fluid from big chambers, so ultrasound (echocardiography) is the next test.",
+   "book": "Chapter 11, Recognizing an Enlarged Cardiac Silhouette",
+   "covers": [
+    "t01",
+    "t03",
+    "t05",
+    "t06",
+    "t07",
+    "t08"
+   ]
+  },
+  {
+   "id": "c11-e02",
+   "type": "essay",
+   "topic": "ch11",
+   "prompt": "Images 1 to 6 are PA chest films whose reports mention an enlarged heart and also a pleural effusion. In 2 to 4 sentences: name the key signs of pulmonary interstitial edema, describe Kerley B lines, say how the effusions of heart failure usually lie, and say how cardiogenic and noncardiogenic (ARDS) edema differ.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00000756-001",
+     "thumb": "cxr-findings-2/thumbs/dx-630f8e64a1.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00002763-031",
+     "thumb": "cxr-findings-3/thumbs/dx-6777afcd52.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00017514-008",
+     "thumb": "cxr-findings-3/thumbs/dx-1e5d645b21.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00004381-021",
+     "thumb": "cxr-findings-3/thumbs/dx-3ead970d3a.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00004533-014",
+     "thumb": "cxr-findings-3/thumbs/dx-0918b51d3d.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00012686-003",
+     "thumb": "cxr-findings-2/thumbs/dx-a7ad3fedbb.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Interstitial edema signs: thickened septa (Kerley lines)",
+     "points": 1,
+     "terms": [
+      "kerley",
+      "septal",
+      "septa",
+      "interlobular"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Peribronchial cuffing and fluid in the fissures",
+     "points": 1,
+     "terms": [
+      "cuffing",
+      "peribronchial",
+      "fissure",
+      "doughnut"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Kerley B lines are short, thin, horizontal lines at the lung bases reaching the pleura",
+     "points": 1,
+     "terms": [
+      "horizontal",
+      "short",
+      "thin",
+      "costophrenic",
+      "pleural surface",
+      "abut",
+      "base"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Effusions of heart failure are usually bilateral; if unilateral, usually right-sided",
+     "points": 1,
+     "terms": [
+      "bilateral",
+      "both sides",
+      "right-sided",
+      "right sided",
+      "right side",
+      "on the right",
+      "right pleural"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Alveolar edema: fluffy central bat-wing airspace shadows sparing the periphery",
+     "points": 1,
+     "terms": [
+      "bat",
+      "butterfly",
+      "angel",
+      "fluffy",
+      "alveolar",
+      "airspace",
+      "air space",
+      "central"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Noncardiogenic edema: normal-sized heart, few effusions or Kerley lines, normal wedge pressure, permeability or ARDS",
+     "points": 2,
+     "terms": [
+      "noncardiogenic",
+      "non-cardiogenic",
+      "non cardiogenic",
+      "normal-sized heart",
+      "normal sized heart",
+      "normal heart",
+      "normal size",
+      "wedge",
+      "permeab",
+      "ards",
+      "respiratory distress",
+      "less likely",
+      "infrequent"
+     ]
+    }
+   ],
+   "model": "The four key signs of interstitial edema are septal thickening (Kerley B lines and Kerley A lines), peribronchial cuffing, fluid in the fissures and pleural effusions. Kerley B lines are short, thin horizontal lines at the bases that reach the pleura. Heart failure effusions are usually bilateral and, if only one side, usually the right. Alveolar edema is fluffy bat-wing shadowing that spares the periphery. Noncardiogenic (ARDS) edema more often has a normal-sized heart, fewer effusions and Kerley lines, and a normal wedge pressure under 12 mm Hg.",
+   "book": "Chapter 11, Congestive Heart Failure / Noncardiogenic Pulmonary Edema",
+   "covers": [
+    "t10",
+    "t11",
+    "t12",
+    "t16",
+    "t17",
+    "t21"
+   ]
+  },
+  {
+   "id": "c11-e03",
+   "type": "essay",
+   "topic": "ch11",
+   "prompt": "Images 1 to 4 are chest CT slices with a widened thoracic aorta (about 43 to 52 mm on the outline); images 5 and 6 are other contrast chest CTs. In 2 to 4 sentences: give the size that defines a thoracic aneurysm and the normal diameters, say which sign proves a dissection, how type A and type B are treated, and what size or growth leads to surgery.",
+   "images": [
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s1133",
+     "thumb": "heart-ct/thumbs/ct-27919271a2.png",
+     "caption": "Image 1 · CT with contrast, axial"
+    },
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s0825",
+     "thumb": "heart-ct/thumbs/ct-37fd4163b1.png",
+     "caption": "Image 2 · CT with contrast, axial"
+    },
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s0822",
+     "thumb": "heart-ct/thumbs/ct-8ecf0cfeee.png",
+     "caption": "Image 3 · CT with contrast, axial"
+    },
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s0936",
+     "thumb": "heart-ct/thumbs/ct-1b5ae93a5c.png",
+     "caption": "Image 4 · CT with contrast, axial"
+    },
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s1372",
+     "thumb": "heart-ct/thumbs/ct-b259b40463.png",
+     "caption": "Image 5 · CT with contrast, axial"
+    },
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s0753",
+     "thumb": "heart-ct/thumbs/ct-73c366d6e0.png",
+     "caption": "Image 6 · CT with contrast, axial"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "A thoracic aneurysm is a persistent enlargement above 4 cm; normal ascending aorta under 3.5 cm, descending under 3 cm",
+     "points": 2,
+     "terms": [
+      "4 cm",
+      ">4",
+      "40 mm",
+      "above 4",
+      "over 4",
+      "more than 4",
+      "greater than 4",
+      "3.5",
+      "35 mm",
+      "50%"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Dissection: an intimal flap separates the true lumen from the false lumen",
+     "points": 2,
+     "terms": [
+      "flap",
+      "intimal",
+      "true lumen",
+      "false lumen"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Type A (ascending aorta) is treated surgically",
+     "points": 1,
+     "terms": [
+      "type a",
+      "stanford a",
+      "ascending dissection"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Type B (descending aorta) is treated medically",
+     "points": 1,
+     "terms": [
+      "type b",
+      "stanford b",
+      "medical",
+      "blood pressure",
+      "conservative"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Rupture risk at about 5 to 6 cm; growth over 1 cm per year favours repair",
+     "points": 1,
+     "terms": [
+      "5 to 6",
+      "5-6",
+      "5 or 6",
+      "6 cm",
+      "5 cm",
+      "1 cm",
+      "rupture",
+      "growth"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Contrast-enhanced CT (or MRI) is the imaging study used",
+     "points": 1,
+     "terms": [
+      "contrast",
+      "cta",
+      "angiogra",
+      "mri",
+      "magnetic"
+     ]
+    }
+   ],
+   "model": "A thoracic aortic aneurysm is a persistent enlargement above 4 cm (normal ascending aorta under 3.5 cm, descending under 3 cm), best shown on contrast-enhanced CT. A dissection is recognised by the intimal flap that separates the smaller true lumen from the larger false lumen. Stanford type A involves the ascending aorta and is treated surgically; type B involves the descending aorta and is treated medically. Aneurysms of 5 to 6 cm are at risk of rupture and need surgery, and growth over 1 cm per year also favours repair.",
+   "book": "Chapter 11, Aortic Aneurysms / Thoracic Aortic Dissection",
+   "covers": [
+    "t31",
+    "t32",
+    "t33",
+    "t35"
+   ]
+  }
+ ]
+}

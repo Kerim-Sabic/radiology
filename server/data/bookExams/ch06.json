@@ -1,0 +1,960 @@
+{
+ "chapter": 6,
+ "title": "Recognizing Atelectasis",
+ "blurb": "Types of atelectasis, signs of volume loss, lobar collapse patterns and how atelectasis resolves.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Definition: atelectasis is loss of volume of some or all of the lung, frequently (not always) with increased density (the lung is black because of its air)"
+  },
+  {
+   "id": "t02",
+   "label": "Types (Table 6.1): obstructive (resorptive) versus nonobstructive (passive, adhesive, subsegmental, cicatrization) with their mechanisms"
+  },
+  {
+   "id": "t03",
+   "label": "Obstructive atelectasis: air resorbed through the capillary bed beyond a blocked bronchus; pleural layers stay in contact so mobile structures shift toward it"
+  },
+  {
+   "id": "t04",
+   "label": "Most common causes of obstructive atelectasis (Table 6.2): tumours (squamous cell, endobronchial metastases, carcinoid), mucous plugs, foreign body aspiration (peanuts, toys, traumatic intubation)"
+  },
+  {
+   "id": "t05",
+   "label": "Speed of collapse: about 18 to 24 hours for a whole lung on room air, under an hour on near-100% oxygen"
+  },
+  {
+   "id": "t06",
+   "label": "Box 6.1 signs: displaced fissure toward the collapse, increased density, shift of mobile structures toward it, compensatory overinflation"
+  },
+  {
+   "id": "t07",
+   "label": "Normal trachea (midline with slight rightward deviation at the aortic knob) and shift toward volume loss"
+  },
+  {
+   "id": "t08",
+   "label": "Right heart border at least 1 cm to the right of the spine; heart shifted right brings the left heart border toward the spine, shifted left brings the right heart border over the spine"
+  },
+  {
+   "id": "t09",
+   "label": "Hemidiaphragms: right normally higher than left by half an interspace (left higher in about 10%); lower lobe atelectasis silhouettes the hemidiaphragm; elevated stomach bubble shows a raised left hemidiaphragm"
+  },
+  {
+   "id": "t10",
+   "label": "Compensatory overinflation of unaffected lobes or the opposite lung (crossing the midline; larger retrosternal clear space on the lateral view)"
+  },
+  {
+   "id": "t11",
+   "label": "Passive (compressive) atelectasis: loss of pleural contact from effusion, pneumothorax or mass, or poor inspiration; usually re-expands when the cause is removed"
+  },
+  {
+   "id": "t12",
+   "label": "Atelectasis and effusion in balance: opaque hemithorax, no air bronchograms, no shift; ominous, suspicious for central bronchogenic carcinoma with metastases"
+  },
+  {
+   "id": "t13",
+   "label": "Pitfall: poor inspiration (fewer than eight posterior ribs) causes basal passive atelectasis that mimics airspace disease; check the lateral view"
+  },
+  {
+   "id": "t14",
+   "label": "Review of Table 5.1: large pneumothorax (black, no shift toward) versus atelectasis of the whole lung (white, shift toward)"
+  },
+  {
+   "id": "t15",
+   "label": "Adhesive atelectasis: surfactant (made by type II pneumocytes) lowers surface tension; deactivation in ARDS (adults and neonates); implicated in subsegmental atelectasis"
+  },
+  {
+   "id": "t16",
+   "label": "Subsegmental (discoid, plate-like, linear) atelectasis: least volume loss; splinting (postoperative, pleuritic pain); linear bands parallel to the diaphragm at the bases; no shift; clears with deep breathing"
+  },
+  {
+   "id": "t17",
+   "label": "Pitfall: subsegmental atelectasis and chronic linear scarring look identical on a single film; atelectasis disappears in days, scarring remains"
+  },
+  {
+   "id": "t18",
+   "label": "Round atelectasis: periphery of the lung base; prior pleural disease (asbestos, TB) plus effusion; mass-like and can mimic tumour; CT shows a comet tail of bronchovascular markings to the hilum"
+  },
+  {
+   "id": "t19",
+   "label": "Cicatrization atelectasis: fibrosis and scarring, most often TB, mainly upper lobes (upper-lobe reticular pattern, pleural thickening, hilar retraction); other causes (histoplasmosis, silicosis, scleroderma, late radiation, IPF)"
+  },
+  {
+   "id": "t20",
+   "label": "Lobar collapse is fan-shaped (base on the pleura, apex at the hilum); other lobes hyperinflate and can limit the shift"
+  },
+  {
+   "id": "t21",
+   "label": "Pitfall: the more atelectatic a lobe, the less visible it is, so worsening can be mistaken for improvement; check fissure/hemidiaphragm displacement or use CT"
+  },
+  {
+   "id": "t22",
+   "label": "Right upper lobe: fan-shaped density, minor fissure displaced upward, trachea to the right, juxtaphrenic peak; S sign of Golden with a hilar mass; lateral wedge with major fissure forward"
+  },
+  {
+   "id": "t23",
+   "label": "Left upper lobe: luftsichel sign, trachea and heart to the left, raised left hemidiaphragm; lateral band-like density with the major fissure displaced anteriorly"
+  },
+  {
+   "id": "t24",
+   "label": "Lower lobes: fan-shaped triangle bounded by the displaced major fissure, medial hemidiaphragm silhouetted; lateral: major fissure displaced posteriorly, small triangle in the posterior costophrenic sulcus"
+  },
+  {
+   "id": "t25",
+   "label": "In critically ill patients atelectasis is commonest in the left lower lobe; check that the left hemidiaphragm is seen through the heart shadow"
+  },
+  {
+   "id": "t26",
+   "label": "Right middle lobe: triangular density, minor fissure displaced downward, right heart border lost but hemidiaphragm visible; lateral triangle with base anterior and apex at the hilum"
+  },
+  {
+   "id": "t27",
+   "label": "Atelectasis of the right lung: opaque hemithorax, trachea toward the right, right hemidiaphragm silhouetted, left heart border displaced toward/over the spine"
+  },
+  {
+   "id": "t28",
+   "label": "Atelectasis of the left lung: opaque hemithorax, trachea to the left, right heart border over the spine, right lung overinflated across the midline in front of the aorta, only the right hemidiaphragm visible"
+  },
+  {
+   "id": "t29",
+   "label": "Resolution: acute atelectasis can clear within hours, chronic takes longer; slowly clearing collapse shows patchy airspace disease with growing aerated zones"
+  },
+  {
+   "id": "t30",
+   "label": "Case quiz: endotracheal tube too deep in the bronchus intermedius aerates only the right middle and lower lobes; right upper lobe and whole left lung collapse; minor fissure elevated; withdrawing the tube clears it"
+  },
+  {
+   "id": "t31",
+   "label": "Take-home: the three commonest types are subsegmental, compressive (passive) and obstructive; round atelectasis is a passive type that does not re-expand when the effusion recedes"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c06-m01",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "Which statement about atelectasis is correct?",
+   "options": [
+    "It is an increase in lung volume that makes the affected lung blacker",
+    "It is a loss of lung volume, which usually (but not always) makes the affected lung whiter because it contains less air",
+    "It always makes the lung denser, so a lung that stays black cannot be atelectatic",
+    "It is defined by the presence of an air bronchogram"
+   ],
+   "answer": 1,
+   "explanation": "All forms of atelectasis share loss of volume in some or all of the lung. The lung looks black because of its air, so when air is resorbed or squeezed out it usually becomes denser, but this does not happen in every form (for example, some forms produce little density). Air bronchograms are a sign of airspace disease and are not a requirement.",
+   "book": "Chapter 6, What Is Atelectasis?",
+   "covers": [
+    "t01"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c06-m02",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "Which pairing of atelectasis type and mechanism is correct?",
+   "options": [
+    "Adhesive atelectasis: deactivation of surfactant",
+    "Passive atelectasis: a bronchus blocked by a tumour",
+    "Cicatrization atelectasis: loss of pleural contact from a large pneumothorax",
+    "Obstructive atelectasis: splinting after abdominal surgery"
+   ],
+   "answer": 0,
+   "explanation": "Surfactant, made by type II pneumocytes, lowers surface tension; when it is lost (as in ARDS in adults and neonates) the alveoli collapse. A blocked bronchus gives obstructive (resorptive) atelectasis, loss of pleural contact gives passive atelectasis, scarring gives cicatrization, and splinting gives subsegmental atelectasis.",
+   "book": "Chapter 6, Types of Atelectasis (Table 6.1)",
+   "covers": [
+    "t02",
+    "t15"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c06-m03",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "Why do the trachea and heart shift toward an obstructive atelectasis?",
+   "options": [
+    "Fluid collects in the pleural space and drags the mediastinum across",
+    "The pleural layers separate and the lung recoils toward the hilum, taking the mediastinum with it",
+    "There is no shift in obstructive atelectasis; shift occurs only in passive atelectasis",
+    "The visceral and parietal pleura stay in contact as the lung loses volume, so the lost volume pulls the slightly mobile structures toward the collapse"
+   ],
+   "answer": 3,
+   "explanation": "In obstructive atelectasis the pleural layers invariably remain in contact, so volume loss in the lobe or lung creates a pull on the mobile structures. If the layers separated (pneumothorax, effusion) the lung would behave differently and the mediastinum would not be pulled that way.",
+   "book": "Chapter 6, Obstructive Atelectasis",
+   "covers": [
+    "t03"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c06-m04",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "Which of the following is among the most common causes of obstructive atelectasis?",
+   "options": [
+    "A large pleural effusion",
+    "A poor inspiratory effort",
+    "Bronchogenic carcinoma, especially squamous cell carcinoma",
+    "Surfactant deficiency in acute respiratory distress syndrome"
+   ],
+   "answer": 2,
+   "explanation": "Table 6.2 lists tumours (bronchogenic carcinoma, endobronchial metastases, carcinoid), mucous plugs (bedridden, postoperative, asthma, cystic fibrosis) and aspirated foreign bodies (peanuts, small toys, traumatic intubation). The other options cause nonobstructive types: an effusion and a poor inspiration cause passive atelectasis, and surfactant deficiency causes adhesive atelectasis.",
+   "book": "Chapter 6, Obstructive Atelectasis (Table 6.2)",
+   "covers": [
+    "t04"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c06-m05",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "A patient breathing near 100% oxygen has a main bronchus blocked by a mucous plug. How fast can the whole lung collapse, compared with a patient breathing room air?",
+   "options": [
+    "About 18 to 24 hours, the same as on room air",
+    "In under an hour, compared with about 18 to 24 hours on room air",
+    "More slowly, over several days",
+    "Only after the plug has been present for a week"
+   ],
+   "answer": 1,
+   "explanation": "The speed of collapse depends on the gas content of the lung at the time of occlusion and how fast the occlusion occurs. Air is mostly nitrogen, which is absorbed slowly; with near 100% oxygen the gas is absorbed very quickly, so the whole lung can collapse in less than an hour.",
+   "book": "Chapter 6, Obstructive Atelectasis",
+   "covers": [
+    "t05"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c06-m06",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "Which set lists the signs of obstructive atelectasis?",
+   "options": [
+    "Fissure displaced toward the collapse, increased density, shift of the mobile structures toward it, and compensatory overinflation of the unaffected lung",
+    "Fissure displaced toward the collapse, increased density, shift of the mobile structures away from it, and compensatory overinflation",
+    "Fissure displaced away from the collapse, decreased density, shift of the mobile structures toward it, and compensatory collapse of the other lobes",
+    "Increased density only, with no displacement of fissures or mobile structures"
+   ],
+   "answer": 0,
+   "explanation": "Box 6.1 lists these four signs: displacement of the major or minor fissure toward the atelectasis, increased density of the atelectatic lung, shift of the heart, trachea and hemidiaphragms toward it, and compensatory overinflation of the unaffected lung. The wrong sets reverse a direction; shift away from the opacity is what a large effusion does.",
+   "book": "Chapter 6, Obstructive Atelectasis (Box 6.1)",
+   "covers": [
+    "t06"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c06-m07",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "Which statement describes the normal frontal chest radiograph correctly?",
+   "options": [
+    "The trachea is midline apart from a slight rightward deviation at the aortic knob, but the left hemidiaphragm is higher than the right in most people",
+    "The right heart border normally lies over the spine, and the right hemidiaphragm is usually slightly higher than the left",
+    "The trachea normally deviates slightly to the left at the aortic knob, and the right heart border projects at least 1 cm to the right of the spine",
+    "The trachea is midline apart from a slight rightward deviation at the aortic knob, the right heart border projects at least 1 cm to the right of the spine, and the right hemidiaphragm is usually slightly higher than the left"
+   ],
+   "answer": 3,
+   "explanation": "The aortic knob is on the left, which nudges the trachea slightly to the right. The right heart border is at least 1 cm to the right of the spine on a nonrotated film, and the right hemidiaphragm is higher than the left by about half an interspace (the left is higher in only about 10%). Knowing these baselines lets you recognise a shift: for example, in left-sided atelectasis the right heart border moves over the spine.",
+   "book": "Chapter 6, Obstructive Atelectasis (signs and Important Points)",
+   "covers": [
+    "t07",
+    "t08",
+    "t09"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c06-m08",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "In long-standing atelectasis of the left lung, which findings reflect compensatory overinflation?",
+   "options": [
+    "The right lung stays inside its own hemithorax and the retrosternal clear space becomes smaller",
+    "The left hemidiaphragm is pushed down and the left ribs are spread apart",
+    "The right lung extends across the midline on the frontal view, and the retrosternal clear space is larger on the lateral view",
+    "The left lung extends across the midline in front of the aorta"
+   ],
+   "answer": 2,
+   "explanation": "The greater the volume loss and the longer it lasts, the more the unaffected lobes or the opposite lung overinflate to fill the space. This shows as extension of the opposite lung across the midline on a frontal film and a larger retrosternal clear space on the lateral view; the collapsed left lung itself cannot do this.",
+   "book": "Chapter 6, Obstructive Atelectasis (overinflation)",
+   "covers": [
+    "t10"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c06-m09",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "Which situation produces passive (compressive) atelectasis?",
+   "options": [
+    "A carcinoid tumour in a lobar bronchus",
+    "Large pleural effusions pressing on the lower lobes",
+    "Scarring of the upper lobes from old tuberculosis",
+    "Loss of surfactant in acute respiratory distress syndrome"
+   ],
+   "answer": 1,
+   "explanation": "Passive atelectasis occurs when something in the pleural space or chest (effusion, pneumothorax, mass) disrupts pleural contact and compresses the lung, or when poor inspiration hypoinflates the lungs. The carcinoid blocks a bronchus (obstructive), scarring is cicatrization and surfactant loss is adhesive atelectasis. Passive atelectasis usually re-expands when the cause is removed.",
+   "book": "Chapter 6, Passive Atelectasis",
+   "covers": [
+    "t11"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c06-m10",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "A smoker has a completely opaque right hemithorax with no air bronchograms, and the trachea and heart are not shifted. Which combination should you suspect?",
+   "options": [
+    "Obstructive atelectasis from a central bronchogenic carcinoma balanced by a large malignant pleural effusion",
+    "Pneumonia of the entire right lung",
+    "Subsegmental atelectasis from splinting",
+    "Passive atelectasis from a poor inspiratory effort"
+   ],
+   "answer": 0,
+   "explanation": "The pull of the atelectasis cancels the push of the effusion, producing no net shift; the lack of air bronchograms argues against pneumonia. This ominous pairing is suspicious for a thoracic malignancy (a central carcinoma with metastases causing the effusion). Splinting and poor inspiration cause only small basal changes.",
+   "book": "Chapter 6, Passive Atelectasis (Fig. 6.3)",
+   "covers": [
+    "t12"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c06-m11",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "A portable film shows patchy increased density at both lung bases, and the patient took in fewer than eight posterior ribs of air. What is the best interpretation and next step?",
+   "options": [
+    "Definite bibasilar pneumonia; start antibiotics without further imaging",
+    "Round atelectasis; arrange a biopsy of the bases",
+    "Cicatrization atelectasis from tuberculosis; start anti-tuberculous treatment",
+    "Passive atelectasis from a poor inspiration may be mimicking airspace disease; check the lateral view or repeat the film with a deeper breath"
+   ],
+   "answer": 3,
+   "explanation": "A shallow breath crowds the lung markings at the bases and can mimic airspace disease. The book advises thinking of passive atelectasis when the inspiration is under eight posterior ribs and confirming real basal airspace disease on the lateral projection.",
+   "book": "Chapter 6, Passive Atelectasis (Diagnostic Pitfalls)",
+   "covers": [
+    "t13"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c06-m12",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "The day after abdominal surgery a patient who cannot take a deep breath has several linear bands at both bases, parallel to the diaphragm, with no shift of the heart or trachea. What is this and how can you tell it from scarring?",
+   "options": [
+    "Round atelectasis; it contains a comet tail of vessels",
+    "Cicatrization atelectasis; it is permanent and shows hilar retraction",
+    "Subsegmental atelectasis; it disappears within a few days of deep breathing, whereas scarring remains",
+    "Obstructive atelectasis; it fans out from a blocked bronchus"
+   ],
+   "answer": 2,
+   "explanation": "Subsegmental (discoid, plate-like, linear) atelectasis produces the least volume loss, so no shift, and is seen mostly in splinting patients such as postoperative patients and those with pleuritic pain. On a single film it can be identical to chronic linear scarring, but it clears rapidly with deep breathing while scars persist.",
+   "book": "Chapter 6, Subsegmental Atelectasis",
+   "covers": [
+    "t16",
+    "t17"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c06-m13",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "A pleural-based, mass-like density at the lung base in a patient with prior asbestos exposure has bronchovascular markings that curve from it toward the hilum like a comet tail. What is it?",
+   "options": [
+    "A bronchogenic carcinoma, which should be assumed from the mass-like appearance alone",
+    "Round atelectasis",
+    "Subsegmental atelectasis from splinting",
+    "Obstructive atelectasis of a whole lobe"
+   ],
+   "answer": 1,
+   "explanation": "Round atelectasis develops from prior pleural disease (asbestos, TB) plus an effusion; when the effusion recedes a portion of atelectatic lung stays trapped and appears as a mass-like lesion, which can be mistaken for a tumour. The comet-tail bronchovascular markings leading to the hilum on CT are characteristic.",
+   "book": "Chapter 6, Round (or Rounded) Atelectasis",
+   "covers": [
+    "t18"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c06-m14",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "A film shows reduced volume of both upper lobes with fibrotic stranding, marked pleural thickening and upward retraction of both hila in a patient with old tuberculosis. Which type of atelectasis is this?",
+   "options": [
+    "Cicatrization atelectasis",
+    "Adhesive atelectasis",
+    "Obstructive atelectasis",
+    "Passive atelectasis"
+   ],
+   "answer": 0,
+   "explanation": "Scarring and fibrosis shrink the lung; tuberculosis is the most common cause and typically affects the upper lobes (reticular pattern, pleural thickening, hilar retraction). Histoplasmosis, silicosis, scleroderma, late radiation pneumonitis and IPF are other causes. Adhesive means surfactant loss, obstructive a blocked airway, and passive pleural-space compression or shallow breathing.",
+   "book": "Chapter 6, Scarring and Atelectasis (Cicatrization Atelectasis)",
+   "covers": [
+    "t19"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c06-m15",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "A lobar collapse seems to be improving, because the opacity on serial films is getting smaller. Why might this be misleading?",
+   "options": [
+    "A smaller opacity always means the obstruction has been relieved",
+    "Lobes collapse in a round configuration, so size on the film does not matter",
+    "The unaffected lobes shrink when a lobe collapses, which makes the opacity look smaller",
+    "The more a lobe collapses, the smaller and less visible it becomes, so worsening can be mistaken for improvement; check the displacement of the fissures or hemidiaphragm, or use CT"
+   ],
+   "answer": 3,
+   "explanation": "Lobes collapse in a fan shape toward the hilum, and as volume falls the density becomes smaller and harder to see on the radiograph. Looking at how far the interlobar fissures or hemidiaphragms have moved, or doing a CT, shows the true degree of collapse. Unaffected lobes tend to hyperinflate rather than shrink.",
+   "book": "Chapter 6, Patterns of Collapse in Lobar Atelectasis (Diagnostic Pitfalls)",
+   "covers": [
+    "t20",
+    "t21"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c06-m16",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "A hilar mass with right upper lobe collapse produces a combination of the mass and an upward-displaced minor fissure that looks like an S on the frontal film. What is this sign called?",
+   "options": [
+    "The luftsichel sign",
+    "The comet-tail sign",
+    "The S sign of Golden (reverse S sign)",
+    "The juxtaphrenic peak"
+   ],
+   "answer": 2,
+   "explanation": "The S sign of Golden is the right upper lobe collapse over a large hilar mass: the minor fissure is pulled upward and bulges around the mass. The luftsichel sign belongs to left upper lobe collapse, the comet tail to round atelectasis, and a juxtaphrenic peak is a peak of the raised hemidiaphragm that may accompany upper lobe collapse but is not the S shape.",
+   "book": "Chapter 6, Patterns of Collapse in Lobar Atelectasis (Right upper lobe)",
+   "covers": [
+    "t22"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c06-m17",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "A frontal film shows a sickle-shaped lucency along the left side of the mediastinum, a hazy increased density in the upper left lung, the trachea and heart shifted slightly to the left and the left hemidiaphragm pulled up. Which lobe is collapsed?",
+   "options": [
+    "The right upper lobe",
+    "The left upper lobe",
+    "The left lower lobe",
+    "The right middle lobe"
+   ],
+   "answer": 1,
+   "explanation": "In left upper lobe collapse the overinflated superior segment of the left lower lobe extends to the apex around the collapsed lobe, producing the sickle-shaped lucency called the luftsichel sign. The structures shift toward the left and the left hemidiaphragm rises; the lateral view shows a band-like density with the major fissure displaced forward.",
+   "book": "Chapter 6, Patterns of Collapse in Lobar Atelectasis (Left upper lobe)",
+   "covers": [
+    "t23"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c06-m18",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "A frontal film shows a triangular density next to the heart. The right heart border is lost, the minor fissure is displaced downward, but the right hemidiaphragm is sharply seen. Which lobe has collapsed?",
+   "options": [
+    "The right middle lobe",
+    "The right lower lobe",
+    "The right upper lobe",
+    "The left lingula"
+   ],
+   "answer": 0,
+   "explanation": "The right middle lobe touches the right heart border (silhouette sign) but not the hemidiaphragm, and its volume loss drags the minor fissure downward; on the lateral view the triangle has its base anteriorly and its apex at the hilum. A collapsed lower lobe silhouettes the hemidiaphragm, and an upper lobe pulls the minor fissure upward.",
+   "book": "Chapter 6, Patterns of Collapse in Lobar Atelectasis (Right middle lobe)",
+   "covers": [
+    "t26"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c06-m19",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "On an ICU film the left hemidiaphragm cannot be followed through the heart shadow and a triangular density lies behind the heart. What is the most likely diagnosis, and why is it worth checking in every ICU film?",
+   "options": [
+    "Right middle lobe atelectasis, the commonest site in critically ill patients",
+    "Left upper lobe atelectasis, which silhouettes the left hemidiaphragm",
+    "Passive atelectasis of both lower lobes from poor inspiration",
+    "Left lower lobe atelectasis, which is the commonest site of atelectasis in critically ill patients"
+   ],
+   "answer": 3,
+   "explanation": "Lower lobe atelectasis is a fan-shaped triangle bounded by the displaced major fissure and it silhouettes the adjacent hemidiaphragm; on the lateral view the major fissure moves backward and a small triangle sits in the posterior costophrenic sulcus. In critically ill patients the left lower lobe is the most frequent site, so check that the whole left hemidiaphragm is visible through the heart.",
+   "book": "Chapter 6, Patterns of Collapse in Lobar Atelectasis (Important Points)",
+   "covers": [
+    "t24",
+    "t25"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c06-m20",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "A frontal film shows a completely opaque left hemithorax with the trachea shifted to the left. The right heart border has been pulled over the spine, the right lung extends across the midline in front of the aorta, and only the right hemidiaphragm can be seen. What is the diagnosis?",
+   "options": [
+    "A large left pleural effusion",
+    "Pneumonia of the entire left lung",
+    "Atelectasis of the entire left lung",
+    "A large left pneumothorax"
+   ],
+   "answer": 2,
+   "explanation": "The mobile structures are pulled toward the opacity, the opposite lung overinflates and crosses the midline, and the left hemidiaphragm disappears because it is in contact with the airless lung. A large effusion would push the trachea and heart away, pneumonia would not shift them, and a pneumothorax would be black.",
+   "book": "Chapter 6, Patterns of Collapse in Lobar Atelectasis (Atelectasis of the left lung)",
+   "covers": [
+    "t28"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c06-m21",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "Which statement about how atelectasis resolves is correct?",
+   "options": [
+    "Atelectasis always takes several weeks to clear once the obstruction is removed",
+    "Acute atelectasis can clear within hours once the obstruction is removed, and a slowly clearing one may show patchy airspace disease surrounded by growing aerated zones",
+    "A clearing atelectasis always becomes smaller and denser first before it clears",
+    "Resolution is identical for acute and chronic atelectasis"
+   ],
+   "answer": 1,
+   "explanation": "The rate depends in part on how fast the segment, lobe or lung collapsed: the more acute the collapse, the more quickly it clears, while chronic collapse takes longer. During slow resolution patchy airspace disease appears and the aerated zones around it increase until the lung is completely cleared.",
+   "book": "Chapter 6, How Atelectasis Resolves",
+   "covers": [
+    "t29"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c06-m22",
+   "type": "mcq",
+   "topic": "ch06",
+   "prompt": "An endotracheal tube placed in an infant has its tip in the bronchus intermedius. The right upper lobe and the whole left lung are opaque and the minor fissure is elevated. What do you advise?",
+   "options": [
+    "The tube is too deep, so withdraw it above the carina; the atelectasis then usually clears rapidly",
+    "The tube is correctly placed, so treat the infant for bilateral pneumonia",
+    "Advance the tube further so the right lung is better ventilated",
+    "Insert a chest drain to treat the pneumothorax"
+   ],
+   "answer": 0,
+   "explanation": "A tube that extends beyond the carina into the bronchus intermedius aerates only the right middle and lower lobes, so the unaerated right upper lobe and left lung collapse; the raised minor fissure shows volume loss. Pulling the tube back above the carina usually reverses the atelectasis quickly. A pneumothorax would make the lung lucent, not opaque.",
+   "book": "Chapter 6, Case Quiz 6",
+   "covers": [
+    "t30"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c06-e01",
+   "type": "essay",
+   "topic": "ch06",
+   "prompt": "These six frontal films come from patients in whom a radiologist marked atelectasis (often next to a lung mass). In two to four sentences, list the signs of volume loss that you would look for in obstructive atelectasis, describe how the trachea, the heart borders and the hemidiaphragm are expected to move in left-sided and in right-sided atelectasis of a whole lung, and say what the rest of the lung does to compensate.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00010815-006",
+     "thumb": "cxr-findings-2/thumbs/dx-c186068790.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00020124-003",
+     "thumb": "cxr-findings-2/thumbs/dx-186e54841f.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00003440-000",
+     "thumb": "cxr-findings-3/thumbs/dx-2f63eafd2a.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00030674-000",
+     "thumb": "cxr-findings/thumbs/dx-517cbce0b9.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00016267-000",
+     "thumb": "cxr-findings/thumbs/dx-f6ac5fe3e2.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00008554-009",
+     "thumb": "cxr-findings-3/thumbs/dx-9e94a9442a.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "The interlobar fissure is displaced toward the collapse",
+     "points": 1,
+     "terms": [
+      "fissure"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "The atelectatic lung or lobe is denser (whiter)",
+     "points": 1,
+     "terms": [
+      "dense",
+      "denser",
+      "white",
+      "opacity",
+      "opaque",
+      "increased density"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "The trachea and heart move toward the atelectasis",
+     "points": 1,
+     "terms": [
+      "trachea",
+      "mediastin",
+      "toward",
+      "towards",
+      "pulled",
+      "shift"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Right-sided: left heart border moves toward the spine; left-sided: right heart border overlies the spine",
+     "points": 2,
+     "terms": [
+      "spine",
+      "heart border"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "The hemidiaphragm rises and may be silhouetted (stomach bubble elevated on the left)",
+     "points": 1,
+     "terms": [
+      "hemidiaphragm",
+      "diaphragm",
+      "silhouette",
+      "stomach bubble",
+      "elevat",
+      "raised"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Compensatory overinflation of the other lobes or opposite lung, which may cross the midline",
+     "points": 1,
+     "terms": [
+      "overinfl",
+      "over-inflat",
+      "hyperinfl",
+      "compensat",
+      "across the midline",
+      "cross the midline",
+      "crosses the midline"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "A lobe collapses in a fan shape with its apex at the hilum",
+     "points": 1,
+     "terms": [
+      "fan",
+      "triangle",
+      "triangular",
+      "wedge",
+      "hilum"
+     ]
+    }
+   ],
+   "model": "Signs of obstructive atelectasis: displacement of a fissure toward the collapse, increased density, shift of the mobile structures toward it (trachea, heart, hemidiaphragm) and compensatory overinflation of the unaffected lung. In right-sided atelectasis the heart moves right and the left heart border comes near the spine, and in left-sided atelectasis the right heart border overlies the spine; the hemidiaphragm rises and may be silhouetted (an elevated stomach bubble shows the left one). The opposite lung overinflates and may cross the midline, and a collapsed lobe is fan-shaped with its apex at the hilum.",
+   "book": "Chapter 6, Obstructive Atelectasis / Patterns of Collapse in Lobar Atelectasis",
+   "covers": [
+    "t06",
+    "t07",
+    "t08",
+    "t09",
+    "t10",
+    "t20",
+    "t27",
+    "t28",
+    "t01"
+   ]
+  },
+  {
+   "id": "c06-e02",
+   "type": "essay",
+   "topic": "ch06",
+   "prompt": "In images 1 and 2 a radiologist marked atelectasis at the lung bases (band-like densities across both bases in image 1), images 3 and 4 show pleural effusions, image 5 is a CT with a large right pleural effusion and image 6 has both a lung mass and atelectasis marked. In two to four sentences, name the types of atelectasis, give for each its mechanism or typical cause and look, and say which kinds re-expand when the cause is removed. Contrast a large pneumothorax with atelectasis of a whole lung.",
+   "images": [
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00012299-002",
+     "thumb": "cxr-findings/thumbs/dx-e9d7962cc1.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00016267-000",
+     "thumb": "cxr-findings/thumbs/dx-f6ac5fe3e2.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00001437-012",
+     "thumb": "cxr-findings/thumbs/dx-396c752237.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00013337-000",
+     "thumb": "cxr-findings/thumbs/dx-6356f62568.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "pe-cta",
+     "caseId": "pe-pat021",
+     "thumb": "pe-cta/thumbs/ct-685a0b41a1.png",
+     "caption": "Image 5 · Chest CT, axial"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00020124-003",
+     "thumb": "cxr-findings-2/thumbs/dx-186e54841f.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Obstructive (resorptive): a blocked bronchus (tumour, mucous plug, foreign body); the pleural layers stay in contact",
+     "points": 2,
+     "terms": [
+      "obstruct",
+      "resorpt",
+      "bronchus",
+      "tumour",
+      "tumor",
+      "mucous",
+      "mucus",
+      "foreign body"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Passive (compressive): effusion, pneumothorax or mass, or poor inspiration; usually re-expands when the cause is removed",
+     "points": 2,
+     "terms": [
+      "passive",
+      "compress",
+      "effusion",
+      "pneumothorax",
+      "poor inspiration",
+      "re-expand",
+      "reexpand"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Adhesive: loss of surfactant (ARDS, neonates)",
+     "points": 1,
+     "terms": [
+      "adhesive",
+      "surfactant",
+      "ards",
+      "respiratory distress"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Subsegmental: linear bands at the bases from splinting, with little volume loss, clearing with deep breathing",
+     "points": 1,
+     "terms": [
+      "subsegmental",
+      "linear",
+      "plate",
+      "discoid",
+      "splint"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Cicatrization: scarring (most often tuberculosis), mainly in the upper lobes",
+     "points": 1,
+     "terms": [
+      "cicatri",
+      "scar",
+      "fibros",
+      "tuberculosis",
+      "tb"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Round atelectasis is passive and does not re-expand; it is mass-like with a comet tail on CT",
+     "points": 1,
+     "terms": [
+      "round",
+      "comet",
+      "mass-like",
+      "trapped"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "A large pneumothorax is black with no shift toward it; whole-lung atelectasis is white with shift toward it",
+     "points": 1,
+     "terms": [
+      "pneumothorax",
+      "black",
+      "lucent",
+      "no shift"
+     ]
+    }
+   ],
+   "model": "Types: obstructive (a blocked bronchus from tumour, mucous plug or foreign body, with the pleural layers still in contact), passive or compressive (effusion, pneumothorax or mass, or a poor inspiration; usually re-expands when the cause is removed), adhesive (loss of surfactant, as in ARDS), subsegmental (linear basal bands from splinting, little volume loss, clears with deep breathing) and cicatrization (scarring, most often tuberculosis, mainly in the upper lobes). Round atelectasis is a passive form that stays trapped after an effusion recedes and mimics a tumour. A large pneumothorax is black with no shift toward it; whole-lung atelectasis is white with a shift toward it.",
+   "book": "Chapter 6, Types of Atelectasis (Table 6.1) / Chapter 5, Table 5.1",
+   "covers": [
+    "t02",
+    "t11",
+    "t14",
+    "t15",
+    "t16",
+    "t18",
+    "t19",
+    "t31",
+    "t03"
+   ]
+  },
+  {
+   "id": "c06-e03",
+   "type": "essay",
+   "topic": "ch06",
+   "prompt": "These six portable films come from hospital patients. In two to four sentences, explain which lobe is most often atelectatic in a critically ill patient and what you must check on the film, what a too-deep endotracheal tube can do (and what you would do about it), how quickly atelectasis can clear and how it looks while clearing, and why a collapsing lobe can seem to get better when it is actually getting worse.",
+   "images": [
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-covid-19-ar-16445122",
+     "thumb": "more-ct-xr/thumbs/dx-85eed985e2.png",
+     "caption": "Image 1 · Chest, portable frontal"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-covid-19-ar-16445138",
+     "thumb": "more-ct-xr/thumbs/dx-15cfc40bd8.png",
+     "caption": "Image 2 · Chest, portable frontal"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-covid-19-ar-16424076",
+     "thumb": "more-ct-xr/thumbs/dx-1b8b3591d3.png",
+     "caption": "Image 3 · Chest, portable frontal"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-covid-19-ar-16434369",
+     "thumb": "more-ct-xr/thumbs/dx-4aede1715f.png",
+     "caption": "Image 4 · Chest, portable frontal"
+    },
+    {
+     "packId": "chest-pairs",
+     "caseId": "chest-pairs-covid-19-ar-16434363",
+     "thumb": "chest-pairs/thumbs/dx-ff70566980.png",
+     "caption": "Image 5 · Chest, portable frontal"
+    },
+    {
+     "packId": "chest-pairs",
+     "caseId": "chest-pairs-covid-19-ar-16434411",
+     "thumb": "chest-pairs/thumbs/dx-f8e3c2c288.png",
+     "caption": "Image 6 · Chest, portable frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "The left lower lobe is the commonest site in critically ill patients; check that the left hemidiaphragm is visible through the heart shadow",
+     "points": 2,
+     "terms": [
+      "left lower",
+      "left hemidiaphragm",
+      "hemidiaphragm",
+      "diaphragm"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "A tube beyond the carina enters the bronchus intermedius (or a main bronchus) and aerates only part of the lung, so other lobes or the other lung collapse",
+     "points": 2,
+     "terms": [
+      "carina",
+      "bronchus intermedius",
+      "too deep",
+      "too far",
+      "main bronchus",
+      "right main",
+      "tube"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Withdrawing the tube above the carina usually clears the atelectasis rapidly",
+     "points": 1,
+     "terms": [
+      "withdraw",
+      "pull back",
+      "reposition",
+      "retract",
+      "clear"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Acute atelectasis can resolve within hours; chronic takes longer; clearing looks patchy with growing aerated zones",
+     "points": 1,
+     "terms": [
+      "hours",
+      "patchy",
+      "aerated",
+      "chronic",
+      "days"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "As a lobe collapses it becomes less visible, so check the fissure or hemidiaphragm displacement (or CT) rather than assuming improvement",
+     "points": 2,
+     "terms": [
+      "less visible",
+      "smaller",
+      "fissure",
+      "displacement",
+      "ct",
+      "worsening"
+     ]
+    }
+   ],
+   "model": "In critically ill patients atelectasis is most frequent in the left lower lobe, so check that the whole left hemidiaphragm is seen through the heart. A tube that passes the carina into the bronchus intermedius aerates only the right middle and lower lobes, so the right upper lobe and the left lung collapse; withdrawing the tube above the carina usually clears it quickly. Acute atelectasis can resolve in hours (slower if chronic), with patchy airspace disease and growing aerated zones as it clears. A collapsing lobe becomes less visible, so judge progress by fissure or hemidiaphragm displacement or by CT.",
+   "book": "Chapter 6, Patterns of Collapse in Lobar Atelectasis / How Atelectasis Resolves / Case Quiz 6",
+   "covers": [
+    "t05",
+    "t21",
+    "t25",
+    "t29",
+    "t30"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,925 @@
+{
+ "chapter": 3,
+ "title": "Recognizing Normal Cardiac Anatomy",
+ "blurb": "Heart size and contours on the chest film, six levels of cardiac CT, coronary arteries and cardiac MRI views.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Cardiothoracic ratio: widest transverse heart diameter over widest internal rib-cage diameter at the diaphragm; normally under 50% in adults at full inspiration"
+  },
+  {
+   "id": "t02",
+   "label": "Outflow obstruction (aortic stenosis, coarctation, pulmonic stenosis, systemic hypertension): ventricle hypertrophies first, lumen shrinks, heart enlarges only when it decompensates"
+  },
+  {
+   "id": "t03",
+   "label": "Cardiomegaly on a radiograph = enlarged silhouette from ventricular enlargement, not isolated atrial enlargement (e.g. early mitral stenosis)"
+  },
+  {
+   "id": "t04",
+   "label": "Volume overload enlarges chambers more than pressure overload: heart bigger in aortic regurgitation than stenosis; left atrium bigger in mitral regurgitation than stenosis"
+  },
+  {
+   "id": "t05",
+   "label": "Normal frontal contours: right = ascending aorta then right atrium; left from the top = aortic knob, main pulmonary artery, left atrial appendage indentation, left ventricle; descending aorta along the spine"
+  },
+  {
+   "id": "t06",
+   "label": "Contour rules: ascending aorta not beyond right heart border; knob under 35 mm and pushes trachea slightly right; pulmonary artery segment flat or concave (convex in young women); enlarged LA fills the concavity or makes a double density; LV posterior and RV anterior; tortuous descending aorta swings left"
+  },
+  {
+   "id": "t07",
+   "label": "Aorta in aortic stenosis (convex ascending aorta from post-stenotic dilatation, normal knob) versus systemic hypertension (ascending and descending aorta both too far out, knob enlarged); Case Quiz 3"
+  },
+  {
+   "id": "t08",
+   "label": "Cardiac CT technique: fast multislice, intravenous iodinated contrast, ECG gating (images in the least-motion phase, usually diastole); ECG gating also in cardiac MRI"
+  },
+  {
+   "id": "t09",
+   "label": "Six key CT levels top to bottom: five-vessel, aortic arch, aortopulmonary window, main pulmonary artery, high cardiac, low cardiac; right and left mean the patient's"
+  },
+  {
+   "id": "t10",
+   "label": "Five-vessel level: trachea (black, oval, about 2 cm), esophagus behind it, venous structures more anterior than arterial, brachiocephalic veins behind the sternum, arteries right to left innominate, left common carotid, left subclavian"
+  },
+  {
+   "id": "t11",
+   "label": "Aortic arch level: inverted U (comma-shaped if the very top is cut); SVC to the right of the trachea receives the azygos vein"
+  },
+  {
+   "id": "t12",
+   "label": "Aortopulmonary window level: ascending and descending aorta, SVC, top of left pulmonary artery; AP window (lymph nodes); carina at or just below; ascending aorta 2.5 to 3.5 cm, descending 2 to 3 cm"
+  },
+  {
+   "id": "t13",
+   "label": "Main pulmonary artery level: main, right and left pulmonary arteries (LPA higher, continuing the main PA; RPA at 90 degrees passing behind the ascending aorta; LPA anterior to descending aorta), main bronchi, bronchus intermedius with only lung behind"
+  },
+  {
+   "id": "t14",
+   "label": "High cardiac level: left atrium (posterior and central, pulmonary veins entering), right atrium (right border), aortic root, right ventricular outflow tract; PALS mnemonic (pulmonic valve anterior, lateral, superior to aortic valve)"
+  },
+  {
+   "id": "t15",
+   "label": "Low cardiac level: RA, RV (anterior behind sternum, more trabeculated, thinner wall), LV (left border, smoother, thicker wall), interventricular septum; normal pericardium about 2 mm outlined by fat"
+  },
+  {
+   "id": "t16",
+   "label": "Uses of cardiac CT: coronary arteries, masses, aorta including dissection, pericardial disease (also valves, wall motion, ejection fraction, perfusion); CCTA for acute or chronic chest pain; dose reduced"
+  },
+  {
+   "id": "t17",
+   "label": "Coronary calcium scoring: unenhanced CT, amount of calcium relates to atherosclerosis; mainly risk assessment in asymptomatic patients; zero has high negative predictive value; higher score = higher risk (100 to 300 mild to moderate, over 300 greater)"
+  },
+  {
+   "id": "t18",
+   "label": "Left coronary artery: from the left coronary cusp, divides almost at once into LAD (anterior interventricular groove to apex; diagonal and septal branches) and circumflex (between LA and LV; obtuse marginals to lateral LV wall)"
+  },
+  {
+   "id": "t19",
+   "label": "Right coronary artery: from the right aortic sinus, between RA and RV; conus branch (RVOT), sinus node artery, acute marginal (lateral RV wall), AV node branch, posterior descending artery (inferior LV wall and inferior septum)"
+  },
+  {
+   "id": "t20",
+   "label": "Coronary dominance set by the artery giving the PDA: right (most people), left (circumflex, about 10%, more non-fatal MI and mortality), co-dominant"
+  },
+  {
+   "id": "t21",
+   "label": "Triple rule-out emergent CT for acute chest pain: coronary disease, aortic dissection and pulmonary embolism together"
+  },
+  {
+   "id": "t22",
+   "label": "Cardiac MRI: anatomy and function with ECG gating and breath-holds; infarct scar, perfusion, defects, masses, valves, chambers; with or without gadolinium; helpful in children with congenital heart disease when echocardiography is inconclusive"
+  },
+  {
+   "id": "t23",
+   "label": "Cardiac MRI views: axial, sagittal, coronal plus horizontal long-axis (four-chamber), vertical long-axis (two-chamber), short-axis, three-chamber"
+  },
+  {
+   "id": "t24",
+   "label": "Use of each view: four-chamber for septal and lateral LV walls, apex, RV free wall, chamber size, mitral and tricuspid valves; vertical long-axis for anterior and inferior walls and apex; short-axis for volumes, mass, stroke volume, ejection fraction; three-chamber for mitral and aortic valves, LA size, LV walls"
+  },
+  {
+   "id": "t25",
+   "label": "Bright blood (gradient echo; function) versus black blood (spin echo; morphology) on cardiac MRI"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c03-m01",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "On a PA chest film taken at full inspiration the widest diameter of the heart is 13 cm and the widest internal diameter of the rib cage at the diaphragm is 24 cm. What is the correct interpretation?",
+   "options": [
+    "The ratio is about 54%, which is normal because adults may have up to 60%.",
+    "The ratio is about 46%, which is normal.",
+    "The cardiothoracic ratio is about 54%, above the usual upper limit of 50%, so the heart is enlarged.",
+    "The ratio is about 54%, but it cannot be applied to PA films, only to AP films."
+   ],
+   "answer": 2,
+   "explanation": "The cardiothoracic ratio compares the widest transverse heart diameter with the widest internal rib-cage diameter at the level of the diaphragm (13 / 24 = 54%). In normal adults at full inspiration it is usually less than 50%. AP films magnify the heart, so the ratio is less reliable on them, not on PA films.",
+   "book": "Chapter 3, Evaluating the Heart on Chest Radiographs: Recognizing a Normal-Sized Heart",
+   "covers": [
+    "t01"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c03-m02",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "A patient with aortic stenosis has a heart of normal size on the chest film. Which explanation is correct?",
+   "options": [
+    "Aortic stenosis makes the ventricle dilate immediately, but only the right side of the heart enlarges.",
+    "The left ventricle first hypertrophies; the thick wall narrows the lumen, so the heart enlarges only when the muscle fails and decompensates.",
+    "In aortic stenosis the ventricular wall becomes thinner, so the silhouette can never enlarge.",
+    "The silhouette is always large in aortic stenosis, so a normal size proves that the valve is normal."
+   ],
+   "answer": 1,
+   "explanation": "Obstruction to outflow (aortic stenosis, coarctation, pulmonic stenosis, systemic hypertension) produces hypertrophy rather than dilatation, so the silhouette may stay normal until decompensation. A normal heart size therefore does not exclude a stenotic lesion, which is why the aorta and the clinical context are also examined.",
+   "book": "Chapter 3, General Principles",
+   "covers": [
+    "t02"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c03-m03",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "A patient with early mitral stenosis has isolated left atrial enlargement. What do you expect of the cardiac silhouette on a frontal chest film?",
+   "options": [
+    "Usually normal in size, since cardiomegaly on a radiograph means ventricular enlargement, not isolated atrial enlargement.",
+    "Markedly enlarged, because the atria are the largest chambers of the heart and push the borders out.",
+    "Smaller than normal, because the left ventricle is underfilled in mitral stenosis.",
+    "Enlarged on the right side only, because the right atrium always dilates first."
+   ],
+   "answer": 0,
+   "explanation": "On plain films, cardiomegaly means enlargement of the silhouette produced by the ventricles. An enlarged left atrium may instead show as filling-in of the concavity below the main pulmonary artery segment on the left or as a double density, and the silhouette may still look normal in size.",
+   "book": "Chapter 3, General Principles",
+   "covers": [
+    "t03"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c03-m04",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "Which pair of statements is correct?",
+   "options": [
+    "The heart is usually larger in aortic stenosis than in aortic regurgitation, and the left atrium is larger in mitral stenosis than in mitral regurgitation.",
+    "The heart is usually larger in aortic regurgitation, but the left atrium is larger in mitral stenosis.",
+    "Heart size is the same in both aortic lesions, and the left atrium is larger in mitral stenosis.",
+    "The heart is usually larger in aortic regurgitation than in aortic stenosis, and the left atrium is usually larger in mitral regurgitation than in mitral stenosis."
+   ],
+   "answer": 3,
+   "explanation": "The most marked chamber enlargement comes from volume overload, as with regurgitant valves, rather than pressure overload, as with stenotic valves. In aortic stenosis the ventricle hypertrophies with a normal-sized silhouette, whereas in aortic regurgitation the left ventricle becomes very large.",
+   "book": "Chapter 3, General Principles (Fig. 3.4)",
+   "covers": [
+    "t04"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c03-m05",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "On a normal frontal chest film, which sequence correctly lists the contours of the left heart border from the top downward?",
+   "options": [
+    "Aortic knob, left ventricle, main pulmonary artery, left atrial appendage indentation",
+    "Main pulmonary artery, aortic knob, left atrial appendage indentation, left ventricle",
+    "Aortic knob, main pulmonary artery, left atrial appendage indentation, left ventricle",
+    "Left atrial appendage indentation, aortic knob, left ventricle, main pulmonary artery"
+   ],
+   "answer": 2,
+   "explanation": "The aortic knob is the foreshortened arch, the main pulmonary artery lies below it, and below that is a slight concavity where a large left atrium or its appendage appears. The last contour is the left ventricle. On the right, the ascending aorta is followed by the right atrium, and the descending aorta almost disappears with the spine.",
+   "book": "Chapter 3, The Normal Cardiac Contours (Fig. 3.2)",
+   "covers": [
+    "t05"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c03-m06",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "What is the normal size of the aortic knob on a frontal chest film, and what effect does it have on the trachea?",
+   "options": [
+    "Under 35 mm from the edge of the trachea; it pushes the trachea slightly to the left.",
+    "Under 35 mm from the edge of the trachea; it pushes the trachea slightly to the right.",
+    "Under 55 mm from the edge of the trachea; it pushes the trachea slightly to the right.",
+    "Under 35 mm from the edge of the trachea; it has no effect on the trachea."
+   ],
+   "answer": 1,
+   "explanation": "The aortic knob is the arch seen end-on; it should be less than 35 mm measured from the edge of the trachea and it normally displaces the trachea a little to the right. The ascending aorta should not project beyond the right heart border, and the main pulmonary artery segment is usually flat or concave.",
+   "book": "Chapter 3, The Normal Cardiac Contours: Key Points",
+   "covers": [
+    "t06"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c03-m07",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "A 52-year-old woman with fainting, angina and heart failure has a frontal chest film on which the ascending aorta bulges convexly to the right, almost to the right heart border, while the aortic knob and descending aorta are normal. Which diagnosis fits best?",
+   "options": [
+    "Post-stenotic dilatation of the ascending aorta from aortic valve stenosis",
+    "Systemic hypertension, which enlarges the ascending aorta, the knob and the descending aorta",
+    "Isolated left atrial enlargement from mitral stenosis",
+    "Aortic regurgitation, in which only the left ventricle enlarges"
+   ],
+   "answer": 0,
+   "explanation": "Turbulent flow beyond a stenotic aortic valve dilates the ascending aorta while the rest of the aorta stays normal; this was the chapter's opening case. In systemic hypertension both the ascending and the descending aorta project too far out and the knob is enlarged. Left atrial enlargement changes the left border below the main pulmonary artery.",
+   "book": "Chapter 3, The Normal Cardiac Contours (Fig. 3.3, Case Quiz 3)",
+   "covers": [
+    "t06",
+    "t07"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c03-m08",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "Which finding on a frontal chest film suggests left atrial enlargement?",
+   "options": [
+    "The aortic knob measures more than 35 mm and pushes the trachea toward the left.",
+    "The descending aorta becomes tortuous and swings away from the spine toward the left.",
+    "The ascending aorta projects convexly beyond the right heart border on the frontal film.",
+    "The concavity below the main pulmonary artery fills in, and a double density may appear on the right."
+   ],
+   "answer": 3,
+   "explanation": "A normal-sized left atrium does not contribute to the heart border on a non-rotated frontal film. When the left atrium and its appendage enlarge they fill in the concavity below the main pulmonary artery and may appear to the right as a double density. The other three findings concern the aorta (knob, descending aorta, ascending aorta).",
+   "book": "Chapter 3, The Normal Cardiac Contours: Key Points (Fig. 3.2)",
+   "covers": [
+    "t06"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c03-m09",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "Which description of cardiac CT acquisition is correct?",
+   "options": [
+    "A non-contrast scan without gating, because the heart barely moves during a normal heartbeat",
+    "A slow single-slice scanner with oral barium and a long breath-hold during each rotation",
+    "A fast multislice scanner with IV iodinated contrast and ECG gating, taking images in the least-motion phase, usually diastole",
+    "A gadolinium-enhanced scan with a gradient echo sequence and no use of x-rays at all"
+   ],
+   "answer": 2,
+   "explanation": "ECG gating lets the images be taken prospectively or retrospectively during the part of the cycle when motion is least, and powerful algorithms assemble them. Contrast opacifies the chambers and vessels. Cardiac MRI is also gated but uses gadolinium, not iodine.",
+   "book": "Chapter 3, Evaluating the Heart on Cardiac CT",
+   "covers": [
+    "t08"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c03-m10",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "Which statement about the CT levels through the great vessels is correct?",
+   "options": [
+    "At the five-vessel level the arteries run from the patient's right to left as left subclavian, left common carotid and innominate; the azygos vein drains into the aortic arch.",
+    "At the five-vessel level the arteries run from the patient's right to left as innominate, left common carotid and left subclavian; at the aortic arch level the azygos vein drains into the SVC to the right of the trachea.",
+    "At the five-vessel level the brachiocephalic veins lie behind the esophagus; at the aortic arch level the azygos vein lies to the left of the trachea.",
+    "At the five-vessel level the arteries are more anterior than the veins; at the aortic arch level the SVC lies to the left of the trachea."
+   ],
+   "answer": 1,
+   "explanation": "At the top level (the six levels run: five-vessel, aortic arch, aortopulmonary window, main pulmonary artery, high cardiac, low cardiac) the trachea is black, oval and about 2 cm wide with the esophagus behind. Venous structures lie more anteriorly than arterial ones; the brachiocephalic veins are just behind the sternum. Read right and left as the patient's.",
+   "book": "Chapter 3, Normal Cardiac CT Anatomy: Five-Vessel Level and Aortic Arch Level",
+   "covers": [
+    "t09",
+    "t10",
+    "t11"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c03-m11",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "On a contrast CT at the aortopulmonary window level the ascending aorta measures about 46 mm. How does this compare with the normal values?",
+   "options": [
+    "It is wider than the normal 2.5 to 3.5 cm of the ascending aorta (the descending aorta is normally 2 to 3 cm).",
+    "It is normal, because the ascending aorta is normally up to 5 cm.",
+    "It is normal, because the ascending aorta is normally larger than 4 cm at this level.",
+    "It is wide for the descending aorta, but normal for the ascending aorta."
+   ],
+   "answer": 0,
+   "explanation": "At this level the scan passes through the opening of the upside-down U of the arch, so the ascending aorta is a round density anteriorly and the descending aorta lies posterior and to the left of the spine. The ascending aorta usually measures 2.5 to 3.5 cm and the descending aorta 2 to 3 cm. The aortopulmonary window under the arch is where nodes may be found, and the carina lies at or just below this level.",
+   "book": "Chapter 3, Normal Cardiac CT Anatomy: Aortopulmonary Window Level",
+   "covers": [
+    "t12"
+   ],
+   "level": "hard",
+   "lesson": "hct-s0822"
+  },
+  {
+   "id": "c03-m12",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "Which description of the pulmonary arteries on CT at the main pulmonary artery level is correct?",
+   "options": [
+    "The right pulmonary artery is higher and continues the main pulmonary artery; the left arises at 90 degrees and passes behind the esophagus.",
+    "Both pulmonary arteries pass in front of the ascending aorta at the same height.",
+    "The left pulmonary artery passes behind the descending aorta and the right passes in front of the ascending aorta.",
+    "The left pulmonary artery is higher and continues the main pulmonary artery; the right pulmonary artery arises at about 90 degrees and passes behind the ascending aorta to the right."
+   ],
+   "answer": 3,
+   "explanation": "The left pulmonary artery looks like a direct continuation of the main pulmonary artery and passes in front of the descending aorta. The right pulmonary artery leaves at a right angle and crosses to the right behind the ascending aorta. At and below this level the right main bronchus is round, then the right upper lobe bronchus and bronchus intermedius appear, with only aerated lung behind the latter.",
+   "book": "Chapter 3, Normal Cardiac CT Anatomy: Main Pulmonary Artery Level",
+   "covers": [
+    "t13"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c03-m13",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "At the high cardiac level on CT, which statement is correct?",
+   "options": [
+    "The left atrium is anterior with the right ventricle behind it, and the pulmonic valve lies posterior and medial to the aortic valve.",
+    "The right atrium is posterior and central with pulmonary veins entering it, and the aortic valve lies anterior to the pulmonic valve.",
+    "The left atrium is posterior and central with pulmonary veins entering; the pulmonic valve lies anterior, lateral and superior to the aortic valve.",
+    "The left ventricle forms the right heart border, and the pulmonic valve lies inferior to the aortic valve."
+   ],
+   "answer": 2,
+   "explanation": "At this level the left atrium, right atrium, aortic root and right ventricular outflow tract are seen. The acronym PALS (pulmonic valve lies anterior, lateral and superior to the aortic valve) helps with the positions of the outflow tract and aortic root, which matter in congenital heart disease.",
+   "book": "Chapter 3, Normal Cardiac CT Anatomy: High Cardiac Level",
+   "covers": [
+    "t14"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c03-m14",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "On a contrast CT through the lower part of the heart, how can the right ventricle be told from the left ventricle?",
+   "options": [
+    "The right ventricle forms the left heart border and has the thicker wall; the left ventricle is anterior and trabeculated.",
+    "The right ventricle is anterior, behind the sternum, more trabeculated and thin-walled; the left forms the left border with a smoother, thicker wall.",
+    "The right ventricle is posterior and smooth-walled; the left ventricle is trabeculated and thin-walled.",
+    "The two ventricles cannot be told apart, because the interventricular septum is not visible on contrast CT."
+   ],
+   "answer": 1,
+   "explanation": "With intravenous contrast filling the chambers, the interventricular septum is visible between the ventricles. The right ventricle is the anterior chamber with coarse trabeculation and a thin wall; the left ventricle is the thick-walled, smoother chamber of the left border. When seen, the normal pericardium is about 2 mm thick, outlined by mediastinal fat outside and epicardial fat inside.",
+   "book": "Chapter 3, Normal Cardiac CT Anatomy: Low Cardiac Level",
+   "covers": [
+    "t15"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c03-m15",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "A patient presents with acute chest pain. Which statement about cardiac CT is correct?",
+   "options": [
+    "A triple rule-out CT assesses coronary disease, aortic dissection and pulmonary embolism together; CCTA suits chest pain, calcium scoring suits asymptomatic patients.",
+    "An unenhanced calcium score alone is the test of choice, because it also detects aortic dissection and pulmonary embolism.",
+    "A triple rule-out scan needs gadolinium and an MRI scanner, and it cannot be done on an emergency basis in chest pain.",
+    "Coronary CT angiography is used mainly to score asymptomatic patients, and calcium scoring is used mainly for chest pain."
+   ],
+   "answer": 0,
+   "explanation": "Cardiac CT is used for the coronary arteries, cardiac masses, the aorta (including dissection) and the pericardium. Contrast is needed to show vessel patency, thrombus and plaque. The triple rule-out scan is said to improve decision-making and allow earlier discharge. Dose, once relatively high, is now lowered.",
+   "book": "Chapter 3, Uses of Cardiac CT; Coronary Artery Dominance (triple rule-out box)",
+   "covers": [
+    "t16",
+    "t21"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c03-m16",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "An asymptomatic patient has a coronary calcium score of 0 on an unenhanced CT. What does this mean?",
+   "options": [
+    "It proves the coronary arteries are completely free of plaque and that no cardiac event will ever occur.",
+    "It means the patient is at the greatest risk, because the scan could not measure any calcium.",
+    "It indicates a mild to moderate risk of a cardiac event over the next 3 to 5 years.",
+    "No calcium is seen, which has a high negative predictive value for significant narrowing and a low near-term risk of an event."
+   ],
+   "answer": 3,
+   "explanation": "Calcium scoring combines the amount and density of coronary calcium: the higher the score, the greater the risk for a future cardiac event. Scores of 100 to 300 mean mild to moderate risk over 3 to 5 years, and above 300 a greater likelihood of severe disease and heart attack. A zero score has a high negative predictive value but is only a measure of calcified plaque and of risk, not a promise for life.",
+   "book": "Chapter 3, Calcium Scoring (Fig. 3.11)",
+   "covers": [
+    "t17"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c03-m17",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "Which description of the left coronary artery is correct?",
+   "options": [
+    "It arises from the right aortic sinus and runs between the right atrium and right ventricle to give the posterior descending artery.",
+    "It divides into the LAD and the acute marginal artery, which supplies the lateral wall of the right ventricle.",
+    "It arises from the left coronary cusp and divides at once into the LAD (anterior interventricular groove) and the circumflex (obtuse marginals).",
+    "It arises from the left coronary cusp and gives off the conus branch and the sinus node artery in most people."
+   ],
+   "answer": 2,
+   "explanation": "The LAD runs in the anterior interventricular groove to the apex and supplies most of the left ventricle: the anterior part of the septum through septal branches and the anterior wall through diagonals. The circumflex gives obtuse marginals to the lateral wall. The conus, sinus node, acute marginal and posterior descending arteries arise from the right coronary artery in most people.",
+   "book": "Chapter 3, Coronary CT Angiography: Normal Anatomy (Figs. 3.12 to 3.14)",
+   "covers": [
+    "t18"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c03-m18",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "Which pairing of right coronary artery branch and territory is correct?",
+   "options": [
+    "The acute marginal branch supplies the lateral wall of the left ventricle, and the conus branch supplies the inferior septum.",
+    "The conus branch supplies the right ventricular outflow tract, and the posterior descending artery supplies the inferior wall of the left ventricle and the inferior septum.",
+    "The posterior descending artery supplies the anterior septum, and the diagonal branches supply the lateral wall of the left ventricle.",
+    "The sinus node artery is the first branch of the left coronary artery, and the PDA supplies the right ventricular outflow tract."
+   ],
+   "answer": 1,
+   "explanation": "The RCA arises from the right aortic sinus and passes between the right atrium and right ventricle. In most people the conus branch comes first, then a sinus node artery, then branches to the anterior wall of the right ventricle; the acute marginal branch supplies the lateral wall of the right ventricle, and an AV node branch and the PDA arise posteriorly.",
+   "book": "Chapter 3, Coronary CT Angiography: Normal Anatomy (Fig. 3.15)",
+   "covers": [
+    "t19"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c03-m19",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "A CT coronary angiogram shows the posterior descending artery arising from the circumflex artery. How is the coronary circulation classed, and what does it imply?",
+   "options": [
+    "Left dominant, found in about 10% of people and linked to more non-fatal infarction and higher mortality",
+    "Right dominant, which is the arrangement found in the overwhelming majority of people",
+    "Co-dominant, because the circumflex artery also supplies the lateral wall of the left ventricle",
+    "Left dominant, found in about 85% of people and protective against myocardial infarction"
+   ],
+   "answer": 0,
+   "explanation": "Dominance is determined by the artery that gives the posterior descending artery. Most people are right dominant (the RCA supplies the PDA), about 10% are left dominant (circumflex) and the rest are co-dominant, with both arteries supplying the PDA. A left-dominant system is linked to more non-fatal infarcts and higher overall mortality.",
+   "book": "Chapter 3, Coronary Artery Dominance",
+   "covers": [
+    "t20"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c03-m20",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "A child with congenital heart disease has inconclusive echocardiography. Which imaging study does the book describe as particularly useful next?",
+   "options": [
+    "An unenhanced CT scan for coronary calcium scoring of the child",
+    "A radionuclide bone scan with technetium-99m phosphate carriers",
+    "A repeat chest radiograph with measurement of the cardiothoracic ratio",
+    "Cardiac MRI, ECG-gated and in breath-holds, with or without gadolinium"
+   ],
+   "answer": 3,
+   "explanation": "Cardiac MRI gives anatomic and functional images with ECG gating and short breath-holds and is useful in children when other studies conflict or are inconclusive. It can show scar from a myocardial infarction, perfusion, anatomic defects, masses and the function of valves and chambers.",
+   "book": "Chapter 3, Cardiac MRI",
+   "covers": [
+    "t22"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c03-m21",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "Which pairing of cardiac MRI view and its best use is correct?",
+   "options": [
+    "Short-axis: mitral and tricuspid valves and the left ventricular apex; four-chamber: ejection fraction and volumes.",
+    "Two-chamber: septal and lateral walls of the left ventricle; three-chamber: ejection fraction and ventricular mass.",
+    "Four-chamber: septal and lateral LV walls, apex, RV free wall, mitral and tricuspid valves; short-axis: volumes and ejection fraction.",
+    "Three-chamber: right ventricular free wall; short-axis: anterior and inferior walls and apex of the left ventricle."
+   ],
+   "answer": 2,
+   "explanation": "The horizontal long-axis view resembles an axial image; the vertical long-axis (two-chamber) view resembles a sagittal image and shows the anterior and inferior walls and the apex of the left ventricle; the short-axis view suits volumetric measurements, from which stroke volume and ejection fraction are calculated; the three-chamber view, like a coronal view, helps with the mitral and aortic valves, left atrial size and LV walls.",
+   "book": "Chapter 3, Normal Cardiac MRI Anatomy",
+   "covers": [
+    "t23",
+    "t24"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c03-m22",
+   "type": "mcq",
+   "topic": "ch03",
+   "prompt": "Which statement about bright-blood and black-blood cardiac MRI is correct?",
+   "options": [
+    "Bright-blood images are mainly for morphology, and black-blood images are mainly for function of the heart.",
+    "Bright-blood (gradient echo) images are mainly for function; black-blood (spin echo) images are mainly for morphology.",
+    "Both are used only for function, and they differ only in the dose of gadolinium that is given.",
+    "Black-blood images show the blood as bright, and they are used only for scar after infarction."
+   ],
+   "answer": 1,
+   "explanation": "The pulse sequence decides whether blood is bright (gradient echo, used for functional evaluation) or black (spin echo, used for anatomy). Black blood removes the bright signal from the lumen so the cardiac walls and structures can be assessed without interference.",
+   "book": "Chapter 3, Normal Cardiac MRI Anatomy (Fig. 3.22)",
+   "covers": [
+    "t25"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c03-e01",
+   "type": "essay",
+   "topic": "ch03",
+   "prompt": "These are six axial contrast-enhanced chest CT slices through the heart and great vessels. In two to four sentences: list the six key levels of the chest CT from top to bottom, then say how you tell the right from the left ventricle on a slice through the lower heart, which chamber is the most posterior on a slice through the upper heart, and how the right and left pulmonary arteries relate to the aorta at the pulmonary artery level.",
+   "images": [
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s0980",
+     "thumb": "heart-ct/thumbs/ct-ed3cd36c81.png",
+     "caption": "Image 1 · CT with contrast, axial"
+    },
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s1243",
+     "thumb": "heart-ct/thumbs/ct-aeccc85318.png",
+     "caption": "Image 2 · CT with contrast, axial"
+    },
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s0738",
+     "thumb": "heart-ct/thumbs/ct-6c5beece12.png",
+     "caption": "Image 3 · CT with contrast, axial"
+    },
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s1105",
+     "thumb": "heart-ct/thumbs/ct-ca7143be82.png",
+     "caption": "Image 4 · CT with contrast, axial"
+    },
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s1269",
+     "thumb": "heart-ct/thumbs/ct-640db203e8.png",
+     "caption": "Image 5 · CT with contrast, axial"
+    },
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s0654",
+     "thumb": "heart-ct/thumbs/ct-d3eeb7f984.png",
+     "caption": "Image 6 · CT with contrast, axial"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Names the upper levels: five-vessel, aortic arch, aortopulmonary window",
+     "points": 1,
+     "terms": [
+      "five-vessel",
+      "five vessel",
+      "aortic arch",
+      "arch level",
+      "aortopulmonary",
+      "aorto-pulmonary",
+      "ap window"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Names the lower levels: main pulmonary artery, high cardiac and low cardiac",
+     "points": 1,
+     "terms": [
+      "main pulmonary",
+      "pulmonary artery level",
+      "high cardiac",
+      "low cardiac",
+      "upper cardiac",
+      "lower cardiac",
+      "upper heart",
+      "lower heart"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "The right ventricle is anterior behind the sternum, more trabeculated, thinner wall",
+     "points": 2,
+     "terms": [
+      "right ventricle",
+      "rv",
+      "anterior",
+      "trabecul",
+      "thin"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "The left ventricle has the thicker wall and forms the left heart border",
+     "points": 1,
+     "terms": [
+      "left ventricle",
+      "lv",
+      "thick",
+      "left border",
+      "left heart border"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "The left atrium is the most posterior chamber (pulmonary veins enter it)",
+     "points": 1,
+     "terms": [
+      "left atrium",
+      "la ",
+      "la,",
+      "la.",
+      "posterior",
+      "pulmonary vein"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "The left pulmonary artery is higher and continues the main PA; the right arises at 90 degrees and passes behind the ascending aorta",
+     "points": 1,
+     "terms": [
+      "left pulmonary artery",
+      "right pulmonary artery",
+      "lpa",
+      "rpa",
+      "behind the ascending",
+      "posterior to the ascending",
+      "90",
+      "continuation"
+     ]
+    }
+   ],
+   "model": "From top to bottom the levels are five-vessel, aortic arch, aortopulmonary window, main pulmonary artery, high cardiac and low cardiac. On a slice through the lower heart the right ventricle is the anterior chamber behind the sternum, more trabeculated with a thinner wall, while the left ventricle forms the left heart border with a thicker, smoother wall; at the high cardiac level the left atrium is the posterior, central chamber, where the pulmonary veins enter. At the pulmonary artery level the left pulmonary artery is higher and continues the main pulmonary artery, while the right pulmonary artery arises at about 90 degrees and passes behind the ascending aorta.",
+   "book": "Chapter 3, Normal Cardiac CT Anatomy",
+   "covers": [
+    "t09",
+    "t13",
+    "t14",
+    "t15"
+   ]
+  },
+  {
+   "id": "c03-e02",
+   "type": "essay",
+   "topic": "ch03",
+   "prompt": "These are six axial cardiac MRI slices at about the level of the aortic root, in which the blood appears bright. In two to four sentences: why is cardiac MRI gated and acquired in breath-holds, which four additional views are used and what is each best for, and how do bright-blood and black-blood images differ in use?",
+   "images": [
+    {
+     "packId": "msd-heart-mri",
+     "caseId": "msdh-la-003",
+     "thumb": "msd-heart-mri/thumbs/mr-bb852da485.png",
+     "caption": "Image 1 · MRI, axial"
+    },
+    {
+     "packId": "msd-heart-mri",
+     "caseId": "msdh-la-004",
+     "thumb": "msd-heart-mri/thumbs/mr-9c7184958c.png",
+     "caption": "Image 2 · MRI, axial"
+    },
+    {
+     "packId": "msd-heart-mri",
+     "caseId": "msdh-la-005",
+     "thumb": "msd-heart-mri/thumbs/mr-8493f0cef2.png",
+     "caption": "Image 3 · MRI, axial"
+    },
+    {
+     "packId": "msd-heart-mri",
+     "caseId": "msdh-la-009",
+     "thumb": "msd-heart-mri/thumbs/mr-26a8813b60.png",
+     "caption": "Image 4 · MRI, axial"
+    },
+    {
+     "packId": "msd-heart-mri",
+     "caseId": "msdh-la-007",
+     "thumb": "msd-heart-mri/thumbs/mr-0a5179a2e5.png",
+     "caption": "Image 5 · MRI, axial"
+    },
+    {
+     "packId": "msd-heart-mri",
+     "caseId": "msdh-la-010",
+     "thumb": "msd-heart-mri/thumbs/mr-5127d011d0.png",
+     "caption": "Image 6 · MRI, axial"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "ECG gating and breath-holding reduce cardiac and respiratory motion blur",
+     "points": 1,
+     "terms": [
+      "gating",
+      "gated",
+      "ecg",
+      "breath",
+      "motion",
+      "blur"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Horizontal long-axis (four-chamber): septal and lateral LV walls, RV, valves",
+     "points": 1,
+     "terms": [
+      "four-chamber",
+      "four chamber",
+      "4-chamber",
+      "horizontal long",
+      "septal",
+      "tricuspid"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Vertical long-axis (two-chamber): anterior and inferior walls and apex",
+     "points": 1,
+     "terms": [
+      "two-chamber",
+      "two chamber",
+      "2-chamber",
+      "vertical long",
+      "anterior and inferior",
+      "inferior wall"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Short-axis: volumes, ejection fraction, ventricular mass",
+     "points": 1,
+     "terms": [
+      "short-axis",
+      "short axis",
+      "volum",
+      "ejection",
+      "stroke",
+      "mass"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Three-chamber: mitral and aortic valves, left atrial size and LV walls",
+     "points": 1,
+     "terms": [
+      "three-chamber",
+      "three chamber",
+      "3-chamber",
+      "aortic valve",
+      "mitral"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Bright blood (gradient echo) is used for function; black blood (spin echo) for anatomy or morphology",
+     "points": 2,
+     "terms": [
+      "bright blood",
+      "bright-blood",
+      "function",
+      "black blood",
+      "black-blood",
+      "morpholog",
+      "anatom"
+     ]
+    }
+   ],
+   "model": "ECG gating and short breath-holds freeze cardiac and respiratory motion. Beyond axial, sagittal and coronal planes, the horizontal long-axis (four-chamber) view shows the septal and lateral left ventricular walls, the right ventricle and the mitral and tricuspid valves; the vertical long-axis (two-chamber) view shows the anterior and inferior walls and apex; the short-axis view suits volumes, mass and ejection fraction; the three-chamber view suits the mitral and aortic valves, left atrial size and the left ventricular walls. Bright-blood (gradient echo) images are used for function and black-blood (spin echo) images for morphology.",
+   "book": "Chapter 3, Cardiac MRI",
+   "covers": [
+    "t22",
+    "t23",
+    "t24",
+    "t25"
+   ]
+  },
+  {
+   "id": "c03-e03",
+   "type": "essay",
+   "topic": "ch03",
+   "prompt": "These are six frontal chest radiographs that a radiologist labelled as showing an enlarged heart. In two to four sentences: how do you measure heart size on such a film and what is normal, which chambers produce cardiomegaly on a plain film, why can the heart look normal in aortic stenosis, and what are the contours of the left heart border from top to bottom?",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00009745-000",
+     "thumb": "cxr-findings-2/thumbs/dx-c53ac060dc.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00004344-013",
+     "thumb": "cxr-findings-2/thumbs/dx-526e509288.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00016414-000",
+     "thumb": "cxr-findings-2/thumbs/dx-f6d3fcd160.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00021443-000",
+     "thumb": "cxr-findings-2/thumbs/dx-a52e3ac716.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00005532-000",
+     "thumb": "cxr-findings-2/thumbs/dx-8d3502aa3c.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00018693-004",
+     "thumb": "cxr-findings-2/thumbs/dx-e46b46394a.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Cardiothoracic ratio: widest heart diameter over widest internal rib-cage diameter at the diaphragm",
+     "points": 1,
+     "terms": [
+      "cardiothoracic",
+      "ctr",
+      "widest",
+      "ratio"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Normal is less than 50% in adults at full inspiration",
+     "points": 1,
+     "terms": [
+      "50",
+      "half",
+      "less than 50",
+      "under 50",
+      "below 50"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Cardiomegaly means ventricular enlargement, not isolated atrial enlargement",
+     "points": 1,
+     "terms": [
+      "ventric",
+      "not atri",
+      "isolated atri",
+      "atrial enlargement"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Outflow obstruction first causes hypertrophy; the heart enlarges only after it decompensates",
+     "points": 1,
+     "terms": [
+      "hypertroph",
+      "decompens",
+      "obstruct",
+      "stenosis",
+      "thick"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Volume overload enlarges chambers more than pressure overload (regurgitation more than stenosis)",
+     "points": 1,
+     "terms": [
+      "volume overload",
+      "regurgit",
+      "pressure overload",
+      "volume"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Left border from the top: aortic knob, main pulmonary artery, left atrial appendage region, left ventricle",
+     "points": 1,
+     "terms": [
+      "knob",
+      "pulmonary artery",
+      "pulmonary trunk",
+      "atrial appendage",
+      "left atri",
+      "left ventricle"
+     ]
+    }
+   ],
+   "model": "Heart size is estimated with the cardiothoracic ratio, the widest transverse diameter of the heart over the widest internal diameter of the rib cage at the diaphragm, normally less than 50% in adults at full inspiration. On a plain film cardiomegaly reflects ventricular enlargement, not isolated atrial enlargement. In aortic stenosis and other outflow obstruction the ventricle hypertrophies first, so the heart is not enlarged until it decompensates; volume overload, as in regurgitation, produces larger chambers than pressure overload. The left heart border runs from the aortic knob to the main pulmonary artery, then the slight concavity of the left atrial appendage, then the left ventricle.",
+   "book": "Chapter 3, Evaluating the Heart on Chest Radiographs",
+   "covers": [
+    "t01",
+    "t02",
+    "t03",
+    "t04",
+    "t05"
+   ]
+  }
+ ]
+}

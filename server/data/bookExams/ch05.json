@@ -1,0 +1,831 @@
+{
+ "chapter": 5,
+ "title": "Recognizing the Causes of an Opacified Hemithorax",
+ "blurb": "A white hemithorax: shift toward or away, atelectasis, massive effusion, pneumonia of the whole lung and the postpneumonectomy chest.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Four causes of an opacified hemithorax: atelectasis of the entire lung, a very large pleural effusion, pneumonia of the entire lung, and (less common) pneumonectomy"
+  },
+  {
+   "id": "t02",
+   "label": "Entire-lung atelectasis: complete obstruction of the right or left main bronchus; air beyond it is absorbed into the blood and the lung loses volume"
+  },
+  {
+   "id": "t03",
+   "label": "Causes of entire-lung atelectasis: obstructing neoplasm in adults, asthma mucous plugs in younger people, aspirated foreign body (peanuts in children), mucous plugs in critically ill patients"
+  },
+  {
+   "id": "t04",
+   "label": "In obstructive atelectasis the visceral and parietal pleura do not separate, so atelectasis and pneumothorax look completely different"
+  },
+  {
+   "id": "t05",
+   "label": "Mobile structures (heart, trachea, hemidiaphragms) shift toward the opacified side in atelectasis (toward the volume loss); a shift can be a pull or a push"
+  },
+  {
+   "id": "t06",
+   "label": "Table 5.2, right-sided atelectasis: heart moves right (left heart border near the spine), trachea moves right, right hemidiaphragm rises and may disappear (silhouette sign)"
+  },
+  {
+   "id": "t07",
+   "label": "Table 5.2, left-sided atelectasis: heart moves left (right heart border overlaps the spine), trachea moves left, left hemidiaphragm rises and may disappear; the stomach bubble is elevated"
+  },
+  {
+   "id": "t08",
+   "label": "Table 5.1: pneumothorax is black/lucent with never a shift toward it; obstructive atelectasis is whiter with almost always a shift toward it"
+  },
+  {
+   "id": "t09",
+   "label": "In whole-lung atelectasis the opposite lung over-expands and crosses the midline"
+  },
+  {
+   "id": "t10",
+   "label": "Massive pleural effusion: blood, exudate or transudate; acts like a mass; the compressed lung beneath is usually not visible on radiographs"
+  },
+  {
+   "id": "t11",
+   "label": "Causes of massive effusion: malignancy (bronchogenic carcinoma, pleural metastases), trauma (hemothorax), tuberculosis (large silent effusions); heart-failure effusions are usually bilateral, asymmetric and rarely fill a hemithorax"
+  },
+  {
+   "id": "t12",
+   "label": "A large effusion pushes the heart and trachea away from the opacified side; Table 5.3 (right effusion: heart to the left, apex near the left lateral chest wall; hemidiaphragm disappears)"
+  },
+  {
+   "id": "t13",
+   "label": "Pitfall: a large malignant effusion can be balanced by obstructive atelectasis, giving no shift (suggests central bronchogenic carcinoma, CT shows it)"
+  },
+  {
+   "id": "t14",
+   "label": "An adult with an opacified hemithorax, no air bronchograms and little or no shift: suspect an obstructing bronchogenic carcinoma, perhaps with pleural metastases"
+  },
+  {
+   "id": "t15",
+   "label": "Pneumonia of the entire lung: exudate fills the airspaces; no pull and no push, so no shift of heart or trachea; air bronchograms may be present (Table 5.4)"
+  },
+  {
+   "id": "t16",
+   "label": "Pneumonectomy: removal of a lung; 5th or 6th rib is removed; metallic surgical clips at the hilum"
+  },
+  {
+   "id": "t17",
+   "label": "Postpneumonectomy course: air for about 24 hours, hemithorax fills with fluid over about 2 weeks, completely opaque by about 4 months; fibrosis makes it permanent with shift toward the operated side"
+  },
+  {
+   "id": "t18",
+   "label": "Pitfall: postpneumonectomy can look identical to atelectasis; look for the missing rib and hilar clips"
+  },
+  {
+   "id": "t19",
+   "label": "Case quiz: opaque left hemithorax with trachea pulled to the left and an elevated stomach bubble = atelectasis from an obstructing bronchogenic carcinoma in the left main bronchus"
+  },
+  {
+   "id": "t20",
+   "label": "The trachea, heart and hemidiaphragms are mobile structures that move if something pushes or pulls on them; the direction of shift is the key to the cause"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c05-m01",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "Which of the following is NOT one of the causes of a completely opacified hemithorax discussed in the chapter?",
+   "options": [
+    "A large pneumothorax",
+    "Atelectasis of the entire lung",
+    "A very large pleural effusion",
+    "Pneumonia of an entire lung"
+   ],
+   "answer": 0,
+   "explanation": "The causes are atelectasis of the whole lung, a very large effusion, pneumonia of the whole lung and, less commonly, pneumonectomy. A pneumothorax is air, so the hemithorax looks blacker (more lucent) than normal rather than white.",
+   "book": "Chapter 5, Recognizing the Causes of an Opacified Hemithorax (introduction)",
+   "covers": [
+    "t01"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c05-m02",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "A 3-year-old child chokes on a peanut. A film shows an opaque left hemithorax. What is the mechanism most likely responsible for the opacity?",
+   "options": [
+    "The inhaled peanut causes pneumonia that has filled the whole lung with pus",
+    "Air has entered the pleural space and is compressing the lung",
+    "The lung is filling with pleural fluid from bleeding",
+    "The foreign body blocks the left main bronchus, the air beyond it is absorbed and the lung collapses"
+   ],
+   "answer": 3,
+   "explanation": "With a complete obstruction of a main bronchus no air can enter the lung and the remaining air is absorbed into the pulmonary capillaries, so the lung loses volume and becomes opaque. Foreign bodies (peanuts in children) are a classic cause in the young, as are mucous plugs in asthma and a tumour in adults. Air in the pleural space would make the hemithorax blacker, not whiter.",
+   "book": "Chapter 5, Atelectasis of the Entire Lung",
+   "covers": [
+    "t02",
+    "t03"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c05-m03",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "Obstructive atelectasis and a pneumothorax both reduce the volume of a lung, yet they look very different on a radiograph. Why?",
+   "options": [
+    "In atelectasis air separates the visceral and parietal pleura, but in a pneumothorax the pleural layers remain in contact",
+    "In a pneumothorax the bronchus is obstructed so its air is absorbed, whereas in atelectasis the bronchus is open",
+    "In atelectasis the visceral and parietal pleura stay in contact and the airless lung is white and pulls mobile structures toward it; in a pneumothorax air separates the pleura and the compressed lung stays aerated",
+    "They look the same on a film; only the symptoms differ"
+   ],
+   "answer": 2,
+   "explanation": "In obstructive atelectasis the pleural layers never separate, so the mediastinum is drawn toward the lost volume and the lung is airless and white. In a pneumothorax air sits between the layers, the bronchus is not blocked, the lung remains aerated and there is no pull toward that side. The reversed options misplace where the air goes.",
+   "book": "Chapter 5, Atelectasis of the Entire Lung (Fig. 5.1, Table 5.1)",
+   "covers": [
+    "t04"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c05-m04",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "In obstructive atelectasis of an entire lung, in which direction do the heart, the trachea and the hemidiaphragm move?",
+   "options": [
+    "Away from the opacified side",
+    "Toward the opacified side, toward the volume loss",
+    "They stay in the midline because the pleural layers remain in contact",
+    "The heart and trachea move away from the opacified side while the hemidiaphragm is pulled up"
+   ],
+   "answer": 1,
+   "explanation": "Because the pleura do not separate, the lost volume pulls the mobile structures (heart, trachea and hemidiaphragms) toward the side of opacification; any one or all of them may move. A push away from the opacity is the behaviour of a large effusion, and a fixed midline is expected in pneumonia.",
+   "book": "Chapter 5, Atelectasis of the Entire Lung (Table 5.2)",
+   "covers": [
+    "t05",
+    "t20"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c05-m05",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "A frontal film shows an opaque right hemithorax. The trachea has moved to the right, the heart has shifted to the right so that the left heart border lies near the spine, and the right hemidiaphragm is not visible. Which diagnosis fits best?",
+   "options": [
+    "Atelectasis of the entire right lung",
+    "A very large right pleural effusion",
+    "Pneumonia of the entire right lung",
+    "A large right pneumothorax"
+   ],
+   "answer": 0,
+   "explanation": "Everything is pulled toward the opaque side, which means volume loss; the hemidiaphragm is silhouetted by the airless lung above it. A large effusion pushes the heart and trachea away, pneumonia leaves them in place, and a pneumothorax makes the hemithorax lucent.",
+   "book": "Chapter 5, Atelectasis of the Entire Lung (Table 5.2)",
+   "covers": [
+    "t06"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c05-m06",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "In a patient whose left hemithorax is opaque, the left hemidiaphragm cannot be seen. Which finding is an indirect sign that it is elevated, supporting left-sided volume loss?",
+   "options": [
+    "A stomach bubble pushed far down toward the pelvis",
+    "The right heart border moved away from the spine toward the right chest wall",
+    "The trachea displaced to the right of the midline",
+    "An elevated stomach bubble"
+   ],
+   "answer": 3,
+   "explanation": "With atelectasis of the left lung the left hemidiaphragm rises, and since it is silhouetted by the airless lung the raised stomach bubble shows where it lies. The heart moves leftward so the right heart border overlaps the spine, and the trachea moves toward the left.",
+   "book": "Chapter 5, Atelectasis of the Entire Lung (Table 5.2)",
+   "covers": [
+    "t07"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c05-m07",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "Which statement correctly contrasts a pneumothorax with obstructive atelectasis of a whole lung?",
+   "options": [
+    "Both make the hemithorax whiter, and both shift the heart and trachea toward the affected side",
+    "A pneumothorax is white and atelectasis is black, and both shift the mediastinum away",
+    "Atelectasis makes the hemithorax whiter and almost always shifts the heart and trachea toward it, whereas a pneumothorax appears black and never shifts them toward its side",
+    "A pneumothorax usually pulls the heart and trachea toward the affected side"
+   ],
+   "answer": 2,
+   "explanation": "Table 5.1 summarises it: air in the pleural space separates the pleural layers and is black, with no shift of the heart or trachea toward that side; atelectasis means absence of air in the lung, so the hemithorax is more opaque, and the shift is toward it.",
+   "book": "Chapter 5, Table 5.1 Pneumothorax Versus Obstructive Atelectasis",
+   "covers": [
+    "t08"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c05-m08",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "In atelectasis of the entire left lung, what do you expect to happen to the right lung on the frontal film?",
+   "options": [
+    "It collapses as well, so both lungs are opaque",
+    "It over-expands and its upper-anterior part extends across the midline",
+    "It stays within its own hemithorax with the mediastinum sharply separating the lungs",
+    "It becomes denser because it receives the left lung's blood"
+   ],
+   "answer": 1,
+   "explanation": "The remaining lung compensates for the lost volume by overinflating, and it can herniate across the midline, in front of the aorta. This is part of the volume-loss picture of atelectasis.",
+   "book": "Chapter 5, Atelectasis of the Entire Lung (Fig. 5.1)",
+   "covers": [
+    "t09"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c05-m09",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "Which statement about a massive pleural effusion is correct?",
+   "options": [
+    "Blood, an exudate or a transudate can fill the pleural space and, acting like a mass, compress the lung beneath it, which is usually not visible on a chest radiograph",
+    "Only a transudate can opacify a hemithorax; blood and exudate never do",
+    "The compressed lung beneath the fluid is always clearly seen as a dense triangle on the radiograph",
+    "A large effusion pulls the heart and trachea toward the fluid"
+   ],
+   "answer": 0,
+   "explanation": "Any type of pleural fluid can fill the space and act as a space-occupying mass. The compression of the lung under it is not usually visible on plain films, and the mass effect pushes mobile structures away, not toward the fluid.",
+   "book": "Chapter 5, Massive Pleural Effusion",
+   "covers": [
+    "t10"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c05-m10",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "Which effusion rarely grows large enough to occupy an entire hemithorax?",
+   "options": [
+    "A malignant effusion from bronchogenic carcinoma or pleural metastases",
+    "A hemothorax after trauma",
+    "A tuberculous effusion",
+    "The effusion of congestive heart failure, which is usually bilateral but asymmetric"
+   ],
+   "answer": 3,
+   "explanation": "Large effusions most often come from malignancy, trauma (hemothorax) and tuberculosis, which is notorious for large and clinically silent effusions. Heart-failure effusions are very common but are usually bilateral and rarely large enough to fill a hemithorax.",
+   "book": "Chapter 5, Massive Pleural Effusion",
+   "covers": [
+    "t11"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c05-m11",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "A frontal film shows an opaque right hemithorax. The trachea is deviated to the left and the cardiac apex is displaced to the left, close to the lateral chest wall. Which diagnosis fits best?",
+   "options": [
+    "Atelectasis of the entire right lung",
+    "Pneumonia of the entire right lung",
+    "A large right pleural effusion",
+    "Right pneumonectomy performed a year ago"
+   ],
+   "answer": 2,
+   "explanation": "The mobile structures are pushed away from the opaque side, which is the mass effect of a large effusion. Atelectasis and the late postpneumonectomy chest pull the mediastinum toward the opaque side, and pneumonia leaves it in place.",
+   "book": "Chapter 5, Massive Pleural Effusion (Fig. 5.3, Table 5.3)",
+   "covers": [
+    "t12"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c05-m12",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "Which set of findings is expected with a large left pleural effusion?",
+   "options": [
+    "Trachea pulled to the left and the right heart border overlapping the spine",
+    "Trachea and heart shifted to the right (more of the heart projects to the right of the spine) and the left hemidiaphragm lost by the silhouette sign",
+    "No shift of heart or trachea, with air bronchograms in the opaque lung",
+    "Heart shifted to the right but the left hemidiaphragm clearly visible"
+   ],
+   "answer": 1,
+   "explanation": "Table 5.3 gives the pattern for a left effusion: the heart moves rightward, the trachea is pushed away and the left hemidiaphragm disappears because fluid and the diaphragm have the same density. The first option is left lung atelectasis, and the second is pneumonia.",
+   "book": "Chapter 5, Massive Pleural Effusion (Table 5.3)",
+   "covers": [
+    "t12"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c05-m13",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "How can a hemithorax that is completely opaque from a large malignant effusion show no shift of the heart and trachea?",
+   "options": [
+    "The push of the effusion is balanced by volume loss from obstructive atelectasis of the underlying lung",
+    "A large effusion never pushes the mediastinum",
+    "The effusion contains air bronchograms that keep the lung inflated",
+    "The pleural layers have separated so the lung cannot pull the heart"
+   ],
+   "answer": 0,
+   "explanation": "The effusion pushes the mediastinum away while collapse of the lung behind an obstructing tumour pulls it toward the side, so the two cancel. The result is an opaque hemithorax with no air bronchograms and a midline mediastinum, which should make you think of a central bronchogenic carcinoma with pleural spread.",
+   "book": "Chapter 5, Diagnostic Pitfalls (Massive Pleural Effusion)",
+   "covers": [
+    "t13"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c05-m14",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "A heavy smoker aged 58 with cough has a completely opaque right hemithorax with no air bronchograms, and the heart and trachea are in the midline. What is the most important suspicion and the next step?",
+   "options": [
+    "A simple lobar pneumonia; treat and repeat the film in six weeks",
+    "Tension pneumothorax; immediate needle decompression",
+    "The expected appearance after a pneumonectomy, so no more imaging is needed",
+    "An obstructing central bronchogenic carcinoma, perhaps with pleural metastases; CT of the chest"
+   ],
+   "answer": 3,
+   "explanation": "An adult with an opaque hemithorax, no air bronchograms and little or no shift should make you suspect an obstructing cancer, with the shift of atelectasis balanced by an effusion; CT of the chest shows the abnormalities. Pneumonia of the whole lung would show air bronchograms, a pneumothorax would be lucent, and there is no sign of surgery in the history.",
+   "book": "Chapter 5, Diagnostic Pitfalls (Massive Pleural Effusion)",
+   "covers": [
+    "t14",
+    "t13"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c05-m15",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "A febrile patient has near-complete opacification of the left hemithorax. Air bronchograms are visible in the opaque area, the trachea is midline and the heart has not moved. Streptococcus pneumoniae is cultured. What is the diagnosis?",
+   "options": [
+    "Atelectasis of the entire left lung",
+    "A very large left pleural effusion",
+    "Pneumonia of the entire left lung",
+    "Left pneumonectomy"
+   ],
+   "answer": 2,
+   "explanation": "In pneumonia the exudate fills the airspaces, so the lung is opaque but its volume does not change: nothing pulls and nothing pushes, so the heart and trachea stay put. Air bronchograms are a clue to airspace disease. Atelectasis would pull the structures toward the opacity and an effusion would push them away.",
+   "book": "Chapter 5, Pneumonia of an Entire Lung",
+   "covers": [
+    "t15"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c05-m16",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "Which two clues on a film of a completely opaque hemithorax indicate that the lung was surgically removed?",
+   "options": [
+    "Air bronchograms and absence of any mediastinal shift",
+    "The 5th or 6th rib on that side is surgically absent, and metallic surgical clips lie near the hilum",
+    "An elevated stomach bubble and a trachea pushed away from the opacity",
+    "Kerley B lines and thickened fissures"
+   ],
+   "answer": 1,
+   "explanation": "To remove a lung the surgeon usually takes out the 5th or 6th rib on the affected side, and clips are left near the hilum. Without those clues a postpneumonectomy chest can look identical to atelectasis of the whole lung, with the heart and trachea eventually pulled toward the side of opacification. Air bronchograms point to pneumonia and Kerley lines to interstitial fluid.",
+   "book": "Chapter 5, Postpneumonectomy",
+   "covers": [
+    "t16",
+    "t18"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c05-m17",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "A patient had a right pneumonectomy yesterday and the right hemithorax is filled with air. What do you expect on follow-up films?",
+   "options": [
+    "The space gradually fills with fluid over about two weeks, and later the heart and trachea shift toward the operated side, with complete opacity by about four months",
+    "Air stays in the space for a year while the heart shifts away from the operated side",
+    "The space fills with fluid within 24 hours and the fluid then clears completely",
+    "Nothing changes, because the removed lung leaves a permanent air-filled hemithorax"
+   ],
+   "answer": 0,
+   "explanation": "For the first 24 hours only air occupies the empty hemithorax, then it fills with fluid over about 2 weeks and becomes completely opaque by about 4 months. Fibrous tissue eventually forms and most patients keep a permanently opaque hemithorax, with the heart and trachea shifted toward that side.",
+   "book": "Chapter 5, Postpneumonectomy",
+   "covers": [
+    "t17"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c05-m18",
+   "type": "mcq",
+   "topic": "ch05",
+   "prompt": "A 61-year-old heavy smoker with cough and shortness of breath has a completely opaque left hemithorax. The trachea is pulled slightly toward the left and the stomach bubble is elevated. What is the most likely cause?",
+   "options": [
+    "A very large left pleural effusion",
+    "Pneumonia of the entire left lung",
+    "A large left pneumothorax",
+    "Atelectasis of the left lung from an obstructing bronchogenic carcinoma in the left main bronchus"
+   ],
+   "answer": 3,
+   "explanation": "The trachea is pulled toward the opaque side and the raised stomach bubble is indirect evidence that the left hemidiaphragm is elevated: both signs of volume loss. An effusion would push the trachea away, pneumonia would not shift it, and a pneumothorax would be black.",
+   "book": "Chapter 5, Case Quiz 5",
+   "covers": [
+    "t19",
+    "t07"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c05-e01",
+   "type": "essay",
+   "topic": "ch05",
+   "prompt": "Images 1 to 4 show radiologist-marked pleural effusions, image 5 a pneumothorax and image 6 a pneumonia. In two to four sentences, explain how the direction of shift of the heart and trachea separates a very large pleural effusion, atelectasis of the whole lung and pneumonia of the whole lung as causes of an opacified hemithorax, and say which combination of findings should make you suspect an obstructing bronchogenic carcinoma and what you would do next.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00026753-008",
+     "thumb": "cxr-findings-2/thumbs/dx-7ee4b450a8.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00001437-012",
+     "thumb": "cxr-findings/thumbs/dx-396c752237.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00027875-005",
+     "thumb": "cxr-findings-2/thumbs/dx-3d2e6e4e00.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00014738-000",
+     "thumb": "cxr-findings-2/thumbs/dx-7b502a37d9.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00020318-022",
+     "thumb": "cxr-findings-2/thumbs/dx-0e62fec7b3.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00017952-008",
+     "thumb": "cxr-findings-2/thumbs/dx-908b67094d.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "A large pleural effusion acts like a mass and pushes the heart and trachea away from the opacified side",
+     "points": 2,
+     "terms": [
+      "away",
+      "push",
+      "mass effect",
+      "acts like a mass",
+      "opposite"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Atelectasis (volume loss) pulls the heart, trachea and hemidiaphragm toward the opacified side",
+     "points": 2,
+     "terms": [
+      "toward",
+      "towards",
+      "pull",
+      "volume loss"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Pneumonia of the whole lung gives no shift, and air bronchograms may be present",
+     "points": 1,
+     "terms": [
+      "no shift",
+      "midline",
+      "not shifted",
+      "unchanged",
+      "air bronchogram"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "An opaque hemithorax with no air bronchograms and no shift suggests effusion and atelectasis in balance, i.e. an obstructing bronchogenic carcinoma",
+     "points": 2,
+     "terms": [
+      "balance",
+      "no air bronchogram",
+      "carcinoma",
+      "cancer",
+      "malignan",
+      "obstruct",
+      "tumour",
+      "tumor"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Next step: CT of the chest",
+     "points": 1,
+     "terms": [
+      "ct",
+      "computed"
+     ]
+    }
+   ],
+   "model": "A large effusion pushes the heart and trachea away from the opaque side; atelectasis, with the pleural layers still in contact, pulls them toward it; pneumonia of the whole lung does not move them and may show air bronchograms. An opaque hemithorax in an adult with no air bronchograms and no shift suggests effusion and atelectasis in balance, so suspect an obstructing bronchogenic carcinoma (with pleural metastases) and get a CT scan.",
+   "book": "Chapter 5, Massive Pleural Effusion / Diagnostic Pitfalls",
+   "covers": [
+    "t01",
+    "t05",
+    "t10",
+    "t12",
+    "t13",
+    "t14",
+    "t15",
+    "t20"
+   ]
+  },
+  {
+   "id": "c05-e02",
+   "type": "essay",
+   "topic": "ch05",
+   "prompt": "These six frontal films come from patients with a lung mass or atelectasis (the radiologist marked the abnormal area). A smoker with cough and shortness of breath presents with a completely white left hemithorax. In two to four sentences, name the causes of atelectasis of a whole lung in adults, children and critically ill patients, explain why the film looks so different from a pneumothorax, and list the signs of volume loss that you would look for, including the clue given by the stomach bubble.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00010815-006",
+     "thumb": "cxr-findings-2/thumbs/dx-c186068790.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00020124-003",
+     "thumb": "cxr-findings-2/thumbs/dx-186e54841f.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00003440-000",
+     "thumb": "cxr-findings-3/thumbs/dx-2f63eafd2a.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00030674-000",
+     "thumb": "cxr-findings/thumbs/dx-517cbce0b9.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00008554-009",
+     "thumb": "cxr-findings-3/thumbs/dx-9e94a9442a.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00026136-002",
+     "thumb": "cxr-findings-2/thumbs/dx-6f3aaf87a5.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Complete obstruction of a main bronchus (tumour in adults, foreign body such as a peanut in children, mucous plugs in asthma or in critically ill patients) causes the air to be absorbed",
+     "points": 2,
+     "terms": [
+      "obstruct",
+      "tumour",
+      "tumor",
+      "carcinoma",
+      "foreign body",
+      "peanut",
+      "mucous plug",
+      "mucus plug",
+      "plug",
+      "main bronchus"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "The pleural layers do not separate, unlike a pneumothorax (which is black)",
+     "points": 1,
+     "terms": [
+      "do not separate",
+      "remain in contact",
+      "stay in contact",
+      "pleura",
+      "black",
+      "lucent"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "The trachea and heart shift toward the opaque side",
+     "points": 1,
+     "terms": [
+      "trachea",
+      "heart",
+      "mediastin",
+      "toward",
+      "towards",
+      "pulled"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "The hemidiaphragm is elevated and may be silhouetted; an elevated stomach bubble shows it on the left",
+     "points": 2,
+     "terms": [
+      "hemidiaphragm",
+      "diaphragm",
+      "stomach bubble",
+      "silhouette",
+      "elevated"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "The opposite lung over-expands and may cross the midline",
+     "points": 1,
+     "terms": [
+      "overinflat",
+      "over-inflat",
+      "overexpand",
+      "over-expand",
+      "hyperinfl",
+      "crosses the midline",
+      "cross the midline",
+      "opposite lung"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "The opaque lung is whiter because it contains no air (volume loss)",
+     "points": 1,
+     "terms": [
+      "white",
+      "opaque",
+      "no air",
+      "airless",
+      "volume loss",
+      "dense"
+     ]
+    }
+   ],
+   "model": "Atelectasis of a whole lung follows complete obstruction of a main bronchus: a tumour in adults, a foreign body such as a peanut in children, or mucous plugs in asthma and in critically ill patients; the air is absorbed and the lung is airless and white. Unlike a pneumothorax, the pleural layers stay together, so the trachea, the heart and the hemidiaphragm are pulled toward the opaque side (an elevated stomach bubble shows an elevated left hemidiaphragm), and the opposite lung over-expands, sometimes across the midline.",
+   "book": "Chapter 5, Atelectasis of the Entire Lung",
+   "covers": [
+    "t02",
+    "t03",
+    "t04",
+    "t05",
+    "t06",
+    "t07",
+    "t08",
+    "t09",
+    "t19"
+   ]
+  },
+  {
+   "id": "c05-e03",
+   "type": "essay",
+   "topic": "ch05",
+   "prompt": "These six frontal films show radiologist-marked areas of pneumonia. In two to four sentences, describe what you would expect on a film in which pneumonia involves a whole lung (shift of the heart and trachea, air bronchograms), then describe how a hemithorax looks after a pneumonectomy at 24 hours, at about 2 weeks and at about 4 months, and give the two clues that separate a postpneumonectomy chest from atelectasis of the whole lung.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00013391-005",
+     "thumb": "cxr-findings-2/thumbs/dx-aec82543ca.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00021818-026",
+     "thumb": "cxr-findings-2/thumbs/dx-59e48819a2.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00017952-008",
+     "thumb": "cxr-findings-2/thumbs/dx-908b67094d.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00010610-003",
+     "thumb": "cxr-findings-2/thumbs/dx-bd91cee065.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00012576-004",
+     "thumb": "cxr-findings-2/thumbs/dx-450e43411b.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00003064-035",
+     "thumb": "cxr-findings-2/thumbs/dx-b9bbe33a06.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Whole-lung pneumonia is opaque because exudate fills the airspaces, with no shift of the heart or trachea",
+     "points": 1,
+     "terms": [
+      "no shift",
+      "not shifted",
+      "midline",
+      "unchanged",
+      "neither",
+      "no pull",
+      "no push"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Air bronchograms may be present",
+     "points": 1,
+     "terms": [
+      "air bronchogram",
+      "bronchogram"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "After pneumonectomy the hemithorax is air-filled for the first 24 hours",
+     "points": 1,
+     "terms": [
+      "24",
+      "air",
+      "day 1",
+      "first day"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "It fills with fluid over about two weeks",
+     "points": 1,
+     "terms": [
+      "fluid",
+      "two weeks",
+      "2 weeks",
+      "weeks"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "By about four months it is completely opaque, with shift of the heart and trachea toward that side (fibrosis)",
+     "points": 2,
+     "terms": [
+      "4 months",
+      "four months",
+      "opaque",
+      "fibro",
+      "toward",
+      "towards"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Clues: the missing 5th or 6th rib",
+     "points": 1,
+     "terms": [
+      "rib",
+      "5th",
+      "6th",
+      "fifth",
+      "sixth"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "Clues: metallic surgical clips at the hilum",
+     "points": 1,
+     "terms": [
+      "clip",
+      "hilum",
+      "hilar",
+      "metal",
+      "staple"
+     ]
+    }
+   ],
+   "model": "In pneumonia of a whole lung the airspaces are full of exudate, so the hemithorax is opaque with no push or pull on the heart and trachea, and air bronchograms may be seen. After pneumonectomy the hemithorax holds air for about 24 hours, fills with fluid over about 2 weeks and is completely opaque by about 4 months, with fibrosis and a permanent shift of the heart and trachea toward that side. It can look identical to atelectasis, but a missing 5th or 6th rib and metallic clips at the hilum show that surgery was done.",
+   "book": "Chapter 5, Pneumonia of an Entire Lung / Postpneumonectomy",
+   "covers": [
+    "t15",
+    "t16",
+    "t17",
+    "t18"
+   ]
+  }
+ ]
+}

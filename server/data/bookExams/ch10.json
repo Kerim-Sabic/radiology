@@ -1,0 +1,1102 @@
+{
+ "chapter": 10,
+ "title": "Recognizing Other Diseases of the Chest",
+ "blurb": "Mediastinal masses and compartments, solitary nodules and the Fleischner criteria, bronchogenic carcinoma and metastases, pulmonary embolism, COPD, bullae, cysts, cavities and bronchiectasis.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Compartments on the lateral film: anterior (back of sternum to front of heart/great vessels), middle (heart, great vessel origins, trachea, main bronchi, nodes), posterior (back of heart to front of spine, plus paravertebral gutters); superior mediastinum above the aortic arch is merged with another"
+  },
+  {
+   "id": "t02",
+   "label": "CT classification: prevascular, visceral, paravertebral; compartments have no true boundaries, so big masses are hard to assign"
+  },
+  {
+   "id": "t03",
+   "label": "Mediastinal versus lung mass clues: surrounded by lung on both views means lung; mediastinal margins sharper; mediastinal masses displace/compress trachea or esophagus; CT is more accurate"
+  },
+  {
+   "id": "t04",
+   "label": "Anterior mediastinal masses, the \"four T's\": thyroid, terrible lymphoma, thymoma, teratoma"
+  },
+  {
+   "id": "t05",
+   "label": "Substernal thyroid goiter: most common anterior mass in practice; multinodular; only one that routinely deviates the trachea (above the arch); classically not below the top of the arch; 3 of 4 anterior to trachea, 25% posterior (mostly right)"
+  },
+  {
+   "id": "t06",
+   "label": "Goiter imaging: radioisotope scan is first choice; CT contiguous with thyroid, calcification, avid mottled contrast enhancement"
+  },
+  {
+   "id": "t07",
+   "label": "Lymphadenopathy: most common mediastinal mass overall (lymphoma, metastases, sarcoid, TB); anterior nodes most common in nodular sclerosing Hodgkin; lobulated/polycyclic border; node over 1 cm short axis; usually homogeneous, may be heterogeneous (necrosis, hemorrhage)"
+  },
+  {
+   "id": "t08",
+   "label": "Hodgkin lymphoma: painless neck nodes; nodes above diaphragm; mediastinal adenopathy bilateral and asymmetric, with asymmetric hilar nodes; alcohol-induced node pain classical but uncommon"
+  },
+  {
+   "id": "t09",
+   "label": "Sarcoid versus lymphoma (Table 10.3): bilateral hilar plus right paratracheal nodes, peripheral bronchopulmonary nodes, effusion about 5%, anterior nodes uncommon versus mediastinal-dominant, asymmetric central hilar nodes, effusion about 30%, anterior nodes common"
+  },
+  {
+   "id": "t10",
+   "label": "Thymoma: epithelial/lymphocytic neoplasm, middle-aged adults (older than teratoma), mostly benign; myasthenia gravis in about 35%, thymoma in about 15% of myasthenia; thymectomy helps; smooth or lobulated mass at junction of heart and great vessels, may calcify; thymus involutes after age 20"
+  },
+  {
+   "id": "t11",
+   "label": "Teratoma: germ-cell tumor with all three layers; mostly benign, younger than thymoma, often found by chance; about 30% malignant; cystic, well-marginated, near great vessel origins; fat, cartilage, bone on CT; surgical excision"
+  },
+  {
+   "id": "t12",
+   "label": "Middle mediastinum: heart, great vessel origins, trachea, main bronchi, nodes; lymphadenopathy is the most common mass (Hodgkin, small cell carcinoma, metastases such as breast, mononucleosis, TB usually unilateral, SLE)"
+  },
+  {
+   "id": "t13",
+   "label": "Posterior mediastinum (paravertebral): descending aorta, esophagus, nodes, extramedullary hematopoiesis, and above all neurogenic tumors"
+  },
+  {
+   "id": "t14",
+   "label": "Neurogenic tumors: nerve sheath tumors (schwannoma) most common, almost always benign, ages 20-50, slow growing; ganglioneuroma and neuroblastoma usually malignant; sharp paravertebral mass, rib erosion, dumbbell lesion through the foramen"
+  },
+  {
+   "id": "t15",
+   "label": "Neurofibromatosis type 1: neurofibromas, rib notching, posterior vertebral scalloping (dural ectasia), absent sphenoid wings, pseudarthroses, sharp-angled kyphoscoliosis"
+  },
+  {
+   "id": "t16",
+   "label": "Nodule under 3 cm, mass over 3 cm; solitary pulmonary nodule (SPN): the key question is most likely benign versus malignant; prior imaging helps; many incidental nodules on CT"
+  },
+  {
+   "id": "t17",
+   "label": "CT nodule types: solid versus subsolid (pure ground-glass, part-solid); ground-glass keeps vessel and bronchial markings; persistent subsolid nodules may be adenocarcinoma or precursors; part-solid has higher malignancy rate than pure ground-glass"
+  },
+  {
+   "id": "t18",
+   "label": "Fleischner 2017 (adults over 35, incidental noncalcified nodules): solid under 6 mm no routine follow-up (low risk) or optional CT at 12 months (high risk); 6-8 mm CT at 6-12 months then 18-24 months; over 8 mm consider CT at 3 months, PET/CT or tissue sampling; stable 2 years solid or 5 years subsolid is likely benign; low versus high risk factors"
+  },
+  {
+   "id": "t19",
+   "label": "Benign versus malignant signs: size (under 6 mm rarely malignant; over 5 cm 95% malignant), calcification (central, laminar or diffuse is benign), margin (lobulated, spiculated, shaggy malignant), growth (weeks suggests inflammation, none over 2 years benign), cell-type growth rates"
+  },
+  {
+   "id": "t20",
+   "label": "Clinical symptoms (hemoptysis, weight loss, hoarseness) raise malignancy risk; about 50% of resected nodules in men over 50 with suspicious findings are malignant; PET with FDG, nodule must be over 1 cm"
+  },
+  {
+   "id": "t21",
+   "label": "Benign causes: granulomas (TB, histoplasmosis; homogeneous, laminated or target calcification), hamartoma (fat and popcorn calcification), rheumatoid nodules, fungal infections, arteriovenous malformation, granulomatosis with polyangiitis"
+  },
+  {
+   "id": "t22",
+   "label": "Bronchogenic carcinoma: most common fatal cancer in US men, second in women; primary cancer is usually a solitary nodule/mass, metastases multiple nodules"
+  },
+  {
+   "id": "t23",
+   "label": "Cell types (Table 10.5): squamous (central, segmental/lobar bronchi, obstruction, grows fairly fast), adenocarcinoma (peripheral, slowest), small cell (central, neurosecretory granules, paraneoplastic Cushing/SIADH, highly aggressive, mostly metastatic at diagnosis), large cell (diagnosis of exclusion, large peripheral, extremely rapid)"
+  },
+  {
+   "id": "t24",
+   "label": "Three ways of recognising lung cancer (tumor itself, bronchial obstruction effects, extension or metastasis); nodule/mass usually adenocarcinoma with spiculated margin; cavitation more often squamous with thick wall and nodular inner margin"
+  },
+  {
+   "id": "t25",
+   "label": "Bronchial obstruction: most often squamous cell carcinoma; obstructive pneumonitis (consolidation, often not infected) or atelectasis with shifts of fissures/mediastinum"
+  },
+  {
+   "id": "t26",
+   "label": "Direct extension and metastases: ipsilateral hilar nodes; contralateral mediastinal nodes worsen prognosis; mediastinal adenopathy may be the only sign of small cell carcinoma; multiple nodules in adenocarcinoma; effusion often with lymphangitic spread; bone metastases mixed lytic and sclerotic"
+  },
+  {
+   "id": "t27",
+   "label": "Pancoast tumor (Box 10.1 and Case Quiz): apical mass, adenocarcinoma or squamous, destroys first three ribs, brachial plexus invasion (shoulder pain), Horner syndrome (cervical sympathetic chain), SVC obstruction on the right; poor prognosis"
+  },
+  {
+   "id": "t28",
+   "label": "Small cell carcinoma take-home: highly aggressive, central, peribronchial; majority already metastatic at presentation; paraneoplastic syndromes (SIADH, Cushing)"
+  },
+  {
+   "id": "t29",
+   "label": "Hematogenous metastases: multiple nodules of slightly different sizes (embolized at different times), sharply marginated, micronodular to cannonball; primary cannot be identified from the appearance; biopsy gives the origin"
+  },
+  {
+   "id": "t30",
+   "label": "Table 10.6 primaries: males colorectal, renal, head and neck, testicular/bladder, melanoma, sarcoma; females breast, colorectal, renal, cervical/endometrial, melanoma, sarcoma"
+  },
+  {
+   "id": "t31",
+   "label": "Lymphangitic carcinomatosis: looks like interstitial edema (Kerley B lines, thick fissures, effusion); unilateral or single-lobe pattern points to it rather than heart failure; primaries breast, lung, pancreas; adenocarcinoma commonest"
+  },
+  {
+   "id": "t32",
+   "label": "Pulmonary embolism: over 90% from leg deep veins above the popliteal; surgery, bed rest, cancer; most do not infarct (dual circulation)"
+  },
+  {
+   "id": "t33",
+   "label": "Chest radiograph in PE: often abnormal but nonspecific (subsegmental atelectasis, small effusion, raised hemidiaphragm), high false-negative rate; classic Hampton hump, Westermark sign, knuckle sign are infrequent"
+  },
+  {
+   "id": "t34",
+   "label": "PE imaging path: normal radiograph then V/Q scan; abnormal radiograph then CT; CT-PA sensitivity over 90%, replaced V/Q in COPD or abnormal film"
+  },
+  {
+   "id": "t35",
+   "label": "CT-PA findings and extras: filling defects in contrast-enhanced arteries; saddle embolus; delayed images of pelvic/leg veins; other diagnoses seen; triple rule-out (coronary disease, aortic dissection, PE)"
+  },
+  {
+   "id": "t36",
+   "label": "COPD: airflow obstruction from chronic bronchitis (clinical, productive cough) or emphysema (pathological, permanent enlargement and destruction of airspaces beyond terminal bronchioles)"
+  },
+  {
+   "id": "t37",
+   "label": "Emphysema imaging: radiograph hyperinflation with flat diaphragm (especially lateral) is most reliable, increased retrosternal space, hyperlucency, pulmonary artery prominence; CT low-density areas without walls, extent and bullectomy planning"
+  },
+  {
+   "id": "t38",
+   "label": "Emphysema types: centriacinar (smoking, upper lobes, most common), panacinar (lower zones, alpha-1 antitrypsin deficiency), paraseptal (bullae, pneumothorax, no airflow obstruction)"
+  },
+  {
+   "id": "t39",
+   "label": "Air-containing lesions: bulla over 1 cm, wall under 1 mm, emphysema, apices, vanishing lung; bleb small, apical, pneumothorax; cyst wall under 3 mm (pneumatocele after Staphylococcus/Pneumocystis); cavity wall 3 mm to cm from necrosis"
+  },
+  {
+   "id": "t40",
+   "label": "Fluid in these lesions: from infection, hemorrhage, liquefaction; air-fluid level on horizontal beam; low CT number versus solid tumor; infected bulla patients less ill than lung abscess"
+  },
+  {
+   "id": "t41",
+   "label": "Cavity differential (Table 10.7): carcinoma thick wall with nodular inner margin; tuberculosis thin wall (upper lobe) with smooth inner margin; abscess thick wall with smooth inner margin and air-fluid level"
+  },
+  {
+   "id": "t42",
+   "label": "Bronchiectasis: localized irreversible dilatation; necrotizing infection (Staphylococcus, Klebsiella), lower lobes; cystic fibrosis, Kartagener syndrome, allergic bronchopulmonary aspergillosis, Swyer-James; productive cough with hemoptysis"
+  },
+  {
+   "id": "t43",
+   "label": "Bronchiectasis imaging: radiograph tram-tracks, cystic lesions up to 2 cm, tubular densities; CT is the study of choice: signet ring sign (bronchus larger than artery), failure to taper (most sensitive), cylindrical type least severe; cystic fibrosis upper lobes"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c10-m01",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "On the lateral chest film, which boundaries define the anterior mediastinum, and what is it called in the newer CT-based classification?",
+   "options": [
+    "From the front of the heart and aorta to the back of the heart; the visceral compartment",
+    "From the back of the sternum to the front of the heart and great vessels; the prevascular compartment",
+    "From the back of the heart to the front of the vertebral column, plus the paravertebral gutters; the paravertebral compartment",
+    "The whole space above the aortic arch; the superior compartment"
+   ],
+   "answer": 1,
+   "explanation": "The anterior mediastinum lies behind the sternum and in front of the heart and great vessels (prevascular on CT). The middle mediastinum (visceral) runs from the front to the back of the heart and aorta; the posterior mediastinum (paravertebral) runs from the back of the heart to the front of the spine and includes the paravertebral gutters. The superior mediastinum above the arch is usually combined with one of the others. The compartments have no real anatomic walls, so large lesions cross them and their origin may be impossible to tell.",
+   "book": "Chapter 10, Mediastinal Masses",
+   "covers": [
+    "t01",
+    "t02"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c10-m02",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which finding on frontal and lateral chest films tells you that a mass lies within the lung and not in the mediastinum?",
+   "options": [
+    "It is completely surrounded by lung tissue on both projections",
+    "Its margin is sharper than that of most lung masses",
+    "It displaces or compresses the trachea or esophagus",
+    "It is seen best on the lateral film"
+   ],
+   "answer": 0,
+   "explanation": "A mass surrounded by lung on both the frontal and lateral views is intrapulmonary. A sharp margin, and displacement, compression or obstruction of mediastinal structures such as the trachea and esophagus, point to the mediastinum instead. Differentiating the two on plain films can be hard; CT is more accurate for location and nature.",
+   "book": "Chapter 10, Mediastinal Masses, Diagnostic Pitfalls and clues",
+   "covers": [
+    "t03"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c10-m03",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which statement about a substernal thyroid goiter is correct?",
+   "options": [
+    "It usually lies in the posterior mediastinum, extends well below the aortic arch and takes up no radiotracer",
+    "It typically contains fat, cartilage and bone, rarely displaces the trachea and takes up no contrast",
+    "It is the least common anterior mass, is usually malignant and cannot be shown by radioisotope scan",
+    "It is the commonest anterior mediastinal mass in practice, it is the one that routinely deviates the trachea (above the aortic arch), and a radioisotope scan is the study of first choice to confirm it"
+   ],
+   "answer": 3,
+   "explanation": "The four T's of the anterior mediastinum are thyroid, \"terrible\" lymphoma, thymoma and teratoma, and the thyroid goiter is the most frequently met in daily practice and the only one that routinely deviates the trachea, usually at or above the arch (it classically does not reach below the top of the arch). Most are multinodular goiters, rarely malignant. About 25% descend behind the trachea (mostly right-sided). Isotope scanning is first choice; on CT it is continuous with the gland, often calcified and enhances avidly but unevenly. Fat, cartilage and bone describe a teratoma.",
+   "book": "Chapter 10, Anterior Mediastinal Masses, Thyroid Masses",
+   "covers": [
+    "t04",
+    "t05",
+    "t06"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c10-m04",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which description of mediastinal adenopathy in Hodgkin lymphoma is correct?",
+   "options": [
+    "A smooth, single, well-marginated mass that grows from one abnormal cell; a node is enlarged only above 3 cm",
+    "A unilateral mass that always contains calcification; a node is enlarged above 5 cm in its long axis",
+    "A lobulated or polycyclic mass of conglomerate nodes, usually bilateral and asymmetric, in a disease confined to nodes above the diaphragm; on CT a node over about 1 cm in short axis is enlarged",
+    "A symmetric, bilateral, peripheral nodal pattern with no hilar involvement; a node is enlarged above 2 cm"
+   ],
+   "answer": 2,
+   "explanation": "Lymphomatous masses are usually several contiguous nodes, which gives the lobulated, polycyclic border that helps separate them from smooth thymoma or teratoma masses. Hodgkin lymphoma typically presents with painless neck nodes, is usually confined above the diaphragm, and the mediastinal disease is bilateral and asymmetric, often with asymmetric hilar nodes. The CT cutoff is about 1 cm short axis. The mass is usually homogeneous, though larger ones may be heterogeneous from necrosis or hemorrhage. Nodular sclerosing Hodgkin is the variety with anterior adenopathy.",
+   "book": "Chapter 10, Anterior Mediastinal Masses, Lymphoma",
+   "covers": [
+    "t07",
+    "t08"
+   ],
+   "level": "recall",
+   "lesson": "ct-lnq-0230"
+  },
+  {
+   "id": "c10-m05",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which feature favors lymphoma rather than sarcoidosis as the cause of thoracic adenopathy?",
+   "options": [
+    "Bilateral hilar and right paratracheal adenopathy as the classic combination",
+    "Anterior mediastinal adenopathy, with a pleural effusion in about 30%",
+    "Enlarged bronchopulmonary nodes that are rather peripheral",
+    "A pleural effusion in only about 5% of patients"
+   ],
+   "answer": 1,
+   "explanation": "Both diseases enlarge thoracic nodes, but sarcoid classically gives bilateral hilar plus right paratracheal nodes, more peripheral bronchopulmonary nodes, uncommon anterior mediastinal nodes and an effusion in about 5%. Lymphoma is more often dominated by mediastinal nodes with asymmetric, more central hilar enlargement, commonly in the anterior mediastinum, and has an effusion in about 30%.",
+   "book": "Chapter 10, Anterior Mediastinal Masses, Lymphoma (Table 10.3 Sarcoidosis vs. Lymphoma)",
+   "covers": [
+    "t09"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c10-m06",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which statement comparing a thymoma and a teratoma is correct?",
+   "options": [
+    "A thymoma is usually benign, occurs in middle-aged adults and is linked to myasthenia gravis in about 35%; a teratoma contains fat, cartilage or bone, and about 30% are malignant",
+    "A teratoma is linked to myasthenia gravis in about 35%; a thymoma contains fat, cartilage and bone on CT",
+    "A thymoma is usually malignant and occurs in young adults; a teratoma is a tumor of older adults that never calcifies",
+    "About 35% of myasthenia patients have a thymoma, and about 30% of thymomas are malignant; teratomas are all benign"
+   ],
+   "answer": 0,
+   "explanation": "Thymomas are mostly benign tumors of middle-aged adults (older than teratoma patients) and arise near the junction of heart and great vessels, as a smooth or lobulated mass that may calcify. About 35% of thymomas come with myasthenia gravis, while about 15% of myasthenia patients are found to have a thymoma; removing the tumor improves the myasthenia. Teratomas occur earlier, are typically cystic and well marginated, contain fat, cartilage and sometimes bone on CT, and about 30% are malignant with a poor outlook. Treatment is surgical excision.",
+   "book": "Chapter 10, Anterior Mediastinal Masses, Thymic Masses and Teratoma",
+   "covers": [
+    "t10",
+    "t11"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c10-m07",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "What is the most common mass of the middle mediastinum, and which statement about its causes is correct?",
+   "options": [
+    "A neurogenic tumor; causes include schwannoma and ganglioneuroma",
+    "Lymphadenopathy; tuberculosis usually gives symmetric bilateral adenopathy and lymphoma never causes it",
+    "A thymoma; it is usually seen below the aortic arch behind the heart",
+    "Lymphadenopathy; causes include lymphoma, small cell lung carcinoma, metastases such as breast cancer and tuberculosis, which usually gives unilateral adenopathy"
+   ],
+   "answer": 3,
+   "explanation": "The middle compartment holds the heart, great vessel origins, trachea, main bronchi and nodes, and enlarged nodes make its most common mass. Hodgkin lymphoma is the most likely cause, but small cell lung carcinoma and metastases (for instance breast), infectious mononucleosis, tuberculosis (usually unilateral) and autoimmune disease such as lupus can all do it. In the book's example the biopsied nodes of a middle mediastinal mass showed small cell carcinoma.",
+   "book": "Chapter 10, Middle Mediastinal Masses",
+   "covers": [
+    "t12"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c10-m08",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which statement about the posterior (paravertebral) mediastinum is correct?",
+   "options": [
+    "Its most important masses are thymic tumors; thymoma is the commonest and almost always malignant",
+    "Its most important masses are neurogenic tumors; schwannoma is usually malignant and neuroblastoma benign",
+    "Its most important masses are neurogenic tumors; nerve sheath tumors such as schwannoma are the most common and almost always benign, whereas ganglioneuroma and neuroblastoma are usually malignant",
+    "Its most important mass is a substernal goiter, which deviates the trachea forward"
+   ],
+   "answer": 2,
+   "explanation": "The posterior compartment (descending aorta, esophagus, nodes, extramedullary hematopoiesis) is mainly the home of neural tumors. Nerve sheath tumors (schwannoma, neurofibroma) are most numerous, occur at 20 to 50 years, grow slowly and are almost always benign; tumors from nerve elements other than the sheath (ganglioneuroma, neuroblastoma) are usually malignant. They form sharp paravertebral masses and may erode ribs.",
+   "book": "Chapter 10, Posterior Mediastinal Masses, Neurogenic Tumors",
+   "covers": [
+    "t13",
+    "t14"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c10-m09",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "A patient with skin nodules has a sharply marginated mass in the right paravertebral gutter on frontal and lateral films. A sagittal CT shows scalloping of the posterior borders of thoracic vertebral bodies, and elsewhere a mass enlarging a neural foramen. Which diagnosis fits?",
+   "options": [
+    "Hodgkin lymphoma, with conglomerate middle mediastinal nodes",
+    "Neurofibromatosis type 1, with a posterior mediastinal neurofibroma that can form a dumbbell lesion through the foramen",
+    "A substernal goiter extending behind the trachea",
+    "A teratoma containing fat and bone in the anterior mediastinum"
+   ],
+   "answer": 1,
+   "explanation": "A paravertebral soft-tissue mass in the posterior mediastinum is neurogenic until shown otherwise. NF1 adds subcutaneous nodules, rib notching, posterior vertebral scalloping (from dysplastic meninges eroding bone), absent sphenoid wings, pseudarthroses and sharp-angled kyphoscoliosis. A neurofibroma can enlarge the foramen and form a dumbbell lesion that is partly in the spinal canal and partly in the mediastinum. Lymphoma, goiter and teratoma sit in the middle or anterior compartments.",
+   "book": "Chapter 10, Posterior Mediastinal Masses, Neurogenic Tumors (neurofibromatosis)",
+   "covers": [
+    "t15"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c10-m10",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which statement about solitary pulmonary nodules and ground-glass nodules is correct?",
+   "options": [
+    "A nodule is under about 3 cm; the critical question is benign versus malignant; a ground-glass nodule keeps visible vessels and bronchi within it, and when persistent a subsolid nodule may be adenocarcinoma or its precursor",
+    "A nodule is under about 1 cm; the critical question is solid versus cystic; a ground-glass nodule obliterates the vessels within it",
+    "A nodule is under about 3 cm; a pure ground-glass nodule has a higher malignancy rate than a part-solid one",
+    "A nodule is under about 5 cm; the critical question is whether it is hot on a bone scan; subsolid nodules are always benign"
+   ],
+   "answer": 0,
+   "explanation": "Under 3 cm is a nodule, over 3 cm a mass. The key question in an SPN is whether it is most likely benign (watch it) or malignant (manage actively). On CT nodules are solid or subsolid; subsolid ones are pure ground-glass (increased attenuation with vascular and bronchial markings preserved) or part-solid. Persistent subsolid nodules may be adenocarcinoma or precursors, and the malignancy rate is higher for subsolid than solid nodules and highest for part-solid ones.",
+   "book": "Chapter 10, Solitary Nodule/Mass in the Lung",
+   "covers": [
+    "t16",
+    "t17"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c10-m11",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "A 62-year-old heavy smoker has an incidental 7 mm solid, noncalcified nodule with an irregular margin in the right upper lobe on a CT done for another reason. What follow-up do the Fleischner criteria in the book suggest?",
+   "options": [
+    "No routine follow-up",
+    "Consider CT at 3 months, PET/CT or tissue sampling right away",
+    "A yearly CT for 5 years",
+    "CT at 6 to 12 months, then CT at 18 to 24 months"
+   ],
+   "answer": 3,
+   "explanation": "For a single solid nodule of 6 to 8 mm in a high-risk patient (older, heavy smoker, upper lobe, irregular or spiculated margin) the book's table gives CT at 6 to 12 months and then at 18 to 24 months. No routine follow-up is for nodules under 6 mm in low-risk patients (optional CT at 12 months in high risk), and the 3-month CT, PET/CT or sampling option is for nodules over 8 mm. Solid nodules stable over 2 years, or subsolid ones over 5 years, are likely benign. These rules apply to incidental noncalcified nodules in adults over 35.",
+   "book": "Chapter 10, Solitary Nodule/Mass in the Lung, Table 10.4 Fleischner Society Criteria",
+   "covers": [
+    "t18"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c10-m12",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which nodule is most likely benign?",
+   "options": [
+    "A 6 cm mass of the lung with shaggy margins",
+    "A nodule with a spiculated margin, in an older smoker",
+    "A nodule with laminated calcification that has not changed over two years",
+    "A nodule that has grown over one year and now has an irregular outer margin"
+   ],
+   "answer": 2,
+   "explanation": "The book lists size, calcification, margin and change over time. Central, laminar or diffuse calcification is invariably benign (old granuloma), and no change over two years is the classic sign of benignity. Masses over 5 cm are malignant about 95% of the time, lobulated, spiculated or shaggy margins suggest malignancy, and steady growth at a pace that is neither weeks nor years (the book's example grew over a year and was an adenocarcinoma) suggests cancer.",
+   "book": "Chapter 10, Solitary Nodule/Mass in the Lung, Signs of a Benign Versus Malignant Solitary Pulmonary Nodule",
+   "covers": [
+    "t19"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c10-m13",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "A smoothly marginated peripheral lung nodule contains fat and clumps of popcorn-like calcification on CT. Which is the most likely diagnosis?",
+   "options": [
+    "Tuberculous granuloma with homogeneous calcification",
+    "Hamartoma",
+    "Histoplasmoma with target calcification",
+    "Adenocarcinoma with spiculated margins"
+   ],
+   "answer": 1,
+   "explanation": "A hamartoma is a peripheral tumor of disorganized lung tissue, characterised by fat and popcorn calcification. Tuberculous granulomas are classically homogeneously calcified (or laminated) and histoplasmomas show laminated or central target calcification, both diagnostic of a benign nodule. Cancer would be expected to show irregular or spiculated margins rather than fat and popcorn calcification. Other benign nodules: rheumatoid nodules, nocardiosis, AVM, granulomatosis with polyangiitis.",
+   "book": "Chapter 10, Solitary Nodule/Mass in the Lung, Benign Causes of Solitary Pulmonary Nodules",
+   "covers": [
+    "t21"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c10-m14",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which pairing of lung cancer cell type and feature is correct?",
+   "options": [
+    "Small cell carcinoma: central, highly aggressive, usually already metastatic at presentation, with paraneoplastic syndromes (SIADH, Cushing syndrome); adenocarcinoma: peripheral and the slowest growing",
+    "Small cell carcinoma: peripheral and slow growing, curable by surgery in most; adenocarcinoma: central and the fastest growing",
+    "Large cell carcinoma: the commonest central cancer with ADH secretion; squamous cell: a diagnosis of exclusion",
+    "Adenocarcinoma: central and causes SIADH; squamous cell: peripheral and slowest growing"
+   ],
+   "answer": 0,
+   "explanation": "Squamous and small cell carcinomas are mostly central, squamous growing fairly rapidly from segmental or lobar bronchi, while adenocarcinoma is mostly peripheral and the slowest. Small cell tumors carry neurosecretory granules, hence Cushing syndrome or inappropriate ADH secretion, and the majority have metastasized when first seen. Large cell carcinoma is a diagnosis of exclusion (non-small cell, neither squamous nor adenocarcinoma), a large peripheral lesion that grows extremely rapidly. In the US lung cancer is the most common fatal malignancy in men and second in women.",
+   "book": "Chapter 10, Bronchogenic Carcinoma, Table 10.5 Carcinoma of the Lung: Cell Types",
+   "covers": [
+    "t22",
+    "t23",
+    "t28"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c10-m15",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "A central lung cancer obstructs a lobar bronchus and the lobe is airless, with the fissure displaced toward it. Another cancer is a large, thick-walled cavitating mass with a nodular inner margin. Which cell type is most often responsible for both?",
+   "options": [
+    "Adenocarcinoma",
+    "Small cell carcinoma",
+    "Large cell carcinoma",
+    "Squamous cell carcinoma"
+   ],
+   "answer": 3,
+   "explanation": "Bronchial obstruction is most often caused by squamous cell carcinoma, giving obstructive pneumonitis (consolidation, often not infected) or atelectasis with shift of fissures and mediastinum, and squamous tumors cavitate more often than others. Adenocarcinoma, the type most often seen as a nodule or mass with spiculated margins, can cavitate too but less often. A thick wall with a nodular irregular inner margin is the book's cavity sign for cancer. Remember the three ways cancer shows itself: the tumor, the effects of obstruction, and extension or metastasis.",
+   "book": "Chapter 10, Bronchogenic Carcinoma, Recognizing a bronchogenic carcinoma",
+   "covers": [
+    "t24",
+    "t25"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c10-m16",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which statement about the spread of bronchogenic carcinoma is correct?",
+   "options": [
+    "Hilar adenopathy is usually on the opposite side, opposite mediastinal nodes mean a better prognosis, and bone metastases are purely sclerotic",
+    "Mediastinal adenopathy cannot be the only sign of a lung cancer, and effusion never occurs with lymphangitic spread",
+    "Hilar adenopathy is usually on the same side as the tumor, spread to the opposite mediastinal nodes worsens prognosis, and bone metastases tend to be mixed lytic and sclerotic",
+    "Adenocarcinoma never produces multiple nodules, and bone metastases are purely lytic"
+   ],
+   "answer": 2,
+   "explanation": "Hilar nodes enlarge on the tumor side, and mediastinal spread to the side opposite the tumor tends to worsen the prognosis. Mediastinal adenopathy can be the only sign of small cell carcinoma when the primary nodule is invisible. A pleural effusion often accompanies lymphangitic carcinomatosis, adenocarcinoma can produce multiple nodules throughout both lungs (mimicking metastases), and bone metastases are mixed osteolytic and osteoblastic. Rib destruction by direct extension characterises a Pancoast tumor.",
+   "book": "Chapter 10, Bronchogenic Carcinoma, Direct Extension or Metastatic Lesions",
+   "covers": [
+    "t26"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c10-m17",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "A 73-year-old man has shoulder pain, a drooping eyelid and a constricted pupil on one side. The apical film shows a soft-tissue mass at the left lung apex and destruction of the left second and third ribs. What is the diagnosis and the explanation of his symptoms?",
+   "options": [
+    "A Pancoast tumor; the eyelid and pupil signs come from superior vena cava obstruction and the shoulder pain from rib destruction alone",
+    "A Pancoast tumor; the shoulder pain comes from brachial plexus invasion and the eyelid and pupil signs (Horner syndrome) from the cervical sympathetic chain",
+    "A neurogenic tumor of the posterior mediastinum; the symptoms come from a goiter",
+    "A thymoma; the eyelid signs are due to myasthenia gravis in the left eye"
+   ],
+   "answer": 1,
+   "explanation": "An apical soft-tissue mass with destruction of the first three ribs is classic for a Pancoast (superior sulcus) tumor, most often adenocarcinoma or squamous cell. It invades the brachial plexus (shoulder or arm pain), and the cervical sympathetic chain (Horner syndrome: ptosis, miosis). On the right it can obstruct the superior vena cava, which causes facial swelling rather than Horner syndrome. Their proximity to critical structures gives Pancoast tumors a relatively poor prognosis.",
+   "book": "Chapter 10, Case Quiz 10 Answer; Bronchogenic Carcinoma, Box 10.1 Pancoast Tumor",
+   "covers": [
+    "t27"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c10-m18",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Both lungs show many sharply marginated round nodules of slightly different sizes. Which statement is correct?",
+   "options": [
+    "These are most likely hematogenous metastases (nodules embolized at different times); primaries such as colorectal, renal, breast and melanoma are common, and the primary site cannot be told from the appearance, so tissue sampling is needed",
+    "These are most likely primary lung cancers, because multiple nodules of different sizes are typical of primary tumors, and the origin is shown by the nodule size",
+    "These are most likely lymphangitic carcinomatosis, which gives sharply marginated nodules of the same size",
+    "These are metastases, and cannonball nodules identify a renal primary, so no biopsy is needed"
+   ],
+   "answer": 0,
+   "explanation": "A primary lung cancer is usually solitary, whereas multiple nodules most often mean hematogenous metastases, of slightly different sizes because the tumor emboli arrived at different times; they range from micronodules to cannonball masses. Commonly in men colorectal, renal, head and neck, testicular or bladder, melanoma and sarcoma; in women breast, colorectal, renal, cervical or endometrial, melanoma and sarcoma. All metastatic nodules look alike, so bronchoscopic or percutaneous biopsy is the best way to find the origin. Lymphangitic spread gives lines, not nodules.",
+   "book": "Chapter 10, Metastatic Neoplasms in the Lung, Multiple Nodules (Table 10.6)",
+   "covers": [
+    "t29",
+    "t30"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c10-m19",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "A woman with breast cancer has Kerley B lines, thickened fissures and a pleural effusion confined to the right lung. Which diagnosis fits best?",
+   "options": [
+    "Cardiogenic pulmonary edema from congestive heart failure",
+    "Hematogenous cannonball metastases",
+    "Sarcoidosis with bilateral hilar nodes",
+    "Lymphangitic carcinomatosis"
+   ],
+   "answer": 3,
+   "explanation": "Tumor growing in lung lymphatics looks like interstitial edema, with Kerley B lines, fissure thickening and effusion. Edema from heart failure is usually bilateral, so a unilateral or single-lobe pattern should make you suspect lymphangitic carcinomatosis. Primaries that spread this way arise in or around the thorax: breast, lung and pancreas.",
+   "book": "Chapter 10, Metastatic Neoplasms in the Lung, Lymphangitic Carcinomatosis",
+   "covers": [
+    "t31"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c10-m20",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which statement about pulmonary embolism is correct?",
+   "options": [
+    "Most arise from thrombi in the right atrium, most emboli cause infarction, and the chest radiograph is highly sensitive",
+    "More than 90% arise from pelvic tumors, most emboli do not infarct, and the radiograph usually shows a Hampton hump",
+    "More than 90% arise from deep leg vein thrombi above the popliteal level, most emboli do not infarct because of the dual circulation, and the chest radiograph is often nonspecific with a high false-negative rate",
+    "Most arise from calf veins below the popliteal level, most emboli infarct, and a Westermark sign is always present"
+   ],
+   "answer": 2,
+   "explanation": "Emboli come from leg deep veins, especially above the popliteal, after surgery, long bed rest or cancer. The lungs have both a pulmonary and a bronchial circulation, so most emboli do not infarct. Plain films are often abnormal but nonspecific (subsegmental atelectasis, small effusion, raised hemidiaphragm) and miss PE often; classic signs are infrequent: Hampton hump (wedge-shaped peripheral airspace density), Westermark sign (focal decrease in vessels) and the knuckle sign (prominent central pulmonary artery).",
+   "book": "Chapter 10, Pulmonary Thromboembolic Disease (PE)",
+   "covers": [
+    "t32",
+    "t33"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c10-m21",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "A patient with chest pain and suspected pulmonary embolism has an abnormal chest radiograph. What is the usual next test, and what does it show in acute embolism?",
+   "options": [
+    "A V/Q scan, which is preferred when the film is abnormal; emboli appear as a normal perfusion defect",
+    "CT pulmonary angiography; acute emboli are partial or complete filling defects in the contrast-filled pulmonary arteries, and a saddle embolus straddles the main pulmonary arteries",
+    "CT pulmonary angiography; emboli appear as bright, hyperattenuating areas of peripheral lung",
+    "A repeat chest film in 6 weeks, because CT cannot be used in an abnormal chest"
+   ],
+   "answer": 1,
+   "explanation": "If the chest film is normal, a V/Q scan may be diagnostic; if it is abnormal, CT is usually done. CT-PA (sensitivity above 90%) uses a fast spiral scan and bolus of iodinated contrast; acute emboli are filling defects in the opacified arteries, and a saddle embolus straddles the pulmonary artery bifurcation. CT-PA can also show other diagnoses such as pneumonia, images of the pelvic and leg veins obtained after a short delay can show a deep venous thrombus, and it is part of the triple rule-out for chest pain.",
+   "book": "Chapter 10, Pulmonary Thromboembolic Disease (PE), important points on CT-PA",
+   "covers": [
+    "t34",
+    "t35"
+   ],
+   "level": "next",
+   "lesson": "pe-pat005"
+  },
+  {
+   "id": "c10-m22",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which statement about COPD is correct?",
+   "options": [
+    "Chronic bronchitis is defined clinically by productive cough and emphysema pathologically by destruction of airspaces beyond the terminal bronchioles; the most reliable radiographic sign is hyperinflation with a flattened diaphragm, especially on the lateral view",
+    "Emphysema is defined clinically by productive cough and chronic bronchitis pathologically; the most reliable sign is a raised diaphragm",
+    "COPD means only emphysema; its most reliable radiographic sign is small, dense lungs",
+    "Chronic bronchitis is defined by destruction of the terminal bronchioles; the most reliable sign is a unilateral pleural effusion"
+   ],
+   "answer": 0,
+   "explanation": "COPD is airflow obstruction from chronic bronchitis (clinical diagnosis) or emphysema (permanent abnormal enlargement and destruction of airspaces distal to the terminal bronchioles). On radiographs hyperinflation with flat diaphragms, an increased retrosternal clear space, hyperlucent lungs with fewer vessels and enlarged central arteries (from pulmonary hypertension) are seen. On CT emphysema appears as low-density areas without visible walls, useful for planning bullectomy.",
+   "book": "Chapter 10, Chronic Obstructive Pulmonary Disease",
+   "covers": [
+    "t36",
+    "t37"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c10-m23",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "A young nonsmoker with homozygous alpha-1 antitrypsin deficiency has emphysema on CT. Which pattern is expected?",
+   "options": [
+    "Centriacinar (centrilobular) emphysema, most severe in the upper lobes",
+    "Paraseptal emphysema, a cause of airflow obstruction in all patients",
+    "Bullous emphysema that never causes pneumothorax",
+    "Panacinar (panlobular) emphysema, most severe in the lower zones"
+   ],
+   "answer": 3,
+   "explanation": "Panacinar emphysema involves the whole alveolus distal to the terminal bronchiole and is worst in the lower lungs; it is typical of alpha-1 antitrypsin deficiency (though also seen in smokers and the elderly). Centriacinar emphysema is the commonest, linked to cigarette smoking and worst in the upper lobes. Paraseptal emphysema lies next to septa or pleura, may form bullae causing pneumothorax and is not associated with airflow obstruction.",
+   "book": "Chapter 10, Chronic Obstructive Pulmonary Disease, Emphysema patterns",
+   "covers": [
+    "t38"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c10-m24",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "A thin-walled air-filled space more than 1 cm across lies at the lung apex of an emphysema patient. Weeks later it is smaller and holds an air-fluid level, but the patient is only mildly ill. What is the best description?",
+   "options": [
+    "A pneumatocele after Pneumocystis pneumonia, with a wall about 3 mm",
+    "A bleb, easily seen on the chest radiograph",
+    "An infected bulla, which patients tolerate better than a lung abscess that it can mimic",
+    "A thick-walled cavity from a necrotizing carcinoma"
+   ],
+   "answer": 2,
+   "explanation": "Bullae are over 1 cm with a wall under 1 mm, associated with emphysema and often at the apex; they contain no vessels and the lung markings are lacking. Fluid can collect in them from infection, hemorrhage or liquefaction and shows as an air-fluid level on an upright (horizontal beam) film. Blebs are tiny and not visible on radiographs. Cysts have a wall under 3 mm (pneumatoceles follow Staphylococcus or Pneumocystis), and cavities have the thickest wall, 3 mm to several cm, from central necrosis.",
+   "book": "Chapter 10, Bullae, Cysts, and Cavities",
+   "covers": [
+    "t39",
+    "t40"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c10-m25",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "A cavity in the lung has a thick wall and a nodular, irregular inner margin. What is the most likely cause, and how do tuberculosis and an abscess typically differ?",
+   "options": [
+    "Tuberculosis; carcinoma has a thin smooth wall and an abscess a nodular inner margin",
+    "Bronchogenic carcinoma; tuberculosis usually has a thin wall (upper lobe) with a smooth inner margin, and an abscess a thick wall with a smooth inner margin and an air-fluid level",
+    "Lung abscess; carcinoma has a smooth inner margin and tuberculosis a nodular one",
+    "Bronchogenic carcinoma; tuberculosis has a thick, nodular wall and an abscess a thin, smooth wall"
+   ],
+   "answer": 1,
+   "explanation": "The book separates three common cavities by wall thickness (thick is over 5 mm) and the inner margin: carcinoma (often squamous) thick with nodular inner margin; tuberculosis relatively thin with a smooth inner margin, in the upper lobe; and an abscess thick with a smooth inner margin, often with an air-fluid level. A thick, nodular cavity wall needs urgent work-up for cancer.",
+   "book": "Chapter 10, Bullae, Cysts, and Cavities, Table 10.7",
+   "covers": [
+    "t41"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c10-m26",
+   "type": "mcq",
+   "topic": "ch10",
+   "prompt": "Which statement about bronchiectasis is correct?",
+   "options": [
+    "It is localized irreversible bronchial dilatation, usually after necrotizing infection and in the lower lobes; CT is the study of choice and shows a bronchus larger than its artery (signet ring) and failure of the bronchi to taper",
+    "It is a reversible narrowing of bronchi after asthma; plain film is the study of choice and shows a bronchus smaller than its artery",
+    "It is diffuse alveolar destruction in the upper lobes; CT shows signet ring sign when the artery is larger than the bronchus",
+    "It is localized irreversible dilatation, usually from Pneumocystis infection in the upper lobes; CT shows tram-tracks only in cystic fibrosis"
+   ],
+   "answer": 0,
+   "explanation": "Bronchiectasis is localized irreversible dilatation of part of the bronchial tree, usually after necrotizing bacterial infections (Staphylococcus, Klebsiella) in the lower lobes, but also with cystic fibrosis (progressive upper lobe disease in children), Kartagener syndrome, allergic bronchopulmonary aspergillosis and Swyer-James syndrome; it gives chronic productive cough, often with hemoptysis. Plain films may show tram-tracks, cystic lesions up to 2 cm and tubular densities, but CT is best: the signet ring sign (bronchus larger than artery, the reverse of normal) and loss of normal tapering (the most sensitive sign).",
+   "book": "Chapter 10, Bronchiectasis",
+   "covers": [
+    "t42",
+    "t43"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c10-e01",
+   "type": "essay",
+   "topic": "ch10",
+   "prompt": "These are axial chest CTs: in the first two, experts have marked every enlarged mediastinal lymph node; the next three come from patients with lung cancer (small cell, squamous cell and adenocarcinoma); the last is a chest CT showing the great vessels. In two to four sentences, name the mediastinal compartments and what each contains, give the differential of an anterior mediastinal mass, say how big a lymph node must be to count as enlarged on CT, and name the characteristic masses of the middle and posterior compartments.",
+   "images": [
+    {
+     "packId": "ct-findings",
+     "caseId": "ct-lnq-0230",
+     "thumb": "ct-findings/thumbs/ct-cd1bbf85ad.png",
+     "caption": "Image 1 · Chest CT, axial"
+    },
+    {
+     "packId": "ct-findings",
+     "caseId": "ct-lnq-0837",
+     "thumb": "ct-findings/thumbs/ct-71b25c56cb.png",
+     "caption": "Image 2 · Chest CT, axial"
+    },
+    {
+     "packId": "ct-tumors",
+     "caseId": "lung-dx-b0022",
+     "thumb": "ct-tumors/thumbs/ct-57df731787.png",
+     "caption": "Image 3 · Chest CT, axial"
+    },
+    {
+     "packId": "ct-tumors",
+     "caseId": "lung-dx-g0007",
+     "thumb": "ct-tumors/thumbs/ct-a8dc76e0b4.png",
+     "caption": "Image 4 · Chest CT, axial"
+    },
+    {
+     "packId": "ct-tumors",
+     "caseId": "lung-dx-a0010",
+     "thumb": "ct-tumors/thumbs/ct-c39cf95eef.png",
+     "caption": "Image 5 · Chest CT, axial"
+    },
+    {
+     "packId": "heart-ct",
+     "caseId": "hct-s0654",
+     "thumb": "heart-ct/thumbs/ct-d3eeb7f984.png",
+     "caption": "Image 6 · Chest CT, axial"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Three compartments (anterior, middle, posterior) with their contents or limits: heart and great vessels in the middle, trachea and nodes, spine side posterior",
+     "points": 2,
+     "terms": [
+      "anterior",
+      "middle",
+      "posterior",
+      "prevascular",
+      "visceral",
+      "paravertebral",
+      "compartment"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Anterior mass differential: thyroid (goiter), terrible lymphoma, thymoma, teratoma (the four T's)",
+     "points": 2,
+     "terms": [
+      "thyroid",
+      "goiter",
+      "goitre",
+      "lymphoma",
+      "thymoma",
+      "teratoma",
+      "four t"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "A mediastinal node is enlarged when its short axis exceeds about 1 cm",
+     "points": 1,
+     "terms": [
+      "1 cm",
+      "1cm",
+      "10 mm",
+      "one centimet",
+      "short axis"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Middle mediastinum: lymphadenopathy (lymphoma, small cell carcinoma, metastases, tuberculosis, sarcoid)",
+     "points": 1,
+     "terms": [
+      "lymphadenopathy",
+      "adenopathy",
+      "nodes",
+      "lymph node",
+      "small cell",
+      "metasta",
+      "tubercul"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Posterior mediastinum: neurogenic tumors (schwannoma, neurofibroma, ganglioneuroma, neuroblastoma) in the paravertebral region",
+     "points": 1,
+     "terms": [
+      "neurogenic",
+      "schwannoma",
+      "neurofibroma",
+      "nerve sheath",
+      "ganglioneuroma",
+      "neuroblastoma",
+      "paravertebral"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Goiter deviates the trachea; CT is more accurate than radiographs for the origin of the mass",
+     "points": 1,
+     "terms": [
+      "trachea",
+      "deviat",
+      "ct is more",
+      "cross-sectional",
+      "more accurate"
+     ]
+    }
+   ],
+   "model": "The anterior mediastinum lies behind the sternum, in front of the heart and great vessels (prevascular on CT); the middle holds the heart, great vessel origins, trachea, main bronchi and nodes (visceral); the posterior, behind the heart up to the spine with the paravertebral gutters, holds the descending aorta, esophagus and neurogenic tumors (paravertebral). Anterior masses: thyroid goiter (deviates the trachea), terrible lymphoma, thymoma and teratoma. A node over about 1 cm in short axis is enlarged. Lymphadenopathy (lymphoma, small cell cancer, metastases, TB) is the common middle mediastinal mass, and neurogenic tumors (schwannoma, neurofibroma) the posterior ones.",
+   "book": "Chapter 10, Mediastinal Masses; Anterior, Middle and Posterior Mediastinal Masses",
+   "covers": [
+    "t01",
+    "t02",
+    "t04",
+    "t05",
+    "t07",
+    "t12",
+    "t13",
+    "t14"
+   ]
+  },
+  {
+   "id": "c10-e02",
+   "type": "essay",
+   "topic": "ch10",
+   "prompt": "In each of these frontal films a radiologist boxed a lung mass or a nodule. In two to four sentences, say how a nodule is separated from a mass, which features suggest that a nodule is benign or malignant, what tests and comparisons you would use next, and what the usual cell types of lung cancer are.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00021179-011",
+     "thumb": "cxr-findings-2/thumbs/dx-1b64c40c2c.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00018101-012",
+     "thumb": "cxr-findings-2/thumbs/dx-3c97caf5af.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00022726-002",
+     "thumb": "cxr-findings-2/thumbs/dx-390c2a0171.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00020274-021",
+     "thumb": "cxr-findings/thumbs/dx-f0b07c0df3.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00020393-001",
+     "thumb": "cxr-findings-2/thumbs/dx-83f3533b8b.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00012892-010",
+     "thumb": "cxr-findings-2/thumbs/dx-e5c384c63f.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "A nodule is under about 3 cm and a mass over 3 cm",
+     "points": 1,
+     "terms": [
+      "3 cm",
+      "3cm",
+      "30 mm",
+      "three centimet"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Benign signs: central, laminated or diffuse calcification (granuloma, popcorn in hamartoma), smooth margin, no growth over 2 years",
+     "points": 2,
+     "terms": [
+      "calcif",
+      "popcorn",
+      "laminat",
+      "smooth",
+      "stable",
+      "two years",
+      "2 years",
+      "no growth",
+      "unchanged",
+      "granuloma",
+      "hamartoma"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Malignant signs: lobulated, spiculated or shaggy margin, growth, large size (over 5 cm), symptoms such as hemoptysis or weight loss",
+     "points": 2,
+     "terms": [
+      "spicul",
+      "lobulat",
+      "shaggy",
+      "irregular",
+      "growth",
+      "grow",
+      "enlarg",
+      "larger",
+      "hemoptysis",
+      "haemoptysis",
+      "weight loss",
+      "5 cm"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Compare with prior images and do a CT; follow-up depends on size and risk (Fleischner)",
+     "points": 1,
+     "terms": [
+      "prior",
+      "previous",
+      "old film",
+      "compare",
+      "comparison",
+      "ct",
+      "fleischner",
+      "follow-up",
+      "follow up"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "PET (FDG, nodule over 1 cm) or biopsy / tissue sampling to settle malignancy",
+     "points": 1,
+     "terms": [
+      "pet",
+      "fdg",
+      "biops",
+      "tissue",
+      "sampling",
+      "bronchoscop"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Cell types: adenocarcinoma (peripheral, slowest, commonest nodule), squamous (central, cavitates, obstruction), small cell (central, aggressive), large cell",
+     "points": 1,
+     "terms": [
+      "adenocarcinoma",
+      "squamous",
+      "small cell",
+      "large cell"
+     ]
+    }
+   ],
+   "model": "A nodule is under about 3 cm, a mass over 3 cm. Benign signs are central, laminar or diffuse calcification (popcorn in hamartoma), a smooth margin and no change over 2 years; malignant signs are lobulated, spiculated or shaggy margins, growth, size above 5 cm and symptoms such as hemoptysis or weight loss. Compare with prior images and do CT, choose follow-up by size and risk, and use PET (nodule over 1 cm) or biopsy when needed. Cell types: adenocarcinoma (peripheral, slowest), squamous (central, cavitates, obstructs), small cell (central, aggressive), large cell (rapid).",
+   "book": "Chapter 10, Solitary Nodule/Mass in the Lung; Bronchogenic Carcinoma",
+   "covers": [
+    "t16",
+    "t18",
+    "t19",
+    "t20",
+    "t21",
+    "t23",
+    "t24"
+   ]
+  },
+  {
+   "id": "c10-e03",
+   "type": "essay",
+   "topic": "ch10",
+   "prompt": "The first two are CT pulmonary angiograms showing pulmonary emboli (the first a saddle embolus at the bifurcation, the second a large embolus in the right pulmonary artery with a right pleural effusion). The other four are portable chest radiographs of patients who then had CT pulmonary angiography; their results are not given. In two to four sentences, say where pulmonary emboli come from, what the chest radiograph can and cannot show, and how you proceed to the diagnosis.",
+   "images": [
+    {
+     "packId": "pe-cta",
+     "caseId": "pe-pat005",
+     "thumb": "pe-cta/thumbs/ct-a9b86eb0e7.png",
+     "caption": "Image 1 · Chest CT angiogram, axial"
+    },
+    {
+     "packId": "pe-cta",
+     "caseId": "pe-pat021",
+     "thumb": "pe-cta/thumbs/ct-685a0b41a1.png",
+     "caption": "Image 2 · Chest CT angiogram, axial"
+    },
+    {
+     "packId": "chest-pairs",
+     "caseId": "chest-pairs-covid-19-ar-16434411",
+     "thumb": "chest-pairs/thumbs/dx-f8e3c2c288.png",
+     "caption": "Image 3 · Chest, frontal (portable)"
+    },
+    {
+     "packId": "chest-pairs",
+     "caseId": "chest-pairs-covid-19-ar-16434363",
+     "thumb": "chest-pairs/thumbs/dx-ff70566980.png",
+     "caption": "Image 4 · Chest, frontal (portable)"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-covid-19-ar-16445122",
+     "thumb": "more-ct-xr/thumbs/dx-85eed985e2.png",
+     "caption": "Image 5 · Chest, frontal (portable)"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-covid-19-ar-16445138",
+     "thumb": "more-ct-xr/thumbs/dx-15cfc40bd8.png",
+     "caption": "Image 6 · Chest, frontal (portable)"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Source: deep veins of the leg (above the popliteal), after surgery, bed rest or cancer",
+     "points": 1,
+     "terms": [
+      "leg",
+      "deep vein",
+      "popliteal",
+      "dvt",
+      "deep venous",
+      "thrombo"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Radiograph is often normal or nonspecific (subsegmental atelectasis, small effusion, raised hemidiaphragm) with a high false-negative rate",
+     "points": 2,
+     "terms": [
+      "nonspecific",
+      "non-specific",
+      "normal",
+      "atelectasis",
+      "effusion",
+      "hemidiaphragm",
+      "false-negative",
+      "false negative",
+      "insensitive",
+      "misses"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Classic signs, infrequent: Hampton hump (wedge-shaped peripheral opacity), Westermark sign, knuckle sign",
+     "points": 1,
+     "terms": [
+      "hampton",
+      "westermark",
+      "knuckle",
+      "wedge"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Next test: V/Q scan if the film is normal, CT pulmonary angiography if the film is abnormal",
+     "points": 2,
+     "terms": [
+      "v/q",
+      "vq",
+      "ventilation",
+      "perfusion",
+      "ct pulmonary",
+      "cta",
+      "ct-pa",
+      "ctpa",
+      "angiogra"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "CT-PA: filling defects in the contrast-filled pulmonary arteries; saddle embolus; can also show other diagnoses and, with delayed images, leg veins",
+     "points": 2,
+     "terms": [
+      "filling defect",
+      "saddle",
+      "bifurcation",
+      "contrast",
+      "pneumonia",
+      "other diagnos",
+      "leg vein",
+      "delayed"
+     ]
+    }
+   ],
+   "model": "Over 90% of emboli come from deep leg veins above the popliteal, after surgery, bed rest or cancer. The chest radiograph is often abnormal but nonspecific (subsegmental atelectasis, small effusion, raised hemidiaphragm) and misses many emboli; Hampton hump, Westermark and knuckle signs are classic but infrequent. If the film is normal a V/Q scan can be diagnostic; if abnormal, CT pulmonary angiography is done. It shows filling defects in the contrast-filled arteries (a saddle embolus straddles the bifurcation), can show other diseases such as pneumonia, and delayed images can show leg or pelvic vein thrombus.",
+   "book": "Chapter 10, Pulmonary Thromboembolic Disease (PE)",
+   "covers": [
+    "t32",
+    "t33",
+    "t34",
+    "t35"
+   ]
+  }
+ ]
+}

@@ -1,0 +1,975 @@
+{
+ "chapter": 4,
+ "title": "Recognizing Airspace Versus Interstitial Lung Disease",
+ "blurb": "Airspace versus interstitial patterns, air bronchogram and silhouette sign, edema, pneumonia, aspiration, fibrosis, metastases, sarcoid and tuberculosis.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Parenchymal disease is divided (arbitrarily, by pathology and imaging pattern) into airspace (alveolar) and interstitial (infiltrative); recognising the pattern narrows the differential; many diseases show both"
+  },
+  {
+   "id": "t02",
+   "label": "Airspace disease: fluffy, cloud-like, hazy opacities"
+  },
+  {
+   "id": "t03",
+   "label": "Airspace disease: indistinct margins and confluent (blending) opacities"
+  },
+  {
+   "id": "t04",
+   "label": "Airspace disease may be diffuse (pulmonary edema) or localised (segmental or lobar pneumonia)"
+  },
+  {
+   "id": "t05",
+   "label": "Air bronchogram: what it is, and why bronchi are normally invisible (thin walls, air inside, air around)"
+  },
+  {
+   "id": "t06",
+   "label": "An air bronchogram is almost always airspace disease; what fills airspaces (fluid, blood, gastric juice, exudate, water)"
+  },
+  {
+   "id": "t07",
+   "label": "Silhouette sign: same-density structures in contact lose their edge; it localises disease anywhere in the body"
+  },
+  {
+   "id": "t08",
+   "label": "Silhouette sign in right middle lobe pneumonia: right heart border lost, hemidiaphragm still seen, minor fissure above"
+  },
+  {
+   "id": "t09",
+   "label": "Box 4.1 airspace diseases: acute (pneumonia, alveolar edema, hemorrhage, aspiration, near-drowning) and chronic (adenocarcinoma, alveolar proteinosis, sarcoidosis, lymphoma)"
+  },
+  {
+   "id": "t10",
+   "label": "Pneumonia: about 90% of community-acquired lobar/segmental cases are Streptococcus pneumoniae; patchy, segmental or lobar; air bronchograms possible; clears in under 10 days (pneumococcal may clear within 48 hours)"
+  },
+  {
+   "id": "t11",
+   "label": "Alveolar edema: bilateral perihilar bat-wing/angel-wing pattern, may be asymmetric, effusions and thickened fissures, usually no air bronchograms, clears in under 48 hours"
+  },
+  {
+   "id": "t12",
+   "label": "Aspiration: dependent segments (lower lobes, posterior upper lobes), right lower lobe more than left; bland juice or water clears in 24 to 48 hours, infected aspiration takes weeks"
+  },
+  {
+   "id": "t13",
+   "label": "The interstitium (connective tissue, lymphatics, vessels, bronchi) produces discrete \"particles\" of disease"
+  },
+  {
+   "id": "t14",
+   "label": "Box 4.3 interstitial disease: packets with sharp margins separated by aerated lung, focal or diffuse, usually no air bronchograms"
+  },
+  {
+   "id": "t15",
+   "label": "Three interstitial patterns: reticular (lines), nodular (dots), reticulonodular (both, the most frequent)"
+  },
+  {
+   "id": "t16",
+   "label": "Pitfall: heavy interstitial disease can overlap and mimic airspace disease on radiographs; look at the periphery of the shadow; CT characterises it better"
+  },
+  {
+   "id": "t17",
+   "label": "Box 4.1 interstitial diseases: reticular (interstitial edema, interstitial pneumonia, scleroderma, sarcoid) and nodular (bronchogenic carcinoma, metastases, silicosis, miliary TB, sarcoid)"
+  },
+  {
+   "id": "t18",
+   "label": "Pulmonary interstitial edema: mechanisms (capillary pressure, permeability, decreased resorption); precursor of alveolar edema; four key signs (fissure fluid, peribronchial cuffing, effusions, Kerley B lines); few rales; clears in under 48 hours"
+  },
+  {
+   "id": "t19",
+   "label": "Usual interstitial pneumonia (UIP/IPF): older men, smoking, reflux; fine basal reticular pattern then honeycombing and volume loss; CT: honeycombing, subpleural reticulation, traction bronchiectasis; end stage"
+  },
+  {
+   "id": "t20",
+   "label": "Nonspecific interstitial pneumonia (NSIP): connective tissue disease such as scleroderma, better prognosis than UIP; CT basal ground-glass opacity, subpleural sparing, traction bronchiectasis; meaning of ground-glass"
+  },
+  {
+   "id": "t21",
+   "label": "Bronchogenic carcinoma: four cell types; adenocarcinoma as a solitary peripheral nodule; nodules and masses are more discrete than airspace disease; CT shows spiculation"
+  },
+  {
+   "id": "t22",
+   "label": "Hematogenous metastases: two or more nodules, cannonball when large; classic primaries; multiple lung nodules = metastases until proven otherwise"
+  },
+  {
+   "id": "t23",
+   "label": "Lymphangitic spread: resembles interstitial edema but localised to a segment, lobe or one lung; Kerley lines, fissure fluid, effusions; classic primaries (breast, lung, stomach, pancreas)"
+  },
+  {
+   "id": "t24",
+   "label": "Direct extension: the least common route (pleura is resistant); subpleural mass with rib destruction"
+  },
+  {
+   "id": "t25",
+   "label": "Sarcoidosis: bilateral hilar and right paratracheal adenopathy; about half have lung disease, reticulonodular; stages I to IV; most parenchymal disease resolves"
+  },
+  {
+   "id": "t26",
+   "label": "Tuberculosis can show airspace and interstitial patterns; about a third of the world infected, about 1 in 10 become active"
+  },
+  {
+   "id": "t27",
+   "label": "Primary TB: few symptoms; upper lobes slightly more than lower; lobar pneumonia, hilar/mediastinal adenopathy alone (children), large silent effusions (adults); cavitation rare"
+  },
+  {
+   "id": "t28",
+   "label": "Postprimary TB: reactivation; apical and posterior upper-lobe segments and superior segments of lower lobes; caseous necrosis and tubercle; heals with fibrosis and contraction"
+  },
+  {
+   "id": "t29",
+   "label": "Postprimary TB patterns: bilateral upper-lobe thin-walled cavities with no air-fluid level; pneumonia; transbronchial spread (including the lingula)"
+  },
+  {
+   "id": "t30",
+   "label": "TB sequelae: bronchiectasis (usually asymptomatic), bronchostenosis and middle lobe syndrome, tuberculoma with satellite lesions, effusion in postprimary TB = empyema with a graver prognosis"
+  },
+  {
+   "id": "t31",
+   "label": "Miliary TB: insidious (fever, chills, night sweats); weeks until visible; nodules 1 mm growing to 2-3 mm; clears rapidly with treatment; seldom calcifies; other miliary causes (histoplasmosis, sarcoid, silicosis)"
+  },
+  {
+   "id": "t32",
+   "label": "Healed varicella pneumonia: innumerable small calcified granulomas seen as discrete nodules"
+  },
+  {
+   "id": "t33",
+   "label": "Case quiz: fluffy, confluent density with air bronchograms and fever = airspace disease, most likely pneumonia"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c04-m01",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "How does the book describe the division of parenchymal lung disease into airspace and interstitial disease?",
+   "options": [
+    "It is a strict division: every parenchymal disease produces only one of the two patterns",
+    "It is a division by age: airspace disease belongs to children and interstitial disease to adults",
+    "It is a division by speed of onset: airspace disease is always acute and interstitial disease is always chronic",
+    "It is an arbitrary division based partly on pathology and partly on the usual imaging pattern, and many diseases show features of both"
+   ],
+   "answer": 3,
+   "explanation": "The two groups are a practical shortcut that helps you build a differential, not rigid boxes. Tuberculosis shows both patterns, and airspace disease can also be chronic (for example alveolar proteinosis or lymphoma), so the age and tempo options are wrong. Recognising the pattern narrows the list of likely diseases.",
+   "book": "Chapter 4, Classifying Parenchymal Lung Disease",
+   "covers": [
+    "t01"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c04-m02",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "Which description fits airspace (alveolar) disease on a chest radiograph?",
+   "options": [
+    "Discrete, sharply outlined lines or dots with normal-looking lung between them",
+    "A thin-walled upper-lobe cavity with a smooth inner margin and no air-fluid level",
+    "Fluffy, cloud-like opacities with indistinct margins that blend into one another",
+    "A single round nodule with a crisp edge and a clear border against normal lung"
+   ],
+   "answer": 2,
+   "explanation": "When the alveoli fill, the lung turns hazy and the edge of the abnormal area fades into normal lung; neighbouring opacities merge (confluent). Sharp lines or dots with normal lung in between describe interstitial disease, the cavity describes postprimary tuberculosis, and a crisp nodule is a nodule or mass.",
+   "book": "Chapter 4, Characteristics of Airspace Disease",
+   "covers": [
+    "t02",
+    "t03"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c04-m03",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "What makes an air bronchogram visible on a chest radiograph?",
+   "options": [
+    "Thickening of the bronchial walls by interstitial fluid, so the walls cast their own shadow",
+    "Fluid, pus, blood or other material fills the alveoli around an air-filled bronchus, so the air in the bronchus stands out as dark branching tubes",
+    "Mucus plugging the bronchus so that air is trapped beyond the plug",
+    "Air leaking from the bronchus into the pleural space beside it"
+   ],
+   "answer": 1,
+   "explanation": "Normally a bronchus cannot be seen: its wall is very thin, it contains air and it is surrounded by air-containing lung. Once the surrounding airspaces are filled, the air in the bronchus contrasts with the dense lung. That is why an air bronchogram almost always means airspace disease. Wall thickening, a plugged bronchus and pleural air are different findings.",
+   "book": "Chapter 4, Characteristics of Airspace Disease",
+   "covers": [
+    "t05",
+    "t06"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c04-m04",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "A frontal film shows a homogeneous opacity to the right of the heart. The right heart border cannot be seen, the right hemidiaphragm is sharply seen, and a horizontal line (the minor fissure) bounds the opacity above. Where is the airspace disease?",
+   "options": [
+    "In the right middle lobe",
+    "In the right lower lobe",
+    "In the right upper lobe",
+    "In the left upper lobe (lingula)"
+   ],
+   "answer": 0,
+   "explanation": "The silhouette sign: a border disappears when disease of the same density touches it. The right middle lobe lies anteriorly against the right heart border, so the border is lost, while the hemidiaphragm (lower lobe) is not in contact and stays visible; the minor fissure above also places it in the middle lobe. A lower-lobe opacity would blur the hemidiaphragm instead. The lingula is on the left and cannot touch the right heart border.",
+   "book": "Chapter 4, Characteristics of Airspace Disease (silhouette sign)",
+   "covers": [
+    "t07",
+    "t08"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c04-m05",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "Which description fits community-acquired pneumococcal pneumonia?",
+   "options": [
+    "Bilateral perihilar bat-wing opacities without air bronchograms that clear within 48 hours of treatment",
+    "Dependent bibasilar opacities, right lower lobe more than left, that take weeks to clear",
+    "Innumerable 1 to 3 mm nodules through both lungs that almost never calcify",
+    "Patchy, segmental or lobar airspace disease that may contain air bronchograms and usually clears in under 10 days; Streptococcus pneumoniae causes about 90% of such cases"
+   ],
+   "answer": 3,
+   "explanation": "Lobar or segmental pneumonia is the classic airspace pattern with air bronchograms. The second option is alveolar edema, the third is infected aspiration, and the last is miliary tuberculosis. A pneumococcal pneumonia can even clear within 48 hours, but on average the film clears in under 10 days.",
+   "book": "Chapter 4, Some Causes of Airspace Disease (Pneumonia)",
+   "covers": [
+    "t10"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c04-m06",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "An ill patient has bilateral, fluffy, confluent opacities clustered around both hila with indistinct margins, an enlarged heart and small pleural effusions. No air bronchograms are seen. What is the most likely diagnosis?",
+   "options": [
+    "Lobar pneumococcal pneumonia",
+    "Miliary tuberculosis",
+    "Cardiogenic pulmonary alveolar edema",
+    "Usual interstitial pneumonia"
+   ],
+   "answer": 2,
+   "explanation": "Bilateral, perihilar, fluffy airspace disease (the bat-wing or angel-wing pattern) with a big heart and effusions is typical of cardiac alveolar edema, and it can be asymmetric. Lobar pneumonia fills one lobe or segment and usually shows air bronchograms, miliary TB is made of tiny discrete nodules, and UIP is a basal subpleural reticular process.",
+   "book": "Chapter 4, Some Causes of Airspace Disease (Pulmonary alveolar edema)",
+   "covers": [
+    "t11",
+    "t04"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c04-m07",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "Alveolar edema is airspace disease, yet air bronchograms are usually absent. What explains this?",
+   "options": [
+    "Edema is really an interstitial process, so air bronchograms can never occur in it",
+    "The edema fluid fills the bronchi as well as the airspaces, so no air-filled bronchus is left to stand out",
+    "The enlarged heart compresses the bronchi so that they collapse",
+    "Edema fluid has the same density as aerated lung and therefore hides the bronchi"
+   ],
+   "answer": 1,
+   "explanation": "An air bronchogram needs air inside the bronchus and dense lung around it. In alveolar edema the fluid also fills the bronchi, so nothing is outlined. Edema is airspace disease (the interstitial form is its precursor), and the fluid is dense, not lung density.",
+   "book": "Chapter 4, Some Causes of Airspace Disease (Pulmonary alveolar edema)",
+   "covers": [
+    "t11",
+    "t05"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c04-m08",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "A patient who had a stroke a few days ago has fluffy, indistinctly marginated opacities at both lung bases. Which cause fits best?",
+   "options": [
+    "Aspiration into the dependent lower lobes",
+    "Cardiogenic alveolar edema, which is typically perihilar rather than basal",
+    "Lobar pneumococcal pneumonia, which usually fills a single lobe or segment",
+    "Miliary tuberculosis, which gives innumerable tiny nodules"
+   ],
+   "answer": 0,
+   "explanation": "Aspiration settles into whatever part of the lung is most dependent, so in bedridden patients it affects the lower lobes and the posterior parts of the upper lobes, and the right lower lobe more often than the left because of the course and calibre of the right main bronchus. A bibasilar fluffy pattern after a stroke should raise that suspicion; edema is central and the other two do not look like this.",
+   "book": "Chapter 4, Some Causes of Airspace Disease (Aspiration)",
+   "covers": [
+    "t12"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c04-m09",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "Which description fits interstitial lung disease?",
+   "options": [
+    "Fluffy confluent opacities with indistinct margins and air bronchograms",
+    "A homogeneous lobar opacity that hides the adjacent heart border",
+    "Large white areas that typically clear within 48 hours of starting treatment",
+    "Discrete lines, dots or both, in sharply marginated packets separated by normal aerated lung, usually without air bronchograms"
+   ],
+   "answer": 3,
+   "explanation": "Interstitial disease makes \"particles\" in the connective tissue network around the airspaces: lines (reticular), dots (nodular) or both, with sharp edges and aerated lung between them. The other options describe airspace pattern (fluffy, confluent, air bronchograms, silhouette sign) and rapidly clearing edema.",
+   "book": "Chapter 4, Characteristics of Interstitial Lung Disease",
+   "covers": [
+    "t13",
+    "t14",
+    "t15"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c04-m10",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "On a frontal film a portion of a shadow looks confluent, like airspace disease, but you suspect that heavy interstitial disease is overlapping on the film. What should you do?",
+   "options": [
+    "Judge the pattern from the densest central part of the shadow",
+    "Call it airspace disease because it is confluent and start antibiotics",
+    "Look at the periphery of the shadow, where individual lines and dots show more clearly, and consider chest CT",
+    "Repeat the film with a lower kilovoltage so the pattern is clearer"
+   ],
+   "answer": 2,
+   "explanation": "On a radiograph all the lung tissue is superimposed, so many tiny interstitial densities can look like one coalescent shadow. At the edge of the abnormality the overlap thins out and the reticular or nodular nature is easier to see; CT characterises the disease even better. The centre is where superimposition misleads you most.",
+   "book": "Chapter 4, Diagnostic Pitfalls (interstitial disease)",
+   "covers": [
+    "t16"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c04-m11",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "Which set lists the four key findings of pulmonary interstitial edema?",
+   "options": [
+    "Air bronchograms, bat-wing opacities, silhouette sign and cavitation",
+    "Fluid in the fissures, peribronchial cuffing, pleural effusions and Kerley B lines",
+    "Honeycombing, traction bronchiectasis, subpleural reticulation and volume loss",
+    "Hilar adenopathy, miliary nodules, upper-lobe cavities and apical fibrosis"
+   ],
+   "answer": 1,
+   "explanation": "Interstitial edema, the precursor of alveolar edema, shows fluid in the major and minor fissures, cuffing of bronchi by fluid in their walls, effusions and Kerley B lines (fluid in thickened interlobular septa). Because most fluid is in the interstitium rather than the airspaces, there may be few rales despite a striking film. The other lists describe alveolar edema or airspace disease, UIP and tuberculosis or sarcoid.",
+   "book": "Chapter 4, Predominantly Reticular Interstitial Lung Diseases (Pulmonary interstitial edema)",
+   "covers": [
+    "t18"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c04-m12",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "Which of the following is classified in the book as an interstitial (nodular) disease rather than an airspace disease?",
+   "options": [
+    "Silicosis",
+    "Alveolar cell proteinosis",
+    "Pulmonary hemorrhage",
+    "Near-drowning"
+   ],
+   "answer": 0,
+   "explanation": "The nodular interstitial group contains bronchogenic carcinoma, metastases, silicosis, miliary tuberculosis and sarcoid. Alveolar proteinosis is a chronic airspace disease, and hemorrhage and near-drowning are acute airspace diseases. Sarcoid, notably, appears in both lists.",
+   "book": "Chapter 4, Box 4.1 Classification of Parenchymal Lung Diseases",
+   "covers": [
+    "t09",
+    "t17"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c04-m13",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "Which of these airspace processes would most likely still be visible on a film one week after treatment began?",
+   "options": [
+    "Aspiration of bland (neutralised) gastric juice",
+    "Cardiogenic pulmonary alveolar edema",
+    "Pulmonary interstitial edema from heart failure",
+    "Aspiration in which the aspirated material became infected"
+   ],
+   "answer": 3,
+   "explanation": "Bland gastric juice or water usually clears within 24 to 48 hours, and both forms of cardiac edema classically clear in under 48 hours with treatment. Infected aspiration behaves like an infection and can take weeks to resolve. The rate of clearing is a useful clue to the cause of a shadow.",
+   "book": "Chapter 4, Some Causes of Airspace Disease and Interstitial Lung Disease",
+   "covers": [
+    "t12",
+    "t11",
+    "t18"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c04-m14",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "CT of an older man who smokes and has reflux shows subpleural reticular opacities at both lung bases, small cystic spaces (honeycombing) and traction bronchiectasis. Which diagnosis fits?",
+   "options": [
+    "Nonspecific interstitial pneumonia",
+    "Lymphangitic carcinomatosis",
+    "Usual interstitial pneumonia (idiopathic pulmonary fibrosis)",
+    "Miliary tuberculosis"
+   ],
+   "answer": 2,
+   "explanation": "UIP is the commonest interstitial pneumonia. It starts with a fine basal reticular pattern, becomes coarser and ends in honeycombing with volume loss; CT shows subpleural reticulation, honeycombing and traction bronchiectasis at the bases, and it is the end-stage member of the group. NSIP shows ground-glass opacity, lymphangitic spread is patchy and unilateral and miliary TB shows tiny nodules.",
+   "book": "Chapter 4, Predominantly Reticular Interstitial Lung Diseases (Usual interstitial pneumonia)",
+   "covers": [
+    "t19"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c04-m15",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "A patient with scleroderma has a CT showing basal ground-glass opacities with sparing of the subpleural lung. Which statement is correct?",
+   "options": [
+    "This is usual interstitial pneumonia, which has a better prognosis than NSIP",
+    "This is a nonspecific interstitial pneumonia pattern, which generally has a better prognosis than UIP",
+    "This is lymphangitic carcinomatosis, which is confined to a single lobe",
+    "This is stage III sarcoidosis with regressing hilar adenopathy"
+   ],
+   "answer": 1,
+   "explanation": "NSIP is seen in many patients with connective tissue disease such as scleroderma; the CT hallmarks are basal ground-glass opacity, sometimes with subpleural sparing, and traction bronchiectasis in advanced cases. Ground-glass means the lung is whiter than normal but vessels and bronchi remain visible. UIP has the worse outlook, so the first option is reversed.",
+   "book": "Chapter 4, Predominantly Reticular Interstitial Lung Diseases (Nonspecific interstitial pneumonia)",
+   "covers": [
+    "t20"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c04-m16",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "CT shows many discrete round nodules of different sizes scattered through both lungs in a patient with known colon cancer. What is the pattern?",
+   "options": [
+    "Hematogenous metastases; multiple lung nodules are metastases until proven otherwise",
+    "Lymphangitic carcinomatosis, with thickened septal lines",
+    "Miliary tuberculosis, with nodules all about 1 mm",
+    "Direct extension of tumour through the pleura"
+   ],
+   "answer": 0,
+   "explanation": "Metastases that arrive by the blood stream usually produce two or more nodules of varying size, called cannonball metastases when large; breast, colorectal, renal, bladder, testicular, head and neck cancers, sarcomas and melanoma are the classic primaries. The diagnosis of exclusion for multiple lung nodules is metastatic disease. The other routes look different: septal lines and fissure fluid, uniform tiny nodules, or a localised subpleural mass with rib destruction.",
+   "book": "Chapter 4, Predominantly Nodular Interstitial Diseases (Metastases to the lung)",
+   "covers": [
+    "t22"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c04-m17",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "A patient with breast cancer has Kerley lines, fluid in a fissure and a small effusion, all confined to the right lung. Which diagnosis best explains this?",
+   "options": [
+    "Interstitial edema from congestive heart failure",
+    "Hematogenous (cannonball) metastases",
+    "Usual interstitial pneumonia",
+    "Lymphangitic carcinomatosis"
+   ],
+   "answer": 3,
+   "explanation": "Lymphangitic spread can look just like interstitial edema (Kerley lines, fissure fluid, effusions), but unlike heart failure it tends to stay in one segment, lobe or lung. Breast, lung, stomach and pancreatic cancer are classic sources. Heart failure is bilateral, cannonball metastases are discrete nodules and UIP is basal and subpleural.",
+   "book": "Chapter 4, Metastases to the lung (lymphangitic spread)",
+   "covers": [
+    "t23",
+    "t18"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c04-m18",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "A young adult has bilateral hilar and right paratracheal lymph node enlargement together with diffuse reticulonodular lung disease on a frontal film. Which diagnosis and stage fit?",
+   "options": [
+    "Sarcoidosis, stage I",
+    "Sarcoidosis, stage III",
+    "Sarcoidosis, stage II",
+    "Sarcoidosis, stage IV"
+   ],
+   "answer": 2,
+   "explanation": "Bilateral hilar plus right paratracheal adenopathy is the classic distribution in sarcoid. Stage I is adenopathy alone, stage II adenopathy together with interstitial lung disease, stage III interstitial disease after the adenopathy has regressed, and stage IV pulmonary fibrosis. About half of thoracic sarcoid patients have lung disease and most of them resolve completely.",
+   "book": "Chapter 4, Mixed Reticular and Nodular Interstitial Disease (Sarcoidosis)",
+   "covers": [
+    "t25"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c04-m19",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "Which presentation is classic for primary pulmonary tuberculosis?",
+   "options": [
+    "Bilateral upper-lobe thin-walled cavities with no air-fluid level",
+    "Unilateral hilar or mediastinal adenopathy without lung disease in a child, or a large, clinically silent pleural effusion in an adult",
+    "Chronic atelectasis of the right middle lobe from bronchostenosis",
+    "A round nodule with small satellite lesions in the apical segment of an upper lobe"
+   ],
+   "answer": 1,
+   "explanation": "Most primary infections cause few symptoms; the lungs can show a lobar pneumonia (upper lobes slightly more than lower), adenopathy alone (children) or large silent effusions that tend to loculate (adults). Cavitation is rare. Cavities, middle lobe syndrome and tuberculomas with satellite lesions belong to the postprimary pattern and its sequelae.",
+   "book": "Chapter 4, Tuberculosis (Primary Pulmonary Tuberculosis)",
+   "covers": [
+    "t26",
+    "t27"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c04-m20",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "An adult has bilateral upper-lobe opacities with thin-walled cavities with smooth inner margins and no air-fluid level, plus airspace disease in the lingula. What is the most likely diagnosis and route of spread?",
+   "options": [
+    "Postprimary (reactivation) tuberculosis with transbronchial spread",
+    "Primary tuberculosis with lymphatic spread",
+    "Aspiration pneumonia of the dependent segments",
+    "Stage III sarcoidosis with fibrosis"
+   ],
+   "answer": 0,
+   "explanation": "Most adult TB is reactivation of an old childhood focus, with disease in the apical and posterior upper-lobe segments (and superior segments of lower lobes), caseous necrosis and cavitation. Cavities with a thin smooth wall and no fluid level are typical, and airspace disease in the lingula or the opposite lobe suggests spread through the bronchi. A cavitary upper-lobe pneumonia is TB until proven otherwise. Primary disease rarely cavitates and aspiration is dependent.",
+   "book": "Chapter 4, Tuberculosis (Postprimary Tuberculosis)",
+   "covers": [
+    "t28",
+    "t29"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c04-m21",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "Which statement about postprimary tuberculosis is correct?",
+   "options": [
+    "A pleural effusion is more common than in primary TB and is typically benign and asymptomatic",
+    "Bronchiectasis from TB is usually symptomatic and predominantly in the lower lobes",
+    "A tuberculoma is a thin-walled cavity that never has neighbouring lesions",
+    "A pleural effusion usually means direct spread into the pleural cavity (empyema) and carries a graver prognosis than the effusion of primary TB"
+   ],
+   "answer": 3,
+   "explanation": "In reactivation TB an effusion should be treated as an empyema. TB bronchiectasis is usually asymptomatic and favours the apical and posterior upper-lobe segments, and a tuberculoma is a round or oval nodule that often has small satellite lesions. Late fibrosis can also stenose a bronchus and cause chronic middle lobe collapse.",
+   "book": "Chapter 4, Patterns of Distribution of Postprimary Tuberculosis",
+   "covers": [
+    "t30"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c04-m22",
+   "type": "mcq",
+   "topic": "ch04",
+   "prompt": "How do the nodules of miliary tuberculosis differ from those of healed varicella pneumonia?",
+   "options": [
+    "Both heal with dense calcification that makes them easy to see",
+    "Miliary nodules are calcified granulomas, while varicella nodules never calcify",
+    "Miliary nodules are 1 to 3 mm and seldom calcify even after treatment, whereas healed varicella pneumonia leaves innumerable small calcified granulomas",
+    "Both are airspace disease with air bronchograms"
+   ],
+   "answer": 2,
+   "explanation": "Miliary TB starts insidiously with fever, chills and night sweats, nodules measure about 1 mm when first seen (up to 2 to 3 mm untreated), they may take weeks to appear and clear rapidly with treatment, but they seldom if ever calcify. Healed varicella leaves multiple small calcified granulomas, which are discrete nodules in the interstitium. Histoplasmosis, sarcoid and silicosis are other miliary causes.",
+   "book": "Chapter 4, Miliary Tuberculosis and Predominantly Nodular Interstitial Diseases",
+   "covers": [
+    "t31",
+    "t32"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c04-e01",
+   "type": "essay",
+   "topic": "ch04",
+   "prompt": "Images 1 to 3 show a radiologist-marked pneumonia and images 4 to 6 show lung nodules or masses. In two to four sentences, describe how airspace disease looks compared with these discrete nodular opacities, which sign proves that an opacity lies in the airspaces, and what you would do if a confluent-looking shadow might really be overlapping interstitial disease. A patient with fever and a fluffy confluent density with air bronchograms most likely has what?",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00013391-005",
+     "thumb": "cxr-findings-2/thumbs/dx-aec82543ca.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00017952-008",
+     "thumb": "cxr-findings-2/thumbs/dx-908b67094d.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00021818-026",
+     "thumb": "cxr-findings-2/thumbs/dx-59e48819a2.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00013951-001",
+     "thumb": "cxr-findings-2/thumbs/dx-c721c9253b.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00012892-010",
+     "thumb": "cxr-findings-2/thumbs/dx-e5c384c63f.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00021179-011",
+     "thumb": "cxr-findings-2/thumbs/dx-1b64c40c2c.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Airspace disease is fluffy, cloud-like or hazy, confluent, with indistinct margins",
+     "points": 2,
+     "terms": [
+      "fluffy",
+      "cloud",
+      "hazy",
+      "confluent",
+      "indistinct",
+      "ill-defined",
+      "ill defined",
+      "fuzzy",
+      "blend",
+      "patchy"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "The air bronchogram is the sign of airspace disease (dark branching bronchi in white lung)",
+     "points": 1,
+     "terms": [
+      "air bronchogram",
+      "bronchogram"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "The alveoli are filled with pus, fluid, blood or cells instead of air",
+     "points": 1,
+     "terms": [
+      "alveol",
+      "pus",
+      "exudate",
+      "fluid",
+      "blood",
+      "consolidat",
+      "filled"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Nodules and interstitial disease are discrete, sharply marginated dots or lines with normal aerated lung between them",
+     "points": 2,
+     "terms": [
+      "discrete",
+      "sharp",
+      "well-defined",
+      "well defined",
+      "clear demarcation",
+      "dots",
+      "nodul",
+      "reticul",
+      "packets",
+      "aerated",
+      "normal lung"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "If unsure, examine the periphery of the shadow (and use CT)",
+     "points": 1,
+     "terms": [
+      "periphery",
+      "edge",
+      "margin",
+      "border",
+      "ct",
+      "peripher"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Fever with fluffy confluent density and air bronchograms suggests pneumonia",
+     "points": 1,
+     "terms": [
+      "pneumonia",
+      "infection"
+     ]
+    }
+   ],
+   "model": "Airspace disease is fluffy, hazy and confluent with indistinct margins; the alveoli are filled with pus, fluid or blood, and air bronchograms prove it. Nodular and other interstitial disease forms discrete, sharply marginated dots or lines with normal aerated lung between them. If a shadow may be overlapping interstitial disease, examine its periphery and use CT. Fever plus a fluffy confluent density with air bronchograms points to pneumonia.",
+   "book": "Chapter 4, Characteristics of Airspace Disease / Characteristics of Interstitial Lung Disease",
+   "covers": [
+    "t01",
+    "t02",
+    "t03",
+    "t05",
+    "t06",
+    "t13",
+    "t14",
+    "t16",
+    "t33"
+   ]
+  },
+  {
+   "id": "c04-e02",
+   "type": "essay",
+   "topic": "ch04",
+   "prompt": "These six frontal films show radiologist-marked lung nodules and masses. In two to four sentences, say how a nodule or mass differs from airspace disease on a radiograph and what you conclude when several nodules are present, name the three ways that cancer can reach the lung (and which is least common and why), and name the four cell types of bronchogenic carcinoma.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00021179-011",
+     "thumb": "cxr-findings-2/thumbs/dx-1b64c40c2c.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00012892-010",
+     "thumb": "cxr-findings-2/thumbs/dx-e5c384c63f.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00022726-002",
+     "thumb": "cxr-findings-2/thumbs/dx-390c2a0171.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00018101-012",
+     "thumb": "cxr-findings-2/thumbs/dx-3c97caf5af.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00013951-001",
+     "thumb": "cxr-findings-2/thumbs/dx-c721c9253b.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings",
+     "caseId": "cxr-00012374-000",
+     "thumb": "cxr-findings/thumbs/dx-0ba0b8a330.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "A nodule or mass has a clear demarcation from surrounding normal lung (more discrete than airspace disease)",
+     "points": 1,
+     "terms": [
+      "discrete",
+      "demarcat",
+      "sharp",
+      "well-defined",
+      "well defined",
+      "clear edge",
+      "clear border",
+      "distinct"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Multiple nodules mean hematogenous metastases until proven otherwise (cannonball when large)",
+     "points": 2,
+     "terms": [
+      "metasta",
+      "hematogenous",
+      "haematogenous",
+      "blood",
+      "cannonball",
+      "exclusion"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Lymphangitic spread resembles interstitial edema but is localised to one segment, lobe or lung",
+     "points": 1,
+     "terms": [
+      "lymphangitic",
+      "lymphatic",
+      "kerley",
+      "one lung",
+      "one lobe",
+      "localised",
+      "localized",
+      "resembles edema"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Direct extension is the least common route because the pleura resists spread (rib destruction, subpleural mass)",
+     "points": 1,
+     "terms": [
+      "direct",
+      "extension",
+      "least common",
+      "pleura",
+      "rib"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Four cell types: adenocarcinoma, squamous cell, small cell and large cell",
+     "points": 2,
+     "terms": [
+      "adenocarcinoma",
+      "squamous",
+      "small cell",
+      "large cell"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Adenocarcinoma can present as a solitary peripheral nodule; CT shows spiculation",
+     "points": 1,
+     "terms": [
+      "peripheral",
+      "solitary",
+      "spicul",
+      "ct"
+     ]
+    }
+   ],
+   "model": "A nodule or mass is more discrete than airspace disease, with a clear border against normal lung. Multiple nodules are metastases until proven otherwise (hematogenous spread, cannonball when large). Cancer can also spread through the lymphatics (resembling interstitial edema but localised to a segment, lobe or lung) and by direct extension, the least common route because the pleura resists. The four cell types are adenocarcinoma, squamous cell, small cell and large cell; adenocarcinoma often presents as a solitary peripheral nodule, with spiculation on CT.",
+   "book": "Chapter 4, Predominantly Nodular Interstitial Diseases",
+   "covers": [
+    "t21",
+    "t22",
+    "t23",
+    "t24",
+    "t17"
+   ]
+  },
+  {
+   "id": "c04-e03",
+   "type": "essay",
+   "topic": "ch04",
+   "prompt": "These six frontal films come from patients with an enlarged heart (the radiologist marked the cardiac enlargement). Suppose such a patient goes into heart failure with pulmonary edema. In two to four sentences, describe the four key findings of the early interstitial stage, then how alveolar edema looks (distribution and air bronchograms), and how quickly it clears with treatment.",
+   "images": [
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00002763-031",
+     "thumb": "cxr-findings-3/thumbs/dx-6777afcd52.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00017514-008",
+     "thumb": "cxr-findings-3/thumbs/dx-1e5d645b21.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00012686-003",
+     "thumb": "cxr-findings-2/thumbs/dx-a7ad3fedbb.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00022215-012",
+     "thumb": "cxr-findings-2/thumbs/dx-cdde983a8d.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-3",
+     "caseId": "cxr-00004533-014",
+     "thumb": "cxr-findings-3/thumbs/dx-0918b51d3d.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00019861-010",
+     "thumb": "cxr-findings-2/thumbs/dx-dbcfeaf9bd.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Interstitial edema is the precursor of alveolar edema; its causes include raised capillary pressure (heart failure)",
+     "points": 1,
+     "terms": [
+      "precursor",
+      "capillary pressure",
+      "heart failure",
+      "chf",
+      "congestive",
+      "before"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Fluid in the major and minor fissures",
+     "points": 1,
+     "terms": [
+      "fissure"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Peribronchial cuffing",
+     "points": 1,
+     "terms": [
+      "cuffing",
+      "peribronchial"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Pleural effusions and Kerley B lines",
+     "points": 1,
+     "terms": [
+      "effusion",
+      "kerley",
+      "septal"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Alveolar edema is bilateral and perihilar (bat-wing or angel-wing), fluffy airspace disease",
+     "points": 2,
+     "terms": [
+      "bilateral",
+      "perihilar",
+      "bat",
+      "angel",
+      "central",
+      "fluffy"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Usually no air bronchograms because the fluid fills the bronchi too",
+     "points": 1,
+     "terms": [
+      "no air bronchogram",
+      "without air bronchogram",
+      "absent",
+      "bronchi are filled",
+      "fills the bronchi",
+      "not seen"
+     ]
+    },
+    {
+     "id": "r7",
+     "label": "Clears rapidly, in under 48 hours, with treatment",
+     "points": 1,
+     "terms": [
+      "48",
+      "rapid",
+      "quickly",
+      "hours",
+      "days"
+     ]
+    }
+   ],
+   "model": "The early interstitial stage, the precursor of alveolar edema, shows fluid in the major and minor fissures, peribronchial cuffing, pleural effusions and Kerley B lines, often with few rales. Alveolar edema then gives bilateral, perihilar fluffy airspace disease (bat-wing), usually without air bronchograms because fluid also fills the bronchi. Both stages classically clear rapidly, in under 48 hours, with treatment.",
+   "book": "Chapter 4, Some Causes of Airspace Disease (Pulmonary alveolar edema) / Pulmonary interstitial edema",
+   "covers": [
+    "t11",
+    "t18",
+    "t04"
+   ]
+  }
+ ]
+}

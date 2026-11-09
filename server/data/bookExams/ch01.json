@@ -1,0 +1,970 @@
+{
+ "chapter": 1,
+ "title": "Recognizing Anything: Past, Present, and Future",
+ "blurb": "The major imaging modalities, the five radiographic densities, CT numbers and windows, and the role of AI.",
+ "checklist": [
+  {
+   "id": "t01",
+   "label": "Roentgen discovered x-rays in 1895 (fluorescent screen glowed near a light-proof cathode ray tube); named 'x' for the unknown; first Nobel Prize in Physics 1901"
+  },
+  {
+   "id": "t02",
+   "label": "Conventional radiograph (plain film) = ionizing radiation without added contrast; needs x-ray source, a way to record the image, a way to process it"
+  },
+  {
+   "id": "t03",
+   "label": "Film era to digital: 'wet reading' now 'stat interpretation'; digital images stored and shared on a PACS (Picture Archiving, Communications and Storage system)"
+  },
+  {
+   "id": "t04",
+   "label": "Conventional radiography advantages (quick, inexpensive, portable, most widely obtained) and common uses (chest film, abdomen, first skeletal images for fracture or arthritis)"
+  },
+  {
+   "id": "t05",
+   "label": "Conventional radiography disadvantages: limited range of densities and ionizing radiation (only medically necessary studies; avoid in pregnancy)"
+  },
+  {
+   "id": "t06",
+   "label": "Five basic densities from whitest to blackest: metal, calcium (bone), fluid or soft tissue, fat, air"
+  },
+  {
+   "id": "t07",
+   "label": "Blood (fluid) and muscle (soft tissue) have the same density on a radiograph, so blood inside the heart cannot be seen (Case Quiz 1)"
+  },
+  {
+   "id": "t08",
+   "label": "CT: gantry with rotating x-ray beam and detectors plus computer; introduced in the 1970s; helical (spiral) acquisition gives a 3D dataset"
+  },
+  {
+   "id": "t09",
+   "label": "CT numbers in Hounsfield units: pixels in a matrix, water = 0, scale +1000 to -1000, Hounsfield and Cormack (Nobel Prize 1979)"
+  },
+  {
+   "id": "t10",
+   "label": "Hounsfield values of tissues: air -1000, fat about -40 to -120, water 0, soft tissue about +20 to +100, bone about +400 to +600, metal +1000 or more"
+  },
+  {
+   "id": "t11",
+   "label": "Denser = more x-rays absorbed = higher CT number = increased attenuation = whiter (opaque on radiographs); less dense = low CT number = decreased attenuation = blacker (lucent)"
+  },
+  {
+   "id": "t12",
+   "label": "CT window = range of Hounsfield numbers displayed over the gray scale; lung, mediastinal and bone windows; post-processing without rescanning or re-exposing the patient"
+  },
+  {
+   "id": "t13",
+   "label": "Imaging planes: axial (transverse), coronal, sagittal (midsagittal, parasagittal); volumetric data allow any plane and 3D rendering; right on viewer's left"
+  },
+  {
+   "id": "t14",
+   "label": "Multislice CT: head to toe in under 10 seconds; virtual colonoscopy and bronchoscopy, calcium scoring, CT coronary angiography; studies read by scrolling on workstations"
+  },
+  {
+   "id": "t15",
+   "label": "CT advantages (wider gray scale, less overlap, safe with a pacemaker) and disadvantages (ionizing radiation, expensive, space and computing, not portable)"
+  },
+  {
+   "id": "t16",
+   "label": "Ultrasound: acoustic energy above human hearing, transducer produces and records, no ionizing radiation, static or cine images"
+  },
+  {
+   "id": "t17",
+   "label": "Ultrasound advantages: inexpensive, widely available, portable to handheld; safe in pregnancy, children and women of child-bearing age"
+  },
+  {
+   "id": "t18",
+   "label": "Ultrasound disadvantages: cannot penetrate bone, large gas-filled structures disrupt it, difficult in obese patients, operator-dependent"
+  },
+  {
+   "id": "t19",
+   "label": "Ultrasound uses: first choice for female pelvis and children, cystic versus solid, vascular, fetus and placenta, guidance for aspiration and biopsy; fluid-filled cysts have no echoes"
+  },
+  {
+   "id": "t20",
+   "label": "MRI principle: hydrogen atoms (mostly in water) in a very strong magnetic field and radio-frequency pulses, computer reconstruction"
+  },
+  {
+   "id": "t21",
+   "label": "MRI advantages: no ionizing radiation, best soft-tissue contrast, equal resolution in any plane, flow and diffusion (stroke); calcium gives no signal so contents of posterior fossa and spine can be imaged; neuroimaging, muscles, tendons, ligaments"
+  },
+  {
+   "id": "t22",
+   "label": "Gadolinium: intravenous chelated rare-earth metal for lesion detection (tumor, abscess, metastasis) and MR angiography"
+  },
+  {
+   "id": "t23",
+   "label": "MRI disadvantages and safety: less available, expensive, needs site construction, high running cost; magnetic field hazards (pacemakers, ferromagnetic projectiles such as oxygen tanks), radio-frequency side effects, contrast reactions"
+  },
+  {
+   "id": "t24",
+   "label": "Fluoroscopy: real-time ionizing imaging of motion on a tilting table; spot films and overhead films in barium studies; interventional use with iodinated contrast in vessels and ducts"
+  },
+  {
+   "id": "t25",
+   "label": "Fluoroscopy advantages (mobile units, device placement, foreign body removal, biopsy guidance) and dose (can be much higher than a plain film, so use the shortest fluoroscopy time)"
+  },
+  {
+   "id": "t26",
+   "label": "Nuclear medicine principle: radioisotope (radionuclide, tracer) + carrier = radiopharmaceutical; targets (thyroid iodine, brain glucose, bone phosphates, lung capillaries); gamma camera; technetium-99m is the commonest"
+  },
+  {
+   "id": "t27",
+   "label": "SPECT (gamma camera rotating around the patient, 3D reconstruction) and PET (positron emitter, FDG as glucose analog, metabolism; about 90% oncologic)"
+  },
+  {
+   "id": "t28",
+   "label": "Nuclear medicine uses: hidden metastases and recurrence, heart and lung function, bone (metastases, fracture, infection), thyroid treatment"
+  },
+  {
+   "id": "t29",
+   "label": "Nuclear medicine radiation: generally lower dose than CT or fluoroscopy, highest for cardiac and PET studies; patient is briefly a source of exposure to others (time, distance, shielding)"
+  },
+  {
+   "id": "t30",
+   "label": "Nuclear medicine image orientation: anterior and posterior views; on posterior views the patient's right is on the viewer's right; check labels or the marker dot"
+  },
+  {
+   "id": "t31",
+   "label": "Artificial intelligence: intelligence demonstrated by a machine; supervised learning versus deep learning (neural networks); aids workflow, quantitation and diagnosis (e.g. ground glass versus consolidation in COVID-19)"
+  },
+  {
+   "id": "t32",
+   "label": "Book conventions: bold for key points, new terms first in bold italic, icons for pitfalls, important points and take-home points, Case Quiz answer at the end of the chapter"
+  }
+ ],
+ "questions": [
+  {
+   "id": "c01-m01",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "What did Roentgen notice in his laboratory in 1895 that led him to discover x-rays?",
+   "options": [
+    "A fluorescent screen a few feet from a light-proof, energized cathode ray tube began to glow.",
+    "A photographic plate lying inside the tube turned black after sunlight fell on it while he worked.",
+    "A radioactive salt left on his workbench glowed faintly in the darkened laboratory.",
+    "The cathode ray tube made a loud noise whenever he held his hand in front of its glass."
+   ],
+   "answer": 0,
+   "explanation": "The glowing screen told him that some invisible energy was crossing the room, and the bones of his own hand showed up on it. He called the rays x-rays because x is the symbol for the unknown, and he received the first Nobel Prize in Physics in 1901. The photographic plate, radioactive salt and noise options are not what he observed; the event was fluorescence caused by a new kind of ray.",
+   "book": "Chapter 1, Past: The Discovery",
+   "covers": [
+    "t01"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c01-m02",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "Which statement about conventional radiography is correct?",
+   "options": [
+    "A plain film is made after barium or iodine has been given, and PACS is the system that stores and shares the images.",
+    "A plain film is made without added contrast, and PACS is the chemical bath in which films were developed.",
+    "A plain film uses ionizing radiation without contrast, and wet reading is now the routine report issued days after the study.",
+    "A conventional radiograph (plain film) uses x-rays without added contrast such as barium or iodine, and digital images are stored and shared on a PACS."
+   ],
+   "answer": 3,
+   "explanation": "Plain film means ionizing radiation without added contrast; once contrast is given it is a contrast study. PACS (Picture Archiving, Communications and Storage) replaced film rooms and darkrooms. The old term wet reading came from reading films still dripping from the processing chemicals, and today the same idea is called stat interpretation. Each wrong option carries one wrong half.",
+   "book": "Chapter 1, Present: Conventional Radiography",
+   "covers": [
+    "t02",
+    "t03"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c01-m03",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "Which summary of conventional radiography matches the book?",
+   "options": [
+    "Superb contrast between fat, water and muscle, but expensive, needing site construction, and free of ionizing radiation.",
+    "Shows motion in real time, which is why it is used for barium studies and for placing devices, at a higher dose per minute.",
+    "Quick, inexpensive and portable, but limited in densities and reliant on ionizing radiation, so used only when medically necessary, not in pregnancy.",
+    "Displays an almost unlimited range of densities with no overlap of structures, but is not widely available or portable."
+   ],
+   "answer": 2,
+   "explanation": "Conventional radiography is cheap, fast and portable, is the first image for most skeletal questions and the chest, and is the most commonly performed examination. Its limits are the small number of densities and the radiation, which is why unnecessary studies are avoided, especially during potentially teratogenic periods such as pregnancy. The first wrong option describes MRI, the second fluoroscopy and the third CT.",
+   "book": "Chapter 1, Advantages, Disadvantages, and Uses of Conventional Radiography",
+   "covers": [
+    "t04",
+    "t05"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c01-m04",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "On a frontal chest radiograph you can see a metallic pacemaker generator, a rib, the heart, the subcutaneous fat of the chest wall and the aerated lung. Which order runs from the whitest to the blackest?",
+   "options": [
+    "Rib (calcium), pacemaker (metal), heart (soft tissue), lung (air), subcutaneous fat",
+    "Pacemaker (metal), rib (calcium), heart (soft tissue), subcutaneous fat, lung (air)",
+    "Heart (soft tissue), rib (calcium), pacemaker (metal), subcutaneous fat, lung (air)",
+    "Pacemaker (metal), heart (soft tissue), rib (calcium), lung (air), subcutaneous fat"
+   ],
+   "answer": 1,
+   "explanation": "The five basic densities, whitest to blackest, are metal, calcium, fluid or soft tissue, fat and air. Metal absorbs nearly all the x-rays, bone absorbs most, the heart is soft tissue, fat is a little darker than soft tissue, and the lung is mostly air and therefore the blackest. The wrong options place bone above metal, soft tissue above bone, or air above fat.",
+   "book": "Chapter 1, The Five Basic Densities",
+   "covers": [
+    "t06"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c01-m05",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "On a normal frontal chest radiograph the cardiac silhouette is a uniform gray shape, with no separate blood and wall. Why can the blood inside the heart not be seen?",
+   "options": [
+    "Blood (fluid) and muscle (soft tissue) share one density among the five that radiography shows.",
+    "The blood moves too fast for a single exposure to record it as a separate structure.",
+    "The heart muscle contains so much calcium that it hides the blood lying behind it.",
+    "The surrounding lungs scatter the x-rays and blur the contents of the chambers."
+   ],
+   "answer": 0,
+   "explanation": "This is the point of the chapter's opening case. An edge appears only when two different densities touch, and blood and muscle share one density (fluid or soft tissue), so there is no visible boundary between them. The heart outline is seen only because soft tissue lies against air-filled lung. Motion, calcium and scatter are not the explanation.",
+   "book": "Chapter 1, The Five Basic Densities",
+   "covers": [
+    "t07"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c01-m06",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "What does the Hounsfield number of a pixel on a CT image express?",
+   "options": [
+    "How fast the tissue moved during the scan, on a scale in which air is 0 and bone is 1000.",
+    "How strongly the tissue reflected sound waves, on a scale in which water is +1000 and air is 0.",
+    "How much radioisotope the tissue took up, on a scale in which air is 0 and fat is 1000.",
+    "How much of the x-ray beam the tissue absorbs, on a scale in which water is 0 and air is about -1000."
+   ],
+   "answer": 3,
+   "explanation": "A CT scanner rotates an x-ray beam and detectors around the patient, and the computer assigns each pixel a CT number in Hounsfield units according to the beam absorbed there. By convention water is zero and the scale runs from about +1000 to -1000. Motion, sound reflection and tracer uptake belong to other ideas (motion artifact, ultrasound and nuclear medicine).",
+   "book": "Chapter 1, Computed Tomography (CT, CAT Scans)",
+   "covers": [
+    "t08",
+    "t09"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c01-m07",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "On one axial CT slice of the abdomen a radiologist measures one region at about -100 HU and another at about +40 HU. Which pair is most likely?",
+   "options": [
+    "Air and fat",
+    "Water and bone",
+    "Fat and soft tissue",
+    "Fat and bone"
+   ],
+   "answer": 2,
+   "explanation": "Fat lies roughly between -40 and -120 HU and soft tissue between about +20 and +100. Air is near -1000, water is 0, and bone is roughly +400 to +600. Only the pair fat and soft tissue fits both numbers.",
+   "book": "Chapter 1, Computed Tomography (CT, CAT Scans)",
+   "covers": [
+    "t10"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c01-m08",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "A lesion on CT is described as showing decreased attenuation compared with the adjacent organ. What does this mean?",
+   "options": [
+    "It absorbs more x-rays than the organ, has a higher CT number and looks whiter.",
+    "It absorbs fewer x-rays than the organ, has a lower CT number and looks blacker.",
+    "It has a lower CT number but looks whiter than the organ.",
+    "It has the same CT number as the organ but is displayed with a larger window."
+   ],
+   "answer": 1,
+   "explanation": "Attenuation describes how much the x-ray beam is absorbed. Denser substances absorb more, have high CT numbers and look whiter; less dense ones have low numbers and look blacker. On a plain radiograph the matching words are increased density (opaque) for white and decreased density (lucent) for black.",
+   "book": "Chapter 1, Computed Tomography: Important Points",
+   "covers": [
+    "t11"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c01-m09",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "A chest CT displayed in a mediastinal window shows the lungs as uniformly black. The radiologist wants to examine the lung parenchyma. What is the correct next step?",
+   "options": [
+    "Re-display the same data in a lung window, with no new scan needed.",
+    "Repeat the scan with a higher radiation dose to see the lungs.",
+    "Give gadolinium and scan the patient again in the MRI scanner.",
+    "Switch to a bone window, which shows lung parenchyma best."
+   ],
+   "answer": 0,
+   "explanation": "A window is the range of Hounsfield numbers that is spread over the gray scale. The original data contain the lung detail, so changing to a lung window (and, when useful, a bone window for the skeleton) re-displays them without exposing the patient again. A repeat scan is unnecessary, gadolinium is an MRI agent, and a bone window is chosen for bone, not lung.",
+   "book": "Chapter 1, Computed Tomography (CT, CAT Scans)",
+   "covers": [
+    "t12"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c01-m10",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "Multislice CT can image from head to toe in under about 10 seconds. Which group of applications did this speed make possible?",
+   "options": [
+    "Real-time guidance of barium studies, pacemaker placement and foreign-body removal",
+    "Bone scans, PET and SPECT of metabolic activity",
+    "Doppler flow imaging, fetal imaging and image-guided aspiration",
+    "Virtual colonoscopy, virtual bronchoscopy, cardiac calcium scoring and CT coronary angiography"
+   ],
+   "answer": 3,
+   "explanation": "Fast acquisition with many detector rows lets a whole volume be captured in a breath-hold, which is what these CT applications need. Real-time guidance belongs to fluoroscopy, metabolic maps to nuclear medicine, and Doppler and fetal scanning to ultrasound. Such studies can contain thousands of images, so they are viewed by scrolling on a workstation, not on a view box.",
+   "book": "Chapter 1, Computed Tomography (CT, CAT Scans)",
+   "covers": [
+    "t14"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c01-m11",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "A patient with a cardiac pacemaker needs cross-sectional imaging of the chest. Which statement matches the book?",
+   "options": [
+    "MRI is preferred because it uses no ionizing radiation and magnetic fields do not affect a pacemaker.",
+    "CT cannot be used because the metal of the device absorbs the whole x-ray beam.",
+    "CT can be done safely, whereas the implanted device may prohibit an MRI because of the very strong magnetic field.",
+    "Neither CT nor MRI is possible; only a plain film may be taken."
+   ],
+   "answer": 2,
+   "explanation": "One advantage of CT is that patients with implanted devices such as pacemakers can be scanned. MRI has safety issues with devices inside the body and with ferromagnetic objects in the room. The absence of radiation with MRI does not outweigh that hazard here, and CT is not blocked by the device.",
+   "book": "Chapter 1, Advantages, Disadvantages, and Uses of Computed Tomography",
+   "covers": [
+    "t15",
+    "t23"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c01-m12",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "A pregnant woman needs imaging of her pelvis. Which method does the book regard as the usual first choice, and why?",
+   "options": [
+    "CT, because it shows the pelvic organs with little overlap and a dose too low to matter",
+    "Ultrasound, because it uses sound rather than ionizing radiation and is the usual first study of the female pelvis",
+    "Fluoroscopy, because real-time imaging of the pelvis shortens the examination for the mother",
+    "A bone scan, because the radiotracer targets the pelvis and spares the fetus"
+   ],
+   "answer": 1,
+   "explanation": "Ultrasound is inexpensive, can be portable or handheld, causes no known major side effects at diagnostic levels and uses no ionizing radiation, so it suits pregnancy, children and women of child-bearing age. CT, fluoroscopy and nuclear studies all expose the patient to ionizing radiation or radioactivity.",
+   "book": "Chapter 1, Advantages, Disadvantages, and Uses of US",
+   "covers": [
+    "t16",
+    "t17"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c01-m13",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "Which statement about ultrasound is correct?",
+   "options": [
+    "Fluid-filled cysts return no echoes and look black, helping separate cystic from solid lesions, but bone blocks the beam and gas-filled structures disrupt it.",
+    "Solid lesions return no echoes and look black while cysts look bright and grainy, and bone and gas are imaged easily.",
+    "Ultrasound penetrates bone well but is blocked by fluid, and the result does not depend on the operator's skill.",
+    "Gas-filled bowel is the easiest structure to image, whereas fluid-filled organs are the most difficult to show."
+   ],
+   "answer": 0,
+   "explanation": "Ultrasound is the first-choice tool for telling cystic from solid lesions because fluid has no internal echoes. Its limits are bone, gas, deep structures in obese patients and operator dependence: the person scanning must know how to direct the probe. The wrong options reverse the cyst appearance, the bone and fluid behavior, or the gas problem.",
+   "book": "Chapter 1, Advantages, Disadvantages, and Uses of US",
+   "covers": [
+    "t18",
+    "t19"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c01-m14",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "A sagittal MRI of the lumbar spine shows the vertebral bodies through their marrow, a black rim of cortical bone, the discs and the nerves of the cauda equina. Which explanation of the black cortex and of how the image is made is correct?",
+   "options": [
+    "The signal comes from x-rays absorbed by the tissue; dense cortical bone absorbs all of them, so it is black.",
+    "The signal comes from hydrogen nuclei, mostly in water; the cortex is black only because gadolinium was given.",
+    "The signal comes from reflected sound waves; cortical bone reflects all of them, so it is black.",
+    "The signal comes from hydrogen nuclei, mostly in water; calcium gives no signal, so cortical bone is black and does not hide structures it surrounds."
+   ],
+   "answer": 3,
+   "explanation": "MRI puts hydrogen nuclei (protons, mainly in water) in a very strong magnetic field and uses radio-frequency pulses, and a computer builds the image. Because calcium emits no signal on most sequences, the contents of the posterior fossa and the spine can be seen, and soft tissue such as discs, CSF and nerves is shown beautifully. MRI uses neither x-rays nor sound, and gadolinium is not what turns bone dark.",
+   "book": "Chapter 1, Magnetic Resonance Imaging (MRI)",
+   "covers": [
+    "t20",
+    "t21"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c01-m15",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "What is gadolinium used for in MRI?",
+   "options": [
+    "An oral agent that outlines the bowel during fluoroscopic studies of the stomach and colon.",
+    "A radioactive tracer that is injected and then detected with a gamma camera.",
+    "A chelated rare-earth metal given intravenously to show tumors, abscesses and metastases better, and for MR angiography.",
+    "An agent injected to make fluid-filled cysts look bright on ultrasound images."
+   ],
+   "answer": 2,
+   "explanation": "Gadolinium is the MRI contrast agent, given by vein to show enhancing lesions and blood vessels. The book also lists possible adverse effects of some MRI contrast agents among the safety issues. Oral barium or iodine belongs to fluoroscopy and CT, tracers to nuclear medicine, and cysts need no agent on ultrasound.",
+   "book": "Chapter 1, Magnetic Resonance Imaging (MRI)",
+   "covers": [
+    "t22",
+    "t23"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c01-m16",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "Which statement about fluoroscopy is correct?",
+   "options": [
+    "It gives real-time images with sound waves on a tilting table, so the examination time need not be limited at all.",
+    "It gives real-time ionizing x-ray images on a tilting table; its dose can far exceed a plain film, so fluoroscopy time should be kept as short as possible.",
+    "It produces only still images with an overhead tube, and its dose is always lower than that of one plain film.",
+    "It follows an injected radioactive tracer with a gamma camera, which makes the patient a source of exposure for staff."
+   ],
+   "answer": 1,
+   "explanation": "In a barium study the radiologist watches motion and takes spot films while a technologist takes overhead films in several projections; in interventional work iodinated contrast is injected into vessels or ducts. Fluoroscopy units can be mobile and guide device placement, foreign-body retrieval and biopsy, but the dose accumulates, hence the shortest possible time. Sound waves and tracers describe ultrasound and nuclear medicine.",
+   "book": "Chapter 1, Fluoroscopy (Fluoro)",
+   "covers": [
+    "t24",
+    "t25"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c01-m17",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "In nuclear medicine a radiopharmaceutical is a radioisotope attached to a carrier. Which carrier and target pair is correct?",
+   "options": [
+    "Phosphates, used by bone",
+    "Glucose, taken up by the thyroid",
+    "Iodine, taken up by the brain",
+    "Large particles, trapped in the liver capillaries"
+   ],
+   "answer": 0,
+   "explanation": "The carrier is chosen for its binding properties so that the radiopharmaceutical concentrates in a target. The thyroid takes up iodine, the brain uses glucose, bone uses phosphates, and particles of a certain size lodge in the lung capillaries. The most common radioisotope is technetium-99m, linked for example to pertechnetate, and a gamma camera records its emissions.",
+   "book": "Chapter 1, Nuclear Medicine",
+   "covers": [
+    "t26"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c01-m18",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "A fused PET/CT with FDG shows an intensely FDG-avid right upper lobe lesion and an FDG-avid left supraclavicular lymph node, with normal uptake in the kidneys. Which statement is correct?",
+   "options": [
+    "A SPECT camera rotating around the patient shows only anatomy, so the lesion cannot be called active or inactive.",
+    "FDG is taken up only by normal tissue, so both the lesion and the node are benign and no work-up is needed.",
+    "The kidney uptake means that both kidneys contain metastases from the lung cancer.",
+    "FDG, a glucose analog, shows active tissue: a malignant lesion with a metastatic node, and normal kidney uptake."
+   ],
+   "answer": 3,
+   "explanation": "PET uses a positron-emitting isotope on a targeting molecule, most often FDG, so it maps metabolism; about 90% of clinical PET is oncologic and it is used to find hidden metastases or recurrence. Fusion with CT places the uptake in anatomy. SPECT is a different technique that reconstructs gamma-camera images taken from many angles, and the kidneys normally take up FDG.",
+   "book": "Chapter 1, Nuclear Medicine",
+   "covers": [
+    "t27",
+    "t28"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c01-m19",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "A technologist must work close to patients who have just received a radiotracer for a nuclear medicine study. Which approach does the book recommend to limit exposure?",
+   "options": [
+    "Limit exposure only for PET studies, since other nuclear medicine studies deliver no dose to anyone.",
+    "Tilt the table away from the x-ray tube, because the gamma camera itself emits x-rays.",
+    "Reduce time near the patient, increase distance and use shielding, because the patient is briefly the source of radiation.",
+    "No action is needed, because the radioisotope is gone as soon as it has been injected."
+   ],
+   "answer": 2,
+   "explanation": "In nuclear medicine the radiation comes from the patient, unlike other modalities with an external source, so time, distance and shielding are the protective principles. Overall patient exposure is generally lower than with CT or fluoroscopy, but cardiac studies and PET scans give the highest dose among nuclear scans. A gamma camera detects radiation; it does not emit it.",
+   "book": "Chapter 1, Advantages, Disadvantages, and Uses of Nuclear Medicine Studies",
+   "covers": [
+    "t29"
+   ],
+   "level": "next"
+  },
+  {
+   "id": "c01-m20",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "On a bone scan, anterior and posterior views are shown. Where is the patient's right side on the posterior view?",
+   "options": [
+    "On the viewer's left, as in every other radiologic study, so no check is needed.",
+    "On the viewer's right, unlike most studies, so check the labels or the marker dot.",
+    "On the viewer's right on the anterior view and on the viewer's left on the posterior view.",
+    "At the top of the image, as for a supine CT, with the marker dot at the bottom."
+   ],
+   "answer": 1,
+   "explanation": "Nuclear medicine does not always follow the usual convention of the patient's right on the viewer's left. On posterior views the patient's right is on your right, so read the labels or the white marker dot placed on the patient's right. Normal kidney uptake is visible on the posterior view, and the sternum and the spine are shown best on the anterior and posterior views respectively.",
+   "book": "Chapter 1, Nuclear Medicine",
+   "covers": [
+    "t30"
+   ],
+   "level": "image"
+  },
+  {
+   "id": "c01-m21",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "How does deep learning differ from supervised machine learning in radiology AI?",
+   "options": [
+    "In supervised learning a person supplies examples of a diagnosis and the computer works out rules; deep learning teaches itself with a neural-network-like system.",
+    "In supervised learning the software teaches itself with a neural network; in deep learning a radiologist outlines every single case by hand.",
+    "Deep learning is the older computer-aided technology used since the 1990s, and supervised learning is the newer approach.",
+    "Supervised learning needs no examples of a diagnosis, whereas deep learning needs examples of every diagnosis."
+   ],
+   "answer": 0,
+   "explanation": "The book defines AI as intelligence shown by a machine. Examples of diagnosis supplied by humans are the hallmark of supervised learning; deep learning goes further and teaches itself. AI already helps with workflow, with quantitation, and with some diagnoses, for example outlining COVID-19 opacities and separating ground glass from consolidation. Computer-aided tools of the 1990s were not deep learning.",
+   "book": "Chapter 1, Future: Artificial Intelligence",
+   "covers": [
+    "t31"
+   ],
+   "level": "hard"
+  },
+  {
+   "id": "c01-m22",
+   "type": "mcq",
+   "topic": "ch01",
+   "prompt": "Which statement about the conventions of this book is correct?",
+   "options": [
+    "New terms appear in underlined red type, and Case Quiz answers are in an online appendix to the book.",
+    "Bold type marks diagnostic pitfalls only, and Case Quiz answers are given in the next chapter.",
+    "New terms appear in plain text, and all of the quiz answers are collected at the back of the book.",
+    "New terms first appear in bold italic, bold type marks important points, and each chapter's Case Quiz answer is in a box at its end."
+   ],
+   "answer": 3,
+   "explanation": "Boldface is used liberally for important points, new terms first appear in bold italic, icons flag pitfalls, important points and take-home points, and online extras exist for nuclear medicine, AI, radiation safety, history and signs. Case Quiz answers are in a special box at the end of each chapter.",
+   "book": "Chapter 1, Conventions Used in This Book",
+   "covers": [
+    "t32"
+   ],
+   "level": "recall"
+  },
+  {
+   "id": "c01-e01",
+   "type": "essay",
+   "topic": "ch01",
+   "prompt": "Six images are shown, each made with a different imaging technique. In two to four sentences, name the technique of as many as you can and give one visual clue for each. Then say which of them use no ionizing radiation.",
+   "images": [
+    {
+     "packId": "starter",
+     "caseId": "starter-cxr-01",
+     "thumb": "starter/thumbs/cr-e62044dc29.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "body",
+     "caseId": "body-covid-19-ar-16406498",
+     "thumb": "body/thumbs/ct-676e685584.png",
+     "caption": "Image 2 · Chest, axial slice"
+    },
+    {
+     "packId": "msd-heart-mri",
+     "caseId": "msdh-la-003",
+     "thumb": "msd-heart-mri/thumbs/mr-bb852da485.png",
+     "caption": "Image 3 · Chest, axial slice"
+    },
+    {
+     "packId": "us-cases",
+     "caseId": "us-breast-case068",
+     "thumb": "us-cases/thumbs/us-491e69eb68.png",
+     "caption": "Image 4 · Soft-tissue examination"
+    },
+    {
+     "packId": "mammo-cbis-2",
+     "caseId": "mg-p00732",
+     "thumb": "mammo-cbis-2/thumbs/mg-2d106181f2.png",
+     "caption": "Image 5 · Breast, one view"
+    },
+    {
+     "packId": "cadica-xca",
+     "caseId": "cadica-p1-v2-00019",
+     "thumb": "cadica-xca/thumbs/xa-101eae9f6f.png",
+     "caption": "Image 6 · Heart, contrast-filled vessels"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Names the chest film as a radiograph (x-ray) and the cross-section with bright vessels as CT",
+     "points": 1,
+     "terms": [
+      "radiograph",
+      "x-ray",
+      "xray",
+      "plain film",
+      "chest film",
+      "computed tomography",
+      "ct"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Names the heart slice as MRI",
+     "points": 1,
+     "terms": [
+      "mri",
+      "magnetic resonance",
+      "mr scan",
+      "mr image"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Names image 4 as ultrasound (fan-shaped, grainy echo texture)",
+     "points": 1,
+     "terms": [
+      "ultrasound",
+      "ultrasonograph",
+      "sonogra",
+      "echo"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Names image 5 as a radiograph of the breast (mammogram) and image 6 as an angiogram with contrast seen with fluoroscopy",
+     "points": 1,
+     "terms": [
+      "mammo",
+      "breast x-ray",
+      "breast radiograph",
+      "angiogra",
+      "coronary",
+      "fluorosc",
+      "catheter",
+      "contrast"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Says that ultrasound and MRI use no ionizing radiation",
+     "points": 2,
+     "terms": [
+      "no ionising",
+      "no ionizing",
+      "without ionising",
+      "without ionizing",
+      "non-ionising",
+      "non-ionizing",
+      "no radiation",
+      "not use radiation",
+      "no x-ray",
+      "no x ray",
+      "radiation-free",
+      "radiation free",
+      "free of radiation",
+      "free of ionizing",
+      "free of ionising",
+      "not ionizing",
+      "not ionising"
+     ]
+    }
+   ],
+   "model": "Image 1 is a conventional chest radiograph (plain film), Image 2 a CT slice (cross-section with contrast-filled vessels), Image 3 an MRI slice of the heart, Image 4 an ultrasound image (fan-shaped, grainy echo texture), Image 5 a radiograph of the breast (mammogram) and Image 6 an angiogram, an x-ray image with iodinated contrast in the vessels, made with fluoroscopy. Ultrasound and MRI use no ionizing radiation; radiography, CT, fluoroscopy and nuclear medicine all do.",
+   "book": "Chapter 1, Present: Today's Imaging Modalities",
+   "covers": [
+    "t02",
+    "t08",
+    "t16",
+    "t17",
+    "t20",
+    "t21",
+    "t24"
+   ]
+  },
+  {
+   "id": "c01-e02",
+   "type": "essay",
+   "topic": "ch01",
+   "prompt": "These are six axial CT slices of the chest in a soft-tissue window. In two to four sentences: which side of the picture is the patient's right, why do the lungs look completely black here, and what would you change to see the lung detail without rescanning? Give the approximate Hounsfield values of air, fat and water.",
+   "images": [
+    {
+     "packId": "pe-cta",
+     "caseId": "pe-pat005",
+     "thumb": "pe-cta/thumbs/ct-a9b86eb0e7.png",
+     "caption": "Image 1 · CT, axial"
+    },
+    {
+     "packId": "chest-pairs",
+     "caseId": "chest-pairs-lidc-idri-0217",
+     "thumb": "chest-pairs/thumbs/ct-413ba97f13.png",
+     "caption": "Image 2 · CT, axial"
+    },
+    {
+     "packId": "starter",
+     "caseId": "starter-ct-chest-01",
+     "thumb": "starter/thumbs/ct-5d36abbb61.png",
+     "caption": "Image 3 · CT, axial"
+    },
+    {
+     "packId": "expansion",
+     "caseId": "exp-lctsc-test-s2-202",
+     "thumb": "expansion/thumbs/ct-d9b78a8076.png",
+     "caption": "Image 4 · CT, axial"
+    },
+    {
+     "packId": "body",
+     "caseId": "body-lctsc-train-s2-003",
+     "thumb": "body/thumbs/ct-e2c64f283c.png",
+     "caption": "Image 5 · CT, axial"
+    },
+    {
+     "packId": "more-ct-xr",
+     "caseId": "more-lctsc-train-s1-007",
+     "thumb": "more-ct-xr/thumbs/ct-c375775881.png",
+     "caption": "Image 6 · CT, axial"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "The slices are axial (transverse) slices; other planes are coronal and sagittal",
+     "points": 1,
+     "terms": [
+      "axial",
+      "transverse",
+      "cross-section",
+      "cross section",
+      "coronal",
+      "sagittal"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "The patient's right is on the viewer's left",
+     "points": 1,
+     "terms": [
+      "right on the left",
+      "right is on the left",
+      "right side is on the left",
+      "right on viewer",
+      "left of the image is the patient",
+      "left side of the image is the patient",
+      "left of the picture is the patient",
+      "left side of the picture is the patient",
+      "from the feet",
+      "patient's right is on the left",
+      "patients right is on the left",
+      "patient's right on the left"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "The lungs are black because the window is set for soft tissue, so air and lung lie below the range displayed",
+     "points": 2,
+     "terms": [
+      "soft-tissue window",
+      "soft tissue window",
+      "mediastinal window",
+      "below the window",
+      "outside the window",
+      "window is set",
+      "centred on soft",
+      "centered on soft",
+      "window level",
+      "window width",
+      "below the range",
+      "outside the range"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Change to a lung window by post-processing (no rescan)",
+     "points": 1,
+     "terms": [
+      "lung window",
+      "wide window",
+      "wider window",
+      "low level",
+      "lower the level",
+      "lung setting",
+      "post-process",
+      "postprocess",
+      "re-window",
+      "rewindow"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Air is about -1000 HU; water is 0 and fat about -100 HU",
+     "points": 2,
+     "terms": [
+      "-1000",
+      "minus 1000",
+      "-1,000",
+      "1000 negative",
+      "-100",
+      "-80",
+      "-120",
+      "minus 100",
+      "water is 0",
+      "water 0",
+      "zero"
+     ]
+    }
+   ],
+   "model": "The slices are axial; the patient's right is on the left of the picture, as if you looked up from the feet. The lungs are black because the window (the range of Hounsfield numbers spread over the gray scale) is set for soft tissue, so lung and air lie below the range shown. Displaying the same data in a lung window, a post-processing step needing no rescan or extra radiation, shows lung detail. Air is about -1000 HU, fat about -100 HU (between about -40 and -120) and water 0.",
+   "book": "Chapter 1, Computed Tomography (CT, CAT Scans)",
+   "covers": [
+    "t09",
+    "t10",
+    "t11",
+    "t12",
+    "t13"
+   ]
+  },
+  {
+   "id": "c01-e03",
+   "type": "essay",
+   "topic": "ch01",
+   "prompt": "These are six frontal chest radiographs. In two to four sentences, name the five basic densities from whitest to blackest, give one structure that you can find on these films for each (metal only if you see a device), and explain why the blood inside the heart cannot be told apart from the heart muscle.",
+   "images": [
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00009745-000",
+     "thumb": "cxr-findings-2/thumbs/dx-c53ac060dc.png",
+     "caption": "Image 1 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00004344-013",
+     "thumb": "cxr-findings-2/thumbs/dx-526e509288.png",
+     "caption": "Image 2 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00004534-001",
+     "thumb": "cxr-findings-2/thumbs/dx-e404812d47.png",
+     "caption": "Image 3 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00016414-000",
+     "thumb": "cxr-findings-2/thumbs/dx-f6d3fcd160.png",
+     "caption": "Image 4 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00005532-000",
+     "thumb": "cxr-findings-2/thumbs/dx-8d3502aa3c.png",
+     "caption": "Image 5 · Chest, frontal"
+    },
+    {
+     "packId": "cxr-findings-2",
+     "caseId": "cxr-00021443-000",
+     "thumb": "cxr-findings-2/thumbs/dx-a52e3ac716.png",
+     "caption": "Image 6 · Chest, frontal"
+    }
+   ],
+   "rubric": [
+    {
+     "id": "r1",
+     "label": "Metal is the whitest (for example a pacemaker or an electrode)",
+     "points": 1,
+     "terms": [
+      "metal",
+      "pacemaker",
+      "electrode",
+      "wire",
+      "device",
+      "generator"
+     ]
+    },
+    {
+     "id": "r2",
+     "label": "Calcium or bone (ribs, spine, clavicles) is the next densest",
+     "points": 1,
+     "terms": [
+      "calcium",
+      "bone",
+      "rib",
+      "clavic",
+      "spine",
+      "vertebra"
+     ]
+    },
+    {
+     "id": "r3",
+     "label": "Fluid and soft tissue (heart, muscle, blood) come next",
+     "points": 1,
+     "terms": [
+      "fluid",
+      "soft tissue",
+      "heart",
+      "muscle",
+      "blood"
+     ]
+    },
+    {
+     "id": "r4",
+     "label": "Fat is gray, slightly blacker than soft tissue",
+     "points": 1,
+     "terms": [
+      "fat",
+      "subcutaneous",
+      "gray",
+      "grey"
+     ]
+    },
+    {
+     "id": "r5",
+     "label": "Air is the blackest (the lungs)",
+     "points": 1,
+     "terms": [
+      "air",
+      "lung",
+      "black"
+     ]
+    },
+    {
+     "id": "r6",
+     "label": "Blood and muscle have the same density, and radiography shows only a limited number of densities, so the chamber contents cannot be separated",
+     "points": 2,
+     "terms": [
+      "same density",
+      "same attenuation",
+      "similar density",
+      "cannot be distinguished",
+      "cannot be differentiated",
+      "cannot tell",
+      "cannot see",
+      "can not",
+      "indistinguishable",
+      "no difference",
+      "only five",
+      "limited number",
+      "limited range"
+     ]
+    }
+   ],
+   "model": "From whitest to blackest the five basic densities are metal (here a pacemaker or an electrode, if present), calcium (ribs, spine, clavicles), fluid or soft tissue (the heart, blood and muscle), fat (gray, a little blacker than soft tissue, as in the chest wall) and air (the lungs). Blood and muscle fall in the same fluid or soft-tissue density, and conventional radiography shows only these five, so the blood in the chambers cannot be separated from the cardiac muscle; the heart is seen only because soft tissue lies against air-filled lung.",
+   "book": "Chapter 1, The Five Basic Densities",
+   "covers": [
+    "t06",
+    "t07",
+    "t11"
+   ]
+  }
+ ]
+}

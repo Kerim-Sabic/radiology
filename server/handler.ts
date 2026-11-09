@@ -17,6 +17,7 @@ import { fileReport, listReports, resolveReport } from './reports.js';
 import { adminStats, cleanSource, count, countOnce, countSource, cronAuthorized, dailyCron, emailPrefs, markSeconds, recordActivity, rememberSource, sourceCounted, trackable, unsubscribe, weeklyCron } from './engage.js';
 import { claimCertificate, myCertificates, publicCertificate, revokeCertificate } from './certificates.js';
 import { answerQuestion, finishExam, openQuestion, startExam } from './certificateExam.js';
+import * as bookExams from './bookExams.js';
 import { queueCertificateEmail, sendCertificateEmails } from './certificateEmail.js';
 import { certificateImage, certificatePageHtml } from './certificateShare.js';
 import { adminAccess } from './auth.js';
@@ -290,6 +291,24 @@ export async function handle(request: Request): Promise<Response> {
       if ((body as { weekly?: unknown } | undefined)?.weekly === true && !(await accessFor(user.userId)).active) return json({ error: 'The case of the week is for members.' }, 402);
       const r = await emailPrefs(user, body);
       return r.ok ? json(r) : json({ error: r.error }, 400);
+    }
+    // Book exams (chapters 1-13): members who own the book (SSST students or named accounts). The bank and the grading stay here.
+    if (path.startsWith('/api/book-exams')) {
+      if (!(await accessFor(user.userId)).active) return json({ error: 'The book exams are part of membership.' }, 402);
+      if (!servesBook(user.email)) return json({ error: 'The book exams are for readers of the book: SSST students and named accounts.' }, 403);
+      if (!await rateLimit(`book-exam:${user.userId}`, 240, 600)) return json({ error: 'Please wait a moment before trying again.' }, 429);
+      const sub = path.slice('/api/book-exams'.length);
+      if (sub === '' && request.method === 'GET') return json(await bookExams.listExams(user.userId));
+      if (sub === '/attempt' && request.method === 'GET') {
+        const r = await bookExams.getAttempt(user.userId, url.searchParams.get('id'));
+        return json(r, r.ok ? 200 : 404);
+      }
+      if (request.method === 'POST' && ['/start', '/finish', '/review'].includes(sub)) {
+        const body = await request.json().catch(() => null);
+        const r = sub === '/start' ? await bookExams.startExam(user.userId, body) : sub === '/finish' ? await bookExams.finishExam(user.userId, body) : await bookExams.reviewEssay(user.userId, body);
+        return json(r, r.ok ? 200 : 400);
+      }
+      return json({ error: 'Not found' }, 404);
     }
     // Certification exams: the server picks the questions, starts each question's clock, grades each answer and scores the exam.
     if (path.startsWith('/api/certificates/exam/') && request.method === 'POST') {
