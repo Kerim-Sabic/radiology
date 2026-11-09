@@ -67,7 +67,8 @@
      "links": [],
      "citation": "Popov M, Amanturdieva A, Zhaksylyk N, Alkanov A, Saniyazbekov A, Aimyshev T, Ismailov E, Bulegenov A, Kuzhukeyev A, Kulanbayeva A, Kalzhanov A, Temirgaliyev N, Kuzhukeyeva A, Zhakenov A, Ruziyev G, Moldagaliyev D, Tleulesov B, Kussainov I, Moldagulova A, Zhumabayev A. Dataset for Automatic Region-based Coronary Artery Disease Diagnostics Using X-Ray Angiography Images. Scientific Data 11, 20 (2024). doi:10.1038/s41597-023-02871-z. Data: Zenodo doi:10.5281/zenodo.10390295.",
      "packs": [
-      "arcade-xca"
+      "arcade-xca",
+      "arcade-xca-2"
      ]
     },
     {

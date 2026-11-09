@@ -333,6 +333,15 @@
    "bytes": 22725466,
    "distribution": "repo",
    "note": "19 subjects, 19 studies, 19 series, 929 instances, 19 reference targets; DICOM 21.4 MB. Committed to the repository; rebuild with scripts/data/msd_heart.py; lessons scripts/lessons/msd_heart.py."
+  },
+  {
+   "id": "arcade-xca-2",
+   "title": "Coronary angiography, second set: vessel segments and narrowings marked by cardiologists",
+   "manifest": "arcade-xca-2/pack.json",
+   "lessons": "arcade-xca-2/lessons.json",
+   "bytes": 21586548,
+   "distribution": "repo",
+   "note": "112 subjects, 112 studies, 112 series, 112 instances, 657 reference targets; DICOM 13.9 MB. Committed to the repository; rebuild with scripts/data/arcade_xca_2.py; lessons scripts/lessons/arcade_xca_2.py."
   }
  ]
 }
