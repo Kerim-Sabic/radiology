@@ -1,0 +1,3554 @@
+{
+ "s0331": {
+  "institute": "B",
+  "manufacturer": "philips",
+  "scanner": "iqon - spectral ct",
+  "kvp": "120",
+  "age": 49.0,
+  "sex": "m",
+  "studyType": "ct chest-abdomen",
+  "metaPathology": "unclear",
+  "metaPathologyLocation": "unclear",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 183.0,
+  "ivcMedianHu": 127.0,
+  "aortaMaxInscribedDiameterMm": 35.4,
+  "cropShape1p5mm": [
+   253,
+   156,
+   152
+  ],
+  "series": "2.25.150497268862942150737774854651939284564",
+  "case": "s0331",
+  "slices": 76,
+  "aortaHu": 183.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 595.4,
+    "medianHu": 143.0
+   },
+   "aorta": {
+    "parts": 2,
+    "mlInCrop": 182.8,
+    "medianHu": 184.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 7.5,
+    "medianHu": 121.5
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 22.5,
+    "medianHu": 145.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 26.8,
+    "medianHu": 192.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 17.3,
+    "medianHu": 130.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 4.6,
+    "medianHu": 192.5
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 10.1,
+    "medianHu": 188.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 3.7,
+    "medianHu": 188.5
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.5,
+    "medianHu": 192.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.9,
+    "medianHu": 213.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 6.7,
+    "medianHu": 193.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 3.3,
+    "medianHu": 190.5
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 123.8,
+    "medianHu": 102.0,
+    "insideHeartPct": 99.2
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 69.6,
+    "medianHu": 149.0,
+    "insideHeartPct": 99.9
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 107.9,
+    "medianHu": 152.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 87.1,
+    "medianHu": 151.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 154.1,
+    "medianHu": 144.0,
+    "insideHeartPct": 99.9
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 71.8,
+    "medianHu": 159.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0349": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition flash",
+  "kvp": "100",
+  "age": 76.0,
+  "sex": "m",
+  "studyType": "ct heart-thorakale aorta",
+  "metaPathology": "vascular",
+  "metaPathologyLocation": "thorax",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 284.0,
+  "ivcMedianHu": 55.0,
+  "aortaMaxInscribedDiameterMm": 39.2,
+  "cropShape1p5mm": [
+   268,
+   215,
+   148
+  ],
+  "series": "2.25.256664702493508201297833152545434383279",
+  "case": "s0349",
+  "slices": 74,
+  "aortaHu": 284.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 981.3,
+    "medianHu": 115.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 349.5,
+    "medianHu": 292.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 10.6,
+    "medianHu": 263.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 47.0,
+    "medianHu": 171.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 35.3,
+    "medianHu": 151.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 16.4,
+    "medianHu": 72.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 11.3,
+    "medianHu": 311.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 19.8,
+    "medianHu": 79.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 4.9,
+    "medianHu": 264.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 4.8,
+    "medianHu": 249.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 3.1,
+    "medianHu": 260.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 11.0,
+    "medianHu": 218.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 10.3,
+    "medianHu": 227.5
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 203.0,
+    "medianHu": 74.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 136.9,
+    "medianHu": 213.0,
+    "insideHeartPct": 99.8
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 152.7,
+    "medianHu": 191.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": "dropped: blood pool 107 HU (< 120); blood pool 107 HU not 40 above the muscle (74 HU)",
+   "heart_ventricle_right": "dropped: blood pool 87 HU (< 120); blood pool 87 HU not 40 above the muscle (74 HU)",
+   "pulmonary_artery": {
+    "mlInCrop": 109.1,
+    "medianHu": 118.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0371": {
+  "institute": "E",
+  "manufacturer": "philips",
+  "scanner": "ingenuity core 128",
+  "kvp": "100",
+  "age": 53.0,
+  "sex": "f",
+  "studyType": "ct chest-abdomen-pelvis",
+  "metaPathology": "unclear",
+  "metaPathologyLocation": "unclear",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 308.0,
+  "ivcMedianHu": 86.0,
+  "aortaMaxInscribedDiameterMm": 29.7,
+  "cropShape1p5mm": [
+   233,
+   184,
+   138
+  ],
+  "series": "2.25.5094760071834143893985101368578888151",
+  "case": "s0371",
+  "slices": 69,
+  "aortaHu": 308.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 458.1,
+    "medianHu": 138.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 142.5,
+    "medianHu": 313.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 4.0,
+    "medianHu": 211.5
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 17.1,
+    "medianHu": 244.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 13.7,
+    "medianHu": 205.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 18.0,
+    "medianHu": 105.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 2.7,
+    "medianHu": 310.5
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 5.4,
+    "medianHu": 177.5
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 2.9,
+    "medianHu": 260.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 1.3,
+    "medianHu": 261.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.3,
+    "medianHu": 276.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.0,
+    "medianHu": 291.5
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.7,
+    "medianHu": 312.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 106.3,
+    "medianHu": 102.0,
+    "insideHeartPct": 97.6
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 54.7,
+    "medianHu": 277.0,
+    "insideHeartPct": 99.9
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 79.8,
+    "medianHu": 224.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": "dropped: blood pool 117 HU (< 120); blood pool 117 HU not 40 above the muscle (102 HU)",
+   "heart_ventricle_right": "dropped: blood pool 132 HU not 40 above the muscle (102 HU)",
+   "pulmonary_artery": {
+    "mlInCrop": 57.8,
+    "medianHu": 132.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0422": {
+  "institute": "B",
+  "manufacturer": "philips",
+  "scanner": "iqon - spectral ct",
+  "kvp": "120",
+  "age": 75.0,
+  "sex": "m",
+  "studyType": "ct chest-abdomen",
+  "metaPathology": "unclear",
+  "metaPathologyLocation": "unclear",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 195.0,
+  "ivcMedianHu": 171.0,
+  "aortaMaxInscribedDiameterMm": 30.6,
+  "cropShape1p5mm": [
+   247,
+   175,
+   149
+  ],
+  "series": "2.25.85540317520496930922375840898228418590",
+  "case": "s0422",
+  "slices": 75,
+  "aortaHu": 195.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 448.2,
+    "medianHu": 172.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 194.6,
+    "medianHu": 195.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 6.1,
+    "medianHu": 132.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 24.9,
+    "medianHu": 187.0
+   },
+   "superior_vena_cava": {
+    "parts": 2,
+    "mlInCrop": 12.3,
+    "medianHu": 196.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 37.4,
+    "medianHu": 179.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 4.2,
+    "medianHu": 173.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 10.2,
+    "medianHu": 232.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 3.5,
+    "medianHu": 180.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.2,
+    "medianHu": 142.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.5,
+    "medianHu": 160.0
+   },
+   "subclavian_artery_left": {
+    "parts": 2,
+    "mlInCrop": 4.3,
+    "medianHu": 166.0
+   },
+   "subclavian_artery_right": {
+    "parts": 2,
+    "mlInCrop": 1.4,
+    "medianHu": 170.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 95.5,
+    "medianHu": 104.0,
+    "insideHeartPct": 98.0
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 75.5,
+    "medianHu": 185.0,
+    "insideHeartPct": 99.9
+   },
+   "heart_ventricle_left": "dropped: blood pool 142 HU not 40 above the muscle (104 HU)",
+   "heart_atrium_right": {
+    "mlInCrop": 73.0,
+    "medianHu": 189.0,
+    "insideHeartPct": 99.1
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 116.6,
+    "medianHu": 167.0,
+    "insideHeartPct": 98.1
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 61.4,
+    "medianHu": 207.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0433": {
+  "institute": "B",
+  "manufacturer": "philips",
+  "scanner": "iqon - spectral ct",
+  "kvp": "120",
+  "age": 40.0,
+  "sex": "m",
+  "studyType": "ct chest-abdomen",
+  "metaPathology": "unclear",
+  "metaPathologyLocation": "unclear",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 152.0,
+  "ivcMedianHu": 141.0,
+  "aortaMaxInscribedDiameterMm": 30.1,
+  "cropShape1p5mm": [
+   233,
+   176,
+   131
+  ],
+  "series": "2.25.43945128517580654179225103236434390281",
+  "case": "s0433",
+  "slices": 66,
+  "aortaHu": 152.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 566.3,
+    "medianHu": 144.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 140.5,
+    "medianHu": 151.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 7.5,
+    "medianHu": 128.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 28.9,
+    "medianHu": 145.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 18.3,
+    "medianHu": 142.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 28.6,
+    "medianHu": 153.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 3.1,
+    "medianHu": 119.5
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 10.6,
+    "medianHu": 136.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 4.1,
+    "medianHu": 148.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.5,
+    "medianHu": 136.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 1.2,
+    "medianHu": 134.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 5.7,
+    "medianHu": 114.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 5.6,
+    "medianHu": 116.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 130.0,
+    "medianHu": 98.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 60.7,
+    "medianHu": 154.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 105.5,
+    "medianHu": 154.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 64.9,
+    "medianHu": 148.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 151.0,
+    "medianHu": 146.0,
+    "insideHeartPct": 100.0
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 67.5,
+    "medianHu": 154.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0455": {
+  "institute": "B",
+  "manufacturer": "philips",
+  "scanner": "iqon - spectral ct",
+  "kvp": "120",
+  "age": 75.0,
+  "sex": "m",
+  "studyType": "ct chest-abdomen",
+  "metaPathology": "unclear",
+  "metaPathologyLocation": "unclear",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 213.0,
+  "ivcMedianHu": 93.0,
+  "aortaMaxInscribedDiameterMm": 30.6,
+  "cropShape1p5mm": [
+   220,
+   220,
+   149
+  ],
+  "series": "2.25.133437017419807925996266219317371584187",
+  "case": "s0455",
+  "slices": 75,
+  "aortaHu": 213.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 464.5,
+    "medianHu": 205.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 198.6,
+    "medianHu": 213.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 7.5,
+    "medianHu": 172.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 25.7,
+    "medianHu": 213.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 12.9,
+    "medianHu": 124.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 27.2,
+    "medianHu": 89.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 5.4,
+    "medianHu": 203.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 10.8,
+    "medianHu": 154.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 4.6,
+    "medianHu": 120.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.1,
+    "medianHu": 180.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.3,
+    "medianHu": 249.0
+   },
+   "subclavian_artery_left": {
+    "parts": 2,
+    "mlInCrop": 5.1,
+    "medianHu": 196.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.5,
+    "medianHu": 191.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 107.5,
+    "medianHu": 72.0,
+    "insideHeartPct": 95.9
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 90.9,
+    "medianHu": 222.0,
+    "insideHeartPct": 99.9
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 87.8,
+    "medianHu": 187.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 68.2,
+    "medianHu": 174.0,
+    "insideHeartPct": 97.2
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 111.1,
+    "medianHu": 212.0,
+    "insideHeartPct": 98.3
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 66.6,
+    "medianHu": 268.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0472": {
+  "institute": "C",
+  "manufacturer": "siemens",
+  "scanner": "emotion 16",
+  "kvp": "110",
+  "age": 62.0,
+  "sex": "f",
+  "studyType": "ct chest-abdomen-pelvis",
+  "metaPathology": "no_pathology",
+  "metaPathologyLocation": "no_location",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 167.0,
+  "ivcMedianHu": 113.0,
+  "aortaMaxInscribedDiameterMm": 39.0,
+  "cropShape1p5mm": [
+   262,
+   186,
+   136
+  ],
+  "series": "2.25.211930605676103912504010985666923288323",
+  "case": "s0472",
+  "slices": 68,
+  "aortaHu": 167.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 470.7,
+    "medianHu": 123.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 204.0,
+    "medianHu": 172.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 8.5,
+    "medianHu": 101.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 15.5,
+    "medianHu": 128.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 13.9,
+    "medianHu": 123.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 23.5,
+    "medianHu": 123.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 6.0,
+    "medianHu": 183.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 9.0,
+    "medianHu": 126.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 2.4,
+    "medianHu": 104.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.5,
+    "medianHu": 169.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.6,
+    "medianHu": 142.5
+   },
+   "subclavian_artery_left": {
+    "parts": 2,
+    "mlInCrop": 3.5,
+    "medianHu": 180.0
+   },
+   "subclavian_artery_right": {
+    "parts": 2,
+    "mlInCrop": 2.2,
+    "medianHu": 178.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 99.6,
+    "medianHu": 90.0,
+    "insideHeartPct": 98.9
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 66.4,
+    "medianHu": 144.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 77.8,
+    "medianHu": 131.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": "dropped: blood pool 126 HU not 40 above the muscle (90 HU)",
+   "heart_ventricle_right": "dropped: blood pool 118 HU (< 120); blood pool 118 HU not 40 above the muscle (90 HU)",
+   "pulmonary_artery": {
+    "mlInCrop": 65.9,
+    "medianHu": 125.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0499": {
+  "institute": "E",
+  "manufacturer": "philips",
+  "scanner": "ingenuity core 128",
+  "kvp": "120",
+  "age": 60.0,
+  "sex": "f",
+  "studyType": "ct chest-abdomen",
+  "metaPathology": "unclear",
+  "metaPathologyLocation": "unclear",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 152.0,
+  "ivcMedianHu": 120.0,
+  "aortaMaxInscribedDiameterMm": 30.6,
+  "cropShape1p5mm": [
+   233,
+   161,
+   130
+  ],
+  "series": "2.25.334617303299645365823709986458132870023",
+  "case": "s0499",
+  "slices": 65,
+  "aortaHu": 152.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 439.5,
+    "medianHu": 136.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 139.9,
+    "medianHu": 155.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 4.3,
+    "medianHu": 117.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 18.2,
+    "medianHu": 135.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 16.3,
+    "medianHu": 135.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 17.2,
+    "medianHu": 157.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 3.9,
+    "medianHu": 156.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 10.0,
+    "medianHu": 130.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 3.7,
+    "medianHu": 136.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 1.7,
+    "medianHu": 125.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.7,
+    "medianHu": 122.5
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.9,
+    "medianHu": 135.0
+   },
+   "subclavian_artery_right": {
+    "parts": 2,
+    "mlInCrop": 1.6,
+    "medianHu": 130.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 100.8,
+    "medianHu": 82.0,
+    "insideHeartPct": 98.2
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 59.8,
+    "medianHu": 151.0,
+    "insideHeartPct": 99.8
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 80.9,
+    "medianHu": 131.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 74.6,
+    "medianHu": 151.0,
+    "insideHeartPct": 99.9
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 114.4,
+    "medianHu": 137.0,
+    "insideHeartPct": 99.9
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 50.3,
+    "medianHu": 148.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0618": {
+  "institute": "C",
+  "manufacturer": "siemens",
+  "scanner": "emotion 16",
+  "kvp": "110",
+  "age": 65.0,
+  "sex": "f",
+  "studyType": "ct chest-abdomen-pelvis",
+  "metaPathology": "tumor",
+  "metaPathologyLocation": "thorax",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 159.0,
+  "ivcMedianHu": 148.0,
+  "aortaMaxInscribedDiameterMm": 33.5,
+  "cropShape1p5mm": [
+   196,
+   187,
+   130
+  ],
+  "series": "2.25.132998161219485803977189141740894982513",
+  "case": "s0618",
+  "slices": 65,
+  "aortaHu": 159.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 409.9,
+    "medianHu": 132.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 179.0,
+    "medianHu": 160.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 3.1,
+    "medianHu": 83.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 15.4,
+    "medianHu": 146.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 14.3,
+    "medianHu": 148.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 30.7,
+    "medianHu": 158.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 4.6,
+    "medianHu": 135.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 9.5,
+    "medianHu": 134.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 1.9,
+    "medianHu": 162.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 3.4,
+    "medianHu": 130.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 1.6,
+    "medianHu": 129.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 9.1,
+    "medianHu": 117.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 6.8,
+    "medianHu": 116.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 101.4,
+    "medianHu": 60.0,
+    "insideHeartPct": 94.6
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 54.0,
+    "medianHu": 137.0,
+    "insideHeartPct": 96.1
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 77.4,
+    "medianHu": 141.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": "dropped: blood pool 106 HU (< 120)",
+   "heart_ventricle_right": "dropped: blood pool 118 HU (< 120)",
+   "pulmonary_artery": {
+    "mlInCrop": 61.0,
+    "medianHu": 161.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0621": {
+  "institute": "C",
+  "manufacturer": "siemens",
+  "scanner": "emotion 16",
+  "kvp": "110",
+  "age": 83.0,
+  "sex": "m",
+  "studyType": "ct chest-abdomen-pelvis",
+  "metaPathology": "no_pathology",
+  "metaPathologyLocation": "no_location",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 194.0,
+  "ivcMedianHu": 84.0,
+  "aortaMaxInscribedDiameterMm": 35.1,
+  "cropShape1p5mm": [
+   270,
+   210,
+   135
+  ],
+  "series": "2.25.74274873130349955213791360098364158233",
+  "case": "s0621",
+  "slices": 68,
+  "aortaHu": 194.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 811.8,
+    "medianHu": 166.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 240.5,
+    "medianHu": 195.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 12.6,
+    "medianHu": 156.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 28.2,
+    "medianHu": 199.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 25.2,
+    "medianHu": 212.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 36.9,
+    "medianHu": 103.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 14.3,
+    "medianHu": 176.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 3,
+    "mlInCrop": 8.1,
+    "medianHu": 97.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 2.9,
+    "medianHu": 253.5
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 4.7,
+    "medianHu": 147.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 2.3,
+    "medianHu": 143.0
+   },
+   "subclavian_artery_left": {
+    "parts": 2,
+    "mlInCrop": 5.7,
+    "medianHu": 136.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 8.2,
+    "medianHu": 128.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 177.5,
+    "medianHu": 83.0,
+    "insideHeartPct": 99.9
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 123.2,
+    "medianHu": 214.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 146.3,
+    "medianHu": 168.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 98.0,
+    "medianHu": 152.0,
+    "insideHeartPct": 99.5
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 188.7,
+    "medianHu": 145.0,
+    "insideHeartPct": 99.1
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 129.0,
+    "medianHu": 245.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0624": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition flash",
+  "kvp": "120",
+  "age": 83.0,
+  "sex": "m",
+  "studyType": "ct aortic valve",
+  "metaPathology": "no_pathology",
+  "metaPathologyLocation": "no_location",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 263.0,
+  "ivcMedianHu": 46.0,
+  "aortaMaxInscribedDiameterMm": 32.3,
+  "cropShape1p5mm": [
+   230,
+   186,
+   136
+  ],
+  "series": "2.25.287306445578545197668451271443165517139",
+  "case": "s0624",
+  "slices": 68,
+  "aortaHu": 263.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 753.5,
+    "medianHu": 207.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 195.1,
+    "medianHu": 270.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 9.1,
+    "medianHu": 209.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 25.4,
+    "medianHu": 196.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 21.8,
+    "medianHu": 527.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 18.2,
+    "medianHu": 92.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 8.1,
+    "medianHu": 288.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 10.0,
+    "medianHu": 103.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 4.9,
+    "medianHu": 883.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.9,
+    "medianHu": 239.0
+   },
+   "common_carotid_artery_right": "not in the cropped chest",
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 3.7,
+    "medianHu": 248.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.2,
+    "medianHu": 227.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 201.0,
+    "medianHu": 76.0,
+    "insideHeartPct": 99.9
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 96.0,
+    "medianHu": 224.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 163.8,
+    "medianHu": 204.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 85.6,
+    "medianHu": 189.0,
+    "insideHeartPct": 95.9
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 172.1,
+    "medianHu": 236.0,
+    "insideHeartPct": 99.4
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 90.4,
+    "medianHu": 295.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0680": {
+  "institute": "C",
+  "manufacturer": "siemens",
+  "scanner": "emotion 16",
+  "kvp": "110",
+  "age": 72.0,
+  "sex": "m",
+  "studyType": "ct chest-abdomen-pelvis",
+  "metaPathology": "no_pathology",
+  "metaPathologyLocation": "no_location",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 220.0,
+  "ivcMedianHu": 102.0,
+  "aortaMaxInscribedDiameterMm": 30.3,
+  "cropShape1p5mm": [
+   255,
+   172,
+   156
+  ],
+  "series": "2.25.66970503930714409428002434546232850117",
+  "case": "s0680",
+  "slices": 78,
+  "aortaHu": 220.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 576.3,
+    "medianHu": 171.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 198.8,
+    "medianHu": 213.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 6.7,
+    "medianHu": 159.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 31.3,
+    "medianHu": 215.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 28.5,
+    "medianHu": 206.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 20.3,
+    "medianHu": 133.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 3.8,
+    "medianHu": 172.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 11.6,
+    "medianHu": 144.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 7.0,
+    "medianHu": 279.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.4,
+    "medianHu": 149.5
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.9,
+    "medianHu": 148.0
+   },
+   "subclavian_artery_left": {
+    "parts": 2,
+    "mlInCrop": 3.6,
+    "medianHu": 140.0
+   },
+   "subclavian_artery_right": {
+    "parts": 2,
+    "mlInCrop": 1.6,
+    "medianHu": 142.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 127.6,
+    "medianHu": 90.0,
+    "insideHeartPct": 93.1
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 81.8,
+    "medianHu": 221.0,
+    "insideHeartPct": 98.5
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 104.0,
+    "medianHu": 198.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 94.4,
+    "medianHu": 161.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 154.4,
+    "medianHu": 163.0,
+    "insideHeartPct": 99.8
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 68.0,
+    "medianHu": 192.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0704": {
+  "institute": "E",
+  "manufacturer": "philips",
+  "scanner": "ingenuity core 128",
+  "kvp": "100",
+  "age": 61.0,
+  "sex": "f",
+  "studyType": "ct chest-chest",
+  "metaPathology": "unclear",
+  "metaPathologyLocation": "unclear",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 181.0,
+  "ivcMedianHu": 124.5,
+  "aortaMaxInscribedDiameterMm": 30.0,
+  "cropShape1p5mm": [
+   187,
+   173,
+   139
+  ],
+  "series": "2.25.138758925822292763410997039544714592542",
+  "case": "s0704",
+  "slices": 70,
+  "aortaHu": 181.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 638.6,
+    "medianHu": 264.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 145.7,
+    "medianHu": 183.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 5.3,
+    "medianHu": 129.5
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 31.3,
+    "medianHu": 211.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 18.8,
+    "medianHu": 1183.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 25.1,
+    "medianHu": 298.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 4.3,
+    "medianHu": 178.5
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 9.1,
+    "medianHu": 1377.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 3.7,
+    "medianHu": 50.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 1.4,
+    "medianHu": 147.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.3,
+    "medianHu": 153.5
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.5,
+    "medianHu": 139.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.4,
+    "medianHu": 141.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 97.8,
+    "medianHu": 65.0,
+    "insideHeartPct": 99.8
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 86.7,
+    "medianHu": 219.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 68.2,
+    "medianHu": 137.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 115.5,
+    "medianHu": 391.0,
+    "insideHeartPct": 98.0
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 179.1,
+    "medianHu": 330.0,
+    "insideHeartPct": 99.8
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 104.0,
+    "medianHu": 296.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0709": {
+  "institute": "E",
+  "manufacturer": "philips",
+  "scanner": "ingenuity core 128",
+  "kvp": "100",
+  "age": 70.0,
+  "sex": "m",
+  "studyType": "ct chest-abdomen-pelvis",
+  "metaPathology": "unclear",
+  "metaPathologyLocation": "unclear",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 377.0,
+  "ivcMedianHu": 47.0,
+  "aortaMaxInscribedDiameterMm": 35.1,
+  "cropShape1p5mm": [
+   215,
+   185,
+   141
+  ],
+  "series": "2.25.271663371643790420498028335739139613748",
+  "case": "s0709",
+  "slices": 71,
+  "aortaHu": 377.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 695.5,
+    "medianHu": 224.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 221.2,
+    "medianHu": 382.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 6.5,
+    "medianHu": 269.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 30.7,
+    "medianHu": 360.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 27.5,
+    "medianHu": 298.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 19.1,
+    "medianHu": 52.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 4.2,
+    "medianHu": 373.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 15.0,
+    "medianHu": 66.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 9.5,
+    "medianHu": 539.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.9,
+    "medianHu": 337.5
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.5,
+    "medianHu": 300.0
+   },
+   "subclavian_artery_left": {
+    "parts": 2,
+    "mlInCrop": 4.1,
+    "medianHu": 347.5
+   },
+   "subclavian_artery_right": {
+    "parts": 2,
+    "mlInCrop": 2.7,
+    "medianHu": 345.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 167.6,
+    "medianHu": 82.0,
+    "insideHeartPct": 98.3
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 83.5,
+    "medianHu": 355.0,
+    "insideHeartPct": 98.6
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 130.3,
+    "medianHu": 346.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": "dropped: blood pool 116 HU (< 120); blood pool 116 HU not 40 above the muscle (82 HU)",
+   "heart_ventricle_right": {
+    "mlInCrop": 170.3,
+    "medianHu": 206.0,
+    "insideHeartPct": 100.0
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 77.2,
+    "medianHu": 278.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0717": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition edge",
+  "kvp": "100",
+  "age": 72.0,
+  "sex": "m",
+  "studyType": "ct heart-thorakale aorta",
+  "metaPathology": "vascular",
+  "metaPathologyLocation": "thorax",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 456.0,
+  "ivcMedianHu": 64.0,
+  "aortaMaxInscribedDiameterMm": 34.7,
+  "cropShape1p5mm": [
+   199,
+   199,
+   149
+  ],
+  "series": "2.25.250079130905444399552043112965445282367",
+  "case": "s0717",
+  "slices": 75,
+  "aortaHu": 456.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 1007.2,
+    "medianHu": 151.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 254.6,
+    "medianHu": 451.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 4.3,
+    "medianHu": 36.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 28.8,
+    "medianHu": 384.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 31.3,
+    "medianHu": 73.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 24.3,
+    "medianHu": 66.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 4.5,
+    "medianHu": 435.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 18.6,
+    "medianHu": 107.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 7.8,
+    "medianHu": 63.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.5,
+    "medianHu": 398.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 1.2,
+    "medianHu": 383.0
+   },
+   "subclavian_artery_left": {
+    "parts": 2,
+    "mlInCrop": 5.2,
+    "medianHu": 402.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 4.1,
+    "medianHu": 368.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 192.7,
+    "medianHu": 91.0,
+    "insideHeartPct": 99.2
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 122.5,
+    "medianHu": 403.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 167.1,
+    "medianHu": 390.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": "dropped: blood pool 92 HU (< 120); blood pool 92 HU not 40 above the muscle (91 HU)",
+   "heart_ventricle_right": "dropped: blood pool 120 HU not 40 above the muscle (91 HU)",
+   "pulmonary_artery": {
+    "mlInCrop": 101.0,
+    "medianHu": 198.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0737": {
+  "institute": "C",
+  "manufacturer": "siemens",
+  "scanner": "emotion 16",
+  "kvp": "130",
+  "age": 73.0,
+  "sex": "f",
+  "studyType": "ct chest-abdomen",
+  "metaPathology": "no_pathology",
+  "metaPathologyLocation": "no_location",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 167.0,
+  "ivcMedianHu": 120.0,
+  "aortaMaxInscribedDiameterMm": 33.7,
+  "cropShape1p5mm": [
+   218,
+   154,
+   147
+  ],
+  "series": "2.25.11160097339576447687758953990091100013",
+  "case": "s0737",
+  "slices": 74,
+  "aortaHu": 167.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 369.5,
+    "medianHu": 152.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 244.9,
+    "medianHu": 169.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 8.8,
+    "medianHu": 127.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 12.0,
+    "medianHu": 152.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 15.0,
+    "medianHu": 155.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 15.3,
+    "medianHu": 141.5
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 3.1,
+    "medianHu": 162.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 7.8,
+    "medianHu": 130.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 4.1,
+    "medianHu": 167.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 3.0,
+    "medianHu": 130.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.5,
+    "medianHu": 155.5
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 6.4,
+    "medianHu": 122.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 6.4,
+    "medianHu": 146.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 79.1,
+    "medianHu": 92.0,
+    "insideHeartPct": 99.5
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 63.9,
+    "medianHu": 163.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 69.1,
+    "medianHu": 146.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 65.5,
+    "medianHu": 156.0,
+    "insideHeartPct": 99.9
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 85.7,
+    "medianHu": 150.0,
+    "insideHeartPct": 99.2
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 51.5,
+    "medianHu": 165.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0830": {
+  "institute": "A",
+  "manufacturer": "siemens",
+  "scanner": "somatom go.top",
+  "kvp": "120",
+  "age": 86.0,
+  "sex": "m",
+  "studyType": "ct neck-chest-abdomen-pelvis",
+  "metaPathology": "inflammation",
+  "metaPathologyLocation": "thorax",
+  "contrast": false,
+  "aortaMedianHuAtHeart": 96.0,
+  "ivcMedianHu": 78.0,
+  "aortaMaxInscribedDiameterMm": 36.5,
+  "cropShape1p5mm": [
+   242,
+   172,
+   157
+  ],
+  "series": "2.25.154466785391430227020133363583678257989",
+  "case": "s0830",
+  "slices": 79,
+  "aortaHu": 96.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 511.4,
+    "medianHu": 93.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 298.2,
+    "medianHu": 95.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 6.9,
+    "medianHu": 66.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 24.5,
+    "medianHu": 88.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 19.8,
+    "medianHu": 90.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 26.4,
+    "medianHu": 96.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 6.2,
+    "medianHu": 91.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 9.1,
+    "medianHu": 88.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 6.5,
+    "medianHu": 99.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 3.1,
+    "medianHu": 66.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 1.0,
+    "medianHu": 86.0
+   },
+   "subclavian_artery_left": {
+    "parts": 2,
+    "mlInCrop": 3.7,
+    "medianHu": 73.0
+   },
+   "subclavian_artery_right": {
+    "parts": 2,
+    "mlInCrop": 2.3,
+    "medianHu": 86.0
+   }
+  },
+  "ai": {
+   "_all": "chamber model not run: no clear contrast injection (blood and heart muscle cannot be told apart)"
+  }
+ },
+ "s0834": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition edge",
+  "kvp": "100",
+  "age": 69.0,
+  "sex": "f",
+  "studyType": "ct heart-thorakale aorta",
+  "metaPathology": "vascular",
+  "metaPathologyLocation": "thorax",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 418.0,
+  "ivcMedianHu": 75.0,
+  "aortaMaxInscribedDiameterMm": 32.4,
+  "cropShape1p5mm": [
+   267,
+   178,
+   129
+  ],
+  "series": "2.25.77506619041744569931422930574104035998",
+  "case": "s0834",
+  "slices": 65,
+  "aortaHu": 418.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 462.5,
+    "medianHu": 317.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 186.3,
+    "medianHu": 418.0
+   },
+   "atrial_appendage_left": {
+    "parts": 2,
+    "mlInCrop": 2.9,
+    "medianHu": 277.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 20.3,
+    "medianHu": 341.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 25.8,
+    "medianHu": 681.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 19.6,
+    "medianHu": 67.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 4.2,
+    "medianHu": 246.5
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 10.1,
+    "medianHu": 90.5
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 8.0,
+    "medianHu": 1363.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 3.0,
+    "medianHu": 222.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 1.0,
+    "medianHu": 249.5
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 6.7,
+    "medianHu": 235.5
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 3.6,
+    "medianHu": 281.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 112.9,
+    "medianHu": 81.0,
+    "insideHeartPct": 99.7
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 77.8,
+    "medianHu": 396.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 84.6,
+    "medianHu": 363.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 68.8,
+    "medianHu": 284.0,
+    "insideHeartPct": 99.9
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 124.9,
+    "medianHu": 258.0,
+    "insideHeartPct": 99.6
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 44.0,
+    "medianHu": 475.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0864": {
+  "institute": "A",
+  "manufacturer": "siemens",
+  "scanner": "somatom go.top",
+  "kvp": "120",
+  "age": 56.0,
+  "sex": "f",
+  "studyType": "ct chest-abdomen-pelvis",
+  "metaPathology": "no_pathology",
+  "metaPathologyLocation": "no_location",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 154.0,
+  "ivcMedianHu": 126.0,
+  "aortaMaxInscribedDiameterMm": 25.1,
+  "cropShape1p5mm": [
+   262,
+   161,
+   115
+  ],
+  "series": "2.25.41846859560676727150391656979569485099",
+  "case": "s0864",
+  "slices": 58,
+  "aortaHu": 154.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 405.6,
+    "medianHu": 135.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 95.7,
+    "medianHu": 157.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 9.7,
+    "medianHu": 118.5
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 14.8,
+    "medianHu": 146.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 11.6,
+    "medianHu": 144.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 20.2,
+    "medianHu": 147.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 3.0,
+    "medianHu": 144.5
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 8.8,
+    "medianHu": 144.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 2.6,
+    "medianHu": 144.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.1,
+    "medianHu": 135.5
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 1.2,
+    "medianHu": 142.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 4.0,
+    "medianHu": 134.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 4.3,
+    "medianHu": 137.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 107.2,
+    "medianHu": 95.0,
+    "insideHeartPct": 98.6
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 60.6,
+    "medianHu": 159.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 73.9,
+    "medianHu": 141.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 50.3,
+    "medianHu": 143.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 86.9,
+    "medianHu": 136.0,
+    "insideHeartPct": 100.0
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 42.1,
+    "medianHu": 145.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s0919": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition flash",
+  "kvp": "120",
+  "age": 64.0,
+  "sex": "f",
+  "studyType": "ct aortic valve",
+  "metaPathology": "no_pathology",
+  "metaPathologyLocation": "no_location",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 295.0,
+  "ivcMedianHu": 55.0,
+  "aortaMaxInscribedDiameterMm": 43.7,
+  "cropShape1p5mm": [
+   221,
+   168,
+   128
+  ],
+  "series": "2.25.233185409466881842449648172540670432499",
+  "case": "s0919",
+  "slices": 64,
+  "aortaHu": 295.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 466.0,
+    "medianHu": 234.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 203.6,
+    "medianHu": 295.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 4.7,
+    "medianHu": 210.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 14.0,
+    "medianHu": 239.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 15.6,
+    "medianHu": 475.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 10.8,
+    "medianHu": 97.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 4.6,
+    "medianHu": 269.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 10.6,
+    "medianHu": 810.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 1.8,
+    "medianHu": 47.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.8,
+    "medianHu": 249.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 1.2,
+    "medianHu": 199.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 4.4,
+    "medianHu": 180.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 3.2,
+    "medianHu": 141.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": "dropped: volume 11 ml outside 60-400; only 0% inside the heart",
+   "heart_atrium_left": "dropped: only 0% inside the heart; blood pool 2 HU (< 120); blood pool 2 HU not 40 above the muscle (17 HU)",
+   "heart_ventricle_left": "dropped: volume 2 ml outside 40-350; only 0% inside the heart; blood pool 75 HU (< 120); left ventricle not left of the right ventricle",
+   "heart_atrium_right": "dropped: volume 1 ml outside 20-250; only 34% inside the heart; blood pool -644 HU (< 120); blood pool -644 HU not 40 above the muscle (17 HU)",
+   "heart_ventricle_right": "dropped: volume 0 ml outside 40-350; only 0% inside the heart; blood pool 6 HU (< 120); blood pool 6 HU not 40 above the muscle (17 HU); left ventricle not left of the right ventricle",
+   "pulmonary_artery": "dropped: volume 1 ml outside 15-160"
+  }
+ },
+ "s0946": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom force",
+  "kvp": "90",
+  "age": 69.0,
+  "sex": "f",
+  "studyType": "ct heart-thorakale aorta",
+  "metaPathology": "vascular",
+  "metaPathologyLocation": "thorax",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 434.0,
+  "ivcMedianHu": 63.0,
+  "aortaMaxInscribedDiameterMm": 33.1,
+  "cropShape1p5mm": [
+   236,
+   181,
+   138
+  ],
+  "series": "2.25.132677537869835896283829872062933453896",
+  "case": "s0946",
+  "slices": 69,
+  "aortaHu": 434.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 603.8,
+    "medianHu": 295.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 247.5,
+    "medianHu": 435.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 4.6,
+    "medianHu": 350.5
+   },
+   "pulmonary_vein": {
+    "parts": 2,
+    "mlInCrop": 26.6,
+    "medianHu": 415.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 32.7,
+    "medianHu": 309.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 19.8,
+    "medianHu": 62.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 6.4,
+    "medianHu": 427.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 14.3,
+    "medianHu": 433.5
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 3.9,
+    "medianHu": 220.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 4.0,
+    "medianHu": 403.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 3.6,
+    "medianHu": 420.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 9.1,
+    "medianHu": 386.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 9.0,
+    "medianHu": 395.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 140.5,
+    "medianHu": 140.0,
+    "insideHeartPct": 99.8
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 83.1,
+    "medianHu": 436.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 119.5,
+    "medianHu": 414.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": "dropped: blood pool 168 HU not 40 above the muscle (140 HU)",
+   "heart_ventricle_right": {
+    "mlInCrop": 139.7,
+    "medianHu": 248.0,
+    "insideHeartPct": 97.1
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 68.3,
+    "medianHu": 352.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s1073": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition edge",
+  "kvp": "100",
+  "age": 70.0,
+  "sex": "m",
+  "studyType": "ct heart-thorakale aorta",
+  "metaPathology": "vascular",
+  "metaPathologyLocation": "thorax",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 386.0,
+  "ivcMedianHu": 73.0,
+  "aortaMaxInscribedDiameterMm": 43.9,
+  "cropShape1p5mm": [
+   238,
+   197,
+   136
+  ],
+  "series": "2.25.74863074644639246098536262882703872633",
+  "case": "s1073",
+  "slices": 68,
+  "aortaHu": 386.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 668.0,
+    "medianHu": 150.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 366.5,
+    "medianHu": 393.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 2.8,
+    "medianHu": 279.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 26.9,
+    "medianHu": 348.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 27.5,
+    "medianHu": 197.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 20.3,
+    "medianHu": 77.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 6.1,
+    "medianHu": 412.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 13.3,
+    "medianHu": 80.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 7.4,
+    "medianHu": 1160.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 4.7,
+    "medianHu": 377.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 2.8,
+    "medianHu": 384.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 9.3,
+    "medianHu": 324.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 11.0,
+    "medianHu": 347.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 163.7,
+    "medianHu": 94.0,
+    "insideHeartPct": 99.6
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 63.0,
+    "medianHu": 352.0,
+    "insideHeartPct": 99.6
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 130.0,
+    "medianHu": 354.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": "dropped: blood pool 105 HU (< 120); blood pool 105 HU not 40 above the muscle (94 HU)",
+   "heart_ventricle_right": "dropped: blood pool 117 HU (< 120); blood pool 117 HU not 40 above the muscle (94 HU)",
+   "pulmonary_artery": {
+    "mlInCrop": 63.0,
+    "medianHu": 282.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s1097": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition edge",
+  "kvp": "80",
+  "age": 61.0,
+  "sex": "f",
+  "studyType": "ct artrium",
+  "metaPathology": "no_pathology",
+  "metaPathologyLocation": "no_location",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 455.0,
+  "ivcMedianHu": 189.0,
+  "aortaMaxInscribedDiameterMm": 35.0,
+  "cropShape1p5mm": [
+   108,
+   108,
+   127
+  ],
+  "series": "2.25.251180214289925664180597496379963852559",
+  "case": "s1097",
+  "slices": 64,
+  "aortaHu": 455.0,
+  "expert": {
+   "heart": {
+    "parts": 2,
+    "mlInCrop": 595.6,
+    "medianHu": 441.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 179.8,
+    "medianHu": 456.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 8.0,
+    "medianHu": 426.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 18.7,
+    "medianHu": 519.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 17.7,
+    "medianHu": 840.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 17.2,
+    "medianHu": 186.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 2.8,
+    "medianHu": 478.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 7.5,
+    "medianHu": 968.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 1.7,
+    "medianHu": 746.5
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 1.0,
+    "medianHu": 468.0
+   },
+   "common_carotid_artery_right": "not in the cropped chest",
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 0.9,
+    "medianHu": 401.0
+   },
+   "subclavian_artery_right": "not in the cropped chest"
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 144.6,
+    "medianHu": 84.0,
+    "insideHeartPct": 99.3
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 90.6,
+    "medianHu": 537.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 127.6,
+    "medianHu": 490.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 76.8,
+    "medianHu": 316.0,
+    "insideHeartPct": 99.6
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 139.8,
+    "medianHu": 417.0,
+    "insideHeartPct": 96.8
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 56.3,
+    "medianHu": 562.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s1122": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition flash",
+  "kvp": "100",
+  "age": 66.0,
+  "sex": "f",
+  "studyType": "ct artrium",
+  "metaPathology": "no_pathology",
+  "metaPathologyLocation": "no_location",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 406.0,
+  "ivcMedianHu": 70.0,
+  "aortaMaxInscribedDiameterMm": 33.5,
+  "cropShape1p5mm": [
+   114,
+   114,
+   137
+  ],
+  "series": "2.25.8670127849394031022860190475265116495",
+  "case": "s1122",
+  "slices": 69,
+  "aortaHu": 406.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 595.1,
+    "medianHu": 347.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 190.2,
+    "medianHu": 407.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 8.4,
+    "medianHu": 377.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 13.0,
+    "medianHu": 395.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 13.3,
+    "medianHu": 664.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 11.9,
+    "medianHu": 80.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 2.5,
+    "medianHu": 381.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 5.7,
+    "medianHu": 217.5
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 6.3,
+    "medianHu": 1160.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 1.0,
+    "medianHu": 319.0
+   },
+   "common_carotid_artery_right": "not in the cropped chest",
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 1.9,
+    "medianHu": 472.0
+   },
+   "subclavian_artery_right": "not in the cropped chest"
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 149.0,
+    "medianHu": 66.0,
+    "insideHeartPct": 98.4
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 90.6,
+    "medianHu": 418.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 133.8,
+    "medianHu": 357.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 95.0,
+    "medianHu": 277.0,
+    "insideHeartPct": 98.9
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 118.9,
+    "medianHu": 283.0,
+    "insideHeartPct": 90.6
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 68.8,
+    "medianHu": 422.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s1155": {
+  "institute": "A",
+  "manufacturer": "ge",
+  "scanner": "lightspeed vct",
+  "kvp": "120",
+  "age": 67.0,
+  "sex": "f",
+  "studyType": "ct chest-abdomen-pelvis",
+  "metaPathology": "no_pathology",
+  "metaPathologyLocation": "no_location",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 163.0,
+  "ivcMedianHu": 77.0,
+  "aortaMaxInscribedDiameterMm": 47.0,
+  "cropShape1p5mm": [
+   271,
+   206,
+   140
+  ],
+  "series": "2.25.271750898484412528543120878621366211924",
+  "case": "s1155",
+  "slices": 70,
+  "aortaHu": 163.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 579.0,
+    "medianHu": 130.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 311.0,
+    "medianHu": 162.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 7.9,
+    "medianHu": 110.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 22.1,
+    "medianHu": 138.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 23.4,
+    "medianHu": 191.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 27.6,
+    "medianHu": 62.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 5.9,
+    "medianHu": 161.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 11.1,
+    "medianHu": 330.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 3.7,
+    "medianHu": 93.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.6,
+    "medianHu": 142.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.6,
+    "medianHu": 148.5
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 8.2,
+    "medianHu": 131.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 7.3,
+    "medianHu": 111.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 142.4,
+    "medianHu": 71.0,
+    "insideHeartPct": 99.9
+   },
+   "heart_atrium_left": {
+    "mlInCrop": 75.4,
+    "medianHu": 149.0,
+    "insideHeartPct": 98.3
+   },
+   "heart_ventricle_left": {
+    "mlInCrop": 102.1,
+    "medianHu": 125.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 82.9,
+    "medianHu": 133.0,
+    "insideHeartPct": 98.0
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 145.8,
+    "medianHu": 125.0,
+    "insideHeartPct": 99.0
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 78.9,
+    "medianHu": 173.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s1248": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition flash",
+  "kvp": "120",
+  "age": 84.0,
+  "sex": "f",
+  "studyType": "ct aortic valve",
+  "metaPathology": "vascular",
+  "metaPathologyLocation": "thorax",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 369.0,
+  "ivcMedianHu": 39.0,
+  "aortaMaxInscribedDiameterMm": 32.0,
+  "cropShape1p5mm": [
+   221,
+   205,
+   116
+  ],
+  "series": "2.25.77659791129790814031214919085308365513",
+  "case": "s1248",
+  "slices": 58,
+  "aortaHu": 369.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 604.8,
+    "medianHu": 264.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 178.5,
+    "medianHu": 371.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 10.8,
+    "medianHu": 280.0
+   },
+   "pulmonary_vein": {
+    "parts": 2,
+    "mlInCrop": 29.1,
+    "medianHu": 323.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 30.3,
+    "medianHu": 853.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 11.6,
+    "medianHu": 66.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 4.4,
+    "medianHu": 358.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 7.8,
+    "medianHu": 67.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 1.8,
+    "medianHu": 965.5
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.3,
+    "medianHu": 258.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.7,
+    "medianHu": 339.5
+   },
+   "subclavian_artery_left": {
+    "parts": 2,
+    "mlInCrop": 5.6,
+    "medianHu": 368.0
+   },
+   "subclavian_artery_right": {
+    "parts": 2,
+    "mlInCrop": 6.7,
+    "medianHu": 331.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": {
+    "mlInCrop": 151.7,
+    "medianHu": 94.0,
+    "insideHeartPct": 99.9
+   },
+   "heart_atrium_left": "dropped: only 67% inside the heart",
+   "heart_ventricle_left": {
+    "mlInCrop": 125.5,
+    "medianHu": 337.0,
+    "insideHeartPct": 100.0
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 61.5,
+    "medianHu": 209.0,
+    "insideHeartPct": 99.7
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 164.3,
+    "medianHu": 276.0,
+    "insideHeartPct": 100.0
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 65.1,
+    "medianHu": 295.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s1259": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition flash",
+  "kvp": "120",
+  "age": 61.0,
+  "sex": "m",
+  "studyType": "ct heart-thorakale aorta",
+  "metaPathology": "vascular",
+  "metaPathologyLocation": "thorax",
+  "contrast": false,
+  "aortaMedianHuAtHeart": 43.0,
+  "ivcMedianHu": 44.0,
+  "aortaMaxInscribedDiameterMm": 38.2,
+  "cropShape1p5mm": [
+   165,
+   165,
+   118
+  ],
+  "series": "2.25.310194938632238962531449960482560930265",
+  "case": "s1259",
+  "slices": 59,
+  "aortaHu": 43.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 915.2,
+    "medianHu": 40.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 289.5,
+    "medianHu": 44.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 7.8,
+    "medianHu": 35.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 28.4,
+    "medianHu": 35.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 30.7,
+    "medianHu": 45.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 22.8,
+    "medianHu": 44.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 10.3,
+    "medianHu": 45.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 11.7,
+    "medianHu": 31.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 5.3,
+    "medianHu": 36.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 3.5,
+    "medianHu": 38.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.2,
+    "medianHu": 47.0
+   },
+   "subclavian_artery_left": {
+    "parts": 2,
+    "mlInCrop": 7.0,
+    "medianHu": 52.0
+   },
+   "subclavian_artery_right": {
+    "parts": 2,
+    "mlInCrop": 3.0,
+    "medianHu": 49.0
+   }
+  },
+  "ai": {
+   "_all": "chamber model not run: no clear contrast injection (blood and heart muscle cannot be told apart)"
+  }
+ },
+ "s1270": {
+  "institute": "B",
+  "manufacturer": "philips",
+  "scanner": "iqon - spectral ct",
+  "kvp": "120",
+  "age": 63.0,
+  "sex": "m",
+  "studyType": "ct chest-abdomen",
+  "metaPathology": "unclear",
+  "metaPathologyLocation": "unclear",
+  "contrast": false,
+  "aortaMedianHuAtHeart": 133.0,
+  "ivcMedianHu": 107.0,
+  "aortaMaxInscribedDiameterMm": 33.5,
+  "cropShape1p5mm": [
+   233,
+   199,
+   148
+  ],
+  "series": "2.25.28903325974582885047610884335773984144",
+  "case": "s1270",
+  "slices": 74,
+  "aortaHu": 133.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 804.9,
+    "medianHu": 121.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 228.4,
+    "medianHu": 134.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 7.1,
+    "medianHu": 102.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 35.4,
+    "medianHu": 140.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 27.6,
+    "medianHu": 141.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 38.2,
+    "medianHu": 114.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 6.5,
+    "medianHu": 138.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 15.3,
+    "medianHu": 129.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 9.0,
+    "medianHu": 164.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 3.3,
+    "medianHu": 136.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.2,
+    "medianHu": 130.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 4.4,
+    "medianHu": 138.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.9,
+    "medianHu": 129.0
+   }
+  },
+  "ai": {
+   "_all": "chamber model not run: no clear contrast injection (blood and heart muscle cannot be told apart)"
+  }
+ },
+ "s1287": {
+  "institute": "K",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition edge",
+  "kvp": "120",
+  "age": 76.0,
+  "sex": "m",
+  "studyType": "ct neck-chest-abdomen-pelvis",
+  "metaPathology": "tumor",
+  "metaPathologyLocation": "thorax",
+  "contrast": false,
+  "aortaMedianHuAtHeart": 122.0,
+  "ivcMedianHu": 77.0,
+  "aortaMaxInscribedDiameterMm": 36.1,
+  "cropShape1p5mm": [
+   239,
+   183,
+   151
+  ],
+  "series": "2.25.221933544338691073906381571487113744684",
+  "case": "s1287",
+  "slices": 76,
+  "aortaHu": 122.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 558.6,
+    "medianHu": 106.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 250.3,
+    "medianHu": 122.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 9.2,
+    "medianHu": 60.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 35.3,
+    "medianHu": 114.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 27.5,
+    "medianHu": 102.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 28.4,
+    "medianHu": 112.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 7.7,
+    "medianHu": 120.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 18.5,
+    "medianHu": 113.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 4.2,
+    "medianHu": 61.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 4.5,
+    "medianHu": 95.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 3.0,
+    "medianHu": 115.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 7.1,
+    "medianHu": 115.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 2.9,
+    "medianHu": 99.0
+   }
+  },
+  "ai": {
+   "_all": "chamber model not run: no clear contrast injection (blood and heart muscle cannot be told apart)"
+  }
+ },
+ "s1330": {
+  "institute": "J",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition flash",
+  "kvp": "100",
+  "age": 77.0,
+  "sex": "m",
+  "studyType": "ct heart-thorakale aorta",
+  "metaPathology": "vascular",
+  "metaPathologyLocation": "thorax",
+  "contrast": true,
+  "aortaMedianHuAtHeart": 336.0,
+  "ivcMedianHu": 45.0,
+  "aortaMaxInscribedDiameterMm": 35.6,
+  "cropShape1p5mm": [
+   221,
+   210,
+   140
+  ],
+  "series": "2.25.74655349271317287091351476595138702400",
+  "case": "s1330",
+  "slices": 70,
+  "aortaHu": 336.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 798.9,
+    "medianHu": 309.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 227.5,
+    "medianHu": 345.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 9.4,
+    "medianHu": 294.0
+   },
+   "pulmonary_vein": {
+    "parts": 4,
+    "mlInCrop": 26.7,
+    "medianHu": 344.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 36.3,
+    "medianHu": 137.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 28.9,
+    "medianHu": 51.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 4.8,
+    "medianHu": 332.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 13.5,
+    "medianHu": 60.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 6.8,
+    "medianHu": 87.5
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 2.4,
+    "medianHu": 326.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 0.8,
+    "medianHu": 323.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 3.3,
+    "medianHu": 344.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 2.8,
+    "medianHu": 342.0
+   }
+  },
+  "ai": {
+   "heart_myocardium": "dropped: only 84% inside the heart",
+   "heart_atrium_left": "dropped: only 82% inside the heart",
+   "heart_ventricle_left": {
+    "mlInCrop": 110.9,
+    "medianHu": 269.0,
+    "insideHeartPct": 99.5
+   },
+   "heart_atrium_right": {
+    "mlInCrop": 136.2,
+    "medianHu": 297.0,
+    "insideHeartPct": 98.9
+   },
+   "heart_ventricle_right": {
+    "mlInCrop": 201.5,
+    "medianHu": 311.5,
+    "insideHeartPct": 99.1
+   },
+   "pulmonary_artery": {
+    "mlInCrop": 104.7,
+    "medianHu": 358.0,
+    "insideHeartPct": null
+   }
+  }
+ },
+ "s1336": {
+  "institute": "K",
+  "manufacturer": "siemens",
+  "scanner": "somatom definition edge",
+  "kvp": "120",
+  "age": 78.0,
+  "sex": "m",
+  "studyType": "ct neck-chest-abdomen-pelvis",
+  "metaPathology": "no_pathology",
+  "metaPathologyLocation": "no_location",
+  "contrast": false,
+  "aortaMedianHuAtHeart": 135.0,
+  "ivcMedianHu": 104.0,
+  "aortaMaxInscribedDiameterMm": 38.2,
+  "cropShape1p5mm": [
+   281,
+   214,
+   137
+  ],
+  "series": "2.25.237284653605443486034915902632890240317",
+  "case": "s1336",
+  "slices": 69,
+  "aortaHu": 135.0,
+  "expert": {
+   "heart": {
+    "parts": 1,
+    "mlInCrop": 563.8,
+    "medianHu": 112.0
+   },
+   "aorta": {
+    "parts": 1,
+    "mlInCrop": 252.0,
+    "medianHu": 137.0
+   },
+   "atrial_appendage_left": {
+    "parts": 1,
+    "mlInCrop": 4.1,
+    "medianHu": 59.0
+   },
+   "pulmonary_vein": {
+    "parts": 3,
+    "mlInCrop": 25.5,
+    "medianHu": 123.0
+   },
+   "superior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 19.3,
+    "medianHu": 128.0
+   },
+   "inferior_vena_cava": {
+    "parts": 1,
+    "mlInCrop": 23.8,
+    "medianHu": 135.0
+   },
+   "brachiocephalic_trunk": {
+    "parts": 1,
+    "mlInCrop": 7.1,
+    "medianHu": 143.0
+   },
+   "brachiocephalic_vein_left": {
+    "parts": 1,
+    "mlInCrop": 11.3,
+    "medianHu": 120.0
+   },
+   "brachiocephalic_vein_right": {
+    "parts": 1,
+    "mlInCrop": 8.7,
+    "medianHu": 130.0
+   },
+   "common_carotid_artery_left": {
+    "parts": 1,
+    "mlInCrop": 3.3,
+    "medianHu": 107.0
+   },
+   "common_carotid_artery_right": {
+    "parts": 1,
+    "mlInCrop": 1.0,
+    "medianHu": 119.0
+   },
+   "subclavian_artery_left": {
+    "parts": 1,
+    "mlInCrop": 4.5,
+    "medianHu": 94.0
+   },
+   "subclavian_artery_right": {
+    "parts": 1,
+    "mlInCrop": 1.7,
+    "medianHu": 118.0
+   }
+  },
+  "ai": {
+   "_all": "chamber model not run: no clear contrast injection (blood and heart muscle cannot be told apart)"
+  }
+ }
+}

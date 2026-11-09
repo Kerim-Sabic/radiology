@@ -351,6 +351,15 @@
    "bytes": 8353993,
    "distribution": "repo",
    "note": "62 subjects, 62 studies, 62 series, 62 instances, 93 reference targets; DICOM 5.4 MB. Committed to the repository; rebuild with scripts/data/cadica_2.py; lessons scripts/lessons/cadica_2.py."
+  },
+  {
+   "id": "heart-ct-2",
+   "title": "Heart and great vessels on chest CT, second set: more scanners, hospitals and heart-gated studies",
+   "manifest": "heart-ct-2/pack.json",
+   "lessons": "heart-ct-2/lessons.json",
+   "bytes": 96378889,
+   "distribution": "repo",
+   "note": "31 subjects, 31 studies, 31 series, 2149 instances, 530 reference targets; DICOM 84.9 MB. Committed to the repository; rebuild with scripts/data/heart_ct_2.py + heart_ct_build_2.py; lessons scripts/lessons/heart_ct_2.py."
   }
  ]
 }
