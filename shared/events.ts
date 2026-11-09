@@ -8,7 +8,7 @@ type Spec = Record<string, PropType>;
 
 export const CLIENT_EVENTS = {
   // Arrival
-  land: { path: 's', tag: 's', ref: 's', et: 's' },
+  land: { path: 's', tag: 's', ref: 's', et: 's', app: 's' },
   page: { path: 's' },
   leave: { path: 's', last: 's', secs: 'n' },
   active: { kind: 's' },
@@ -27,6 +27,7 @@ export const CLIENT_EVENTS = {
   save_click: { where: 's' },
   form_shown: { ms: 'n', mode: 's' },
   email_focus: {},
+  signup_submit: {},
   code_sent: {},
   code_wrong: {},
   code_resend: {},
@@ -38,8 +39,8 @@ export const CLIENT_EVENTS = {
   paywall: { case: 's', what: 's', nth: 'n' },
   return: { days: 'n' },
   // Paying
-  plans_view: { from: 's', currency: 's', regional: 'b', pass: 'b', student: 'b', code: 'b', monthly: 'n', yearly: 'n' },
-  plan_click: { period: 's', amount: 'n' },
+  plans_view: { from: 's', currency: 's', regional: 'b', pass: 'b', student: 'b', code: 'b', monthly: 'n', yearly: 'n', upi: 'b', rec: 's' },
+  plan_click: { period: 's', amount: 'n', method: 's', rec: 'b', via: 's' },
   checkout_ready: { ms: 'n' },
   checkout_close: { step: 's' },
   // Email

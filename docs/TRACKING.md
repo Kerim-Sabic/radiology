@@ -41,7 +41,7 @@ Brief: `C:\Helix\Lab\Marketing\radiology-monster-instagram\PROMPT-TRACKING.md` (
 ### Arrival
 | Event | When | Props | Answers |
 |---|---|---|---|
-| `land` | The app starts (once) | path, tag (ad tag), ref (referrer host), et (connection) | Where visitors arrive, from which ad and site, on what connection |
+| `land` | The app starts (once) | path, tag (ad tag), ref (referrer host), et (connection), app (`instagram`, `facebook`, `webview` or empty: the in-app browser the visit came in) | Where visitors arrive, from which ad and site, on what connection |
 | `page` | A route change inside the app | path | Which pages a visit goes through |
 | `leave` | The tab is closed or navigated away (`pagehide`) | path, last (the last event before leaving), secs (on this page) | **Where people leave, and right after what** |
 | `active` | The first touch, key or scroll (once) | kind | Whether a human did anything: the "people only" filter |
@@ -65,13 +65,14 @@ Brief: `C:\Helix\Lab\Marketing\radiology-monster-instagram\PROMPT-TRACKING.md` (
 |---|---|---|---|
 | `save_click` | "Start free" / "Save it" pressed | where (case, home, plans, invite) | Which door people take to an account |
 | `form_shown` | Clerk's form is ready (once) | ms (after the dialog opened), mode | How long the sign-up form takes to appear |
+| `signup_submit` | "Continue" pressed in Clerk's sign-up form (once) | — | They tried to send the email: between `email_focus` and `code_sent` |
 | `email_focus` | The email field is tapped (once) | — | They started typing |
 | `code_sent` | Clerk created the email code (once; from Clerk's own state, the address bar as fallback) | — | They asked for a code |
 | `code_wrong` | A code was rejected | — | Codes that don't work |
 | `code_resend` | A new code was asked for | — | Codes that didn't arrive |
-| `clerk_error` | Clerk failed to load | code | Sign-up broken on that connection |
+| `clerk_error` | Clerk failed to load (`load`), or showed an error under the email field (`field`; once) | code | Sign-up broken on that connection, or addresses it refuses |
 | `account` | Signed in after the code | new (first time?) | **Accounts, new vs returning** |
-| `account_abandon` | The sign-up dialog closed without an account | step (opened, form_shown, email_focus, code_sent) | **How far they got before giving up** |
+| `account_abandon` | The sign-up dialog closed without an account | step (opened, form_shown, email_focus, submitted, error, code_sent) | **How far they got before giving up** |
 
 ### Using it
 | Event | When | Props | Answers |
@@ -83,12 +84,12 @@ Brief: `C:\Helix\Lab\Marketing\radiology-monster-instagram\PROMPT-TRACKING.md` (
 ### Paying
 | Event | When | Props | Answers |
 |---|---|---|---|
-| `plans_view` | The plans were on screen (once) | from (home, account), currency, regional, pass, student, code, monthly, yearly (the prices shown) | What price each visitor saw |
-| `plan_click` | A plan button pressed | period, amount | **Who tries to buy** |
+| `plans_view` | The plans were on screen (once) | from (home, account), currency, regional, pass, student, code, monthly, yearly (the USD prices shown), upi (the UPI button was shown on the cards: India), rec (the plan that leads: `monthly` or `yearly`) | What price each visitor saw, and whether UPI was offered up front |
+| `plan_click` | A plan button pressed | period, amount (USD), method (`card` or `upi`), rec (it was the leading plan), via (`plans` the cards, `switch` the card/UPI switch inside the checkout step) | **Who tries to buy, which plan, paying how** |
 | `checkout_created` | *Server:* Whop's checkout was created | tier, regional | The server side of the click worked |
 | `checkout_refused` | *Server:* the checkout was refused (already a member, a bad code, an error) | status | **Broken checkouts** |
 | `checkout_ready` | Whop's payment form appeared (once) | ms (after it started loading) | How long the payment form takes |
-| `checkout_close` | (reserved) the payment form closed without paying | step | — |
+| `checkout_close` | The visitor left the payment step ("Change plan", or closed the plans) without paying | step (`loading` the form had not appeared yet, `ready` it had; `ready` is read from this session's `checkout_ready`) | **Whether people who opened checkout saw the form before leaving** |
 | `paid` | *Server:* the account became a paying member (once) | — | Payments, joined to the journey |
 | `purchase` | *Server:* a confirmed payment as the ad measurement saw it (`server/metaAds.ts`) | value, currency, capi (sent to Meta), browser (Pixel copy queued), why (`sent`, `no_consent`, `no_token`, `capi_failed`), test (Meta's test code was on) | Whether each payment reached Meta, and why not |
 | `pay_declined` | *Server:* a declined payment (needs Whop's webhook; not yet connected) | reason, country | Why cards fail, by country |

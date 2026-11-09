@@ -55,3 +55,11 @@ export const regionalTerms = (c: Pick<RegionalCheckout, 'price' | 'days' | 'pass
   const amount = c.method === 'upi' && c.rupees ? rupees(c.rupees) : `${usd(c.price)} USD`;
   return c.pass ? `${amount} for ${c.days} days, one payment that does not renew` : `${amount} every ${c.days} days`;
 };
+
+/** India, UPI passes: the yearly pass as a rupee amount a month, and what it saves against twelve 30-day passes. */
+export function upiYearlyFigures(upi: { monthly: number; yearly: number }) {
+  return { perMonth: rupees(Math.floor(upi.yearly / 12)), saves: rupees(Math.max(0, upi.monthly * 12 - upi.yearly)) };
+}
+
+/** Which plan card leads: the 30-day pass where prices are one-time passes (the smallest first payment), else the yearly. */
+export const recommendedTier = (r: Pick<RegionalPrice, 'monthly'> | undefined): 'monthly' | 'yearly' => (r?.monthly.pass ? 'monthly' : 'yearly');

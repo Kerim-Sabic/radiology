@@ -15,10 +15,11 @@ import { trackFunnel, WARM_ACCOUNT_EVENT } from '../services/serverSync';
 import { ev, evFired } from '../services/ev';
 import { ScanLoader } from '../components/ScanState';
 import { isWelcomeCode, useOfferTimeLeft, WELCOME_GIFT, welcomePrice, welcomeRupees, welcomeTerms, type WelcomeOffer } from './welcomeOffer';
-import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice, rupees, aboutLocal } from './regionalPrice';
+import { regionalTerms, studentTerms, usd, withStudentPrices, yearlyFigures, type RegionalCheckout, type RegionalPrice, rupees, aboutLocal, upiYearlyFigures, recommendedTier } from './regionalPrice';
 import { WorthSurvey } from './WorthSurvey';
 import { reportPurchase, syncAdConsent } from '../services/metaPixel';
 import { MAKER } from '../lib/provenance';
+import { fact, LANDING_FACTS } from './landingFacts';
 const EmbeddedCheckout = lazy(() => import('./EmbeddedCheckout'));
 const InlineAccount = lazy(() => import('./InlineAccount'));
 type Tier = 'monthly' | 'yearly';
@@ -33,7 +34,9 @@ function rememberedPromo() {
 }
 const planKey = 'rvm:selected-plan';
 function rememberedPlan(): Tier | null { try { const value = sessionStorage.getItem(planKey); return value === 'monthly' || value === 'yearly' ? value : null; } catch { return null; } }
-function rememberPlan(tier: Tier | null) { try { if (tier) sessionStorage.setItem(planKey, tier); else sessionStorage.removeItem(planKey); } catch { /* Storage is optional. */ } }
+function rememberPlan(tier: Tier | null, method: 'card' | 'upi' = 'card') { try { if (tier) { sessionStorage.setItem(planKey, tier); sessionStorage.setItem(`${planKey}-method`, method); } else { sessionStorage.removeItem(planKey); sessionStorage.removeItem(`${planKey}-method`); } } catch { /* Storage is optional. */ } }
+/** How the plan chosen before signing up is paid: UPI only if the visitor pressed the UPI button. */
+function rememberedMethod(): 'card' | 'upi' { try { return sessionStorage.getItem(`${planKey}-method`) === 'upi' ? 'upi' : 'card'; } catch { return 'card'; } }
 
 interface Access { active: boolean; role?: 'admin' | 'granted' | 'professor'; tier?: Tier | 'lifetime'; expiresAt?: string | null; manageUrl?: string | null; pendingMembership?: boolean; }
 /** `adminPermissions`: what an admin may see and do on the admin page; `teaches`: a professor; `classes`: the classes a student is in. */
@@ -84,7 +87,16 @@ function WelcomeOfferNote({ offer, regional, applied, onApply }: { offer: Welcom
 export const CARD_TIP = ' Cards here often have international online payments switched off: turn them on in your bank app first.';
 
 /** The price for the visitor's country, the one condition that comes with it (a card issued there), and the student price there. */
-function RegionalPriceNote({ price, welcome }: { price: RegionalPrice; welcome: boolean }) {
+function RegionalPriceNote({ price, welcome, upiFirst }: { price: RegionalPrice; welcome: boolean; upiFirst?: boolean }) {
+  // UPI up front: the rupee prices and one line; the card's conditions sit in a fold, so the plan buttons stay in view on a phone.
+  if (upiFirst && price.upi) return (
+    <div className="regional-price compact" role="note">
+      <span className="regional-price-kicker">Price for {price.countryName}</span>
+      <strong>{rupees(price.upi.monthly)} for 30 days · {rupees(price.upi.yearly)} for a year</strong>
+      <span>Pay by UPI, no card needed. Each payment is one-time and never renews.{price.student ? ` With a verified university email: ${studentTerms(price)} by card.` : ''}</span>
+      <details><summary>Paying by card instead</summary><span>{usd(price.monthly.price)} for 30 days · {usd(price.yearly.price)} for a year, with a card issued in {price.countryName}. Cards from other countries are declined at checkout.{CARD_TIP}{welcome ? ' Your welcome code works on these prices; any other promo code uses the standard price.' : ' A promo code uses the standard price.'}</span></details>
+    </div>
+  );
   return (
     <div className="regional-price" role="note">
       <span className="regional-price-kicker">Price for {price.countryName}</span>
@@ -234,6 +246,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
   });
   const [authWaiting, setAuthWaiting] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<Tier | null>(rememberedPlan);
+  const selectedMethod = useRef<'card' | 'upi'>(rememberedMethod());
   // Free accounts use the app; the plans open as their own screen (from Upgrade, a locked feature, or ?plans).
   const [plansOpen, setPlansOpen] = useState(() => new URLSearchParams(location.search).has('plans') || !!rememberedPlan());
   const openPlans = useCallback(() => { setPlansOpen(true); setError(''); trackFunnel('plans', true); }, []);
@@ -249,7 +262,11 @@ function MembershipGate({ children }: { children: ReactNode }) {
     window.addEventListener(WARM_ACCOUNT_EVENT, warm);
     return () => window.removeEventListener(WARM_ACCOUNT_EVENT, warm);
   }, []);
+  // The payment form was open and the visitor left it without paying: how far it had got (loading, or shown).
+  const paymentOpen = useRef(false);
+  function leftCheckout() { if (paymentOpen.current) { ev('checkout_close', { step: evFired('checkout_ready') ? 'ready' : 'loading' }); paymentOpen.current = false; } }
   function closePlans() {
+    leftCheckout();
     setPlansOpen(false); setPayment(null); setReturned(false); setError('');
     const q = new URLSearchParams(location.search);
     if (q.has('plans') || q.has('checkout')) { q.delete('plans'); q.delete('checkout'); history.replaceState(null, '', `${location.pathname}${q.size ? `?${q}` : ''}`); }
@@ -283,6 +300,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
   // The price a plan button stands for, read by `buy` through a ref: `buy` is memoised and may be created in a render
   // that returns early (still loading), before the prices are worked out.
   const planAmountRef = useRef<(tier: Tier) => number>(() => 0);
+  const recommendedRef = useRef<Tier>('yearly');
   const clerkKeyRef = useRef<string | undefined>(undefined);
   const mounted = useRef(true);
   const signedIn = useRef(false);
@@ -391,12 +409,13 @@ function MembershipGate({ children }: { children: ReactNode }) {
     } catch { setError('Sign-out failed. Please try again.'); }
   }
   // `code`: the promo code to send instead of the one in the field ('' sends none).
-  const buy = useCallback(async (tier: Tier, method: 'card' | 'upi' = 'card', code?: string) => {
+  const buy = useCallback(async (tier: Tier, method: 'card' | 'upi' = 'card', code?: string, via: 'plans' | 'switch' = 'plans') => {
     const current = ++checkoutGeneration.current;
     setBusy(tier); setError('');
     // A plan button pressed (the funnel step between "Opened the plans" and "Saw the payment form").
     trackFunnel('checkout_start');
-    ev('plan_click', { period: tier, amount: planAmountRef.current(tier) });
+    // method: how the visitor chose to pay; via: the plan cards, or the switch inside the checkout step.
+    ev('plan_click', { period: tier, amount: planAmountRef.current(tier), method, rec: tier === recommendedRef.current, via });
     try {
       const affiliate = currentReferral() || referral;
       const enteredPromoCode = (code ?? promoCode).trim().toLowerCase();
@@ -406,6 +425,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
       if (!response.ok) throw new CheckoutHttpError(data.error, response.status);
       if (!/^ch_[A-Za-z0-9]+$/.test(data.id)) throw new Error('Unable to open the payment form. Please try again.');
       setPayment({ id: data.id, returnUrl: data.returnUrl, tier, promoCode: data.promoCode, enteredPromoCode, studentDiscount: data.studentDiscount, welcome: data.welcome === true, ...(data.regional ? { regional: data.regional } : {}), ...(method === 'upi' ? { upiAsked: true } : {}) });
+      paymentOpen.current = true;
       setPlansOpen(true); // "Change plan" goes back to the plans, not to the app
       rememberPlan(null);
     } catch (e) {
@@ -418,12 +438,13 @@ function MembershipGate({ children }: { children: ReactNode }) {
   }, [promoCode, referral]);
   useEffect(() => {
     if (selectedPlan && account?.user && !account.access.active && !account.access.pendingMembership && account.billingReady) {
-      setSelectedPlan(null); void buy(selectedPlan);
+      setSelectedPlan(null); void buy(selectedPlan, selectedMethod.current);
     }
   }, [selectedPlan, account, buy]);
-  function choose(tier: Tier) {
-    if (account?.user) { void buy(tier); return; }
-    setSelectedPlan(tier); rememberPlan(tier); setError('');
+  function choose(tier: Tier, method: 'card' | 'upi' = 'card') {
+    if (account?.user) { void buy(tier, method); return; }
+    selectedMethod.current = method;
+    setSelectedPlan(tier); rememberPlan(tier, method); setError('');
     // A welcome code belongs to an account that already exists: its link asks to sign in, not to create one.
     if (isWelcomeCode(promoCode)) { setAuthMode('login'); return; }
     setAuthMode('signup'); trackFunnel('signup_start', true);
@@ -452,6 +473,10 @@ function MembershipGate({ children }: { children: ReactNode }) {
   const cardPrice = studentRegional ?? regionalShown;
   const planAmount = (tier: Tier) => (cardPrice ? (tier === 'monthly' ? cardPrice.monthly.price : cardPrice.yearly.price) : tier === 'monthly' ? 20 : 150);
   planAmountRef.current = planAmount;
+  // UPI up front (India): the rupee pass is the lead button on each card, with the card as the second choice.
+  const upiPrice = regionalShown?.upi && !studentRegional ? regionalShown.upi : undefined;
+  const recTier = recommendedTier(cardPrice);
+  recommendedRef.current = recTier;
   clerkKeyRef.current = ready?.clerkPublishableKey;
   // The plans were on screen: what was shown, from where (signed in: the plans screen; signed out: the home page).
   const seenPlans = () => {
@@ -467,27 +492,36 @@ function MembershipGate({ children }: { children: ReactNode }) {
       code: !!promoCode.trim(),
       monthly: planAmount('monthly'),
       yearly: planAmount('yearly'),
+      upi: !!upiPrice,
+      rec: recTier,
     }, true);
   };
+  const buyDisabled = !ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null;
+  // India: the UPI pass is the button; the card is a smaller second choice below it.
+  const upiButtons = (tier: Tier, rupeeAmount: number, cardAmount: number) => <>
+    <button className="plan-upi" disabled={buyDisabled} onClick={() => choose(tier, 'upi')}>{busy === tier ? 'Preparing payment…' : `Pay ${rupees(rupeeAmount)} with UPI`}<ArrowRight size={17} /></button>
+    <p className="plan-upi-apps">Google Pay, PhonePe, Paytm or any UPI app. No card needed.</p>
+    <button type="button" className="plan-alt" disabled={buyDisabled} onClick={() => choose(tier)}>or pay {usd(cardAmount)} by card</button>
+  </>;
   const checkoutCodeChanged = promoCode.trim().toLowerCase() !== (payment?.enteredPromoCode || '');
   const panel = <>
     <section className="membership-panel" id="plans" aria-label="Membership">
       {payment && account?.user ? <>
-        <button className="checkout-back text-button" onClick={() => { setPayment(null); setError(''); }}><ArrowLeft size={15} /> Change plan</button>
+        <button className="checkout-back text-button" onClick={() => { leftCheckout(); setPayment(null); setError(''); }}><ArrowLeft size={15} /> Change plan</button>
         <span className="membership-step">Checkout</span>
         <h2 ref={checkoutHeading} tabIndex={-1}>Your study space is almost ready.</h2>
         <p className="checkout-account">{account.user.email}</p>
         {payment.regional && regional?.upi && !payment.studentDiscount && <p className="student-offer upi-switch" role="status">
           {payment.regional.method === 'upi' ? <>
             <strong>Paying {payment.welcome ? welcomeRupees(payment.regional.rupees ?? 0, welcomeOffer?.percent ?? 40) : rupees(payment.regional.rupees ?? 0)} by UPI</strong>
-            <span>Approve it in your UPI app (Google Pay, PhonePe, Paytm or your bank’s). <button className="text-button" disabled={!!busy} onClick={() => void buy(payment.tier, 'card')}>Pay by card instead</button></span>
+            <span>Approve it in your UPI app (Google Pay, PhonePe, Paytm or your bank’s). <button className="text-button" disabled={!!busy} onClick={() => void buy(payment.tier, 'card', undefined, 'switch')}>Pay by card instead</button></span>
           </> : payment.upiAsked && payment.enteredPromoCode ? <>
             {/* The welcome code isn't on the UPI pass (made before it, or Whop refused it there): the server kept the card form. */}
             <strong>Your welcome code works on card payments only</strong>
-            <span>Keep it and pay by card below, or pay the full {rupees(regional.upi[payment.tier])} by UPI without it. <button className="text-button" disabled={!!busy} onClick={() => { updatePromo(''); void buy(payment.tier, 'upi', ''); }}>Pay {rupees(regional.upi[payment.tier])} by UPI</button></span>
+            <span>Keep it and pay by card below, or pay the full {rupees(regional.upi[payment.tier])} by UPI without it. <button className="text-button" disabled={!!busy} onClick={() => { updatePromo(''); void buy(payment.tier, 'upi', '', 'switch'); }}>Pay {rupees(regional.upi[payment.tier])} by UPI</button></span>
           </> : <>
             <strong>Pay by UPI instead: {rupees(regional.upi[payment.tier])}</strong>
-            <span>No card needed: approve it in your UPI app. <button className="text-button" disabled={!!busy} onClick={() => void buy(payment.tier, 'upi')}>Pay by UPI</button></span>
+            <span>No card needed: approve it in your UPI app. <button className="text-button" disabled={!!busy} onClick={() => void buy(payment.tier, 'upi', undefined, 'switch')}>Pay by UPI</button></span>
           </>}
         </p>}
         {payment.regional && <p className="student-offer regional-applied" role="status"><strong>Price for {payment.regional.countryName}: {regionalTerms(payment.regional)}</strong><span>{payment.regional.method === 'upi' ? '' : `Pay with a card issued in ${payment.regional.countryName}. Cards from other countries are declined.${payment.regional.pass ? CARD_TIP : ''} `}{payment.welcome ? 'Your welcome code works on this price; any other code switches to the standard price.' : 'A promo code switches to the standard price.'}</span></p>}
@@ -507,8 +541,8 @@ function MembershipGate({ children }: { children: ReactNode }) {
       <SeenOnce onSeen={seenPlans} />
       <span className="membership-step">{account?.user ? 'Choose your plan' : 'Membership'}</span>
       <h2>{account?.user ? 'Unlock the whole library.' : 'The whole library, every tool.'}</h2>
-      <p>{account?.user ? `Signed in as ${account.user.email}` : 'One membership for every patient, drill and on-call shift, with the book beside you.'}</p>
-      {regional && <RegionalPriceNote price={regional} welcome={!!welcomeOffer || welcomeLink} />}
+      <p>{account?.user ? `Signed in as ${account.user.email}. Your answers and scores stay on your account when you unlock.` : 'One membership for every patient, drill and on-call shift, with the book beside you.'}</p>
+      {regional && <RegionalPriceNote price={regional} welcome={!!welcomeOffer || welcomeLink} upiFirst={!!upiPrice} />}
       {welcomeOffer && <WelcomeOfferNote offer={welcomeOffer} regional={regional} applied={promoCode.trim().toLowerCase() === welcomeOffer.code} onApply={() => updatePromo(welcomeOffer.code)} />}
       {!regional && <>
         <p className="student-offer"><strong>{student ? 'Your verified university email unlocks 30% off' : '30% off for eligible university email addresses'}</strong><span>{student ? 'Student prices include every renewal. A better recurring promo takes precedence; discounts do not stack.' : 'Verify an eligible email, including .edu, .edu.ba or .ac.uk, for $14 every 30 days or $105 every 365 days. The discount continues on every renewal.'}</span></p>
@@ -518,11 +552,15 @@ function MembershipGate({ children }: { children: ReactNode }) {
         : `Verify an eligible email, including .edu, .edu.ba or .ac.uk, for ${studentTerms(regional)}. The discount applies to every ${regional.monthly.pass ? 'pass' : 'payment'}.`}</span></p>}
       {ready && !ready.auth && <p className="membership-message">Sign-in is temporarily unavailable. Please try again shortly.</p>}
       <details className="promo-entry" open={!!promoCode}><summary>Have a promo code?</summary><label htmlFor="membership-promo">Promo code</label><input id="membership-promo" value={promoCode} maxLength={40} autoComplete="off" autoCapitalize="none" spellCheck={false} onChange={event => updatePromo(event.target.value)} placeholder="Enter your code before choosing a plan" /><p>{welcomeLink ? 'This is the welcome code from your email. It works once you sign in with the email it was sent to.' : regional ? (welcomeOffer ? 'Your welcome code works on the price for your country. Any other code applies to the standard price ($20 a month or $150 a year).' : 'A code applies to the standard price ($20 a month or $150 a year), not to the price for your country.') : 'Choose a plan below. Your discount will appear in the secure payment form.'}</p></details>
-      <div className="membership-plans">
-        <article className="membership-plan yearly" aria-labelledby="yearly-plan-title">
+      <div className={`membership-plans${recTier === 'monthly' ? ' rec-monthly' : ''}${upiPrice ? ' with-upi' : ''}`}>
+        <article className={`membership-plan yearly${recTier === 'yearly' ? ' rec' : ''}`} aria-labelledby="yearly-plan-title">
           <span className="membership-best">Best value</span>
           <div className="plan-heading"><h3 id="yearly-plan-title">Yearly</h3><span>For a year of steady progress</span></div>
-          {cardPrice ? <>
+          {upiPrice && cardPrice ? <>
+            <div className="membership-price">{upiYearlyFigures(upiPrice).perMonth}<span>/ month</span></div>
+            <p className="plan-billing"><strong>{rupees(upiPrice.yearly)} for a year</strong><span>One payment for 365 days. It does not renew.</span></p>
+            <div className="plan-value"><strong>Save {upiYearlyFigures(upiPrice).saves}</strong><span>vs. 12 monthly passes</span></div>
+          </> : cardPrice ? <>
             <div className="membership-price">{yearlyFigures(cardPrice).perMonth}<span>/ month</span></div>
             <p className="plan-billing"><strong>{usd(cardPrice.yearly.price)} {cardPrice.yearly.pass ? 'for a year' : 'billed yearly'}</strong><span>{aboutLocal(cardPrice.yearly.price, cardPrice.local) ? `${aboutLocal(cardPrice.yearly.price, cardPrice.local)}. ` : ''}{cardPrice.yearly.pass ? 'One payment for 365 days. It does not renew.' : 'One payment every 365 days.'}{studentRegional ? ' Student price.' : ''}</span></p>
             <div className="plan-value"><strong>Save {yearlyFigures(cardPrice).saves}</strong><span>vs. 12 {cardPrice.monthly.pass ? 'monthly passes' : 'monthly payments'}</span></div>
@@ -532,12 +570,16 @@ function MembershipGate({ children }: { children: ReactNode }) {
             <div className="plan-value"><strong>Save {student ? '$63' : '$90'}</strong><span>vs. 12 monthly payments</span></div>
           </>}
           <p className="plan-access">Full access for your whole study year.</p>
-          <button aria-describedby="yearly-billing-note" disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('yearly')}>{busy === 'yearly' ? 'Preparing payment…' : 'Start yearly'}<ArrowRight size={17} /></button>
+          {upiPrice && cardPrice ? upiButtons('yearly', upiPrice.yearly, cardPrice.yearly.price) : <button aria-describedby="yearly-billing-note" disabled={buyDisabled} onClick={() => choose('yearly')}>{busy === 'yearly' ? 'Preparing payment…' : 'Start yearly'}<ArrowRight size={17} /></button>}
           <p className="plan-cancel" id="yearly-billing-note">{regionalShown?.yearly.pass ? 'One payment. Nothing renews.' : 'Billed annually. Cancel future renewals anytime.'}</p>
         </article>
-        <article className="membership-plan monthly" aria-labelledby="monthly-plan-title">
+        <article className={`membership-plan monthly${recTier === 'monthly' ? ' rec' : ''}`} aria-labelledby="monthly-plan-title">
+          {recTier === 'monthly' && <span className="membership-best">Smallest first payment</span>}
           <div className="plan-heading"><h3 id="monthly-plan-title">Monthly</h3><span>For a shorter study stretch</span></div>
-          {cardPrice ? <>
+          {upiPrice && cardPrice ? <>
+            <div className="membership-price">{rupees(upiPrice.monthly)}<span>/ 30 days</span></div>
+            <p className="plan-billing"><strong>{rupees(upiPrice.monthly)} for 30 days</strong><span>About {rupees(Math.round(upiPrice.monthly / 30))} a day. One payment, buy again when it ends. The standard price is $20 a month.</span></p>
+          </> : cardPrice ? <>
             <div className="membership-price">{usd(cardPrice.monthly.price)}<span>{cardPrice.monthly.pass ? '/ 30 days' : '/ month'}</span></div>
             <p className="plan-billing"><strong>{usd(cardPrice.monthly.price)} {cardPrice.monthly.pass ? 'for 30 days' : 'billed every 30 days'}</strong><span>{aboutLocal(cardPrice.monthly.price, cardPrice.local) ? `${aboutLocal(cardPrice.monthly.price, cardPrice.local)}. ` : ''}{cardPrice.monthly.pass ? 'One payment. Buy again when it ends.' : 'A smaller upfront payment.'}{studentRegional ? (cardPrice.monthly.pass ? ' Student price, every pass.' : ' Student price, every renewal.') : ''}</span></p>
           </> : <>
@@ -545,19 +587,19 @@ function MembershipGate({ children }: { children: ReactNode }) {
             <p className="plan-billing"><strong>{student ? '$14' : '$20'} billed every 30 days</strong><span>{student ? 'Student price, every renewal.' : 'A smaller upfront payment.'}</span></p>
           </>}
           <p className="plan-access">The same full access, one month at a time.</p>
-          <button disabled={!ready?.auth || (!!account?.user && (!account.billingReady || account.access.pendingMembership)) || busy !== null} onClick={() => choose('monthly')}>{busy === 'monthly' ? 'Preparing payment…' : regionalShown?.monthly.pass ? 'Get 30 days' : 'Choose monthly'}<ArrowRight size={17} /></button>
+          {upiPrice && cardPrice ? upiButtons('monthly', upiPrice.monthly, cardPrice.monthly.price) : <button disabled={buyDisabled} onClick={() => choose('monthly')}>{busy === 'monthly' ? 'Preparing payment…' : regionalShown?.monthly.pass ? 'Get 30 days' : 'Choose monthly'}<ArrowRight size={17} /></button>}
           <p className="plan-cancel">{regionalShown?.monthly.pass ? 'One payment. Nothing renews.' : 'Cancel future renewals anytime.'}</p>
         </article>
       </div>
       <div className="plan-inclusions">
         <h3>Every plan includes the whole study space</h3>
         <ul>
-          <li><Layers size={18} /><span><strong>Real scans, real tools</strong>CT, MRI, X-ray, ultrasound & mammography</span></li>
+          <li><Layers size={18} /><span><strong>{fact(LANDING_FACTS.patients)}+ real patients</strong>CT, MRI, X-ray, ultrasound & mammography, with {fact(LANDING_FACTS.tasks)}+ graded tasks</span></li>
           <li><Crosshair size={18} /><span><strong>Practice with feedback</strong>Guided cases, anatomy drills & on-call shifts</span></li>
           <li><BookOpen size={18} /><span><strong>The book, connected</strong>Read the explanation, then return to your scan</span></li>
         </ul>
       </div>
-      <p className="payment-reassurance"><ShieldCheck size={15} /> Secure on-page checkout · Card, Apple Pay & Google Pay¹</p>
+      <p className="payment-reassurance"><ShieldCheck size={15} /> {upiPrice ? 'Secure on-page checkout · UPI, or a card¹' : 'Secure on-page checkout · Card, Apple Pay & Google Pay¹'} · Access opens as soon as the payment is confirmed</p>
       {!account?.user && <p className="existing-account">Already a member? <button className="text-button" disabled={!ready?.auth} onClick={() => setAuthMode('login')}>Sign in</button></p>}
       </>}
       {account?.access.pendingMembership && <p className="membership-message">You already have a membership awaiting payment confirmation or a billing update. {account.access.manageUrl && <a href={account.access.manageUrl} target="_blank" rel="noopener noreferrer">Open billing in Whop</a>} to check it before purchasing again.</p>}
@@ -579,7 +621,7 @@ function MembershipGate({ children }: { children: ReactNode }) {
   }
   const startFree = (where = 'home') => { setAuthMode('signup'); setError(''); trackFunnel('signup_start', true); ev('save_click', { where }); };
   const authDialog = (
-    <dialog className="auth-dialog" ref={dialog} onCancel={() => setAuthMode(null)} onClose={() => { if (!account?.user && authMode === 'signup') ev('account_abandon', { step: evFired('code_sent') ? 'code_sent' : evFired('email_focus') ? 'email_focus' : evFired('form_shown') ? 'form_shown' : 'opened' }); setAuthMode(null); }} aria-labelledby="auth-title">
+    <dialog className="auth-dialog" ref={dialog} onCancel={() => setAuthMode(null)} onClose={() => { if (!account?.user && authMode === 'signup') ev('account_abandon', { step: evFired('code_sent') ? 'code_sent' : evFired('clerk_error') ? 'error' : evFired('signup_submit') ? 'submitted' : evFired('email_focus') ? 'email_focus' : evFired('form_shown') ? 'form_shown' : 'opened' }); setAuthMode(null); }} aria-labelledby="auth-title">
       <button className="auth-close" aria-label="Close sign-in" onClick={() => setAuthMode(null)}><X size={20} /></button>
       <div className="auth-icon"><Mail size={25} /></div>
       <div className="auth-tabs" role="tablist" aria-label="Account options">

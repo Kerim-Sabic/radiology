@@ -98,6 +98,12 @@ function AccountForm({ mode, complete, onSuccess }: { mode: Mode; complete: bool
       if ((e.target as HTMLInputElement | null)?.name === 'emailAddress') ev('email_focus', {}, true);
     };
     document.addEventListener('focusin', focus);
+    // The email was submitted ("Continue" pressed), and Clerk's field errors (a bad address, one it refuses): the step
+    // between typing and the code. No text is kept, only that it happened.
+    const submit = (e: Event) => { if ((e.target as HTMLElement | null)?.closest?.('.inline-account-submit')) ev('signup_submit', {}, true); };
+    document.addEventListener('click', submit, true);
+    const errorsSeen = new MutationObserver(() => { if (document.querySelector('.inline-account-cardbox .cl-formFieldErrorText')) ev('clerk_error', { code: 'field' }, true); });
+    errorsSeen.observe(document.body, { childList: true, subtree: true });
     let expires = 0;
     let attempts = 0;
     const off = clerk.addListener(({ client }) => {
@@ -116,6 +122,8 @@ function AccountForm({ mode, complete, onSuccess }: { mode: Mode; complete: bool
     });
     return () => {
       document.removeEventListener('focusin', focus);
+      document.removeEventListener('click', submit, true);
+      errorsSeen.disconnect();
       off?.();
     };
   }, [isLoaded, clerk]);

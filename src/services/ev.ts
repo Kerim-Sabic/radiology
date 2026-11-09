@@ -85,7 +85,9 @@ export function startEv() {
     /* no referrer */
   }
   const tag = adSource() ?? '';
-  ev('land', { path: location.pathname, tag, ref, et: (navigator as Navigator & { connection?: { effectiveType?: string } }).connection?.effectiveType ?? '' }, true);
+  // The in-app browser the visit came in, if any (Instagram, Facebook, other): these can break sign-in pop-ups and storage.
+  function inAppBrowser() { const ua = navigator.userAgent; return /Instagram/i.test(ua) ? 'instagram' : /FBAN|FBAV|FB_IAB/i.test(ua) ? 'facebook' : /; wv\)/.test(ua) ? 'webview' : ''; }
+  ev('land', { path: location.pathname, tag, ref, et: (navigator as Navigator & { connection?: { effectiveType?: string } }).connection?.effectiveType ?? '', app: inAppBrowser() }, true);
   if (/^email/.test(tag)) ev('email_visit', { campaign: tag.split(':')[1] ?? '' }, true);
   for (const kind of ['pointerdown', 'keydown', 'scroll'])
     addEventListener(kind, () => ev('active', { kind }, true), { once: true, passive: true, capture: true });

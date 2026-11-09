@@ -168,8 +168,8 @@ test('an Indian visitor can pay the pass by UPI in rupees, and switch back to a 
     return route.fulfill({json:{id:upi?'ch_upi':'ch_card',returnUrl:'http://localhost:4317/?checkout=returned',regional:{...india,price:39.99,days:365,pass:true,...(upi?{rupees:3749,method:'upi'}:{})}}});});
   await page.route('**/*whop.com/**',route=>route.abort());
   await page.goto('/?plans');
-  await expect(page.locator('.regional-price')).toContainText('Pay by UPI (₹469 for 30 days · ₹3,749 for a year) or by card.');
-  await page.getByRole('button',{name:'Start yearly'}).click();
+  await expect(page.locator('.regional-price')).toContainText('₹469 for 30 days · ₹3,749 for a year');
+  await page.getByRole('button',{name:'or pay $39.99 by card'}).click();
   await expect(page.locator('.upi-switch')).toContainText('Pay by UPI instead: ₹3,749');
   await page.locator('.upi-switch').getByRole('button',{name:'Pay by UPI'}).click();
   await expect(page.locator('.upi-switch')).toContainText('Paying ₹3,749 by UPI');
@@ -195,7 +195,7 @@ test('an Indian visitor with a welcome code pays its 40% off by UPI, or, where t
       regional:{...india,price:4.99,days:30,pass:true,...(upi?{rupees:469,method:'upi'}:{})}}});});
   await page.route('**/*whop.com/**',route=>route.abort());
   await page.goto('/?plans');
-  await page.getByRole('button',{name:'Get 30 days'}).click();
+  await page.getByRole('button',{name:'or pay $4.99 by card'}).click();
   await expect(page.locator('.welcome-applied')).toContainText('($2.99 instead of $4.99)');
   await page.locator('.upi-switch').getByRole('button',{name:'Pay by UPI'}).click();
   await expect(page.locator('.upi-switch')).toContainText('Paying ₹281.40 by UPI');
@@ -215,6 +215,65 @@ test('an Indian visitor with a welcome code pays its 40% off by UPI, or, where t
   await expect(page.locator('.welcome-applied')).toHaveCount(0);
   expect(bodies.slice(2)).toEqual([{tier:'monthly',promoCode:code},{tier:'monthly',promoCode:code,method:'upi'},{tier:'monthly',method:'upi'}]);
 });
+const indiaPrice={region:'c',country:'IN',countryName:'India',monthly:{price:4.99,pass:true},yearly:{price:39.99,pass:true},upi:{monthly:469,yearly:3749}};
+/** The events the page sent (the log batches them), by name. */
+function captureEvents(page:Page){const sent:Array<[string,Record<string,unknown>]>=[];
+  page.route('**/api/ev',route=>{for(const e of route.request().postDataJSON().ev as unknown[][]) sent.push([e[1] as string,(e[2]??{}) as Record<string,unknown>]);return route.fulfill({status:204,body:''});});return sent;}
+
+test('in India the UPI pass is the lead button on each plan card: one tap opens the UPI checkout, and the events say so', async ({page}) => {
+  await page.route('**/api/config',route=>route.fulfill({json:{auth:true,billing:true}}));
+  await page.route('**/api/session',route=>route.fulfill({json:{user:{name:'Ravi',email:'ravi@example.com'},access:{active:false},billingReady:true,regionalPrice:indiaPrice}}));
+  const sent=captureEvents(page);
+  const bodies:Array<Record<string,unknown>>=[];
+  await page.route('**/api/billing/checkout',route=>{const b=route.request().postDataJSON();bodies.push(b);
+    return route.fulfill({json:{id:'ch_upi',returnUrl:'http://localhost:4317/?checkout=returned',regional:{...indiaPrice,price:4.99,days:30,pass:true,rupees:469,method:'upi'}}});});
+  await page.route('**/*whop.com/**',route=>route.abort());
+  await page.goto('/?plans');
+  const lead=page.locator('.membership-plan.rec');
+  await expect(lead).toContainText('₹469');
+  await expect(lead).toContainText('Smallest first payment');
+  await expect(lead).toContainText('Google Pay, PhonePe, Paytm or any UPI app. No card needed.');
+  await expect(page.locator('.membership-plan.yearly')).toContainText('₹312');
+  await expect(page.locator('.membership-plan.yearly')).toContainText('Save ₹1,879');
+  await expect(page.locator('.membership-plan.yearly')).toContainText('$39.99 by card');
+  await expect(page.locator('.plans-value')).toContainText('600+ real patients');
+  await page.setViewportSize({width:390,height:844});
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+  await page.screenshot({path:'test-results/plans-india-390.png'});await expect(page.getByRole('button',{name:'Pay ₹469 with UPI'})).toBeInViewport();
+  await page.getByRole('button',{name:'Pay ₹469 with UPI'}).click();
+  await expect(page.locator('.upi-switch')).toContainText('Paying ₹469 by UPI');
+  expect(bodies).toEqual([{tier:'monthly',method:'upi'}]);
+  await page.getByRole('button',{name:'Change plan'}).click();
+  await expect.poll(()=>sent.some(([n])=>n==='checkout_close'),{timeout:12000}).toBe(true);
+  expect(sent.find(([n])=>n==='plans_view')![1]).toMatchObject({regional:true,pass:true,upi:true,rec:'monthly',monthly:4.99,yearly:39.99});
+  expect(sent.find(([n])=>n==='plan_click')![1]).toEqual({period:'monthly',amount:4.99,method:'upi',rec:true,via:'plans'});
+  expect(sent.find(([n])=>n==='checkout_close')![1]).toEqual({step:'loading'});
+});
+
+test('a visitor who is not signed in presses the UPI button and, once signed in, the checkout opens on UPI', async ({page}) => {
+  await page.route('**/api/config',route=>route.fulfill({json:{auth:true,billing:true,regionalPrice:indiaPrice}}));
+  await page.route('**/api/session',route=>route.fulfill({status:401,json:{user:null}}));
+  await page.goto('/?plans');
+  await page.getByRole('button',{name:'Pay ₹3,749 with UPI'}).click();
+  await expect(page.getByRole('dialog',{name:/account|free/i})).toBeVisible();
+  expect(await page.evaluate(()=>[sessionStorage.getItem('rvm:selected-plan'),sessionStorage.getItem('rvm:selected-plan-method')])).toEqual(['yearly','upi']);
+});
+
+test('another country with one-time passes leads with the 30-day pass and no UPI; a student sees the card price, not UPI', async ({page}) => {
+  const ph={region:'c',country:'PH',countryName:'the Philippines',monthly:{price:5.99,pass:true},yearly:{price:47.99,pass:true},student:{monthly:4.19,yearly:33.59}};
+  await page.route('**/api/config',route=>route.fulfill({json:{auth:true,billing:true}}));
+  await page.route('**/api/session',route=>route.fulfill({json:{user:{name:'Ana',email:'ana@example.com'},access:{active:false},billingReady:true,regionalPrice:ph}}));
+  const sent=captureEvents(page);
+  await page.goto('/?plans');
+  await expect(page.locator('.membership-plan.rec')).toHaveClass(/monthly/);
+  await expect(page.getByRole('button',{name:'Get 30 days'})).toBeVisible();
+  await expect(page.getByText('with UPI')).toHaveCount(0);
+  await page.setViewportSize({width:390,height:844});
+  await page.screenshot({path:'test-results/plans-ph-390.png'});
+  await expect.poll(()=>sent.some(([n])=>n==='plans_view'),{timeout:12000}).toBe(true);
+  expect(sent.find(([n])=>n==='plans_view')![1]).toMatchObject({upi:false,rec:'monthly'});
+});
+
 test('the welcome email’s link, opened signed out, keeps the price for the visitor’s country and asks to sign in', async ({page}) => {
   // The 24-hour welcome email links to /?plans&promo=welcome-…; it usually opens outside Instagram's browser, signed out.
   await page.route('**/api/config',route=>route.fulfill({json:{auth:true,billing:true,
@@ -225,8 +284,9 @@ test('the welcome email’s link, opened signed out, keeps the price for the vis
   await page.goto('/?plans&promo=welcome-TEST');
   const panel=page.locator('#plans');
   const plans=page.locator('.membership-plan');
-  await expect(plans.nth(1)).toContainText('$4.99 for 30 days');
-  await expect(plans.first()).toContainText('$39.99 for a year');
+  await expect(plans.nth(1)).toContainText('₹469 for 30 days');
+  await expect(plans.nth(1)).toContainText('$4.99 by card');
+  await expect(plans.first()).toContainText('₹3,749 for a year');
   await expect(panel).not.toContainText('$20 billed every 30 days');
   await expect(panel).not.toContainText('$20 a month or $150 a year');
   await expect(page.locator('.regional-price')).toContainText('Your welcome code works on these prices');
@@ -234,7 +294,7 @@ test('the welcome email’s link, opened signed out, keeps the price for the vis
   await expect(page.locator('#membership-promo')).toHaveValue('welcome-TEST');
   await page.setViewportSize({width:390,height:844});
   await panel.screenshot({path:'test-results/welcome-link-signed-out.png'});
-  await page.getByRole('button',{name:'Get 30 days'}).click();
+  await page.getByRole('button',{name:'Pay ₹469 with UPI'}).click();
   const dialog=page.getByRole('dialog',{name:'Welcome back.'});
   await expect(dialog.getByRole('tab',{name:'Sign in'})).toHaveAttribute('aria-selected','true');
   await expect(dialog).toContainText('Sign in with the email your welcome code was sent to.');
