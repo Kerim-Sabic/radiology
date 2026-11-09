@@ -323,7 +323,7 @@
    "lessons": "heart-ct/lessons.json",
    "bytes": 101510978,
    "distribution": "repo",
-   "note": "36 subjects, 36 studies, 36 series, 2466 instances, 547 reference targets; DICOM 89.0 MB. Committed to the repository; rebuild with scripts/data/heart_ct.py + heart_ct_build.py; lessons scripts/lessons/heart_ct.py."
+   "note": "36 subjects, 36 studies, 36 series, 2466 instances, 674 reference targets; DICOM 89.0 MB. Committed to the repository; rebuild with scripts/data/heart_ct.py + heart_ct_build.py, then the second AI layer with scripts/data/heart_ct_ai2.py; lessons scripts/lessons/heart_ct.py + heart_ct_ai2.py."
   },
   {
    "id": "msd-heart-mri",

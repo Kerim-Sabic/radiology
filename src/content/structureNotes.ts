@@ -243,6 +243,16 @@ const N: Array<[RegExp, StructureNote]> = [
     },
   ],
   [
+    /^coronary_arteries$/,
+    {
+      look: 'Thin bright vessels, 2 to 4 mm wide, in the fat of the grooves around the heart: the right coronary artery between the right atrium and right ventricle, the left anterior descending artery in front between the two ventricles, the circumflex artery behind between the left atrium and left ventricle.',
+      near: 'They start at the aortic root, just above the valve, and lie on the heart surface outside the muscle, so they sit between the muscle and the pericardial fat.',
+      pitfall: 'The heartbeat blurs them on an ungated scan, so only short pieces show; follow an artery from slice to slice and do not judge it on one image.',
+      unit: 'ch03',
+      window: 'Soft tissue',
+    },
+  ],
+  [
     /^pulmonary_arteries_/,
     {
       look: 'Lobar and segmental pulmonary arteries: the branches inside each lobe, running beside the bronchi and dividing with them.',
